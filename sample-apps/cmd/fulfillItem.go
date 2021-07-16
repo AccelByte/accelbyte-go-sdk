@@ -1,0 +1,71 @@
+// Copyright (c) 2021 AccelByte Inc. All Rights Reserved.
+// This is licensed software from AccelByte Inc, for limitations
+// and restrictions contact your company contract manager.
+package cmd
+
+import (
+	"encoding/json"
+	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service"
+	"github.com/AccelByte/sample-apps/pkg/repository"
+	"github.com/sirupsen/logrus"
+
+	"github.com/spf13/cobra"
+)
+
+// fulfillItemCmd represents the fulfillItem command
+var fulfillItemCmd = &cobra.Command{
+	Use:   "fulfillItem",
+	Short: "Fulfill item",
+	Long:  `Fulfill item`,
+	RunE: func(cmd *cobra.Command, args []string) error {
+		fulfillmentService := &service.FulfillmentService{
+			PlatformService: factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
+			TokenRepository: &repository.TokenRepositoryImpl{},
+		}
+		userId, err := cmd.Flags().GetString("userId")
+		if err != nil {
+			return err
+		}
+		userNamespace, err := cmd.Flags().GetString("namespace")
+		if err != nil {
+			return err
+		}
+		itemId, err := cmd.Flags().GetString("itemId")
+		if err != nil {
+			return err
+		}
+		quantity, err := cmd.Flags().GetInt32("quantity")
+		if err != nil {
+			return err
+		}
+
+		request := &platformclientmodels.FulfillmentRequest{
+			ItemID:   &itemId,
+			Quantity: &quantity,
+		}
+		grantEntitlement, err := fulfillmentService.FulfillItem(userId, userNamespace, *request)
+		if err != nil {
+			return err
+		}
+		response, err := json.Marshal(grantEntitlement)
+		if err != nil {
+			return err
+		}
+		logrus.Infof("Response: %s", response)
+		return nil
+	},
+}
+
+func init() {
+	rootCmd.AddCommand(fulfillItemCmd)
+	fulfillItemCmd.Flags().StringP("userId", "u", "", "User ID")
+	fulfillItemCmd.MarkFlagRequired("userId")
+	fulfillItemCmd.Flags().StringP("itemId", "i", "", "Item ID")
+	fulfillItemCmd.MarkFlagRequired("itemId")
+	fulfillItemCmd.Flags().Int32P("quantity", "q", 1, "item quantity")
+	fulfillItemCmd.MarkFlagRequired("quantity")
+	fulfillItemCmd.Flags().StringP("namespace", "", "", "User namespace")
+	fulfillItemCmd.MarkFlagRequired("namespace")
+}

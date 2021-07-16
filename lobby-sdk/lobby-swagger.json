@@ -1,0 +1,254 @@
+{
+  "swagger": "2.0",
+  "schemes": ["https"],
+  "host": "jib.noice.accelbyte.io",
+  "info": {
+    "description": "Justice Lobby Server",
+    "title": "justice-lobby-server",
+    "version": "dev"
+  },
+  "securityDefinitions": {
+    "authorization": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header"
+    }
+  },
+  "security": [
+    {
+      "authorization": []
+    }
+  ],
+  "paths": {
+    "/friends/namespaces/{namespace}/users/{userId}/add/bulk": {
+      "post": {
+        "description": "Required permission : <code>NAMESPACE:{namespace}:USER:{userId}:FRIENDS [CREATE]</code> with scope <code>social</code>\n\t\t\t<br>friends request in a namespace.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "friends"
+        ],
+        "summary": "Add friends without confirmation",
+        "operationId": "addFriendsWithoutConfirmation",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "user ID",
+            "name": "userId",
+            "in": "path",
+            "required": true
+          },
+          {
+            "description": "friends request content",
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/model.BulkAddFriendsRequest"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Friend added successfully"
+          },
+          "400": {
+            "description": "Bad request",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseV1"
+            }
+          },
+          "401": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseV1"
+            }
+          },
+          "403": {
+            "description": "Bad request",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseV1"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseV1"
+            }
+          }
+        }
+      }
+    },
+    "/lobby/v1/admin/friend/namespaces/{namespace}/users/{userId}": {
+      "get": {
+        "description": "Required permission : <code>NAMESPACE:{namespace}:USER:{userId}:FRIENDS [READ]</code> with scope <code>social</code>\n<br>get list of friends in a namespace.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "friends"
+        ],
+        "summary": "get list of friends",
+        "operationId": "get list of friends",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "user ID",
+            "name": "userId",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "maximum number of data",
+            "name": "limit",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "numbers of row to skip within the result",
+            "name": "offset",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Friends retrieved successfully",
+            "schema": {
+              "$ref": "#/definitions/model.GetFriendsResponse"
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "401": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "403": {
+            "description": "Bad request",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "model.Pagination": {
+      "required": [
+        "previous",
+        "next",
+        "first",
+        "last"
+      ],
+      "properties": {
+        "first": {
+          "type": "string"
+        },
+        "last": {
+          "type": "string"
+        },
+        "next": {
+          "type": "string"
+        },
+        "previous": {
+          "type": "string"
+        }
+      }
+    },
+    "model.BulkAddFriendsRequest": {
+      "required": [
+        "friendIds"
+      ],
+      "properties": {
+        "friendIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "restapi.ErrorResponseV1": {
+      "required": [
+        "errorCode",
+        "errorMessage"
+      ],
+      "properties": {
+        "errorCode": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "errorMessage": {
+          "type": "string"
+        }
+      }
+    },
+    "model.GetFriendsResponse": {
+      "required": [
+        "friendIDs",
+        "paging"
+      ],
+      "properties": {
+        "friendIDs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "paging": {
+          "$ref": "#/definitions/model.Pagination"
+        }
+      }
+    },
+    "restapi.ErrorResponseBody": {
+      "required": [
+        "ErrorCode",
+        "ErrorMessage"
+      ],
+      "properties": {
+        "ErrorCode": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "ErrorMessage": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

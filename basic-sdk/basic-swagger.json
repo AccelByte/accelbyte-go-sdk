@@ -1,0 +1,3792 @@
+{
+  "swagger": "2.0",
+  "host": "jib.noice.accelbyte.io",
+  "schemes": ["https"],
+  "info": {
+    "description": "Justice Basic Service",
+    "version": "1.17.0",
+    "title": "justice-basic-service",
+    "contact": {
+      "name": "Engineering Team at AccelByte",
+      "url": "https://accelbyte.io",
+      "email": "engineering@accelbyte.io"
+    }
+  },
+  "basePath": "/basic",
+  "tags": [
+    {
+      "name": "FileUpload"
+    },
+    {
+      "name": "Misc"
+    },
+    {
+      "name": "Namespace"
+    },
+    {
+      "name": "Anonymization"
+    },
+    {
+      "name": "UserProfile"
+    }
+  ],
+  "paths": {
+    "/v1/admin/namespaces/{namespace}/folders/{folder}/files": {
+      "post": {
+        "tags": [
+          "FileUpload"
+        ],
+        "summary": "Generate Upload URL",
+        "description": "Generate an upload URL. It's valid for 10 minutes.<br/>Other detail info: <ul><li><i>Required permission</i>: resource = <b>\"ADMIN:NAMESPACE:{namespace}:FILEUPLOAD\"</b>, action=1 <b>(CREATE)</b></li><li><i>Action code</i>: 11101</li><li><i>Returns</i>: URL data</li></ul>",
+        "operationId": "generatedUploadUrl",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "description": "namespace, only accept alphabet and numeric",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "folder",
+            "in": "path",
+            "description": "the name of folder where the file will be uploaded, must be between 1-256 characters, all characters allowed no whitespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "fileType",
+            "in": "query",
+            "description": "one of the these types: jpeg, jpg, png, bmp, gif, mp3, bin",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "$ref": "#/definitions/FileUploadUrlInfo"
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>11131</td><td>file type not supported</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorEntity"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permission</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "500": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "x-authorization": {
+          "resource": "ADMIN:NAMESPACE:{namespace}:FILEUPLOAD",
+          "action": "1"
+        }
+      }
+    },
+    "/v1/admin/namespaces/{namespace}/users/{userId}/files": {
+      "post": {
+        "tags": [
+          "FileUpload"
+        ],
+        "summary": "Generate Upload URL For User Content",
+        "description": "Generate an upload URL for user content. It's valid for 10 minutes.<br/>There are 2 kinds of storage limitation per user : maximum file count and maximum file size.<br/>Other detail info: <ul><li><i>Required permission</i>: resource = <b>\"ADMIN:NAMESPACE:{namespace}:USER:{userId}:FILEUPLOAD\"</b>, action=1 <b>(CREATE)</b></li><li><i>Action code</i>: 11102</li><li><i>Default maximum file count per user</i>: 10 files</li><li><i>Default maximum file size per user</i>: 104857600 bytes</li><li><i>Returns</i>: URL data</li></ul>",
+        "operationId": "generatedUserUploadContentUrl",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "description": "namespace, only accept alphabet and numeric",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "user's id, should follow UUID version 4 without hyphen",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "fileType",
+            "in": "query",
+            "description": "one of the these types: jpeg, jpg, png, bmp, gif, mp3, bin",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "$ref": "#/definitions/FileUploadUrlInfo"
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>11131</td><td>file type not supported</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorEntity"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permission</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "409": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11132</td><td>storage limit exceeded</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "500": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "x-authorization": {
+          "resource": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:FILEUPLOAD",
+          "action": "1"
+        }
+      }
+    },
+    "/v1/public/namespaces/{namespace}/folders/{folder}/files": {
+      "post": {
+        "tags": [
+          "FileUpload"
+        ],
+        "summary": "Generate Upload URL",
+        "description": "Generate an upload URL. It's valid for 10 minutes.<br/>Other detail info: <ul><li><i>Required permission</i>: resource = <b>\"NAMESPACE:{namespace}:FILEUPLOAD\"</b>, action=1 <b>(CREATE)</b></li><li><i>Action code</i>: 11101</li><li><i>Returns</i>: URL data</li></ul>",
+        "operationId": "publicGeneratedUploadUrl",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "description": "namespace, only accept alphabet and numeric",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "folder",
+            "in": "path",
+            "description": "the name of folder where the file will be uploaded, must be between 1-256 characters, all characters allowed no whitespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "fileType",
+            "in": "query",
+            "description": "one of the these types: jpeg, jpg, png, bmp, gif, mp3, bin",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "$ref": "#/definitions/FileUploadUrlInfo"
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>11131</td><td>file type not supported</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorEntity"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permission</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "500": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "x-authorization": {
+          "resource": "NAMESPACE:{namespace}:FILEUPLOAD",
+          "action": "1"
+        }
+      }
+    },
+    "/v1/public/namespaces/{namespace}/users/{userId}/files": {
+      "post": {
+        "tags": [
+          "FileUpload"
+        ],
+        "summary": "Generate Upload URL For User Content",
+        "description": "Generate an upload URL for user content. It's valid for 10 minutes.<br/>There are 2 kinds of storage limitation per user : maximum file count and maximum file size.<br/>Other detail info: <ul><li><i>Required permission</i>: resource = <b>\"NAMESPACE:{namespace}:USER:{userId}:FILEUPLOAD\"</b>, action=1 <b>(CREATE)</b></li><li><i>Action code</i>: 11102</li><li><i>Default maximum file count per user</i>: 10 files</li><li><i>Default maximum file size per user</i>: 104857600 bytes</li><li><i>Returns</i>: URL data</li></ul>",
+        "operationId": "publicGeneratedUserUploadContentUrl",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "description": "namespace, only accept alphabet and numeric",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "user's id, should follow UUID version 4 without hyphen",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "fileType",
+            "in": "query",
+            "description": "one of the these types: jpeg, jpg, png, bmp, gif, mp3, bin",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "$ref": "#/definitions/FileUploadUrlInfo"
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>11131</td><td>file type not supported</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorEntity"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permission</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "409": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11132</td><td>storage limit exceeded</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "500": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "x-authorization": {
+          "resource": "NAMESPACE:{namespace}:USER:{userId}:FILEUPLOAD",
+          "action": "1"
+        }
+      }
+    },
+    "/v1/admin/namespaces/{namespace}/misc/countrygroups/{countryGroupCode}": {
+      "put": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "Update a country group",
+        "description": "Update a country groups. The countryGroupCode must be exist beforehand.<br>Valid update behaviour :<br/>- To update <i>countryGroupName</i> only, do not include <i>countries</i> key or just specify it with empty array.<br/>- To update <i>countries</i> only, do not include <i>countryGroupName</i> key or just specify it with blank value.<br/>Other detail info: <ul><li><i>Required permission</i>: resource = <b>\"ADMIN:NAMESPACE:{namespace}:MISC\"</b>, action=4 <b>(UPDATE)</b></li><li><i>Action code</i>: 11202</li><li><i>Returns</i>: updated country group</li></ul>",
+        "operationId": "updateCountryGroup",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "description": "namespace, only accept alphabet and numeric",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "countryGroupCode",
+            "in": "path",
+            "description": "groupCode, only accept alphabet and whitespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/UpdateCountryGroupRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/CountryGroupObject"
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>20019</td><td>unable to parse request body</td></tr><tr><td>11234</td><td>country belongs to more than one group</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorEntity"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permission</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11233</td><td>country group not found</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "x-authorization": {
+          "authenticated": "true"
+        }
+      },
+      "delete": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "Delete a country group",
+        "description": "Delete a country groups by its country group code. This endpoint usually used for testing purpose to cleanup test data.<br>Other detail info: <ul><li><i>Required permission</i>: resource = <b>\"ADMIN:NAMESPACE:{namespace}:MISC\"</b>, action=8 <b>(DELETE)</b></li></ul>",
+        "operationId": "deleteCountryGroup",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "description": "namespace, only accept alphabet and numeric",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "countryGroupCode",
+            "in": "path",
+            "description": "groupCode, only accept alphabet and whitespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorEntity"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permission</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11233</td><td>country group not found</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "x-authorization": {
+          "authenticated": "true"
+        }
+      }
+    },
+    "/v1/admin/namespaces/{namespace}/misc/languages": {
+      "get": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "List languages.",
+        "description": "List languages.<br>Other detail info: <ul><li><i>Required permission</i>: login user</li><li><i>Action code</i>: 11206</li><li><i>Returns</i>: language list</li></ul>",
+        "operationId": "getLanguages",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "description": "namespace, only accept alphabet and numeric",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorEntity"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "x-authorization": {
+          "authenticated": "true"
+        }
+      }
+    },
+    "/v1/admin/namespaces/{namespace}/misc/timezones": {
+      "get": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "List time zones",
+        "description": "List time zones.<br>Other detail info: <ul><li><i>Required permission</i>: login user</li><li><i>Action code</i>: 11205</li><li><i>Returns</i>: time zones</li></ul>",
+        "operationId": "getTimeZones",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "description": "namespace, only accept alphabet and numeric",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorEntity"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "x-authorization": {
+          "authenticated": "true"
+        }
+      }
+    },
+    "/v1/admin/namespaces/{namespace}/misc/countrygroups": {
+      "get": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "List country groups",
+        "description": "List country groups. Will return all available country groups if the query param is not specified<br>Other detail info: <ul><li><i>Required permission</i>: resource = <b>\"ADMIN:NAMESPACE:{namespace}:MISC\"</b>, action=2 <b>(READ)</b></li><li><i>Action code</i>: 11203</li><li><i>Returns</i>: list of country groups</li></ul>",
+        "operationId": "getCountryGroups",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "description": "namespace, only accept alphabet and numeric",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "groupCode",
+            "in": "query",
+            "description": "groupCode, only accept alphabet and whitespace",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/RetrieveCountryGroupResponse"
+              }
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorEntity"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permission</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11233</td><td>country group not found</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "x-authorization": {
+          "authenticated": "true"
+        }
+      },
+      "post": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "Add a country group",
+        "description": "Add a country groups<br>Country code must follow ISO3166-1 alpha-2.<br/>Other detail info: <ul><li><i>Required permission</i>: resource = <b>\"ADMIN:NAMESPACE:{namespace}:MISC\"</b>, action=1 <b>(CREATE)</b></li><li><i>Action code</i>: 11201</li><li><i>Returns</i>: newly created country group</li></ul>",
+        "operationId": "addCountryGroup",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "description": "namespace, only accept alphabet and numeric",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/AddCountryGroupRequest"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/AddCountryGroupResponse"
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>20019</td><td>unable to parse request body</td></tr><tr><td>11234</td><td>country belongs to more than one group</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permission</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "409": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11235</td><td>country group already exist</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "x-authorization": {
+          "authenticated": "true"
+        }
+      }
+    },
+    "/v1/admin/namespaces/{namespace}/misc/countries": {
+      "get": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "List countries",
+        "description": "List countries.<br>Other detail info: <ul><li><i>Required permission</i>: login user</li><li><i>Action code</i>: 11204</li><li><i>Returns</i>: country code list</li></ul>",
+        "operationId": "getCountries",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "description": "namespace, only accept alphabet and numeric",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "lang",
+            "in": "query",
+            "description": "language value from language tag, allowed format: en, en-US",
+            "required": false,
+            "type": "string",
+            "default": "en"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/CountryObject"
+              }
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorEntity"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "x-authorization": {
+          "authenticated": "true"
+        }
+      }
+    },
+    "/v1/public/namespaces/{namespace}/misc/timezones": {
+      "get": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "List time zones",
+        "description": "List time zones.<br>Other detail info: <ul><li><i>Returns</i>: time zones</li></ul>",
+        "operationId": "publicGetTimeZones",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "description": "namespace, only accept alphabet and numeric",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorEntity"
+            }
+          }
+        },
+        "x-authorization": {
+          "authenticated": "true"
+        }
+      }
+    },
+    "/v1/public/namespaces/{namespace}/misc/languages": {
+      "get": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "List languages.",
+        "description": "List languages.<br>Other detail info: <ul><li><i>Returns</i>: language list</li></ul>",
+        "operationId": "publicGetLanguages",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "description": "namespace, only accept alphabet and numeric",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorEntity"
+            }
+          }
+        },
+        "x-authorization": {
+          "authenticated": "true"
+        }
+      }
+    },
+    "/v1/public/namespaces/{namespace}/misc/countries": {
+      "get": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "List countries",
+        "description": "List countries.<br>Other detail info: <ul><li><i>Returns</i>: country code list</li></ul>",
+        "operationId": "publicGetCountries",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "description": "namespace, only accept alphabet and numeric",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "lang",
+            "in": "query",
+            "description": "language value from language tag, allowed format: en, en-US",
+            "required": false,
+            "type": "string",
+            "default": "en"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/CountryObject"
+              }
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorEntity"
+            }
+          }
+        },
+        "x-authorization": {
+          "authenticated": "true"
+        }
+      }
+    },
+    "/v1/admin/namespaces": {
+      "get": {
+        "tags": [
+          "Namespace"
+        ],
+        "summary": "Get all namespaces",
+        "description": "Get all namespaces.<br>Other detail info: <ul><li><i>Required permission</i>: resource=<b>\"ADMIN:NAMESPACE\"</b>, action=2 <b>(READ)</b></li><li><i>Action code</i>: 11303</li><li><i>Returns</i>: list of namespaces</li></ul>",
+        "operationId": "getNamespaces",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "activeOnly",
+            "in": "query",
+            "description": "only retrieves active namespaces",
+            "required": false,
+            "type": "boolean",
+            "default": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/NamespaceInfo"
+              }
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permission</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "x-authorization": {
+          "resource": "ADMIN:NAMESPACE",
+          "action": "2"
+        }
+      },
+      "post": {
+        "tags": [
+          "Namespace"
+        ],
+        "summary": "Create a namespace",
+        "description": "Create a namespace.<br>By default the namespace is enabled.<br>Other detail info: <ul><li><i>Required permission</i>: resource=<b>\"ADMIN:NAMESPACE\"</b>, action=1 <b>(CREATE)</b></li><li><i>Action code</i>: 11301</li><li><i>Returns</i>: created namespace</li></ul>",
+        "operationId": "createNamespace",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/NamespaceCreate"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Successful operation",
+            "schema": {
+              "$ref": "#/definitions/NamespaceInfo"
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>20019</td><td>unable to parse request body</td></tr><tr><td>11338</td><td>namespace contains invalid character</td></tr><tr><td>11339</td><td>namespace display name contains invalid character</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorEntity"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permission</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "409": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11336</td><td>namespace already exists</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "x-authorization": {
+          "resource": "ADMIN:NAMESPACE",
+          "action": "1"
+        }
+      }
+    },
+    "/v1/admin/namespaces/{namespace}/status": {
+      "patch": {
+        "tags": [
+          "Namespace"
+        ],
+        "summary": "Change namespace status",
+        "description": "Change a namespace status.<br>Other detail info: <ul><li><i>Required permission</i>: resource=<b>\"ADMIN:NAMESPACE:{namespace}:NAMESPACE\"</b>, action=4 <b>(UPDATE)</b></li><li>Action code<i></i>: 11306</li><li><i>Returns</i>: updated namespace</li></ul>",
+        "operationId": "changeNamespaceStatus",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "description": "namespace, only accept alphabet and numeric",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/NamespaceStatusUpdate"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "$ref": "#/definitions/NamespaceInfo"
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>20019</td><td>unable to parse request body</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorEntity"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permission</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11337</td><td>namespace not found</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "409": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20006</td><td>optimistic lock</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "x-authorization": {
+          "resource": "ADMIN:NAMESPACE:{namespace}:NAMESPACE",
+          "action": "4"
+        }
+      }
+    },
+    "/v1/admin/namespaces/{namespace}/basic": {
+      "patch": {
+        "tags": [
+          "Namespace"
+        ],
+        "summary": "Update namespace basic info",
+        "description": "Update namespace basic info.<br>Other detail info: <ul><li><i>Required permission</i>: resource=<b>\"ADMIN:NAMESPACE:{namespace}:NAMESPACE\"</b>, action=4 <b>(UPDATE)</b></li><li><i>Action code</i>: 11302</li><li><i>Returns</i>: updated namespace</li></ul>",
+        "operationId": "updateNamespace",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "description": "namespace, only accept alphabet and numeric",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/NamespaceUpdate"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "$ref": "#/definitions/NamespaceInfo"
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>20019</td><td>unable to parse request body</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorEntity"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permission</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11337</td><td>namespace not found</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "409": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20006</td><td>optimistic lock</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "x-authorization": {
+          "resource": "ADMIN:NAMESPACE:{namespace}:NAMESPACE",
+          "action": "4"
+        }
+      }
+    },
+    "/v1/admin/namespaces/{namespace}/publisher": {
+      "get": {
+        "tags": [
+          "Namespace"
+        ],
+        "summary": "Get namespace info related publisher namespace",
+        "description": "Get namespace info related publisher namespace.<br>Other detail info: <ul><li><i>Required permission</i>: resource=<b>\"ADMIN:NAMESPACE:{namespace}:NAMESPACE\"</b>, action=2 <b>(READ)</b></li><li><i>Action code</i>: 11305</li><li><i>Returns</i>: Namespace info related publisher namespace</li></ul>",
+        "operationId": "getNamespacePublisher",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "description": "namespace, only accept alphabet and numeric",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "$ref": "#/definitions/NamespacePublisherInfo"
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorEntity"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permission</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11337</td><td>namespace not found</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "x-authorization": {
+          "resource": "ADMIN:NAMESPACE:{namespace}:NAMESPACE",
+          "action": "2"
+        }
+      }
+    },
+    "/v1/admin/namespaces/{namespace}": {
+      "get": {
+        "tags": [
+          "Namespace"
+        ],
+        "summary": "Get a namespace",
+        "description": "Get a namespace.<br>Other detail info: <ul><li><i>Required permission</i>: resource=<b>\"ADMIN:NAMESPACE:{namespace}:NAMESPACE\"</b>, action=2 <b>(READ)</b></li><li><i>Action code</i>: 11304</li><li><i>Returns</i>: namespace</li></ul>",
+        "operationId": "getNamespace",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "description": "namespace, only accept alphabet and numeric",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "activeOnly",
+            "in": "query",
+            "description": "only retrieves active namespaces",
+            "required": false,
+            "type": "boolean",
+            "default": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "$ref": "#/definitions/NamespaceInfo"
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorEntity"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permission</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11337</td><td>namespace not found</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "x-authorization": {
+          "resource": "ADMIN:NAMESPACE:{namespace}:NAMESPACE",
+          "action": "2"
+        }
+      },
+      "delete": {
+        "tags": [
+          "Namespace"
+        ],
+        "summary": "Delete a namespace",
+        "description": "Delete a namespace.<br>Other detail info: <ul><li><i>Required permission</i>: resource=<b>\"ADMIN:NAMESPACE:{namespace}:NAMESPACE\"</b>, action=8 <b>(DELETE)</b></li><li><i>Action code</i>: 11307</li><li><i>Returns</i>: deleted namespace</li></ul>",
+        "operationId": "deleteNamespace",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "description": "namespace, only accept alphabet and numeric",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "$ref": "#/definitions/NamespaceInfo"
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorEntity"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permission</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11337</td><td>namespace not found</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "409": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20006</td><td>optimistic lock</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "x-authorization": {
+          "resource": "ADMIN:NAMESPACE:{namespace}:NAMESPACE",
+          "action": "8"
+        }
+      }
+    },
+    "/v1/public/namespaces/{namespace}/publisher": {
+      "get": {
+        "tags": [
+          "Namespace"
+        ],
+        "summary": "Get namespace info related publisher namespace",
+        "description": "Get namespace info related publisher namespace.<br>Other detail info: <ul><li><i>Required permission</i>: resource=<b>\"NAMESPACE:{namespace}:NAMESPACE\"</b>, action=2 <b>(READ)</b></li><li><i>Action code</i>: 11305</li><li><i>Returns</i>: Namespace info related publisher namespace</li></ul>",
+        "operationId": "publicGetNamespacePublisher",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "description": "namespace, only accept alphabet and numeric",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "$ref": "#/definitions/NamespacePublisherInfo"
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorEntity"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permission</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11337</td><td>namespace not found</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "x-authorization": {
+          "resource": "NAMESPACE:{namespace}:NAMESPACE",
+          "action": "2"
+        }
+      }
+    },
+    "/v1/public/namespaces": {
+      "get": {
+        "tags": [
+          "Namespace"
+        ],
+        "summary": "Get all namespaces",
+        "description": "Get all namespaces.<br>Other detail info: <ul><li><i>Required permission</i>: login user</li><li><i>Action code</i>: 11303</li><li><i>Returns</i>: list of namespaces</li></ul>",
+        "operationId": "publicGetNamespaces",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "activeOnly",
+            "in": "query",
+            "description": "only retrieves active namespaces",
+            "required": false,
+            "type": "boolean",
+            "default": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/NamespaceInfo"
+              }
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "x-authorization": {
+          "authenticated": "true"
+        }
+      }
+    },
+    "/v1/admin/namespaces/{namespace}/users/{userId}/anonymization/profiles": {
+      "delete": {
+        "tags": [
+          "Anonymization"
+        ],
+        "summary": "anonymize user profile",
+        "description": "Anonymize user profile.<br>Other detail info: <ul><li><i>Required permission</i>: resource=<b>\"ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION\"</b>, action=8 <b>(DELETE)</b></li><li><i>Action code</i>: 11501</li></ul>",
+        "operationId": "anonymizeUserProfile",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "description": "namespace, only accept alphabet and numeric",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "user id, should follow UUID version 4 without hyphen",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Anonymized profile successfully"
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorEntity"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permission</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11540</td><td>user profile not found</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "x-authorization": {
+          "resource": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION",
+          "action": "8"
+        }
+      }
+    },
+    "/v1/admin/namespaces/{namespace}/users/{userId}/profiles": {
+      "get": {
+        "tags": [
+          "UserProfile"
+        ],
+        "summary": "Get user profile",
+        "description": "Get user profile.<br>Other detail info: <ul><li><i>Required permission</i>: resource=<b>\"ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE\"</b>, action=2 <b>(READ)</b></li><li><i>Returns</i>: user profile</li><li><i>Action code</i>: 11403</li></ul>",
+        "operationId": "getUserProfileInfo",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "description": "namespace, only accept alphabet and numeric",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "user's id, should follow UUID version 4 without hyphen",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/UserProfilePrivateInfo"
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorEntity"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permission</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11440</td><td>user profile not found</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "x-authorization": {
+          "resource": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE",
+          "action": "2"
+        }
+      },
+      "put": {
+        "tags": [
+          "UserProfile"
+        ],
+        "summary": "Update user profile",
+        "description": "Update user profile.<br>Other detail info: <ul><li><i>Required permission</i>: resource=<b>\"ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE\"</b>, action=4 <b>(UPDATE)</b></li><li><i>Action code</i>: 11402</li><li><i>Returns</i>: Updated user profile</li></ul>",
+        "operationId": "updateUserProfile",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "description": "namespace, only accept alphabet and numeric",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "user's id, should follow UUID version 4 without hyphen",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/UserProfileAdmin"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/UserProfilePrivateInfo"
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>20019</td><td>unable to parse request body</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorEntity"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permission</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11440</td><td>user profile not found</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "x-authorization": {
+          "resource": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE",
+          "action": "4"
+        }
+      },
+      "delete": {
+        "tags": [
+          "UserProfile"
+        ],
+        "summary": "Delete user profile",
+        "description": "Delete user profile.<br>Other detail info: <ul><li><i>Required permission</i>: resource=<b>\"ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE\"</b>, action=8 <b>(DELETE)</b></li><li><i>Action code</i>: 11407</li><li><i>Returns</i>: Delete user profile</li></ul>",
+        "operationId": "deleteUserProfile",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "description": "namespace, only accept alphabet and numeric",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "user's id, should follow UUID version 4 without hyphen",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/UserProfilePrivateInfo"
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorEntity"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permission</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11440</td><td>user profile not found</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "x-authorization": {
+          "resource": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE",
+          "action": "8"
+        }
+      }
+    },
+    "/v1/admin/namespaces/{namespace}/users/{userId}/profiles/privateCustomAttributes": {
+      "get": {
+        "tags": [
+          "UserProfile"
+        ],
+        "summary": "Get user private custom attributes",
+        "description": "Get user private custom attributes.<br>Other detail info: <ul><li><i>Required permission</i>: resource=<b>\"ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE\"</b>, action=2 <b>(READ)</b></li><li><i>Returns</i>: custom attributes</li><li><i>Action code</i>: 11403</li></ul>",
+        "operationId": "getPrivateCustomAttributesInfo",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "description": "namespace, only accept alphabet and numeric",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "user's id, should follow UUID version 4 without hyphen",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permission</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11440</td><td>user profile not found</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "x-authorization": {
+          "resource": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE",
+          "action": "2"
+        }
+      },
+      "put": {
+        "tags": [
+          "UserProfile"
+        ],
+        "summary": "Update partially private custom attributes tied to the user id",
+        "description": "Update partially private custom attributes tied to the user id.<br>Other detail info: <ul><li><i>Required permission</i>: resource=<b>\"ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE\"</b>, action=4 <b>(UPDATE)</b></li><li><i>Action code</i>: 11402</li><li><i>Request body</i>: allowed format: JSON object</li><li><i>Returns</i>: Updated custom attributes</li></ul>",
+        "operationId": "updatePrivateCustomAttributesPartially",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "description": "namespace, only accept alphabet and numeric",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "user's id, should follow UUID version 4 without hyphen",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>20019</td><td>unable to parse request body</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorEntity"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permission</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11440</td><td>user profile not found</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "x-authorization": {
+          "resource": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE",
+          "action": "4"
+        }
+      }
+    },
+    "/v1/admin/namespaces/{namespace}/users/{userId}/profiles/customAttributes": {
+      "get": {
+        "tags": [
+          "UserProfile"
+        ],
+        "summary": "Get user custom attributes",
+        "description": "Get user custom attributes.<br>Other detail info: <ul><li><i>Required permission</i>: resource=<b>\"ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE\"</b>, action=2 <b>(READ)</b></li><li><i>Returns</i>: custom attributes</li><li><i>Action code</i>: 11403</li></ul>",
+        "operationId": "getCustomAttributesInfo",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "description": "namespace, only accept alphabet and numeric",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "user's id, should follow UUID version 4 without hyphen",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permission</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11440</td><td>user profile not found</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "x-authorization": {
+          "resource": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE",
+          "action": "2"
+        }
+      },
+      "put": {
+        "tags": [
+          "UserProfile"
+        ],
+        "summary": "Update partially custom attributes tied to the user id",
+        "description": "Update partially custom attributes tied to the user id.<br>Other detail info: <ul><li><i>Required permission</i>: resource=<b>\"ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE\"</b>, action=4 <b>(UPDATE)</b></li><li><i>Action code</i>: 11402</li><li><i>Request body</i>: allowed format: JSON object</li><li><i>Returns</i>: Updated custom attributes</li></ul>",
+        "operationId": "updateCustomAttributesPartially",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "description": "namespace, only accept alphabet and numeric",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "user's id, should follow UUID version 4 without hyphen",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>20019</td><td>unable to parse request body</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorEntity"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permission</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11440</td><td>user profile not found</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "x-authorization": {
+          "resource": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE",
+          "action": "4"
+        }
+      }
+    },
+    "/v1/admin/namespaces/{namespace}/users/{userId}/profiles/status": {
+      "patch": {
+        "tags": [
+          "UserProfile"
+        ],
+        "summary": "Update user profile status",
+        "description": "Update user profile status.<br>Other detail info: <ul><li><i>Required permission</i>: resource=<b>\"ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE\"</b>, action=4 <b>(UPDATE)</b></li><li><i>Action code</i>: 11406</li><li><i>Returns</i>: user profile</li></ul>",
+        "operationId": "enableUserProfileStatus",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "description": "namespace, only accept alphabet and numeric",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "user's id, should follow UUID version 4 without hyphen",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/UserProfileStatusUpdate"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/UserProfilePrivateInfo"
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>20019</td><td>unable to parse request body</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorEntity"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permission</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11440</td><td>user profile not found</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "x-authorization": {
+          "resource": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE",
+          "action": "4"
+        }
+      }
+    },
+    "/v1/public/namespaces/{namespace}/users/{userId}/profiles/public": {
+      "get": {
+        "tags": [
+          "UserProfile"
+        ],
+        "summary": "Get user profile public info",
+        "description": "Get user profile public info.<br>Other detail info: <ul><li><i>Action code</i>: 11404</li><li><i>Returns</i>: user public profile</li></ul>",
+        "operationId": "publicGetUserProfilePublicInfo",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "description": "namespace, only accept alphabet and numeric",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "user's id, should follow UUID version 4 without hyphen",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "$ref": "#/definitions/UserProfilePublicInfo"
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorEntity"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11440</td><td>user profile not found</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        }
+      }
+    },
+    "/v1/public/namespaces/{namespace}/users/me/profiles": {
+      "get": {
+        "tags": [
+          "UserProfile"
+        ],
+        "summary": "Get user profile",
+        "description": "Get user profile<br><b>Client with user token can get user profile in target namespace</b><br>Other detail info: <ul><li><i>Required permission</i>: resource=<b>\"NAMESPACE:{namespace}:PROFILE\"</b>, action=2 <b>(READ)</b></li><li><i>Action code</i>: 11403</li><li><i>Returns</i>: user profile</li><li><i>Path's namespace</i> : <ul><li>can be filled with <b>publisher namespace</b> in order to get <b>publisher user profile</b></li><li>can be filled with <b>game namespace</b> in order to get <b>game user profile</b></li></ul></li><li><i>Language</i> : allowed format: en, en-US</li><li><i>Timezone</i> : IANA time zone, e.g. Asia/Shanghai</li></ul>",
+        "operationId": "getMyProfileInfo",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "description": "namespace, only accept alphabet and numeric",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "$ref": "#/definitions/UserProfilePrivateInfo"
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorEntity"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permission</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20008</td><td>user not found</td></tr><tr><td>20017</td><td>user not linked</td></tr><tr><td>11440</td><td>user profile not found</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "x-authorization": {
+          "resource": "NAMESPACE:{namespace}:PROFILE",
+          "action": "2"
+        }
+      },
+      "post": {
+        "tags": [
+          "UserProfile"
+        ],
+        "summary": "Create user profile",
+        "description": "Create user profile.<br><b>Client with user token can create user profile in target namespace</b><br>Other detail info: <ul><li><i>Required permission</i>: resource=<b>\"NAMESPACE:{namespace}:PROFILE\"</b>, action=1 <b>(CREATE)</b></li><li><i>Action code</i>: 11401</li><li><i>Returns</i>: Created user profile</li><li><i>Path's namespace</i> : <ul><li>can be filled with <b>publisher namespace</b> in order to create <b>publisher user profile</b></li><li>can be filled with <b>game namespace</b> in order to create <b>game user profile</b></li></ul></li><li><i>Language</i> : allowed format: en, en-US</li><li><i>Country</i>  : ISO3166-1 alpha-2 two letter, e.g. US </li><li><i>Timezone</i> : IANA time zone, e.g. Asia/Shanghai</li></ul>",
+        "operationId": "createMyProfile",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "description": "namespace, only accept alphabet and numeric",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/UserProfilePrivateCreate"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Successful operation",
+            "schema": {
+              "$ref": "#/definitions/UserProfilePrivateInfo"
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>20019</td><td>unable to parse request body</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorEntity"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permission</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20008</td><td>user not found</td></tr><tr><td>20017</td><td>user not linked</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "409": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11441</td><td>user profile already exists</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "x-authorization": {
+          "resource": "NAMESPACE:{namespace}:PROFILE",
+          "action": "1"
+        }
+      },
+      "put": {
+        "tags": [
+          "UserProfile"
+        ],
+        "summary": "Update user profile",
+        "description": "Update user profile.<br>Updates user profile in the target namespace (namespace in the path). If token's namespace doesn't match the target namespace, the service automatically maps the token's user ID into the user ID in the target namespace. The endpoint returns the updated user profile on a successful call.<br>Other detail info: <ul><li><i>Required permission</i>: resource=<b>\"NAMESPACE:{namespace}:PROFILE\"</b>, action=4 <b>(UPDATE)</b></li><li><i>Action code</i>: 11402</li><li><i>Returns</i>: user profile</li><li><i>Path's namespace</i> : <ul><li>can be filled with <b>publisher namespace</b> in order to update <b>publisher user profile</b></li><li>can be filled with <b>game namespace</b> in order to update <b>game user profile</b></li></ul></li><li><i>Language</i> : allowed format: en, en-US</li><li><i>Timezone</i> : IANA time zone, e.g. Asia/Shanghai</li></ul>",
+        "operationId": "updateMyProfile",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "description": "namespace, only accept alphabet and numeric",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/UserProfilePrivateUpdate"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "$ref": "#/definitions/UserProfilePrivateInfo"
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>20019</td><td>unable to parse request body</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorEntity"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permission</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20008</td><td>user not found</td></tr><tr><td>20017</td><td>user not linked</td></tr><tr><td>11440</td><td>user profile not found</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "x-authorization": {
+          "resource": "NAMESPACE:{namespace}:PROFILE",
+          "action": "4"
+        }
+      }
+    },
+    "/v1/public/namespaces/{namespace}/users/me/profiles/zipCode": {
+      "get": {
+        "tags": [
+          "UserProfile"
+        ],
+        "summary": "Get user zip code",
+        "description": "Get user zip code.<br>Other detail info: <ul><li><i>Required permission</i>: resource=<b>\"NAMESPACE:{namespace}:PROFILE\"</b>, action=2 <b>(READ)</b></li><li><i>Action code</i>: 11407</li><li><i>Returns</i>: user zip code</li></ul>",
+        "operationId": "getUserZipCode",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "description": "namespace, only accept alphabet and numeric",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "$ref": "#/definitions/UserZipCode"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permission</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "x-authorization": {
+          "resource": "NAMESPACE:{namespace}:PROFILE",
+          "action": "2"
+        }
+      },
+      "patch": {
+        "tags": [
+          "UserProfile"
+        ],
+        "summary": "Update user zip code",
+        "description": "Update user zip code.<br>Other detail info: <ul><li><i>Required permission</i>: resource=<b>\"NAMESPACE:{namespace}:PROFILE\"</b>, action=4 <b>(UPDATE)</b></li><li><i>Action code</i>: 11408</li><li><i>Returns</i>: user zip code</li></ul>",
+        "operationId": "updateUserZipCode",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "description": "namespace, only accept alphabet and numeric",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "userZipCodeUpdate",
+            "description": "user's zip code, accept alphabet and numeric string default.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UserZipCodeUpdate"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "$ref": "#/definitions/UserZipCode"
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>20019</td><td>unable to parse request body</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorEntity"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permission</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "x-authorization": {
+          "resource": "NAMESPACE:{namespace}:PROFILE",
+          "action": "4"
+        }
+      }
+    },
+    "/v1/public/namespaces/{namespace}/profiles/public": {
+      "get": {
+        "tags": [
+          "UserProfile"
+        ],
+        "summary": "Get user profile public info by ids",
+        "description": "Get user public profile by ids.<br>Other detail info: <ul><li><i>Action code</i>: 11405</li><li><i>Returns</i>: user public profiles</li></ul>",
+        "operationId": "publicGetUserProfilePublicInfoByIds",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "description": "namespace, only accept alphabet and numeric",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "userIds",
+            "in": "query",
+            "description": "User IDs, should follow UUID version 4 without hyphen, separate the IDs using comma",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/UserProfilePublicInfo"
+              }
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorEntity"
+            }
+          }
+        }
+      }
+    },
+    "/v1/public/namespaces/{namespace}/users/{userId}/profiles/customAttributes": {
+      "get": {
+        "tags": [
+          "UserProfile"
+        ],
+        "summary": "Get custom attributes info",
+        "description": "Get custom attributes info.<br>Other detail info: <ul><li><i>Required permission</i>: login user</li><li><i>Action code</i>: 11404</li><li><i>Returns</i>: user custom attributes</li></ul>",
+        "operationId": "getCustomAttributesInfo_1",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "description": "namespace, only accept alphabet and numeric",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "user's id, should follow UUID version 4 without hyphen",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11440</td><td>user profile not found</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "x-authorization": {
+          "authenticated": "true"
+        }
+      },
+      "put": {
+        "tags": [
+          "UserProfile"
+        ],
+        "summary": "Update partially custom attributes tied to user id",
+        "description": "Update partially custom attributes tied to user id.<br>Other detail info: <ul><li><i>Required permission</i>: resource=<b>\"NAMESPACE:{namespace}:USER:{userId}:PROFILE\"</b>, action=4 <b>(UPDATE)</b></li><li><i>Action code</i>: 11402</li><li><i>Request body</i> : allowed format: JSON object</li><li><i>Returns</i>: Updated custom attributes</li></ul>",
+        "operationId": "updateCustomAttributesPartially_1",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "description": "namespace, only accept alphabet and numeric",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "user's id, should follow UUID version 4 without hyphen",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>20019</td><td>unable to parse request body</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorEntity"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permission</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11440</td><td>user profile not found</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "x-authorization": {
+          "resource": "NAMESPACE:{namespace}:USER:{userId}:PROFILE",
+          "action": "4"
+        }
+      }
+    },
+    "/v1/public/namespaces/{namespace}/users/{userId}/profiles": {
+      "get": {
+        "tags": [
+          "UserProfile"
+        ],
+        "summary": "Get user profile",
+        "description": "Get user profile.<br>Other detail info: <ul><li><i>Required permission</i>: resource=<b>\"NAMESPACE:{namespace}:USER:{userId}:PROFILE\"</b>, action=2 <b>(READ)</b></li><li><i>Action code</i>: 11403</li><li><i>Returns</i>: user profile</li></ul>",
+        "operationId": "publicGetUserProfileInfo",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "description": "namespace, only accept alphabet and numeric",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "user's id, should follow UUID version 4 without hyphen",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "$ref": "#/definitions/UserProfileInfo"
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorEntity"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permission</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11440</td><td>user profile not found</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "x-authorization": {
+          "resource": "NAMESPACE:{namespace}:USER:{userId}:PROFILE",
+          "action": "2"
+        }
+      },
+      "post": {
+        "tags": [
+          "UserProfile"
+        ],
+        "summary": "Create user profile",
+        "description": "Create user profile.<br>Other detail info: <ul><li><i>Required permission</i>: resource=<b>\"NAMESPACE:{namespace}:USER:{userId}:PROFILE\"</b>, action=1 <b>(CREATE)</b></li><li><i>Action code</i>: 11401</li><li><i>Language</i> : allowed format: en, en-US</li><li><i>Timezone</i> : IANA time zone, e.g. Asia/Shanghai</li><li><i>Returns</i>: Created user profile</li></ul>",
+        "operationId": "publicCreateUserProfile",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "description": "namespace, only accept alphabet and numeric",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "user's id, should follow UUID version 4 without hyphen",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/UserProfileCreate"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Successful operation",
+            "schema": {
+              "$ref": "#/definitions/UserProfileInfo"
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>20019</td><td>unable to parse request body</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorEntity"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permission</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "409": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11441</td><td>user profile already exists</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "x-authorization": {
+          "resource": "NAMESPACE:{namespace}:USER:{userId}:PROFILE",
+          "action": "1"
+        }
+      },
+      "put": {
+        "tags": [
+          "UserProfile"
+        ],
+        "summary": "Update user profile",
+        "description": "Update user profile.<br>Other detail info: <ul><li><i>Required permission</i>: resource=<b>\"ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE\"</b>, action=4 <b>(UPDATE)</b></li><li><i>Action code</i>: 11402</li><li><i>Language</i> : allowed format: en, en-US</li><li><i>Timezone</i> : IANA time zone, e.g. Asia/Shanghai</li><li><i>Returns</i>: Updated user profile</li></ul>",
+        "operationId": "publicUpdateUserProfile",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "description": "namespace, only accept alphabet and numeric",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "user's id, should follow UUID version 4 without hyphen",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/UserProfileUpdate"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "$ref": "#/definitions/UserProfileInfo"
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>20019</td><td>unable to parse request body</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorEntity"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permission</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11440</td><td>user profile not found</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "x-authorization": {
+          "resource": "NAMESPACE:{namespace}:USER:{userId}:PROFILE",
+          "action": "4"
+        }
+      }
+    },
+    "/v1/public/namespaces/{namespace}/users/{userId}/profiles/status": {
+      "patch": {
+        "tags": [
+          "UserProfile"
+        ],
+        "summary": "Update user profile status",
+        "description": "Update user profile status.<br>Other detail info: <ul><li><i>Required permission</i>: resource=<b>\"NAMESPACE:{namespace}:USER:{userId}:PROFILE\"</b>, action=4 <b>(UPDATE)</b></li><li><i>Action code</i>: 11406</li><li><i>Returns</i>: user profile</li></ul>",
+        "operationId": "publicEnableUserProfileStatus",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "description": "namespace, only accept alphabet and numeric",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "user's id, should follow UUID version 4 without hyphen",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/UserProfileStatusUpdate"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "$ref": "#/definitions/UserProfileInfo"
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>20019</td><td>unable to parse request body</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorEntity"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permission</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11440</td><td>user profile not found</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "x-authorization": {
+          "resource": "NAMESPACE:{namespace}:USER:{userId}:PROFILE",
+          "action": "4"
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "authorization": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header"
+    }
+  },
+  "definitions": {
+    "FileUploadUrlInfo": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string",
+          "description": "URL for uploading file (S3 presigned URL)"
+        },
+        "accessUrl": {
+          "type": "string",
+          "description": "URL for accessing file"
+        },
+        "method": {
+          "type": "string",
+          "description": "HTTP method for uploading file"
+        },
+        "contentType": {
+          "type": "string",
+          "description": "File content-type"
+        }
+      }
+    },
+    "FieldValidationError": {
+      "type": "object",
+      "properties": {
+        "errorCode": {
+          "type": "string"
+        },
+        "errorField": {
+          "type": "string"
+        },
+        "errorValue": {
+          "type": "string"
+        },
+        "errorMessage": {
+          "type": "string"
+        },
+        "messageVariables": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "ValidationErrorEntity": {
+      "type": "object",
+      "required": [
+        "errorCode",
+        "errorMessage"
+      ],
+      "properties": {
+        "errorCode": {
+          "type": "integer",
+          "format": "int32",
+          "description": "numeric error code"
+        },
+        "errorMessage": {
+          "type": "string",
+          "description": "error message"
+        },
+        "errors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/FieldValidationError"
+          }
+        }
+      }
+    },
+    "ErrorEntity": {
+      "type": "object",
+      "required": [
+        "errorCode",
+        "errorMessage"
+      ],
+      "properties": {
+        "errorCode": {
+          "type": "integer",
+          "format": "int32",
+          "description": "numeric error code"
+        },
+        "errorMessage": {
+          "type": "string",
+          "description": "error message"
+        },
+        "messageVariables": {
+          "type": "object",
+          "description": "message variables",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "devStackTrace": {
+          "type": "string",
+          "description": "internal server error stack trace in configured environment"
+        }
+      }
+    },
+    "CountryGroupObject": {
+      "type": "object",
+      "properties": {
+        "countryGroupCode": {
+          "type": "string"
+        },
+        "countryGroupName": {
+          "type": "string"
+        },
+        "countries": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CountryObject"
+          }
+        }
+      }
+    },
+    "CountryObject": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "UpdateCountryGroupRequest": {
+      "type": "object",
+      "properties": {
+        "countryGroupName": {
+          "type": "string"
+        },
+        "countries": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CountryObject"
+          }
+        }
+      }
+    },
+    "AddCountryGroupResponse": {
+      "type": "object",
+      "properties": {
+        "countryGroupCode": {
+          "type": "string"
+        },
+        "countryGroupName": {
+          "type": "string"
+        },
+        "countries": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CountryObject"
+          }
+        }
+      }
+    },
+    "AddCountryGroupRequest": {
+      "type": "object",
+      "properties": {
+        "countryGroupCode": {
+          "type": "string"
+        },
+        "countryGroupName": {
+          "type": "string"
+        },
+        "countries": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CountryObject"
+          }
+        }
+      }
+    },
+    "RetrieveCountryGroupResponse": {
+      "type": "object",
+      "properties": {
+        "countryGroupCode": {
+          "type": "string"
+        },
+        "countryGroupName": {
+          "type": "string"
+        },
+        "countries": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CountryObject"
+          }
+        }
+      }
+    },
+    "NamespaceInfo": {
+      "type": "object",
+      "properties": {
+        "namespace": {
+          "type": "string"
+        },
+        "displayName": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "ACTIVE",
+            "INACTIVE",
+            "DELETED"
+          ]
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "NamespaceStatusUpdate": {
+      "type": "object",
+      "required": [
+        "status"
+      ],
+      "properties": {
+        "status": {
+          "type": "string",
+          "description": "namespace status",
+          "enum": [
+            "ACTIVE",
+            "INACTIVE"
+          ]
+        }
+      },
+      "description": "A DTO object for updating namespace status API call."
+    },
+    "NamespaceUpdate": {
+      "type": "object",
+      "required": [
+        "displayName"
+      ],
+      "properties": {
+        "displayName": {
+          "type": "string",
+          "description": "display name"
+        }
+      }
+    },
+    "NamespacePublisherInfo": {
+      "type": "object",
+      "properties": {
+        "publisher": {
+          "type": "boolean",
+          "description": "inform whether the specified namespace is publisher namespace or not"
+        },
+        "publisherNamespace": {
+          "type": "string",
+          "description": "name of publisher namespace"
+        }
+      }
+    },
+    "NamespaceCreate": {
+      "type": "object",
+      "required": [
+        "displayName",
+        "namespace"
+      ],
+      "properties": {
+        "displayName": {
+          "type": "string",
+          "description": "display name"
+        },
+        "namespace": {
+          "type": "string",
+          "description": "namespace, only accept alphabet and numeric"
+        }
+      }
+    },
+    "UserProfilePrivateInfo": {
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "avatarSmallUrl": {
+          "type": "string"
+        },
+        "avatarUrl": {
+          "type": "string"
+        },
+        "avatarLargeUrl": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "ACTIVE",
+            "INACTIVE"
+          ]
+        },
+        "language": {
+          "type": "string"
+        },
+        "timeZone": {
+          "type": "string"
+        },
+        "dateOfBirth": {
+          "type": "string",
+          "format": "date"
+        },
+        "customAttributes": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object"
+          }
+        },
+        "zipCode": {
+          "type": "string"
+        },
+        "privateCustomAttributes": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object"
+          }
+        }
+      }
+    },
+    "UserProfileAdmin": {
+      "type": "object",
+      "properties": {
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "avatarSmallUrl": {
+          "type": "string",
+          "description": "should be comply with OWASP url format"
+        },
+        "avatarUrl": {
+          "type": "string",
+          "description": "should be comply with OWASP url format"
+        },
+        "avatarLargeUrl": {
+          "type": "string",
+          "description": "should be comply with OWASP url format"
+        },
+        "language": {
+          "type": "string",
+          "description": "language value from language tag, allowed format: en, en-US"
+        },
+        "timeZone": {
+          "type": "string",
+          "description": "time zone, allowed IANA time zone, e.g.Asia/Shanghai"
+        },
+        "dateOfBirth": {
+          "type": "string",
+          "format": "date",
+          "description": "date of birth, allowed format: yyyy-MM-dd, valid date range from 1905-01-01 until present"
+        },
+        "customAttributes": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object"
+          }
+        },
+        "zipCode": {
+          "type": "string",
+          "description": "zip code"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "ACTIVE",
+            "INACTIVE"
+          ]
+        }
+      },
+      "description": "A DTO object for updating user profile API call."
+    },
+    "UserProfileStatusUpdate": {
+      "type": "object",
+      "required": [
+        "status"
+      ],
+      "properties": {
+        "status": {
+          "type": "string",
+          "description": "status, ACTIVE or INACTIVE",
+          "enum": [
+            "ACTIVE",
+            "INACTIVE"
+          ]
+        }
+      },
+      "description": "A DTO object for updating user profile status API call."
+    },
+    "UserProfilePublicInfo": {
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "timeZone": {
+          "type": "string"
+        },
+        "avatarSmallUrl": {
+          "type": "string"
+        },
+        "avatarUrl": {
+          "type": "string"
+        },
+        "avatarLargeUrl": {
+          "type": "string"
+        }
+      }
+    },
+    "UserProfilePrivateCreate": {
+      "type": "object",
+      "properties": {
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "language": {
+          "type": "string",
+          "description": "language value from language tag, allowed format: en, en-US"
+        },
+        "dateOfBirth": {
+          "type": "string",
+          "format": "date",
+          "description": "date of birth, allowed format: yyyy-MM-dd, valid date range from 1905-01-01 until present",
+          "x-nullable": true
+        },
+        "avatarSmallUrl": {
+          "type": "string",
+          "description": "should be comply with OWASP url format"
+        },
+        "avatarUrl": {
+          "type": "string",
+          "description": "should be comply with OWASP url format"
+        },
+        "avatarLargeUrl": {
+          "type": "string",
+          "description": "should be comply with OWASP url format"
+        },
+        "customAttributes": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object"
+          }
+        },
+        "timeZone": {
+          "type": "string",
+          "description": "time zone, allowed IANA time zone, e.g.Asia/Shanghai"
+        },
+        "privateCustomAttributes": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object"
+          }
+        }
+      },
+      "description": "A DTO object for creating user profile API call."
+    },
+    "UserProfilePrivateUpdate": {
+      "type": "object",
+      "properties": {
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "avatarSmallUrl": {
+          "type": "string",
+          "description": "should be comply with OWASP url format"
+        },
+        "avatarUrl": {
+          "type": "string",
+          "description": "should be comply with OWASP url format"
+        },
+        "avatarLargeUrl": {
+          "type": "string",
+          "description": "should be comply with OWASP url format"
+        },
+        "language": {
+          "type": "string",
+          "description": "language value from language tag, allowed format: en, en-US"
+        },
+        "timeZone": {
+          "type": "string",
+          "description": "time zone, allowed IANA time zone, e.g.Asia/Shanghai"
+        },
+        "dateOfBirth": {
+          "type": "string",
+          "format": "date",
+          "description": "date of birth, allowed format: yyyy-MM-dd, valid date range from 1905-01-01 until present"
+        },
+        "customAttributes": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object"
+          }
+        },
+        "zipCode": {
+          "type": "string",
+          "description": "zip code"
+        },
+        "privateCustomAttributes": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object"
+          }
+        }
+      },
+      "description": "A DTO object for updating user profile API call."
+    },
+    "UserZipCode": {
+      "type": "object",
+      "properties": {
+        "zipCode": {
+          "type": "string"
+        }
+      }
+    },
+    "UserZipCodeUpdate": {
+      "type": "object",
+      "required": [
+        "zipCode"
+      ],
+      "properties": {
+        "zipCode": {
+          "type": "string",
+          "description": "zip code"
+        }
+      }
+    },
+    "UserProfileInfo": {
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "avatarSmallUrl": {
+          "type": "string"
+        },
+        "avatarUrl": {
+          "type": "string"
+        },
+        "avatarLargeUrl": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "ACTIVE",
+            "INACTIVE"
+          ]
+        },
+        "language": {
+          "type": "string"
+        },
+        "timeZone": {
+          "type": "string"
+        },
+        "dateOfBirth": {
+          "type": "string",
+          "format": "date"
+        },
+        "customAttributes": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object"
+          }
+        },
+        "zipCode": {
+          "type": "string"
+        }
+      }
+    },
+    "UserProfileUpdate": {
+      "type": "object",
+      "properties": {
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "avatarSmallUrl": {
+          "type": "string",
+          "description": "should be comply with OWASP url format"
+        },
+        "avatarUrl": {
+          "type": "string",
+          "description": "should be comply with OWASP url format"
+        },
+        "avatarLargeUrl": {
+          "type": "string",
+          "description": "should be comply with OWASP url format"
+        },
+        "language": {
+          "type": "string",
+          "description": "language value from language tag, allowed format: en, en-US"
+        },
+        "timeZone": {
+          "type": "string",
+          "description": "time zone, allowed IANA time zone, e.g.Asia/Shanghai"
+        },
+        "dateOfBirth": {
+          "type": "string",
+          "format": "date",
+          "description": "date of birth, allowed format: yyyy-MM-dd, valid date range from 1905-01-01 until present"
+        },
+        "customAttributes": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object"
+          }
+        },
+        "zipCode": {
+          "type": "string",
+          "description": "zip code"
+        }
+      },
+      "description": "A DTO object for updating user profile API call."
+    },
+    "UserProfileCreate": {
+      "type": "object",
+      "properties": {
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "language": {
+          "type": "string",
+          "description": "language value from language tag, allowed format: en, en-US"
+        },
+        "dateOfBirth": {
+          "type": "string",
+          "format": "date",
+          "description": "date of birth, allowed format: yyyy-MM-dd, valid date range from 1905-01-01 until present"
+        },
+        "avatarSmallUrl": {
+          "type": "string",
+          "description": "should be comply with OWASP url format"
+        },
+        "avatarUrl": {
+          "type": "string",
+          "description": "should be comply with OWASP url format"
+        },
+        "avatarLargeUrl": {
+          "type": "string",
+          "description": "should be comply with OWASP url format"
+        },
+        "customAttributes": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object"
+          }
+        },
+        "timeZone": {
+          "type": "string",
+          "description": "time zone, allowed IANA time zone, e.g.Asia/Shanghai"
+        }
+      },
+      "description": "A DTO object for creating user profile API call."
+    }
+  }
+}

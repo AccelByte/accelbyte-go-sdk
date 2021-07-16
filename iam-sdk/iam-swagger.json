@@ -1,0 +1,1659 @@
+{
+  "swagger": "2.0",
+  "host": "jib.noice.accelbyte.io",
+  "schemes": [
+    "https"
+  ],
+  "info": {
+    "description": "Justice IAM Service",
+    "title": "justice-iam-service",
+    "contact": {
+      "name": "Engineering Team at AccelByte",
+      "url": "https://accelbyte.io",
+      "email": "engineering@accelbyte.io"
+    },
+    "version": "3.38.0"
+  },
+  "paths": {
+    "/iam/v3/admin/roles": {
+      "get": {
+        "description": "Required permission 'ADMIN:ROLE [READ]'<br> <p>action code: 10414</p>",
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Roles"
+        ],
+        "summary": "Get Roles",
+        "operationId": "AdminGetRolesV3",
+        "parameters": [
+          {
+            "type": "integer",
+            "description": "the maximum number of data that may be returned (1...100)",
+            "name": "limit",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "The cursor that points to query data for the next page",
+            "name": "after",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "The cursor that points to query data for the previous page",
+            "name": "before",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/model.RoleResponseWithManagersAndPaginationV3"
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "Required permission 'ADMIN:ROLE [CREATE]' <br>action code: 10401",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Roles"
+        ],
+        "summary": "Create Role",
+        "operationId": "AdminCreateRoleV3",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/model.RoleCreateV3Request"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/accountcommon.RoleV3"
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>20019</td><td>unable to parse request body</td></tr><tr><td>10466</td><td>invalid role members</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/iam/oauth/token": {
+      "post": {
+        "description": "<p>This endpoint requires all requests to have <code>Authorization</code> header set with <code>Basic</code> access authentication\n\t\t\tconstructed from client id and client secret.</p>\n\t\t\t<p>This endpoint supports different <strong>grant types</strong>:</p><ol>\n\t \t\t<li>Grant Type == <code>client_credentials</code>:<br />\n\t \t\t&nbsp;&nbsp;&nbsp; This endpoint will check the client credentials provided through Authorization header.</li>\n\t \t\t<li>Grant Type == <code>password</code>:<br />\n\t \t\t&nbsp;&nbsp;&nbsp; The grant type to use for authenticating a user, whether it's by email / username and password combination\n\t\t\tor through platform.</li>\n\t \t\t<li>Grant Type == <code>refresh_token</code>:<br />\n\t \t\t&nbsp;&nbsp;&nbsp; Used to get a new access token for a valid refresh token.</li>\n\t \t\t<li>Grant Type == <code>authorization_code<code>:<br />\n\t \t\t&nbsp;&nbsp;&nbsp; It generates the user token by given the authorization\n\t \t\tcode which generated in \"/authorize\" API response. It should also pass\n\t \t\tin the redirect_uri, which should be the same as generating the\n\t \t\tauthorization code request.</li></ol>\n\t \t\t<p>For platform authentication, use grant type <code>password</code>.\n\t \t\tThe <code>username</code> field would be in form of\n\t \t\t<code>platform:&lt;platform type&gt;</code>, for example\n\t \t\t<code>platform:steam</code> for Steam. For the <code>password</code>\n\t \t\tfield, set it to the authentication/authorization ticket or token obtainable through the\n\t \t\trespective platform SDK after authenticated the user to the platform. Supported platforms:</p><ul>\n\t\t\t<li><strong>steam</strong> - use <code>platform:steam</code> as the username and use the authentication ticket obtained\n\t\t\tfrom Steam through the Steam SDK as the password.</li>\n\t\t\t<li><strong>ps4</strong> - use <code>platform:ps4</code> as the username and use the authorization code\n\t\t\tobtained from the PlayStation Network through a player PS4 unit as the password.</li>\n\t\t\t<li><strong>live</strong> - use <code>platform:live</code> as the username and use token obtained from \n\t\t\tXbox Secure Token Service (XSTS) as the password.</li>\n\t\t\t<li><strong>oculus</strong> - use <code>platform:oculus</code> as the username and use the <code>user_id:nonce</code>\n\t\t\tas password obtained from Oculus through the Oculus SDK.</li></ul></p>\n\t\t\t<p>The access token and refresh token are in form of JWT token.\n\t \t\tAn access token JWT contains data which structure is similar to the\n\t \t\tResponse Class below, but without OAuth-related data. To verify a token, use the public keys\n\t\t\tobtained from the <code>/jwks</code> endpoint below.</p>\n<h2>Access Token Content</h2>\n<p>Following is the access token’s content:</p>\n<ul>\n<li>\n\t<p><strong>namespace</strong>. It is the namespace the token was generated from.</p>\n</li>\n<li>\n\t<p><strong>display_name</strong>. The display name of the sub. It is empty if the token is generated from the client credential</p>\n</li>\n<li>\n\t<p><strong>roles</strong>. The sub’s roles. It is empty if the token is generated from the client credential</p>\n</li>\n<li>\n\t<p><strong>permissions</strong>. The sub or aud’ permissions</p>\n</li>\n<li>\n\t<p><strong>bans</strong>. The sub’s list of bans. It is used by the IAM client for validating the token.</p>\n</li>\n<li>\n\t<p><strong>jflgs</strong>. It stands for Justice Flags. It is a special flag used for storing additional status information regarding the sub. It is implemented as a bit mask. Following explains what each bit represents:</p>\n<ul>\n\t<li><p>1: Email Address Verified</p></li>\n\t<li><p>2: Phone Number Verified</p></li>\n\t<li><p>4: Anonymous</p></li>\n</ul>\n</li>\n<li>\n\t<p><strong>aud</strong>. The aud is the client ID.</p>\n</li>\n<li>\n\t<p><strong>iat</strong>. The time the token issues at. It is in Epoch time format</p>\n</li>\n<li>\n\t<p><strong>exp</strong>. The time the token expires. It is in Epoch time format</p>\n</li>\n<li>\n\t<p><strong>sub</strong>. The UserID. The sub is omitted if the token is generated from client credential</p>\n</li>\n</ul>\n<h2>Bans</h2>\n<p>The JWT contains user's active bans with its expiry date. List of ban types can be obtained from /bans.</p>\n<h2>Track Login History</h2>\n<p>This endpoint will track login history to detect suspicious login activity, please provide \"device_id\" (alphanumeric) in request header parameter otherwise we will set to \"unknown\".</p>\n<p>Align with General Data Protection Regulation in Europe, user login history will be kept within 28 days by default\"</p>",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "OAuth"
+        ],
+        "summary": "OAuth2 access token generation endpoint",
+        "operationId": "TokenGrant",
+        "parameters": [
+          {
+            "enum": [
+              "client_credentials",
+              "password",
+              "refresh_token",
+              "authorization_code"
+            ],
+            "type": "string",
+            "default": "client_credentials",
+            "description": "Grant Type",
+            "name": "grant_type",
+            "in": "formData",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "User Name (used with grant type 'password'",
+            "name": "username",
+            "in": "formData"
+          },
+          {
+            "type": "string",
+            "description": "Password (used with grant type 'password'",
+            "name": "password",
+            "in": "formData"
+          },
+          {
+            "type": "string",
+            "description": "Refresh Token (used with grant type 'refresh_token'",
+            "name": "refresh_token",
+            "in": "formData"
+          },
+          {
+            "type": "string",
+            "description": "Code (used with grant type 'authorization_code'",
+            "name": "code",
+            "in": "formData"
+          },
+          {
+            "type": "string",
+            "description": "Redirect URI (used with grant type 'authorization_code'",
+            "name": "redirect_uri",
+            "in": "formData"
+          },
+          {
+            "type": "string",
+            "description": "Delegated namespace (used with grant type 'password' to do token grant on other namespace)",
+            "name": "namespace",
+            "in": "formData"
+          },
+          {
+            "type": "boolean",
+            "description": "Extend expiration date of refresh token. Only available for grant type 'password'",
+            "name": "extend_exp",
+            "in": "formData"
+          },
+          {
+            "type": "string",
+            "description": "DeviceID (Used on grant type 'password' to track login history) ex. 90252d14544846d79f367148e3f9a3d9",
+            "name": "Device-Id",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Token returned",
+            "schema": {
+              "$ref": "#/definitions/oauthmodel.TokenResponse"
+            }
+          },
+          "400": {
+            "description": "General request error",
+            "schema": {
+              "$ref": "#/definitions/oauthmodel.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Client authentication failed",
+            "schema": {
+              "$ref": "#/definitions/oauthmodel.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/iam/v3/admin/namespaces/{namespace}/users/{userId}/roles/{roleId}": {
+      "post": {
+        "description": "<p>This endpoint adds role to user. Required permission ADMIN:NAMESPACE:{namespace}:ROLE:USER:{userId} [UPDATE]</p>\n<p>action code: 10109</p>\n",
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Users"
+        ],
+        "summary": "Add User Role",
+        "operationId": "AdminAddUserRoleV3",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "Namespace, only accept alphabet and numeric",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "User ID, should follow UUID version 4 without hyphen",
+            "name": "userId",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Role ID, should follow UUID version 4 without hyphen",
+            "name": "roleId",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr><tr><td>10159</td><td>operator is not a role manager</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20008</td><td>user not found</td></tr><tr><td>10156</td><td>role not found</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "409": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>10160</td><td>user already has the role</td></tr><tr><td>10161</td><td>user already the role member</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "<p>This endpoint removes role from user. Required permission ADMIN:NAMESPACE:{namespace}:ROLE:USER:{userId} [DELETE]</p>\n<p>action code: 10110</p>\n",
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Users"
+        ],
+        "summary": "Delete User Role",
+        "operationId": "AdminDeleteUserRoleV3",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "Namespace, only accept alphabet and numeric",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "User ID, should follow UUID version 4 without hyphen",
+            "name": "userId",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Role ID, should follow UUID version 4 without hyphen",
+            "name": "roleId",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Operation succeeded"
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr><tr><td>10159</td><td>operator is not a role manager</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20008</td><td>user not found</td></tr><tr><td>10156</td><td>role not found</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/iam/v4/public/namespaces/{namespace}/users": {
+      "post": {
+        "description": "Create a new user with unique email address and username.\n\n\t\tRequired attributes:\n\t\t- authType: possible value is EMAILPASSWD\n\t\t- emailAddress\n\t\t- username: case insensitive, alphanumeric with allowed symbols underscore (_) and dot (.)\n\t\t- password: 8 to 32 characters, satisfy at least 3 out of 4 conditions(uppercase, lowercase letters, numbers and special characters) and should not have more than 2 equal characters in a row.\n\t\t- country: ISO3166-1 alpha-2 two letter, e.g. US.\n\t\t- dateOfBirth: YYYY-MM-DD, e.g. 1990-01-01. valid values are between 1905-01-01 until current date.\n\t\t",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Users V4"
+        ],
+        "summary": "Create User",
+        "operationId": "PublicCreateUserV4",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "Namespace, only accept alphabet and numeric",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/account.createUserRequestV4"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/account.createUserResponseV4"
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20019</td><td>unable to parse request body</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>10130</td><td>user under age</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>10154</td><td>country not found</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "409": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>10133</td><td>email already used</td></tr><tr><td>10177</td><td>username already used</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/iam/v3/public/namespaces/{namespace}/users": {
+      "get": {
+        "description": "<p>Requires valid user access token</p>\n\t\t\t<p>This endpoint search all users on the specified namespace that match the query on these fields: email address, display name, and username.\n\t\t\tIf the query is not defined, then it searches all users on the specified namespace.</p>\n\t\t\t<br>action code : 10132",
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Users"
+        ],
+        "summary": "Search User",
+        "operationId": "PublicSearchUserV3",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "Namespace, only accept alphabet and numeric",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Query, can be either email address, display name, or username",
+            "name": "query",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "Search by given attribute, possible values are emailAddress, displayName, and username",
+            "name": "by",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/model.PublicUserInformationResponseV3"
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr><tr><td>20022</td><td>token is not user token</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20008</td><td>user not found</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "description": "\n<p>Available Authentication Types:</p>\n<ol>\n<li><strong>EMAILPASSWD</strong>: an authentication type used for new user registration through email.</li>\n</ol>\n<p>Country use ISO3166-1 alpha-2 two letter, e.g. US.</p>\n<p>Date of Birth format : YYYY-MM-DD, e.g. 2019-04-29.</p>\n",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Users"
+        ],
+        "summary": "Create User",
+        "operationId": "PublicCreateUserV3",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "Namespace, only accept alphabet and numeric",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/model.UserCreateRequestV3"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/model.UserCreateResponseV3"
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20019</td><td>unable to parse request body</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>10130</td><td>user under age</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>10154</td><td>country not found</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "409": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>10133</td><td>email already used</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/iam/v3/public/namespaces/{namespace}/users/me/code/verify": {
+      "post": {
+        "description": "<p>Required valid user authorization</p>\n<p>Redeems a verification code sent to a user to verify the user's contact address is correct</p>\n<p>Available ContactType : <b>email</b></p>\n<p>action code: 10107</p>\n",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Users"
+        ],
+        "summary": "Redeem verification code sent to user",
+        "operationId": "PublicUserVerificationV3",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "Namespace, only accept alphabet and numeric",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/model.UserVerificationRequestV3"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Operation succeeded"
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20019</td><td>unable to parse request body</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr><tr><td>20022</td><td>token is not user token</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>10152</td><td>verification code not found</td></tr><tr><td>10137</td><td>code is expired</td></tr><tr><td>10136</td><td>code is either been used or not valid anymore</td></tr><tr><td>10138</td><td>code not match</td></tr><tr><td>10149</td><td>verification contact type doesn't match</td></tr><tr><td>10148</td><td>verification code context doesn't match the required context</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "409": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>10141</td><td>email verified</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/iam/v3/authenticate": {
+      "post": {
+        "description": "<p>This endpoint is being used to authenticate a user account. \n\t\t\t\t\tIt validates user's email / username and password. Deactivated or login-banned users are unable to login\n\t\t\t\t\tRedirect URI and Client ID must be specified as a pair and only used to redirect to the specified\n\t\t\t\t\tredirect URI in case the requestId is no longer valid.</p>\n\t\t\t\t\t<br>action code: 10801",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "OAuth2.0 - Extension"
+        ],
+        "summary": "Authentication API",
+        "operationId": "UserAuthenticationV3",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "Account username",
+            "name": "user_name",
+            "in": "formData",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Account password",
+            "name": "password",
+            "in": "formData",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Request ID",
+            "name": "request_id",
+            "in": "formData",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Redirect URI",
+            "name": "redirect_uri",
+            "in": "formData"
+          },
+          {
+            "type": "string",
+            "description": "Client ID",
+            "name": "client_id",
+            "in": "formData"
+          },
+          {
+            "type": "boolean",
+            "description": "Extend expiration date of refresh token",
+            "name": "extend_exp",
+            "in": "formData"
+          }
+        ],
+        "responses": {
+          "302": {
+            "description": "Found. Redirect successful requests to consent page with \"list of consent\" in query params.",
+            "headers": {
+              "Location": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/iam/v3/oauth/token": {
+      "post": {
+        "description": "<p>This endpoint supports grant type:</p><ol>\n\t \t\t<li>Grant Type == <code>authorization_code</code>:<br />\n\t\t\t\t&nbsp;&nbsp;&nbsp; It generates the user token by given the authorization\n\t\t\t\tcode which generated in \"/v3/oauth/auth\" API response. It should also pass\n\t\t\t\tin the redirect_uri, which should be the same as generating the\n\t\t\t\tauthorization code request.\n\t\t\t</li>\n\t\t\t<li>Grant Type == <code>refresh_token</code>:<br />\n\t \t\t\t&nbsp;&nbsp;&nbsp; Used to get a new access token for a valid refresh token.\n\t\t\t</li>\n\t\t\t<li>Grant Type == <code>client_credentials</code>:<br />\n\t \t\t\t&nbsp;&nbsp;&nbsp; It generates a token by checking the client credentials provided through Authorization header.\n\t\t\t</li></ol>\n\t\t\t<h2>Access Token Content</h2>\n\t\t\t<p>Following is the access token’s content:</p>\n\t\t\t<ul>\n\t\t\t<li>\n\t\t\t\t<p><strong>namespace</strong>. It is the namespace the token was generated from.</p>\n\t\t\t</li>\n\t\t\t<li>\n\t\t\t\t<p><strong>display_name</strong>. The display name of the sub. It is empty if the token is generated from the client credential</p>\n\t\t\t</li>\n\t\t\t<li>\n\t\t\t\t<p><strong>roles</strong>. The sub’s roles. It is empty if the token is generated from the client credential</p>\n\t\t\t</li>\n\t\t\t<li>\n\t\t\t\t<p><strong>namespace_roles</strong>. The sub’s roles scoped to namespace. Improvement from roles, which make the role scoped to specific namespace instead of global to publisher namespace</p>\n\t\t\t</li>\n\t\t\t<li>\n\t\t\t\t<p><strong>permissions</strong>. The sub or aud’ permissions</p>\n\t\t\t</li>\n\t\t\t<li>\n\t\t\t\t<p><strong>bans</strong>. The sub’s list of bans. It is used by the IAM client for validating the token.</p>\n\t\t\t</li>\n\t\t\t<li>\n\t\t\t\t<p><strong>jflgs</strong>. It stands for Justice Flags. It is a special flag used for storing additional status information regarding the sub. It is implemented as a bit mask. Following explains what each bit represents:</p>\n\t\t\t<ul>\n\t\t\t\t<li><p>1: Email Address Verified</p></li>\n\t\t\t\t<li><p>2: Phone Number Verified</p></li>\n\t\t\t\t<li><p>4: Anonymous</p></li>\n\t\t\t\t<li><p>8: Suspicious Login</p></li>\n\t\t\t</ul>\n\t\t\t</li>\n\t\t\t<li>\n\t\t\t\t<p><strong>aud</strong>. The aud is the targeted resource server.</p>\n\t\t\t</li>\n\t\t\t<li>\n\t\t\t\t<p><strong>iat</strong>. The time the token issues at. It is in Epoch time format</p>\n\t\t\t</li>\n\t\t\t<li>\n\t\t\t\t<p><strong>exp</strong>. The time the token expires. It is in Epoch time format</p>\n\t\t\t</li>\n\t\t\t<li>\n\t\t\t\t<p><strong>client_id</strong>. The UserID. The sub is omitted if the token is generated from client credential</p>\n\t\t\t</li>\t\n\t\t\t<li>\n\t\t\t\t<p><strong>scope</strong>. The scope of the access request, expressed as a list of space-delimited, case-sensitive strings</p>\n\t\t\t</li>\n\t\t\t</ul>\n\t\t\t<h2>Bans</h2>\n\t\t\t<p>The JWT contains user's active bans with its expiry date. List of ban types can be obtained from /bans.</p>\n\t\t\t<h2>Track Login History</h2>\n\t\t\t<p>This endpoint will track login history to detect suspicious login activity, please provide \"device_id\" (alphanumeric) in request header parameter otherwise we will set to \"unknown\".</p>\n\t\t\t<p>Align with General Data Protection Regulation in Europe, user login history will be kept within 28 days by default\"</p>\n\t\t\t<p>action code: 10703",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "OAuth2.0"
+        ],
+        "summary": "OAuth2 access token generation endpoint",
+        "operationId": "TokenGrantV3",
+        "parameters": [
+          {
+            "enum": [
+              "authorization_code",
+              "client_credentials",
+              "refresh_token"
+            ],
+            "type": "string",
+            "default": "authorization_code",
+            "description": "Grant Type",
+            "name": "grant_type",
+            "in": "formData",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "The authorization code received from the authorization server (used with grant type 'authorization_code')",
+            "name": "code",
+            "in": "formData"
+          },
+          {
+            "type": "string",
+            "description": "Code verifier received from the authorization server",
+            "name": "code_verifier",
+            "in": "formData"
+          },
+          {
+            "type": "string",
+            "description": "client_id (used with grant type 'authorization_code')",
+            "name": "client_id",
+            "in": "formData"
+          },
+          {
+            "type": "string",
+            "description": "Redirect URI (used with grant type 'authorization_code')",
+            "name": "redirect_uri",
+            "in": "formData"
+          },
+          {
+            "type": "string",
+            "description": "Refresh Token (used with grant type 'refresh_token')",
+            "name": "refresh_token",
+            "in": "formData"
+          },
+          {
+            "type": "string",
+            "description": "DeviceID (Used on grant type 'password' to track login history) ex. 90252d14544846d79f367148e3f9a3d9",
+            "name": "device_id",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Token returned",
+            "schema": {
+              "$ref": "#/definitions/oauthmodel.TokenResponseV3"
+            }
+          },
+          "400": {
+            "description": "InvalidRequest",
+            "schema": {
+              "$ref": "#/definitions/oauthmodel.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Client authentication failed",
+            "schema": {
+              "$ref": "#/definitions/oauthmodel.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Unauthorized access",
+            "schema": {
+              "$ref": "#/definitions/oauthmodel.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/iam/v3/oauth/authorize": {
+      "get": {
+        "description": "Initializes OAuth2.0 authorization code flow<br/>\n<p>The endpoint stores authorization request and redirects to login page with the authorization request id.\n\tThe user can then do the authentication on the login page. \n\tThe user will be redirected back to the requesting client with authorization code if successfully authenticated. \n</p>\n<p>Only authorization code flow supported by this endpoint, implicit flow is not supported.</p>\n<ul>\n\t<li><p><strong>Authorize success</strong>: \n\t\tredirects to login page with the following information: ?request_id={authorization_request_id}</p>\n\t</li>\n\t<li><p><strong>Authorize failure</strong>: \n\t\tredirects to the given redirect uri with the following information:\n\t\t?error={error_code}&error_description={error description}</p>\n\t</li>\n</ul>\n\t<p>Following are the error code based on the specification:</p>\n<ul>\n\t<li><p>invalid_request: The request is missing a required parameter, \n\t\tincludes an invalid parameter value, includes a parameter more than once, or is otherwise malformed.</p>\n\t</li>\n\t<li><p>server_error: \n\t\tThe authorization server encountered an unexpected condition that prevented it from fulfilling the request.</p>\n\t</li>\n\t<li><p>unauthorized_client: The client is not authorized to request a token using this method.</p></li>\n\t<li><p>access_denied: The resource owner or authorization server denied the request.</p></li>\n\t<li><p>invalid_scope: The requested scope is invalid, unknown, or malformed.</p></li>\n\t<li><p>unsupported_response_type: The authorization server does not support obtaining a token using this method.</p></li>\n\t<li><p>temporarily_unavailable: The authorization server is currently unable to handle the request \n\t\tdue to a temporary overloading or maintenance of the server.</p>\n\t</li>\n</ul>\n\t<p>Please refer to the RFC for more information about authorization code flow: https://tools.ietf.org/html/rfc6749#section-4.1</p><br>\n\taction code: 10701\n\n",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "OAuth2.0"
+        ],
+        "summary": "OAuth2 authorize API",
+        "operationId": "AuthorizeV3",
+        "parameters": [
+          {
+            "enum": [
+              "code"
+            ],
+            "type": "string",
+            "default": "code",
+            "description": "Supported response type : 'code'",
+            "name": "response_type",
+            "in": "query",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Registered client ID",
+            "name": "client_id",
+            "in": "query",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Redirect URI registered for requesting client. Required if client registered with multiple redirect URI. Registered redirect uri will be assigned if left empty.",
+            "name": "redirect_uri",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "Random value for preventing cross-site request forgery used by client.",
+            "name": "state",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "default": "commerce account social publishing analytics",
+            "description": "Defines the requested access request scope. Can be multiple values delimited by whitespace.",
+            "name": "scope",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "Value generated by transforming code verifier using code challenge method. Mandatory for public client.",
+            "name": "code_challenge",
+            "in": "query"
+          },
+          {
+            "enum": [
+              "S256",
+              "plain"
+            ],
+            "type": "string",
+            "default": "plain",
+            "description": "Method that is used to transform code verifier to code challenge",
+            "name": "code_challenge_method",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "Custom query to tell authorization web which page to present to user",
+            "name": "target_auth_page",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "302": {
+            "description": "Found. Redirected to login page with either request_id or error.",
+            "headers": {
+              "Location": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/iam/v3/oauth/revoke": {
+      "post": {
+        "description": "<p>This endpoint revokes a token.</p>\n\t\t\t\t\t <p>This endpoint requires authorized requests header with valid access token.</p><br>action code: 10706",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "OAuth2.0"
+        ],
+        "summary": "OAuth2 token revocation API",
+        "operationId": "TokenRevocationV3",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "Access token / Refresh token",
+            "name": "token",
+            "in": "formData",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Token revoked or does not exist"
+          },
+          "400": {
+            "description": "Invalid input",
+            "schema": {
+              "$ref": "#/definitions/oauthmodel.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Invalid basic auth header",
+            "schema": {
+              "$ref": "#/definitions/oauthmodel.ErrorResponse"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "model.RoleResponseWithManagersV3": {
+      "required": [
+        "roleId",
+        "roleName",
+        "permissions",
+        "managers"
+      ],
+      "properties": {
+        "managers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/accountcommon.RoleManagerV3"
+          }
+        },
+        "permissions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/accountcommon.PermissionV3"
+          }
+        },
+        "roleId": {
+          "type": "string"
+        },
+        "roleName": {
+          "type": "string"
+        }
+      }
+    },
+    "accountcommon.RoleMemberV3": {
+      "required": [
+        "userId",
+        "namespace",
+        "displayName"
+      ],
+      "properties": {
+        "displayName": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        }
+      }
+    },
+    "accountcommon.RoleManagerV3": {
+      "required": [
+        "userId",
+        "namespace",
+        "displayName"
+      ],
+      "properties": {
+        "displayName": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        }
+      }
+    },
+    "accountcommon.RoleV3": {
+      "required": [
+        "roleId",
+        "roleName",
+        "permissions",
+        "managers",
+        "adminRole",
+        "members"
+      ],
+      "properties": {
+        "adminRole": {
+          "type": "boolean"
+        },
+        "managers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/accountcommon.RoleManagerV3"
+          }
+        },
+        "members": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/accountcommon.RoleMemberV3"
+          }
+        },
+        "permissions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/accountcommon.PermissionV3"
+          }
+        },
+        "roleId": {
+          "type": "string"
+        },
+        "roleName": {
+          "type": "string"
+        }
+      }
+    },
+    "model.RoleCreateV3Request": {
+      "required": [
+        "roleName",
+        "permissions",
+        "managers",
+        "adminRole",
+        "members"
+      ],
+      "properties": {
+        "adminRole": {
+          "type": "boolean"
+        },
+        "managers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/accountcommon.RoleManagerV3"
+          }
+        },
+        "members": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/accountcommon.RoleMemberV3"
+          }
+        },
+        "permissions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/accountcommon.PermissionV3"
+          }
+        },
+        "roleName": {
+          "type": "string"
+        }
+      }
+    },
+    "model.RoleResponseWithManagersAndPaginationV3": {
+      "required": [
+        "data",
+        "paging"
+      ],
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/model.RoleResponseWithManagersV3"
+          }
+        },
+        "paging": {
+          "$ref": "#/definitions/accountcommon.PaginationV3"
+        }
+      }
+    },
+    "accountcommon.Permission": {
+      "required": [
+        "Resource",
+        "Action"
+      ],
+      "properties": {
+        "Action": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "Resource": {
+          "type": "string"
+        },
+        "SchedAction": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "SchedCron": {
+          "type": "string"
+        },
+        "SchedRange": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "accountcommon.JWTBan": {
+      "required": [
+        "Ban",
+        "EndDate"
+      ],
+      "properties": {
+        "Ban": {
+          "type": "string"
+        },
+        "EndDate": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "oauthmodel.TokenResponse": {
+      "required": [
+        "access_token",
+        "refresh_token",
+        "expires_in",
+        "token_type",
+        "roles",
+        "permissions",
+        "bans",
+        "user_id",
+        "display_name",
+        "namespace"
+      ],
+      "properties": {
+        "access_token": {
+          "type": "string"
+        },
+        "bans": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/accountcommon.JWTBan"
+          }
+        },
+        "display_name": {
+          "type": "string"
+        },
+        "expires_in": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "jflgs": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "permissions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/accountcommon.Permission"
+          }
+        },
+        "platform_id": {
+          "type": "string"
+        },
+        "platform_user_id": {
+          "type": "string"
+        },
+        "refresh_token": {
+          "type": "string"
+        },
+        "roles": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "token_type": {
+          "type": "string"
+        },
+        "user_id": {
+          "type": "string"
+        }
+      }
+    },
+    "oauthmodel.TokenResponseV3": {
+      "required": [
+        "access_token",
+        "refresh_token",
+        "expires_in",
+        "token_type",
+        "roles",
+        "permissions",
+        "bans",
+        "user_id",
+        "display_name",
+        "namespace",
+        "namespace_roles"
+      ],
+      "properties": {
+        "access_token": {
+          "type": "string"
+        },
+        "bans": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/accountcommon.JWTBanV3"
+          }
+        },
+        "display_name": {
+          "type": "string"
+        },
+        "expires_in": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "jflgs": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "namespace_roles": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/accountcommon.NamespaceRole"
+          }
+        },
+        "permissions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/accountcommon.PermissionV3"
+          }
+        },
+        "platform_id": {
+          "type": "string"
+        },
+        "platform_user_id": {
+          "type": "string"
+        },
+        "refresh_token": {
+          "type": "string"
+        },
+        "roles": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "token_type": {
+          "type": "string"
+        },
+        "user_id": {
+          "type": "string"
+        }
+      }
+    },
+    "accountcommon.PermissionV3": {
+      "required": [
+        "resource",
+        "action"
+      ],
+      "properties": {
+        "action": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "resource": {
+          "type": "string"
+        },
+        "schedAction": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "schedCron": {
+          "type": "string"
+        },
+        "schedRange": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "accountcommon.JWTBanV3": {
+      "required": [
+        "ban",
+        "endDate"
+      ],
+      "properties": {
+        "ban": {
+          "type": "string"
+        },
+        "endDate": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "accountcommon.NamespaceRole": {
+      "required": [
+        "roleId",
+        "namespace"
+      ],
+      "properties": {
+        "namespace": {
+          "type": "string"
+        },
+        "roleId": {
+          "type": "string"
+        }
+      }
+    },
+    "oauthmodel.ErrorResponse": {
+      "required": [
+        "error"
+      ],
+      "properties": {
+        "error": {
+          "type": "string"
+        },
+        "error_description": {
+          "type": "string"
+        },
+        "error_uri": {
+          "type": "string"
+        }
+      }
+    },
+    "account.createUserResponseV4": {
+      "required": [
+        "userId",
+        "namespace",
+        "authType",
+        "displayName",
+        "emailAddress",
+        "username",
+        "country",
+        "dateOfBirth"
+      ],
+      "properties": {
+        "authType": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "dateOfBirth": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "displayName": {
+          "type": "string"
+        },
+        "emailAddress": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        }
+      }
+    },
+    "account.createUserRequestV4": {
+      "required": [
+        "authType",
+        "displayName",
+        "emailAddress",
+        "username",
+        "password",
+        "passwordMD5Sum",
+        "country",
+        "dateOfBirth"
+      ],
+      "properties": {
+        "authType": {
+          "type": "string",
+          "default": "EMAILPASSWD"
+        },
+        "country": {
+          "type": "string"
+        },
+        "dateOfBirth": {
+          "type": "string"
+        },
+        "displayName": {
+          "type": "string"
+        },
+        "emailAddress": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "passwordMD5Sum": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        }
+      }
+    },
+    "model.UserCreateRequestV3": {
+      "required": [
+        "authType",
+        "displayName",
+        "emailAddress",
+        "password",
+        "country",
+        "dateOfBirth"
+      ],
+      "properties": {
+        "PasswordMD5Sum": {
+          "type": "string"
+        },
+        "authType": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "dateOfBirth": {
+          "type": "string"
+        },
+        "displayName": {
+          "type": "string"
+        },
+        "emailAddress": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "model.UserCreateResponseV3": {
+      "required": [
+        "namespace",
+        "userId",
+        "authType",
+        "displayName",
+        "emailAddress",
+        "country",
+        "dateOfBirth"
+      ],
+      "properties": {
+        "authType": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "dateOfBirth": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "displayName": {
+          "type": "string"
+        },
+        "emailAddress": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        }
+      }
+    },
+    "accountcommon.ConflictedUserPlatformAccounts": {
+      "required": [
+        "platformUserID",
+        "publisherAccounts"
+      ],
+      "properties": {
+        "platformUserID": {
+          "type": "string"
+        },
+        "publisherAccounts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/accountcommon.UserWithLinkedPlatformAccounts"
+          }
+        }
+      }
+    },
+    "model.PublicUserInformationV3": {
+      "required": [
+        "country",
+        "createdAt",
+        "dateOfBirth",
+        "displayName",
+        "emailAddress",
+        "namespace",
+        "userId",
+        "userName"
+      ],
+      "properties": {
+        "country": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "dateOfBirth": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "displayName": {
+          "type": "string"
+        },
+        "emailAddress": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "phoneNumber": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        },
+        "userName": {
+          "type": "string"
+        }
+      }
+    },
+    "accountcommon.PaginationV3": {
+      "required": [
+        "previous",
+        "next",
+        "first",
+        "last"
+      ],
+      "properties": {
+        "first": {
+          "type": "string"
+        },
+        "last": {
+          "type": "string"
+        },
+        "next": {
+          "type": "string"
+        },
+        "previous": {
+          "type": "string"
+        }
+      }
+    },
+    "accountcommon.UserWithLinkedPlatformAccounts": {
+      "required": [
+        "userId",
+        "namespace",
+        "displayName",
+        "emailAddress",
+        "linkedPlatforms"
+      ],
+      "properties": {
+        "displayName": {
+          "type": "string"
+        },
+        "emailAddress": {
+          "type": "string"
+        },
+        "linkedPlatforms": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/accountcommon.PlatformAccount"
+          }
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        }
+      }
+    },
+    "accountcommon.PlatformAccount": {
+      "required": [
+        "namespace",
+        "platformUserId"
+      ],
+      "properties": {
+        "namespace": {
+          "type": "string"
+        },
+        "platformUserId": {
+          "type": "string"
+        }
+      }
+    },
+    "rest.ErrorResponse": {
+      "required": [
+        "errorCode",
+        "errorMessage"
+      ],
+      "properties": {
+        "errorCode": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "errorMessage": {
+          "type": "string"
+        },
+        "messageVariables": {
+          "$ref": "#/definitions/accountcommon.ConflictedUserPlatformAccounts"
+        }
+      }
+    },
+    "model.PublicUserInformationResponseV3": {
+      "required": [
+        "data",
+        "paging"
+      ],
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/model.PublicUserInformationV3"
+          }
+        },
+        "paging": {
+          "$ref": "#/definitions/accountcommon.PaginationV3"
+        }
+      }
+    },
+    "model.UserVerificationRequestV3": {
+      "required": [
+        "code",
+        "contactType",
+        "languageTag"
+      ],
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "contactType": {
+          "type": "string"
+        },
+        "languageTag": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "authorization": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header"
+    },
+    "basic": {
+      "type": "basic"
+    }
+  },
+  "security": [
+    {
+      "authorization": []
+    },
+    {
+      "basic": []
+    }
+  ]
+}

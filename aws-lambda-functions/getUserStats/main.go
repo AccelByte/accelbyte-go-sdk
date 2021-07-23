@@ -122,5 +122,5 @@ func (configRepository *ConfigRepositoryImpl) GetClientSecret() string {
 }
 
 func (configRepository *ConfigRepositoryImpl) GetJusticeBaseUrl() string {
-	return os.Getenv("JUSTICE_BASE_URL")
+	return os.Getenv("ACCELBYTE_BASE_URL")
 }

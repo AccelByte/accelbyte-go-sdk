@@ -29,7 +29,7 @@ var verifyTokenCmd = &cobra.Command{
 			},
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		err := userService.VerifyToken(token, contactType, namespace)
+		err := userService.PublicUserVerificationV3(token, contactType, namespace)
 		if err != nil {
 			return err
 		}

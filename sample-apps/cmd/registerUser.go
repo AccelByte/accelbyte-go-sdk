@@ -35,12 +35,12 @@ var registerUserCmd = &cobra.Command{
 			},
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		user, err := userService.RegisterUser(namespace, name, birthDate, email, country, password)
+		user, err := userService.PublicCreateUserV3(namespace, name, birthDate, email, country, password)
 		if err != nil {
 			return err
 		}
 		if len(roleId) > 0 {
-			err := userService.AddUserRole(namespace, *user.UserID, roleId)
+			err := userService.AdminAddUserRoleV3(namespace, *user.UserID, roleId)
 			if err != nil {
 				return err
 			}

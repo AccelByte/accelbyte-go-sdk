@@ -18,15 +18,22 @@ var getUserRolesCmd = &cobra.Command{
 	Short: "Get user roles",
 	Long:  `Get user roles`,
 	RunE: func(cmd *cobra.Command, args []string) error {
+		after := cmd.Flag("after").Value.String()
+		before := cmd.Flag("before").Value.String()
+		isWildCard, _ := cmd.Flags().GetBool("isWildCard")
+		limit, err := cmd.Flags().GetInt64("limit")
+		if err != nil {
+			return err
+		}
 		roleService := &service.RoleService{
 			IamService:      factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		roles, err := roleService.GetRoles()
+		roles, err := roleService.AdminGetRolesV3(&after, &before, &isWildCard, &limit)
 		if err != nil {
 			return err
 		}
-		response, err := json.Marshal(roles)
+		response, err := json.MarshalIndent(roles, "", "    ")
 		if err != nil {
 			return err
 		}
@@ -37,5 +44,8 @@ var getUserRolesCmd = &cobra.Command{
 
 func init() {
 	rootCmd.AddCommand(getUserRolesCmd)
-
+	getUserRolesCmd.Flags().BoolP("isWildCard", "w", true, "isWildCard. Default true.")
+	getUserRolesCmd.Flags().StringP("after", "a", "", "After")
+	getUserRolesCmd.Flags().StringP("before", "b", "", "Before")
+	getUserRolesCmd.Flags().Int64P("limit", "", 20, "Pagination limit")
 }

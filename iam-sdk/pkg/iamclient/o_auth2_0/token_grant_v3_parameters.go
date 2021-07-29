@@ -103,7 +103,7 @@ type TokenGrantV3Params struct {
 	*/
 	RedirectURI *string
 	/*RefreshToken
-	  Refresh Token (used with grant type 'refresh_token')
+	  Refresh Token (used with grant type 'refresh_token'). This field is optional if the request header provides the "refresh_token" cookie
 
 	*/
 	RefreshToken *string

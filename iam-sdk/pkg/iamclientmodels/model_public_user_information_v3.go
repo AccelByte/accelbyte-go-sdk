@@ -17,34 +17,18 @@ import (
 // swagger:model model.PublicUserInformationV3
 type ModelPublicUserInformationV3 struct {
 
-	// country
-	// Required: true
-	Country *string `json:"country"`
-
 	// created at
 	// Required: true
 	// Format: date-time
 	CreatedAt *strfmt.DateTime `json:"createdAt"`
 
-	// date of birth
-	// Required: true
-	// Format: date-time
-	DateOfBirth *strfmt.DateTime `json:"dateOfBirth"`
-
 	// display name
 	// Required: true
 	DisplayName *string `json:"displayName"`
 
-	// email address
-	// Required: true
-	EmailAddress *string `json:"emailAddress"`
-
 	// namespace
 	// Required: true
 	Namespace *string `json:"namespace"`
-
-	// phone number
-	PhoneNumber string `json:"phoneNumber,omitempty"`
 
 	// user Id
 	// Required: true
@@ -59,23 +43,11 @@ type ModelPublicUserInformationV3 struct {
 func (m *ModelPublicUserInformationV3) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateCountry(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.validateCreatedAt(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateDateOfBirth(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.validateDisplayName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateEmailAddress(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -97,15 +69,6 @@ func (m *ModelPublicUserInformationV3) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *ModelPublicUserInformationV3) validateCountry(formats strfmt.Registry) error {
-
-	if err := validate.Required("country", "body", m.Country); err != nil {
-		return err
-	}
-
-	return nil
-}
-
 func (m *ModelPublicUserInformationV3) validateCreatedAt(formats strfmt.Registry) error {
 
 	if err := validate.Required("createdAt", "body", m.CreatedAt); err != nil {
@@ -119,31 +82,9 @@ func (m *ModelPublicUserInformationV3) validateCreatedAt(formats strfmt.Registry
 	return nil
 }
 
-func (m *ModelPublicUserInformationV3) validateDateOfBirth(formats strfmt.Registry) error {
-
-	if err := validate.Required("dateOfBirth", "body", m.DateOfBirth); err != nil {
-		return err
-	}
-
-	if err := validate.FormatOf("dateOfBirth", "body", "date-time", m.DateOfBirth.String(), formats); err != nil {
-		return err
-	}
-
-	return nil
-}
-
 func (m *ModelPublicUserInformationV3) validateDisplayName(formats strfmt.Registry) error {
 
 	if err := validate.Required("displayName", "body", m.DisplayName); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ModelPublicUserInformationV3) validateEmailAddress(formats strfmt.Registry) error {
-
-	if err := validate.Required("emailAddress", "body", m.EmailAddress); err != nil {
 		return err
 	}
 

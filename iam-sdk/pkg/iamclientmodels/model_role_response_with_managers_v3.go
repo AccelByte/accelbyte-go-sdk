@@ -19,6 +19,14 @@ import (
 // swagger:model model.RoleResponseWithManagersV3
 type ModelRoleResponseWithManagersV3 struct {
 
+	// admin role
+	// Required: true
+	AdminRole *bool `json:"adminRole"`
+
+	// is wildcard
+	// Required: true
+	IsWildcard *bool `json:"isWildcard"`
+
 	// managers
 	// Required: true
 	Managers []*AccountcommonRoleManagerV3 `json:"managers"`
@@ -40,6 +48,14 @@ type ModelRoleResponseWithManagersV3 struct {
 func (m *ModelRoleResponseWithManagersV3) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateAdminRole(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateIsWildcard(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateManagers(formats); err != nil {
 		res = append(res, err)
 	}
@@ -59,6 +75,24 @@ func (m *ModelRoleResponseWithManagersV3) Validate(formats strfmt.Registry) erro
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *ModelRoleResponseWithManagersV3) validateAdminRole(formats strfmt.Registry) error {
+
+	if err := validate.Required("adminRole", "body", m.AdminRole); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelRoleResponseWithManagersV3) validateIsWildcard(formats strfmt.Registry) error {
+
+	if err := validate.Required("isWildcard", "body", m.IsWildcard); err != nil {
+		return err
+	}
+
 	return nil
 }
 

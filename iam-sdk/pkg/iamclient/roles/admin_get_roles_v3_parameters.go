@@ -71,6 +71,13 @@ type AdminGetRolesV3Params struct {
 
 	*/
 	Before *string
+	/*IsWildcard
+	  - true if the expected result should only returns records with wildcard = true
+	          - false if the expected result should only returns records with wildcard = false
+	          - empty (omitted) if the expected result should returns records with no wildcard filter at all
+
+	*/
+	IsWildcard *bool
 	/*Limit
 	  the maximum number of data that may be returned (1...100)
 
@@ -137,6 +144,17 @@ func (o *AdminGetRolesV3Params) SetBefore(before *string) {
 	o.Before = before
 }
 
+// WithIsWildcard adds the isWildcard to the admin get roles v3 params
+func (o *AdminGetRolesV3Params) WithIsWildcard(isWildcard *bool) *AdminGetRolesV3Params {
+	o.SetIsWildcard(isWildcard)
+	return o
+}
+
+// SetIsWildcard adds the isWildcard to the admin get roles v3 params
+func (o *AdminGetRolesV3Params) SetIsWildcard(isWildcard *bool) {
+	o.IsWildcard = isWildcard
+}
+
 // WithLimit adds the limit to the admin get roles v3 params
 func (o *AdminGetRolesV3Params) WithLimit(limit *int64) *AdminGetRolesV3Params {
 	o.SetLimit(limit)
@@ -182,6 +200,22 @@ func (o *AdminGetRolesV3Params) WriteToRequest(r runtime.ClientRequest, reg strf
 		qBefore := qrBefore
 		if qBefore != "" {
 			if err := r.SetQueryParam("before", qBefore); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.IsWildcard != nil {
+
+		// query param isWildcard
+		var qrIsWildcard bool
+		if o.IsWildcard != nil {
+			qrIsWildcard = *o.IsWildcard
+		}
+		qIsWildcard := swag.FormatBool(qrIsWildcard)
+		if qIsWildcard != "" {
+			if err := r.SetQueryParam("isWildcard", qIsWildcard); err != nil {
 				return err
 			}
 		}

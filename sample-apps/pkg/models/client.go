@@ -1,7 +1,9 @@
 package models
 
-const (
-	ClientId       = "56c5ce0b5ebf4b5196aae1886dfa1b3c"
-	ClientSecret   = ""
-	JusticeBaseURL = "https://jib.noice.accelbyte.io"
+import "os"
+
+var (
+	ClientId       = os.Getenv("APP_CLIENT_ID")
+	ClientSecret   = os.Getenv("APP_CLIENT_SECRET")
+	JusticeBaseURL = os.Getenv("JUSTICE_BASE_URL")
 )

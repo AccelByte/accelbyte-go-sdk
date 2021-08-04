@@ -1614,7 +1614,7 @@ func (userService *UserService) AdminPlatformUnlinkV3(namespace, platformId, use
 	return nil
 }
 
-// AdminDeleteUserRoleV3 is used to delete user's roles
+// AdminDeleteUserRoleV3 is used to delete user's role
 func (userService *UserService) AdminDeleteUserRoleV3(namespace, userId, roleId string) error {
 	accessToken, err := userService.TokenRepository.GetToken()
 	if err != nil {
@@ -1655,7 +1655,7 @@ func (userService *UserService) AdminDeleteUserRoleV3(namespace, userId, roleId 
 	return nil
 }
 
-// AdminDeleteUserRolesV3 is used to add user's role
+// AdminDeleteUserRolesV3 is used to delete user's roles
 func (userService *UserService) AdminDeleteUserRolesV3(namespace, userId string, body []string) error {
 	accessToken, err := userService.TokenRepository.GetToken()
 	if err != nil {
@@ -1685,6 +1685,52 @@ func (userService *UserService) AdminDeleteUserRolesV3(namespace, userId string,
 		return err
 	}
 	logrus.Info("Roles successfully added")
+	return nil
+}
+
+// AdminSaveUserRoleV3 is used to update user's role
+func (userService *UserService) AdminSaveUserRoleV3(namespace, userId string, body []*iamclientmodels.ModelNamespaceRoleRequest) error {
+	accessToken, err := userService.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	param := &users.AdminSaveUserRoleV3Params{
+		Body:      body,
+		Namespace: namespace,
+		UserID:    userId,
+	}
+	_, badRequest, forbidden, notFound, unprocessableEntity, internalServer, err :=
+		userService.IamService.Users.AdminSaveUserRoleV3(param, client.BearerToken(*accessToken.AccessToken))
+	if badRequest != nil {
+		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
+		logrus.Error(string(errorMsg))
+		return badRequest
+	}
+	if forbidden != nil {
+		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
+		logrus.Error(string(errorMsg))
+		return forbidden
+	}
+	if notFound != nil {
+		errorMsg, _ := json.Marshal(*notFound.GetPayload())
+		logrus.Error(string(errorMsg))
+		return notFound
+	}
+	if unprocessableEntity != nil {
+		errorMsg, _ := json.Marshal(*unprocessableEntity.GetPayload())
+		logrus.Error(string(errorMsg))
+		return unprocessableEntity
+	}
+	if internalServer != nil {
+		errorMsg, _ := json.Marshal(*internalServer.GetPayload())
+		logrus.Error(string(errorMsg))
+		return internalServer
+	}
+	if err != nil {
+		logrus.Error(err)
+		return err
+	}
+	logrus.Info("Role successfully added")
 	return nil
 }
 

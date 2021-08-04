@@ -6,7 +6,7 @@
   "host": "jib.noice.accelbyte.io",
   "info": {
     "description": "Justice Social Service",
-    "version": "1.13.4",
+    "version": "1.17.1",
     "title": "justice-social-service",
     "contact": {
       "name": "Engineering Team at AccelByte",
@@ -1883,6 +1883,21 @@
             "description": "stat code",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "additionalKey",
+            "in": "query",
+            "description": "additional key",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/StatResetInfo"
+            }
           }
         ],
         "responses": {
@@ -5025,6 +5040,18 @@
         "currentValue": {
           "type": "number",
           "format": "double"
+        }
+      }
+    },
+    "StatResetInfo": {
+      "type": "object",
+      "properties": {
+        "additionalData": {
+          "type": "object",
+          "description": "Additional data to be published in event payload",
+          "additionalProperties": {
+            "type": "object"
+          }
         }
       }
     },

@@ -15,7 +15,7 @@ import (
 )
 
 type BansService struct {
-	iamClient       *iamclient.JusticeIamService
+	IamClient       *iamclient.JusticeIamService
 	TokenRepository repository.TokenRepository
 }
 
@@ -32,7 +32,7 @@ func (bansService *BansService) AdminGetBannedUsersV3(activeOnly *bool, banType 
 		Namespace:  namespace,
 		Offset:     offset,
 	}
-	ok, unauthorized, forbidden, err := bansService.iamClient.Bans.AdminGetBannedUsersV3(params, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, err := bansService.IamClient.Bans.AdminGetBannedUsersV3(params, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -56,7 +56,7 @@ func (bansService *BansService) AdminGetBansTypeV3() (*iamclientmodels.Accountco
 		logrus.Error(err)
 		return nil, err
 	}
-	ok, unauthorized, forbidden, err := bansService.iamClient.Bans.AdminGetBansTypeV3(nil, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, err := bansService.IamClient.Bans.AdminGetBansTypeV3(nil, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -83,7 +83,7 @@ func (bansService BansService) AdminGetBansTypeWithNamespaceV3(namespace string)
 	params := &bans.AdminGetBansTypeWithNamespaceV3Params{
 		Namespace: namespace,
 	}
-	ok, unauthorized, forbidden, err := bansService.iamClient.Bans.AdminGetBansTypeWithNamespaceV3(params, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, err := bansService.IamClient.Bans.AdminGetBansTypeWithNamespaceV3(params, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -108,7 +108,7 @@ func (bansService BansService) AdminGetListBanReasonV3() (*iamclientmodels.Accou
 		logrus.Error(err)
 		return nil, err
 	}
-	ok, unauthorized, forbidden, err := bansService.iamClient.Bans.AdminGetListBanReasonV3(nil, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, err := bansService.IamClient.Bans.AdminGetListBanReasonV3(nil, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))

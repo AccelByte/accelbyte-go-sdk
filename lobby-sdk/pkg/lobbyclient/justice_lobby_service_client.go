@@ -13,7 +13,16 @@ import (
 	httptransport "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
+	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/chat"
+	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/config"
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/friends"
+	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/notification"
+	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/operations"
+	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/party"
+	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/player"
+	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/presence"
+	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/profanity"
+	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/third_party"
 )
 
 // Default justice lobby service HTTP client.
@@ -22,14 +31,14 @@ var Default = NewHTTPClient(nil)
 const (
 	// DefaultHost is the default Host
 	// found in Meta (info) section of spec file
-	DefaultHost string = "jib.noice.accelbyte.io"
+	DefaultHost string = "localhost"
 	// DefaultBasePath is the default BasePath
 	// found in Meta (info) section of spec file
 	DefaultBasePath string = "/"
 )
 
 // DefaultSchemes are the default schemes found in Meta (info) section of spec file
-var DefaultSchemes = []string{"https"}
+var DefaultSchemes = []string{"http"}
 
 // NewHTTPClient creates a new justice lobby service HTTP client.
 func NewHTTPClient(formats strfmt.Registry) *JusticeLobbyService {
@@ -58,7 +67,16 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry) *JusticeLob
 
 	cli := new(JusticeLobbyService)
 	cli.Transport = transport
+	cli.Chat = chat.New(transport, formats)
+	cli.Config = config.New(transport, formats)
 	cli.Friends = friends.New(transport, formats)
+	cli.Notification = notification.New(transport, formats)
+	cli.Operations = operations.New(transport, formats)
+	cli.Party = party.New(transport, formats)
+	cli.Player = player.New(transport, formats)
+	cli.Presence = presence.New(transport, formats)
+	cli.Profanity = profanity.New(transport, formats)
+	cli.ThirdParty = third_party.New(transport, formats)
 	return cli
 }
 
@@ -117,7 +135,25 @@ func (cfg *TransportConfig) WithSchemes(schemes []string) *TransportConfig {
 
 // JusticeLobbyService is a client for justice lobby service
 type JusticeLobbyService struct {
+	Chat chat.ClientService
+
+	Config config.ClientService
+
 	Friends friends.ClientService
+
+	Notification notification.ClientService
+
+	Operations operations.ClientService
+
+	Party party.ClientService
+
+	Player player.ClientService
+
+	Presence presence.ClientService
+
+	Profanity profanity.ClientService
+
+	ThirdParty third_party.ClientService
 
 	Transport runtime.ClientTransport
 }
@@ -125,5 +161,14 @@ type JusticeLobbyService struct {
 // SetTransport changes the transport on the client and all its subresources
 func (c *JusticeLobbyService) SetTransport(transport runtime.ClientTransport) {
 	c.Transport = transport
+	c.Chat.SetTransport(transport)
+	c.Config.SetTransport(transport)
 	c.Friends.SetTransport(transport)
+	c.Notification.SetTransport(transport)
+	c.Operations.SetTransport(transport)
+	c.Party.SetTransport(transport)
+	c.Player.SetTransport(transport)
+	c.Presence.SetTransport(transport)
+	c.Profanity.SetTransport(transport)
+	c.ThirdParty.SetTransport(transport)
 }

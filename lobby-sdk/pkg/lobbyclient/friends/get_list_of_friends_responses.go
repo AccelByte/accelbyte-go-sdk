@@ -72,7 +72,7 @@ func NewGetListOfFriendsOK() *GetListOfFriendsOK {
 
 /*GetListOfFriendsOK handles this case with default header values.
 
-  Friends retrieved successfully
+  GetListOfFriendsOK get list of friends o k
 */
 type GetListOfFriendsOK struct {
 	Payload *lobbyclientmodels.ModelGetFriendsResponse
@@ -105,7 +105,7 @@ func NewGetListOfFriendsBadRequest() *GetListOfFriendsBadRequest {
 
 /*GetListOfFriendsBadRequest handles this case with default header values.
 
-  Bad request
+  Bad Request
 */
 type GetListOfFriendsBadRequest struct {
 	Payload *lobbyclientmodels.RestapiErrorResponseBody
@@ -138,7 +138,7 @@ func NewGetListOfFriendsUnauthorized() *GetListOfFriendsUnauthorized {
 
 /*GetListOfFriendsUnauthorized handles this case with default header values.
 
-  Forbidden
+  Unauthorized
 */
 type GetListOfFriendsUnauthorized struct {
 	Payload *lobbyclientmodels.RestapiErrorResponseBody
@@ -171,7 +171,7 @@ func NewGetListOfFriendsForbidden() *GetListOfFriendsForbidden {
 
 /*GetListOfFriendsForbidden handles this case with default header values.
 
-  Bad request
+  Forbidden
 */
 type GetListOfFriendsForbidden struct {
 	Payload *lobbyclientmodels.RestapiErrorResponseBody
@@ -204,7 +204,7 @@ func NewGetListOfFriendsInternalServerError() *GetListOfFriendsInternalServerErr
 
 /*GetListOfFriendsInternalServerError handles this case with default header values.
 
-  Internal server error
+  Internal Server Error
 */
 type GetListOfFriendsInternalServerError struct {
 	Payload *lobbyclientmodels.RestapiErrorResponseBody

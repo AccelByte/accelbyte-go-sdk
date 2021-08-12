@@ -33,6 +33,24 @@ type ClientService interface {
 
 	GetListOfFriends(params *GetListOfFriendsParams, authInfo runtime.ClientAuthInfoWriter) (*GetListOfFriendsOK, *GetListOfFriendsBadRequest, *GetListOfFriendsUnauthorized, *GetListOfFriendsForbidden, *GetListOfFriendsInternalServerError, error)
 
+	GetUserFriends(params *GetUserFriendsParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserFriendsOK, *GetUserFriendsBadRequest, *GetUserFriendsUnauthorized, *GetUserFriendsForbidden, *GetUserFriendsNotFound, *GetUserFriendsInternalServerError, error)
+
+	GetUserIncomingFriends(params *GetUserIncomingFriendsParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserIncomingFriendsOK, *GetUserIncomingFriendsBadRequest, *GetUserIncomingFriendsUnauthorized, *GetUserIncomingFriendsForbidden, *GetUserIncomingFriendsNotFound, *GetUserIncomingFriendsInternalServerError, error)
+
+	GetUserOutgoingFriends(params *GetUserOutgoingFriendsParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserOutgoingFriendsOK, *GetUserOutgoingFriendsBadRequest, *GetUserOutgoingFriendsUnauthorized, *GetUserOutgoingFriendsForbidden, *GetUserOutgoingFriendsNotFound, *GetUserOutgoingFriendsInternalServerError, error)
+
+	UserAcceptFriendRequest(params *UserAcceptFriendRequestParams, authInfo runtime.ClientAuthInfoWriter) (*UserAcceptFriendRequestNoContent, *UserAcceptFriendRequestBadRequest, *UserAcceptFriendRequestUnauthorized, *UserAcceptFriendRequestForbidden, *UserAcceptFriendRequestNotFound, *UserAcceptFriendRequestInternalServerError, error)
+
+	UserCancelFriendRequest(params *UserCancelFriendRequestParams, authInfo runtime.ClientAuthInfoWriter) (*UserCancelFriendRequestNoContent, *UserCancelFriendRequestBadRequest, *UserCancelFriendRequestUnauthorized, *UserCancelFriendRequestForbidden, *UserCancelFriendRequestNotFound, *UserCancelFriendRequestInternalServerError, error)
+
+	UserGetFriendshipStatus(params *UserGetFriendshipStatusParams, authInfo runtime.ClientAuthInfoWriter) (*UserGetFriendshipStatusOK, *UserGetFriendshipStatusBadRequest, *UserGetFriendshipStatusUnauthorized, *UserGetFriendshipStatusForbidden, *UserGetFriendshipStatusInternalServerError, error)
+
+	UserRejectFriendRequest(params *UserRejectFriendRequestParams, authInfo runtime.ClientAuthInfoWriter) (*UserRejectFriendRequestNoContent, *UserRejectFriendRequestBadRequest, *UserRejectFriendRequestUnauthorized, *UserRejectFriendRequestForbidden, *UserRejectFriendRequestNotFound, *UserRejectFriendRequestInternalServerError, error)
+
+	UserRequestFriend(params *UserRequestFriendParams, authInfo runtime.ClientAuthInfoWriter) (*UserRequestFriendCreated, *UserRequestFriendBadRequest, *UserRequestFriendUnauthorized, *UserRequestFriendForbidden, *UserRequestFriendNotFound, *UserRequestFriendUnprocessableEntity, *UserRequestFriendInternalServerError, error)
+
+	UserUnfriendRequest(params *UserUnfriendRequestParams, authInfo runtime.ClientAuthInfoWriter) (*UserUnfriendRequestNoContent, *UserUnfriendRequestBadRequest, *UserUnfriendRequestUnauthorized, *UserUnfriendRequestForbidden, *UserUnfriendRequestNotFound, *UserUnfriendRequestInternalServerError, error)
+
 	SetTransport(transport runtime.ClientTransport)
 }
 
@@ -58,7 +76,7 @@ func (a *Client) AddFriendsWithoutConfirmation(params *AddFriendsWithoutConfirma
 		PathPattern:        "/friends/namespaces/{namespace}/users/{userId}/add/bulk",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &AddFriendsWithoutConfirmationReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -108,7 +126,7 @@ func (a *Client) GetListOfFriends(params *GetListOfFriendsParams, authInfo runti
 		PathPattern:        "/lobby/v1/admin/friend/namespaces/{namespace}/users/{userId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &GetListOfFriendsReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -133,6 +151,447 @@ func (a *Client) GetListOfFriends(params *GetListOfFriendsParams, authInfo runti
 		return nil, nil, nil, nil, v, nil
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  GetUserFriends gets list of friends
+*/
+func (a *Client) GetUserFriends(params *GetUserFriendsParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserFriendsOK, *GetUserFriendsBadRequest, *GetUserFriendsUnauthorized, *GetUserFriendsForbidden, *GetUserFriendsNotFound, *GetUserFriendsInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetUserFriendsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getUserFriends",
+		Method:             "GET",
+		PathPattern:        "/friends/namespaces/{namespace}/me",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &GetUserFriendsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetUserFriendsOK:
+		return v, nil, nil, nil, nil, nil, nil
+	case *GetUserFriendsBadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+	case *GetUserFriendsUnauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+	case *GetUserFriendsForbidden:
+		return nil, nil, nil, v, nil, nil, nil
+	case *GetUserFriendsNotFound:
+		return nil, nil, nil, nil, v, nil, nil
+	case *GetUserFriendsInternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  GetUserIncomingFriends gets list of incoming friends
+*/
+func (a *Client) GetUserIncomingFriends(params *GetUserIncomingFriendsParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserIncomingFriendsOK, *GetUserIncomingFriendsBadRequest, *GetUserIncomingFriendsUnauthorized, *GetUserIncomingFriendsForbidden, *GetUserIncomingFriendsNotFound, *GetUserIncomingFriendsInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetUserIncomingFriendsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getUserIncomingFriends",
+		Method:             "GET",
+		PathPattern:        "/friends/namespaces/{namespace}/me/incoming",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &GetUserIncomingFriendsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetUserIncomingFriendsOK:
+		return v, nil, nil, nil, nil, nil, nil
+	case *GetUserIncomingFriendsBadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+	case *GetUserIncomingFriendsUnauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+	case *GetUserIncomingFriendsForbidden:
+		return nil, nil, nil, v, nil, nil, nil
+	case *GetUserIncomingFriendsNotFound:
+		return nil, nil, nil, nil, v, nil, nil
+	case *GetUserIncomingFriendsInternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  GetUserOutgoingFriends gets list of outgoing friends
+*/
+func (a *Client) GetUserOutgoingFriends(params *GetUserOutgoingFriendsParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserOutgoingFriendsOK, *GetUserOutgoingFriendsBadRequest, *GetUserOutgoingFriendsUnauthorized, *GetUserOutgoingFriendsForbidden, *GetUserOutgoingFriendsNotFound, *GetUserOutgoingFriendsInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetUserOutgoingFriendsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getUserOutgoingFriends",
+		Method:             "GET",
+		PathPattern:        "/friends/namespaces/{namespace}/me/outgoing",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &GetUserOutgoingFriendsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetUserOutgoingFriendsOK:
+		return v, nil, nil, nil, nil, nil, nil
+	case *GetUserOutgoingFriendsBadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+	case *GetUserOutgoingFriendsUnauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+	case *GetUserOutgoingFriendsForbidden:
+		return nil, nil, nil, v, nil, nil, nil
+	case *GetUserOutgoingFriendsNotFound:
+		return nil, nil, nil, nil, v, nil, nil
+	case *GetUserOutgoingFriendsInternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  UserAcceptFriendRequest users accept friend
+*/
+func (a *Client) UserAcceptFriendRequest(params *UserAcceptFriendRequestParams, authInfo runtime.ClientAuthInfoWriter) (*UserAcceptFriendRequestNoContent, *UserAcceptFriendRequestBadRequest, *UserAcceptFriendRequestUnauthorized, *UserAcceptFriendRequestForbidden, *UserAcceptFriendRequestNotFound, *UserAcceptFriendRequestInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUserAcceptFriendRequestParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "userAcceptFriendRequest",
+		Method:             "POST",
+		PathPattern:        "/friends/namespaces/{namespace}/me/request/accept",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &UserAcceptFriendRequestReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UserAcceptFriendRequestNoContent:
+		return v, nil, nil, nil, nil, nil, nil
+	case *UserAcceptFriendRequestBadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+	case *UserAcceptFriendRequestUnauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+	case *UserAcceptFriendRequestForbidden:
+		return nil, nil, nil, v, nil, nil, nil
+	case *UserAcceptFriendRequestNotFound:
+		return nil, nil, nil, nil, v, nil, nil
+	case *UserAcceptFriendRequestInternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  UserCancelFriendRequest users cancel a friend request
+*/
+func (a *Client) UserCancelFriendRequest(params *UserCancelFriendRequestParams, authInfo runtime.ClientAuthInfoWriter) (*UserCancelFriendRequestNoContent, *UserCancelFriendRequestBadRequest, *UserCancelFriendRequestUnauthorized, *UserCancelFriendRequestForbidden, *UserCancelFriendRequestNotFound, *UserCancelFriendRequestInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUserCancelFriendRequestParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "userCancelFriendRequest",
+		Method:             "POST",
+		PathPattern:        "/friends/namespaces/{namespace}/me/request/cancel",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &UserCancelFriendRequestReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UserCancelFriendRequestNoContent:
+		return v, nil, nil, nil, nil, nil, nil
+	case *UserCancelFriendRequestBadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+	case *UserCancelFriendRequestUnauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+	case *UserCancelFriendRequestForbidden:
+		return nil, nil, nil, v, nil, nil, nil
+	case *UserCancelFriendRequestNotFound:
+		return nil, nil, nil, nil, v, nil, nil
+	case *UserCancelFriendRequestInternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  UserGetFriendshipStatus users get friendship status
+*/
+func (a *Client) UserGetFriendshipStatus(params *UserGetFriendshipStatusParams, authInfo runtime.ClientAuthInfoWriter) (*UserGetFriendshipStatusOK, *UserGetFriendshipStatusBadRequest, *UserGetFriendshipStatusUnauthorized, *UserGetFriendshipStatusForbidden, *UserGetFriendshipStatusInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUserGetFriendshipStatusParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "userGetFriendshipStatus",
+		Method:             "GET",
+		PathPattern:        "/friends/namespaces/{namespace}/me/status/{friendId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &UserGetFriendshipStatusReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UserGetFriendshipStatusOK:
+		return v, nil, nil, nil, nil, nil
+	case *UserGetFriendshipStatusBadRequest:
+		return nil, v, nil, nil, nil, nil
+	case *UserGetFriendshipStatusUnauthorized:
+		return nil, nil, v, nil, nil, nil
+	case *UserGetFriendshipStatusForbidden:
+		return nil, nil, nil, v, nil, nil
+	case *UserGetFriendshipStatusInternalServerError:
+		return nil, nil, nil, nil, v, nil
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  UserRejectFriendRequest users reject a friend request
+*/
+func (a *Client) UserRejectFriendRequest(params *UserRejectFriendRequestParams, authInfo runtime.ClientAuthInfoWriter) (*UserRejectFriendRequestNoContent, *UserRejectFriendRequestBadRequest, *UserRejectFriendRequestUnauthorized, *UserRejectFriendRequestForbidden, *UserRejectFriendRequestNotFound, *UserRejectFriendRequestInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUserRejectFriendRequestParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "userRejectFriendRequest",
+		Method:             "POST",
+		PathPattern:        "/friends/namespaces/{namespace}/me/request/reject",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &UserRejectFriendRequestReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UserRejectFriendRequestNoContent:
+		return v, nil, nil, nil, nil, nil, nil
+	case *UserRejectFriendRequestBadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+	case *UserRejectFriendRequestUnauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+	case *UserRejectFriendRequestForbidden:
+		return nil, nil, nil, v, nil, nil, nil
+	case *UserRejectFriendRequestNotFound:
+		return nil, nil, nil, nil, v, nil, nil
+	case *UserRejectFriendRequestInternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  UserRequestFriend users add friend
+*/
+func (a *Client) UserRequestFriend(params *UserRequestFriendParams, authInfo runtime.ClientAuthInfoWriter) (*UserRequestFriendCreated, *UserRequestFriendBadRequest, *UserRequestFriendUnauthorized, *UserRequestFriendForbidden, *UserRequestFriendNotFound, *UserRequestFriendUnprocessableEntity, *UserRequestFriendInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUserRequestFriendParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "userRequestFriend",
+		Method:             "POST",
+		PathPattern:        "/friends/namespaces/{namespace}/me/request",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &UserRequestFriendReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UserRequestFriendCreated:
+		return v, nil, nil, nil, nil, nil, nil, nil
+	case *UserRequestFriendBadRequest:
+		return nil, v, nil, nil, nil, nil, nil, nil
+	case *UserRequestFriendUnauthorized:
+		return nil, nil, v, nil, nil, nil, nil, nil
+	case *UserRequestFriendForbidden:
+		return nil, nil, nil, v, nil, nil, nil, nil
+	case *UserRequestFriendNotFound:
+		return nil, nil, nil, nil, v, nil, nil, nil
+	case *UserRequestFriendUnprocessableEntity:
+		return nil, nil, nil, nil, nil, v, nil, nil
+	case *UserRequestFriendInternalServerError:
+		return nil, nil, nil, nil, nil, nil, v, nil
+	default:
+		return nil, nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  UserUnfriendRequest users unfriend a friend
+*/
+func (a *Client) UserUnfriendRequest(params *UserUnfriendRequestParams, authInfo runtime.ClientAuthInfoWriter) (*UserUnfriendRequestNoContent, *UserUnfriendRequestBadRequest, *UserUnfriendRequestUnauthorized, *UserUnfriendRequestForbidden, *UserUnfriendRequestNotFound, *UserUnfriendRequestInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUserUnfriendRequestParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "userUnfriendRequest",
+		Method:             "POST",
+		PathPattern:        "/friends/namespaces/{namespace}/me/unfriend",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &UserUnfriendRequestReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UserUnfriendRequestNoContent:
+		return v, nil, nil, nil, nil, nil, nil
+	case *UserUnfriendRequestBadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+	case *UserUnfriendRequestUnauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+	case *UserUnfriendRequestForbidden:
+		return nil, nil, nil, v, nil, nil, nil
+	case *UserUnfriendRequestNotFound:
+		return nil, nil, nil, nil, v, nil, nil
+	case *UserUnfriendRequestInternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 

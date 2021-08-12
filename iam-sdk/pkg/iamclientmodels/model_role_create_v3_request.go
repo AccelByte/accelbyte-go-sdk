@@ -23,6 +23,10 @@ type ModelRoleCreateV3Request struct {
 	// Required: true
 	AdminRole *bool `json:"adminRole"`
 
+	// is wildcard
+	// Required: true
+	IsWildcard *bool `json:"isWildcard"`
+
 	// managers
 	// Required: true
 	Managers []*AccountcommonRoleManagerV3 `json:"managers"`
@@ -45,6 +49,10 @@ func (m *ModelRoleCreateV3Request) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateAdminRole(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateIsWildcard(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -73,6 +81,15 @@ func (m *ModelRoleCreateV3Request) Validate(formats strfmt.Registry) error {
 func (m *ModelRoleCreateV3Request) validateAdminRole(formats strfmt.Registry) error {
 
 	if err := validate.Required("adminRole", "body", m.AdminRole); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelRoleCreateV3Request) validateIsWildcard(formats strfmt.Registry) error {
+
+	if err := validate.Required("isWildcard", "body", m.IsWildcard); err != nil {
 		return err
 	}
 

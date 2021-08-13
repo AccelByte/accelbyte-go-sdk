@@ -261,16 +261,17 @@ func (s *StatisticService) DeleteUserStatItems(namespace, userId, statCode strin
 	return nil
 }
 
-func (s *StatisticService) ResetUserStatItemValue(namespace, statCode, userId string) (*socialclientmodels.StatItemIncResult, error) {
+func (s *StatisticService) ResetUserStatItemValue(namespace, statCode, userId string, additionalKey *string) (*socialclientmodels.StatItemIncResult, error) {
 	token, err := s.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
 	params := &user_statistic.ResetUserStatItemValueParams{
-		Namespace: namespace,
-		StatCode:  statCode,
-		UserID:    userId,
+		AdditionalKey: additionalKey,
+		Namespace:     namespace,
+		StatCode:      statCode,
+		UserID:        userId,
 	}
 	ok, badRequest, notFound, err := s.SocialServiceClient.UserStatistic.ResetUserStatItemValue(params, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
@@ -800,6 +801,135 @@ func (s *StatisticService) PublicIncUserStatItemV2(namespace string, content *so
 		logrus.Error(string(errorMsg))
 		return nil, unprocessableEntity
 	}
+	if badRequest != nil {
+		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
+		logrus.Error(string(errorMsg))
+		return nil, badRequest
+	}
+	if notFound != nil {
+		errorMsg, _ := json.Marshal(*notFound.GetPayload())
+		logrus.Error(string(errorMsg))
+		return nil, notFound
+	}
+	if conflict != nil {
+		errorMsg, _ := json.Marshal(*conflict.GetPayload())
+		logrus.Error(string(errorMsg))
+		return nil, conflict
+	}
+	if err != nil {
+		logrus.Error(err)
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (s *StatisticService) BulkIncUserStatItem(namespace string, content []*socialclientmodels.BulkUserStatItemInc) ([]*socialclientmodels.BulkStatItemOperationResult, error) {
+	token, err := s.TokenRepository.GetToken()
+	if err != nil {
+		logrus.Error(err)
+		return nil, err
+	}
+	params := &user_statistic.BulkIncUserStatItemParams{
+		Body:      content,
+		Namespace: namespace,
+	}
+	ok, unprocessableEntity, err := s.SocialServiceClient.UserStatistic.BulkIncUserStatItem(params, client.BearerToken(*token.AccessToken))
+	if unprocessableEntity != nil {
+		errorMsg, _ := json.Marshal(*unprocessableEntity.GetPayload())
+		logrus.Error(string(errorMsg))
+		return nil, unprocessableEntity
+	}
+	if err != nil {
+		logrus.Error(err)
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (s *StatisticService) BulkIncUserStatItemValue2(namespace string, userID string, content []*socialclientmodels.BulkStatItemInc) ([]*socialclientmodels.BulkStatItemOperationResult, error) {
+	token, err := s.TokenRepository.GetToken()
+	if err != nil {
+		logrus.Error(err)
+		return nil, err
+	}
+	params := &user_statistic.BulkIncUserStatItemValue2Params{
+		Body:      content,
+		Namespace: namespace,
+		UserID:    userID,
+	}
+	ok, unprocessableEntity, err := s.SocialServiceClient.UserStatistic.BulkIncUserStatItemValue2(params, client.BearerToken(*token.AccessToken))
+	if unprocessableEntity != nil {
+		errorMsg, _ := json.Marshal(*unprocessableEntity.GetPayload())
+		logrus.Error(string(errorMsg))
+		return nil, unprocessableEntity
+	}
+	if err != nil {
+		logrus.Error(err)
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (s *StatisticService) BulkIncUserStatItem1(namespace string, userID string, content []*socialclientmodels.BulkStatItemInc) ([]*socialclientmodels.BulkStatItemOperationResult, error) {
+	token, err := s.TokenRepository.GetToken()
+	if err != nil {
+		logrus.Error(err)
+		return nil, err
+	}
+	params := &user_statistic.BulkIncUserStatItem1Params{
+		Body:      content,
+		Namespace: namespace,
+		UserID:    userID,
+	}
+	ok, unprocessableEntity, err := s.SocialServiceClient.UserStatistic.BulkIncUserStatItem1(params, client.BearerToken(*token.AccessToken))
+	if unprocessableEntity != nil {
+		errorMsg, _ := json.Marshal(*unprocessableEntity.GetPayload())
+		logrus.Error(string(errorMsg))
+		return nil, unprocessableEntity
+	}
+	if err != nil {
+		logrus.Error(err)
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (s *StatisticService) PublicBulkIncUserStatItemValue(namespace string, content []*socialclientmodels.BulkUserStatItemInc) ([]*socialclientmodels.BulkStatItemOperationResult, error) {
+	token, err := s.TokenRepository.GetToken()
+	if err != nil {
+		logrus.Error(err)
+		return nil, err
+	}
+	params := &user_statistic.PublicBulkIncUserStatItemValueParams{
+		Body:      content,
+		Namespace: namespace,
+	}
+	ok, unprocessableEntity, err := s.SocialServiceClient.UserStatistic.PublicBulkIncUserStatItemValue(params, client.BearerToken(*token.AccessToken))
+	if unprocessableEntity != nil {
+		errorMsg, _ := json.Marshal(*unprocessableEntity.GetPayload())
+		logrus.Error(string(errorMsg))
+		return nil, unprocessableEntity
+	}
+	if err != nil {
+		logrus.Error(err)
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (s *StatisticService) PublicIncUserStatItemValue(namespace string, statCode string, userID string, content *socialclientmodels.StatItemInc) (*socialclientmodels.StatItemIncResult, error) {
+	token, err := s.TokenRepository.GetToken()
+	if err != nil {
+		logrus.Error(err)
+		return nil, err
+	}
+	params := &user_statistic.PublicIncUserStatItemValueParams{
+		Body:      content,
+		Namespace: namespace,
+		StatCode:  statCode,
+		UserID:    userID,
+	}
+	ok, badRequest, notFound, conflict, err := s.SocialServiceClient.UserStatistic.PublicIncUserStatItemValue(params, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))

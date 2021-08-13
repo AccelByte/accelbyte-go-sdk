@@ -72,7 +72,7 @@ func NewAddFriendsWithoutConfirmationNoContent() *AddFriendsWithoutConfirmationN
 
 /*AddFriendsWithoutConfirmationNoContent handles this case with default header values.
 
-  Friend added successfully
+  AddFriendsWithoutConfirmationNoContent add friends without confirmation no content
 */
 type AddFriendsWithoutConfirmationNoContent struct {
 }
@@ -93,7 +93,7 @@ func NewAddFriendsWithoutConfirmationBadRequest() *AddFriendsWithoutConfirmation
 
 /*AddFriendsWithoutConfirmationBadRequest handles this case with default header values.
 
-  Bad request
+  Bad Request
 */
 type AddFriendsWithoutConfirmationBadRequest struct {
 	Payload *lobbyclientmodels.RestapiErrorResponseV1
@@ -126,7 +126,7 @@ func NewAddFriendsWithoutConfirmationUnauthorized() *AddFriendsWithoutConfirmati
 
 /*AddFriendsWithoutConfirmationUnauthorized handles this case with default header values.
 
-  Forbidden
+  Unauthorized
 */
 type AddFriendsWithoutConfirmationUnauthorized struct {
 	Payload *lobbyclientmodels.RestapiErrorResponseV1
@@ -159,7 +159,7 @@ func NewAddFriendsWithoutConfirmationForbidden() *AddFriendsWithoutConfirmationF
 
 /*AddFriendsWithoutConfirmationForbidden handles this case with default header values.
 
-  Bad request
+  Forbidden
 */
 type AddFriendsWithoutConfirmationForbidden struct {
 	Payload *lobbyclientmodels.RestapiErrorResponseV1
@@ -192,7 +192,7 @@ func NewAddFriendsWithoutConfirmationInternalServerError() *AddFriendsWithoutCon
 
 /*AddFriendsWithoutConfirmationInternalServerError handles this case with default header values.
 
-  Internal server error
+  Internal Server Error
 */
 type AddFriendsWithoutConfirmationInternalServerError struct {
 	Payload *lobbyclientmodels.RestapiErrorResponseV1

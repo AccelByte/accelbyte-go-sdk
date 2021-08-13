@@ -13,10 +13,16 @@ import (
 	httptransport "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
+	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/bans"
+	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/clients"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth2_0"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth2_0_extension"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/roles"
+	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/s_s_o"
+	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/s_s_o_credential"
+	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/s_s_o_s_a_m_l_2_0"
+	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/third_party_credential"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users_v4"
 )
@@ -27,14 +33,14 @@ var Default = NewHTTPClient(nil)
 const (
 	// DefaultHost is the default Host
 	// found in Meta (info) section of spec file
-	DefaultHost string = "jib.noice.accelbyte.io"
+	DefaultHost string = "localhost"
 	// DefaultBasePath is the default BasePath
 	// found in Meta (info) section of spec file
 	DefaultBasePath string = "/"
 )
 
 // DefaultSchemes are the default schemes found in Meta (info) section of spec file
-var DefaultSchemes = []string{"https"}
+var DefaultSchemes = []string{"http"}
 
 // NewHTTPClient creates a new justice iam service HTTP client.
 func NewHTTPClient(formats strfmt.Registry) *JusticeIamService {
@@ -63,10 +69,16 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry) *JusticeIam
 
 	cli := new(JusticeIamService)
 	cli.Transport = transport
+	cli.Bans = bans.New(transport, formats)
+	cli.Clients = clients.New(transport, formats)
 	cli.OAuth = o_auth.New(transport, formats)
 	cli.OAuth20 = o_auth2_0.New(transport, formats)
 	cli.OAuth20Extension = o_auth2_0_extension.New(transport, formats)
 	cli.Roles = roles.New(transport, formats)
+	cli.Sso = s_s_o.New(transport, formats)
+	cli.SsoCredential = s_s_o_credential.New(transport, formats)
+	cli.Ssosaml20 = s_s_o_s_a_m_l_2_0.New(transport, formats)
+	cli.ThirdPartyCredential = third_party_credential.New(transport, formats)
 	cli.Users = users.New(transport, formats)
 	cli.UsersV4 = users_v4.New(transport, formats)
 	return cli
@@ -127,6 +139,10 @@ func (cfg *TransportConfig) WithSchemes(schemes []string) *TransportConfig {
 
 // JusticeIamService is a client for justice iam service
 type JusticeIamService struct {
+	Bans bans.ClientService
+
+	Clients clients.ClientService
+
 	OAuth o_auth.ClientService
 
 	OAuth20 o_auth2_0.ClientService
@@ -134,6 +150,14 @@ type JusticeIamService struct {
 	OAuth20Extension o_auth2_0_extension.ClientService
 
 	Roles roles.ClientService
+
+	Sso s_s_o.ClientService
+
+	SsoCredential s_s_o_credential.ClientService
+
+	Ssosaml20 s_s_o_s_a_m_l_2_0.ClientService
+
+	ThirdPartyCredential third_party_credential.ClientService
 
 	Users users.ClientService
 
@@ -145,10 +169,16 @@ type JusticeIamService struct {
 // SetTransport changes the transport on the client and all its subresources
 func (c *JusticeIamService) SetTransport(transport runtime.ClientTransport) {
 	c.Transport = transport
+	c.Bans.SetTransport(transport)
+	c.Clients.SetTransport(transport)
 	c.OAuth.SetTransport(transport)
 	c.OAuth20.SetTransport(transport)
 	c.OAuth20Extension.SetTransport(transport)
 	c.Roles.SetTransport(transport)
+	c.Sso.SetTransport(transport)
+	c.SsoCredential.SetTransport(transport)
+	c.Ssosaml20.SetTransport(transport)
+	c.ThirdPartyCredential.SetTransport(transport)
 	c.Users.SetTransport(transport)
 	c.UsersV4.SetTransport(transport)
 }

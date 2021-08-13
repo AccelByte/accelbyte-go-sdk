@@ -35,12 +35,19 @@ type OauthmodelTokenResponse struct {
 	// Required: true
 	ExpiresIn *int32 `json:"expires_in"`
 
+	// is comply
+	IsComply bool `json:"is_comply,omitempty"`
+
 	// jflgs
 	Jflgs int32 `json:"jflgs,omitempty"`
 
 	// namespace
 	// Required: true
 	Namespace *string `json:"namespace"`
+
+	// namespace roles
+	// Required: true
+	NamespaceRoles []*AccountcommonNamespaceRole `json:"namespace_roles"`
 
 	// permissions
 	// Required: true
@@ -90,6 +97,10 @@ func (m *OauthmodelTokenResponse) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateNamespace(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateNamespaceRoles(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -175,6 +186,31 @@ func (m *OauthmodelTokenResponse) validateNamespace(formats strfmt.Registry) err
 
 	if err := validate.Required("namespace", "body", m.Namespace); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *OauthmodelTokenResponse) validateNamespaceRoles(formats strfmt.Registry) error {
+
+	if err := validate.Required("namespace_roles", "body", m.NamespaceRoles); err != nil {
+		return err
+	}
+
+	for i := 0; i < len(m.NamespaceRoles); i++ {
+		if swag.IsZero(m.NamespaceRoles[i]) { // not required
+			continue
+		}
+
+		if m.NamespaceRoles[i] != nil {
+			if err := m.NamespaceRoles[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("namespace_roles" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
 	}
 
 	return nil

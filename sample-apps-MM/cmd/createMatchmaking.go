@@ -6,10 +6,10 @@ package cmd
 
 import (
 	"github.com/AccelByte/sample-apps/pkg/repository"
+	"github.com/AccelByte/sample-apps/pkg/utils"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 	"io/ioutil"
-	"net/http"
 )
 
 var (
@@ -23,7 +23,8 @@ var createMatchmaking = &cobra.Command{
 	Long:  `create matchmaking`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		contentType := "application/json"
-		resp, err := http.Post(BaseUrl+"/v1/admin/namespaces/{namespace}/stats", contentType, nil)
+		client := utils.GetClient()
+		resp, err := client.Post(BaseUrl+"/v1/admin/namespaces/{namespace}/stats", contentType, nil)
 		var body []byte
 		var token repository.TokenRepositoryImpl
 		t, _ := token.GetToken()

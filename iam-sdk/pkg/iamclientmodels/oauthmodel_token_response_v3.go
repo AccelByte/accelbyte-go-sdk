@@ -35,6 +35,9 @@ type OauthmodelTokenResponseV3 struct {
 	// Required: true
 	ExpiresIn *int32 `json:"expires_in"`
 
+	// is comply
+	IsComply bool `json:"is_comply,omitempty"`
+
 	// jflgs
 	Jflgs int32 `json:"jflgs,omitempty"`
 

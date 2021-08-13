@@ -21,10 +21,22 @@ type AccountcommonJWTBan struct {
 	// Required: true
 	Ban *string `json:"Ban"`
 
+	// disabled date
+	// Format: date-time
+	DisabledDate strfmt.DateTime `json:"DisabledDate,omitempty"`
+
+	// enabled
+	// Required: true
+	Enabled *bool `json:"Enabled"`
+
 	// end date
 	// Required: true
 	// Format: date-time
 	EndDate *strfmt.DateTime `json:"EndDate"`
+
+	// targeted namespace
+	// Required: true
+	TargetedNamespace *string `json:"TargetedNamespace"`
 }
 
 // Validate validates this accountcommon j w t ban
@@ -35,7 +47,19 @@ func (m *AccountcommonJWTBan) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateDisabledDate(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateEnabled(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateEndDate(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateTargetedNamespace(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -54,6 +78,28 @@ func (m *AccountcommonJWTBan) validateBan(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *AccountcommonJWTBan) validateDisabledDate(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.DisabledDate) { // not required
+		return nil
+	}
+
+	if err := validate.FormatOf("DisabledDate", "body", "date-time", m.DisabledDate.String(), formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *AccountcommonJWTBan) validateEnabled(formats strfmt.Registry) error {
+
+	if err := validate.Required("Enabled", "body", m.Enabled); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *AccountcommonJWTBan) validateEndDate(formats strfmt.Registry) error {
 
 	if err := validate.Required("EndDate", "body", m.EndDate); err != nil {
@@ -61,6 +107,15 @@ func (m *AccountcommonJWTBan) validateEndDate(formats strfmt.Registry) error {
 	}
 
 	if err := validate.FormatOf("EndDate", "body", "date-time", m.EndDate.String(), formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *AccountcommonJWTBan) validateTargetedNamespace(formats strfmt.Registry) error {
+
+	if err := validate.Required("TargetedNamespace", "body", m.TargetedNamespace); err != nil {
 		return err
 	}
 

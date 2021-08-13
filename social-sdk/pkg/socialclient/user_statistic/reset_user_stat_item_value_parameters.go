@@ -14,6 +14,8 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+
+	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclientmodels"
 )
 
 // NewResetUserStatItemValueParams creates a new ResetUserStatItemValueParams object
@@ -60,6 +62,13 @@ for the reset user stat item value operation typically these are written to a ht
 */
 type ResetUserStatItemValueParams struct {
 
+	/*AdditionalKey
+	  additional key
+
+	*/
+	AdditionalKey *string
+	/*Body*/
+	Body *socialclientmodels.StatResetInfo
 	/*Namespace
 	  namespace
 
@@ -114,6 +123,28 @@ func (o *ResetUserStatItemValueParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithAdditionalKey adds the additionalKey to the reset user stat item value params
+func (o *ResetUserStatItemValueParams) WithAdditionalKey(additionalKey *string) *ResetUserStatItemValueParams {
+	o.SetAdditionalKey(additionalKey)
+	return o
+}
+
+// SetAdditionalKey adds the additionalKey to the reset user stat item value params
+func (o *ResetUserStatItemValueParams) SetAdditionalKey(additionalKey *string) {
+	o.AdditionalKey = additionalKey
+}
+
+// WithBody adds the body to the reset user stat item value params
+func (o *ResetUserStatItemValueParams) WithBody(body *socialclientmodels.StatResetInfo) *ResetUserStatItemValueParams {
+	o.SetBody(body)
+	return o
+}
+
+// SetBody adds the body to the reset user stat item value params
+func (o *ResetUserStatItemValueParams) SetBody(body *socialclientmodels.StatResetInfo) {
+	o.Body = body
+}
+
 // WithNamespace adds the namespace to the reset user stat item value params
 func (o *ResetUserStatItemValueParams) WithNamespace(namespace string) *ResetUserStatItemValueParams {
 	o.SetNamespace(namespace)
@@ -154,6 +185,28 @@ func (o *ResetUserStatItemValueParams) WriteToRequest(r runtime.ClientRequest, r
 		return err
 	}
 	var res []error
+
+	if o.AdditionalKey != nil {
+
+		// query param additionalKey
+		var qrAdditionalKey string
+		if o.AdditionalKey != nil {
+			qrAdditionalKey = *o.AdditionalKey
+		}
+		qAdditionalKey := qrAdditionalKey
+		if qAdditionalKey != "" {
+			if err := r.SetQueryParam("additionalKey", qAdditionalKey); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Body != nil {
+		if err := r.SetBodyParam(o.Body); err != nil {
+			return err
+		}
+	}
 
 	// path param namespace
 	if err := r.SetPathParam("namespace", o.Namespace); err != nil {

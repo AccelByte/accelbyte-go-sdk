@@ -59,7 +59,7 @@ func (a *Client) AdminCreateThirdPartyConfig(params *AdminCreateThirdPartyConfig
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminCreateThirdPartyConfig",
 		Method:             "POST",
-		PathPattern:        "/lobby/v1/admin/thirdparty/namespaces/{namespace}/config/steam",
+		PathPattern:        "/v1/admin/thirdparty/namespaces/{namespace}/config/steam",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http"},
@@ -109,7 +109,7 @@ func (a *Client) AdminDeleteThirdPartyConfig(params *AdminDeleteThirdPartyConfig
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminDeleteThirdPartyConfig",
 		Method:             "DELETE",
-		PathPattern:        "/lobby/v1/admin/thirdparty/namespaces/{namespace}/config/steam",
+		PathPattern:        "/v1/admin/thirdparty/namespaces/{namespace}/config/steam",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http"},
@@ -159,7 +159,7 @@ func (a *Client) AdminGetThirdPartyConfig(params *AdminGetThirdPartyConfigParams
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminGetThirdPartyConfig",
 		Method:             "GET",
-		PathPattern:        "/lobby/v1/admin/thirdparty/namespaces/{namespace}/config/steam",
+		PathPattern:        "/v1/admin/thirdparty/namespaces/{namespace}/config/steam",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http"},
@@ -209,7 +209,7 @@ func (a *Client) AdminUpdateThirdPartyConfig(params *AdminUpdateThirdPartyConfig
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminUpdateThirdPartyConfig",
 		Method:             "PUT",
-		PathPattern:        "/lobby/v1/admin/thirdparty/namespaces/{namespace}/config/steam",
+		PathPattern:        "/v1/admin/thirdparty/namespaces/{namespace}/config/steam",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http"},

@@ -61,7 +61,7 @@ func (o *SendUsersTemplatedNotificationV1AdminReader) ReadResponse(response runt
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested POST /lobby/v1/admin/notification/namespaces/{namespace}/templates/notify returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested POST /v1/admin/notification/namespaces/{namespace}/templates/notify returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -78,7 +78,7 @@ type SendUsersTemplatedNotificationV1AdminAccepted struct {
 }
 
 func (o *SendUsersTemplatedNotificationV1AdminAccepted) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/notification/namespaces/{namespace}/templates/notify][%d] sendUsersTemplatedNotificationV1AdminAccepted ", 202)
+	return fmt.Sprintf("[POST /v1/admin/notification/namespaces/{namespace}/templates/notify][%d] sendUsersTemplatedNotificationV1AdminAccepted ", 202)
 }
 
 func (o *SendUsersTemplatedNotificationV1AdminAccepted) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -100,7 +100,7 @@ type SendUsersTemplatedNotificationV1AdminBadRequest struct {
 }
 
 func (o *SendUsersTemplatedNotificationV1AdminBadRequest) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/notification/namespaces/{namespace}/templates/notify][%d] sendUsersTemplatedNotificationV1AdminBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /v1/admin/notification/namespaces/{namespace}/templates/notify][%d] sendUsersTemplatedNotificationV1AdminBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *SendUsersTemplatedNotificationV1AdminBadRequest) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {
@@ -133,7 +133,7 @@ type SendUsersTemplatedNotificationV1AdminUnauthorized struct {
 }
 
 func (o *SendUsersTemplatedNotificationV1AdminUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/notification/namespaces/{namespace}/templates/notify][%d] sendUsersTemplatedNotificationV1AdminUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /v1/admin/notification/namespaces/{namespace}/templates/notify][%d] sendUsersTemplatedNotificationV1AdminUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *SendUsersTemplatedNotificationV1AdminUnauthorized) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {
@@ -166,7 +166,7 @@ type SendUsersTemplatedNotificationV1AdminForbidden struct {
 }
 
 func (o *SendUsersTemplatedNotificationV1AdminForbidden) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/notification/namespaces/{namespace}/templates/notify][%d] sendUsersTemplatedNotificationV1AdminForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /v1/admin/notification/namespaces/{namespace}/templates/notify][%d] sendUsersTemplatedNotificationV1AdminForbidden  %+v", 403, o.Payload)
 }
 
 func (o *SendUsersTemplatedNotificationV1AdminForbidden) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {
@@ -199,7 +199,7 @@ type SendUsersTemplatedNotificationV1AdminNotFound struct {
 }
 
 func (o *SendUsersTemplatedNotificationV1AdminNotFound) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/notification/namespaces/{namespace}/templates/notify][%d] sendUsersTemplatedNotificationV1AdminNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /v1/admin/notification/namespaces/{namespace}/templates/notify][%d] sendUsersTemplatedNotificationV1AdminNotFound  %+v", 404, o.Payload)
 }
 
 func (o *SendUsersTemplatedNotificationV1AdminNotFound) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {

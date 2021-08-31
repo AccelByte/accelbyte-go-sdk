@@ -67,7 +67,7 @@ func (o *AdminGetPlayerBlockedPlayersV1Reader) ReadResponse(response runtime.Cli
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /lobby/v1/admin/player/namespaces/{namespace}/users/{userId}/blocked returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /v1/admin/player/namespaces/{namespace}/users/{userId}/blocked returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -85,7 +85,7 @@ type AdminGetPlayerBlockedPlayersV1OK struct {
 }
 
 func (o *AdminGetPlayerBlockedPlayersV1OK) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/player/namespaces/{namespace}/users/{userId}/blocked][%d] adminGetPlayerBlockedPlayersV1OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /v1/admin/player/namespaces/{namespace}/users/{userId}/blocked][%d] adminGetPlayerBlockedPlayersV1OK  %+v", 200, o.Payload)
 }
 
 func (o *AdminGetPlayerBlockedPlayersV1OK) GetPayload() *lobbyclientmodels.ModelsGetAllPlayerBlockedUsersResponse {
@@ -118,7 +118,7 @@ type AdminGetPlayerBlockedPlayersV1BadRequest struct {
 }
 
 func (o *AdminGetPlayerBlockedPlayersV1BadRequest) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/player/namespaces/{namespace}/users/{userId}/blocked][%d] adminGetPlayerBlockedPlayersV1BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /v1/admin/player/namespaces/{namespace}/users/{userId}/blocked][%d] adminGetPlayerBlockedPlayersV1BadRequest  %+v", 400, o.Payload)
 }
 
 func (o *AdminGetPlayerBlockedPlayersV1BadRequest) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -151,7 +151,7 @@ type AdminGetPlayerBlockedPlayersV1Unauthorized struct {
 }
 
 func (o *AdminGetPlayerBlockedPlayersV1Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/player/namespaces/{namespace}/users/{userId}/blocked][%d] adminGetPlayerBlockedPlayersV1Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /v1/admin/player/namespaces/{namespace}/users/{userId}/blocked][%d] adminGetPlayerBlockedPlayersV1Unauthorized  %+v", 401, o.Payload)
 }
 
 func (o *AdminGetPlayerBlockedPlayersV1Unauthorized) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -184,7 +184,7 @@ type AdminGetPlayerBlockedPlayersV1Forbidden struct {
 }
 
 func (o *AdminGetPlayerBlockedPlayersV1Forbidden) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/player/namespaces/{namespace}/users/{userId}/blocked][%d] adminGetPlayerBlockedPlayersV1Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /v1/admin/player/namespaces/{namespace}/users/{userId}/blocked][%d] adminGetPlayerBlockedPlayersV1Forbidden  %+v", 403, o.Payload)
 }
 
 func (o *AdminGetPlayerBlockedPlayersV1Forbidden) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -217,7 +217,7 @@ type AdminGetPlayerBlockedPlayersV1NotFound struct {
 }
 
 func (o *AdminGetPlayerBlockedPlayersV1NotFound) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/player/namespaces/{namespace}/users/{userId}/blocked][%d] adminGetPlayerBlockedPlayersV1NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /v1/admin/player/namespaces/{namespace}/users/{userId}/blocked][%d] adminGetPlayerBlockedPlayersV1NotFound  %+v", 404, o.Payload)
 }
 
 func (o *AdminGetPlayerBlockedPlayersV1NotFound) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -250,7 +250,7 @@ type AdminGetPlayerBlockedPlayersV1InternalServerError struct {
 }
 
 func (o *AdminGetPlayerBlockedPlayersV1InternalServerError) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/player/namespaces/{namespace}/users/{userId}/blocked][%d] adminGetPlayerBlockedPlayersV1InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /v1/admin/player/namespaces/{namespace}/users/{userId}/blocked][%d] adminGetPlayerBlockedPlayersV1InternalServerError  %+v", 500, o.Payload)
 }
 
 func (o *AdminGetPlayerBlockedPlayersV1InternalServerError) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {

@@ -67,7 +67,7 @@ func (o *GetAllNotificationTemplatesV1AdminReader) ReadResponse(response runtime
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /lobby/v1/admin/notification/namespaces/{namespace}/templates returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /v1/admin/notification/namespaces/{namespace}/templates returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -85,7 +85,7 @@ type GetAllNotificationTemplatesV1AdminOK struct {
 }
 
 func (o *GetAllNotificationTemplatesV1AdminOK) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/notification/namespaces/{namespace}/templates][%d] getAllNotificationTemplatesV1AdminOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /v1/admin/notification/namespaces/{namespace}/templates][%d] getAllNotificationTemplatesV1AdminOK  %+v", 200, o.Payload)
 }
 
 func (o *GetAllNotificationTemplatesV1AdminOK) GetPayload() []*lobbyclientmodels.ModelNotificationTemplateResponse {
@@ -116,7 +116,7 @@ type GetAllNotificationTemplatesV1AdminBadRequest struct {
 }
 
 func (o *GetAllNotificationTemplatesV1AdminBadRequest) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/notification/namespaces/{namespace}/templates][%d] getAllNotificationTemplatesV1AdminBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /v1/admin/notification/namespaces/{namespace}/templates][%d] getAllNotificationTemplatesV1AdminBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *GetAllNotificationTemplatesV1AdminBadRequest) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {
@@ -149,7 +149,7 @@ type GetAllNotificationTemplatesV1AdminUnauthorized struct {
 }
 
 func (o *GetAllNotificationTemplatesV1AdminUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/notification/namespaces/{namespace}/templates][%d] getAllNotificationTemplatesV1AdminUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /v1/admin/notification/namespaces/{namespace}/templates][%d] getAllNotificationTemplatesV1AdminUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *GetAllNotificationTemplatesV1AdminUnauthorized) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {
@@ -182,7 +182,7 @@ type GetAllNotificationTemplatesV1AdminForbidden struct {
 }
 
 func (o *GetAllNotificationTemplatesV1AdminForbidden) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/notification/namespaces/{namespace}/templates][%d] getAllNotificationTemplatesV1AdminForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /v1/admin/notification/namespaces/{namespace}/templates][%d] getAllNotificationTemplatesV1AdminForbidden  %+v", 403, o.Payload)
 }
 
 func (o *GetAllNotificationTemplatesV1AdminForbidden) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {
@@ -215,7 +215,7 @@ type GetAllNotificationTemplatesV1AdminNotFound struct {
 }
 
 func (o *GetAllNotificationTemplatesV1AdminNotFound) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/notification/namespaces/{namespace}/templates][%d] getAllNotificationTemplatesV1AdminNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /v1/admin/notification/namespaces/{namespace}/templates][%d] getAllNotificationTemplatesV1AdminNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetAllNotificationTemplatesV1AdminNotFound) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {
@@ -248,7 +248,7 @@ type GetAllNotificationTemplatesV1AdminInternalServerError struct {
 }
 
 func (o *GetAllNotificationTemplatesV1AdminInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/notification/namespaces/{namespace}/templates][%d] getAllNotificationTemplatesV1AdminInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /v1/admin/notification/namespaces/{namespace}/templates][%d] getAllNotificationTemplatesV1AdminInternalServerError  %+v", 500, o.Payload)
 }
 
 func (o *GetAllNotificationTemplatesV1AdminInternalServerError) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {

@@ -67,7 +67,7 @@ func (o *PublicGetPartyDataV1Reader) ReadResponse(response runtime.ClientRespons
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /lobby/v1/public/party/namespaces/{namespace}/parties/{partyId} returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /v1/public/party/namespaces/{namespace}/parties/{partyId} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -85,7 +85,7 @@ type PublicGetPartyDataV1OK struct {
 }
 
 func (o *PublicGetPartyDataV1OK) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/public/party/namespaces/{namespace}/parties/{partyId}][%d] publicGetPartyDataV1OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /v1/public/party/namespaces/{namespace}/parties/{partyId}][%d] publicGetPartyDataV1OK  %+v", 200, o.Payload)
 }
 
 func (o *PublicGetPartyDataV1OK) GetPayload() *lobbyclientmodels.ModelsPartyData {
@@ -118,7 +118,7 @@ type PublicGetPartyDataV1BadRequest struct {
 }
 
 func (o *PublicGetPartyDataV1BadRequest) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/public/party/namespaces/{namespace}/parties/{partyId}][%d] publicGetPartyDataV1BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /v1/public/party/namespaces/{namespace}/parties/{partyId}][%d] publicGetPartyDataV1BadRequest  %+v", 400, o.Payload)
 }
 
 func (o *PublicGetPartyDataV1BadRequest) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -151,7 +151,7 @@ type PublicGetPartyDataV1Unauthorized struct {
 }
 
 func (o *PublicGetPartyDataV1Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/public/party/namespaces/{namespace}/parties/{partyId}][%d] publicGetPartyDataV1Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /v1/public/party/namespaces/{namespace}/parties/{partyId}][%d] publicGetPartyDataV1Unauthorized  %+v", 401, o.Payload)
 }
 
 func (o *PublicGetPartyDataV1Unauthorized) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -184,7 +184,7 @@ type PublicGetPartyDataV1Forbidden struct {
 }
 
 func (o *PublicGetPartyDataV1Forbidden) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/public/party/namespaces/{namespace}/parties/{partyId}][%d] publicGetPartyDataV1Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /v1/public/party/namespaces/{namespace}/parties/{partyId}][%d] publicGetPartyDataV1Forbidden  %+v", 403, o.Payload)
 }
 
 func (o *PublicGetPartyDataV1Forbidden) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -217,7 +217,7 @@ type PublicGetPartyDataV1NotFound struct {
 }
 
 func (o *PublicGetPartyDataV1NotFound) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/public/party/namespaces/{namespace}/parties/{partyId}][%d] publicGetPartyDataV1NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /v1/public/party/namespaces/{namespace}/parties/{partyId}][%d] publicGetPartyDataV1NotFound  %+v", 404, o.Payload)
 }
 
 func (o *PublicGetPartyDataV1NotFound) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -250,7 +250,7 @@ type PublicGetPartyDataV1InternalServerError struct {
 }
 
 func (o *PublicGetPartyDataV1InternalServerError) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/public/party/namespaces/{namespace}/parties/{partyId}][%d] publicGetPartyDataV1InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /v1/public/party/namespaces/{namespace}/parties/{partyId}][%d] publicGetPartyDataV1InternalServerError  %+v", 500, o.Payload)
 }
 
 func (o *PublicGetPartyDataV1InternalServerError) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {

@@ -61,7 +61,7 @@ func (o *AdminCreateThirdPartyConfigReader) ReadResponse(response runtime.Client
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested POST /lobby/v1/admin/thirdparty/namespaces/{namespace}/config/steam returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested POST /v1/admin/thirdparty/namespaces/{namespace}/config/steam returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -79,7 +79,7 @@ type AdminCreateThirdPartyConfigCreated struct {
 }
 
 func (o *AdminCreateThirdPartyConfigCreated) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/thirdparty/namespaces/{namespace}/config/steam][%d] adminCreateThirdPartyConfigCreated  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /v1/admin/thirdparty/namespaces/{namespace}/config/steam][%d] adminCreateThirdPartyConfigCreated  %+v", 201, o.Payload)
 }
 
 func (o *AdminCreateThirdPartyConfigCreated) GetPayload() *lobbyclientmodels.ModelsCreateConfigResponse {
@@ -112,7 +112,7 @@ type AdminCreateThirdPartyConfigBadRequest struct {
 }
 
 func (o *AdminCreateThirdPartyConfigBadRequest) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/thirdparty/namespaces/{namespace}/config/steam][%d] adminCreateThirdPartyConfigBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /v1/admin/thirdparty/namespaces/{namespace}/config/steam][%d] adminCreateThirdPartyConfigBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *AdminCreateThirdPartyConfigBadRequest) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {
@@ -145,7 +145,7 @@ type AdminCreateThirdPartyConfigUnauthorized struct {
 }
 
 func (o *AdminCreateThirdPartyConfigUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/thirdparty/namespaces/{namespace}/config/steam][%d] adminCreateThirdPartyConfigUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /v1/admin/thirdparty/namespaces/{namespace}/config/steam][%d] adminCreateThirdPartyConfigUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *AdminCreateThirdPartyConfigUnauthorized) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {
@@ -178,7 +178,7 @@ type AdminCreateThirdPartyConfigForbidden struct {
 }
 
 func (o *AdminCreateThirdPartyConfigForbidden) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/thirdparty/namespaces/{namespace}/config/steam][%d] adminCreateThirdPartyConfigForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /v1/admin/thirdparty/namespaces/{namespace}/config/steam][%d] adminCreateThirdPartyConfigForbidden  %+v", 403, o.Payload)
 }
 
 func (o *AdminCreateThirdPartyConfigForbidden) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {
@@ -211,7 +211,7 @@ type AdminCreateThirdPartyConfigInternalServerError struct {
 }
 
 func (o *AdminCreateThirdPartyConfigInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/thirdparty/namespaces/{namespace}/config/steam][%d] adminCreateThirdPartyConfigInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /v1/admin/thirdparty/namespaces/{namespace}/config/steam][%d] adminCreateThirdPartyConfigInternalServerError  %+v", 500, o.Payload)
 }
 
 func (o *AdminCreateThirdPartyConfigInternalServerError) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {

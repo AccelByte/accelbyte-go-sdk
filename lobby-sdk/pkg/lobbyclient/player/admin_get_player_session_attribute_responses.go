@@ -67,7 +67,7 @@ func (o *AdminGetPlayerSessionAttributeReader) ReadResponse(response runtime.Cli
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /lobby/v1/admin/player/namespaces/{namespace}/users/{userId}/attributes/{attribute} returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /v1/admin/player/namespaces/{namespace}/users/{userId}/attributes/{attribute} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -85,7 +85,7 @@ type AdminGetPlayerSessionAttributeOK struct {
 }
 
 func (o *AdminGetPlayerSessionAttributeOK) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/player/namespaces/{namespace}/users/{userId}/attributes/{attribute}][%d] adminGetPlayerSessionAttributeOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /v1/admin/player/namespaces/{namespace}/users/{userId}/attributes/{attribute}][%d] adminGetPlayerSessionAttributeOK  %+v", 200, o.Payload)
 }
 
 func (o *AdminGetPlayerSessionAttributeOK) GetPayload() *lobbyclientmodels.ModelsGetPlayerSessionAttributeResponse {
@@ -118,7 +118,7 @@ type AdminGetPlayerSessionAttributeBadRequest struct {
 }
 
 func (o *AdminGetPlayerSessionAttributeBadRequest) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/player/namespaces/{namespace}/users/{userId}/attributes/{attribute}][%d] adminGetPlayerSessionAttributeBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /v1/admin/player/namespaces/{namespace}/users/{userId}/attributes/{attribute}][%d] adminGetPlayerSessionAttributeBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *AdminGetPlayerSessionAttributeBadRequest) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -151,7 +151,7 @@ type AdminGetPlayerSessionAttributeUnauthorized struct {
 }
 
 func (o *AdminGetPlayerSessionAttributeUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/player/namespaces/{namespace}/users/{userId}/attributes/{attribute}][%d] adminGetPlayerSessionAttributeUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /v1/admin/player/namespaces/{namespace}/users/{userId}/attributes/{attribute}][%d] adminGetPlayerSessionAttributeUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *AdminGetPlayerSessionAttributeUnauthorized) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -184,7 +184,7 @@ type AdminGetPlayerSessionAttributeForbidden struct {
 }
 
 func (o *AdminGetPlayerSessionAttributeForbidden) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/player/namespaces/{namespace}/users/{userId}/attributes/{attribute}][%d] adminGetPlayerSessionAttributeForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /v1/admin/player/namespaces/{namespace}/users/{userId}/attributes/{attribute}][%d] adminGetPlayerSessionAttributeForbidden  %+v", 403, o.Payload)
 }
 
 func (o *AdminGetPlayerSessionAttributeForbidden) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -217,7 +217,7 @@ type AdminGetPlayerSessionAttributeNotFound struct {
 }
 
 func (o *AdminGetPlayerSessionAttributeNotFound) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/player/namespaces/{namespace}/users/{userId}/attributes/{attribute}][%d] adminGetPlayerSessionAttributeNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /v1/admin/player/namespaces/{namespace}/users/{userId}/attributes/{attribute}][%d] adminGetPlayerSessionAttributeNotFound  %+v", 404, o.Payload)
 }
 
 func (o *AdminGetPlayerSessionAttributeNotFound) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -250,7 +250,7 @@ type AdminGetPlayerSessionAttributeInternalServerError struct {
 }
 
 func (o *AdminGetPlayerSessionAttributeInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/player/namespaces/{namespace}/users/{userId}/attributes/{attribute}][%d] adminGetPlayerSessionAttributeInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /v1/admin/player/namespaces/{namespace}/users/{userId}/attributes/{attribute}][%d] adminGetPlayerSessionAttributeInternalServerError  %+v", 500, o.Payload)
 }
 
 func (o *AdminGetPlayerSessionAttributeInternalServerError) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {

@@ -55,7 +55,7 @@ func (o *UsersPresenceHandlerV1Reader) ReadResponse(response runtime.ClientRespo
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /lobby/v1/public/presence/namespaces/{namespace}/users/presence returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /v1/public/presence/namespaces/{namespace}/users/presence returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -73,7 +73,7 @@ type UsersPresenceHandlerV1OK struct {
 }
 
 func (o *UsersPresenceHandlerV1OK) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/public/presence/namespaces/{namespace}/users/presence][%d] usersPresenceHandlerV1OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /v1/public/presence/namespaces/{namespace}/users/presence][%d] usersPresenceHandlerV1OK  %+v", 200, o.Payload)
 }
 
 func (o *UsersPresenceHandlerV1OK) GetPayload() *lobbyclientmodels.HandlersGetUsersPresenceResponse {
@@ -106,7 +106,7 @@ type UsersPresenceHandlerV1BadRequest struct {
 }
 
 func (o *UsersPresenceHandlerV1BadRequest) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/public/presence/namespaces/{namespace}/users/presence][%d] usersPresenceHandlerV1BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /v1/public/presence/namespaces/{namespace}/users/presence][%d] usersPresenceHandlerV1BadRequest  %+v", 400, o.Payload)
 }
 
 func (o *UsersPresenceHandlerV1BadRequest) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -139,7 +139,7 @@ type UsersPresenceHandlerV1Unauthorized struct {
 }
 
 func (o *UsersPresenceHandlerV1Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/public/presence/namespaces/{namespace}/users/presence][%d] usersPresenceHandlerV1Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /v1/public/presence/namespaces/{namespace}/users/presence][%d] usersPresenceHandlerV1Unauthorized  %+v", 401, o.Payload)
 }
 
 func (o *UsersPresenceHandlerV1Unauthorized) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -172,7 +172,7 @@ type UsersPresenceHandlerV1InternalServerError struct {
 }
 
 func (o *UsersPresenceHandlerV1InternalServerError) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/public/presence/namespaces/{namespace}/users/presence][%d] usersPresenceHandlerV1InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /v1/public/presence/namespaces/{namespace}/users/presence][%d] usersPresenceHandlerV1InternalServerError  %+v", 500, o.Payload)
 }
 
 func (o *UsersPresenceHandlerV1InternalServerError) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {

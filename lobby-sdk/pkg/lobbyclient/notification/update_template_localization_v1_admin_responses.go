@@ -67,7 +67,7 @@ func (o *UpdateTemplateLocalizationV1AdminReader) ReadResponse(response runtime.
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /lobby/v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage} returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -84,7 +84,7 @@ type UpdateTemplateLocalizationV1AdminNoContent struct {
 }
 
 func (o *UpdateTemplateLocalizationV1AdminNoContent) Error() string {
-	return fmt.Sprintf("[PUT /lobby/v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}][%d] updateTemplateLocalizationV1AdminNoContent ", 204)
+	return fmt.Sprintf("[PUT /v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}][%d] updateTemplateLocalizationV1AdminNoContent ", 204)
 }
 
 func (o *UpdateTemplateLocalizationV1AdminNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -106,7 +106,7 @@ type UpdateTemplateLocalizationV1AdminBadRequest struct {
 }
 
 func (o *UpdateTemplateLocalizationV1AdminBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /lobby/v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}][%d] updateTemplateLocalizationV1AdminBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}][%d] updateTemplateLocalizationV1AdminBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *UpdateTemplateLocalizationV1AdminBadRequest) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {
@@ -139,7 +139,7 @@ type UpdateTemplateLocalizationV1AdminUnauthorized struct {
 }
 
 func (o *UpdateTemplateLocalizationV1AdminUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /lobby/v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}][%d] updateTemplateLocalizationV1AdminUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[PUT /v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}][%d] updateTemplateLocalizationV1AdminUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *UpdateTemplateLocalizationV1AdminUnauthorized) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {
@@ -172,7 +172,7 @@ type UpdateTemplateLocalizationV1AdminForbidden struct {
 }
 
 func (o *UpdateTemplateLocalizationV1AdminForbidden) Error() string {
-	return fmt.Sprintf("[PUT /lobby/v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}][%d] updateTemplateLocalizationV1AdminForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[PUT /v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}][%d] updateTemplateLocalizationV1AdminForbidden  %+v", 403, o.Payload)
 }
 
 func (o *UpdateTemplateLocalizationV1AdminForbidden) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {
@@ -205,7 +205,7 @@ type UpdateTemplateLocalizationV1AdminNotFound struct {
 }
 
 func (o *UpdateTemplateLocalizationV1AdminNotFound) Error() string {
-	return fmt.Sprintf("[PUT /lobby/v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}][%d] updateTemplateLocalizationV1AdminNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}][%d] updateTemplateLocalizationV1AdminNotFound  %+v", 404, o.Payload)
 }
 
 func (o *UpdateTemplateLocalizationV1AdminNotFound) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {
@@ -238,7 +238,7 @@ type UpdateTemplateLocalizationV1AdminInternalServerError struct {
 }
 
 func (o *UpdateTemplateLocalizationV1AdminInternalServerError) Error() string {
-	return fmt.Sprintf("[PUT /lobby/v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}][%d] updateTemplateLocalizationV1AdminInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[PUT /v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}][%d] updateTemplateLocalizationV1AdminInternalServerError  %+v", 500, o.Payload)
 }
 
 func (o *UpdateTemplateLocalizationV1AdminInternalServerError) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {

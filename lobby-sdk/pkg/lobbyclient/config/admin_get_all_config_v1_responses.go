@@ -67,7 +67,7 @@ func (o *AdminGetAllConfigV1Reader) ReadResponse(response runtime.ClientResponse
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /lobby/v1/admin/config returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /v1/admin/config returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -85,7 +85,7 @@ type AdminGetAllConfigV1OK struct {
 }
 
 func (o *AdminGetAllConfigV1OK) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/config][%d] adminGetAllConfigV1OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /v1/admin/config][%d] adminGetAllConfigV1OK  %+v", 200, o.Payload)
 }
 
 func (o *AdminGetAllConfigV1OK) GetPayload() *lobbyclientmodels.ModelsConfigList {
@@ -118,7 +118,7 @@ type AdminGetAllConfigV1BadRequest struct {
 }
 
 func (o *AdminGetAllConfigV1BadRequest) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/config][%d] adminGetAllConfigV1BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /v1/admin/config][%d] adminGetAllConfigV1BadRequest  %+v", 400, o.Payload)
 }
 
 func (o *AdminGetAllConfigV1BadRequest) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -151,7 +151,7 @@ type AdminGetAllConfigV1Unauthorized struct {
 }
 
 func (o *AdminGetAllConfigV1Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/config][%d] adminGetAllConfigV1Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /v1/admin/config][%d] adminGetAllConfigV1Unauthorized  %+v", 401, o.Payload)
 }
 
 func (o *AdminGetAllConfigV1Unauthorized) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -184,7 +184,7 @@ type AdminGetAllConfigV1Forbidden struct {
 }
 
 func (o *AdminGetAllConfigV1Forbidden) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/config][%d] adminGetAllConfigV1Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /v1/admin/config][%d] adminGetAllConfigV1Forbidden  %+v", 403, o.Payload)
 }
 
 func (o *AdminGetAllConfigV1Forbidden) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -217,7 +217,7 @@ type AdminGetAllConfigV1NotFound struct {
 }
 
 func (o *AdminGetAllConfigV1NotFound) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/config][%d] adminGetAllConfigV1NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /v1/admin/config][%d] adminGetAllConfigV1NotFound  %+v", 404, o.Payload)
 }
 
 func (o *AdminGetAllConfigV1NotFound) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -250,7 +250,7 @@ type AdminGetAllConfigV1InternalServerError struct {
 }
 
 func (o *AdminGetAllConfigV1InternalServerError) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/config][%d] adminGetAllConfigV1InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /v1/admin/config][%d] adminGetAllConfigV1InternalServerError  %+v", 500, o.Payload)
 }
 
 func (o *AdminGetAllConfigV1InternalServerError) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {

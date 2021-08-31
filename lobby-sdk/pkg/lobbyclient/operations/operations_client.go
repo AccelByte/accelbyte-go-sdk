@@ -52,7 +52,7 @@ func (a *Client) PublicGetMessages(params *PublicGetMessagesParams, authInfo run
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetMessages",
 		Method:             "GET",
-		PathPattern:        "/lobby/v1/messages",
+		PathPattern:        "/v1/messages",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http"},

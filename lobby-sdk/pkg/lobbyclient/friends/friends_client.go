@@ -123,7 +123,7 @@ func (a *Client) GetListOfFriends(params *GetListOfFriendsParams, authInfo runti
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "get list of friends",
 		Method:             "GET",
-		PathPattern:        "/lobby/v1/admin/friend/namespaces/{namespace}/users/{userId}",
+		PathPattern:        "/v1/admin/friend/namespaces/{namespace}/users/{userId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http"},

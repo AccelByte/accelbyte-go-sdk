@@ -61,7 +61,7 @@ func (o *AdminBulkBlockPlayersV1Reader) ReadResponse(response runtime.ClientResp
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested POST /lobby/v1/admin/player/namespaces/{namespace}/users/{userId}/bulk/block returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested POST /v1/admin/player/namespaces/{namespace}/users/{userId}/bulk/block returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -79,7 +79,7 @@ type AdminBulkBlockPlayersV1NoContent struct {
 }
 
 func (o *AdminBulkBlockPlayersV1NoContent) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/player/namespaces/{namespace}/users/{userId}/bulk/block][%d] adminBulkBlockPlayersV1NoContent  %+v", 204, o.Payload)
+	return fmt.Sprintf("[POST /v1/admin/player/namespaces/{namespace}/users/{userId}/bulk/block][%d] adminBulkBlockPlayersV1NoContent  %+v", 204, o.Payload)
 }
 
 func (o *AdminBulkBlockPlayersV1NoContent) GetPayload() int64 {
@@ -110,7 +110,7 @@ type AdminBulkBlockPlayersV1BadRequest struct {
 }
 
 func (o *AdminBulkBlockPlayersV1BadRequest) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/player/namespaces/{namespace}/users/{userId}/bulk/block][%d] adminBulkBlockPlayersV1BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /v1/admin/player/namespaces/{namespace}/users/{userId}/bulk/block][%d] adminBulkBlockPlayersV1BadRequest  %+v", 400, o.Payload)
 }
 
 func (o *AdminBulkBlockPlayersV1BadRequest) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -143,7 +143,7 @@ type AdminBulkBlockPlayersV1Unauthorized struct {
 }
 
 func (o *AdminBulkBlockPlayersV1Unauthorized) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/player/namespaces/{namespace}/users/{userId}/bulk/block][%d] adminBulkBlockPlayersV1Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /v1/admin/player/namespaces/{namespace}/users/{userId}/bulk/block][%d] adminBulkBlockPlayersV1Unauthorized  %+v", 401, o.Payload)
 }
 
 func (o *AdminBulkBlockPlayersV1Unauthorized) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -176,7 +176,7 @@ type AdminBulkBlockPlayersV1Forbidden struct {
 }
 
 func (o *AdminBulkBlockPlayersV1Forbidden) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/player/namespaces/{namespace}/users/{userId}/bulk/block][%d] adminBulkBlockPlayersV1Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /v1/admin/player/namespaces/{namespace}/users/{userId}/bulk/block][%d] adminBulkBlockPlayersV1Forbidden  %+v", 403, o.Payload)
 }
 
 func (o *AdminBulkBlockPlayersV1Forbidden) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -209,7 +209,7 @@ type AdminBulkBlockPlayersV1InternalServerError struct {
 }
 
 func (o *AdminBulkBlockPlayersV1InternalServerError) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/player/namespaces/{namespace}/users/{userId}/bulk/block][%d] adminBulkBlockPlayersV1InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /v1/admin/player/namespaces/{namespace}/users/{userId}/bulk/block][%d] adminBulkBlockPlayersV1InternalServerError  %+v", 500, o.Payload)
 }
 
 func (o *AdminBulkBlockPlayersV1InternalServerError) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {

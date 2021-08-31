@@ -61,7 +61,7 @@ func (o *PublishTemplateLocalizationV1AdminReader) ReadResponse(response runtime
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested POST /lobby/v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}/publish returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested POST /v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}/publish returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -78,7 +78,7 @@ type PublishTemplateLocalizationV1AdminNoContent struct {
 }
 
 func (o *PublishTemplateLocalizationV1AdminNoContent) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}/publish][%d] publishTemplateLocalizationV1AdminNoContent ", 204)
+	return fmt.Sprintf("[POST /v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}/publish][%d] publishTemplateLocalizationV1AdminNoContent ", 204)
 }
 
 func (o *PublishTemplateLocalizationV1AdminNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -100,7 +100,7 @@ type PublishTemplateLocalizationV1AdminUnauthorized struct {
 }
 
 func (o *PublishTemplateLocalizationV1AdminUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}/publish][%d] publishTemplateLocalizationV1AdminUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}/publish][%d] publishTemplateLocalizationV1AdminUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *PublishTemplateLocalizationV1AdminUnauthorized) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {
@@ -133,7 +133,7 @@ type PublishTemplateLocalizationV1AdminForbidden struct {
 }
 
 func (o *PublishTemplateLocalizationV1AdminForbidden) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}/publish][%d] publishTemplateLocalizationV1AdminForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}/publish][%d] publishTemplateLocalizationV1AdminForbidden  %+v", 403, o.Payload)
 }
 
 func (o *PublishTemplateLocalizationV1AdminForbidden) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {
@@ -166,7 +166,7 @@ type PublishTemplateLocalizationV1AdminNotFound struct {
 }
 
 func (o *PublishTemplateLocalizationV1AdminNotFound) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}/publish][%d] publishTemplateLocalizationV1AdminNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}/publish][%d] publishTemplateLocalizationV1AdminNotFound  %+v", 404, o.Payload)
 }
 
 func (o *PublishTemplateLocalizationV1AdminNotFound) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {
@@ -199,7 +199,7 @@ type PublishTemplateLocalizationV1AdminInternalServerError struct {
 }
 
 func (o *PublishTemplateLocalizationV1AdminInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}/publish][%d] publishTemplateLocalizationV1AdminInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}/publish][%d] publishTemplateLocalizationV1AdminInternalServerError  %+v", 500, o.Payload)
 }
 
 func (o *PublishTemplateLocalizationV1AdminInternalServerError) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {

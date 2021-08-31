@@ -73,7 +73,7 @@ func (o *AdminUpdateConfigV1Reader) ReadResponse(response runtime.ClientResponse
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /lobby/v1/admin/config/namespaces/{namespace} returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /v1/admin/config/namespaces/{namespace} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -91,7 +91,7 @@ type AdminUpdateConfigV1OK struct {
 }
 
 func (o *AdminUpdateConfigV1OK) Error() string {
-	return fmt.Sprintf("[PUT /lobby/v1/admin/config/namespaces/{namespace}][%d] adminUpdateConfigV1OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /v1/admin/config/namespaces/{namespace}][%d] adminUpdateConfigV1OK  %+v", 200, o.Payload)
 }
 
 func (o *AdminUpdateConfigV1OK) GetPayload() *lobbyclientmodels.ModelsConfigReq {
@@ -124,7 +124,7 @@ type AdminUpdateConfigV1BadRequest struct {
 }
 
 func (o *AdminUpdateConfigV1BadRequest) Error() string {
-	return fmt.Sprintf("[PUT /lobby/v1/admin/config/namespaces/{namespace}][%d] adminUpdateConfigV1BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /v1/admin/config/namespaces/{namespace}][%d] adminUpdateConfigV1BadRequest  %+v", 400, o.Payload)
 }
 
 func (o *AdminUpdateConfigV1BadRequest) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -157,7 +157,7 @@ type AdminUpdateConfigV1Unauthorized struct {
 }
 
 func (o *AdminUpdateConfigV1Unauthorized) Error() string {
-	return fmt.Sprintf("[PUT /lobby/v1/admin/config/namespaces/{namespace}][%d] adminUpdateConfigV1Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[PUT /v1/admin/config/namespaces/{namespace}][%d] adminUpdateConfigV1Unauthorized  %+v", 401, o.Payload)
 }
 
 func (o *AdminUpdateConfigV1Unauthorized) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -190,7 +190,7 @@ type AdminUpdateConfigV1Forbidden struct {
 }
 
 func (o *AdminUpdateConfigV1Forbidden) Error() string {
-	return fmt.Sprintf("[PUT /lobby/v1/admin/config/namespaces/{namespace}][%d] adminUpdateConfigV1Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[PUT /v1/admin/config/namespaces/{namespace}][%d] adminUpdateConfigV1Forbidden  %+v", 403, o.Payload)
 }
 
 func (o *AdminUpdateConfigV1Forbidden) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -223,7 +223,7 @@ type AdminUpdateConfigV1NotFound struct {
 }
 
 func (o *AdminUpdateConfigV1NotFound) Error() string {
-	return fmt.Sprintf("[PUT /lobby/v1/admin/config/namespaces/{namespace}][%d] adminUpdateConfigV1NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /v1/admin/config/namespaces/{namespace}][%d] adminUpdateConfigV1NotFound  %+v", 404, o.Payload)
 }
 
 func (o *AdminUpdateConfigV1NotFound) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -256,7 +256,7 @@ type AdminUpdateConfigV1PreconditionFailed struct {
 }
 
 func (o *AdminUpdateConfigV1PreconditionFailed) Error() string {
-	return fmt.Sprintf("[PUT /lobby/v1/admin/config/namespaces/{namespace}][%d] adminUpdateConfigV1PreconditionFailed  %+v", 412, o.Payload)
+	return fmt.Sprintf("[PUT /v1/admin/config/namespaces/{namespace}][%d] adminUpdateConfigV1PreconditionFailed  %+v", 412, o.Payload)
 }
 
 func (o *AdminUpdateConfigV1PreconditionFailed) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -289,7 +289,7 @@ type AdminUpdateConfigV1InternalServerError struct {
 }
 
 func (o *AdminUpdateConfigV1InternalServerError) Error() string {
-	return fmt.Sprintf("[PUT /lobby/v1/admin/config/namespaces/{namespace}][%d] adminUpdateConfigV1InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[PUT /v1/admin/config/namespaces/{namespace}][%d] adminUpdateConfigV1InternalServerError  %+v", 500, o.Payload)
 }
 
 func (o *AdminUpdateConfigV1InternalServerError) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {

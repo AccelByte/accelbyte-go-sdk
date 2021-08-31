@@ -61,7 +61,7 @@ func (o *GetAllStoredNotificationsV1Reader) ReadResponse(response runtime.Client
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /lobby/v1/public/notification/namespaces/{namespace}/users/me returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /v1/public/notification/namespaces/{namespace}/users/me returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -79,7 +79,7 @@ type GetAllStoredNotificationsV1OK struct {
 }
 
 func (o *GetAllStoredNotificationsV1OK) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/public/notification/namespaces/{namespace}/users/me][%d] getAllStoredNotificationsV1OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /v1/public/notification/namespaces/{namespace}/users/me][%d] getAllStoredNotificationsV1OK  %+v", 200, o.Payload)
 }
 
 func (o *GetAllStoredNotificationsV1OK) GetPayload() []*lobbyclientmodels.ModelGetStoredNotificationResp {
@@ -110,7 +110,7 @@ type GetAllStoredNotificationsV1BadRequest struct {
 }
 
 func (o *GetAllStoredNotificationsV1BadRequest) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/public/notification/namespaces/{namespace}/users/me][%d] getAllStoredNotificationsV1BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /v1/public/notification/namespaces/{namespace}/users/me][%d] getAllStoredNotificationsV1BadRequest  %+v", 400, o.Payload)
 }
 
 func (o *GetAllStoredNotificationsV1BadRequest) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {
@@ -143,7 +143,7 @@ type GetAllStoredNotificationsV1Unauthorized struct {
 }
 
 func (o *GetAllStoredNotificationsV1Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/public/notification/namespaces/{namespace}/users/me][%d] getAllStoredNotificationsV1Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /v1/public/notification/namespaces/{namespace}/users/me][%d] getAllStoredNotificationsV1Unauthorized  %+v", 401, o.Payload)
 }
 
 func (o *GetAllStoredNotificationsV1Unauthorized) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {
@@ -176,7 +176,7 @@ type GetAllStoredNotificationsV1Forbidden struct {
 }
 
 func (o *GetAllStoredNotificationsV1Forbidden) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/public/notification/namespaces/{namespace}/users/me][%d] getAllStoredNotificationsV1Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /v1/public/notification/namespaces/{namespace}/users/me][%d] getAllStoredNotificationsV1Forbidden  %+v", 403, o.Payload)
 }
 
 func (o *GetAllStoredNotificationsV1Forbidden) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {
@@ -209,7 +209,7 @@ type GetAllStoredNotificationsV1NotFound struct {
 }
 
 func (o *GetAllStoredNotificationsV1NotFound) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/public/notification/namespaces/{namespace}/users/me][%d] getAllStoredNotificationsV1NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /v1/public/notification/namespaces/{namespace}/users/me][%d] getAllStoredNotificationsV1NotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetAllStoredNotificationsV1NotFound) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {

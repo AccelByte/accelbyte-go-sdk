@@ -67,7 +67,7 @@ func (o *UpdateNotificationTopicV1AdminReader) ReadResponse(response runtime.Cli
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /lobby/v1/admin/notification/namespaces/{namespace}/topics/{topicName} returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /v1/admin/notification/namespaces/{namespace}/topics/{topicName} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -84,7 +84,7 @@ type UpdateNotificationTopicV1AdminNoContent struct {
 }
 
 func (o *UpdateNotificationTopicV1AdminNoContent) Error() string {
-	return fmt.Sprintf("[PUT /lobby/v1/admin/notification/namespaces/{namespace}/topics/{topicName}][%d] updateNotificationTopicV1AdminNoContent ", 204)
+	return fmt.Sprintf("[PUT /v1/admin/notification/namespaces/{namespace}/topics/{topicName}][%d] updateNotificationTopicV1AdminNoContent ", 204)
 }
 
 func (o *UpdateNotificationTopicV1AdminNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -106,7 +106,7 @@ type UpdateNotificationTopicV1AdminBadRequest struct {
 }
 
 func (o *UpdateNotificationTopicV1AdminBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /lobby/v1/admin/notification/namespaces/{namespace}/topics/{topicName}][%d] updateNotificationTopicV1AdminBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /v1/admin/notification/namespaces/{namespace}/topics/{topicName}][%d] updateNotificationTopicV1AdminBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *UpdateNotificationTopicV1AdminBadRequest) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {
@@ -139,7 +139,7 @@ type UpdateNotificationTopicV1AdminUnauthorized struct {
 }
 
 func (o *UpdateNotificationTopicV1AdminUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /lobby/v1/admin/notification/namespaces/{namespace}/topics/{topicName}][%d] updateNotificationTopicV1AdminUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[PUT /v1/admin/notification/namespaces/{namespace}/topics/{topicName}][%d] updateNotificationTopicV1AdminUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *UpdateNotificationTopicV1AdminUnauthorized) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {
@@ -172,7 +172,7 @@ type UpdateNotificationTopicV1AdminForbidden struct {
 }
 
 func (o *UpdateNotificationTopicV1AdminForbidden) Error() string {
-	return fmt.Sprintf("[PUT /lobby/v1/admin/notification/namespaces/{namespace}/topics/{topicName}][%d] updateNotificationTopicV1AdminForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[PUT /v1/admin/notification/namespaces/{namespace}/topics/{topicName}][%d] updateNotificationTopicV1AdminForbidden  %+v", 403, o.Payload)
 }
 
 func (o *UpdateNotificationTopicV1AdminForbidden) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {
@@ -205,7 +205,7 @@ type UpdateNotificationTopicV1AdminNotFound struct {
 }
 
 func (o *UpdateNotificationTopicV1AdminNotFound) Error() string {
-	return fmt.Sprintf("[PUT /lobby/v1/admin/notification/namespaces/{namespace}/topics/{topicName}][%d] updateNotificationTopicV1AdminNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /v1/admin/notification/namespaces/{namespace}/topics/{topicName}][%d] updateNotificationTopicV1AdminNotFound  %+v", 404, o.Payload)
 }
 
 func (o *UpdateNotificationTopicV1AdminNotFound) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {
@@ -238,7 +238,7 @@ type UpdateNotificationTopicV1AdminInternalServerError struct {
 }
 
 func (o *UpdateNotificationTopicV1AdminInternalServerError) Error() string {
-	return fmt.Sprintf("[PUT /lobby/v1/admin/notification/namespaces/{namespace}/topics/{topicName}][%d] updateNotificationTopicV1AdminInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[PUT /v1/admin/notification/namespaces/{namespace}/topics/{topicName}][%d] updateNotificationTopicV1AdminInternalServerError  %+v", 500, o.Payload)
 }
 
 func (o *UpdateNotificationTopicV1AdminInternalServerError) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {

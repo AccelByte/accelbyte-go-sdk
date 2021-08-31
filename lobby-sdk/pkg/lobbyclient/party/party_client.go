@@ -63,7 +63,7 @@ func (a *Client) AdminGetPartiesDataV1(params *AdminGetPartiesDataV1Params, auth
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminGetPartiesDataV1",
 		Method:             "GET",
-		PathPattern:        "/lobby/v1/admin/party/namespaces/{namespace}/parties",
+		PathPattern:        "/v1/admin/party/namespaces/{namespace}/parties",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http"},
@@ -115,7 +115,7 @@ func (a *Client) AdminGetPartyDataV1(params *AdminGetPartyDataV1Params, authInfo
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminGetPartyDataV1",
 		Method:             "GET",
-		PathPattern:        "/lobby/v1/admin/party/namespaces/{namespace}/parties/{partyId}",
+		PathPattern:        "/v1/admin/party/namespaces/{namespace}/parties/{partyId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http"},
@@ -167,7 +167,7 @@ func (a *Client) AdminGetUserPartyV1(params *AdminGetUserPartyV1Params, authInfo
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminGetUserPartyV1",
 		Method:             "GET",
-		PathPattern:        "/lobby/v1/admin/party/namespaces/{namespace}/users/{userId}/party",
+		PathPattern:        "/v1/admin/party/namespaces/{namespace}/users/{userId}/party",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http"},
@@ -219,7 +219,7 @@ func (a *Client) AdminUpdatePartyAttributesV1(params *AdminUpdatePartyAttributes
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminUpdatePartyAttributesV1",
 		Method:             "PUT",
-		PathPattern:        "/lobby/v1/admin/party/namespaces/{namespace}/parties/{partyId}/attributes",
+		PathPattern:        "/v1/admin/party/namespaces/{namespace}/parties/{partyId}/attributes",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http"},
@@ -274,7 +274,7 @@ func (a *Client) PublicGetPartyDataV1(params *PublicGetPartyDataV1Params, authIn
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetPartyDataV1",
 		Method:             "GET",
-		PathPattern:        "/lobby/v1/public/party/namespaces/{namespace}/parties/{partyId}",
+		PathPattern:        "/v1/public/party/namespaces/{namespace}/parties/{partyId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http"},
@@ -326,7 +326,7 @@ func (a *Client) PublicUpdatePartyAttributesV1(params *PublicUpdatePartyAttribut
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicUpdatePartyAttributesV1",
 		Method:             "PUT",
-		PathPattern:        "/lobby/v1/public/party/namespaces/{namespace}/parties/{partyId}/attributes",
+		PathPattern:        "/v1/public/party/namespaces/{namespace}/parties/{partyId}/attributes",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http"},

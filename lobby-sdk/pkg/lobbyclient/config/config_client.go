@@ -57,7 +57,7 @@ func (a *Client) AdminGetAllConfigV1(params *AdminGetAllConfigV1Params, authInfo
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminGetAllConfigV1",
 		Method:             "GET",
-		PathPattern:        "/lobby/v1/admin/config",
+		PathPattern:        "/v1/admin/config",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http"},
@@ -109,7 +109,7 @@ func (a *Client) AdminGetConfigV1(params *AdminGetConfigV1Params, authInfo runti
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminGetConfigV1",
 		Method:             "GET",
-		PathPattern:        "/lobby/v1/admin/config/namespaces/{namespace}",
+		PathPattern:        "/v1/admin/config/namespaces/{namespace}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http"},
@@ -161,7 +161,7 @@ func (a *Client) AdminUpdateConfigV1(params *AdminUpdateConfigV1Params, authInfo
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminUpdateConfigV1",
 		Method:             "PUT",
-		PathPattern:        "/lobby/v1/admin/config/namespaces/{namespace}",
+		PathPattern:        "/v1/admin/config/namespaces/{namespace}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http"},

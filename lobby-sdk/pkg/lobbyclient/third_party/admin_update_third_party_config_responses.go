@@ -61,7 +61,7 @@ func (o *AdminUpdateThirdPartyConfigReader) ReadResponse(response runtime.Client
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /lobby/v1/admin/thirdparty/namespaces/{namespace}/config/steam returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /v1/admin/thirdparty/namespaces/{namespace}/config/steam returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -79,7 +79,7 @@ type AdminUpdateThirdPartyConfigOK struct {
 }
 
 func (o *AdminUpdateThirdPartyConfigOK) Error() string {
-	return fmt.Sprintf("[PUT /lobby/v1/admin/thirdparty/namespaces/{namespace}/config/steam][%d] adminUpdateThirdPartyConfigOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /v1/admin/thirdparty/namespaces/{namespace}/config/steam][%d] adminUpdateThirdPartyConfigOK  %+v", 200, o.Payload)
 }
 
 func (o *AdminUpdateThirdPartyConfigOK) GetPayload() *lobbyclientmodels.ModelsUpdateConfigResponse {
@@ -112,7 +112,7 @@ type AdminUpdateThirdPartyConfigBadRequest struct {
 }
 
 func (o *AdminUpdateThirdPartyConfigBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /lobby/v1/admin/thirdparty/namespaces/{namespace}/config/steam][%d] adminUpdateThirdPartyConfigBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /v1/admin/thirdparty/namespaces/{namespace}/config/steam][%d] adminUpdateThirdPartyConfigBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *AdminUpdateThirdPartyConfigBadRequest) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {
@@ -145,7 +145,7 @@ type AdminUpdateThirdPartyConfigUnauthorized struct {
 }
 
 func (o *AdminUpdateThirdPartyConfigUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /lobby/v1/admin/thirdparty/namespaces/{namespace}/config/steam][%d] adminUpdateThirdPartyConfigUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[PUT /v1/admin/thirdparty/namespaces/{namespace}/config/steam][%d] adminUpdateThirdPartyConfigUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *AdminUpdateThirdPartyConfigUnauthorized) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {
@@ -178,7 +178,7 @@ type AdminUpdateThirdPartyConfigForbidden struct {
 }
 
 func (o *AdminUpdateThirdPartyConfigForbidden) Error() string {
-	return fmt.Sprintf("[PUT /lobby/v1/admin/thirdparty/namespaces/{namespace}/config/steam][%d] adminUpdateThirdPartyConfigForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[PUT /v1/admin/thirdparty/namespaces/{namespace}/config/steam][%d] adminUpdateThirdPartyConfigForbidden  %+v", 403, o.Payload)
 }
 
 func (o *AdminUpdateThirdPartyConfigForbidden) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {
@@ -211,7 +211,7 @@ type AdminUpdateThirdPartyConfigInternalServerError struct {
 }
 
 func (o *AdminUpdateThirdPartyConfigInternalServerError) Error() string {
-	return fmt.Sprintf("[PUT /lobby/v1/admin/thirdparty/namespaces/{namespace}/config/steam][%d] adminUpdateThirdPartyConfigInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[PUT /v1/admin/thirdparty/namespaces/{namespace}/config/steam][%d] adminUpdateThirdPartyConfigInternalServerError  %+v", 500, o.Payload)
 }
 
 func (o *AdminUpdateThirdPartyConfigInternalServerError) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {

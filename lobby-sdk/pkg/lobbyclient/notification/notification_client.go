@@ -129,7 +129,7 @@ func (a *Client) CreateNotificationTemplateV1Admin(params *CreateNotificationTem
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "createNotificationTemplateV1Admin",
 		Method:             "POST",
-		PathPattern:        "/lobby/v1/admin/notification/namespaces/{namespace}/templates",
+		PathPattern:        "/v1/admin/notification/namespaces/{namespace}/templates",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http"},
@@ -184,7 +184,7 @@ func (a *Client) CreateNotificationTopicV1Admin(params *CreateNotificationTopicV
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "createNotificationTopicV1Admin",
 		Method:             "POST",
-		PathPattern:        "/lobby/v1/admin/notification/namespaces/{namespace}/topics",
+		PathPattern:        "/v1/admin/notification/namespaces/{namespace}/topics",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http"},
@@ -338,7 +338,7 @@ func (a *Client) DeleteNotificationTemplateSlugV1Admin(params *DeleteNotificatio
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteNotificationTemplateSlugV1Admin",
 		Method:             "DELETE",
-		PathPattern:        "/lobby/v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}",
+		PathPattern:        "/v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http"},
@@ -391,7 +391,7 @@ func (a *Client) DeleteNotificationTopicV1Admin(params *DeleteNotificationTopicV
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteNotificationTopicV1Admin",
 		Method:             "DELETE",
-		PathPattern:        "/lobby/v1/admin/notification/namespaces/{namespace}/topics/{topicName}",
+		PathPattern:        "/v1/admin/notification/namespaces/{namespace}/topics/{topicName}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http"},
@@ -492,7 +492,7 @@ func (a *Client) DeleteTemplateLocalizationV1Admin(params *DeleteTemplateLocaliz
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteTemplateLocalizationV1Admin",
 		Method:             "DELETE",
-		PathPattern:        "/lobby/v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}",
+		PathPattern:        "/v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http"},
@@ -746,7 +746,7 @@ func (a *Client) GetAllNotificationTemplatesV1Admin(params *GetAllNotificationTe
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getAllNotificationTemplatesV1Admin",
 		Method:             "GET",
-		PathPattern:        "/lobby/v1/admin/notification/namespaces/{namespace}/templates",
+		PathPattern:        "/v1/admin/notification/namespaces/{namespace}/templates",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http"},
@@ -799,7 +799,7 @@ func (a *Client) GetAllNotificationTopicsV1Admin(params *GetAllNotificationTopic
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getAllNotificationTopicsV1Admin",
 		Method:             "GET",
-		PathPattern:        "/lobby/v1/admin/notification/namespaces/{namespace}/topics",
+		PathPattern:        "/v1/admin/notification/namespaces/{namespace}/topics",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http"},
@@ -849,7 +849,7 @@ func (a *Client) GetAllStoredNotificationsV1(params *GetAllStoredNotificationsV1
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getAllStoredNotificationsV1",
 		Method:             "GET",
-		PathPattern:        "/lobby/v1/public/notification/namespaces/{namespace}/users/me",
+		PathPattern:        "/v1/public/notification/namespaces/{namespace}/users/me",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http"},
@@ -1000,7 +1000,7 @@ func (a *Client) GetNotificationTopicV1Admin(params *GetNotificationTopicV1Admin
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getNotificationTopicV1Admin",
 		Method:             "GET",
-		PathPattern:        "/lobby/v1/admin/notification/namespaces/{namespace}/topics/{topicName}",
+		PathPattern:        "/v1/admin/notification/namespaces/{namespace}/topics/{topicName}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http"},
@@ -1101,7 +1101,7 @@ func (a *Client) GetSingleTemplateLocalizationV1Admin(params *GetSingleTemplateL
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getSingleTemplateLocalizationV1Admin",
 		Method:             "GET",
-		PathPattern:        "/lobby/v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}",
+		PathPattern:        "/v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http"},
@@ -1202,7 +1202,7 @@ func (a *Client) GetTemplateSlugLocalizationsTemplateV1Admin(params *GetTemplate
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getTemplateSlugLocalizationsTemplateV1Admin",
 		Method:             "GET",
-		PathPattern:        "/lobby/v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}",
+		PathPattern:        "/v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http"},
@@ -1510,7 +1510,7 @@ func (a *Client) PublishTemplateLocalizationV1Admin(params *PublishTemplateLocal
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publishTemplateLocalizationV1Admin",
 		Method:             "POST",
-		PathPattern:        "/lobby/v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}/publish",
+		PathPattern:        "/v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}/publish",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http"},
@@ -1562,7 +1562,7 @@ func (a *Client) SendMultipleUsersFreeformNotificationV1Admin(params *SendMultip
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "sendMultipleUsersFreeformNotificationV1Admin",
 		Method:             "POST",
-		PathPattern:        "/lobby/v1/admin/notification/namespaces/{namespace}/bulkUsers/freeform/notify",
+		PathPattern:        "/v1/admin/notification/namespaces/{namespace}/bulkUsers/freeform/notify",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http"},
@@ -1612,7 +1612,7 @@ func (a *Client) SendSpecificUserFreeformNotificationV1Admin(params *SendSpecifi
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "sendSpecificUserFreeformNotificationV1Admin",
 		Method:             "POST",
-		PathPattern:        "/lobby/v1/admin/notification/namespaces/{namespace}/users/{userId}/freeform/notify",
+		PathPattern:        "/v1/admin/notification/namespaces/{namespace}/users/{userId}/freeform/notify",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http"},
@@ -1667,7 +1667,7 @@ func (a *Client) SendSpecificUserTemplatedNotificationV1Admin(params *SendSpecif
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "sendSpecificUserTemplatedNotificationV1Admin",
 		Method:             "POST",
-		PathPattern:        "/lobby/v1/admin/notification/namespaces/{namespace}/users/{userId}/templates/notify",
+		PathPattern:        "/v1/admin/notification/namespaces/{namespace}/users/{userId}/templates/notify",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http"},
@@ -1718,7 +1718,7 @@ func (a *Client) SendUsersFreeformNotificationV1Admin(params *SendUsersFreeformN
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "sendUsersFreeformNotificationV1Admin",
 		Method:             "POST",
-		PathPattern:        "/lobby/v1/admin/notification/namespaces/{namespace}/freeform/notify",
+		PathPattern:        "/v1/admin/notification/namespaces/{namespace}/freeform/notify",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http"},
@@ -1772,7 +1772,7 @@ func (a *Client) SendUsersTemplatedNotificationV1Admin(params *SendUsersTemplate
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "sendUsersTemplatedNotificationV1Admin",
 		Method:             "POST",
-		PathPattern:        "/lobby/v1/admin/notification/namespaces/{namespace}/templates/notify",
+		PathPattern:        "/v1/admin/notification/namespaces/{namespace}/templates/notify",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http"},
@@ -1875,7 +1875,7 @@ func (a *Client) UpdateNotificationTopicV1Admin(params *UpdateNotificationTopicV
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateNotificationTopicV1Admin",
 		Method:             "PUT",
-		PathPattern:        "/lobby/v1/admin/notification/namespaces/{namespace}/topics/{topicName}",
+		PathPattern:        "/v1/admin/notification/namespaces/{namespace}/topics/{topicName}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http"},
@@ -1928,7 +1928,7 @@ func (a *Client) UpdateTemplateLocalizationV1Admin(params *UpdateTemplateLocaliz
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateTemplateLocalizationV1Admin",
 		Method:             "PUT",
-		PathPattern:        "/lobby/v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}",
+		PathPattern:        "/v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http"},

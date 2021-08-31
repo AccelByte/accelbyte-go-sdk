@@ -52,7 +52,7 @@ func (a *Client) UsersPresenceHandlerV1(params *UsersPresenceHandlerV1Params, au
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "UsersPresenceHandlerV1",
 		Method:             "GET",
-		PathPattern:        "/lobby/v1/public/presence/namespaces/{namespace}/users/presence",
+		PathPattern:        "/v1/public/presence/namespaces/{namespace}/users/presence",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http"},

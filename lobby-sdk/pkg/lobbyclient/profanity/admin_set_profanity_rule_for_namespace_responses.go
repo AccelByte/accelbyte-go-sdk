@@ -67,7 +67,7 @@ func (o *AdminSetProfanityRuleForNamespaceReader) ReadResponse(response runtime.
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested POST /lobby/v1/admin/profanity/namespaces/{namespace}/rule returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested POST /v1/admin/profanity/namespaces/{namespace}/rule returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -84,7 +84,7 @@ type AdminSetProfanityRuleForNamespaceOK struct {
 }
 
 func (o *AdminSetProfanityRuleForNamespaceOK) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/profanity/namespaces/{namespace}/rule][%d] adminSetProfanityRuleForNamespaceOK ", 200)
+	return fmt.Sprintf("[POST /v1/admin/profanity/namespaces/{namespace}/rule][%d] adminSetProfanityRuleForNamespaceOK ", 200)
 }
 
 func (o *AdminSetProfanityRuleForNamespaceOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -106,7 +106,7 @@ type AdminSetProfanityRuleForNamespaceBadRequest struct {
 }
 
 func (o *AdminSetProfanityRuleForNamespaceBadRequest) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/profanity/namespaces/{namespace}/rule][%d] adminSetProfanityRuleForNamespaceBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /v1/admin/profanity/namespaces/{namespace}/rule][%d] adminSetProfanityRuleForNamespaceBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *AdminSetProfanityRuleForNamespaceBadRequest) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -139,7 +139,7 @@ type AdminSetProfanityRuleForNamespaceUnauthorized struct {
 }
 
 func (o *AdminSetProfanityRuleForNamespaceUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/profanity/namespaces/{namespace}/rule][%d] adminSetProfanityRuleForNamespaceUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /v1/admin/profanity/namespaces/{namespace}/rule][%d] adminSetProfanityRuleForNamespaceUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *AdminSetProfanityRuleForNamespaceUnauthorized) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -172,7 +172,7 @@ type AdminSetProfanityRuleForNamespaceForbidden struct {
 }
 
 func (o *AdminSetProfanityRuleForNamespaceForbidden) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/profanity/namespaces/{namespace}/rule][%d] adminSetProfanityRuleForNamespaceForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /v1/admin/profanity/namespaces/{namespace}/rule][%d] adminSetProfanityRuleForNamespaceForbidden  %+v", 403, o.Payload)
 }
 
 func (o *AdminSetProfanityRuleForNamespaceForbidden) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -205,7 +205,7 @@ type AdminSetProfanityRuleForNamespaceNotFound struct {
 }
 
 func (o *AdminSetProfanityRuleForNamespaceNotFound) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/profanity/namespaces/{namespace}/rule][%d] adminSetProfanityRuleForNamespaceNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /v1/admin/profanity/namespaces/{namespace}/rule][%d] adminSetProfanityRuleForNamespaceNotFound  %+v", 404, o.Payload)
 }
 
 func (o *AdminSetProfanityRuleForNamespaceNotFound) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -238,7 +238,7 @@ type AdminSetProfanityRuleForNamespaceInternalServerError struct {
 }
 
 func (o *AdminSetProfanityRuleForNamespaceInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/profanity/namespaces/{namespace}/rule][%d] adminSetProfanityRuleForNamespaceInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /v1/admin/profanity/namespaces/{namespace}/rule][%d] adminSetProfanityRuleForNamespaceInternalServerError  %+v", 500, o.Payload)
 }
 
 func (o *AdminSetProfanityRuleForNamespaceInternalServerError) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {

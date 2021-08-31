@@ -67,7 +67,7 @@ func (o *AdminGetProfanityRuleReader) ReadResponse(response runtime.ClientRespon
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /lobby/v1/admin/profanity/namespaces/{namespace}/rule returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /v1/admin/profanity/namespaces/{namespace}/rule returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -85,7 +85,7 @@ type AdminGetProfanityRuleOK struct {
 }
 
 func (o *AdminGetProfanityRuleOK) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/profanity/namespaces/{namespace}/rule][%d] adminGetProfanityRuleOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /v1/admin/profanity/namespaces/{namespace}/rule][%d] adminGetProfanityRuleOK  %+v", 200, o.Payload)
 }
 
 func (o *AdminGetProfanityRuleOK) GetPayload() *lobbyclientmodels.ModelsProfanityRule {
@@ -118,7 +118,7 @@ type AdminGetProfanityRuleBadRequest struct {
 }
 
 func (o *AdminGetProfanityRuleBadRequest) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/profanity/namespaces/{namespace}/rule][%d] adminGetProfanityRuleBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /v1/admin/profanity/namespaces/{namespace}/rule][%d] adminGetProfanityRuleBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *AdminGetProfanityRuleBadRequest) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -151,7 +151,7 @@ type AdminGetProfanityRuleUnauthorized struct {
 }
 
 func (o *AdminGetProfanityRuleUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/profanity/namespaces/{namespace}/rule][%d] adminGetProfanityRuleUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /v1/admin/profanity/namespaces/{namespace}/rule][%d] adminGetProfanityRuleUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *AdminGetProfanityRuleUnauthorized) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -184,7 +184,7 @@ type AdminGetProfanityRuleForbidden struct {
 }
 
 func (o *AdminGetProfanityRuleForbidden) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/profanity/namespaces/{namespace}/rule][%d] adminGetProfanityRuleForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /v1/admin/profanity/namespaces/{namespace}/rule][%d] adminGetProfanityRuleForbidden  %+v", 403, o.Payload)
 }
 
 func (o *AdminGetProfanityRuleForbidden) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -217,7 +217,7 @@ type AdminGetProfanityRuleNotFound struct {
 }
 
 func (o *AdminGetProfanityRuleNotFound) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/profanity/namespaces/{namespace}/rule][%d] adminGetProfanityRuleNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /v1/admin/profanity/namespaces/{namespace}/rule][%d] adminGetProfanityRuleNotFound  %+v", 404, o.Payload)
 }
 
 func (o *AdminGetProfanityRuleNotFound) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -250,7 +250,7 @@ type AdminGetProfanityRuleInternalServerError struct {
 }
 
 func (o *AdminGetProfanityRuleInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/profanity/namespaces/{namespace}/rule][%d] adminGetProfanityRuleInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /v1/admin/profanity/namespaces/{namespace}/rule][%d] adminGetProfanityRuleInternalServerError  %+v", 500, o.Payload)
 }
 
 func (o *AdminGetProfanityRuleInternalServerError) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {

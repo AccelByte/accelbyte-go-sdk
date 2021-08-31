@@ -43,7 +43,7 @@ func (o *PublicGetMessagesReader) ReadResponse(response runtime.ClientResponse, 
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /lobby/v1/messages returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /v1/messages returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type PublicGetMessagesOK struct {
 }
 
 func (o *PublicGetMessagesOK) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/messages][%d] publicGetMessagesOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /v1/messages][%d] publicGetMessagesOK  %+v", 200, o.Payload)
 }
 
 func (o *PublicGetMessagesOK) GetPayload() []*lobbyclientmodels.LogAppMessageDeclaration {
@@ -92,7 +92,7 @@ type PublicGetMessagesInternalServerError struct {
 }
 
 func (o *PublicGetMessagesInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/messages][%d] publicGetMessagesInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /v1/messages][%d] publicGetMessagesInternalServerError  %+v", 500, o.Payload)
 }
 
 func (o *PublicGetMessagesInternalServerError) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {

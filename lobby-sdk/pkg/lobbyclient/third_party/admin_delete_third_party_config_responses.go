@@ -61,7 +61,7 @@ func (o *AdminDeleteThirdPartyConfigReader) ReadResponse(response runtime.Client
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested DELETE /lobby/v1/admin/thirdparty/namespaces/{namespace}/config/steam returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested DELETE /v1/admin/thirdparty/namespaces/{namespace}/config/steam returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -79,7 +79,7 @@ type AdminDeleteThirdPartyConfigNoContent struct {
 }
 
 func (o *AdminDeleteThirdPartyConfigNoContent) Error() string {
-	return fmt.Sprintf("[DELETE /lobby/v1/admin/thirdparty/namespaces/{namespace}/config/steam][%d] adminDeleteThirdPartyConfigNoContent  %+v", 204, o.Payload)
+	return fmt.Sprintf("[DELETE /v1/admin/thirdparty/namespaces/{namespace}/config/steam][%d] adminDeleteThirdPartyConfigNoContent  %+v", 204, o.Payload)
 }
 
 func (o *AdminDeleteThirdPartyConfigNoContent) GetPayload() string {
@@ -110,7 +110,7 @@ type AdminDeleteThirdPartyConfigBadRequest struct {
 }
 
 func (o *AdminDeleteThirdPartyConfigBadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /lobby/v1/admin/thirdparty/namespaces/{namespace}/config/steam][%d] adminDeleteThirdPartyConfigBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[DELETE /v1/admin/thirdparty/namespaces/{namespace}/config/steam][%d] adminDeleteThirdPartyConfigBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *AdminDeleteThirdPartyConfigBadRequest) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {
@@ -143,7 +143,7 @@ type AdminDeleteThirdPartyConfigUnauthorized struct {
 }
 
 func (o *AdminDeleteThirdPartyConfigUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /lobby/v1/admin/thirdparty/namespaces/{namespace}/config/steam][%d] adminDeleteThirdPartyConfigUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[DELETE /v1/admin/thirdparty/namespaces/{namespace}/config/steam][%d] adminDeleteThirdPartyConfigUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *AdminDeleteThirdPartyConfigUnauthorized) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {
@@ -176,7 +176,7 @@ type AdminDeleteThirdPartyConfigForbidden struct {
 }
 
 func (o *AdminDeleteThirdPartyConfigForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /lobby/v1/admin/thirdparty/namespaces/{namespace}/config/steam][%d] adminDeleteThirdPartyConfigForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[DELETE /v1/admin/thirdparty/namespaces/{namespace}/config/steam][%d] adminDeleteThirdPartyConfigForbidden  %+v", 403, o.Payload)
 }
 
 func (o *AdminDeleteThirdPartyConfigForbidden) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {
@@ -209,7 +209,7 @@ type AdminDeleteThirdPartyConfigInternalServerError struct {
 }
 
 func (o *AdminDeleteThirdPartyConfigInternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /lobby/v1/admin/thirdparty/namespaces/{namespace}/config/steam][%d] adminDeleteThirdPartyConfigInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[DELETE /v1/admin/thirdparty/namespaces/{namespace}/config/steam][%d] adminDeleteThirdPartyConfigInternalServerError  %+v", 500, o.Payload)
 }
 
 func (o *AdminDeleteThirdPartyConfigInternalServerError) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {

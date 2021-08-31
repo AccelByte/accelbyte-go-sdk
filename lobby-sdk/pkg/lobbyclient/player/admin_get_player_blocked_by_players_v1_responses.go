@@ -67,7 +67,7 @@ func (o *AdminGetPlayerBlockedByPlayersV1Reader) ReadResponse(response runtime.C
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /lobby/v1/admin/player/namespaces/{namespace}/users/{userId}/blocked-by returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /v1/admin/player/namespaces/{namespace}/users/{userId}/blocked-by returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -85,7 +85,7 @@ type AdminGetPlayerBlockedByPlayersV1OK struct {
 }
 
 func (o *AdminGetPlayerBlockedByPlayersV1OK) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/player/namespaces/{namespace}/users/{userId}/blocked-by][%d] adminGetPlayerBlockedByPlayersV1OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /v1/admin/player/namespaces/{namespace}/users/{userId}/blocked-by][%d] adminGetPlayerBlockedByPlayersV1OK  %+v", 200, o.Payload)
 }
 
 func (o *AdminGetPlayerBlockedByPlayersV1OK) GetPayload() *lobbyclientmodels.ModelsGetAllPlayerBlockedByUsersResponse {
@@ -118,7 +118,7 @@ type AdminGetPlayerBlockedByPlayersV1BadRequest struct {
 }
 
 func (o *AdminGetPlayerBlockedByPlayersV1BadRequest) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/player/namespaces/{namespace}/users/{userId}/blocked-by][%d] adminGetPlayerBlockedByPlayersV1BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /v1/admin/player/namespaces/{namespace}/users/{userId}/blocked-by][%d] adminGetPlayerBlockedByPlayersV1BadRequest  %+v", 400, o.Payload)
 }
 
 func (o *AdminGetPlayerBlockedByPlayersV1BadRequest) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -151,7 +151,7 @@ type AdminGetPlayerBlockedByPlayersV1Unauthorized struct {
 }
 
 func (o *AdminGetPlayerBlockedByPlayersV1Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/player/namespaces/{namespace}/users/{userId}/blocked-by][%d] adminGetPlayerBlockedByPlayersV1Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /v1/admin/player/namespaces/{namespace}/users/{userId}/blocked-by][%d] adminGetPlayerBlockedByPlayersV1Unauthorized  %+v", 401, o.Payload)
 }
 
 func (o *AdminGetPlayerBlockedByPlayersV1Unauthorized) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -184,7 +184,7 @@ type AdminGetPlayerBlockedByPlayersV1Forbidden struct {
 }
 
 func (o *AdminGetPlayerBlockedByPlayersV1Forbidden) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/player/namespaces/{namespace}/users/{userId}/blocked-by][%d] adminGetPlayerBlockedByPlayersV1Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /v1/admin/player/namespaces/{namespace}/users/{userId}/blocked-by][%d] adminGetPlayerBlockedByPlayersV1Forbidden  %+v", 403, o.Payload)
 }
 
 func (o *AdminGetPlayerBlockedByPlayersV1Forbidden) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -217,7 +217,7 @@ type AdminGetPlayerBlockedByPlayersV1NotFound struct {
 }
 
 func (o *AdminGetPlayerBlockedByPlayersV1NotFound) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/player/namespaces/{namespace}/users/{userId}/blocked-by][%d] adminGetPlayerBlockedByPlayersV1NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /v1/admin/player/namespaces/{namespace}/users/{userId}/blocked-by][%d] adminGetPlayerBlockedByPlayersV1NotFound  %+v", 404, o.Payload)
 }
 
 func (o *AdminGetPlayerBlockedByPlayersV1NotFound) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -250,7 +250,7 @@ type AdminGetPlayerBlockedByPlayersV1InternalServerError struct {
 }
 
 func (o *AdminGetPlayerBlockedByPlayersV1InternalServerError) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/player/namespaces/{namespace}/users/{userId}/blocked-by][%d] adminGetPlayerBlockedByPlayersV1InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /v1/admin/player/namespaces/{namespace}/users/{userId}/blocked-by][%d] adminGetPlayerBlockedByPlayersV1InternalServerError  %+v", 500, o.Payload)
 }
 
 func (o *AdminGetPlayerBlockedByPlayersV1InternalServerError) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {

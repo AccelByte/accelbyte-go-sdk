@@ -67,7 +67,7 @@ func (a *Client) AdminBulkBlockPlayersV1(params *AdminBulkBlockPlayersV1Params, 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminBulkBlockPlayersV1",
 		Method:             "POST",
-		PathPattern:        "/lobby/v1/admin/player/namespaces/{namespace}/users/{userId}/bulk/block",
+		PathPattern:        "/v1/admin/player/namespaces/{namespace}/users/{userId}/bulk/block",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http"},
@@ -117,7 +117,7 @@ func (a *Client) AdminGetAllPlayerSessionAttribute(params *AdminGetAllPlayerSess
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminGetAllPlayerSessionAttribute",
 		Method:             "GET",
-		PathPattern:        "/lobby/v1/admin/player/namespaces/{namespace}/users/{userId}/attributes",
+		PathPattern:        "/v1/admin/player/namespaces/{namespace}/users/{userId}/attributes",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http"},
@@ -169,7 +169,7 @@ func (a *Client) AdminGetPlayerBlockedByPlayersV1(params *AdminGetPlayerBlockedB
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminGetPlayerBlockedByPlayersV1",
 		Method:             "GET",
-		PathPattern:        "/lobby/v1/admin/player/namespaces/{namespace}/users/{userId}/blocked-by",
+		PathPattern:        "/v1/admin/player/namespaces/{namespace}/users/{userId}/blocked-by",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http"},
@@ -221,7 +221,7 @@ func (a *Client) AdminGetPlayerBlockedPlayersV1(params *AdminGetPlayerBlockedPla
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminGetPlayerBlockedPlayersV1",
 		Method:             "GET",
-		PathPattern:        "/lobby/v1/admin/player/namespaces/{namespace}/users/{userId}/blocked",
+		PathPattern:        "/v1/admin/player/namespaces/{namespace}/users/{userId}/blocked",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http"},
@@ -273,7 +273,7 @@ func (a *Client) AdminGetPlayerSessionAttribute(params *AdminGetPlayerSessionAtt
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminGetPlayerSessionAttribute",
 		Method:             "GET",
-		PathPattern:        "/lobby/v1/admin/player/namespaces/{namespace}/users/{userId}/attributes/{attribute}",
+		PathPattern:        "/v1/admin/player/namespaces/{namespace}/users/{userId}/attributes/{attribute}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http"},
@@ -325,7 +325,7 @@ func (a *Client) AdminSetPlayerSessionAttribute(params *AdminSetPlayerSessionAtt
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminSetPlayerSessionAttribute",
 		Method:             "PUT",
-		PathPattern:        "/lobby/v1/admin/player/namespaces/{namespace}/users/{userId}/attributes",
+		PathPattern:        "/v1/admin/player/namespaces/{namespace}/users/{userId}/attributes",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http"},
@@ -378,7 +378,7 @@ func (a *Client) PublicGetPlayerBlockedByPlayersV1(params *PublicGetPlayerBlocke
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetPlayerBlockedByPlayersV1",
 		Method:             "GET",
-		PathPattern:        "/lobby/v1/public/player/namespaces/{namespace}/users/me/blocked-by",
+		PathPattern:        "/v1/public/player/namespaces/{namespace}/users/me/blocked-by",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http"},
@@ -431,7 +431,7 @@ func (a *Client) PublicGetPlayerBlockedPlayersV1(params *PublicGetPlayerBlockedP
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetPlayerBlockedPlayersV1",
 		Method:             "GET",
-		PathPattern:        "/lobby/v1/public/player/namespaces/{namespace}/users/me/blocked",
+		PathPattern:        "/v1/public/player/namespaces/{namespace}/users/me/blocked",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http"},

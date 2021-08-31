@@ -67,7 +67,7 @@ func (o *AdminChatHistoryReader) ReadResponse(response runtime.ClientResponse, c
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /lobby/v1/admin/chat/namespaces/{namespace}/users/{userId}/friends/{friendId} returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /v1/admin/chat/namespaces/{namespace}/users/{userId}/friends/{friendId} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -85,7 +85,7 @@ type AdminChatHistoryOK struct {
 }
 
 func (o *AdminChatHistoryOK) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/chat/namespaces/{namespace}/users/{userId}/friends/{friendId}][%d] adminChatHistoryOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /v1/admin/chat/namespaces/{namespace}/users/{userId}/friends/{friendId}][%d] adminChatHistoryOK  %+v", 200, o.Payload)
 }
 
 func (o *AdminChatHistoryOK) GetPayload() []*lobbyclientmodels.ModelChatMessageResponse {
@@ -116,7 +116,7 @@ type AdminChatHistoryBadRequest struct {
 }
 
 func (o *AdminChatHistoryBadRequest) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/chat/namespaces/{namespace}/users/{userId}/friends/{friendId}][%d] adminChatHistoryBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /v1/admin/chat/namespaces/{namespace}/users/{userId}/friends/{friendId}][%d] adminChatHistoryBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *AdminChatHistoryBadRequest) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -149,7 +149,7 @@ type AdminChatHistoryUnauthorized struct {
 }
 
 func (o *AdminChatHistoryUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/chat/namespaces/{namespace}/users/{userId}/friends/{friendId}][%d] adminChatHistoryUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /v1/admin/chat/namespaces/{namespace}/users/{userId}/friends/{friendId}][%d] adminChatHistoryUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *AdminChatHistoryUnauthorized) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -182,7 +182,7 @@ type AdminChatHistoryForbidden struct {
 }
 
 func (o *AdminChatHistoryForbidden) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/chat/namespaces/{namespace}/users/{userId}/friends/{friendId}][%d] adminChatHistoryForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /v1/admin/chat/namespaces/{namespace}/users/{userId}/friends/{friendId}][%d] adminChatHistoryForbidden  %+v", 403, o.Payload)
 }
 
 func (o *AdminChatHistoryForbidden) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -215,7 +215,7 @@ type AdminChatHistoryNotFound struct {
 }
 
 func (o *AdminChatHistoryNotFound) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/chat/namespaces/{namespace}/users/{userId}/friends/{friendId}][%d] adminChatHistoryNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /v1/admin/chat/namespaces/{namespace}/users/{userId}/friends/{friendId}][%d] adminChatHistoryNotFound  %+v", 404, o.Payload)
 }
 
 func (o *AdminChatHistoryNotFound) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -248,7 +248,7 @@ type AdminChatHistoryInternalServerError struct {
 }
 
 func (o *AdminChatHistoryInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/chat/namespaces/{namespace}/users/{userId}/friends/{friendId}][%d] adminChatHistoryInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /v1/admin/chat/namespaces/{namespace}/users/{userId}/friends/{friendId}][%d] adminChatHistoryInternalServerError  %+v", 500, o.Payload)
 }
 
 func (o *AdminChatHistoryInternalServerError) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {

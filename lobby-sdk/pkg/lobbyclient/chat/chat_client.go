@@ -57,7 +57,7 @@ func (a *Client) AdminChatHistory(params *AdminChatHistoryParams, authInfo runti
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminChatHistory",
 		Method:             "GET",
-		PathPattern:        "/lobby/v1/admin/chat/namespaces/{namespace}/users/{userId}/friends/{friendId}",
+		PathPattern:        "/v1/admin/chat/namespaces/{namespace}/users/{userId}/friends/{friendId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http"},
@@ -110,7 +110,7 @@ func (a *Client) GetPersonalChatHistoryV1Public(params *GetPersonalChatHistoryV1
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getPersonalChatHistoryV1Public",
 		Method:             "GET",
-		PathPattern:        "/lobby/v1/public/chat/namespaces/{namespace}/users/me/friends/{friendId}",
+		PathPattern:        "/v1/public/chat/namespaces/{namespace}/users/me/friends/{friendId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http"},

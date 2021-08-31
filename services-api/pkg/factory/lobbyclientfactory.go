@@ -18,7 +18,7 @@ func NewLobbyClient(configRepository repository.ConfigRepository) *lobbyclient.J
 			baseUrlSplit := strings.Split(baseUrl, "://")
 			httpClientConfig := &lobbyclient.TransportConfig{
 				Host:     baseUrlSplit[1],
-				BasePath: "",
+				BasePath: "/lobby",
 				Schemes:  []string{baseUrlSplit[0]},
 			}
 			lobbyClientInstance = lobbyclient.NewHTTPClientWithConfig(nil, httpClientConfig)

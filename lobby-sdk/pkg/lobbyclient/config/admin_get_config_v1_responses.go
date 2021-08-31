@@ -67,7 +67,7 @@ func (o *AdminGetConfigV1Reader) ReadResponse(response runtime.ClientResponse, c
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /lobby/v1/admin/config/namespaces/{namespace} returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /v1/admin/config/namespaces/{namespace} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -85,7 +85,7 @@ type AdminGetConfigV1OK struct {
 }
 
 func (o *AdminGetConfigV1OK) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/config/namespaces/{namespace}][%d] adminGetConfigV1OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /v1/admin/config/namespaces/{namespace}][%d] adminGetConfigV1OK  %+v", 200, o.Payload)
 }
 
 func (o *AdminGetConfigV1OK) GetPayload() *lobbyclientmodels.ModelsConfigReq {
@@ -118,7 +118,7 @@ type AdminGetConfigV1BadRequest struct {
 }
 
 func (o *AdminGetConfigV1BadRequest) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/config/namespaces/{namespace}][%d] adminGetConfigV1BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /v1/admin/config/namespaces/{namespace}][%d] adminGetConfigV1BadRequest  %+v", 400, o.Payload)
 }
 
 func (o *AdminGetConfigV1BadRequest) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -151,7 +151,7 @@ type AdminGetConfigV1Unauthorized struct {
 }
 
 func (o *AdminGetConfigV1Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/config/namespaces/{namespace}][%d] adminGetConfigV1Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /v1/admin/config/namespaces/{namespace}][%d] adminGetConfigV1Unauthorized  %+v", 401, o.Payload)
 }
 
 func (o *AdminGetConfigV1Unauthorized) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -184,7 +184,7 @@ type AdminGetConfigV1Forbidden struct {
 }
 
 func (o *AdminGetConfigV1Forbidden) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/config/namespaces/{namespace}][%d] adminGetConfigV1Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /v1/admin/config/namespaces/{namespace}][%d] adminGetConfigV1Forbidden  %+v", 403, o.Payload)
 }
 
 func (o *AdminGetConfigV1Forbidden) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -217,7 +217,7 @@ type AdminGetConfigV1NotFound struct {
 }
 
 func (o *AdminGetConfigV1NotFound) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/config/namespaces/{namespace}][%d] adminGetConfigV1NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /v1/admin/config/namespaces/{namespace}][%d] adminGetConfigV1NotFound  %+v", 404, o.Payload)
 }
 
 func (o *AdminGetConfigV1NotFound) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -250,7 +250,7 @@ type AdminGetConfigV1InternalServerError struct {
 }
 
 func (o *AdminGetConfigV1InternalServerError) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/config/namespaces/{namespace}][%d] adminGetConfigV1InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /v1/admin/config/namespaces/{namespace}][%d] adminGetConfigV1InternalServerError  %+v", 500, o.Payload)
 }
 
 func (o *AdminGetConfigV1InternalServerError) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {

@@ -55,7 +55,7 @@ func (o *SendMultipleUsersFreeformNotificationV1AdminReader) ReadResponse(respon
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested POST /lobby/v1/admin/notification/namespaces/{namespace}/bulkUsers/freeform/notify returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested POST /v1/admin/notification/namespaces/{namespace}/bulkUsers/freeform/notify returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -72,7 +72,7 @@ type SendMultipleUsersFreeformNotificationV1AdminNoContent struct {
 }
 
 func (o *SendMultipleUsersFreeformNotificationV1AdminNoContent) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/notification/namespaces/{namespace}/bulkUsers/freeform/notify][%d] sendMultipleUsersFreeformNotificationV1AdminNoContent ", 204)
+	return fmt.Sprintf("[POST /v1/admin/notification/namespaces/{namespace}/bulkUsers/freeform/notify][%d] sendMultipleUsersFreeformNotificationV1AdminNoContent ", 204)
 }
 
 func (o *SendMultipleUsersFreeformNotificationV1AdminNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -94,7 +94,7 @@ type SendMultipleUsersFreeformNotificationV1AdminBadRequest struct {
 }
 
 func (o *SendMultipleUsersFreeformNotificationV1AdminBadRequest) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/notification/namespaces/{namespace}/bulkUsers/freeform/notify][%d] sendMultipleUsersFreeformNotificationV1AdminBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /v1/admin/notification/namespaces/{namespace}/bulkUsers/freeform/notify][%d] sendMultipleUsersFreeformNotificationV1AdminBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *SendMultipleUsersFreeformNotificationV1AdminBadRequest) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {
@@ -127,7 +127,7 @@ type SendMultipleUsersFreeformNotificationV1AdminUnauthorized struct {
 }
 
 func (o *SendMultipleUsersFreeformNotificationV1AdminUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/notification/namespaces/{namespace}/bulkUsers/freeform/notify][%d] sendMultipleUsersFreeformNotificationV1AdminUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /v1/admin/notification/namespaces/{namespace}/bulkUsers/freeform/notify][%d] sendMultipleUsersFreeformNotificationV1AdminUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *SendMultipleUsersFreeformNotificationV1AdminUnauthorized) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {
@@ -160,7 +160,7 @@ type SendMultipleUsersFreeformNotificationV1AdminForbidden struct {
 }
 
 func (o *SendMultipleUsersFreeformNotificationV1AdminForbidden) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/notification/namespaces/{namespace}/bulkUsers/freeform/notify][%d] sendMultipleUsersFreeformNotificationV1AdminForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /v1/admin/notification/namespaces/{namespace}/bulkUsers/freeform/notify][%d] sendMultipleUsersFreeformNotificationV1AdminForbidden  %+v", 403, o.Payload)
 }
 
 func (o *SendMultipleUsersFreeformNotificationV1AdminForbidden) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {

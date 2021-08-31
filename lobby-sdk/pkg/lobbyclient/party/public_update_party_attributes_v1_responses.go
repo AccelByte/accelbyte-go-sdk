@@ -73,7 +73,7 @@ func (o *PublicUpdatePartyAttributesV1Reader) ReadResponse(response runtime.Clie
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /lobby/v1/public/party/namespaces/{namespace}/parties/{partyId}/attributes returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /v1/public/party/namespaces/{namespace}/parties/{partyId}/attributes returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -91,7 +91,7 @@ type PublicUpdatePartyAttributesV1OK struct {
 }
 
 func (o *PublicUpdatePartyAttributesV1OK) Error() string {
-	return fmt.Sprintf("[PUT /lobby/v1/public/party/namespaces/{namespace}/parties/{partyId}/attributes][%d] publicUpdatePartyAttributesV1OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /v1/public/party/namespaces/{namespace}/parties/{partyId}/attributes][%d] publicUpdatePartyAttributesV1OK  %+v", 200, o.Payload)
 }
 
 func (o *PublicUpdatePartyAttributesV1OK) GetPayload() *lobbyclientmodels.ModelsPartyData {
@@ -124,7 +124,7 @@ type PublicUpdatePartyAttributesV1BadRequest struct {
 }
 
 func (o *PublicUpdatePartyAttributesV1BadRequest) Error() string {
-	return fmt.Sprintf("[PUT /lobby/v1/public/party/namespaces/{namespace}/parties/{partyId}/attributes][%d] publicUpdatePartyAttributesV1BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /v1/public/party/namespaces/{namespace}/parties/{partyId}/attributes][%d] publicUpdatePartyAttributesV1BadRequest  %+v", 400, o.Payload)
 }
 
 func (o *PublicUpdatePartyAttributesV1BadRequest) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -157,7 +157,7 @@ type PublicUpdatePartyAttributesV1Unauthorized struct {
 }
 
 func (o *PublicUpdatePartyAttributesV1Unauthorized) Error() string {
-	return fmt.Sprintf("[PUT /lobby/v1/public/party/namespaces/{namespace}/parties/{partyId}/attributes][%d] publicUpdatePartyAttributesV1Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[PUT /v1/public/party/namespaces/{namespace}/parties/{partyId}/attributes][%d] publicUpdatePartyAttributesV1Unauthorized  %+v", 401, o.Payload)
 }
 
 func (o *PublicUpdatePartyAttributesV1Unauthorized) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -190,7 +190,7 @@ type PublicUpdatePartyAttributesV1Forbidden struct {
 }
 
 func (o *PublicUpdatePartyAttributesV1Forbidden) Error() string {
-	return fmt.Sprintf("[PUT /lobby/v1/public/party/namespaces/{namespace}/parties/{partyId}/attributes][%d] publicUpdatePartyAttributesV1Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[PUT /v1/public/party/namespaces/{namespace}/parties/{partyId}/attributes][%d] publicUpdatePartyAttributesV1Forbidden  %+v", 403, o.Payload)
 }
 
 func (o *PublicUpdatePartyAttributesV1Forbidden) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -223,7 +223,7 @@ type PublicUpdatePartyAttributesV1NotFound struct {
 }
 
 func (o *PublicUpdatePartyAttributesV1NotFound) Error() string {
-	return fmt.Sprintf("[PUT /lobby/v1/public/party/namespaces/{namespace}/parties/{partyId}/attributes][%d] publicUpdatePartyAttributesV1NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /v1/public/party/namespaces/{namespace}/parties/{partyId}/attributes][%d] publicUpdatePartyAttributesV1NotFound  %+v", 404, o.Payload)
 }
 
 func (o *PublicUpdatePartyAttributesV1NotFound) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -256,7 +256,7 @@ type PublicUpdatePartyAttributesV1PreconditionFailed struct {
 }
 
 func (o *PublicUpdatePartyAttributesV1PreconditionFailed) Error() string {
-	return fmt.Sprintf("[PUT /lobby/v1/public/party/namespaces/{namespace}/parties/{partyId}/attributes][%d] publicUpdatePartyAttributesV1PreconditionFailed  %+v", 412, o.Payload)
+	return fmt.Sprintf("[PUT /v1/public/party/namespaces/{namespace}/parties/{partyId}/attributes][%d] publicUpdatePartyAttributesV1PreconditionFailed  %+v", 412, o.Payload)
 }
 
 func (o *PublicUpdatePartyAttributesV1PreconditionFailed) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -289,7 +289,7 @@ type PublicUpdatePartyAttributesV1InternalServerError struct {
 }
 
 func (o *PublicUpdatePartyAttributesV1InternalServerError) Error() string {
-	return fmt.Sprintf("[PUT /lobby/v1/public/party/namespaces/{namespace}/parties/{partyId}/attributes][%d] publicUpdatePartyAttributesV1InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[PUT /v1/public/party/namespaces/{namespace}/parties/{partyId}/attributes][%d] publicUpdatePartyAttributesV1InternalServerError  %+v", 500, o.Payload)
 }
 
 func (o *PublicUpdatePartyAttributesV1InternalServerError) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {

@@ -55,7 +55,7 @@ func (o *CreateNotificationTopicV1AdminReader) ReadResponse(response runtime.Cli
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested POST /lobby/v1/admin/notification/namespaces/{namespace}/topics returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested POST /v1/admin/notification/namespaces/{namespace}/topics returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -72,7 +72,7 @@ type CreateNotificationTopicV1AdminNoContent struct {
 }
 
 func (o *CreateNotificationTopicV1AdminNoContent) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/notification/namespaces/{namespace}/topics][%d] createNotificationTopicV1AdminNoContent ", 204)
+	return fmt.Sprintf("[POST /v1/admin/notification/namespaces/{namespace}/topics][%d] createNotificationTopicV1AdminNoContent ", 204)
 }
 
 func (o *CreateNotificationTopicV1AdminNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -94,7 +94,7 @@ type CreateNotificationTopicV1AdminBadRequest struct {
 }
 
 func (o *CreateNotificationTopicV1AdminBadRequest) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/notification/namespaces/{namespace}/topics][%d] createNotificationTopicV1AdminBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /v1/admin/notification/namespaces/{namespace}/topics][%d] createNotificationTopicV1AdminBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *CreateNotificationTopicV1AdminBadRequest) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {
@@ -127,7 +127,7 @@ type CreateNotificationTopicV1AdminUnauthorized struct {
 }
 
 func (o *CreateNotificationTopicV1AdminUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/notification/namespaces/{namespace}/topics][%d] createNotificationTopicV1AdminUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /v1/admin/notification/namespaces/{namespace}/topics][%d] createNotificationTopicV1AdminUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *CreateNotificationTopicV1AdminUnauthorized) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {
@@ -160,7 +160,7 @@ type CreateNotificationTopicV1AdminForbidden struct {
 }
 
 func (o *CreateNotificationTopicV1AdminForbidden) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/notification/namespaces/{namespace}/topics][%d] createNotificationTopicV1AdminForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /v1/admin/notification/namespaces/{namespace}/topics][%d] createNotificationTopicV1AdminForbidden  %+v", 403, o.Payload)
 }
 
 func (o *CreateNotificationTopicV1AdminForbidden) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {

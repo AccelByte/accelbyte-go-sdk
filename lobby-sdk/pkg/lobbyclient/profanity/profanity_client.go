@@ -77,7 +77,7 @@ func (a *Client) AdminAddProfanityFilterIntoList(params *AdminAddProfanityFilter
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminAddProfanityFilterIntoList",
 		Method:             "POST",
-		PathPattern:        "/lobby/v1/admin/profanity/namespaces/{namespace}/list/{list}/filters",
+		PathPattern:        "/v1/admin/profanity/namespaces/{namespace}/list/{list}/filters",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http"},
@@ -129,7 +129,7 @@ func (a *Client) AdminAddProfanityFilters(params *AdminAddProfanityFiltersParams
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminAddProfanityFilters",
 		Method:             "POST",
-		PathPattern:        "/lobby/v1/admin/profanity/namespaces/{namespace}/list/{list}/filters/bulk",
+		PathPattern:        "/v1/admin/profanity/namespaces/{namespace}/list/{list}/filters/bulk",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http"},
@@ -181,7 +181,7 @@ func (a *Client) AdminCreateProfanityList(params *AdminCreateProfanityListParams
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminCreateProfanityList",
 		Method:             "POST",
-		PathPattern:        "/lobby/v1/admin/profanity/namespaces/{namespace}/lists",
+		PathPattern:        "/v1/admin/profanity/namespaces/{namespace}/lists",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http"},
@@ -233,7 +233,7 @@ func (a *Client) AdminDebugProfanityFilters(params *AdminDebugProfanityFiltersPa
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminDebugProfanityFilters",
 		Method:             "POST",
-		PathPattern:        "/lobby/v1/admin/profanity/namespaces/{namespace}/filters/debug",
+		PathPattern:        "/v1/admin/profanity/namespaces/{namespace}/filters/debug",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http"},
@@ -285,7 +285,7 @@ func (a *Client) AdminDeleteProfanityFilter(params *AdminDeleteProfanityFilterPa
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminDeleteProfanityFilter",
 		Method:             "POST",
-		PathPattern:        "/lobby/v1/admin/profanity/namespaces/{namespace}/list/{list}/filters/delete",
+		PathPattern:        "/v1/admin/profanity/namespaces/{namespace}/list/{list}/filters/delete",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http"},
@@ -337,7 +337,7 @@ func (a *Client) AdminDeleteProfanityList(params *AdminDeleteProfanityListParams
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminDeleteProfanityList",
 		Method:             "DELETE",
-		PathPattern:        "/lobby/v1/admin/profanity/namespaces/{namespace}/lists/{list}",
+		PathPattern:        "/v1/admin/profanity/namespaces/{namespace}/lists/{list}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http"},
@@ -389,7 +389,7 @@ func (a *Client) AdminGetProfanityListFiltersV1(params *AdminGetProfanityListFil
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminGetProfanityListFiltersV1",
 		Method:             "GET",
-		PathPattern:        "/lobby/v1/admin/profanity/namespaces/{namespace}/list/{list}/filters",
+		PathPattern:        "/v1/admin/profanity/namespaces/{namespace}/list/{list}/filters",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http"},
@@ -441,7 +441,7 @@ func (a *Client) AdminGetProfanityLists(params *AdminGetProfanityListsParams, au
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminGetProfanityLists",
 		Method:             "GET",
-		PathPattern:        "/lobby/v1/admin/profanity/namespaces/{namespace}/lists",
+		PathPattern:        "/v1/admin/profanity/namespaces/{namespace}/lists",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http"},
@@ -493,7 +493,7 @@ func (a *Client) AdminGetProfanityRule(params *AdminGetProfanityRuleParams, auth
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminGetProfanityRule",
 		Method:             "GET",
-		PathPattern:        "/lobby/v1/admin/profanity/namespaces/{namespace}/rule",
+		PathPattern:        "/v1/admin/profanity/namespaces/{namespace}/rule",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http"},
@@ -545,7 +545,7 @@ func (a *Client) AdminImportProfanityFiltersFromFile(params *AdminImportProfanit
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminImportProfanityFiltersFromFile",
 		Method:             "POST",
-		PathPattern:        "/lobby/v1/admin/profanity/namespaces/{namespace}/list/{list}/filters/bulk-file",
+		PathPattern:        "/v1/admin/profanity/namespaces/{namespace}/list/{list}/filters/bulk-file",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http"},
@@ -597,7 +597,7 @@ func (a *Client) AdminSetProfanityRuleForNamespace(params *AdminSetProfanityRule
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminSetProfanityRuleForNamespace",
 		Method:             "POST",
-		PathPattern:        "/lobby/v1/admin/profanity/namespaces/{namespace}/rule",
+		PathPattern:        "/v1/admin/profanity/namespaces/{namespace}/rule",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http"},
@@ -649,7 +649,7 @@ func (a *Client) AdminUpdateProfanityList(params *AdminUpdateProfanityListParams
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminUpdateProfanityList",
 		Method:             "POST",
-		PathPattern:        "/lobby/v1/admin/profanity/namespaces/{namespace}/lists/{list}",
+		PathPattern:        "/v1/admin/profanity/namespaces/{namespace}/lists/{list}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http"},
@@ -701,7 +701,7 @@ func (a *Client) AdminVerifyMessageProfanityResponse(params *AdminVerifyMessageP
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminVerifyMessageProfanityResponse",
 		Method:             "POST",
-		PathPattern:        "/lobby/v1/admin/profanity/namespaces/{namespace}/verify",
+		PathPattern:        "/v1/admin/profanity/namespaces/{namespace}/verify",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http"},

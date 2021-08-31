@@ -67,7 +67,7 @@ func (o *AdminGetAllPlayerSessionAttributeReader) ReadResponse(response runtime.
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /lobby/v1/admin/player/namespaces/{namespace}/users/{userId}/attributes returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /v1/admin/player/namespaces/{namespace}/users/{userId}/attributes returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -85,7 +85,7 @@ type AdminGetAllPlayerSessionAttributeOK struct {
 }
 
 func (o *AdminGetAllPlayerSessionAttributeOK) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/player/namespaces/{namespace}/users/{userId}/attributes][%d] adminGetAllPlayerSessionAttributeOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /v1/admin/player/namespaces/{namespace}/users/{userId}/attributes][%d] adminGetAllPlayerSessionAttributeOK  %+v", 200, o.Payload)
 }
 
 func (o *AdminGetAllPlayerSessionAttributeOK) GetPayload() *lobbyclientmodels.ModelsGetAllPlayerSessionAttributeResponse {
@@ -118,7 +118,7 @@ type AdminGetAllPlayerSessionAttributeBadRequest struct {
 }
 
 func (o *AdminGetAllPlayerSessionAttributeBadRequest) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/player/namespaces/{namespace}/users/{userId}/attributes][%d] adminGetAllPlayerSessionAttributeBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /v1/admin/player/namespaces/{namespace}/users/{userId}/attributes][%d] adminGetAllPlayerSessionAttributeBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *AdminGetAllPlayerSessionAttributeBadRequest) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -151,7 +151,7 @@ type AdminGetAllPlayerSessionAttributeUnauthorized struct {
 }
 
 func (o *AdminGetAllPlayerSessionAttributeUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/player/namespaces/{namespace}/users/{userId}/attributes][%d] adminGetAllPlayerSessionAttributeUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /v1/admin/player/namespaces/{namespace}/users/{userId}/attributes][%d] adminGetAllPlayerSessionAttributeUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *AdminGetAllPlayerSessionAttributeUnauthorized) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -184,7 +184,7 @@ type AdminGetAllPlayerSessionAttributeForbidden struct {
 }
 
 func (o *AdminGetAllPlayerSessionAttributeForbidden) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/player/namespaces/{namespace}/users/{userId}/attributes][%d] adminGetAllPlayerSessionAttributeForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /v1/admin/player/namespaces/{namespace}/users/{userId}/attributes][%d] adminGetAllPlayerSessionAttributeForbidden  %+v", 403, o.Payload)
 }
 
 func (o *AdminGetAllPlayerSessionAttributeForbidden) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -217,7 +217,7 @@ type AdminGetAllPlayerSessionAttributeNotFound struct {
 }
 
 func (o *AdminGetAllPlayerSessionAttributeNotFound) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/player/namespaces/{namespace}/users/{userId}/attributes][%d] adminGetAllPlayerSessionAttributeNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /v1/admin/player/namespaces/{namespace}/users/{userId}/attributes][%d] adminGetAllPlayerSessionAttributeNotFound  %+v", 404, o.Payload)
 }
 
 func (o *AdminGetAllPlayerSessionAttributeNotFound) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -250,7 +250,7 @@ type AdminGetAllPlayerSessionAttributeInternalServerError struct {
 }
 
 func (o *AdminGetAllPlayerSessionAttributeInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/player/namespaces/{namespace}/users/{userId}/attributes][%d] adminGetAllPlayerSessionAttributeInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /v1/admin/player/namespaces/{namespace}/users/{userId}/attributes][%d] adminGetAllPlayerSessionAttributeInternalServerError  %+v", 500, o.Payload)
 }
 
 func (o *AdminGetAllPlayerSessionAttributeInternalServerError) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {

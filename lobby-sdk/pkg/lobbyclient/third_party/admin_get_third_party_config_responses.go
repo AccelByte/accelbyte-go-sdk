@@ -61,7 +61,7 @@ func (o *AdminGetThirdPartyConfigReader) ReadResponse(response runtime.ClientRes
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /lobby/v1/admin/thirdparty/namespaces/{namespace}/config/steam returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /v1/admin/thirdparty/namespaces/{namespace}/config/steam returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -79,7 +79,7 @@ type AdminGetThirdPartyConfigOK struct {
 }
 
 func (o *AdminGetThirdPartyConfigOK) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/thirdparty/namespaces/{namespace}/config/steam][%d] adminGetThirdPartyConfigOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /v1/admin/thirdparty/namespaces/{namespace}/config/steam][%d] adminGetThirdPartyConfigOK  %+v", 200, o.Payload)
 }
 
 func (o *AdminGetThirdPartyConfigOK) GetPayload() *lobbyclientmodels.ModelsGetConfigResponse {
@@ -112,7 +112,7 @@ type AdminGetThirdPartyConfigBadRequest struct {
 }
 
 func (o *AdminGetThirdPartyConfigBadRequest) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/thirdparty/namespaces/{namespace}/config/steam][%d] adminGetThirdPartyConfigBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /v1/admin/thirdparty/namespaces/{namespace}/config/steam][%d] adminGetThirdPartyConfigBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *AdminGetThirdPartyConfigBadRequest) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {
@@ -145,7 +145,7 @@ type AdminGetThirdPartyConfigUnauthorized struct {
 }
 
 func (o *AdminGetThirdPartyConfigUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/thirdparty/namespaces/{namespace}/config/steam][%d] adminGetThirdPartyConfigUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /v1/admin/thirdparty/namespaces/{namespace}/config/steam][%d] adminGetThirdPartyConfigUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *AdminGetThirdPartyConfigUnauthorized) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {
@@ -178,7 +178,7 @@ type AdminGetThirdPartyConfigForbidden struct {
 }
 
 func (o *AdminGetThirdPartyConfigForbidden) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/thirdparty/namespaces/{namespace}/config/steam][%d] adminGetThirdPartyConfigForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /v1/admin/thirdparty/namespaces/{namespace}/config/steam][%d] adminGetThirdPartyConfigForbidden  %+v", 403, o.Payload)
 }
 
 func (o *AdminGetThirdPartyConfigForbidden) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {
@@ -211,7 +211,7 @@ type AdminGetThirdPartyConfigInternalServerError struct {
 }
 
 func (o *AdminGetThirdPartyConfigInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/thirdparty/namespaces/{namespace}/config/steam][%d] adminGetThirdPartyConfigInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /v1/admin/thirdparty/namespaces/{namespace}/config/steam][%d] adminGetThirdPartyConfigInternalServerError  %+v", 500, o.Payload)
 }
 
 func (o *AdminGetThirdPartyConfigInternalServerError) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {

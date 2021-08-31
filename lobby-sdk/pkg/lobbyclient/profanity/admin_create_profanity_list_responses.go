@@ -67,7 +67,7 @@ func (o *AdminCreateProfanityListReader) ReadResponse(response runtime.ClientRes
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested POST /lobby/v1/admin/profanity/namespaces/{namespace}/lists returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested POST /v1/admin/profanity/namespaces/{namespace}/lists returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -84,7 +84,7 @@ type AdminCreateProfanityListOK struct {
 }
 
 func (o *AdminCreateProfanityListOK) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/profanity/namespaces/{namespace}/lists][%d] adminCreateProfanityListOK ", 200)
+	return fmt.Sprintf("[POST /v1/admin/profanity/namespaces/{namespace}/lists][%d] adminCreateProfanityListOK ", 200)
 }
 
 func (o *AdminCreateProfanityListOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -106,7 +106,7 @@ type AdminCreateProfanityListBadRequest struct {
 }
 
 func (o *AdminCreateProfanityListBadRequest) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/profanity/namespaces/{namespace}/lists][%d] adminCreateProfanityListBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /v1/admin/profanity/namespaces/{namespace}/lists][%d] adminCreateProfanityListBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *AdminCreateProfanityListBadRequest) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -139,7 +139,7 @@ type AdminCreateProfanityListUnauthorized struct {
 }
 
 func (o *AdminCreateProfanityListUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/profanity/namespaces/{namespace}/lists][%d] adminCreateProfanityListUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /v1/admin/profanity/namespaces/{namespace}/lists][%d] adminCreateProfanityListUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *AdminCreateProfanityListUnauthorized) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -172,7 +172,7 @@ type AdminCreateProfanityListForbidden struct {
 }
 
 func (o *AdminCreateProfanityListForbidden) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/profanity/namespaces/{namespace}/lists][%d] adminCreateProfanityListForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /v1/admin/profanity/namespaces/{namespace}/lists][%d] adminCreateProfanityListForbidden  %+v", 403, o.Payload)
 }
 
 func (o *AdminCreateProfanityListForbidden) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -205,7 +205,7 @@ type AdminCreateProfanityListNotFound struct {
 }
 
 func (o *AdminCreateProfanityListNotFound) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/profanity/namespaces/{namespace}/lists][%d] adminCreateProfanityListNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /v1/admin/profanity/namespaces/{namespace}/lists][%d] adminCreateProfanityListNotFound  %+v", 404, o.Payload)
 }
 
 func (o *AdminCreateProfanityListNotFound) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -238,7 +238,7 @@ type AdminCreateProfanityListInternalServerError struct {
 }
 
 func (o *AdminCreateProfanityListInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/profanity/namespaces/{namespace}/lists][%d] adminCreateProfanityListInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /v1/admin/profanity/namespaces/{namespace}/lists][%d] adminCreateProfanityListInternalServerError  %+v", 500, o.Payload)
 }
 
 func (o *AdminCreateProfanityListInternalServerError) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {

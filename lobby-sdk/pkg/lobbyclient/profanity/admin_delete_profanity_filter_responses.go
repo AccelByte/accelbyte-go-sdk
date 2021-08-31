@@ -67,7 +67,7 @@ func (o *AdminDeleteProfanityFilterReader) ReadResponse(response runtime.ClientR
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested POST /lobby/v1/admin/profanity/namespaces/{namespace}/list/{list}/filters/delete returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested POST /v1/admin/profanity/namespaces/{namespace}/list/{list}/filters/delete returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -85,7 +85,7 @@ type AdminDeleteProfanityFilterOK struct {
 }
 
 func (o *AdminDeleteProfanityFilterOK) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/profanity/namespaces/{namespace}/list/{list}/filters/delete][%d] adminDeleteProfanityFilterOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /v1/admin/profanity/namespaces/{namespace}/list/{list}/filters/delete][%d] adminDeleteProfanityFilterOK  %+v", 200, o.Payload)
 }
 
 func (o *AdminDeleteProfanityFilterOK) GetPayload() []lobbyclientmodels.ModelsProfanityFilter {
@@ -116,7 +116,7 @@ type AdminDeleteProfanityFilterBadRequest struct {
 }
 
 func (o *AdminDeleteProfanityFilterBadRequest) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/profanity/namespaces/{namespace}/list/{list}/filters/delete][%d] adminDeleteProfanityFilterBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /v1/admin/profanity/namespaces/{namespace}/list/{list}/filters/delete][%d] adminDeleteProfanityFilterBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *AdminDeleteProfanityFilterBadRequest) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -149,7 +149,7 @@ type AdminDeleteProfanityFilterUnauthorized struct {
 }
 
 func (o *AdminDeleteProfanityFilterUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/profanity/namespaces/{namespace}/list/{list}/filters/delete][%d] adminDeleteProfanityFilterUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /v1/admin/profanity/namespaces/{namespace}/list/{list}/filters/delete][%d] adminDeleteProfanityFilterUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *AdminDeleteProfanityFilterUnauthorized) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -182,7 +182,7 @@ type AdminDeleteProfanityFilterForbidden struct {
 }
 
 func (o *AdminDeleteProfanityFilterForbidden) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/profanity/namespaces/{namespace}/list/{list}/filters/delete][%d] adminDeleteProfanityFilterForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /v1/admin/profanity/namespaces/{namespace}/list/{list}/filters/delete][%d] adminDeleteProfanityFilterForbidden  %+v", 403, o.Payload)
 }
 
 func (o *AdminDeleteProfanityFilterForbidden) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -215,7 +215,7 @@ type AdminDeleteProfanityFilterNotFound struct {
 }
 
 func (o *AdminDeleteProfanityFilterNotFound) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/profanity/namespaces/{namespace}/list/{list}/filters/delete][%d] adminDeleteProfanityFilterNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /v1/admin/profanity/namespaces/{namespace}/list/{list}/filters/delete][%d] adminDeleteProfanityFilterNotFound  %+v", 404, o.Payload)
 }
 
 func (o *AdminDeleteProfanityFilterNotFound) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
@@ -248,7 +248,7 @@ type AdminDeleteProfanityFilterInternalServerError struct {
 }
 
 func (o *AdminDeleteProfanityFilterInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/profanity/namespaces/{namespace}/list/{list}/filters/delete][%d] adminDeleteProfanityFilterInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /v1/admin/profanity/namespaces/{namespace}/list/{list}/filters/delete][%d] adminDeleteProfanityFilterInternalServerError  %+v", 500, o.Payload)
 }
 
 func (o *AdminDeleteProfanityFilterInternalServerError) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {

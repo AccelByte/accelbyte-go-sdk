@@ -61,7 +61,7 @@ func (o *DeleteNotificationTopicV1AdminReader) ReadResponse(response runtime.Cli
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested DELETE /lobby/v1/admin/notification/namespaces/{namespace}/topics/{topicName} returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested DELETE /v1/admin/notification/namespaces/{namespace}/topics/{topicName} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -78,7 +78,7 @@ type DeleteNotificationTopicV1AdminNoContent struct {
 }
 
 func (o *DeleteNotificationTopicV1AdminNoContent) Error() string {
-	return fmt.Sprintf("[DELETE /lobby/v1/admin/notification/namespaces/{namespace}/topics/{topicName}][%d] deleteNotificationTopicV1AdminNoContent ", 204)
+	return fmt.Sprintf("[DELETE /v1/admin/notification/namespaces/{namespace}/topics/{topicName}][%d] deleteNotificationTopicV1AdminNoContent ", 204)
 }
 
 func (o *DeleteNotificationTopicV1AdminNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -100,7 +100,7 @@ type DeleteNotificationTopicV1AdminUnauthorized struct {
 }
 
 func (o *DeleteNotificationTopicV1AdminUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /lobby/v1/admin/notification/namespaces/{namespace}/topics/{topicName}][%d] deleteNotificationTopicV1AdminUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[DELETE /v1/admin/notification/namespaces/{namespace}/topics/{topicName}][%d] deleteNotificationTopicV1AdminUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *DeleteNotificationTopicV1AdminUnauthorized) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {
@@ -133,7 +133,7 @@ type DeleteNotificationTopicV1AdminForbidden struct {
 }
 
 func (o *DeleteNotificationTopicV1AdminForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /lobby/v1/admin/notification/namespaces/{namespace}/topics/{topicName}][%d] deleteNotificationTopicV1AdminForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[DELETE /v1/admin/notification/namespaces/{namespace}/topics/{topicName}][%d] deleteNotificationTopicV1AdminForbidden  %+v", 403, o.Payload)
 }
 
 func (o *DeleteNotificationTopicV1AdminForbidden) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {
@@ -166,7 +166,7 @@ type DeleteNotificationTopicV1AdminNotFound struct {
 }
 
 func (o *DeleteNotificationTopicV1AdminNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /lobby/v1/admin/notification/namespaces/{namespace}/topics/{topicName}][%d] deleteNotificationTopicV1AdminNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[DELETE /v1/admin/notification/namespaces/{namespace}/topics/{topicName}][%d] deleteNotificationTopicV1AdminNotFound  %+v", 404, o.Payload)
 }
 
 func (o *DeleteNotificationTopicV1AdminNotFound) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {
@@ -199,7 +199,7 @@ type DeleteNotificationTopicV1AdminInternalServerError struct {
 }
 
 func (o *DeleteNotificationTopicV1AdminInternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /lobby/v1/admin/notification/namespaces/{namespace}/topics/{topicName}][%d] deleteNotificationTopicV1AdminInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[DELETE /v1/admin/notification/namespaces/{namespace}/topics/{topicName}][%d] deleteNotificationTopicV1AdminInternalServerError  %+v", 500, o.Payload)
 }
 
 func (o *DeleteNotificationTopicV1AdminInternalServerError) GetPayload() *lobbyclientmodels.RestapiErrorResponseV1 {

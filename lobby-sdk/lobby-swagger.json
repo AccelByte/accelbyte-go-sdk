@@ -5,6 +5,7 @@
     "title": "justice-lobby-server",
     "version": "1.33.0"
   },
+  "basePath": "/lobby",
   "paths": {
     "/chat/namespaces/{namespace}/users/{userId}/friend/{friendId}": {
       "get": {
@@ -748,7 +749,7 @@
         }
       }
     },
-    "/lobby/v1/admin/chat/namespaces/{namespace}/users/{userId}/friends/{friendId}": {
+    "/v1/admin/chat/namespaces/{namespace}/users/{userId}/friends/{friendId}": {
       "get": {
         "description": "Required permission : \u003ccode\u003eNAMESPACE:{namespace}:USER:{userId}:CHAT [READ]\u003c/code\u003e with scope \u003ccode\u003esocial\u003c/code\u003e\n\t\t\t\u003cbr\u003eget chat history in a namespace.",
         "consumes": [
@@ -828,7 +829,7 @@
         }
       }
     },
-    "/lobby/v1/admin/config": {
+    "/v1/admin/config": {
       "get": {
         "description": "Required permission : \u003ccode\u003eADMIN:NAMESPACE:*:LOBBY:CONFIG [READ]\u003c/code\u003e with scope \u003ccode\u003esocial\u003c/code\u003e\n\t\t\t\u003cbr\u003eget lobby config of all namespaces.",
         "consumes": [
@@ -882,7 +883,7 @@
         }
       }
     },
-    "/lobby/v1/admin/config/namespaces/{namespace}": {
+    "/v1/admin/config/namespaces/{namespace}": {
       "get": {
         "description": "Required permission : \u003ccode\u003eADMIN:NAMESPACE:{namespace}:LOBBY:CONFIG [READ]\u003c/code\u003e with scope \u003ccode\u003esocial\u003c/code\u003e\n\t\t\t\u003cbr\u003eget lobby config of a namespace.",
         "consumes": [
@@ -1021,7 +1022,7 @@
         }
       }
     },
-    "/lobby/v1/admin/friend/namespaces/{namespace}/users/{userId}": {
+    "/v1/admin/friend/namespaces/{namespace}/users/{userId}": {
       "get": {
         "description": "Required permission : \u003ccode\u003eNAMESPACE:{namespace}:USER:{userId}:FRIENDS [READ]\u003c/code\u003e with scope \u003ccode\u003esocial\u003c/code\u003e\n\u003cbr\u003eget list of friends in a namespace.",
         "consumes": [
@@ -1097,7 +1098,7 @@
         }
       }
     },
-    "/lobby/v1/admin/notification/namespaces/{namespace}/bulkUsers/freeform/notify": {
+    "/v1/admin/notification/namespaces/{namespace}/bulkUsers/freeform/notify": {
       "post": {
         "description": "Required permission : \u003ccode\u003eADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]\u003c/code\u003e with scope \u003ccode\u003esocial\u003c/code\u003e\n\t\t\t\u003cbr\u003eSends notification to multiple user. There are two types of notification: sync and async. Async message will be stored\n\t\t\tto database if the receiver is offline. This stored message could be retrieved later via websocket command.\u003cbr/\u003e\n\t\t\tAction Code: 50211",
         "consumes": [
@@ -1160,7 +1161,7 @@
         }
       }
     },
-    "/lobby/v1/admin/notification/namespaces/{namespace}/freeform/notify": {
+    "/v1/admin/notification/namespaces/{namespace}/freeform/notify": {
       "post": {
         "description": "Required permission : \u003ccode\u003eADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]\u003c/code\u003e with scope \u003ccode\u003esocial\u003c/code\u003e\n\t\t\t\u003cbr\u003eSends notification to all connected users in a namespace.\u003cbr\u003e\n\t\t\tAction Code: 50201",
         "consumes": [
@@ -1223,7 +1224,7 @@
         }
       }
     },
-    "/lobby/v1/admin/notification/namespaces/{namespace}/templates": {
+    "/v1/admin/notification/namespaces/{namespace}/templates": {
       "get": {
         "description": "Required permission : \u003ccode\u003eADMIN:NAMESPACE:{namespace}:NOTIFICATION [READ]\u003c/code\u003e with scope \u003ccode\u003esocial\u003c/code\u003e\n\t\t\t\u003cbr\u003eGet all templates in a namespace\u003cbr\u003e\n\t\t\tAction Code: 50203",
         "consumes": [
@@ -1356,7 +1357,7 @@
         }
       }
     },
-    "/lobby/v1/admin/notification/namespaces/{namespace}/templates/notify": {
+    "/v1/admin/notification/namespaces/{namespace}/templates/notify": {
       "post": {
         "description": "Required permission : \u003ccode\u003eADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]\u003c/code\u003e with scope \u003ccode\u003esocial\u003c/code\u003e\n\t\t\t\u003cbr\u003eSends notification to all connected users in a namespace with predefined template. \n\t\t\t\u003cbr\u003eIn the request body, specify which template slug (template identifier) to use and the template language. \n\t\t\t\u003cbr\u003eNotificationTemplate context is the key-value pair defining the value of each handlebar specified in the template content. \n\t\t\tTemplate need to be published before it can be use to send notifications\u003cbr/\u003e\n\t\t\tAction Code: 50202",
         "consumes": [
@@ -1419,7 +1420,7 @@
         }
       }
     },
-    "/lobby/v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}": {
+    "/v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}": {
       "get": {
         "description": "Required permission : \u003ccode\u003eADMIN:NAMESPACE:{namespace}:NOTIFICATION [READ]\u003c/code\u003e with scope \u003ccode\u003esocial\u003c/code\u003e\n\t\t\t\u003cbr\u003eGet all templates in a namespace\u003cbr\u003e\n\t\t\tAction Code: 50205",
         "consumes": [
@@ -1560,7 +1561,7 @@
         }
       }
     },
-    "/lobby/v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}": {
+    "/v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}": {
       "get": {
         "description": "Required permission : \u003ccode\u003eADMIN:NAMESPACE:{namespace}:NOTIFICATION [READ]\u003c/code\u003e with scope \u003ccode\u003esocial\u003c/code\u003e\n\t\t\t\u003cbr\u003eGet a template localization\u003cbr/\u003e\n\t\t\tAction Code: 50207",
         "consumes": [
@@ -1777,7 +1778,7 @@
         }
       }
     },
-    "/lobby/v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}/publish": {
+    "/v1/admin/notification/namespaces/{namespace}/templates/{templateSlug}/languages/{templateLanguage}/publish": {
       "post": {
         "description": "Required permission : \u003ccode\u003eADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]\u003c/code\u003e with scope \u003ccode\u003esocial\u003c/code\u003e\n\t\t\t\u003cbr\u003ePublish notification template draft. Empty draft can not be published.\u003cbr/\u003e\n\t\t\tAction Code: 50210",
         "consumes": [
@@ -1845,7 +1846,7 @@
         }
       }
     },
-    "/lobby/v1/admin/notification/namespaces/{namespace}/topics": {
+    "/v1/admin/notification/namespaces/{namespace}/topics": {
       "get": {
         "description": "Required permission : \u003ccode\u003eADMIN:NAMESPACE:{namespace}:NOTIFICATION [READ]\u003c/code\u003e with scope \u003ccode\u003esocial\u003c/code\u003e\n\t\t\t\u003cbr\u003eget topic by namespace.\u003cbr/\u003e\n\t\t\tAction Code: 50213",
         "consumes": [
@@ -1975,7 +1976,7 @@
         }
       }
     },
-    "/lobby/v1/admin/notification/namespaces/{namespace}/topics/{topicName}": {
+    "/v1/admin/notification/namespaces/{namespace}/topics/{topicName}": {
       "get": {
         "description": "Required permission : \u003ccode\u003eADMIN:NAMESPACE:{namespace}:NOTIFICATION [READ]\u003c/code\u003e with scope \u003ccode\u003esocial\u003c/code\u003e\n\t\t\t\u003cbr\u003eget topic information by topic name.\u003cbr/\u003e\n\t\t\tAction Code: 50215",
         "consumes": [
@@ -2172,7 +2173,7 @@
         }
       }
     },
-    "/lobby/v1/admin/notification/namespaces/{namespace}/users/{userId}/freeform/notify": {
+    "/v1/admin/notification/namespaces/{namespace}/users/{userId}/freeform/notify": {
       "post": {
         "description": "Required permission : \u003ccode\u003eADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]\u003c/code\u003e with scope \u003ccode\u003esocial\u003c/code\u003e\n\t\t\t\u003cbr\u003eSends notification to a user. There are two types of notification: sync and async. Async message will be stored \n\t\t\tto database if the receiver is offline. This stored message could be retrieved later via websocket command.\u003cbr/\u003e\n\t\t\tAction Code: 50211",
         "consumes": [
@@ -2248,7 +2249,7 @@
         }
       }
     },
-    "/lobby/v1/admin/notification/namespaces/{namespace}/users/{userId}/templates/notify": {
+    "/v1/admin/notification/namespaces/{namespace}/users/{userId}/templates/notify": {
       "post": {
         "description": "Required permission : \u003ccode\u003eADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]\u003c/code\u003e with scope \u003ccode\u003esocial\u003c/code\u003e\n\t\t\t\u003cbr\u003eSends templated notification to a user. There are two types of notification: sync and async. Async message will be stored \n\t\t\tto database if the receiver is offline. This stored message could be retrieved later via websocket command. \n\t\t\t\u003cbr\u003eIn the request body, specify which template slug (template identifier) to use and the template language. \n\t\t\t\u003cbr\u003eNotificationTemplate context is the key-value pair defining the value of each handlebar specified in the template content. \n\t\t\tTemplate need to be published before it can be use to send notifications\u003cbr\u003e\n\t\t\tAction Code: 50212",
         "consumes": [
@@ -2324,7 +2325,7 @@
         }
       }
     },
-    "/lobby/v1/admin/party/namespaces/{namespace}/parties": {
+    "/v1/admin/party/namespaces/{namespace}/parties": {
       "get": {
         "description": "Required permission : \u003ccode\u003eADMIN:NAMESPACE:{namespace}:PARTY:STORAGE [READ]\u003c/code\u003e with scope \u003ccode\u003esocial\u003c/code\u003e\n\t\t\t\u003cbr\u003eget parties data in a namespace.",
         "consumes": [
@@ -2402,7 +2403,7 @@
         }
       }
     },
-    "/lobby/v1/admin/party/namespaces/{namespace}/parties/{partyId}": {
+    "/v1/admin/party/namespaces/{namespace}/parties/{partyId}": {
       "get": {
         "description": "Required permission : \u003ccode\u003eADMIN:NAMESPACE:{namespace}:PARTY:STORAGE [READ]\u003c/code\u003e with scope \u003ccode\u003esocial\u003c/code\u003e\n\t\t\t\u003cbr\u003eget party data in a namespace.",
         "consumes": [
@@ -2472,7 +2473,7 @@
         }
       }
     },
-    "/lobby/v1/admin/party/namespaces/{namespace}/parties/{partyId}/attributes": {
+    "/v1/admin/party/namespaces/{namespace}/parties/{partyId}/attributes": {
       "put": {
         "description": "Required permission : \u003ccode\u003eADMIN:NAMESPACE:{namespace}:PARTY:STORAGE [UPDATE]\u003c/code\u003e with scope \u003ccode\u003esocial\u003c/code\u003e\n\t\t\t\u003cbr\u003eupdate party attributes in a namespace.",
         "consumes": [
@@ -2557,7 +2558,7 @@
         }
       }
     },
-    "/lobby/v1/admin/party/namespaces/{namespace}/users/{userId}/party": {
+    "/v1/admin/party/namespaces/{namespace}/users/{userId}/party": {
       "get": {
         "description": "Required permission : \u003ccode\u003eADMIN:NAMESPACE:{namespace}:PARTY:STORAGE [READ]\u003c/code\u003e with scope \u003ccode\u003esocial\u003c/code\u003e\n\t\t\t\u003cbr\u003eget party data in a namespace.",
         "consumes": [
@@ -2627,7 +2628,7 @@
         }
       }
     },
-    "/lobby/v1/admin/player/namespaces/{namespace}/users/{userId}/attributes": {
+    "/v1/admin/player/namespaces/{namespace}/users/{userId}/attributes": {
       "get": {
         "description": "Required permission : \u003ccode\u003eADMIN:NAMESPACE:{namespace}:USER:{userId}:PLAYER:ATTRIBUTES [READ]\u003c/code\u003e with scope \u003ccode\u003esocial\u003c/code\u003e\n\t\t\t\u003cbr\u003eget all player's session attribute by user id in a namespace.",
         "consumes": [
@@ -2771,7 +2772,7 @@
         }
       }
     },
-    "/lobby/v1/admin/player/namespaces/{namespace}/users/{userId}/attributes/{attribute}": {
+    "/v1/admin/player/namespaces/{namespace}/users/{userId}/attributes/{attribute}": {
       "get": {
         "description": "Required permission : \u003ccode\u003eADMIN:NAMESPACE:{namespace}:USER:{userId}:PLAYER:ATTRIBUTES [READ]\u003c/code\u003e with scope \u003ccode\u003esocial\u003c/code\u003e\n\t\t\t\u003cbr\u003eget player's specific session attribute by user id in a namespace.",
         "consumes": [
@@ -2848,7 +2849,7 @@
         }
       }
     },
-    "/lobby/v1/admin/player/namespaces/{namespace}/users/{userId}/blocked": {
+    "/v1/admin/player/namespaces/{namespace}/users/{userId}/blocked": {
       "get": {
         "description": "Required permission : \u003ccode\u003eADMIN:NAMESPACE:{namespace}:USER:{userId}:PLAYER:BLOCK [READ]\u003c/code\u003e with scope \u003ccode\u003esocial\u003c/code\u003e\n\t\t\t\u003cbr\u003eget blocked players data by user id in a namespace.",
         "consumes": [
@@ -2918,7 +2919,7 @@
         }
       }
     },
-    "/lobby/v1/admin/player/namespaces/{namespace}/users/{userId}/blocked-by": {
+    "/v1/admin/player/namespaces/{namespace}/users/{userId}/blocked-by": {
       "get": {
         "description": "Required permission : \u003ccode\u003eADMIN:NAMESPACE:{namespace}:USER:{userId}:PLAYER:BLOCK [READ]\u003c/code\u003e with scope \u003ccode\u003esocial\u003c/code\u003e\n\t\t\t\u003cbr\u003eload get players who blocked this player in a namespace based on user id",
         "consumes": [
@@ -2988,7 +2989,7 @@
         }
       }
     },
-    "/lobby/v1/admin/player/namespaces/{namespace}/users/{userId}/bulk/block": {
+    "/v1/admin/player/namespaces/{namespace}/users/{userId}/bulk/block": {
       "post": {
         "description": "Required permission : \u003ccode\u003eADMIN:NAMESPACE:{namespace}:USER:{userId}:PLAYER:BLOCK [CREATE]\u003c/code\u003e with scope \u003ccode\u003esocial\u003c/code\u003e\n\t\t\t\u003cbr\u003eBulk block player in a namespace by list of user id",
         "consumes": [
@@ -3061,7 +3062,7 @@
         }
       }
     },
-    "/lobby/v1/admin/profanity/namespaces/{namespace}/filters/debug": {
+    "/v1/admin/profanity/namespaces/{namespace}/filters/debug": {
       "post": {
         "description": "Required permission : \u003ccode\u003eADMIN:NAMESPACE:{namespace}:PROFANITY [READ]\u003c/code\u003e with scope \u003ccode\u003esocial\u003c/code\u003e\n\t\t\t\u003cbr\u003eget the list of filters that would modify the phrase",
         "consumes": [
@@ -3136,7 +3137,7 @@
         }
       }
     },
-    "/lobby/v1/admin/profanity/namespaces/{namespace}/list/{list}/filters": {
+    "/v1/admin/profanity/namespaces/{namespace}/list/{list}/filters": {
       "get": {
         "description": "Required permission : \u003ccode\u003eADMIN:NAMESPACE:{namespace}:PROFANITY [READ]\u003c/code\u003e with scope \u003ccode\u003esocial\u003c/code\u003e\n\t\t\t\u003cbr\u003eget the list of filters inside the list.",
         "consumes": [
@@ -3280,7 +3281,7 @@
         }
       }
     },
-    "/lobby/v1/admin/profanity/namespaces/{namespace}/list/{list}/filters/bulk": {
+    "/v1/admin/profanity/namespaces/{namespace}/list/{list}/filters/bulk": {
       "post": {
         "description": "Required permission : \u003ccode\u003eADMIN:NAMESPACE:{namespace}:PROFANITY [CREATE]\u003c/code\u003e with scope \u003ccode\u003esocial\u003c/code\u003e\n\t\t\t\u003cbr\u003eadd multiple filters into the list",
         "consumes": [
@@ -3356,7 +3357,7 @@
         }
       }
     },
-    "/lobby/v1/admin/profanity/namespaces/{namespace}/list/{list}/filters/bulk-file": {
+    "/v1/admin/profanity/namespaces/{namespace}/list/{list}/filters/bulk-file": {
       "post": {
         "description": "Required permission : \u003ccode\u003eADMIN:NAMESPACE:{namespace}:PROFANITY [CREATE]\u003c/code\u003e with scope \u003ccode\u003esocial\u003c/code\u003e\n\t\t\t\u003cbr\u003eimport a file with filters",
         "consumes": [
@@ -3435,7 +3436,7 @@
         }
       }
     },
-    "/lobby/v1/admin/profanity/namespaces/{namespace}/list/{list}/filters/delete": {
+    "/v1/admin/profanity/namespaces/{namespace}/list/{list}/filters/delete": {
       "post": {
         "description": "Required permission : \u003ccode\u003eADMIN:NAMESPACE:{namespace}:PROFANITY [DELETE]\u003c/code\u003e with scope \u003ccode\u003esocial\u003c/code\u003e\n\t\t\t\u003cbr\u003edelete the filter from the list",
         "consumes": [
@@ -3517,7 +3518,7 @@
         }
       }
     },
-    "/lobby/v1/admin/profanity/namespaces/{namespace}/lists": {
+    "/v1/admin/profanity/namespaces/{namespace}/lists": {
       "get": {
         "description": "Required permission : \u003ccode\u003eADMIN:NAMESPACE:{namespace}:PROFANITY [READ]\u003c/code\u003e with scope \u003ccode\u003esocial\u003c/code\u003e\n\t\t\t\u003cbr\u003eget lists",
         "consumes": [
@@ -3650,7 +3651,7 @@
         }
       }
     },
-    "/lobby/v1/admin/profanity/namespaces/{namespace}/lists/{list}": {
+    "/v1/admin/profanity/namespaces/{namespace}/lists/{list}": {
       "post": {
         "description": "Required permission : \u003ccode\u003eADMIN:NAMESPACE:{namespace}:PROFANITY [UPDATE]\u003c/code\u003e with scope \u003ccode\u003esocial\u003c/code\u003e\n\t\t\t\u003cbr\u003eupdate the list",
         "consumes": [
@@ -3791,7 +3792,7 @@
         }
       }
     },
-    "/lobby/v1/admin/profanity/namespaces/{namespace}/rule": {
+    "/v1/admin/profanity/namespaces/{namespace}/rule": {
       "get": {
         "description": "Required permission : \u003ccode\u003eADMIN:NAMESPACE:{namespace}:PROFANITY [READ]\u003c/code\u003e with scope \u003ccode\u003esocial\u003c/code\u003e\n\t\t\t\u003cbr\u003eget current profanity rule",
         "consumes": [
@@ -3921,7 +3922,7 @@
         }
       }
     },
-    "/lobby/v1/admin/profanity/namespaces/{namespace}/verify": {
+    "/v1/admin/profanity/namespaces/{namespace}/verify": {
       "post": {
         "description": "Required permission : \u003ccode\u003eADMIN:NAMESPACE:{namespace}:PROFANITY [READ]\u003c/code\u003e with scope \u003ccode\u003esocial\u003c/code\u003e\n\t\t\t\u003cbr\u003everify a message directly from the UI or other services",
         "consumes": [
@@ -3993,7 +3994,7 @@
         }
       }
     },
-    "/lobby/v1/admin/thirdparty/namespaces/{namespace}/config/steam": {
+    "/v1/admin/thirdparty/namespaces/{namespace}/config/steam": {
       "get": {
         "description": "Required permission : \u003ccode\u003eADMIN:NAMESPACE:{namespace}:THIRDPARTY:CONFIG [READ]\u003c/code\u003e with scope \u003ccode\u003esocial\u003c/code\u003e\n\t\t\t\u003cbr\u003eget third party config for specified namespace.",
         "produces": [
@@ -4221,7 +4222,7 @@
         }
       }
     },
-    "/lobby/v1/messages": {
+    "/v1/messages": {
       "get": {
         "description": "get the list of messages.",
         "consumes": [
@@ -4251,7 +4252,7 @@
         }
       }
     },
-    "/lobby/v1/public/chat/namespaces/{namespace}/users/me/friends/{friendId}": {
+    "/v1/public/chat/namespaces/{namespace}/users/me/friends/{friendId}": {
       "get": {
         "description": "Required valid user authorization \u003cbr/\u003e\n\t\t\t\u003cbr\u003eload personal chat history in a namespace based on Friend User ID \u003cbr/\u003e\n\t\t\tAction Code: 50101",
         "consumes": [
@@ -4324,7 +4325,7 @@
         }
       }
     },
-    "/lobby/v1/public/notification/namespaces/{namespace}/users/me": {
+    "/v1/public/notification/namespaces/{namespace}/users/me": {
       "get": {
         "description": "Required valid user authorization\n\t\t\t\u003cbr\u003eRetrieve all notification stored for a user. Successfully retrieved notifications will not be deleted.",
         "consumes": [
@@ -4384,7 +4385,7 @@
         }
       }
     },
-    "/lobby/v1/public/party/namespaces/{namespace}/parties/{partyId}": {
+    "/v1/public/party/namespaces/{namespace}/parties/{partyId}": {
       "get": {
         "description": "Required valid user authorization \u003cbr/\u003e\n\t\t\t\u003cbr\u003eload personal party data in a namespace based on Party ID \u003cbr/\u003e\n\t\t\tAction Code: 50101",
         "consumes": [
@@ -4454,7 +4455,7 @@
         }
       }
     },
-    "/lobby/v1/public/party/namespaces/{namespace}/parties/{partyId}/attributes": {
+    "/v1/public/party/namespaces/{namespace}/parties/{partyId}/attributes": {
       "put": {
         "description": "Required valid user authorization \u003cbr/\u003e\n\t\t\t\u003cbr\u003eupdate party attributes in a namespace.",
         "consumes": [
@@ -4539,7 +4540,7 @@
         }
       }
     },
-    "/lobby/v1/public/player/namespaces/{namespace}/users/me/blocked": {
+    "/v1/public/player/namespaces/{namespace}/users/me/blocked": {
       "get": {
         "description": "Required valid user authorization \u003cbr/\u003e\n\t\t\t\u003cbr\u003eload blocked players in a namespace based on user id \u003cbr/\u003e\n\t\t\tAction Code: 50101",
         "consumes": [
@@ -4602,7 +4603,7 @@
         }
       }
     },
-    "/lobby/v1/public/player/namespaces/{namespace}/users/me/blocked-by": {
+    "/v1/public/player/namespaces/{namespace}/users/me/blocked-by": {
       "get": {
         "description": "Required valid user authorization \u003cbr/\u003e\n\t\t\t\u003cbr\u003eload get players who blocked this player in a namespace based on user id \u003cbr/\u003e\n\t\t\tAction Code: 50101",
         "consumes": [
@@ -4665,7 +4666,7 @@
         }
       }
     },
-    "/lobby/v1/public/presence/namespaces/{namespace}/users/presence": {
+    "/v1/public/presence/namespaces/{namespace}/users/presence": {
       "get": {
         "description": "Query users presence with given namespace and userIds.",
         "consumes": [

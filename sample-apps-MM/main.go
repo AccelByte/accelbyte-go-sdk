@@ -7,20 +7,26 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/model"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service"
+	"github.com/AccelByte/sample-apps/pkg"
+	"github.com/gorilla/websocket"
+
+	customUtils "github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/connectionutils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/parser"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/AccelByte/sample-apps/pkg/utils"
 	"github.com/sirupsen/logrus"
+	"io/ioutil"
+	"net/http"
 	"os"
 	"strings"
 )
 
 const (
-	userInfoCmd          = "1"
-	loginCmd             = "2"
-	logoutCmd            = "3"
-	createMatchmakingCmd = "4"
+	loginCmd             = "1"
+	createMatchmakingCmd = "2"
+	userInfoCmd          = "3"
+	logoutCmd            = "4"
 )
 
 var (
@@ -36,10 +42,9 @@ var (
 		TokenRepository: &repository.TokenRepositoryImpl{},
 		OauthService:    &oauthService,
 	}
-	connMgr       *utils.ConnectionManagerImpl
-	partyService  *service.PartyService
-	friendService *service.FriendServiceWebsocket
-	chatService   *service.ChatService
+	connMgr               *utils.ConnectionManagerImpl
+	notificationService   *service.NotificationServiceWebsocket
+	matchmakingServiceURL = oauthService.ConfigRepository.GetJusticeBaseUrl() + "/social/" + "/v1/admin/namespaces/{namespace}/stats"
 )
 
 func main() {
@@ -59,7 +64,6 @@ func getInput() string {
 }
 
 func serve() {
-
 	for {
 		printHelp()
 		command := getInput()
@@ -80,16 +84,15 @@ func printHelp() {
 	fmt.Printf(`
 Commands:
 # PoC Matchmaking
-%s: User info
 %s: Login
-%s: Logout
 %s: Create Matchmaking
-
+%s: User info
+%s: Logout
 `,
-		userInfoCmd,
 		loginCmd,
-		logoutCmd,
 		createMatchmakingCmd,
+		userInfoCmd,
+		logoutCmd,
 	)
 }
 
@@ -122,6 +125,7 @@ func login() {
 	password := getInput()
 	err := userService.Login(username, password)
 	if err != nil {
+		logrus.Error("Login Failed")
 		return
 	}
 	logrus.Info("Login Successful")
@@ -137,66 +141,52 @@ func logout() {
 }
 
 func createMatchmaking() {
-	//contentType := "application/json"
-	//client := utils.GetClient()
-	//a := oauthService.ConfigRepository.GetJusticeBaseUrl() + "/social/" + "/v1/admin/namespaces/{namespace}/stats"
-	//logrus.Info(a)
-	//resp, err := client.Post(oauthService.ConfigRepository.GetJusticeBaseUrl()+"/social"+"/v1/admin/namespaces/{namespace}/stats", contentType, nil)
-	//var body []byte
-	//t, _ := oauthService.TokenRepository.GetToken()
-	//var userID string
-	//if t == nil {
-	//	logrus.Error("token is null")
-	//} else {
-	//	userID = *t.UserID
-	//}
-	//logrus.Infof("UserID: %s", userID)
-	//if resp != nil {
-	//	body, err = ioutil.ReadAll(resp.Body)
-	//}
-	//if err != nil {
-	//	logrus.Error("http call error")
-	//} else {
-	//	logrus.Infof("Code: %s", resp.Status)
-	//	logrus.Infof("Body: %s", body)
-	//}
+	// listening message from lobby
 	reader = bufio.NewReader(os.Stdin)
 	logrus.Info("Enter websocket mode")
 	connMgr = &utils.ConnectionManagerImpl{}
-	configRepo := &repository.ConfigRepositoryImpl{}
-	tokenRepo := &repository.TokenRepositoryImpl{}
-	connection, err := connectionutils.NewWebsocketConnection(configRepo, tokenRepo, messageHandler)
+	connection, err := connectionutils.NewWebsocketConnection(oauthService.ConfigRepository, oauthService.TokenRepository, lobbyMessageHandler)
 	if err != nil {
 		panic(err)
 	}
 	connMgr.Save(connection)
-	partyService = &service.PartyService{
-		ConfigRepository:  configRepo,
-		TokenRepository:   tokenRepo,
+	notificationService = &service.NotificationServiceWebsocket{
+		ConfigRepository:  oauthService.ConfigRepository,
+		TokenRepository:   oauthService.TokenRepository,
 		ConnectionManager: connMgr,
 	}
-	friendService = &service.FriendServiceWebsocket{
-		ConfigRepository:  configRepo,
-		TokenRepository:   tokenRepo,
-		ConnectionManager: connMgr,
-	}
-	chatService = &service.ChatService{
-		ConfigRepository:  configRepo,
-		TokenRepository:   tokenRepo,
-		ConnectionManager: connMgr,
-	}
-
-	err = partyService.CreateParty()
+	err = notificationService.GetNotificationMessage()
 	if err != nil {
 		logrus.Error(err)
 		return
 	}
+	logrus.Info("Listening to lobby via websocket...")
 
-	defer connMgr.Close()
-	logrus.Info("Done")
+	// send request to custom MM service (AWS API Gateway)
+	token, err := oauthService.TokenRepository.GetToken()
+	client := utils.GetClient()
+	req, err := http.NewRequest("POST", matchmakingServiceURL, nil)
+	if err != nil {
+		logrus.Error("invalid request")
+		return
+	}
+	req.Header.Set("Content-Type", "application/json")
+	req.Header.Set("Authorization", "Bearer "+*token.AccessToken)
+	resp, err := client.Do(req)
+	logrus.Info("doing request to ")
+	var body []byte
+	if resp != nil {
+		body, err = ioutil.ReadAll(resp.Body)
+	}
+	if err != nil {
+		logrus.Error("http call error")
+	} else {
+		logrus.Infof("Code: %s", resp.Status)
+		logrus.Infof("Body: %s", body)
+	}
 }
 
-var messageHandler = func(dataByte []byte) {
+var lobbyMessageHandler = func(dataByte []byte) {
 	var msgType string
 	msg := decodeWSMessage(string(dataByte))
 
@@ -204,14 +194,53 @@ var messageHandler = func(dataByte []byte) {
 		msgType = v
 	}
 	switch msgType {
-	case model.TypeInfoResponse:
-		logrus.Infof("Receive response type %v", model.TypeInfoResponse)
+	case model.TypeNotificationMessage:
+		logrus.Infof("Receive response type %v", model.TypeNotificationMessage)
 		unmarshal, err := parser.UnmarshalResponse(dataByte)
 		if err != nil {
 			logrus.Error(err)
 			return
 		}
-		data := unmarshal.(*model.InfoResponse)
+		data := unmarshal.(*model.NotificationMessage)
+		if data.Topic == "NOTIF" {
+			if data.Payload == "searching" {
+				logrus.Info("match searching....")
+			} else {
+				message := strings.Fields(data.Payload)
+				logrus.Infof("match found\nconnecting to DS with IP : %s and Port : %s ...", message[1], message[2])
+				err := connectToDS(message[1], message[2])
+				if err != nil {
+					return 
+				}
+			}
+		}
+
+		marshal, err := json.Marshal(data)
+		if err != nil {
+			return
+		}
+		logrus.Infof("Response content %v", string(marshal))
+		break
+	}
+}
+
+
+var dsMessageHandler = func(dataByte []byte) {
+	var msgType string
+	msg := decodeWSMessage(string(dataByte))
+
+	if v, ok := msg["type"]; ok {
+		msgType = v
+	}
+	switch msgType {
+	case model.TypeDSNotif:
+		logrus.Infof("Receive response type %v", model.TypeDSNotif)
+		unmarshal, err := parser.UnmarshalResponse(dataByte)
+		if err != nil {
+			logrus.Error(err)
+			return
+		}
+		data := unmarshal.(*model.DSNotification)
 		marshal, err := json.Marshal(data)
 		if err != nil {
 			return
@@ -238,4 +267,23 @@ func decodeWSMessage(msg string) map[string]string {
 	}
 
 	return res
+}
+
+func connectToDS(ip, port string) error {
+	con, err := pkg.NewWebsocketConnection(ip, port, oauthService.TokenRepository, dsMessageHandler)
+	if err != nil {
+		return err
+	}
+	logrus.Debug("GetDSMessage")
+	messageID := customUtils.GenerateMessageID()
+	text := fmt.Sprintf("type: %s\n%s", model.TypeDSNotif, messageID)
+	err = con.Conn.WriteMessage(websocket.TextMessage, []byte(text))
+	if err != nil {
+		return err
+	}
+	err = connMgr.Close()
+	if err != nil {
+		return err
+	}
+	return nil
 }

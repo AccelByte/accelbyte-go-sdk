@@ -7,28 +7,9 @@ Golang SDKs generated using `go-swagger`.
 
 ### Golang SDK ###
 
-- Go to one of directory in `justice-go-sdk-clients/<service_name>-sdk`
-- Execute `make gen-client`, this command will lookup OpenAPI file `<service-name>-swagger.json` and template located in `pkg/utils/swagger-templates/client` so make sure both files are exist.
 
-#### Generate sdk
-- Go to one of directory in `justice-go-sdk-clients/<service_name>-sdk`
-- Execute `make gen-client`
-- make sure `package.json` have these configurations:
-    ```
-    ...,
-    "main": "dist/index.js",
-    "scripts": {
-        ...,
-        "build": "npx babel src -d dist",
-        "postinstall": "yarn run build"
-    },
-    ...
-     ```
-- build the package `yarn run build`
-
-#### Publish module
-
-We use lerna to wrap all of sdk into one module. Please refer to lerna's [documentation](https://github.com/lerna/lerna) on how to publish the module.
+- Go to one of directory in `accelbyte-go-sdk`
+- Execute `make gen-client S=<service-name>`, this command will lookup OpenAPI file `<service-name>-sdk/<service-name>-swagger.json` and template located in `<service-name>-sdk/pkg/utils/swagger-templates/client` so make sure both files are exist.
 
 ## Using the SDK ##
 

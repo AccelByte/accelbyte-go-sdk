@@ -44,7 +44,7 @@ var (
 	}
 	connMgr               *utils.ConnectionManagerImpl
 	notificationService   *service.NotificationServiceWebsocket
-	matchmakingServiceURL = oauthService.ConfigRepository.GetJusticeBaseUrl() + "/social/" + "/v1/admin/namespaces/{namespace}/stats"
+	matchmakingServiceURL = os.Getenv("CREATE_MATCHMAKING_ENDPOINT")
 )
 
 func main() {
@@ -173,7 +173,7 @@ func createMatchmaking() {
 	req.Header.Set("Content-Type", "application/json")
 	req.Header.Set("Authorization", "Bearer "+*token.AccessToken)
 	resp, err := client.Do(req)
-	logrus.Info("doing request to ")
+	logrus.Info("doing request to " + os.Getenv("CREATE_MATCHMAKING_ENDPOINT"))
 	var body []byte
 	if resp != nil {
 		body, err = ioutil.ReadAll(resp.Body)
@@ -210,7 +210,7 @@ var lobbyMessageHandler = func(dataByte []byte) {
 				logrus.Infof("match found\nconnecting to DS with IP : %s and Port : %s ...", message[1], message[2])
 				err := connectToDS(message[1], message[2])
 				if err != nil {
-					return 
+					return
 				}
 			}
 		}
@@ -223,7 +223,6 @@ var lobbyMessageHandler = func(dataByte []byte) {
 		break
 	}
 }
-
 
 var dsMessageHandler = func(dataByte []byte) {
 	var msgType string

@@ -29,6 +29,10 @@ type ModelsCreateSessionRequest struct {
 	// Required: true
 	Namespace *string `json:"namespace"`
 
+	// session type
+	// Required: true
+	SessionType *string `json:"session_type"`
+
 	// username
 	// Required: true
 	Username *string `json:"username"`
@@ -47,6 +51,10 @@ func (m *ModelsCreateSessionRequest) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateNamespace(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSessionType(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -90,6 +98,15 @@ func (m *ModelsCreateSessionRequest) validateGameVersion(formats strfmt.Registry
 func (m *ModelsCreateSessionRequest) validateNamespace(formats strfmt.Registry) error {
 
 	if err := validate.Required("namespace", "body", m.Namespace); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsCreateSessionRequest) validateSessionType(formats strfmt.Registry) error {
+
+	if err := validate.Required("session_type", "body", m.SessionType); err != nil {
 		return err
 	}
 

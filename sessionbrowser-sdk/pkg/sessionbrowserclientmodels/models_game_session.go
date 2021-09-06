@@ -17,6 +17,10 @@ import (
 // swagger:model models.GameSession
 type ModelsGameSession struct {
 
+	// all players
+	// Required: true
+	AllPlayers []string `json:"all_players"`
+
 	// created at
 	// Required: true
 	// Format: date-time
@@ -42,6 +46,10 @@ type ModelsGameSession struct {
 	// Required: true
 	Namespace *string `json:"namespace"`
 
+	// players
+	// Required: true
+	Players []string `json:"players"`
+
 	// server
 	// Required: true
 	Server *ModelsServer `json:"server"`
@@ -53,6 +61,10 @@ type ModelsGameSession struct {
 	// session type
 	// Required: true
 	SessionType *string `json:"session_type"`
+
+	// spectators
+	// Required: true
+	Spectators []string `json:"spectators"`
 
 	// user id
 	// Required: true
@@ -66,6 +78,10 @@ type ModelsGameSession struct {
 // Validate validates this models game session
 func (m *ModelsGameSession) Validate(formats strfmt.Registry) error {
 	var res []error
+
+	if err := m.validateAllPlayers(formats); err != nil {
+		res = append(res, err)
+	}
 
 	if err := m.validateCreatedAt(formats); err != nil {
 		res = append(res, err)
@@ -91,6 +107,10 @@ func (m *ModelsGameSession) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validatePlayers(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateServer(formats); err != nil {
 		res = append(res, err)
 	}
@@ -100,6 +120,10 @@ func (m *ModelsGameSession) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateSessionType(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSpectators(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -114,6 +138,15 @@ func (m *ModelsGameSession) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *ModelsGameSession) validateAllPlayers(formats strfmt.Registry) error {
+
+	if err := validate.Required("all_players", "body", m.AllPlayers); err != nil {
+		return err
+	}
+
 	return nil
 }
 
@@ -193,6 +226,15 @@ func (m *ModelsGameSession) validateNamespace(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *ModelsGameSession) validatePlayers(formats strfmt.Registry) error {
+
+	if err := validate.Required("players", "body", m.Players); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *ModelsGameSession) validateServer(formats strfmt.Registry) error {
 
 	if err := validate.Required("server", "body", m.Server); err != nil {
@@ -223,6 +265,15 @@ func (m *ModelsGameSession) validateSessionID(formats strfmt.Registry) error {
 func (m *ModelsGameSession) validateSessionType(formats strfmt.Registry) error {
 
 	if err := validate.Required("session_type", "body", m.SessionType); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsGameSession) validateSpectators(formats strfmt.Registry) error {
+
+	if err := validate.Required("spectators", "body", m.Spectators); err != nil {
 		return err
 	}
 

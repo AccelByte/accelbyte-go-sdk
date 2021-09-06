@@ -12,10 +12,10 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// ModelsSessionResponse models session response
+// ModelsAdminSessionResponse models admin session response
 //
-// swagger:model models.SessionResponse
-type ModelsSessionResponse struct {
+// swagger:model models.AdminSessionResponse
+type ModelsAdminSessionResponse struct {
 
 	// all players
 	// Required: true
@@ -75,8 +75,8 @@ type ModelsSessionResponse struct {
 	Username *string `json:"username"`
 }
 
-// Validate validates this models session response
-func (m *ModelsSessionResponse) Validate(formats strfmt.Registry) error {
+// Validate validates this models admin session response
+func (m *ModelsAdminSessionResponse) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateAllPlayers(formats); err != nil {
@@ -141,7 +141,7 @@ func (m *ModelsSessionResponse) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *ModelsSessionResponse) validateAllPlayers(formats strfmt.Registry) error {
+func (m *ModelsAdminSessionResponse) validateAllPlayers(formats strfmt.Registry) error {
 
 	if err := validate.Required("all_players", "body", m.AllPlayers); err != nil {
 		return err
@@ -150,7 +150,7 @@ func (m *ModelsSessionResponse) validateAllPlayers(formats strfmt.Registry) erro
 	return nil
 }
 
-func (m *ModelsSessionResponse) validateCreatedAt(formats strfmt.Registry) error {
+func (m *ModelsAdminSessionResponse) validateCreatedAt(formats strfmt.Registry) error {
 
 	if err := validate.Required("created_at", "body", m.CreatedAt); err != nil {
 		return err
@@ -163,7 +163,7 @@ func (m *ModelsSessionResponse) validateCreatedAt(formats strfmt.Registry) error
 	return nil
 }
 
-func (m *ModelsSessionResponse) validateGameSessionSetting(formats strfmt.Registry) error {
+func (m *ModelsAdminSessionResponse) validateGameSessionSetting(formats strfmt.Registry) error {
 
 	if err := validate.Required("game_session_setting", "body", m.GameSessionSetting); err != nil {
 		return err
@@ -181,7 +181,7 @@ func (m *ModelsSessionResponse) validateGameSessionSetting(formats strfmt.Regist
 	return nil
 }
 
-func (m *ModelsSessionResponse) validateGameVersion(formats strfmt.Registry) error {
+func (m *ModelsAdminSessionResponse) validateGameVersion(formats strfmt.Registry) error {
 
 	if err := validate.Required("game_version", "body", m.GameVersion); err != nil {
 		return err
@@ -190,7 +190,7 @@ func (m *ModelsSessionResponse) validateGameVersion(formats strfmt.Registry) err
 	return nil
 }
 
-func (m *ModelsSessionResponse) validateJoinable(formats strfmt.Registry) error {
+func (m *ModelsAdminSessionResponse) validateJoinable(formats strfmt.Registry) error {
 
 	if err := validate.Required("joinable", "body", m.Joinable); err != nil {
 		return err
@@ -199,7 +199,7 @@ func (m *ModelsSessionResponse) validateJoinable(formats strfmt.Registry) error 
 	return nil
 }
 
-func (m *ModelsSessionResponse) validateMatch(formats strfmt.Registry) error {
+func (m *ModelsAdminSessionResponse) validateMatch(formats strfmt.Registry) error {
 
 	if err := validate.Required("match", "body", m.Match); err != nil {
 		return err
@@ -217,7 +217,7 @@ func (m *ModelsSessionResponse) validateMatch(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *ModelsSessionResponse) validateNamespace(formats strfmt.Registry) error {
+func (m *ModelsAdminSessionResponse) validateNamespace(formats strfmt.Registry) error {
 
 	if err := validate.Required("namespace", "body", m.Namespace); err != nil {
 		return err
@@ -226,7 +226,7 @@ func (m *ModelsSessionResponse) validateNamespace(formats strfmt.Registry) error
 	return nil
 }
 
-func (m *ModelsSessionResponse) validatePlayers(formats strfmt.Registry) error {
+func (m *ModelsAdminSessionResponse) validatePlayers(formats strfmt.Registry) error {
 
 	if err := validate.Required("players", "body", m.Players); err != nil {
 		return err
@@ -235,7 +235,7 @@ func (m *ModelsSessionResponse) validatePlayers(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *ModelsSessionResponse) validateServer(formats strfmt.Registry) error {
+func (m *ModelsAdminSessionResponse) validateServer(formats strfmt.Registry) error {
 
 	if err := validate.Required("server", "body", m.Server); err != nil {
 		return err
@@ -253,7 +253,7 @@ func (m *ModelsSessionResponse) validateServer(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *ModelsSessionResponse) validateSessionID(formats strfmt.Registry) error {
+func (m *ModelsAdminSessionResponse) validateSessionID(formats strfmt.Registry) error {
 
 	if err := validate.Required("session_id", "body", m.SessionID); err != nil {
 		return err
@@ -262,7 +262,7 @@ func (m *ModelsSessionResponse) validateSessionID(formats strfmt.Registry) error
 	return nil
 }
 
-func (m *ModelsSessionResponse) validateSessionType(formats strfmt.Registry) error {
+func (m *ModelsAdminSessionResponse) validateSessionType(formats strfmt.Registry) error {
 
 	if err := validate.Required("session_type", "body", m.SessionType); err != nil {
 		return err
@@ -271,7 +271,7 @@ func (m *ModelsSessionResponse) validateSessionType(formats strfmt.Registry) err
 	return nil
 }
 
-func (m *ModelsSessionResponse) validateSpectators(formats strfmt.Registry) error {
+func (m *ModelsAdminSessionResponse) validateSpectators(formats strfmt.Registry) error {
 
 	if err := validate.Required("spectators", "body", m.Spectators); err != nil {
 		return err
@@ -280,7 +280,7 @@ func (m *ModelsSessionResponse) validateSpectators(formats strfmt.Registry) erro
 	return nil
 }
 
-func (m *ModelsSessionResponse) validateUserID(formats strfmt.Registry) error {
+func (m *ModelsAdminSessionResponse) validateUserID(formats strfmt.Registry) error {
 
 	if err := validate.Required("user_id", "body", m.UserID); err != nil {
 		return err
@@ -289,7 +289,7 @@ func (m *ModelsSessionResponse) validateUserID(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *ModelsSessionResponse) validateUsername(formats strfmt.Registry) error {
+func (m *ModelsAdminSessionResponse) validateUsername(formats strfmt.Registry) error {
 
 	if err := validate.Required("username", "body", m.Username); err != nil {
 		return err
@@ -299,7 +299,7 @@ func (m *ModelsSessionResponse) validateUsername(formats strfmt.Registry) error 
 }
 
 // MarshalBinary interface implementation
-func (m *ModelsSessionResponse) MarshalBinary() ([]byte, error) {
+func (m *ModelsAdminSessionResponse) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -307,8 +307,8 @@ func (m *ModelsSessionResponse) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *ModelsSessionResponse) UnmarshalBinary(b []byte) error {
-	var res ModelsSessionResponse
+func (m *ModelsAdminSessionResponse) UnmarshalBinary(b []byte) error {
+	var res ModelsAdminSessionResponse
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

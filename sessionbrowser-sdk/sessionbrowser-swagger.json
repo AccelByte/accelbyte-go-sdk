@@ -2,10 +2,206 @@
   "swagger": "2.0",
   "info": {
     "description": "Justice Session Browser Service",
-    "version": "",
-    "title": "justice-session-browser-service"
+    "title": "justice-session-browser-service",
+    "version": ""
   },
   "paths": {
+    "/sessionbrowser/admin/namespaces/{namespace}/gamesession/active/count": {
+      "get": {
+        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [READ]\n\nRequired scope: social",
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Session"
+        ],
+        "summary": "Get all active session",
+        "operationId": "GetTotalActiveSession",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "session type to query, accept 'dedicated' or 'p2p'",
+            "name": "session_type",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "total active session, p2p session will only have 'total' attribute",
+            "schema": {
+              "$ref": "#/definitions/models.CountActiveSessionResponse"
+            }
+          },
+          "400": {
+            "description": "malformed request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        }
+      }
+    },
+    "/sessionbrowser/admin/namespaces/{namespace}/gamesession/active/custom-game": {
+      "get": {
+        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [READ]\n\nRequired scope: social",
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Session"
+        ],
+        "summary": "Get all active session for custom game, this return only dedicated session type",
+        "operationId": "GetActiveCustomGameSessions",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "game session ID",
+            "name": "session_id",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "custom game session list",
+            "schema": {
+              "$ref": "#/definitions/models.ActiveCustomGameResponse"
+            }
+          },
+          "400": {
+            "description": "malformed request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        }
+      }
+    },
+    "/sessionbrowser/admin/namespaces/{namespace}/gamesession/active/matchmaking-game": {
+      "get": {
+        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [READ]\n\nRequired scope: social",
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Session"
+        ],
+        "summary": "Get all active session for matchmaking game, this return only dedicated session type",
+        "operationId": "GetActiveMatchmakingGameSessions",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "game session ID",
+            "name": "session_id",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "matchmaking ID",
+            "name": "match_id",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "matchmaking game session list",
+            "schema": {
+              "$ref": "#/definitions/models.ActiveMatchmakingGameResponse"
+            }
+          },
+          "400": {
+            "description": "malformed request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        }
+      }
+    },
+    "/sessionbrowser/admin/namespaces/{namespace}/gamesession/{sessionID}": {
+      "get": {
+        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [READ]\n\nRequired scope: social\n\nGet the session by session ID for admin user",
+        "tags": [
+          "Session"
+        ],
+        "summary": "Admin get specified session by session ID",
+        "operationId": "AdminGetSession",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "session ID",
+            "name": "sessionID",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "session get",
+            "schema": {
+              "$ref": "#/definitions/models.AdminSessionResponse"
+            }
+          },
+          "404": {
+            "description": "session not found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        }
+      }
+    },
     "/sessionbrowser/namespaces/{namespace}/gamesession": {
       "get": {
         "description": "Required permission: NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [READ]\n\nRequired scope: social\n\nQuery available game session",
@@ -63,6 +259,12 @@
             "type": "string",
             "description": "filter session by matchmaking ID",
             "name": "match_id",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "filter session by match existence, accept 'true' or 'false'",
+            "name": "match_exist",
             "in": "query"
           },
           {
@@ -386,46 +588,392 @@
           }
         }
       }
+    },
+    "/sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/join": {
+      "post": {
+        "description": "Required permission: NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [READ]\n\nRequired scope: social\n\nJoin the specified session by session ID. Possible the game required a password to join",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Session"
+        ],
+        "summary": "Join specified session by session ID",
+        "operationId": "JoinSession",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace of the game",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.JoinGameSessionRequest"
+            }
+          },
+          {
+            "type": "string",
+            "description": "session ID",
+            "name": "sessionID",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "session get",
+            "schema": {
+              "$ref": "#/definitions/models.SessionResponse"
+            }
+          },
+          "404": {
+            "description": "session not found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        }
+      }
+    },
+    "/sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/localds": {
+      "delete": {
+        "description": "Required permission: NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [DELETE]\n\nRequired scope: social\n\nOnly use for local DS entry, will error when calling non local DS entry",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Session"
+        ],
+        "summary": "Only use for local DS entry, will error when calling non local DS entry",
+        "operationId": "DeleteSessionLocalDS",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace of the game",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "session ID",
+            "name": "sessionID",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "session get",
+            "schema": {
+              "$ref": "#/definitions/models.SessionResponse"
+            }
+          },
+          "400": {
+            "description": "malformed request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "session not found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        }
+      }
+    },
+    "/sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/player": {
+      "post": {
+        "description": "Required permission: NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [UPDATE]\n\nRequired scope: social\n\nAdd player to game session",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Session"
+        ],
+        "summary": "Add player to game session",
+        "operationId": "AddPlayerToSession",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace of the game",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "session ID",
+            "name": "sessionID",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.AddPlayerRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "session updated",
+            "schema": {
+              "$ref": "#/definitions/models.AddPlayerResponse"
+            }
+          },
+          "400": {
+            "description": "malformed request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "session not found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        }
+      }
+    },
+    "/sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/player/{user_id}": {
+      "delete": {
+        "description": "Required permission: NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [UPDATE]\n\nRequired scope: social\n\nRemove player from game session",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Session"
+        ],
+        "summary": "remove player from game session",
+        "operationId": "RemovePlayerFromSession",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace of the game",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "session ID",
+            "name": "sessionID",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "user ID",
+            "name": "user_id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "player removed",
+            "schema": {
+              "$ref": "#/definitions/models.AddPlayerResponse"
+            }
+          },
+          "400": {
+            "description": "malformed request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "session not found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        }
+      }
+    },
+    "/sessionbrowser/namespaces/{namespace}/recentplayer/{user_id}": {
+      "get": {
+        "description": "Required permission: NAMESPACE:{namespace}:SESSIONBROWSER:RECENTPLAYER [READ]\n\nRequired scope: social\n\nQuery recent player by user ID",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Session"
+        ],
+        "summary": "Query recent players with given user id",
+        "operationId": "GetRecentPlayer",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace of the game",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "user ID",
+            "name": "user_id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "recent player get",
+            "schema": {
+              "$ref": "#/definitions/models.RecentPlayerQueryResponse"
+            }
+          },
+          "400": {
+            "description": "malformed request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        }
+      }
     }
   },
   "definitions": {
-    "models.CreateSessionRequest": {
+    "models.ActiveCustomGameResponse": {
       "required": [
-        "namespace",
-        "username",
-        "game_version",
-        "game_session_setting"
+        "sessions",
+        "pagination"
       ],
       "properties": {
-        "game_session_setting": {
-          "$ref": "#/definitions/models.GameSessionSetting"
+        "pagination": {
+          "$ref": "#/definitions/models.PagingCursor"
         },
-        "game_version": {
-          "type": "string"
+        "sessions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/models.CustomGameResponse"
+          }
+        }
+      }
+    },
+    "models.ActiveMatchmakingGameResponse": {
+      "required": [
+        "sessions",
+        "pagination"
+      ],
+      "properties": {
+        "pagination": {
+          "$ref": "#/definitions/models.PagingCursor"
         },
-        "namespace": {
-          "type": "string"
+        "sessions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/models.GameSession"
+          }
+        }
+      }
+    },
+    "models.AddPlayerRequest": {
+      "required": [
+        "user_id",
+        "as_spectator"
+      ],
+      "properties": {
+        "as_spectator": {
+          "type": "boolean"
         },
-        "username": {
+        "user_id": {
           "type": "string"
         }
       }
     },
-    "models.GameSession": {
+    "models.AddPlayerResponse": {
       "required": [
-        "session_id",
-        "namespace",
-        "user_id",
-        "username",
-        "game_version",
-        "session_type",
-        "game_session_setting",
-        "created_at",
-        "joinable",
-        "match",
-        "server"
+        "status"
       ],
       "properties": {
+        "status": {
+          "type": "boolean"
+        }
+      }
+    },
+    "models.AdminSessionResponse": {
+      "required": [
+        "game_session_setting",
+        "created_at",
+        "spectators",
+        "match",
+        "session_type",
+        "game_version",
+        "session_id",
+        "user_id",
+        "username",
+        "players",
+        "all_players",
+        "namespace",
+        "server",
+        "joinable"
+      ],
+      "properties": {
+        "all_players": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
         "created_at": {
           "type": "string",
           "format": "date-time"
@@ -445,6 +993,12 @@
         "namespace": {
           "type": "string"
         },
+        "players": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
         "server": {
           "$ref": "#/definitions/models.Server"
         },
@@ -453,6 +1007,187 @@
         },
         "session_type": {
           "type": "string"
+        },
+        "spectators": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "user_id": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        }
+      }
+    },
+    "models.CountActiveSessionResponse": {
+      "required": [
+        "total",
+        "matchmaking_game",
+        "custom_game"
+      ],
+      "properties": {
+        "custom_game": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "matchmaking_game": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "total": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "models.CreateSessionRequest": {
+      "required": [
+        "namespace",
+        "username",
+        "game_version",
+        "session_type",
+        "game_session_setting"
+      ],
+      "properties": {
+        "game_session_setting": {
+          "$ref": "#/definitions/models.GameSessionSetting"
+        },
+        "game_version": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "session_type": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        }
+      }
+    },
+    "models.CustomGameResponse": {
+      "required": [
+        "session_id",
+        "namespace",
+        "session_type",
+        "game_session_setting",
+        "created_at",
+        "players",
+        "all_players",
+        "spectators",
+        "joinable",
+        "server"
+      ],
+      "properties": {
+        "all_players": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "game_session_setting": {
+          "$ref": "#/definitions/models.GameSessionSetting"
+        },
+        "joinable": {
+          "type": "boolean"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "players": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "server": {
+          "$ref": "#/definitions/models.Server"
+        },
+        "session_id": {
+          "type": "string"
+        },
+        "session_type": {
+          "type": "string"
+        },
+        "spectators": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "models.GameSession": {
+      "required": [
+        "session_id",
+        "namespace",
+        "user_id",
+        "username",
+        "game_version",
+        "session_type",
+        "game_session_setting",
+        "created_at",
+        "players",
+        "all_players",
+        "spectators",
+        "joinable",
+        "match",
+        "server"
+      ],
+      "properties": {
+        "all_players": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "game_session_setting": {
+          "$ref": "#/definitions/models.GameSessionSetting"
+        },
+        "game_version": {
+          "type": "string"
+        },
+        "joinable": {
+          "type": "boolean"
+        },
+        "match": {
+          "$ref": "#/definitions/models.MatchMaking"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "players": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "server": {
+          "$ref": "#/definitions/models.Server"
+        },
+        "session_id": {
+          "type": "string"
+        },
+        "session_type": {
+          "type": "string"
+        },
+        "spectators": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         },
         "user_id": {
           "type": "string"
@@ -469,12 +1204,19 @@
         "num_bot",
         "max_player",
         "current_player",
+        "max_internal_player",
+        "current_internal_player",
         "allow_join_in_progress",
+        "password",
         "settings"
       ],
       "properties": {
         "allow_join_in_progress": {
           "type": "boolean"
+        },
+        "current_internal_player": {
+          "type": "integer",
+          "format": "int32"
         },
         "current_player": {
           "type": "integer",
@@ -482,6 +1224,10 @@
         },
         "map_name": {
           "type": "string"
+        },
+        "max_internal_player": {
+          "type": "integer",
+          "format": "int32"
         },
         "max_player": {
           "type": "integer",
@@ -494,8 +1240,21 @@
           "type": "integer",
           "format": "int32"
         },
+        "password": {
+          "type": "string"
+        },
         "settings": {
           "type": "object"
+        }
+      }
+    },
+    "models.JoinGameSessionRequest": {
+      "required": [
+        "password"
+      ],
+      "properties": {
+        "password": {
+          "type": "string"
         }
       }
     },
@@ -619,20 +1378,12 @@
         }
       }
     },
-    "models.Pagination": {
+    "models.PagingCursor": {
       "required": [
-        "previous",
         "next",
-        "first",
-        "last"
+        "previous"
       ],
       "properties": {
-        "first": {
-          "type": "string"
-        },
-        "last": {
-          "type": "string"
-        },
         "next": {
           "type": "string"
         },
@@ -681,6 +1432,51 @@
         },
         "params": {
           "type": "string"
+        }
+      }
+    },
+    "models.RecentPlayerHistory": {
+      "required": [
+        "created_at",
+        "updated_at",
+        "namespace",
+        "user_id",
+        "other_id",
+        "other_display_name"
+      ],
+      "properties": {
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "other_display_name": {
+          "type": "string"
+        },
+        "other_id": {
+          "type": "string"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "user_id": {
+          "type": "string"
+        }
+      }
+    },
+    "models.RecentPlayerQueryResponse": {
+      "required": [
+        "data"
+      ],
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/models.RecentPlayerHistory"
+          }
         }
       }
     },
@@ -811,7 +1607,7 @@
       ],
       "properties": {
         "pagination": {
-          "$ref": "#/definitions/models.Pagination"
+          "$ref": "#/definitions/models.PagingCursor"
         },
         "sessions": {
           "type": "array",
@@ -823,19 +1619,28 @@
     },
     "models.SessionResponse": {
       "required": [
-        "game_session_setting",
+        "server",
         "created_at",
         "match",
-        "game_version",
         "session_type",
-        "user_id",
-        "username",
-        "joinable",
-        "server",
+        "all_players",
         "session_id",
-        "namespace"
+        "game_version",
+        "spectators",
+        "namespace",
+        "game_session_setting",
+        "players",
+        "joinable",
+        "user_id",
+        "username"
       ],
       "properties": {
+        "all_players": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
         "created_at": {
           "type": "string",
           "format": "date-time"
@@ -855,6 +1660,12 @@
         "namespace": {
           "type": "string"
         },
+        "players": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
         "server": {
           "$ref": "#/definitions/models.Server"
         },
@@ -863,6 +1674,12 @@
         },
         "session_type": {
           "type": "string"
+        },
+        "spectators": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         },
         "user_id": {
           "type": "string"

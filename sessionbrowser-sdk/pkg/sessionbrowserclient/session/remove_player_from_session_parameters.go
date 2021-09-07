@@ -165,8 +165,8 @@ func (o *RemovePlayerFromSessionParams) WriteToRequest(r runtime.ClientRequest, 
 		return err
 	}
 
-	// path param user_id
-	if err := r.SetPathParam("user_id", o.UserID); err != nil {
+	// path param userID
+	if err := r.SetPathParam("userID", o.UserID); err != nil {
 		return err
 	}
 

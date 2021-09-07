@@ -55,7 +55,7 @@ func (o *RemovePlayerFromSessionReader) ReadResponse(response runtime.ClientResp
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested DELETE /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/player/{user_id} returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested DELETE /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/player/{userID} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -73,7 +73,7 @@ type RemovePlayerFromSessionOK struct {
 }
 
 func (o *RemovePlayerFromSessionOK) Error() string {
-	return fmt.Sprintf("[DELETE /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/player/{user_id}][%d] removePlayerFromSessionOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[DELETE /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/player/{userID}][%d] removePlayerFromSessionOK  %+v", 200, o.Payload)
 }
 
 func (o *RemovePlayerFromSessionOK) GetPayload() *sessionbrowserclientmodels.ModelsAddPlayerResponse {
@@ -102,20 +102,20 @@ func NewRemovePlayerFromSessionBadRequest() *RemovePlayerFromSessionBadRequest {
   malformed request
 */
 type RemovePlayerFromSessionBadRequest struct {
-	Payload *sessionbrowserclientmodels.ResponseError
+	Payload *sessionbrowserclientmodels.RestapiErrorResponseV2
 }
 
 func (o *RemovePlayerFromSessionBadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/player/{user_id}][%d] removePlayerFromSessionBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[DELETE /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/player/{userID}][%d] removePlayerFromSessionBadRequest  %+v", 400, o.Payload)
 }
 
-func (o *RemovePlayerFromSessionBadRequest) GetPayload() *sessionbrowserclientmodels.ResponseError {
+func (o *RemovePlayerFromSessionBadRequest) GetPayload() *sessionbrowserclientmodels.RestapiErrorResponseV2 {
 	return o.Payload
 }
 
 func (o *RemovePlayerFromSessionBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(sessionbrowserclientmodels.ResponseError)
+	o.Payload = new(sessionbrowserclientmodels.RestapiErrorResponseV2)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -135,20 +135,20 @@ func NewRemovePlayerFromSessionNotFound() *RemovePlayerFromSessionNotFound {
   session not found
 */
 type RemovePlayerFromSessionNotFound struct {
-	Payload *sessionbrowserclientmodels.ResponseError
+	Payload *sessionbrowserclientmodels.RestapiErrorResponseV2
 }
 
 func (o *RemovePlayerFromSessionNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/player/{user_id}][%d] removePlayerFromSessionNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[DELETE /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/player/{userID}][%d] removePlayerFromSessionNotFound  %+v", 404, o.Payload)
 }
 
-func (o *RemovePlayerFromSessionNotFound) GetPayload() *sessionbrowserclientmodels.ResponseError {
+func (o *RemovePlayerFromSessionNotFound) GetPayload() *sessionbrowserclientmodels.RestapiErrorResponseV2 {
 	return o.Payload
 }
 
 func (o *RemovePlayerFromSessionNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(sessionbrowserclientmodels.ResponseError)
+	o.Payload = new(sessionbrowserclientmodels.RestapiErrorResponseV2)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -168,20 +168,20 @@ func NewRemovePlayerFromSessionInternalServerError() *RemovePlayerFromSessionInt
   Internal Server Error
 */
 type RemovePlayerFromSessionInternalServerError struct {
-	Payload *sessionbrowserclientmodels.ResponseError
+	Payload *sessionbrowserclientmodels.RestapiErrorResponseV2
 }
 
 func (o *RemovePlayerFromSessionInternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/player/{user_id}][%d] removePlayerFromSessionInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[DELETE /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/player/{userID}][%d] removePlayerFromSessionInternalServerError  %+v", 500, o.Payload)
 }
 
-func (o *RemovePlayerFromSessionInternalServerError) GetPayload() *sessionbrowserclientmodels.ResponseError {
+func (o *RemovePlayerFromSessionInternalServerError) GetPayload() *sessionbrowserclientmodels.RestapiErrorResponseV2 {
 	return o.Payload
 }
 
 func (o *RemovePlayerFromSessionInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(sessionbrowserclientmodels.ResponseError)
+	o.Payload = new(sessionbrowserclientmodels.RestapiErrorResponseV2)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

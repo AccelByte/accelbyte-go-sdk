@@ -49,7 +49,7 @@ func (o *GetRecentPlayerReader) ReadResponse(response runtime.ClientResponse, co
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /sessionbrowser/namespaces/{namespace}/recentplayer/{user_id} returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /sessionbrowser/namespaces/{namespace}/recentplayer/{userID} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -67,7 +67,7 @@ type GetRecentPlayerOK struct {
 }
 
 func (o *GetRecentPlayerOK) Error() string {
-	return fmt.Sprintf("[GET /sessionbrowser/namespaces/{namespace}/recentplayer/{user_id}][%d] getRecentPlayerOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /sessionbrowser/namespaces/{namespace}/recentplayer/{userID}][%d] getRecentPlayerOK  %+v", 200, o.Payload)
 }
 
 func (o *GetRecentPlayerOK) GetPayload() *sessionbrowserclientmodels.ModelsRecentPlayerQueryResponse {
@@ -100,7 +100,7 @@ type GetRecentPlayerBadRequest struct {
 }
 
 func (o *GetRecentPlayerBadRequest) Error() string {
-	return fmt.Sprintf("[GET /sessionbrowser/namespaces/{namespace}/recentplayer/{user_id}][%d] getRecentPlayerBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /sessionbrowser/namespaces/{namespace}/recentplayer/{userID}][%d] getRecentPlayerBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *GetRecentPlayerBadRequest) GetPayload() *sessionbrowserclientmodels.ResponseError {
@@ -133,7 +133,7 @@ type GetRecentPlayerInternalServerError struct {
 }
 
 func (o *GetRecentPlayerInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /sessionbrowser/namespaces/{namespace}/recentplayer/{user_id}][%d] getRecentPlayerInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /sessionbrowser/namespaces/{namespace}/recentplayer/{userID}][%d] getRecentPlayerInternalServerError  %+v", 500, o.Payload)
 }
 
 func (o *GetRecentPlayerInternalServerError) GetPayload() *sessionbrowserclientmodels.ResponseError {

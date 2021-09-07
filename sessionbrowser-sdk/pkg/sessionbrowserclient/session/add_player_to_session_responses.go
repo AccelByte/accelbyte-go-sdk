@@ -102,20 +102,20 @@ func NewAddPlayerToSessionBadRequest() *AddPlayerToSessionBadRequest {
   malformed request
 */
 type AddPlayerToSessionBadRequest struct {
-	Payload *sessionbrowserclientmodels.ResponseError
+	Payload *sessionbrowserclientmodels.RestapiErrorResponseV2
 }
 
 func (o *AddPlayerToSessionBadRequest) Error() string {
 	return fmt.Sprintf("[POST /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/player][%d] addPlayerToSessionBadRequest  %+v", 400, o.Payload)
 }
 
-func (o *AddPlayerToSessionBadRequest) GetPayload() *sessionbrowserclientmodels.ResponseError {
+func (o *AddPlayerToSessionBadRequest) GetPayload() *sessionbrowserclientmodels.RestapiErrorResponseV2 {
 	return o.Payload
 }
 
 func (o *AddPlayerToSessionBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(sessionbrowserclientmodels.ResponseError)
+	o.Payload = new(sessionbrowserclientmodels.RestapiErrorResponseV2)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -135,20 +135,20 @@ func NewAddPlayerToSessionNotFound() *AddPlayerToSessionNotFound {
   session not found
 */
 type AddPlayerToSessionNotFound struct {
-	Payload *sessionbrowserclientmodels.ResponseError
+	Payload *sessionbrowserclientmodels.RestapiErrorResponseV2
 }
 
 func (o *AddPlayerToSessionNotFound) Error() string {
 	return fmt.Sprintf("[POST /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/player][%d] addPlayerToSessionNotFound  %+v", 404, o.Payload)
 }
 
-func (o *AddPlayerToSessionNotFound) GetPayload() *sessionbrowserclientmodels.ResponseError {
+func (o *AddPlayerToSessionNotFound) GetPayload() *sessionbrowserclientmodels.RestapiErrorResponseV2 {
 	return o.Payload
 }
 
 func (o *AddPlayerToSessionNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(sessionbrowserclientmodels.ResponseError)
+	o.Payload = new(sessionbrowserclientmodels.RestapiErrorResponseV2)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -168,20 +168,20 @@ func NewAddPlayerToSessionInternalServerError() *AddPlayerToSessionInternalServe
   Internal Server Error
 */
 type AddPlayerToSessionInternalServerError struct {
-	Payload *sessionbrowserclientmodels.ResponseError
+	Payload *sessionbrowserclientmodels.RestapiErrorResponseV2
 }
 
 func (o *AddPlayerToSessionInternalServerError) Error() string {
 	return fmt.Sprintf("[POST /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/player][%d] addPlayerToSessionInternalServerError  %+v", 500, o.Payload)
 }
 
-func (o *AddPlayerToSessionInternalServerError) GetPayload() *sessionbrowserclientmodels.ResponseError {
+func (o *AddPlayerToSessionInternalServerError) GetPayload() *sessionbrowserclientmodels.RestapiErrorResponseV2 {
 	return o.Payload
 }
 
 func (o *AddPlayerToSessionInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(sessionbrowserclientmodels.ResponseError)
+	o.Payload = new(sessionbrowserclientmodels.RestapiErrorResponseV2)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

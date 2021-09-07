@@ -30,6 +30,12 @@ func (o *JoinSessionReader) ReadResponse(response runtime.ClientResponse, consum
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewJoinSessionBadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 404:
 		result := NewJoinSessionNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -86,6 +92,39 @@ func (o *JoinSessionOK) readResponse(response runtime.ClientResponse, consumer r
 	return nil
 }
 
+// NewJoinSessionBadRequest creates a JoinSessionBadRequest with default headers values
+func NewJoinSessionBadRequest() *JoinSessionBadRequest {
+	return &JoinSessionBadRequest{}
+}
+
+/*JoinSessionBadRequest handles this case with default header values.
+
+  malformed request
+*/
+type JoinSessionBadRequest struct {
+	Payload *sessionbrowserclientmodels.RestapiErrorResponseV2
+}
+
+func (o *JoinSessionBadRequest) Error() string {
+	return fmt.Sprintf("[POST /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/join][%d] joinSessionBadRequest  %+v", 400, o.Payload)
+}
+
+func (o *JoinSessionBadRequest) GetPayload() *sessionbrowserclientmodels.RestapiErrorResponseV2 {
+	return o.Payload
+}
+
+func (o *JoinSessionBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(sessionbrowserclientmodels.RestapiErrorResponseV2)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewJoinSessionNotFound creates a JoinSessionNotFound with default headers values
 func NewJoinSessionNotFound() *JoinSessionNotFound {
 	return &JoinSessionNotFound{}
@@ -96,20 +135,20 @@ func NewJoinSessionNotFound() *JoinSessionNotFound {
   session not found
 */
 type JoinSessionNotFound struct {
-	Payload *sessionbrowserclientmodels.ResponseError
+	Payload *sessionbrowserclientmodels.RestapiErrorResponseV2
 }
 
 func (o *JoinSessionNotFound) Error() string {
 	return fmt.Sprintf("[POST /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/join][%d] joinSessionNotFound  %+v", 404, o.Payload)
 }
 
-func (o *JoinSessionNotFound) GetPayload() *sessionbrowserclientmodels.ResponseError {
+func (o *JoinSessionNotFound) GetPayload() *sessionbrowserclientmodels.RestapiErrorResponseV2 {
 	return o.Payload
 }
 
 func (o *JoinSessionNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(sessionbrowserclientmodels.ResponseError)
+	o.Payload = new(sessionbrowserclientmodels.RestapiErrorResponseV2)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -129,20 +168,20 @@ func NewJoinSessionInternalServerError() *JoinSessionInternalServerError {
   Internal Server Error
 */
 type JoinSessionInternalServerError struct {
-	Payload *sessionbrowserclientmodels.ResponseError
+	Payload *sessionbrowserclientmodels.RestapiErrorResponseV2
 }
 
 func (o *JoinSessionInternalServerError) Error() string {
 	return fmt.Sprintf("[POST /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/join][%d] joinSessionInternalServerError  %+v", 500, o.Payload)
 }
 
-func (o *JoinSessionInternalServerError) GetPayload() *sessionbrowserclientmodels.ResponseError {
+func (o *JoinSessionInternalServerError) GetPayload() *sessionbrowserclientmodels.RestapiErrorResponseV2 {
 	return o.Payload
 }
 
 func (o *JoinSessionInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(sessionbrowserclientmodels.ResponseError)
+	o.Payload = new(sessionbrowserclientmodels.RestapiErrorResponseV2)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

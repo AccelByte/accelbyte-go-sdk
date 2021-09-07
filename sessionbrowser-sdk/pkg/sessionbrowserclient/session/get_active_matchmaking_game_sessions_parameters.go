@@ -70,6 +70,11 @@ type GetActiveMatchmakingGameSessionsParams struct {
 
 	*/
 	Namespace string
+	/*ServerRegion
+	  server region
+
+	*/
+	ServerRegion *string
 	/*SessionID
 	  game session ID
 
@@ -136,6 +141,17 @@ func (o *GetActiveMatchmakingGameSessionsParams) SetNamespace(namespace string) 
 	o.Namespace = namespace
 }
 
+// WithServerRegion adds the serverRegion to the get active matchmaking game sessions params
+func (o *GetActiveMatchmakingGameSessionsParams) WithServerRegion(serverRegion *string) *GetActiveMatchmakingGameSessionsParams {
+	o.SetServerRegion(serverRegion)
+	return o
+}
+
+// SetServerRegion adds the serverRegion to the get active matchmaking game sessions params
+func (o *GetActiveMatchmakingGameSessionsParams) SetServerRegion(serverRegion *string) {
+	o.ServerRegion = serverRegion
+}
+
 // WithSessionID adds the sessionID to the get active matchmaking game sessions params
 func (o *GetActiveMatchmakingGameSessionsParams) WithSessionID(sessionID *string) *GetActiveMatchmakingGameSessionsParams {
 	o.SetSessionID(sessionID)
@@ -174,6 +190,22 @@ func (o *GetActiveMatchmakingGameSessionsParams) WriteToRequest(r runtime.Client
 	// path param namespace
 	if err := r.SetPathParam("namespace", o.Namespace); err != nil {
 		return err
+	}
+
+	if o.ServerRegion != nil {
+
+		// query param server_region
+		var qrServerRegion string
+		if o.ServerRegion != nil {
+			qrServerRegion = *o.ServerRegion
+		}
+		qServerRegion := qrServerRegion
+		if qServerRegion != "" {
+			if err := r.SetQueryParam("server_region", qServerRegion); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	if o.SessionID != nil {

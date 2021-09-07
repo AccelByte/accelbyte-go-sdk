@@ -96,20 +96,20 @@ func NewGetActiveMatchmakingGameSessionsBadRequest() *GetActiveMatchmakingGameSe
   malformed request
 */
 type GetActiveMatchmakingGameSessionsBadRequest struct {
-	Payload *sessionbrowserclientmodels.ResponseError
+	Payload *sessionbrowserclientmodels.RestapiErrorResponseV2
 }
 
 func (o *GetActiveMatchmakingGameSessionsBadRequest) Error() string {
 	return fmt.Sprintf("[GET /sessionbrowser/admin/namespaces/{namespace}/gamesession/active/matchmaking-game][%d] getActiveMatchmakingGameSessionsBadRequest  %+v", 400, o.Payload)
 }
 
-func (o *GetActiveMatchmakingGameSessionsBadRequest) GetPayload() *sessionbrowserclientmodels.ResponseError {
+func (o *GetActiveMatchmakingGameSessionsBadRequest) GetPayload() *sessionbrowserclientmodels.RestapiErrorResponseV2 {
 	return o.Payload
 }
 
 func (o *GetActiveMatchmakingGameSessionsBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(sessionbrowserclientmodels.ResponseError)
+	o.Payload = new(sessionbrowserclientmodels.RestapiErrorResponseV2)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -129,20 +129,20 @@ func NewGetActiveMatchmakingGameSessionsInternalServerError() *GetActiveMatchmak
   Internal Server Error
 */
 type GetActiveMatchmakingGameSessionsInternalServerError struct {
-	Payload *sessionbrowserclientmodels.ResponseError
+	Payload *sessionbrowserclientmodels.RestapiErrorResponseV2
 }
 
 func (o *GetActiveMatchmakingGameSessionsInternalServerError) Error() string {
 	return fmt.Sprintf("[GET /sessionbrowser/admin/namespaces/{namespace}/gamesession/active/matchmaking-game][%d] getActiveMatchmakingGameSessionsInternalServerError  %+v", 500, o.Payload)
 }
 
-func (o *GetActiveMatchmakingGameSessionsInternalServerError) GetPayload() *sessionbrowserclientmodels.ResponseError {
+func (o *GetActiveMatchmakingGameSessionsInternalServerError) GetPayload() *sessionbrowserclientmodels.RestapiErrorResponseV2 {
 	return o.Payload
 }
 
 func (o *GetActiveMatchmakingGameSessionsInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(sessionbrowserclientmodels.ResponseError)
+	o.Payload = new(sessionbrowserclientmodels.RestapiErrorResponseV2)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

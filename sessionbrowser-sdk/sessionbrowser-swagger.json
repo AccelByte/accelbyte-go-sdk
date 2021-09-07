@@ -42,13 +42,13 @@
           "400": {
             "description": "malformed request",
             "schema": {
-              "$ref": "#/definitions/response.Error"
+              "$ref": "#/definitions/restapi.ErrorResponseV2"
             }
           },
           "500": {
             "description": "Internal Server Error",
             "schema": {
-              "$ref": "#/definitions/response.Error"
+              "$ref": "#/definitions/restapi.ErrorResponseV2"
             }
           }
         }
@@ -78,6 +78,12 @@
             "description": "game session ID",
             "name": "session_id",
             "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "server region",
+            "name": "server_region",
+            "in": "query"
           }
         ],
         "responses": {
@@ -90,13 +96,13 @@
           "400": {
             "description": "malformed request",
             "schema": {
-              "$ref": "#/definitions/response.Error"
+              "$ref": "#/definitions/restapi.ErrorResponseV2"
             }
           },
           "500": {
             "description": "Internal Server Error",
             "schema": {
-              "$ref": "#/definitions/response.Error"
+              "$ref": "#/definitions/restapi.ErrorResponseV2"
             }
           }
         }
@@ -132,6 +138,12 @@
             "description": "matchmaking ID",
             "name": "match_id",
             "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "server region",
+            "name": "server_region",
+            "in": "query"
           }
         ],
         "responses": {
@@ -144,13 +156,13 @@
           "400": {
             "description": "malformed request",
             "schema": {
-              "$ref": "#/definitions/response.Error"
+              "$ref": "#/definitions/restapi.ErrorResponseV2"
             }
           },
           "500": {
             "description": "Internal Server Error",
             "schema": {
-              "$ref": "#/definitions/response.Error"
+              "$ref": "#/definitions/restapi.ErrorResponseV2"
             }
           }
         }
@@ -190,13 +202,13 @@
           "404": {
             "description": "session not found",
             "schema": {
-              "$ref": "#/definitions/response.Error"
+              "$ref": "#/definitions/restapi.ErrorResponseV2"
             }
           },
           "500": {
             "description": "Internal Server Error",
             "schema": {
-              "$ref": "#/definitions/response.Error"
+              "$ref": "#/definitions/restapi.ErrorResponseV2"
             }
           }
         }
@@ -347,13 +359,13 @@
           "400": {
             "description": "malformed request",
             "schema": {
-              "$ref": "#/definitions/response.Error"
+              "$ref": "#/definitions/restapi.ErrorResponseV2"
             }
           },
           "409": {
             "description": "session already exists",
             "schema": {
-              "$ref": "#/definitions/response.Error"
+              "$ref": "#/definitions/restapi.ErrorResponseV2"
             }
           },
           "500": {
@@ -515,19 +527,19 @@
           "400": {
             "description": "malformed request",
             "schema": {
-              "$ref": "#/definitions/response.Error"
+              "$ref": "#/definitions/restapi.ErrorResponseV2"
             }
           },
           "404": {
             "description": "session not found",
             "schema": {
-              "$ref": "#/definitions/response.Error"
+              "$ref": "#/definitions/restapi.ErrorResponseV2"
             }
           },
           "500": {
             "description": "Internal Server Error",
             "schema": {
-              "$ref": "#/definitions/response.Error"
+              "$ref": "#/definitions/restapi.ErrorResponseV2"
             }
           }
         }
@@ -634,16 +646,22 @@
               "$ref": "#/definitions/models.SessionResponse"
             }
           },
+          "400": {
+            "description": "malformed request",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseV2"
+            }
+          },
           "404": {
             "description": "session not found",
             "schema": {
-              "$ref": "#/definitions/response.Error"
+              "$ref": "#/definitions/restapi.ErrorResponseV2"
             }
           },
           "500": {
             "description": "Internal Server Error",
             "schema": {
-              "$ref": "#/definitions/response.Error"
+              "$ref": "#/definitions/restapi.ErrorResponseV2"
             }
           }
         }
@@ -755,25 +773,25 @@
           "400": {
             "description": "malformed request",
             "schema": {
-              "$ref": "#/definitions/response.Error"
+              "$ref": "#/definitions/restapi.ErrorResponseV2"
             }
           },
           "404": {
             "description": "session not found",
             "schema": {
-              "$ref": "#/definitions/response.Error"
+              "$ref": "#/definitions/restapi.ErrorResponseV2"
             }
           },
           "500": {
             "description": "Internal Server Error",
             "schema": {
-              "$ref": "#/definitions/response.Error"
+              "$ref": "#/definitions/restapi.ErrorResponseV2"
             }
           }
         }
       }
     },
-    "/sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/player/{user_id}": {
+    "/sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/player/{userID}": {
       "delete": {
         "description": "Required permission: NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [UPDATE]\n\nRequired scope: social\n\nRemove player from game session",
         "consumes": [
@@ -805,7 +823,7 @@
           {
             "type": "string",
             "description": "user ID",
-            "name": "user_id",
+            "name": "userID",
             "in": "path",
             "required": true
           }
@@ -820,25 +838,25 @@
           "400": {
             "description": "malformed request",
             "schema": {
-              "$ref": "#/definitions/response.Error"
+              "$ref": "#/definitions/restapi.ErrorResponseV2"
             }
           },
           "404": {
             "description": "session not found",
             "schema": {
-              "$ref": "#/definitions/response.Error"
+              "$ref": "#/definitions/restapi.ErrorResponseV2"
             }
           },
           "500": {
             "description": "Internal Server Error",
             "schema": {
-              "$ref": "#/definitions/response.Error"
+              "$ref": "#/definitions/restapi.ErrorResponseV2"
             }
           }
         }
       }
     },
-    "/sessionbrowser/namespaces/{namespace}/recentplayer/{user_id}": {
+    "/sessionbrowser/namespaces/{namespace}/recentplayer/{userID}": {
       "get": {
         "description": "Required permission: NAMESPACE:{namespace}:SESSIONBROWSER:RECENTPLAYER [READ]\n\nRequired scope: social\n\nQuery recent player by user ID",
         "consumes": [
@@ -863,7 +881,7 @@
           {
             "type": "string",
             "description": "user ID",
-            "name": "user_id",
+            "name": "userID",
             "in": "path",
             "required": true
           }
@@ -952,20 +970,20 @@
     },
     "models.AdminSessionResponse": {
       "required": [
-        "game_session_setting",
-        "created_at",
-        "spectators",
-        "match",
-        "session_type",
-        "game_version",
-        "session_id",
-        "user_id",
         "username",
+        "game_version",
+        "game_session_setting",
+        "spectators",
+        "server",
+        "session_id",
+        "session_type",
+        "joinable",
+        "user_id",
+        "created_at",
+        "namespace",
         "players",
         "all_players",
-        "namespace",
-        "server",
-        "joinable"
+        "match"
       ],
       "properties": {
         "all_players": {
@@ -1499,11 +1517,11 @@
         "region",
         "status_history",
         "is_override_game_version",
+        "cpu_request",
         "mem_request",
         "cpu_limit",
         "mem_limit",
-        "params",
-        "cpu_request"
+        "params"
       ],
       "properties": {
         "allocation_id": {
@@ -1619,20 +1637,20 @@
     },
     "models.SessionResponse": {
       "required": [
-        "server",
-        "created_at",
-        "match",
-        "session_type",
-        "all_players",
-        "session_id",
+        "username",
         "game_version",
-        "spectators",
-        "namespace",
         "game_session_setting",
-        "players",
-        "joinable",
+        "session_id",
+        "server",
         "user_id",
-        "username"
+        "created_at",
+        "all_players",
+        "spectators",
+        "joinable",
+        "namespace",
+        "session_type",
+        "players",
+        "match"
       ],
       "properties": {
         "all_players": {
@@ -1731,6 +1749,36 @@
           "format": "int32"
         },
         "errorMessage": {
+          "type": "string"
+        }
+      }
+    },
+    "restapi.ErrorResponseV2": {
+      "required": [
+        "errorCode",
+        "errorMessage",
+        "name",
+        "message",
+        "attributes"
+      ],
+      "properties": {
+        "attributes": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "errorCode": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "errorMessage": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "name": {
           "type": "string"
         }
       }

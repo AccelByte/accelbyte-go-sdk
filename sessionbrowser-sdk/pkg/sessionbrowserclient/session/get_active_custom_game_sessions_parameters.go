@@ -65,6 +65,11 @@ type GetActiveCustomGameSessionsParams struct {
 
 	*/
 	Namespace string
+	/*ServerRegion
+	  server region
+
+	*/
+	ServerRegion *string
 	/*SessionID
 	  game session ID
 
@@ -120,6 +125,17 @@ func (o *GetActiveCustomGameSessionsParams) SetNamespace(namespace string) {
 	o.Namespace = namespace
 }
 
+// WithServerRegion adds the serverRegion to the get active custom game sessions params
+func (o *GetActiveCustomGameSessionsParams) WithServerRegion(serverRegion *string) *GetActiveCustomGameSessionsParams {
+	o.SetServerRegion(serverRegion)
+	return o
+}
+
+// SetServerRegion adds the serverRegion to the get active custom game sessions params
+func (o *GetActiveCustomGameSessionsParams) SetServerRegion(serverRegion *string) {
+	o.ServerRegion = serverRegion
+}
+
 // WithSessionID adds the sessionID to the get active custom game sessions params
 func (o *GetActiveCustomGameSessionsParams) WithSessionID(sessionID *string) *GetActiveCustomGameSessionsParams {
 	o.SetSessionID(sessionID)
@@ -142,6 +158,22 @@ func (o *GetActiveCustomGameSessionsParams) WriteToRequest(r runtime.ClientReque
 	// path param namespace
 	if err := r.SetPathParam("namespace", o.Namespace); err != nil {
 		return err
+	}
+
+	if o.ServerRegion != nil {
+
+		// query param server_region
+		var qrServerRegion string
+		if o.ServerRegion != nil {
+			qrServerRegion = *o.ServerRegion
+		}
+		qServerRegion := qrServerRegion
+		if qServerRegion != "" {
+			if err := r.SetQueryParam("server_region", qServerRegion); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	if o.SessionID != nil {

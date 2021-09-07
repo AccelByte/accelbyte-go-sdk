@@ -96,20 +96,20 @@ func NewGetTotalActiveSessionBadRequest() *GetTotalActiveSessionBadRequest {
   malformed request
 */
 type GetTotalActiveSessionBadRequest struct {
-	Payload *sessionbrowserclientmodels.ResponseError
+	Payload *sessionbrowserclientmodels.RestapiErrorResponseV2
 }
 
 func (o *GetTotalActiveSessionBadRequest) Error() string {
 	return fmt.Sprintf("[GET /sessionbrowser/admin/namespaces/{namespace}/gamesession/active/count][%d] getTotalActiveSessionBadRequest  %+v", 400, o.Payload)
 }
 
-func (o *GetTotalActiveSessionBadRequest) GetPayload() *sessionbrowserclientmodels.ResponseError {
+func (o *GetTotalActiveSessionBadRequest) GetPayload() *sessionbrowserclientmodels.RestapiErrorResponseV2 {
 	return o.Payload
 }
 
 func (o *GetTotalActiveSessionBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(sessionbrowserclientmodels.ResponseError)
+	o.Payload = new(sessionbrowserclientmodels.RestapiErrorResponseV2)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -129,20 +129,20 @@ func NewGetTotalActiveSessionInternalServerError() *GetTotalActiveSessionInterna
   Internal Server Error
 */
 type GetTotalActiveSessionInternalServerError struct {
-	Payload *sessionbrowserclientmodels.ResponseError
+	Payload *sessionbrowserclientmodels.RestapiErrorResponseV2
 }
 
 func (o *GetTotalActiveSessionInternalServerError) Error() string {
 	return fmt.Sprintf("[GET /sessionbrowser/admin/namespaces/{namespace}/gamesession/active/count][%d] getTotalActiveSessionInternalServerError  %+v", 500, o.Payload)
 }
 
-func (o *GetTotalActiveSessionInternalServerError) GetPayload() *sessionbrowserclientmodels.ResponseError {
+func (o *GetTotalActiveSessionInternalServerError) GetPayload() *sessionbrowserclientmodels.RestapiErrorResponseV2 {
 	return o.Payload
 }
 
 func (o *GetTotalActiveSessionInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(sessionbrowserclientmodels.ResponseError)
+	o.Payload = new(sessionbrowserclientmodels.RestapiErrorResponseV2)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

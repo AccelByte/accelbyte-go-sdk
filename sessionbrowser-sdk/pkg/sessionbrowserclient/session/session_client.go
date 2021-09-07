@@ -51,7 +51,7 @@ type ClientService interface {
 
 	GetTotalActiveSession(params *GetTotalActiveSessionParams, authInfo runtime.ClientAuthInfoWriter) (*GetTotalActiveSessionOK, *GetTotalActiveSessionBadRequest, *GetTotalActiveSessionInternalServerError, error)
 
-	JoinSession(params *JoinSessionParams, authInfo runtime.ClientAuthInfoWriter) (*JoinSessionOK, *JoinSessionNotFound, *JoinSessionInternalServerError, error)
+	JoinSession(params *JoinSessionParams, authInfo runtime.ClientAuthInfoWriter) (*JoinSessionOK, *JoinSessionBadRequest, *JoinSessionNotFound, *JoinSessionInternalServerError, error)
 
 	QuerySession(params *QuerySessionParams, authInfo runtime.ClientAuthInfoWriter) (*QuerySessionOK, *QuerySessionBadRequest, *QuerySessionInternalServerError, error)
 
@@ -431,7 +431,7 @@ func (a *Client) GetRecentPlayer(params *GetRecentPlayerParams, authInfo runtime
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "GetRecentPlayer",
 		Method:             "GET",
-		PathPattern:        "/sessionbrowser/namespaces/{namespace}/recentplayer/{user_id}",
+		PathPattern:        "/sessionbrowser/namespaces/{namespace}/recentplayer/{userID}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http"},
@@ -612,7 +612,7 @@ Required scope: social
 
 Join the specified session by session ID. Possible the game required a password to join
 */
-func (a *Client) JoinSession(params *JoinSessionParams, authInfo runtime.ClientAuthInfoWriter) (*JoinSessionOK, *JoinSessionNotFound, *JoinSessionInternalServerError, error) {
+func (a *Client) JoinSession(params *JoinSessionParams, authInfo runtime.ClientAuthInfoWriter) (*JoinSessionOK, *JoinSessionBadRequest, *JoinSessionNotFound, *JoinSessionInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewJoinSessionParams()
@@ -636,19 +636,21 @@ func (a *Client) JoinSession(params *JoinSessionParams, authInfo runtime.ClientA
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, err
+		return nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *JoinSessionOK:
-		return v, nil, nil, nil
+		return v, nil, nil, nil, nil
+	case *JoinSessionBadRequest:
+		return nil, v, nil, nil, nil
 	case *JoinSessionNotFound:
-		return nil, v, nil, nil
+		return nil, nil, v, nil, nil
 	case *JoinSessionInternalServerError:
-		return nil, nil, v, nil
+		return nil, nil, nil, v, nil
 	default:
-		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -723,7 +725,7 @@ func (a *Client) RemovePlayerFromSession(params *RemovePlayerFromSessionParams, 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "RemovePlayerFromSession",
 		Method:             "DELETE",
-		PathPattern:        "/sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/player/{user_id}",
+		PathPattern:        "/sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/player/{userID}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http"},

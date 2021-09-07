@@ -96,20 +96,20 @@ func NewAdminGetSessionNotFound() *AdminGetSessionNotFound {
   session not found
 */
 type AdminGetSessionNotFound struct {
-	Payload *sessionbrowserclientmodels.ResponseError
+	Payload *sessionbrowserclientmodels.RestapiErrorResponseV2
 }
 
 func (o *AdminGetSessionNotFound) Error() string {
 	return fmt.Sprintf("[GET /sessionbrowser/admin/namespaces/{namespace}/gamesession/{sessionID}][%d] adminGetSessionNotFound  %+v", 404, o.Payload)
 }
 
-func (o *AdminGetSessionNotFound) GetPayload() *sessionbrowserclientmodels.ResponseError {
+func (o *AdminGetSessionNotFound) GetPayload() *sessionbrowserclientmodels.RestapiErrorResponseV2 {
 	return o.Payload
 }
 
 func (o *AdminGetSessionNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(sessionbrowserclientmodels.ResponseError)
+	o.Payload = new(sessionbrowserclientmodels.RestapiErrorResponseV2)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -129,20 +129,20 @@ func NewAdminGetSessionInternalServerError() *AdminGetSessionInternalServerError
   Internal Server Error
 */
 type AdminGetSessionInternalServerError struct {
-	Payload *sessionbrowserclientmodels.ResponseError
+	Payload *sessionbrowserclientmodels.RestapiErrorResponseV2
 }
 
 func (o *AdminGetSessionInternalServerError) Error() string {
 	return fmt.Sprintf("[GET /sessionbrowser/admin/namespaces/{namespace}/gamesession/{sessionID}][%d] adminGetSessionInternalServerError  %+v", 500, o.Payload)
 }
 
-func (o *AdminGetSessionInternalServerError) GetPayload() *sessionbrowserclientmodels.ResponseError {
+func (o *AdminGetSessionInternalServerError) GetPayload() *sessionbrowserclientmodels.RestapiErrorResponseV2 {
 	return o.Payload
 }
 
 func (o *AdminGetSessionInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(sessionbrowserclientmodels.ResponseError)
+	o.Payload = new(sessionbrowserclientmodels.RestapiErrorResponseV2)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

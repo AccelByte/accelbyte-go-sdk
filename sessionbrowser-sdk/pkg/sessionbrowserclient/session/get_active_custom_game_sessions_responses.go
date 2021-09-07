@@ -96,20 +96,20 @@ func NewGetActiveCustomGameSessionsBadRequest() *GetActiveCustomGameSessionsBadR
   malformed request
 */
 type GetActiveCustomGameSessionsBadRequest struct {
-	Payload *sessionbrowserclientmodels.ResponseError
+	Payload *sessionbrowserclientmodels.RestapiErrorResponseV2
 }
 
 func (o *GetActiveCustomGameSessionsBadRequest) Error() string {
 	return fmt.Sprintf("[GET /sessionbrowser/admin/namespaces/{namespace}/gamesession/active/custom-game][%d] getActiveCustomGameSessionsBadRequest  %+v", 400, o.Payload)
 }
 
-func (o *GetActiveCustomGameSessionsBadRequest) GetPayload() *sessionbrowserclientmodels.ResponseError {
+func (o *GetActiveCustomGameSessionsBadRequest) GetPayload() *sessionbrowserclientmodels.RestapiErrorResponseV2 {
 	return o.Payload
 }
 
 func (o *GetActiveCustomGameSessionsBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(sessionbrowserclientmodels.ResponseError)
+	o.Payload = new(sessionbrowserclientmodels.RestapiErrorResponseV2)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -129,20 +129,20 @@ func NewGetActiveCustomGameSessionsInternalServerError() *GetActiveCustomGameSes
   Internal Server Error
 */
 type GetActiveCustomGameSessionsInternalServerError struct {
-	Payload *sessionbrowserclientmodels.ResponseError
+	Payload *sessionbrowserclientmodels.RestapiErrorResponseV2
 }
 
 func (o *GetActiveCustomGameSessionsInternalServerError) Error() string {
 	return fmt.Sprintf("[GET /sessionbrowser/admin/namespaces/{namespace}/gamesession/active/custom-game][%d] getActiveCustomGameSessionsInternalServerError  %+v", 500, o.Payload)
 }
 
-func (o *GetActiveCustomGameSessionsInternalServerError) GetPayload() *sessionbrowserclientmodels.ResponseError {
+func (o *GetActiveCustomGameSessionsInternalServerError) GetPayload() *sessionbrowserclientmodels.RestapiErrorResponseV2 {
 	return o.Payload
 }
 
 func (o *GetActiveCustomGameSessionsInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(sessionbrowserclientmodels.ResponseError)
+	o.Payload = new(sessionbrowserclientmodels.RestapiErrorResponseV2)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

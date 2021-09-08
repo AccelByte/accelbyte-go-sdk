@@ -21,7 +21,7 @@ type ModelsListConfigResponse struct {
 
 	// configs
 	// Required: true
-	Configs []*ModelsDSMConfig `json:"configs"`
+	Configs []*ModelsDSMConfigRecord `json:"configs"`
 }
 
 // Validate validates this models list config response

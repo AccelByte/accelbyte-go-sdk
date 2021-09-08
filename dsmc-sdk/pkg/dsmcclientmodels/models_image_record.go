@@ -17,14 +17,26 @@ import (
 // swagger:model models.ImageRecord
 type ModelsImageRecord struct {
 
+	// artifact path
+	// Required: true
+	ArtifactPath *string `json:"artifactPath"`
+
 	// created at
 	// Required: true
 	// Format: date-time
 	CreatedAt *strfmt.DateTime `json:"createdAt"`
 
+	// docker path
+	// Required: true
+	DockerPath *string `json:"dockerPath"`
+
 	// image
 	// Required: true
 	Image *string `json:"image"`
+
+	// modified by
+	// Required: true
+	ModifiedBy *string `json:"modifiedBy"`
 
 	// namespace
 	// Required: true
@@ -48,11 +60,23 @@ type ModelsImageRecord struct {
 func (m *ModelsImageRecord) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateArtifactPath(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateCreatedAt(formats); err != nil {
 		res = append(res, err)
 	}
 
+	if err := m.validateDockerPath(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateImage(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateModifiedBy(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -78,6 +102,15 @@ func (m *ModelsImageRecord) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *ModelsImageRecord) validateArtifactPath(formats strfmt.Registry) error {
+
+	if err := validate.Required("artifactPath", "body", m.ArtifactPath); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *ModelsImageRecord) validateCreatedAt(formats strfmt.Registry) error {
 
 	if err := validate.Required("createdAt", "body", m.CreatedAt); err != nil {
@@ -91,9 +124,27 @@ func (m *ModelsImageRecord) validateCreatedAt(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *ModelsImageRecord) validateDockerPath(formats strfmt.Registry) error {
+
+	if err := validate.Required("dockerPath", "body", m.DockerPath); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *ModelsImageRecord) validateImage(formats strfmt.Registry) error {
 
 	if err := validate.Required("image", "body", m.Image); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsImageRecord) validateModifiedBy(formats strfmt.Registry) error {
+
+	if err := validate.Required("modifiedBy", "body", m.ModifiedBy); err != nil {
 		return err
 	}
 

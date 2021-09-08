@@ -25,9 +25,22 @@ type ModelsDeploymentWithOverride struct {
 	// Required: true
 	BufferCount *int32 `json:"buffer_count"`
 
+	// buffer percent
+	// Required: true
+	BufferPercent *int32 `json:"buffer_percent"`
+
 	// configuration
 	// Required: true
 	Configuration *string `json:"configuration"`
+
+	// created at
+	// Required: true
+	// Format: date-time
+	CreatedAt *strfmt.DateTime `json:"createdAt"`
+
+	// enable region overrides
+	// Required: true
+	EnableRegionOverrides *bool `json:"enable_region_overrides"`
 
 	// game version
 	// Required: true
@@ -41,13 +54,38 @@ type ModelsDeploymentWithOverride struct {
 	// Required: true
 	MinCount *int32 `json:"min_count"`
 
+	// modified by
+	// Required: true
+	ModifiedBy *string `json:"modifiedBy"`
+
+	// name
+	// Required: true
+	Name *string `json:"name"`
+
+	// namespace
+	// Required: true
+	Namespace *string `json:"namespace"`
+
 	// overrides
 	// Required: true
-	Overrides map[string]ModelsDeploymentConfig `json:"overrides"`
+	Overrides map[string]ModelsDeploymentConfigOverride `json:"overrides"`
+
+	// region overrides
+	// Required: true
+	RegionOverrides map[string]ModelsPodCountConfigOverride `json:"region_overrides"`
 
 	// regions
 	// Required: true
 	Regions []string `json:"regions"`
+
+	// updated at
+	// Required: true
+	// Format: date-time
+	UpdatedAt *strfmt.DateTime `json:"updatedAt"`
+
+	// use buffer percent
+	// Required: true
+	UseBufferPercent *bool `json:"use_buffer_percent"`
 }
 
 // Validate validates this models deployment with override
@@ -62,7 +100,19 @@ func (m *ModelsDeploymentWithOverride) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateBufferPercent(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateConfiguration(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateCreatedAt(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateEnableRegionOverrides(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -78,11 +128,35 @@ func (m *ModelsDeploymentWithOverride) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateModifiedBy(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateName(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateNamespace(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateOverrides(formats); err != nil {
 		res = append(res, err)
 	}
 
+	if err := m.validateRegionOverrides(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateRegions(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateUpdatedAt(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateUseBufferPercent(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -110,9 +184,40 @@ func (m *ModelsDeploymentWithOverride) validateBufferCount(formats strfmt.Regist
 	return nil
 }
 
+func (m *ModelsDeploymentWithOverride) validateBufferPercent(formats strfmt.Registry) error {
+
+	if err := validate.Required("buffer_percent", "body", m.BufferPercent); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *ModelsDeploymentWithOverride) validateConfiguration(formats strfmt.Registry) error {
 
 	if err := validate.Required("configuration", "body", m.Configuration); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsDeploymentWithOverride) validateCreatedAt(formats strfmt.Registry) error {
+
+	if err := validate.Required("createdAt", "body", m.CreatedAt); err != nil {
+		return err
+	}
+
+	if err := validate.FormatOf("createdAt", "body", "date-time", m.CreatedAt.String(), formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsDeploymentWithOverride) validateEnableRegionOverrides(formats strfmt.Registry) error {
+
+	if err := validate.Required("enable_region_overrides", "body", m.EnableRegionOverrides); err != nil {
 		return err
 	}
 
@@ -146,6 +251,33 @@ func (m *ModelsDeploymentWithOverride) validateMinCount(formats strfmt.Registry)
 	return nil
 }
 
+func (m *ModelsDeploymentWithOverride) validateModifiedBy(formats strfmt.Registry) error {
+
+	if err := validate.Required("modifiedBy", "body", m.ModifiedBy); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsDeploymentWithOverride) validateName(formats strfmt.Registry) error {
+
+	if err := validate.Required("name", "body", m.Name); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsDeploymentWithOverride) validateNamespace(formats strfmt.Registry) error {
+
+	if err := validate.Required("namespace", "body", m.Namespace); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *ModelsDeploymentWithOverride) validateOverrides(formats strfmt.Registry) error {
 
 	for k := range m.Overrides {
@@ -164,9 +296,49 @@ func (m *ModelsDeploymentWithOverride) validateOverrides(formats strfmt.Registry
 	return nil
 }
 
+func (m *ModelsDeploymentWithOverride) validateRegionOverrides(formats strfmt.Registry) error {
+
+	for k := range m.RegionOverrides {
+
+		if err := validate.Required("region_overrides"+"."+k, "body", m.RegionOverrides[k]); err != nil {
+			return err
+		}
+		if val, ok := m.RegionOverrides[k]; ok {
+			if err := val.Validate(formats); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
 func (m *ModelsDeploymentWithOverride) validateRegions(formats strfmt.Registry) error {
 
 	if err := validate.Required("regions", "body", m.Regions); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsDeploymentWithOverride) validateUpdatedAt(formats strfmt.Registry) error {
+
+	if err := validate.Required("updatedAt", "body", m.UpdatedAt); err != nil {
+		return err
+	}
+
+	if err := validate.FormatOf("updatedAt", "body", "date-time", m.UpdatedAt.String(), formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsDeploymentWithOverride) validateUseBufferPercent(formats strfmt.Registry) error {
+
+	if err := validate.Required("use_buffer_percent", "body", m.UseBufferPercent); err != nil {
 		return err
 	}
 

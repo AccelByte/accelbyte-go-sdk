@@ -6,7 +6,9 @@ package operations
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"fmt"
+	"reflect"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
@@ -27,7 +29,7 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	PublicGetMessages(params *PublicGetMessagesParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetMessagesOK, error)
+	PublicGetMessages(params *PublicGetMessagesParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetMessagesOK, *PublicGetMessagesInternalServerError, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -37,10 +39,14 @@ type ClientService interface {
 
   get the list of messages.
 */
-func (a *Client) PublicGetMessages(params *PublicGetMessagesParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetMessagesOK, error) {
+func (a *Client) PublicGetMessages(params *PublicGetMessagesParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetMessagesOK, *PublicGetMessagesInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublicGetMessagesParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -57,16 +63,18 @@ func (a *Client) PublicGetMessages(params *PublicGetMessagesParams, authInfo run
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
-	success, ok := result.(*PublicGetMessagesOK)
-	if ok {
-		return success, nil
+
+	switch v := result.(type) {
+
+	case *PublicGetMessagesOK:
+		return v, nil, nil
+	case *PublicGetMessagesInternalServerError:
+		return nil, v, nil
+	default:
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for publicGetMessages: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
 }
 
 // SetTransport changes the transport on the client

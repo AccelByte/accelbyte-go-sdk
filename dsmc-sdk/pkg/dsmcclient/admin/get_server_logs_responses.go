@@ -8,6 +8,7 @@ package admin
 import (
 	"fmt"
 	"io"
+	"io/ioutil"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
@@ -34,28 +35,33 @@ func (o *GetServerLogsReader) ReadResponse(response runtime.ClientResponse, cons
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, result
+		return result, nil
 	case 401:
 		result := NewGetServerLogsUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, result
+		return result, nil
 	case 404:
 		result := NewGetServerLogsNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, result
+		return result, nil
 	case 500:
 		result := NewGetServerLogsInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, result
+		return result, nil
 
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		data, err := ioutil.ReadAll(response.Body())
+		if err != nil {
+			return nil, err
+		}
+
+		return nil, fmt.Errorf("Requested GET /dsmcontroller/admin/namespaces/{namespace}/servers/{podName}/logs returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -66,7 +72,7 @@ func NewGetServerLogsOK() *GetServerLogsOK {
 
 /*GetServerLogsOK handles this case with default header values.
 
-server logs queried
+  server logs queried
 */
 type GetServerLogsOK struct {
 	Payload *dsmcclientmodels.ModelsServerLogs
@@ -99,7 +105,7 @@ func NewGetServerLogsBadRequest() *GetServerLogsBadRequest {
 
 /*GetServerLogsBadRequest handles this case with default header values.
 
-malformed request
+  malformed request
 */
 type GetServerLogsBadRequest struct {
 	Payload *dsmcclientmodels.ResponseError
@@ -132,7 +138,7 @@ func NewGetServerLogsUnauthorized() *GetServerLogsUnauthorized {
 
 /*GetServerLogsUnauthorized handles this case with default header values.
 
-Unauthorized
+  Unauthorized
 */
 type GetServerLogsUnauthorized struct {
 	Payload *dsmcclientmodels.ResponseError
@@ -165,7 +171,7 @@ func NewGetServerLogsNotFound() *GetServerLogsNotFound {
 
 /*GetServerLogsNotFound handles this case with default header values.
 
-server not found
+  server not found
 */
 type GetServerLogsNotFound struct {
 	Payload *dsmcclientmodels.ResponseError
@@ -198,7 +204,7 @@ func NewGetServerLogsInternalServerError() *GetServerLogsInternalServerError {
 
 /*GetServerLogsInternalServerError handles this case with default header values.
 
-Internal Server Error
+  Internal Server Error
 */
 type GetServerLogsInternalServerError struct {
 	Payload *dsmcclientmodels.ResponseError

@@ -216,3 +216,38 @@ func (b *SessionBrowserService) DeleteSession(namespace, sessionId string) (*ses
 	}
 	return ok.GetPayload(), nil
 }
+
+// AddPlayerToSession is used to add a new player to a session ID
+func (b *SessionBrowserService) AddPlayerToSession(namespace, sessionId string, body *sessionbrowserclientmodels.ModelsAddPlayerRequest) (*sessionbrowserclientmodels.ModelsAddPlayerResponse, error) {
+	token, err := b.TokenRepository.GetToken()
+	if err != nil {
+		logrus.Error(err)
+		return nil, err
+	}
+	params := &sessionBrowser.AddPlayerToSessionParams{
+		Body:      body,
+		Namespace: namespace,
+		SessionID: sessionId,
+	}
+	ok, badRequest, notFound, internalServer, err := b.SessionBrowserServiceClient.Session.AddPlayerToSession(params, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
+		logrus.Error(string(errorMsg))
+		return nil, badRequest
+	}
+	if notFound != nil {
+		errorMsg, _ := json.Marshal(*notFound.GetPayload())
+		logrus.Error(string(errorMsg))
+		return nil, notFound
+	}
+	if internalServer != nil {
+		errorMsg, _ := json.Marshal(*internalServer.GetPayload())
+		logrus.Error(string(errorMsg))
+		return nil, internalServer
+	}
+	if err != nil {
+		logrus.Error(err)
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}

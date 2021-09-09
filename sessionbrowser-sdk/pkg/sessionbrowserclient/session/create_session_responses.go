@@ -102,20 +102,20 @@ func NewCreateSessionBadRequest() *CreateSessionBadRequest {
   malformed request
 */
 type CreateSessionBadRequest struct {
-	Payload *sessionbrowserclientmodels.ResponseError
+	Payload *sessionbrowserclientmodels.RestapiErrorResponseV2
 }
 
 func (o *CreateSessionBadRequest) Error() string {
 	return fmt.Sprintf("[POST /sessionbrowser/namespaces/{namespace}/gamesession][%d] createSessionBadRequest  %+v", 400, o.Payload)
 }
 
-func (o *CreateSessionBadRequest) GetPayload() *sessionbrowserclientmodels.ResponseError {
+func (o *CreateSessionBadRequest) GetPayload() *sessionbrowserclientmodels.RestapiErrorResponseV2 {
 	return o.Payload
 }
 
 func (o *CreateSessionBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(sessionbrowserclientmodels.ResponseError)
+	o.Payload = new(sessionbrowserclientmodels.RestapiErrorResponseV2)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -135,20 +135,20 @@ func NewCreateSessionConflict() *CreateSessionConflict {
   session already exists
 */
 type CreateSessionConflict struct {
-	Payload *sessionbrowserclientmodels.ResponseError
+	Payload *sessionbrowserclientmodels.RestapiErrorResponseV2
 }
 
 func (o *CreateSessionConflict) Error() string {
 	return fmt.Sprintf("[POST /sessionbrowser/namespaces/{namespace}/gamesession][%d] createSessionConflict  %+v", 409, o.Payload)
 }
 
-func (o *CreateSessionConflict) GetPayload() *sessionbrowserclientmodels.ResponseError {
+func (o *CreateSessionConflict) GetPayload() *sessionbrowserclientmodels.RestapiErrorResponseV2 {
 	return o.Payload
 }
 
 func (o *CreateSessionConflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(sessionbrowserclientmodels.ResponseError)
+	o.Payload = new(sessionbrowserclientmodels.RestapiErrorResponseV2)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

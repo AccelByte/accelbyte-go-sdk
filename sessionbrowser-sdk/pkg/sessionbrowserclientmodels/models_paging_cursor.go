@@ -12,18 +12,10 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// ModelsPagination models pagination
+// ModelsPagingCursor models paging cursor
 //
-// swagger:model models.Pagination
-type ModelsPagination struct {
-
-	// first
-	// Required: true
-	First *string `json:"first"`
-
-	// last
-	// Required: true
-	Last *string `json:"last"`
+// swagger:model models.PagingCursor
+type ModelsPagingCursor struct {
 
 	// next
 	// Required: true
@@ -34,17 +26,9 @@ type ModelsPagination struct {
 	Previous *string `json:"previous"`
 }
 
-// Validate validates this models pagination
-func (m *ModelsPagination) Validate(formats strfmt.Registry) error {
+// Validate validates this models paging cursor
+func (m *ModelsPagingCursor) Validate(formats strfmt.Registry) error {
 	var res []error
-
-	if err := m.validateFirst(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateLast(formats); err != nil {
-		res = append(res, err)
-	}
 
 	if err := m.validateNext(formats); err != nil {
 		res = append(res, err)
@@ -60,25 +44,7 @@ func (m *ModelsPagination) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *ModelsPagination) validateFirst(formats strfmt.Registry) error {
-
-	if err := validate.Required("first", "body", m.First); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ModelsPagination) validateLast(formats strfmt.Registry) error {
-
-	if err := validate.Required("last", "body", m.Last); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ModelsPagination) validateNext(formats strfmt.Registry) error {
+func (m *ModelsPagingCursor) validateNext(formats strfmt.Registry) error {
 
 	if err := validate.Required("next", "body", m.Next); err != nil {
 		return err
@@ -87,7 +53,7 @@ func (m *ModelsPagination) validateNext(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *ModelsPagination) validatePrevious(formats strfmt.Registry) error {
+func (m *ModelsPagingCursor) validatePrevious(formats strfmt.Registry) error {
 
 	if err := validate.Required("previous", "body", m.Previous); err != nil {
 		return err
@@ -97,7 +63,7 @@ func (m *ModelsPagination) validatePrevious(formats strfmt.Registry) error {
 }
 
 // MarshalBinary interface implementation
-func (m *ModelsPagination) MarshalBinary() ([]byte, error) {
+func (m *ModelsPagingCursor) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -105,8 +71,8 @@ func (m *ModelsPagination) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *ModelsPagination) UnmarshalBinary(b []byte) error {
-	var res ModelsPagination
+func (m *ModelsPagingCursor) UnmarshalBinary(b []byte) error {
+	var res ModelsPagingCursor
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

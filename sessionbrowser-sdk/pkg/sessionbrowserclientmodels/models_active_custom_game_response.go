@@ -14,10 +14,10 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// ModelsSessionQueryResponse models session query response
+// ModelsActiveCustomGameResponse models active custom game response
 //
-// swagger:model models.SessionQueryResponse
-type ModelsSessionQueryResponse struct {
+// swagger:model models.ActiveCustomGameResponse
+type ModelsActiveCustomGameResponse struct {
 
 	// pagination
 	// Required: true
@@ -25,11 +25,11 @@ type ModelsSessionQueryResponse struct {
 
 	// sessions
 	// Required: true
-	Sessions []*ModelsGameSession `json:"sessions"`
+	Sessions []*ModelsCustomGameResponse `json:"sessions"`
 }
 
-// Validate validates this models session query response
-func (m *ModelsSessionQueryResponse) Validate(formats strfmt.Registry) error {
+// Validate validates this models active custom game response
+func (m *ModelsActiveCustomGameResponse) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validatePagination(formats); err != nil {
@@ -46,7 +46,7 @@ func (m *ModelsSessionQueryResponse) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *ModelsSessionQueryResponse) validatePagination(formats strfmt.Registry) error {
+func (m *ModelsActiveCustomGameResponse) validatePagination(formats strfmt.Registry) error {
 
 	if err := validate.Required("pagination", "body", m.Pagination); err != nil {
 		return err
@@ -64,7 +64,7 @@ func (m *ModelsSessionQueryResponse) validatePagination(formats strfmt.Registry)
 	return nil
 }
 
-func (m *ModelsSessionQueryResponse) validateSessions(formats strfmt.Registry) error {
+func (m *ModelsActiveCustomGameResponse) validateSessions(formats strfmt.Registry) error {
 
 	if err := validate.Required("sessions", "body", m.Sessions); err != nil {
 		return err
@@ -90,7 +90,7 @@ func (m *ModelsSessionQueryResponse) validateSessions(formats strfmt.Registry) e
 }
 
 // MarshalBinary interface implementation
-func (m *ModelsSessionQueryResponse) MarshalBinary() ([]byte, error) {
+func (m *ModelsActiveCustomGameResponse) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -98,8 +98,8 @@ func (m *ModelsSessionQueryResponse) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *ModelsSessionQueryResponse) UnmarshalBinary(b []byte) error {
-	var res ModelsSessionQueryResponse
+func (m *ModelsActiveCustomGameResponse) UnmarshalBinary(b []byte) error {
+	var res ModelsActiveCustomGameResponse
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

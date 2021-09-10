@@ -80,6 +80,11 @@ type QuerySessionParams struct {
 
 	*/
 	Limit *string
+	/*MatchExist
+	  filter session by match existence, accept 'true' or 'false'
+
+	*/
+	MatchExist *string
 	/*MatchID
 	  filter session by matchmaking ID
 
@@ -191,6 +196,17 @@ func (o *QuerySessionParams) WithLimit(limit *string) *QuerySessionParams {
 // SetLimit adds the limit to the query session params
 func (o *QuerySessionParams) SetLimit(limit *string) {
 	o.Limit = limit
+}
+
+// WithMatchExist adds the matchExist to the query session params
+func (o *QuerySessionParams) WithMatchExist(matchExist *string) *QuerySessionParams {
+	o.SetMatchExist(matchExist)
+	return o
+}
+
+// SetMatchExist adds the matchExist to the query session params
+func (o *QuerySessionParams) SetMatchExist(matchExist *string) {
+	o.MatchExist = matchExist
 }
 
 // WithMatchID adds the matchID to the query session params
@@ -325,6 +341,22 @@ func (o *QuerySessionParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 		qLimit := qrLimit
 		if qLimit != "" {
 			if err := r.SetQueryParam("limit", qLimit); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.MatchExist != nil {
+
+		// query param match_exist
+		var qrMatchExist string
+		if o.MatchExist != nil {
+			qrMatchExist = *o.MatchExist
+		}
+		qMatchExist := qrMatchExist
+		if qMatchExist != "" {
+			if err := r.SetQueryParam("match_exist", qMatchExist); err != nil {
 				return err
 			}
 		}

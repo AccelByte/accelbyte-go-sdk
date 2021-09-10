@@ -21,6 +21,10 @@ type ModelsGameSessionSetting struct {
 	// Required: true
 	AllowJoinInProgress *bool `json:"allow_join_in_progress"`
 
+	// current internal player
+	// Required: true
+	CurrentInternalPlayer *int32 `json:"current_internal_player"`
+
 	// current player
 	// Required: true
 	CurrentPlayer *int32 `json:"current_player"`
@@ -28,6 +32,10 @@ type ModelsGameSessionSetting struct {
 	// map name
 	// Required: true
 	MapName *string `json:"map_name"`
+
+	// max internal player
+	// Required: true
+	MaxInternalPlayer *int32 `json:"max_internal_player"`
 
 	// max player
 	// Required: true
@@ -40,6 +48,10 @@ type ModelsGameSessionSetting struct {
 	// num bot
 	// Required: true
 	NumBot *int32 `json:"num_bot"`
+
+	// password
+	// Required: true
+	Password *string `json:"password"`
 
 	// settings
 	// Required: true
@@ -54,11 +66,19 @@ func (m *ModelsGameSessionSetting) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateCurrentInternalPlayer(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateCurrentPlayer(formats); err != nil {
 		res = append(res, err)
 	}
 
 	if err := m.validateMapName(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateMaxInternalPlayer(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -71,6 +91,10 @@ func (m *ModelsGameSessionSetting) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateNumBot(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validatePassword(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -93,6 +117,15 @@ func (m *ModelsGameSessionSetting) validateAllowJoinInProgress(formats strfmt.Re
 	return nil
 }
 
+func (m *ModelsGameSessionSetting) validateCurrentInternalPlayer(formats strfmt.Registry) error {
+
+	if err := validate.Required("current_internal_player", "body", m.CurrentInternalPlayer); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *ModelsGameSessionSetting) validateCurrentPlayer(formats strfmt.Registry) error {
 
 	if err := validate.Required("current_player", "body", m.CurrentPlayer); err != nil {
@@ -105,6 +138,15 @@ func (m *ModelsGameSessionSetting) validateCurrentPlayer(formats strfmt.Registry
 func (m *ModelsGameSessionSetting) validateMapName(formats strfmt.Registry) error {
 
 	if err := validate.Required("map_name", "body", m.MapName); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsGameSessionSetting) validateMaxInternalPlayer(formats strfmt.Registry) error {
+
+	if err := validate.Required("max_internal_player", "body", m.MaxInternalPlayer); err != nil {
 		return err
 	}
 
@@ -132,6 +174,15 @@ func (m *ModelsGameSessionSetting) validateMode(formats strfmt.Registry) error {
 func (m *ModelsGameSessionSetting) validateNumBot(formats strfmt.Registry) error {
 
 	if err := validate.Required("num_bot", "body", m.NumBot); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsGameSessionSetting) validatePassword(formats strfmt.Registry) error {
+
+	if err := validate.Required("password", "body", m.Password); err != nil {
 		return err
 	}
 

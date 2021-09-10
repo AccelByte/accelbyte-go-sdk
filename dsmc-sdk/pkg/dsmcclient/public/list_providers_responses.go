@@ -8,6 +8,7 @@ package public
 import (
 	"fmt"
 	"io"
+	"io/ioutil"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
@@ -29,7 +30,12 @@ func (o *ListProvidersReader) ReadResponse(response runtime.ClientResponse, cons
 		return result, nil
 
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		data, err := ioutil.ReadAll(response.Body())
+		if err != nil {
+			return nil, err
+		}
+
+		return nil, fmt.Errorf("Requested GET /dsmcontroller/public/providers returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -40,7 +46,7 @@ func NewListProvidersOK() *ListProvidersOK {
 
 /*ListProvidersOK handles this case with default header values.
 
-Providers listed
+  Providers listed
 */
 type ListProvidersOK struct {
 	Payload []string

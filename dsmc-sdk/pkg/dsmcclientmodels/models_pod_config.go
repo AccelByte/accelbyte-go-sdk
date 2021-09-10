@@ -17,10 +17,6 @@ import (
 // swagger:model models.PodConfig
 type ModelsPodConfig struct {
 
-	// artifact path
-	// Required: true
-	ArtifactPath *string `json:"artifact_path"`
-
 	// cpu limit
 	// Required: true
 	CPULimit *int32 `json:"cpu_limit"`
@@ -38,10 +34,6 @@ type ModelsPodConfig struct {
 func (m *ModelsPodConfig) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateArtifactPath(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.validateCPULimit(formats); err != nil {
 		res = append(res, err)
 	}
@@ -57,15 +49,6 @@ func (m *ModelsPodConfig) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-	return nil
-}
-
-func (m *ModelsPodConfig) validateArtifactPath(formats strfmt.Registry) error {
-
-	if err := validate.Required("artifact_path", "body", m.ArtifactPath); err != nil {
-		return err
-	}
-
 	return nil
 }
 

@@ -33,10 +33,6 @@ type ModelsUpdateDSMConfigRequest struct {
 	// Required: true
 	Port *int32 `json:"port"`
 
-	// ports
-	// Required: true
-	Ports map[string]int64 `json:"ports"`
-
 	// protocol
 	// Required: true
 	Protocol *string `json:"protocol"`
@@ -71,10 +67,6 @@ func (m *ModelsUpdateDSMConfigRequest) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validatePort(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validatePorts(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -132,11 +124,6 @@ func (m *ModelsUpdateDSMConfigRequest) validatePort(formats strfmt.Registry) err
 	if err := validate.Required("port", "body", m.Port); err != nil {
 		return err
 	}
-
-	return nil
-}
-
-func (m *ModelsUpdateDSMConfigRequest) validatePorts(formats strfmt.Registry) error {
 
 	return nil
 }

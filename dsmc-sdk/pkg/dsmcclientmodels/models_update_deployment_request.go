@@ -17,24 +17,68 @@ import (
 // swagger:model models.UpdateDeploymentRequest
 type ModelsUpdateDeploymentRequest struct {
 
+	// allow version override
+	// Required: true
+	AllowVersionOverride *bool `json:"allow_version_override"`
+
+	// buffer count
+	// Required: true
+	BufferCount *int32 `json:"buffer_count"`
+
+	// buffer percent
+	// Required: true
+	BufferPercent *int32 `json:"buffer_percent"`
+
 	// configuration
 	// Required: true
 	Configuration *string `json:"configuration"`
+
+	// enable region overrides
+	// Required: true
+	EnableRegionOverrides *bool `json:"enable_region_overrides"`
 
 	// game version
 	// Required: true
 	GameVersion *string `json:"game_version"`
 
+	// max count
+	// Required: true
+	MaxCount *int32 `json:"max_count"`
+
+	// min count
+	// Required: true
+	MinCount *int32 `json:"min_count"`
+
 	// regions
 	// Required: true
 	Regions []string `json:"regions"`
+
+	// use buffer percent
+	// Required: true
+	UseBufferPercent *bool `json:"use_buffer_percent"`
 }
 
 // Validate validates this models update deployment request
 func (m *ModelsUpdateDeploymentRequest) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateAllowVersionOverride(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateBufferCount(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateBufferPercent(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateConfiguration(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateEnableRegionOverrides(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -42,7 +86,19 @@ func (m *ModelsUpdateDeploymentRequest) Validate(formats strfmt.Registry) error 
 		res = append(res, err)
 	}
 
+	if err := m.validateMaxCount(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateMinCount(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateRegions(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateUseBufferPercent(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -52,9 +108,45 @@ func (m *ModelsUpdateDeploymentRequest) Validate(formats strfmt.Registry) error 
 	return nil
 }
 
+func (m *ModelsUpdateDeploymentRequest) validateAllowVersionOverride(formats strfmt.Registry) error {
+
+	if err := validate.Required("allow_version_override", "body", m.AllowVersionOverride); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsUpdateDeploymentRequest) validateBufferCount(formats strfmt.Registry) error {
+
+	if err := validate.Required("buffer_count", "body", m.BufferCount); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsUpdateDeploymentRequest) validateBufferPercent(formats strfmt.Registry) error {
+
+	if err := validate.Required("buffer_percent", "body", m.BufferPercent); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *ModelsUpdateDeploymentRequest) validateConfiguration(formats strfmt.Registry) error {
 
 	if err := validate.Required("configuration", "body", m.Configuration); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsUpdateDeploymentRequest) validateEnableRegionOverrides(formats strfmt.Registry) error {
+
+	if err := validate.Required("enable_region_overrides", "body", m.EnableRegionOverrides); err != nil {
 		return err
 	}
 
@@ -70,9 +162,36 @@ func (m *ModelsUpdateDeploymentRequest) validateGameVersion(formats strfmt.Regis
 	return nil
 }
 
+func (m *ModelsUpdateDeploymentRequest) validateMaxCount(formats strfmt.Registry) error {
+
+	if err := validate.Required("max_count", "body", m.MaxCount); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsUpdateDeploymentRequest) validateMinCount(formats strfmt.Registry) error {
+
+	if err := validate.Required("min_count", "body", m.MinCount); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *ModelsUpdateDeploymentRequest) validateRegions(formats strfmt.Registry) error {
 
 	if err := validate.Required("regions", "body", m.Regions); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsUpdateDeploymentRequest) validateUseBufferPercent(formats strfmt.Registry) error {
+
+	if err := validate.Required("use_buffer_percent", "body", m.UseBufferPercent); err != nil {
 		return err
 	}
 

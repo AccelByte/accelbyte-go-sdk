@@ -23,7 +23,7 @@ type ModelsOverrideConfig struct {
 
 	// overrides
 	// Required: true
-	Overrides map[string]ModelsDeploymentConfig `json:"overrides"`
+	Overrides map[string]ModelsDeploymentConfigOverride `json:"overrides"`
 }
 
 // Validate validates this models override config

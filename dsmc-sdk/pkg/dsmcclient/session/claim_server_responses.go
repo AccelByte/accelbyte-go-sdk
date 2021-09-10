@@ -8,6 +8,7 @@ package session
 import (
 	"fmt"
 	"io"
+	"io/ioutil"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
@@ -34,40 +35,45 @@ func (o *ClaimServerReader) ReadResponse(response runtime.ClientResponse, consum
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, result
+		return result, nil
 	case 404:
 		result := NewClaimServerNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, result
+		return result, nil
 	case 409:
 		result := NewClaimServerConflict()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, result
+		return result, nil
 	case 425:
 		result := NewClaimServerStatus425()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, result
+		return result, nil
 	case 500:
 		result := NewClaimServerInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, result
+		return result, nil
 	case 503:
 		result := NewClaimServerServiceUnavailable()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, result
+		return result, nil
 
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		data, err := ioutil.ReadAll(response.Body())
+		if err != nil {
+			return nil, err
+		}
+
+		return nil, fmt.Errorf("Requested POST /dsmcontroller/namespaces/{namespace}/sessions/claim returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -78,7 +84,7 @@ func NewClaimServerNoContent() *ClaimServerNoContent {
 
 /*ClaimServerNoContent handles this case with default header values.
 
-DS claimed for session
+  DS claimed for session
 */
 type ClaimServerNoContent struct {
 }
@@ -99,7 +105,7 @@ func NewClaimServerUnauthorized() *ClaimServerUnauthorized {
 
 /*ClaimServerUnauthorized handles this case with default header values.
 
-Unauthorized
+  Unauthorized
 */
 type ClaimServerUnauthorized struct {
 	Payload *dsmcclientmodels.ResponseError
@@ -132,7 +138,7 @@ func NewClaimServerNotFound() *ClaimServerNotFound {
 
 /*ClaimServerNotFound handles this case with default header values.
 
-session not found
+  session not found
 */
 type ClaimServerNotFound struct {
 	Payload *dsmcclientmodels.ResponseError
@@ -165,7 +171,7 @@ func NewClaimServerConflict() *ClaimServerConflict {
 
 /*ClaimServerConflict handles this case with default header values.
 
-DS is already claimed
+  DS is already claimed
 */
 type ClaimServerConflict struct {
 	Payload *dsmcclientmodels.ResponseError
@@ -198,7 +204,7 @@ func NewClaimServerStatus425() *ClaimServerStatus425 {
 
 /*ClaimServerStatus425 handles this case with default header values.
 
-DS is not ready to be claimed
+  DS is not ready to be claimed
 */
 type ClaimServerStatus425 struct {
 	Payload *dsmcclientmodels.ResponseError
@@ -231,7 +237,7 @@ func NewClaimServerInternalServerError() *ClaimServerInternalServerError {
 
 /*ClaimServerInternalServerError handles this case with default header values.
 
-Internal Server Error
+  Internal Server Error
 */
 type ClaimServerInternalServerError struct {
 	Payload *dsmcclientmodels.ResponseError
@@ -264,7 +270,7 @@ func NewClaimServerServiceUnavailable() *ClaimServerServiceUnavailable {
 
 /*ClaimServerServiceUnavailable handles this case with default header values.
 
-DS is unreachable
+  DS is unreachable
 */
 type ClaimServerServiceUnavailable struct {
 	Payload *dsmcclientmodels.ResponseError

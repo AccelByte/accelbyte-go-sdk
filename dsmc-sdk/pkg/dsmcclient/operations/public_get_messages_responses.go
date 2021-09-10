@@ -8,6 +8,7 @@ package operations
 import (
 	"fmt"
 	"io"
+	"io/ioutil"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
@@ -34,10 +35,15 @@ func (o *PublicGetMessagesReader) ReadResponse(response runtime.ClientResponse, 
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, result
+		return result, nil
 
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		data, err := ioutil.ReadAll(response.Body())
+		if err != nil {
+			return nil, err
+		}
+
+		return nil, fmt.Errorf("Requested GET /dsmcontroller/v1/messages returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -48,7 +54,7 @@ func NewPublicGetMessagesOK() *PublicGetMessagesOK {
 
 /*PublicGetMessagesOK handles this case with default header values.
 
-Public Get Message method
+  messages returned
 */
 type PublicGetMessagesOK struct {
 	Payload []*dsmcclientmodels.LogAppMessageDeclaration
@@ -79,7 +85,7 @@ func NewPublicGetMessagesInternalServerError() *PublicGetMessagesInternalServerE
 
 /*PublicGetMessagesInternalServerError handles this case with default header values.
 
-Error response
+  Internal Server Error
 */
 type PublicGetMessagesInternalServerError struct {
 	Payload *dsmcclientmodels.ResponseError

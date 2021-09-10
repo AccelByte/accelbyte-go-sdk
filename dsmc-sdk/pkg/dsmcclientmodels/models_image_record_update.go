@@ -17,6 +17,10 @@ import (
 // swagger:model models.ImageRecordUpdate
 type ModelsImageRecordUpdate struct {
 
+	// artifact path
+	// Required: true
+	ArtifactPath *string `json:"artifactPath"`
+
 	// image
 	// Required: true
 	Image *string `json:"image"`
@@ -38,6 +42,10 @@ type ModelsImageRecordUpdate struct {
 func (m *ModelsImageRecordUpdate) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateArtifactPath(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateImage(formats); err != nil {
 		res = append(res, err)
 	}
@@ -57,6 +65,15 @@ func (m *ModelsImageRecordUpdate) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *ModelsImageRecordUpdate) validateArtifactPath(formats strfmt.Registry) error {
+
+	if err := validate.Required("artifactPath", "body", m.ArtifactPath); err != nil {
+		return err
+	}
+
 	return nil
 }
 

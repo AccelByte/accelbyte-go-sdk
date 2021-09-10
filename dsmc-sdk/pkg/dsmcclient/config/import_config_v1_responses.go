@@ -8,6 +8,7 @@ package config
 import (
 	"fmt"
 	"io"
+	"io/ioutil"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
@@ -34,34 +35,39 @@ func (o *ImportConfigV1Reader) ReadResponse(response runtime.ClientResponse, con
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, result
+		return result, nil
 	case 401:
 		result := NewImportConfigV1Unauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, result
+		return result, nil
 	case 403:
 		result := NewImportConfigV1Forbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, result
+		return result, nil
 	case 404:
 		result := NewImportConfigV1NotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, result
+		return result, nil
 	case 500:
 		result := NewImportConfigV1InternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, result
+		return result, nil
 
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		data, err := ioutil.ReadAll(response.Body())
+		if err != nil {
+			return nil, err
+		}
+
+		return nil, fmt.Errorf("Requested POST /dsmcontroller/admin/v1/namespaces/{namespace}/configs/import returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -72,7 +78,7 @@ func NewImportConfigV1OK() *ImportConfigV1OK {
 
 /*ImportConfigV1OK handles this case with default header values.
 
-config imported
+  config imported
 */
 type ImportConfigV1OK struct {
 	Payload *dsmcclientmodels.ModelsImportResponse
@@ -105,7 +111,7 @@ func NewImportConfigV1BadRequest() *ImportConfigV1BadRequest {
 
 /*ImportConfigV1BadRequest handles this case with default header values.
 
-malformed request
+  malformed request
 */
 type ImportConfigV1BadRequest struct {
 	Payload *dsmcclientmodels.ResponseError
@@ -138,7 +144,7 @@ func NewImportConfigV1Unauthorized() *ImportConfigV1Unauthorized {
 
 /*ImportConfigV1Unauthorized handles this case with default header values.
 
-unauthorized access
+  unauthorized access
 */
 type ImportConfigV1Unauthorized struct {
 	Payload *dsmcclientmodels.ResponseError
@@ -171,7 +177,7 @@ func NewImportConfigV1Forbidden() *ImportConfigV1Forbidden {
 
 /*ImportConfigV1Forbidden handles this case with default header values.
 
-forbidden access
+  forbidden access
 */
 type ImportConfigV1Forbidden struct {
 	Payload *dsmcclientmodels.ResponseError
@@ -204,7 +210,7 @@ func NewImportConfigV1NotFound() *ImportConfigV1NotFound {
 
 /*ImportConfigV1NotFound handles this case with default header values.
 
-config not found
+  config not found
 */
 type ImportConfigV1NotFound struct {
 	Payload *dsmcclientmodels.ResponseError
@@ -237,7 +243,7 @@ func NewImportConfigV1InternalServerError() *ImportConfigV1InternalServerError {
 
 /*ImportConfigV1InternalServerError handles this case with default header values.
 
-Internal Server Error
+  Internal Server Error
 */
 type ImportConfigV1InternalServerError struct {
 	Payload *dsmcclientmodels.ResponseError

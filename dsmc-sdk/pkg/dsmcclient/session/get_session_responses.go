@@ -8,6 +8,7 @@ package session
 import (
 	"fmt"
 	"io"
+	"io/ioutil"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
@@ -34,22 +35,27 @@ func (o *GetSessionReader) ReadResponse(response runtime.ClientResponse, consume
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, result
+		return result, nil
 	case 404:
 		result := NewGetSessionNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, result
+		return result, nil
 	case 500:
 		result := NewGetSessionInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, result
+		return result, nil
 
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		data, err := ioutil.ReadAll(response.Body())
+		if err != nil {
+			return nil, err
+		}
+
+		return nil, fmt.Errorf("Requested GET /dsmcontroller/namespaces/{namespace}/sessions/{sessionID} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -60,7 +66,7 @@ func NewGetSessionOK() *GetSessionOK {
 
 /*GetSessionOK handles this case with default header values.
 
-session queried
+  session queried
 */
 type GetSessionOK struct {
 	Payload *dsmcclientmodels.ModelsSessionResponse
@@ -93,7 +99,7 @@ func NewGetSessionUnauthorized() *GetSessionUnauthorized {
 
 /*GetSessionUnauthorized handles this case with default header values.
 
-Unauthorized
+  Unauthorized
 */
 type GetSessionUnauthorized struct {
 	Payload *dsmcclientmodels.ResponseError
@@ -126,7 +132,7 @@ func NewGetSessionNotFound() *GetSessionNotFound {
 
 /*GetSessionNotFound handles this case with default header values.
 
-session not found
+  session not found
 */
 type GetSessionNotFound struct {
 	Payload *dsmcclientmodels.ResponseError
@@ -159,7 +165,7 @@ func NewGetSessionInternalServerError() *GetSessionInternalServerError {
 
 /*GetSessionInternalServerError handles this case with default header values.
 
-Internal Server Error
+  Internal Server Error
 */
 type GetSessionInternalServerError struct {
 	Payload *dsmcclientmodels.ResponseError

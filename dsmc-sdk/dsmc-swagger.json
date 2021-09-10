@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice DSM Controller Service",
     "title": "justice-dsm-controller-service",
-    "version": "2.4.0"
+    "version": "2.5.0"
   },
   "paths": {
     "/dsmcontroller/admin/configs": {
@@ -42,7 +42,7 @@
         }
       },
       "post": {
-        "description": "```\nRequired permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [CREATE] \nRequired scope: social\n\nThis endpoint adds/modifies config. When there are ready servers and \nthe server version is updated, those servers will be replaced with newer version.\n\nPort is where your game listens for incoming UDP connection, if empty it'll be set to 15000\n\nCPU and Memory limit / request are formatted with Kubernetes format, \ne.g. CPU of 1000m is 1 core, and Memory of 512Mi is 512 MB.\n\nThe creation/claim/session/unreachable/heartbeat timeouts are all in seconds. \nCreation timeout is time limit for DS to startup until registers itself. \nClaim timeout is time limit for game session manager to claim its ready DS. \nSession timeout is time limit for match session before deleted.\nUnreachable timeout is time limit for DS in UNREACHABLE state before deleted.\nHeartbeat timeout is time limit for DS to give heartbeat before marked as UNREACHABLE.\n\nSample config:\n{\n\t\"namespace\": \"accelbyte\",\n\t\"providers\": [\n\t\"aws\"\n\t],\n\t\"port\": 7777,\n\t\"protocol\": \"udp\",\n\t\"creation_timeout\": 120,\n\t\"claim_timeout\": 60,\n\t\"session_timeout\": 1800,\n\t\"heartbeat_timeout\": 30,\n\t\"unreachable_timeout\": 30,\n\t\"image_version_mapping\": {\n\t\t\"1.4.0\": \"accelbyte/sample-ds-go:1.4.0\"\n\t},\n\t\"default_version\": \"1.4.0\",\n\t\"cpu_limit\": \"100\",\n\t\"mem_limit\": \"64\",\n\t\"artifact_path\":\"/srv/datads/artifacts/\",\n\t\"params\": \"\",\n\t\"min_count\": 0,\n\t\"max_count\": 0,\n\t\"buffer_count\": 0,\n\t\"configurations\": {\n\t\t\"1player\": {\n\t\t\t\"cpu_limit\": \"100\",\n\t\t\t\"mem_limit\": \"64\",\n\t\t\t\"params\": \"-gamemode 1p\",\n\t\t\t\"artifact_path\":\"/srv/datads/artifacts/\",\n\t\t},\n\t\t\"50players\": {\n\t\t\t\"cpu_limit\": \"200\",\n\t\t\t\"mem_limit\": \"512\",\n\t\t\t\"params\": \"-gamemode 50p\",\n\t\t\t\"artifact_path\":\"/srv/datads/artifacts/\",\n\t\t}\n\t},\n\t\"deployments\": {\n\t\t\"global-1p\": {\n\t\t\t\"game_version\": \"1.4.0\"\",\n\t\t\t\"regions\": [\"us-west\", \"ap-southeast\"],\n\t\t\t\"configuration\": \"1player\",\n\t\t\t\"min_count\": 0,\n\t\t\t\"max_count\": 0,\n\t\t\t\"buffer_count\": 2\n\t\t},\n\t\t\"us-50p\": {\n\t\t\t\"game_version\": \"1.4.0\"\",\n\t\t\t\"regions\": [\"us-west\"],\n\t\t\t\"configuration\": \"50players\",\n\t\t\t\"min_count\": 0,\n\t\t\t\"max_count\": 0,\n\t\t\t\"buffer_count\": 5\n\t\t},\n\t},\n}\n```",
+        "description": "```\nRequired permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [CREATE] \nRequired scope: social\n\nThis endpoint adds/modifies config. When there are ready servers and \nthe server version is updated, those servers will be replaced with newer version.\n\nPort is where your game listens for incoming UDP connection, if empty it'll be set to 15000\n\nCPU and Memory limit / request are formatted with Kubernetes format, \ne.g. CPU of 1000m is 1 core, and Memory of 512Mi is 512 MB.\n\nThe creation/claim/session/unreachable/heartbeat timeouts are all in seconds. \nCreation timeout is time limit for DS to startup until registers itself. \nClaim timeout is time limit for game session manager to claim its ready DS. \nSession timeout is time limit for match session before deleted.\nUnreachable timeout is time limit for DS in UNREACHABLE state before deleted.\nHeartbeat timeout is time limit for DS to give heartbeat before marked as UNREACHABLE.\n\nSample config:\n{\n\t\"namespace\": \"accelbyte\",\n\t\"providers\": [\n\t\"aws\"\n\t],\n\t\"port\": 7777,\n\t\"protocol\": \"udp\",\n\t\"creation_timeout\": 120,\n\t\"claim_timeout\": 60,\n\t\"session_timeout\": 1800,\n\t\"heartbeat_timeout\": 30,\n\t\"unreachable_timeout\": 30,\n\t\"image_version_mapping\": {\n\t\t\"1.4.0\": \"accelbyte/sample-ds-go:1.4.0\"\n\t},\n\t\"default_version\": \"1.4.0\",\n\t\"cpu_limit\": \"100\",\n\t\"mem_limit\": \"64\",\n\t\"params\": \"\",\n\t\"min_count\": 0,\n\t\"max_count\": 0,\n\t\"buffer_count\": 0,\n\t\"configurations\": {\n\t\t\"1player\": {\n\t\t\t\"cpu_limit\": \"100\",\n\t\t\t\"mem_limit\": \"64\",\n\t\t\t\"params\": \"-gamemode 1p\",\n\t\t},\n\t\t\"50players\": {\n\t\t\t\"cpu_limit\": \"200\",\n\t\t\t\"mem_limit\": \"512\",\n\t\t\t\"params\": \"-gamemode 50p\",\n\t\t}\n\t},\n\t\"deployments\": {\n\t\t\"global-1p\": {\n\t\t\t\"game_version\": \"1.4.0\"\",\n\t\t\t\"regions\": [\"us-west\", \"ap-southeast\"],\n\t\t\t\"configuration\": \"1player\",\n\t\t\t\"min_count\": 0,\n\t\t\t\"max_count\": 0,\n\t\t\t\"buffer_count\": 2\n\t\t},\n\t\t\"us-50p\": {\n\t\t\t\"game_version\": \"1.4.0\"\",\n\t\t\t\"regions\": [\"us-west\"],\n\t\t\t\"configuration\": \"50players\",\n\t\t\t\"min_count\": 0,\n\t\t\t\"max_count\": 0,\n\t\t\t\"buffer_count\": 5\n\t\t},\n\t},\n}\n```",
         "consumes": [
           "application/json"
         ],
@@ -54,13 +54,14 @@
         ],
         "summary": "Save config",
         "operationId": "SaveConfig",
+        "deprecated": true,
         "parameters": [
           {
             "name": "body",
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/models.DSMConfig"
+              "$ref": "#/definitions/models.DSMConfigRecord"
             }
           }
         ],
@@ -99,7 +100,7 @@
           "application/json"
         ],
         "tags": [
-          "Config"
+          "Image Config"
         ],
         "summary": "Update image",
         "operationId": "UpdateImage",
@@ -146,7 +147,7 @@
           "application/json"
         ],
         "tags": [
-          "Config"
+          "Image Config"
         ],
         "summary": "Create image",
         "operationId": "CreateImage",
@@ -201,7 +202,7 @@
           "application/json"
         ],
         "tags": [
-          "Config"
+          "Image Config"
         ],
         "summary": "import images for a namespace",
         "operationId": "ImportImages",
@@ -275,7 +276,116 @@
           "200": {
             "description": "config retrieved",
             "schema": {
-              "$ref": "#/definitions/models.DSMConfig"
+              "$ref": "#/definitions/models.DSMConfigRecord"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "config not found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "```\nRequired permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [CREATE] \nRequired scope: social\n\nThis endpoint creates config.\n\nPort is where your game listens for incoming UDP connection, if empty it'll be set to 15000\n\nCPU and Memory limit / request are formatted with Kubernetes format, \ne.g. CPU of 1000m is 1 core, and Memory of 512Mi is 512 MB.\n\nThe creation/claim/session/unreachable/heartbeat timeouts are all in seconds. \nCreation timeout is time limit for DS to startup until registers itself. \nClaim timeout is time limit for game session manager to claim its ready DS. \nSession timeout is time limit for match session before deleted.\nUnreachable timeout is time limit for DS in UNREACHABLE state before deleted.\nHeartbeat timeout is time limit for DS to give heartbeat before marked as UNREACHABLE.\n\nSample config:\n{\n\t\"namespace\": \"accelbyte\",\n\t\"providers\": [\n\t\"aws\"\n\t],\n\t\"port\": 7777,\n\t\"protocol\": \"udp\",\n\t\"creation_timeout\": 120,\n\t\"claim_timeout\": 60,\n\t\"session_timeout\": 1800,\n\t\"heartbeat_timeout\": 30,\n\t\"unreachable_timeout\": 30,\n}\n```",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Config"
+        ],
+        "summary": "Create config",
+        "operationId": "CreateConfig",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace of the game",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.CreateDSMConfigRequest"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "config created",
+            "schema": {
+              "$ref": "#/definitions/models.DSMConfigRecord"
+            }
+          },
+          "400": {
+            "description": "malformed request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "```\nRequired permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [DELETE] \nRequired scope: social\n\nThis endpoint removes config. When there are ready servers, \nthose servers will be removed.\n```",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Config"
+        ],
+        "summary": "Delete config",
+        "operationId": "DeleteConfig",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace of the game",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "config deleted"
+          },
+          "400": {
+            "description": "malformed request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
             }
           },
           "401": {
@@ -299,7 +409,7 @@
         }
       },
       "patch": {
-        "description": "```\nRequired permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [UPDATE] \nRequired scope: social\n\nThis endpoint modifies config. When there are ready servers and \nthe server version is updated, those servers will be replaced with newer version.\n\nPort is where your game listens for incoming UDP connection, if empty it'll be set to 15000\n\nCPU and Memory limit / request are formatted with Kubernetes format, \ne.g. CPU of 1000m is 1 core, and Memory of 512Mi is 512 MB.\n\nThe creation/claim/session/unreachable/heartbeat timeouts are all in seconds. \nCreation timeout is time limit for DS to startup until registers itself. \nClaim timeout is time limit for game session manager to claim its ready DS. \nSession timeout is time limit for match session before deleted.\nUnreachable timeout is time limit for DS in UNREACHABLE state before deleted.\nHeartbeat timeout is time limit for DS to give heartbeat before marked as UNREACHABLE.\n\nSample config:\n{\n\t\"namespace\": \"accelbyte\",\n\t\"providers\": [\n\t\"aws\"\n\t],\n\t\"port\": 7777,\n\t\"protocol\": \"udp\",\n\t\"creation_timeout\": 120,\n\t\"claim_timeout\": 60,\n\t\"session_timeout\": 1800,\n\t\"heartbeat_timeout\": 30,\n\t\"unreachable_timeout\": 30,\n\t\"image_version_mapping\": {\n\t\t\"1.4.0\": \"accelbyte/sample-ds-go:1.4.0\"\n\t},\n\t\"default_version\": \"1.4.0\",\n\t\"cpu_limit\": \"100\",\n\t\"mem_limit\": \"64\",\n\t\"artifact_path\":\"/srv/datads/artifacts/\",\n\t\"params\": \"\",\n\t\"min_count\": 0,\n\t\"max_count\": 0,\n\t\"buffer_count\": 0,\n\t\"configurations\": {\n\t\t\"1player\": {\n\t\t\t\"cpu_limit\": \"100\",\n\t\t\t\"mem_limit\": \"64\",\n\t\t\t\"params\": \"-gamemode 1p\",\n\t\t\t\"artifact_path\":\"/srv/datads/artifacts/\",\n\t\t},\n\t\t\"50players\": {\n\t\t\t\"cpu_limit\": \"200\",\n\t\t\t\"mem_limit\": \"512\",\n\t\t\t\"params\": \"-gamemode 50p\",\n\t\t\t\"artifact_path\":\"/srv/datads/artifacts/\",\n\t\t}\n\t},\n\t\"deployments\": {\n\t\t\"global-1p\": {\n\t\t\t\"game_version\": \"1.4.0\"\",\n\t\t\t\"regions\": [\"us-west\", \"ap-southeast\"],\n\t\t\t\"configuration\": \"1player\",\n\t\t\t\"min_count\": 0,\n\t\t\t\"max_count\": 0,\n\t\t\t\"buffer_count\": 2\n\t\t},\n\t\t\"us-50p\": {\n\t\t\t\"game_version\": \"1.4.0\"\",\n\t\t\t\"regions\": [\"us-west\"],\n\t\t\t\"configuration\": \"50players\",\n\t\t\t\"min_count\": 0,\n\t\t\t\"max_count\": 0,\n\t\t\t\"buffer_count\": 5\n\t\t},\n\t},\n}\n```",
+        "description": "```\nRequired permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [UPDATE] \nRequired scope: social\n\nThis endpoint modifies config. When there are ready servers and \nthe server version is updated, those servers will be replaced with newer version.\n\nPort is where your game listens for incoming UDP connection, if empty it'll be set to 15000\n\nCPU and Memory limit / request are formatted with Kubernetes format, \ne.g. CPU of 1000m is 1 core, and Memory of 512Mi is 512 MB.\n\nThe creation/claim/session/unreachable/heartbeat timeouts are all in seconds. \nCreation timeout is time limit for DS to startup until registers itself. \nClaim timeout is time limit for game session manager to claim its ready DS. \nSession timeout is time limit for match session before deleted.\nUnreachable timeout is time limit for DS in UNREACHABLE state before deleted.\nHeartbeat timeout is time limit for DS to give heartbeat before marked as UNREACHABLE.\n\nSample config:\n{\n\t\"namespace\": \"accelbyte\",\n\t\"providers\": [\n\t\"aws\"\n\t],\n\t\"port\": 7777,\n\t\"protocol\": \"udp\",\n\t\"creation_timeout\": 120,\n\t\"claim_timeout\": 60,\n\t\"session_timeout\": 1800,\n\t\"heartbeat_timeout\": 30,\n\t\"unreachable_timeout\": 30,\n}\n```",
         "consumes": [
           "application/json"
         ],
@@ -329,71 +439,11 @@
           }
         ],
         "responses": {
-          "204": {
-            "description": "config updated"
-          },
-          "400": {
-            "description": "malformed request",
+          "200": {
+            "description": "config updated",
             "schema": {
-              "$ref": "#/definitions/response.Error"
+              "$ref": "#/definitions/models.DSMConfigRecord"
             }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "schema": {
-              "$ref": "#/definitions/response.Error"
-            }
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "schema": {
-              "$ref": "#/definitions/response.Error"
-            }
-          }
-        }
-      }
-    },
-    "/dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}": {
-      "patch": {
-        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [UPDATE]\n\nRequired scope: social\n\nThis endpoint update a dedicated servers deployment in a namespace.",
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "Config"
-        ],
-        "summary": "Update deployment",
-        "operationId": "UpdateDeployment",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "namespace of the game",
-            "name": "namespace",
-            "in": "path",
-            "required": true
-          },
-          {
-            "type": "string",
-            "description": "deployment name",
-            "name": "deployment",
-            "in": "path",
-            "required": true
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/models.UpdateDeploymentRequest"
-            }
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "deployment updated"
           },
           "400": {
             "description": "malformed request",
@@ -422,6 +472,1638 @@
         }
       }
     },
+    "/dsmcontroller/admin/namespaces/{namespace}/configs/cache": {
+      "delete": {
+        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [DELETE]\n\nRequired scope: social\n\nThis endpoint clears config cache in a namespace",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Config"
+        ],
+        "summary": "Clear config cache",
+        "operationId": "ClearCache",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace of the game",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "ok"
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        }
+      }
+    },
+    "/dsmcontroller/admin/namespaces/{namespace}/configs/deployments": {
+      "get": {
+        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]\n\nRequired scope: social\n\nThis endpoint get a all deployments in a namespace",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Deployment Config"
+        ],
+        "summary": "Get All Deployments",
+        "operationId": "GetAllDeployment",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace of the game",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "description": "offset from list to query from",
+            "name": "offset",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "description": "how many items to return",
+            "name": "count",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "$ref": "#/definitions/models.ListDeploymentResponse"
+            }
+          },
+          "400": {
+            "description": "malformed request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        }
+      }
+    },
+    "/dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}": {
+      "get": {
+        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]\n\nRequired scope: social\n\nThis endpoint get a dedicated server deployment in a namespace",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Deployment Config"
+        ],
+        "summary": "Get Deployment",
+        "operationId": "GetDeployment",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace of the game",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "deployment name",
+            "name": "deployment",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "$ref": "#/definitions/models.DeploymentWithOverride"
+            }
+          },
+          "400": {
+            "description": "malformed request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "deployment not found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [CREATE]\n\nRequired scope: social\n\nThis endpoint create a dedicated servers deployment in a namespace.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Deployment Config"
+        ],
+        "summary": "Create deployment",
+        "operationId": "CreateDeployment",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace of the game",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "deployment name",
+            "name": "deployment",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.CreateDeploymentRequest"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "deployment created",
+            "schema": {
+              "$ref": "#/definitions/models.DeploymentWithOverride"
+            }
+          },
+          "400": {
+            "description": "malformed request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "409": {
+            "description": "deployment already exists",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]\n\nRequired scope: social\n\nThis endpoint delete a dedicated server deployment in a namespace",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Deployment Config"
+        ],
+        "summary": "Delete Deployment",
+        "operationId": "DeleteDeployment",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace of the game",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "deployment name",
+            "name": "deployment",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "ok"
+          },
+          "400": {
+            "description": "malformed request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "deployment not found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [UPDATE]\n\nRequired scope: social\n\nThis endpoint update a dedicated servers deployment in a namespace.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Deployment Config"
+        ],
+        "summary": "Update deployment",
+        "operationId": "UpdateDeployment",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace of the game",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "deployment name",
+            "name": "deployment",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.UpdateDeploymentRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "deployment updated",
+            "schema": {
+              "$ref": "#/definitions/models.DeploymentWithOverride"
+            }
+          },
+          "400": {
+            "description": "malformed request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "config not found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        }
+      }
+    },
+    "/dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}/overrides/regions/{region}": {
+      "post": {
+        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [CREATE]\n\nRequired scope: social\n\nThis endpoint creates a dedicated servers deployment override in a namespace in a region for root deployment.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Deployment Config"
+        ],
+        "summary": "Create region override",
+        "operationId": "CreateRootRegionOverride",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace of the game",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "deployment of the game",
+            "name": "deployment",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "region",
+            "name": "region",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.CreateRegionOverrideRequest"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "region override created",
+            "schema": {
+              "$ref": "#/definitions/models.DeploymentWithOverride"
+            }
+          },
+          "400": {
+            "description": "malformed request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "deployment not found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "409": {
+            "description": "deployment already has region override",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [DELETE]\n\nRequired scope: social\n\nThis endpoint delete a dedicated server deployment override in a namespace in a region for root deployment",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Deployment Config"
+        ],
+        "summary": "Delete Region Override",
+        "operationId": "DeleteRootRegionOverride",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace of the game",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "deployment name",
+            "name": "deployment",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "region",
+            "name": "region",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "deployment region override deleted",
+            "schema": {
+              "$ref": "#/definitions/models.DeploymentWithOverride"
+            }
+          },
+          "400": {
+            "description": "malformed request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "deployment not found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [UPDATE]\n\nRequired scope: social\n\nThis endpoint update a dedicated servers deployment override in a namespace in a region for root deployment.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Deployment Config"
+        ],
+        "summary": "Update region override",
+        "operationId": "UpdateRootRegionOverride",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace of the game",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "deployment name",
+            "name": "deployment",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "region",
+            "name": "region",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.UpdateRegionOverrideRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "deployment region override updated",
+            "schema": {
+              "$ref": "#/definitions/models.DeploymentWithOverride"
+            }
+          },
+          "400": {
+            "description": "malformed request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "deployment not found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        }
+      }
+    },
+    "/dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}/overrides/version/{version}": {
+      "post": {
+        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [CREATE]\n\nRequired scope: social\n\nThis endpoint create a dedicated servers deployment override in a namespace.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Deployment Config"
+        ],
+        "summary": "Create deployment override",
+        "operationId": "CreateDeploymentOverride",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace of the game",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "deployment of the game",
+            "name": "deployment",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "version",
+            "name": "version",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.CreateDeploymentOverrideRequest"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "deployment override created",
+            "schema": {
+              "$ref": "#/definitions/models.DeploymentWithOverride"
+            }
+          },
+          "400": {
+            "description": "malformed request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "deployment not found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "409": {
+            "description": "deployment override already exists",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        }
+      }
+    },
+    "/dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}/overrides/versions/{version}": {
+      "delete": {
+        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [DELETE]\n\nRequired scope: social\n\nThis endpoint delete a dedicated server deployment override in a namespace",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Deployment Config"
+        ],
+        "summary": "Delete Deployment Override",
+        "operationId": "DeleteDeploymentOverride",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace of the game",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "deployment name",
+            "name": "deployment",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "version",
+            "name": "version",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "deployment override deleted",
+            "schema": {
+              "$ref": "#/definitions/models.DeploymentWithOverride"
+            }
+          },
+          "400": {
+            "description": "malformed request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "deployment not found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [UPDATE]\n\nRequired scope: social\n\nThis endpoint update a dedicated servers deployment override in a namespace.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Deployment Config"
+        ],
+        "summary": "Update deployment override",
+        "operationId": "UpdateDeploymentOverride",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace of the game",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "deployment name",
+            "name": "deployment",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "version",
+            "name": "version",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.UpdateDeploymentOverrideRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "deployment override updated",
+            "schema": {
+              "$ref": "#/definitions/models.DeploymentWithOverride"
+            }
+          },
+          "400": {
+            "description": "malformed request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "deployment not found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        }
+      }
+    },
+    "/dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}/overrides/versions/{version}/regions/{region}": {
+      "post": {
+        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [CREATE]\n\nRequired scope: social\n\nThis endpoint creates a dedicated servers deployment override in a namespace in a region for deployment overrides.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Deployment Config"
+        ],
+        "summary": "Create region override for deployment override",
+        "operationId": "CreateOverrideRegionOverride",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace of the game",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "deployment of the game",
+            "name": "deployment",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "version",
+            "name": "version",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "region",
+            "name": "region",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.CreateRegionOverrideRequest"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "region override created",
+            "schema": {
+              "$ref": "#/definitions/models.DeploymentWithOverride"
+            }
+          },
+          "400": {
+            "description": "malformed request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "deployment not found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "409": {
+            "description": "deployment already has region override",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [DELETE]\n\nRequired scope: social\n\nThis endpoint delete a dedicated server deployment override in a namespace in a region for deployment overrides",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Deployment Config"
+        ],
+        "summary": "Delete region override for deployment override",
+        "operationId": "DeleteOverrideRegionOverride",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace of the game",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "deployment name",
+            "name": "deployment",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "version",
+            "name": "version",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "region",
+            "name": "region",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "deployment region override deleted",
+            "schema": {
+              "$ref": "#/definitions/models.DeploymentWithOverride"
+            }
+          },
+          "400": {
+            "description": "malformed request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "deployment  not found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [UPDATE]\n\nRequired scope: social\n\nThis endpoint update a dedicated servers deployment override in a namespace in a region for deployment overrides.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Deployment Config"
+        ],
+        "summary": "Update region override for deployment override",
+        "operationId": "UpdateOverrideRegionOverride",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace of the game",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "deployment name",
+            "name": "deployment",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "version",
+            "name": "version",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "region",
+            "name": "region",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.UpdateRegionOverrideRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "deployment region override updated",
+            "schema": {
+              "$ref": "#/definitions/models.DeploymentWithOverride"
+            }
+          },
+          "400": {
+            "description": "malformed request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "deployment not found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        }
+      }
+    },
+    "/dsmcontroller/admin/namespaces/{namespace}/configs/pods": {
+      "get": {
+        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]\n\nRequired scope: social\n\nThis endpoint get a all pod configs in a namespace",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Pod Config"
+        ],
+        "summary": "Get all pod configs",
+        "operationId": "GetAllPodConfig",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace of the game",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "description": "offset from list to query from",
+            "name": "offset",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "description": "how many items to return",
+            "name": "count",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "$ref": "#/definitions/models.ListPodConfigResponse"
+            }
+          },
+          "400": {
+            "description": "malformed request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        }
+      }
+    },
+    "/dsmcontroller/admin/namespaces/{namespace}/configs/pods/{name}": {
+      "get": {
+        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]\n\nRequired scope: social\n\nThis endpoint get a dedicated server pod config in a namespace",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Pod Config"
+        ],
+        "summary": "Get Pod Config",
+        "operationId": "GetPodConfig",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace of the game",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "pod name",
+            "name": "name",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "$ref": "#/definitions/models.PodConfigRecord"
+            }
+          },
+          "400": {
+            "description": "malformed request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "pod name not found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [CREATE]\n\nRequired scope: social\n\nThis endpoint create a dedicated servers pod config in a namespace.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Pod Config"
+        ],
+        "summary": "Create pod config",
+        "operationId": "CreatePodConfig",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace of the game",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "pod name",
+            "name": "name",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.CreatePodConfigRequest"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "pod config created",
+            "schema": {
+              "$ref": "#/definitions/models.PodConfigRecord"
+            }
+          },
+          "400": {
+            "description": "malformed request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "409": {
+            "description": "pod config already exists",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [DELETE]\n\nRequired scope: social\n\nThis endpoint delete a dedicated server pod config in a namespace",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Pod Config"
+        ],
+        "summary": "Delete pod config",
+        "operationId": "DeletePodConfig",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace of the game",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "pod name",
+            "name": "name",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "pod config deleted"
+          },
+          "400": {
+            "description": "malformed request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "pod config not found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "409": {
+            "description": "pod config in use",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [UPDATE]\n\nRequired scope: social\n\nThis endpoint update a dedicated servers pod config in a namespace.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Pod Config"
+        ],
+        "summary": "Update pod config",
+        "operationId": "UpdatePodConfig",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace of the game",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "pod name",
+            "name": "name",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.UpdatePodConfigRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "pod config updated",
+            "schema": {
+              "$ref": "#/definitions/models.PodConfigRecord"
+            }
+          },
+          "400": {
+            "description": "malformed request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "pod config not found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "409": {
+            "description": "pod config with same name already exist",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        }
+      }
+    },
+    "/dsmcontroller/admin/namespaces/{namespace}/configs/ports/{name}": {
+      "post": {
+        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [CREATE]\n\nRequired scope: social\n\nThis endpoint create a dedicated servers port config in a namespace.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Config"
+        ],
+        "summary": "Create port config",
+        "operationId": "AddPort",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace of the game",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "port name",
+            "name": "name",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.CreatePortRequest"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "pod config created",
+            "schema": {
+              "$ref": "#/definitions/models.DSMConfigRecord"
+            }
+          },
+          "400": {
+            "description": "malformed request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "port config not found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "409": {
+            "description": "port config already exists",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [DELETE]\n\nRequired scope: social\n\nThis endpoint delete a dedicated server port config in a namespace",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Config"
+        ],
+        "summary": "Delete port config",
+        "operationId": "DeletePort",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace of the game",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "port name",
+            "name": "name",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "$ref": "#/definitions/models.DSMConfigRecord"
+            }
+          },
+          "400": {
+            "description": "malformed request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "port config not found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [UPDATE]\n\nRequired scope: social\n\nThis endpoint update a dedicated servers port config in a namespace.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Config"
+        ],
+        "summary": "Update port config",
+        "operationId": "UpdatePort",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace of the game",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "port name",
+            "name": "name",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.UpdatePortRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "pod config updated",
+            "schema": {
+              "$ref": "#/definitions/models.DSMConfigRecord"
+            }
+          },
+          "400": {
+            "description": "malformed request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "port config not found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        }
+      }
+    },
     "/dsmcontroller/admin/namespaces/{namespace}/images": {
       "get": {
         "description": "Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]\n\nRequired scope: social\n\nThis endpoint lists all of dedicated servers images.",
@@ -432,7 +2114,7 @@
           "application/json"
         ],
         "tags": [
-          "Config"
+          "Image Config"
         ],
         "summary": "List all DS images",
         "operationId": "ListImages",
@@ -499,7 +2181,7 @@
           "application/json"
         ],
         "tags": [
-          "Config"
+          "Image Config"
         ],
         "summary": "Delete an image",
         "operationId": "DeleteImage",
@@ -573,7 +2255,7 @@
           "application/json"
         ],
         "tags": [
-          "Config"
+          "Image Config"
         ],
         "summary": "export DSM Controller images for a namespace",
         "operationId": "ExportImages",
@@ -633,7 +2315,7 @@
           "application/json"
         ],
         "tags": [
-          "Config"
+          "Image Config"
         ],
         "summary": "DS Image Limit",
         "operationId": "GetImageLimit",
@@ -684,7 +2366,7 @@
           "application/json"
         ],
         "tags": [
-          "Config"
+          "Image Config"
         ],
         "summary": "DS Image Detail",
         "operationId": "GetImageDetail",
@@ -1356,7 +3038,7 @@
           "200": {
             "description": "config exported",
             "schema": {
-              "$ref": "#/definitions/models.DSMConfig"
+              "$ref": "#/definitions/models.DSMConfigExport"
             }
           },
           "401": {
@@ -1388,7 +3070,7 @@
     },
     "/dsmcontroller/admin/v1/namespaces/{namespace}/configs/import": {
       "post": {
-        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [CREATE]\n\nRequired scope: social\n\nThis endpoint import a dedicated servers config in a namespace.\n\nThe configurations would be replaced except Image Version Mapping. The existing Image Version Mapping will be kept.\n",
+        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [CREATE]\n\nRequired scope: social\n\nThis endpoint import a dedicated servers config in a namespace.\n\nIf there is an existing configuration, the configuration would be replaced.\n",
         "consumes": [
           "multipart/form-data"
         ],
@@ -2040,19 +3722,19 @@
         "operationId": "publicGetMessages",
         "responses": {
           "200": {
+            "description": "messages returned",
             "schema": {
               "type": "array",
               "items": {
                 "$ref": "#/definitions/log.AppMessageDeclaration"
               }
-            },
-            "description": "Public Get Message method"
+            }
           },
           "500": {
+            "description": "Internal Server Error",
             "schema": {
               "$ref": "#/definitions/response.Error"
-            },
-            "description": "Error response"
+            }
           }
         }
       }
@@ -2124,14 +3806,207 @@
         }
       }
     },
+    "models.CreateDSMConfigRequest": {
+      "required": [
+        "providers",
+        "port",
+        "protocol",
+        "creation_timeout",
+        "claim_timeout",
+        "session_timeout",
+        "unreachable_timeout",
+        "ports",
+        "default_version"
+      ],
+      "properties": {
+        "claim_timeout": {
+          "type": "integer",
+          "format": "int32",
+          "x-nullable": false
+        },
+        "creation_timeout": {
+          "type": "integer",
+          "format": "int32",
+          "x-nullable": false
+        },
+        "default_version": {
+          "type": "string",
+          "x-nullable": false
+        },
+        "port": {
+          "type": "integer",
+          "format": "int32",
+          "x-nullable": false
+        },
+        "ports": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "integer"
+          },
+          "x-nullable": false
+        },
+        "protocol": {
+          "type": "string",
+          "x-nullable": false
+        },
+        "providers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "x-nullable": false
+        },
+        "session_timeout": {
+          "type": "integer",
+          "format": "int32",
+          "x-nullable": false
+        },
+        "unreachable_timeout": {
+          "type": "integer",
+          "format": "int32",
+          "x-nullable": false
+        }
+      }
+    },
+    "models.CreateDeploymentOverrideRequest": {
+      "required": [
+        "buffer_count",
+        "use_buffer_percent",
+        "min_count",
+        "regions",
+        "region_overrides",
+        "enable_region_overrides",
+        "max_count",
+        "game_version",
+        "configuration",
+        "buffer_percent"
+      ],
+      "properties": {
+        "buffer_count": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "buffer_percent": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "configuration": {
+          "type": "string"
+        },
+        "enable_region_overrides": {
+          "type": "boolean"
+        },
+        "game_version": {
+          "type": "string"
+        },
+        "max_count": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "min_count": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "region_overrides": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/models.PodCountConfigOverride"
+          }
+        },
+        "regions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "use_buffer_percent": {
+          "type": "boolean"
+        }
+      }
+    },
+    "models.CreateDeploymentRequest": {
+      "required": [
+        "max_count",
+        "game_version",
+        "configuration",
+        "buffer_percent",
+        "buffer_count",
+        "use_buffer_percent",
+        "min_count",
+        "regions",
+        "region_overrides",
+        "enable_region_overrides",
+        "allow_version_override",
+        "overrides"
+      ],
+      "properties": {
+        "allow_version_override": {
+          "type": "boolean"
+        },
+        "buffer_count": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "buffer_percent": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "configuration": {
+          "type": "string"
+        },
+        "enable_region_overrides": {
+          "type": "boolean"
+        },
+        "game_version": {
+          "type": "string"
+        },
+        "max_count": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "min_count": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "overrides": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/models.DeploymentConfigOverride"
+          }
+        },
+        "region_overrides": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/models.PodCountConfigOverride"
+          }
+        },
+        "regions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "use_buffer_percent": {
+          "type": "boolean"
+        }
+      }
+    },
     "models.CreateImageRequest": {
       "required": [
         "namespace",
         "version",
         "image",
-        "persistent"
+        "persistent",
+        "artifactPath",
+        "dockerPath"
       ],
       "properties": {
+        "artifactPath": {
+          "type": "string"
+        },
+        "dockerPath": {
+          "type": "string"
+        },
         "image": {
           "type": "string"
         },
@@ -2146,9 +4021,73 @@
         }
       }
     },
+    "models.CreatePodConfigRequest": {
+      "required": [
+        "cpu_limit",
+        "mem_limit",
+        "params"
+      ],
+      "properties": {
+        "cpu_limit": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "mem_limit": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "params": {
+          "type": "string"
+        }
+      }
+    },
+    "models.CreatePortRequest": {
+      "required": [
+        "port"
+      ],
+      "properties": {
+        "port": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "models.CreateRegionOverrideRequest": {
+      "required": [
+        "max_count",
+        "buffer_count",
+        "buffer_percent",
+        "use_buffer_percent",
+        "min_count"
+      ],
+      "properties": {
+        "buffer_count": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "buffer_percent": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "max_count": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "min_count": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "use_buffer_percent": {
+          "type": "boolean"
+        }
+      }
+    },
     "models.CreateSessionRequest": {
       "required": [
-        "MatchResult",
+        "game_mode",
+        "matching_allies",
+        "session_id",
+        "namespace",
         "pod_name",
         "client_version",
         "region",
@@ -2156,9 +4095,6 @@
         "deployment"
       ],
       "properties": {
-        "MatchResult": {
-          "$ref": "#/definitions/models.MatchResult"
-        },
         "client_version": {
           "type": "string"
         },
@@ -2168,17 +4104,34 @@
         "deployment": {
           "type": "string"
         },
+        "game_mode": {
+          "type": "string"
+        },
+        "matching_allies": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/models.RequestMatchingAlly"
+          }
+        },
+        "namespace": {
+          "type": "string"
+        },
         "pod_name": {
           "type": "string"
         },
         "region": {
           "type": "string"
+        },
+        "session_id": {
+          "type": "string"
         }
       }
     },
-    "models.DSMConfig": {
+    "models.DSMConfigExport": {
       "required": [
         "namespace",
+        "createdAt",
+        "updatedAt",
         "providers",
         "port",
         "protocol",
@@ -2186,46 +4139,20 @@
         "claim_timeout",
         "session_timeout",
         "unreachable_timeout",
-        "image_version_mapping",
-        "version_image_size_mapping",
+        "ports",
         "default_version",
-        "artifact_path",
-        "cpu_limit",
-        "mem_limit",
-        "params",
-        "min_count",
-        "max_count",
-        "buffer_count",
-        "allow_version_override",
-        "overrides",
-        "configurations",
-        "deployments",
-        "ports"
+        "pod_configs",
+        "images",
+        "deployments"
       ],
       "properties": {
-        "allow_version_override": {
-          "type": "boolean"
-        },
-        "artifact_path": {
-          "type": "string"
-        },
-        "buffer_count": {
-          "type": "integer",
-          "format": "int32"
-        },
         "claim_timeout": {
           "type": "integer",
           "format": "int32"
         },
-        "configurations": {
-          "type": "object",
-          "additionalProperties": {
-            "$ref": "#/definitions/models.PodConfig"
-          }
-        },
-        "cpu_limit": {
-          "type": "integer",
-          "format": "int32"
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
         },
         "creation_timeout": {
           "type": "integer",
@@ -2235,40 +4162,25 @@
           "type": "string"
         },
         "deployments": {
-          "type": "object",
-          "additionalProperties": {
+          "type": "array",
+          "items": {
             "$ref": "#/definitions/models.DeploymentWithOverride"
           }
         },
-        "image_version_mapping": {
-          "type": "object",
-          "additionalProperties": {
-            "type": "string"
+        "images": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/models.ImageRecord"
           }
-        },
-        "max_count": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "mem_limit": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "min_count": {
-          "type": "integer",
-          "format": "int32"
         },
         "namespace": {
           "type": "string"
         },
-        "overrides": {
-          "type": "object",
-          "additionalProperties": {
-            "$ref": "#/definitions/models.DeploymentConfig"
+        "pod_configs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/models.PodConfigRecord"
           }
-        },
-        "params": {
-          "type": "string"
         },
         "port": {
           "type": "integer",
@@ -2297,11 +4209,92 @@
           "type": "integer",
           "format": "int32"
         },
-        "version_image_size_mapping": {
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "models.DSMConfigRecord": {
+      "required": [
+        "namespace",
+        "createdAt",
+        "updatedAt",
+        "modifiedBy",
+        "providers",
+        "port",
+        "protocol",
+        "creation_timeout",
+        "claim_timeout",
+        "session_timeout",
+        "unreachable_timeout",
+        "ports",
+        "default_version"
+      ],
+      "properties": {
+        "claim_timeout": {
+          "type": "integer",
+          "format": "int32",
+          "x-nullable": false
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "x-nullable": false
+        },
+        "creation_timeout": {
+          "type": "integer",
+          "format": "int32",
+          "x-nullable": false
+        },
+        "default_version": {
+          "type": "string",
+          "x-nullable": false
+        },
+        "modifiedBy": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string",
+          "x-nullable": false
+        },
+        "port": {
+          "type": "integer",
+          "format": "int32",
+          "x-nullable": false
+        },
+        "ports": {
           "type": "object",
           "additionalProperties": {
             "type": "integer"
-          }
+          },
+          "x-nullable": false
+        },
+        "protocol": {
+          "type": "string",
+          "x-nullable": false
+        },
+        "providers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "x-nullable": false
+        },
+        "session_timeout": {
+          "type": "integer",
+          "format": "int32",
+          "x-nullable": false
+        },
+        "unreachable_timeout": {
+          "type": "integer",
+          "format": "int32",
+          "x-nullable": false
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "x-nullable": false
         }
       }
     },
@@ -2320,6 +4313,10 @@
         "game_version",
         "regions",
         "configuration",
+        "region_overrides",
+        "enable_region_overrides",
+        "buffer_percent",
+        "use_buffer_percent",
         "min_count",
         "max_count",
         "buffer_count"
@@ -2329,8 +4326,15 @@
           "type": "integer",
           "format": "int32"
         },
+        "buffer_percent": {
+          "type": "integer",
+          "format": "int32"
+        },
         "configuration": {
           "type": "string"
+        },
+        "enable_region_overrides": {
+          "type": "boolean"
         },
         "game_version": {
           "type": "string"
@@ -2343,24 +4347,102 @@
           "type": "integer",
           "format": "int32"
         },
+        "region_overrides": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/models.PodCountConfigOverride"
+          }
+        },
         "regions": {
           "type": "array",
           "items": {
             "type": "string"
           }
+        },
+        "use_buffer_percent": {
+          "type": "boolean"
+        }
+      }
+    },
+    "models.DeploymentConfigOverride": {
+      "required": [
+        "name",
+        "enable_region_overrides",
+        "buffer_percent",
+        "use_buffer_percent",
+        "min_count",
+        "buffer_count",
+        "regions",
+        "configuration",
+        "region_overrides",
+        "max_count",
+        "game_version"
+      ],
+      "properties": {
+        "buffer_count": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "buffer_percent": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "configuration": {
+          "type": "string"
+        },
+        "enable_region_overrides": {
+          "type": "boolean"
+        },
+        "game_version": {
+          "type": "string"
+        },
+        "max_count": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "min_count": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "name": {
+          "type": "string"
+        },
+        "region_overrides": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/models.PodCountConfigOverride"
+          }
+        },
+        "regions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "use_buffer_percent": {
+          "type": "boolean"
         }
       }
     },
     "models.DeploymentWithOverride": {
       "required": [
-        "configuration",
-        "min_count",
-        "max_count",
+        "namespace",
+        "name",
+        "createdAt",
+        "updatedAt",
+        "modifiedBy",
         "buffer_count",
-        "game_version",
         "regions",
-        "allow_version_override",
-        "overrides"
+        "enable_region_overrides",
+        "buffer_percent",
+        "use_buffer_percent",
+        "min_count",
+        "game_version",
+        "configuration",
+        "region_overrides",
+        "max_count",
+        "overrides",
+        "allow_version_override"
       ],
       "properties": {
         "allow_version_override": {
@@ -2370,8 +4452,19 @@
           "type": "integer",
           "format": "int32"
         },
+        "buffer_percent": {
+          "type": "integer",
+          "format": "int32"
+        },
         "configuration": {
           "type": "string"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "enable_region_overrides": {
+          "type": "boolean"
         },
         "game_version": {
           "type": "string"
@@ -2384,10 +4477,25 @@
           "type": "integer",
           "format": "int32"
         },
+        "modifiedBy": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
         "overrides": {
           "type": "object",
           "additionalProperties": {
-            "$ref": "#/definitions/models.DeploymentConfig"
+            "$ref": "#/definitions/models.DeploymentConfigOverride"
+          }
+        },
+        "region_overrides": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/models.PodCountConfigOverride"
           }
         },
         "regions": {
@@ -2395,6 +4503,13 @@
           "items": {
             "type": "string"
           }
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "use_buffer_percent": {
+          "type": "boolean"
         }
       }
     },
@@ -2475,16 +4590,28 @@
         "namespace",
         "createdAt",
         "updatedAt",
+        "modifiedBy",
         "version",
         "image",
-        "persistent"
+        "persistent",
+        "artifactPath",
+        "dockerPath"
       ],
       "properties": {
+        "artifactPath": {
+          "type": "string"
+        },
         "createdAt": {
           "type": "string",
           "format": "date-time"
         },
+        "dockerPath": {
+          "type": "string"
+        },
         "image": {
+          "type": "string"
+        },
+        "modifiedBy": {
           "type": "string"
         },
         "namespace": {
@@ -2507,9 +4634,13 @@
         "namespace",
         "version",
         "image",
-        "persistent"
+        "persistent",
+        "artifactPath"
       ],
       "properties": {
+        "artifactPath": {
+          "type": "string"
+        },
         "image": {
           "type": "string"
         },
@@ -2526,10 +4657,17 @@
     },
     "models.ImportResponse": {
       "required": [
-        "affected"
+        "affected",
+        "failed"
       ],
       "properties": {
         "affected": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "failed": {
           "type": "array",
           "items": {
             "type": "string"
@@ -2545,8 +4683,25 @@
         "configs": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/models.DSMConfig"
+            "$ref": "#/definitions/models.DSMConfigRecord"
           }
+        }
+      }
+    },
+    "models.ListDeploymentResponse": {
+      "required": [
+        "deployments",
+        "paging"
+      ],
+      "properties": {
+        "deployments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/models.DeploymentWithOverride"
+          }
+        },
+        "paging": {
+          "$ref": "#/definitions/models.PagingCursor"
         }
       }
     },
@@ -2564,6 +4719,23 @@
         },
         "paging": {
           "$ref": "#/definitions/models.PagingCursor"
+        }
+      }
+    },
+    "models.ListPodConfigResponse": {
+      "required": [
+        "pod_configs",
+        "paging"
+      ],
+      "properties": {
+        "paging": {
+          "$ref": "#/definitions/models.PagingCursor"
+        },
+        "pod_configs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/models.PodConfigRecord"
+          }
         }
       }
     },
@@ -2638,7 +4810,7 @@
         "overrides": {
           "type": "object",
           "additionalProperties": {
-            "$ref": "#/definitions/models.DeploymentConfig"
+            "$ref": "#/definitions/models.DeploymentConfigOverride"
           }
         }
       }
@@ -2661,13 +4833,9 @@
       "required": [
         "cpu_limit",
         "mem_limit",
-        "params",
-        "artifact_path"
+        "params"
       ],
       "properties": {
-        "artifact_path": {
-          "type": "string"
-        },
         "cpu_limit": {
           "type": "integer",
           "format": "int32"
@@ -2681,14 +4849,62 @@
         }
       }
     },
+    "models.PodConfigRecord": {
+      "required": [
+        "namespace",
+        "name",
+        "createdAt",
+        "updatedAt",
+        "modifiedBy",
+        "cpu_limit",
+        "mem_limit",
+        "params"
+      ],
+      "properties": {
+        "cpu_limit": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "mem_limit": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "modifiedBy": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "params": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
     "models.PodCountConfig": {
       "required": [
         "min_count",
         "max_count",
-        "buffer_count"
+        "buffer_count",
+        "buffer_percent",
+        "use_buffer_percent"
       ],
       "properties": {
         "buffer_count": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "buffer_percent": {
           "type": "integer",
           "format": "int32"
         },
@@ -2699,6 +4915,73 @@
         "min_count": {
           "type": "integer",
           "format": "int32"
+        },
+        "use_buffer_percent": {
+          "type": "boolean"
+        }
+      }
+    },
+    "models.PodCountConfigOverride": {
+      "required": [
+        "name",
+        "buffer_count",
+        "buffer_percent",
+        "use_buffer_percent",
+        "min_count",
+        "max_count"
+      ],
+      "properties": {
+        "buffer_count": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "buffer_percent": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "max_count": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "min_count": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "name": {
+          "type": "string"
+        },
+        "use_buffer_percent": {
+          "type": "boolean"
+        }
+      }
+    },
+    "models.PodCountConfigUpdate": {
+      "required": [
+        "min_count",
+        "max_count",
+        "buffer_count",
+        "buffer_percent",
+        "use_buffer_percent"
+      ],
+      "properties": {
+        "buffer_count": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "buffer_percent": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "max_count": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "min_count": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "use_buffer_percent": {
+          "type": "boolean"
         }
       }
     },
@@ -2807,8 +5090,7 @@
         "allocation_id",
         "cpu_limit",
         "mem_limit",
-        "params",
-        "artifact_path"
+        "params"
       ],
       "properties": {
         "allocation_id": {
@@ -2819,9 +5101,6 @@
           "items": {
             "type": "string"
           }
-        },
-        "artifact_path": {
-          "type": "string"
         },
         "cpu_limit": {
           "type": "integer",
@@ -2993,8 +5272,7 @@
         "claim_timeout",
         "session_timeout",
         "unreachable_timeout",
-        "default_version",
-        "ports"
+        "default_version"
       ],
       "properties": {
         "claim_timeout": {
@@ -3011,12 +5289,6 @@
         "port": {
           "type": "integer",
           "format": "int32"
-        },
-        "ports": {
-          "type": "object",
-          "additionalProperties": {
-            "type": "integer"
-          }
         },
         "protocol": {
           "type": "string"
@@ -3037,24 +5309,174 @@
         }
       }
     },
-    "models.UpdateDeploymentRequest": {
+    "models.UpdateDeploymentOverrideRequest": {
       "required": [
         "game_version",
         "regions",
-        "configuration"
+        "configuration",
+        "enable_region_overrides",
+        "max_count",
+        "buffer_count",
+        "buffer_percent",
+        "use_buffer_percent",
+        "min_count"
       ],
       "properties": {
+        "buffer_count": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "buffer_percent": {
+          "type": "integer",
+          "format": "int32"
+        },
         "configuration": {
           "type": "string"
         },
+        "enable_region_overrides": {
+          "type": "boolean"
+        },
         "game_version": {
           "type": "string"
+        },
+        "max_count": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "min_count": {
+          "type": "integer",
+          "format": "int32"
         },
         "regions": {
           "type": "array",
           "items": {
             "type": "string"
           }
+        },
+        "use_buffer_percent": {
+          "type": "boolean"
+        }
+      }
+    },
+    "models.UpdateDeploymentRequest": {
+      "required": [
+        "game_version",
+        "regions",
+        "configuration",
+        "enable_region_overrides",
+        "allow_version_override",
+        "min_count",
+        "max_count",
+        "buffer_count",
+        "buffer_percent",
+        "use_buffer_percent"
+      ],
+      "properties": {
+        "allow_version_override": {
+          "type": "boolean"
+        },
+        "buffer_count": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "buffer_percent": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "configuration": {
+          "type": "string"
+        },
+        "enable_region_overrides": {
+          "type": "boolean"
+        },
+        "game_version": {
+          "type": "string"
+        },
+        "max_count": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "min_count": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "regions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "use_buffer_percent": {
+          "type": "boolean"
+        }
+      }
+    },
+    "models.UpdatePodConfigRequest": {
+      "required": [
+        "cpu_limit",
+        "mem_limit",
+        "params",
+        "name"
+      ],
+      "properties": {
+        "cpu_limit": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "mem_limit": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "name": {
+          "type": "string"
+        },
+        "params": {
+          "type": "string"
+        }
+      }
+    },
+    "models.UpdatePortRequest": {
+      "required": [
+        "name",
+        "port"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "port": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "models.UpdateRegionOverrideRequest": {
+      "required": [
+        "min_count",
+        "max_count",
+        "buffer_count",
+        "buffer_percent",
+        "use_buffer_percent"
+      ],
+      "properties": {
+        "buffer_count": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "buffer_percent": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "max_count": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "min_count": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "use_buffer_percent": {
+          "type": "boolean"
         }
       }
     },

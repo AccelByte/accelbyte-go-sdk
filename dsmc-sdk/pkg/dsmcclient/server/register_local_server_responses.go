@@ -8,6 +8,7 @@ package server
 import (
 	"fmt"
 	"io"
+	"io/ioutil"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
@@ -34,28 +35,33 @@ func (o *RegisterLocalServerReader) ReadResponse(response runtime.ClientResponse
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, result
+		return result, nil
 	case 401:
 		result := NewRegisterLocalServerUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, result
+		return result, nil
 	case 409:
 		result := NewRegisterLocalServerConflict()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, result
+		return result, nil
 	case 500:
 		result := NewRegisterLocalServerInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, result
+		return result, nil
 
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		data, err := ioutil.ReadAll(response.Body())
+		if err != nil {
+			return nil, err
+		}
+
+		return nil, fmt.Errorf("Requested POST /dsmcontroller/namespaces/{namespace}/servers/local/register returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -66,7 +72,7 @@ func NewRegisterLocalServerOK() *RegisterLocalServerOK {
 
 /*RegisterLocalServerOK handles this case with default header values.
 
-server registered
+  server registered
 */
 type RegisterLocalServerOK struct {
 	Payload *dsmcclientmodels.ModelsServer
@@ -99,7 +105,7 @@ func NewRegisterLocalServerBadRequest() *RegisterLocalServerBadRequest {
 
 /*RegisterLocalServerBadRequest handles this case with default header values.
 
-malformed request
+  malformed request
 */
 type RegisterLocalServerBadRequest struct {
 	Payload *dsmcclientmodels.ResponseError
@@ -132,7 +138,7 @@ func NewRegisterLocalServerUnauthorized() *RegisterLocalServerUnauthorized {
 
 /*RegisterLocalServerUnauthorized handles this case with default header values.
 
-Unauthorized
+  Unauthorized
 */
 type RegisterLocalServerUnauthorized struct {
 	Payload *dsmcclientmodels.ResponseError
@@ -165,7 +171,7 @@ func NewRegisterLocalServerConflict() *RegisterLocalServerConflict {
 
 /*RegisterLocalServerConflict handles this case with default header values.
 
-server with same name already registered
+  server with same name already registered
 */
 type RegisterLocalServerConflict struct {
 	Payload *dsmcclientmodels.ResponseError
@@ -198,7 +204,7 @@ func NewRegisterLocalServerInternalServerError() *RegisterLocalServerInternalSer
 
 /*RegisterLocalServerInternalServerError handles this case with default header values.
 
-Internal Server Error
+  Internal Server Error
 */
 type RegisterLocalServerInternalServerError struct {
 	Payload *dsmcclientmodels.ResponseError

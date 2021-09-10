@@ -21,9 +21,17 @@ type ModelsDeploymentConfig struct {
 	// Required: true
 	BufferCount *int32 `json:"buffer_count"`
 
+	// buffer percent
+	// Required: true
+	BufferPercent *int32 `json:"buffer_percent"`
+
 	// configuration
 	// Required: true
 	Configuration *string `json:"configuration"`
+
+	// enable region overrides
+	// Required: true
+	EnableRegionOverrides *bool `json:"enable_region_overrides"`
 
 	// game version
 	// Required: true
@@ -37,9 +45,17 @@ type ModelsDeploymentConfig struct {
 	// Required: true
 	MinCount *int32 `json:"min_count"`
 
+	// region overrides
+	// Required: true
+	RegionOverrides map[string]ModelsPodCountConfigOverride `json:"region_overrides"`
+
 	// regions
 	// Required: true
 	Regions []string `json:"regions"`
+
+	// use buffer percent
+	// Required: true
+	UseBufferPercent *bool `json:"use_buffer_percent"`
 }
 
 // Validate validates this models deployment config
@@ -50,7 +66,15 @@ func (m *ModelsDeploymentConfig) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateBufferPercent(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateConfiguration(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateEnableRegionOverrides(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -66,7 +90,15 @@ func (m *ModelsDeploymentConfig) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateRegionOverrides(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateRegions(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateUseBufferPercent(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -85,9 +117,27 @@ func (m *ModelsDeploymentConfig) validateBufferCount(formats strfmt.Registry) er
 	return nil
 }
 
+func (m *ModelsDeploymentConfig) validateBufferPercent(formats strfmt.Registry) error {
+
+	if err := validate.Required("buffer_percent", "body", m.BufferPercent); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *ModelsDeploymentConfig) validateConfiguration(formats strfmt.Registry) error {
 
 	if err := validate.Required("configuration", "body", m.Configuration); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsDeploymentConfig) validateEnableRegionOverrides(formats strfmt.Registry) error {
+
+	if err := validate.Required("enable_region_overrides", "body", m.EnableRegionOverrides); err != nil {
 		return err
 	}
 
@@ -121,9 +171,36 @@ func (m *ModelsDeploymentConfig) validateMinCount(formats strfmt.Registry) error
 	return nil
 }
 
+func (m *ModelsDeploymentConfig) validateRegionOverrides(formats strfmt.Registry) error {
+
+	for k := range m.RegionOverrides {
+
+		if err := validate.Required("region_overrides"+"."+k, "body", m.RegionOverrides[k]); err != nil {
+			return err
+		}
+		if val, ok := m.RegionOverrides[k]; ok {
+			if err := val.Validate(formats); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
 func (m *ModelsDeploymentConfig) validateRegions(formats strfmt.Registry) error {
 
 	if err := validate.Required("regions", "body", m.Regions); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsDeploymentConfig) validateUseBufferPercent(formats strfmt.Registry) error {
+
+	if err := validate.Required("use_buffer_percent", "body", m.UseBufferPercent); err != nil {
 		return err
 	}
 

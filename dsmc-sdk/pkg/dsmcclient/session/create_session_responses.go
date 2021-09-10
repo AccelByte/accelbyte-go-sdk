@@ -8,6 +8,7 @@ package session
 import (
 	"fmt"
 	"io"
+	"io/ioutil"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
@@ -34,40 +35,45 @@ func (o *CreateSessionReader) ReadResponse(response runtime.ClientResponse, cons
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, result
+		return result, nil
 	case 401:
 		result := NewCreateSessionUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, result
+		return result, nil
 	case 404:
 		result := NewCreateSessionNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, result
+		return result, nil
 	case 409:
 		result := NewCreateSessionConflict()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, result
+		return result, nil
 	case 500:
 		result := NewCreateSessionInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, result
+		return result, nil
 	case 503:
 		result := NewCreateSessionServiceUnavailable()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, result
+		return result, nil
 
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		data, err := ioutil.ReadAll(response.Body())
+		if err != nil {
+			return nil, err
+		}
+
+		return nil, fmt.Errorf("Requested POST /dsmcontroller/namespaces/{namespace}/sessions returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -78,7 +84,7 @@ func NewCreateSessionOK() *CreateSessionOK {
 
 /*CreateSessionOK handles this case with default header values.
 
-session created
+  session created
 */
 type CreateSessionOK struct {
 	Payload *dsmcclientmodels.ModelsSessionResponse
@@ -111,7 +117,7 @@ func NewCreateSessionBadRequest() *CreateSessionBadRequest {
 
 /*CreateSessionBadRequest handles this case with default header values.
 
-malformed request
+  malformed request
 */
 type CreateSessionBadRequest struct {
 	Payload *dsmcclientmodels.ResponseError
@@ -144,7 +150,7 @@ func NewCreateSessionUnauthorized() *CreateSessionUnauthorized {
 
 /*CreateSessionUnauthorized handles this case with default header values.
 
-Unauthorized
+  Unauthorized
 */
 type CreateSessionUnauthorized struct {
 	Payload *dsmcclientmodels.ResponseError
@@ -177,7 +183,7 @@ func NewCreateSessionNotFound() *CreateSessionNotFound {
 
 /*CreateSessionNotFound handles this case with default header values.
 
-local server not found
+  local server not found
 */
 type CreateSessionNotFound struct {
 	Payload *dsmcclientmodels.ResponseError
@@ -210,7 +216,7 @@ func NewCreateSessionConflict() *CreateSessionConflict {
 
 /*CreateSessionConflict handles this case with default header values.
 
-session already exists
+  session already exists
 */
 type CreateSessionConflict struct {
 	Payload *dsmcclientmodels.ResponseError
@@ -243,7 +249,7 @@ func NewCreateSessionInternalServerError() *CreateSessionInternalServerError {
 
 /*CreateSessionInternalServerError handles this case with default header values.
 
-Internal Server Error
+  Internal Server Error
 */
 type CreateSessionInternalServerError struct {
 	Payload *dsmcclientmodels.ResponseError
@@ -276,7 +282,7 @@ func NewCreateSessionServiceUnavailable() *CreateSessionServiceUnavailable {
 
 /*CreateSessionServiceUnavailable handles this case with default header values.
 
-server count is at max
+  server count is at max
 */
 type CreateSessionServiceUnavailable struct {
 	Payload *dsmcclientmodels.ResponseError

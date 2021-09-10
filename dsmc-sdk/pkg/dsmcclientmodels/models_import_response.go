@@ -20,6 +20,10 @@ type ModelsImportResponse struct {
 	// affected
 	// Required: true
 	Affected []string `json:"affected"`
+
+	// failed
+	// Required: true
+	Failed []string `json:"failed"`
 }
 
 // Validate validates this models import response
@@ -27,6 +31,10 @@ func (m *ModelsImportResponse) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateAffected(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateFailed(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -39,6 +47,15 @@ func (m *ModelsImportResponse) Validate(formats strfmt.Registry) error {
 func (m *ModelsImportResponse) validateAffected(formats strfmt.Registry) error {
 
 	if err := validate.Required("affected", "body", m.Affected); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsImportResponse) validateFailed(formats strfmt.Registry) error {
+
+	if err := validate.Required("failed", "body", m.Failed); err != nil {
 		return err
 	}
 

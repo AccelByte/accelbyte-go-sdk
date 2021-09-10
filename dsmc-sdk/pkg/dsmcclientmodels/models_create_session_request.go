@@ -6,6 +6,8 @@ package dsmcclientmodels
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"strconv"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -16,10 +18,6 @@ import (
 //
 // swagger:model models.CreateSessionRequest
 type ModelsCreateSessionRequest struct {
-
-	// match result
-	// Required: true
-	MatchResult *ModelsMatchResult `json:"MatchResult"`
 
 	// client version
 	// Required: true
@@ -33,6 +31,18 @@ type ModelsCreateSessionRequest struct {
 	// Required: true
 	Deployment *string `json:"deployment"`
 
+	// game mode
+	// Required: true
+	GameMode *string `json:"game_mode"`
+
+	// matching allies
+	// Required: true
+	MatchingAllies []*ModelsRequestMatchingAlly `json:"matching_allies"`
+
+	// namespace
+	// Required: true
+	Namespace *string `json:"namespace"`
+
 	// pod name
 	// Required: true
 	PodName *string `json:"pod_name"`
@@ -40,15 +50,15 @@ type ModelsCreateSessionRequest struct {
 	// region
 	// Required: true
 	Region *string `json:"region"`
+
+	// session id
+	// Required: true
+	SessionID *string `json:"session_id"`
 }
 
 // Validate validates this models create session request
 func (m *ModelsCreateSessionRequest) Validate(formats strfmt.Registry) error {
 	var res []error
-
-	if err := m.validateMatchResult(formats); err != nil {
-		res = append(res, err)
-	}
 
 	if err := m.validateClientVersion(formats); err != nil {
 		res = append(res, err)
@@ -62,6 +72,18 @@ func (m *ModelsCreateSessionRequest) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateGameMode(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateMatchingAllies(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateNamespace(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validatePodName(formats); err != nil {
 		res = append(res, err)
 	}
@@ -70,27 +92,13 @@ func (m *ModelsCreateSessionRequest) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateSessionID(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-	return nil
-}
-
-func (m *ModelsCreateSessionRequest) validateMatchResult(formats strfmt.Registry) error {
-
-	if err := validate.Required("MatchResult", "body", m.MatchResult); err != nil {
-		return err
-	}
-
-	if m.MatchResult != nil {
-		if err := m.MatchResult.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("MatchResult")
-			}
-			return err
-		}
-	}
-
 	return nil
 }
 
@@ -121,6 +129,49 @@ func (m *ModelsCreateSessionRequest) validateDeployment(formats strfmt.Registry)
 	return nil
 }
 
+func (m *ModelsCreateSessionRequest) validateGameMode(formats strfmt.Registry) error {
+
+	if err := validate.Required("game_mode", "body", m.GameMode); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsCreateSessionRequest) validateMatchingAllies(formats strfmt.Registry) error {
+
+	if err := validate.Required("matching_allies", "body", m.MatchingAllies); err != nil {
+		return err
+	}
+
+	for i := 0; i < len(m.MatchingAllies); i++ {
+		if swag.IsZero(m.MatchingAllies[i]) { // not required
+			continue
+		}
+
+		if m.MatchingAllies[i] != nil {
+			if err := m.MatchingAllies[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("matching_allies" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *ModelsCreateSessionRequest) validateNamespace(formats strfmt.Registry) error {
+
+	if err := validate.Required("namespace", "body", m.Namespace); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *ModelsCreateSessionRequest) validatePodName(formats strfmt.Registry) error {
 
 	if err := validate.Required("pod_name", "body", m.PodName); err != nil {
@@ -133,6 +184,15 @@ func (m *ModelsCreateSessionRequest) validatePodName(formats strfmt.Registry) er
 func (m *ModelsCreateSessionRequest) validateRegion(formats strfmt.Registry) error {
 
 	if err := validate.Required("region", "body", m.Region); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsCreateSessionRequest) validateSessionID(formats strfmt.Registry) error {
+
+	if err := validate.Required("session_id", "body", m.SessionID); err != nil {
 		return err
 	}
 

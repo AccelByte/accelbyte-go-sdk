@@ -6,13 +6,19 @@ package dsmcclient
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"strings"
+	"time"
+
 	"github.com/go-openapi/runtime"
 	httptransport "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/admin"
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/config"
+	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/deployment_config"
+	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/image_config"
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/operations"
+	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/pod_config"
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/public"
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/server"
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/session"
@@ -62,11 +68,28 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry) *JusticeDsm
 	cli.Transport = transport
 	cli.Admin = admin.New(transport, formats)
 	cli.Config = config.New(transport, formats)
+	cli.DeploymentConfig = deployment_config.New(transport, formats)
+	cli.ImageConfig = image_config.New(transport, formats)
 	cli.Operations = operations.New(transport, formats)
+	cli.PodConfig = pod_config.New(transport, formats)
 	cli.Public = public.New(transport, formats)
 	cli.Server = server.New(transport, formats)
 	cli.Session = session.New(transport, formats)
 	return cli
+}
+
+func NewDateTime(t time.Time) strfmt.DateTime {
+	return strfmt.DateTime(t)
+}
+
+func NewClientWithBasePath(url string, endpoint string) *JusticeDsmcService {
+	schemes := []string{"http"}
+	if strings.HasSuffix(url, ":443") {
+		schemes = []string{"https"}
+	}
+
+	transport := httptransport.New(url, endpoint, schemes)
+	return New(transport, strfmt.Default)
 }
 
 // DefaultTransportConfig creates a TransportConfig with the
@@ -114,7 +137,13 @@ type JusticeDsmcService struct {
 
 	Config config.ClientService
 
+	DeploymentConfig deployment_config.ClientService
+
+	ImageConfig image_config.ClientService
+
 	Operations operations.ClientService
+
+	PodConfig pod_config.ClientService
 
 	Public public.ClientService
 
@@ -130,7 +159,10 @@ func (c *JusticeDsmcService) SetTransport(transport runtime.ClientTransport) {
 	c.Transport = transport
 	c.Admin.SetTransport(transport)
 	c.Config.SetTransport(transport)
+	c.DeploymentConfig.SetTransport(transport)
+	c.ImageConfig.SetTransport(transport)
 	c.Operations.SetTransport(transport)
+	c.PodConfig.SetTransport(transport)
 	c.Public.SetTransport(transport)
 	c.Server.SetTransport(transport)
 	c.Session.SetTransport(transport)

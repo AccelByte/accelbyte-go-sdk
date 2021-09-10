@@ -17,6 +17,14 @@ import (
 // swagger:model models.CreateImageRequest
 type ModelsCreateImageRequest struct {
 
+	// artifact path
+	// Required: true
+	ArtifactPath *string `json:"artifactPath"`
+
+	// docker path
+	// Required: true
+	DockerPath *string `json:"dockerPath"`
+
 	// image
 	// Required: true
 	Image *string `json:"image"`
@@ -38,6 +46,14 @@ type ModelsCreateImageRequest struct {
 func (m *ModelsCreateImageRequest) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateArtifactPath(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateDockerPath(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateImage(formats); err != nil {
 		res = append(res, err)
 	}
@@ -57,6 +73,24 @@ func (m *ModelsCreateImageRequest) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *ModelsCreateImageRequest) validateArtifactPath(formats strfmt.Registry) error {
+
+	if err := validate.Required("artifactPath", "body", m.ArtifactPath); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsCreateImageRequest) validateDockerPath(formats strfmt.Registry) error {
+
+	if err := validate.Required("dockerPath", "body", m.DockerPath); err != nil {
+		return err
+	}
+
 	return nil
 }
 

@@ -21,6 +21,10 @@ type ModelsPodCountConfig struct {
 	// Required: true
 	BufferCount *int32 `json:"buffer_count"`
 
+	// buffer percent
+	// Required: true
+	BufferPercent *int32 `json:"buffer_percent"`
+
 	// max count
 	// Required: true
 	MaxCount *int32 `json:"max_count"`
@@ -28,6 +32,10 @@ type ModelsPodCountConfig struct {
 	// min count
 	// Required: true
 	MinCount *int32 `json:"min_count"`
+
+	// use buffer percent
+	// Required: true
+	UseBufferPercent *bool `json:"use_buffer_percent"`
 }
 
 // Validate validates this models pod count config
@@ -38,11 +46,19 @@ func (m *ModelsPodCountConfig) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateBufferPercent(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateMaxCount(formats); err != nil {
 		res = append(res, err)
 	}
 
 	if err := m.validateMinCount(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateUseBufferPercent(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -61,6 +77,15 @@ func (m *ModelsPodCountConfig) validateBufferCount(formats strfmt.Registry) erro
 	return nil
 }
 
+func (m *ModelsPodCountConfig) validateBufferPercent(formats strfmt.Registry) error {
+
+	if err := validate.Required("buffer_percent", "body", m.BufferPercent); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *ModelsPodCountConfig) validateMaxCount(formats strfmt.Registry) error {
 
 	if err := validate.Required("max_count", "body", m.MaxCount); err != nil {
@@ -73,6 +98,15 @@ func (m *ModelsPodCountConfig) validateMaxCount(formats strfmt.Registry) error {
 func (m *ModelsPodCountConfig) validateMinCount(formats strfmt.Registry) error {
 
 	if err := validate.Required("min_count", "body", m.MinCount); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsPodCountConfig) validateUseBufferPercent(formats strfmt.Registry) error {
+
+	if err := validate.Required("use_buffer_percent", "body", m.UseBufferPercent); err != nil {
 		return err
 	}
 

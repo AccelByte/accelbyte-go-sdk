@@ -8,6 +8,7 @@ package admin
 import (
 	"fmt"
 	"io"
+	"io/ioutil"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
@@ -34,22 +35,27 @@ func (o *DeleteServerReader) ReadResponse(response runtime.ClientResponse, consu
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, result
+		return result, nil
 	case 404:
 		result := NewDeleteServerNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, result
+		return result, nil
 	case 500:
 		result := NewDeleteServerInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, result
+		return result, nil
 
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		data, err := ioutil.ReadAll(response.Body())
+		if err != nil {
+			return nil, err
+		}
+
+		return nil, fmt.Errorf("Requested DELETE /dsmcontroller/admin/namespaces/{namespace}/servers/{podName} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -60,7 +66,7 @@ func NewDeleteServerNoContent() *DeleteServerNoContent {
 
 /*DeleteServerNoContent handles this case with default header values.
 
-server deleted
+  server deleted
 */
 type DeleteServerNoContent struct {
 }
@@ -81,7 +87,7 @@ func NewDeleteServerUnauthorized() *DeleteServerUnauthorized {
 
 /*DeleteServerUnauthorized handles this case with default header values.
 
-Unauthorized
+  Unauthorized
 */
 type DeleteServerUnauthorized struct {
 	Payload *dsmcclientmodels.ResponseError
@@ -114,7 +120,7 @@ func NewDeleteServerNotFound() *DeleteServerNotFound {
 
 /*DeleteServerNotFound handles this case with default header values.
 
-server not found
+  server not found
 */
 type DeleteServerNotFound struct {
 	Payload *dsmcclientmodels.ResponseError
@@ -147,7 +153,7 @@ func NewDeleteServerInternalServerError() *DeleteServerInternalServerError {
 
 /*DeleteServerInternalServerError handles this case with default header values.
 
-Internal Server Error
+  Internal Server Error
 */
 type DeleteServerInternalServerError struct {
 	Payload *dsmcclientmodels.ResponseError

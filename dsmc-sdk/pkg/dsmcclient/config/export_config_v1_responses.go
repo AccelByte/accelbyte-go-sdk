@@ -8,6 +8,7 @@ package config
 import (
 	"fmt"
 	"io"
+	"io/ioutil"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
@@ -34,28 +35,33 @@ func (o *ExportConfigV1Reader) ReadResponse(response runtime.ClientResponse, con
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, result
+		return result, nil
 	case 403:
 		result := NewExportConfigV1Forbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, result
+		return result, nil
 	case 404:
 		result := NewExportConfigV1NotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, result
+		return result, nil
 	case 500:
 		result := NewExportConfigV1InternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, result
+		return result, nil
 
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		data, err := ioutil.ReadAll(response.Body())
+		if err != nil {
+			return nil, err
+		}
+
+		return nil, fmt.Errorf("Requested GET /dsmcontroller/admin/v1/namespaces/{namespace}/configs/export returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -66,23 +72,23 @@ func NewExportConfigV1OK() *ExportConfigV1OK {
 
 /*ExportConfigV1OK handles this case with default header values.
 
-config exported
+  config exported
 */
 type ExportConfigV1OK struct {
-	Payload *dsmcclientmodels.ModelsDSMConfig
+	Payload *dsmcclientmodels.ModelsDSMConfigExport
 }
 
 func (o *ExportConfigV1OK) Error() string {
 	return fmt.Sprintf("[GET /dsmcontroller/admin/v1/namespaces/{namespace}/configs/export][%d] exportConfigV1OK  %+v", 200, o.Payload)
 }
 
-func (o *ExportConfigV1OK) GetPayload() *dsmcclientmodels.ModelsDSMConfig {
+func (o *ExportConfigV1OK) GetPayload() *dsmcclientmodels.ModelsDSMConfigExport {
 	return o.Payload
 }
 
 func (o *ExportConfigV1OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(dsmcclientmodels.ModelsDSMConfig)
+	o.Payload = new(dsmcclientmodels.ModelsDSMConfigExport)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -99,7 +105,7 @@ func NewExportConfigV1Unauthorized() *ExportConfigV1Unauthorized {
 
 /*ExportConfigV1Unauthorized handles this case with default header values.
 
-unauthorized access
+  unauthorized access
 */
 type ExportConfigV1Unauthorized struct {
 	Payload *dsmcclientmodels.ResponseError
@@ -132,7 +138,7 @@ func NewExportConfigV1Forbidden() *ExportConfigV1Forbidden {
 
 /*ExportConfigV1Forbidden handles this case with default header values.
 
-forbidden access
+  forbidden access
 */
 type ExportConfigV1Forbidden struct {
 	Payload *dsmcclientmodels.ResponseError
@@ -165,7 +171,7 @@ func NewExportConfigV1NotFound() *ExportConfigV1NotFound {
 
 /*ExportConfigV1NotFound handles this case with default header values.
 
-config not found
+  config not found
 */
 type ExportConfigV1NotFound struct {
 	Payload *dsmcclientmodels.ResponseError
@@ -198,7 +204,7 @@ func NewExportConfigV1InternalServerError() *ExportConfigV1InternalServerError {
 
 /*ExportConfigV1InternalServerError handles this case with default header values.
 
-Internal Server Error
+  Internal Server Error
 */
 type ExportConfigV1InternalServerError struct {
 	Payload *dsmcclientmodels.ResponseError

@@ -8,6 +8,7 @@ package server
 import (
 	"fmt"
 	"io"
+	"io/ioutil"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
@@ -34,22 +35,27 @@ func (o *DeregisterLocalServerReader) ReadResponse(response runtime.ClientRespon
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, result
+		return result, nil
 	case 401:
 		result := NewDeregisterLocalServerUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, result
+		return result, nil
 	case 500:
 		result := NewDeregisterLocalServerInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, result
+		return result, nil
 
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		data, err := ioutil.ReadAll(response.Body())
+		if err != nil {
+			return nil, err
+		}
+
+		return nil, fmt.Errorf("Requested POST /dsmcontroller/namespaces/{namespace}/servers/local/deregister returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -60,7 +66,7 @@ func NewDeregisterLocalServerNoContent() *DeregisterLocalServerNoContent {
 
 /*DeregisterLocalServerNoContent handles this case with default header values.
 
-server removed
+  server removed
 */
 type DeregisterLocalServerNoContent struct {
 }
@@ -81,7 +87,7 @@ func NewDeregisterLocalServerBadRequest() *DeregisterLocalServerBadRequest {
 
 /*DeregisterLocalServerBadRequest handles this case with default header values.
 
-malformed request
+  malformed request
 */
 type DeregisterLocalServerBadRequest struct {
 	Payload *dsmcclientmodels.ResponseError
@@ -114,7 +120,7 @@ func NewDeregisterLocalServerUnauthorized() *DeregisterLocalServerUnauthorized {
 
 /*DeregisterLocalServerUnauthorized handles this case with default header values.
 
-Unauthorized
+  Unauthorized
 */
 type DeregisterLocalServerUnauthorized struct {
 	Payload *dsmcclientmodels.ResponseError
@@ -147,7 +153,7 @@ func NewDeregisterLocalServerInternalServerError() *DeregisterLocalServerInterna
 
 /*DeregisterLocalServerInternalServerError handles this case with default header values.
 
-Internal Server Error
+  Internal Server Error
 */
 type DeregisterLocalServerInternalServerError struct {
 	Payload *dsmcclientmodels.ResponseError

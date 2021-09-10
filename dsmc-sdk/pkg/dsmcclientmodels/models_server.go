@@ -27,10 +27,6 @@ type ModelsServer struct {
 	// Required: true
 	AlternateIps []string `json:"alternate_ips"`
 
-	// artifact path
-	// Required: true
-	ArtifactPath *string `json:"artifact_path"`
-
 	// cpu limit
 	// Required: true
 	CPULimit *int32 `json:"cpu_limit"`
@@ -127,10 +123,6 @@ func (m *ModelsServer) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateAlternateIps(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateArtifactPath(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -236,15 +228,6 @@ func (m *ModelsServer) validateAllocationID(formats strfmt.Registry) error {
 func (m *ModelsServer) validateAlternateIps(formats strfmt.Registry) error {
 
 	if err := validate.Required("alternate_ips", "body", m.AlternateIps); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ModelsServer) validateArtifactPath(formats strfmt.Registry) error {
-
-	if err := validate.Required("artifact_path", "body", m.ArtifactPath); err != nil {
 		return err
 	}
 

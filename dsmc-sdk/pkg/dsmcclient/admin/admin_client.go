@@ -6,7 +6,9 @@ package admin
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"fmt"
+	"reflect"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
@@ -27,27 +29,27 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	CountServer(params *CountServerParams, authInfo runtime.ClientAuthInfoWriter) (*CountServerOK, error)
+	CountServer(params *CountServerParams, authInfo runtime.ClientAuthInfoWriter) (*CountServerOK, *CountServerUnauthorized, *CountServerInternalServerError, error)
 
-	CountServerDetailed(params *CountServerDetailedParams, authInfo runtime.ClientAuthInfoWriter) (*CountServerDetailedOK, error)
+	CountServerDetailed(params *CountServerDetailedParams, authInfo runtime.ClientAuthInfoWriter) (*CountServerDetailedOK, *CountServerDetailedUnauthorized, *CountServerDetailedInternalServerError, error)
 
-	CountSession(params *CountSessionParams, authInfo runtime.ClientAuthInfoWriter) (*CountSessionOK, error)
+	CountSession(params *CountSessionParams, authInfo runtime.ClientAuthInfoWriter) (*CountSessionOK, *CountSessionUnauthorized, *CountSessionInternalServerError, error)
 
-	DeleteLocalServer(params *DeleteLocalServerParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteLocalServerNoContent, error)
+	DeleteLocalServer(params *DeleteLocalServerParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteLocalServerNoContent, *DeleteLocalServerUnauthorized, *DeleteLocalServerInternalServerError, error)
 
-	DeleteServer(params *DeleteServerParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteServerNoContent, error)
+	DeleteServer(params *DeleteServerParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteServerNoContent, *DeleteServerUnauthorized, *DeleteServerNotFound, *DeleteServerInternalServerError, error)
 
-	DeleteSession(params *DeleteSessionParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteSessionNoContent, error)
+	DeleteSession(params *DeleteSessionParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteSessionNoContent, *DeleteSessionUnauthorized, *DeleteSessionInternalServerError, error)
 
-	GetServer(params *GetServerParams, authInfo runtime.ClientAuthInfoWriter) (*GetServerOK, error)
+	GetServer(params *GetServerParams, authInfo runtime.ClientAuthInfoWriter) (*GetServerOK, *GetServerUnauthorized, *GetServerNotFound, *GetServerInternalServerError, error)
 
-	ListLocalServer(params *ListLocalServerParams, authInfo runtime.ClientAuthInfoWriter) (*ListLocalServerOK, error)
+	ListLocalServer(params *ListLocalServerParams, authInfo runtime.ClientAuthInfoWriter) (*ListLocalServerOK, *ListLocalServerUnauthorized, *ListLocalServerInternalServerError, error)
 
-	ListServer(params *ListServerParams, authInfo runtime.ClientAuthInfoWriter) (*ListServerOK, error)
+	ListServer(params *ListServerParams, authInfo runtime.ClientAuthInfoWriter) (*ListServerOK, *ListServerUnauthorized, *ListServerInternalServerError, error)
 
-	ListSession(params *ListSessionParams, authInfo runtime.ClientAuthInfoWriter) (*ListSessionOK, error)
+	ListSession(params *ListSessionParams, authInfo runtime.ClientAuthInfoWriter) (*ListSessionOK, *ListSessionUnauthorized, *ListSessionInternalServerError, error)
 
-	GetServerLogs(params *GetServerLogsParams, authInfo runtime.ClientAuthInfoWriter) (*GetServerLogsOK, error)
+	GetServerLogs(params *GetServerLogsParams, authInfo runtime.ClientAuthInfoWriter) (*GetServerLogsOK, *GetServerLogsBadRequest, *GetServerLogsUnauthorized, *GetServerLogsNotFound, *GetServerLogsInternalServerError, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -61,10 +63,14 @@ Required scope: social
 
 This endpoint counts all of dedicated servers in a namespace managed by this service.
 */
-func (a *Client) CountServer(params *CountServerParams, authInfo runtime.ClientAuthInfoWriter) (*CountServerOK, error) {
+func (a *Client) CountServer(params *CountServerParams, authInfo runtime.ClientAuthInfoWriter) (*CountServerOK, *CountServerUnauthorized, *CountServerInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCountServerParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -81,16 +87,20 @@ func (a *Client) CountServer(params *CountServerParams, authInfo runtime.ClientA
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, err
+		return nil, nil, nil, err
 	}
-	success, ok := result.(*CountServerOK)
-	if ok {
-		return success, nil
+
+	switch v := result.(type) {
+
+	case *CountServerOK:
+		return v, nil, nil, nil
+	case *CountServerUnauthorized:
+		return nil, v, nil, nil
+	case *CountServerInternalServerError:
+		return nil, nil, v, nil
+	default:
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for CountServer: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
 }
 
 /*
@@ -102,10 +112,14 @@ Required scope: social
 
 This endpoint counts all of dedicated servers in a region managed by this service.
 */
-func (a *Client) CountServerDetailed(params *CountServerDetailedParams, authInfo runtime.ClientAuthInfoWriter) (*CountServerDetailedOK, error) {
+func (a *Client) CountServerDetailed(params *CountServerDetailedParams, authInfo runtime.ClientAuthInfoWriter) (*CountServerDetailedOK, *CountServerDetailedUnauthorized, *CountServerDetailedInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCountServerDetailedParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -122,16 +136,20 @@ func (a *Client) CountServerDetailed(params *CountServerDetailedParams, authInfo
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, err
+		return nil, nil, nil, err
 	}
-	success, ok := result.(*CountServerDetailedOK)
-	if ok {
-		return success, nil
+
+	switch v := result.(type) {
+
+	case *CountServerDetailedOK:
+		return v, nil, nil, nil
+	case *CountServerDetailedUnauthorized:
+		return nil, v, nil, nil
+	case *CountServerDetailedInternalServerError:
+		return nil, nil, v, nil
+	default:
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for CountServerDetailed: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
 }
 
 /*
@@ -143,10 +161,14 @@ Required scope: social
 
 This endpoint count all of sessions in a namespace managed by this service.
 */
-func (a *Client) CountSession(params *CountSessionParams, authInfo runtime.ClientAuthInfoWriter) (*CountSessionOK, error) {
+func (a *Client) CountSession(params *CountSessionParams, authInfo runtime.ClientAuthInfoWriter) (*CountSessionOK, *CountSessionUnauthorized, *CountSessionInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCountSessionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -163,16 +185,20 @@ func (a *Client) CountSession(params *CountSessionParams, authInfo runtime.Clien
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, err
+		return nil, nil, nil, err
 	}
-	success, ok := result.(*CountSessionOK)
-	if ok {
-		return success, nil
+
+	switch v := result.(type) {
+
+	case *CountSessionOK:
+		return v, nil, nil, nil
+	case *CountSessionUnauthorized:
+		return nil, v, nil, nil
+	case *CountSessionInternalServerError:
+		return nil, nil, v, nil
+	default:
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for CountSession: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
 }
 
 /*
@@ -185,10 +211,14 @@ Required scope: social
 This endpoint deletes a specified local dedicated server from DB.
 Note that DSM has no ability to shutdown local DS.
 */
-func (a *Client) DeleteLocalServer(params *DeleteLocalServerParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteLocalServerNoContent, error) {
+func (a *Client) DeleteLocalServer(params *DeleteLocalServerParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteLocalServerNoContent, *DeleteLocalServerUnauthorized, *DeleteLocalServerInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteLocalServerParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -205,16 +235,20 @@ func (a *Client) DeleteLocalServer(params *DeleteLocalServerParams, authInfo run
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, err
+		return nil, nil, nil, err
 	}
-	success, ok := result.(*DeleteLocalServerNoContent)
-	if ok {
-		return success, nil
+
+	switch v := result.(type) {
+
+	case *DeleteLocalServerNoContent:
+		return v, nil, nil, nil
+	case *DeleteLocalServerUnauthorized:
+		return nil, v, nil, nil
+	case *DeleteLocalServerInternalServerError:
+		return nil, nil, v, nil
+	default:
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for DeleteLocalServer: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
 }
 
 /*
@@ -226,10 +260,14 @@ Required scope: social
 
 This endpoint deletes a specified dedicated server from DB and terminates the DS pod.
 */
-func (a *Client) DeleteServer(params *DeleteServerParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteServerNoContent, error) {
+func (a *Client) DeleteServer(params *DeleteServerParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteServerNoContent, *DeleteServerUnauthorized, *DeleteServerNotFound, *DeleteServerInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteServerParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -246,16 +284,22 @@ func (a *Client) DeleteServer(params *DeleteServerParams, authInfo runtime.Clien
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, err
+		return nil, nil, nil, nil, err
 	}
-	success, ok := result.(*DeleteServerNoContent)
-	if ok {
-		return success, nil
+
+	switch v := result.(type) {
+
+	case *DeleteServerNoContent:
+		return v, nil, nil, nil, nil
+	case *DeleteServerUnauthorized:
+		return nil, v, nil, nil, nil
+	case *DeleteServerNotFound:
+		return nil, nil, v, nil, nil
+	case *DeleteServerInternalServerError:
+		return nil, nil, nil, v, nil
+	default:
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for DeleteServer: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
 }
 
 /*
@@ -267,10 +311,14 @@ Required scope: social
 
 This endpoint deletes a specified session and its corresponding match result from DB.
 */
-func (a *Client) DeleteSession(params *DeleteSessionParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteSessionNoContent, error) {
+func (a *Client) DeleteSession(params *DeleteSessionParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteSessionNoContent, *DeleteSessionUnauthorized, *DeleteSessionInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteSessionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -287,16 +335,20 @@ func (a *Client) DeleteSession(params *DeleteSessionParams, authInfo runtime.Cli
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, err
+		return nil, nil, nil, err
 	}
-	success, ok := result.(*DeleteSessionNoContent)
-	if ok {
-		return success, nil
+
+	switch v := result.(type) {
+
+	case *DeleteSessionNoContent:
+		return v, nil, nil, nil
+	case *DeleteSessionUnauthorized:
+		return nil, v, nil, nil
+	case *DeleteSessionInternalServerError:
+		return nil, nil, v, nil
+	default:
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for DeleteSession: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
 }
 
 /*
@@ -308,10 +360,14 @@ Required scope: social
 
 This endpoint queries a specified dedicated server from DB.
 */
-func (a *Client) GetServer(params *GetServerParams, authInfo runtime.ClientAuthInfoWriter) (*GetServerOK, error) {
+func (a *Client) GetServer(params *GetServerParams, authInfo runtime.ClientAuthInfoWriter) (*GetServerOK, *GetServerUnauthorized, *GetServerNotFound, *GetServerInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetServerParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -328,16 +384,22 @@ func (a *Client) GetServer(params *GetServerParams, authInfo runtime.ClientAuthI
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, err
+		return nil, nil, nil, nil, err
 	}
-	success, ok := result.(*GetServerOK)
-	if ok {
-		return success, nil
+
+	switch v := result.(type) {
+
+	case *GetServerOK:
+		return v, nil, nil, nil, nil
+	case *GetServerUnauthorized:
+		return nil, v, nil, nil, nil
+	case *GetServerNotFound:
+		return nil, nil, v, nil, nil
+	case *GetServerInternalServerError:
+		return nil, nil, nil, v, nil
+	default:
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for GetServer: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
 }
 
 /*
@@ -349,10 +411,14 @@ Required scope: social
 
 This endpoint lists all of local dedicated servers in a namespace managed by this service.
 */
-func (a *Client) ListLocalServer(params *ListLocalServerParams, authInfo runtime.ClientAuthInfoWriter) (*ListLocalServerOK, error) {
+func (a *Client) ListLocalServer(params *ListLocalServerParams, authInfo runtime.ClientAuthInfoWriter) (*ListLocalServerOK, *ListLocalServerUnauthorized, *ListLocalServerInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewListLocalServerParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -369,16 +435,20 @@ func (a *Client) ListLocalServer(params *ListLocalServerParams, authInfo runtime
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, err
+		return nil, nil, nil, err
 	}
-	success, ok := result.(*ListLocalServerOK)
-	if ok {
-		return success, nil
+
+	switch v := result.(type) {
+
+	case *ListLocalServerOK:
+		return v, nil, nil, nil
+	case *ListLocalServerUnauthorized:
+		return nil, v, nil, nil
+	case *ListLocalServerInternalServerError:
+		return nil, nil, v, nil
+	default:
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for ListLocalServer: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
 }
 
 /*
@@ -390,10 +460,14 @@ Required scope: social
 
 This endpoint lists all of dedicated servers in a namespace managed by this service.
 */
-func (a *Client) ListServer(params *ListServerParams, authInfo runtime.ClientAuthInfoWriter) (*ListServerOK, error) {
+func (a *Client) ListServer(params *ListServerParams, authInfo runtime.ClientAuthInfoWriter) (*ListServerOK, *ListServerUnauthorized, *ListServerInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewListServerParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -410,16 +484,20 @@ func (a *Client) ListServer(params *ListServerParams, authInfo runtime.ClientAut
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, err
+		return nil, nil, nil, err
 	}
-	success, ok := result.(*ListServerOK)
-	if ok {
-		return success, nil
+
+	switch v := result.(type) {
+
+	case *ListServerOK:
+		return v, nil, nil, nil
+	case *ListServerUnauthorized:
+		return nil, v, nil, nil
+	case *ListServerInternalServerError:
+		return nil, nil, v, nil
+	default:
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for ListServer: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
 }
 
 /*
@@ -431,10 +509,14 @@ Required scope: social
 
 This endpoint lists all of sessions in a namespace managed by this service.
 */
-func (a *Client) ListSession(params *ListSessionParams, authInfo runtime.ClientAuthInfoWriter) (*ListSessionOK, error) {
+func (a *Client) ListSession(params *ListSessionParams, authInfo runtime.ClientAuthInfoWriter) (*ListSessionOK, *ListSessionUnauthorized, *ListSessionInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewListSessionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -451,16 +533,20 @@ func (a *Client) ListSession(params *ListSessionParams, authInfo runtime.ClientA
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, err
+		return nil, nil, nil, err
 	}
-	success, ok := result.(*ListSessionOK)
-	if ok {
-		return success, nil
+
+	switch v := result.(type) {
+
+	case *ListSessionOK:
+		return v, nil, nil, nil
+	case *ListSessionUnauthorized:
+		return nil, v, nil, nil
+	case *ListSessionInternalServerError:
+		return nil, nil, v, nil
+	default:
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for ListSession: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
 }
 
 /*
@@ -472,10 +558,14 @@ Required scope: social
 
 This endpoint queries a specified dedicated server's logs.
 */
-func (a *Client) GetServerLogs(params *GetServerLogsParams, authInfo runtime.ClientAuthInfoWriter) (*GetServerLogsOK, error) {
+func (a *Client) GetServerLogs(params *GetServerLogsParams, authInfo runtime.ClientAuthInfoWriter) (*GetServerLogsOK, *GetServerLogsBadRequest, *GetServerLogsUnauthorized, *GetServerLogsNotFound, *GetServerLogsInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetServerLogsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -492,16 +582,24 @@ func (a *Client) GetServerLogs(params *GetServerLogsParams, authInfo runtime.Cli
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, err
+		return nil, nil, nil, nil, nil, err
 	}
-	success, ok := result.(*GetServerLogsOK)
-	if ok {
-		return success, nil
+
+	switch v := result.(type) {
+
+	case *GetServerLogsOK:
+		return v, nil, nil, nil, nil, nil
+	case *GetServerLogsBadRequest:
+		return nil, v, nil, nil, nil, nil
+	case *GetServerLogsUnauthorized:
+		return nil, nil, v, nil, nil, nil
+	case *GetServerLogsNotFound:
+		return nil, nil, nil, v, nil, nil
+	case *GetServerLogsInternalServerError:
+		return nil, nil, nil, nil, v, nil
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for getServerLogs: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
 }
 
 // SetTransport changes the transport on the client

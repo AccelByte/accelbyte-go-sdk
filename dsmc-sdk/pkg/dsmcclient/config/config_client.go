@@ -6,7 +6,9 @@ package config
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"fmt"
+	"reflect"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
@@ -27,170 +29,322 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	CreateImage(params *CreateImageParams, authInfo runtime.ClientAuthInfoWriter) (*CreateImageNoContent, error)
+	AddPort(params *AddPortParams, authInfo runtime.ClientAuthInfoWriter) (*AddPortCreated, *AddPortBadRequest, *AddPortUnauthorized, *AddPortNotFound, *AddPortConflict, *AddPortInternalServerError, error)
 
-	DeleteImage(params *DeleteImageParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteImageNoContent, error)
+	ClearCache(params *ClearCacheParams, authInfo runtime.ClientAuthInfoWriter) (*ClearCacheNoContent, *ClearCacheUnauthorized, *ClearCacheInternalServerError, error)
 
-	ExportImages(params *ExportImagesParams, authInfo runtime.ClientAuthInfoWriter) (*ExportImagesOK, error)
+	CreateConfig(params *CreateConfigParams, authInfo runtime.ClientAuthInfoWriter) (*CreateConfigCreated, *CreateConfigBadRequest, *CreateConfigUnauthorized, *CreateConfigInternalServerError, error)
 
-	GetConfig(params *GetConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetConfigOK, error)
+	DeleteConfig(params *DeleteConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteConfigNoContent, *DeleteConfigBadRequest, *DeleteConfigUnauthorized, *DeleteConfigNotFound, *DeleteConfigInternalServerError, error)
 
-	GetImageDetail(params *GetImageDetailParams, authInfo runtime.ClientAuthInfoWriter) (*GetImageDetailOK, error)
+	DeletePort(params *DeletePortParams, authInfo runtime.ClientAuthInfoWriter) (*DeletePortOK, *DeletePortBadRequest, *DeletePortUnauthorized, *DeletePortNotFound, *DeletePortInternalServerError, error)
 
-	GetImageLimit(params *GetImageLimitParams, authInfo runtime.ClientAuthInfoWriter) (*GetImageLimitOK, error)
+	GetConfig(params *GetConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetConfigOK, *GetConfigUnauthorized, *GetConfigNotFound, *GetConfigInternalServerError, error)
 
-	ImportImages(params *ImportImagesParams, authInfo runtime.ClientAuthInfoWriter) (*ImportImagesOK, error)
+	ListConfig(params *ListConfigParams, authInfo runtime.ClientAuthInfoWriter) (*ListConfigOK, *ListConfigUnauthorized, *ListConfigInternalServerError, error)
 
-	ListConfig(params *ListConfigParams, authInfo runtime.ClientAuthInfoWriter) (*ListConfigOK, error)
+	SaveConfig(params *SaveConfigParams, authInfo runtime.ClientAuthInfoWriter) (*SaveConfigNoContent, *SaveConfigBadRequest, *SaveConfigUnauthorized, *SaveConfigInternalServerError, error)
 
-	ListImages(params *ListImagesParams, authInfo runtime.ClientAuthInfoWriter) (*ListImagesOK, error)
+	UpdateConfig(params *UpdateConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateConfigOK, *UpdateConfigBadRequest, *UpdateConfigUnauthorized, *UpdateConfigNotFound, *UpdateConfigInternalServerError, error)
 
-	SaveConfig(params *SaveConfigParams, authInfo runtime.ClientAuthInfoWriter) (*SaveConfigNoContent, error)
+	UpdatePort(params *UpdatePortParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePortOK, *UpdatePortBadRequest, *UpdatePortUnauthorized, *UpdatePortNotFound, *UpdatePortInternalServerError, error)
 
-	UpdateConfig(params *UpdateConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateConfigNoContent, error)
+	ExportConfigV1(params *ExportConfigV1Params, authInfo runtime.ClientAuthInfoWriter) (*ExportConfigV1OK, *ExportConfigV1Unauthorized, *ExportConfigV1Forbidden, *ExportConfigV1NotFound, *ExportConfigV1InternalServerError, error)
 
-	UpdateDeployment(params *UpdateDeploymentParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateDeploymentNoContent, error)
-
-	UpdateImage(params *UpdateImageParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateImageNoContent, error)
-
-	ExportConfigV1(params *ExportConfigV1Params, authInfo runtime.ClientAuthInfoWriter) (*ExportConfigV1OK, error)
-
-	ImportConfigV1(params *ImportConfigV1Params, authInfo runtime.ClientAuthInfoWriter) (*ImportConfigV1OK, error)
+	ImportConfigV1(params *ImportConfigV1Params, authInfo runtime.ClientAuthInfoWriter) (*ImportConfigV1OK, *ImportConfigV1BadRequest, *ImportConfigV1Unauthorized, *ImportConfigV1Forbidden, *ImportConfigV1NotFound, *ImportConfigV1InternalServerError, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
 
 /*
-  CreateImage creates image
+  AddPort creates port config
+
+  Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [CREATE]
+
+Required scope: social
+
+This endpoint create a dedicated servers port config in a namespace.
+*/
+func (a *Client) AddPort(params *AddPortParams, authInfo runtime.ClientAuthInfoWriter) (*AddPortCreated, *AddPortBadRequest, *AddPortUnauthorized, *AddPortNotFound, *AddPortConflict, *AddPortInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAddPortParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AddPort",
+		Method:             "POST",
+		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/configs/ports/{name}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &AddPortReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AddPortCreated:
+		return v, nil, nil, nil, nil, nil, nil
+	case *AddPortBadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+	case *AddPortUnauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+	case *AddPortNotFound:
+		return nil, nil, nil, v, nil, nil, nil
+	case *AddPortConflict:
+		return nil, nil, nil, nil, v, nil, nil
+	case *AddPortInternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  ClearCache clears config cache
+
+  Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [DELETE]
+
+Required scope: social
+
+This endpoint clears config cache in a namespace
+*/
+func (a *Client) ClearCache(params *ClearCacheParams, authInfo runtime.ClientAuthInfoWriter) (*ClearCacheNoContent, *ClearCacheUnauthorized, *ClearCacheInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewClearCacheParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "ClearCache",
+		Method:             "DELETE",
+		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/configs/cache",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &ClearCacheReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *ClearCacheNoContent:
+		return v, nil, nil, nil
+	case *ClearCacheUnauthorized:
+		return nil, v, nil, nil
+	case *ClearCacheInternalServerError:
+		return nil, nil, v, nil
+	default:
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  CreateConfig creates config
 
   ```
 Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [CREATE]
 Required scope: social
 
-This endpoint will create image.
+This endpoint creates config.
 
-Sample image:
+Port is where your game listens for incoming UDP connection, if empty it'll be set to 15000
+
+CPU and Memory limit / request are formatted with Kubernetes format,
+e.g. CPU of 1000m is 1 core, and Memory of 512Mi is 512 MB.
+
+The creation/claim/session/unreachable/heartbeat timeouts are all in seconds.
+Creation timeout is time limit for DS to startup until registers itself.
+Claim timeout is time limit for game session manager to claim its ready DS.
+Session timeout is time limit for match session before deleted.
+Unreachable timeout is time limit for DS in UNREACHABLE state before deleted.
+Heartbeat timeout is time limit for DS to give heartbeat before marked as UNREACHABLE.
+
+Sample config:
 {
-	"namespace":"dewa",
-	"version":"1.0.0",
-	"image":"144436415367.dkr.ecr.us-west-2.amazonaws.com/dewa:1.0.0",
-	"persistent":false
+	"namespace": "accelbyte",
+	"providers": [
+	"aws"
+	],
+	"port": 7777,
+	"protocol": "udp",
+	"creation_timeout": 120,
+	"claim_timeout": 60,
+	"session_timeout": 1800,
+	"heartbeat_timeout": 30,
+	"unreachable_timeout": 30,
 }
 ```
 */
-func (a *Client) CreateImage(params *CreateImageParams, authInfo runtime.ClientAuthInfoWriter) (*CreateImageNoContent, error) {
+func (a *Client) CreateConfig(params *CreateConfigParams, authInfo runtime.ClientAuthInfoWriter) (*CreateConfigCreated, *CreateConfigBadRequest, *CreateConfigUnauthorized, *CreateConfigInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewCreateImageParams()
+		params = NewCreateConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "CreateImage",
+		ID:                 "CreateConfig",
 		Method:             "POST",
-		PathPattern:        "/dsmcontroller/admin/images",
+		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/configs",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http"},
 		Params:             params,
-		Reader:             &CreateImageReader{formats: a.formats},
+		Reader:             &CreateConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, err
+		return nil, nil, nil, nil, err
 	}
-	success, ok := result.(*CreateImageNoContent)
-	if ok {
-		return success, nil
+
+	switch v := result.(type) {
+
+	case *CreateConfigCreated:
+		return v, nil, nil, nil, nil
+	case *CreateConfigBadRequest:
+		return nil, v, nil, nil, nil
+	case *CreateConfigUnauthorized:
+		return nil, nil, v, nil, nil
+	case *CreateConfigInternalServerError:
+		return nil, nil, nil, v, nil
+	default:
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for CreateImage: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
 }
 
 /*
-  DeleteImage deletes an image
+  DeleteConfig deletes config
 
-  Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [UPDATE]
-
+  ```
+Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [DELETE]
 Required scope: social
 
-This endpoint will delete an image that specified in the request parameter
+This endpoint removes config. When there are ready servers,
+those servers will be removed.
+```
 */
-func (a *Client) DeleteImage(params *DeleteImageParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteImageNoContent, error) {
+func (a *Client) DeleteConfig(params *DeleteConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteConfigNoContent, *DeleteConfigBadRequest, *DeleteConfigUnauthorized, *DeleteConfigNotFound, *DeleteConfigInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewDeleteImageParams()
+		params = NewDeleteConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "DeleteImage",
+		ID:                 "DeleteConfig",
 		Method:             "DELETE",
-		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/images",
+		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/configs",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http"},
 		Params:             params,
-		Reader:             &DeleteImageReader{formats: a.formats},
+		Reader:             &DeleteConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, err
+		return nil, nil, nil, nil, nil, err
 	}
-	success, ok := result.(*DeleteImageNoContent)
-	if ok {
-		return success, nil
+
+	switch v := result.(type) {
+
+	case *DeleteConfigNoContent:
+		return v, nil, nil, nil, nil, nil
+	case *DeleteConfigBadRequest:
+		return nil, v, nil, nil, nil, nil
+	case *DeleteConfigUnauthorized:
+		return nil, nil, v, nil, nil, nil
+	case *DeleteConfigNotFound:
+		return nil, nil, nil, v, nil, nil
+	case *DeleteConfigInternalServerError:
+		return nil, nil, nil, nil, v, nil
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for DeleteImage: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
 }
 
 /*
-  ExportImages exports d s m controller images for a namespace
+  DeletePort deletes port config
 
-  Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]
+  Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [DELETE]
 
 Required scope: social
 
-This endpoint export a dedicated servers images in a namespace.
-
+This endpoint delete a dedicated server port config in a namespace
 */
-func (a *Client) ExportImages(params *ExportImagesParams, authInfo runtime.ClientAuthInfoWriter) (*ExportImagesOK, error) {
+func (a *Client) DeletePort(params *DeletePortParams, authInfo runtime.ClientAuthInfoWriter) (*DeletePortOK, *DeletePortBadRequest, *DeletePortUnauthorized, *DeletePortNotFound, *DeletePortInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewExportImagesParams()
+		params = NewDeletePortParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "ExportImages",
-		Method:             "GET",
-		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/images/export",
+		ID:                 "DeletePort",
+		Method:             "DELETE",
+		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/configs/ports/{name}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http"},
 		Params:             params,
-		Reader:             &ExportImagesReader{formats: a.formats},
+		Reader:             &DeletePortReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, err
+		return nil, nil, nil, nil, nil, err
 	}
-	success, ok := result.(*ExportImagesOK)
-	if ok {
-		return success, nil
+
+	switch v := result.(type) {
+
+	case *DeletePortOK:
+		return v, nil, nil, nil, nil, nil
+	case *DeletePortBadRequest:
+		return nil, v, nil, nil, nil, nil
+	case *DeletePortUnauthorized:
+		return nil, nil, v, nil, nil, nil
+	case *DeletePortNotFound:
+		return nil, nil, nil, v, nil, nil
+	case *DeletePortInternalServerError:
+		return nil, nil, nil, nil, v, nil
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for ExportImages: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
 }
 
 /*
@@ -202,10 +356,14 @@ Required scope: social
 
 This endpoint get a dedicated servers config in a namespace.
 */
-func (a *Client) GetConfig(params *GetConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetConfigOK, error) {
+func (a *Client) GetConfig(params *GetConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetConfigOK, *GetConfigUnauthorized, *GetConfigNotFound, *GetConfigInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -222,152 +380,22 @@ func (a *Client) GetConfig(params *GetConfigParams, authInfo runtime.ClientAuthI
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*GetConfigOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for GetConfig: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
-  GetImageDetail ds s image detail
-
-  Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]
-
-Required scope: social
-
-This endpoint get specific version of dedicated servers images.
-*/
-func (a *Client) GetImageDetail(params *GetImageDetailParams, authInfo runtime.ClientAuthInfoWriter) (*GetImageDetailOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewGetImageDetailParams()
+		return nil, nil, nil, nil, err
 	}
 
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "GetImageDetail",
-		Method:             "GET",
-		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/images/versions/{version}",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
-		Params:             params,
-		Reader:             &GetImageDetailReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
+	switch v := result.(type) {
+
+	case *GetConfigOK:
+		return v, nil, nil, nil, nil
+	case *GetConfigUnauthorized:
+		return nil, v, nil, nil, nil
+	case *GetConfigNotFound:
+		return nil, nil, v, nil, nil
+	case *GetConfigInternalServerError:
+		return nil, nil, nil, v, nil
+	default:
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
-	success, ok := result.(*GetImageDetailOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for GetImageDetail: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
-  GetImageLimit ds s image limit
-
-  Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]
-
-Required scope: social
-
-This endpoint get ds image limit for specific namespace
-*/
-func (a *Client) GetImageLimit(params *GetImageLimitParams, authInfo runtime.ClientAuthInfoWriter) (*GetImageLimitOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewGetImageLimitParams()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "GetImageLimit",
-		Method:             "GET",
-		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/images/limit",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
-		Params:             params,
-		Reader:             &GetImageLimitReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*GetImageLimitOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for GetImageLimit: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
-  ImportImages imports images for a namespace
-
-  Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [CREATE]
-
-Required scope: social
-
-This endpoint import a dedicated servers images in a namespace.
-
-The image will be upsert. Existing version will be replaced with imported image, will create new one if not found.
-
-Example data inside imported file
-[
-  {
-	"namespace": "dewa",
-	"image": "123456789.dkr.ecr.us-west-2.amazonaws.com/ds-dewa:0.0.1-alpha",
-	"version": "0.0.1",
-	"persistent": true
-  }
-]
-
-*/
-func (a *Client) ImportImages(params *ImportImagesParams, authInfo runtime.ClientAuthInfoWriter) (*ImportImagesOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewImportImagesParams()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "ImportImages",
-		Method:             "POST",
-		PathPattern:        "/dsmcontroller/admin/images/import",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"multipart/form-data"},
-		Schemes:            []string{"http"},
-		Params:             params,
-		Reader:             &ImportImagesReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*ImportImagesOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for ImportImages: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
 }
 
 /*
@@ -379,10 +407,14 @@ Required scope: social
 
 This endpoint lists all of dedicated servers configs.
 */
-func (a *Client) ListConfig(params *ListConfigParams, authInfo runtime.ClientAuthInfoWriter) (*ListConfigOK, error) {
+func (a *Client) ListConfig(params *ListConfigParams, authInfo runtime.ClientAuthInfoWriter) (*ListConfigOK, *ListConfigUnauthorized, *ListConfigInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewListConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -399,57 +431,20 @@ func (a *Client) ListConfig(params *ListConfigParams, authInfo runtime.ClientAut
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*ListConfigOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for ListConfig: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
-  ListImages lists all d s images
-
-  Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]
-
-Required scope: social
-
-This endpoint lists all of dedicated servers images.
-*/
-func (a *Client) ListImages(params *ListImagesParams, authInfo runtime.ClientAuthInfoWriter) (*ListImagesOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewListImagesParams()
+		return nil, nil, nil, err
 	}
 
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "ListImages",
-		Method:             "GET",
-		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/images",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
-		Params:             params,
-		Reader:             &ListImagesReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
+	switch v := result.(type) {
+
+	case *ListConfigOK:
+		return v, nil, nil, nil
+	case *ListConfigUnauthorized:
+		return nil, v, nil, nil
+	case *ListConfigInternalServerError:
+		return nil, nil, v, nil
+	default:
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
-	success, ok := result.(*ListImagesOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for ListImages: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
 }
 
 /*
@@ -493,7 +488,6 @@ Sample config:
 	"default_version": "1.4.0",
 	"cpu_limit": "100",
 	"mem_limit": "64",
-	"artifact_path":"/srv/datads/artifacts/",
 	"params": "",
 	"min_count": 0,
 	"max_count": 0,
@@ -503,13 +497,11 @@ Sample config:
 			"cpu_limit": "100",
 			"mem_limit": "64",
 			"params": "-gamemode 1p",
-			"artifact_path":"/srv/datads/artifacts/",
 		},
 		"50players": {
 			"cpu_limit": "200",
 			"mem_limit": "512",
 			"params": "-gamemode 50p",
-			"artifact_path":"/srv/datads/artifacts/",
 		}
 	},
 	"deployments": {
@@ -533,10 +525,14 @@ Sample config:
 }
 ```
 */
-func (a *Client) SaveConfig(params *SaveConfigParams, authInfo runtime.ClientAuthInfoWriter) (*SaveConfigNoContent, error) {
+func (a *Client) SaveConfig(params *SaveConfigParams, authInfo runtime.ClientAuthInfoWriter) (*SaveConfigNoContent, *SaveConfigBadRequest, *SaveConfigUnauthorized, *SaveConfigInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewSaveConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -553,16 +549,22 @@ func (a *Client) SaveConfig(params *SaveConfigParams, authInfo runtime.ClientAut
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, err
+		return nil, nil, nil, nil, err
 	}
-	success, ok := result.(*SaveConfigNoContent)
-	if ok {
-		return success, nil
+
+	switch v := result.(type) {
+
+	case *SaveConfigNoContent:
+		return v, nil, nil, nil, nil
+	case *SaveConfigBadRequest:
+		return nil, v, nil, nil, nil
+	case *SaveConfigUnauthorized:
+		return nil, nil, v, nil, nil
+	case *SaveConfigInternalServerError:
+		return nil, nil, nil, v, nil
+	default:
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for SaveConfig: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
 }
 
 /*
@@ -600,56 +602,17 @@ Sample config:
 	"session_timeout": 1800,
 	"heartbeat_timeout": 30,
 	"unreachable_timeout": 30,
-	"image_version_mapping": {
-		"1.4.0": "accelbyte/sample-ds-go:1.4.0"
-	},
-	"default_version": "1.4.0",
-	"cpu_limit": "100",
-	"mem_limit": "64",
-	"artifact_path":"/srv/datads/artifacts/",
-	"params": "",
-	"min_count": 0,
-	"max_count": 0,
-	"buffer_count": 0,
-	"configurations": {
-		"1player": {
-			"cpu_limit": "100",
-			"mem_limit": "64",
-			"params": "-gamemode 1p",
-			"artifact_path":"/srv/datads/artifacts/",
-		},
-		"50players": {
-			"cpu_limit": "200",
-			"mem_limit": "512",
-			"params": "-gamemode 50p",
-			"artifact_path":"/srv/datads/artifacts/",
-		}
-	},
-	"deployments": {
-		"global-1p": {
-			"game_version": "1.4.0"",
-			"regions": ["us-west", "ap-southeast"],
-			"configuration": "1player",
-			"min_count": 0,
-			"max_count": 0,
-			"buffer_count": 2
-		},
-		"us-50p": {
-			"game_version": "1.4.0"",
-			"regions": ["us-west"],
-			"configuration": "50players",
-			"min_count": 0,
-			"max_count": 0,
-			"buffer_count": 5
-		},
-	},
 }
 ```
 */
-func (a *Client) UpdateConfig(params *UpdateConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateConfigNoContent, error) {
+func (a *Client) UpdateConfig(params *UpdateConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateConfigOK, *UpdateConfigBadRequest, *UpdateConfigUnauthorized, *UpdateConfigNotFound, *UpdateConfigInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewUpdateConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -666,107 +629,77 @@ func (a *Client) UpdateConfig(params *UpdateConfigParams, authInfo runtime.Clien
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, err
+		return nil, nil, nil, nil, nil, err
 	}
-	success, ok := result.(*UpdateConfigNoContent)
-	if ok {
-		return success, nil
+
+	switch v := result.(type) {
+
+	case *UpdateConfigOK:
+		return v, nil, nil, nil, nil, nil
+	case *UpdateConfigBadRequest:
+		return nil, v, nil, nil, nil, nil
+	case *UpdateConfigUnauthorized:
+		return nil, nil, v, nil, nil, nil
+	case *UpdateConfigNotFound:
+		return nil, nil, nil, v, nil, nil
+	case *UpdateConfigInternalServerError:
+		return nil, nil, nil, nil, v, nil
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for UpdateConfig: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
 }
 
 /*
-  UpdateDeployment updates deployment
+  UpdatePort updates port config
 
   Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [UPDATE]
 
 Required scope: social
 
-This endpoint update a dedicated servers deployment in a namespace.
+This endpoint update a dedicated servers port config in a namespace.
 */
-func (a *Client) UpdateDeployment(params *UpdateDeploymentParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateDeploymentNoContent, error) {
+func (a *Client) UpdatePort(params *UpdatePortParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePortOK, *UpdatePortBadRequest, *UpdatePortUnauthorized, *UpdatePortNotFound, *UpdatePortInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewUpdateDeploymentParams()
+		params = NewUpdatePortParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "UpdateDeployment",
+		ID:                 "UpdatePort",
 		Method:             "PATCH",
-		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}",
+		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/configs/ports/{name}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http"},
 		Params:             params,
-		Reader:             &UpdateDeploymentReader{formats: a.formats},
+		Reader:             &UpdatePortReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*UpdateDeploymentNoContent)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for UpdateDeployment: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
-  UpdateImage updates image
-
-  ```
-Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [UPDATE]
-Required scope: social
-
-This endpoint will update an image name and/or image persistent flag.
-
-Sample image:
-{
-	"namespace":"dewa",
-	"version":"1.0.0",
-	"image":"144436415367.dkr.ecr.us-west-2.amazonaws.com/dewa:1.0.0",
-	"persistent":false
-}
-```
-*/
-func (a *Client) UpdateImage(params *UpdateImageParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateImageNoContent, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewUpdateImageParams()
+		return nil, nil, nil, nil, nil, err
 	}
 
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "UpdateImage",
-		Method:             "PUT",
-		PathPattern:        "/dsmcontroller/admin/images",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
-		Params:             params,
-		Reader:             &UpdateImageReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
+	switch v := result.(type) {
+
+	case *UpdatePortOK:
+		return v, nil, nil, nil, nil, nil
+	case *UpdatePortBadRequest:
+		return nil, v, nil, nil, nil, nil
+	case *UpdatePortUnauthorized:
+		return nil, nil, v, nil, nil, nil
+	case *UpdatePortNotFound:
+		return nil, nil, nil, v, nil, nil
+	case *UpdatePortInternalServerError:
+		return nil, nil, nil, nil, v, nil
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
-	success, ok := result.(*UpdateImageNoContent)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for UpdateImage: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
 }
 
 /*
@@ -779,10 +712,14 @@ Required scope: social
 This endpoint export a dedicated servers config in a namespace.
 
 */
-func (a *Client) ExportConfigV1(params *ExportConfigV1Params, authInfo runtime.ClientAuthInfoWriter) (*ExportConfigV1OK, error) {
+func (a *Client) ExportConfigV1(params *ExportConfigV1Params, authInfo runtime.ClientAuthInfoWriter) (*ExportConfigV1OK, *ExportConfigV1Unauthorized, *ExportConfigV1Forbidden, *ExportConfigV1NotFound, *ExportConfigV1InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewExportConfigV1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -799,16 +736,24 @@ func (a *Client) ExportConfigV1(params *ExportConfigV1Params, authInfo runtime.C
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, err
+		return nil, nil, nil, nil, nil, err
 	}
-	success, ok := result.(*ExportConfigV1OK)
-	if ok {
-		return success, nil
+
+	switch v := result.(type) {
+
+	case *ExportConfigV1OK:
+		return v, nil, nil, nil, nil, nil
+	case *ExportConfigV1Unauthorized:
+		return nil, v, nil, nil, nil, nil
+	case *ExportConfigV1Forbidden:
+		return nil, nil, v, nil, nil, nil
+	case *ExportConfigV1NotFound:
+		return nil, nil, nil, v, nil, nil
+	case *ExportConfigV1InternalServerError:
+		return nil, nil, nil, nil, v, nil
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for exportConfigV1: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
 }
 
 /*
@@ -820,13 +765,17 @@ Required scope: social
 
 This endpoint import a dedicated servers config in a namespace.
 
-The configurations would be replaced except Image Version Mapping. The existing Image Version Mapping will be kept.
+If there is an existing configuration, the configuration would be replaced.
 
 */
-func (a *Client) ImportConfigV1(params *ImportConfigV1Params, authInfo runtime.ClientAuthInfoWriter) (*ImportConfigV1OK, error) {
+func (a *Client) ImportConfigV1(params *ImportConfigV1Params, authInfo runtime.ClientAuthInfoWriter) (*ImportConfigV1OK, *ImportConfigV1BadRequest, *ImportConfigV1Unauthorized, *ImportConfigV1Forbidden, *ImportConfigV1NotFound, *ImportConfigV1InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewImportConfigV1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -843,16 +792,26 @@ func (a *Client) ImportConfigV1(params *ImportConfigV1Params, authInfo runtime.C
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
-	success, ok := result.(*ImportConfigV1OK)
-	if ok {
-		return success, nil
+
+	switch v := result.(type) {
+
+	case *ImportConfigV1OK:
+		return v, nil, nil, nil, nil, nil, nil
+	case *ImportConfigV1BadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+	case *ImportConfigV1Unauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+	case *ImportConfigV1Forbidden:
+		return nil, nil, nil, v, nil, nil, nil
+	case *ImportConfigV1NotFound:
+		return nil, nil, nil, nil, v, nil, nil
+	case *ImportConfigV1InternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for importConfigV1: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
 }
 
 // SetTransport changes the transport on the client

@@ -63,7 +63,7 @@ for the save config operation typically these are written to a http.Request
 type SaveConfigParams struct {
 
 	/*Body*/
-	Body *dsmcclientmodels.ModelsDSMConfig
+	Body *dsmcclientmodels.ModelsDSMConfigRecord
 
 	timeout    time.Duration
 	Context    context.Context
@@ -104,13 +104,13 @@ func (o *SaveConfigParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithBody adds the body to the save config params
-func (o *SaveConfigParams) WithBody(body *dsmcclientmodels.ModelsDSMConfig) *SaveConfigParams {
+func (o *SaveConfigParams) WithBody(body *dsmcclientmodels.ModelsDSMConfigRecord) *SaveConfigParams {
 	o.SetBody(body)
 	return o
 }
 
 // SetBody adds the body to the save config params
-func (o *SaveConfigParams) SetBody(body *dsmcclientmodels.ModelsDSMConfig) {
+func (o *SaveConfigParams) SetBody(body *dsmcclientmodels.ModelsDSMConfigRecord) {
 	o.Body = body
 }
 

@@ -6,7 +6,9 @@ package session
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"fmt"
+	"reflect"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
@@ -27,11 +29,11 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	ClaimServer(params *ClaimServerParams, authInfo runtime.ClientAuthInfoWriter) (*ClaimServerNoContent, error)
+	ClaimServer(params *ClaimServerParams, authInfo runtime.ClientAuthInfoWriter) (*ClaimServerNoContent, *ClaimServerUnauthorized, *ClaimServerNotFound, *ClaimServerConflict, *ClaimServerStatus425, *ClaimServerInternalServerError, *ClaimServerServiceUnavailable, error)
 
-	CreateSession(params *CreateSessionParams, authInfo runtime.ClientAuthInfoWriter) (*CreateSessionOK, error)
+	CreateSession(params *CreateSessionParams, authInfo runtime.ClientAuthInfoWriter) (*CreateSessionOK, *CreateSessionBadRequest, *CreateSessionUnauthorized, *CreateSessionNotFound, *CreateSessionConflict, *CreateSessionInternalServerError, *CreateSessionServiceUnavailable, error)
 
-	GetSession(params *GetSessionParams, authInfo runtime.ClientAuthInfoWriter) (*GetSessionOK, error)
+	GetSession(params *GetSessionParams, authInfo runtime.ClientAuthInfoWriter) (*GetSessionOK, *GetSessionUnauthorized, *GetSessionNotFound, *GetSessionInternalServerError, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -45,10 +47,14 @@ Required scope: social
 
 This endpoint is intended to be called by game session manager (matchmaker, lobby, etc.) to claim a dedicated server. The dedicated server cannot be claimed unless the status is READY
 */
-func (a *Client) ClaimServer(params *ClaimServerParams, authInfo runtime.ClientAuthInfoWriter) (*ClaimServerNoContent, error) {
+func (a *Client) ClaimServer(params *ClaimServerParams, authInfo runtime.ClientAuthInfoWriter) (*ClaimServerNoContent, *ClaimServerUnauthorized, *ClaimServerNotFound, *ClaimServerConflict, *ClaimServerStatus425, *ClaimServerInternalServerError, *ClaimServerServiceUnavailable, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewClaimServerParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -65,16 +71,28 @@ func (a *Client) ClaimServer(params *ClaimServerParams, authInfo runtime.ClientA
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, err
+		return nil, nil, nil, nil, nil, nil, nil, err
 	}
-	success, ok := result.(*ClaimServerNoContent)
-	if ok {
-		return success, nil
+
+	switch v := result.(type) {
+
+	case *ClaimServerNoContent:
+		return v, nil, nil, nil, nil, nil, nil, nil
+	case *ClaimServerUnauthorized:
+		return nil, v, nil, nil, nil, nil, nil, nil
+	case *ClaimServerNotFound:
+		return nil, nil, v, nil, nil, nil, nil, nil
+	case *ClaimServerConflict:
+		return nil, nil, nil, v, nil, nil, nil, nil
+	case *ClaimServerStatus425:
+		return nil, nil, nil, nil, v, nil, nil, nil
+	case *ClaimServerInternalServerError:
+		return nil, nil, nil, nil, nil, v, nil, nil
+	case *ClaimServerServiceUnavailable:
+		return nil, nil, nil, nil, nil, nil, v, nil
+	default:
+		return nil, nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for ClaimServer: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
 }
 
 /*
@@ -92,10 +110,14 @@ Otherwise it will trigger new dedicated server creation and respond with a serve
 
 Specify pod_name with name of local DS in the request to create a session using the registered local DS
 */
-func (a *Client) CreateSession(params *CreateSessionParams, authInfo runtime.ClientAuthInfoWriter) (*CreateSessionOK, error) {
+func (a *Client) CreateSession(params *CreateSessionParams, authInfo runtime.ClientAuthInfoWriter) (*CreateSessionOK, *CreateSessionBadRequest, *CreateSessionUnauthorized, *CreateSessionNotFound, *CreateSessionConflict, *CreateSessionInternalServerError, *CreateSessionServiceUnavailable, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCreateSessionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -112,16 +134,28 @@ func (a *Client) CreateSession(params *CreateSessionParams, authInfo runtime.Cli
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, err
+		return nil, nil, nil, nil, nil, nil, nil, err
 	}
-	success, ok := result.(*CreateSessionOK)
-	if ok {
-		return success, nil
+
+	switch v := result.(type) {
+
+	case *CreateSessionOK:
+		return v, nil, nil, nil, nil, nil, nil, nil
+	case *CreateSessionBadRequest:
+		return nil, v, nil, nil, nil, nil, nil, nil
+	case *CreateSessionUnauthorized:
+		return nil, nil, v, nil, nil, nil, nil, nil
+	case *CreateSessionNotFound:
+		return nil, nil, nil, v, nil, nil, nil, nil
+	case *CreateSessionConflict:
+		return nil, nil, nil, nil, v, nil, nil, nil
+	case *CreateSessionInternalServerError:
+		return nil, nil, nil, nil, nil, v, nil, nil
+	case *CreateSessionServiceUnavailable:
+		return nil, nil, nil, nil, nil, nil, v, nil
+	default:
+		return nil, nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for CreateSession: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
 }
 
 /*
@@ -135,10 +169,14 @@ This endpoint is intended to be called by game session manager (matchmaker, lobb
 
 The server is ready to use when the status is READY. At which point, the game session manager can claim the server using the GET /namespaces/{namespace}/sessions/{sessionID}/claim endpoint
 */
-func (a *Client) GetSession(params *GetSessionParams, authInfo runtime.ClientAuthInfoWriter) (*GetSessionOK, error) {
+func (a *Client) GetSession(params *GetSessionParams, authInfo runtime.ClientAuthInfoWriter) (*GetSessionOK, *GetSessionUnauthorized, *GetSessionNotFound, *GetSessionInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetSessionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
@@ -155,16 +193,22 @@ func (a *Client) GetSession(params *GetSessionParams, authInfo runtime.ClientAut
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, err
+		return nil, nil, nil, nil, err
 	}
-	success, ok := result.(*GetSessionOK)
-	if ok {
-		return success, nil
+
+	switch v := result.(type) {
+
+	case *GetSessionOK:
+		return v, nil, nil, nil, nil
+	case *GetSessionUnauthorized:
+		return nil, v, nil, nil, nil
+	case *GetSessionNotFound:
+		return nil, nil, v, nil, nil
+	case *GetSessionInternalServerError:
+		return nil, nil, nil, v, nil
+	default:
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for GetSession: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
 }
 
 // SetTransport changes the transport on the client

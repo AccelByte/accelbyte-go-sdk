@@ -18,7 +18,7 @@ func NewSessionClient(configRepository repository.ConfigRepository) *sessionbrow
 			baseUrlSplit := strings.Split(baseUrl, "://")
 			httpClientConfig := &sessionbrowserclient.TransportConfig{
 				Host:     baseUrlSplit[1],
-				BasePath: "/sessionbrowser",
+				BasePath: "",
 				Schemes:  []string{baseUrlSplit[0]},
 			}
 			sessionbrowserClientInstance = sessionbrowserclient.NewHTTPClientWithConfig(nil, httpClientConfig)

@@ -4,9 +4,10 @@
 package factory
 
 import (
+	"strings"
+
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"strings"
 )
 
 var platformClientInstance *platformclient.JusticePlatformService

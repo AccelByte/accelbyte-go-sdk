@@ -5,11 +5,12 @@ package service
 
 import (
 	"errors"
+	"net/url"
+
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/s_s_o_s_a_m_l_2_0"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/sirupsen/logrus"
-	"net/url"
 )
 
 type SSOSAML20Service struct {

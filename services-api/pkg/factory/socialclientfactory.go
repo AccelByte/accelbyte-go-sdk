@@ -4,10 +4,11 @@
 package factory
 
 import (
+	"strings"
+
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/client"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient"
-	"strings"
 )
 
 var socialClientInstance *socialclient.JusticeSocialService

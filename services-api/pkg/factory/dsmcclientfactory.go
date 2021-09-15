@@ -5,9 +5,10 @@
 package factory
 
 import (
+	"strings"
+
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"strings"
 )
 
 var dsmcClientInstance *dsmcclient.JusticeDsmcService

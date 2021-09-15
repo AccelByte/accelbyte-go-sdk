@@ -2,6 +2,7 @@ package service
 
 import (
 	"encoding/json"
+
 	"github.com/AccelByte/accelbyte-go-sdk/group-sdk/pkg/groupclient"
 	"github.com/AccelByte/accelbyte-go-sdk/group-sdk/pkg/groupclient/group_member"
 	"github.com/AccelByte/accelbyte-go-sdk/group-sdk/pkg/groupclient/member_request"

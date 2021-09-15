@@ -2,12 +2,13 @@ package service
 
 import (
 	"encoding/json"
+	"io"
+
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/payment_station"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/sirupsen/logrus"
-	"io"
 )
 
 type PaymentStation struct {

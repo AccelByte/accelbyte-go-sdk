@@ -4,9 +4,10 @@
 package factory
 
 import (
+	"strings"
+
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/sessionbrowser-sdk/pkg/sessionbrowserclient"
-	"strings"
 )
 
 var sessionbrowserClientInstance *sessionbrowserclient.JusticeSessionbrowserService

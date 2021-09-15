@@ -2,6 +2,7 @@ package service
 
 import (
 	"encoding/json"
+
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient/global_statistic"

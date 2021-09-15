@@ -4,9 +4,10 @@
 package factory
 
 import (
+	"strings"
+
 	"github.com/AccelByte/accelbyte-go-sdk/group-sdk/pkg/groupclient"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"strings"
 )
 
 var groupClientInstance *groupclient.JusticeGroupService

@@ -6,6 +6,7 @@ package service
 import (
 	"encoding/json"
 	"errors"
+
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclient"
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclient/user_profile"
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclientmodels"

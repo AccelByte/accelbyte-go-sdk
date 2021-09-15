@@ -6,12 +6,13 @@ package connectionutils
 
 import (
 	"fmt"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"io/ioutil"
 	"net/http"
 	"strings"
 	"sync"
 	"time"
+
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 
 	"github.com/gorilla/websocket"
 	"github.com/sirupsen/logrus"

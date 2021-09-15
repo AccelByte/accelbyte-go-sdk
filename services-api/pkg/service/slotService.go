@@ -2,6 +2,8 @@ package service
 
 import (
 	"encoding/json"
+	"io"
+
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient/slot"
@@ -9,7 +11,6 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 	"github.com/sirupsen/logrus"
-	"io"
 )
 
 type SlotService struct {

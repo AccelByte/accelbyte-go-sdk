@@ -4,10 +4,11 @@
 package factory
 
 import (
+	"strings"
+
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/sirupsen/logrus"
-	"strings"
 )
 
 var iamClientInstance *iamclient.JusticeIamService

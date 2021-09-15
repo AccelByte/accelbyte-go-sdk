@@ -1,0 +1,15 @@
+# url of the swagger file
+external-url: https://demo.accelbyte.io/lobby/apidocs/api.json
+src-filename: lobby-sdk/api.json
+# filename of the destination swagger file
+dst-filename: lobby-sdk/lobby-swagger.short.json
+# one of: blacklist, whitelist
+# if the strategy "blacklist" selected then selected routes will be skipped
+# if the strategy "whitelist" selected then selected routes will be taken
+strategy: whitelist
+routes:
+  - get /chat/namespaces/{namespace}/users/{userId}/friend/{friendId}
+  - GET /friends/namespaces/{namespace}/me
+  - /friends/namespaces/{namespace}/me/incoming
+swagger-schemes: '["https"]'
+swagger-host: demo.accelbyte.io

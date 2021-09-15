@@ -4,9 +4,10 @@
 package factory
 
 import (
+	"strings"
+
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclient"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"strings"
 )
 
 var basicClientInstance *basicclient.JusticeBasicService

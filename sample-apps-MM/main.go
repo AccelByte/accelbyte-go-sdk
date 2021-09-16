@@ -7,10 +7,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/model"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service"
-	"github.com/AccelByte/sample-apps/pkg"
-	"github.com/gorilla/websocket"
-
-	customUtils "github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/connectionutils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/parser"
 	"github.com/AccelByte/sample-apps/pkg/repository"
@@ -162,7 +158,7 @@ func createMatchmaking() {
 	}
 	logrus.Info("Listening to lobby via websocket...")
 
-	// send request to custom MM service (AWS API Gateway)
+	// send request to custom MM service via AWS API Gateway
 	token, err := oauthService.TokenRepository.GetToken()
 	client := utils.GetClient()
 	req, err := http.NewRequest("POST", matchmakingServiceURL, nil)
@@ -181,8 +177,7 @@ func createMatchmaking() {
 	if err != nil {
 		logrus.Error("http call error")
 	} else {
-		logrus.Infof("Code: %s", resp.Status)
-		logrus.Infof("Body: %s", body)
+		logrus.Infof("Response from Title MM service with status code: %s , and response body: \n %s", resp.Status, body)
 	}
 }
 
@@ -207,39 +202,12 @@ var lobbyMessageHandler = func(dataByte []byte) {
 				logrus.Info("match searching....")
 			} else {
 				message := strings.Fields(data.Payload)
-				logrus.Infof("match found\nconnecting to DS with IP : %s and Port : %s ...", message[1], message[2])
-				err := connectToDS(message[1], message[2])
+				logrus.Infof("match found\nDS info :\nIP : %s  \nPort : %s ...", message[1], message[2])
 				if err != nil {
 					return
 				}
 			}
 		}
-
-		marshal, err := json.Marshal(data)
-		if err != nil {
-			return
-		}
-		logrus.Infof("Response content %v", string(marshal))
-		break
-	}
-}
-
-var dsMessageHandler = func(dataByte []byte) {
-	var msgType string
-	msg := decodeWSMessage(string(dataByte))
-
-	if v, ok := msg["type"]; ok {
-		msgType = v
-	}
-	switch msgType {
-	case model.TypeDSNotif:
-		logrus.Infof("Receive response type %v", model.TypeDSNotif)
-		unmarshal, err := parser.UnmarshalResponse(dataByte)
-		if err != nil {
-			logrus.Error(err)
-			return
-		}
-		data := unmarshal.(*model.DSNotification)
 		marshal, err := json.Marshal(data)
 		if err != nil {
 			return
@@ -266,23 +234,4 @@ func decodeWSMessage(msg string) map[string]string {
 	}
 
 	return res
-}
-
-func connectToDS(ip, port string) error {
-	con, err := pkg.NewWebsocketConnection(ip, port, oauthService.TokenRepository, dsMessageHandler)
-	if err != nil {
-		return err
-	}
-	logrus.Debug("GetDSMessage")
-	messageID := customUtils.GenerateMessageID()
-	text := fmt.Sprintf("type: %s\n%s", model.TypeDSNotif, messageID)
-	err = con.Conn.WriteMessage(websocket.TextMessage, []byte(text))
-	if err != nil {
-		return err
-	}
-	err = connMgr.Close()
-	if err != nil {
-		return err
-	}
-	return nil
 }

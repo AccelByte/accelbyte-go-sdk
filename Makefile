@@ -14,7 +14,7 @@ endif
 CLIENT_PKG_SUFFIX ?= $(S)client
 MODELS_PKG_SUFFIX ?= $(CLIENT_PKG_SUFFIX)models
 GO_SWAGGER_TAG ?= v0.25.0
-SWAGGER_YAML_FILE ?= $(S)-swagger.short.json
+SWAGGER_YAML_FILE ?= $(S)-swagger.json
 
 gen-client:
 ifndef SERVICE

@@ -199,7 +199,10 @@ var lobbyMessageHandler = func(dataByte []byte) {
 			logrus.Error(err)
 		}
 		data := unmarshal.(*model.NotificationMessage)
+
+		// This is custom contract between client and MM service
 		if data.Topic == "NOTIF" {
+			logrus.Infof("Received data with topic name : %s", data.Topic)
 			if data.Payload == "searching" {
 				logrus.Info("Match searching...")
 			} else {
@@ -208,17 +211,10 @@ var lobbyMessageHandler = func(dataByte []byte) {
 						log.Println("panic occurred:", err)
 					}
 				}()
-				logrus.Infof("Received data with topic name : %s", data.Topic)
 				message := strings.Fields(data.Payload)
 				if message[0] == "found" {
-					if isIPValid(message[1]) && isNumeric(message[2]) {
+					if isIPValid(message[1]) && isInteger(message[2]) {
 						logrus.Infof("Match found !\nDS info :\nIP : %s  \nPort : %s", message[1], message[2])
-					} else {
-
-					}
-
-					if err != nil {
-						logrus.Error(err)
 					}
 				}
 			}
@@ -260,7 +256,7 @@ func isIPValid(ip string) bool {
 	}
 }
 
-func isNumeric(s string) bool {
+func isInteger(s string) bool {
 	if _, err := strconv.Atoi(s); err == nil {
 		return true
 	}

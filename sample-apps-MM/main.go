@@ -13,8 +13,11 @@ import (
 	"github.com/AccelByte/sample-apps/pkg/utils"
 	"github.com/sirupsen/logrus"
 	"io/ioutil"
+	"log"
+	"net"
 	"net/http"
 	"os"
+	"strconv"
 	"strings"
 )
 
@@ -194,23 +197,35 @@ var lobbyMessageHandler = func(dataByte []byte) {
 		unmarshal, err := parser.UnmarshalResponse(dataByte)
 		if err != nil {
 			logrus.Error(err)
-			return
 		}
 		data := unmarshal.(*model.NotificationMessage)
 		if data.Topic == "NOTIF" {
 			if data.Payload == "searching" {
-				logrus.Info("match searching....")
+				logrus.Info("Match searching...")
 			} else {
+				defer func() {
+					if err := recover(); err != nil {
+						log.Println("panic occurred:", err)
+					}
+				}()
+				logrus.Infof("Received data with topic name : %s", data.Topic)
 				message := strings.Fields(data.Payload)
-				logrus.Infof("match found\nDS info :\nIP : %s  \nPort : %s ...", message[1], message[2])
-				if err != nil {
-					return
+				if message[0] == "found" {
+					if isIPValid(message[1]) && isNumeric(message[2]) {
+						logrus.Infof("Match found !\nDS info :\nIP : %s  \nPort : %s", message[1], message[2])
+					} else {
+
+					}
+
+					if err != nil {
+						logrus.Error(err)
+					}
 				}
 			}
 		}
 		marshal, err := json.Marshal(data)
 		if err != nil {
-			return
+			logrus.Error(err)
 		}
 		logrus.Infof("Response content %v", string(marshal))
 		break
@@ -234,4 +249,21 @@ func decodeWSMessage(msg string) map[string]string {
 	}
 
 	return res
+}
+
+func isIPValid(ip string) bool {
+	if net.ParseIP(ip) == nil {
+		logrus.Errorf("Invalid IP Addres : %s", ip)
+		return false
+	} else {
+		return true
+	}
+}
+
+func isNumeric(s string) bool {
+	if _, err := strconv.Atoi(s); err == nil {
+		return true
+	}
+	logrus.Errorf("Invalid port : %s", s)
+	return false
 }

@@ -43,7 +43,7 @@ var (
 )
 
 // StartMatchmaking is used as handler
-func (titleMMService *TitleMatchmakingService) StartMatchmaking(req *events.APIGatewayProxyRequest) events.APIGatewayProxyResponse {
+func (titleMMService *TitleMatchmakingService) StartMatchmaking(req *events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
 
@@ -54,14 +54,14 @@ func (titleMMService *TitleMatchmakingService) StartMatchmaking(req *events.APIG
 		log.Print("Token split \"Bearer\" and token authorization")
 		message := fmt.Sprintf("Invalid token.")
 		response := events.APIGatewayProxyResponse{StatusCode: http.StatusUnauthorized, Body: message}
-		return response
+		return response, nil
 	}
 	reqToken = splitToken[1]
 	tokenConvert, err := repository.ConvertTokenToTokenResponseV3(reqToken)
 	if tokenConvert == nil {
 		log.Print("Unable to convert token to response model :", err.Error())
 		response := events.APIGatewayProxyResponse{StatusCode: http.StatusUnauthorized, Body: fmt.Sprintf(err.Error())}
-		return response
+		return response, nil
 	}
 
 	// validate permission
@@ -70,7 +70,7 @@ func (titleMMService *TitleMatchmakingService) StartMatchmaking(req *events.APIG
 	if validateResp != http.StatusOK {
 		log.Print("Unable to validate permission handler. ", validateErr.Error())
 		response := events.APIGatewayProxyResponse{StatusCode: validateResp, Body: fmt.Sprintf(validateErr.Error())}
-		return response
+		return response, nil
 	}
 
 	// validate token and get userId
@@ -79,12 +79,12 @@ func (titleMMService *TitleMatchmakingService) StartMatchmaking(req *events.APIG
 		log.Print("Claim is empty. Error : ", err.Error())
 		message := "Claim is empty"
 		response := events.APIGatewayProxyResponse{StatusCode: http.StatusUnauthorized, Body: fmt.Sprintf(message)}
-		return response
+		return response, nil
 	}
 	if err != nil {
 		log.Print("Unable to validate and parse token. Error : ", err.Error())
 		response := events.APIGatewayProxyResponse{StatusCode: http.StatusUnauthorized, Body: fmt.Sprintf(err.Error())}
-		return response
+		return response, nil
 	}
 	userId := claims.Subject
 	namespace := claims.Namespace
@@ -97,7 +97,7 @@ func (titleMMService *TitleMatchmakingService) StartMatchmaking(req *events.APIG
 		log.Print("Unable to store token :", errToken.Error())
 		message := fmt.Sprint("Unable to store token")
 		response := events.APIGatewayProxyResponse{StatusCode: http.StatusInternalServerError, Body: message}
-		return response
+		return response, nil
 	}
 
 	// get token from game client for DSMC
@@ -112,20 +112,20 @@ func (titleMMService *TitleMatchmakingService) StartMatchmaking(req *events.APIG
 		log.Print("Unable to grant token : ", err.Error())
 		message := fmt.Sprint("Unable to grant token")
 		response := events.APIGatewayProxyResponse{StatusCode: http.StatusInternalServerError, Body: message}
-		return response
+		return response, nil
 	}
 	tokenRepo, err := oauthService.TokenRepository.GetToken()
 	if err != nil {
 		log.Print("Empty error : ", err.Error())
 		message := fmt.Sprint("Unable to get token")
 		response := events.APIGatewayProxyResponse{StatusCode: http.StatusInternalServerError, Body: message}
-		return response
+		return response, nil
 	}
 	if tokenRepo == nil {
 		log.Print("Empty tokenRepo.")
 		message := fmt.Sprint("Empty token repository")
 		response := events.APIGatewayProxyResponse{StatusCode: http.StatusInternalServerError, Body: message}
-		return response
+		return response, nil
 	}
 
 	// store userId as waiting ticket and look for all users in database
@@ -134,7 +134,7 @@ func (titleMMService *TitleMatchmakingService) StartMatchmaking(req *events.APIG
 		log.Print(createTicketErr)
 		message := fmt.Sprintf("Unable to create ticket.")
 		response := events.APIGatewayProxyResponse{StatusCode: http.StatusInternalServerError, Body: message}
-		return response
+		return response, nil
 	}
 
 	// send notification searching to user
@@ -143,7 +143,7 @@ func (titleMMService *TitleMatchmakingService) StartMatchmaking(req *events.APIG
 		log.Print(sendNotificationSearchingErr.Error())
 		message := fmt.Sprintf("Unable to send notification searching. User is not online")
 		response := events.APIGatewayProxyResponse{StatusCode: http.StatusInternalServerError, Body: message}
-		return response
+		return response, nil
 	}
 
 	// get Matchmaking request queue
@@ -153,7 +153,7 @@ func (titleMMService *TitleMatchmakingService) StartMatchmaking(req *events.APIG
 		log.Print(getStoredTicketsErr)
 		message := fmt.Sprintf("Unable to get stored tickets from redis.")
 		response := events.APIGatewayProxyResponse{StatusCode: http.StatusInternalServerError, Body: message}
-		return response
+		return response, nil
 	}
 
 	// unmarshall all tickets from []string redis to models.MatchmakingTicket
@@ -165,7 +165,7 @@ func (titleMMService *TitleMatchmakingService) StartMatchmaking(req *events.APIG
 			log.Print(ticketCreatedErr)
 			message := fmt.Sprintf("Unable to unmarshalling tickets.")
 			response := events.APIGatewayProxyResponse{StatusCode: http.StatusInternalServerError, Body: message}
-			return response
+			return response, nil
 		}
 		allTickets = append(allTickets, ticket)
 	}
@@ -210,7 +210,7 @@ func (titleMMService *TitleMatchmakingService) StartMatchmaking(req *events.APIG
 		log.Printf("Not enough player! There is only %v player", possibleAllies)
 		message := fmt.Sprintf("Not enough player")
 		response := events.APIGatewayProxyResponse{StatusCode: http.StatusInternalServerError, Body: message}
-		return response
+		return response, nil
 	}
 	matchId := utils.GenerateUUID()
 	log.Printf("MATCH ID : %+v", matchId)
@@ -222,7 +222,7 @@ func (titleMMService *TitleMatchmakingService) StartMatchmaking(req *events.APIG
 		log.Print(createSessionErr)
 		message := fmt.Sprintf("Unable to create session of session browser in handler.")
 		response := events.APIGatewayProxyResponse{StatusCode: http.StatusInternalServerError, Body: message}
-		return response
+		return response, nil
 	}
 	sessionID := *createSessionResponse.SessionID
 	log.Printf("SESSION ID : %+v", sessionID)
@@ -233,7 +233,7 @@ func (titleMMService *TitleMatchmakingService) StartMatchmaking(req *events.APIG
 		log.Print(registerSessionErr)
 		message := fmt.Sprintf("Unable to register server in handler.")
 		response := events.APIGatewayProxyResponse{StatusCode: http.StatusInternalServerError, Body: message}
-		return response
+		return response, nil
 	}
 
 	time.Sleep(5 * time.Second)
@@ -244,7 +244,7 @@ func (titleMMService *TitleMatchmakingService) StartMatchmaking(req *events.APIG
 		log.Print(claimServerErr)
 		message := fmt.Sprintf("Unable to claim server in handler.")
 		response := events.APIGatewayProxyResponse{StatusCode: http.StatusInternalServerError, Body: message}
-		return response
+		return response, nil
 	}
 
 	// get server from DSMC
@@ -253,7 +253,7 @@ func (titleMMService *TitleMatchmakingService) StartMatchmaking(req *events.APIG
 		log.Print(getServerErr)
 		message := fmt.Sprintf("Unable to get server in handler.")
 		response := events.APIGatewayProxyResponse{StatusCode: http.StatusInternalServerError, Body: message}
-		return response
+		return response, nil
 	}
 	server := *getServerResponse.Session.Server
 
@@ -264,7 +264,7 @@ func (titleMMService *TitleMatchmakingService) StartMatchmaking(req *events.APIG
 			log.Print(getServerErr)
 			message := fmt.Sprintf("Unable to add player session browser to server in handler.")
 			response := events.APIGatewayProxyResponse{StatusCode: http.StatusInternalServerError, Body: message}
-			return response
+			return response, nil
 		}
 	}
 
@@ -274,7 +274,7 @@ func (titleMMService *TitleMatchmakingService) StartMatchmaking(req *events.APIG
 		log.Print(getSessionUpdateResponseErr)
 		message := fmt.Sprintf("Unable to get session update in handler.")
 		response := events.APIGatewayProxyResponse{StatusCode: http.StatusInternalServerError, Body: message}
-		return response
+		return response, nil
 	}
 
 	// if session can be joined in session browser
@@ -289,7 +289,7 @@ func (titleMMService *TitleMatchmakingService) StartMatchmaking(req *events.APIG
 			*getSessionUpdateResponse.SessionID,
 			*getSessionUpdateResponse.GameSessionSetting.CurrentPlayer)
 		response := events.APIGatewayProxyResponse{StatusCode: http.StatusInternalServerError, Body: message}
-		return response
+		return response, nil
 	}
 
 	// send notification to all user
@@ -300,14 +300,14 @@ func (titleMMService *TitleMatchmakingService) StartMatchmaking(req *events.APIG
 		log.Print(sendNotificationFoundErr)
 		message := fmt.Sprintf("Unable tp send notification match found to all users. Make sure user %+v are online", allUsers)
 		response := events.APIGatewayProxyResponse{StatusCode: http.StatusInternalServerError, Body: message}
-		return response
+		return response, nil
 	}
 
 	log.Print("Successfully matchmaking")
 	message := fmt.Sprintf("Successfully matchmaking with session: %v, IP: %v, port: %v",
 		*getSessionUpdateResponse.SessionID, *IP, *port)
 	response := events.APIGatewayProxyResponse{StatusCode: http.StatusOK, Body: message}
-	return response
+	return response, nil
 }
 
 // createTicket is used to create a party and store the ticket in Redis

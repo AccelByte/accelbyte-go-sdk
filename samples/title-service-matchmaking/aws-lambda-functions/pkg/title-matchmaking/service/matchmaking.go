@@ -88,8 +88,8 @@ func (titleMMService *TitleMatchmakingService) StartMatchmaking(req *events.APIG
 	}
 	userId := claims.Subject
 	namespace := claims.Namespace
-	namespaceGame := constants.NamespaceGame
-	gameMode := constants.GameMode
+	namespaceGame := os.Getenv("GAME_NAMESPACE")
+	gameMode := os.Getenv("GAME_MODE")
 
 	// store the valid token
 	errToken := tokenRepositoryImpl.Store(*tokenConvert)

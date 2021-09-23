@@ -8,8 +8,5 @@ const (
 	ChannelListKey          = "matchmaking:channelList"
 	MatchmakingRequestQueue = "matchmaking:requestQueue"
 
-	GameMode      = "dedicated"
-	NamespaceGame = "armadaqatestns"
-
 	MatchmakingNotificationTopic = "NOTIF"
 )

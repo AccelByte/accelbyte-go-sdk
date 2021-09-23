@@ -1,7 +1,5 @@
 {
   "swagger": "2.0",
-  "schemes": ["https"],
-  "host": "jib.noice.accelbyte.io",
   "info": {
     "description": "Justice Cloudsave Service",
     "title": "justice-cloudsave-service",
@@ -10,7 +8,7 @@
       "url": "https://accelbyte.io",
       "email": "engineering@accelbyte.io"
     },
-    "version": "3.38.0"
+    "version": "1.7.0"
   },
   "paths": {
     "/cloudsave/v1/admin/namespaces/{namespace}/records": {
@@ -19,15 +17,6 @@
         "consumes": [
           "application/json"
         ],
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
-        "x-authorization": {
-          "resource": "ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD",
-          "action": "2"
-        },
         "produces": [
           "application/json"
         ],
@@ -66,16 +55,16 @@
               "$ref": "#/definitions/models.ListGameRecordKeys"
             }
           },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
           "500": {
             "description": "Internal Server Error",
             "schema": {
-              "$ref": "#/definitions/response.Error"
-            }
-          },
-          "default": {
-            "description": "Retrieve list of records key by namespace",
-            "schema": {
-              "$ref": "#/definitions/models.ListGameRecordKeys"
+              "$ref": "#/definitions/models.ResponseError"
             }
           }
         }
@@ -84,15 +73,6 @@
     "/cloudsave/v1/admin/namespaces/{namespace}/records/{key}": {
       "get": {
         "description": "Required permission: ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [READ]\n\nRequired scope: social\n\nGet a record by its key in namespace-level.",
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
-        "x-authorization": {
-          "resource": "ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD",
-          "action": "2"
-        },
         "consumes": [
           "application/json"
         ],
@@ -103,7 +83,7 @@
           "AdminGameRecord"
         ],
         "summary": "Retrieve a record value by its key",
-        "operationId": "getGameRecordHandlerByKeyV1",
+        "operationId": "adminGetGameRecordHandlerV1",
         "parameters": [
           {
             "type": "string",
@@ -127,31 +107,28 @@
               "$ref": "#/definitions/models.GameRecord"
             }
           },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
           "500": {
             "description": "Internal Server Error",
             "schema": {
-              "$ref": "#/definitions/response.Error"
-            }
-          },
-          "default": {
-            "description": "Record in namespace-level retrieved",
-            "schema": {
-              "$ref": "#/definitions/models.GameRecord"
+              "$ref": "#/definitions/models.ResponseError"
             }
           }
         }
       },
       "put": {
-        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [UPDATE]\n\nRequired scope: social\n\nThis endpoints is to store arbitrary JSON data in namespace-level",
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
-        "x-authorization": {
-          "resource": "ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD",
-          "action": "4"
-        },
+        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [UPDATE]\n\nRequired scope: social\n\nThis endpoints is to replace game record data if exists or insert new data in namespace-level",
         "consumes": [
           "application/json"
         ],
@@ -162,7 +139,7 @@
           "AdminGameRecord"
         ],
         "summary": "Save or replace game record",
-        "operationId": "putAdminGameRecordHandlerV1",
+        "operationId": "adminPutGameRecordHandlerV1",
         "parameters": [
           {
             "type": "string",
@@ -191,28 +168,22 @@
           "200": {
             "description": "Record saved"
           },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
           "500": {
             "description": "Internal Server Error",
             "schema": {
-              "$ref": "#/definitions/response.Error"
+              "$ref": "#/definitions/models.ResponseError"
             }
-          },
-          "default": {
-            "description": "Record saved"
           }
         }
       },
       "post": {
-        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [WRITE]\n\nRequired scope: social\n\nThis endpoints is to store arbitrary JSON data in namespace-level.",
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
-        "x-authorization": {
-          "resource": "ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD",
-          "action": "1"
-        },
+        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [WRITE]\n\nRequired scope: social\n\nThis endpoints is to create new game record in namespace-level.",
         "consumes": [
           "application/json"
         ],
@@ -223,7 +194,7 @@
           "AdminGameRecord"
         ],
         "summary": "Save namespace level record",
-        "operationId": "postAdminGameRecordHandlerV1",
+        "operationId": "adminPostGameRecordHandlerV1",
         "parameters": [
           {
             "type": "string",
@@ -249,31 +220,25 @@
           }
         ],
         "responses": {
-          "200": {
+          "201": {
             "description": "Record in namespace-level saved"
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
           },
           "500": {
             "description": "Internal Server Error",
             "schema": {
-              "$ref": "#/definitions/response.Error"
+              "$ref": "#/definitions/models.ResponseError"
             }
-          },
-          "default": {
-            "description": "Record in namespace-level saved"
           }
         }
       },
       "delete": {
-        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [DELETE]\n\nRequired scope: social\n\nThis endpoints is to store arbitrary JSON data in namespace-level",
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
-        "x-authorization": {
-          "resource": "ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD",
-          "action": "8"
-        },
+        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [DELETE]\n\nRequired scope: social\n\nThis endpoints delete game record in namespace-level",
         "consumes": [
           "application/json"
         ],
@@ -284,7 +249,7 @@
           "AdminGameRecord"
         ],
         "summary": "Purge all records under the given key",
-        "operationId": "deleteAdminGameRecordHandlerV1",
+        "operationId": "adminDeleteGameRecordHandlerV1",
         "parameters": [
           {
             "type": "string",
@@ -305,14 +270,17 @@
           "204": {
             "description": "Record deleted"
           },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
           "500": {
             "description": "Internal Server Error",
             "schema": {
-              "$ref": "#/definitions/response.Error"
+              "$ref": "#/definitions/models.ResponseError"
             }
-          },
-          "default": {
-            "description": "Record deleted"
           }
         }
       }
@@ -320,15 +288,6 @@
     "/cloudsave/v1/admin/namespaces/{namespace}/users/records": {
       "get": {
         "description": "Required permission: ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [READ]\n\nRequired scope: social\n\nRetrieve list of player records key and userID under given namespace.",
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
-        "x-authorization": {
-          "resource": "ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD",
-          "action": "2"
-        },
         "consumes": [
           "application/json"
         ],
@@ -369,7 +328,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Public player records retrieved",
+            "description": "Successful operation",
             "schema": {
               "$ref": "#/definitions/models.ListPlayerRecordKeys"
             }
@@ -377,36 +336,27 @@
           "400": {
             "description": "Bad Request",
             "schema": {
-              "$ref": "#/definitions/response.Error"
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
             }
           },
           "500": {
             "description": "Internal Server Error",
             "schema": {
-              "$ref": "#/definitions/response.Error"
-            }
-          },
-          "default": {
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/models.ListPlayerRecordKeys"
+              "$ref": "#/definitions/models.ResponseError"
             }
           }
         }
       }
     },
-    "/cloudsave/v1/admin/namespaces/{namespace}/users/{userID}/records/{key}": {
+    "/cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records/{key}": {
       "get": {
         "description": "Required permission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [READ]\n\nRequired scope: social\n\nGet a record in user-level (arbitrary JSON data) by its key.",
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
-        "x-authorization": {
-          "resource": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD",
-          "action": "2"
-        },
         "consumes": [
           "application/json"
         ],
@@ -429,7 +379,7 @@
           {
             "type": "string",
             "description": "user ID who own the record",
-            "name": "userID",
+            "name": "userId",
             "in": "path",
             "required": true
           },
@@ -448,31 +398,28 @@
               "$ref": "#/definitions/models.PlayerRecord"
             }
           },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
           "500": {
             "description": "Internal Server Error",
             "schema": {
-              "$ref": "#/definitions/response.Error"
-            }
-          },
-          "default": {
-            "description": "Record in user-level retrieved",
-            "schema": {
-              "$ref": "#/definitions/models.PlayerRecord"
+              "$ref": "#/definitions/models.ResponseError"
             }
           }
         }
       },
       "put": {
-        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [UPDATE]\n\nRequired scope: social\n\nSave a record (arbitrary JSON data) in user-level.\nIf a record already exist with given key, this endpoint will replace the record. Record saved will be a private record.",
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
-        "x-authorization": {
-          "resource": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD",
-          "action": "4"
-        },
+        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [UPDATE]\n\nRequired scope: social\n\nSave a record (arbitrary JSON data) in user-level.\nIf a record already exist with given key, this endpoint will replace the record, else will create new Record.\nRecord saved will be a private record.",
         "consumes": [
           "application/json"
         ],
@@ -495,7 +442,7 @@
           {
             "type": "string",
             "description": "user ID who own the record",
-            "name": "userID",
+            "name": "userId",
             "in": "path",
             "required": true
           },
@@ -519,28 +466,22 @@
           "200": {
             "description": "Record in user-level saved"
           },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
           "500": {
             "description": "Internal Server Error",
             "schema": {
-              "$ref": "#/definitions/response.Error"
+              "$ref": "#/definitions/models.ResponseError"
             }
-          },
-          "default": {
-            "description": "Record in user-level saved"
           }
         }
       },
       "post": {
         "description": "Required permission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [CREATE]\n\nRequired scope: social\n\nSave a record (arbitrary JSON data) in user-level.\nIf a record already exist with given record key, this endpoint will try to merge.\nSame top level key inside body will be replaced, different top level key will be appended.\nRecord saved will be a private record.",
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
-        "x-authorization": {
-          "resource": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD",
-          "action": "1"
-        },
         "consumes": [
           "application/json"
         ],
@@ -563,7 +504,7 @@
           {
             "type": "string",
             "description": "user ID who own the record",
-            "name": "userID",
+            "name": "userId",
             "in": "path",
             "required": true
           },
@@ -584,31 +525,25 @@
           }
         ],
         "responses": {
-          "200": {
+          "201": {
             "description": "Record in user-level saved"
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
           },
           "500": {
             "description": "Internal Server Error",
             "schema": {
-              "$ref": "#/definitions/response.Error"
+              "$ref": "#/definitions/models.ResponseError"
             }
-          },
-          "default": {
-            "description": "Record in user-level saved"
           }
         }
       },
       "delete": {
         "description": "Required permission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [DELETE]\n\nRequired scope: social\n\nDelete a record (arbitrary JSON data) in user-level with given key. It will delete the record whether it's private or public record.",
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
-        "x-authorization": {
-          "resource": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD",
-          "action": "8"
-        },
         "consumes": [
           "application/json"
         ],
@@ -631,7 +566,7 @@
           {
             "type": "string",
             "description": "user ID who own the record",
-            "name": "userID",
+            "name": "userId",
             "in": "path",
             "required": true
           },
@@ -647,16 +582,22 @@
           "204": {
             "description": "Record in user-level saved"
           },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
           "500": {
             "description": "Internal Server Error",
             "schema": {
-              "$ref": "#/definitions/response.Error"
+              "$ref": "#/definitions/models.ResponseError"
             }
           }
         }
       }
     },
-    "/cloudsave/v1/admin/namespaces/{namespace}/users/{userID}/records/{key}/public": {
+    "/cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records/{key}/public": {
       "get": {
         "description": "Required permission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [READ]\n\nRequired scope: social\n\nGet a record in user-level (arbitrary JSON data) by its key.",
         "consumes": [
@@ -681,7 +622,7 @@
           {
             "type": "string",
             "description": "user ID who own the record",
-            "name": "userID",
+            "name": "userId",
             "in": "path",
             "required": true
           },
@@ -695,42 +636,33 @@
         ],
         "responses": {
           "200": {
-            "description": "Player public record value retrieved",
+            "description": "Successful operation",
             "schema": {
               "$ref": "#/definitions/models.PlayerRecord"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
             }
           },
           "404": {
             "description": "Not Found",
             "schema": {
-              "$ref": "#/definitions/response.Error"
+              "$ref": "#/definitions/models.ResponseError"
             }
           },
           "500": {
             "description": "Internal Server Error",
             "schema": {
-              "$ref": "#/definitions/response.Error"
-            }
-          },
-          "default": {
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/models.PlayerRecord"
+              "$ref": "#/definitions/models.ResponseError"
             }
           }
-        },
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
-        "x-authorization": {
-          "resource": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD",
-          "action": "2"
         }
       },
       "put": {
-        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [UPDATE]\n\nRequired scope: social\n\nSave a record (arbitrary JSON data) in user-level.\nIf a record already exist with given key, this endpoint will replace the record. Record saved will be a public record.",
+        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [UPDATE]\n\nRequired scope: social\n\nSave a record (arbitrary JSON data) in user-level.\nIf a record already exist with given key, this endpoint will replace the record, else it will create new Record.\nRecord saved will be a public record.",
         "consumes": [
           "application/json"
         ],
@@ -753,7 +685,7 @@
           {
             "type": "string",
             "description": "user ID who own the record",
-            "name": "userID",
+            "name": "userId",
             "in": "path",
             "required": true
           },
@@ -780,27 +712,21 @@
           "400": {
             "description": "Bad Request",
             "schema": {
-              "$ref": "#/definitions/response.Error"
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
             }
           },
           "500": {
             "description": "Internal Server Error",
             "schema": {
-              "$ref": "#/definitions/response.Error"
+              "$ref": "#/definitions/models.ResponseError"
             }
-          },
-          "default": {
-            "description": "Record in user-level saved"
           }
-        },
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
-        "x-authorization": {
-          "resource": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD",
-          "action": "4"
         }
       },
       "post": {
@@ -827,7 +753,7 @@
           {
             "type": "string",
             "description": "user ID who own the record",
-            "name": "userID",
+            "name": "userId",
             "in": "path",
             "required": true
           },
@@ -848,33 +774,27 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "User level records saved"
+          "201": {
+            "description": "Record saved "
           },
           "400": {
             "description": "Bad Request",
             "schema": {
-              "$ref": "#/definitions/response.Error"
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
             }
           },
           "500": {
             "description": "Internal Server Error",
             "schema": {
-              "$ref": "#/definitions/response.Error"
+              "$ref": "#/definitions/models.ResponseError"
             }
-          },
-          "default": {
-            "description": ""
           }
-        },
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
-        "x-authorization": {
-          "resource": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD",
-          "action": "1"
         }
       },
       "delete": {
@@ -901,7 +821,7 @@
           {
             "type": "string",
             "description": "user ID who own the record",
-            "name": "userID",
+            "name": "userId",
             "in": "path",
             "required": true
           },
@@ -915,29 +835,32 @@
         ],
         "responses": {
           "204": {
-            "description": "Player public record deleted"
+            "description": "Record deleted"
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
           },
           "500": {
             "description": "Internal Server Error",
             "schema": {
-              "$ref": "#/definitions/response.Error"
+              "$ref": "#/definitions/models.ResponseError"
             }
           }
-        },
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
-        "x-authorization": {
-          "resource": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD",
-          "action": "8"
         }
       }
     },
     "/cloudsave/v1/namespaces/{namespace}/concurrent/records/{key}": {
       "put": {
-        "description": "<table>\n\t<tr>\n\t\t<td>Required Permission</td>\n\t\t<td><code>NAMESPACE:{namespace}:CLOUDSAVE:RECORD [UPDATE]</code></td>\n\t</tr>\n\t<tr>\n\t\t<td>Required Scope</td>\n\t\t<td><code>social</code></td>\n\t</tr>\n</table>\n<br/>\n\nIf record already exists, it will be replaced with the one from request body (all fields will be\ndeleted). If record is not exists, it will create a new one with value from request body.\n\nExample:\n\nReplace all records\n<pre>\n\t// existed record\n\t{\n\t\t\"foo\": \"bar\"\n\t}\n\n\t// new update (request body)\n\t{\n\t\t\"foo_new\": \"bar_new\"\n\t}\n\n\t// result\n\t{\n\t\t\"foo_new\": \"bar_new\"\n\t}\n</pre>\n\n<b>Optimistic Concurrency Control</b><br>\nThis endpoint implement optimistic concurrency control to avoid race condition.\nIf the record has been updated since the client fetch it, the server will return HTTP status code 412 (precondition failed) \nand client need to redo the operation (fetch data and do update).\nOtherwise, the server will process the request.\n",
+        "description": "\u003ctable\u003e\n\t\u003ctr\u003e\n\t\t\u003ctd\u003eRequired Permission\u003c/td\u003e\n\t\t\u003ctd\u003e\u003ccode\u003eNAMESPACE:{namespace}:CLOUDSAVE:RECORD [UPDATE]\u003c/code\u003e\u003c/td\u003e\n\t\u003c/tr\u003e\n\t\u003ctr\u003e\n\t\t\u003ctd\u003eRequired Scope\u003c/td\u003e\n\t\t\u003ctd\u003e\u003ccode\u003esocial\u003c/code\u003e\u003c/td\u003e\n\t\u003c/tr\u003e\n\u003c/table\u003e\n\u003cbr/\u003e\n\nIf record already exists, it will be replaced with the one from request body (all fields will be\ndeleted). If record is not exists, it will create a new one with value from request body.\n\nExample:\n\nReplace all records\n\u003cpre\u003e\n\t// existed record\n\t{\n\t\t\"foo\": \"bar\"\n\t}\n\n\t// new update (request body)\n\t{\n\t\t\"foo_new\": \"bar_new\"\n\t}\n\n\t// result\n\t{\n\t\t\"foo_new\": \"bar_new\"\n\t}\n\u003c/pre\u003e\n\n\u003cb\u003eOptimistic Concurrency Control\u003c/b\u003e\u003cbr\u003e\nThis endpoint implement optimistic concurrency control to avoid race condition.\nIf the record has been updated since the client fetch it, the server will return HTTP status code 412 (precondition failed) \nand client need to redo the operation (fetch data and do update).\nOtherwise, the server will process the request.\n",
         "consumes": [
           "application/json"
         ],
@@ -980,36 +903,33 @@
           "400": {
             "description": "Bad Request",
             "schema": {
-              "$ref": "#/definitions/response.Error"
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
             }
           },
           "412": {
             "description": "Precondition Failed",
             "schema": {
-              "$ref": "#/definitions/response.Error"
+              "$ref": "#/definitions/models.ResponseError"
             }
           },
           "500": {
             "description": "Internal Server Error",
             "schema": {
-              "$ref": "#/definitions/response.Error"
+              "$ref": "#/definitions/models.ResponseError"
             }
           }
-        },
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
-        "x-authorization": {
-          "resource": "NAMESPACE:{namespace}:CLOUDSAVE:RECORD",
-          "action": "4"
         }
       }
     },
     "/cloudsave/v1/namespaces/{namespace}/records/{key}": {
       "get": {
-        "description": "<table>\n\t<tr>\n\t\t<td>Required Permission</td>\n\t\t<td><code>NAMESPACE:{namespace}:CLOUDSAVE:RECORD [READ]</code></td>\n\t</tr>\n\t<tr>\n\t\t<td>Required Scope</td>\n\t\t<td><code>social</code></td>\n\t</tr>\n</table>\n<br/>\n\nGet game record by its key.\n",
+        "description": "\u003ctable\u003e\n\t\u003ctr\u003e\n\t\t\u003ctd\u003eRequired Permission\u003c/td\u003e\n\t\t\u003ctd\u003e\u003ccode\u003eNAMESPACE:{namespace}:CLOUDSAVE:RECORD [READ]\u003c/code\u003e\u003c/td\u003e\n\t\u003c/tr\u003e\n\t\u003ctr\u003e\n\t\t\u003ctd\u003eRequired Scope\u003c/td\u003e\n\t\t\u003ctd\u003e\u003ccode\u003esocial\u003c/code\u003e\u003c/td\u003e\n\t\u003c/tr\u003e\n\u003c/table\u003e\n\u003cbr/\u003e\nGet game record by its key.\n",
         "consumes": [
           "application/json"
         ],
@@ -1044,31 +964,28 @@
               "$ref": "#/definitions/models.GameRecord"
             }
           },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
           "500": {
             "description": "Internal Server Error",
             "schema": {
-              "$ref": "#/definitions/response.Error"
-            }
-          },
-          "default": {
-            "description": "Record retrieved",
-            "schema": {
-              "$ref": "#/definitions/models.GameRecord"
+              "$ref": "#/definitions/models.ResponseError"
             }
           }
-        },
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
-        "x-authorization": {
-          "resource": "NAMESPACE:{namespace}:CLOUDSAVE:RECORD",
-          "action": "2"
         }
       },
       "put": {
-        "description": "<table>\n\t<tr>\n\t\t<td>Required Permission</td>\n\t\t<td><code>NAMESPACE:{namespace}:CLOUDSAVE:RECORD [UPDATE]</code></td>\n\t</tr>\n\t<tr>\n\t\t<td>Required Scope</td>\n\t\t<td><code>social</code></td>\n\t</tr>\n</table>\n<br/>\n\nIf record already exists, it will be replaced with the one from request body (all fields will be\ndeleted). If record is not exists, it will create a new one with value from request body.\n\nExample:\n\nReplace all records\n<pre>\n\t// existed record\n\t{\n\t\t\"foo\": \"bar\"\n\t}\n\n\t// new update (request body)\n\t{\n\t\t\"foo_new\": \"bar_new\"\n\t}\n\n\t// result\n\t{\n\t\t\"foo_new\": \"bar_new\"\n\t}\n</pre>\n",
+        "description": "\u003ctable\u003e\n\t\u003ctr\u003e\n\t\t\u003ctd\u003eRequired Permission\u003c/td\u003e\n\t\t\u003ctd\u003e\u003ccode\u003eNAMESPACE:{namespace}:CLOUDSAVE:RECORD [UPDATE]\u003c/code\u003e\u003c/td\u003e\n\t\u003c/tr\u003e\n\t\u003ctr\u003e\n\t\t\u003ctd\u003eRequired Scope\u003c/td\u003e\n\t\t\u003ctd\u003e\u003ccode\u003esocial\u003c/code\u003e\u003c/td\u003e\n\t\u003c/tr\u003e\n\u003c/table\u003e\n\u003cbr/\u003e\n\nIf record already exists, it will be replaced with the one from request body (all fields will be\ndeleted). If record is not exists, it will create a new one with value from request body.\n\nExample:\n\nReplace all records\n\u003cpre\u003e\n\t// existed record\n\t{\n\t\t\"foo\": \"bar\"\n\t}\n\n\t// new update (request body)\n\t{\n\t\t\"foo_new\": \"bar_new\"\n\t}\n\n\t// result\n\t{\n\t\t\"foo_new\": \"bar_new\"\n\t}\n\u003c/pre\u003e\n",
         "consumes": [
           "application/json"
         ],
@@ -1108,28 +1025,22 @@
           "200": {
             "description": "Record saved"
           },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
           "500": {
             "description": "Internal Server Error",
             "schema": {
-              "$ref": "#/definitions/response.Error"
+              "$ref": "#/definitions/models.ResponseError"
             }
-          },
-          "default": {
-            "description": "Record saved"
           }
-        },
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
-        "x-authorization": {
-          "resource": "NAMESPACE:{namespace}:CLOUDSAVE:RECORD",
-          "action": "4"
         }
       },
       "post": {
-        "description": "<table>\n\t<tr>\n\t\t<td>Required Permission</td>\n\t\t<td><code>NAMESPACE:{namespace}:CLOUDSAVE:RECORD [CREATE]</code></td>\n\t</tr>\n\t<tr>\n\t\t<td>Required Scope</td>\n\t\t<td><code>social</code></td>\n\t</tr>\n</table>\n<br/>\n\nIf there's already record, the record will be merged with conditions:\n- If field name is already exist, the value will be replaced\n- If field name is not exists it will append the field and its value\n\nExample:\n\nReplace value in a specific JSON key\n<pre>\n// existed record\n{\n\t\"foo\": \"bar\"\n}\n\n// new update (request body)\n{\n\t\"foo\": \"barUpdated\"\n}\n\n// result\n{\n\t\"foo\": \"barUpdated\"\n}\n</pre>\n\nAppend new json item\n<pre>\n// existed record\n{\n\t\"foo\": \"bar\"\n}\n\n// new update (request body)\n{\n\t\"foo_new\": \"bar_new\"\n}\n\n// result\n{\n\t\"foo\": \"bar\",\n\t\"foo_new\": \"bar_new\"\n}\n</pre>\n",
+        "description": "\u003ctable\u003e\n\t\u003ctr\u003e\n\t\t\u003ctd\u003eRequired Permission\u003c/td\u003e\n\t\t\u003ctd\u003e\u003ccode\u003eNAMESPACE:{namespace}:CLOUDSAVE:RECORD [CREATE]\u003c/code\u003e\u003c/td\u003e\n\t\u003c/tr\u003e\n\t\u003ctr\u003e\n\t\t\u003ctd\u003eRequired Scope\u003c/td\u003e\n\t\t\u003ctd\u003e\u003ccode\u003esocial\u003c/code\u003e\u003c/td\u003e\n\t\u003c/tr\u003e\n\u003c/table\u003e\n\u003cbr/\u003e\n\nIf there's already record, the record will be merged with conditions:\n- If field name is already exist, the value will be replaced\n- If field name is not exists it will append the field and its value\n\nExample:\n\nReplace value in a specific JSON key\n\u003cpre\u003e\n// existed record\n{\n\t\"foo\": \"bar\"\n}\n\n// new update (request body)\n{\n\t\"foo\": \"barUpdated\"\n}\n\n// result\n{\n\t\"foo\": \"barUpdated\"\n}\n\u003c/pre\u003e\n\nAppend new json item\n\u003cpre\u003e\n// existed record\n{\n\t\"foo\": \"bar\"\n}\n\n// new update (request body)\n{\n\t\"foo_new\": \"bar_new\"\n}\n\n// result\n{\n\t\"foo\": \"bar\",\n\t\"foo_new\": \"bar_new\"\n}\n\u003c/pre\u003e\n",
         "consumes": [
           "application/json"
         ],
@@ -1166,31 +1077,25 @@
           }
         ],
         "responses": {
-          "200": {
+          "201": {
             "description": "Record saved"
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
           },
           "500": {
             "description": "Internal Server Error",
             "schema": {
-              "$ref": "#/definitions/response.Error"
+              "$ref": "#/definitions/models.ResponseError"
             }
-          },
-          "default": {
-            "description": "Record saved"
           }
-        },
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
-        "x-authorization": {
-          "resource": "NAMESPACE:{namespace}:CLOUDSAVE:RECORD",
-          "action": "1"
         }
       },
       "delete": {
-        "description": "<table>\n\t<tr>\n\t\t<td>Required Permission</td>\n\t\t<td><code>NAMESPACE:{namespace}:CLOUDSAVE:RECORD [DELETE]</code></td>\n\t</tr>\n\t<tr>\n\t\t<td>Required Scope</td>\n\t\t<td><code>social</code></td>\n\t</tr>\n</table>\n<br/>\n\nDelete records by its key\n",
+        "description": "\u003ctable\u003e\n\t\u003ctr\u003e\n\t\t\u003ctd\u003eRequired Permission\u003c/td\u003e\n\t\t\u003ctd\u003e\u003ccode\u003eNAMESPACE:{namespace}:CLOUDSAVE:RECORD [DELETE]\u003c/code\u003e\u003c/td\u003e\n\t\u003c/tr\u003e\n\t\u003ctr\u003e\n\t\t\u003ctd\u003eRequired Scope\u003c/td\u003e\n\t\t\u003ctd\u003e\u003ccode\u003esocial\u003c/code\u003e\u003c/td\u003e\n\t\u003c/tr\u003e\n\u003c/table\u003e\n\u003cbr/\u003e\n\nDelete records by its key\n",
         "consumes": [
           "application/json"
         ],
@@ -1219,33 +1124,82 @@
           }
         ],
         "responses": {
-          "200": {
+          "204": {
             "description": "Record deleted"
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
           },
           "500": {
             "description": "Internal Server Error",
             "schema": {
-              "$ref": "#/definitions/response.Error"
+              "$ref": "#/definitions/models.ResponseError"
             }
-          },
-          "default": {
-            "description": "Record deleted"
           }
-        },
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
-        "x-authorization": {
-          "resource": "NAMESPACE:{namespace}:CLOUDSAVE:RECORD",
-          "action": "8"
         }
       }
     },
-    "/cloudsave/v1/namespaces/{namespace}/users/{userID}/concurrent/records/{key}/public": {
+    "/cloudsave/v1/namespaces/{namespace}/users/me/records/{key}/public": {
+      "delete": {
+        "description": "Required scope: social\n\nRequired valid user authorization\n\nDelete player public record (arbitrary JSON data) in user-level with given key.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "PublicPlayerRecord"
+        ],
+        "summary": "Delete player public record based on its key",
+        "operationId": "publicDeletePlayerPublicRecordHandlerV1",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace of the game",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "key of record",
+            "name": "key",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Record deleted"
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          }
+        }
+      }
+    },
+    "/cloudsave/v1/namespaces/{namespace}/users/{userId}/concurrent/records/{key}/public": {
       "put": {
-        "description": "<table>\n\t<tr>\n\t\t<td>Required Permission</td>\n\t\t<td><code>NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [UPDATE]</code></td>\n\t</tr>\n\t<tr>\n\t\t<td>Required Scope</td>\n\t\t<td><code>social</code></td>\n\t</tr>\n</table>\n<br/>\n\nIf the record is not exist, it will create. If the record already exist, it will replace the record\ninstead. And this operation can only be applied to record with <code>isPublic=true</code>.\n\nExample\n\nReplace record\n<pre>\n// existed record\n{\n\t\"foo\": \"bar\"\n}\n\n// new record (request body)\n{\n\t\"foo_new\": \"bar_new\"\n}\n\n// result\n{\n\t\"foo_new\": \"bar_new\"\n}\n</pre>\n\t\n<b>Optimistic Concurrency Control</b><br>\nThis endpoint implement optimistic concurrency control to avoid race condition.\nIf the record has been updated since the client fetch it, the server will return HTTP status code 412 (precondition failed)\nand client need to redo the operation (fetch data and do update).\nOtherwise, the server will process the request.\n",
+        "description": "\u003ctable\u003e\n\t\u003ctr\u003e\n\t\t\u003ctd\u003eRequired Permission\u003c/td\u003e\n\t\t\u003ctd\u003e\u003ccode\u003eNAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [UPDATE]\u003c/code\u003e\u003c/td\u003e\n\t\u003c/tr\u003e\n\t\u003ctr\u003e\n\t\t\u003ctd\u003eRequired Scope\u003c/td\u003e\n\t\t\u003ctd\u003e\u003ccode\u003esocial\u003c/code\u003e\u003c/td\u003e\n\t\u003c/tr\u003e\n\u003c/table\u003e\n\u003cbr/\u003e\n\nIf the record is not exist, it will create. If the record already exist, it will replace the record\ninstead. And this operation can only be applied to record with \u003ccode\u003eisPublic=true\u003c/code\u003e.\n\nExample\n\nReplace record\n\u003cpre\u003e\n// existed record\n{\n\t\"foo\": \"bar\"\n}\n\n// new record (request body)\n{\n\t\"foo_new\": \"bar_new\"\n}\n\n// result\n{\n\t\"foo_new\": \"bar_new\"\n}\n\u003c/pre\u003e\n\t\n\u003cb\u003eOptimistic Concurrency Control\u003c/b\u003e\u003cbr\u003e\nThis endpoint implement optimistic concurrency control to avoid race condition.\nIf the record has been updated since the client fetch it, the server will return HTTP status code 412 (precondition failed)\nand client need to redo the operation (fetch data and do update).\nOtherwise, the server will process the request.\n",
         "consumes": [
           "application/json"
         ],
@@ -1268,7 +1222,7 @@
           {
             "type": "string",
             "description": "user ID who own the record",
-            "name": "userID",
+            "name": "userId",
             "in": "path",
             "required": true
           },
@@ -1295,36 +1249,33 @@
           "400": {
             "description": "Bad Request",
             "schema": {
-              "$ref": "#/definitions/response.Error"
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
             }
           },
           "412": {
             "description": "Precondition Failed",
             "schema": {
-              "$ref": "#/definitions/response.Error"
+              "$ref": "#/definitions/models.ResponseError"
             }
           },
           "500": {
             "description": "Internal Server Error",
             "schema": {
-              "$ref": "#/definitions/response.Error"
+              "$ref": "#/definitions/models.ResponseError"
             }
           }
-        },
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
-        "x-authorization": {
-          "resource": "NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD",
-          "action": "4"
         }
       }
     },
-    "/cloudsave/v1/namespaces/{namespace}/users/{userID}/records/{key}": {
+    "/cloudsave/v1/namespaces/{namespace}/users/{userId}/records/{key}": {
       "get": {
-        "description": "<table>\n\t<tr>\n\t\t<td>Required Permission</td>\n\t\t<td><code>NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [READ]</code></td>\n\t</tr>\n\t<tr>\n\t\t<td>Required Scope</td>\n\t\t<td><code>social</code></td>\n\t</tr>\n</table>\n<br/>\n\nGet player record by its key",
+        "description": "\u003ctable\u003e\n\t\u003ctr\u003e\n\t\t\u003ctd\u003eRequired Permission\u003c/td\u003e\n\t\t\u003ctd\u003e\u003ccode\u003eNAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [READ]\u003c/code\u003e\u003c/td\u003e\n\t\u003c/tr\u003e\n\t\u003ctr\u003e\n\t\t\u003ctd\u003eRequired Scope\u003c/td\u003e\n\t\t\u003ctd\u003e\u003ccode\u003esocial\u003c/code\u003e\u003c/td\u003e\n\t\u003c/tr\u003e\n\u003c/table\u003e\n\u003cbr/\u003e\n\nGet player record by its key",
         "consumes": [
           "application/json"
         ],
@@ -1347,7 +1298,7 @@
           {
             "type": "string",
             "description": "user ID of record owner",
-            "name": "userID",
+            "name": "userId",
             "in": "path",
             "required": true
           },
@@ -1366,31 +1317,28 @@
               "$ref": "#/definitions/models.PlayerRecord"
             }
           },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
           "500": {
             "description": "Internal Server Error",
             "schema": {
-              "$ref": "#/definitions/response.Error"
-            }
-          },
-          "default": {
-            "description": "Record retrieved",
-            "schema": {
-              "$ref": "#/definitions/models.PlayerRecord"
+              "$ref": "#/definitions/models.ResponseError"
             }
           }
-        },
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
-        "x-authorization": {
-          "resource": "NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD",
-          "action": "2"
         }
       },
       "put": {
-        "description": "<table>\n\t<tr>\n\t\t<td>Required Permission</td>\n\t\t<td><code>NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [UPDATE]</code></td>\n\t</tr>\n\t<tr>\n\t\t<td>Required Scope</td>\n\t\t<td><code>social</code></td>\n\t</tr>\n</table>\n<br/>\n\nThis endpoint will create new record if it is not exists and it will replace if already exists.\n\nExample\n\nReplace record\n<pre>\n// existed record\n{\n\t\"foo\": \"bar\"\n}\n\n// new record (request body)\n{\n\t\"foo_new\": \"bar_new\"\n}\n\n// result\n{\n\t\"foo_new\": \"bar_new\"\n}\n</pre>\n",
+        "description": "\u003ctable\u003e\n\t\u003ctr\u003e\n\t\t\u003ctd\u003eRequired Permission\u003c/td\u003e\n\t\t\u003ctd\u003e\u003ccode\u003eNAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [UPDATE]\u003c/code\u003e\u003c/td\u003e\n\t\u003c/tr\u003e\n\t\u003ctr\u003e\n\t\t\u003ctd\u003eRequired Scope\u003c/td\u003e\n\t\t\u003ctd\u003e\u003ccode\u003esocial\u003c/code\u003e\u003c/td\u003e\n\t\u003c/tr\u003e\n\u003c/table\u003e\n\u003cbr/\u003e\n\nThis endpoint will create new record if it is not exists and it will replace if already exists.\n\nExample\n\nReplace record\n\u003cpre\u003e\n// existed record\n{\n\t\"foo\": \"bar\"\n}\n\n// new record (request body)\n{\n\t\"foo_new\": \"bar_new\"\n}\n\n// result\n{\n\t\"foo_new\": \"bar_new\"\n}\n\u003c/pre\u003e\n",
         "consumes": [
           "application/json"
         ],
@@ -1413,7 +1361,7 @@
           {
             "type": "string",
             "description": "user ID who own the record",
-            "name": "userID",
+            "name": "userId",
             "in": "path",
             "required": true
           },
@@ -1437,28 +1385,22 @@
           "200": {
             "description": "Record saved"
           },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
           "500": {
             "description": "Internal Server Error",
             "schema": {
-              "$ref": "#/definitions/response.Error"
+              "$ref": "#/definitions/models.ResponseError"
             }
-          },
-          "default": {
-            "description": "Record saved"
           }
-        },
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
-        "x-authorization": {
-          "resource": "NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD",
-          "action": "4"
         }
       },
       "post": {
-        "description": "<table>\n\t<tr>\n\t\t<td>Required Permission</td>\n\t\t<td><code>NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [WRITE]</code></td>\n\t</tr>\n\t<tr>\n\t\t<td>Required Scope</td>\n\t\t<td><code>social</code></td>\n\t</tr>\n</table>\n<br/>\n\nCreate player record if it is not exists otherwise merge with these criteria:\n- If field name is already exists, replace the value\n- If field name is not exists, append it\n\nExample\n\nReplace value:\n<pre>\n\t// existed record\n\t{\n\t\t\"foo\": \"bar\"\n\t}\n\n\t// new record (request body)\n\t{\n\t\t\"foo\": \"bar_updated\"\n\t}\n\n\t// result\n\t{\n\t\t\"foo\": \"bar_updated\"\n\t}\n</pre>\n\nAppend value:\n<pre>\n\t// existed record\n\t{\n\t\t\"foo\": \"bar\"\n\t}\n\n\t// new record (request body)\n\t{\n\t\t\"foo_new\": \"bar_new\"\n\t}\n\n\t// result\n\t{\n\t\t\"foo\": \"bar\",\n\t\t\"foo_new\": \"bar_new\"\n\t}\n</pre>\n",
+        "description": "\u003ctable\u003e\n\t\u003ctr\u003e\n\t\t\u003ctd\u003eRequired Permission\u003c/td\u003e\n\t\t\u003ctd\u003e\u003ccode\u003eNAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [WRITE]\u003c/code\u003e\u003c/td\u003e\n\t\u003c/tr\u003e\n\t\u003ctr\u003e\n\t\t\u003ctd\u003eRequired Scope\u003c/td\u003e\n\t\t\u003ctd\u003e\u003ccode\u003esocial\u003c/code\u003e\u003c/td\u003e\n\t\u003c/tr\u003e\n\u003c/table\u003e\n\u003cbr/\u003e\n\nCreate player record if it is not exists otherwise merge with these criteria:\n- If field name is already exists, replace the value\n- If field name is not exists, append it\n\nExample\n\nReplace value:\n\u003cpre\u003e\n\t// existed record\n\t{\n\t\t\"foo\": \"bar\"\n\t}\n\n\t// new record (request body)\n\t{\n\t\t\"foo\": \"bar_updated\"\n\t}\n\n\t// result\n\t{\n\t\t\"foo\": \"bar_updated\"\n\t}\n\u003c/pre\u003e\n\nAppend value:\n\u003cpre\u003e\n\t// existed record\n\t{\n\t\t\"foo\": \"bar\"\n\t}\n\n\t// new record (request body)\n\t{\n\t\t\"foo_new\": \"bar_new\"\n\t}\n\n\t// result\n\t{\n\t\t\"foo\": \"bar\",\n\t\t\"foo_new\": \"bar_new\"\n\t}\n\u003c/pre\u003e\n",
         "consumes": [
           "application/json"
         ],
@@ -1481,7 +1423,7 @@
           {
             "type": "string",
             "description": "user ID of record owner",
-            "name": "userID",
+            "name": "userId",
             "in": "path",
             "required": true
           },
@@ -1502,31 +1444,25 @@
           }
         ],
         "responses": {
-          "200": {
+          "201": {
             "description": "Record saved"
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
           },
           "500": {
             "description": "Internal Server Error",
             "schema": {
-              "$ref": "#/definitions/response.Error"
+              "$ref": "#/definitions/models.ResponseError"
             }
-          },
-          "default": {
-            "description": "Record saved"
           }
-        },
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
-        "x-authorization": {
-          "resource": "NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD",
-          "action": "1"
         }
       },
       "delete": {
-        "description": "<table>\n\t<tr>\n\t\t<td>Required Permission</td>\n\t\t<td><code>NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [DELETE]</code></td>\n\t</tr>\n\t<tr>\n\t\t<td>Required Scope</td>\n\t\t<td><code>social</code></td>\n\t</tr>\n</table>\n<br/>\n\nDelete player record by its key",
+        "description": "\u003ctable\u003e\n\t\u003ctr\u003e\n\t\t\u003ctd\u003eRequired Permission\u003c/td\u003e\n\t\t\u003ctd\u003e\u003ccode\u003eNAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [DELETE]\u003c/code\u003e\u003c/td\u003e\n\t\u003c/tr\u003e\n\t\u003ctr\u003e\n\t\t\u003ctd\u003eRequired Scope\u003c/td\u003e\n\t\t\u003ctd\u003e\u003ccode\u003esocial\u003c/code\u003e\u003c/td\u003e\n\t\u003c/tr\u003e\n\u003c/table\u003e\n\u003cbr/\u003e\n\nDelete player record by its key",
         "consumes": [
           "application/json"
         ],
@@ -1549,7 +1485,7 @@
           {
             "type": "string",
             "description": "user ID who own the record",
-            "name": "userID",
+            "name": "userId",
             "in": "path",
             "required": true
           },
@@ -1565,30 +1501,24 @@
           "204": {
             "description": "Record deleted"
           },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
           "500": {
             "description": "Internal Server Error",
             "schema": {
-              "$ref": "#/definitions/response.Error"
+              "$ref": "#/definitions/models.ResponseError"
             }
-          },
-          "default": {
-            "description": "Record deleted"
           }
-        },
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
-        "x-authorization": {
-          "resource": "NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD",
-          "action": "8"
         }
       }
     },
-    "/cloudsave/v1/namespaces/{namespace}/users/{userID}/records/{key}/public": {
+    "/cloudsave/v1/namespaces/{namespace}/users/{userId}/records/{key}/public": {
       "get": {
-        "description": "<table>\n\t<tr>\n\t\t<td>Required Permission</td>\n\t\t<td><code>NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [READ]</code></td>\n\t</tr>\n\t<tr>\n\t\t<td>Required Scope</td>\n\t\t<td><code>social</code></td>\n\t</tr>\n</table>\n<br/>\n\nGet other player's record that is public. Only record with <code>isPublic=true</code> that can be\nretrieved using this endpoint.\n",
+        "description": "\u003ctable\u003e\n\t\u003ctr\u003e\n\t\t\u003ctd\u003eRequired Permission\u003c/td\u003e\n\t\t\u003ctd\u003e\u003ccode\u003eNAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [READ]\u003c/code\u003e\u003c/td\u003e\n\t\u003c/tr\u003e\n\t\u003ctr\u003e\n\t\t\u003ctd\u003eRequired Scope\u003c/td\u003e\n\t\t\u003ctd\u003e\u003ccode\u003esocial\u003c/code\u003e\u003c/td\u003e\n\t\u003c/tr\u003e\n\u003c/table\u003e\n\u003cbr/\u003e\n\nGet other player's record that is public. Only record with \u003ccode\u003eisPublic=true\u003c/code\u003e that can be\nretrieved using this endpoint.\n",
         "consumes": [
           "application/json"
         ],
@@ -1611,7 +1541,7 @@
           {
             "type": "string",
             "description": "user ID of record owner",
-            "name": "userID",
+            "name": "userId",
             "in": "path",
             "required": true
           },
@@ -1630,31 +1560,28 @@
               "$ref": "#/definitions/models.PlayerRecord"
             }
           },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
           "500": {
             "description": "Internal Server Error",
             "schema": {
-              "$ref": "#/definitions/response.Error"
-            }
-          },
-          "default": {
-            "description": "Record retrieved",
-            "schema": {
-              "$ref": "#/definitions/models.PlayerRecord"
+              "$ref": "#/definitions/models.ResponseError"
             }
           }
-        },
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
-        "x-authorization": {
-          "resource": "NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD",
-          "action": "2"
         }
       },
       "put": {
-        "description": "<table>\n\t<tr>\n\t\t<td>Required Permission</td>\n\t\t<td><code>NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [UPDATE]</code></td>\n\t</tr>\n\t<tr>\n\t\t<td>Required Scope</td>\n\t\t<td><code>social</code></td>\n\t</tr>\n</table>\n<br/>\n\nIf the record is not exist, it will create. If the record already exist, it will replace the record\ninstead. And this operation can only be applied to record with <code>isPublic=true</code>.\n\nExample\n\nReplace record\n<pre>\n// existed record\n{\n\t\"foo\": \"bar\"\n}\n\n// new record (request body)\n{\n\t\"foo_new\": \"bar_new\"\n}\n\n// result\n{\n\t\"foo_new\": \"bar_new\"\n}\n</pre>\n",
+        "description": "\u003ctable\u003e\n\t\u003ctr\u003e\n\t\t\u003ctd\u003eRequired Permission\u003c/td\u003e\n\t\t\u003ctd\u003e\u003ccode\u003eNAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [UPDATE]\u003c/code\u003e\u003c/td\u003e\n\t\u003c/tr\u003e\n\t\u003ctr\u003e\n\t\t\u003ctd\u003eRequired Scope\u003c/td\u003e\n\t\t\u003ctd\u003e\u003ccode\u003esocial\u003c/code\u003e\u003c/td\u003e\n\t\u003c/tr\u003e\n\u003c/table\u003e\n\u003cbr/\u003e\n\nIf the record is not exist, it will create. If the record already exist, it will replace the record\ninstead. And this operation can only be applied to record with \u003ccode\u003eisPublic=true\u003c/code\u003e.\n\nExample\n\nReplace record\n\u003cpre\u003e\n// existed record\n{\n\t\"foo\": \"bar\"\n}\n\n// new record (request body)\n{\n\t\"foo_new\": \"bar_new\"\n}\n\n// result\n{\n\t\"foo_new\": \"bar_new\"\n}\n\u003c/pre\u003e\n",
         "consumes": [
           "application/json"
         ],
@@ -1677,7 +1604,7 @@
           {
             "type": "string",
             "description": "user ID who own the record",
-            "name": "userID",
+            "name": "userId",
             "in": "path",
             "required": true
           },
@@ -1701,28 +1628,22 @@
           "200": {
             "description": "Record saved"
           },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
           "500": {
             "description": "Internal Server Error",
             "schema": {
-              "$ref": "#/definitions/response.Error"
+              "$ref": "#/definitions/models.ResponseError"
             }
-          },
-          "default": {
-            "description": "Record saved"
           }
-        },
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
-        "x-authorization": {
-          "resource": "NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD",
-          "action": "4"
         }
       },
       "post": {
-        "description": "<table>\n\t<tr>\n\t\t<td>Required Permission</td>\n\t\t<td><code>NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [WRITE]</code></td>\n\t</tr>\n\t<tr>\n\t\t<td>Required Scope</td>\n\t\t<td><code>social</code></td>\n\t</tr>\n</table>\n<br/>\n\nThis endpoint will create or update player record with <code>isPublic=true</code> meaning that the\nrecord will be available for other player to be retrieved. Other player can only retrieve the record\nand not create, update or even delete.\n\nThis endpoint will create public player record if it is not exists otherwise merge with these criteria:\n- If field name is already exists, replace the value\n- If field name is not exists, append it\n\nExample\n\nReplace value:\n<pre>\n\t// existed record\n\t{\n\t\t\"foo\": \"bar\"\n\t}\n\n\t// new record (request body)\n\t{\n\t\t\"foo\": \"bar_updated\"\n\t}\n\n\t// result\n\t{\n\t\t\"foo\": \"bar_updated\"\n\t}\n</pre>\n\nAppend value:\n<pre>\n\t// existed record\n\t{\n\t\t\"foo\": \"bar\"\n\t}\n\n\t// new record (request body)\n\t{\n\t\t\"foo_new\": \"bar_new\"\n\t}\n\n\t// result\n\t{\n\t\t\"foo\": \"bar\",\n\t\t\"foo_new\": \"bar_new\"\n\t}\n</pre>\n",
+        "description": "\u003ctable\u003e\n\t\u003ctr\u003e\n\t\t\u003ctd\u003eRequired Permission\u003c/td\u003e\n\t\t\u003ctd\u003e\u003ccode\u003eNAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [WRITE]\u003c/code\u003e\u003c/td\u003e\n\t\u003c/tr\u003e\n\t\u003ctr\u003e\n\t\t\u003ctd\u003eRequired Scope\u003c/td\u003e\n\t\t\u003ctd\u003e\u003ccode\u003esocial\u003c/code\u003e\u003c/td\u003e\n\t\u003c/tr\u003e\n\u003c/table\u003e\n\u003cbr/\u003e\n\nThis endpoint will create or update player record with \u003ccode\u003eisPublic=true\u003c/code\u003e meaning that the\nrecord will be available for other player to be retrieved. Other player can only retrieve the record\nand not create, update or even delete.\n\nThis endpoint will create public player record if it is not exists otherwise merge with these criteria:\n- If field name is already exists, replace the value\n- If field name is not exists, append it\n\nExample\n\nReplace value:\n\u003cpre\u003e\n\t// existed record\n\t{\n\t\t\"foo\": \"bar\"\n\t}\n\n\t// new record (request body)\n\t{\n\t\t\"foo\": \"bar_updated\"\n\t}\n\n\t// result\n\t{\n\t\t\"foo\": \"bar_updated\"\n\t}\n\u003c/pre\u003e\n\nAppend value:\n\u003cpre\u003e\n\t// existed record\n\t{\n\t\t\"foo\": \"bar\"\n\t}\n\n\t// new record (request body)\n\t{\n\t\t\"foo_new\": \"bar_new\"\n\t}\n\n\t// result\n\t{\n\t\t\"foo\": \"bar\",\n\t\t\"foo_new\": \"bar_new\"\n\t}\n\u003c/pre\u003e\n",
         "consumes": [
           "application/json"
         ],
@@ -1745,7 +1666,7 @@
           {
             "type": "string",
             "description": "user ID who own the record",
-            "name": "userID",
+            "name": "userId",
             "in": "path",
             "required": true
           },
@@ -1766,27 +1687,21 @@
           }
         ],
         "responses": {
-          "200": {
+          "201": {
             "description": "Record saved"
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
           },
           "500": {
             "description": "Internal Server Error",
             "schema": {
-              "$ref": "#/definitions/response.Error"
+              "$ref": "#/definitions/models.ResponseError"
             }
-          },
-          "default": {
-            "description": "Record saved"
           }
-        },
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
-        "x-authorization": {
-          "resource": "NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD",
-          "action": "1"
         }
       }
     }
@@ -1835,10 +1750,7 @@
       }
     },
     "models.GameRecordRequest": {
-      "type": "object",
-      "additionalProperties": {
-        "type": "string"
-      }
+      "type": "object"
     },
     "models.ListGameRecordKeys": {
       "required": [
@@ -1858,7 +1770,6 @@
       }
     },
     "models.ListPlayerRecordKeys": {
-      "description": "List of player records key",
       "required": [
         "data",
         "paging"
@@ -1948,13 +1859,9 @@
       }
     },
     "models.PlayerRecordRequest": {
-      "type": "object",
-      "additionalProperties": {
-        "type": "string"
-      }
+      "type": "object"
     },
-    "response.Error": {
-      "description": "Error general response",
+    "models.ResponseError": {
       "required": [
         "errorCode",
         "errorMessage"
@@ -1976,5 +1883,10 @@
       "name": "Authorization",
       "in": "header"
     }
-  }
+  },
+  "security": [
+    {
+      "authorization": []
+    }
+  ]
 }

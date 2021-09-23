@@ -36,6 +36,12 @@ func (o *PutPlayerPublicRecordConcurrentHandlerV1Reader) ReadResponse(response r
 			return nil, err
 		}
 		return result, nil
+	case 401:
+		result := NewPutPlayerPublicRecordConcurrentHandlerV1Unauthorized()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 412:
 		result := NewPutPlayerPublicRecordConcurrentHandlerV1PreconditionFailed()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -55,7 +61,7 @@ func (o *PutPlayerPublicRecordConcurrentHandlerV1Reader) ReadResponse(response r
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /cloudsave/v1/namespaces/{namespace}/users/{userID}/concurrent/records/{key}/public returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /cloudsave/v1/namespaces/{namespace}/users/{userId}/concurrent/records/{key}/public returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -72,7 +78,7 @@ type PutPlayerPublicRecordConcurrentHandlerV1NoContent struct {
 }
 
 func (o *PutPlayerPublicRecordConcurrentHandlerV1NoContent) Error() string {
-	return fmt.Sprintf("[PUT /cloudsave/v1/namespaces/{namespace}/users/{userID}/concurrent/records/{key}/public][%d] putPlayerPublicRecordConcurrentHandlerV1NoContent ", 204)
+	return fmt.Sprintf("[PUT /cloudsave/v1/namespaces/{namespace}/users/{userId}/concurrent/records/{key}/public][%d] putPlayerPublicRecordConcurrentHandlerV1NoContent ", 204)
 }
 
 func (o *PutPlayerPublicRecordConcurrentHandlerV1NoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -90,20 +96,53 @@ func NewPutPlayerPublicRecordConcurrentHandlerV1BadRequest() *PutPlayerPublicRec
   Bad Request
 */
 type PutPlayerPublicRecordConcurrentHandlerV1BadRequest struct {
-	Payload *cloudsaveclientmodels.ResponseError
+	Payload *cloudsaveclientmodels.ModelsResponseError
 }
 
 func (o *PutPlayerPublicRecordConcurrentHandlerV1BadRequest) Error() string {
-	return fmt.Sprintf("[PUT /cloudsave/v1/namespaces/{namespace}/users/{userID}/concurrent/records/{key}/public][%d] putPlayerPublicRecordConcurrentHandlerV1BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /cloudsave/v1/namespaces/{namespace}/users/{userId}/concurrent/records/{key}/public][%d] putPlayerPublicRecordConcurrentHandlerV1BadRequest  %+v", 400, o.Payload)
 }
 
-func (o *PutPlayerPublicRecordConcurrentHandlerV1BadRequest) GetPayload() *cloudsaveclientmodels.ResponseError {
+func (o *PutPlayerPublicRecordConcurrentHandlerV1BadRequest) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
 	return o.Payload
 }
 
 func (o *PutPlayerPublicRecordConcurrentHandlerV1BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(cloudsaveclientmodels.ResponseError)
+	o.Payload = new(cloudsaveclientmodels.ModelsResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewPutPlayerPublicRecordConcurrentHandlerV1Unauthorized creates a PutPlayerPublicRecordConcurrentHandlerV1Unauthorized with default headers values
+func NewPutPlayerPublicRecordConcurrentHandlerV1Unauthorized() *PutPlayerPublicRecordConcurrentHandlerV1Unauthorized {
+	return &PutPlayerPublicRecordConcurrentHandlerV1Unauthorized{}
+}
+
+/*PutPlayerPublicRecordConcurrentHandlerV1Unauthorized handles this case with default header values.
+
+  Unauthorized
+*/
+type PutPlayerPublicRecordConcurrentHandlerV1Unauthorized struct {
+	Payload *cloudsaveclientmodels.ModelsResponseError
+}
+
+func (o *PutPlayerPublicRecordConcurrentHandlerV1Unauthorized) Error() string {
+	return fmt.Sprintf("[PUT /cloudsave/v1/namespaces/{namespace}/users/{userId}/concurrent/records/{key}/public][%d] putPlayerPublicRecordConcurrentHandlerV1Unauthorized  %+v", 401, o.Payload)
+}
+
+func (o *PutPlayerPublicRecordConcurrentHandlerV1Unauthorized) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
+	return o.Payload
+}
+
+func (o *PutPlayerPublicRecordConcurrentHandlerV1Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(cloudsaveclientmodels.ModelsResponseError)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -123,20 +162,20 @@ func NewPutPlayerPublicRecordConcurrentHandlerV1PreconditionFailed() *PutPlayerP
   Precondition Failed
 */
 type PutPlayerPublicRecordConcurrentHandlerV1PreconditionFailed struct {
-	Payload *cloudsaveclientmodels.ResponseError
+	Payload *cloudsaveclientmodels.ModelsResponseError
 }
 
 func (o *PutPlayerPublicRecordConcurrentHandlerV1PreconditionFailed) Error() string {
-	return fmt.Sprintf("[PUT /cloudsave/v1/namespaces/{namespace}/users/{userID}/concurrent/records/{key}/public][%d] putPlayerPublicRecordConcurrentHandlerV1PreconditionFailed  %+v", 412, o.Payload)
+	return fmt.Sprintf("[PUT /cloudsave/v1/namespaces/{namespace}/users/{userId}/concurrent/records/{key}/public][%d] putPlayerPublicRecordConcurrentHandlerV1PreconditionFailed  %+v", 412, o.Payload)
 }
 
-func (o *PutPlayerPublicRecordConcurrentHandlerV1PreconditionFailed) GetPayload() *cloudsaveclientmodels.ResponseError {
+func (o *PutPlayerPublicRecordConcurrentHandlerV1PreconditionFailed) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
 	return o.Payload
 }
 
 func (o *PutPlayerPublicRecordConcurrentHandlerV1PreconditionFailed) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(cloudsaveclientmodels.ResponseError)
+	o.Payload = new(cloudsaveclientmodels.ModelsResponseError)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -156,20 +195,20 @@ func NewPutPlayerPublicRecordConcurrentHandlerV1InternalServerError() *PutPlayer
   Internal Server Error
 */
 type PutPlayerPublicRecordConcurrentHandlerV1InternalServerError struct {
-	Payload *cloudsaveclientmodels.ResponseError
+	Payload *cloudsaveclientmodels.ModelsResponseError
 }
 
 func (o *PutPlayerPublicRecordConcurrentHandlerV1InternalServerError) Error() string {
-	return fmt.Sprintf("[PUT /cloudsave/v1/namespaces/{namespace}/users/{userID}/concurrent/records/{key}/public][%d] putPlayerPublicRecordConcurrentHandlerV1InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[PUT /cloudsave/v1/namespaces/{namespace}/users/{userId}/concurrent/records/{key}/public][%d] putPlayerPublicRecordConcurrentHandlerV1InternalServerError  %+v", 500, o.Payload)
 }
 
-func (o *PutPlayerPublicRecordConcurrentHandlerV1InternalServerError) GetPayload() *cloudsaveclientmodels.ResponseError {
+func (o *PutPlayerPublicRecordConcurrentHandlerV1InternalServerError) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
 	return o.Payload
 }
 
 func (o *PutPlayerPublicRecordConcurrentHandlerV1InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(cloudsaveclientmodels.ResponseError)
+	o.Payload = new(cloudsaveclientmodels.ModelsResponseError)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

@@ -8,6 +8,7 @@ package public_player_record
 import (
 	"fmt"
 	"io"
+	"io/ioutil"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
@@ -29,21 +30,26 @@ func (o *PutPlayerPublicRecordHandlerV1Reader) ReadResponse(response runtime.Cli
 			return nil, err
 		}
 		return result, nil
+	case 401:
+		result := NewPutPlayerPublicRecordHandlerV1Unauthorized()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 500:
 		result := NewPutPlayerPublicRecordHandlerV1InternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
+
 	default:
-		result := NewPutPlayerPublicRecordHandlerV1Default(response.Code())
-		if err := result.readResponse(response, consumer, o.formats); err != nil {
+		data, err := ioutil.ReadAll(response.Body())
+		if err != nil {
 			return nil, err
 		}
-		if response.Code()/100 == 2 {
-			return result, nil
-		}
-		return result, nil
+
+		return nil, fmt.Errorf("Requested PUT /cloudsave/v1/namespaces/{namespace}/users/{userId}/records/{key}/public returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -60,10 +66,43 @@ type PutPlayerPublicRecordHandlerV1OK struct {
 }
 
 func (o *PutPlayerPublicRecordHandlerV1OK) Error() string {
-	return fmt.Sprintf("[PUT /cloudsave/v1/namespaces/{namespace}/users/{userID}/records/{key}/public][%d] putPlayerPublicRecordHandlerV1OK ", 200)
+	return fmt.Sprintf("[PUT /cloudsave/v1/namespaces/{namespace}/users/{userId}/records/{key}/public][%d] putPlayerPublicRecordHandlerV1OK ", 200)
 }
 
 func (o *PutPlayerPublicRecordHandlerV1OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	return nil
+}
+
+// NewPutPlayerPublicRecordHandlerV1Unauthorized creates a PutPlayerPublicRecordHandlerV1Unauthorized with default headers values
+func NewPutPlayerPublicRecordHandlerV1Unauthorized() *PutPlayerPublicRecordHandlerV1Unauthorized {
+	return &PutPlayerPublicRecordHandlerV1Unauthorized{}
+}
+
+/*PutPlayerPublicRecordHandlerV1Unauthorized handles this case with default header values.
+
+  Unauthorized
+*/
+type PutPlayerPublicRecordHandlerV1Unauthorized struct {
+	Payload *cloudsaveclientmodels.ModelsResponseError
+}
+
+func (o *PutPlayerPublicRecordHandlerV1Unauthorized) Error() string {
+	return fmt.Sprintf("[PUT /cloudsave/v1/namespaces/{namespace}/users/{userId}/records/{key}/public][%d] putPlayerPublicRecordHandlerV1Unauthorized  %+v", 401, o.Payload)
+}
+
+func (o *PutPlayerPublicRecordHandlerV1Unauthorized) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
+	return o.Payload
+}
+
+func (o *PutPlayerPublicRecordHandlerV1Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(cloudsaveclientmodels.ModelsResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -78,54 +117,25 @@ func NewPutPlayerPublicRecordHandlerV1InternalServerError() *PutPlayerPublicReco
   Internal Server Error
 */
 type PutPlayerPublicRecordHandlerV1InternalServerError struct {
-	Payload *cloudsaveclientmodels.ResponseError
+	Payload *cloudsaveclientmodels.ModelsResponseError
 }
 
 func (o *PutPlayerPublicRecordHandlerV1InternalServerError) Error() string {
-	return fmt.Sprintf("[PUT /cloudsave/v1/namespaces/{namespace}/users/{userID}/records/{key}/public][%d] putPlayerPublicRecordHandlerV1InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[PUT /cloudsave/v1/namespaces/{namespace}/users/{userId}/records/{key}/public][%d] putPlayerPublicRecordHandlerV1InternalServerError  %+v", 500, o.Payload)
 }
 
-func (o *PutPlayerPublicRecordHandlerV1InternalServerError) GetPayload() *cloudsaveclientmodels.ResponseError {
+func (o *PutPlayerPublicRecordHandlerV1InternalServerError) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
 	return o.Payload
 }
 
 func (o *PutPlayerPublicRecordHandlerV1InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(cloudsaveclientmodels.ResponseError)
+	o.Payload = new(cloudsaveclientmodels.ModelsResponseError)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
-
-	return nil
-}
-
-// NewPutPlayerPublicRecordHandlerV1Default creates a PutPlayerPublicRecordHandlerV1Default with default headers values
-func NewPutPlayerPublicRecordHandlerV1Default(code int) *PutPlayerPublicRecordHandlerV1Default {
-	return &PutPlayerPublicRecordHandlerV1Default{
-		_statusCode: code,
-	}
-}
-
-/*PutPlayerPublicRecordHandlerV1Default handles this case with default header values.
-
-  Record saved
-*/
-type PutPlayerPublicRecordHandlerV1Default struct {
-	_statusCode int
-}
-
-// Code gets the status code for the put player public record handler v1 default response
-func (o *PutPlayerPublicRecordHandlerV1Default) Code() int {
-	return o._statusCode
-}
-
-func (o *PutPlayerPublicRecordHandlerV1Default) Error() string {
-	return fmt.Sprintf("[PUT /cloudsave/v1/namespaces/{namespace}/users/{userID}/records/{key}/public][%d] putPlayerPublicRecordHandlerV1 default ", o._statusCode)
-}
-
-func (o *PutPlayerPublicRecordHandlerV1Default) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }

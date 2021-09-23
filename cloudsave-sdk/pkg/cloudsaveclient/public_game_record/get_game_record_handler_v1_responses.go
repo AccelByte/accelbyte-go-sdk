@@ -8,6 +8,7 @@ package public_game_record
 import (
 	"fmt"
 	"io"
+	"io/ioutil"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
@@ -29,21 +30,32 @@ func (o *GetGameRecordHandlerV1Reader) ReadResponse(response runtime.ClientRespo
 			return nil, err
 		}
 		return result, nil
+	case 401:
+		result := NewGetGameRecordHandlerV1Unauthorized()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
+	case 404:
+		result := NewGetGameRecordHandlerV1NotFound()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 500:
 		result := NewGetGameRecordHandlerV1InternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
+
 	default:
-		result := NewGetGameRecordHandlerV1Default(response.Code())
-		if err := result.readResponse(response, consumer, o.formats); err != nil {
+		data, err := ioutil.ReadAll(response.Body())
+		if err != nil {
 			return nil, err
 		}
-		if response.Code()/100 == 2 {
-			return result, nil
-		}
-		return result, nil
+
+		return nil, fmt.Errorf("Requested GET /cloudsave/v1/namespaces/{namespace}/records/{key} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -80,6 +92,72 @@ func (o *GetGameRecordHandlerV1OK) readResponse(response runtime.ClientResponse,
 	return nil
 }
 
+// NewGetGameRecordHandlerV1Unauthorized creates a GetGameRecordHandlerV1Unauthorized with default headers values
+func NewGetGameRecordHandlerV1Unauthorized() *GetGameRecordHandlerV1Unauthorized {
+	return &GetGameRecordHandlerV1Unauthorized{}
+}
+
+/*GetGameRecordHandlerV1Unauthorized handles this case with default header values.
+
+  Unauthorized
+*/
+type GetGameRecordHandlerV1Unauthorized struct {
+	Payload *cloudsaveclientmodels.ModelsResponseError
+}
+
+func (o *GetGameRecordHandlerV1Unauthorized) Error() string {
+	return fmt.Sprintf("[GET /cloudsave/v1/namespaces/{namespace}/records/{key}][%d] getGameRecordHandlerV1Unauthorized  %+v", 401, o.Payload)
+}
+
+func (o *GetGameRecordHandlerV1Unauthorized) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
+	return o.Payload
+}
+
+func (o *GetGameRecordHandlerV1Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(cloudsaveclientmodels.ModelsResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewGetGameRecordHandlerV1NotFound creates a GetGameRecordHandlerV1NotFound with default headers values
+func NewGetGameRecordHandlerV1NotFound() *GetGameRecordHandlerV1NotFound {
+	return &GetGameRecordHandlerV1NotFound{}
+}
+
+/*GetGameRecordHandlerV1NotFound handles this case with default header values.
+
+  Not Found
+*/
+type GetGameRecordHandlerV1NotFound struct {
+	Payload *cloudsaveclientmodels.ModelsResponseError
+}
+
+func (o *GetGameRecordHandlerV1NotFound) Error() string {
+	return fmt.Sprintf("[GET /cloudsave/v1/namespaces/{namespace}/records/{key}][%d] getGameRecordHandlerV1NotFound  %+v", 404, o.Payload)
+}
+
+func (o *GetGameRecordHandlerV1NotFound) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
+	return o.Payload
+}
+
+func (o *GetGameRecordHandlerV1NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(cloudsaveclientmodels.ModelsResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewGetGameRecordHandlerV1InternalServerError creates a GetGameRecordHandlerV1InternalServerError with default headers values
 func NewGetGameRecordHandlerV1InternalServerError() *GetGameRecordHandlerV1InternalServerError {
 	return &GetGameRecordHandlerV1InternalServerError{}
@@ -90,62 +168,20 @@ func NewGetGameRecordHandlerV1InternalServerError() *GetGameRecordHandlerV1Inter
   Internal Server Error
 */
 type GetGameRecordHandlerV1InternalServerError struct {
-	Payload *cloudsaveclientmodels.ResponseError
+	Payload *cloudsaveclientmodels.ModelsResponseError
 }
 
 func (o *GetGameRecordHandlerV1InternalServerError) Error() string {
 	return fmt.Sprintf("[GET /cloudsave/v1/namespaces/{namespace}/records/{key}][%d] getGameRecordHandlerV1InternalServerError  %+v", 500, o.Payload)
 }
 
-func (o *GetGameRecordHandlerV1InternalServerError) GetPayload() *cloudsaveclientmodels.ResponseError {
+func (o *GetGameRecordHandlerV1InternalServerError) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
 	return o.Payload
 }
 
 func (o *GetGameRecordHandlerV1InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(cloudsaveclientmodels.ResponseError)
-
-	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
-		return err
-	}
-
-	return nil
-}
-
-// NewGetGameRecordHandlerV1Default creates a GetGameRecordHandlerV1Default with default headers values
-func NewGetGameRecordHandlerV1Default(code int) *GetGameRecordHandlerV1Default {
-	return &GetGameRecordHandlerV1Default{
-		_statusCode: code,
-	}
-}
-
-/*GetGameRecordHandlerV1Default handles this case with default header values.
-
-  Record retrieved
-*/
-type GetGameRecordHandlerV1Default struct {
-	_statusCode int
-
-	Payload *cloudsaveclientmodels.ModelsGameRecord
-}
-
-// Code gets the status code for the get game record handler v1 default response
-func (o *GetGameRecordHandlerV1Default) Code() int {
-	return o._statusCode
-}
-
-func (o *GetGameRecordHandlerV1Default) Error() string {
-	return fmt.Sprintf("[GET /cloudsave/v1/namespaces/{namespace}/records/{key}][%d] getGameRecordHandlerV1 default  %+v", o._statusCode, o.Payload)
-}
-
-func (o *GetGameRecordHandlerV1Default) GetPayload() *cloudsaveclientmodels.ModelsGameRecord {
-	return o.Payload
-}
-
-func (o *GetGameRecordHandlerV1Default) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-
-	o.Payload = new(cloudsaveclientmodels.ModelsGameRecord)
+	o.Payload = new(cloudsaveclientmodels.ModelsResponseError)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

@@ -12,10 +12,10 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// ResponseError Error general response
+// ModelsResponseError models response error
 //
-// swagger:model response.Error
-type ResponseError struct {
+// swagger:model models.ResponseError
+type ModelsResponseError struct {
 
 	// error code
 	// Required: true
@@ -26,8 +26,8 @@ type ResponseError struct {
 	ErrorMessage *string `json:"errorMessage"`
 }
 
-// Validate validates this response error
-func (m *ResponseError) Validate(formats strfmt.Registry) error {
+// Validate validates this models response error
+func (m *ModelsResponseError) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateErrorCode(formats); err != nil {
@@ -44,7 +44,7 @@ func (m *ResponseError) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *ResponseError) validateErrorCode(formats strfmt.Registry) error {
+func (m *ModelsResponseError) validateErrorCode(formats strfmt.Registry) error {
 
 	if err := validate.Required("errorCode", "body", m.ErrorCode); err != nil {
 		return err
@@ -53,7 +53,7 @@ func (m *ResponseError) validateErrorCode(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *ResponseError) validateErrorMessage(formats strfmt.Registry) error {
+func (m *ModelsResponseError) validateErrorMessage(formats strfmt.Registry) error {
 
 	if err := validate.Required("errorMessage", "body", m.ErrorMessage); err != nil {
 		return err
@@ -63,7 +63,7 @@ func (m *ResponseError) validateErrorMessage(formats strfmt.Registry) error {
 }
 
 // MarshalBinary interface implementation
-func (m *ResponseError) MarshalBinary() ([]byte, error) {
+func (m *ModelsResponseError) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -71,8 +71,8 @@ func (m *ResponseError) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *ResponseError) UnmarshalBinary(b []byte) error {
-	var res ResponseError
+func (m *ModelsResponseError) UnmarshalBinary(b []byte) error {
+	var res ModelsResponseError
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

@@ -14,7 +14,7 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// ModelsListPlayerRecordKeys List of player records key
+// ModelsListPlayerRecordKeys models list player record keys
 //
 // swagger:model models.ListPlayerRecordKeys
 type ModelsListPlayerRecordKeys struct {

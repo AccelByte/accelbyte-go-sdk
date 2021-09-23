@@ -8,6 +8,7 @@ package admin_player_record
 import (
 	"fmt"
 	"io"
+	"io/ioutil"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
@@ -35,21 +36,26 @@ func (o *AdminPutPlayerPublicRecordHandlerV1Reader) ReadResponse(response runtim
 			return nil, err
 		}
 		return result, nil
+	case 401:
+		result := NewAdminPutPlayerPublicRecordHandlerV1Unauthorized()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 500:
 		result := NewAdminPutPlayerPublicRecordHandlerV1InternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
+
 	default:
-		result := NewAdminPutPlayerPublicRecordHandlerV1Default(response.Code())
-		if err := result.readResponse(response, consumer, o.formats); err != nil {
+		data, err := ioutil.ReadAll(response.Body())
+		if err != nil {
 			return nil, err
 		}
-		if response.Code()/100 == 2 {
-			return result, nil
-		}
-		return result, nil
+
+		return nil, fmt.Errorf("Requested PUT /cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records/{key}/public returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -66,7 +72,7 @@ type AdminPutPlayerPublicRecordHandlerV1OK struct {
 }
 
 func (o *AdminPutPlayerPublicRecordHandlerV1OK) Error() string {
-	return fmt.Sprintf("[PUT /cloudsave/v1/admin/namespaces/{namespace}/users/{userID}/records/{key}/public][%d] adminPutPlayerPublicRecordHandlerV1OK ", 200)
+	return fmt.Sprintf("[PUT /cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records/{key}/public][%d] adminPutPlayerPublicRecordHandlerV1OK ", 200)
 }
 
 func (o *AdminPutPlayerPublicRecordHandlerV1OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -84,20 +90,53 @@ func NewAdminPutPlayerPublicRecordHandlerV1BadRequest() *AdminPutPlayerPublicRec
   Bad Request
 */
 type AdminPutPlayerPublicRecordHandlerV1BadRequest struct {
-	Payload *cloudsaveclientmodels.ResponseError
+	Payload *cloudsaveclientmodels.ModelsResponseError
 }
 
 func (o *AdminPutPlayerPublicRecordHandlerV1BadRequest) Error() string {
-	return fmt.Sprintf("[PUT /cloudsave/v1/admin/namespaces/{namespace}/users/{userID}/records/{key}/public][%d] adminPutPlayerPublicRecordHandlerV1BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records/{key}/public][%d] adminPutPlayerPublicRecordHandlerV1BadRequest  %+v", 400, o.Payload)
 }
 
-func (o *AdminPutPlayerPublicRecordHandlerV1BadRequest) GetPayload() *cloudsaveclientmodels.ResponseError {
+func (o *AdminPutPlayerPublicRecordHandlerV1BadRequest) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
 	return o.Payload
 }
 
 func (o *AdminPutPlayerPublicRecordHandlerV1BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(cloudsaveclientmodels.ResponseError)
+	o.Payload = new(cloudsaveclientmodels.ModelsResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewAdminPutPlayerPublicRecordHandlerV1Unauthorized creates a AdminPutPlayerPublicRecordHandlerV1Unauthorized with default headers values
+func NewAdminPutPlayerPublicRecordHandlerV1Unauthorized() *AdminPutPlayerPublicRecordHandlerV1Unauthorized {
+	return &AdminPutPlayerPublicRecordHandlerV1Unauthorized{}
+}
+
+/*AdminPutPlayerPublicRecordHandlerV1Unauthorized handles this case with default header values.
+
+  Unauthorized
+*/
+type AdminPutPlayerPublicRecordHandlerV1Unauthorized struct {
+	Payload *cloudsaveclientmodels.ModelsResponseError
+}
+
+func (o *AdminPutPlayerPublicRecordHandlerV1Unauthorized) Error() string {
+	return fmt.Sprintf("[PUT /cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records/{key}/public][%d] adminPutPlayerPublicRecordHandlerV1Unauthorized  %+v", 401, o.Payload)
+}
+
+func (o *AdminPutPlayerPublicRecordHandlerV1Unauthorized) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
+	return o.Payload
+}
+
+func (o *AdminPutPlayerPublicRecordHandlerV1Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(cloudsaveclientmodels.ModelsResponseError)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -117,54 +156,25 @@ func NewAdminPutPlayerPublicRecordHandlerV1InternalServerError() *AdminPutPlayer
   Internal Server Error
 */
 type AdminPutPlayerPublicRecordHandlerV1InternalServerError struct {
-	Payload *cloudsaveclientmodels.ResponseError
+	Payload *cloudsaveclientmodels.ModelsResponseError
 }
 
 func (o *AdminPutPlayerPublicRecordHandlerV1InternalServerError) Error() string {
-	return fmt.Sprintf("[PUT /cloudsave/v1/admin/namespaces/{namespace}/users/{userID}/records/{key}/public][%d] adminPutPlayerPublicRecordHandlerV1InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[PUT /cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records/{key}/public][%d] adminPutPlayerPublicRecordHandlerV1InternalServerError  %+v", 500, o.Payload)
 }
 
-func (o *AdminPutPlayerPublicRecordHandlerV1InternalServerError) GetPayload() *cloudsaveclientmodels.ResponseError {
+func (o *AdminPutPlayerPublicRecordHandlerV1InternalServerError) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
 	return o.Payload
 }
 
 func (o *AdminPutPlayerPublicRecordHandlerV1InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(cloudsaveclientmodels.ResponseError)
+	o.Payload = new(cloudsaveclientmodels.ModelsResponseError)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
-
-	return nil
-}
-
-// NewAdminPutPlayerPublicRecordHandlerV1Default creates a AdminPutPlayerPublicRecordHandlerV1Default with default headers values
-func NewAdminPutPlayerPublicRecordHandlerV1Default(code int) *AdminPutPlayerPublicRecordHandlerV1Default {
-	return &AdminPutPlayerPublicRecordHandlerV1Default{
-		_statusCode: code,
-	}
-}
-
-/*AdminPutPlayerPublicRecordHandlerV1Default handles this case with default header values.
-
-  Record in user-level saved
-*/
-type AdminPutPlayerPublicRecordHandlerV1Default struct {
-	_statusCode int
-}
-
-// Code gets the status code for the admin put player public record handler v1 default response
-func (o *AdminPutPlayerPublicRecordHandlerV1Default) Code() int {
-	return o._statusCode
-}
-
-func (o *AdminPutPlayerPublicRecordHandlerV1Default) Error() string {
-	return fmt.Sprintf("[PUT /cloudsave/v1/admin/namespaces/{namespace}/users/{userID}/records/{key}/public][%d] adminPutPlayerPublicRecordHandlerV1 default ", o._statusCode)
-}
-
-func (o *AdminPutPlayerPublicRecordHandlerV1Default) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }

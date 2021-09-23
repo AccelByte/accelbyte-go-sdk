@@ -8,6 +8,7 @@ package admin_player_record
 import (
 	"fmt"
 	"io"
+	"io/ioutil"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
@@ -23,8 +24,14 @@ type AdminPostPlayerRecordHandlerV1Reader struct {
 // ReadResponse reads a server response into the received o.
 func (o *AdminPostPlayerRecordHandlerV1Reader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-	case 200:
-		result := NewAdminPostPlayerRecordHandlerV1OK()
+	case 201:
+		result := NewAdminPostPlayerRecordHandlerV1Created()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
+	case 401:
+		result := NewAdminPostPlayerRecordHandlerV1Unauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -35,35 +42,67 @@ func (o *AdminPostPlayerRecordHandlerV1Reader) ReadResponse(response runtime.Cli
 			return nil, err
 		}
 		return result, nil
+
 	default:
-		result := NewAdminPostPlayerRecordHandlerV1Default(response.Code())
-		if err := result.readResponse(response, consumer, o.formats); err != nil {
+		data, err := ioutil.ReadAll(response.Body())
+		if err != nil {
 			return nil, err
 		}
-		if response.Code()/100 == 2 {
-			return result, nil
-		}
-		return result, nil
+
+		return nil, fmt.Errorf("Requested POST /cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records/{key} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
-// NewAdminPostPlayerRecordHandlerV1OK creates a AdminPostPlayerRecordHandlerV1OK with default headers values
-func NewAdminPostPlayerRecordHandlerV1OK() *AdminPostPlayerRecordHandlerV1OK {
-	return &AdminPostPlayerRecordHandlerV1OK{}
+// NewAdminPostPlayerRecordHandlerV1Created creates a AdminPostPlayerRecordHandlerV1Created with default headers values
+func NewAdminPostPlayerRecordHandlerV1Created() *AdminPostPlayerRecordHandlerV1Created {
+	return &AdminPostPlayerRecordHandlerV1Created{}
 }
 
-/*AdminPostPlayerRecordHandlerV1OK handles this case with default header values.
+/*AdminPostPlayerRecordHandlerV1Created handles this case with default header values.
 
   Record in user-level saved
 */
-type AdminPostPlayerRecordHandlerV1OK struct {
+type AdminPostPlayerRecordHandlerV1Created struct {
 }
 
-func (o *AdminPostPlayerRecordHandlerV1OK) Error() string {
-	return fmt.Sprintf("[POST /cloudsave/v1/admin/namespaces/{namespace}/users/{userID}/records/{key}][%d] adminPostPlayerRecordHandlerV1OK ", 200)
+func (o *AdminPostPlayerRecordHandlerV1Created) Error() string {
+	return fmt.Sprintf("[POST /cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records/{key}][%d] adminPostPlayerRecordHandlerV1Created ", 201)
 }
 
-func (o *AdminPostPlayerRecordHandlerV1OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *AdminPostPlayerRecordHandlerV1Created) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	return nil
+}
+
+// NewAdminPostPlayerRecordHandlerV1Unauthorized creates a AdminPostPlayerRecordHandlerV1Unauthorized with default headers values
+func NewAdminPostPlayerRecordHandlerV1Unauthorized() *AdminPostPlayerRecordHandlerV1Unauthorized {
+	return &AdminPostPlayerRecordHandlerV1Unauthorized{}
+}
+
+/*AdminPostPlayerRecordHandlerV1Unauthorized handles this case with default header values.
+
+  Unauthorized
+*/
+type AdminPostPlayerRecordHandlerV1Unauthorized struct {
+	Payload *cloudsaveclientmodels.ModelsResponseError
+}
+
+func (o *AdminPostPlayerRecordHandlerV1Unauthorized) Error() string {
+	return fmt.Sprintf("[POST /cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records/{key}][%d] adminPostPlayerRecordHandlerV1Unauthorized  %+v", 401, o.Payload)
+}
+
+func (o *AdminPostPlayerRecordHandlerV1Unauthorized) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
+	return o.Payload
+}
+
+func (o *AdminPostPlayerRecordHandlerV1Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(cloudsaveclientmodels.ModelsResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -78,54 +117,25 @@ func NewAdminPostPlayerRecordHandlerV1InternalServerError() *AdminPostPlayerReco
   Internal Server Error
 */
 type AdminPostPlayerRecordHandlerV1InternalServerError struct {
-	Payload *cloudsaveclientmodels.ResponseError
+	Payload *cloudsaveclientmodels.ModelsResponseError
 }
 
 func (o *AdminPostPlayerRecordHandlerV1InternalServerError) Error() string {
-	return fmt.Sprintf("[POST /cloudsave/v1/admin/namespaces/{namespace}/users/{userID}/records/{key}][%d] adminPostPlayerRecordHandlerV1InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records/{key}][%d] adminPostPlayerRecordHandlerV1InternalServerError  %+v", 500, o.Payload)
 }
 
-func (o *AdminPostPlayerRecordHandlerV1InternalServerError) GetPayload() *cloudsaveclientmodels.ResponseError {
+func (o *AdminPostPlayerRecordHandlerV1InternalServerError) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
 	return o.Payload
 }
 
 func (o *AdminPostPlayerRecordHandlerV1InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(cloudsaveclientmodels.ResponseError)
+	o.Payload = new(cloudsaveclientmodels.ModelsResponseError)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
-
-	return nil
-}
-
-// NewAdminPostPlayerRecordHandlerV1Default creates a AdminPostPlayerRecordHandlerV1Default with default headers values
-func NewAdminPostPlayerRecordHandlerV1Default(code int) *AdminPostPlayerRecordHandlerV1Default {
-	return &AdminPostPlayerRecordHandlerV1Default{
-		_statusCode: code,
-	}
-}
-
-/*AdminPostPlayerRecordHandlerV1Default handles this case with default header values.
-
-  Record in user-level saved
-*/
-type AdminPostPlayerRecordHandlerV1Default struct {
-	_statusCode int
-}
-
-// Code gets the status code for the admin post player record handler v1 default response
-func (o *AdminPostPlayerRecordHandlerV1Default) Code() int {
-	return o._statusCode
-}
-
-func (o *AdminPostPlayerRecordHandlerV1Default) Error() string {
-	return fmt.Sprintf("[POST /cloudsave/v1/admin/namespaces/{namespace}/users/{userID}/records/{key}][%d] adminPostPlayerRecordHandlerV1 default ", o._statusCode)
-}
-
-func (o *AdminPostPlayerRecordHandlerV1Default) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }

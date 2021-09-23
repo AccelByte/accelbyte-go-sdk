@@ -29,9 +29,9 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	PutGameRecordConcurrentHandlerV1(params *PutGameRecordConcurrentHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PutGameRecordConcurrentHandlerV1NoContent, *PutGameRecordConcurrentHandlerV1BadRequest, *PutGameRecordConcurrentHandlerV1PreconditionFailed, *PutGameRecordConcurrentHandlerV1InternalServerError, error)
+	PutGameRecordConcurrentHandlerV1(params *PutGameRecordConcurrentHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PutGameRecordConcurrentHandlerV1NoContent, *PutGameRecordConcurrentHandlerV1BadRequest, *PutGameRecordConcurrentHandlerV1Unauthorized, *PutGameRecordConcurrentHandlerV1PreconditionFailed, *PutGameRecordConcurrentHandlerV1InternalServerError, error)
 
-	PutPlayerPublicRecordConcurrentHandlerV1(params *PutPlayerPublicRecordConcurrentHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PutPlayerPublicRecordConcurrentHandlerV1NoContent, *PutPlayerPublicRecordConcurrentHandlerV1BadRequest, *PutPlayerPublicRecordConcurrentHandlerV1PreconditionFailed, *PutPlayerPublicRecordConcurrentHandlerV1InternalServerError, error)
+	PutPlayerPublicRecordConcurrentHandlerV1(params *PutPlayerPublicRecordConcurrentHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PutPlayerPublicRecordConcurrentHandlerV1NoContent, *PutPlayerPublicRecordConcurrentHandlerV1BadRequest, *PutPlayerPublicRecordConcurrentHandlerV1Unauthorized, *PutPlayerPublicRecordConcurrentHandlerV1PreconditionFailed, *PutPlayerPublicRecordConcurrentHandlerV1InternalServerError, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -81,7 +81,7 @@ and client need to redo the operation (fetch data and do update).
 Otherwise, the server will process the request.
 
 */
-func (a *Client) PutGameRecordConcurrentHandlerV1(params *PutGameRecordConcurrentHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PutGameRecordConcurrentHandlerV1NoContent, *PutGameRecordConcurrentHandlerV1BadRequest, *PutGameRecordConcurrentHandlerV1PreconditionFailed, *PutGameRecordConcurrentHandlerV1InternalServerError, error) {
+func (a *Client) PutGameRecordConcurrentHandlerV1(params *PutGameRecordConcurrentHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PutGameRecordConcurrentHandlerV1NoContent, *PutGameRecordConcurrentHandlerV1BadRequest, *PutGameRecordConcurrentHandlerV1Unauthorized, *PutGameRecordConcurrentHandlerV1PreconditionFailed, *PutGameRecordConcurrentHandlerV1InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPutGameRecordConcurrentHandlerV1Params()
@@ -97,7 +97,7 @@ func (a *Client) PutGameRecordConcurrentHandlerV1(params *PutGameRecordConcurren
 		PathPattern:        "/cloudsave/v1/namespaces/{namespace}/concurrent/records/{key}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &PutGameRecordConcurrentHandlerV1Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -105,21 +105,23 @@ func (a *Client) PutGameRecordConcurrentHandlerV1(params *PutGameRecordConcurren
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *PutGameRecordConcurrentHandlerV1NoContent:
-		return v, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil
 	case *PutGameRecordConcurrentHandlerV1BadRequest:
-		return nil, v, nil, nil, nil
+		return nil, v, nil, nil, nil, nil
+	case *PutGameRecordConcurrentHandlerV1Unauthorized:
+		return nil, nil, v, nil, nil, nil
 	case *PutGameRecordConcurrentHandlerV1PreconditionFailed:
-		return nil, nil, v, nil, nil
+		return nil, nil, nil, v, nil, nil
 	case *PutGameRecordConcurrentHandlerV1InternalServerError:
-		return nil, nil, nil, v, nil
+		return nil, nil, nil, nil, v, nil
 	default:
-		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -168,7 +170,7 @@ and client need to redo the operation (fetch data and do update).
 Otherwise, the server will process the request.
 
 */
-func (a *Client) PutPlayerPublicRecordConcurrentHandlerV1(params *PutPlayerPublicRecordConcurrentHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PutPlayerPublicRecordConcurrentHandlerV1NoContent, *PutPlayerPublicRecordConcurrentHandlerV1BadRequest, *PutPlayerPublicRecordConcurrentHandlerV1PreconditionFailed, *PutPlayerPublicRecordConcurrentHandlerV1InternalServerError, error) {
+func (a *Client) PutPlayerPublicRecordConcurrentHandlerV1(params *PutPlayerPublicRecordConcurrentHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PutPlayerPublicRecordConcurrentHandlerV1NoContent, *PutPlayerPublicRecordConcurrentHandlerV1BadRequest, *PutPlayerPublicRecordConcurrentHandlerV1Unauthorized, *PutPlayerPublicRecordConcurrentHandlerV1PreconditionFailed, *PutPlayerPublicRecordConcurrentHandlerV1InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPutPlayerPublicRecordConcurrentHandlerV1Params()
@@ -181,10 +183,10 @@ func (a *Client) PutPlayerPublicRecordConcurrentHandlerV1(params *PutPlayerPubli
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "putPlayerPublicRecordConcurrentHandlerV1",
 		Method:             "PUT",
-		PathPattern:        "/cloudsave/v1/namespaces/{namespace}/users/{userID}/concurrent/records/{key}/public",
+		PathPattern:        "/cloudsave/v1/namespaces/{namespace}/users/{userId}/concurrent/records/{key}/public",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &PutPlayerPublicRecordConcurrentHandlerV1Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -192,21 +194,23 @@ func (a *Client) PutPlayerPublicRecordConcurrentHandlerV1(params *PutPlayerPubli
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *PutPlayerPublicRecordConcurrentHandlerV1NoContent:
-		return v, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil
 	case *PutPlayerPublicRecordConcurrentHandlerV1BadRequest:
-		return nil, v, nil, nil, nil
+		return nil, v, nil, nil, nil, nil
+	case *PutPlayerPublicRecordConcurrentHandlerV1Unauthorized:
+		return nil, nil, v, nil, nil, nil
 	case *PutPlayerPublicRecordConcurrentHandlerV1PreconditionFailed:
-		return nil, nil, v, nil, nil
+		return nil, nil, nil, v, nil, nil
 	case *PutPlayerPublicRecordConcurrentHandlerV1InternalServerError:
-		return nil, nil, nil, v, nil
+		return nil, nil, nil, nil, v, nil
 	default:
-		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 

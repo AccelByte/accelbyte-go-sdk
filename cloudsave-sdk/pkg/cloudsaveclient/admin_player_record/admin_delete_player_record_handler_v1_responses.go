@@ -30,6 +30,12 @@ func (o *AdminDeletePlayerRecordHandlerV1Reader) ReadResponse(response runtime.C
 			return nil, err
 		}
 		return result, nil
+	case 401:
+		result := NewAdminDeletePlayerRecordHandlerV1Unauthorized()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 500:
 		result := NewAdminDeletePlayerRecordHandlerV1InternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -43,7 +49,7 @@ func (o *AdminDeletePlayerRecordHandlerV1Reader) ReadResponse(response runtime.C
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested DELETE /cloudsave/v1/admin/namespaces/{namespace}/users/{userID}/records/{key} returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested DELETE /cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records/{key} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -60,10 +66,43 @@ type AdminDeletePlayerRecordHandlerV1NoContent struct {
 }
 
 func (o *AdminDeletePlayerRecordHandlerV1NoContent) Error() string {
-	return fmt.Sprintf("[DELETE /cloudsave/v1/admin/namespaces/{namespace}/users/{userID}/records/{key}][%d] adminDeletePlayerRecordHandlerV1NoContent ", 204)
+	return fmt.Sprintf("[DELETE /cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records/{key}][%d] adminDeletePlayerRecordHandlerV1NoContent ", 204)
 }
 
 func (o *AdminDeletePlayerRecordHandlerV1NoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	return nil
+}
+
+// NewAdminDeletePlayerRecordHandlerV1Unauthorized creates a AdminDeletePlayerRecordHandlerV1Unauthorized with default headers values
+func NewAdminDeletePlayerRecordHandlerV1Unauthorized() *AdminDeletePlayerRecordHandlerV1Unauthorized {
+	return &AdminDeletePlayerRecordHandlerV1Unauthorized{}
+}
+
+/*AdminDeletePlayerRecordHandlerV1Unauthorized handles this case with default header values.
+
+  Unauthorized
+*/
+type AdminDeletePlayerRecordHandlerV1Unauthorized struct {
+	Payload *cloudsaveclientmodels.ModelsResponseError
+}
+
+func (o *AdminDeletePlayerRecordHandlerV1Unauthorized) Error() string {
+	return fmt.Sprintf("[DELETE /cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records/{key}][%d] adminDeletePlayerRecordHandlerV1Unauthorized  %+v", 401, o.Payload)
+}
+
+func (o *AdminDeletePlayerRecordHandlerV1Unauthorized) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
+	return o.Payload
+}
+
+func (o *AdminDeletePlayerRecordHandlerV1Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(cloudsaveclientmodels.ModelsResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -78,20 +117,20 @@ func NewAdminDeletePlayerRecordHandlerV1InternalServerError() *AdminDeletePlayer
   Internal Server Error
 */
 type AdminDeletePlayerRecordHandlerV1InternalServerError struct {
-	Payload *cloudsaveclientmodels.ResponseError
+	Payload *cloudsaveclientmodels.ModelsResponseError
 }
 
 func (o *AdminDeletePlayerRecordHandlerV1InternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /cloudsave/v1/admin/namespaces/{namespace}/users/{userID}/records/{key}][%d] adminDeletePlayerRecordHandlerV1InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[DELETE /cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records/{key}][%d] adminDeletePlayerRecordHandlerV1InternalServerError  %+v", 500, o.Payload)
 }
 
-func (o *AdminDeletePlayerRecordHandlerV1InternalServerError) GetPayload() *cloudsaveclientmodels.ResponseError {
+func (o *AdminDeletePlayerRecordHandlerV1InternalServerError) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
 	return o.Payload
 }
 
 func (o *AdminDeletePlayerRecordHandlerV1InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(cloudsaveclientmodels.ResponseError)
+	o.Payload = new(cloudsaveclientmodels.ModelsResponseError)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

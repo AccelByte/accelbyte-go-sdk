@@ -36,6 +36,12 @@ func (o *PutGameRecordConcurrentHandlerV1Reader) ReadResponse(response runtime.C
 			return nil, err
 		}
 		return result, nil
+	case 401:
+		result := NewPutGameRecordConcurrentHandlerV1Unauthorized()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 412:
 		result := NewPutGameRecordConcurrentHandlerV1PreconditionFailed()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -90,20 +96,53 @@ func NewPutGameRecordConcurrentHandlerV1BadRequest() *PutGameRecordConcurrentHan
   Bad Request
 */
 type PutGameRecordConcurrentHandlerV1BadRequest struct {
-	Payload *cloudsaveclientmodels.ResponseError
+	Payload *cloudsaveclientmodels.ModelsResponseError
 }
 
 func (o *PutGameRecordConcurrentHandlerV1BadRequest) Error() string {
 	return fmt.Sprintf("[PUT /cloudsave/v1/namespaces/{namespace}/concurrent/records/{key}][%d] putGameRecordConcurrentHandlerV1BadRequest  %+v", 400, o.Payload)
 }
 
-func (o *PutGameRecordConcurrentHandlerV1BadRequest) GetPayload() *cloudsaveclientmodels.ResponseError {
+func (o *PutGameRecordConcurrentHandlerV1BadRequest) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
 	return o.Payload
 }
 
 func (o *PutGameRecordConcurrentHandlerV1BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(cloudsaveclientmodels.ResponseError)
+	o.Payload = new(cloudsaveclientmodels.ModelsResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewPutGameRecordConcurrentHandlerV1Unauthorized creates a PutGameRecordConcurrentHandlerV1Unauthorized with default headers values
+func NewPutGameRecordConcurrentHandlerV1Unauthorized() *PutGameRecordConcurrentHandlerV1Unauthorized {
+	return &PutGameRecordConcurrentHandlerV1Unauthorized{}
+}
+
+/*PutGameRecordConcurrentHandlerV1Unauthorized handles this case with default header values.
+
+  Unauthorized
+*/
+type PutGameRecordConcurrentHandlerV1Unauthorized struct {
+	Payload *cloudsaveclientmodels.ModelsResponseError
+}
+
+func (o *PutGameRecordConcurrentHandlerV1Unauthorized) Error() string {
+	return fmt.Sprintf("[PUT /cloudsave/v1/namespaces/{namespace}/concurrent/records/{key}][%d] putGameRecordConcurrentHandlerV1Unauthorized  %+v", 401, o.Payload)
+}
+
+func (o *PutGameRecordConcurrentHandlerV1Unauthorized) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
+	return o.Payload
+}
+
+func (o *PutGameRecordConcurrentHandlerV1Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(cloudsaveclientmodels.ModelsResponseError)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -123,20 +162,20 @@ func NewPutGameRecordConcurrentHandlerV1PreconditionFailed() *PutGameRecordConcu
   Precondition Failed
 */
 type PutGameRecordConcurrentHandlerV1PreconditionFailed struct {
-	Payload *cloudsaveclientmodels.ResponseError
+	Payload *cloudsaveclientmodels.ModelsResponseError
 }
 
 func (o *PutGameRecordConcurrentHandlerV1PreconditionFailed) Error() string {
 	return fmt.Sprintf("[PUT /cloudsave/v1/namespaces/{namespace}/concurrent/records/{key}][%d] putGameRecordConcurrentHandlerV1PreconditionFailed  %+v", 412, o.Payload)
 }
 
-func (o *PutGameRecordConcurrentHandlerV1PreconditionFailed) GetPayload() *cloudsaveclientmodels.ResponseError {
+func (o *PutGameRecordConcurrentHandlerV1PreconditionFailed) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
 	return o.Payload
 }
 
 func (o *PutGameRecordConcurrentHandlerV1PreconditionFailed) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(cloudsaveclientmodels.ResponseError)
+	o.Payload = new(cloudsaveclientmodels.ModelsResponseError)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -156,20 +195,20 @@ func NewPutGameRecordConcurrentHandlerV1InternalServerError() *PutGameRecordConc
   Internal Server Error
 */
 type PutGameRecordConcurrentHandlerV1InternalServerError struct {
-	Payload *cloudsaveclientmodels.ResponseError
+	Payload *cloudsaveclientmodels.ModelsResponseError
 }
 
 func (o *PutGameRecordConcurrentHandlerV1InternalServerError) Error() string {
 	return fmt.Sprintf("[PUT /cloudsave/v1/namespaces/{namespace}/concurrent/records/{key}][%d] putGameRecordConcurrentHandlerV1InternalServerError  %+v", 500, o.Payload)
 }
 
-func (o *PutGameRecordConcurrentHandlerV1InternalServerError) GetPayload() *cloudsaveclientmodels.ResponseError {
+func (o *PutGameRecordConcurrentHandlerV1InternalServerError) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
 	return o.Payload
 }
 
 func (o *PutGameRecordConcurrentHandlerV1InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(cloudsaveclientmodels.ResponseError)
+	o.Payload = new(cloudsaveclientmodels.ModelsResponseError)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

@@ -29,13 +29,13 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	DeleteGameRecordHandlerV1(params *DeleteGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteGameRecordHandlerV1OK, *DeleteGameRecordHandlerV1InternalServerError, error)
+	DeleteGameRecordHandlerV1(params *DeleteGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteGameRecordHandlerV1NoContent, *DeleteGameRecordHandlerV1Unauthorized, *DeleteGameRecordHandlerV1InternalServerError, error)
 
-	GetGameRecordHandlerV1(params *GetGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetGameRecordHandlerV1OK, *GetGameRecordHandlerV1InternalServerError, error)
+	GetGameRecordHandlerV1(params *GetGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetGameRecordHandlerV1OK, *GetGameRecordHandlerV1Unauthorized, *GetGameRecordHandlerV1NotFound, *GetGameRecordHandlerV1InternalServerError, error)
 
-	PostGameRecordHandlerV1(params *PostGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PostGameRecordHandlerV1OK, *PostGameRecordHandlerV1InternalServerError, error)
+	PostGameRecordHandlerV1(params *PostGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PostGameRecordHandlerV1Created, *PostGameRecordHandlerV1BadRequest, *PostGameRecordHandlerV1InternalServerError, error)
 
-	PutGameRecordHandlerV1(params *PutGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PutGameRecordHandlerV1OK, *PutGameRecordHandlerV1InternalServerError, error)
+	PutGameRecordHandlerV1(params *PutGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PutGameRecordHandlerV1OK, *PutGameRecordHandlerV1BadRequest, *PutGameRecordHandlerV1InternalServerError, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -58,7 +58,7 @@ type ClientService interface {
 Delete records by its key
 
 */
-func (a *Client) DeleteGameRecordHandlerV1(params *DeleteGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteGameRecordHandlerV1OK, *DeleteGameRecordHandlerV1InternalServerError, error) {
+func (a *Client) DeleteGameRecordHandlerV1(params *DeleteGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteGameRecordHandlerV1NoContent, *DeleteGameRecordHandlerV1Unauthorized, *DeleteGameRecordHandlerV1InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteGameRecordHandlerV1Params()
@@ -74,7 +74,7 @@ func (a *Client) DeleteGameRecordHandlerV1(params *DeleteGameRecordHandlerV1Para
 		PathPattern:        "/cloudsave/v1/namespaces/{namespace}/records/{key}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &DeleteGameRecordHandlerV1Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -82,17 +82,19 @@ func (a *Client) DeleteGameRecordHandlerV1(params *DeleteGameRecordHandlerV1Para
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, err
+		return nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
-	case *DeleteGameRecordHandlerV1OK:
-		return v, nil, nil
+	case *DeleteGameRecordHandlerV1NoContent:
+		return v, nil, nil, nil
+	case *DeleteGameRecordHandlerV1Unauthorized:
+		return nil, v, nil, nil
 	case *DeleteGameRecordHandlerV1InternalServerError:
-		return nil, v, nil
+		return nil, nil, v, nil
 	default:
-		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -110,11 +112,10 @@ func (a *Client) DeleteGameRecordHandlerV1(params *DeleteGameRecordHandlerV1Para
 	</tr>
 </table>
 <br/>
-
 Get game record by its key.
 
 */
-func (a *Client) GetGameRecordHandlerV1(params *GetGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetGameRecordHandlerV1OK, *GetGameRecordHandlerV1InternalServerError, error) {
+func (a *Client) GetGameRecordHandlerV1(params *GetGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetGameRecordHandlerV1OK, *GetGameRecordHandlerV1Unauthorized, *GetGameRecordHandlerV1NotFound, *GetGameRecordHandlerV1InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetGameRecordHandlerV1Params()
@@ -130,7 +131,7 @@ func (a *Client) GetGameRecordHandlerV1(params *GetGameRecordHandlerV1Params, au
 		PathPattern:        "/cloudsave/v1/namespaces/{namespace}/records/{key}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &GetGameRecordHandlerV1Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -138,17 +139,21 @@ func (a *Client) GetGameRecordHandlerV1(params *GetGameRecordHandlerV1Params, au
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, err
+		return nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *GetGameRecordHandlerV1OK:
-		return v, nil, nil
+		return v, nil, nil, nil, nil
+	case *GetGameRecordHandlerV1Unauthorized:
+		return nil, v, nil, nil, nil
+	case *GetGameRecordHandlerV1NotFound:
+		return nil, nil, v, nil, nil
 	case *GetGameRecordHandlerV1InternalServerError:
-		return nil, v, nil
+		return nil, nil, nil, v, nil
 	default:
-		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -211,7 +216,7 @@ Append new json item
 </pre>
 
 */
-func (a *Client) PostGameRecordHandlerV1(params *PostGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PostGameRecordHandlerV1OK, *PostGameRecordHandlerV1InternalServerError, error) {
+func (a *Client) PostGameRecordHandlerV1(params *PostGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PostGameRecordHandlerV1Created, *PostGameRecordHandlerV1BadRequest, *PostGameRecordHandlerV1InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPostGameRecordHandlerV1Params()
@@ -227,7 +232,7 @@ func (a *Client) PostGameRecordHandlerV1(params *PostGameRecordHandlerV1Params, 
 		PathPattern:        "/cloudsave/v1/namespaces/{namespace}/records/{key}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &PostGameRecordHandlerV1Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -235,17 +240,19 @@ func (a *Client) PostGameRecordHandlerV1(params *PostGameRecordHandlerV1Params, 
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, err
+		return nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
-	case *PostGameRecordHandlerV1OK:
-		return v, nil, nil
+	case *PostGameRecordHandlerV1Created:
+		return v, nil, nil, nil
+	case *PostGameRecordHandlerV1BadRequest:
+		return nil, v, nil, nil
 	case *PostGameRecordHandlerV1InternalServerError:
-		return nil, v, nil
+		return nil, nil, v, nil
 	default:
-		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -288,7 +295,7 @@ Replace all records
 </pre>
 
 */
-func (a *Client) PutGameRecordHandlerV1(params *PutGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PutGameRecordHandlerV1OK, *PutGameRecordHandlerV1InternalServerError, error) {
+func (a *Client) PutGameRecordHandlerV1(params *PutGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PutGameRecordHandlerV1OK, *PutGameRecordHandlerV1BadRequest, *PutGameRecordHandlerV1InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPutGameRecordHandlerV1Params()
@@ -304,7 +311,7 @@ func (a *Client) PutGameRecordHandlerV1(params *PutGameRecordHandlerV1Params, au
 		PathPattern:        "/cloudsave/v1/namespaces/{namespace}/records/{key}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &PutGameRecordHandlerV1Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -312,17 +319,19 @@ func (a *Client) PutGameRecordHandlerV1(params *PutGameRecordHandlerV1Params, au
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, err
+		return nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *PutGameRecordHandlerV1OK:
-		return v, nil, nil
+		return v, nil, nil, nil
+	case *PutGameRecordHandlerV1BadRequest:
+		return nil, v, nil, nil
 	case *PutGameRecordHandlerV1InternalServerError:
-		return nil, v, nil
+		return nil, nil, v, nil
 	default:
-		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 

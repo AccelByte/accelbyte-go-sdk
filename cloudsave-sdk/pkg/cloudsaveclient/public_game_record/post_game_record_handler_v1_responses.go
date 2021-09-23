@@ -8,6 +8,7 @@ package public_game_record
 import (
 	"fmt"
 	"io"
+	"io/ioutil"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
@@ -23,8 +24,14 @@ type PostGameRecordHandlerV1Reader struct {
 // ReadResponse reads a server response into the received o.
 func (o *PostGameRecordHandlerV1Reader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-	case 200:
-		result := NewPostGameRecordHandlerV1OK()
+	case 201:
+		result := NewPostGameRecordHandlerV1Created()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
+	case 400:
+		result := NewPostGameRecordHandlerV1BadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -35,35 +42,67 @@ func (o *PostGameRecordHandlerV1Reader) ReadResponse(response runtime.ClientResp
 			return nil, err
 		}
 		return result, nil
+
 	default:
-		result := NewPostGameRecordHandlerV1Default(response.Code())
-		if err := result.readResponse(response, consumer, o.formats); err != nil {
+		data, err := ioutil.ReadAll(response.Body())
+		if err != nil {
 			return nil, err
 		}
-		if response.Code()/100 == 2 {
-			return result, nil
-		}
-		return result, nil
+
+		return nil, fmt.Errorf("Requested POST /cloudsave/v1/namespaces/{namespace}/records/{key} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
-// NewPostGameRecordHandlerV1OK creates a PostGameRecordHandlerV1OK with default headers values
-func NewPostGameRecordHandlerV1OK() *PostGameRecordHandlerV1OK {
-	return &PostGameRecordHandlerV1OK{}
+// NewPostGameRecordHandlerV1Created creates a PostGameRecordHandlerV1Created with default headers values
+func NewPostGameRecordHandlerV1Created() *PostGameRecordHandlerV1Created {
+	return &PostGameRecordHandlerV1Created{}
 }
 
-/*PostGameRecordHandlerV1OK handles this case with default header values.
+/*PostGameRecordHandlerV1Created handles this case with default header values.
 
   Record saved
 */
-type PostGameRecordHandlerV1OK struct {
+type PostGameRecordHandlerV1Created struct {
 }
 
-func (o *PostGameRecordHandlerV1OK) Error() string {
-	return fmt.Sprintf("[POST /cloudsave/v1/namespaces/{namespace}/records/{key}][%d] postGameRecordHandlerV1OK ", 200)
+func (o *PostGameRecordHandlerV1Created) Error() string {
+	return fmt.Sprintf("[POST /cloudsave/v1/namespaces/{namespace}/records/{key}][%d] postGameRecordHandlerV1Created ", 201)
 }
 
-func (o *PostGameRecordHandlerV1OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *PostGameRecordHandlerV1Created) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	return nil
+}
+
+// NewPostGameRecordHandlerV1BadRequest creates a PostGameRecordHandlerV1BadRequest with default headers values
+func NewPostGameRecordHandlerV1BadRequest() *PostGameRecordHandlerV1BadRequest {
+	return &PostGameRecordHandlerV1BadRequest{}
+}
+
+/*PostGameRecordHandlerV1BadRequest handles this case with default header values.
+
+  Bad Request
+*/
+type PostGameRecordHandlerV1BadRequest struct {
+	Payload *cloudsaveclientmodels.ModelsResponseError
+}
+
+func (o *PostGameRecordHandlerV1BadRequest) Error() string {
+	return fmt.Sprintf("[POST /cloudsave/v1/namespaces/{namespace}/records/{key}][%d] postGameRecordHandlerV1BadRequest  %+v", 400, o.Payload)
+}
+
+func (o *PostGameRecordHandlerV1BadRequest) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
+	return o.Payload
+}
+
+func (o *PostGameRecordHandlerV1BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(cloudsaveclientmodels.ModelsResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -78,54 +117,25 @@ func NewPostGameRecordHandlerV1InternalServerError() *PostGameRecordHandlerV1Int
   Internal Server Error
 */
 type PostGameRecordHandlerV1InternalServerError struct {
-	Payload *cloudsaveclientmodels.ResponseError
+	Payload *cloudsaveclientmodels.ModelsResponseError
 }
 
 func (o *PostGameRecordHandlerV1InternalServerError) Error() string {
 	return fmt.Sprintf("[POST /cloudsave/v1/namespaces/{namespace}/records/{key}][%d] postGameRecordHandlerV1InternalServerError  %+v", 500, o.Payload)
 }
 
-func (o *PostGameRecordHandlerV1InternalServerError) GetPayload() *cloudsaveclientmodels.ResponseError {
+func (o *PostGameRecordHandlerV1InternalServerError) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
 	return o.Payload
 }
 
 func (o *PostGameRecordHandlerV1InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(cloudsaveclientmodels.ResponseError)
+	o.Payload = new(cloudsaveclientmodels.ModelsResponseError)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
-
-	return nil
-}
-
-// NewPostGameRecordHandlerV1Default creates a PostGameRecordHandlerV1Default with default headers values
-func NewPostGameRecordHandlerV1Default(code int) *PostGameRecordHandlerV1Default {
-	return &PostGameRecordHandlerV1Default{
-		_statusCode: code,
-	}
-}
-
-/*PostGameRecordHandlerV1Default handles this case with default header values.
-
-  Record saved
-*/
-type PostGameRecordHandlerV1Default struct {
-	_statusCode int
-}
-
-// Code gets the status code for the post game record handler v1 default response
-func (o *PostGameRecordHandlerV1Default) Code() int {
-	return o._statusCode
-}
-
-func (o *PostGameRecordHandlerV1Default) Error() string {
-	return fmt.Sprintf("[POST /cloudsave/v1/namespaces/{namespace}/records/{key}][%d] postGameRecordHandlerV1 default ", o._statusCode)
-}
-
-func (o *PostGameRecordHandlerV1Default) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }

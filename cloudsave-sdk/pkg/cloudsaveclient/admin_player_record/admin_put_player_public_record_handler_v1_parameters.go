@@ -186,8 +186,8 @@ func (o *AdminPutPlayerPublicRecordHandlerV1Params) WriteToRequest(r runtime.Cli
 		return err
 	}
 
-	// path param userID
-	if err := r.SetPathParam("userID", o.UserID); err != nil {
+	// path param userId
+	if err := r.SetPathParam("userId", o.UserID); err != nil {
 		return err
 	}
 

@@ -8,6 +8,7 @@ package public_game_record
 import (
 	"fmt"
 	"io"
+	"io/ioutil"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
@@ -29,21 +30,26 @@ func (o *PutGameRecordHandlerV1Reader) ReadResponse(response runtime.ClientRespo
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewPutGameRecordHandlerV1BadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 500:
 		result := NewPutGameRecordHandlerV1InternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
+
 	default:
-		result := NewPutGameRecordHandlerV1Default(response.Code())
-		if err := result.readResponse(response, consumer, o.formats); err != nil {
+		data, err := ioutil.ReadAll(response.Body())
+		if err != nil {
 			return nil, err
 		}
-		if response.Code()/100 == 2 {
-			return result, nil
-		}
-		return result, nil
+
+		return nil, fmt.Errorf("Requested PUT /cloudsave/v1/namespaces/{namespace}/records/{key} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -68,6 +74,39 @@ func (o *PutGameRecordHandlerV1OK) readResponse(response runtime.ClientResponse,
 	return nil
 }
 
+// NewPutGameRecordHandlerV1BadRequest creates a PutGameRecordHandlerV1BadRequest with default headers values
+func NewPutGameRecordHandlerV1BadRequest() *PutGameRecordHandlerV1BadRequest {
+	return &PutGameRecordHandlerV1BadRequest{}
+}
+
+/*PutGameRecordHandlerV1BadRequest handles this case with default header values.
+
+  Bad Request
+*/
+type PutGameRecordHandlerV1BadRequest struct {
+	Payload *cloudsaveclientmodels.ModelsResponseError
+}
+
+func (o *PutGameRecordHandlerV1BadRequest) Error() string {
+	return fmt.Sprintf("[PUT /cloudsave/v1/namespaces/{namespace}/records/{key}][%d] putGameRecordHandlerV1BadRequest  %+v", 400, o.Payload)
+}
+
+func (o *PutGameRecordHandlerV1BadRequest) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
+	return o.Payload
+}
+
+func (o *PutGameRecordHandlerV1BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(cloudsaveclientmodels.ModelsResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewPutGameRecordHandlerV1InternalServerError creates a PutGameRecordHandlerV1InternalServerError with default headers values
 func NewPutGameRecordHandlerV1InternalServerError() *PutGameRecordHandlerV1InternalServerError {
 	return &PutGameRecordHandlerV1InternalServerError{}
@@ -78,54 +117,25 @@ func NewPutGameRecordHandlerV1InternalServerError() *PutGameRecordHandlerV1Inter
   Internal Server Error
 */
 type PutGameRecordHandlerV1InternalServerError struct {
-	Payload *cloudsaveclientmodels.ResponseError
+	Payload *cloudsaveclientmodels.ModelsResponseError
 }
 
 func (o *PutGameRecordHandlerV1InternalServerError) Error() string {
 	return fmt.Sprintf("[PUT /cloudsave/v1/namespaces/{namespace}/records/{key}][%d] putGameRecordHandlerV1InternalServerError  %+v", 500, o.Payload)
 }
 
-func (o *PutGameRecordHandlerV1InternalServerError) GetPayload() *cloudsaveclientmodels.ResponseError {
+func (o *PutGameRecordHandlerV1InternalServerError) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
 	return o.Payload
 }
 
 func (o *PutGameRecordHandlerV1InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(cloudsaveclientmodels.ResponseError)
+	o.Payload = new(cloudsaveclientmodels.ModelsResponseError)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
-
-	return nil
-}
-
-// NewPutGameRecordHandlerV1Default creates a PutGameRecordHandlerV1Default with default headers values
-func NewPutGameRecordHandlerV1Default(code int) *PutGameRecordHandlerV1Default {
-	return &PutGameRecordHandlerV1Default{
-		_statusCode: code,
-	}
-}
-
-/*PutGameRecordHandlerV1Default handles this case with default header values.
-
-  Record saved
-*/
-type PutGameRecordHandlerV1Default struct {
-	_statusCode int
-}
-
-// Code gets the status code for the put game record handler v1 default response
-func (o *PutGameRecordHandlerV1Default) Code() int {
-	return o._statusCode
-}
-
-func (o *PutGameRecordHandlerV1Default) Error() string {
-	return fmt.Sprintf("[PUT /cloudsave/v1/namespaces/{namespace}/records/{key}][%d] putGameRecordHandlerV1 default ", o._statusCode)
-}
-
-func (o *PutGameRecordHandlerV1Default) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }

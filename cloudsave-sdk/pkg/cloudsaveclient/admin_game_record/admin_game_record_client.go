@@ -29,32 +29,32 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	DeleteAdminGameRecordHandlerV1(params *DeleteAdminGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteAdminGameRecordHandlerV1NoContent, *DeleteAdminGameRecordHandlerV1InternalServerError, error)
+	AdminDeleteGameRecordHandlerV1(params *AdminDeleteGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteGameRecordHandlerV1NoContent, *AdminDeleteGameRecordHandlerV1Unauthorized, *AdminDeleteGameRecordHandlerV1InternalServerError, error)
 
-	GetGameRecordHandlerByKeyV1(params *GetGameRecordHandlerByKeyV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetGameRecordHandlerByKeyV1OK, *GetGameRecordHandlerByKeyV1InternalServerError, error)
+	AdminGetGameRecordHandlerV1(params *AdminGetGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetGameRecordHandlerV1OK, *AdminGetGameRecordHandlerV1Unauthorized, *AdminGetGameRecordHandlerV1NotFound, *AdminGetGameRecordHandlerV1InternalServerError, error)
 
-	ListGameRecordsHandlerV1(params *ListGameRecordsHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*ListGameRecordsHandlerV1OK, *ListGameRecordsHandlerV1InternalServerError, error)
+	AdminPostGameRecordHandlerV1(params *AdminPostGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPostGameRecordHandlerV1Created, *AdminPostGameRecordHandlerV1Unauthorized, *AdminPostGameRecordHandlerV1InternalServerError, error)
 
-	PostAdminGameRecordHandlerV1(params *PostAdminGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PostAdminGameRecordHandlerV1OK, *PostAdminGameRecordHandlerV1InternalServerError, error)
+	AdminPutGameRecordHandlerV1(params *AdminPutGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutGameRecordHandlerV1OK, *AdminPutGameRecordHandlerV1Unauthorized, *AdminPutGameRecordHandlerV1InternalServerError, error)
 
-	PutAdminGameRecordHandlerV1(params *PutAdminGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PutAdminGameRecordHandlerV1OK, *PutAdminGameRecordHandlerV1InternalServerError, error)
+	ListGameRecordsHandlerV1(params *ListGameRecordsHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*ListGameRecordsHandlerV1OK, *ListGameRecordsHandlerV1Unauthorized, *ListGameRecordsHandlerV1InternalServerError, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
 
 /*
-  DeleteAdminGameRecordHandlerV1 purges all records under the given key
+  AdminDeleteGameRecordHandlerV1 purges all records under the given key
 
   Required permission: ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [DELETE]
 
 Required scope: social
 
-This endpoints is to store arbitrary JSON data in namespace-level
+This endpoints delete game record in namespace-level
 */
-func (a *Client) DeleteAdminGameRecordHandlerV1(params *DeleteAdminGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteAdminGameRecordHandlerV1NoContent, *DeleteAdminGameRecordHandlerV1InternalServerError, error) {
+func (a *Client) AdminDeleteGameRecordHandlerV1(params *AdminDeleteGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteGameRecordHandlerV1NoContent, *AdminDeleteGameRecordHandlerV1Unauthorized, *AdminDeleteGameRecordHandlerV1InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewDeleteAdminGameRecordHandlerV1Params()
+		params = NewAdminDeleteGameRecordHandlerV1Params()
 	}
 
 	if params.Context == nil {
@@ -62,35 +62,37 @@ func (a *Client) DeleteAdminGameRecordHandlerV1(params *DeleteAdminGameRecordHan
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "deleteAdminGameRecordHandlerV1",
+		ID:                 "adminDeleteGameRecordHandlerV1",
 		Method:             "DELETE",
 		PathPattern:        "/cloudsave/v1/admin/namespaces/{namespace}/records/{key}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
-		Reader:             &DeleteAdminGameRecordHandlerV1Reader{formats: a.formats},
+		Reader:             &AdminDeleteGameRecordHandlerV1Reader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, err
+		return nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
-	case *DeleteAdminGameRecordHandlerV1NoContent:
-		return v, nil, nil
-	case *DeleteAdminGameRecordHandlerV1InternalServerError:
-		return nil, v, nil
+	case *AdminDeleteGameRecordHandlerV1NoContent:
+		return v, nil, nil, nil
+	case *AdminDeleteGameRecordHandlerV1Unauthorized:
+		return nil, v, nil, nil
+	case *AdminDeleteGameRecordHandlerV1InternalServerError:
+		return nil, nil, v, nil
 	default:
-		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
-  GetGameRecordHandlerByKeyV1 retrieves a record value by its key
+  AdminGetGameRecordHandlerV1 retrieves a record value by its key
 
   Required permission: ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [READ]
 
@@ -98,10 +100,10 @@ Required scope: social
 
 Get a record by its key in namespace-level.
 */
-func (a *Client) GetGameRecordHandlerByKeyV1(params *GetGameRecordHandlerByKeyV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetGameRecordHandlerByKeyV1OK, *GetGameRecordHandlerByKeyV1InternalServerError, error) {
+func (a *Client) AdminGetGameRecordHandlerV1(params *AdminGetGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetGameRecordHandlerV1OK, *AdminGetGameRecordHandlerV1Unauthorized, *AdminGetGameRecordHandlerV1NotFound, *AdminGetGameRecordHandlerV1InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewGetGameRecordHandlerByKeyV1Params()
+		params = NewAdminGetGameRecordHandlerV1Params()
 	}
 
 	if params.Context == nil {
@@ -109,30 +111,132 @@ func (a *Client) GetGameRecordHandlerByKeyV1(params *GetGameRecordHandlerByKeyV1
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "getGameRecordHandlerByKeyV1",
+		ID:                 "adminGetGameRecordHandlerV1",
 		Method:             "GET",
 		PathPattern:        "/cloudsave/v1/admin/namespaces/{namespace}/records/{key}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
-		Reader:             &GetGameRecordHandlerByKeyV1Reader{formats: a.formats},
+		Reader:             &AdminGetGameRecordHandlerV1Reader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, err
+		return nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
-	case *GetGameRecordHandlerByKeyV1OK:
-		return v, nil, nil
-	case *GetGameRecordHandlerByKeyV1InternalServerError:
-		return nil, v, nil
+	case *AdminGetGameRecordHandlerV1OK:
+		return v, nil, nil, nil, nil
+	case *AdminGetGameRecordHandlerV1Unauthorized:
+		return nil, v, nil, nil, nil
+	case *AdminGetGameRecordHandlerV1NotFound:
+		return nil, nil, v, nil, nil
+	case *AdminGetGameRecordHandlerV1InternalServerError:
+		return nil, nil, nil, v, nil
 	default:
-		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  AdminPostGameRecordHandlerV1 saves namespace level record
+
+  Required permission: ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [WRITE]
+
+Required scope: social
+
+This endpoints is to create new game record in namespace-level.
+*/
+func (a *Client) AdminPostGameRecordHandlerV1(params *AdminPostGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPostGameRecordHandlerV1Created, *AdminPostGameRecordHandlerV1Unauthorized, *AdminPostGameRecordHandlerV1InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminPostGameRecordHandlerV1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminPostGameRecordHandlerV1",
+		Method:             "POST",
+		PathPattern:        "/cloudsave/v1/admin/namespaces/{namespace}/records/{key}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &AdminPostGameRecordHandlerV1Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminPostGameRecordHandlerV1Created:
+		return v, nil, nil, nil
+	case *AdminPostGameRecordHandlerV1Unauthorized:
+		return nil, v, nil, nil
+	case *AdminPostGameRecordHandlerV1InternalServerError:
+		return nil, nil, v, nil
+	default:
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  AdminPutGameRecordHandlerV1 saves or replace game record
+
+  Required permission: ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [UPDATE]
+
+Required scope: social
+
+This endpoints is to replace game record data if exists or insert new data in namespace-level
+*/
+func (a *Client) AdminPutGameRecordHandlerV1(params *AdminPutGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutGameRecordHandlerV1OK, *AdminPutGameRecordHandlerV1Unauthorized, *AdminPutGameRecordHandlerV1InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminPutGameRecordHandlerV1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminPutGameRecordHandlerV1",
+		Method:             "PUT",
+		PathPattern:        "/cloudsave/v1/admin/namespaces/{namespace}/records/{key}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &AdminPutGameRecordHandlerV1Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminPutGameRecordHandlerV1OK:
+		return v, nil, nil, nil
+	case *AdminPutGameRecordHandlerV1Unauthorized:
+		return nil, v, nil, nil
+	case *AdminPutGameRecordHandlerV1InternalServerError:
+		return nil, nil, v, nil
+	default:
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -145,7 +249,7 @@ Required scope: social
 
 Retrieve list of records key by namespace
 */
-func (a *Client) ListGameRecordsHandlerV1(params *ListGameRecordsHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*ListGameRecordsHandlerV1OK, *ListGameRecordsHandlerV1InternalServerError, error) {
+func (a *Client) ListGameRecordsHandlerV1(params *ListGameRecordsHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*ListGameRecordsHandlerV1OK, *ListGameRecordsHandlerV1Unauthorized, *ListGameRecordsHandlerV1InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewListGameRecordsHandlerV1Params()
@@ -161,7 +265,7 @@ func (a *Client) ListGameRecordsHandlerV1(params *ListGameRecordsHandlerV1Params
 		PathPattern:        "/cloudsave/v1/admin/namespaces/{namespace}/records",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &ListGameRecordsHandlerV1Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -169,111 +273,19 @@ func (a *Client) ListGameRecordsHandlerV1(params *ListGameRecordsHandlerV1Params
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, err
+		return nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *ListGameRecordsHandlerV1OK:
-		return v, nil, nil
+		return v, nil, nil, nil
+	case *ListGameRecordsHandlerV1Unauthorized:
+		return nil, v, nil, nil
 	case *ListGameRecordsHandlerV1InternalServerError:
-		return nil, v, nil
+		return nil, nil, v, nil
 	default:
-		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-/*
-  PostAdminGameRecordHandlerV1 saves namespace level record
-
-  Required permission: ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [WRITE]
-
-Required scope: social
-
-This endpoints is to store arbitrary JSON data in namespace-level.
-*/
-func (a *Client) PostAdminGameRecordHandlerV1(params *PostAdminGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PostAdminGameRecordHandlerV1OK, *PostAdminGameRecordHandlerV1InternalServerError, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewPostAdminGameRecordHandlerV1Params()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "postAdminGameRecordHandlerV1",
-		Method:             "POST",
-		PathPattern:        "/cloudsave/v1/admin/namespaces/{namespace}/records/{key}",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &PostAdminGameRecordHandlerV1Reader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *PostAdminGameRecordHandlerV1OK:
-		return v, nil, nil
-	case *PostAdminGameRecordHandlerV1InternalServerError:
-		return nil, v, nil
-	default:
-		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-/*
-  PutAdminGameRecordHandlerV1 saves or replace game record
-
-  Required permission: ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [UPDATE]
-
-Required scope: social
-
-This endpoints is to store arbitrary JSON data in namespace-level
-*/
-func (a *Client) PutAdminGameRecordHandlerV1(params *PutAdminGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PutAdminGameRecordHandlerV1OK, *PutAdminGameRecordHandlerV1InternalServerError, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewPutAdminGameRecordHandlerV1Params()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "putAdminGameRecordHandlerV1",
-		Method:             "PUT",
-		PathPattern:        "/cloudsave/v1/admin/namespaces/{namespace}/records/{key}",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &PutAdminGameRecordHandlerV1Reader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *PutAdminGameRecordHandlerV1OK:
-		return v, nil, nil
-	case *PutAdminGameRecordHandlerV1InternalServerError:
-		return nil, v, nil
-	default:
-		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 

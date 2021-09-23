@@ -8,6 +8,7 @@ package admin_player_record
 import (
 	"fmt"
 	"io"
+	"io/ioutil"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
@@ -29,6 +30,12 @@ func (o *AdminGetPlayerPublicRecordHandlerV1Reader) ReadResponse(response runtim
 			return nil, err
 		}
 		return result, nil
+	case 401:
+		result := NewAdminGetPlayerPublicRecordHandlerV1Unauthorized()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 404:
 		result := NewAdminGetPlayerPublicRecordHandlerV1NotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -41,15 +48,14 @@ func (o *AdminGetPlayerPublicRecordHandlerV1Reader) ReadResponse(response runtim
 			return nil, err
 		}
 		return result, nil
+
 	default:
-		result := NewAdminGetPlayerPublicRecordHandlerV1Default(response.Code())
-		if err := result.readResponse(response, consumer, o.formats); err != nil {
+		data, err := ioutil.ReadAll(response.Body())
+		if err != nil {
 			return nil, err
 		}
-		if response.Code()/100 == 2 {
-			return result, nil
-		}
-		return result, nil
+
+		return nil, fmt.Errorf("Requested GET /cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records/{key}/public returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -60,14 +66,14 @@ func NewAdminGetPlayerPublicRecordHandlerV1OK() *AdminGetPlayerPublicRecordHandl
 
 /*AdminGetPlayerPublicRecordHandlerV1OK handles this case with default header values.
 
-  Player public record value retrieved
+  Successful operation
 */
 type AdminGetPlayerPublicRecordHandlerV1OK struct {
 	Payload *cloudsaveclientmodels.ModelsPlayerRecord
 }
 
 func (o *AdminGetPlayerPublicRecordHandlerV1OK) Error() string {
-	return fmt.Sprintf("[GET /cloudsave/v1/admin/namespaces/{namespace}/users/{userID}/records/{key}/public][%d] adminGetPlayerPublicRecordHandlerV1OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records/{key}/public][%d] adminGetPlayerPublicRecordHandlerV1OK  %+v", 200, o.Payload)
 }
 
 func (o *AdminGetPlayerPublicRecordHandlerV1OK) GetPayload() *cloudsaveclientmodels.ModelsPlayerRecord {
@@ -77,6 +83,39 @@ func (o *AdminGetPlayerPublicRecordHandlerV1OK) GetPayload() *cloudsaveclientmod
 func (o *AdminGetPlayerPublicRecordHandlerV1OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(cloudsaveclientmodels.ModelsPlayerRecord)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewAdminGetPlayerPublicRecordHandlerV1Unauthorized creates a AdminGetPlayerPublicRecordHandlerV1Unauthorized with default headers values
+func NewAdminGetPlayerPublicRecordHandlerV1Unauthorized() *AdminGetPlayerPublicRecordHandlerV1Unauthorized {
+	return &AdminGetPlayerPublicRecordHandlerV1Unauthorized{}
+}
+
+/*AdminGetPlayerPublicRecordHandlerV1Unauthorized handles this case with default header values.
+
+  Unauthorized
+*/
+type AdminGetPlayerPublicRecordHandlerV1Unauthorized struct {
+	Payload *cloudsaveclientmodels.ModelsResponseError
+}
+
+func (o *AdminGetPlayerPublicRecordHandlerV1Unauthorized) Error() string {
+	return fmt.Sprintf("[GET /cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records/{key}/public][%d] adminGetPlayerPublicRecordHandlerV1Unauthorized  %+v", 401, o.Payload)
+}
+
+func (o *AdminGetPlayerPublicRecordHandlerV1Unauthorized) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
+	return o.Payload
+}
+
+func (o *AdminGetPlayerPublicRecordHandlerV1Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(cloudsaveclientmodels.ModelsResponseError)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -96,20 +135,20 @@ func NewAdminGetPlayerPublicRecordHandlerV1NotFound() *AdminGetPlayerPublicRecor
   Not Found
 */
 type AdminGetPlayerPublicRecordHandlerV1NotFound struct {
-	Payload *cloudsaveclientmodels.ResponseError
+	Payload *cloudsaveclientmodels.ModelsResponseError
 }
 
 func (o *AdminGetPlayerPublicRecordHandlerV1NotFound) Error() string {
-	return fmt.Sprintf("[GET /cloudsave/v1/admin/namespaces/{namespace}/users/{userID}/records/{key}/public][%d] adminGetPlayerPublicRecordHandlerV1NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records/{key}/public][%d] adminGetPlayerPublicRecordHandlerV1NotFound  %+v", 404, o.Payload)
 }
 
-func (o *AdminGetPlayerPublicRecordHandlerV1NotFound) GetPayload() *cloudsaveclientmodels.ResponseError {
+func (o *AdminGetPlayerPublicRecordHandlerV1NotFound) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
 	return o.Payload
 }
 
 func (o *AdminGetPlayerPublicRecordHandlerV1NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(cloudsaveclientmodels.ResponseError)
+	o.Payload = new(cloudsaveclientmodels.ModelsResponseError)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -129,62 +168,20 @@ func NewAdminGetPlayerPublicRecordHandlerV1InternalServerError() *AdminGetPlayer
   Internal Server Error
 */
 type AdminGetPlayerPublicRecordHandlerV1InternalServerError struct {
-	Payload *cloudsaveclientmodels.ResponseError
+	Payload *cloudsaveclientmodels.ModelsResponseError
 }
 
 func (o *AdminGetPlayerPublicRecordHandlerV1InternalServerError) Error() string {
-	return fmt.Sprintf("[GET /cloudsave/v1/admin/namespaces/{namespace}/users/{userID}/records/{key}/public][%d] adminGetPlayerPublicRecordHandlerV1InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records/{key}/public][%d] adminGetPlayerPublicRecordHandlerV1InternalServerError  %+v", 500, o.Payload)
 }
 
-func (o *AdminGetPlayerPublicRecordHandlerV1InternalServerError) GetPayload() *cloudsaveclientmodels.ResponseError {
+func (o *AdminGetPlayerPublicRecordHandlerV1InternalServerError) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
 	return o.Payload
 }
 
 func (o *AdminGetPlayerPublicRecordHandlerV1InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(cloudsaveclientmodels.ResponseError)
-
-	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
-		return err
-	}
-
-	return nil
-}
-
-// NewAdminGetPlayerPublicRecordHandlerV1Default creates a AdminGetPlayerPublicRecordHandlerV1Default with default headers values
-func NewAdminGetPlayerPublicRecordHandlerV1Default(code int) *AdminGetPlayerPublicRecordHandlerV1Default {
-	return &AdminGetPlayerPublicRecordHandlerV1Default{
-		_statusCode: code,
-	}
-}
-
-/*AdminGetPlayerPublicRecordHandlerV1Default handles this case with default header values.
-
-  AdminGetPlayerPublicRecordHandlerV1Default admin get player public record handler v1 default
-*/
-type AdminGetPlayerPublicRecordHandlerV1Default struct {
-	_statusCode int
-
-	Payload *cloudsaveclientmodels.ModelsPlayerRecord
-}
-
-// Code gets the status code for the admin get player public record handler v1 default response
-func (o *AdminGetPlayerPublicRecordHandlerV1Default) Code() int {
-	return o._statusCode
-}
-
-func (o *AdminGetPlayerPublicRecordHandlerV1Default) Error() string {
-	return fmt.Sprintf("[GET /cloudsave/v1/admin/namespaces/{namespace}/users/{userID}/records/{key}/public][%d] adminGetPlayerPublicRecordHandlerV1 default  %+v", o._statusCode, o.Payload)
-}
-
-func (o *AdminGetPlayerPublicRecordHandlerV1Default) GetPayload() *cloudsaveclientmodels.ModelsPlayerRecord {
-	return o.Payload
-}
-
-func (o *AdminGetPlayerPublicRecordHandlerV1Default) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-
-	o.Payload = new(cloudsaveclientmodels.ModelsPlayerRecord)
+	o.Payload = new(cloudsaveclientmodels.ModelsResponseError)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

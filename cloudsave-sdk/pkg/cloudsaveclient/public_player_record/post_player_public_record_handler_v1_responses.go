@@ -8,6 +8,7 @@ package public_player_record
 import (
 	"fmt"
 	"io"
+	"io/ioutil"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
@@ -23,8 +24,14 @@ type PostPlayerPublicRecordHandlerV1Reader struct {
 // ReadResponse reads a server response into the received o.
 func (o *PostPlayerPublicRecordHandlerV1Reader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-	case 200:
-		result := NewPostPlayerPublicRecordHandlerV1OK()
+	case 201:
+		result := NewPostPlayerPublicRecordHandlerV1Created()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
+	case 401:
+		result := NewPostPlayerPublicRecordHandlerV1Unauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -35,35 +42,67 @@ func (o *PostPlayerPublicRecordHandlerV1Reader) ReadResponse(response runtime.Cl
 			return nil, err
 		}
 		return result, nil
+
 	default:
-		result := NewPostPlayerPublicRecordHandlerV1Default(response.Code())
-		if err := result.readResponse(response, consumer, o.formats); err != nil {
+		data, err := ioutil.ReadAll(response.Body())
+		if err != nil {
 			return nil, err
 		}
-		if response.Code()/100 == 2 {
-			return result, nil
-		}
-		return result, nil
+
+		return nil, fmt.Errorf("Requested POST /cloudsave/v1/namespaces/{namespace}/users/{userId}/records/{key}/public returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
-// NewPostPlayerPublicRecordHandlerV1OK creates a PostPlayerPublicRecordHandlerV1OK with default headers values
-func NewPostPlayerPublicRecordHandlerV1OK() *PostPlayerPublicRecordHandlerV1OK {
-	return &PostPlayerPublicRecordHandlerV1OK{}
+// NewPostPlayerPublicRecordHandlerV1Created creates a PostPlayerPublicRecordHandlerV1Created with default headers values
+func NewPostPlayerPublicRecordHandlerV1Created() *PostPlayerPublicRecordHandlerV1Created {
+	return &PostPlayerPublicRecordHandlerV1Created{}
 }
 
-/*PostPlayerPublicRecordHandlerV1OK handles this case with default header values.
+/*PostPlayerPublicRecordHandlerV1Created handles this case with default header values.
 
   Record saved
 */
-type PostPlayerPublicRecordHandlerV1OK struct {
+type PostPlayerPublicRecordHandlerV1Created struct {
 }
 
-func (o *PostPlayerPublicRecordHandlerV1OK) Error() string {
-	return fmt.Sprintf("[POST /cloudsave/v1/namespaces/{namespace}/users/{userID}/records/{key}/public][%d] postPlayerPublicRecordHandlerV1OK ", 200)
+func (o *PostPlayerPublicRecordHandlerV1Created) Error() string {
+	return fmt.Sprintf("[POST /cloudsave/v1/namespaces/{namespace}/users/{userId}/records/{key}/public][%d] postPlayerPublicRecordHandlerV1Created ", 201)
 }
 
-func (o *PostPlayerPublicRecordHandlerV1OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *PostPlayerPublicRecordHandlerV1Created) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	return nil
+}
+
+// NewPostPlayerPublicRecordHandlerV1Unauthorized creates a PostPlayerPublicRecordHandlerV1Unauthorized with default headers values
+func NewPostPlayerPublicRecordHandlerV1Unauthorized() *PostPlayerPublicRecordHandlerV1Unauthorized {
+	return &PostPlayerPublicRecordHandlerV1Unauthorized{}
+}
+
+/*PostPlayerPublicRecordHandlerV1Unauthorized handles this case with default header values.
+
+  Unauthorized
+*/
+type PostPlayerPublicRecordHandlerV1Unauthorized struct {
+	Payload *cloudsaveclientmodels.ModelsResponseError
+}
+
+func (o *PostPlayerPublicRecordHandlerV1Unauthorized) Error() string {
+	return fmt.Sprintf("[POST /cloudsave/v1/namespaces/{namespace}/users/{userId}/records/{key}/public][%d] postPlayerPublicRecordHandlerV1Unauthorized  %+v", 401, o.Payload)
+}
+
+func (o *PostPlayerPublicRecordHandlerV1Unauthorized) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
+	return o.Payload
+}
+
+func (o *PostPlayerPublicRecordHandlerV1Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(cloudsaveclientmodels.ModelsResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -78,54 +117,25 @@ func NewPostPlayerPublicRecordHandlerV1InternalServerError() *PostPlayerPublicRe
   Internal Server Error
 */
 type PostPlayerPublicRecordHandlerV1InternalServerError struct {
-	Payload *cloudsaveclientmodels.ResponseError
+	Payload *cloudsaveclientmodels.ModelsResponseError
 }
 
 func (o *PostPlayerPublicRecordHandlerV1InternalServerError) Error() string {
-	return fmt.Sprintf("[POST /cloudsave/v1/namespaces/{namespace}/users/{userID}/records/{key}/public][%d] postPlayerPublicRecordHandlerV1InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /cloudsave/v1/namespaces/{namespace}/users/{userId}/records/{key}/public][%d] postPlayerPublicRecordHandlerV1InternalServerError  %+v", 500, o.Payload)
 }
 
-func (o *PostPlayerPublicRecordHandlerV1InternalServerError) GetPayload() *cloudsaveclientmodels.ResponseError {
+func (o *PostPlayerPublicRecordHandlerV1InternalServerError) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
 	return o.Payload
 }
 
 func (o *PostPlayerPublicRecordHandlerV1InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(cloudsaveclientmodels.ResponseError)
+	o.Payload = new(cloudsaveclientmodels.ModelsResponseError)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
-
-	return nil
-}
-
-// NewPostPlayerPublicRecordHandlerV1Default creates a PostPlayerPublicRecordHandlerV1Default with default headers values
-func NewPostPlayerPublicRecordHandlerV1Default(code int) *PostPlayerPublicRecordHandlerV1Default {
-	return &PostPlayerPublicRecordHandlerV1Default{
-		_statusCode: code,
-	}
-}
-
-/*PostPlayerPublicRecordHandlerV1Default handles this case with default header values.
-
-  Record saved
-*/
-type PostPlayerPublicRecordHandlerV1Default struct {
-	_statusCode int
-}
-
-// Code gets the status code for the post player public record handler v1 default response
-func (o *PostPlayerPublicRecordHandlerV1Default) Code() int {
-	return o._statusCode
-}
-
-func (o *PostPlayerPublicRecordHandlerV1Default) Error() string {
-	return fmt.Sprintf("[POST /cloudsave/v1/namespaces/{namespace}/users/{userID}/records/{key}/public][%d] postPlayerPublicRecordHandlerV1 default ", o._statusCode)
-}
-
-func (o *PostPlayerPublicRecordHandlerV1Default) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }

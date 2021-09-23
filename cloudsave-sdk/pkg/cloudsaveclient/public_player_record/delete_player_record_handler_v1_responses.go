@@ -8,6 +8,7 @@ package public_player_record
 import (
 	"fmt"
 	"io"
+	"io/ioutil"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
@@ -29,21 +30,26 @@ func (o *DeletePlayerRecordHandlerV1Reader) ReadResponse(response runtime.Client
 			return nil, err
 		}
 		return result, nil
+	case 401:
+		result := NewDeletePlayerRecordHandlerV1Unauthorized()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 500:
 		result := NewDeletePlayerRecordHandlerV1InternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
+
 	default:
-		result := NewDeletePlayerRecordHandlerV1Default(response.Code())
-		if err := result.readResponse(response, consumer, o.formats); err != nil {
+		data, err := ioutil.ReadAll(response.Body())
+		if err != nil {
 			return nil, err
 		}
-		if response.Code()/100 == 2 {
-			return result, nil
-		}
-		return result, nil
+
+		return nil, fmt.Errorf("Requested DELETE /cloudsave/v1/namespaces/{namespace}/users/{userId}/records/{key} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -60,10 +66,43 @@ type DeletePlayerRecordHandlerV1NoContent struct {
 }
 
 func (o *DeletePlayerRecordHandlerV1NoContent) Error() string {
-	return fmt.Sprintf("[DELETE /cloudsave/v1/namespaces/{namespace}/users/{userID}/records/{key}][%d] deletePlayerRecordHandlerV1NoContent ", 204)
+	return fmt.Sprintf("[DELETE /cloudsave/v1/namespaces/{namespace}/users/{userId}/records/{key}][%d] deletePlayerRecordHandlerV1NoContent ", 204)
 }
 
 func (o *DeletePlayerRecordHandlerV1NoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	return nil
+}
+
+// NewDeletePlayerRecordHandlerV1Unauthorized creates a DeletePlayerRecordHandlerV1Unauthorized with default headers values
+func NewDeletePlayerRecordHandlerV1Unauthorized() *DeletePlayerRecordHandlerV1Unauthorized {
+	return &DeletePlayerRecordHandlerV1Unauthorized{}
+}
+
+/*DeletePlayerRecordHandlerV1Unauthorized handles this case with default header values.
+
+  Unauthorized
+*/
+type DeletePlayerRecordHandlerV1Unauthorized struct {
+	Payload *cloudsaveclientmodels.ModelsResponseError
+}
+
+func (o *DeletePlayerRecordHandlerV1Unauthorized) Error() string {
+	return fmt.Sprintf("[DELETE /cloudsave/v1/namespaces/{namespace}/users/{userId}/records/{key}][%d] deletePlayerRecordHandlerV1Unauthorized  %+v", 401, o.Payload)
+}
+
+func (o *DeletePlayerRecordHandlerV1Unauthorized) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
+	return o.Payload
+}
+
+func (o *DeletePlayerRecordHandlerV1Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(cloudsaveclientmodels.ModelsResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -78,54 +117,25 @@ func NewDeletePlayerRecordHandlerV1InternalServerError() *DeletePlayerRecordHand
   Internal Server Error
 */
 type DeletePlayerRecordHandlerV1InternalServerError struct {
-	Payload *cloudsaveclientmodels.ResponseError
+	Payload *cloudsaveclientmodels.ModelsResponseError
 }
 
 func (o *DeletePlayerRecordHandlerV1InternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /cloudsave/v1/namespaces/{namespace}/users/{userID}/records/{key}][%d] deletePlayerRecordHandlerV1InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[DELETE /cloudsave/v1/namespaces/{namespace}/users/{userId}/records/{key}][%d] deletePlayerRecordHandlerV1InternalServerError  %+v", 500, o.Payload)
 }
 
-func (o *DeletePlayerRecordHandlerV1InternalServerError) GetPayload() *cloudsaveclientmodels.ResponseError {
+func (o *DeletePlayerRecordHandlerV1InternalServerError) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
 	return o.Payload
 }
 
 func (o *DeletePlayerRecordHandlerV1InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(cloudsaveclientmodels.ResponseError)
+	o.Payload = new(cloudsaveclientmodels.ModelsResponseError)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
-
-	return nil
-}
-
-// NewDeletePlayerRecordHandlerV1Default creates a DeletePlayerRecordHandlerV1Default with default headers values
-func NewDeletePlayerRecordHandlerV1Default(code int) *DeletePlayerRecordHandlerV1Default {
-	return &DeletePlayerRecordHandlerV1Default{
-		_statusCode: code,
-	}
-}
-
-/*DeletePlayerRecordHandlerV1Default handles this case with default header values.
-
-  Record deleted
-*/
-type DeletePlayerRecordHandlerV1Default struct {
-	_statusCode int
-}
-
-// Code gets the status code for the delete player record handler v1 default response
-func (o *DeletePlayerRecordHandlerV1Default) Code() int {
-	return o._statusCode
-}
-
-func (o *DeletePlayerRecordHandlerV1Default) Error() string {
-	return fmt.Sprintf("[DELETE /cloudsave/v1/namespaces/{namespace}/users/{userID}/records/{key}][%d] deletePlayerRecordHandlerV1 default ", o._statusCode)
-}
-
-func (o *DeletePlayerRecordHandlerV1Default) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }

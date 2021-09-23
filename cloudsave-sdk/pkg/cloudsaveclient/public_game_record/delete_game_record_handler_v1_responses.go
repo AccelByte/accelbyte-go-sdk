@@ -8,6 +8,7 @@ package public_game_record
 import (
 	"fmt"
 	"io"
+	"io/ioutil"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
@@ -23,8 +24,14 @@ type DeleteGameRecordHandlerV1Reader struct {
 // ReadResponse reads a server response into the received o.
 func (o *DeleteGameRecordHandlerV1Reader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-	case 200:
-		result := NewDeleteGameRecordHandlerV1OK()
+	case 204:
+		result := NewDeleteGameRecordHandlerV1NoContent()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
+	case 401:
+		result := NewDeleteGameRecordHandlerV1Unauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -35,35 +42,67 @@ func (o *DeleteGameRecordHandlerV1Reader) ReadResponse(response runtime.ClientRe
 			return nil, err
 		}
 		return result, nil
+
 	default:
-		result := NewDeleteGameRecordHandlerV1Default(response.Code())
-		if err := result.readResponse(response, consumer, o.formats); err != nil {
+		data, err := ioutil.ReadAll(response.Body())
+		if err != nil {
 			return nil, err
 		}
-		if response.Code()/100 == 2 {
-			return result, nil
-		}
-		return result, nil
+
+		return nil, fmt.Errorf("Requested DELETE /cloudsave/v1/namespaces/{namespace}/records/{key} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
-// NewDeleteGameRecordHandlerV1OK creates a DeleteGameRecordHandlerV1OK with default headers values
-func NewDeleteGameRecordHandlerV1OK() *DeleteGameRecordHandlerV1OK {
-	return &DeleteGameRecordHandlerV1OK{}
+// NewDeleteGameRecordHandlerV1NoContent creates a DeleteGameRecordHandlerV1NoContent with default headers values
+func NewDeleteGameRecordHandlerV1NoContent() *DeleteGameRecordHandlerV1NoContent {
+	return &DeleteGameRecordHandlerV1NoContent{}
 }
 
-/*DeleteGameRecordHandlerV1OK handles this case with default header values.
+/*DeleteGameRecordHandlerV1NoContent handles this case with default header values.
 
   Record deleted
 */
-type DeleteGameRecordHandlerV1OK struct {
+type DeleteGameRecordHandlerV1NoContent struct {
 }
 
-func (o *DeleteGameRecordHandlerV1OK) Error() string {
-	return fmt.Sprintf("[DELETE /cloudsave/v1/namespaces/{namespace}/records/{key}][%d] deleteGameRecordHandlerV1OK ", 200)
+func (o *DeleteGameRecordHandlerV1NoContent) Error() string {
+	return fmt.Sprintf("[DELETE /cloudsave/v1/namespaces/{namespace}/records/{key}][%d] deleteGameRecordHandlerV1NoContent ", 204)
 }
 
-func (o *DeleteGameRecordHandlerV1OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *DeleteGameRecordHandlerV1NoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	return nil
+}
+
+// NewDeleteGameRecordHandlerV1Unauthorized creates a DeleteGameRecordHandlerV1Unauthorized with default headers values
+func NewDeleteGameRecordHandlerV1Unauthorized() *DeleteGameRecordHandlerV1Unauthorized {
+	return &DeleteGameRecordHandlerV1Unauthorized{}
+}
+
+/*DeleteGameRecordHandlerV1Unauthorized handles this case with default header values.
+
+  Unauthorized
+*/
+type DeleteGameRecordHandlerV1Unauthorized struct {
+	Payload *cloudsaveclientmodels.ModelsResponseError
+}
+
+func (o *DeleteGameRecordHandlerV1Unauthorized) Error() string {
+	return fmt.Sprintf("[DELETE /cloudsave/v1/namespaces/{namespace}/records/{key}][%d] deleteGameRecordHandlerV1Unauthorized  %+v", 401, o.Payload)
+}
+
+func (o *DeleteGameRecordHandlerV1Unauthorized) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
+	return o.Payload
+}
+
+func (o *DeleteGameRecordHandlerV1Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(cloudsaveclientmodels.ModelsResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -78,54 +117,25 @@ func NewDeleteGameRecordHandlerV1InternalServerError() *DeleteGameRecordHandlerV
   Internal Server Error
 */
 type DeleteGameRecordHandlerV1InternalServerError struct {
-	Payload *cloudsaveclientmodels.ResponseError
+	Payload *cloudsaveclientmodels.ModelsResponseError
 }
 
 func (o *DeleteGameRecordHandlerV1InternalServerError) Error() string {
 	return fmt.Sprintf("[DELETE /cloudsave/v1/namespaces/{namespace}/records/{key}][%d] deleteGameRecordHandlerV1InternalServerError  %+v", 500, o.Payload)
 }
 
-func (o *DeleteGameRecordHandlerV1InternalServerError) GetPayload() *cloudsaveclientmodels.ResponseError {
+func (o *DeleteGameRecordHandlerV1InternalServerError) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
 	return o.Payload
 }
 
 func (o *DeleteGameRecordHandlerV1InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(cloudsaveclientmodels.ResponseError)
+	o.Payload = new(cloudsaveclientmodels.ModelsResponseError)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
-
-	return nil
-}
-
-// NewDeleteGameRecordHandlerV1Default creates a DeleteGameRecordHandlerV1Default with default headers values
-func NewDeleteGameRecordHandlerV1Default(code int) *DeleteGameRecordHandlerV1Default {
-	return &DeleteGameRecordHandlerV1Default{
-		_statusCode: code,
-	}
-}
-
-/*DeleteGameRecordHandlerV1Default handles this case with default header values.
-
-  Record deleted
-*/
-type DeleteGameRecordHandlerV1Default struct {
-	_statusCode int
-}
-
-// Code gets the status code for the delete game record handler v1 default response
-func (o *DeleteGameRecordHandlerV1Default) Code() int {
-	return o._statusCode
-}
-
-func (o *DeleteGameRecordHandlerV1Default) Error() string {
-	return fmt.Sprintf("[DELETE /cloudsave/v1/namespaces/{namespace}/records/{key}][%d] deleteGameRecordHandlerV1 default ", o._statusCode)
-}
-
-func (o *DeleteGameRecordHandlerV1Default) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }

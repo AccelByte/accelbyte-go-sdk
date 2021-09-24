@@ -26,7 +26,7 @@ var getPlayerRecordCmd = &cobra.Command{
 			CloudSaveServiceClient: factory.NewCloudSaveClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository:        &repository.TokenRepositoryImpl{},
 		}
-		playerRecords, err := cloudSaveService.GetPlayerRecord(userId, namespace, key)
+		playerRecords, err := cloudSaveService.GetPlayerPublicRecordHandlerV1(userId, namespace, key)
 		if err != nil {
 			return err
 		}

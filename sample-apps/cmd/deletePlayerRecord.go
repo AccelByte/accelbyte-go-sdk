@@ -25,7 +25,7 @@ var deletePlayerRecordCmd = &cobra.Command{
 			CloudSaveServiceClient: factory.NewCloudSaveClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository:        &repository.TokenRepositoryImpl{},
 		}
-		err := cloudSaveService.DeletePlayerRecord(userId, namespace, key)
+		err := cloudSaveService.DeletePlayerRecordHandlerV1(userId, namespace, key)
 		if err != nil {
 			return err
 		}

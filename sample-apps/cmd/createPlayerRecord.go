@@ -31,7 +31,7 @@ var createPlayerRecordCmd = &cobra.Command{
 			CloudSaveServiceClient: factory.NewCloudSaveClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository:        &repository.TokenRepositoryImpl{},
 		}
-		err = cloudSaveService.CreatePlayerRecord(userId, namespace, key, content)
+		err = cloudSaveService.PostPlayerPublicRecordHandlerV1(userId, namespace, key, content)
 		if err != nil {
 			return err
 		}

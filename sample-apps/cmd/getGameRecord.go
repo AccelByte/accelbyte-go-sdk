@@ -30,7 +30,7 @@ to quickly create a Cobra application.`,
 			CloudSaveServiceClient: factory.NewCloudSaveClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository:        &repository.TokenRepositoryImpl{},
 		}
-		gameRecords, err := cloudSaveService.GetGameRecord(key, namespace)
+		gameRecords, err := cloudSaveService.GetGameRecordHandlerV1(key, namespace)
 		if err != nil {
 			return err
 		}

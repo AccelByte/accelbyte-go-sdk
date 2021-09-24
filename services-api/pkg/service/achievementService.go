@@ -13,8 +13,8 @@ import (
 )
 
 type AchievementService struct {
-	AchievementService *achievementclient.JusticeAchievementService
-	TokenRepository    repository.TokenRepository
+	AchievementServiceClient *achievementclient.JusticeAchievementService
+	TokenRepository          repository.TokenRepository
 }
 
 func (a *AchievementService) AdminCreateNewAchievement(body *achievementclientmodels.ModelsAchievementRequest, namespace string) (*achievementclientmodels.ModelsAchievementResponse, error) {
@@ -26,7 +26,7 @@ func (a *AchievementService) AdminCreateNewAchievement(body *achievementclientmo
 		Body:      body,
 		Namespace: namespace,
 	}
-	ok, badRequest, unauthorized, internalServerError, err := a.AchievementService.Achievements.AdminCreateNewAchievement(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, internalServerError, err := a.AchievementServiceClient.Achievements.AdminCreateNewAchievement(params, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -58,7 +58,7 @@ func (a *AchievementService) AdminDeleteAchievement(achievementsCode, namespace 
 		AchievementCode: achievementsCode,
 		Namespace:       namespace,
 	}
-	_, badRequest, unauthorized, notFound, internalServerError, err := a.AchievementService.Achievements.AdminDeleteAchievement(params, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, notFound, internalServerError, err := a.AchievementServiceClient.Achievements.AdminDeleteAchievement(params, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -94,7 +94,7 @@ func (a *AchievementService) AdminGetAchievement(achievementsCode, namespace str
 		AchievementCode: achievementsCode,
 		Namespace:       namespace,
 	}
-	ok, badRequest, unauthorized, notFound, internalServerError, err := a.AchievementService.Achievements.AdminGetAchievement(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, notFound, internalServerError, err := a.AchievementServiceClient.Achievements.AdminGetAchievement(params, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -132,7 +132,7 @@ func (a *AchievementService) AdminListAchievements(limit *int64, namespace strin
 		Offset:    offset,
 		SortBy:    sortBy,
 	}
-	ok, badRequest, unauthorized, notFound, internalServerError, err := a.AchievementService.Achievements.AdminListAchievements(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, notFound, internalServerError, err := a.AchievementServiceClient.Achievements.AdminListAchievements(params, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -171,7 +171,7 @@ func (a *AchievementService) AdminListUserAchievements(limit *int64, namespace s
 		PreferUnlocked: preferUnlocked,
 		UserID:         userID,
 	}
-	ok, badRequest, unauthorized, notFound, internalServerError, err := a.AchievementService.Achievements.AdminListUserAchievements(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, notFound, internalServerError, err := a.AchievementServiceClient.Achievements.AdminListUserAchievements(params, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -208,7 +208,7 @@ func (a *AchievementService) AdminUnlockAchievement(achievementCode, namespace, 
 		Namespace:       namespace,
 		UserID:          userID,
 	}
-	_, badRequest, unauthorized, internalServerError, err := a.AchievementService.Achievements.AdminUnlockAchievement(params, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, internalServerError, err := a.AchievementServiceClient.Achievements.AdminUnlockAchievement(params, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -240,7 +240,7 @@ func (a *AchievementService) AdminUpdateAchievement(body *achievementclientmodel
 		AchievementCode: achievementCode,
 		Namespace:       namespace,
 	}
-	ok, badRequest, unauthorized, notFound, internalServerError, err := a.AchievementService.Achievements.AdminUpdateAchievement(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, notFound, internalServerError, err := a.AchievementServiceClient.Achievements.AdminUpdateAchievement(params, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -277,7 +277,7 @@ func (a *AchievementService) AdminUpdateAchievementListOrder(body *achievementcl
 		AchievementCode: achievementCode,
 		Namespace:       namespace,
 	}
-	_, badRequest, unauthorized, notFound, internalServerError, err := a.AchievementService.Achievements.AdminUpdateAchievementListOrder(params, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, notFound, internalServerError, err := a.AchievementServiceClient.Achievements.AdminUpdateAchievementListOrder(params, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -312,7 +312,7 @@ func (a *AchievementService) ExportAchievements(namespace string) ([]*achievemen
 	params := &achievements.ExportAchievementsParams{
 		Namespace: namespace,
 	}
-	ok, unauthorized, forbidden, internalServerError, err := a.AchievementService.Achievements.ExportAchievements(params, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, internalServerError, err := a.AchievementServiceClient.Achievements.ExportAchievements(params, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -344,7 +344,7 @@ func (a *AchievementService) ImportAchievements(file runtime.NamedReadCloser, na
 		Namespace: namespace,
 		Strategy:  strategy,
 	}
-	ok, unauthorized, forbidden, internalServerError, err := a.AchievementService.Achievements.ImportAchievements(params, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, internalServerError, err := a.AchievementServiceClient.Achievements.ImportAchievements(params, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -376,7 +376,7 @@ func (a *AchievementService) PublicGetAchievement(achievementCode, language, nam
 		Language:        language,
 		Namespace:       namespace,
 	}
-	ok, badRequest, unauthorized, notFound, internalServerError, err := a.AchievementService.Achievements.PublicGetAchievement(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, notFound, internalServerError, err := a.AchievementServiceClient.Achievements.PublicGetAchievement(params, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -415,7 +415,7 @@ func (a *AchievementService) PublicListAchievements(language string, limit *int6
 		Offset:    offset,
 		SortBy:    sortBy,
 	}
-	ok, badRequest, unauthorized, notFound, internalServerError, err := a.AchievementService.Achievements.PublicListAchievements(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, notFound, internalServerError, err := a.AchievementServiceClient.Achievements.PublicListAchievements(params, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -454,7 +454,7 @@ func (a *AchievementService) PublicListUserAchievements(limit *int64, namespace 
 		PreferUnlocked: preferUnlocked,
 		UserID:         userID,
 	}
-	ok, badRequest, unauthorized, notFound, internalServerError, err := a.AchievementService.Achievements.PublicListUserAchievements(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, notFound, internalServerError, err := a.AchievementServiceClient.Achievements.PublicListUserAchievements(params, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -491,7 +491,7 @@ func (a *AchievementService) PublicUnlockAchievement(achievementCode, namespace,
 		Namespace:       namespace,
 		UserID:          userID,
 	}
-	_, badRequest, unauthorized, internalServerError, err := a.AchievementService.Achievements.PublicUnlockAchievement(params, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, internalServerError, err := a.AchievementServiceClient.Achievements.PublicUnlockAchievement(params, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))

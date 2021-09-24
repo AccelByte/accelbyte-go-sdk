@@ -32,20 +32,11 @@ The SDK contains 2 directory, `iamclient` and `iamclientmodels`. `iamclient` con
 
 To include the SDK to your project, add following in your `go.mod`:
 ```
-replace (
-	github.com/AccelByte/accelbyte-go-sdk/services-api => path/to/justice-go-sdk
-	github.com/AccelByte/accelbyte-go-sdk/basic-sdk => path/to/basic-sdk
-	github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk => path/to/cloudsave-sdk
-	github.com/AccelByte/accelbyte-go-sdk/iam-sdk => path/to/iam-sdk
-	github.com/AccelByte/accelbyte-go-sdk/lobby-sdk => path/to/lobby-sdk
-	github.com/AccelByte/accelbyte-go-sdk/platform-sdk => path/to/platform-sdk
-)
-
 require (
-	github.com/AccelByte/accelbyte-go-sdk/services-api v1.0.0
+	github.com/AccelByte/accelbyte-go-sdk v0.4.0
 )
 ```
-Note: please refer to `sample-apps/go.mod`
+Note: you can change SDK version to your preferred version
 
 To use this SDK, client must create a struct that implement following interface:
 
@@ -100,9 +91,9 @@ When using websocket mode sample-apps will standby and continue listen to websoc
 
 ### Golang sample apps ###
 
-There is sample apps in `justice-go-sdk/sample-apps`, following is how to use the apps:
+There is sample apps in `samples/sample-apps`, following is how to use the apps:
 
-- Go to `justice-go-sdk/sample-apps` execute `go install github.com/AccelByte/sample-apps`
+- Go to `samples/sample-apps` execute `go install github.com/AccelByte/sample-apps`
 
 - To use the sample apps, simply execute `sample-apps <command> [options]` for available command `sample-apps -h`, for available options `sample-apps <command> -h`
 

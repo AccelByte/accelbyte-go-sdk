@@ -2,7 +2,7 @@ module github.com/AccelByte/sample-apps
 
 go 1.15
 
-replace github.com/AccelByte/accelbyte-go-sdk => ../
+replace github.com/AccelByte/accelbyte-go-sdk => ../../
 
 require (
 	github.com/AccelByte/accelbyte-go-sdk v0.0.0-00010101000000-000000000000

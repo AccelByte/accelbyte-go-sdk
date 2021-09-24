@@ -5,6 +5,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/achievement-sdk/pkg/achievementclient"
 	"github.com/AccelByte/accelbyte-go-sdk/achievement-sdk/pkg/achievementclient/achievements"
 	"github.com/AccelByte/accelbyte-go-sdk/achievement-sdk/pkg/achievementclientmodels"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/go-openapi/runtime"
 
 	"github.com/go-openapi/runtime/client"
@@ -12,12 +13,12 @@ import (
 )
 
 type AchievementService struct {
-	OauthService       *OauthService
 	AchievementService *achievementclient.JusticeAchievementService
+	TokenRepository    repository.TokenRepository
 }
 
 func (a *AchievementService) AdminCreateNewAchievement(body *achievementclientmodels.ModelsAchievementRequest, namespace string) (*achievementclientmodels.ModelsAchievementResponse, error) {
-	token, err := a.OauthService.TokenRepository.GetToken()
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
@@ -49,7 +50,7 @@ func (a *AchievementService) AdminCreateNewAchievement(body *achievementclientmo
 }
 
 func (a *AchievementService) AdminDeleteAchievement(achievementsCode, namespace string) error {
-	token, err := a.OauthService.TokenRepository.GetToken()
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
@@ -85,7 +86,7 @@ func (a *AchievementService) AdminDeleteAchievement(achievementsCode, namespace 
 }
 
 func (a *AchievementService) AdminGetAchievement(achievementsCode, namespace string) (*achievementclientmodels.ModelsAchievementResponse, error) {
-	token, err := a.OauthService.TokenRepository.GetToken()
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
@@ -121,7 +122,7 @@ func (a *AchievementService) AdminGetAchievement(achievementsCode, namespace str
 }
 
 func (a *AchievementService) AdminListAchievements(limit *int64, namespace string, offset *int64, sortBy *string) (*achievementclientmodels.ModelsPaginatedAchievementResponse, error) {
-	token, err := a.OauthService.TokenRepository.GetToken()
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
@@ -159,7 +160,7 @@ func (a *AchievementService) AdminListAchievements(limit *int64, namespace strin
 }
 
 func (a *AchievementService) AdminListUserAchievements(limit *int64, namespace string, offset *int64, preferUnlocked *bool, userID string) (*achievementclientmodels.ModelsPaginatedUserAchievementResponse, error) {
-	token, err := a.OauthService.TokenRepository.GetToken()
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
@@ -198,7 +199,7 @@ func (a *AchievementService) AdminListUserAchievements(limit *int64, namespace s
 }
 
 func (a *AchievementService) AdminUnlockAchievement(achievementCode, namespace, userID string) error {
-	token, err := a.OauthService.TokenRepository.GetToken()
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
@@ -230,7 +231,7 @@ func (a *AchievementService) AdminUnlockAchievement(achievementCode, namespace, 
 }
 
 func (a *AchievementService) AdminUpdateAchievement(body *achievementclientmodels.ModelsAchievementUpdateRequest, achievementCode, namespace string) (*achievementclientmodels.ModelsAchievementResponse, error) {
-	token, err := a.OauthService.TokenRepository.GetToken()
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
@@ -267,7 +268,7 @@ func (a *AchievementService) AdminUpdateAchievement(body *achievementclientmodel
 }
 
 func (a *AchievementService) AdminUpdateAchievementListOrder(body *achievementclientmodels.ModelsAchievementOrderUpdateRequest, achievementCode, namespace string) error {
-	token, err := a.OauthService.TokenRepository.GetToken()
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
@@ -304,7 +305,7 @@ func (a *AchievementService) AdminUpdateAchievementListOrder(body *achievementcl
 }
 
 func (a *AchievementService) ExportAchievements(namespace string) ([]*achievementclientmodels.ModelsAchievement, error) {
-	token, err := a.OauthService.TokenRepository.GetToken()
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
@@ -334,7 +335,7 @@ func (a *AchievementService) ExportAchievements(namespace string) ([]*achievemen
 }
 
 func (a *AchievementService) ImportAchievements(file runtime.NamedReadCloser, namespace string, strategy *string) (*achievementclientmodels.ServiceImportConfigResponse, error) {
-	token, err := a.OauthService.TokenRepository.GetToken()
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
@@ -366,7 +367,7 @@ func (a *AchievementService) ImportAchievements(file runtime.NamedReadCloser, na
 }
 
 func (a *AchievementService) PublicGetAchievement(achievementCode, language, namespace string) (*achievementclientmodels.ModelsPublicAchievementResponse, error) {
-	token, err := a.OauthService.TokenRepository.GetToken()
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
@@ -403,7 +404,7 @@ func (a *AchievementService) PublicGetAchievement(achievementCode, language, nam
 }
 
 func (a *AchievementService) PublicListAchievements(language string, limit *int64, namespace string, offset *int64, sortBy *string) (*achievementclientmodels.ModelsPublicAchievementsResponse, error) {
-	token, err := a.OauthService.TokenRepository.GetToken()
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
@@ -442,7 +443,7 @@ func (a *AchievementService) PublicListAchievements(language string, limit *int6
 }
 
 func (a *AchievementService) PublicListUserAchievements(limit *int64, namespace string, offset *int64, preferUnlocked *bool, userID string) (*achievementclientmodels.ModelsPaginatedUserAchievementResponse, error) {
-	token, err := a.OauthService.TokenRepository.GetToken()
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
@@ -481,7 +482,7 @@ func (a *AchievementService) PublicListUserAchievements(limit *int64, namespace 
 }
 
 func (a *AchievementService) PublicUnlockAchievement(achievementCode, namespace, userID string) error {
-	token, err := a.OauthService.TokenRepository.GetToken()
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}

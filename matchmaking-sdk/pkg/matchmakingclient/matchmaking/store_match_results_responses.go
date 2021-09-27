@@ -13,7 +13,7 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 
-	"main/pkg/matchmakingclientmodels"
+	"github.com/AccelByte/accelbyte-go-sdk/matchmaking-sdk/pkg/matchmakingclientmodels"
 )
 
 // StoreMatchResultsReader is a Reader for the StoreMatchResults structure.

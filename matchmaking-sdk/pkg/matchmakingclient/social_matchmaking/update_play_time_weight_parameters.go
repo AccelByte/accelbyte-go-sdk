@@ -15,7 +15,7 @@ import (
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
-	"main/pkg/matchmakingclientmodels"
+	"github.com/AccelByte/accelbyte-go-sdk/matchmaking-sdk/pkg/matchmakingclientmodels"
 )
 
 // NewUpdatePlayTimeWeightParams creates a new UpdatePlayTimeWeightParams object

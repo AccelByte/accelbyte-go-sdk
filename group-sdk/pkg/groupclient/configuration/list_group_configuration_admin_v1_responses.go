@@ -24,8 +24,8 @@ type ListGroupConfigurationAdminV1Reader struct {
 // ReadResponse reads a server response into the received o.
 func (o *ListGroupConfigurationAdminV1Reader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-	case 201:
-		result := NewListGroupConfigurationAdminV1Created()
+	case 200:
+		result := NewListGroupConfigurationAdminV1OK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -71,30 +71,30 @@ func (o *ListGroupConfigurationAdminV1Reader) ReadResponse(response runtime.Clie
 	}
 }
 
-// NewListGroupConfigurationAdminV1Created creates a ListGroupConfigurationAdminV1Created with default headers values
-func NewListGroupConfigurationAdminV1Created() *ListGroupConfigurationAdminV1Created {
-	return &ListGroupConfigurationAdminV1Created{}
+// NewListGroupConfigurationAdminV1OK creates a ListGroupConfigurationAdminV1OK with default headers values
+func NewListGroupConfigurationAdminV1OK() *ListGroupConfigurationAdminV1OK {
+	return &ListGroupConfigurationAdminV1OK{}
 }
 
-/*ListGroupConfigurationAdminV1Created handles this case with default header values.
+/*ListGroupConfigurationAdminV1OK handles this case with default header values.
 
-  Created
+  OK
 */
-type ListGroupConfigurationAdminV1Created struct {
-	Payload *groupclientmodels.ModelsGetGroupConfigurationResponseV1
+type ListGroupConfigurationAdminV1OK struct {
+	Payload *groupclientmodels.ModelsListConfigurationResponseV1
 }
 
-func (o *ListGroupConfigurationAdminV1Created) Error() string {
-	return fmt.Sprintf("[GET /group/v1/admin/namespaces/{namespace}/configuration][%d] listGroupConfigurationAdminV1Created  %+v", 201, o.Payload)
+func (o *ListGroupConfigurationAdminV1OK) Error() string {
+	return fmt.Sprintf("[GET /group/v1/admin/namespaces/{namespace}/configuration][%d] listGroupConfigurationAdminV1OK  %+v", 200, o.Payload)
 }
 
-func (o *ListGroupConfigurationAdminV1Created) GetPayload() *groupclientmodels.ModelsGetGroupConfigurationResponseV1 {
+func (o *ListGroupConfigurationAdminV1OK) GetPayload() *groupclientmodels.ModelsListConfigurationResponseV1 {
 	return o.Payload
 }
 
-func (o *ListGroupConfigurationAdminV1Created) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *ListGroupConfigurationAdminV1OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(groupclientmodels.ModelsGetGroupConfigurationResponseV1)
+	o.Payload = new(groupclientmodels.ModelsListConfigurationResponseV1)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

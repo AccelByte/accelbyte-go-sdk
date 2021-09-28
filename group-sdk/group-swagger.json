@@ -1,7 +1,5 @@
 {
   "swagger": "2.0",
-  "host": "jib.noice.accelbyte.io",
-  "schemes": ["https"],
   "info": {
     "description": "Justice Group Service",
     "title": "justice-group-service",
@@ -10,12 +8,12 @@
       "url": "https://accelbyte.io",
       "email": "engineering@accelbyte.io"
     },
-    "version": "2.4.0"
+    "version": "2.8.0"
   },
   "paths": {
     "/group/v1/admin/namespaces/{namespace}/configuration": {
       "get": {
-        "description": "<p>Required permission 'ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [READ]'</p>\n\t\t\t<p>This endpoint is used to get existing configuration. This Configuration is used to be the main rule of the service. Each namespace will have its own configuration</p>\n\t\t\t<p>Action Code: 73101</p>\n\t\t",
+        "description": "\u003cp\u003eRequired permission 'ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [READ]'\u003c/p\u003e\n\t\t\t\u003cp\u003eThis endpoint is used to get existing configuration. This Configuration is used to be the main rule of the service. Each namespace will have its own configuration\u003c/p\u003e\n\t\t\t\u003cp\u003eAction Code: 73101\u003c/p\u003e\n\t\t",
         "produces": [
           "application/json"
         ],
@@ -46,32 +44,32 @@
           }
         ],
         "responses": {
-          "201": {
-            "description": "Created",
+          "200": {
+            "description": "OK",
             "schema": {
-              "$ref": "#/definitions/models.GetGroupConfigurationResponseV1"
+              "$ref": "#/definitions/models.ListConfigurationResponseV1"
             }
           },
           "400": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "401": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr><tr><td>20022</td><td>token is not user token</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20022\u003c/td\u003e\u003ctd\u003etoken is not user token\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "404": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>73131</td><td>global configuration not found</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73131\u003c/td\u003e\u003ctd\u003eglobal configuration not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -82,19 +80,10 @@
               "$ref": "#/definitions/response.ErrorResponse"
             }
           }
-        },
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
-        "x-authorization": {
-          "resource": "ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION",
-          "action": "2"
         }
       },
       "post": {
-        "description": "<p>Required permission 'ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [CREATE]'</p>\n\t\t\t<p>This endpoint is used to create new configuration. Before creating the configuration, make sure that member role for admin and group member are already created before.</p>\n\t\t\t<p>For each of the global rule, it will be the rule detail that consists of these fields: </p>\n\t\t\t<ul>\n\t\t\t\t<li><b>ruleAttribute</b>: attribute of the player that needs to be checked</li>\n\t\t\t\t<li><b>ruleCriteria</b>: criteria of the value. The value will be in enum of EQUAL, MINIMUM, MAXIMUM</li>\n\t\t\t\t<li><b>ruleValue</b>: value that needs to be checked</li>\n\t\t\t</ul>\n\t\t\t<p>Allowed Action can only be filled with any available action in the Group Service. For the configuration, the only value is <b>\"createGroup\"</b></p>\n\t\t\t<p>Action Code: 73103</p>\n\t\t",
+        "description": "\u003cp\u003eRequired permission 'ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [CREATE]'\u003c/p\u003e\n\t\t\t\u003cp\u003eThis endpoint is used to create new configuration. Before creating the configuration, make sure that member role for admin and group member are already created before.\u003c/p\u003e\n\t\t\t\u003cp\u003eFor each of the global rule, it will be the rule detail that consists of these fields: \u003c/p\u003e\n\t\t\t\u003cul\u003e\n\t\t\t\t\u003cli\u003e\u003cb\u003eruleAttribute\u003c/b\u003e: attribute of the player that needs to be checked\u003c/li\u003e\n\t\t\t\t\u003cli\u003e\u003cb\u003eruleCriteria\u003c/b\u003e: criteria of the value. The value will be in enum of EQUAL, MINIMUM, MAXIMUM\u003c/li\u003e\n\t\t\t\t\u003cli\u003e\u003cb\u003eruleValue\u003c/b\u003e: value that needs to be checked\u003c/li\u003e\n\t\t\t\u003c/ul\u003e\n\t\t\t\u003cp\u003eAllowed Action can only be filled with any available action in the Group Service. For the configuration, the only value is \u003cb\u003e\"createGroup\"\u003c/b\u003e\u003c/p\u003e\n\t\t\t\u003cp\u003eAction Code: 73103\u003c/p\u003e\n\t\t",
         "consumes": [
           "application/json"
         ],
@@ -131,25 +120,25 @@
             }
           },
           "400": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20019</td><td>unable to parse request body</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20019\u003c/td\u003e\u003ctd\u003eunable to parse request body\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "401": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr><tr><td>20022</td><td>token is not user token</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20022\u003c/td\u003e\u003ctd\u003etoken is not user token\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "409": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>73130</td><td>global configuration already exist</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73130\u003c/td\u003e\u003ctd\u003eglobal configuration already exist\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -160,21 +149,12 @@
               "$ref": "#/definitions/response.ErrorResponse"
             }
           }
-        },
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
-        "x-authorization": {
-          "resource": "ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION",
-          "action": "1"
         }
       }
     },
     "/group/v1/admin/namespaces/{namespace}/configuration/initiate": {
       "post": {
-        "description": "<p>Required permission 'ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [CREATE]'</p>\n\t\t\t<p>This endpoint is used to initiate configuration. This endpoint will automatically create default configuration and member roles with default permission</p>\n\t\t\t<p>Default Permission for admin role will cover these permission: </p>\n\t\t\t<ul>\n\t\t\t\t<li>Permission to invite user to group</li>\n\t\t\t\t<li>Permission to accept or reject join request</li>\n\t\t\t\t<li>Permission to kick group member</li>\n\t\t\t</ul>\n\t\t\t<p>Default max member value will be 50 and global rules will be empty</p>\n\t\t\t<p>Action Code: 73104</p>\n\t\t",
+        "description": "\u003cp\u003eRequired permission 'ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [CREATE]'\u003c/p\u003e\n\t\t\t\u003cp\u003eThis endpoint is used to initiate configuration. This endpoint will automatically create default configuration and member roles with default permission\u003c/p\u003e\n\t\t\t\u003cp\u003eDefault Permission for admin role will cover these permission: \u003c/p\u003e\n\t\t\t\u003cul\u003e\n\t\t\t\t\u003cli\u003ePermission to invite user to group\u003c/li\u003e\n\t\t\t\t\u003cli\u003ePermission to accept or reject join request\u003c/li\u003e\n\t\t\t\t\u003cli\u003ePermission to kick group member\u003c/li\u003e\n\t\t\t\u003c/ul\u003e\n\t\t\t\u003cp\u003eDefault max member value will be 50 and global rules will be empty\u003c/p\u003e\n\t\t\t\u003cp\u003eAction Code: 73104\u003c/p\u003e\n\t\t",
         "produces": [
           "application/json"
         ],
@@ -200,19 +180,19 @@
             }
           },
           "401": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr><tr><td>20022</td><td>token is not user token</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20022\u003c/td\u003e\u003ctd\u003etoken is not user token\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "409": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>73130</td><td>global configuration already exist</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73130\u003c/td\u003e\u003ctd\u003eglobal configuration already exist\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -223,21 +203,12 @@
               "$ref": "#/definitions/response.ErrorResponse"
             }
           }
-        },
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
-        "x-authorization": {
-          "resource": "ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION",
-          "action": "1"
         }
       }
     },
     "/group/v1/admin/namespaces/{namespace}/configuration/{configurationCode}": {
       "get": {
-        "description": "<p>Required permission 'ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [READ]'</p>\n\t\t\t<p>This endpoint is used to get existing configuration. This Configuration is used to be the main rule of the service. Each namespace will have its own configuration</p>\n\t\t\t<p>Action Code: 73101</p>\n\t\t",
+        "description": "\u003cp\u003eRequired permission 'ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [READ]'\u003c/p\u003e\n\t\t\t\u003cp\u003eThis endpoint is used to get existing configuration. This Configuration is used to be the main rule of the service. Each namespace will have its own configuration\u003c/p\u003e\n\t\t\t\u003cp\u003eAction Code: 73101\u003c/p\u003e\n\t\t",
         "produces": [
           "application/json"
         ],
@@ -263,32 +234,32 @@
           }
         ],
         "responses": {
-          "201": {
-            "description": "Created",
+          "200": {
+            "description": "OK",
             "schema": {
               "$ref": "#/definitions/models.GetGroupConfigurationResponseV1"
             }
           },
           "400": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "401": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr><tr><td>20022</td><td>token is not user token</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20022\u003c/td\u003e\u003ctd\u003etoken is not user token\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "404": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>73131</td><td>global configuration not found</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73131\u003c/td\u003e\u003ctd\u003eglobal configuration not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -299,19 +270,10 @@
               "$ref": "#/definitions/response.ErrorResponse"
             }
           }
-        },
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
-        "x-authorization": {
-          "resource": "ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION",
-          "action": "2"
         }
       },
       "delete": {
-        "description": "<p>Required permission 'ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [DELETE]'</p>\n\t\t\t<p>This endpoint is used to delete group configuration. This Configuration is used to be the main rule of the service. Each namespace will have its own configuration</p>\n\t\t\t<p>Action Code: 73101</p>\n\t\t",
+        "description": "\u003cp\u003eRequired permission 'ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [DELETE]'\u003c/p\u003e\n\t\t\t\u003cp\u003eThis endpoint is used to delete group configuration. This Configuration is used to be the main rule of the service. Each namespace will have its own configuration\u003c/p\u003e\n\t\t\t\u003cp\u003eAction Code: 73101\u003c/p\u003e\n\t\t",
         "produces": [
           "application/json"
         ],
@@ -319,7 +281,7 @@
           "Configuration"
         ],
         "summary": "Delete group configuration",
-        "operationId": "deleteGroupConfigurationAdminV1",
+        "operationId": "getGroupConfigurationV1",
         "parameters": [
           {
             "type": "string",
@@ -337,32 +299,29 @@
           }
         ],
         "responses": {
-          "201": {
-            "description": "Created",
-            "schema": {
-              "$ref": "#/definitions/models.GetGroupConfigurationResponseV1"
-            }
+          "204": {
+            "description": "No Content"
           },
           "400": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "401": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr><tr><td>20022</td><td>token is not user token</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20022\u003c/td\u003e\u003ctd\u003etoken is not user token\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "404": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>73131</td><td>global configuration not found</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73131\u003c/td\u003e\u003ctd\u003eglobal configuration not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -373,20 +332,10 @@
               "$ref": "#/definitions/response.ErrorResponse"
             }
           }
-        },
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
-        "x-authorization": {
-          "resource": "ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION",
-          "action": "8"
         }
-        
       },
       "patch": {
-        "description": "<p>Required permission 'ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [UPDATE]'</p>\n\t\t\t<p>This endpoint is used to update existing configuration. groupAdminRoleId and groupMemberRoleId won't be able to be updated. User can try to change the member role permission instead for each of those member role</p>\n\t\t\t<p>Action Code: 73102</p>\n\t\t",
+        "description": "\u003cp\u003eRequired permission 'ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [UPDATE]'\u003c/p\u003e\n\t\t\t\u003cp\u003eThis endpoint is used to update existing configuration. groupAdminRoleId and groupMemberRoleId won't be able to be updated. User can try to change the member role permission instead for each of those member role\u003c/p\u003e\n\t\t\t\u003cp\u003eAction Code: 73102\u003c/p\u003e\n\t\t",
         "consumes": [
           "application/json"
         ],
@@ -430,25 +379,25 @@
             }
           },
           "400": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20019</td><td>unable to parse request body</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20019\u003c/td\u003e\u003ctd\u003eunable to parse request body\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "401": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr><tr><td>20022</td><td>token is not user token</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20022\u003c/td\u003e\u003ctd\u003etoken is not user token\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "404": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>73131</td><td>global configuration not found</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73131\u003c/td\u003e\u003ctd\u003eglobal configuration not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -459,21 +408,12 @@
               "$ref": "#/definitions/response.ErrorResponse"
             }
           }
-        },
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
-        "x-authorization": {
-          "resource": "ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION",
-          "action": "4"
         }
       }
     },
     "/group/v1/admin/namespaces/{namespace}/configuration/{configurationCode}/rules/{allowedAction}": {
       "put": {
-        "description": "<p>Required permission 'ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [UPDATE]'</p>\n\t\t\t<p>This endpoint is used to update existing global rule configuration based on the allowed action. It will replace the permission with the request</p>\n\t\t\t<p>Action Code: 73106</p>\n\t\t",
+        "description": "\u003cp\u003eRequired permission 'ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [UPDATE]'\u003c/p\u003e\n\t\t\t\u003cp\u003eThis endpoint is used to update existing global rule configuration based on the allowed action. It will replace the permission with the request\u003c/p\u003e\n\t\t\t\u003cp\u003eAction Code: 73106\u003c/p\u003e\n\t\t",
         "consumes": [
           "application/json"
         ],
@@ -524,25 +464,25 @@
             }
           },
           "400": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20019</td><td>unable to parse request body</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20019\u003c/td\u003e\u003ctd\u003eunable to parse request body\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "401": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr><tr><td>20022</td><td>token is not user token</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20022\u003c/td\u003e\u003ctd\u003etoken is not user token\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "404": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>73131</td><td>global configuration not found</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73131\u003c/td\u003e\u003ctd\u003eglobal configuration not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -553,19 +493,10 @@
               "$ref": "#/definitions/response.ErrorResponse"
             }
           }
-        },
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
-        "x-authorization": {
-          "resource": "ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION",
-          "action": "4"
         }
       },
       "delete": {
-        "description": "<p>Required permission 'ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [UPDATE]'</p>\n\t\t\t<p>This endpoint is used to delete existing global rule configuration based on the allowed action. It will not give any error if the allowed action is not existed in the global rule</p>\n\t\t\t<p>Action Code: 73105</p>\n\t\t",
+        "description": "\u003cp\u003eRequired permission 'ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [UPDATE]'\u003c/p\u003e\n\t\t\t\u003cp\u003eThis endpoint is used to delete existing global rule configuration based on the allowed action. It will not give any error if the allowed action is not existed in the global rule\u003c/p\u003e\n\t\t\t\u003cp\u003eAction Code: 73105\u003c/p\u003e\n\t\t",
         "produces": [
           "application/json"
         ],
@@ -605,25 +536,25 @@
             }
           },
           "400": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20019</td><td>unable to parse request body</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20019\u003c/td\u003e\u003ctd\u003eunable to parse request body\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "401": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr><tr><td>20022</td><td>token is not user token</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20022\u003c/td\u003e\u003ctd\u003etoken is not user token\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "404": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>73131</td><td>global configuration not found</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73131\u003c/td\u003e\u003ctd\u003eglobal configuration not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -634,21 +565,12 @@
               "$ref": "#/definitions/response.ErrorResponse"
             }
           }
-        },
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
-        "x-authorization": {
-          "resource": "ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION",
-          "action": "8"
         }
       }
     },
     "/group/v1/admin/namespaces/{namespace}/groups": {
       "get": {
-        "description": "<p>Required Permission: \"ADMIN:NAMESPACE:{namespace}:GROUP [READ]\" </p>\n\t\t\t<p>Get list of groups. This endpoint will show any types of group</p>\n\t\t\t<p>Action Code: 73301</p>\n\t\t",
+        "description": "\u003cp\u003eRequired Permission: \"ADMIN:NAMESPACE:{namespace}:GROUP [READ]\" \u003c/p\u003e\n\t\t\t\u003cp\u003eGet list of groups. This endpoint will show any types of group\u003c/p\u003e\n\t\t\t\u003cp\u003eAction Code: 73301\u003c/p\u003e\n\t\t",
         "produces": [
           "application/json"
         ],
@@ -704,19 +626,19 @@
             }
           },
           "400": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "401": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr><tr><td>20022</td><td>token is not user token</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20022\u003c/td\u003e\u003ctd\u003etoken is not user token\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -727,21 +649,12 @@
               "$ref": "#/definitions/response.ErrorResponse"
             }
           }
-        },
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
-        "x-authorization": {
-          "resource": "ADMIN:NAMESPACE:{namespace}:GROUP",
-          "action": "2"
         }
       }
     },
     "/group/v1/admin/namespaces/{namespace}/groups/{groupId}": {
       "get": {
-        "description": "<p>Required Permission: \"ADMIN:NAMESPACE:{namespace}:GROUP [READ]\"</p>\n\t\t\t<p>Get single group information. This endpoint will show the group information by the groupId</p>\n\t\t\t<p>Action Code: 73306</p>\n\t\t",
+        "description": "\u003cp\u003eRequired Permission: \"ADMIN:NAMESPACE:{namespace}:GROUP [READ]\"\u003c/p\u003e\n\t\t\t\u003cp\u003eGet single group information. This endpoint will show the group information by the groupId\u003c/p\u003e\n\t\t\t\u003cp\u003eAction Code: 73306\u003c/p\u003e\n\t\t",
         "produces": [
           "application/json"
         ],
@@ -774,25 +687,25 @@
             }
           },
           "400": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "401": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr><tr><td>20022</td><td>token is not user token</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20022\u003c/td\u003e\u003ctd\u003etoken is not user token\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "404": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>73333</td><td>group not found</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73333\u003c/td\u003e\u003ctd\u003egroup not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -803,19 +716,10 @@
               "$ref": "#/definitions/response.ErrorResponse"
             }
           }
-        },
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
-        "x-authorization": {
-          "resource": "ADMIN:NAMESPACE:{namespace}:GROUP",
-          "action": "2"
         }
       },
       "delete": {
-        "description": "<p>Required Permission: \"ADMIN:NAMESPACE:{namespace}:GROUP:{groupId} [DELETE]\"</p>\n\t\t\t<p>Delete existing group. It will check whether the groupID is exist before doing the process to delete the group.</p>\n\t\t\t<p>Action Code: 73302</p>\n\t\t",
+        "description": "\u003cp\u003eRequired Permission: \"ADMIN:NAMESPACE:{namespace}:GROUP:{groupId} [DELETE]\"\u003c/p\u003e\n\t\t\t\u003cp\u003eDelete existing group. It will check whether the groupID is exist before doing the process to delete the group.\u003c/p\u003e\n\t\t\t\u003cp\u003eAction Code: 73302\u003c/p\u003e\n\t\t",
         "produces": [
           "application/json"
         ],
@@ -845,25 +749,25 @@
             "description": "No Content"
           },
           "400": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "401": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr><tr><td>20022</td><td>token is not user token</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20022\u003c/td\u003e\u003ctd\u003etoken is not user token\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "404": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>73333</td><td>group not found</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73333\u003c/td\u003e\u003ctd\u003egroup not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -874,21 +778,12 @@
               "$ref": "#/definitions/response.ErrorResponse"
             }
           }
-        },
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
-        "x-authorization": {
-          "resource": "ADMIN:NAMESPACE:{namespace}:GROUP:{groupId}",
-          "action": "8"
         }
       }
     },
     "/group/v1/admin/namespaces/{namespace}/groups/{groupId}/members": {
       "get": {
-        "description": "<p>Required permission ADMIN:NAMESPACE:{namespace}:GROUP:MEMBER [READ] </p>\n\t\t\t<p>This endpoint is used to get list of group members.</p>\n\t\t\t<p>Action Code: 73410</p>\n\t\t",
+        "description": "\u003cp\u003eRequired permission ADMIN:NAMESPACE:{namespace}:GROUP:MEMBER [READ] \u003c/p\u003e\n\t\t\t\u003cp\u003eThis endpoint is used to get list of group members.\u003c/p\u003e\n\t\t\t\u003cp\u003eAction Code: 73410\u003c/p\u003e\n\t\t",
         "produces": [
           "application/json"
         ],
@@ -896,7 +791,7 @@
           "Group Member"
         ],
         "summary": "Get list of group members",
-        "operationId": "getGroupMembersListV1",
+        "operationId": "getGroupMembersListAdminV1",
         "parameters": [
           {
             "type": "string",
@@ -939,25 +834,25 @@
             }
           },
           "400": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "401": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20022</td><td>token is not user token</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20022\u003c/td\u003e\u003ctd\u003etoken is not user token\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "404": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>73433</td><td>member group not found</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73433\u003c/td\u003e\u003ctd\u003emember group not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -968,21 +863,12 @@
               "$ref": "#/definitions/response.ErrorResponse"
             }
           }
-        },
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
-        "x-authorization": {
-          "resource": "ADMIN:NAMESPACE:{namespace}:GROUP:MEMBER",
-          "action": "2"
         }
       }
     },
     "/group/v1/admin/namespaces/{namespace}/roles": {
       "get": {
-        "description": "<p>Required permission ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [READ]</p>\n\t\t\t<p>This endpoint is used to get list of member roles</p>\n\t\t\t<p>Action Code: 73201</p>\n\t\t",
+        "description": "\u003cp\u003eRequired permission ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [READ]\u003c/p\u003e\n\t\t\t\u003cp\u003eThis endpoint is used to get list of member roles\u003c/p\u003e\n\t\t\t\u003cp\u003eAction Code: 73201\u003c/p\u003e\n\t\t",
         "produces": [
           "application/json"
         ],
@@ -1020,19 +906,19 @@
             }
           },
           "400": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "401": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -1043,19 +929,10 @@
               "$ref": "#/definitions/response.ErrorResponse"
             }
           }
-        },
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
-        "x-authorization": {
-          "resource": "ADMIN:NAMESPACE:{namespace}:GROUP:ROLE",
-          "action": "2"
         }
       },
       "post": {
-        "description": "<p>Required permission ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [CREATE]</p>\n\t\t\t<p>This endpoint is used to create new member role</p>\n\t\t\t<p>Action Code: 73202</p>\n\t\t",
+        "description": "\u003cp\u003eRequired permission ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [CREATE]\u003c/p\u003e\n\t\t\t\u003cp\u003eThis endpoint is used to create new member role\u003c/p\u003e\n\t\t\t\u003cp\u003eAction Code: 73202\u003c/p\u003e\n\t\t",
         "consumes": [
           "application/json"
         ],
@@ -1092,19 +969,19 @@
             }
           },
           "400": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>20019</td><td>unable to parse request body</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20019\u003c/td\u003e\u003ctd\u003eunable to parse request body\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "401": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr><tr><td>20022</td><td>token is not user token</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20022\u003c/td\u003e\u003ctd\u003etoken is not user token\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -1115,21 +992,12 @@
               "$ref": "#/definitions/response.ErrorResponse"
             }
           }
-        },
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
-        "x-authorization": {
-          "resource": "ADMIN:NAMESPACE:{namespace}:GROUP:ROLE",
-          "action": "1"
         }
       }
     },
     "/group/v1/admin/namespaces/{namespace}/roles/{memberRoleId}": {
       "get": {
-        "description": "<p>Required permission ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [READ]</p>\n\t\t\t<p>This endpoint is used to get member role based on the role ID</p>\n\t\t\t<p>Action Code: 73203</p>\n\t\t",
+        "description": "\u003cp\u003eRequired permission ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [READ]\u003c/p\u003e\n\t\t\t\u003cp\u003eThis endpoint is used to get member role based on the role ID\u003c/p\u003e\n\t\t\t\u003cp\u003eAction Code: 73203\u003c/p\u003e\n\t\t",
         "produces": [
           "application/json"
         ],
@@ -1162,25 +1030,25 @@
             }
           },
           "400": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "401": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "404": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>73232</td><td>member role not found</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73232\u003c/td\u003e\u003ctd\u003emember role not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -1191,19 +1059,10 @@
               "$ref": "#/definitions/response.ErrorResponse"
             }
           }
-        },
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
-        "x-authorization": {
-          "resource": "ADMIN:NAMESPACE:{namespace}:GROUP:ROLE",
-          "action": "2"
         }
       },
       "delete": {
-        "description": "<p>Required permission ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [DELETE]</p>\n\t\t\t<p>This endpoint is used to delete member role. Any member role can't be deleted if the specific role is applied to the configuration (admin and member role)</p>\n\t\t\t<p>Action Code: 73207</p>\n\t\t",
+        "description": "\u003cp\u003eRequired permission ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [DELETE]\u003c/p\u003e\n\t\t\t\u003cp\u003eThis endpoint is used to delete member role. Any member role can't be deleted if the specific role is applied to the configuration (admin and member role)\u003c/p\u003e\n\t\t\t\u003cp\u003eAction Code: 73207\u003c/p\u003e\n\t\t",
         "produces": [
           "application/json"
         ],
@@ -1233,25 +1092,25 @@
             "description": "No Content"
           },
           "400": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "401": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20022</td><td>token is not user token</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20022\u003c/td\u003e\u003ctd\u003etoken is not user token\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "404": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>73232</td><td>member role not found</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73232\u003c/td\u003e\u003ctd\u003emember role not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -1262,19 +1121,10 @@
               "$ref": "#/definitions/response.ErrorResponse"
             }
           }
-        },
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
-        "x-authorization": {
-          "resource": "ADMIN:NAMESPACE:{namespace}:GROUP:ROLE",
-          "action": "8"
         }
       },
       "patch": {
-        "description": "<p>Required permission ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [UPDATE]</p>\n\t\t\t<p>This endpoint is used to get member role</p>\n\t\t\t<p>Action Code: 73204</p>\n\t\t",
+        "description": "\u003cp\u003eRequired permission ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [UPDATE]\u003c/p\u003e\n\t\t\t\u003cp\u003eThis endpoint is used to get member role\u003c/p\u003e\n\t\t\t\u003cp\u003eAction Code: 73204\u003c/p\u003e\n\t\t",
         "consumes": [
           "application/json"
         ],
@@ -1318,25 +1168,25 @@
             }
           },
           "400": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>20019</td><td>unable to parse request body</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20019\u003c/td\u003e\u003ctd\u003eunable to parse request body\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "401": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20022</td><td>token is not user token</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20022\u003c/td\u003e\u003ctd\u003etoken is not user token\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "404": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>73232</td><td>member role not found</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73232\u003c/td\u003e\u003ctd\u003emember role not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -1347,21 +1197,12 @@
               "$ref": "#/definitions/response.ErrorResponse"
             }
           }
-        },
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
-        "x-authorization": {
-          "resource": "ADMIN:NAMESPACE:{namespace}:GROUP:ROLE",
-          "action": "4"
         }
       }
     },
     "/group/v1/admin/namespaces/{namespace}/roles/{memberRoleId}/permissions": {
       "put": {
-        "description": "<p>Required permission ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [UPDATE]</p>\n\t\t\t<p>This endpoint is used to update member role permission. It will replace the existing permission based on the request from this endpoint</p>\n\t\t\t<p>Action Code: 73205</p>\n\t\t",
+        "description": "\u003cp\u003eRequired permission ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [UPDATE]\u003c/p\u003e\n\t\t\t\u003cp\u003eThis endpoint is used to update member role permission. It will replace the existing permission based on the request from this endpoint\u003c/p\u003e\n\t\t\t\u003cp\u003eAction Code: 73205\u003c/p\u003e\n\t\t",
         "consumes": [
           "application/json"
         ],
@@ -1405,25 +1246,25 @@
             }
           },
           "400": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>20019</td><td>unable to parse request body</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20019\u003c/td\u003e\u003ctd\u003eunable to parse request body\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "401": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20022</td><td>token is not user token</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20022\u003c/td\u003e\u003ctd\u003etoken is not user token\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "404": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>73232</td><td>member role not found</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73232\u003c/td\u003e\u003ctd\u003emember role not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -1434,21 +1275,12 @@
               "$ref": "#/definitions/response.ErrorResponse"
             }
           }
-        },
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
-        "x-authorization": {
-          "resource": "ADMIN:NAMESPACE:{namespace}:GROUP:ROLE",
-          "action": "4"
         }
       }
     },
     "/group/v1/public/namespaces/{namespace}/groups": {
       "get": {
-        "description": "<p>Required valid user authentication </p>\n\t\t\t<p>Get list of groups. This endpoint will only show OPEN and PUBLIC group type. This endpoint can search based on the group name by filling the \"groupName\" query parameter</p>\n\t\t\t<p>Action Code: 73303</p>\n\t\t",
+        "description": "\u003cp\u003eRequired valid user authentication \u003c/p\u003e\n\t\t\t\u003cp\u003eGet list of groups. This endpoint will only show OPEN and PUBLIC group type. This endpoint can search based on the group name by filling the \"groupName\" query parameter\u003c/p\u003e\n\t\t\t\u003cp\u003eAction Code: 73303\u003c/p\u003e\n\t\t",
         "produces": [
           "application/json"
         ],
@@ -1498,19 +1330,19 @@
             }
           },
           "400": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "401": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr><tr><td>20022</td><td>token is not user token</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20022\u003c/td\u003e\u003ctd\u003etoken is not user token\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -1521,18 +1353,10 @@
               "$ref": "#/definitions/response.ErrorResponse"
             }
           }
-        },
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
-        "x-authorization": {
-          "authenticated": "true"
         }
       },
       "post": {
-        "description": "<p>Required valid user authentication </p>\n\t\t\t<p>This endpoint is used to create new group</p>\n\t\t\t<p>There are some fields that needs to be fulfilled</p>\n\t\t\t<ul>\n\t\t\t\t<li><b>groupDescription</b>: the description of the group (optional)</li>\n\t\t\t\t<li><b>groupIcon</b>: group icon URL link (optional)</li>\n\t\t\t\t<li><b>groupName</b>: name of the group</li>\n\t\t\t\t<li><b>groupRegion</b>: region of the group</li>\n\t\t\t\t<li><b>groupRules</b>: rules for specific group. It consists of groupCustomRule that can be used to save custom rule, and groupPredefinedRules that has similar usage with configuration, but this rule only works in specific group</li>\n\t\t\t\t<li><b>allowedAction</b>: available action in group service. It consist of joinGroup and inviteGroup</li>\n\t\t\t\t<li><b>ruleAttribute</b>: attribute of the player that needs to be checked</li>\n\t\t\t\t<li><b>ruleCriteria</b>: criteria of the value. The value will be in enum of EQUAL, MINIMUM, MAXIMUM</li>\n\t\t\t\t<li><b>ruleValue</b>: value that needs to be checked</li>\n\t\t\t\t<li><b>customAttributes</b>: additional custom group attributes (optional)</li>\n\t\t\t</ul>\n\t\t\t<p>Action Code: 73304</p>\n\t\t",
+        "description": "\u003cp\u003eRequired valid user authentication \u003c/p\u003e\n\t\t\t\u003cp\u003eThis endpoint is used to create new group\u003c/p\u003e\n\t\t\t\u003cp\u003eThere are some fields that needs to be fulfilled\u003c/p\u003e\n\t\t\t\u003cul\u003e\n\t\t\t\t\u003cli\u003e\u003cb\u003egroupDescription\u003c/b\u003e: the description of the group (optional)\u003c/li\u003e\n\t\t\t\t\u003cli\u003e\u003cb\u003egroupIcon\u003c/b\u003e: group icon URL link (optional)\u003c/li\u003e\n\t\t\t\t\u003cli\u003e\u003cb\u003egroupName\u003c/b\u003e: name of the group\u003c/li\u003e\n\t\t\t\t\u003cli\u003e\u003cb\u003egroupRegion\u003c/b\u003e: region of the group\u003c/li\u003e\n\t\t\t\t\u003cli\u003e\u003cb\u003egroupRules\u003c/b\u003e: rules for specific group. It consists of groupCustomRule that can be used to save custom rule, and groupPredefinedRules that has similar usage with configuration, but this rule only works in specific group\u003c/li\u003e\n\t\t\t\t\u003cli\u003e\u003cb\u003eallowedAction\u003c/b\u003e: available action in group service. It consist of joinGroup and inviteGroup\u003c/li\u003e\n\t\t\t\t\u003cli\u003e\u003cb\u003eruleAttribute\u003c/b\u003e: attribute of the player that needs to be checked\u003c/li\u003e\n\t\t\t\t\u003cli\u003e\u003cb\u003eruleCriteria\u003c/b\u003e: criteria of the value. The value will be in enum of EQUAL, MINIMUM, MAXIMUM\u003c/li\u003e\n\t\t\t\t\u003cli\u003e\u003cb\u003eruleValue\u003c/b\u003e: value that needs to be checked\u003c/li\u003e\n\t\t\t\t\u003cli\u003e\u003cb\u003ecustomAttributes\u003c/b\u003e: additional custom group attributes (optional)\u003c/li\u003e\n\t\t\t\u003c/ul\u003e\n\t\t\t\u003cp\u003eAction Code: 73304\u003c/p\u003e\n\t\t",
         "consumes": [
           "application/json"
         ],
@@ -1569,25 +1393,25 @@
             }
           },
           "400": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "401": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr><tr><td>20022</td><td>token is not user token</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20022\u003c/td\u003e\u003ctd\u003etoken is not user token\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "409": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>73342</td><td>user already joined group</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73342\u003c/td\u003e\u003ctd\u003euser already joined group\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -1598,20 +1422,12 @@
               "$ref": "#/definitions/response.ErrorResponse"
             }
           }
-        },
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
-        "x-authorization": {
-          "authentiated": "true"
         }
       }
     },
     "/group/v1/public/namespaces/{namespace}/groups/{groupId}": {
       "get": {
-        "description": "<p>Required valid user authentication </p>\n\t\t\t<p>Get single group information. This endpoint will show the group information by the groupId</p>\n\t\t\t<p>Action Code: 73306</p>\n\t\t",
+        "description": "\u003cp\u003eRequired valid user authentication \u003c/p\u003e\n\t\t\t\u003cp\u003eGet single group information. This endpoint will show the group information by the groupId\u003c/p\u003e\n\t\t\t\u003cp\u003eAction Code: 73306\u003c/p\u003e\n\t\t",
         "produces": [
           "application/json"
         ],
@@ -1644,25 +1460,25 @@
             }
           },
           "400": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "401": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr><tr><td>20022</td><td>token is not user token</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20022\u003c/td\u003e\u003ctd\u003etoken is not user token\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "404": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>73333</td><td>group not found</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73333\u003c/td\u003e\u003ctd\u003egroup not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -1673,18 +1489,148 @@
               "$ref": "#/definitions/response.ErrorResponse"
             }
           }
-        },
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
-        "x-authorization": {
-          "authentiated": "true"
         }
       },
       "put": {
-        "description": "<p>Required valid user authentication </p>\n\t\t\t<p>Required Member Role Permission: \"GROUP [UPDATE]\"</p>\n\t\t\t<p>Update existing group. This endpoint supports partial update. This endpoint will check the group ID of the user based on the access token and compare it with the group ID in path parameter. \n\t\t\tIt will also check the member role of the user based on the access token</p>\n\t\t\t<p>Action Code: 73307</p>\n\t\t",
+        "description": "\u003cp\u003eRequired valid user authentication \u003c/p\u003e\n\t\t\t\u003cp\u003eRequired Member Role Permission: \"GROUP [UPDATE]\"\u003c/p\u003e\n\t\t\t\u003cp\u003eUpdate existing group. This endpoint supports partial update. This endpoint will check the group ID of the user based on the access token and compare it with the group ID in path parameter. \n\t\t\tIt will also check the member role of the user based on the access token\u003c/p\u003e\n\t\t\t\u003cp\u003eAction Code: 73307\u003c/p\u003e\n\t\t",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Group"
+        ],
+        "summary": "update existing group",
+        "operationId": "updateSingleGroupV1",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.UpdateGroupRequestV1"
+            }
+          },
+          {
+            "type": "string",
+            "description": "Group ID",
+            "name": "groupId",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.GroupResponseV1"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20022\u003c/td\u003e\u003ctd\u003etoken is not user token\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73036\u003c/td\u003e\u003ctd\u003einsufficient member role permission\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73333\u003c/td\u003e\u003ctd\u003egroup not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "\u003cp\u003eRequired valid user authentication \u003c/p\u003e\n\t\t\t\u003cp\u003eRequired Member Role Permission: \"GROUP [DELETE]\"\u003c/p\u003e\n\t\t\t\u003cp\u003eDelete existing group. This endpoint will check the group ID of the user based on the access token\n\t\t\tand compare it with the group ID in path parameter. It will also check the member role of the user based on \n\t\t\tthe access token\u003c/p\u003e\n\t\t\t\u003cp\u003eAction Code: 73305\u003c/p\u003e\n\t\t",
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Group"
+        ],
+        "summary": "Delete existing group",
+        "operationId": "deleteGroupPublicV1",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Group ID",
+            "name": "groupId",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20022\u003c/td\u003e\u003ctd\u003etoken is not user token\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73036\u003c/td\u003e\u003ctd\u003einsufficient member role permission\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73333\u003c/td\u003e\u003ctd\u003egroup not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        }
+      },
+      "patch": {
+        "description": "\u003cp\u003eRequired valid user authentication \u003c/p\u003e\n\t\t\t\u003cp\u003eRequired Member Role Permission: \"GROUP [UPDATE]\"\u003c/p\u003e\n\t\t\t\u003cp\u003eUpdate existing group. This endpoint supports partial update. This endpoint will check the group ID of the user based on the access token and compare it with the group ID in path parameter. \n\t\t\tIt will also check the member role of the user based on the access token\u003c/p\u003e\n\t\t\t\u003cp\u003eAction Code: 73307\u003c/p\u003e\n\t\t",
         "consumes": [
           "application/json"
         ],
@@ -1728,25 +1674,25 @@
             }
           },
           "400": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "401": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr><tr><td>20022</td><td>token is not user token</td></tr><tr><td>73036</td><td>insufficient member role permission</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20022\u003c/td\u003e\u003ctd\u003etoken is not user token\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73036\u003c/td\u003e\u003ctd\u003einsufficient member role permission\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "404": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>73333</td><td>group not found</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73333\u003c/td\u003e\u003ctd\u003egroup not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -1757,180 +1703,12 @@
               "$ref": "#/definitions/response.ErrorResponse"
             }
           }
-        },
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
-        "x-authorization": {
-          "authentiated": "true",
-          "resource": "GROUP",
-          "action": "4"
-        }
-      },
-      "delete": {
-        "description": "<p>Required valid user authentication </p>\n\t\t\t<p>Required Member Role Permission: \"GROUP [DELETE]\"</p>\n\t\t\t<p>Delete existing group. This endpoint will check the group ID of the user based on the access token\n\t\t\tand compare it with the group ID in path parameter. It will also check the member role of the user based on \n\t\t\tthe access token</p>\n\t\t\t<p>Action Code: 73305</p>\n\t\t",
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "Group"
-        ],
-        "summary": "Delete existing group",
-        "operationId": "deleteGroupPublicV1",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "namespace",
-            "name": "namespace",
-            "in": "path",
-            "required": true
-          },
-          {
-            "type": "string",
-            "description": "Group ID",
-            "name": "groupId",
-            "in": "path",
-            "required": true
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "No Content"
-          },
-          "400": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
-            "schema": {
-              "$ref": "#/definitions/response.ErrorResponse"
-            }
-          },
-          "401": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
-            "schema": {
-              "$ref": "#/definitions/response.ErrorResponse"
-            }
-          },
-          "403": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr><tr><td>20022</td><td>token is not user token</td></tr><tr><td>73036</td><td>insufficient member role permission</td></tr></table>",
-            "schema": {
-              "$ref": "#/definitions/response.ErrorResponse"
-            }
-          },
-          "404": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>73333</td><td>group not found</td></tr></table>",
-            "schema": {
-              "$ref": "#/definitions/response.ErrorResponse"
-            }
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "schema": {
-              "$ref": "#/definitions/response.ErrorResponse"
-            }
-          }
-        },
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
-        "x-authorization": {
-          "authentiated": "true",
-          "resource": "GROUP",
-          "action": "8"
-        }
-      },
-      "patch": {
-        "description": "<p>Required valid user authentication </p>\n\t\t\t<p>Required Member Role Permission: \"GROUP [UPDATE]\"</p>\n\t\t\t<p>Update existing group. This endpoint supports partial update. This endpoint will check the group ID of the user based on the access token and compare it with the group ID in path parameter. \n\t\t\tIt will also check the member role of the user based on the access token</p>\n\t\t\t<p>Action Code: 73307</p>\n\t\t",
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "Group"
-        ],
-        "summary": "update existing group",
-        "operationId": "updateSingleGroupPartialPublicV1",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "namespace",
-            "name": "namespace",
-            "in": "path",
-            "required": true
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/models.UpdateGroupRequestV1"
-            }
-          },
-          {
-            "type": "string",
-            "description": "Group ID",
-            "name": "groupId",
-            "in": "path",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/models.GroupResponseV1"
-            }
-          },
-          "400": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
-            "schema": {
-              "$ref": "#/definitions/response.ErrorResponse"
-            }
-          },
-          "401": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
-            "schema": {
-              "$ref": "#/definitions/response.ErrorResponse"
-            }
-          },
-          "403": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr><tr><td>20022</td><td>token is not user token</td></tr><tr><td>73036</td><td>insufficient member role permission</td></tr></table>",
-            "schema": {
-              "$ref": "#/definitions/response.ErrorResponse"
-            }
-          },
-          "404": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>73333</td><td>group not found</td></tr></table>",
-            "schema": {
-              "$ref": "#/definitions/response.ErrorResponse"
-            }
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "schema": {
-              "$ref": "#/definitions/response.ErrorResponse"
-            }
-          }
-        },
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
-        "x-authorization": {
-          "authentiated": "true",
-          "resource": "GROUP",
-          "action": "4"
         }
       }
     },
     "/group/v1/public/namespaces/{namespace}/groups/{groupId}/attributes/custom": {
       "put": {
-        "description": "<p>Requires valid user authentication </p>\n\t\t\t<p>Required Member Role Permission: \"GROUP [UPDATE]\"</p>\n\t\t\t<p>This endpoint replaces current group custom attributes entirely.\n\t\t\tThis endpoint will check the group ID of the user based on the access token and compare it with the group ID in path parameter. \n\t\t\tIt will also check the member role of the user based on the access token</p>\n\t\t\t<p>Action Code: 73311</p>\n\t\t",
+        "description": "\u003cp\u003eRequires valid user authentication \u003c/p\u003e\n\t\t\t\u003cp\u003eRequired Member Role Permission: \"GROUP [UPDATE]\"\u003c/p\u003e\n\t\t\t\u003cp\u003eThis endpoint replaces current group custom attributes entirely.\n\t\t\tThis endpoint will check the group ID of the user based on the access token and compare it with the group ID in path parameter. \n\t\t\tIt will also check the member role of the user based on the access token\u003c/p\u003e\n\t\t\t\u003cp\u003eAction Code: 73311\u003c/p\u003e\n\t\t",
         "consumes": [
           "application/json"
         ],
@@ -1974,25 +1752,25 @@
             }
           },
           "400": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "401": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr><tr><td>20022</td><td>token is not user token</td></tr><tr><td>73036</td><td>insufficient member role permission</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20022\u003c/td\u003e\u003ctd\u003etoken is not user token\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73036\u003c/td\u003e\u003ctd\u003einsufficient member role permission\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "404": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>73333</td><td>group not found</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73333\u003c/td\u003e\u003ctd\u003egroup not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -2003,22 +1781,12 @@
               "$ref": "#/definitions/response.ErrorResponse"
             }
           }
-        },
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
-        "x-authorization": {
-          "authentiated": "true",
-          "resource": "GROUP",
-          "action": "4"
         }
       }
     },
     "/group/v1/public/namespaces/{namespace}/groups/{groupId}/invite/accept": {
       "post": {
-        "description": "<p>Required valid user authentication </p>\n\t\t\t<p>This endpoint is used to accept group invitation.</p>\n\t\t\t<p>Accept group invitation. If specific user is not invited in the specific group ID, it will show the the error to show if the user is not invited yet.</p>\n\t\t\t<p>This endpoint will also check if the user who access this endpoint is already joined to specific group</p>\n\t\t\t<p>Accessing this endpoint will make all requests (invite / join request) will be deleted for the user who access this endpoint</p>\n\t\t\t<p>Existing members will receive notification of newly accepted member.</p>\n\t\t\t<p>Action Code: 73401</p>\n\t\t",
+        "description": "\u003cp\u003eRequired valid user authentication \u003c/p\u003e\n\t\t\t\u003cp\u003eThis endpoint is used to accept group invitation.\u003c/p\u003e\n\t\t\t\u003cp\u003eAccept group invitation. If specific user is not invited in the specific group ID, it will show the the error to show if the user is not invited yet.\u003c/p\u003e\n\t\t\t\u003cp\u003eThis endpoint will also check if the user who access this endpoint is already joined to specific group\u003c/p\u003e\n\t\t\t\u003cp\u003eAccessing this endpoint will make all requests (invite / join request) will be deleted for the user who access this endpoint\u003c/p\u003e\n\t\t\t\u003cp\u003eExisting members will receive notification of newly accepted member.\u003c/p\u003e\n\t\t\t\u003cp\u003eAction Code: 73401\u003c/p\u003e\n\t\t",
         "produces": [
           "application/json"
         ],
@@ -2051,31 +1819,31 @@
             }
           },
           "400": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "401": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20022</td><td>token is not user token</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20022\u003c/td\u003e\u003ctd\u003etoken is not user token\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "404": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>73443</td><td>member request not found</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73443\u003c/td\u003e\u003ctd\u003emember request not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "409": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>73442</td><td>user already joined in another group</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73442\u003c/td\u003e\u003ctd\u003euser already joined in another group\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -2086,20 +1854,12 @@
               "$ref": "#/definitions/response.ErrorResponse"
             }
           }
-        },
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
-        "x-authorization": {
-          "authentiated": "true"
         }
       }
     },
     "/group/v1/public/namespaces/{namespace}/groups/{groupId}/invite/reject": {
       "post": {
-        "description": "<p>Required valid user authentication </p>\n\t\t\t<p>This endpoint is used to reject group invitation.</p>\n\t\t\t<p>Reject group invitation. If specific user is not invited in the specific group ID, it will show the the error to show if the user is not invited yet.</p>\n\t\t\t<p>Action Code: 73402</p>\n\t\t",
+        "description": "\u003cp\u003eRequired valid user authentication \u003c/p\u003e\n\t\t\t\u003cp\u003eThis endpoint is used to reject group invitation.\u003c/p\u003e\n\t\t\t\u003cp\u003eReject group invitation. If specific user is not invited in the specific group ID, it will show the the error to show if the user is not invited yet.\u003c/p\u003e\n\t\t\t\u003cp\u003eAction Code: 73402\u003c/p\u003e\n\t\t",
         "produces": [
           "application/json"
         ],
@@ -2132,31 +1892,31 @@
             }
           },
           "400": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "401": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20022</td><td>token is not user token</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20022\u003c/td\u003e\u003ctd\u003etoken is not user token\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "404": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>73443</td><td>member request not found</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73443\u003c/td\u003e\u003ctd\u003emember request not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "409": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>73442</td><td>user already joined in another group</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73442\u003c/td\u003e\u003ctd\u003euser already joined in another group\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -2167,20 +1927,12 @@
               "$ref": "#/definitions/response.ErrorResponse"
             }
           }
-        },
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
-        "x-authorization": {
-          "authentiated": "true"
         }
       }
     },
     "/group/v1/public/namespaces/{namespace}/groups/{groupId}/join": {
       "post": {
-        "description": "<p>Required valid user authentication </p>\n\t\t\t<p>This endpoint is used to join as group member</p>\n\t\t\t<p>Join to the group. This endpoint will check the the the type of the group based on the groupID.</p>\n\t\t\t<p>Additional Information:</p>\n\t\t\t<ul>\n\t\t\t\t<li>User cannot join to the group with PRIVATE type</li>\n\t\t\t\t<li>Joining PUBLIC group type will create join request and need approval from the privileged group member to accept the request to become the member</li>\n\t\t\t\t<li>Joining OPEN group type will make this user become member of that group immediately</li>\n\t\t\t</ul>\n\t\t\t<p>This endpoint will return status field to give information whether the user is JOINED or REQUESTED to join to the specific group</p>\n\t\t\t<p>Action Code: 73403</p>\n\t\t",
+        "description": "\u003cp\u003eRequired valid user authentication \u003c/p\u003e\n\t\t\t\u003cp\u003eThis endpoint is used to join as group member\u003c/p\u003e\n\t\t\t\u003cp\u003eJoin to the group. This endpoint will check the the the type of the group based on the groupID.\u003c/p\u003e\n\t\t\t\u003cp\u003eAdditional Information:\u003c/p\u003e\n\t\t\t\u003cul\u003e\n\t\t\t\t\u003cli\u003eUser cannot join to the group with PRIVATE type\u003c/li\u003e\n\t\t\t\t\u003cli\u003eJoining PUBLIC group type will create join request and need approval from the privileged group member to accept the request to become the member\u003c/li\u003e\n\t\t\t\t\u003cli\u003eJoining OPEN group type will make this user become member of that group immediately\u003c/li\u003e\n\t\t\t\u003c/ul\u003e\n\t\t\t\u003cp\u003eThis endpoint will return status field to give information whether the user is JOINED or REQUESTED to join to the specific group\u003c/p\u003e\n\t\t\t\u003cp\u003eAction Code: 73403\u003c/p\u003e\n\t\t",
         "produces": [
           "application/json"
         ],
@@ -2213,25 +1965,25 @@
             }
           },
           "400": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "401": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20022</td><td>token is not user token</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20022\u003c/td\u003e\u003ctd\u003etoken is not user token\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "409": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>73442</td><td>user already joined in another group</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73442\u003c/td\u003e\u003ctd\u003euser already joined in another group\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -2242,20 +1994,12 @@
               "$ref": "#/definitions/response.ErrorResponse"
             }
           }
-        },
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
-        "x-authorization": {
-          "authentiated": "true"
         }
       }
     },
     "/group/v1/public/namespaces/{namespace}/groups/{groupId}/join/cancel": {
       "post": {
-        "description": "<p>Requires valid user authentication</p>\n\t\t\t<p>This endpoint allows user to cancel request to join specific group.</p>\n\t\t\t<p>Action Code: 73411</p>\n\t\t",
+        "description": "\u003cp\u003eRequires valid user authentication\u003c/p\u003e\n\t\t\t\u003cp\u003eThis endpoint allows user to cancel request to join specific group.\u003c/p\u003e\n\t\t\t\u003cp\u003eAction Code: 73411\u003c/p\u003e\n\t\t",
         "produces": [
           "application/json"
         ],
@@ -2288,25 +2032,25 @@
             }
           },
           "400": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "401": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20022</td><td>token is not user token</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20022\u003c/td\u003e\u003ctd\u003etoken is not user token\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "404": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>73443</td><td>member request not found</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73443\u003c/td\u003e\u003ctd\u003emember request not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -2317,20 +2061,12 @@
               "$ref": "#/definitions/response.ErrorResponse"
             }
           }
-        },
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
-        "x-authorization": {
-          "authentiated": "true"
         }
       }
     },
     "/group/v1/public/namespaces/{namespace}/groups/{groupId}/join/request": {
       "get": {
-        "description": "<p>Required valid user authentication </p>\n\t\t\t<p>Required Member Role Permission: \"GROUP:JOIN [READ]\"</p>\n\t\t\t<p>This endpoint is used to Get Group Join Request List</p>\n\t\t\t<p>Get Group Join Request List for specific group. Group members needs to have permission and also belong to the group to access this endpoint</p>\n\t\t\t<p>Action Code: 73501</p>\n\t\t",
+        "description": "\u003cp\u003eRequired valid user authentication \u003c/p\u003e\n\t\t\t\u003cp\u003eRequired Member Role Permission: \"GROUP:JOIN [READ]\"\u003c/p\u003e\n\t\t\t\u003cp\u003eThis endpoint is used to Get Group Join Request List\u003c/p\u003e\n\t\t\t\u003cp\u003eGet Group Join Request List for specific group. Group members needs to have permission and also belong to the group to access this endpoint\u003c/p\u003e\n\t\t\t\u003cp\u003eAction Code: 73501\u003c/p\u003e\n\t\t",
         "produces": [
           "application/json"
         ],
@@ -2375,19 +2111,19 @@
             }
           },
           "400": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "401": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20022</td><td>token is not user token</td></tr><tr><td>73036</td><td>insufficient member role permission</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20022\u003c/td\u003e\u003ctd\u003etoken is not user token\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73036\u003c/td\u003e\u003ctd\u003einsufficient member role permission\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -2398,22 +2134,12 @@
               "$ref": "#/definitions/response.ErrorResponse"
             }
           }
-        },
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
-        "x-authorization": {
-          "authentiated": "true",
-          "resource": "GROUP:JOIN",
-          "action": "2"
         }
       }
     },
     "/group/v1/public/namespaces/{namespace}/groups/{groupId}/members": {
       "get": {
-        "description": "<p>Required valid user authentication </p>\n\t\t\t<p>This endpoint is used to get list of group members.</p>\n\t\t\t<p>Action Code: 73410</p>\n\t\t",
+        "description": "\u003cp\u003eRequired valid user authentication \u003c/p\u003e\n\t\t\t\u003cp\u003eThis endpoint is used to get list of group members.\u003c/p\u003e\n\t\t\t\u003cp\u003eAction Code: 73410\u003c/p\u003e\n\t\t",
         "produces": [
           "application/json"
         ],
@@ -2464,25 +2190,25 @@
             }
           },
           "400": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "401": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20022</td><td>token is not user token</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20022\u003c/td\u003e\u003ctd\u003etoken is not user token\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "404": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>73433</td><td>member group not found</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73433\u003c/td\u003e\u003ctd\u003emember group not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -2493,20 +2219,12 @@
               "$ref": "#/definitions/response.ErrorResponse"
             }
           }
-        },
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
-        "x-authorization": {
-          "authentiated": "true"
         }
       }
     },
     "/group/v1/public/namespaces/{namespace}/groups/{groupId}/rules/custom": {
       "put": {
-        "description": "<p>Required valid user authentication </p>\n\t\t\t<p>Update group custom rule. This endpoint will check the group ID of the user based on the access token \n\t\t\tand compare it with the group ID in path parameter. It will also check the member role of the user based \n\t\t\ton the access token</p>\n\t\t\t<p>Action Code: 73308</p>\n\t\t",
+        "description": "\u003cp\u003eRequired valid user authentication \u003c/p\u003e\n\t\t\t\u003cp\u003eUpdate group custom rule. This endpoint will check the group ID of the user based on the access token \n\t\t\tand compare it with the group ID in path parameter. It will also check the member role of the user based \n\t\t\ton the access token\u003c/p\u003e\n\t\t\t\u003cp\u003eAction Code: 73308\u003c/p\u003e\n\t\t",
         "consumes": [
           "application/json"
         ],
@@ -2550,25 +2268,25 @@
             }
           },
           "400": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>20019</td><td>unable to parse request body</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20019\u003c/td\u003e\u003ctd\u003eunable to parse request body\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "401": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr><tr><td>20022</td><td>token is not user token</td></tr><tr><td>73036</td><td>insufficient member role permission</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20022\u003c/td\u003e\u003ctd\u003etoken is not user token\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73036\u003c/td\u003e\u003ctd\u003einsufficient member role permission\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "404": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>73333</td><td>group not found</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73333\u003c/td\u003e\u003ctd\u003egroup not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -2579,20 +2297,12 @@
               "$ref": "#/definitions/response.ErrorResponse"
             }
           }
-        },
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
-        "x-authorization": {
-          "authentiated": "true"
         }
       }
     },
     "/group/v1/public/namespaces/{namespace}/groups/{groupId}/rules/defined/{allowedAction}": {
       "put": {
-        "description": "<p>Required valid user authentication </p>\n\t\t\t<p>Required Member Role Permission: \"GROUP [UPDATE]\"</p>\n\t\t\t<p>Update predefined group rule. This endpoint will check the group ID of the user based on the access token \n\t\t\tand compare it with the group ID in path parameter. It will also check the member role of the user based on \n\t\t\tthe access token</p>\n\t\t\t<p>If the rule action is not defined in the group, it wil be added immediately to the predefined group rule</p>\n\t\t\t<p>Action Code: 73310</p>\n\t\t",
+        "description": "\u003cp\u003eRequired valid user authentication \u003c/p\u003e\n\t\t\t\u003cp\u003eRequired Member Role Permission: \"GROUP [UPDATE]\"\u003c/p\u003e\n\t\t\t\u003cp\u003eUpdate predefined group rule. This endpoint will check the group ID of the user based on the access token \n\t\t\tand compare it with the group ID in path parameter. It will also check the member role of the user based on \n\t\t\tthe access token\u003c/p\u003e\n\t\t\t\u003cp\u003eIf the rule action is not defined in the group, it wil be added immediately to the predefined group rule\u003c/p\u003e\n\t\t\t\u003cp\u003eAction Code: 73310\u003c/p\u003e\n\t\t",
         "consumes": [
           "application/json"
         ],
@@ -2643,25 +2353,25 @@
             }
           },
           "400": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20019</td><td>unable to parse request body</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20019\u003c/td\u003e\u003ctd\u003eunable to parse request body\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "401": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr><tr><td>20022</td><td>token is not user token</td></tr><tr><td>73036</td><td>insufficient member role permission</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20022\u003c/td\u003e\u003ctd\u003etoken is not user token\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73036\u003c/td\u003e\u003ctd\u003einsufficient member role permission\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "404": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>73333</td><td>group not found</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73333\u003c/td\u003e\u003ctd\u003egroup not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -2672,20 +2382,10 @@
               "$ref": "#/definitions/response.ErrorResponse"
             }
           }
-        },
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
-        "x-authorization": {
-          "authentiated": "true",
-          "resource": "GROUP",
-          "action": "4"
         }
       },
       "delete": {
-        "description": "<p>Required valid user authentication </p>\n\t\t\t<p>Required Member Role Permission: \"GROUP [UPDATE]\"</p>\n\t\t\t<p>Delete group predefined rule based on the allowed action. This endpoint will check the group ID of the user based on the access token\n\t\t\tand compare it with the group ID in path parameter. It will also check the member role of the user based on \n\t\t\tthe access token</p>\n\t\t\t<p>Action Code: 73309</p>\n\t\t",
+        "description": "\u003cp\u003eRequired valid user authentication \u003c/p\u003e\n\t\t\t\u003cp\u003eRequired Member Role Permission: \"GROUP [UPDATE]\"\u003c/p\u003e\n\t\t\t\u003cp\u003eDelete group predefined rule based on the allowed action. This endpoint will check the group ID of the user based on the access token\n\t\t\tand compare it with the group ID in path parameter. It will also check the member role of the user based on \n\t\t\tthe access token\u003c/p\u003e\n\t\t\t\u003cp\u003eAction Code: 73309\u003c/p\u003e\n\t\t",
         "produces": [
           "application/json"
         ],
@@ -2722,25 +2422,25 @@
             "description": "No Content"
           },
           "400": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "401": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr><tr><td>20022</td><td>token is not user token</td></tr><tr><td>73036</td><td>insufficient member role permission</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20022\u003c/td\u003e\u003ctd\u003etoken is not user token\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73036\u003c/td\u003e\u003ctd\u003einsufficient member role permission\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "404": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>73333</td><td>group not found</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73333\u003c/td\u003e\u003ctd\u003egroup not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -2751,22 +2451,12 @@
               "$ref": "#/definitions/response.ErrorResponse"
             }
           }
-        },
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
-        "x-authorization": {
-          "authentiated": "true",
-          "resource": "GROUP",
-          "action": "8"
         }
       }
     },
     "/group/v1/public/namespaces/{namespace}/leave": {
       "post": {
-        "description": "<p>Required valid user authentication </p>\n\t\t\t<p>This endpoint is used to leave from group.</p>\n\t\t\t<p>leave from group. Admin is not allowed to leave the group. This endpoint will also give response if the user is not belong to any group.</p>\n\t\t\t<p>Action Code: 73404</p>\n\t\t",
+        "description": "\u003cp\u003eRequired valid user authentication \u003c/p\u003e\n\t\t\t\u003cp\u003eThis endpoint is used to leave from group.\u003c/p\u003e\n\t\t\t\u003cp\u003eleave from group. Admin is not allowed to leave the group. This endpoint will also give response if the user is not belong to any group.\u003c/p\u003e\n\t\t\t\u003cp\u003eAction Code: 73404\u003c/p\u003e\n\t\t",
         "produces": [
           "application/json"
         ],
@@ -2792,25 +2482,25 @@
             }
           },
           "400": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>73440</td><td>group admin cannot leave group</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73440\u003c/td\u003e\u003ctd\u003egroup admin cannot leave group\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "401": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20022</td><td>token is not user token</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20022\u003c/td\u003e\u003ctd\u003etoken is not user token\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "404": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>73034</td><td>user not belong to any group</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73034\u003c/td\u003e\u003ctd\u003euser not belong to any group\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -2821,20 +2511,12 @@
               "$ref": "#/definitions/response.ErrorResponse"
             }
           }
-        },
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
-        "x-authorization": {
-          "authentiated": "true"
         }
       }
     },
     "/group/v1/public/namespaces/{namespace}/roles": {
       "get": {
-        "description": "<p>Required Member Role Permission: \"GROUP:ROLE [READ]\"</p>\n\t\t\t<p>This endpoint is used to get list of member roles</p>\n\t\t\t<p>Action Code: 73201</p>\n\t\t",
+        "description": "\u003cp\u003eRequired Member Role Permission: \"GROUP:ROLE [READ]\"\u003c/p\u003e\n\t\t\t\u003cp\u003eThis endpoint is used to get list of member roles\u003c/p\u003e\n\t\t\t\u003cp\u003eAction Code: 73201\u003c/p\u003e\n\t\t",
         "produces": [
           "application/json"
         ],
@@ -2872,19 +2554,19 @@
             }
           },
           "400": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "401": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -2895,22 +2577,12 @@
               "$ref": "#/definitions/response.ErrorResponse"
             }
           }
-        },
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
-        "x-authorization": {
-          "authentiated": "true",
-          "resource": "GROUP:ROLE",
-          "action": "2"
         }
       }
     },
     "/group/v1/public/namespaces/{namespace}/roles/{memberRoleId}/members": {
       "post": {
-        "description": "Required Member Role Permission: \"GROUP:ROLE [UPDATE]</p>\n\t\t\t<p>This endpoint is used to assign role to group member</p>\n\t\t\t<p>Action Code: 73204</p>",
+        "description": "Required Member Role Permission: \"GROUP:ROLE [UPDATE]\u003c/p\u003e\n\t\t\t\u003cp\u003eThis endpoint is used to assign role to group member\u003c/p\u003e\n\t\t\t\u003cp\u003eAction Code: 73204\u003c/p\u003e",
         "consumes": [
           "application/json"
         ],
@@ -2921,7 +2593,7 @@
           "Group Roles"
         ],
         "summary": "Assign role to group member",
-        "operationId": "assignRoleToGroupMemberAdminV1",
+        "operationId": "updateMemberRolePublicV1",
         "parameters": [
           {
             "type": "string",
@@ -2950,29 +2622,29 @@
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/models.UpdateMemberRoleResponseV1"
+              "$ref": "#/definitions/models.GetUserGroupInformationResponseV1"
             }
           },
           "400": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>20019</td><td>unable to parse request body</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20019\u003c/td\u003e\u003ctd\u003eunable to parse request body\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "401": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20022</td><td>token is not user token</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20022\u003c/td\u003e\u003ctd\u003etoken is not user token\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "404": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>73232</td><td>member role not found</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73232\u003c/td\u003e\u003ctd\u003emember role not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -2983,20 +2655,10 @@
               "$ref": "#/definitions/response.ErrorResponse"
             }
           }
-        },
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
-        "x-authorization": {
-          "authentiated": "true",
-          "resource": "GROUP:ROLE",
-          "action": "4"
         }
       },
       "delete": {
-        "description": "Required Member Role Permission: \"GROUP:ROLE [UPDATE]\"</p>\n\t\t\t<p>This endpoint is used to remove role from group member</p>\n\t\t\t<p>Action Code: 73204</p>",
+        "description": "Required Member Role Permission: \"GROUP:ROLE [UPDATE]\"\u003c/p\u003e\n\t\t\t\u003cp\u003eThis endpoint is used to remove role from group member\u003c/p\u003e\n\t\t\t\u003cp\u003eAction Code: 73204\u003c/p\u003e",
         "consumes": [
           "application/json"
         ],
@@ -3040,25 +2702,31 @@
             }
           },
           "400": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>20019</td><td>unable to parse request body</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20019\u003c/td\u003e\u003ctd\u003eunable to parse request body\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "401": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20022</td><td>token is not user token</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20022\u003c/td\u003e\u003ctd\u003etoken is not user token\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "404": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>73232</td><td>member role not found</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73232\u003c/td\u003e\u003ctd\u003emember role not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "422": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73444\u003c/td\u003e\u003ctd\u003emember must have role\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -3069,22 +2737,12 @@
               "$ref": "#/definitions/response.ErrorResponse"
             }
           }
-        },
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
-        "x-authorization": {
-          "authentiated": "true",
-          "resource": "GROUP:ROLE",
-          "action": "8"
         }
       }
     },
     "/group/v1/public/namespaces/{namespace}/users/me/invite/request": {
       "get": {
-        "description": "<p>Required valid user authentication </p>\n\t\t\t<p>This endpoint is used to Get Group Invitation Request List</p>\n\t\t\t<p>Get Group Invitation Request List for specific group. It will check any group invitation for this user</p>\n\t\t\t<p>Action Code: 73502</p>\n\t\t",
+        "description": "\u003cp\u003eRequired valid user authentication \u003c/p\u003e\n\t\t\t\u003cp\u003eThis endpoint is used to Get Group Invitation Request List\u003c/p\u003e\n\t\t\t\u003cp\u003eGet Group Invitation Request List for specific group. It will check any group invitation for this user\u003c/p\u003e\n\t\t\t\u003cp\u003eAction Code: 73502\u003c/p\u003e\n\t\t",
         "produces": [
           "application/json"
         ],
@@ -3122,19 +2780,19 @@
             }
           },
           "400": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "401": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20022</td><td>token is not user token</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20022\u003c/td\u003e\u003ctd\u003etoken is not user token\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -3145,20 +2803,12 @@
               "$ref": "#/definitions/response.ErrorResponse"
             }
           }
-        },
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
-        "x-authorization": {
-          "authentiated": "true"
         }
       }
     },
     "/group/v1/public/namespaces/{namespace}/users/{userId}": {
       "get": {
-        "description": "<p>Required valid user authentication </p>\n\t\t\t<p>This endpoint is used to get user group information.</p>\n\t\t\t<p>Get user group information. If user is not belong to any group, it will return warning to give information about it</p>\n\t\t\t<p>Group Member Status:</p>\n\t\t\t<ul>\n\t\t\t\t<li>JOIN : status of user requested to join group </li>\n\t\t\t\t<li>INVITE: status of user invited to a group </li>\n\t\t\t\t<li>JOINED: status of user already joined to a group</li>\n\t\t\t</ul>\n\t\t\t<p>Action Code: 73405</p>\n\t\t",
+        "description": "\u003cp\u003eRequired valid user authentication \u003c/p\u003e\n\t\t\t\u003cp\u003eThis endpoint is used to get user group information.\u003c/p\u003e\n\t\t\t\u003cp\u003eGet user group information. If user is not belong to any group, it will return warning to give information about it\u003c/p\u003e\n\t\t\t\u003cp\u003eGroup Member Status:\u003c/p\u003e\n\t\t\t\u003cul\u003e\n\t\t\t\t\u003cli\u003eJOIN : status of user requested to join group \u003c/li\u003e\n\t\t\t\t\u003cli\u003eINVITE: status of user invited to a group \u003c/li\u003e\n\t\t\t\t\u003cli\u003eJOINED: status of user already joined to a group\u003c/li\u003e\n\t\t\t\u003c/ul\u003e\n\t\t\t\u003cp\u003eAction Code: 73405\u003c/p\u003e\n\t\t",
         "produces": [
           "application/json"
         ],
@@ -3191,25 +2841,25 @@
             }
           },
           "400": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "401": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20022</td><td>token is not user token</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20022\u003c/td\u003e\u003ctd\u003etoken is not user token\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "404": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>73034</td><td>user not belong to any group</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73034\u003c/td\u003e\u003ctd\u003euser not belong to any group\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -3220,20 +2870,12 @@
               "$ref": "#/definitions/response.ErrorResponse"
             }
           }
-        },
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
-        "x-authorization": {
-          "authentiated": "true"
         }
       }
     },
     "/group/v1/public/namespaces/{namespace}/users/{userId}/invite": {
       "post": {
-        "description": "<p>Required valid user authentication </p>\n\t\t\t<p>Required Member Role Permission: \"GROUP:INVITE [CREATE]\"</p>\n\t\t\t<p>This endpoint is used to invite specific user to the group.</p>\n\t\t\t<p>invite specific user to the group. If specific user is already have the join request to the group, this endpoint will notify if this user already have join request that needs to be accepted / rejected</p>\n\t\t\t<p>Invited user will receive notification through lobby.</p>\n\t\t\t<p>Action Code: 73406</p>\n\t\t",
+        "description": "\u003cp\u003eRequired valid user authentication \u003c/p\u003e\n\t\t\t\u003cp\u003eRequired Member Role Permission: \"GROUP:INVITE [CREATE]\"\u003c/p\u003e\n\t\t\t\u003cp\u003eThis endpoint is used to invite specific user to the group.\u003c/p\u003e\n\t\t\t\u003cp\u003einvite specific user to the group. If specific user is already have the join request to the group, this endpoint will notify if this user already have join request that needs to be accepted / rejected\u003c/p\u003e\n\t\t\t\u003cp\u003eInvited user will receive notification through lobby.\u003c/p\u003e\n\t\t\t\u003cp\u003eAction Code: 73406\u003c/p\u003e\n\t\t",
         "produces": [
           "application/json"
         ],
@@ -3266,31 +2908,31 @@
             }
           },
           "400": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "401": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20022</td><td>token is not user token</td></tr><tr><td>73036</td><td>insufficient member role permission</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20022\u003c/td\u003e\u003ctd\u003etoken is not user token\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73036\u003c/td\u003e\u003ctd\u003einsufficient member role permission\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "404": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>73034</td><td>user not belong to any group</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73034\u003c/td\u003e\u003ctd\u003euser not belong to any group\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "409": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>73442</td><td>user already joined in another group</td></tr><tr><td>73437</td><td>user already invited</td></tr><tr><td>73438</td><td>user already requested to join</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73442\u003c/td\u003e\u003ctd\u003euser already joined in another group\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73437\u003c/td\u003e\u003ctd\u003euser already invited\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73438\u003c/td\u003e\u003ctd\u003euser already requested to join\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -3301,22 +2943,12 @@
               "$ref": "#/definitions/response.ErrorResponse"
             }
           }
-        },
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
-        "x-authorization": {
-          "authentiated": "true",
-          "resource": "GROUP:INVITE",
-          "action": "1"
         }
       }
     },
     "/group/v1/public/namespaces/{namespace}/users/{userId}/join/accept": {
       "post": {
-        "description": "<p>Required valid user authentication </p>\n\t\t\t<p>Required Member Role Permission: \"GROUP:JOIN [CREATE]\"</p>\n\t\t\t<p>This endpoint is used to accept group join request.</p>\n\t\t\t<p>Accept group join request. If specific user is not asked to join the specific group ID, it will show the the error to show if the user is not asked to join yet.</p>\n\t\t\t<p>This endpoint will also check if the specific user is already joined to specific group</p>\n\t\t\t<p>Action Code: 73407</p>\n\t\t",
+        "description": "\u003cp\u003eRequired valid user authentication \u003c/p\u003e\n\t\t\t\u003cp\u003eRequired Member Role Permission: \"GROUP:JOIN [CREATE]\"\u003c/p\u003e\n\t\t\t\u003cp\u003eThis endpoint is used to accept group join request.\u003c/p\u003e\n\t\t\t\u003cp\u003eAccept group join request. If specific user is not asked to join the specific group ID, it will show the the error to show if the user is not asked to join yet.\u003c/p\u003e\n\t\t\t\u003cp\u003eThis endpoint will also check if the specific user is already joined to specific group\u003c/p\u003e\n\t\t\t\u003cp\u003eAction Code: 73407\u003c/p\u003e\n\t\t",
         "produces": [
           "application/json"
         ],
@@ -3349,31 +2981,31 @@
             }
           },
           "400": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "401": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20022</td><td>token is not user token</td></tr><tr><td>73036</td><td>insufficient member role permission</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20022\u003c/td\u003e\u003ctd\u003etoken is not user token\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73036\u003c/td\u003e\u003ctd\u003einsufficient member role permission\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "404": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>73443</td><td>member request not found</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73443\u003c/td\u003e\u003ctd\u003emember request not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "409": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>73442</td><td>user already joined in another group</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73442\u003c/td\u003e\u003ctd\u003euser already joined in another group\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -3384,22 +3016,12 @@
               "$ref": "#/definitions/response.ErrorResponse"
             }
           }
-        },
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
-        "x-authorization": {
-          "authentiated": "true",
-          "resource": "GROUP:JOIN",
-          "action": "1"
         }
       }
     },
     "/group/v1/public/namespaces/{namespace}/users/{userId}/join/reject": {
       "post": {
-        "description": "<p>Required valid user authentication </p>\n\t\t\t<p>Required Member Role Permission: \"GROUP:JOIN [CREATE]\"</p>\n\t\t\t<p>This endpoint is used to reject group join request.</p>\n\t\t\t<p>Reject group join request. If specific user is not asked to join the specific group ID, it will show the the error to show if the user is not asked to join yet.</p>\n\t\t\t<p>This endpoint will also check if the specific user is already joined to specific group</p>\n\t\t\t<p>Action Code: 73408</p>\n\t\t",
+        "description": "\u003cp\u003eRequired valid user authentication \u003c/p\u003e\n\t\t\t\u003cp\u003eRequired Member Role Permission: \"GROUP:JOIN [CREATE]\"\u003c/p\u003e\n\t\t\t\u003cp\u003eThis endpoint is used to reject group join request.\u003c/p\u003e\n\t\t\t\u003cp\u003eReject group join request. If specific user is not asked to join the specific group ID, it will show the the error to show if the user is not asked to join yet.\u003c/p\u003e\n\t\t\t\u003cp\u003eThis endpoint will also check if the specific user is already joined to specific group\u003c/p\u003e\n\t\t\t\u003cp\u003eAction Code: 73408\u003c/p\u003e\n\t\t",
         "produces": [
           "application/json"
         ],
@@ -3432,31 +3054,31 @@
             }
           },
           "400": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "401": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20022</td><td>token is not user token</td></tr><tr><td>73036</td><td>insufficient member role permission</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20022\u003c/td\u003e\u003ctd\u003etoken is not user token\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73036\u003c/td\u003e\u003ctd\u003einsufficient member role permission\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "404": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>73443</td><td>member request not found</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73443\u003c/td\u003e\u003ctd\u003emember request not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "409": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>73442</td><td>user already joined in another group</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73442\u003c/td\u003e\u003ctd\u003euser already joined in another group\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -3467,22 +3089,12 @@
               "$ref": "#/definitions/response.ErrorResponse"
             }
           }
-        },
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
-        "x-authorization": {
-          "authentiated": "true",
-          "resource": "GROUP:JOIN",
-          "action": "1"
         }
       }
     },
     "/group/v1/public/namespaces/{namespace}/users/{userId}/kick": {
       "post": {
-        "description": "<p>Required valid user authentication </p>\n\t\t\t<p>Required Member Role Permission: \"GROUP:KICK [CREATE]\"</p>\n\t\t\t<p>This endpoint is used to kick group member.</p>\n\t\t\t<p>Kick group member. This endpoint will check the member and group information, and also the role permission of the the user who accesses this endpoint</p>\n\t\t\t<p>This endpoint will also check if the user that wanted to be kicked is the group member or not.</p>\n\t\t\t<p>Action Code: 73409</p>\n\t\t",
+        "description": "\u003cp\u003eRequired valid user authentication \u003c/p\u003e\n\t\t\t\u003cp\u003eRequired Member Role Permission: \"GROUP:KICK [CREATE]\"\u003c/p\u003e\n\t\t\t\u003cp\u003eThis endpoint is used to kick group member.\u003c/p\u003e\n\t\t\t\u003cp\u003eKick group member. This endpoint will check the member and group information, and also the role permission of the the user who accesses this endpoint\u003c/p\u003e\n\t\t\t\u003cp\u003eAction Code: 73409\u003c/p\u003e\n\t\t",
         "produces": [
           "application/json"
         ],
@@ -3515,25 +3127,25 @@
             }
           },
           "400": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "401": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "403": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20022</td><td>token is not user token</td></tr><tr><td>73036</td><td>insufficient member role permission</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20022\u003c/td\u003e\u003ctd\u003etoken is not user token\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73036\u003c/td\u003e\u003ctd\u003einsufficient member role permission\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "404": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>73433</td><td>member group not found</td></tr><tr><td>73034</td><td>user not belong to any group</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73433\u003c/td\u003e\u003ctd\u003emember group not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e73034\u003c/td\u003e\u003ctd\u003euser not belong to any group\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -3544,16 +3156,6 @@
               "$ref": "#/definitions/response.ErrorResponse"
             }
           }
-        },
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
-        "x-authorization": {
-          "authentiated": "true",
-          "resource": "GROUP:KICK",
-          "action": "1"
         }
       }
     }
@@ -3973,6 +3575,23 @@
         }
       }
     },
+    "models.ListConfigurationResponseV1": {
+      "required": [
+        "data",
+        "paging"
+      ],
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/models.GetGroupConfigurationResponseV1"
+          }
+        },
+        "paging": {
+          "$ref": "#/definitions/models.Pagination"
+        }
+      }
+    },
     "models.MemberRequestGroupResponseV1": {
       "required": [
         "groupId",
@@ -4265,7 +3884,9 @@
         }
       }
     },
-    "models.UpdateGroupRequestV1.customAttributes": {},
+    "models.UpdateGroupRequestV1.customAttributes": {
+      "type": "object"
+    },
     "models.UpdateMemberRolePermissionsRequestV1": {
       "required": [
         "memberRolePermissions"
@@ -4346,5 +3967,10 @@
       "name": "Authorization",
       "in": "header"
     }
-  }
+  },
+  "security": [
+    {
+      "authorization": []
+    }
+  ]
 }

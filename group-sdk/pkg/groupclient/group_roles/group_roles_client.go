@@ -29,13 +29,11 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	AssignRoleToGroupMemberAdminV1(params *AssignRoleToGroupMemberAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*AssignRoleToGroupMemberAdminV1OK, *AssignRoleToGroupMemberAdminV1BadRequest, *AssignRoleToGroupMemberAdminV1Unauthorized, *AssignRoleToGroupMemberAdminV1Forbidden, *AssignRoleToGroupMemberAdminV1NotFound, *AssignRoleToGroupMemberAdminV1InternalServerError, error)
-
 	CreateMemberRoleAdminV1(params *CreateMemberRoleAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*CreateMemberRoleAdminV1Created, *CreateMemberRoleAdminV1BadRequest, *CreateMemberRoleAdminV1Unauthorized, *CreateMemberRoleAdminV1Forbidden, *CreateMemberRoleAdminV1InternalServerError, error)
 
 	DeleteMemberRoleAdminV1(params *DeleteMemberRoleAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteMemberRoleAdminV1NoContent, *DeleteMemberRoleAdminV1BadRequest, *DeleteMemberRoleAdminV1Unauthorized, *DeleteMemberRoleAdminV1Forbidden, *DeleteMemberRoleAdminV1NotFound, *DeleteMemberRoleAdminV1InternalServerError, error)
 
-	DeleteMemberRolePublicV1(params *DeleteMemberRolePublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteMemberRolePublicV1OK, *DeleteMemberRolePublicV1BadRequest, *DeleteMemberRolePublicV1Unauthorized, *DeleteMemberRolePublicV1Forbidden, *DeleteMemberRolePublicV1NotFound, *DeleteMemberRolePublicV1InternalServerError, error)
+	DeleteMemberRolePublicV1(params *DeleteMemberRolePublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteMemberRolePublicV1OK, *DeleteMemberRolePublicV1BadRequest, *DeleteMemberRolePublicV1Unauthorized, *DeleteMemberRolePublicV1Forbidden, *DeleteMemberRolePublicV1NotFound, *DeleteMemberRolePublicV1UnprocessableEntity, *DeleteMemberRolePublicV1InternalServerError, error)
 
 	GetMemberRolesListAdminV1(params *GetMemberRolesListAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetMemberRolesListAdminV1OK, *GetMemberRolesListAdminV1BadRequest, *GetMemberRolesListAdminV1Unauthorized, *GetMemberRolesListAdminV1Forbidden, *GetMemberRolesListAdminV1InternalServerError, error)
 
@@ -47,60 +45,9 @@ type ClientService interface {
 
 	UpdateMemberRolePermissionAdminV1(params *UpdateMemberRolePermissionAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateMemberRolePermissionAdminV1OK, *UpdateMemberRolePermissionAdminV1BadRequest, *UpdateMemberRolePermissionAdminV1Unauthorized, *UpdateMemberRolePermissionAdminV1Forbidden, *UpdateMemberRolePermissionAdminV1NotFound, *UpdateMemberRolePermissionAdminV1InternalServerError, error)
 
+	UpdateMemberRolePublicV1(params *UpdateMemberRolePublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateMemberRolePublicV1OK, *UpdateMemberRolePublicV1BadRequest, *UpdateMemberRolePublicV1Unauthorized, *UpdateMemberRolePublicV1Forbidden, *UpdateMemberRolePublicV1NotFound, *UpdateMemberRolePublicV1InternalServerError, error)
+
 	SetTransport(transport runtime.ClientTransport)
-}
-
-/*
-  AssignRoleToGroupMemberAdminV1 assigns role to group member
-
-  Required Member Role Permission: "GROUP:ROLE [UPDATE]</p>
-			<p>This endpoint is used to assign role to group member</p>
-			<p>Action Code: 73204</p>
-*/
-func (a *Client) AssignRoleToGroupMemberAdminV1(params *AssignRoleToGroupMemberAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*AssignRoleToGroupMemberAdminV1OK, *AssignRoleToGroupMemberAdminV1BadRequest, *AssignRoleToGroupMemberAdminV1Unauthorized, *AssignRoleToGroupMemberAdminV1Forbidden, *AssignRoleToGroupMemberAdminV1NotFound, *AssignRoleToGroupMemberAdminV1InternalServerError, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewAssignRoleToGroupMemberAdminV1Params()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "assignRoleToGroupMemberAdminV1",
-		Method:             "POST",
-		PathPattern:        "/group/v1/public/namespaces/{namespace}/roles/{memberRoleId}/members",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &AssignRoleToGroupMemberAdminV1Reader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, nil, nil, nil, nil, nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *AssignRoleToGroupMemberAdminV1OK:
-		return v, nil, nil, nil, nil, nil, nil
-	case *AssignRoleToGroupMemberAdminV1BadRequest:
-		return nil, v, nil, nil, nil, nil, nil
-	case *AssignRoleToGroupMemberAdminV1Unauthorized:
-		return nil, nil, v, nil, nil, nil, nil
-	case *AssignRoleToGroupMemberAdminV1Forbidden:
-		return nil, nil, nil, v, nil, nil, nil
-	case *AssignRoleToGroupMemberAdminV1NotFound:
-		return nil, nil, nil, nil, v, nil, nil
-	case *AssignRoleToGroupMemberAdminV1InternalServerError:
-		return nil, nil, nil, nil, nil, v, nil
-	default:
-		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
 }
 
 /*
@@ -127,7 +74,7 @@ func (a *Client) CreateMemberRoleAdminV1(params *CreateMemberRoleAdminV1Params, 
 		PathPattern:        "/group/v1/admin/namespaces/{namespace}/roles",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &CreateMemberRoleAdminV1Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -179,7 +126,7 @@ func (a *Client) DeleteMemberRoleAdminV1(params *DeleteMemberRoleAdminV1Params, 
 		PathPattern:        "/group/v1/admin/namespaces/{namespace}/roles/{memberRoleId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &DeleteMemberRoleAdminV1Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -216,7 +163,7 @@ func (a *Client) DeleteMemberRoleAdminV1(params *DeleteMemberRoleAdminV1Params, 
 			<p>This endpoint is used to remove role from group member</p>
 			<p>Action Code: 73204</p>
 */
-func (a *Client) DeleteMemberRolePublicV1(params *DeleteMemberRolePublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteMemberRolePublicV1OK, *DeleteMemberRolePublicV1BadRequest, *DeleteMemberRolePublicV1Unauthorized, *DeleteMemberRolePublicV1Forbidden, *DeleteMemberRolePublicV1NotFound, *DeleteMemberRolePublicV1InternalServerError, error) {
+func (a *Client) DeleteMemberRolePublicV1(params *DeleteMemberRolePublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteMemberRolePublicV1OK, *DeleteMemberRolePublicV1BadRequest, *DeleteMemberRolePublicV1Unauthorized, *DeleteMemberRolePublicV1Forbidden, *DeleteMemberRolePublicV1NotFound, *DeleteMemberRolePublicV1UnprocessableEntity, *DeleteMemberRolePublicV1InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteMemberRolePublicV1Params()
@@ -232,7 +179,7 @@ func (a *Client) DeleteMemberRolePublicV1(params *DeleteMemberRolePublicV1Params
 		PathPattern:        "/group/v1/public/namespaces/{namespace}/roles/{memberRoleId}/members",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &DeleteMemberRolePublicV1Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -240,25 +187,27 @@ func (a *Client) DeleteMemberRolePublicV1(params *DeleteMemberRolePublicV1Params
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *DeleteMemberRolePublicV1OK:
-		return v, nil, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil, nil
 	case *DeleteMemberRolePublicV1BadRequest:
-		return nil, v, nil, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil, nil, nil
 	case *DeleteMemberRolePublicV1Unauthorized:
-		return nil, nil, v, nil, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil, nil
 	case *DeleteMemberRolePublicV1Forbidden:
-		return nil, nil, nil, v, nil, nil, nil
+		return nil, nil, nil, v, nil, nil, nil, nil
 	case *DeleteMemberRolePublicV1NotFound:
-		return nil, nil, nil, nil, v, nil, nil
+		return nil, nil, nil, nil, v, nil, nil, nil
+	case *DeleteMemberRolePublicV1UnprocessableEntity:
+		return nil, nil, nil, nil, nil, v, nil, nil
 	case *DeleteMemberRolePublicV1InternalServerError:
-		return nil, nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, nil, nil, v, nil
 	default:
-		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -286,7 +235,7 @@ func (a *Client) GetMemberRolesListAdminV1(params *GetMemberRolesListAdminV1Para
 		PathPattern:        "/group/v1/admin/namespaces/{namespace}/roles",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &GetMemberRolesListAdminV1Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -338,7 +287,7 @@ func (a *Client) GetMemberRolesListPublicV1(params *GetMemberRolesListPublicV1Pa
 		PathPattern:        "/group/v1/public/namespaces/{namespace}/roles",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &GetMemberRolesListPublicV1Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -390,7 +339,7 @@ func (a *Client) GetSingleMemberRoleAdminV1(params *GetSingleMemberRoleAdminV1Pa
 		PathPattern:        "/group/v1/admin/namespaces/{namespace}/roles/{memberRoleId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &GetSingleMemberRoleAdminV1Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -444,7 +393,7 @@ func (a *Client) UpdateMemberRoleAdminV1(params *UpdateMemberRoleAdminV1Params, 
 		PathPattern:        "/group/v1/admin/namespaces/{namespace}/roles/{memberRoleId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &UpdateMemberRoleAdminV1Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -498,7 +447,7 @@ func (a *Client) UpdateMemberRolePermissionAdminV1(params *UpdateMemberRolePermi
 		PathPattern:        "/group/v1/admin/namespaces/{namespace}/roles/{memberRoleId}/permissions",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &UpdateMemberRolePermissionAdminV1Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -522,6 +471,59 @@ func (a *Client) UpdateMemberRolePermissionAdminV1(params *UpdateMemberRolePermi
 	case *UpdateMemberRolePermissionAdminV1NotFound:
 		return nil, nil, nil, nil, v, nil, nil
 	case *UpdateMemberRolePermissionAdminV1InternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  UpdateMemberRolePublicV1 assigns role to group member
+
+  Required Member Role Permission: "GROUP:ROLE [UPDATE]</p>
+			<p>This endpoint is used to assign role to group member</p>
+			<p>Action Code: 73204</p>
+*/
+func (a *Client) UpdateMemberRolePublicV1(params *UpdateMemberRolePublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateMemberRolePublicV1OK, *UpdateMemberRolePublicV1BadRequest, *UpdateMemberRolePublicV1Unauthorized, *UpdateMemberRolePublicV1Forbidden, *UpdateMemberRolePublicV1NotFound, *UpdateMemberRolePublicV1InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateMemberRolePublicV1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updateMemberRolePublicV1",
+		Method:             "POST",
+		PathPattern:        "/group/v1/public/namespaces/{namespace}/roles/{memberRoleId}/members",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &UpdateMemberRolePublicV1Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateMemberRolePublicV1OK:
+		return v, nil, nil, nil, nil, nil, nil
+	case *UpdateMemberRolePublicV1BadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+	case *UpdateMemberRolePublicV1Unauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+	case *UpdateMemberRolePublicV1Forbidden:
+		return nil, nil, nil, v, nil, nil, nil
+	case *UpdateMemberRolePublicV1NotFound:
+		return nil, nil, nil, nil, v, nil, nil
+	case *UpdateMemberRolePublicV1InternalServerError:
 		return nil, nil, nil, nil, nil, v, nil
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))

@@ -67,7 +67,7 @@ func (o *UpdateSingleGroupPublicV1Reader) ReadResponse(response runtime.ClientRe
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /group/v1/public/namespaces/{namespace}/groups/{groupId} returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PATCH /group/v1/public/namespaces/{namespace}/groups/{groupId} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -85,7 +85,7 @@ type UpdateSingleGroupPublicV1OK struct {
 }
 
 func (o *UpdateSingleGroupPublicV1OK) Error() string {
-	return fmt.Sprintf("[PUT /group/v1/public/namespaces/{namespace}/groups/{groupId}][%d] updateSingleGroupPublicV1OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PATCH /group/v1/public/namespaces/{namespace}/groups/{groupId}][%d] updateSingleGroupPublicV1OK  %+v", 200, o.Payload)
 }
 
 func (o *UpdateSingleGroupPublicV1OK) GetPayload() *groupclientmodels.ModelsGroupResponseV1 {
@@ -118,7 +118,7 @@ type UpdateSingleGroupPublicV1BadRequest struct {
 }
 
 func (o *UpdateSingleGroupPublicV1BadRequest) Error() string {
-	return fmt.Sprintf("[PUT /group/v1/public/namespaces/{namespace}/groups/{groupId}][%d] updateSingleGroupPublicV1BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PATCH /group/v1/public/namespaces/{namespace}/groups/{groupId}][%d] updateSingleGroupPublicV1BadRequest  %+v", 400, o.Payload)
 }
 
 func (o *UpdateSingleGroupPublicV1BadRequest) GetPayload() *groupclientmodels.ResponseErrorResponse {
@@ -151,7 +151,7 @@ type UpdateSingleGroupPublicV1Unauthorized struct {
 }
 
 func (o *UpdateSingleGroupPublicV1Unauthorized) Error() string {
-	return fmt.Sprintf("[PUT /group/v1/public/namespaces/{namespace}/groups/{groupId}][%d] updateSingleGroupPublicV1Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[PATCH /group/v1/public/namespaces/{namespace}/groups/{groupId}][%d] updateSingleGroupPublicV1Unauthorized  %+v", 401, o.Payload)
 }
 
 func (o *UpdateSingleGroupPublicV1Unauthorized) GetPayload() *groupclientmodels.ResponseErrorResponse {
@@ -184,7 +184,7 @@ type UpdateSingleGroupPublicV1Forbidden struct {
 }
 
 func (o *UpdateSingleGroupPublicV1Forbidden) Error() string {
-	return fmt.Sprintf("[PUT /group/v1/public/namespaces/{namespace}/groups/{groupId}][%d] updateSingleGroupPublicV1Forbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[PATCH /group/v1/public/namespaces/{namespace}/groups/{groupId}][%d] updateSingleGroupPublicV1Forbidden  %+v", 403, o.Payload)
 }
 
 func (o *UpdateSingleGroupPublicV1Forbidden) GetPayload() *groupclientmodels.ResponseErrorResponse {
@@ -217,7 +217,7 @@ type UpdateSingleGroupPublicV1NotFound struct {
 }
 
 func (o *UpdateSingleGroupPublicV1NotFound) Error() string {
-	return fmt.Sprintf("[PUT /group/v1/public/namespaces/{namespace}/groups/{groupId}][%d] updateSingleGroupPublicV1NotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PATCH /group/v1/public/namespaces/{namespace}/groups/{groupId}][%d] updateSingleGroupPublicV1NotFound  %+v", 404, o.Payload)
 }
 
 func (o *UpdateSingleGroupPublicV1NotFound) GetPayload() *groupclientmodels.ResponseErrorResponse {
@@ -250,7 +250,7 @@ type UpdateSingleGroupPublicV1InternalServerError struct {
 }
 
 func (o *UpdateSingleGroupPublicV1InternalServerError) Error() string {
-	return fmt.Sprintf("[PUT /group/v1/public/namespaces/{namespace}/groups/{groupId}][%d] updateSingleGroupPublicV1InternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[PATCH /group/v1/public/namespaces/{namespace}/groups/{groupId}][%d] updateSingleGroupPublicV1InternalServerError  %+v", 500, o.Payload)
 }
 
 func (o *UpdateSingleGroupPublicV1InternalServerError) GetPayload() *groupclientmodels.ResponseErrorResponse {

@@ -37,9 +37,9 @@ type ClientService interface {
 
 	AcceptGroupJoinRequestPublicV1(params *AcceptGroupJoinRequestPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*AcceptGroupJoinRequestPublicV1OK, *AcceptGroupJoinRequestPublicV1BadRequest, *AcceptGroupJoinRequestPublicV1Unauthorized, *AcceptGroupJoinRequestPublicV1Forbidden, *AcceptGroupJoinRequestPublicV1NotFound, *AcceptGroupJoinRequestPublicV1Conflict, *AcceptGroupJoinRequestPublicV1InternalServerError, error)
 
-	GetGroupMembersListPublicV1(params *GetGroupMembersListPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetGroupMembersListPublicV1OK, *GetGroupMembersListPublicV1BadRequest, *GetGroupMembersListPublicV1Unauthorized, *GetGroupMembersListPublicV1Forbidden, *GetGroupMembersListPublicV1NotFound, *GetGroupMembersListPublicV1InternalServerError, error)
+	GetGroupMembersListAdminV1(params *GetGroupMembersListAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetGroupMembersListAdminV1OK, *GetGroupMembersListAdminV1BadRequest, *GetGroupMembersListAdminV1Unauthorized, *GetGroupMembersListAdminV1Forbidden, *GetGroupMembersListAdminV1NotFound, *GetGroupMembersListAdminV1InternalServerError, error)
 
-	GetGroupMembersListV1(params *GetGroupMembersListV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetGroupMembersListV1OK, *GetGroupMembersListV1BadRequest, *GetGroupMembersListV1Unauthorized, *GetGroupMembersListV1Forbidden, *GetGroupMembersListV1NotFound, *GetGroupMembersListV1InternalServerError, error)
+	GetGroupMembersListPublicV1(params *GetGroupMembersListPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetGroupMembersListPublicV1OK, *GetGroupMembersListPublicV1BadRequest, *GetGroupMembersListPublicV1Unauthorized, *GetGroupMembersListPublicV1Forbidden, *GetGroupMembersListPublicV1NotFound, *GetGroupMembersListPublicV1InternalServerError, error)
 
 	GetUserGroupInformationPublicV1(params *GetUserGroupInformationPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetUserGroupInformationPublicV1OK, *GetUserGroupInformationPublicV1BadRequest, *GetUserGroupInformationPublicV1Unauthorized, *GetUserGroupInformationPublicV1Forbidden, *GetUserGroupInformationPublicV1NotFound, *GetUserGroupInformationPublicV1InternalServerError, error)
 
@@ -80,7 +80,7 @@ func (a *Client) CancelGroupJoinRequestV1(params *CancelGroupJoinRequestV1Params
 		PathPattern:        "/group/v1/public/namespaces/{namespace}/groups/{groupId}/join/cancel",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &CancelGroupJoinRequestV1Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -142,7 +142,7 @@ func (a *Client) JoinGroupV1(params *JoinGroupV1Params, authInfo runtime.ClientA
 		PathPattern:        "/group/v1/public/namespaces/{namespace}/groups/{groupId}/join",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &JoinGroupV1Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -200,7 +200,7 @@ func (a *Client) AcceptGroupInvitationPublicV1(params *AcceptGroupInvitationPubl
 		PathPattern:        "/group/v1/public/namespaces/{namespace}/groups/{groupId}/invite/accept",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &AcceptGroupInvitationPublicV1Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -259,7 +259,7 @@ func (a *Client) AcceptGroupJoinRequestPublicV1(params *AcceptGroupJoinRequestPu
 		PathPattern:        "/group/v1/public/namespaces/{namespace}/users/{userId}/join/accept",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &AcceptGroupJoinRequestPublicV1Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -292,6 +292,60 @@ func (a *Client) AcceptGroupJoinRequestPublicV1(params *AcceptGroupJoinRequestPu
 }
 
 /*
+  GetGroupMembersListAdminV1 gets list of group members
+
+  <p>Required permission ADMIN:NAMESPACE:{namespace}:GROUP:MEMBER [READ] </p>
+			<p>This endpoint is used to get list of group members.</p>
+			<p>Action Code: 73410</p>
+
+*/
+func (a *Client) GetGroupMembersListAdminV1(params *GetGroupMembersListAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetGroupMembersListAdminV1OK, *GetGroupMembersListAdminV1BadRequest, *GetGroupMembersListAdminV1Unauthorized, *GetGroupMembersListAdminV1Forbidden, *GetGroupMembersListAdminV1NotFound, *GetGroupMembersListAdminV1InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetGroupMembersListAdminV1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getGroupMembersListAdminV1",
+		Method:             "GET",
+		PathPattern:        "/group/v1/admin/namespaces/{namespace}/groups/{groupId}/members",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &GetGroupMembersListAdminV1Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetGroupMembersListAdminV1OK:
+		return v, nil, nil, nil, nil, nil, nil
+	case *GetGroupMembersListAdminV1BadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+	case *GetGroupMembersListAdminV1Unauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+	case *GetGroupMembersListAdminV1Forbidden:
+		return nil, nil, nil, v, nil, nil, nil
+	case *GetGroupMembersListAdminV1NotFound:
+		return nil, nil, nil, nil, v, nil, nil
+	case *GetGroupMembersListAdminV1InternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
   GetGroupMembersListPublicV1 gets list of group members
 
   <p>Required valid user authentication </p>
@@ -315,7 +369,7 @@ func (a *Client) GetGroupMembersListPublicV1(params *GetGroupMembersListPublicV1
 		PathPattern:        "/group/v1/public/namespaces/{namespace}/groups/{groupId}/members",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &GetGroupMembersListPublicV1Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -339,60 +393,6 @@ func (a *Client) GetGroupMembersListPublicV1(params *GetGroupMembersListPublicV1
 	case *GetGroupMembersListPublicV1NotFound:
 		return nil, nil, nil, nil, v, nil, nil
 	case *GetGroupMembersListPublicV1InternalServerError:
-		return nil, nil, nil, nil, nil, v, nil
-	default:
-		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-/*
-  GetGroupMembersListV1 gets list of group members
-
-  <p>Required permission ADMIN:NAMESPACE:{namespace}:GROUP:MEMBER [READ] </p>
-			<p>This endpoint is used to get list of group members.</p>
-			<p>Action Code: 73410</p>
-
-*/
-func (a *Client) GetGroupMembersListV1(params *GetGroupMembersListV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetGroupMembersListV1OK, *GetGroupMembersListV1BadRequest, *GetGroupMembersListV1Unauthorized, *GetGroupMembersListV1Forbidden, *GetGroupMembersListV1NotFound, *GetGroupMembersListV1InternalServerError, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewGetGroupMembersListV1Params()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "getGroupMembersListV1",
-		Method:             "GET",
-		PathPattern:        "/group/v1/admin/namespaces/{namespace}/groups/{groupId}/members",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &GetGroupMembersListV1Reader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, nil, nil, nil, nil, nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *GetGroupMembersListV1OK:
-		return v, nil, nil, nil, nil, nil, nil
-	case *GetGroupMembersListV1BadRequest:
-		return nil, v, nil, nil, nil, nil, nil
-	case *GetGroupMembersListV1Unauthorized:
-		return nil, nil, v, nil, nil, nil, nil
-	case *GetGroupMembersListV1Forbidden:
-		return nil, nil, nil, v, nil, nil, nil
-	case *GetGroupMembersListV1NotFound:
-		return nil, nil, nil, nil, v, nil, nil
-	case *GetGroupMembersListV1InternalServerError:
 		return nil, nil, nil, nil, nil, v, nil
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
@@ -430,7 +430,7 @@ func (a *Client) GetUserGroupInformationPublicV1(params *GetUserGroupInformation
 		PathPattern:        "/group/v1/public/namespaces/{namespace}/users/{userId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &GetUserGroupInformationPublicV1Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -487,7 +487,7 @@ func (a *Client) InviteGroupPublicV1(params *InviteGroupPublicV1Params, authInfo
 		PathPattern:        "/group/v1/public/namespaces/{namespace}/users/{userId}/invite",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &InviteGroupPublicV1Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -526,7 +526,6 @@ func (a *Client) InviteGroupPublicV1(params *InviteGroupPublicV1Params, authInfo
 			<p>Required Member Role Permission: "GROUP:KICK [CREATE]"</p>
 			<p>This endpoint is used to kick group member.</p>
 			<p>Kick group member. This endpoint will check the member and group information, and also the role permission of the the user who accesses this endpoint</p>
-			<p>This endpoint will also check if the user that wanted to be kicked is the group member or not.</p>
 			<p>Action Code: 73409</p>
 
 */
@@ -546,7 +545,7 @@ func (a *Client) KickGroupMemberPublicV1(params *KickGroupMemberPublicV1Params, 
 		PathPattern:        "/group/v1/public/namespaces/{namespace}/users/{userId}/kick",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &KickGroupMemberPublicV1Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -601,7 +600,7 @@ func (a *Client) LeaveGroupPublicV1(params *LeaveGroupPublicV1Params, authInfo r
 		PathPattern:        "/group/v1/public/namespaces/{namespace}/leave",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &LeaveGroupPublicV1Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -656,7 +655,7 @@ func (a *Client) RejectGroupInvitationPublicV1(params *RejectGroupInvitationPubl
 		PathPattern:        "/group/v1/public/namespaces/{namespace}/groups/{groupId}/invite/reject",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &RejectGroupInvitationPublicV1Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -715,7 +714,7 @@ func (a *Client) RejectGroupJoinRequestPublicV1(params *RejectGroupJoinRequestPu
 		PathPattern:        "/group/v1/public/namespaces/{namespace}/users/{userId}/join/reject",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &RejectGroupJoinRequestPublicV1Reader{formats: a.formats},
 		AuthInfo:           authInfo,

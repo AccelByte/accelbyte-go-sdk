@@ -54,6 +54,12 @@ func (o *DeleteMemberRolePublicV1Reader) ReadResponse(response runtime.ClientRes
 			return nil, err
 		}
 		return result, nil
+	case 422:
+		result := NewDeleteMemberRolePublicV1UnprocessableEntity()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 500:
 		result := NewDeleteMemberRolePublicV1InternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -225,6 +231,39 @@ func (o *DeleteMemberRolePublicV1NotFound) GetPayload() *groupclientmodels.Respo
 }
 
 func (o *DeleteMemberRolePublicV1NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(groupclientmodels.ResponseErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewDeleteMemberRolePublicV1UnprocessableEntity creates a DeleteMemberRolePublicV1UnprocessableEntity with default headers values
+func NewDeleteMemberRolePublicV1UnprocessableEntity() *DeleteMemberRolePublicV1UnprocessableEntity {
+	return &DeleteMemberRolePublicV1UnprocessableEntity{}
+}
+
+/*DeleteMemberRolePublicV1UnprocessableEntity handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>73444</td><td>member must have role</td></tr></table>
+*/
+type DeleteMemberRolePublicV1UnprocessableEntity struct {
+	Payload *groupclientmodels.ResponseErrorResponse
+}
+
+func (o *DeleteMemberRolePublicV1UnprocessableEntity) Error() string {
+	return fmt.Sprintf("[DELETE /group/v1/public/namespaces/{namespace}/roles/{memberRoleId}/members][%d] deleteMemberRolePublicV1UnprocessableEntity  %+v", 422, o.Payload)
+}
+
+func (o *DeleteMemberRolePublicV1UnprocessableEntity) GetPayload() *groupclientmodels.ResponseErrorResponse {
+	return o.Payload
+}
+
+func (o *DeleteMemberRolePublicV1UnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(groupclientmodels.ResponseErrorResponse)
 

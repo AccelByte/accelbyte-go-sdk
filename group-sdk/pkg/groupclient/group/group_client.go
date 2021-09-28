@@ -51,9 +51,9 @@ type ClientService interface {
 
 	UpdateGroupPredefinedRulePublicV1(params *UpdateGroupPredefinedRulePublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateGroupPredefinedRulePublicV1OK, *UpdateGroupPredefinedRulePublicV1BadRequest, *UpdateGroupPredefinedRulePublicV1Unauthorized, *UpdateGroupPredefinedRulePublicV1Forbidden, *UpdateGroupPredefinedRulePublicV1NotFound, *UpdateGroupPredefinedRulePublicV1InternalServerError, error)
 
-	UpdateSingleGroupPartialPublicV1(params *UpdateSingleGroupPartialPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateSingleGroupPartialPublicV1OK, *UpdateSingleGroupPartialPublicV1BadRequest, *UpdateSingleGroupPartialPublicV1Unauthorized, *UpdateSingleGroupPartialPublicV1Forbidden, *UpdateSingleGroupPartialPublicV1NotFound, *UpdateSingleGroupPartialPublicV1InternalServerError, error)
-
 	UpdateSingleGroupPublicV1(params *UpdateSingleGroupPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateSingleGroupPublicV1OK, *UpdateSingleGroupPublicV1BadRequest, *UpdateSingleGroupPublicV1Unauthorized, *UpdateSingleGroupPublicV1Forbidden, *UpdateSingleGroupPublicV1NotFound, *UpdateSingleGroupPublicV1InternalServerError, error)
+
+	UpdateSingleGroupV1(params *UpdateSingleGroupV1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateSingleGroupV1OK, *UpdateSingleGroupV1BadRequest, *UpdateSingleGroupV1Unauthorized, *UpdateSingleGroupV1Forbidden, *UpdateSingleGroupV1NotFound, *UpdateSingleGroupV1InternalServerError, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -95,7 +95,7 @@ func (a *Client) CreateNewGroupPublicV1(params *CreateNewGroupPublicV1Params, au
 		PathPattern:        "/group/v1/public/namespaces/{namespace}/groups",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &CreateNewGroupPublicV1Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -149,7 +149,7 @@ func (a *Client) DeleteGroupAdminV1(params *DeleteGroupAdminV1Params, authInfo r
 		PathPattern:        "/group/v1/admin/namespaces/{namespace}/groups/{groupId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &DeleteGroupAdminV1Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -206,7 +206,7 @@ func (a *Client) DeleteGroupPredefinedRulePublicV1(params *DeleteGroupPredefined
 		PathPattern:        "/group/v1/public/namespaces/{namespace}/groups/{groupId}/rules/defined/{allowedAction}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &DeleteGroupPredefinedRulePublicV1Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -263,7 +263,7 @@ func (a *Client) DeleteGroupPublicV1(params *DeleteGroupPublicV1Params, authInfo
 		PathPattern:        "/group/v1/public/namespaces/{namespace}/groups/{groupId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &DeleteGroupPublicV1Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -317,7 +317,7 @@ func (a *Client) GetGroupListAdminV1(params *GetGroupListAdminV1Params, authInfo
 		PathPattern:        "/group/v1/admin/namespaces/{namespace}/groups",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &GetGroupListAdminV1Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -369,7 +369,7 @@ func (a *Client) GetGroupListPublicV1(params *GetGroupListPublicV1Params, authIn
 		PathPattern:        "/group/v1/public/namespaces/{namespace}/groups",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &GetGroupListPublicV1Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -421,7 +421,7 @@ func (a *Client) GetSingleGroupAdminV1(params *GetSingleGroupAdminV1Params, auth
 		PathPattern:        "/group/v1/admin/namespaces/{namespace}/groups/{groupId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &GetSingleGroupAdminV1Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -475,7 +475,7 @@ func (a *Client) GetSingleGroupPublicV1(params *GetSingleGroupPublicV1Params, au
 		PathPattern:        "/group/v1/public/namespaces/{namespace}/groups/{groupId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &GetSingleGroupPublicV1Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -532,7 +532,7 @@ func (a *Client) UpdateGroupCustomAttributesPublicV1(params *UpdateGroupCustomAt
 		PathPattern:        "/group/v1/public/namespaces/{namespace}/groups/{groupId}/attributes/custom",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &UpdateGroupCustomAttributesPublicV1Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -588,7 +588,7 @@ func (a *Client) UpdateGroupCustomRulePublicV1(params *UpdateGroupCustomRulePubl
 		PathPattern:        "/group/v1/public/namespaces/{namespace}/groups/{groupId}/rules/custom",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &UpdateGroupCustomRulePublicV1Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -646,7 +646,7 @@ func (a *Client) UpdateGroupPredefinedRulePublicV1(params *UpdateGroupPredefined
 		PathPattern:        "/group/v1/public/namespaces/{namespace}/groups/{groupId}/rules/defined/{allowedAction}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &UpdateGroupPredefinedRulePublicV1Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -677,62 +677,6 @@ func (a *Client) UpdateGroupPredefinedRulePublicV1(params *UpdateGroupPredefined
 }
 
 /*
-  UpdateSingleGroupPartialPublicV1 updates existing group
-
-  <p>Required valid user authentication </p>
-			<p>Required Member Role Permission: "GROUP [UPDATE]"</p>
-			<p>Update existing group. This endpoint supports partial update. This endpoint will check the group ID of the user based on the access token and compare it with the group ID in path parameter.
-			It will also check the member role of the user based on the access token</p>
-			<p>Action Code: 73307</p>
-
-*/
-func (a *Client) UpdateSingleGroupPartialPublicV1(params *UpdateSingleGroupPartialPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateSingleGroupPartialPublicV1OK, *UpdateSingleGroupPartialPublicV1BadRequest, *UpdateSingleGroupPartialPublicV1Unauthorized, *UpdateSingleGroupPartialPublicV1Forbidden, *UpdateSingleGroupPartialPublicV1NotFound, *UpdateSingleGroupPartialPublicV1InternalServerError, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewUpdateSingleGroupPartialPublicV1Params()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "updateSingleGroupPartialPublicV1",
-		Method:             "PATCH",
-		PathPattern:        "/group/v1/public/namespaces/{namespace}/groups/{groupId}",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &UpdateSingleGroupPartialPublicV1Reader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, nil, nil, nil, nil, nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *UpdateSingleGroupPartialPublicV1OK:
-		return v, nil, nil, nil, nil, nil, nil
-	case *UpdateSingleGroupPartialPublicV1BadRequest:
-		return nil, v, nil, nil, nil, nil, nil
-	case *UpdateSingleGroupPartialPublicV1Unauthorized:
-		return nil, nil, v, nil, nil, nil, nil
-	case *UpdateSingleGroupPartialPublicV1Forbidden:
-		return nil, nil, nil, v, nil, nil, nil
-	case *UpdateSingleGroupPartialPublicV1NotFound:
-		return nil, nil, nil, nil, v, nil, nil
-	case *UpdateSingleGroupPartialPublicV1InternalServerError:
-		return nil, nil, nil, nil, nil, v, nil
-	default:
-		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-/*
   UpdateSingleGroupPublicV1 updates existing group
 
   <p>Required valid user authentication </p>
@@ -754,11 +698,11 @@ func (a *Client) UpdateSingleGroupPublicV1(params *UpdateSingleGroupPublicV1Para
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateSingleGroupPublicV1",
-		Method:             "PUT",
+		Method:             "PATCH",
 		PathPattern:        "/group/v1/public/namespaces/{namespace}/groups/{groupId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &UpdateSingleGroupPublicV1Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -782,6 +726,62 @@ func (a *Client) UpdateSingleGroupPublicV1(params *UpdateSingleGroupPublicV1Para
 	case *UpdateSingleGroupPublicV1NotFound:
 		return nil, nil, nil, nil, v, nil, nil
 	case *UpdateSingleGroupPublicV1InternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  UpdateSingleGroupV1 updates existing group
+
+  <p>Required valid user authentication </p>
+			<p>Required Member Role Permission: "GROUP [UPDATE]"</p>
+			<p>Update existing group. This endpoint supports partial update. This endpoint will check the group ID of the user based on the access token and compare it with the group ID in path parameter.
+			It will also check the member role of the user based on the access token</p>
+			<p>Action Code: 73307</p>
+
+*/
+func (a *Client) UpdateSingleGroupV1(params *UpdateSingleGroupV1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateSingleGroupV1OK, *UpdateSingleGroupV1BadRequest, *UpdateSingleGroupV1Unauthorized, *UpdateSingleGroupV1Forbidden, *UpdateSingleGroupV1NotFound, *UpdateSingleGroupV1InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateSingleGroupV1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updateSingleGroupV1",
+		Method:             "PUT",
+		PathPattern:        "/group/v1/public/namespaces/{namespace}/groups/{groupId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &UpdateSingleGroupV1Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateSingleGroupV1OK:
+		return v, nil, nil, nil, nil, nil, nil
+	case *UpdateSingleGroupV1BadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+	case *UpdateSingleGroupV1Unauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+	case *UpdateSingleGroupV1Forbidden:
+		return nil, nil, nil, v, nil, nil, nil
+	case *UpdateSingleGroupV1NotFound:
+		return nil, nil, nil, nil, v, nil, nil
+	case *UpdateSingleGroupV1InternalServerError:
 		return nil, nil, nil, nil, nil, v, nil
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))

@@ -24,8 +24,8 @@ type GetGroupConfigurationAdminV1Reader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetGroupConfigurationAdminV1Reader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-	case 201:
-		result := NewGetGroupConfigurationAdminV1Created()
+	case 200:
+		result := NewGetGroupConfigurationAdminV1OK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -71,28 +71,28 @@ func (o *GetGroupConfigurationAdminV1Reader) ReadResponse(response runtime.Clien
 	}
 }
 
-// NewGetGroupConfigurationAdminV1Created creates a GetGroupConfigurationAdminV1Created with default headers values
-func NewGetGroupConfigurationAdminV1Created() *GetGroupConfigurationAdminV1Created {
-	return &GetGroupConfigurationAdminV1Created{}
+// NewGetGroupConfigurationAdminV1OK creates a GetGroupConfigurationAdminV1OK with default headers values
+func NewGetGroupConfigurationAdminV1OK() *GetGroupConfigurationAdminV1OK {
+	return &GetGroupConfigurationAdminV1OK{}
 }
 
-/*GetGroupConfigurationAdminV1Created handles this case with default header values.
+/*GetGroupConfigurationAdminV1OK handles this case with default header values.
 
-  Created
+  OK
 */
-type GetGroupConfigurationAdminV1Created struct {
+type GetGroupConfigurationAdminV1OK struct {
 	Payload *groupclientmodels.ModelsGetGroupConfigurationResponseV1
 }
 
-func (o *GetGroupConfigurationAdminV1Created) Error() string {
-	return fmt.Sprintf("[GET /group/v1/admin/namespaces/{namespace}/configuration/{configurationCode}][%d] getGroupConfigurationAdminV1Created  %+v", 201, o.Payload)
+func (o *GetGroupConfigurationAdminV1OK) Error() string {
+	return fmt.Sprintf("[GET /group/v1/admin/namespaces/{namespace}/configuration/{configurationCode}][%d] getGroupConfigurationAdminV1OK  %+v", 200, o.Payload)
 }
 
-func (o *GetGroupConfigurationAdminV1Created) GetPayload() *groupclientmodels.ModelsGetGroupConfigurationResponseV1 {
+func (o *GetGroupConfigurationAdminV1OK) GetPayload() *groupclientmodels.ModelsGetGroupConfigurationResponseV1 {
 	return o.Payload
 }
 
-func (o *GetGroupConfigurationAdminV1Created) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *GetGroupConfigurationAdminV1OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(groupclientmodels.ModelsGetGroupConfigurationResponseV1)
 

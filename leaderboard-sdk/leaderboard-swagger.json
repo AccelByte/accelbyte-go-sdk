@@ -313,7 +313,7 @@
           "LeaderboardConfiguration"
         ],
         "summary": "delete bulk leaderboards. response body will contains failed leaderboard with the reason why it's failed to delete",
-        "operationId": "deleteLeaderboardConfigurationAdminV1",
+        "operationId": "deleteBulkLeaderboardsV1",
         "parameters": [
           {
             "type": "string",
@@ -1571,6 +1571,13 @@
           },
           {
             "type": "string",
+            "description": "the human readable unique code to identify the leaderboard. Must be lowercase and maximum length is 48",
+            "name": "leaderboardCode",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
             "description": "list of leaderboard codes split by comma",
             "name": "leaderboardCodes",
             "in": "query",
@@ -2346,13 +2353,6 @@
             "type": "string",
             "description": "User ID",
             "name": "userId",
-            "in": "path",
-            "required": true
-          },
-          {
-            "type": "string",
-            "description": "Leaderboard Code",
-            "name": "leaderboardCode",
             "in": "path",
             "required": true
           }

@@ -281,7 +281,7 @@
           "Configuration"
         ],
         "summary": "Delete group configuration",
-        "operationId": "getGroupConfigurationV1",
+        "operationId": "deleteGroupConfigurationV1",
         "parameters": [
           {
             "type": "string",

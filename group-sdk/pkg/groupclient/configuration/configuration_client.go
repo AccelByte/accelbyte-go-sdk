@@ -33,9 +33,9 @@ type ClientService interface {
 
 	DeleteGroupConfigurationGlobalRuleAdminV1(params *DeleteGroupConfigurationGlobalRuleAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteGroupConfigurationGlobalRuleAdminV1OK, *DeleteGroupConfigurationGlobalRuleAdminV1BadRequest, *DeleteGroupConfigurationGlobalRuleAdminV1Unauthorized, *DeleteGroupConfigurationGlobalRuleAdminV1Forbidden, *DeleteGroupConfigurationGlobalRuleAdminV1NotFound, *DeleteGroupConfigurationGlobalRuleAdminV1InternalServerError, error)
 
-	GetGroupConfigurationAdminV1(params *GetGroupConfigurationAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetGroupConfigurationAdminV1OK, *GetGroupConfigurationAdminV1BadRequest, *GetGroupConfigurationAdminV1Unauthorized, *GetGroupConfigurationAdminV1Forbidden, *GetGroupConfigurationAdminV1NotFound, *GetGroupConfigurationAdminV1InternalServerError, error)
+	DeleteGroupConfigurationV1(params *DeleteGroupConfigurationV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteGroupConfigurationV1NoContent, *DeleteGroupConfigurationV1BadRequest, *DeleteGroupConfigurationV1Unauthorized, *DeleteGroupConfigurationV1Forbidden, *DeleteGroupConfigurationV1NotFound, *DeleteGroupConfigurationV1InternalServerError, error)
 
-	GetGroupConfigurationV1(params *GetGroupConfigurationV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetGroupConfigurationV1NoContent, *GetGroupConfigurationV1BadRequest, *GetGroupConfigurationV1Unauthorized, *GetGroupConfigurationV1Forbidden, *GetGroupConfigurationV1NotFound, *GetGroupConfigurationV1InternalServerError, error)
+	GetGroupConfigurationAdminV1(params *GetGroupConfigurationAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetGroupConfigurationAdminV1OK, *GetGroupConfigurationAdminV1BadRequest, *GetGroupConfigurationAdminV1Unauthorized, *GetGroupConfigurationAdminV1Forbidden, *GetGroupConfigurationAdminV1NotFound, *GetGroupConfigurationAdminV1InternalServerError, error)
 
 	InitiateGroupConfigurationAdminV1(params *InitiateGroupConfigurationAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*InitiateGroupConfigurationAdminV1Created, *InitiateGroupConfigurationAdminV1Unauthorized, *InitiateGroupConfigurationAdminV1Forbidden, *InitiateGroupConfigurationAdminV1Conflict, *InitiateGroupConfigurationAdminV1InternalServerError, error)
 
@@ -164,6 +164,60 @@ func (a *Client) DeleteGroupConfigurationGlobalRuleAdminV1(params *DeleteGroupCo
 }
 
 /*
+  DeleteGroupConfigurationV1 deletes group configuration
+
+  <p>Required permission 'ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [DELETE]'</p>
+			<p>This endpoint is used to delete group configuration. This Configuration is used to be the main rule of the service. Each namespace will have its own configuration</p>
+			<p>Action Code: 73101</p>
+
+*/
+func (a *Client) DeleteGroupConfigurationV1(params *DeleteGroupConfigurationV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteGroupConfigurationV1NoContent, *DeleteGroupConfigurationV1BadRequest, *DeleteGroupConfigurationV1Unauthorized, *DeleteGroupConfigurationV1Forbidden, *DeleteGroupConfigurationV1NotFound, *DeleteGroupConfigurationV1InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteGroupConfigurationV1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "deleteGroupConfigurationV1",
+		Method:             "DELETE",
+		PathPattern:        "/group/v1/admin/namespaces/{namespace}/configuration/{configurationCode}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &DeleteGroupConfigurationV1Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeleteGroupConfigurationV1NoContent:
+		return v, nil, nil, nil, nil, nil, nil
+	case *DeleteGroupConfigurationV1BadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+	case *DeleteGroupConfigurationV1Unauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+	case *DeleteGroupConfigurationV1Forbidden:
+		return nil, nil, nil, v, nil, nil, nil
+	case *DeleteGroupConfigurationV1NotFound:
+		return nil, nil, nil, nil, v, nil, nil
+	case *DeleteGroupConfigurationV1InternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
   GetGroupConfigurationAdminV1 gets existing configuration
 
   <p>Required permission 'ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [READ]'</p>
@@ -211,60 +265,6 @@ func (a *Client) GetGroupConfigurationAdminV1(params *GetGroupConfigurationAdmin
 	case *GetGroupConfigurationAdminV1NotFound:
 		return nil, nil, nil, nil, v, nil, nil
 	case *GetGroupConfigurationAdminV1InternalServerError:
-		return nil, nil, nil, nil, nil, v, nil
-	default:
-		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-/*
-  GetGroupConfigurationV1 deletes group configuration
-
-  <p>Required permission 'ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [DELETE]'</p>
-			<p>This endpoint is used to delete group configuration. This Configuration is used to be the main rule of the service. Each namespace will have its own configuration</p>
-			<p>Action Code: 73101</p>
-
-*/
-func (a *Client) GetGroupConfigurationV1(params *GetGroupConfigurationV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetGroupConfigurationV1NoContent, *GetGroupConfigurationV1BadRequest, *GetGroupConfigurationV1Unauthorized, *GetGroupConfigurationV1Forbidden, *GetGroupConfigurationV1NotFound, *GetGroupConfigurationV1InternalServerError, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewGetGroupConfigurationV1Params()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "getGroupConfigurationV1",
-		Method:             "DELETE",
-		PathPattern:        "/group/v1/admin/namespaces/{namespace}/configuration/{configurationCode}",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
-		Params:             params,
-		Reader:             &GetGroupConfigurationV1Reader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, nil, nil, nil, nil, nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *GetGroupConfigurationV1NoContent:
-		return v, nil, nil, nil, nil, nil, nil
-	case *GetGroupConfigurationV1BadRequest:
-		return nil, v, nil, nil, nil, nil, nil
-	case *GetGroupConfigurationV1Unauthorized:
-		return nil, nil, v, nil, nil, nil, nil
-	case *GetGroupConfigurationV1Forbidden:
-		return nil, nil, nil, v, nil, nil, nil
-	case *GetGroupConfigurationV1NotFound:
-		return nil, nil, nil, nil, v, nil, nil
-	case *GetGroupConfigurationV1InternalServerError:
 		return nil, nil, nil, nil, nil, v, nil
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))

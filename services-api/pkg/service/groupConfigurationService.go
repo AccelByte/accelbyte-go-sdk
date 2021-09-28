@@ -16,7 +16,7 @@ type GroupConfigService struct {
 	TokenRepository repository.TokenRepository
 }
 
-func (s *GroupConfigService) ListGroupConfigurationAdminV1(namespace string, limit, offset *int64) (*groupclientmodels.ModelsGetGroupConfigurationResponseV1, error) {
+func (s *GroupConfigService) ListGroupConfigurationAdminV1(namespace string, limit, offset *int64) (*groupclientmodels.ModelsListConfigurationResponseV1, error) {
 	token, err := s.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
@@ -60,14 +60,14 @@ func (s *GroupConfigService) ListGroupConfigurationAdminV1(namespace string, lim
 	return ok.GetPayload(), nil
 }
 
-func (s *GroupConfigService) CreateGroupConfigurationAdminV1(namespace string, content *groupclientmodels.ModelsCreateGroupConfigurationRequestV1) (*groupclientmodels.ModelsCreateGroupConfigurationResponseV1, error) {
+func (s *GroupConfigService) CreateGroupConfigurationAdminV1(namespace string, body *groupclientmodels.ModelsCreateGroupConfigurationRequestV1) (*groupclientmodels.ModelsCreateGroupConfigurationResponseV1, error) {
 	token, err := s.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
 	params := &configuration.CreateGroupConfigurationAdminV1Params{
-		Body:      content,
+		Body:      body,
 		Namespace: namespace,
 	}
 	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := s.GroupClient.Configuration.CreateGroupConfigurationAdminV1(params, client.BearerToken(*token.AccessToken))
@@ -113,11 +113,6 @@ func (s *GroupConfigService) InitiateGroupConfigurationAdminV1(namespace string)
 		Namespace: namespace,
 	}
 	created, unauthorized, forbidden, conflict, internalServerError, err := s.GroupClient.Configuration.InitiateGroupConfigurationAdminV1(params, client.BearerToken(*token.AccessToken))
-	if conflict != nil {
-		errorMsg, _ := json.Marshal(*conflict.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, conflict
-	}
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -127,6 +122,11 @@ func (s *GroupConfigService) InitiateGroupConfigurationAdminV1(namespace string)
 		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
 		logrus.Error(string(errorMsg))
 		return nil, forbidden
+	}
+	if conflict != nil {
+		errorMsg, _ := json.Marshal(*conflict.GetPayload())
+		logrus.Error(string(errorMsg))
+		return nil, conflict
 	}
 	if internalServerError != nil {
 		errorMsg, _ := json.Marshal(*internalServerError.GetPayload())
@@ -150,11 +150,11 @@ func (s *GroupConfigService) GetGroupConfigurationAdminV1(namespace, configCode 
 		ConfigurationCode: configCode,
 		Namespace:         namespace,
 	}
-	created, badRequest, unauthorized, forbidden, notFound, internalServerError, err := s.GroupClient.Configuration.GetGroupConfigurationAdminV1(params, client.BearerToken(*token.AccessToken))
-	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := s.GroupClient.Configuration.GetGroupConfigurationAdminV1(params, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
-		return nil, notFound
+		return nil, badRequest
 	}
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
@@ -166,64 +166,64 @@ func (s *GroupConfigService) GetGroupConfigurationAdminV1(namespace, configCode 
 		logrus.Error(string(errorMsg))
 		return nil, forbidden
 	}
+	if notFound != nil {
+		errorMsg, _ := json.Marshal(*notFound.GetPayload())
+		logrus.Error(string(errorMsg))
+		return nil, notFound
+	}
 	if internalServerError != nil {
 		errorMsg, _ := json.Marshal(*internalServerError.GetPayload())
 		logrus.Error(string(errorMsg))
 		return nil, internalServerError
 	}
-	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, badRequest
-	}
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	return created.GetPayload(), nil
+	return ok.GetPayload(), nil
 }
 
-func (s *GroupConfigService) DeleteGroupConfigurationAdminV1(namespace, configCode string) (*groupclientmodels.ModelsGetGroupConfigurationResponseV1, error) {
+func (s *GroupConfigService) DeleteGroupConfigurationAdminV1(namespace, configCode string) error {
 	token, err := s.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
-		return nil, err
+		return err
 	}
-	params := &configuration.DeleteGroupConfigurationAdminV1Params{
+	params := &configuration.DeleteGroupConfigurationGlobalRuleAdminV1Params{
 		ConfigurationCode: configCode,
 		Namespace:         namespace,
 	}
-	created, badRequest, unauthorized, forbidden, notFound, internalServerError, err := s.GroupClient.Configuration.DeleteGroupConfigurationAdminV1(params, client.BearerToken(*token.AccessToken))
-	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := s.GroupClient.Configuration.DeleteGroupConfigurationGlobalRuleAdminV1(params, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
-		return nil, notFound
+		return badRequest
 	}
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
-		return nil, unauthorized
+		return unauthorized
 	}
 	if forbidden != nil {
 		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
 		logrus.Error(string(errorMsg))
-		return nil, forbidden
+		return forbidden
+	}
+	if notFound != nil {
+		errorMsg, _ := json.Marshal(*notFound.GetPayload())
+		logrus.Error(string(errorMsg))
+		return notFound
 	}
 	if internalServerError != nil {
 		errorMsg, _ := json.Marshal(*internalServerError.GetPayload())
 		logrus.Error(string(errorMsg))
-		return nil, internalServerError
-	}
-	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, badRequest
+		return internalServerError
 	}
 	if err != nil {
 		logrus.Error(err)
-		return nil, err
+		return err
 	}
-	return created.GetPayload(), nil
+	return nil
 }
 
 func (s *GroupConfigService) UpdateGroupConfigurationAdminV1(namespace, configCode string, content *groupclientmodels.ModelsUpdateGroupConfigurationRequestV1) (*groupclientmodels.ModelsUpdateGroupConfigurationResponseV1, error) {
@@ -237,11 +237,11 @@ func (s *GroupConfigService) UpdateGroupConfigurationAdminV1(namespace, configCo
 		ConfigurationCode: configCode,
 		Namespace:         namespace,
 	}
-	created, badRequest, unauthorized, forbidden, notFound, internalServerError, err := s.GroupClient.Configuration.UpdateGroupConfigurationAdminV1(params, client.BearerToken(*token.AccessToken))
-	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := s.GroupClient.Configuration.UpdateGroupConfigurationAdminV1(params, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
-		return nil, notFound
+		return nil, badRequest
 	}
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
@@ -253,21 +253,21 @@ func (s *GroupConfigService) UpdateGroupConfigurationAdminV1(namespace, configCo
 		logrus.Error(string(errorMsg))
 		return nil, forbidden
 	}
+	if notFound != nil {
+		errorMsg, _ := json.Marshal(*notFound.GetPayload())
+		logrus.Error(string(errorMsg))
+		return nil, notFound
+	}
 	if internalServerError != nil {
 		errorMsg, _ := json.Marshal(*internalServerError.GetPayload())
 		logrus.Error(string(errorMsg))
 		return nil, internalServerError
 	}
-	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, badRequest
-	}
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	return created.GetPayload(), nil
+	return ok.GetPayload(), nil
 }
 
 func (s *GroupConfigService) UpdateGroupConfigurationGlobalRuleAdminV1(namespace, configCode, allowedAction string, content *groupclientmodels.ModelsUpdateGroupConfigurationGlobalRulesRequestV1) (*groupclientmodels.ModelsUpdateGroupConfigurationResponseV1, error) {
@@ -282,11 +282,11 @@ func (s *GroupConfigService) UpdateGroupConfigurationGlobalRuleAdminV1(namespace
 		ConfigurationCode: configCode,
 		Namespace:         namespace,
 	}
-	created, badRequest, unauthorized, forbidden, notFound, internalServerError, err := s.GroupClient.Configuration.UpdateGroupConfigurationGlobalRuleAdminV1(params, client.BearerToken(*token.AccessToken))
-	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := s.GroupClient.Configuration.UpdateGroupConfigurationGlobalRuleAdminV1(params, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
-		return nil, notFound
+		return nil, badRequest
 	}
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
@@ -298,21 +298,21 @@ func (s *GroupConfigService) UpdateGroupConfigurationGlobalRuleAdminV1(namespace
 		logrus.Error(string(errorMsg))
 		return nil, forbidden
 	}
+	if notFound != nil {
+		errorMsg, _ := json.Marshal(*notFound.GetPayload())
+		logrus.Error(string(errorMsg))
+		return nil, notFound
+	}
 	if internalServerError != nil {
 		errorMsg, _ := json.Marshal(*internalServerError.GetPayload())
 		logrus.Error(string(errorMsg))
 		return nil, internalServerError
 	}
-	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, badRequest
-	}
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	return created.GetPayload(), nil
+	return ok.GetPayload(), nil
 }
 
 func (s *GroupConfigService) DeleteGroupConfigurationGlobalRuleAdminV1(namespace, configCode, allowedAction string) (*groupclientmodels.ModelsUpdateGroupConfigurationResponseV1, error) {
@@ -326,11 +326,11 @@ func (s *GroupConfigService) DeleteGroupConfigurationGlobalRuleAdminV1(namespace
 		ConfigurationCode: configCode,
 		Namespace:         namespace,
 	}
-	created, badRequest, unauthorized, forbidden, notFound, internalServerError, err := s.GroupClient.Configuration.DeleteGroupConfigurationGlobalRuleAdminV1(params, client.BearerToken(*token.AccessToken))
-	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := s.GroupClient.Configuration.DeleteGroupConfigurationGlobalRuleAdminV1(params, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
-		return nil, notFound
+		return nil, badRequest
 	}
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
@@ -342,19 +342,19 @@ func (s *GroupConfigService) DeleteGroupConfigurationGlobalRuleAdminV1(namespace
 		logrus.Error(string(errorMsg))
 		return nil, forbidden
 	}
+	if notFound != nil {
+		errorMsg, _ := json.Marshal(*notFound.GetPayload())
+		logrus.Error(string(errorMsg))
+		return nil, notFound
+	}
 	if internalServerError != nil {
 		errorMsg, _ := json.Marshal(*internalServerError.GetPayload())
 		logrus.Error(string(errorMsg))
 		return nil, internalServerError
 	}
-	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, badRequest
-	}
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	return created.GetPayload(), nil
+	return ok.GetPayload(), nil
 }

@@ -33,8 +33,15 @@ pipeline {
               return env.BITBUCKET_PULL_REQUEST_LATEST_COMMIT_FROM_TARGET_BRANCH
             }
           }
+          agent {
+            docker {
+              image 'randondigital/commitlint:3.0'
+              reuseNode true
+            }
+          }
           steps {
-            sh "docker run -t --rm -v `pwd`:/data/ -w /data/ node:lts sh -c 'npm install --no-color -g @commitlint/cli @commitlint/config-conventional && commitlint --color false --verbose --from ${env.BITBUCKET_PULL_REQUEST_LATEST_COMMIT_FROM_TARGET_BRANCH}'"
+            sh "npm install @commitlint/config-conventional@13.2.0"
+            sh "commitlint --color false --verbose --from ${env.BITBUCKET_PULL_REQUEST_LATEST_COMMIT_FROM_TARGET_BRANCH}"
           }
         }
         //stage('Lint Source Code') {

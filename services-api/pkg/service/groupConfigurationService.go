@@ -183,17 +183,17 @@ func (s *GroupConfigService) GetGroupConfigurationAdminV1(namespace, configCode 
 	return ok.GetPayload(), nil
 }
 
-func (s *GroupConfigService) DeleteGroupConfigurationAdminV1(namespace, configCode string) error {
+func (s *GroupConfigService) DeleteGroupConfigurationV1(namespace, configCode string) error {
 	token, err := s.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return err
 	}
-	params := &configuration.DeleteGroupConfigurationGlobalRuleAdminV1Params{
+	params := &configuration.DeleteGroupConfigurationV1Params{
 		ConfigurationCode: configCode,
 		Namespace:         namespace,
 	}
-	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := s.GroupClient.Configuration.DeleteGroupConfigurationGlobalRuleAdminV1(params, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := s.GroupClient.Configuration.DeleteGroupConfigurationV1(params, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))

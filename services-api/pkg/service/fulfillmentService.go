@@ -68,3 +68,36 @@ func (fulfillmentService *FulfillmentService) FulfillItem(userId, userNamespace 
 	}
 	return fulfillItem.GetPayload(), nil
 }
+
+func (fulfillmentService *FulfillmentService) PublicRedeemCode(userId, userNamespace string, fulfillmentRequest *platformclientmodels.FulfillCodeRequest) (*platformclientmodels.FulfillmentResult, error) {
+	accessToken, err := fulfillmentService.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	param := &fulfillment.PublicRedeemCodeParams{
+		Body:      fulfillmentRequest,
+		Namespace: userNamespace,
+		UserID:    userId,
+	}
+	ok, badRequest, notFound, conflict, err := fulfillmentService.PlatformService.Fulfillment.PublicRedeemCode(param, client.BearerToken(*accessToken.AccessToken))
+	if badRequest != nil {
+		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
+		logrus.Error(string(errorMsg))
+		return nil, badRequest
+	}
+	if notFound != nil {
+		errorMsg, _ := json.Marshal(*notFound.GetPayload())
+		logrus.Error(string(errorMsg))
+		return nil, notFound
+	}
+	if conflict != nil {
+		errorMsg, _ := json.Marshal(*conflict.GetPayload())
+		logrus.Error(string(errorMsg))
+		return nil, conflict
+	}
+	if err != nil {
+		logrus.Error(err)
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}

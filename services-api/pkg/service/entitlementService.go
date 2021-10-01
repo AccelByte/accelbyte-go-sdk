@@ -961,3 +961,23 @@ func (entitlementService *EntitlementService) PublicConsumeUserEntitlement(names
 	}
 	return userEntitlement.GetPayload(), nil
 }
+
+func (entitlementService *EntitlementService) PublicExistsAnyMyActiveEntitlement(namespace string, itemIds, appIds, skus []string) (*platformclientmodels.Ownership, error) {
+	accessToken, err := entitlementService.TokenRepository.GetToken()
+	if err != nil {
+		logrus.Error(err)
+		return nil, err
+	}
+	param := &entitlement.PublicExistsAnyMyActiveEntitlementParams{
+		AppIds:    appIds,
+		ItemIds:   itemIds,
+		Namespace: namespace,
+		Skus:      skus,
+	}
+	ok, err := entitlementService.PlatformService.Entitlement.PublicExistsAnyMyActiveEntitlement(param, client.BearerToken(*accessToken.AccessToken))
+	if err != nil {
+		logrus.Error(err)
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}

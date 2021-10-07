@@ -10,12 +10,11 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	model2 "github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/model"
 	"io"
 	"strconv"
 	"strings"
 	"time"
-
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/model"
 
 	"github.com/sirupsen/logrus"
 )
@@ -31,10 +30,19 @@ const (
 	newLine      = '\n'
 	keyType      = "type: "
 	keyRequestID = "id: "
+
+	// list of WS command keys
+	channelSlugKey = "channelSlug"
+	payloadKey     = "payload"
+	typeKey        = "type"
+	idKey          = "id"
+	codeKey        = "code"
+	fromKey        = "from"
+	sentAtKey      = "sentAt"
 )
 
 // UnmarshalResponse converts response message to internal message format
-func UnmarshalResponse(message []byte) (model.Message, error) {
+func UnmarshalResponse(message []byte) (model2.Message, error) {
 	reader := bufio.NewReader(bytes.NewReader(message))
 	msgType, err := getResponseIdentifier(reader)
 	if err != nil {
@@ -47,205 +55,235 @@ func UnmarshalResponse(message []byte) (model.Message, error) {
 func getResponseIdentifier(reader *bufio.Reader) (messageType string, err error) {
 	msgType, err := reader.ReadString(newLine)
 	if err != nil && err != io.EOF {
-		return model.TypeUnknown, err
+		return model2.TypeUnknown, err
 	}
 	msgType = strings.TrimSuffix(msgType, string(newLine))
 	msgType = strings.TrimPrefix(msgType, keyType)
 
 	if msgType == "" {
-		return model.TypeHeartbeat, nil
+		return model2.TypeHeartbeat, nil
 	}
 
 	switch msgType {
-	case model.TypeConnected,
-		model.TypeDisconnected,
-		model.TypeError, model.TypeShutdown,
-		model.TypeInfoResponse,
-		model.TypeCreateResponse,
-		model.TypeLeaveResponse,
-		model.TypeInviteResponse,
-		model.TypeJoinResponse,
-		model.TypeKickResponse,
-		model.TypeKickNotice,
-		model.TypeJoinNotif,
-		model.TypeInviteNotif,
-		model.TypeLeaveNotif,
-		model.TypePersonalChatResponse,
-		model.TypePersonalChatNotif,
-		model.TypePartyChatResponse,
-		model.TypePersonalChatHistoryResponse,
-		model.TypePartyChatNotif,
-		model.TypeOnlineFriends,
-		model.TypeNotificationMessage,
-		model.TypeGetOfflineNotificationRequest,
-		model.TypeFriendsPresenceResponse,
-		model.TypeSetUserStatusResponse,
-		model.TypeGetInvitatedNotif,
-		model.TypeUserStatusNotif,
-		model.TypeGetOfflineNotificationResponse,
-		model.TypeStartMatchmakingResponse,
-		model.TypeCancelMatchmakingResponse,
-		model.TypeMatchmakingNotif,
-		model.TypeSetReadyConsentResponse,
-		model.TypeSetReadyConsentNotif,
-		model.TypeRematchmakingNotif,
-		model.TypeRequestFriendsResponse,
-		model.TypeListIncomingFriendsResponse,
-		model.TypeListOutgoingFriendsResponse,
-		model.TypeAcceptFriendsResponse,
-		model.TypeRejectFriendsResponse,
-		model.TypeCancelFriendsResponse,
-		model.TypeUnfriendResponse,
-		model.TypeListOfFriendsResponse,
-		model.TypeGetFriendshipStatusResponse,
-		model.TypeRequestFriendsNotif,
-		model.TypeAcceptFriendsNotif,
-		model.TypeDSNotif,
-		model.TypePartyDataUpdateNotif,
-		model.TypeSystemComponentsStatus,
-		model.TypeJoinDefaultChannelResponse,
-		model.TypeSendChannelChatResponse,
-		model.TypeChannelChatNotif,
-		model.TypeRejectNotif,
-		model.TypeRejectResponse,
-		model.TypeBlockPlayerResponse,
-		model.TypeUnblockPlayerResponse,
-		model.TypeBlockPlayerNotif,
-		model.TypeUnblockPlayerNotif,
-		model.TypeSetSessionAttributeResponse,
-		model.TypeSignalingP2PNotif,
-		model.TypePromoteLeaderResponse,
-		model.TypeUnfriendNotif:
+	case model2.TypeConnected,
+		model2.TypeDisconnected,
+		model2.TypeError, model2.TypeShutdown,
+		model2.TypeInfoResponse,
+		model2.TypeCreateResponse,
+		model2.TypeLeaveResponse,
+		model2.TypeInviteResponse,
+		model2.TypeJoinResponse,
+		model2.TypeKickResponse,
+		model2.TypeKickNotice,
+		model2.TypeJoinNotif,
+		model2.TypeInviteNotif,
+		model2.TypeLeaveNotif,
+		model2.TypePersonalChatResponse,
+		model2.TypePersonalChatNotif,
+		model2.TypePartyChatResponse,
+		model2.TypePersonalChatHistoryResponse,
+		model2.TypePartyChatNotif,
+		model2.TypeNotificationMessage,
+		model2.TypeGetOfflineNotificationRequest,
+		model2.TypeFriendsPresenceResponse,
+		model2.TypeSetUserStatusResponse,
+		model2.TypeGetInvitatedNotif,
+		model2.TypeUserStatusNotif,
+		model2.TypeGetOfflineNotificationResponse,
+		model2.TypeStartMatchmakingResponse,
+		model2.TypeCancelMatchmakingResponse,
+		model2.TypeMatchmakingNotif,
+		model2.TypeSetReadyConsentResponse,
+		model2.TypeSetReadyConsentNotif,
+		model2.TypeRematchmakingNotif,
+		model2.TypeRequestFriendsResponse,
+		model2.TypeListIncomingFriendsResponse,
+		model2.TypeListOutgoingFriendsResponse,
+		model2.TypeAcceptFriendsResponse,
+		model2.TypeRejectFriendsResponse,
+		model2.TypeRejectFriendsNotif,
+		model2.TypeCancelFriendsResponse,
+		model2.TypeCancelFriendsNotif,
+		model2.TypeUnfriendResponse,
+		model2.TypeListOfFriendsResponse,
+		model2.TypeGetFriendshipStatusResponse,
+		model2.TypeRequestFriendsNotif,
+		model2.TypeAcceptFriendsNotif,
+		model2.TypeDSNotif,
+		model2.TypePartyDataUpdateNotif,
+		model2.TypeSystemComponentsStatus,
+		model2.TypeJoinDefaultChannelResponse,
+		model2.TypeSendChannelChatResponse,
+		model2.TypeChannelChatNotif,
+		model2.TypeRejectNotif,
+		model2.TypeRejectResponse,
+		model2.TypeBlockPlayerResponse,
+		model2.TypeUnblockPlayerResponse,
+		model2.TypeBlockPlayerNotif,
+		model2.TypeUnblockPlayerNotif,
+		model2.TypeSetSessionAttributeResponse,
+		model2.TypeSignalingP2PNotif,
+		model2.TypePromoteLeaderResponse,
+		model2.TypeGeneratePartyCodeResponse,
+		model2.TypeGetPartyCodeResponse,
+		model2.TypeDeletePartyCodeResponse,
+		model2.TypeJoinViaPartyCodeResponse,
+		model2.TypeUnfriendNotif,
+		model2.TypeUserBannedNotification,
+		model2.TypeUserUnbannedNotification:
 	default:
-		return model.TypeUnknown, ErrUnknownType
+		return model2.TypeUnknown, ErrUnknownType
 	}
 
 	return msgType, nil
 }
 
-func unmarshalResponseContent(messageType string, reader *bufio.Reader) (model.Message, error) {
+// nolint: gocyclo
+func unmarshalResponseContent(messageType string, reader *bufio.Reader) (model2.Message, error) {
 	switch messageType {
-	case model.TypeError:
+	case model2.TypeError:
 		return unmarshalError(reader)
-	case model.TypeConnected:
+	case model2.TypeConnected:
 		return unmarshalConnectedResponse(reader)
-	case model.TypeInfoResponse:
+	case model2.TypeInfoResponse:
 		return unmarshalInfoResponse(reader)
-	case model.TypeCreateResponse:
+	case model2.TypeCreateResponse:
 		return unmarshalCreateResponse(reader)
-	case model.TypeLeaveResponse:
+	case model2.TypeLeaveResponse:
 		return unmarshalLeaveResponse(reader)
-	case model.TypeInviteResponse:
+	case model2.TypeInviteResponse:
 		return unmarshalInviteResponse(reader)
-	case model.TypeGetInvitatedNotif:
+	case model2.TypeGetInvitatedNotif:
 		return unmarshalInvitation(reader)
-	case model.TypeJoinResponse:
+	case model2.TypeJoinResponse:
 		return unmarshalJoinResponse(reader)
-	case model.TypeRejectResponse:
+	case model2.TypeRejectResponse:
 		return unmarshalRejectResponse(reader)
-	case model.TypeRejectNotif:
+	case model2.TypeRejectNotif:
 		return unmarshalRejectNotice(reader)
-	case model.TypeKickResponse:
+	case model2.TypeKickResponse:
 		return unmarshalKickResponse(reader)
-	case model.TypeKickNotice:
+	case model2.TypeKickNotice:
 		return unmarshalKickNotice(reader)
-	case model.TypeJoinNotif:
+	case model2.TypeJoinNotif:
 		return unmarshalJoinNotice(reader)
-	case model.TypeInviteNotif:
+	case model2.TypeInviteNotif:
 		return unmarshalInviteNotice(reader)
-	case model.TypeLeaveNotif:
+	case model2.TypeLeaveNotif:
 		return unmarshalLeaveNotice(reader)
-	case model.TypePersonalChatNotif:
+	case model2.TypePersonalChatNotif:
 		return unmarshalReceived1to1Chat(reader)
-	case model.TypePersonalChatResponse:
+	case model2.TypePersonalChatResponse:
 		return unmarshalPersonalChatResponse(reader)
-	case model.TypePartyChatNotif:
+	case model2.TypePartyChatNotif:
 		return unmarshalPartyChatNotif(reader)
-	case model.TypePartyChatResponse:
+	case model2.TypePartyChatResponse:
 		return unmarshalPartyChatResponse(reader)
-	case model.TypePersonalChatHistoryResponse:
+	case model2.TypePersonalChatHistoryResponse:
 		return unmarshalPersonalChatHistoryResponse(reader)
-	case model.TypeOnlineFriends:
-		return unmarshalOnlineFriendsResponse(reader)
-	case model.TypeNotificationMessage:
+	case model2.TypeNotificationMessage:
 		return unmarshalNotificationMessage(reader)
-	case model.TypeGetOfflineNotificationResponse:
+	case model2.TypeGetOfflineNotificationResponse:
 		return unmarshalNotificationResponse(reader)
-	case model.TypeSetUserStatusResponse:
+	case model2.TypeSetUserStatusResponse:
 		return unmarshalSetUserStatusResponse(reader)
-	case model.TypeFriendsPresenceResponse:
+	case model2.TypeFriendsPresenceResponse:
 		return unmarshalFriendsPresenceResponse(reader)
-	case model.TypeUserStatusNotif:
+	case model2.TypeUserStatusNotif:
 		return unmarshalNotifyFriendsResponse(reader)
-	case model.TypeStartMatchmakingResponse:
+	case model2.TypeStartMatchmakingResponse:
 		return unmarshalStartMatchmakingResponse(reader)
-	case model.TypeCancelMatchmakingResponse:
+	case model2.TypeCancelMatchmakingResponse:
 		return unmarshalCancelMatchmakingResponse(reader)
-	case model.TypeMatchmakingNotif:
+	case model2.TypeMatchmakingNotif:
 		return unmarshalMatchmakingNotification(reader)
-	case model.TypeSetReadyConsentResponse:
+	case model2.TypeSetReadyConsentResponse:
 		return unmarshalSetReadyConsentResponse(reader)
-	case model.TypeSetReadyConsentNotif:
+	case model2.TypeSetReadyConsentNotif:
 		return unmarshalSetReadyConsentNotif(reader)
-	case model.TypeRematchmakingNotif:
+	case model2.TypeRematchmakingNotif:
 		return unmarshalRematchmakingNotif(reader)
-	case model.TypeRequestFriendsResponse:
+	case model2.TypeRequestFriendsResponse:
 		return unmarshalRequestFriendsResponse(reader)
-	case model.TypeRequestFriendsNotif:
+	case model2.TypeRequestFriendsNotif:
 		return unmarshalRequestFriendsNotif(reader)
-	case model.TypeListIncomingFriendsResponse:
+	case model2.TypeListIncomingFriendsResponse:
 		return unmarshalListIncomingFriendsResponse(reader)
-	case model.TypeListOutgoingFriendsResponse:
+	case model2.TypeListOutgoingFriendsResponse:
 		return unmarshalListOutgoingFriendsResponse(reader)
-	case model.TypeAcceptFriendsResponse:
+	case model2.TypeAcceptFriendsResponse:
 		return unmarshalAcceptFriendsResponse(reader)
-	case model.TypeAcceptFriendsNotif:
+	case model2.TypeAcceptFriendsNotif:
 		return unmarshalAcceptFriendsNotif(reader)
-	case model.TypeRejectFriendsResponse:
+	case model2.TypeRejectFriendsResponse:
 		return unmarshalRejectFriendsResponse(reader)
-	case model.TypeCancelFriendsResponse:
+	case model2.TypeRejectFriendsNotif:
+		return unmarshalRejectFriendsNotif(reader)
+	case model2.TypeCancelFriendsResponse:
 		return unmarshalCancelFriendsResponse(reader)
-	case model.TypeUnfriendResponse:
+	case model2.TypeCancelFriendsNotif:
+		return unmarshalCancelFriendsNotif(reader)
+	case model2.TypeUnfriendResponse:
 		return unmarshalUnfriendResponse(reader)
-	case model.TypeUnfriendNotif:
+	case model2.TypeUnfriendNotif:
 		return unmarshalUnfriendNotif(reader)
-	case model.TypeListOfFriendsResponse:
+	case model2.TypeListOfFriendsResponse:
 		return unmarshalListOfFriendsResponse(reader)
-	case model.TypeGetFriendshipStatusResponse:
+	case model2.TypeGetFriendshipStatusResponse:
 		return unmarshalGetFriendshipStatusResponse(reader)
-	case model.TypeDSNotif:
+	case model2.TypeDSNotif:
 		return unmarshalDSNotif(reader)
-	case model.TypeSystemComponentsStatus:
+	case model2.TypeSystemComponentsStatus:
 		return unmarshalSystemComponentsStatus(reader)
-	case model.TypePartyDataUpdateNotif:
+	case model2.TypePartyDataUpdateNotif:
 		return unmarshalPartyDataUpdateNotif(reader)
-	case model.TypeJoinDefaultChannelResponse:
+	case model2.TypeJoinDefaultChannelResponse:
 		return unmarshalJoinDefaultChannelResponse(reader)
-	case model.TypeChannelChatNotif:
+	case model2.TypeChannelChatNotif:
 		return unmarshalChannelChatNotif(reader)
-	case model.TypeBlockPlayerResponse:
+	case model2.TypeBlockPlayerResponse:
 		return unmarshalBlockPlayerResponse(reader)
-	case model.TypeBlockPlayerNotif:
+	case model2.TypeBlockPlayerNotif:
 		return unmarshalBlockPlayerNotif(reader)
-	case model.TypeUnblockPlayerResponse:
+	case model2.TypeUnblockPlayerResponse:
 		return unmarshalUnblockPlayerResponse(reader)
-	case model.TypeUnblockPlayerNotif:
+	case model2.TypeUnblockPlayerNotif:
 		return unmarshalUnblockPlayerNotif(reader)
-	case model.TypeSetSessionAttributeResponse:
+	case model2.TypeSetSessionAttributeResponse:
 		return unmarshalSetSessionAttributeResponse(reader)
-	case model.TypeSendChannelChatResponse:
+	case model2.TypeGetSessionAttributeResponse:
+		return unmarshalGetSessionAttributeResponse(reader)
+	case model2.TypeGetAllSessionAttributeResponse:
+		return unmarshalGetAllSessionAttributeResponse(reader)
+	case model2.TypeSendChannelChatResponse:
 		return unmarshalSendChannelChatResponse(reader)
-	case model.TypeSignalingP2PNotif:
+	case model2.TypeSignalingP2PNotif:
 		return unmarshalSignalingP2PResponse(reader)
-	case model.TypePromoteLeaderResponse:
+	case model2.TypePromoteLeaderResponse:
 		return unmarshalPromoteLeaderResponse(reader)
+	case model2.TypeGeneratePartyCodeResponse:
+		return unmarshalGeneratePartyCodeResponse(reader)
+	case model2.TypeGetPartyCodeResponse:
+		return unmarshalGetPartyCodeResponse(reader)
+	case model2.TypeDeletePartyCodeResponse:
+		return unmarshalDeletePartyCodeResponse(reader)
+	case model2.TypeJoinViaPartyCodeResponse:
+		return unmarshalJoinViaPartyCodeResponse(reader)
+	case model2.TypeUserBannedNotification:
+		return unmarshalUserBannedNotificationResponse(reader)
+	case model2.TypeUserUnbannedNotification:
+		return unmarshalUserUnbannedNotificationResponse(reader)
+	case model2.TypeSendPartyNotifResponse:
+		return unmarshalSendPartyNotifResponse(reader)
+	case model2.TypePartyNotif:
+		return unmarshalPartyNotif(reader)
 	}
 
 	logrus.Debug("type not handled : ", messageType)
 	return nil, ErrUnexpectedType
 }
 
-func unmarshalError(reader *bufio.Reader) (*model.ErrorMessage, error) {
+func unmarshalError(reader *bufio.Reader) (*model2.ErrorMessage, error) {
 	content, err := readAll(reader)
 	if err != nil {
 		return nil, err
@@ -255,25 +293,25 @@ func unmarshalError(reader *bufio.Reader) (*model.ErrorMessage, error) {
 	if err != nil {
 		return nil, err
 	}
-	response := &model.ErrorMessage{
-		BaseResponse: &model.BaseResponse{Code: responseCode},
+	response := &model2.ErrorMessage{
+		BaseResponse: &model2.BaseResponse{Code: responseCode},
 		Message:      content["message"],
 	}
 	return response, nil
 }
 
-func unmarshalConnectedResponse(reader *bufio.Reader) (*model.Connected, error) {
+func unmarshalConnectedResponse(reader *bufio.Reader) (*model2.Connected, error) {
 	content, err := readAll(reader)
 	if err != nil {
 		return nil, err
 	}
-	response := &model.Connected{
+	response := &model2.Connected{
 		LobbySessionID: content["lobbySessionID"],
 	}
 	return response, nil
 }
 
-func unmarshalInfoResponse(reader *bufio.Reader) (*model.InfoResponse, error) {
+func unmarshalInfoResponse(reader *bufio.Reader) (*model2.InfoResponse, error) {
 	content, err := readAll(reader)
 	if err != nil {
 		return nil, err
@@ -282,8 +320,8 @@ func unmarshalInfoResponse(reader *bufio.Reader) (*model.InfoResponse, error) {
 	if err != nil {
 		return nil, err
 	}
-	response := &model.InfoResponse{
-		BaseResponse:    &model.BaseResponse{Code: responseCode},
+	response := &model2.InfoResponse{
+		BaseResponse:    &model2.BaseResponse{Code: responseCode},
 		PartyID:         content["partyID"],
 		LeaderID:        content["leaderID"],
 		Members:         content["members"],
@@ -293,7 +331,7 @@ func unmarshalInfoResponse(reader *bufio.Reader) (*model.InfoResponse, error) {
 	return response, nil
 }
 
-func unmarshalCreateResponse(reader *bufio.Reader) (*model.CreateResponse, error) {
+func unmarshalCreateResponse(reader *bufio.Reader) (*model2.CreateResponse, error) {
 	content, err := readAll(reader)
 	if err != nil {
 		return nil, err
@@ -302,18 +340,19 @@ func unmarshalCreateResponse(reader *bufio.Reader) (*model.CreateResponse, error
 	if err != nil {
 		return nil, err
 	}
-	response := &model.CreateResponse{
-		BaseResponse:    &model.BaseResponse{Code: responseCode},
+	response := &model2.CreateResponse{
+		BaseResponse:    &model2.BaseResponse{Code: responseCode},
 		PartyID:         content["partyID"],
 		LeaderID:        content["leaderID"],
 		Members:         content["members"],
 		Invitees:        content["invitees"],
 		InvitationToken: content["invitationToken"],
+		PartyCode:       content["partyCode"],
 	}
 	return response, nil
 }
 
-func unmarshalLeaveResponse(reader *bufio.Reader) (*model.LeaveResponse, error) {
+func unmarshalLeaveResponse(reader *bufio.Reader) (*model2.LeaveResponse, error) {
 	content, err := readAll(reader)
 	if err != nil {
 		return nil, err
@@ -322,13 +361,13 @@ func unmarshalLeaveResponse(reader *bufio.Reader) (*model.LeaveResponse, error) 
 	if err != nil {
 		return nil, err
 	}
-	response := &model.LeaveResponse{
-		BaseResponse: &model.BaseResponse{Code: responseCode},
+	response := &model2.LeaveResponse{
+		BaseResponse: &model2.BaseResponse{Code: responseCode},
 	}
 	return response, nil
 }
 
-func unmarshalInviteResponse(reader *bufio.Reader) (*model.InviteResponse, error) {
+func unmarshalInviteResponse(reader *bufio.Reader) (*model2.InviteResponse, error) {
 	content, err := readAll(reader)
 	if err != nil {
 		return nil, err
@@ -337,18 +376,18 @@ func unmarshalInviteResponse(reader *bufio.Reader) (*model.InviteResponse, error
 	if err != nil {
 		return nil, err
 	}
-	response := &model.InviteResponse{
-		BaseResponse: &model.BaseResponse{Code: responseCode},
+	response := &model2.InviteResponse{
+		BaseResponse: &model2.BaseResponse{Code: responseCode},
 	}
 	return response, nil
 }
 
-func unmarshalInvitation(reader *bufio.Reader) (*model.Invitation, error) {
+func unmarshalInvitation(reader *bufio.Reader) (*model2.Invitation, error) {
 	content, err := readAll(reader)
 	if err != nil {
 		return nil, err
 	}
-	response := &model.Invitation{
+	response := &model2.Invitation{
 		From:            content["from"],
 		PartyID:         content["partyID"],
 		InvitationToken: content["invitationToken"],
@@ -356,7 +395,7 @@ func unmarshalInvitation(reader *bufio.Reader) (*model.Invitation, error) {
 	return response, nil
 }
 
-func unmarshalJoinResponse(reader *bufio.Reader) (*model.JoinResponse, error) {
+func unmarshalJoinResponse(reader *bufio.Reader) (*model2.JoinResponse, error) {
 	content, err := readAll(reader)
 	if err != nil {
 		return nil, err
@@ -365,8 +404,8 @@ func unmarshalJoinResponse(reader *bufio.Reader) (*model.JoinResponse, error) {
 	if err != nil {
 		return nil, err
 	}
-	response := &model.JoinResponse{
-		BaseResponse:    &model.BaseResponse{Code: responseCode},
+	response := &model2.JoinResponse{
+		BaseResponse:    &model2.BaseResponse{Code: responseCode},
 		PartyID:         content["partyID"],
 		LeaderID:        content["leaderID"],
 		Members:         content["members"],
@@ -376,7 +415,7 @@ func unmarshalJoinResponse(reader *bufio.Reader) (*model.JoinResponse, error) {
 	return response, nil
 }
 
-func unmarshalRejectResponse(reader *bufio.Reader) (*model.RejectResponse, error) {
+func unmarshalRejectResponse(reader *bufio.Reader) (*model2.RejectResponse, error) {
 	content, err := readAll(reader)
 	if err != nil {
 		return nil, err
@@ -385,19 +424,19 @@ func unmarshalRejectResponse(reader *bufio.Reader) (*model.RejectResponse, error
 	if err != nil {
 		return nil, err
 	}
-	response := &model.RejectResponse{
-		BaseResponse: &model.BaseResponse{Code: responseCode},
+	response := &model2.RejectResponse{
+		BaseResponse: &model2.BaseResponse{Code: responseCode},
 		PartyID:      content["partyID"],
 	}
 	return response, nil
 }
 
-func unmarshalRejectNotice(reader *bufio.Reader) (*model.RejectNotice, error) {
+func unmarshalRejectNotice(reader *bufio.Reader) (*model2.RejectNotice, error) {
 	content, err := readAll(reader)
 	if err != nil {
 		return nil, err
 	}
-	response := &model.RejectNotice{
+	response := &model2.RejectNotice{
 		PartyID:  content["partyID"],
 		LeaderID: content["leaderID"],
 		UserID:   content["userID"],
@@ -405,7 +444,7 @@ func unmarshalRejectNotice(reader *bufio.Reader) (*model.RejectNotice, error) {
 	return response, nil
 }
 
-func unmarshalKickResponse(reader *bufio.Reader) (*model.KickResponse, error) {
+func unmarshalKickResponse(reader *bufio.Reader) (*model2.KickResponse, error) {
 	content, err := readAll(reader)
 	if err != nil {
 		return nil, err
@@ -414,18 +453,18 @@ func unmarshalKickResponse(reader *bufio.Reader) (*model.KickResponse, error) {
 	if err != nil {
 		return nil, err
 	}
-	response := &model.KickResponse{
-		BaseResponse: &model.BaseResponse{Code: responseCode},
+	response := &model2.KickResponse{
+		BaseResponse: &model2.BaseResponse{Code: responseCode},
 	}
 	return response, nil
 }
 
-func unmarshalKickNotice(reader *bufio.Reader) (*model.KickNotice, error) {
+func unmarshalKickNotice(reader *bufio.Reader) (*model2.KickNotice, error) {
 	content, err := readAll(reader)
 	if err != nil {
 		return nil, err
 	}
-	response := &model.KickNotice{
+	response := &model2.KickNotice{
 		LeaderID: content["leaderID"],
 		UserID:   content["userID"],
 		PartyID:  content["partyID"],
@@ -433,42 +472,42 @@ func unmarshalKickNotice(reader *bufio.Reader) (*model.KickNotice, error) {
 	return response, nil
 }
 
-func unmarshalJoinNotice(reader *bufio.Reader) (*model.JoinNotice, error) {
+func unmarshalJoinNotice(reader *bufio.Reader) (*model2.JoinNotice, error) {
 	content, err := readAll(reader)
 	if err != nil {
 		return nil, err
 	}
-	response := &model.JoinNotice{
+	response := &model2.JoinNotice{
 		UserID: content["userID"],
 	}
 	return response, nil
 }
 
-func unmarshalInviteNotice(reader *bufio.Reader) (*model.InviteNotice, error) {
+func unmarshalInviteNotice(reader *bufio.Reader) (*model2.InviteNotice, error) {
 	content, err := readAll(reader)
 	if err != nil {
 		return nil, err
 	}
-	response := &model.InviteNotice{
+	response := &model2.InviteNotice{
 		InviterID: content["inviterID"],
 		InviteeID: content["inviteeID"],
 	}
 	return response, nil
 }
 
-func unmarshalLeaveNotice(reader *bufio.Reader) (*model.LeaveNotice, error) {
+func unmarshalLeaveNotice(reader *bufio.Reader) (*model2.LeaveNotice, error) {
 	content, err := readAll(reader)
 	if err != nil {
 		return nil, err
 	}
-	response := &model.LeaveNotice{
+	response := &model2.LeaveNotice{
 		UserID:   content["userID"],
 		LeaderID: content["leaderID"],
 	}
 	return response, nil
 }
 
-func unmarshalReceived1to1Chat(reader *bufio.Reader) (notif *model.PersonalChatNotif, err error) {
+func unmarshalReceived1to1Chat(reader *bufio.Reader) (notif *model2.PersonalChatNotif, err error) {
 	content, err := readAll(reader)
 	if err != nil {
 		return nil, err
@@ -479,8 +518,8 @@ func unmarshalReceived1to1Chat(reader *bufio.Reader) (notif *model.PersonalChatN
 		return nil, err
 	}
 
-	response := &model.PersonalChatNotif{
-		ChatMessage: &model.ChatMessage{
+	response := &model2.PersonalChatNotif{
+		ChatMessage: &model2.ChatMessage{
 			ID:         content["id"],
 			From:       content["from"],
 			To:         content["to"],
@@ -491,7 +530,7 @@ func unmarshalReceived1to1Chat(reader *bufio.Reader) (notif *model.PersonalChatN
 	return response, nil
 }
 
-func unmarshalPersonalChatResponse(reader *bufio.Reader) (response *model.PersonalChatResponse, err error) {
+func unmarshalPersonalChatResponse(reader *bufio.Reader) (response *model2.PersonalChatResponse, err error) {
 	content, err := readAll(reader)
 	if err != nil {
 		return nil, err
@@ -501,8 +540,8 @@ func unmarshalPersonalChatResponse(reader *bufio.Reader) (response *model.Person
 		return nil, err
 	}
 
-	response = &model.PersonalChatResponse{
-		BaseResponse: &model.BaseResponse{
+	response = &model2.PersonalChatResponse{
+		BaseResponse: &model2.BaseResponse{
 			MessageID: content["id"],
 			Code:      responseCode,
 		},
@@ -510,7 +549,7 @@ func unmarshalPersonalChatResponse(reader *bufio.Reader) (response *model.Person
 	return response, nil
 }
 
-func unmarshalPartyChatNotif(reader *bufio.Reader) (notif *model.PartyChatNotif, err error) {
+func unmarshalPartyChatNotif(reader *bufio.Reader) (notif *model2.PartyChatNotif, err error) {
 	content, err := readAll(reader)
 	if err != nil {
 		return nil, err
@@ -521,8 +560,8 @@ func unmarshalPartyChatNotif(reader *bufio.Reader) (notif *model.PartyChatNotif,
 		return nil, err
 	}
 
-	response := &model.PartyChatNotif{
-		ChatMessage: &model.ChatMessage{
+	response := &model2.PartyChatNotif{
+		ChatMessage: &model2.ChatMessage{
 			ID:         content["id"],
 			From:       content["from"],
 			To:         content["to"],
@@ -533,7 +572,7 @@ func unmarshalPartyChatNotif(reader *bufio.Reader) (notif *model.PartyChatNotif,
 	return response, nil
 }
 
-func unmarshalPartyChatResponse(reader *bufio.Reader) (notif *model.PartyChatResponse, err error) {
+func unmarshalPartyChatResponse(reader *bufio.Reader) (notif *model2.PartyChatResponse, err error) {
 	content, err := readAll(reader)
 	if err != nil {
 		return nil, err
@@ -542,8 +581,8 @@ func unmarshalPartyChatResponse(reader *bufio.Reader) (notif *model.PartyChatRes
 	if err != nil {
 		return nil, err
 	}
-	response := &model.PartyChatResponse{
-		BaseResponse: &model.BaseResponse{
+	response := &model2.PartyChatResponse{
+		BaseResponse: &model2.BaseResponse{
 			MessageID: content["id"],
 			Code:      responseCode,
 		},
@@ -551,7 +590,7 @@ func unmarshalPartyChatResponse(reader *bufio.Reader) (notif *model.PartyChatRes
 	return response, nil
 }
 
-func unmarshalPersonalChatHistoryResponse(reader *bufio.Reader) (notif *model.PersonalChatHistoryResponse, err error) {
+func unmarshalPersonalChatHistoryResponse(reader *bufio.Reader) (notif *model2.PersonalChatHistoryResponse, err error) {
 	content, err := readAll(reader)
 	if err != nil {
 		return nil, err
@@ -562,8 +601,8 @@ func unmarshalPersonalChatHistoryResponse(reader *bufio.Reader) (notif *model.Pe
 		return nil, err
 	}
 
-	response := &model.PersonalChatHistoryResponse{
-		BaseResponse: &model.BaseResponse{
+	response := &model2.PersonalChatHistoryResponse{
+		BaseResponse: &model2.BaseResponse{
 			MessageID: content["id"],
 			Code:      responseCode,
 		},
@@ -573,24 +612,7 @@ func unmarshalPersonalChatHistoryResponse(reader *bufio.Reader) (notif *model.Pe
 	return response, nil
 }
 
-func unmarshalOnlineFriendsResponse(reader *bufio.Reader) (*model.OnlineFriendsResponse, error) {
-	content, err := readAll(reader)
-	if err != nil {
-		return nil, err
-	}
-	var onlineFriendsIDs []string
-	friendsID := strings.TrimPrefix(content["onlineFriendsId"], "[")
-	friendsID = strings.TrimSuffix(friendsID, "]")
-	for _, userID := range strings.Split(friendsID, ",") {
-		if userID != "" {
-			onlineFriendsIDs = append(onlineFriendsIDs, userID)
-		}
-	}
-
-	return &model.OnlineFriendsResponse{UserID: onlineFriendsIDs}, nil
-}
-
-func unmarshalNotificationMessage(reader *bufio.Reader) (*model.NotificationMessage, error) {
+func unmarshalNotificationMessage(reader *bufio.Reader) (*model2.NotificationMessage, error) {
 	content, err := readAll(reader)
 	if err != nil {
 		return nil, err
@@ -600,7 +622,7 @@ func unmarshalNotificationMessage(reader *bufio.Reader) (*model.NotificationMess
 	if err != nil {
 		return nil, err
 	}
-	response := &model.NotificationMessage{
+	response := &model2.NotificationMessage{
 		ID:      content["id"],
 		From:    content["from"],
 		To:      content["to"],
@@ -611,7 +633,7 @@ func unmarshalNotificationMessage(reader *bufio.Reader) (*model.NotificationMess
 	return response, nil
 }
 
-func unmarshalNotificationResponse(reader *bufio.Reader) (response *model.GetOfflineNotificationResponse, err error) {
+func unmarshalNotificationResponse(reader *bufio.Reader) (response *model2.GetOfflineNotificationResponse, err error) {
 	content, err := readAll(reader)
 	if err != nil {
 		return nil, err
@@ -620,8 +642,8 @@ func unmarshalNotificationResponse(reader *bufio.Reader) (response *model.GetOff
 	if err != nil {
 		return nil, err
 	}
-	response = &model.GetOfflineNotificationResponse{
-		BaseResponse: &model.BaseResponse{
+	response = &model2.GetOfflineNotificationResponse{
+		BaseResponse: &model2.BaseResponse{
 			MessageID: content["id"],
 			Code:      responseCode,
 		},
@@ -629,7 +651,7 @@ func unmarshalNotificationResponse(reader *bufio.Reader) (response *model.GetOff
 	return response, nil
 }
 
-func unmarshalFriendsPresenceResponse(reader *bufio.Reader) (*model.ListFriendsPresenceResponse, error) {
+func unmarshalFriendsPresenceResponse(reader *bufio.Reader) (*model2.ListFriendsPresenceResponse, error) {
 	content, err := readAll(reader)
 	if err != nil {
 		return nil, err
@@ -679,8 +701,8 @@ func unmarshalFriendsPresenceResponse(reader *bufio.Reader) (*model.ListFriendsP
 		}
 	}
 
-	response := &model.ListFriendsPresenceResponse{
-		BaseResponse: &model.BaseResponse{Code: responseCode, MessageID: content["id"]},
+	response := &model2.ListFriendsPresenceResponse{
+		BaseResponse: &model2.BaseResponse{Code: responseCode, MessageID: content["id"]},
 		UserID:       userIDs,
 		Availability: userAvailability,
 		Activity:     userActivity,
@@ -689,7 +711,7 @@ func unmarshalFriendsPresenceResponse(reader *bufio.Reader) (*model.ListFriendsP
 	return response, nil
 }
 
-func unmarshalSetUserStatusResponse(reader *bufio.Reader) (*model.SetUserStatusResponse, error) {
+func unmarshalSetUserStatusResponse(reader *bufio.Reader) (*model2.SetUserStatusResponse, error) {
 	content, err := readAll(reader)
 	if err != nil {
 		return nil, err
@@ -698,8 +720,8 @@ func unmarshalSetUserStatusResponse(reader *bufio.Reader) (*model.SetUserStatusR
 	if err != nil {
 		return nil, err
 	}
-	response := &model.SetUserStatusResponse{
-		BaseResponse: &model.BaseResponse{
+	response := &model2.SetUserStatusResponse{
+		BaseResponse: &model2.BaseResponse{
 			MessageID: content["id"],
 			Code:      responseCode,
 		},
@@ -707,7 +729,7 @@ func unmarshalSetUserStatusResponse(reader *bufio.Reader) (*model.SetUserStatusR
 	return response, nil
 }
 
-func unmarshalNotifyFriendsResponse(reader *bufio.Reader) (*model.FriendsPresenceNotif, error) {
+func unmarshalNotifyFriendsResponse(reader *bufio.Reader) (*model2.FriendsPresenceNotif, error) {
 	content, err := readAll(reader)
 	if err != nil {
 		return nil, err
@@ -718,7 +740,7 @@ func unmarshalNotifyFriendsResponse(reader *bufio.Reader) (*model.FriendsPresenc
 		return nil, err
 	}
 
-	response := &model.FriendsPresenceNotif{
+	response := &model2.FriendsPresenceNotif{
 		UserID:       content["userID"],
 		Availability: availability,
 		Activity:     content["activity"],
@@ -726,7 +748,7 @@ func unmarshalNotifyFriendsResponse(reader *bufio.Reader) (*model.FriendsPresenc
 	return response, nil
 }
 
-func unmarshalStartMatchmakingResponse(reader *bufio.Reader) (*model.StartMatchmakingResponse, error) {
+func unmarshalStartMatchmakingResponse(reader *bufio.Reader) (*model2.StartMatchmakingResponse, error) {
 	content, err := readAll(reader)
 	if err != nil {
 		return nil, err
@@ -735,16 +757,17 @@ func unmarshalStartMatchmakingResponse(reader *bufio.Reader) (*model.StartMatchm
 	if err != nil {
 		return nil, err
 	}
-	response := &model.StartMatchmakingResponse{
-		BaseResponse: &model.BaseResponse{
+	response := &model2.StartMatchmakingResponse{
+		BaseResponse: &model2.BaseResponse{
 			MessageID: content["id"],
 			Code:      responseCode,
 		},
+		Message: content["message"],
 	}
 	return response, nil
 }
 
-func unmarshalCancelMatchmakingResponse(reader *bufio.Reader) (*model.CancelMatchmakingResponse, error) {
+func unmarshalCancelMatchmakingResponse(reader *bufio.Reader) (*model2.CancelMatchmakingResponse, error) {
 	content, err := readAll(reader)
 	if err != nil {
 		return nil, err
@@ -753,8 +776,8 @@ func unmarshalCancelMatchmakingResponse(reader *bufio.Reader) (*model.CancelMatc
 	if err != nil {
 		return nil, err
 	}
-	response := &model.CancelMatchmakingResponse{
-		BaseResponse: &model.BaseResponse{
+	response := &model2.CancelMatchmakingResponse{
+		BaseResponse: &model2.BaseResponse{
 			MessageID: content["id"],
 			Code:      responseCode,
 		},
@@ -762,7 +785,7 @@ func unmarshalCancelMatchmakingResponse(reader *bufio.Reader) (*model.CancelMatc
 	return response, nil
 }
 
-func unmarshalMatchmakingNotification(reader *bufio.Reader) (*model.MatchmakingNotification, error) {
+func unmarshalMatchmakingNotification(reader *bufio.Reader) (*model2.MatchmakingNotification, error) {
 	content, err := readAll(reader)
 	if err != nil {
 		return nil, err
@@ -784,17 +807,21 @@ func unmarshalMatchmakingNotification(reader *bufio.Reader) (*model.MatchmakingN
 		counterPartyMember = []string{}
 	}
 
-	response := &model.MatchmakingNotification{
+	d, _ := strconv.Atoi(content["duration"])
+
+	response := &model2.MatchmakingNotification{
 		MatchID:                  content["matchId"],
 		Status:                   content["status"],
 		PartyMemberUserID:        partyMember,
 		CounterPartyMemberUserID: counterPartyMember,
+		ReadyDuration:            d,
+		Message:                  content["message"],
 	}
 
 	return response, nil
 }
 
-func unmarshalSetReadyConsentResponse(reader *bufio.Reader) (*model.SetReadyConsentResponse, error) {
+func unmarshalSetReadyConsentResponse(reader *bufio.Reader) (*model2.SetReadyConsentResponse, error) {
 	content, err := readAll(reader)
 	if err != nil {
 		return nil, err
@@ -803,8 +830,8 @@ func unmarshalSetReadyConsentResponse(reader *bufio.Reader) (*model.SetReadyCons
 	if err != nil {
 		return nil, err
 	}
-	response := &model.SetReadyConsentResponse{
-		BaseResponse: &model.BaseResponse{
+	response := &model2.SetReadyConsentResponse{
+		BaseResponse: &model2.BaseResponse{
 			MessageID: content["id"],
 			Code:      responseCode,
 		},
@@ -812,19 +839,19 @@ func unmarshalSetReadyConsentResponse(reader *bufio.Reader) (*model.SetReadyCons
 	return response, nil
 }
 
-func unmarshalSetReadyConsentNotif(reader *bufio.Reader) (*model.SetReadyConsentNotif, error) {
+func unmarshalSetReadyConsentNotif(reader *bufio.Reader) (*model2.SetReadyConsentNotif, error) {
 	content, err := readAll(reader)
 	if err != nil {
 		return nil, err
 	}
-	response := &model.SetReadyConsentNotif{
+	response := &model2.SetReadyConsentNotif{
 		MatchID: content["matchId"],
 		UserID:  content["userId"],
 	}
 	return response, nil
 }
 
-func unmarshalRematchmakingNotif(reader *bufio.Reader) (*model.RematchmakingNotif, error) {
+func unmarshalRematchmakingNotif(reader *bufio.Reader) (*model2.RematchmakingNotif, error) {
 	content, err := readAll(reader)
 	if err != nil {
 		return nil, err
@@ -835,13 +862,13 @@ func unmarshalRematchmakingNotif(reader *bufio.Reader) (*model.RematchmakingNoti
 		return nil, err
 	}
 
-	response := &model.RematchmakingNotif{
+	response := &model2.RematchmakingNotif{
 		BanDuration: banDuration,
 	}
 	return response, nil
 }
 
-func unmarshalRequestFriendsResponse(reader *bufio.Reader) (*model.RequestFriendsResponse, error) {
+func unmarshalRequestFriendsResponse(reader *bufio.Reader) (*model2.RequestFriendsResponse, error) {
 	content, err := readAll(reader)
 	if err != nil {
 		return nil, err
@@ -850,8 +877,8 @@ func unmarshalRequestFriendsResponse(reader *bufio.Reader) (*model.RequestFriend
 	if err != nil {
 		return nil, err
 	}
-	response := &model.RequestFriendsResponse{
-		BaseResponse: &model.BaseResponse{
+	response := &model2.RequestFriendsResponse{
+		BaseResponse: &model2.BaseResponse{
 			MessageID: content["id"],
 			Code:      responseCode,
 		},
@@ -859,15 +886,15 @@ func unmarshalRequestFriendsResponse(reader *bufio.Reader) (*model.RequestFriend
 	return response, nil
 }
 
-func unmarshalRequestFriendsNotif(reader *bufio.Reader) (*model.RequestFriendsNotif, error) {
+func unmarshalRequestFriendsNotif(reader *bufio.Reader) (*model2.RequestFriendsNotif, error) {
 	content, err := readAll(reader)
 	if err != nil {
 		return nil, err
 	}
-	return &model.RequestFriendsNotif{FriendID: content["friendId"]}, nil
+	return &model2.RequestFriendsNotif{FriendID: content["friendId"]}, nil
 }
 
-func unmarshalListIncomingFriendsResponse(reader *bufio.Reader) (*model.ListIncomingFriendsResponse, error) {
+func unmarshalListIncomingFriendsResponse(reader *bufio.Reader) (*model2.ListIncomingFriendsResponse, error) {
 	content, err := readAll(reader)
 	if err != nil {
 		return nil, err
@@ -886,8 +913,8 @@ func unmarshalListIncomingFriendsResponse(reader *bufio.Reader) (*model.ListInco
 		}
 	}
 
-	response := &model.ListIncomingFriendsResponse{
-		BaseResponse: &model.BaseResponse{
+	response := &model2.ListIncomingFriendsResponse{
+		BaseResponse: &model2.BaseResponse{
 			MessageID: content["id"],
 			Code:      responseCode,
 		},
@@ -896,7 +923,7 @@ func unmarshalListIncomingFriendsResponse(reader *bufio.Reader) (*model.ListInco
 	return response, nil
 }
 
-func unmarshalListOutgoingFriendsResponse(reader *bufio.Reader) (*model.ListOutgoingFriendsResponse, error) {
+func unmarshalListOutgoingFriendsResponse(reader *bufio.Reader) (*model2.ListOutgoingFriendsResponse, error) {
 	content, err := readAll(reader)
 	if err != nil {
 		return nil, err
@@ -915,8 +942,8 @@ func unmarshalListOutgoingFriendsResponse(reader *bufio.Reader) (*model.ListOutg
 		}
 	}
 
-	response := &model.ListOutgoingFriendsResponse{
-		BaseResponse: &model.BaseResponse{
+	response := &model2.ListOutgoingFriendsResponse{
+		BaseResponse: &model2.BaseResponse{
 			MessageID: content["id"],
 			Code:      responseCode,
 		},
@@ -925,7 +952,7 @@ func unmarshalListOutgoingFriendsResponse(reader *bufio.Reader) (*model.ListOutg
 	return response, nil
 }
 
-func unmarshalAcceptFriendsResponse(reader *bufio.Reader) (*model.AcceptFriendsResponse, error) {
+func unmarshalAcceptFriendsResponse(reader *bufio.Reader) (*model2.AcceptFriendsResponse, error) {
 	content, err := readAll(reader)
 	if err != nil {
 		return nil, err
@@ -934,8 +961,8 @@ func unmarshalAcceptFriendsResponse(reader *bufio.Reader) (*model.AcceptFriendsR
 	if err != nil {
 		return nil, err
 	}
-	response := &model.AcceptFriendsResponse{
-		BaseResponse: &model.BaseResponse{
+	response := &model2.AcceptFriendsResponse{
+		BaseResponse: &model2.BaseResponse{
 			MessageID: content["id"],
 			Code:      responseCode,
 		},
@@ -943,15 +970,15 @@ func unmarshalAcceptFriendsResponse(reader *bufio.Reader) (*model.AcceptFriendsR
 	return response, nil
 }
 
-func unmarshalAcceptFriendsNotif(reader *bufio.Reader) (*model.AcceptFriendsNotif, error) {
+func unmarshalAcceptFriendsNotif(reader *bufio.Reader) (*model2.AcceptFriendsNotif, error) {
 	content, err := readAll(reader)
 	if err != nil {
 		return nil, err
 	}
-	return &model.AcceptFriendsNotif{FriendID: content["friendId"]}, nil
+	return &model2.AcceptFriendsNotif{FriendID: content["friendId"]}, nil
 }
 
-func unmarshalRejectFriendsResponse(reader *bufio.Reader) (*model.RejectFriendsResponse, error) {
+func unmarshalRejectFriendsResponse(reader *bufio.Reader) (*model2.RejectFriendsResponse, error) {
 	content, err := readAll(reader)
 	if err != nil {
 		return nil, err
@@ -960,8 +987,8 @@ func unmarshalRejectFriendsResponse(reader *bufio.Reader) (*model.RejectFriendsR
 	if err != nil {
 		return nil, err
 	}
-	response := &model.RejectFriendsResponse{
-		BaseResponse: &model.BaseResponse{
+	response := &model2.RejectFriendsResponse{
+		BaseResponse: &model2.BaseResponse{
 			MessageID: content["id"],
 			Code:      responseCode,
 		},
@@ -969,7 +996,20 @@ func unmarshalRejectFriendsResponse(reader *bufio.Reader) (*model.RejectFriendsR
 	return response, nil
 }
 
-func unmarshalCancelFriendsResponse(reader *bufio.Reader) (*model.CancelFriendsResponse, error) {
+func unmarshalRejectFriendsNotif(reader *bufio.Reader) (*model2.RejectFriendsNotif, error) {
+	content, err := readAll(reader)
+	if err != nil {
+		return nil, err
+	}
+
+	response := &model2.RejectFriendsNotif{
+		UserID: content["userId"],
+	}
+
+	return response, nil
+}
+
+func unmarshalCancelFriendsResponse(reader *bufio.Reader) (*model2.CancelFriendsResponse, error) {
 	content, err := readAll(reader)
 	if err != nil {
 		return nil, err
@@ -978,8 +1018,8 @@ func unmarshalCancelFriendsResponse(reader *bufio.Reader) (*model.CancelFriendsR
 	if err != nil {
 		return nil, err
 	}
-	response := &model.CancelFriendsResponse{
-		BaseResponse: &model.BaseResponse{
+	response := &model2.CancelFriendsResponse{
+		BaseResponse: &model2.BaseResponse{
 			MessageID: content["id"],
 			Code:      responseCode,
 		},
@@ -987,7 +1027,18 @@ func unmarshalCancelFriendsResponse(reader *bufio.Reader) (*model.CancelFriendsR
 	return response, nil
 }
 
-func unmarshalUnfriendResponse(reader *bufio.Reader) (*model.UnfriendResponse, error) {
+func unmarshalCancelFriendsNotif(reader *bufio.Reader) (*model2.CancelFriendsNotif, error) {
+	content, err := readAll(reader)
+	if err != nil {
+		return nil, err
+	}
+	response := &model2.CancelFriendsNotif{
+		UserID: content["userId"],
+	}
+	return response, nil
+}
+
+func unmarshalUnfriendResponse(reader *bufio.Reader) (*model2.UnfriendResponse, error) {
 	content, err := readAll(reader)
 	if err != nil {
 		return nil, err
@@ -996,8 +1047,8 @@ func unmarshalUnfriendResponse(reader *bufio.Reader) (*model.UnfriendResponse, e
 	if err != nil {
 		return nil, err
 	}
-	response := &model.UnfriendResponse{
-		BaseResponse: &model.BaseResponse{
+	response := &model2.UnfriendResponse{
+		BaseResponse: &model2.BaseResponse{
 			MessageID: content["id"],
 			Code:      responseCode,
 		},
@@ -1005,15 +1056,15 @@ func unmarshalUnfriendResponse(reader *bufio.Reader) (*model.UnfriendResponse, e
 	return response, nil
 }
 
-func unmarshalUnfriendNotif(reader *bufio.Reader) (*model.UnfriendNotif, error) {
+func unmarshalUnfriendNotif(reader *bufio.Reader) (*model2.UnfriendNotif, error) {
 	content, err := readAll(reader)
 	if err != nil {
 		return nil, err
 	}
-	return &model.UnfriendNotif{FriendID: content["friendId"]}, nil
+	return &model2.UnfriendNotif{FriendID: content["friendId"]}, nil
 }
 
-func unmarshalListOfFriendsResponse(reader *bufio.Reader) (*model.ListOfFriendsResponse, error) {
+func unmarshalListOfFriendsResponse(reader *bufio.Reader) (*model2.ListOfFriendsResponse, error) {
 	content, err := readAll(reader)
 	if err != nil {
 		return nil, err
@@ -1032,8 +1083,8 @@ func unmarshalListOfFriendsResponse(reader *bufio.Reader) (*model.ListOfFriendsR
 		}
 	}
 
-	response := &model.ListOfFriendsResponse{
-		BaseResponse: &model.BaseResponse{
+	response := &model2.ListOfFriendsResponse{
+		BaseResponse: &model2.BaseResponse{
 			MessageID: content["id"],
 			Code:      responseCode,
 		},
@@ -1042,7 +1093,7 @@ func unmarshalListOfFriendsResponse(reader *bufio.Reader) (*model.ListOfFriendsR
 	return response, nil
 }
 
-func unmarshalGetFriendshipStatusResponse(reader *bufio.Reader) (*model.GetFriendshipStatusResponse, error) {
+func unmarshalGetFriendshipStatusResponse(reader *bufio.Reader) (*model2.GetFriendshipStatusResponse, error) {
 	content, err := readAll(reader)
 	if err != nil {
 		return nil, err
@@ -1051,8 +1102,8 @@ func unmarshalGetFriendshipStatusResponse(reader *bufio.Reader) (*model.GetFrien
 	if err != nil {
 		return nil, err
 	}
-	response := &model.GetFriendshipStatusResponse{
-		BaseResponse: &model.BaseResponse{
+	response := &model2.GetFriendshipStatusResponse{
+		BaseResponse: &model2.BaseResponse{
 			MessageID: content["id"],
 			Code:      responseCode,
 		},
@@ -1061,7 +1112,7 @@ func unmarshalGetFriendshipStatusResponse(reader *bufio.Reader) (*model.GetFrien
 	return response, nil
 }
 
-func unmarshalDSNotif(reader *bufio.Reader) (*model.DSNotification, error) {
+func unmarshalDSNotif(reader *bufio.Reader) (*model2.DSNotification, error) {
 	content, err := readAll(reader)
 	if err != nil {
 		return nil, err
@@ -1083,11 +1134,11 @@ func unmarshalDSNotif(reader *bufio.Reader) (*model.DSNotification, error) {
 		alternateIPs = alternateIPs[:len(alternateIPs)-1]
 	}
 
-	response := &model.DSNotification{
-		Session: &model.Session{
+	response := &model2.DSNotification{
+		Session: &model2.Session{
 			Region: content["region"],
 			ID:     content["matchId"],
-			Server: &model.Server{
+			Server: &model2.Server{
 				AlternateIPs: alternateIPs,
 				Namespace:    content["namespace"],
 				PodName:      content["podName"],
@@ -1104,7 +1155,7 @@ func unmarshalDSNotif(reader *bufio.Reader) (*model.DSNotification, error) {
 	return response, nil
 }
 
-func unmarshalSystemComponentsStatus(reader *bufio.Reader) (*model.SystemComponentsStatus, error) {
+func unmarshalSystemComponentsStatus(reader *bufio.Reader) (*model2.SystemComponentsStatus, error) {
 	content, err := readAll(reader)
 	if err != nil {
 		return nil, err
@@ -1131,14 +1182,14 @@ func unmarshalSystemComponentsStatus(reader *bufio.Reader) (*model.SystemCompone
 		components[component] = status
 	}
 
-	response := &model.SystemComponentsStatus{
+	response := &model2.SystemComponentsStatus{
 		Components: components,
 	}
 
 	return response, nil
 }
 
-func unmarshalPartyDataUpdateNotif(reader *bufio.Reader) (*model.PartyDataUpdateNotification, error) {
+func unmarshalPartyDataUpdateNotif(reader *bufio.Reader) (*model2.PartyDataUpdateNotification, error) {
 	content, err := readAll(reader)
 	if err != nil {
 		return nil, err
@@ -1175,7 +1226,7 @@ func unmarshalPartyDataUpdateNotif(reader *bufio.Reader) (*model.PartyDataUpdate
 		return nil, err
 	}
 
-	response := &model.PartyDataUpdateNotification{
+	response := &model2.PartyDataUpdateNotification{
 		PartyID:         content["partyId"],
 		LeaderID:        content["leader"],
 		Namespace:       content["namespace"],
@@ -1188,7 +1239,7 @@ func unmarshalPartyDataUpdateNotif(reader *bufio.Reader) (*model.PartyDataUpdate
 	return response, nil
 }
 
-func unmarshalJoinDefaultChannelResponse(reader *bufio.Reader) (*model.JoinDefaultChannelResponse, error) {
+func unmarshalJoinDefaultChannelResponse(reader *bufio.Reader) (*model2.JoinDefaultChannelResponse, error) {
 	content, err := readAll(reader)
 	if err != nil {
 		return nil, err
@@ -1197,8 +1248,8 @@ func unmarshalJoinDefaultChannelResponse(reader *bufio.Reader) (*model.JoinDefau
 	if err != nil {
 		return nil, err
 	}
-	response := &model.JoinDefaultChannelResponse{
-		BaseResponse: &model.BaseResponse{
+	response := &model2.JoinDefaultChannelResponse{
+		BaseResponse: &model2.BaseResponse{
 			MessageID: content["id"],
 			Code:      responseCode,
 		},
@@ -1207,7 +1258,7 @@ func unmarshalJoinDefaultChannelResponse(reader *bufio.Reader) (*model.JoinDefau
 	return response, nil
 }
 
-func unmarshalChannelChatNotif(reader *bufio.Reader) (*model.ChannelChatNotif, error) {
+func unmarshalChannelChatNotif(reader *bufio.Reader) (*model2.ChannelChatNotif, error) {
 	content, err := readAll(reader)
 	if err != nil {
 		return nil, err
@@ -1218,7 +1269,7 @@ func unmarshalChannelChatNotif(reader *bufio.Reader) (*model.ChannelChatNotif, e
 		return nil, err
 	}
 
-	response := &model.ChannelChatNotif{
+	response := &model2.ChannelChatNotif{
 		From:        content["from"],
 		ChannelSlug: content["channelSlug"],
 		Payload:     content["payload"],
@@ -1227,7 +1278,7 @@ func unmarshalChannelChatNotif(reader *bufio.Reader) (*model.ChannelChatNotif, e
 	return response, nil
 }
 
-func unmarshalBlockPlayerResponse(reader *bufio.Reader) (*model.BlockPlayerResponse, error) {
+func unmarshalBlockPlayerResponse(reader *bufio.Reader) (*model2.BlockPlayerResponse, error) {
 	content, err := readAll(reader)
 	if err != nil {
 		return nil, err
@@ -1238,8 +1289,8 @@ func unmarshalBlockPlayerResponse(reader *bufio.Reader) (*model.BlockPlayerRespo
 		return nil, err
 	}
 
-	response := &model.BlockPlayerResponse{
-		BaseResponse: &model.BaseResponse{
+	response := &model2.BlockPlayerResponse{
+		BaseResponse: &model2.BaseResponse{
 			MessageID: content["id"],
 			Code:      responseCode,
 		},
@@ -1250,13 +1301,13 @@ func unmarshalBlockPlayerResponse(reader *bufio.Reader) (*model.BlockPlayerRespo
 	return response, nil
 }
 
-func unmarshalBlockPlayerNotif(reader *bufio.Reader) (*model.PlayerBlockedNotification, error) {
+func unmarshalBlockPlayerNotif(reader *bufio.Reader) (*model2.PlayerBlockedNotification, error) {
 	content, err := readAll(reader)
 	if err != nil {
 		return nil, err
 	}
 
-	response := &model.PlayerBlockedNotification{
+	response := &model2.PlayerBlockedNotification{
 		UserID:        content["userId"],
 		BlockedUserID: content["blockedUserId"],
 	}
@@ -1264,7 +1315,7 @@ func unmarshalBlockPlayerNotif(reader *bufio.Reader) (*model.PlayerBlockedNotifi
 	return response, nil
 }
 
-func unmarshalUnblockPlayerResponse(reader *bufio.Reader) (*model.UnblockPlayerResponse, error) {
+func unmarshalUnblockPlayerResponse(reader *bufio.Reader) (*model2.UnblockPlayerResponse, error) {
 	content, err := readAll(reader)
 	if err != nil {
 		return nil, err
@@ -1275,8 +1326,8 @@ func unmarshalUnblockPlayerResponse(reader *bufio.Reader) (*model.UnblockPlayerR
 		return nil, err
 	}
 
-	response := &model.UnblockPlayerResponse{
-		BaseResponse: &model.BaseResponse{
+	response := &model2.UnblockPlayerResponse{
+		BaseResponse: &model2.BaseResponse{
 			MessageID: content["id"],
 			Code:      responseCode,
 		},
@@ -1287,13 +1338,13 @@ func unmarshalUnblockPlayerResponse(reader *bufio.Reader) (*model.UnblockPlayerR
 	return response, nil
 }
 
-func unmarshalUnblockPlayerNotif(reader *bufio.Reader) (*model.PlayerUnblockedNotification, error) {
+func unmarshalUnblockPlayerNotif(reader *bufio.Reader) (*model2.PlayerUnblockedNotification, error) {
 	content, err := readAll(reader)
 	if err != nil {
 		return nil, err
 	}
 
-	response := &model.PlayerUnblockedNotification{
+	response := &model2.PlayerUnblockedNotification{
 		UserID:          content["userId"],
 		UnblockedUserID: content["unblockedUserId"],
 	}
@@ -1301,7 +1352,7 @@ func unmarshalUnblockPlayerNotif(reader *bufio.Reader) (*model.PlayerUnblockedNo
 	return response, nil
 }
 
-func unmarshalSetSessionAttributeResponse(reader *bufio.Reader) (*model.SetSessionAttributeResponse, error) {
+func unmarshalSetSessionAttributeResponse(reader *bufio.Reader) (*model2.SetSessionAttributeResponse, error) {
 	content, err := readAll(reader)
 	if err != nil {
 		return nil, err
@@ -1312,8 +1363,8 @@ func unmarshalSetSessionAttributeResponse(reader *bufio.Reader) (*model.SetSessi
 		return nil, err
 	}
 
-	response := &model.SetSessionAttributeResponse{
-		BaseResponse: &model.BaseResponse{
+	response := &model2.SetSessionAttributeResponse{
+		BaseResponse: &model2.BaseResponse{
 			MessageID: content["id"],
 			Code:      responseCode,
 		},
@@ -1322,7 +1373,7 @@ func unmarshalSetSessionAttributeResponse(reader *bufio.Reader) (*model.SetSessi
 	return response, nil
 }
 
-func unmarshalSendChannelChatResponse(reader *bufio.Reader) (*model.SendChannelChatResponse, error) {
+func unmarshalGetSessionAttributeResponse(reader *bufio.Reader) (*model2.GetSessionAttributeResponse, error) {
 	content, err := readAll(reader)
 	if err != nil {
 		return nil, err
@@ -1333,8 +1384,58 @@ func unmarshalSendChannelChatResponse(reader *bufio.Reader) (*model.SendChannelC
 		return nil, err
 	}
 
-	response := &model.SendChannelChatResponse{
-		BaseResponse: &model.BaseResponse{
+	response := &model2.GetSessionAttributeResponse{
+		BaseResponse: &model2.BaseResponse{
+			MessageID: content["id"],
+			Code:      responseCode,
+		},
+		Value: content["value"],
+	}
+
+	return response, nil
+}
+
+func unmarshalGetAllSessionAttributeResponse(reader *bufio.Reader) (*model2.GetAllSessionAttributeResponse, error) {
+	content, err := readAll(reader)
+	if err != nil {
+		return nil, err
+	}
+
+	responseCode, err := strconv.Atoi(content["code"])
+	if err != nil {
+		return nil, err
+	}
+
+	attributes := make(map[string]string)
+	err = json.Unmarshal([]byte(content["attributes"]), &attributes)
+	if err != nil {
+		return nil, err
+	}
+
+	response := &model2.GetAllSessionAttributeResponse{
+		BaseResponse: &model2.BaseResponse{
+			MessageID: content["id"],
+			Code:      responseCode,
+		},
+		Attributes: attributes,
+	}
+
+	return response, nil
+}
+
+func unmarshalSendChannelChatResponse(reader *bufio.Reader) (*model2.SendChannelChatResponse, error) {
+	content, err := readAll(reader)
+	if err != nil {
+		return nil, err
+	}
+
+	responseCode, err := strconv.Atoi(content["code"])
+	if err != nil {
+		return nil, err
+	}
+
+	response := &model2.SendChannelChatResponse{
+		BaseResponse: &model2.BaseResponse{
 			MessageID: content["id"],
 			Code:      responseCode,
 		},
@@ -1343,14 +1444,14 @@ func unmarshalSendChannelChatResponse(reader *bufio.Reader) (*model.SendChannelC
 	return response, nil
 }
 
-func unmarshalSignalingP2PResponse(reader *bufio.Reader) (*model.SignalingP2P, error) {
+func unmarshalSignalingP2PResponse(reader *bufio.Reader) (*model2.SignalingP2P, error) {
 	content, err := readAll(reader)
 	if err != nil {
 		return nil, err
 	}
 
-	response := &model.SignalingP2P{
-		BaseRequest: &model.BaseRequest{
+	response := &model2.SignalingP2P{
+		BaseRequest: &model2.BaseRequest{
 			MessageID: content["id"],
 			UserID:    "",
 		},
@@ -1361,7 +1462,7 @@ func unmarshalSignalingP2PResponse(reader *bufio.Reader) (*model.SignalingP2P, e
 	return response, nil
 }
 
-func unmarshalPromoteLeaderResponse(reader *bufio.Reader) (*model.PromoteLeaderResponse, error) {
+func unmarshalPromoteLeaderResponse(reader *bufio.Reader) (*model2.PromoteLeaderResponse, error) {
 	content, err := readAll(reader)
 	if err != nil {
 		return nil, err
@@ -1372,8 +1473,8 @@ func unmarshalPromoteLeaderResponse(reader *bufio.Reader) (*model.PromoteLeaderR
 		return nil, err
 	}
 
-	response := &model.PromoteLeaderResponse{
-		BaseResponse: &model.BaseResponse{
+	response := &model2.PromoteLeaderResponse{
+		BaseResponse: &model2.BaseResponse{
 			MessageID: content["id"],
 			Code:      responseCode,
 		},
@@ -1385,6 +1486,251 @@ func unmarshalPromoteLeaderResponse(reader *bufio.Reader) (*model.PromoteLeaderR
 	}
 
 	return response, nil
+}
+
+func unmarshalGeneratePartyCodeResponse(reader *bufio.Reader) (*model2.GeneratePartyCodeResponse, error) {
+	content, err := readAll(reader)
+	if err != nil {
+		return nil, err
+	}
+
+	responseCode, err := strconv.Atoi(content["code"])
+	if err != nil {
+		return nil, err
+	}
+
+	response := &model2.GeneratePartyCodeResponse{
+		BaseResponse: &model2.BaseResponse{
+			MessageID: content["id"],
+			Code:      responseCode,
+		},
+		PartyCode: content["partyCode"],
+	}
+
+	return response, nil
+}
+
+func unmarshalGetPartyCodeResponse(reader *bufio.Reader) (*model2.GetPartyCodeResponse, error) {
+	content, err := readAll(reader)
+	if err != nil {
+		return nil, err
+	}
+
+	responseCode, err := strconv.Atoi(content["code"])
+	if err != nil {
+		return nil, err
+	}
+
+	response := &model2.GetPartyCodeResponse{
+		BaseResponse: &model2.BaseResponse{
+			MessageID: content["id"],
+			Code:      responseCode,
+		},
+		PartyCode: content["partyCode"],
+	}
+
+	return response, nil
+}
+
+func unmarshalDeletePartyCodeResponse(reader *bufio.Reader) (*model2.DeletePartyCodeResponse, error) {
+	content, err := readAll(reader)
+	if err != nil {
+		return nil, err
+	}
+
+	responseCode, err := strconv.Atoi(content["code"])
+	if err != nil {
+		return nil, err
+	}
+
+	response := &model2.DeletePartyCodeResponse{
+		BaseResponse: &model2.BaseResponse{
+			MessageID: content["id"],
+			Code:      responseCode,
+		},
+	}
+
+	return response, nil
+}
+
+func unmarshalJoinViaPartyCodeResponse(reader *bufio.Reader) (*model2.JoinViaPartyCodeResponse, error) {
+	content, err := readAll(reader)
+	if err != nil {
+		return nil, err
+	}
+
+	responseCode, err := strconv.Atoi(content["code"])
+	if err != nil {
+		return nil, err
+	}
+
+	response := &model2.JoinViaPartyCodeResponse{
+		BaseResponse:    &model2.BaseResponse{Code: responseCode},
+		PartyID:         content["partyID"],
+		LeaderID:        content["leaderID"],
+		Members:         content["members"],
+		Invitees:        content["invitees"],
+		InvitationToken: content["invitationToken"],
+	}
+	return response, nil
+}
+
+func unmarshalUserBannedNotificationResponse(reader *bufio.Reader) (*model2.UserBannedNotification, error) {
+	content, err := readAll(reader)
+	if err != nil {
+		return nil, err
+	}
+
+	responseCode, err := strconv.Atoi(content["code"])
+	if err != nil {
+		return nil, err
+	}
+
+	enable, err := strconv.ParseBool(content["enable"])
+	if err != nil {
+		return nil, err
+	}
+
+	response := &model2.UserBannedNotification{
+		BaseResponse: &model2.BaseResponse{
+			MessageID: content["id"],
+			Code:      responseCode,
+		},
+		UserID:    content["userId"],
+		Namespace: content["namespace"],
+		Ban:       content["ban"],
+		EndDate:   content["endDate"],
+		Reason:    content["reason"],
+		Enable:    enable,
+	}
+
+	return response, nil
+}
+
+func unmarshalUserUnbannedNotificationResponse(reader *bufio.Reader) (*model2.UserUnbannedNotification, error) {
+	content, err := readAll(reader)
+	if err != nil {
+		return nil, err
+	}
+
+	responseCode, err := strconv.Atoi(content["code"])
+	if err != nil {
+		return nil, err
+	}
+
+	enable, err := strconv.ParseBool(content["enable"])
+	if err != nil {
+		return nil, err
+	}
+
+	response := &model2.UserUnbannedNotification{
+		BaseResponse: &model2.BaseResponse{
+			MessageID: content["id"],
+			Code:      responseCode,
+		},
+		UserID:    content["userId"],
+		Namespace: content["namespace"],
+		Ban:       content["ban"],
+		EndDate:   content["endDate"],
+		Reason:    content["reason"],
+		Enable:    enable,
+	}
+
+	return response, nil
+}
+
+func unmarshalSendPartyNotifResponse(reader *bufio.Reader) (*model2.SendPartyNotifResponse, error) {
+	content, err := readAll(reader)
+	if err != nil {
+		return nil, err
+	}
+
+	responseCode, err := strconv.Atoi(content["code"])
+	if err != nil {
+		return nil, err
+	}
+
+	response := &model2.SendPartyNotifResponse{
+		BaseResponse: &model2.BaseResponse{
+			MessageID: content["id"],
+			Code:      responseCode,
+		},
+	}
+
+	return response, nil
+}
+
+func unmarshalPartyNotif(reader *bufio.Reader) (*model2.PartyNotif, error) {
+	content, err := readAll(reader)
+	if err != nil {
+		return nil, err
+	}
+
+	response := &model2.PartyNotif{
+		Sender:  content["sender"],
+		Topic:   content["topic"],
+		Payload: content["payload"],
+	}
+
+	return response, nil
+}
+
+func unmarshalJoinDefaultChannelRequest(base *model2.BaseRequest, reader *bufio.Reader) (*model2.JoinDefaultChannelRequest, error) {
+	request := &model2.JoinDefaultChannelRequest{
+		BaseRequest: base,
+	}
+	return request, nil
+}
+
+func unmarshalSendChannelChatRequest(base *model2.BaseRequest, reader *bufio.Reader) (*model2.SendChannelChatRequest, error) {
+	content, err := readAll(reader)
+	if err != nil {
+		return nil, err
+	}
+	request := &model2.SendChannelChatRequest{
+		BaseRequest: base,
+		ChannelSlug: content[channelSlugKey],
+		Payload:     content[payloadKey],
+	}
+	return request, nil
+}
+
+func marshalJoinDefaultChannelResponse(response *model2.JoinDefaultChannelResponse) []byte {
+	return []byte(fmt.Sprintf(
+		"%s: %s\n"+
+			"%s: %s\n"+
+			"%s: %s\n"+
+			"%s: %d",
+		typeKey, response.Type(),
+		idKey, response.MessageID,
+		channelSlugKey, response.ChannelSlug,
+		codeKey, response.Code))
+}
+
+func marshalSendChannelChatResponse(response *model2.SendChannelChatResponse) []byte {
+	return []byte(fmt.Sprintf(
+		"%s: %s\n"+
+			"%s: %s\n"+
+			"%s: %d",
+		typeKey, response.Type(),
+		idKey, response.MessageID,
+		codeKey, response.Code,
+	))
+}
+
+func marshalChannelChatNotif(notif *model2.ChannelChatNotif) []byte {
+	return []byte(fmt.Sprintf(
+		"%s: %s\n"+
+			"%s: %s\n"+
+			"%s: %s\n"+
+			"%s: %s\n"+
+			"%s: %s",
+		typeKey, notif.Type(),
+		fromKey, notif.From,
+		channelSlugKey, notif.ChannelSlug,
+		payloadKey, notif.Payload,
+		sentAtKey, notif.SentAt.Format(time.RFC3339),
+	))
 }
 
 func readAll(reader *bufio.Reader) (map[string]string, error) {
@@ -1407,7 +1753,7 @@ func readLine(reader *bufio.Reader) (key, val string, err error) {
 		return key, val, err
 	}
 	str = strings.TrimSuffix(str, string(newLine))
-	parts := strings.Split(str, ": ")
+	parts := strings.SplitN(str, ": ", 2)
 	if len(parts) < 2 {
 		err = ErrInvalidMessageLine
 		return key, val, err

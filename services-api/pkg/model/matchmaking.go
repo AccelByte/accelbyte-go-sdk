@@ -1,4 +1,4 @@
-// Copyright (c) 2021 AccelByte Inc. All Rights Reserved.
+// Copyright (c) 2017-2019 AccelByte Inc. All Rights Reserved.
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
@@ -13,9 +13,9 @@ import "fmt"
 // - latencies: string of JSON map of {"region name string": latency int} containing pairs of region name and latency in ms
 type MatchmakingTicket struct {
 	Channel         string                 `json:"channel,omitempty"`
-	PartyID         string                 `json:"party_id"`
-	PartyMembers    []PartyMember          `json:"party_members"`
-	Priority        int                    `json:"priority"`
+	PartyID         string        `json:"party_id"`
+	PartyMembers    []PartyMember `json:"party_members"`
+	Priority        int           `json:"priority"`
 	PartyAttributes map[string]interface{} `json:"party_attributes"`
 }
 
@@ -79,10 +79,10 @@ type MatchingPartyV1 struct {
 // ReadyConsent contains information about readyness status in a party
 // party leader was needed to do rematchmaking
 type ReadyConsent struct {
-	PartyID     string   `json:"party_id"`
-	PartyLeader string   `json:"party_leader"`
-	GameMode    string   `json:"game_mode"`
-	Members     []Member `json:"members"`
+	Namespace string   `json:"namespace"`
+	PartyID   string   `json:"party_id"`
+	GameMode  string   `json:"game_mode"`
+	Members   []Member `json:"members"`
 }
 
 // Member store ready status and userID of user

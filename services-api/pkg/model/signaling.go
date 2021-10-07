@@ -4,7 +4,7 @@
 
 package model
 
-// SignalingP2P is model for signaling for game P2P connection request
+// SignalingP2P is message for signaling for game P2P connection request
 type SignalingP2P struct {
 	*BaseRequest
 	DestinationID string

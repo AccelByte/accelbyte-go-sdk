@@ -1,4 +1,4 @@
-// Copyright (c) 2021 AccelByte Inc. All Rights Reserved.
+// Copyright (c) 2019-2020 AccelByte Inc. All Rights Reserved.
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
@@ -19,8 +19,8 @@ const (
 
 // Error is response sent when an error occurs
 type Error struct {
-	ErrorCode    int    `json:"code"`
-	ErrorMessage string `json:"message"`
+	ErrorCode    int    `json:"errorCode"`
+	ErrorMessage string `json:"errorMessage"`
 }
 
 // CreateSessionRequest contains

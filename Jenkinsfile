@@ -1,4 +1,12 @@
-@Library("github.com/dhanarab/jenkins-shared-library@master") _
+library(
+  identifier: 'jenkins-shared-library@master',
+  retriever: modernSCM(
+    [
+      $class: 'GitSCMSource',
+      remote: 'https://bitbucket.com/dhanarab/jenkins-shared-library.git'
+    ]
+  )
+)
 
 bitbucketCredentials = "Bitbucket_Build_AccelByte"
 
@@ -20,7 +28,7 @@ pipeline {
             }
           }
           if (bitbucketCommitHref) {
-            bitbucket.buildStatus(bitbucketCredentials, bitbucketCommitHref, "INPROGRESS", env.JOB_NAME, "${env.JOB_NAME}-${env.BUILD_NUMBER}", "Jenkins", "${env.BUILD_URL}console")
+            bitbucket.setBuildStatus(bitbucketCredentials, bitbucketCommitHref, "INPROGRESS", env.JOB_NAME, "${env.JOB_NAME}-${env.BUILD_NUMBER}", "Jenkins", "${env.BUILD_URL}console")
           }
         }
       }
@@ -61,14 +69,14 @@ pipeline {
     success {
       script {
         if (bitbucketCommitHref) {
-          bitbucket.buildStatus(bitbucketCredentials, bitbucketCommitHref, "SUCCESSFUL", env.JOB_NAME, "${env.JOB_NAME}-${env.BUILD_NUMBER}", "Jenkins", "${env.BUILD_URL}console")
+          bitbucket.setBuildStatus(bitbucketCredentials, bitbucketCommitHref, "SUCCESSFUL", env.JOB_NAME, "${env.JOB_NAME}-${env.BUILD_NUMBER}", "Jenkins", "${env.BUILD_URL}console")
         }
       }
     }
     failure {
       script {
         if (bitbucketCommitHref) {
-          bitbucket.buildStatus(bitbucketCredentials, bitbucketCommitHref, "FAILED", env.JOB_NAME, "${env.JOB_NAME}-${env.BUILD_NUMBER}", "Jenkins", "${env.BUILD_URL}console")
+          bitbucket.setBuildStatus(bitbucketCredentials, bitbucketCommitHref, "FAILED", env.JOB_NAME, "${env.JOB_NAME}-${env.BUILD_NUMBER}", "Jenkins", "${env.BUILD_URL}console")
         }
       }
     }

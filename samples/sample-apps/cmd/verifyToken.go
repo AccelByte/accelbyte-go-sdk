@@ -33,10 +33,6 @@ var verifyTokenCmd = &cobra.Command{
 		if err != nil {
 			return err
 		}
-		err = userService.CreateProfile(namespace)
-		if err != nil {
-			return err
-		}
 		return nil
 	},
 }

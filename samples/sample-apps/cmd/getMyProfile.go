@@ -18,18 +18,12 @@ var getMyProfileCmd = &cobra.Command{
 	Short: "Get personal user profile",
 	Long:  `Get personal user profile. Required access token.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
-		userService := service.UserService{
-			IamService:      factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
-			BasicService:    factory.NewBasicClient(&repository.ConfigRepositoryImpl{}),
+		basicService := service.BasicUserProfileService{
+			Client:          factory.NewBasicClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
-			OauthService: &service.OauthService{
-				IamService:       factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
-				ConfigRepository: &repository.ConfigRepositoryImpl{},
-				TokenRepository:  &repository.TokenRepositoryImpl{},
-			},
 		}
 		namespace := cmd.Flag("namespace").Value.String()
-		profile, err := userService.GetProfile(namespace)
+		profile, err := basicService.GetMyProfileInfo(namespace)
 		if err != nil {
 			return err
 		}

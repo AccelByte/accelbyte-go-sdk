@@ -6,10 +6,6 @@ package service
 import (
 	"encoding/json"
 	"errors"
-
-	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclient"
-	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclient/user_profile"
-	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth2_0"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users"
@@ -20,15 +16,13 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-// UserService is for the user's authentication
 type UserService struct {
 	IamService      *iamclient.JusticeIamService
-	BasicService    *basicclient.JusticeBasicService
 	OauthService    *OauthService
 	TokenRepository repository.TokenRepository
 }
 
-// PublicCreateUserV3 is used to to create user. Support accepting agreements for the created user. Supply the accepted agreements in acceptedPolicies attribute.
+// PublicCreateUserV3 is used to create user. Support accepting agreements for the created user. Supply the accepted agreements in acceptedPolicies attribute.
 func (userService *UserService) PublicCreateUserV3(namespace, displayName, birthDate, email, countryId, password string) (*iamclientmodels.ModelUserCreateResponseV3, error) {
 	authType := "EMAILPASSWD"
 	param := &users.PublicCreateUserV3Params{
@@ -79,7 +73,7 @@ func (userService *UserService) PublicCreateUserV3(namespace, displayName, birth
 	return created.GetPayload(), nil
 }
 
-// PublicUserVerificationV3 is used to redeems verification code sent to user
+// PublicUserVerificationV3 is used to redeem verification code sent to user
 func (userService *UserService) PublicUserVerificationV3(code, contactType, namespace string) error {
 	logrus.Infof("Invoke VerifyToken with parameter %v %v %v", code, contactType, namespace)
 	param := &users.PublicUserVerificationV3Params{
@@ -121,97 +115,6 @@ func (userService *UserService) PublicUserVerificationV3(code, contactType, name
 	}
 
 	return nil
-}
-
-// CreateProfile is used to create profile in client service (public)
-func (userService *UserService) CreateProfile(namespace string) error {
-	logrus.Infof("Invoke CreateProfile with parameter %s", namespace)
-	accessToken, err := userService.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	param := &user_profile.CreateMyProfileParams{
-		Body: &basicclientmodels.UserProfilePrivateCreate{
-			DateOfBirth: nil,
-		},
-		Namespace: namespace,
-	}
-	profileCreated, badRequest, unauthorized, forbidden, notFound, conflict, err :=
-		userService.BasicService.UserProfile.CreateMyProfile(param, client.BearerToken(*accessToken.AccessToken))
-	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
-		return badRequest
-	}
-	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
-		return unauthorized
-	}
-	if forbidden != nil {
-		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
-		logrus.Error(string(errorMsg))
-		return forbidden
-	}
-	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
-		return notFound
-	}
-	if conflict != nil {
-		errorMsg, _ := json.Marshal(*conflict.GetPayload())
-		logrus.Error(string(errorMsg))
-		return conflict
-	}
-	if err != nil {
-		logrus.Error(err)
-		return err
-	}
-	if profileCreated == nil {
-		return errors.New("profile not created")
-	}
-	return nil
-}
-
-// GetProfile is used to get profile in client service (public)
-func (userService *UserService) GetProfile(namespace string) (*basicclientmodels.UserProfilePrivateInfo, error) {
-	accessToken, err := userService.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	param := &user_profile.GetMyProfileInfoParams{
-		Namespace: namespace,
-	}
-	profileInfo, badRequest, unauthorized, forbidden, notFound, err :=
-		userService.BasicService.UserProfile.GetMyProfileInfo(param, client.BearerToken(*accessToken.AccessToken))
-	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, badRequest
-	}
-	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, unauthorized
-	}
-	if forbidden != nil {
-		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, forbidden
-	}
-	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, notFound
-	}
-	if err != nil {
-		logrus.Error(err)
-		return nil, err
-	}
-	if profileInfo == nil {
-		return nil, errors.New("profileInfo is empty")
-	}
-	return profileInfo.GetPayload(), nil
 }
 
 // ListAdminsV3 is used to get list of admins by admin

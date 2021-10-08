@@ -6,6 +6,7 @@ package service
 import (
 	"encoding/json"
 	"errors"
+	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclient"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth2_0"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users"
@@ -18,6 +19,7 @@ import (
 
 type UserService struct {
 	IamService      *iamclient.JusticeIamService
+	BasicService    *basicclient.JusticeBasicService
 	OauthService    *OauthService
 	TokenRepository repository.TokenRepository
 }

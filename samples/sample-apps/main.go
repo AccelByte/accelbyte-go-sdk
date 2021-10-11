@@ -22,11 +22,12 @@ import (
 )
 
 var (
-	reader        *bufio.Reader
-	connMgr       *utils.ConnectionManagerImpl
-	partyService  *service.PartyService
-	friendService *service.FriendServiceWebsocket
-	chatService   *service.ChatServiceWebsocket
+	reader              *bufio.Reader
+	connMgr             *utils.ConnectionManagerImpl
+	partyService        *service.PartyServiceWebsocket
+	friendService       *service.FriendServiceWebsocket
+	chatService         *service.ChatServiceWebsocket
+	notificationService *service.NotificationServiceWebsocket
 )
 
 const (
@@ -40,24 +41,23 @@ const (
 	promoteLeaderCmd          = "8"
 	chatCmd                   = "9"
 	partyChatCmd              = "10"
-	getOnlineFriendsCmd       = "11"
-	getOfflineNotificationCmd = "12"
-	getFriendsCmd             = "13"
-	setUserStatusCmd          = "14"
-	requestFriendsCmd         = "15"
-	listIncomingFriendsCmd    = "16"
-	listOutgoingFriendsCmd    = "17"
-	acceptFriendsCmd          = "18"
-	rejectFriendsCmd          = "19"
-	cancelFriendsRequestCmd   = "20"
-	unfriendCmd               = "21"
-	listOfFriendsCmd          = "22"
-	getFriendshipStatusCmd    = "23"
-	personalChatHistoryCmd    = "24"
-	joinDefaultChatChannelCmd = "25"
-	sendChatChannelCmd        = "26"
-	blockCmd                  = "27"
-	unblockCmd                = "28"
+	getOfflineNotificationCmd = "11"
+	getFriendsCmd             = "12"
+	setUserStatusCmd          = "13"
+	requestFriendsCmd         = "14"
+	listIncomingFriendsCmd    = "15"
+	listOutgoingFriendsCmd    = "16"
+	acceptFriendsCmd          = "17"
+	rejectFriendsCmd          = "18"
+	cancelFriendsRequestCmd   = "19"
+	unfriendCmd               = "20"
+	listOfFriendsCmd          = "21"
+	getFriendshipStatusCmd    = "22"
+	personalChatHistoryCmd    = "23"
+	joinDefaultChatChannelCmd = "24"
+	sendChatChannelCmd        = "25"
+	blockCmd                  = "26"
+	unblockCmd                = "27"
 	quitCmd                   = "99"
 )
 
@@ -75,7 +75,7 @@ func main() {
 			panic(err)
 		}
 		connMgr.Save(connection)
-		partyService = &service.PartyService{
+		partyService = &service.PartyServiceWebsocket{
 			ConfigRepository:  configRepo,
 			TokenRepository:   tokenRepo,
 			ConnectionManager: connMgr,
@@ -90,7 +90,11 @@ func main() {
 			TokenRepository:   tokenRepo,
 			ConnectionManager: connMgr,
 		}
-
+		notificationService = &service.NotificationServiceWebsocket{
+			ConfigRepository:  configRepo,
+			TokenRepository:   tokenRepo,
+			ConnectionManager: connMgr,
+		}
 		serve()
 
 		defer connMgr.Close()
@@ -355,20 +359,6 @@ var messageHandler = func(dataByte []byte) {
 			return
 		}
 		data := unmarshal.(*model.PartyChatNotif)
-		marshal, err := json.Marshal(data)
-		if err != nil {
-			return
-		}
-		logrus.Infof("Response content %v", string(marshal))
-		break
-	case model.TypeOnlineFriends:
-		logrus.Infof("Receive response type %v", model.TypeOnlineFriends)
-		unmarshal, err := parser.UnmarshalResponse(dataByte)
-		if err != nil {
-			logrus.Error(err)
-			return
-		}
-		data := unmarshal.(*model.OnlineFriendsResponse)
 		marshal, err := json.Marshal(data)
 		if err != nil {
 			return
@@ -767,7 +757,6 @@ Commands:
 		promoteLeaderCmd,
 		chatCmd,
 		partyChatCmd,
-		getOnlineFriendsCmd,
 		getOfflineNotificationCmd,
 		getFriendsCmd,
 		setUserStatusCmd,
@@ -894,14 +883,8 @@ func serve() {
 				logrus.Error(err)
 			}
 			break
-		case getOnlineFriendsCmd:
-			err := friendService.GetOnlineFriends()
-			if err != nil {
-				logrus.Error(err)
-			}
-			break
 		case getOfflineNotificationCmd:
-			err := friendService.GetOfflineNotification()
+			err := notificationService.GetOfflineNotification()
 			if err != nil {
 				logrus.Error(err)
 			}

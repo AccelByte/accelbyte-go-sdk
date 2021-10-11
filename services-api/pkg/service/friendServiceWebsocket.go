@@ -22,42 +22,30 @@ type FriendServiceWebsocket struct {
 }
 
 func (friendService *FriendServiceWebsocket) GetFriends() error {
-	logrus.Debug("get list of friends")
-
-	messageID := utils.GenerateMessageID()
-	text := fmt.Sprintf("type: %s\n%s", model.TypeListOfFriendsRequest, messageID)
-
+	logrus.Debug("GetFriends")
+	text := fmt.Sprintf("type: %s\n%s", model.TypeListOfFriendsRequest, utils.GenerateMessageID())
 	err := friendService.ConnectionManager.Get().Conn.WriteMessage(websocket.TextMessage, []byte(text))
 	if err != nil {
-
 		return err
 	}
 	return nil
 }
 
 func (friendService *FriendServiceWebsocket) RequestFriend(friendID string) error {
-	logrus.Debug("request friend")
-
-	messageID := utils.GenerateMessageID()
-	text := fmt.Sprintf("type: %s\n%s\nfriendId: %s", model.TypeRequestFriendsRequest, messageID, friendID)
-
+	logrus.Debug("RequestFriend")
+	text := fmt.Sprintf("type: %s\n%s\nfriendId: %s", model.TypeRequestFriendsRequest, utils.GenerateMessageID(), friendID)
 	err := friendService.ConnectionManager.Get().Conn.WriteMessage(websocket.TextMessage, []byte(text))
 	if err != nil {
-
 		return err
 	}
 	return nil
 }
 
 func (friendService *FriendServiceWebsocket) GetIncomingFriendRequest() error {
-	logrus.Debug("get incoming request friend")
-
-	messageID := utils.GenerateMessageID()
-	text := fmt.Sprintf("type: %s\n%s", model.TypeListIncomingFriendsRequest, messageID)
-
+	logrus.Debug("GetIncomingFriendRequest")
+	text := fmt.Sprintf("type: %s\n%s", model.TypeListIncomingFriendsRequest, utils.GenerateMessageID())
 	err := friendService.ConnectionManager.Get().Conn.WriteMessage(websocket.TextMessage, []byte(text))
 	if err != nil {
-
 		return err
 	}
 	return nil
@@ -65,55 +53,39 @@ func (friendService *FriendServiceWebsocket) GetIncomingFriendRequest() error {
 
 func (friendService *FriendServiceWebsocket) GetOutgoingFriendRequest() error {
 	logrus.Debug("GetOutgoingFriendRequest")
-
-	messageID := utils.GenerateMessageID()
-	text := fmt.Sprintf("type: %s\n%s", model.TypeListOutgoingFriendsRequest, messageID)
-
+	text := fmt.Sprintf("type: %s\n%s", model.TypeListOutgoingFriendsRequest, utils.GenerateMessageID())
 	err := friendService.ConnectionManager.Get().Conn.WriteMessage(websocket.TextMessage, []byte(text))
 	if err != nil {
-
 		return err
 	}
 	return nil
 }
 
 func (friendService *FriendServiceWebsocket) AcceptFriendRequest(friendID string) error {
-	logrus.Debug("accept friend request")
-
-	messageID := utils.GenerateMessageID()
-	text := fmt.Sprintf("type: %s\n%s\nfriendId: %s", model.TypeAcceptFriendsRequest, messageID, friendID)
-
+	logrus.Debug("AcceptFriendRequest")
+	text := fmt.Sprintf("type: %s\n%s\nfriendId: %s", model.TypeAcceptFriendsRequest, utils.GenerateMessageID(), friendID)
 	err := friendService.ConnectionManager.Get().Conn.WriteMessage(websocket.TextMessage, []byte(text))
 	if err != nil {
-
 		return err
 	}
 	return nil
 }
 
 func (friendService *FriendServiceWebsocket) RejectFriendRequest(friendID string) error {
-	logrus.Debug("reject friend request")
-
-	messageID := utils.GenerateMessageID()
-	text := fmt.Sprintf("type: %s\n%s\nfriendId: %s", model.TypeRejectFriendsRequest, messageID, friendID)
-
+	logrus.Debug("RejectFriendRequest")
+	text := fmt.Sprintf("type: %s\n%s\nfriendId: %s", model.TypeRejectFriendsRequest, utils.GenerateMessageID(), friendID)
 	err := friendService.ConnectionManager.Get().Conn.WriteMessage(websocket.TextMessage, []byte(text))
 	if err != nil {
-
 		return err
 	}
 	return nil
 }
 
 func (friendService *FriendServiceWebsocket) Unfriend(friendID string) error {
-	logrus.Debug("unfriend")
-
-	messageID := utils.GenerateMessageID()
-	text := fmt.Sprintf("type: %s\n%s\nfriendId: %s", model.TypeUnfriendRequest, messageID, friendID)
-
+	logrus.Debug("Unfriend")
+	text := fmt.Sprintf("type: %s\n%s\nfriendId: %s", model.TypeUnfriendRequest, utils.GenerateMessageID(), friendID)
 	err := friendService.ConnectionManager.Get().Conn.WriteMessage(websocket.TextMessage, []byte(text))
 	if err != nil {
-
 		return err
 	}
 	return nil
@@ -121,13 +93,9 @@ func (friendService *FriendServiceWebsocket) Unfriend(friendID string) error {
 
 func (friendService *FriendServiceWebsocket) CancelFriendRequest(friendID string) error {
 	logrus.Debug("CancelFriendRequest")
-
-	messageID := utils.GenerateMessageID()
-	text := fmt.Sprintf("type: %s\n%s\nfriendId: %s", model.TypeCancelFriendsRequest, messageID, friendID)
-
+	text := fmt.Sprintf("type: %s\n%s\nfriendId: %s", model.TypeCancelFriendsRequest, utils.GenerateMessageID(), friendID)
 	err := friendService.ConnectionManager.Get().Conn.WriteMessage(websocket.TextMessage, []byte(text))
 	if err != nil {
-
 		return err
 	}
 	return nil
@@ -135,92 +103,47 @@ func (friendService *FriendServiceWebsocket) CancelFriendRequest(friendID string
 
 func (friendService *FriendServiceWebsocket) GetFriendshipStatus(friendID string) error {
 	logrus.Debug("GetFriendshipStatus")
-
-	messageID := utils.GenerateMessageID()
-	text := fmt.Sprintf("type: %s\n%s\nfriendId: %s", model.TypeGetFriendshipStatusRequest, messageID, friendID)
-
-	err := friendService.ConnectionManager.Get().Conn.WriteMessage(websocket.TextMessage, []byte(text))
-	if err != nil {
-
-		return err
-	}
-	return nil
-}
-
-func (friendService *FriendServiceWebsocket) GetOnlineFriends() error {
-	logrus.Debug("GetOnlineFriends")
-
-	messageID := utils.GenerateMessageID()
-	text := fmt.Sprintf("type: %s\n%s", model.TypeListOnlineFriendsRequest, messageID)
-
-	err := friendService.ConnectionManager.Get().Conn.WriteMessage(websocket.TextMessage, []byte(text))
-	if err != nil {
-
-		return err
-	}
-
-	return nil
-}
-
-func (friendService *FriendServiceWebsocket) GetOfflineNotification() error {
-	logrus.Debug("GetOfflineNotification")
-
-	messageID := utils.GenerateMessageID()
-	text := fmt.Sprintf("type: %s\n%s", model.TypeGetOfflineNotificationRequest, messageID)
-
+	text := fmt.Sprintf("type: %s\n%s\nfriendId: %s", model.TypeGetFriendshipStatusRequest, utils.GenerateMessageID(), friendID)
 	err := friendService.ConnectionManager.Get().Conn.WriteMessage(websocket.TextMessage, []byte(text))
 	if err != nil {
 		return err
 	}
-
 	return nil
 }
 
 func (friendService *FriendServiceWebsocket) GetFriendPresenceStatus() error {
 	logrus.Debug("GetFriendPresenceStatus")
-
-	messageID := utils.GenerateMessageID()
-	text := fmt.Sprintf("type: %s\n%s", model.TypeFriendsPresenceRequest, messageID)
-
+	text := fmt.Sprintf("type: %s\n%s", model.TypeFriendsPresenceRequest, utils.GenerateMessageID())
 	err := friendService.ConnectionManager.Get().Conn.WriteMessage(websocket.TextMessage, []byte(text))
 	if err != nil {
-
 		return err
 	}
 	return nil
 }
 
 func (friendService *FriendServiceWebsocket) Block(namespace, userID, blockedUserID string) error {
-
-	messageID := utils.GenerateMessageID()
-	text := fmt.Sprintf("type: %s\n%s\nuserId: %s\nnamespace: %s\nblockedUserId: %s", model.TypeBlockPlayerRequest, messageID, userID, namespace, blockedUserID)
-
+	logrus.Debug("Block")
+	text := fmt.Sprintf("type: %s\n%s\nuserId: %s\nnamespace: %s\nblockedUserId: %s", model.TypeBlockPlayerRequest, utils.GenerateMessageID(), userID, namespace, blockedUserID)
 	err := friendService.ConnectionManager.Get().Conn.WriteMessage(websocket.TextMessage, []byte(text))
 	if err != nil {
-
 		return err
 	}
 	return nil
 }
 
 func (friendService *FriendServiceWebsocket) Unblock(namespace, userID, unblockedUserID string) error {
-
-	messageID := utils.GenerateMessageID()
-	text := fmt.Sprintf("type: %s\n%s\nuserId: %s\nnamespace: %s\nblockedUserId: %s", model.TypeUnblockPlayerRequest, messageID, userID, namespace, unblockedUserID)
-
+	logrus.Debug("Block")
+	text := fmt.Sprintf("type: %s\n%s\nuserId: %s\nnamespace: %s\nblockedUserId: %s", model.TypeUnblockPlayerRequest, utils.GenerateMessageID(), userID, namespace, unblockedUserID)
 	err := friendService.ConnectionManager.Get().Conn.WriteMessage(websocket.TextMessage, []byte(text))
 	if err != nil {
-
 		return err
 	}
 	return nil
 }
 
 func (friendService *FriendServiceWebsocket) SetUserStatus(availability int, activity string) error {
-
-	messageID := utils.GenerateMessageID()
-	text := fmt.Sprintf("type: %s\n%s\navailability: %d\nactivity: %s", model.TypeSetUserStatusRequest, messageID, availability, activity)
-
+	logrus.Debug("SetUserStatus")
+	text := fmt.Sprintf("type: %s\n%s\navailability: %d\nactivity: %s", model.TypeSetUserStatusRequest, utils.GenerateMessageID(), availability, activity)
 	err := friendService.ConnectionManager.Get().Conn.WriteMessage(websocket.TextMessage, []byte(text))
 	if err != nil {
 		return err

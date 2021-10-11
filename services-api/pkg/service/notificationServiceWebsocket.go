@@ -19,14 +19,20 @@ type NotificationServiceWebsocket struct {
 
 func (notificationService *NotificationServiceWebsocket) GetNotificationMessage() error {
 	logrus.Debug("GetNotificationMessage")
-
-	messageID := utils.GenerateMessageID()
-	text := fmt.Sprintf("type: %s\n%s", model.TypeNotificationMessage, messageID)
-
+	text := fmt.Sprintf("type: %s\n%s", model.TypeNotificationMessage, utils.GenerateMessageID())
 	err := notificationService.ConnectionManager.Get().Conn.WriteMessage(websocket.TextMessage, []byte(text))
 	if err != nil {
 		return err
 	}
+	return nil
+}
 
+func (notificationService *NotificationServiceWebsocket) GetOfflineNotification() error {
+	logrus.Debug("GetOfflineNotification")
+	text := fmt.Sprintf("type: %s\n%s", model.TypeGetOfflineNotificationRequest, utils.GenerateMessageID())
+	err := notificationService.ConnectionManager.Get().Conn.WriteMessage(websocket.TextMessage, []byte(text))
+	if err != nil {
+		return err
+	}
 	return nil
 }

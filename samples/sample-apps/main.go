@@ -26,7 +26,7 @@ var (
 	connMgr       *utils.ConnectionManagerImpl
 	partyService  *service.PartyService
 	friendService *service.FriendServiceWebsocket
-	chatService   *service.ChatService
+	chatService   *service.ChatServiceWebsocket
 )
 
 const (
@@ -85,7 +85,7 @@ func main() {
 			TokenRepository:   tokenRepo,
 			ConnectionManager: connMgr,
 		}
-		chatService = &service.ChatService{
+		chatService = &service.ChatServiceWebsocket{
 			ConfigRepository:  configRepo,
 			TokenRepository:   tokenRepo,
 			ConnectionManager: connMgr,

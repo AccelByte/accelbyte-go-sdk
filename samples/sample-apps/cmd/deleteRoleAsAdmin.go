@@ -5,8 +5,9 @@ package cmd
 
 import (
 	"encoding/json"
+	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/roles"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
@@ -19,11 +20,14 @@ var deleteRoleAsAdminCmd = &cobra.Command{
 	Long:  `Delete role as admin`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		roleId := cmd.Flag("roleId").Value.String()
-		roleService := &service.RoleService{
-			IamService:      factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
+		roleService := &iam.RoleService{
+			Client:          factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		err := roleService.AdminRemoveRoleAdminV3(roleId)
+		input := &roles.AdminRemoveRoleAdminV3Params{
+			RoleID: roleId,
+		}
+		err := roleService.AdminRemoveRoleAdminV3(input)
 		if err != nil {
 			return err
 		}

@@ -1,7 +1,7 @@
 // Copyright (c) 2021 AccelByte Inc. All Rights Reserved.
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
-package service
+package iam
 
 import (
 	"encoding/json"
@@ -15,23 +15,17 @@ import (
 )
 
 type RoleService struct {
-	IamService      *iamclient.JusticeIamService
+	Client          *iamclient.JusticeIamService
 	TokenRepository repository.TokenRepository
 }
 
 // AdminGetRolesV3 is for admin to get the roles
-func (roleService *RoleService) AdminGetRolesV3(after, before *string, isWildCard *bool, limit *int64) (*iamclientmodels.ModelRoleResponseWithManagersAndPaginationV3, error) {
-	accessToken, err := roleService.TokenRepository.GetToken()
+func (r *RoleService) AdminGetRolesV3(input *roles.AdminGetRolesV3Params) (*iamclientmodels.ModelRoleResponseWithManagersAndPaginationV3, error) {
+	accessToken, err := r.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &roles.AdminGetRolesV3Params{
-		After:      after,
-		Before:     before,
-		IsWildcard: isWildCard,
-		Limit:      limit,
-	}
-	ok, badRequest, unauthorized, forbidden, err := roleService.IamService.Roles.AdminGetRolesV3(params, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, err := r.Client.Roles.AdminGetRolesV3(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -55,24 +49,12 @@ func (roleService *RoleService) AdminGetRolesV3(after, before *string, isWildCar
 }
 
 // AdminCreateRoleV3 is for admin to create the roles
-func (roleService *RoleService) AdminCreateRoleV3(roleName *string, adminRole, isWildcard *bool,
-	managers []*iamclientmodels.AccountcommonRoleManagerV3, members []*iamclientmodels.AccountcommonRoleMemberV3,
-	permissions []*iamclientmodels.AccountcommonPermissionV3) (*iamclientmodels.AccountcommonRoleV3, error) {
-	accessToken, err := roleService.TokenRepository.GetToken()
+func (r *RoleService) AdminCreateRoleV3(input *roles.AdminCreateRoleV3Params) (*iamclientmodels.AccountcommonRoleV3, error) {
+	accessToken, err := r.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &roles.AdminCreateRoleV3Params{
-		Body: &iamclientmodels.ModelRoleCreateV3Request{
-			AdminRole:   adminRole,
-			IsWildcard:  isWildcard,
-			Managers:    managers,
-			Members:     members,
-			Permissions: permissions,
-			RoleName:    roleName,
-		},
-	}
-	createRole, badRequest, unauthorized, forbidden, err := roleService.IamService.Roles.AdminCreateRoleV3(params, client.BearerToken(*accessToken.AccessToken))
+	createRole, badRequest, unauthorized, forbidden, err := r.Client.Roles.AdminCreateRoleV3(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -96,15 +78,12 @@ func (roleService *RoleService) AdminCreateRoleV3(roleName *string, adminRole, i
 }
 
 // AdminGetRoleV3 is for admin to get the roles by roleId
-func (roleService *RoleService) AdminGetRoleV3(roleId string) (*iamclientmodels.ModelRoleResponseV3, error) {
-	accessToken, err := roleService.TokenRepository.GetToken()
+func (r *RoleService) AdminGetRoleV3(input *roles.AdminGetRoleV3Params) (*iamclientmodels.ModelRoleResponseV3, error) {
+	accessToken, err := r.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &roles.AdminGetRoleV3Params{
-		RoleID: roleId,
-	}
-	ok, badRequest, unauthorized, forbidden, notFound, err := roleService.IamService.Roles.AdminGetRoleV3(params, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, err := r.Client.Roles.AdminGetRoleV3(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -133,15 +112,12 @@ func (roleService *RoleService) AdminGetRoleV3(roleId string) (*iamclientmodels.
 }
 
 // AdminDeleteRoleV3 is for admin to delete the roles
-func (roleService *RoleService) AdminDeleteRoleV3(roleId string) error {
-	accessToken, err := roleService.TokenRepository.GetToken()
+func (r *RoleService) AdminDeleteRoleV3(input *roles.AdminDeleteRoleV3Params) error {
+	accessToken, err := r.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	params := &roles.AdminDeleteRoleV3Params{
-		RoleID: roleId,
-	}
-	_, badRequest, unauthorized, forbidden, notFound, internalServer, err := roleService.IamService.Roles.AdminDeleteRoleV3(params, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, internalServer, err := r.Client.Roles.AdminDeleteRoleV3(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -173,19 +149,12 @@ func (roleService *RoleService) AdminDeleteRoleV3(roleId string) error {
 }
 
 // AdminUpdateRoleV3 is for admin to update existing role
-func (roleService *RoleService) AdminUpdateRoleV3(roleId string, roleName *string, isWildcard *bool) (*iamclientmodels.ModelRoleResponseV3, error) {
-	accessToken, err := roleService.TokenRepository.GetToken()
+func (r *RoleService) AdminUpdateRoleV3(input *roles.AdminUpdateRoleV3Params) (*iamclientmodels.ModelRoleResponseV3, error) {
+	accessToken, err := r.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &roles.AdminUpdateRoleV3Params{
-		Body: &iamclientmodels.ModelRoleUpdateRequestV3{
-			IsWildcard: isWildcard,
-			RoleName:   roleName,
-		},
-		RoleID: roleId,
-	}
-	ok, badRequest, unauthorized, forbidden, notFound, err := roleService.IamService.Roles.AdminUpdateRoleV3(params, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, err := r.Client.Roles.AdminUpdateRoleV3(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -214,15 +183,12 @@ func (roleService *RoleService) AdminUpdateRoleV3(roleId string, roleName *strin
 }
 
 // AdminGetRoleAdminStatusV3 is for admin to get admin status
-func (roleService *RoleService) AdminGetRoleAdminStatusV3(roleId string) (*iamclientmodels.ModelRoleAdminStatusResponseV3, error) {
-	accessToken, err := roleService.TokenRepository.GetToken()
+func (r *RoleService) AdminGetRoleAdminStatusV3(input *roles.AdminGetRoleAdminStatusV3Params) (*iamclientmodels.ModelRoleAdminStatusResponseV3, error) {
+	accessToken, err := r.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &roles.AdminGetRoleAdminStatusV3Params{
-		RoleID: roleId,
-	}
-	ok, badRequest, unauthorized, forbidden, notFound, err := roleService.IamService.Roles.AdminGetRoleAdminStatusV3(params, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, err := r.Client.Roles.AdminGetRoleAdminStatusV3(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -251,15 +217,12 @@ func (roleService *RoleService) AdminGetRoleAdminStatusV3(roleId string) (*iamcl
 }
 
 // AdminUpdateAdminRoleStatusV3 is for admin to update role set as admin
-func (roleService *RoleService) AdminUpdateAdminRoleStatusV3(roleId string) error {
-	accessToken, err := roleService.TokenRepository.GetToken()
+func (r *RoleService) AdminUpdateAdminRoleStatusV3(input *roles.AdminUpdateAdminRoleStatusV3Params) error {
+	accessToken, err := r.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	params := &roles.AdminUpdateAdminRoleStatusV3Params{
-		RoleID: roleId,
-	}
-	_, badRequest, unauthorized, forbidden, notFound, internalServer, err := roleService.IamService.Roles.AdminUpdateAdminRoleStatusV3(params, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, internalServer, err := r.Client.Roles.AdminUpdateAdminRoleStatusV3(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -291,15 +254,12 @@ func (roleService *RoleService) AdminUpdateAdminRoleStatusV3(roleId string) erro
 }
 
 // AdminRemoveRoleAdminV3 is for admin to delete role admin status
-func (roleService *RoleService) AdminRemoveRoleAdminV3(roleId string) error {
-	accessToken, err := roleService.TokenRepository.GetToken()
+func (r *RoleService) AdminRemoveRoleAdminV3(input *roles.AdminRemoveRoleAdminV3Params) error {
+	accessToken, err := r.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	params := &roles.AdminRemoveRoleAdminV3Params{
-		RoleID: roleId,
-	}
-	_, badRequest, unauthorized, forbidden, notFound, internalServer, err := roleService.IamService.Roles.AdminRemoveRoleAdminV3(params, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, internalServer, err := r.Client.Roles.AdminRemoveRoleAdminV3(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -331,18 +291,12 @@ func (roleService *RoleService) AdminRemoveRoleAdminV3(roleId string) error {
 }
 
 // AdminGetRoleManagers is for admin to get the roles by role's managers
-func (roleService *RoleService) AdminGetRoleManagers(roleId string, after, before *string, limit *int64) (*iamclientmodels.ModelRoleManagersResponsesV3, error) {
-	accessToken, err := roleService.TokenRepository.GetToken()
+func (r *RoleService) AdminGetRoleManagers(input *roles.AdminGetRoleManagersV3Params) (*iamclientmodels.ModelRoleManagersResponsesV3, error) {
+	accessToken, err := r.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &roles.AdminGetRoleManagersV3Params{
-		After:  after,
-		Before: before,
-		Limit:  limit,
-		RoleID: roleId,
-	}
-	ok, badRequest, unauthorized, forbidden, notFound, err := roleService.IamService.Roles.AdminGetRoleManagersV3(params, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, err := r.Client.Roles.AdminGetRoleManagersV3(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -371,18 +325,12 @@ func (roleService *RoleService) AdminGetRoleManagers(roleId string, after, befor
 }
 
 // AdminAddRoleManagersV3 is for admin to add role by role's managers
-func (roleService *RoleService) AdminAddRoleManagersV3(roleId string, managers []*iamclientmodels.AccountcommonRoleManagerV3) error {
-	accessToken, err := roleService.TokenRepository.GetToken()
+func (r *RoleService) AdminAddRoleManagersV3(input *roles.AdminAddRoleManagersV3Params) error {
+	accessToken, err := r.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	params := &roles.AdminAddRoleManagersV3Params{
-		Body: &iamclientmodels.ModelRoleManagersRequestV3{
-			Managers: managers,
-		},
-		RoleID: roleId,
-	}
-	_, badRequest, unauthorized, forbidden, notFound, conflict, err := roleService.IamService.Roles.AdminAddRoleManagersV3(params, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, conflict, err := r.Client.Roles.AdminAddRoleManagersV3(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -416,18 +364,12 @@ func (roleService *RoleService) AdminAddRoleManagersV3(roleId string, managers [
 }
 
 // AdminRemoveRoleManagersV3 is for admin to delete assigned role by role's managers
-func (roleService *RoleService) AdminRemoveRoleManagersV3(roleId string, managers []*iamclientmodels.AccountcommonRoleManagerV3) error {
-	accessToken, err := roleService.TokenRepository.GetToken()
+func (r *RoleService) AdminRemoveRoleManagersV3(input *roles.AdminRemoveRoleManagersV3Params) error {
+	accessToken, err := r.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	params := &roles.AdminRemoveRoleManagersV3Params{
-		Body: &iamclientmodels.ModelRoleManagersRequestV3{
-			Managers: managers,
-		},
-		RoleID: roleId,
-	}
-	_, badRequest, unauthorized, forbidden, notFound, err := roleService.IamService.Roles.AdminRemoveRoleManagersV3(params, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, err := r.Client.Roles.AdminRemoveRoleManagersV3(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -456,18 +398,12 @@ func (roleService *RoleService) AdminRemoveRoleManagersV3(roleId string, manager
 }
 
 // AdminGetRoleMembersV3 is for admin to get the role members
-func (roleService *RoleService) AdminGetRoleMembersV3(roleId string, before, after *string, limit *int64) (*iamclientmodels.ModelRoleMembersResponseV3, error) {
-	accessToken, err := roleService.TokenRepository.GetToken()
+func (r *RoleService) AdminGetRoleMembersV3(input *roles.AdminGetRoleMembersV3Params) (*iamclientmodels.ModelRoleMembersResponseV3, error) {
+	accessToken, err := r.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &roles.AdminGetRoleMembersV3Params{
-		After:  after,
-		Before: before,
-		Limit:  limit,
-		RoleID: roleId,
-	}
-	ok, badRequest, unauthorized, forbidden, notFound, err := roleService.IamService.Roles.AdminGetRoleMembersV3(params, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, err := r.Client.Roles.AdminGetRoleMembersV3(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -496,18 +432,12 @@ func (roleService *RoleService) AdminGetRoleMembersV3(roleId string, before, aft
 }
 
 // AdminAddRoleMembersV3 is for admin to add role by role's manager listed in members
-func (roleService *RoleService) AdminAddRoleMembersV3(roleId string, managers []*iamclientmodels.AccountcommonRoleMemberV3) error {
-	accessToken, err := roleService.TokenRepository.GetToken()
+func (r *RoleService) AdminAddRoleMembersV3(input *roles.AdminAddRoleMembersV3Params) error {
+	accessToken, err := r.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	params := &roles.AdminAddRoleMembersV3Params{
-		Body: &iamclientmodels.ModelRoleMembersRequestV3{
-			Members: managers,
-		},
-		RoleID: roleId,
-	}
-	_, badRequest, unauthorized, forbidden, notFound, conflict, err := roleService.IamService.Roles.AdminAddRoleMembersV3(params, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, conflict, err := r.Client.Roles.AdminAddRoleMembersV3(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -541,18 +471,12 @@ func (roleService *RoleService) AdminAddRoleMembersV3(roleId string, managers []
 }
 
 // AdminRemoveRoleMembersV3 is for admin to delete role by role's manager listed in members
-func (roleService *RoleService) AdminRemoveRoleMembersV3(roleId string, managers []*iamclientmodels.AccountcommonRoleMemberV3) error {
-	accessToken, err := roleService.TokenRepository.GetToken()
+func (r *RoleService) AdminRemoveRoleMembersV3(input *roles.AdminRemoveRoleMembersV3Params) error {
+	accessToken, err := r.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	params := &roles.AdminRemoveRoleMembersV3Params{
-		Body: &iamclientmodels.ModelRoleMembersRequestV3{
-			Members: managers,
-		},
-		RoleID: roleId,
-	}
-	_, badRequest, unauthorized, forbidden, notFound, err := roleService.IamService.Roles.AdminRemoveRoleMembersV3(params, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, err := r.Client.Roles.AdminRemoveRoleMembersV3(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -581,18 +505,12 @@ func (roleService *RoleService) AdminRemoveRoleMembersV3(roleId string, managers
 }
 
 // AdminUpdateRolePermissionsV3 is for admin to update existing role's permission
-func (roleService *RoleService) AdminUpdateRolePermissionsV3(roleId string, permissions []*iamclientmodels.AccountcommonPermissionV3) error {
-	accessToken, err := roleService.TokenRepository.GetToken()
+func (r *RoleService) AdminUpdateRolePermissionsV3(input *roles.AdminUpdateRolePermissionsV3Params) error {
+	accessToken, err := r.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	params := &roles.AdminUpdateRolePermissionsV3Params{
-		Body: &iamclientmodels.AccountcommonPermissionsV3{
-			Permissions: permissions,
-		},
-		RoleID: roleId,
-	}
-	_, badRequest, unauthorized, forbidden, notFound, err := roleService.IamService.Roles.AdminUpdateRolePermissionsV3(params, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, err := r.Client.Roles.AdminUpdateRolePermissionsV3(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -621,18 +539,12 @@ func (roleService *RoleService) AdminUpdateRolePermissionsV3(roleId string, perm
 }
 
 // AdminAddRolePermissionsV3 is for admin to add role's permission
-func (roleService *RoleService) AdminAddRolePermissionsV3(roleId string, permissions []*iamclientmodels.AccountcommonPermissionV3) error {
-	accessToken, err := roleService.TokenRepository.GetToken()
+func (r *RoleService) AdminAddRolePermissionsV3(input *roles.AdminAddRolePermissionsV3Params) error {
+	accessToken, err := r.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	params := &roles.AdminAddRolePermissionsV3Params{
-		Body: &iamclientmodels.AccountcommonPermissionsV3{
-			Permissions: permissions,
-		},
-		RoleID: roleId,
-	}
-	_, badRequest, unauthorized, forbidden, notFound, err := roleService.IamService.Roles.AdminAddRolePermissionsV3(params, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, err := r.Client.Roles.AdminAddRolePermissionsV3(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -661,16 +573,12 @@ func (roleService *RoleService) AdminAddRolePermissionsV3(roleId string, permiss
 }
 
 // AdminDeleteRolePermissionsV3 is for admin to delete role's permissions
-func (roleService *RoleService) AdminDeleteRolePermissionsV3(roleId string, body []string) error {
-	accessToken, err := roleService.TokenRepository.GetToken()
+func (r *RoleService) AdminDeleteRolePermissionsV3(input *roles.AdminDeleteRolePermissionsV3Params) error {
+	accessToken, err := r.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	params := &roles.AdminDeleteRolePermissionsV3Params{
-		Body:   body,
-		RoleID: roleId,
-	}
-	_, unauthorized, forbidden, notFound, err := roleService.IamService.Roles.AdminDeleteRolePermissionsV3(params, client.BearerToken(*accessToken.AccessToken))
+	_, unauthorized, forbidden, notFound, err := r.Client.Roles.AdminDeleteRolePermissionsV3(input, client.BearerToken(*accessToken.AccessToken))
 	if unauthorized != nil {
 		return unauthorized
 	}
@@ -688,17 +596,12 @@ func (roleService *RoleService) AdminDeleteRolePermissionsV3(roleId string, body
 }
 
 // AdminDeleteRolePermissionV3 is for admin to delete a role's permission
-func (roleService *RoleService) AdminDeleteRolePermissionV3(roleId, resource string, action int64) error {
-	accessToken, err := roleService.TokenRepository.GetToken()
+func (r *RoleService) AdminDeleteRolePermissionV3(input *roles.AdminDeleteRolePermissionV3Params) error {
+	accessToken, err := r.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	params := &roles.AdminDeleteRolePermissionV3Params{
-		Action:   action,
-		Resource: resource,
-		RoleID:   roleId,
-	}
-	_, badRequest, unauthorized, forbidden, notFound, internalServer, err := roleService.IamService.Roles.AdminDeleteRolePermissionV3(params, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, internalServer, err := r.Client.Roles.AdminDeleteRolePermissionV3(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -730,18 +633,12 @@ func (roleService *RoleService) AdminDeleteRolePermissionV3(roleId, resource str
 }
 
 // PublicGetRolesV3 is for public to get the roles
-func (roleService *RoleService) PublicGetRolesV3(after, before *string, isWildCard *bool, limit *int64) (*iamclientmodels.ModelRoleNamesResponseV3, error) {
-	accessToken, err := roleService.TokenRepository.GetToken()
+func (r *RoleService) PublicGetRolesV3(input *roles.PublicGetRolesV3Params) (*iamclientmodels.ModelRoleNamesResponseV3, error) {
+	accessToken, err := r.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &roles.PublicGetRolesV3Params{
-		After:      after,
-		Before:     before,
-		IsWildcard: isWildCard,
-		Limit:      limit,
-	}
-	ok, badRequest, err := roleService.IamService.Roles.PublicGetRolesV3(params, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, err := r.Client.Roles.PublicGetRolesV3(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -755,15 +652,12 @@ func (roleService *RoleService) PublicGetRolesV3(after, before *string, isWildCa
 }
 
 // PublicGetRoleV3 is for public to get the roles by id
-func (roleService *RoleService) PublicGetRoleV3(roleId string) (*iamclientmodels.ModelRoleResponse, error) {
-	accessToken, err := roleService.TokenRepository.GetToken()
+func (r *RoleService) PublicGetRoleV3(input *roles.PublicGetRoleV3Params) (*iamclientmodels.ModelRoleResponse, error) {
+	accessToken, err := r.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &roles.PublicGetRoleV3Params{
-		RoleID: roleId,
-	}
-	ok, badRequest, notFound, err := roleService.IamService.Roles.PublicGetRoleV3(params, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, notFound, err := r.Client.Roles.PublicGetRoleV3(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))

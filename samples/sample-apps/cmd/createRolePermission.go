@@ -6,9 +6,10 @@ package cmd
 
 import (
 	"encoding/json"
+	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/roles"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
@@ -27,11 +28,15 @@ var createUserRolePermissionCmd = &cobra.Command{
 		if errPermissions != nil {
 			return errPermissions
 		}
-		roleService := &service.RoleService{
-			IamService:      factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
+		roleService := &iam.RoleService{
+			Client:          factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		err := roleService.AdminAddRolePermissionsV3(roleId, permissions)
+		input := &roles.AdminAddRolePermissionsV3Params{
+			Body:   &iamclientmodels.AccountcommonPermissionsV3{Permissions: permissions},
+			RoleID: roleId,
+		}
+		err := roleService.AdminAddRolePermissionsV3(input)
 		if err != nil {
 			return err
 		}

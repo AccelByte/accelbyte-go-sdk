@@ -5,8 +5,9 @@ package cmd
 
 import (
 	"encoding/json"
+	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/roles"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
@@ -19,11 +20,14 @@ var setRoleAsAdminCmd = &cobra.Command{
 	Long:  `Set role as admin`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		roleId := cmd.Flag("roleId").Value.String()
-		roleService := &service.RoleService{
-			IamService:      factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
+		roleService := &iam.RoleService{
+			Client:          factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		err := roleService.AdminUpdateAdminRoleStatusV3(roleId)
+		input := &roles.AdminUpdateAdminRoleStatusV3Params{
+			RoleID: roleId,
+		}
+		err := roleService.AdminUpdateAdminRoleStatusV3(input)
 		if err != nil {
 			return err
 		}

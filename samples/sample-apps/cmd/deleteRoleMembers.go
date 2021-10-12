@@ -6,9 +6,10 @@ package cmd
 
 import (
 	"encoding/json"
+	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/roles"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
@@ -27,11 +28,15 @@ var deleteRoleMembersCmd = &cobra.Command{
 		if errMembers != nil {
 			return errMembers
 		}
-		roleService := &service.RoleService{
-			IamService:      factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
+		roleService := &iam.RoleService{
+			Client:          factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		err := roleService.AdminRemoveRoleMembersV3(roleId, members)
+		input := &roles.AdminRemoveRoleMembersV3Params{
+			Body:   &iamclientmodels.ModelRoleMembersRequestV3{Members: members},
+			RoleID: roleId,
+		}
+		err := roleService.AdminRemoveRoleMembersV3(input)
 		if err != nil {
 			return err
 		}

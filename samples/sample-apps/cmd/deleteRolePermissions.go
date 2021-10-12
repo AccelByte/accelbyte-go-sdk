@@ -6,8 +6,9 @@ package cmd
 
 import (
 	"encoding/json"
+	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/roles"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
@@ -26,11 +27,15 @@ var deleteRolePermissionsCmd = &cobra.Command{
 		if errBody != nil {
 			return errBody
 		}
-		roleService := &service.RoleService{
-			IamService:      factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
+		roleService := &iam.RoleService{
+			Client:          factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		err := roleService.AdminDeleteRolePermissionsV3(roleId, body)
+		input := &roles.AdminDeleteRolePermissionsV3Params{
+			Body:   body,
+			RoleID: roleId,
+		}
+		err := roleService.AdminDeleteRolePermissionsV3(input)
 		if err != nil {
 			return err
 		}

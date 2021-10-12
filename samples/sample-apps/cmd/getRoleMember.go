@@ -6,8 +6,9 @@ package cmd
 
 import (
 	"encoding/json"
+	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/roles"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
@@ -26,11 +27,17 @@ var getRoleMemberCmd = &cobra.Command{
 		if err != nil {
 			return err
 		}
-		roleService := &service.RoleService{
-			IamService:      factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
+		roleService := &iam.RoleService{
+			Client:          factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		role, err := roleService.AdminGetRoleMembersV3(roleId, &after, &before, &limit)
+		input := &roles.AdminGetRoleMembersV3Params{
+			After:  &after,
+			Before: &before,
+			Limit:  &limit,
+			RoleID: roleId,
+		}
+		role, err := roleService.AdminGetRoleMembersV3(input)
 		if err != nil {
 			return err
 		}

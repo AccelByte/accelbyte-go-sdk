@@ -6,8 +6,10 @@ package cmd
 
 import (
 	"encoding/json"
+	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/roles"
+	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
@@ -22,11 +24,18 @@ var updateRoleByIDCmd = &cobra.Command{
 		roleId := cmd.Flag("roleId").Value.String()
 		roleName := cmd.Flag("roleName").Value.String()
 		isWildCard, _ := cmd.Flags().GetBool("isWildCard")
-		roleService := &service.RoleService{
-			IamService:      factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
+		roleService := &iam.RoleService{
+			Client:          factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		roles, err := roleService.AdminUpdateRoleV3(roleId, &roleName, &isWildCard)
+		input := &roles.AdminUpdateRoleV3Params{
+			Body: &iamclientmodels.ModelRoleUpdateRequestV3{
+				IsWildcard: &isWildCard,
+				RoleName:   &roleName,
+			},
+			RoleID: roleId,
+		}
+		roles, err := roleService.AdminUpdateRoleV3(input)
 		if err != nil {
 			return err
 		}

@@ -5,8 +5,9 @@ package cmd
 
 import (
 	"encoding/json"
+	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclient/user_profile"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/basic"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
@@ -18,12 +19,15 @@ var getMyProfileCmd = &cobra.Command{
 	Short: "Get personal user profile",
 	Long:  `Get personal user profile. Required access token.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
-		basicService := service.BasicUserProfileService{
+		basicService := basic.UserProfileService{
 			Client:          factory.NewBasicClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		namespace := cmd.Flag("namespace").Value.String()
-		profile, err := basicService.GetMyProfileInfo(namespace)
+		input := &user_profile.GetMyProfileInfoParams{
+			Namespace: namespace,
+		}
+		profile, err := basicService.GetMyProfileInfo(input)
 		if err != nil {
 			return err
 		}

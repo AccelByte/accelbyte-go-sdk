@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package service
+package iam
 
 import (
 	"encoding/json"
@@ -15,22 +15,17 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-type ClientService struct {
+type ClientsService struct {
+	Client          *iamclient.JusticeIamService
 	TokenRepository repository.TokenRepository
-	IamClient       *iamclient.JusticeIamService
 }
 
-func (clientService *ClientService) AdminAddClientPermissionsV3(clientID string, namespace string, acccountcommonClientPermissionsV3 iamclientmodels.AccountcommonClientPermissionsV3) error {
-	accessToken, err := clientService.TokenRepository.GetToken()
+func (c *ClientsService) AdminAddClientPermissionsV3(input *clients.AdminAddClientPermissionsV3Params) error {
+	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	params := &clients.AdminAddClientPermissionsV3Params{
-		Body:      &acccountcommonClientPermissionsV3,
-		ClientID:  clientID,
-		Namespace: namespace,
-	}
-	_, badRequest, unauthorized, forbidden, notFound, err := clientService.IamClient.Clients.AdminAddClientPermissionsV3(params, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, err := c.Client.Clients.AdminAddClientPermissionsV3(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -57,16 +52,12 @@ func (clientService *ClientService) AdminAddClientPermissionsV3(clientID string,
 	return nil
 }
 
-func (clientService *ClientService) AdminCreateClientV3(namespace string, clientmodelClientCreationV3Request iamclientmodels.ClientmodelClientCreationV3Request) (*iamclientmodels.ClientmodelClientV3Response, error) {
-	accessToken, err := clientService.TokenRepository.GetToken()
+func (c *ClientsService) AdminCreateClientV3(input *clients.AdminCreateClientV3Params) (*iamclientmodels.ClientmodelClientV3Response, error) {
+	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &clients.AdminCreateClientV3Params{
-		Body:      &clientmodelClientCreationV3Request,
-		Namespace: namespace,
-	}
-	ok, badRequest, unauthorized, forbidden, conflict, err := clientService.IamClient.Clients.AdminCreateClientV3(params, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, conflict, err := c.Client.Clients.AdminCreateClientV3(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -93,18 +84,12 @@ func (clientService *ClientService) AdminCreateClientV3(namespace string, client
 	return ok.GetPayload(), nil
 }
 
-func (clientService *ClientService) AdminDeleteClientPermissionV3(action int64, clientID string, namespace string, resource string) error {
-	accessToken, err := clientService.TokenRepository.GetToken()
+func (c *ClientsService) AdminDeleteClientPermissionV3(input *clients.AdminDeleteClientPermissionV3Params) error {
+	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	params := &clients.AdminDeleteClientPermissionV3Params{
-		Action:    action,
-		ClientID:  clientID,
-		Namespace: namespace,
-		Resource:  resource,
-	}
-	_, badRequest, unauthorized, forbidden, notFound, err := clientService.IamClient.Clients.AdminDeleteClientPermissionV3(params, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, err := c.Client.Clients.AdminDeleteClientPermissionV3(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -131,16 +116,12 @@ func (clientService *ClientService) AdminDeleteClientPermissionV3(action int64, 
 	return nil
 }
 
-func (clientService *ClientService) AdminDeleteClientV3(clientID, namespace string) error {
-	accessToken, err := clientService.TokenRepository.GetToken()
+func (c *ClientsService) AdminDeleteClientV3(input *clients.AdminDeleteClientV3Params) error {
+	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	params := &clients.AdminDeleteClientV3Params{
-		ClientID:  clientID,
-		Namespace: namespace,
-	}
-	_, badRequest, unauthorized, forbidden, notFound, err := clientService.IamClient.Clients.AdminDeleteClientV3(params, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, err := c.Client.Clients.AdminDeleteClientV3(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -167,18 +148,12 @@ func (clientService *ClientService) AdminDeleteClientV3(clientID, namespace stri
 	return nil
 }
 
-func (clientService *ClientService) AdminGetClientsByNamespaceV3(after *string, before *string, limit *int64, namespace string) (*iamclientmodels.ClientmodelClientsV3Response, error) {
-	accessToken, err := clientService.TokenRepository.GetToken()
+func (c *ClientsService) AdminGetClientsByNamespaceV3(input *clients.AdminGetClientsByNamespaceV3Params) (*iamclientmodels.ClientmodelClientsV3Response, error) {
+	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &clients.AdminGetClientsByNamespaceV3Params{
-		After:     after,
-		Before:    before,
-		Limit:     limit,
-		Namespace: namespace,
-	}
-	ok, badRequest, unauthorized, forbidden, err := clientService.IamClient.Clients.AdminGetClientsByNamespaceV3(params, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, err := c.Client.Clients.AdminGetClientsByNamespaceV3(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -201,18 +176,12 @@ func (clientService *ClientService) AdminGetClientsByNamespaceV3(after *string, 
 
 }
 
-func (clientService *ClientService) AdminGetClientsbyNamespacebyIDV3(clientID string, namespace string) (*iamclientmodels.ClientmodelClientV3Response, error) {
-	accessToken, err := clientService.TokenRepository.GetToken()
+func (c *ClientsService) AdminGetClientsbyNamespacebyIDV3(input *clients.AdminGetClientsbyNamespacebyIDV3Params) (*iamclientmodels.ClientmodelClientV3Response, error) {
+	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &clients.AdminGetClientsbyNamespacebyIDV3Params{
-		ClientID:  clientID,
-		Namespace: namespace,
-	}
-
-	ok, badRequest, unauthorized, forbidden, notFound, err := clientService.IamClient.Clients.AdminGetClientsbyNamespacebyIDV3(params, client.BearerToken(*accessToken.AccessToken))
-
+	ok, badRequest, unauthorized, forbidden, notFound, err := c.Client.Clients.AdminGetClientsbyNamespacebyIDV3(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -239,17 +208,12 @@ func (clientService *ClientService) AdminGetClientsbyNamespacebyIDV3(clientID st
 	return ok.GetPayload(), nil
 }
 
-func (clientService *ClientService) AdminUpdateClientPermissionV3(clientID string, namespace string, accountcommonClientPermissionsV3 *iamclientmodels.AccountcommonClientPermissionsV3) error {
-	accessToken, err := clientService.TokenRepository.GetToken()
+func (c *ClientsService) AdminUpdateClientPermissionV3(input *clients.AdminUpdateClientPermissionV3Params) error {
+	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	params := &clients.AdminUpdateClientPermissionV3Params{
-		Body:      accountcommonClientPermissionsV3,
-		ClientID:  clientID,
-		Namespace: namespace,
-	}
-	_, badRequest, unauthorized, forbidden, notFound, err := clientService.IamClient.Clients.AdminUpdateClientPermissionV3(params, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, err := c.Client.Clients.AdminUpdateClientPermissionV3(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -276,17 +240,12 @@ func (clientService *ClientService) AdminUpdateClientPermissionV3(clientID strin
 	return nil
 }
 
-func (clientService *ClientService) AdminUpdateClientV3(clientID string, namespace string, clientmodelClientUpdateV3Request *iamclientmodels.ClientmodelClientUpdateV3Request) (*iamclientmodels.ClientmodelClientV3Response, error) {
-	accessToken, err := clientService.TokenRepository.GetToken()
+func (c *ClientsService) AdminUpdateClientV3(input *clients.AdminUpdateClientV3Params) (*iamclientmodels.ClientmodelClientV3Response, error) {
+	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &clients.AdminUpdateClientV3Params{
-		Body:      clientmodelClientUpdateV3Request,
-		ClientID:  clientID,
-		Namespace: namespace,
-	}
-	ok, badRequest, unauthorized, forbidden, notFound, err := clientService.IamClient.Clients.AdminUpdateClientV3(params, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, err := c.Client.Clients.AdminUpdateClientV3(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))

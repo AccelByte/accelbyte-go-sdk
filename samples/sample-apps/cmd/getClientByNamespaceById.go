@@ -6,8 +6,9 @@ package cmd
 
 import (
 	"encoding/json"
+	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/clients"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
@@ -19,13 +20,17 @@ var getClientBynamespaceById = &cobra.Command{
 	Short: "Admin Get client by namespace by Id",
 	Long:  `Admin Get client by namespace by Id`,
 	RunE: func(cmd *cobra.Command, args []string) error {
-		clientService := &service.ClientService{
-			IamClient:       factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
+		clientService := &iam.ClientsService{
+			Client:          factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		clientID := cmd.Flag("clientID").Value.String()
 		namespace := cmd.Flag("namespace").Value.String()
-		ok, err := clientService.AdminGetClientsbyNamespacebyIDV3(clientID, namespace)
+		input := &clients.AdminGetClientsbyNamespacebyIDV3Params{
+			ClientID:  clientID,
+			Namespace: namespace,
+		}
+		ok, err := clientService.AdminGetClientsbyNamespacebyIDV3(input)
 		if err != nil {
 			logrus.Error(err)
 		} else {

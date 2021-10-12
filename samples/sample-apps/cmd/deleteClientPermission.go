@@ -5,8 +5,9 @@
 package cmd
 
 import (
+	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/clients"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
@@ -19,8 +20,8 @@ var deleteClientPermission = &cobra.Command{
 	Short: "Admin Delete client permission",
 	Long:  `Admin Delete client permission`,
 	RunE: func(cmd *cobra.Command, args []string) error {
-		clientService := &service.ClientService{
-			IamClient:       factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
+		clientService := &iam.ClientsService{
+			Client:          factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		clientID := cmd.Flag("clientID").Value.String()
@@ -28,7 +29,13 @@ var deleteClientPermission = &cobra.Command{
 		action := cmd.Flag("action").Value.String()
 		actionInt, _ := strconv.ParseInt(action, 10, 64)
 		resource := cmd.Flag("resource").Value.String()
-		err := clientService.AdminDeleteClientPermissionV3(actionInt, clientID, namespace, resource)
+		input := &clients.AdminDeleteClientPermissionV3Params{
+			Action:    actionInt,
+			ClientID:  clientID,
+			Namespace: namespace,
+			Resource:  resource,
+		}
+		err := clientService.AdminDeleteClientPermissionV3(input)
 		if err != nil {
 			logrus.Error(err)
 		} else {

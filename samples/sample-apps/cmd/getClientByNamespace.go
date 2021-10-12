@@ -6,8 +6,9 @@ package cmd
 
 import (
 	"encoding/json"
+	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/clients"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
@@ -20,8 +21,8 @@ var getClientBynamespace = &cobra.Command{
 	Short: "Admin Get client by namespace",
 	Long:  `Admin Get client by namespace`,
 	RunE: func(cmd *cobra.Command, args []string) error {
-		clientService := &service.ClientService{
-			IamClient:       factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
+		clientService := &iam.ClientsService{
+			Client:          factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		namespace := cmd.Flag("namespace").Value.String()
@@ -29,7 +30,13 @@ var getClientBynamespace = &cobra.Command{
 		before := cmd.Flag("before").Value.String()
 		limit := cmd.Flag("limit").Value.String()
 		limitInt, _ := strconv.ParseInt(limit, 10, 64)
-		ok, err := clientService.AdminGetClientsByNamespaceV3(&after, &before, &limitInt, namespace)
+		input := &clients.AdminGetClientsByNamespaceV3Params{
+			After:     &after,
+			Before:    &before,
+			Limit:     &limitInt,
+			Namespace: namespace,
+		}
+		ok, err := clientService.AdminGetClientsByNamespaceV3(input)
 		if err != nil {
 			logrus.Error(err)
 		} else {

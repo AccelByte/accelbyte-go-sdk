@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package service
+package iam
 
 import (
 	"encoding/json"
@@ -16,24 +16,17 @@ import (
 )
 
 type BansService struct {
-	IamClient       *iamclient.JusticeIamService
+	Client          *iamclient.JusticeIamService
 	TokenRepository repository.TokenRepository
 }
 
-func (bansService *BansService) AdminGetBannedUsersV3(activeOnly *bool, banType *string, limit *int64, namespace string, offset *int64) (*iamclientmodels.ModelGetUserBanV3Response, error) {
-	token, err := bansService.TokenRepository.GetToken()
+func (b *BansService) AdminGetBannedUsersV3(input *bans.AdminGetBannedUsersV3Params) (*iamclientmodels.ModelGetUserBanV3Response, error) {
+	token, err := b.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	params := &bans.AdminGetBannedUsersV3Params{
-		ActiveOnly: activeOnly,
-		BanType:    banType,
-		Limit:      limit,
-		Namespace:  namespace,
-		Offset:     offset,
-	}
-	ok, unauthorized, forbidden, err := bansService.IamClient.Bans.AdminGetBannedUsersV3(params, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, err := b.Client.Bans.AdminGetBannedUsersV3(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -51,13 +44,13 @@ func (bansService *BansService) AdminGetBannedUsersV3(activeOnly *bool, banType 
 	return ok.GetPayload(), nil
 }
 
-func (bansService *BansService) AdminGetBansTypeV3() (*iamclientmodels.AccountcommonBansV3, error) {
-	token, err := bansService.TokenRepository.GetToken()
+func (b *BansService) AdminGetBansTypeV3() (*iamclientmodels.AccountcommonBansV3, error) {
+	token, err := b.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	ok, unauthorized, forbidden, err := bansService.IamClient.Bans.AdminGetBansTypeV3(nil, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, err := b.Client.Bans.AdminGetBansTypeV3(nil, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -75,16 +68,13 @@ func (bansService *BansService) AdminGetBansTypeV3() (*iamclientmodels.Accountco
 	return ok.GetPayload(), nil
 }
 
-func (bansService BansService) AdminGetBansTypeWithNamespaceV3(namespace string) (*iamclientmodels.AccountcommonBansV3, error) {
-	token, err := bansService.TokenRepository.GetToken()
+func (b BansService) AdminGetBansTypeWithNamespaceV3(input *bans.AdminGetBansTypeWithNamespaceV3Params) (*iamclientmodels.AccountcommonBansV3, error) {
+	token, err := b.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	params := &bans.AdminGetBansTypeWithNamespaceV3Params{
-		Namespace: namespace,
-	}
-	ok, unauthorized, forbidden, err := bansService.IamClient.Bans.AdminGetBansTypeWithNamespaceV3(params, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, err := b.Client.Bans.AdminGetBansTypeWithNamespaceV3(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -103,13 +93,13 @@ func (bansService BansService) AdminGetBansTypeWithNamespaceV3(namespace string)
 
 }
 
-func (bansService BansService) AdminGetListBanReasonV3() (*iamclientmodels.AccountcommonBanReasonsV3, error) {
-	token, err := bansService.TokenRepository.GetToken()
+func (b BansService) AdminGetListBanReasonV3() (*iamclientmodels.AccountcommonBanReasonsV3, error) {
+	token, err := b.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	ok, unauthorized, forbidden, err := bansService.IamClient.Bans.AdminGetListBanReasonV3(nil, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, err := b.Client.Bans.AdminGetListBanReasonV3(nil, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))

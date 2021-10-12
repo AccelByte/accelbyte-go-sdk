@@ -7,7 +7,7 @@ package cmd
 import (
 	"encoding/json"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
@@ -19,8 +19,8 @@ var getBansType = &cobra.Command{
 	Short: "Admin Get bans type",
 	Long:  `Admin Get bans type `,
 	RunE: func(cmd *cobra.Command, args []string) error {
-		bansService := &service.BansService{
-			IamClient:       factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
+		bansService := &iam.BansService{
+			Client:          factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		ok, err := bansService.AdminGetBansTypeV3()

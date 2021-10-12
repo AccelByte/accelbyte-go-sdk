@@ -6,8 +6,9 @@ package cmd
 
 import (
 	"encoding/json"
+	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/bans"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
@@ -19,8 +20,8 @@ var getBannedUsers = &cobra.Command{
 	Short: "Admin Get banned users",
 	Long:  `Admin Get banned users `,
 	RunE: func(cmd *cobra.Command, args []string) error {
-		bansService := &service.BansService{
-			IamClient:       factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
+		bansService := &iam.BansService{
+			Client:          factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		activeOnly, err := cmd.Flags().GetBool("activeOnly")
@@ -37,7 +38,14 @@ var getBannedUsers = &cobra.Command{
 		if err != nil {
 			return err
 		}
-		ok, err := bansService.AdminGetBannedUsersV3(&activeOnly, &banType, &limit, namespace, &offset)
+		input := bans.AdminGetBannedUsersV3Params{
+			ActiveOnly: &activeOnly,
+			BanType:    &banType,
+			Limit:      &limit,
+			Namespace:  namespace,
+			Offset:     &offset,
+		}
+		ok, err := bansService.AdminGetBannedUsersV3(&input)
 		if err != nil {
 			logrus.Error(err)
 		} else {

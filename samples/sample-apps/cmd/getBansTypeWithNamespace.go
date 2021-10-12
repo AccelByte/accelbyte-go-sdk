@@ -6,8 +6,9 @@ package cmd
 
 import (
 	"encoding/json"
+	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/bans"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
@@ -19,12 +20,15 @@ var getBansTypeWithNamespace = &cobra.Command{
 	Short: "Admin Get bans type with namespace",
 	Long:  `Admin Get bans type with namespace`,
 	RunE: func(cmd *cobra.Command, args []string) error {
-		bansService := &service.BansService{
-			IamClient:       factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
+		bansService := &iam.BansService{
+			Client:          factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		namespace := cmd.Flag("namespace").Value.String()
-		ok, err := bansService.AdminGetBansTypeWithNamespaceV3(namespace)
+		input := &bans.AdminGetBansTypeWithNamespaceV3Params{
+			Namespace: namespace,
+		}
+		ok, err := bansService.AdminGetBansTypeWithNamespaceV3(input)
 		if err != nil {
 			logrus.Error(err)
 		} else {

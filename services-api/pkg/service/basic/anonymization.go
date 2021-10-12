@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package service
+package basic
 
 import (
 	"encoding/json"
@@ -14,23 +14,19 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 )
 
-type BasicAnonymizationService struct {
+type AnonymizationService struct {
 	Client          *basicclient.JusticeBasicService
 	TokenRepository repository.TokenRepository
 }
 
-func (b *BasicAnonymizationService) AnonymizeUserProfile(namespace, userId string) error {
-	logrus.Infof("Invoke CreateProfile with parameter %s", namespace)
-	accessToken, err := b.TokenRepository.GetToken()
+func (a *AnonymizationService) AnonymizeUserProfile(input *anonymization.AnonymizeUserProfileParams) error {
+	logrus.Infof("Invoke AnonymizeUserProfile with parameter %s", input.Namespace)
+	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	param := &anonymization.AnonymizeUserProfileParams{
-		Namespace: namespace,
-		UserID:    userId,
-	}
 	_, badRequest, unauthorized, forbidden, notFound, err :=
-		b.Client.Anonymization.AnonymizeUserProfile(param, client.BearerToken(*accessToken.AccessToken))
+		a.Client.Anonymization.AnonymizeUserProfile(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))

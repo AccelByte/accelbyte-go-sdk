@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package service
+package basic
 
 import (
 	"encoding/json"
@@ -15,23 +15,18 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 )
 
-type BasicFileUploadService struct {
+type FileUploadService struct {
 	Client          *basicclient.JusticeBasicService
 	TokenRepository repository.TokenRepository
 }
 
-func (b *BasicFileUploadService) GeneratedUploadURL(namespace, folder, fileType string) (*basicclientmodels.FileUploadURLInfo, error) {
-	accessToken, err := b.TokenRepository.GetToken()
+func (f *FileUploadService) GeneratedUploadURL(input *file_upload.GeneratedUploadURLParams) (*basicclientmodels.FileUploadURLInfo, error) {
+	accessToken, err := f.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	param := &file_upload.GeneratedUploadURLParams{
-		FileType:  fileType,
-		Folder:    folder,
-		Namespace: namespace,
-	}
 	ok, badRequest, unauthorized, forbidden, notFound, err :=
-		b.Client.FileUpload.GeneratedUploadURL(param, client.BearerToken(*accessToken.AccessToken))
+		f.Client.FileUpload.GeneratedUploadURL(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -59,18 +54,13 @@ func (b *BasicFileUploadService) GeneratedUploadURL(namespace, folder, fileType 
 	return ok.GetPayload(), nil
 }
 
-func (b *BasicFileUploadService) GeneratedUserUploadContentURL(namespace, userId, fileType string) (*basicclientmodels.FileUploadURLInfo, error) {
-	accessToken, err := b.TokenRepository.GetToken()
+func (f *FileUploadService) GeneratedUserUploadContentURL(input *file_upload.GeneratedUserUploadContentURLParams) (*basicclientmodels.FileUploadURLInfo, error) {
+	accessToken, err := f.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	param := &file_upload.GeneratedUserUploadContentURLParams{
-		FileType:  fileType,
-		Namespace: namespace,
-		UserID:    userId,
-	}
 	ok, badRequest, unauthorized, forbidden, conflict, internalServer, err :=
-		b.Client.FileUpload.GeneratedUserUploadContentURL(param, client.BearerToken(*accessToken.AccessToken))
+		f.Client.FileUpload.GeneratedUserUploadContentURL(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -103,18 +93,13 @@ func (b *BasicFileUploadService) GeneratedUserUploadContentURL(namespace, userId
 	return ok.GetPayload(), nil
 }
 
-func (b *BasicFileUploadService) PublicGeneratedUploadURL(namespace, folder, fileType string) (*basicclientmodels.FileUploadURLInfo, error) {
-	accessToken, err := b.TokenRepository.GetToken()
+func (f *FileUploadService) PublicGeneratedUploadURL(input *file_upload.PublicGeneratedUploadURLParams) (*basicclientmodels.FileUploadURLInfo, error) {
+	accessToken, err := f.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	param := &file_upload.PublicGeneratedUploadURLParams{
-		FileType:  fileType,
-		Namespace: namespace,
-		Folder:    folder,
-	}
 	ok, badRequest, unauthorized, forbidden, internalServer, err :=
-		b.Client.FileUpload.PublicGeneratedUploadURL(param, client.BearerToken(*accessToken.AccessToken))
+		f.Client.FileUpload.PublicGeneratedUploadURL(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -142,18 +127,13 @@ func (b *BasicFileUploadService) PublicGeneratedUploadURL(namespace, folder, fil
 	return ok.GetPayload(), nil
 }
 
-func (b *BasicFileUploadService) PublicGeneratedUserUploadContentURL(namespace, userId, fileType string) (*basicclientmodels.FileUploadURLInfo, error) {
-	accessToken, err := b.TokenRepository.GetToken()
+func (f *FileUploadService) PublicGeneratedUserUploadContentURL(input *file_upload.PublicGeneratedUserUploadContentURLParams) (*basicclientmodels.FileUploadURLInfo, error) {
+	accessToken, err := f.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	param := &file_upload.PublicGeneratedUserUploadContentURLParams{
-		FileType:  fileType,
-		Namespace: namespace,
-		UserID:    userId,
-	}
 	ok, badRequest, unauthorized, forbidden, conflict, internalServer, err :=
-		b.Client.FileUpload.PublicGeneratedUserUploadContentURL(param, client.BearerToken(*accessToken.AccessToken))
+		f.Client.FileUpload.PublicGeneratedUserUploadContentURL(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))

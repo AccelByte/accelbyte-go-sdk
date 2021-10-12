@@ -2,35 +2,69 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package service
+package basic
 
 import (
 	"encoding/json"
+	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclient"
+	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclient/namespace"
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclientmodels"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/go-openapi/runtime/client"
 	"github.com/sirupsen/logrus"
-
-	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclient"
-	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclient/misc"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 )
 
-type BasicMiscService struct {
+type NamespaceService struct {
 	Client          *basicclient.JusticeBasicService
 	TokenRepository repository.TokenRepository
 }
 
-func (b *BasicMiscService) AddCountryGroup(namespace string, body *basicclientmodels.AddCountryGroupRequest) (*basicclientmodels.AddCountryGroupResponse, error) {
+func (b *NamespaceService) ChangeNamespaceStatus(input *namespace.ChangeNamespaceStatusParams) (*basicclientmodels.NamespaceInfo, error) {
 	accessToken, err := b.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	param := &misc.AddCountryGroupParams{
-		Body:      body,
-		Namespace: namespace,
+	ok, badRequest, unauthorized, forbidden, notFound, conflict, err :=
+		b.Client.Namespace.ChangeNamespaceStatus(input, client.BearerToken(*accessToken.AccessToken))
+	if badRequest != nil {
+		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
+		logrus.Error(string(errorMsg))
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
+		logrus.Error(string(errorMsg))
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
+		logrus.Error(string(errorMsg))
+		return nil, forbidden
+	}
+	if notFound != nil {
+		errorMsg, _ := json.Marshal(*notFound.GetPayload())
+		logrus.Error(string(errorMsg))
+		return nil, notFound
+	}
+	if conflict != nil {
+		errorMsg, _ := json.Marshal(*conflict.GetPayload())
+		logrus.Error(string(errorMsg))
+		return nil, conflict
+	}
+	if err != nil {
+		logrus.Error(err)
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (b *NamespaceService) CreateNamespace(input *namespace.CreateNamespaceParams) (*basicclientmodels.NamespaceInfo, error) {
+	accessToken, err := b.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
 	}
 	created, badRequest, unauthorized, forbidden, conflict, err :=
-		b.Client.Misc.AddCountryGroup(param, client.BearerToken(*accessToken.AccessToken))
+		b.Client.Namespace.CreateNamespace(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -58,55 +92,13 @@ func (b *BasicMiscService) AddCountryGroup(namespace string, body *basicclientmo
 	return created.GetPayload(), nil
 }
 
-func (b *BasicMiscService) DeleteCountryGroup(namespace, countryGroupCode string) error {
-	accessToken, err := b.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	param := &misc.DeleteCountryGroupParams{
-		CountryGroupCode: countryGroupCode,
-		Namespace:        namespace,
-	}
-	badRequest, unauthorized, forbidden, notFound, err :=
-		b.Client.Misc.DeleteCountryGroup(param, client.BearerToken(*accessToken.AccessToken))
-	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
-		return badRequest
-	}
-	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
-		return unauthorized
-	}
-	if forbidden != nil {
-		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
-		logrus.Error(string(errorMsg))
-		return forbidden
-	}
-	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
-		return notFound
-	}
-	if err != nil {
-		logrus.Error(err)
-		return err
-	}
-	return nil
-}
-
-func (b *BasicMiscService) GetCountries(namespace string, lang *string) ([]*basicclientmodels.CountryObject, error) {
+func (b *NamespaceService) DeleteNamespace(input *namespace.DeleteNamespaceParams) (*basicclientmodels.NamespaceInfo, error) {
 	accessToken, err := b.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	param := &misc.GetCountriesParams{
-		Lang:      lang,
-		Namespace: namespace,
-	}
-	ok, badRequest, unauthorized, err :=
-		b.Client.Misc.GetCountries(param, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, conflict, err :=
+		b.Client.Namespace.DeleteNamespace(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -117,6 +109,21 @@ func (b *BasicMiscService) GetCountries(namespace string, lang *string) ([]*basi
 		logrus.Error(string(errorMsg))
 		return nil, unauthorized
 	}
+	if forbidden != nil {
+		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
+		logrus.Error(string(errorMsg))
+		return nil, forbidden
+	}
+	if notFound != nil {
+		errorMsg, _ := json.Marshal(*notFound.GetPayload())
+		logrus.Error(string(errorMsg))
+		return nil, notFound
+	}
+	if conflict != nil {
+		errorMsg, _ := json.Marshal(*conflict.GetPayload())
+		logrus.Error(string(errorMsg))
+		return nil, conflict
+	}
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
@@ -124,17 +131,13 @@ func (b *BasicMiscService) GetCountries(namespace string, lang *string) ([]*basi
 	return ok.GetPayload(), nil
 }
 
-func (b *BasicMiscService) GetCountryGroups(namespace string, groupCode *string) ([]*basicclientmodels.RetrieveCountryGroupResponse, error) {
+func (b *NamespaceService) GetNamespace(input *namespace.GetNamespaceParams) (*basicclientmodels.NamespaceInfo, error) {
 	accessToken, err := b.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	param := &misc.GetCountryGroupsParams{
-		GroupCode: groupCode,
-		Namespace: namespace,
-	}
 	ok, badRequest, unauthorized, forbidden, notFound, err :=
-		b.Client.Misc.GetCountryGroups(param, client.BearerToken(*accessToken.AccessToken))
+		b.Client.Namespace.GetNamespace(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -162,138 +165,13 @@ func (b *BasicMiscService) GetCountryGroups(namespace string, groupCode *string)
 	return ok.GetPayload(), nil
 }
 
-func (b *BasicMiscService) GetLanguages(namespace string) (map[string]interface{}, error) {
+func (b *NamespaceService) GetNamespacePublisher(input *namespace.GetNamespacePublisherParams) (*basicclientmodels.NamespacePublisherInfo, error) {
 	accessToken, err := b.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
-	}
-	param := &misc.GetLanguagesParams{
-		Namespace: namespace,
-	}
-	ok, badRequest, unauthorized, err :=
-		b.Client.Misc.GetLanguages(param, client.BearerToken(*accessToken.AccessToken))
-	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, badRequest
-	}
-	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, unauthorized
-	}
-	if err != nil {
-		logrus.Error(err)
-		return nil, err
-	}
-	return ok.GetPayload(), nil
-}
-
-func (b *BasicMiscService) GetTimeZones(namespace string) ([]string, error) {
-	accessToken, err := b.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	param := &misc.GetTimeZonesParams{
-		Namespace: namespace,
-	}
-	ok, badRequest, unauthorized, err :=
-		b.Client.Misc.GetTimeZones(param, client.BearerToken(*accessToken.AccessToken))
-	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, badRequest
-	}
-	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, unauthorized
-	}
-	if err != nil {
-		logrus.Error(err)
-		return nil, err
-	}
-	return ok.GetPayload(), nil
-}
-
-func (b *BasicMiscService) PublicGetCountries(namespace string, lang *string) ([]*basicclientmodels.CountryObject, error) {
-	_, err := b.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	param := &misc.PublicGetCountriesParams{
-		Lang:      lang,
-		Namespace: namespace,
-	}
-	ok, badRequest, err :=
-		b.Client.Misc.PublicGetCountries(param)
-	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, badRequest
-	}
-	if err != nil {
-		logrus.Error(err)
-		return nil, err
-	}
-	return ok.GetPayload(), nil
-}
-
-func (b *BasicMiscService) PublicGetLanguages(namespace string) (map[string]interface{}, error) {
-	_, err := b.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	param := &misc.PublicGetLanguagesParams{
-		Namespace: namespace,
-	}
-	ok, badRequest, err :=
-		b.Client.Misc.PublicGetLanguages(param)
-	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, badRequest
-	}
-	if err != nil {
-		logrus.Error(err)
-		return nil, err
-	}
-	return ok.GetPayload(), nil
-}
-
-func (b *BasicMiscService) PublicGetTimeZones(namespace string) ([]string, error) {
-	_, err := b.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	param := &misc.PublicGetTimeZonesParams{
-		Namespace: namespace,
-	}
-	ok, badRequest, err :=
-		b.Client.Misc.PublicGetTimeZones(param)
-	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, badRequest
-	}
-	if err != nil {
-		logrus.Error(err)
-		return nil, err
-	}
-	return ok.GetPayload(), nil
-}
-
-func (b *BasicMiscService) UpdateCountryGroup(namespace string, body *basicclientmodels.UpdateCountryGroupRequest) (*basicclientmodels.CountryGroupObject, error) {
-	accessToken, err := b.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	param := &misc.UpdateCountryGroupParams{
-		Body:      body,
-		Namespace: namespace,
 	}
 	ok, badRequest, unauthorized, forbidden, notFound, err :=
-		b.Client.Misc.UpdateCountryGroup(param, client.BearerToken(*accessToken.AccessToken))
+		b.Client.Namespace.GetNamespacePublisher(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -313,6 +191,122 @@ func (b *BasicMiscService) UpdateCountryGroup(namespace string, body *basicclien
 		errorMsg, _ := json.Marshal(*notFound.GetPayload())
 		logrus.Error(string(errorMsg))
 		return nil, notFound
+	}
+	if err != nil {
+		logrus.Error(err)
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (b *NamespaceService) GetNamespaces(input *namespace.GetNamespacesParams) ([]*basicclientmodels.NamespaceInfo, error) {
+	accessToken, err := b.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, unauthorized, forbidden, err :=
+		b.Client.Namespace.GetNamespaces(input, client.BearerToken(*accessToken.AccessToken))
+	if unauthorized != nil {
+		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
+		logrus.Error(string(errorMsg))
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
+		logrus.Error(string(errorMsg))
+		return nil, forbidden
+	}
+	if err != nil {
+		logrus.Error(err)
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (b *NamespaceService) PublicGetNamespacePublisher(input *namespace.PublicGetNamespacePublisherParams) (*basicclientmodels.NamespacePublisherInfo, error) {
+	accessToken, err := b.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, forbidden, notFound, err :=
+		b.Client.Namespace.PublicGetNamespacePublisher(input, client.BearerToken(*accessToken.AccessToken))
+	if badRequest != nil {
+		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
+		logrus.Error(string(errorMsg))
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
+		logrus.Error(string(errorMsg))
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
+		logrus.Error(string(errorMsg))
+		return nil, forbidden
+	}
+	if notFound != nil {
+		errorMsg, _ := json.Marshal(*notFound.GetPayload())
+		logrus.Error(string(errorMsg))
+		return nil, notFound
+	}
+	if err != nil {
+		logrus.Error(err)
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (b *NamespaceService) PublicGetNamespaces(input *namespace.PublicGetNamespacesParams) ([]*basicclientmodels.NamespaceInfo, error) {
+	accessToken, err := b.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, unauthorized, err :=
+		b.Client.Namespace.PublicGetNamespaces(input, client.BearerToken(*accessToken.AccessToken))
+	if unauthorized != nil {
+		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
+		logrus.Error(string(errorMsg))
+		return nil, unauthorized
+	}
+	if err != nil {
+		logrus.Error(err)
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (b *NamespaceService) UpdateNamespace(input *namespace.UpdateNamespaceParams) (*basicclientmodels.NamespaceInfo, error) {
+	accessToken, err := b.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, forbidden, notFound, conflict, err :=
+		b.Client.Namespace.UpdateNamespace(input, client.BearerToken(*accessToken.AccessToken))
+	if badRequest != nil {
+		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
+		logrus.Error(string(errorMsg))
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
+		logrus.Error(string(errorMsg))
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
+		logrus.Error(string(errorMsg))
+		return nil, forbidden
+	}
+	if notFound != nil {
+		errorMsg, _ := json.Marshal(*notFound.GetPayload())
+		logrus.Error(string(errorMsg))
+		return nil, notFound
+	}
+	if conflict != nil {
+		errorMsg, _ := json.Marshal(*conflict.GetPayload())
+		logrus.Error(string(errorMsg))
+		return nil, conflict
 	}
 	if err != nil {
 		logrus.Error(err)

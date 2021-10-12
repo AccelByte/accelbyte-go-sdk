@@ -2,37 +2,31 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package service
+package ugc
 
 import (
 	"encoding/json"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient"
-	nr "github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/nr_admin_content"
+	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/nr_admin_content"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclientmodels"
 	"github.com/go-openapi/runtime/client"
 	"github.com/sirupsen/logrus"
 )
 
-type AdminContentConfigService struct {
-	UgcServiceClient *ugcclient.JusticeUgcService
-	TokenRepository  repository.TokenRepository
+type AdminContentService struct {
+	Client          *ugcclient.JusticeUgcService
+	TokenRepository repository.TokenRepository
 }
 
 // AdminDeleteContent deletes content
-func (u *AdminContentConfigService) AdminDeleteContent(namespace, userId, channelId, contentId string) (*ugcclientmodels.ModelsCreateContentResponse, error) {
-	token, err := u.TokenRepository.GetToken()
+func (a *AdminContentService) AdminDeleteContent(input *nr_admin_content.AdminDeleteContentParams) (*ugcclientmodels.ModelsCreateContentResponse, error) {
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	params := &nr.AdminDeleteContentParams{
-		ChannelID: channelId,
-		ContentID: contentId,
-		Namespace: namespace,
-		UserID:    userId,
-	}
-	created, unauthorized, notFound, internalServer, err := u.UgcServiceClient.NrAdminContent.AdminDeleteContent(params, client.BearerToken(*token.AccessToken))
+	created, unauthorized, notFound, internalServer, err := a.Client.NrAdminContent.AdminDeleteContent(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -56,17 +50,13 @@ func (u *AdminContentConfigService) AdminDeleteContent(namespace, userId, channe
 }
 
 // AdminDownloadContentPreview gets content preview
-func (u *AdminContentConfigService) AdminDownloadContentPreview(namespace, contentId string) (*ugcclientmodels.ModelsGetContentPreviewResponse, error) {
-	token, err := u.TokenRepository.GetToken()
+func (a *AdminContentService) AdminDownloadContentPreview(input *nr_admin_content.AdminDownloadContentPreviewParams) (*ugcclientmodels.ModelsGetContentPreviewResponse, error) {
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	params := &nr.AdminDownloadContentPreviewParams{
-		ContentID: contentId,
-		Namespace: namespace,
-	}
-	ok, unauthorized, notFound, internalServer, err := u.UgcServiceClient.NrAdminContent.AdminDownloadContentPreview(params, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, notFound, internalServer, err := a.Client.NrAdminContent.AdminDownloadContentPreview(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -90,19 +80,13 @@ func (u *AdminContentConfigService) AdminDownloadContentPreview(namespace, conte
 }
 
 // AdminGetContent gets user's generated contents
-func (u *AdminContentConfigService) AdminGetContent(namespace, userId string, limit, offset *string) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
-	token, err := u.TokenRepository.GetToken()
+func (a *AdminContentService) AdminGetContent(input *nr_admin_content.AdminGetContentParams) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	params := &nr.AdminGetContentParams{
-		Limit:     limit,
-		Namespace: namespace,
-		Offset:    offset,
-		UserID:    userId,
-	}
-	ok, unauthorized, notFound, internalServer, err := u.UgcServiceClient.NrAdminContent.AdminGetContent(params, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, notFound, internalServer, err := a.Client.NrAdminContent.AdminGetContent(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -126,17 +110,13 @@ func (u *AdminContentConfigService) AdminGetContent(namespace, userId string, li
 }
 
 // AdminGetSpecificContent gets user specific content
-func (u *AdminContentConfigService) AdminGetSpecificContent(namespace, contentId string) (*ugcclientmodels.ModelsContentDownloadResponse, error) {
-	token, err := u.TokenRepository.GetToken()
+func (a *AdminContentService) AdminGetSpecificContent(input *nr_admin_content.AdminGetSpecificContentParams) (*ugcclientmodels.ModelsContentDownloadResponse, error) {
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	params := &nr.AdminGetSpecificContentParams{
-		ContentID: contentId,
-		Namespace: namespace,
-	}
-	ok, unauthorized, notFound, internalServer, err := u.UgcServiceClient.NrAdminContent.AdminGetSpecificContent(params, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, notFound, internalServer, err := a.Client.NrAdminContent.AdminGetSpecificContent(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -160,20 +140,13 @@ func (u *AdminContentConfigService) AdminGetSpecificContent(namespace, contentId
 }
 
 // AdminHideUserContent hides unhidden user's generated contents
-func (u *AdminContentConfigService) AdminHideUserContent(namespace, userId, contentId string,
-	body *ugcclientmodels.ModelsHideContentRequest) (*ugcclientmodels.ModelsCreateContentResponse, error) {
-	token, err := u.TokenRepository.GetToken()
+func (a *AdminContentService) AdminHideUserContent(input *nr_admin_content.AdminHideUserContentParams) (*ugcclientmodels.ModelsCreateContentResponse, error) {
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	params := &nr.AdminHideUserContentParams{
-		Body:      body,
-		ContentID: contentId,
-		Namespace: namespace,
-		UserID:    userId,
-	}
-	ok, unauthorized, notFound, internalServer, err := u.UgcServiceClient.NrAdminContent.AdminHideUserContent(params, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, notFound, internalServer, err := a.Client.NrAdminContent.AdminHideUserContent(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -197,39 +170,13 @@ func (u *AdminContentConfigService) AdminHideUserContent(namespace, userId, cont
 }
 
 // AdminSearchChannelSpecificContent searches contents specific to a channel
-func (u *AdminContentConfigService) AdminSearchChannelSpecificContent(
-	namespace,
-	channelId string,
-	sortBy,
-	orderBy,
-	name,
-	creator,
-	contentType,
-	subType,
-	tags,
-	isOfficial,
-	limit,
-	offset *string) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
-	token, err := u.TokenRepository.GetToken()
+func (a *AdminContentService) AdminSearchChannelSpecificContent(input *nr_admin_content.AdminSearchChannelSpecificContentParams) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	params := &nr.AdminSearchChannelSpecificContentParams{
-		ChannelID:  channelId,
-		Creator:    creator,
-		Isofficial: isOfficial,
-		Limit:      limit,
-		Name:       name,
-		Namespace:  namespace,
-		Offset:     offset,
-		Orderby:    orderBy,
-		Sortby:     sortBy,
-		Subtype:    subType,
-		Tags:       tags,
-		Type:       contentType,
-	}
-	ok, unauthorized, notFound, internalServer, err := u.UgcServiceClient.NrAdminContent.AdminSearchChannelSpecificContent(params, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, notFound, internalServer, err := a.Client.NrAdminContent.AdminSearchChannelSpecificContent(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -253,37 +200,13 @@ func (u *AdminContentConfigService) AdminSearchChannelSpecificContent(
 }
 
 // AdminSearchContent searches contents
-func (u *AdminContentConfigService) AdminSearchContent(
-	namespace string,
-	sortBy,
-	orderBy,
-	name,
-	creator,
-	contentType,
-	subType,
-	tags,
-	isOfficial,
-	limit,
-	offset *string) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
-	token, err := u.TokenRepository.GetToken()
+func (a *AdminContentService) AdminSearchContent(input *nr_admin_content.AdminSearchContentParams) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	params := &nr.AdminSearchContentParams{
-		Creator:    creator,
-		Isofficial: isOfficial,
-		Limit:      limit,
-		Name:       name,
-		Namespace:  namespace,
-		Offset:     offset,
-		Orderby:    orderBy,
-		Sortby:     sortBy,
-		Subtype:    subType,
-		Tags:       tags,
-		Type:       contentType,
-	}
-	ok, unauthorized, notFound, internalServer, err := u.UgcServiceClient.NrAdminContent.AdminSearchContent(params, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, notFound, internalServer, err := a.Client.NrAdminContent.AdminSearchContent(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -307,25 +230,13 @@ func (u *AdminContentConfigService) AdminSearchContent(
 }
 
 // AdminUpdateContentDirect updates content to a channel
-func (u *AdminContentConfigService) AdminUpdateContentDirect(
-	namespace,
-	userId,
-	channelId,
-	contentId string,
-	body *ugcclientmodels.ModelsCreateContentRequest) (*ugcclientmodels.ModelsCreateContentResponse, error) {
-	token, err := u.TokenRepository.GetToken()
+func (a *AdminContentService) AdminUpdateContentDirect(input *nr_admin_content.AdminUpdateContentDirectParams) (*ugcclientmodels.ModelsCreateContentResponse, error) {
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	params := &nr.AdminUpdateContentDirectParams{
-		Body:      body,
-		ChannelID: channelId,
-		ContentID: contentId,
-		Namespace: namespace,
-		UserID:    userId,
-	}
-	ok, badRequest, unauthorized, notFound, internalServer, err := u.UgcServiceClient.NrAdminContent.AdminUpdateContentDirect(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, notFound, internalServer, err := a.Client.NrAdminContent.AdminUpdateContentDirect(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -354,25 +265,13 @@ func (u *AdminContentConfigService) AdminUpdateContentDirect(
 }
 
 // AdminUpdateContentS3 updates content to s3 bucket
-func (u *AdminContentConfigService) AdminUpdateContentS3(
-	namespace,
-	userId,
-	channelId,
-	contentId string,
-	body *ugcclientmodels.ModelsCreateContentRequestS3) (*ugcclientmodels.ModelsCreateContentResponse, error) {
-	token, err := u.TokenRepository.GetToken()
+func (a *AdminContentService) AdminUpdateContentS3(input *nr_admin_content.AdminUpdateContentS3Params) (*ugcclientmodels.ModelsCreateContentResponse, error) {
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	params := &nr.AdminUpdateContentS3Params{
-		Body:      body,
-		ChannelID: channelId,
-		ContentID: contentId,
-		Namespace: namespace,
-		UserID:    userId,
-	}
-	ok, badRequest, unauthorized, notFound, internalServer, err := u.UgcServiceClient.NrAdminContent.AdminUpdateContentS3(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, notFound, internalServer, err := a.Client.NrAdminContent.AdminUpdateContentS3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -401,21 +300,13 @@ func (u *AdminContentConfigService) AdminUpdateContentS3(
 }
 
 // AdminUploadContentDirect uploads content to a channel
-func (u *AdminContentConfigService) AdminUploadContentDirect(
-	namespace,
-	channelId string,
-	body *ugcclientmodels.ModelsCreateContentRequest) (*ugcclientmodels.ModelsCreateContentResponse, error) {
-	token, err := u.TokenRepository.GetToken()
+func (a *AdminContentService) AdminUploadContentDirect(input *nr_admin_content.AdminUploadContentDirectParams) (*ugcclientmodels.ModelsCreateContentResponse, error) {
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	params := &nr.AdminUploadContentDirectParams{
-		Body:      body,
-		ChannelID: channelId,
-		Namespace: namespace,
-	}
-	created, badRequest, unauthorized, internalServer, err := u.UgcServiceClient.NrAdminContent.AdminUploadContentDirect(params, client.BearerToken(*token.AccessToken))
+	created, badRequest, unauthorized, internalServer, err := a.Client.NrAdminContent.AdminUploadContentDirect(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -439,21 +330,13 @@ func (u *AdminContentConfigService) AdminUploadContentDirect(
 }
 
 // AdminUploadContentS3 uploads content to s3 bucket
-func (u *AdminContentConfigService) AdminUploadContentS3(
-	namespace,
-	channelId string,
-	body *ugcclientmodels.ModelsCreateContentRequestS3) (*ugcclientmodels.ModelsCreateContentResponse, error) {
-	token, err := u.TokenRepository.GetToken()
+func (a *AdminContentService) AdminUploadContentS3(input *nr_admin_content.AdminUploadContentS3Params) (*ugcclientmodels.ModelsCreateContentResponse, error) {
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	params := &nr.AdminUploadContentS3Params{
-		Body:      body,
-		ChannelID: channelId,
-		Namespace: namespace,
-	}
-	created, badRequest, unauthorized, internalServer, err := u.UgcServiceClient.NrAdminContent.AdminUploadContentS3(params, client.BearerToken(*token.AccessToken))
+	created, badRequest, unauthorized, internalServer, err := a.Client.NrAdminContent.AdminUploadContentS3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -477,18 +360,13 @@ func (u *AdminContentConfigService) AdminUploadContentS3(
 }
 
 // SingleAdminDeleteContent deletes content
-func (u *AdminContentConfigService) SingleAdminDeleteContent(namespace, channelId, contentId string) (*ugcclientmodels.ModelsCreateContentResponse, error) {
-	token, err := u.TokenRepository.GetToken()
+func (a *AdminContentService) SingleAdminDeleteContent(input *nr_admin_content.SingleAdminDeleteContentParams) (*ugcclientmodels.ModelsCreateContentResponse, error) {
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	params := &nr.SingleAdminDeleteContentParams{
-		ChannelID: channelId,
-		ContentID: contentId,
-		Namespace: namespace,
-	}
-	created, unauthorized, notFound, internalServer, err := u.UgcServiceClient.NrAdminContent.SingleAdminDeleteContent(params, client.BearerToken(*token.AccessToken))
+	created, unauthorized, notFound, internalServer, err := a.Client.NrAdminContent.SingleAdminDeleteContent(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -512,18 +390,13 @@ func (u *AdminContentConfigService) SingleAdminDeleteContent(namespace, channelI
 }
 
 // SingleAdminGetContent gets user's generated contents
-func (u *AdminContentConfigService) SingleAdminGetContent(namespace string, limit, offset *string) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
-	token, err := u.TokenRepository.GetToken()
+func (a *AdminContentService) SingleAdminGetContent(input *nr_admin_content.SingleAdminGetContentParams) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	params := &nr.SingleAdminGetContentParams{
-		Limit:     limit,
-		Namespace: namespace,
-		Offset:    offset,
-	}
-	ok, unauthorized, notFound, internalServer, err := u.UgcServiceClient.NrAdminContent.SingleAdminGetContent(params, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, notFound, internalServer, err := a.Client.NrAdminContent.SingleAdminGetContent(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -547,20 +420,13 @@ func (u *AdminContentConfigService) SingleAdminGetContent(namespace string, limi
 }
 
 // SingleAdminUpdateContentDirect updates content to a channel
-func (u *AdminContentConfigService) SingleAdminUpdateContentDirect(namespace, channelId, contentId string,
-	body *ugcclientmodels.ModelsCreateContentRequest) (*ugcclientmodels.ModelsCreateContentResponse, error) {
-	token, err := u.TokenRepository.GetToken()
+func (a *AdminContentService) SingleAdminUpdateContentDirect(input *nr_admin_content.SingleAdminUpdateContentDirectParams) (*ugcclientmodels.ModelsCreateContentResponse, error) {
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	params := &nr.SingleAdminUpdateContentDirectParams{
-		Body:      body,
-		ChannelID: channelId,
-		ContentID: contentId,
-		Namespace: namespace,
-	}
-	ok, badRequest, unauthorized, notFound, internalServer, err := u.UgcServiceClient.NrAdminContent.SingleAdminUpdateContentDirect(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, notFound, internalServer, err := a.Client.NrAdminContent.SingleAdminUpdateContentDirect(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -589,20 +455,13 @@ func (u *AdminContentConfigService) SingleAdminUpdateContentDirect(namespace, ch
 }
 
 // SingleAdminUpdateContentS3 updates content to s3 bucket
-func (u *AdminContentConfigService) SingleAdminUpdateContentS3(namespace, channelId, contentId string,
-	body *ugcclientmodels.ModelsCreateContentRequestS3) (*ugcclientmodels.ModelsCreateContentResponse, error) {
-	token, err := u.TokenRepository.GetToken()
+func (a *AdminContentService) SingleAdminUpdateContentS3(input *nr_admin_content.SingleAdminUpdateContentS3Params) (*ugcclientmodels.ModelsCreateContentResponse, error) {
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	params := &nr.SingleAdminUpdateContentS3Params{
-		Body:      body,
-		ChannelID: channelId,
-		ContentID: contentId,
-		Namespace: namespace,
-	}
-	ok, badRequest, unauthorized, notFound, internalServer, err := u.UgcServiceClient.NrAdminContent.SingleAdminUpdateContentS3(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, notFound, internalServer, err := a.Client.NrAdminContent.SingleAdminUpdateContentS3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))

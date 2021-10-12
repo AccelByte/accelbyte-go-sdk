@@ -1,32 +1,62 @@
-package service
+// Copyright (c) 2021 AccelByte Inc. All Rights Reserved.
+// This is licensed software from AccelByte Inc, for limitations
+// and restrictions contact your company contract manager.
+
+package ugc
 
 import (
 	"encoding/json"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient"
-	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/nr_public_group"
+	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/nr_admin_channel"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclientmodels"
 	"github.com/go-openapi/runtime/client"
 	"github.com/sirupsen/logrus"
 )
 
-type UGCPublicGroupService struct {
-	UgcServiceClient *ugcclient.JusticeUgcService
-	TokenRepository  repository.TokenRepository
+type AdminChannelService struct {
+	Client          *ugcclient.JusticeUgcService
+	TokenRepository repository.TokenRepository
 }
 
-func (u *UGCPublicGroupService) CreateGroup(body *ugcclientmodels.ModelsCreateGroupRequest, namespace, userID string) (*ugcclientmodels.ModelsCreateGroupResponse, error) {
+// AdminCreateChannel creates channel
+func (u *AdminChannelService) AdminCreateChannel(input *nr_admin_channel.AdminCreateChannelParams) (*ugcclientmodels.ModelsChannelResponse, error) {
 	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	params := &nr_public_group.CreateGroupParams{
-		Body:      body,
-		Namespace: namespace,
-		UserID:    userID,
+	created, unauthorized, notFound, internalServer, err := u.Client.NrAdminChannel.AdminCreateChannel(input, client.BearerToken(*token.AccessToken))
+	if unauthorized != nil {
+		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
+		logrus.Error(string(errorMsg))
+		return nil, unauthorized
 	}
-	ok, unauthorized, notFound, internalServer, err := u.UgcServiceClient.NrPublicGroup.CreateGroup(params, client.BearerToken(*token.AccessToken))
+	if notFound != nil {
+		errorMsg, _ := json.Marshal(*notFound.GetPayload())
+		logrus.Error(string(errorMsg))
+		return nil, notFound
+	}
+	if internalServer != nil {
+		errorMsg, _ := json.Marshal(*internalServer.GetPayload())
+		logrus.Error(string(errorMsg))
+		return nil, internalServer
+	}
+	if err != nil {
+		logrus.Error(err)
+		return nil, err
+	}
+	return created.GetPayload(), nil
+}
+
+// AdminDeleteChannel deletes channel
+func (u *AdminChannelService) AdminDeleteChannel(input *nr_admin_channel.AdminDeleteChannelParams) (*ugcclientmodels.ModelsChannelResponse, error) {
+	token, err := u.TokenRepository.GetToken()
+	if err != nil {
+		logrus.Error(err)
+		return nil, err
+	}
+	ok, unauthorized, notFound, internalServer, err := u.Client.NrAdminChannel.AdminDeleteChannel(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -49,52 +79,14 @@ func (u *UGCPublicGroupService) CreateGroup(body *ugcclientmodels.ModelsCreateGr
 	return ok.GetPayload(), nil
 }
 
-func (u *UGCPublicGroupService) DeleteGroup(groupID, namespace, userID string) error {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		logrus.Error(err)
-		return err
-	}
-	params := &nr_public_group.DeleteGroupParams{
-		GroupID:   groupID,
-		Namespace: namespace,
-		UserID:    userID,
-	}
-	_, unauthorized, notFound, internalServer, err := u.UgcServiceClient.NrPublicGroup.DeleteGroup(params, client.BearerToken(*token.AccessToken))
-	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
-		return unauthorized
-	}
-	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
-		return notFound
-	}
-	if internalServer != nil {
-		errorMsg, _ := json.Marshal(*internalServer.GetPayload())
-		logrus.Error(string(errorMsg))
-		return internalServer
-	}
-	if err != nil {
-		logrus.Error(err)
-		return err
-	}
-	return nil
-}
-
-func (u *UGCPublicGroupService) GetGroup(groupID, namespace, userID string) (*ugcclientmodels.ModelsCreateGroupResponse, error) {
+// AdminGetChannel gets channels
+func (u *AdminChannelService) AdminGetChannel(input *nr_admin_channel.AdminGetChannelParams) (*ugcclientmodels.ModelsPaginatedGetChannelResponse, error) {
 	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	params := &nr_public_group.GetGroupParams{
-		GroupID:   groupID,
-		Namespace: namespace,
-		UserID:    userID,
-	}
-	ok, unauthorized, notFound, internalServer, err := u.UgcServiceClient.NrPublicGroup.GetGroup(params, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, notFound, internalServer, err := u.Client.NrAdminChannel.AdminGetChannel(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -117,20 +109,19 @@ func (u *UGCPublicGroupService) GetGroup(groupID, namespace, userID string) (*ug
 	return ok.GetPayload(), nil
 }
 
-func (u *UGCPublicGroupService) GetGroupContent(groupID string, limit *string, namespace string, offset *string, userID string) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
+// AdminUpdateChannel updates channel
+func (u *AdminChannelService) AdminUpdateChannel(input *nr_admin_channel.AdminUpdateChannelParams) (*ugcclientmodels.ModelsChannelResponse, error) {
 	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	params := &nr_public_group.GetGroupContentParams{
-		GroupID:   groupID,
-		Limit:     limit,
-		Namespace: namespace,
-		Offset:    offset,
-		UserID:    userID,
+	ok, badRequest, unauthorized, notFound, internalServer, err := u.Client.NrAdminChannel.AdminUpdateChannel(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
+		logrus.Error(string(errorMsg))
+		return nil, badRequest
 	}
-	ok, unauthorized, notFound, internalServer, err := u.UgcServiceClient.NrPublicGroup.GetGroupContent(params, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -153,19 +144,14 @@ func (u *UGCPublicGroupService) GetGroupContent(groupID string, limit *string, n
 	return ok.GetPayload(), nil
 }
 
-func (u *UGCPublicGroupService) GetGroups(limit *string, namespace string, offset *string, userID string) (*ugcclientmodels.ModelsPaginatedGroupResponse, error) {
+// SingleAdminDeleteChannel deletes channel
+func (u *AdminChannelService) SingleAdminDeleteChannel(input *nr_admin_channel.SingleAdminDeleteChannelParams) (*ugcclientmodels.ModelsChannelResponse, error) {
 	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	params := &nr_public_group.GetGroupsParams{
-		Limit:     limit,
-		Namespace: namespace,
-		Offset:    offset,
-		UserID:    userID,
-	}
-	ok, unauthorized, notFound, internalServer, err := u.UgcServiceClient.NrPublicGroup.GetGroups(params, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, notFound, internalServer, err := u.Client.NrAdminChannel.SingleAdminDeleteChannel(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -188,19 +174,44 @@ func (u *UGCPublicGroupService) GetGroups(limit *string, namespace string, offse
 	return ok.GetPayload(), nil
 }
 
-func (u *UGCPublicGroupService) UpdateGroup(body *ugcclientmodels.ModelsCreateGroupRequest, groupID, namespace, userID string) (*ugcclientmodels.ModelsCreateGroupResponse, error) {
+// SingleAdminGetChannel gets channel
+func (u *AdminChannelService) SingleAdminGetChannel(input *nr_admin_channel.SingleAdminGetChannelParams) (*ugcclientmodels.ModelsPaginatedGetChannelResponse, error) {
 	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	params := &nr_public_group.UpdateGroupParams{
-		Body:      body,
-		GroupID:   groupID,
-		Namespace: namespace,
-		UserID:    userID,
+	ok, unauthorized, notFound, internalServer, err := u.Client.NrAdminChannel.SingleAdminGetChannel(input, client.BearerToken(*token.AccessToken))
+	if unauthorized != nil {
+		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
+		logrus.Error(string(errorMsg))
+		return nil, unauthorized
 	}
-	ok, badRequest, unauthorized, notFound, internalServer, err := u.UgcServiceClient.NrPublicGroup.UpdateGroup(params, client.BearerToken(*token.AccessToken))
+	if notFound != nil {
+		errorMsg, _ := json.Marshal(*notFound.GetPayload())
+		logrus.Error(string(errorMsg))
+		return nil, notFound
+	}
+	if internalServer != nil {
+		errorMsg, _ := json.Marshal(*internalServer.GetPayload())
+		logrus.Error(string(errorMsg))
+		return nil, internalServer
+	}
+	if err != nil {
+		logrus.Error(err)
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+// SingleAdminUpdateChannel updates channel
+func (u *AdminChannelService) SingleAdminUpdateChannel(input *nr_admin_channel.SingleAdminUpdateChannelParams) (*ugcclientmodels.ModelsChannelResponse, error) {
+	token, err := u.TokenRepository.GetToken()
+	if err != nil {
+		logrus.Error(err)
+		return nil, err
+	}
+	ok, badRequest, unauthorized, notFound, internalServer, err := u.Client.NrAdminChannel.SingleAdminUpdateChannel(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))

@@ -2,36 +2,31 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package service
+package ugc
 
 import (
 	"encoding/json"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient"
-	nr "github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/nr_public_like"
+	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/nr_public_like"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclientmodels"
 	"github.com/go-openapi/runtime/client"
 	"github.com/sirupsen/logrus"
 )
 
-type PublicLikeConfigService struct {
-	UgcServiceClient *ugcclient.JusticeUgcService
-	TokenRepository  repository.TokenRepository
+type PublicLikeService struct {
+	Client          *ugcclient.JusticeUgcService
+	TokenRepository repository.TokenRepository
 }
 
 // GetLikedContent gets liked contents
-func (u *PublicLikeConfigService) GetLikedContent(namespace string, limit, offset *string) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
+func (u *PublicLikeService) GetLikedContent(input *nr_public_like.GetLikedContentParams) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
 	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	params := &nr.GetLikedContentParams{
-		Limit:     limit,
-		Namespace: namespace,
-		Offset:    offset,
-	}
-	ok, unauthorized, notFound, internalServer, err := u.UgcServiceClient.NrPublicLike.GetLikedContent(params, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, notFound, internalServer, err := u.Client.NrPublicLike.GetLikedContent(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -55,18 +50,13 @@ func (u *PublicLikeConfigService) GetLikedContent(namespace string, limit, offse
 }
 
 // UpdateContentLikeStatus updates like unlike status to a content
-func (u *PublicLikeConfigService) UpdateContentLikeStatus(namespace, contentId string, body *ugcclientmodels.ModelsContentLikeRequest) (*ugcclientmodels.ModelsContentLikeResponse, error) {
+func (u *PublicLikeService) UpdateContentLikeStatus(input *nr_public_like.UpdateContentLikeStatusParams) (*ugcclientmodels.ModelsContentLikeResponse, error) {
 	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	params := &nr.UpdateContentLikeStatusParams{
-		Body:      body,
-		ContentID: contentId,
-		Namespace: namespace,
-	}
-	ok, unauthorized, notFound, internalServer, err := u.UgcServiceClient.NrPublicLike.UpdateContentLikeStatus(params, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, notFound, internalServer, err := u.Client.NrPublicLike.UpdateContentLikeStatus(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))

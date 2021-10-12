@@ -1,4 +1,4 @@
-package service
+package ugc
 
 import (
 	"encoding/json"
@@ -10,23 +10,18 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-type UGCPublicFollowService struct {
-	UgcServiceClient *ugcclient.JusticeUgcService
-	TokenRepository  repository.TokenRepository
+type PublicFollowService struct {
+	Client          *ugcclient.JusticeUgcService
+	TokenRepository repository.TokenRepository
 }
 
-func (u *UGCPublicFollowService) GetFollowedContent(limit *string, namespace string, offset *string) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
+func (u *PublicFollowService) GetFollowedContent(input *nr_public_follow.GetFollowedContentParams) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
 	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	params := &nr_public_follow.GetFollowedContentParams{
-		Limit:     limit,
-		Namespace: namespace,
-		Offset:    offset,
-	}
-	ok, unauthorized, notFound, internalServer, err := u.UgcServiceClient.NrPublicFollow.GetFollowedContent(params, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, notFound, internalServer, err := u.Client.NrPublicFollow.GetFollowedContent(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -49,18 +44,13 @@ func (u *UGCPublicFollowService) GetFollowedContent(limit *string, namespace str
 	return ok.GetPayload(), nil
 }
 
-func (u *UGCPublicFollowService) GetFollowedUsers(limit *string, namespace string, offset *string) (*ugcclientmodels.ModelsPaginatedCreatorOverviewResponse, error) {
+func (u *PublicFollowService) GetFollowedUsers(input *nr_public_follow.GetFollowedUsersParams) (*ugcclientmodels.ModelsPaginatedCreatorOverviewResponse, error) {
 	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	params := &nr_public_follow.GetFollowedUsersParams{
-		Limit:     limit,
-		Namespace: namespace,
-		Offset:    offset,
-	}
-	ok, unauthorized, notFound, internalServer, err := u.UgcServiceClient.NrPublicFollow.GetFollowedUsers(params, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, notFound, internalServer, err := u.Client.NrPublicFollow.GetFollowedUsers(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -83,18 +73,13 @@ func (u *UGCPublicFollowService) GetFollowedUsers(limit *string, namespace strin
 	return ok.GetPayload(), nil
 }
 
-func (u *UGCPublicFollowService) UpdateUserFollowStatus(body *ugcclientmodels.ModelsUserFollowRequest, namespace, userID string) (*ugcclientmodels.ModelsUserFollowResponse, error) {
+func (u *PublicFollowService) UpdateUserFollowStatus(input *nr_public_follow.UpdateUserFollowStatusParams) (*ugcclientmodels.ModelsUserFollowResponse, error) {
 	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	params := &nr_public_follow.UpdateUserFollowStatusParams{
-		Body:      body,
-		Namespace: namespace,
-		UserID:    userID,
-	}
-	ok, badRequest, unauthorized, notFound, internalServer, err := u.UgcServiceClient.NrPublicFollow.UpdateUserFollowStatus(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, notFound, internalServer, err := u.Client.NrPublicFollow.UpdateUserFollowStatus(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))

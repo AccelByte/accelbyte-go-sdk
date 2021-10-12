@@ -1,4 +1,4 @@
-package service
+package ugc
 
 import (
 	"encoding/json"
@@ -10,24 +10,18 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-type UGCPublicContentService struct {
-	UgcServiceClient *ugcclient.JusticeUgcService
-	TokenRepository  repository.TokenRepository
+type PublicContentService struct {
+	Client          *ugcclient.JusticeUgcService
+	TokenRepository repository.TokenRepository
 }
 
-func (u *UGCPublicContentService) CreateContentDirect(body *ugcclientmodels.ModelsCreateContentRequest, channelID, namespace, userID string) (*ugcclientmodels.ModelsCreateContentResponse, error) {
-	token, err := u.TokenRepository.GetToken()
+func (p *PublicContentService) CreateContentDirect(input *nr_public_content.CreateContentDirectParams) (*ugcclientmodels.ModelsCreateContentResponse, error) {
+	token, err := p.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	params := &nr_public_content.CreateContentDirectParams{
-		Body:      body,
-		ChannelID: channelID,
-		Namespace: namespace,
-		UserID:    userID,
-	}
-	created, badRequest, unauthorized, internalServer, err := u.UgcServiceClient.NrPublicContent.CreateContentDirect(params, client.BearerToken(*token.AccessToken))
+	created, badRequest, unauthorized, internalServer, err := p.Client.NrPublicContent.CreateContentDirect(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -50,19 +44,13 @@ func (u *UGCPublicContentService) CreateContentDirect(body *ugcclientmodels.Mode
 	return created.GetPayload(), nil
 }
 
-func (u *UGCPublicContentService) CreateContentS3(body *ugcclientmodels.ModelsCreateContentRequestS3, channelID, namespace, userID string) (*ugcclientmodels.ModelsCreateContentResponse, error) {
-	token, err := u.TokenRepository.GetToken()
+func (p *PublicContentService) CreateContentS3(input *nr_public_content.CreateContentS3Params) (*ugcclientmodels.ModelsCreateContentResponse, error) {
+	token, err := p.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	params := &nr_public_content.CreateContentS3Params{
-		Body:      body,
-		ChannelID: channelID,
-		Namespace: namespace,
-		UserID:    userID,
-	}
-	created, badRequest, unauthorized, internalServer, err := u.UgcServiceClient.NrPublicContent.CreateContentS3(params, client.BearerToken(*token.AccessToken))
+	created, badRequest, unauthorized, internalServer, err := p.Client.NrPublicContent.CreateContentS3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -85,19 +73,13 @@ func (u *UGCPublicContentService) CreateContentS3(body *ugcclientmodels.ModelsCr
 	return created.GetPayload(), nil
 }
 
-func (u *UGCPublicContentService) DeleteContent(channelID, contentID, namespace, userID string) error {
-	token, err := u.TokenRepository.GetToken()
+func (p *PublicContentService) DeleteContent(input *nr_public_content.DeleteContentParams) error {
+	token, err := p.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return err
 	}
-	params := &nr_public_content.DeleteContentParams{
-		ChannelID: channelID,
-		ContentID: contentID,
-		Namespace: namespace,
-		UserID:    userID,
-	}
-	_, badRequest, unauthorized, internalServer, err := u.UgcServiceClient.NrPublicContent.DeleteContent(params, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, internalServer, err := p.Client.NrPublicContent.DeleteContent(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -120,17 +102,13 @@ func (u *UGCPublicContentService) DeleteContent(channelID, contentID, namespace,
 	return nil
 }
 
-func (u *UGCPublicContentService) DownloadContentByShareCode(namespace, shareCode string) (*ugcclientmodels.ModelsContentDownloadResponse, error) {
-	token, err := u.TokenRepository.GetToken()
+func (p *PublicContentService) DownloadContentByShareCode(input *nr_public_content.DownloadContentByShareCodeParams) (*ugcclientmodels.ModelsContentDownloadResponse, error) {
+	token, err := p.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	params := &nr_public_content.DownloadContentByShareCodeParams{
-		Namespace: namespace,
-		ShareCode: shareCode,
-	}
-	ok, unauthorized, notFound, internalServer, err := u.UgcServiceClient.NrPublicContent.DownloadContentByShareCode(params, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, notFound, internalServer, err := p.Client.NrPublicContent.DownloadContentByShareCode(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -153,17 +131,13 @@ func (u *UGCPublicContentService) DownloadContentByShareCode(namespace, shareCod
 	return ok.GetPayload(), nil
 }
 
-func (u *UGCPublicContentService) PublicDownloadContentByContentID(contentID, namespace string) (*ugcclientmodels.ModelsContentDownloadResponse, error) {
-	token, err := u.TokenRepository.GetToken()
+func (p *PublicContentService) PublicDownloadContentByContentID(input *nr_public_content.PublicDownloadContentByContentIDParams) (*ugcclientmodels.ModelsContentDownloadResponse, error) {
+	token, err := p.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	params := &nr_public_content.PublicDownloadContentByContentIDParams{
-		ContentID: contentID,
-		Namespace: namespace,
-	}
-	ok, unauthorized, notFound, internalServer, err := u.UgcServiceClient.NrPublicContent.PublicDownloadContentByContentID(params, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, notFound, internalServer, err := p.Client.NrPublicContent.PublicDownloadContentByContentID(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -186,17 +160,13 @@ func (u *UGCPublicContentService) PublicDownloadContentByContentID(contentID, na
 	return ok.GetPayload(), nil
 }
 
-func (u *UGCPublicContentService) PublicDownloadContentPreview(contentID, namespace string) (*ugcclientmodels.ModelsGetContentPreviewResponse, error) {
-	token, err := u.TokenRepository.GetToken()
+func (p *PublicContentService) PublicDownloadContentPreview(input *nr_public_content.PublicDownloadContentPreviewParams) (*ugcclientmodels.ModelsGetContentPreviewResponse, error) {
+	token, err := p.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	params := &nr_public_content.PublicDownloadContentPreviewParams{
-		ContentID: contentID,
-		Namespace: namespace,
-	}
-	ok, unauthorized, notFound, internalServer, err := u.UgcServiceClient.NrPublicContent.PublicDownloadContentPreview(params, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, notFound, internalServer, err := p.Client.NrPublicContent.PublicDownloadContentPreview(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -219,19 +189,13 @@ func (u *UGCPublicContentService) PublicDownloadContentPreview(contentID, namesp
 	return ok.GetPayload(), nil
 }
 
-func (u *UGCPublicContentService) PublicGetUserContent(limit *string, namespace string, offset *string, userID string) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
-	token, err := u.TokenRepository.GetToken()
+func (p *PublicContentService) PublicGetUserContent(input *nr_public_content.PublicGetUserContentParams) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
+	token, err := p.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	params := &nr_public_content.PublicGetUserContentParams{
-		Limit:     limit,
-		Namespace: namespace,
-		Offset:    offset,
-		UserID:    userID,
-	}
-	ok, unauthorized, notFound, internalServer, err := u.UgcServiceClient.NrPublicContent.PublicGetUserContent(params, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, notFound, internalServer, err := p.Client.NrPublicContent.PublicGetUserContent(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -254,26 +218,13 @@ func (u *UGCPublicContentService) PublicGetUserContent(limit *string, namespace 
 	return ok.GetPayload(), nil
 }
 
-func (u *UGCPublicContentService) PublicSearchContent(creator, isOfficial, limit, name *string, namespace string, offset, orderBy, sortBy, subType, tags, type_ *string) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
-	token, err := u.TokenRepository.GetToken()
+func (p *PublicContentService) PublicSearchContent(input *nr_public_content.PublicSearchContentParams) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
+	token, err := p.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	params := &nr_public_content.PublicSearchContentParams{
-		Creator:    creator,
-		Isofficial: isOfficial,
-		Limit:      limit,
-		Name:       name,
-		Namespace:  namespace,
-		Offset:     offset,
-		Orderby:    orderBy,
-		Sortby:     sortBy,
-		Subtype:    subType,
-		Tags:       tags,
-		Type:       type_,
-	}
-	ok, unauthorized, notFound, internalServer, err := u.UgcServiceClient.NrPublicContent.PublicSearchContent(params, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, notFound, internalServer, err := p.Client.NrPublicContent.PublicSearchContent(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -296,27 +247,13 @@ func (u *UGCPublicContentService) PublicSearchContent(creator, isOfficial, limit
 	return ok.GetPayload(), nil
 }
 
-func (u *UGCPublicContentService) SearchChannelSpecificContent(channelID string, creator, isOfficial, limit, name *string, namespace string, offset, orderBy, sortBy, subType, tags, type_ *string) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
-	token, err := u.TokenRepository.GetToken()
+func (p *PublicContentService) SearchChannelSpecificContent(input *nr_public_content.SearchChannelSpecificContentParams) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
+	token, err := p.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	params := &nr_public_content.SearchChannelSpecificContentParams{
-		ChannelID:  channelID,
-		Creator:    creator,
-		Isofficial: isOfficial,
-		Limit:      limit,
-		Name:       name,
-		Namespace:  namespace,
-		Offset:     offset,
-		Orderby:    orderBy,
-		Sortby:     sortBy,
-		Subtype:    subType,
-		Tags:       tags,
-		Type:       type_,
-	}
-	ok, unauthorized, notFound, internalServer, err := u.UgcServiceClient.NrPublicContent.SearchChannelSpecificContent(params, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, notFound, internalServer, err := p.Client.NrPublicContent.SearchChannelSpecificContent(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -339,20 +276,13 @@ func (u *UGCPublicContentService) SearchChannelSpecificContent(channelID string,
 	return ok.GetPayload(), nil
 }
 
-func (u *UGCPublicContentService) UpdateContentDirect(body *ugcclientmodels.ModelsCreateContentRequest, channelID, contentID, namespace, userID string) (*ugcclientmodels.ModelsCreateContentResponse, error) {
-	token, err := u.TokenRepository.GetToken()
+func (p *PublicContentService) UpdateContentDirect(input *nr_public_content.UpdateContentDirectParams) (*ugcclientmodels.ModelsCreateContentResponse, error) {
+	token, err := p.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	params := &nr_public_content.UpdateContentDirectParams{
-		Body:      body,
-		ChannelID: channelID,
-		ContentID: contentID,
-		Namespace: namespace,
-		UserID:    userID,
-	}
-	ok, badRequest, unauthorized, notFound, internalServer, err := u.UgcServiceClient.NrPublicContent.UpdateContentDirect(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, notFound, internalServer, err := p.Client.NrPublicContent.UpdateContentDirect(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -380,20 +310,13 @@ func (u *UGCPublicContentService) UpdateContentDirect(body *ugcclientmodels.Mode
 	return ok.GetPayload(), nil
 }
 
-func (u *UGCPublicContentService) UpdateContentS3(body *ugcclientmodels.ModelsCreateContentRequestS3, channelID, contentID, namespace, userID string) (*ugcclientmodels.ModelsCreateContentResponse, error) {
-	token, err := u.TokenRepository.GetToken()
+func (p *PublicContentService) UpdateContentS3(input *nr_public_content.UpdateContentS3Params) (*ugcclientmodels.ModelsCreateContentResponse, error) {
+	token, err := p.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	params := &nr_public_content.UpdateContentS3Params{
-		Body:      body,
-		ChannelID: channelID,
-		ContentID: contentID,
-		Namespace: namespace,
-		UserID:    userID,
-	}
-	ok, badRequest, unauthorized, notFound, internalServer, err := u.UgcServiceClient.NrPublicContent.UpdateContentS3(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, notFound, internalServer, err := p.Client.NrPublicContent.UpdateContentS3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))

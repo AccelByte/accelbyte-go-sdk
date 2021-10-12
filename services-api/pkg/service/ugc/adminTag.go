@@ -2,35 +2,31 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package service
+package ugc
 
 import (
 	"encoding/json"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient"
-	nr "github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/nr_admin_type"
+	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/nr_admin_tag"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclientmodels"
 	"github.com/go-openapi/runtime/client"
 	"github.com/sirupsen/logrus"
 )
 
-type AdminTypeConfigService struct {
-	UgcServiceClient *ugcclient.JusticeUgcService
-	TokenRepository  repository.TokenRepository
+type AdminTagService struct {
+	Client          *ugcclient.JusticeUgcService
+	TokenRepository repository.TokenRepository
 }
 
-// AdminCreateType creates types
-func (u *AdminTypeConfigService) AdminCreateType(namespace string, body *ugcclientmodels.ModelsCreateTypeRequest) (*ugcclientmodels.ModelsCreateTypeResponse, error) {
-	token, err := u.TokenRepository.GetToken()
+// AdminCreateTag creates tags
+func (a *AdminTagService) AdminCreateTag(input *nr_admin_tag.AdminCreateTagParams) (*ugcclientmodels.ModelsCreateTagResponse, error) {
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	params := &nr.AdminCreateTypeParams{
-		Body:      body,
-		Namespace: namespace,
-	}
-	created, badRequest, unauthorized, conflict, internalServer, err := u.UgcServiceClient.NrAdminType.AdminCreateType(params, client.BearerToken(*token.AccessToken))
+	created, badRequest, unauthorized, conflict, internalServer, err := a.Client.NrAdminTag.AdminCreateTag(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -58,18 +54,14 @@ func (u *AdminTypeConfigService) AdminCreateType(namespace string, body *ugcclie
 	return created.GetPayload(), nil
 }
 
-// AdminDeleteType deletes types
-func (u *AdminTypeConfigService) AdminDeleteType(namespace, typeId string) error {
-	token, err := u.TokenRepository.GetToken()
+// AdminDeleteTag deletes tags
+func (a *AdminTagService) AdminDeleteTag(input *nr_admin_tag.AdminDeleteTagParams) error {
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return err
 	}
-	params := &nr.AdminDeleteTypeParams{
-		Namespace: namespace,
-		TypeID:    typeId,
-	}
-	_, unauthorized, notFound, internalServer, err := u.UgcServiceClient.NrAdminType.AdminDeleteType(params, client.BearerToken(*token.AccessToken))
+	_, unauthorized, notFound, internalServer, err := a.Client.NrAdminTag.AdminDeleteTag(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -92,19 +84,14 @@ func (u *AdminTypeConfigService) AdminDeleteType(namespace, typeId string) error
 	return nil
 }
 
-// AdminGetType gets types
-func (u *AdminTypeConfigService) AdminGetType(namespace string, limit, offset *string) (*ugcclientmodels.ModelsPaginatedGetTypeResponse, error) {
-	token, err := u.TokenRepository.GetToken()
+// AdminGetTag gets tags
+func (a *AdminTagService) AdminGetTag(input *nr_admin_tag.AdminGetTagParams) (*ugcclientmodels.ModelsPaginatedGetTagResponse, error) {
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	params := &nr.AdminGetTypeParams{
-		Limit:     limit,
-		Namespace: namespace,
-		Offset:    offset,
-	}
-	ok, unauthorized, notFound, internalServer, err := u.UgcServiceClient.NrAdminType.AdminGetType(params, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, notFound, internalServer, err := a.Client.NrAdminTag.AdminGetTag(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -127,19 +114,14 @@ func (u *AdminTypeConfigService) AdminGetType(namespace string, limit, offset *s
 	return ok.GetPayload(), nil
 }
 
-// AdminUpdateType updates type
-func (u *AdminTypeConfigService) AdminUpdateType(namespace, typeId string, body *ugcclientmodels.ModelsCreateTypeRequest) (*ugcclientmodels.ModelsCreateTypeResponse, error) {
-	token, err := u.TokenRepository.GetToken()
+// AdminUpdateTag updates tag
+func (a *AdminTagService) AdminUpdateTag(input *nr_admin_tag.AdminUpdateTagParams) (*ugcclientmodels.ModelsCreateTagResponse, error) {
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	params := &nr.AdminUpdateTypeParams{
-		Body:      body,
-		Namespace: namespace,
-		TypeID:    typeId,
-	}
-	ok, badRequest, unauthorized, notFound, conflict, internalServer, err := u.UgcServiceClient.NrAdminType.AdminUpdateType(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, notFound, conflict, internalServer, err := a.Client.NrAdminTag.AdminUpdateTag(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))

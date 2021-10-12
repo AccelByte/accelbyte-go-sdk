@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package service
+package ugc
 
 import (
 	"encoding/json"
@@ -15,22 +15,17 @@ import (
 )
 
 type PublicChannelService struct {
-	UgcServiceClient *ugcclient.JusticeUgcService
-	TokenRepository  repository.TokenRepository
+	Client          *ugcclient.JusticeUgcService
+	TokenRepository repository.TokenRepository
 }
 
-func (u *PublicChannelService) CreateChannel(body *ugcclientmodels.ModelsChannelRequest, namespace, userId string) (*ugcclientmodels.ModelsChannelResponse, error) {
+func (u *PublicChannelService) CreateChannel(input *nr_public_channel.CreateChannelParams) (*ugcclientmodels.ModelsChannelResponse, error) {
 	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	params := &nr_public_channel.CreateChannelParams{
-		Body:      body,
-		Namespace: namespace,
-		UserID:    userId,
-	}
-	created, badRequest, unauthorized, internalServer, err := u.UgcServiceClient.NrPublicChannel.CreateChannel(params, client.BearerToken(*token.AccessToken))
+	created, badRequest, unauthorized, internalServer, err := u.Client.NrPublicChannel.CreateChannel(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -53,18 +48,13 @@ func (u *PublicChannelService) CreateChannel(body *ugcclientmodels.ModelsChannel
 	return created.GetPayload(), nil
 }
 
-func (u *PublicChannelService) DeleteChannel(channelID, namespace, userId string) (*ugcclientmodels.ModelsChannelResponse, error) {
+func (u *PublicChannelService) DeleteChannel(input *nr_public_channel.DeleteChannelParams) (*ugcclientmodels.ModelsChannelResponse, error) {
 	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	params := &nr_public_channel.DeleteChannelParams{
-		ChannelID: channelID,
-		Namespace: namespace,
-		UserID:    userId,
-	}
-	ok, unauthorized, notFound, internalServer, err := u.UgcServiceClient.NrPublicChannel.DeleteChannel(params, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, notFound, internalServer, err := u.Client.NrPublicChannel.DeleteChannel(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -87,19 +77,13 @@ func (u *PublicChannelService) DeleteChannel(channelID, namespace, userId string
 	return ok.GetPayload(), nil
 }
 
-func (u *PublicChannelService) GetChannels(limit *string, namespace string, offset *string, userID string) (*ugcclientmodels.ModelsPaginatedGetChannelResponse, error) {
+func (u *PublicChannelService) GetChannels(input *nr_public_channel.GetChannelsParams) (*ugcclientmodels.ModelsPaginatedGetChannelResponse, error) {
 	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	params := &nr_public_channel.GetChannelsParams{
-		Limit:     limit,
-		Namespace: namespace,
-		Offset:    offset,
-		UserID:    userID,
-	}
-	ok, unauthorized, notFound, internalServer, err := u.UgcServiceClient.NrPublicChannel.GetChannels(params, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, notFound, internalServer, err := u.Client.NrPublicChannel.GetChannels(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -122,19 +106,13 @@ func (u *PublicChannelService) GetChannels(limit *string, namespace string, offs
 	return ok.GetPayload(), nil
 }
 
-func (u *PublicChannelService) UpdateChannel(body *ugcclientmodels.ModelsChannelRequest, channelID, namespace, userID string) (*ugcclientmodels.ModelsChannelResponse, error) {
+func (u *PublicChannelService) UpdateChannel(input *nr_public_channel.UpdateChannelParams) (*ugcclientmodels.ModelsChannelResponse, error) {
 	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	params := &nr_public_channel.UpdateChannelParams{
-		Body:      body,
-		ChannelID: channelID,
-		Namespace: namespace,
-		UserID:    userID,
-	}
-	ok, badRequest, unauthorized, notFound, internalServer, err := u.UgcServiceClient.NrPublicChannel.UpdateChannel(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, notFound, internalServer, err := u.Client.NrPublicChannel.UpdateChannel(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))

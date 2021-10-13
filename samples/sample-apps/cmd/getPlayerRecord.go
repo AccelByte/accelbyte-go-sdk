@@ -5,8 +5,9 @@ package cmd
 
 import (
 	"encoding/json"
+	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclient/public_player_record"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/cloudsave"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 
@@ -22,11 +23,16 @@ var getPlayerRecordCmd = &cobra.Command{
 		key := cmd.Flag("key").Value.String()
 		namespace := cmd.Flag("namespace").Value.String()
 		userId := cmd.Flag("userId").Value.String()
-		cloudSaveService := &service.CloudSaveService{
-			CloudSaveServiceClient: factory.NewCloudSaveClient(&repository.ConfigRepositoryImpl{}),
+		cloudSaveService := &cloudsave.PublicPlayerRecordService{
+			Client: factory.NewCloudSaveClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository:        &repository.TokenRepositoryImpl{},
 		}
-		playerRecords, err := cloudSaveService.GetPlayerPublicRecordHandlerV1(userId, namespace, key)
+		input := &public_player_record.GetPlayerPublicRecordHandlerV1Params{
+			UserID: userId,
+			Namespace: namespace,
+			Key: key,
+		}
+		playerRecords, err := cloudSaveService.GetPlayerPublicRecordHandlerV1(input)
 		if err != nil {
 			return err
 		}

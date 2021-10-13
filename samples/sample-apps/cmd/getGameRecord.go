@@ -5,8 +5,9 @@ package cmd
 
 import (
 	"encoding/json"
+	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclient/public_game_record"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/cloudsave"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 
@@ -26,11 +27,15 @@ to quickly create a Cobra application.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		key := cmd.Flag("key").Value.String()
 		namespace := cmd.Flag("namespace").Value.String()
-		cloudSaveService := &service.CloudSaveService{
-			CloudSaveServiceClient: factory.NewCloudSaveClient(&repository.ConfigRepositoryImpl{}),
-			TokenRepository:        &repository.TokenRepositoryImpl{},
+		cloudSaveService := &cloudsave.PublicGameRecordService{
+			Client:          factory.NewCloudSaveClient(&repository.ConfigRepositoryImpl{}),
+			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		gameRecords, err := cloudSaveService.GetGameRecordHandlerV1(key, namespace)
+		input := &public_game_record.GetGameRecordHandlerV1Params{
+			Namespace: namespace,
+			Key:       key,
+		}
+		gameRecords, err := cloudSaveService.GetGameRecordHandlerV1(input)
 		if err != nil {
 			return err
 		}

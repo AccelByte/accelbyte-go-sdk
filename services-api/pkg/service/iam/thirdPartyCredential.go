@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package service
+package iam
 
 import (
 	"encoding/json"
@@ -15,25 +15,17 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-// all need to be updated
-
 type ThirdPartyCredentialService struct {
-	TokenRepository repository.TokenRepository
-	IamClient       *iamclient.JusticeIamService
+	Client    repository.TokenRepository
+	IamClient *iamclient.JusticeIamService
 }
 
-func (thirdPartyCredentialService *ThirdPartyCredentialService) AddThirdPartyLoginPlatformCredentialV3(namespace string, platformID string, modelThirdPartyLoginPlatformCredentialRequest *iamclientmodels.ModelThirdPartyLoginPlatformCredentialRequest) (*iamclientmodels.ModelThirdPartyLoginPlatformCredentialResponse, error) {
-	accessToken, err := thirdPartyCredentialService.TokenRepository.GetToken()
+func (t *ThirdPartyCredentialService) AddThirdPartyLoginPlatformCredentialV3(input *third_party_credential.AddThirdPartyLoginPlatformCredentialV3Params) (*iamclientmodels.ModelThirdPartyLoginPlatformCredentialResponse, error) {
+	accessToken, err := t.Client.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &third_party_credential.AddThirdPartyLoginPlatformCredentialV3Params{
-		Body:       modelThirdPartyLoginPlatformCredentialRequest,
-		Namespace:  namespace,
-		PlatformID: platformID,
-	}
-	ok, badRequest, unauthorized, forbidden, internalServerError, err := thirdPartyCredentialService.IamClient.ThirdPartyCredential.AddThirdPartyLoginPlatformCredentialV3(params, client.BearerToken(*accessToken.AccessToken))
-
+	ok, badRequest, unauthorized, forbidden, internalServerError, err := t.IamClient.ThirdPartyCredential.AddThirdPartyLoginPlatformCredentialV3(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -60,16 +52,12 @@ func (thirdPartyCredentialService *ThirdPartyCredentialService) AddThirdPartyLog
 	return ok.GetPayload(), nil
 }
 
-func (thirdPartyCredentialService *ThirdPartyCredentialService) DeleteThirdPartyLoginPlatformCredentialV3(namespace string, platformID string) error {
-	accessToken, err := thirdPartyCredentialService.TokenRepository.GetToken()
+func (t *ThirdPartyCredentialService) DeleteThirdPartyLoginPlatformCredentialV3(input *third_party_credential.DeleteThirdPartyLoginPlatformCredentialV3Params) error {
+	accessToken, err := t.Client.GetToken()
 	if err != nil {
 		return err
 	}
-	params := &third_party_credential.DeleteThirdPartyLoginPlatformCredentialV3Params{
-		Namespace:  namespace,
-		PlatformID: platformID,
-	}
-	_, unauthorized, forbidden, notFound, internalServerError, err := thirdPartyCredentialService.IamClient.ThirdPartyCredential.DeleteThirdPartyLoginPlatformCredentialV3(params, client.BearerToken(*accessToken.AccessToken))
+	_, unauthorized, forbidden, notFound, internalServerError, err := t.IamClient.ThirdPartyCredential.DeleteThirdPartyLoginPlatformCredentialV3(input, client.BearerToken(*accessToken.AccessToken))
 	if unauthorized != nil {
 		errorMsg := "unauthorized"
 		logrus.Error(errorMsg)
@@ -96,15 +84,12 @@ func (thirdPartyCredentialService *ThirdPartyCredentialService) DeleteThirdParty
 	return nil
 }
 
-func (thirdPartyCredentialService *ThirdPartyCredentialService) RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3(namespace string) ([]*iamclientmodels.ModelPublicThirdPartyPlatformInfo, error) {
-	accessToken, err := thirdPartyCredentialService.TokenRepository.GetToken()
+func (t *ThirdPartyCredentialService) RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3(input *third_party_credential.RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Params) ([]*iamclientmodels.ModelPublicThirdPartyPlatformInfo, error) {
+	accessToken, err := t.Client.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &third_party_credential.RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Params{
-		Namespace: namespace,
-	}
-	ok, unauthorized, forbidden, notFound, internalServerError, err := thirdPartyCredentialService.IamClient.ThirdPartyCredential.RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3(params, client.BearerToken(*accessToken.AccessToken))
+	ok, unauthorized, forbidden, notFound, internalServerError, err := t.IamClient.ThirdPartyCredential.RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3(input, client.BearerToken(*accessToken.AccessToken))
 	if unauthorized != nil {
 		errorMsg := "unauthorized"
 		logrus.Error(errorMsg)
@@ -131,15 +116,12 @@ func (thirdPartyCredentialService *ThirdPartyCredentialService) RetrieveAllActiv
 	return ok.GetPayload(), nil
 }
 
-func (thirdPartyCredentialService *ThirdPartyCredentialService) RetrieveAllActiveThirdPartyLoginPlatformCredentialV3(namespace string) ([]*iamclientmodels.ModelThirdPartyLoginPlatformCredentialResponse, error) {
-	accessToken, err := thirdPartyCredentialService.TokenRepository.GetToken()
+func (t *ThirdPartyCredentialService) RetrieveAllActiveThirdPartyLoginPlatformCredentialV3(input *third_party_credential.RetrieveAllActiveThirdPartyLoginPlatformCredentialV3Params) ([]*iamclientmodels.ModelThirdPartyLoginPlatformCredentialResponse, error) {
+	accessToken, err := t.Client.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &third_party_credential.RetrieveAllActiveThirdPartyLoginPlatformCredentialV3Params{
-		Namespace: namespace,
-	}
-	ok, unauthorized, forbidden, notFound, internalServerError, err := thirdPartyCredentialService.IamClient.ThirdPartyCredential.RetrieveAllActiveThirdPartyLoginPlatformCredentialV3(params, client.BearerToken(*accessToken.AccessToken))
+	ok, unauthorized, forbidden, notFound, internalServerError, err := t.IamClient.ThirdPartyCredential.RetrieveAllActiveThirdPartyLoginPlatformCredentialV3(input, client.BearerToken(*accessToken.AccessToken))
 	if unauthorized != nil {
 		errorMsg := "unauthorized"
 		logrus.Error(errorMsg)
@@ -166,15 +148,12 @@ func (thirdPartyCredentialService *ThirdPartyCredentialService) RetrieveAllActiv
 	return ok.GetPayload(), nil
 }
 
-func (thirdPartyCredentialService *ThirdPartyCredentialService) RetrieveAllThirdPartyLoginPlatformCredentialV3(namespace string) ([]*iamclientmodels.ModelThirdPartyLoginPlatformCredentialResponse, error) {
-	accessToken, err := thirdPartyCredentialService.TokenRepository.GetToken()
+func (t *ThirdPartyCredentialService) RetrieveAllThirdPartyLoginPlatformCredentialV3(input *third_party_credential.RetrieveAllThirdPartyLoginPlatformCredentialV3Params) ([]*iamclientmodels.ModelThirdPartyLoginPlatformCredentialResponse, error) {
+	accessToken, err := t.Client.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &third_party_credential.RetrieveAllThirdPartyLoginPlatformCredentialV3Params{
-		Namespace: namespace,
-	}
-	ok, unauthorized, forbidden, notFound, internalServerError, err := thirdPartyCredentialService.IamClient.ThirdPartyCredential.RetrieveAllThirdPartyLoginPlatformCredentialV3(params, client.BearerToken(*accessToken.AccessToken))
+	ok, unauthorized, forbidden, notFound, internalServerError, err := t.IamClient.ThirdPartyCredential.RetrieveAllThirdPartyLoginPlatformCredentialV3(input, client.BearerToken(*accessToken.AccessToken))
 	if unauthorized != nil {
 		errorMsg := "unauthorized"
 		logrus.Error(errorMsg)
@@ -201,15 +180,12 @@ func (thirdPartyCredentialService *ThirdPartyCredentialService) RetrieveAllThird
 	return ok.GetPayload(), nil
 }
 
-func (thirdPartyCredentialService *ThirdPartyCredentialService) RetrieveThirdPartyLoginPlatformCredentialV3(namespace string) (*iamclientmodels.ModelThirdPartyLoginPlatformCredentialResponse, error) {
-	accessToken, err := thirdPartyCredentialService.TokenRepository.GetToken()
+func (t *ThirdPartyCredentialService) RetrieveThirdPartyLoginPlatformCredentialV3(input *third_party_credential.RetrieveThirdPartyLoginPlatformCredentialV3Params) (*iamclientmodels.ModelThirdPartyLoginPlatformCredentialResponse, error) {
+	accessToken, err := t.Client.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &third_party_credential.RetrieveThirdPartyLoginPlatformCredentialV3Params{
-		Namespace: namespace,
-	}
-	ok, unauthorized, forbidden, notFound, internalServerError, err := thirdPartyCredentialService.IamClient.ThirdPartyCredential.RetrieveThirdPartyLoginPlatformCredentialV3(params, client.BearerToken(*accessToken.AccessToken))
+	ok, unauthorized, forbidden, notFound, internalServerError, err := t.IamClient.ThirdPartyCredential.RetrieveThirdPartyLoginPlatformCredentialV3(input, client.BearerToken(*accessToken.AccessToken))
 	if unauthorized != nil {
 		errorMsg := "unauthorized"
 		logrus.Error(errorMsg)
@@ -236,17 +212,12 @@ func (thirdPartyCredentialService *ThirdPartyCredentialService) RetrieveThirdPar
 	return ok.GetPayload(), nil
 }
 
-func (thirdPartyCredentialService *ThirdPartyCredentialService) UpdateThirdPartyLoginPlatformCredentialV3(namespace string, platformID string, modelThirdPartyLoginPlatformCredentialRequest *iamclientmodels.ModelThirdPartyLoginPlatformCredentialRequest) (*iamclientmodels.ModelThirdPartyLoginPlatformCredentialResponse, error) {
-	accessToken, err := thirdPartyCredentialService.TokenRepository.GetToken()
+func (t *ThirdPartyCredentialService) UpdateThirdPartyLoginPlatformCredentialV3(input *third_party_credential.UpdateThirdPartyLoginPlatformCredentialV3Params) (*iamclientmodels.ModelThirdPartyLoginPlatformCredentialResponse, error) {
+	accessToken, err := t.Client.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &third_party_credential.UpdateThirdPartyLoginPlatformCredentialV3Params{
-		Namespace:  namespace,
-		PlatformID: platformID,
-		Body:       modelThirdPartyLoginPlatformCredentialRequest,
-	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := thirdPartyCredentialService.IamClient.ThirdPartyCredential.UpdateThirdPartyLoginPlatformCredentialV3(params, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := t.IamClient.ThirdPartyCredential.UpdateThirdPartyLoginPlatformCredentialV3(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))

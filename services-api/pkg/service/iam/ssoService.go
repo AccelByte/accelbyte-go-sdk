@@ -1,7 +1,7 @@
 // Copyright (c) 2021 AccelByte Inc. All Rights Reserved.
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
-package service
+package iam
 
 import (
 	"encoding/json"
@@ -14,23 +14,18 @@ import (
 )
 
 type SSOService struct {
-	IamService       *iamclient.JusticeIamService
-	ConfigRepository repository.ConfigRepository
-	TokenRepository  repository.TokenRepository
+	Client          *iamclient.JusticeIamService
+	TokenRepository repository.TokenRepository
 }
 
-// LoginSSOClient is used to logins to SSO client with provided platform Id
-func (ssoService *SSOService) LoginSSOClient(platformID string, payload *string) error {
-	token, err := ssoService.TokenRepository.GetToken()
+// LoginSSOClient is used to login to SSO client with provided platformId
+func (s *SSOService) LoginSSOClient(input *s_s_o.LoginSSOClientParams) error {
+	token, err := s.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return err
 	}
-	params := &s_s_o.LoginSSOClientParams{
-		Payload:    payload,
-		PlatformID: platformID,
-	}
-	_, err = ssoService.IamService.Sso.LoginSSOClient(params, client.BearerToken(*token.AccessToken))
+	_, err = s.Client.Sso.LoginSSOClient(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		logrus.Error(err)
 		return err
@@ -40,16 +35,13 @@ func (ssoService *SSOService) LoginSSOClient(platformID string, payload *string)
 }
 
 // LogoutSSOClient is used to logout user's session on platform that logged in using SSO
-func (ssoService *SSOService) LogoutSSOClient(platformID string) error {
-	token, err := ssoService.TokenRepository.GetToken()
+func (s *SSOService) LogoutSSOClient(input *s_s_o.LogoutSSOClientParams) error {
+	token, err := s.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return err
 	}
-	params := &s_s_o.LogoutSSOClientParams{
-		PlatformID: platformID,
-	}
-	_, notFound, unprocessableEntity, internalServer, err := ssoService.IamService.Sso.LogoutSSOClient(params, client.BearerToken(*token.AccessToken))
+	_, notFound, unprocessableEntity, internalServer, err := s.Client.Sso.LogoutSSOClient(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		errorMsg, _ := json.Marshal(*notFound.GetPayload())
 		logrus.Error(string(errorMsg))

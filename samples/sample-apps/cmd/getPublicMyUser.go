@@ -20,7 +20,7 @@ var getPublicMyUserCmd = &cobra.Command{
 	Long:  `Get public my user`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		userService := &service.UserService{
-			IamService:      factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
+			Client:          factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		user, err := userService.PublicGetMyUserV3()

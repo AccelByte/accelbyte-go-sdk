@@ -20,7 +20,7 @@ var deleteUserCmd = &cobra.Command{
 		namespace := cmd.Flag("namespace").Value.String()
 		userId := cmd.Flag("userId").Value.String()
 		userService := &service.UserService{
-			IamService:      factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
+			Client:          factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		err := userService.AdminDeleteUserInformationV3(namespace, userId)

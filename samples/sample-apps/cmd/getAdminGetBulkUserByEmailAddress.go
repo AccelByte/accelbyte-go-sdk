@@ -27,7 +27,7 @@ var getAdminGetBulkUserByEmailAddressCmd = &cobra.Command{
 			return err
 		}
 		userService := &service.UserService{
-			IamService:      factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
+			Client:          factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		user, err := userService.AdminGetBulkUserByEmailAddressV3(namespace, listEmailAddressRequests)

@@ -26,7 +26,7 @@ var deleteUserPermissionCmd = &cobra.Command{
 			return errAction
 		}
 		userService := &service.UserService{
-			IamService:      factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
+			Client:          factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		err := userService.AdminDeleteUserPermissionV3(namespace, userId, resource, action)

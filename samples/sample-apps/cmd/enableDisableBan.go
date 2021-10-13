@@ -24,7 +24,7 @@ var enableDisableBanCmd = &cobra.Command{
 		enable, _ := cmd.Flags().GetBool("enable")
 		skipNotif, _ := cmd.Flags().GetBool("skipNotif")
 		userService := &service.UserService{
-			IamService:      factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
+			Client:          factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		users, err := userService.AdminUpdateUserBanV3(namespace, userId, banId, &enable, &skipNotif)

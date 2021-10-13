@@ -30,7 +30,7 @@ var getAdminSearchUserCmd = &cobra.Command{
 			return err
 		}
 		userService := &service.UserService{
-			IamService:      factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
+			Client:          factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		user, err := userService.AdminSearchUserV3(namespace, &by, &offset, &endDate, &query, &startDate, &limit)

@@ -29,7 +29,7 @@ var deleteUserPermissionsBulkCmd = &cobra.Command{
 			return errBody
 		}
 		userService := &service.UserService{
-			IamService:      factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
+			Client:          factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		err := userService.AdminDeleteUserPermissionBulkV3(namespace, userId, body)

@@ -26,7 +26,7 @@ var addUserBanCmd = &cobra.Command{
 		reason := cmd.Flag("reason").Value.String()
 		skipNotif, _ := cmd.Flags().GetBool("skipNotif")
 		userService := &service.UserService{
-			IamService:      factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
+			Client:          factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		users, err := userService.AdminBanUserV3(namespace, userId, &ban, &comment, &endDate, &reason, &skipNotif)

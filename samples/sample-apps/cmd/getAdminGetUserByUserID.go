@@ -22,7 +22,7 @@ var getAdminUserByUserIDCmd = &cobra.Command{
 		namespace := cmd.Flag("namespace").Value.String()
 		userId := cmd.Flag("userId").Value.String()
 		userService := &service.UserService{
-			IamService:      factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
+			Client:          factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		user, err := userService.AdminGetUserByUserIDV3(namespace, userId)

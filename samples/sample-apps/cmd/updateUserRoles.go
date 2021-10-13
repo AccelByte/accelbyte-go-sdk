@@ -29,7 +29,7 @@ var addUserRolesCmd = &cobra.Command{
 			return errBody
 		}
 		userService := &service.UserService{
-			IamService:      factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
+			Client:          factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		err := userService.AdminSaveUserRoleV3(namespace, userId, body)

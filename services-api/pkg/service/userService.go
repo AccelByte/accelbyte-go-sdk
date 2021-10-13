@@ -6,27 +6,21 @@ package service
 import (
 	"encoding/json"
 	"errors"
-	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclient"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient"
-	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth2_0"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/runtime/client"
 	"github.com/sirupsen/logrus"
 )
 
 type UserService struct {
-	IamService      *iamclient.JusticeIamService
-	BasicService    *basicclient.JusticeBasicService
-	OAuth20Service  *iam.OAuth20Service
+	Client          *iamclient.JusticeIamService
 	TokenRepository repository.TokenRepository
 }
 
 // PublicCreateUserV3 is used to create user. Support accepting agreements for the created user. Supply the accepted agreements in acceptedPolicies attribute.
-func (userService *UserService) PublicCreateUserV3(namespace, displayName, birthDate, email, countryId, password string) (*iamclientmodels.ModelUserCreateResponseV3, error) {
+func (u *UserService) PublicCreateUserV3(namespace, displayName, birthDate, email, countryId, password string) (*iamclientmodels.ModelUserCreateResponseV3, error) {
 	authType := "EMAILPASSWD"
 	param := &users.PublicCreateUserV3Params{
 		Body: &iamclientmodels.ModelUserCreateRequestV3{
@@ -39,7 +33,7 @@ func (userService *UserService) PublicCreateUserV3(namespace, displayName, birth
 		},
 		Namespace: namespace,
 	}
-	created, badRequest, notFound, conflict, internalServerError, err := userService.IamService.Users.PublicCreateUserV3(param, nil)
+	created, badRequest, notFound, conflict, internalServerError, err := u.Client.Users.PublicCreateUserV3(param, nil)
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -77,7 +71,7 @@ func (userService *UserService) PublicCreateUserV3(namespace, displayName, birth
 }
 
 // PublicUserVerificationV3 is used to redeem verification code sent to user
-func (userService *UserService) PublicUserVerificationV3(code, contactType, namespace string) error {
+func (u *UserService) PublicUserVerificationV3(code, contactType, namespace string) error {
 	logrus.Infof("Invoke VerifyToken with parameter %v %v %v", code, contactType, namespace)
 	param := &users.PublicUserVerificationV3Params{
 		Body: &iamclientmodels.ModelUserVerificationRequestV3{
@@ -86,12 +80,12 @@ func (userService *UserService) PublicUserVerificationV3(code, contactType, name
 		},
 		Namespace: namespace,
 	}
-	accessToken, err := userService.TokenRepository.GetToken()
+	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
 	_, badRequest, unauthorized, forbidden, conflict, err :=
-		userService.IamService.Users.PublicUserVerificationV3(param, client.BearerToken(*accessToken.AccessToken))
+		u.Client.Users.PublicUserVerificationV3(param, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -121,8 +115,8 @@ func (userService *UserService) PublicUserVerificationV3(code, contactType, name
 }
 
 // ListAdminsV3 is used to get list of admins by admin
-func (userService *UserService) ListAdminsV3(namespace string, after, before *string, limit *int64) (*iamclientmodels.ModelGetUsersResponseWithPaginationV3, error) {
-	accessToken, err := userService.TokenRepository.GetToken()
+func (u *UserService) ListAdminsV3(namespace string, after, before *string, limit *int64) (*iamclientmodels.ModelGetUsersResponseWithPaginationV3, error) {
+	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
@@ -133,7 +127,7 @@ func (userService *UserService) ListAdminsV3(namespace string, after, before *st
 		Namespace: namespace,
 	}
 	ok, unauthorized, forbidden, internalServer, err :=
-		userService.IamService.Users.ListAdminsV3(param, client.BearerToken(*accessToken.AccessToken))
+		u.Client.Users.ListAdminsV3(param, client.BearerToken(*accessToken.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -160,8 +154,8 @@ func (userService *UserService) ListAdminsV3(namespace string, after, before *st
 }
 
 // AdminGetAgeRestrictionStatusV3 is used to get age restriction status
-func (userService *UserService) AdminGetAgeRestrictionStatusV3(namespace string) (*iamclientmodels.ModelAgeRestrictionResponseV3, error) {
-	accessToken, err := userService.TokenRepository.GetToken()
+func (u *UserService) AdminGetAgeRestrictionStatusV3(namespace string) (*iamclientmodels.ModelAgeRestrictionResponseV3, error) {
+	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
@@ -169,7 +163,7 @@ func (userService *UserService) AdminGetAgeRestrictionStatusV3(namespace string)
 		Namespace: namespace,
 	}
 	ok, badRequest, unauthorized, forbidden, notFound, internalServer, err :=
-		userService.IamService.Users.AdminGetAgeRestrictionStatusV3(param, client.BearerToken(*accessToken.AccessToken))
+		u.Client.Users.AdminGetAgeRestrictionStatusV3(param, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -206,8 +200,8 @@ func (userService *UserService) AdminGetAgeRestrictionStatusV3(namespace string)
 }
 
 // AdminUpdateAgeRestrictionConfigV3 is used to update age restriction config value
-func (userService *UserService) AdminUpdateAgeRestrictionConfigV3(namespace string, ageRestriction *int32, enable *bool) (*iamclientmodels.ModelAgeRestrictionResponseV3, error) {
-	accessToken, err := userService.TokenRepository.GetToken()
+func (u *UserService) AdminUpdateAgeRestrictionConfigV3(namespace string, ageRestriction *int32, enable *bool) (*iamclientmodels.ModelAgeRestrictionResponseV3, error) {
+	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
@@ -219,7 +213,7 @@ func (userService *UserService) AdminUpdateAgeRestrictionConfigV3(namespace stri
 		Namespace: namespace,
 	}
 	ok, badRequest, unauthorized, forbidden, internalServer, err :=
-		userService.IamService.Users.AdminUpdateAgeRestrictionConfigV3(param, client.BearerToken(*accessToken.AccessToken))
+		u.Client.Users.AdminUpdateAgeRestrictionConfigV3(param, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -251,8 +245,8 @@ func (userService *UserService) AdminUpdateAgeRestrictionConfigV3(namespace stri
 }
 
 // AdminGetListCountryAgeRestrictionV3 is used to get age restriction country list
-func (userService *UserService) AdminGetListCountryAgeRestrictionV3(namespace string) ([]*iamclientmodels.ModelCountryV3Response, error) {
-	accessToken, err := userService.TokenRepository.GetToken()
+func (u *UserService) AdminGetListCountryAgeRestrictionV3(namespace string) ([]*iamclientmodels.ModelCountryV3Response, error) {
+	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
@@ -260,7 +254,7 @@ func (userService *UserService) AdminGetListCountryAgeRestrictionV3(namespace st
 		Namespace: namespace,
 	}
 	ok, badRequest, unauthorized, forbidden, internalServer, err :=
-		userService.IamService.Users.AdminGetListCountryAgeRestrictionV3(param, client.BearerToken(*accessToken.AccessToken))
+		u.Client.Users.AdminGetListCountryAgeRestrictionV3(param, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -292,8 +286,8 @@ func (userService *UserService) AdminGetListCountryAgeRestrictionV3(namespace st
 }
 
 // AdminUpdateCountryAgeRestrictionV3 is used to get age restriction country list
-func (userService *UserService) AdminUpdateCountryAgeRestrictionV3(namespace, countryCode string, ageRestriction *int32) (*iamclientmodels.ModelCountryV3Response, error) {
-	accessToken, err := userService.TokenRepository.GetToken()
+func (u *UserService) AdminUpdateCountryAgeRestrictionV3(namespace, countryCode string, ageRestriction *int32) (*iamclientmodels.ModelCountryV3Response, error) {
+	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
@@ -305,7 +299,7 @@ func (userService *UserService) AdminUpdateCountryAgeRestrictionV3(namespace, co
 		Namespace:   namespace,
 	}
 	ok, badRequest, unauthorized, forbidden, internalServer, notFound, err :=
-		userService.IamService.Users.AdminUpdateCountryAgeRestrictionV3(param, client.BearerToken(*accessToken.AccessToken))
+		u.Client.Users.AdminUpdateCountryAgeRestrictionV3(param, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -342,8 +336,8 @@ func (userService *UserService) AdminUpdateCountryAgeRestrictionV3(namespace, co
 }
 
 // GetAdminUsersByRoleIDV3 is used to get list of admin users which have the roleId
-func (userService *UserService) GetAdminUsersByRoleIDV3(namespace, roleId string, after, before, limit *int64) (*iamclientmodels.ModelGetUsersResponseWithPaginationV3, error) {
-	accessToken, err := userService.TokenRepository.GetToken()
+func (u *UserService) GetAdminUsersByRoleIDV3(namespace, roleId string, after, before, limit *int64) (*iamclientmodels.ModelGetUsersResponseWithPaginationV3, error) {
+	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
@@ -355,7 +349,7 @@ func (userService *UserService) GetAdminUsersByRoleIDV3(namespace, roleId string
 		RoleID:    roleId,
 	}
 	ok, badRequest, unauthorized, forbidden, notFound, internalServer, err :=
-		userService.IamService.Users.GetAdminUsersByRoleIDV3(param, client.BearerToken(*accessToken.AccessToken))
+		u.Client.Users.GetAdminUsersByRoleIDV3(param, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -390,8 +384,8 @@ func (userService *UserService) GetAdminUsersByRoleIDV3(namespace, roleId string
 }
 
 // AdminGetUserByEmailAddressV3 is used to get users by email
-func (userService *UserService) AdminGetUserByEmailAddressV3(namespace string, emailAddress *string) (*iamclientmodels.ModelUserResponseV3, error) {
-	accessToken, err := userService.TokenRepository.GetToken()
+func (u *UserService) AdminGetUserByEmailAddressV3(namespace string, emailAddress *string) (*iamclientmodels.ModelUserResponseV3, error) {
+	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
@@ -400,7 +394,7 @@ func (userService *UserService) AdminGetUserByEmailAddressV3(namespace string, e
 		Namespace:    namespace,
 	}
 	ok, badRequest, unauthorized, forbidden, notFound, internalServer, err :=
-		userService.IamService.Users.AdminGetUserByEmailAddressV3(param, client.BearerToken(*accessToken.AccessToken))
+		u.Client.Users.AdminGetUserByEmailAddressV3(param, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -437,8 +431,8 @@ func (userService *UserService) AdminGetUserByEmailAddressV3(namespace string, e
 }
 
 // AdminInviteUserV3 is used to invite admin user and assign role to them
-func (userService *UserService) AdminInviteUserV3(namespace string, emailAddresses, roles []string) (*iamclientmodels.ModelInviteAdminResponseV3, error) {
-	accessToken, err := userService.TokenRepository.GetToken()
+func (u *UserService) AdminInviteUserV3(namespace string, emailAddresses, roles []string) (*iamclientmodels.ModelInviteAdminResponseV3, error) {
+	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
@@ -450,7 +444,7 @@ func (userService *UserService) AdminInviteUserV3(namespace string, emailAddress
 		Namespace: namespace,
 	}
 	created, badRequest, notFound, conflict, unprocessableEntity, internalServer, err :=
-		userService.IamService.Users.AdminInviteUserV3(param, client.BearerToken(*accessToken.AccessToken))
+		u.Client.Users.AdminInviteUserV3(param, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -487,8 +481,8 @@ func (userService *UserService) AdminInviteUserV3(namespace string, emailAddress
 }
 
 // AdminListUsersV3 is used to get list of users ID and namespace with their Justice platform account, under a namespace
-func (userService *UserService) AdminListUsersV3(namespace string, limit, offset *int64) (*iamclientmodels.AccountcommonListUsersWithPlatformAccountsResponse, error) {
-	accessToken, err := userService.TokenRepository.GetToken()
+func (u *UserService) AdminListUsersV3(namespace string, limit, offset *int64) (*iamclientmodels.AccountcommonListUsersWithPlatformAccountsResponse, error) {
+	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
@@ -498,7 +492,7 @@ func (userService *UserService) AdminListUsersV3(namespace string, limit, offset
 		Offset:    offset,
 	}
 	ok, badRequest, unauthorized, forbidden, internalServer, err :=
-		userService.IamService.Users.AdminListUsersV3(param, client.BearerToken(*accessToken.AccessToken))
+		u.Client.Users.AdminListUsersV3(param, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -530,8 +524,8 @@ func (userService *UserService) AdminListUsersV3(namespace string, limit, offset
 }
 
 // AdminSearchUserV3 is used to search user
-func (userService *UserService) AdminSearchUserV3(namespace string, by, endDate, offset, query, startDate *string, limit *int64) (*iamclientmodels.ModelSearchUsersResponseWithPaginationV3, error) {
-	accessToken, err := userService.TokenRepository.GetToken()
+func (u *UserService) AdminSearchUserV3(namespace string, by, endDate, offset, query, startDate *string, limit *int64) (*iamclientmodels.ModelSearchUsersResponseWithPaginationV3, error) {
+	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
@@ -545,7 +539,7 @@ func (userService *UserService) AdminSearchUserV3(namespace string, by, endDate,
 		StartDate: startDate,
 	}
 	ok, badRequest, unauthorized, forbidden, internalServer, err :=
-		userService.IamService.Users.AdminSearchUserV3(param, client.BearerToken(*accessToken.AccessToken))
+		u.Client.Users.AdminSearchUserV3(param, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -575,8 +569,8 @@ func (userService *UserService) AdminSearchUserV3(namespace string, by, endDate,
 }
 
 // AdminGetBulkUserByEmailAddressV3 is used to get bulk user by email address
-func (userService *UserService) AdminGetBulkUserByEmailAddressV3(namespace string, listEmailAddressRequest []string) (*iamclientmodels.ModelListUserResponseV3, error) {
-	accessToken, err := userService.TokenRepository.GetToken()
+func (u *UserService) AdminGetBulkUserByEmailAddressV3(namespace string, listEmailAddressRequest []string) (*iamclientmodels.ModelListUserResponseV3, error) {
+	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
@@ -587,7 +581,7 @@ func (userService *UserService) AdminGetBulkUserByEmailAddressV3(namespace strin
 		Namespace: namespace,
 	}
 	ok, badRequest, unauthorized, forbidden, notFound, internalServer, err :=
-		userService.IamService.Users.AdminGetBulkUserByEmailAddressV3(param, client.BearerToken(*accessToken.AccessToken))
+		u.Client.Users.AdminGetBulkUserByEmailAddressV3(param, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -624,8 +618,8 @@ func (userService *UserService) AdminGetBulkUserByEmailAddressV3(namespace strin
 }
 
 // AdminGetUserByUserIDV3 is used to get user by userId
-func (userService *UserService) AdminGetUserByUserIDV3(namespace, userId string) (*iamclientmodels.ModelUserResponseV3, error) {
-	accessToken, err := userService.TokenRepository.GetToken()
+func (u *UserService) AdminGetUserByUserIDV3(namespace, userId string) (*iamclientmodels.ModelUserResponseV3, error) {
+	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
@@ -634,7 +628,7 @@ func (userService *UserService) AdminGetUserByUserIDV3(namespace, userId string)
 		UserID:    userId,
 	}
 	ok, badRequest, unauthorized, forbidden, notFound, internalServer, err :=
-		userService.IamService.Users.AdminGetUserByUserIDV3(param, client.BearerToken(*accessToken.AccessToken))
+		u.Client.Users.AdminGetUserByUserIDV3(param, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -671,8 +665,8 @@ func (userService *UserService) AdminGetUserByUserIDV3(namespace, userId string)
 }
 
 // AdminUpdateUserV3 is used to update user by userId
-func (userService *UserService) AdminUpdateUserV3(namespace, userId, country, dateOfBirth, displayName, languageTag, userName string) (*iamclientmodels.ModelUserResponseV3, error) {
-	accessToken, err := userService.TokenRepository.GetToken()
+func (u *UserService) AdminUpdateUserV3(namespace, userId, country, dateOfBirth, displayName, languageTag, userName string) (*iamclientmodels.ModelUserResponseV3, error) {
+	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
@@ -688,7 +682,7 @@ func (userService *UserService) AdminUpdateUserV3(namespace, userId, country, da
 		UserID:    userId,
 	}
 	ok, badRequest, unauthorized, forbidden, notFound, conflict, internalServer, err :=
-		userService.IamService.Users.AdminUpdateUserV3(param, client.BearerToken(*accessToken.AccessToken))
+		u.Client.Users.AdminUpdateUserV3(param, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -728,8 +722,8 @@ func (userService *UserService) AdminUpdateUserV3(namespace, userId, country, da
 }
 
 // AdminGetUserBanV3 is to get the first page of the data if after and before parameters is empty
-func (userService *UserService) AdminGetUserBanV3(namespace, userId string, after, before *string, activeOnly *bool, limit *int64) (*iamclientmodels.ModelGetUserBanV3Response, error) {
-	accessToken, err := userService.TokenRepository.GetToken()
+func (u *UserService) AdminGetUserBanV3(namespace, userId string, after, before *string, activeOnly *bool, limit *int64) (*iamclientmodels.ModelGetUserBanV3Response, error) {
+	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
@@ -742,7 +736,7 @@ func (userService *UserService) AdminGetUserBanV3(namespace, userId string, afte
 		UserID:     userId,
 	}
 	ok, badRequest, unauthorized, forbidden, notFound, err :=
-		userService.IamService.Users.AdminGetUserBanV3(param, client.BearerToken(*accessToken.AccessToken))
+		u.Client.Users.AdminGetUserBanV3(param, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -774,9 +768,9 @@ func (userService *UserService) AdminGetUserBanV3(namespace, userId string, afte
 }
 
 // AdminBanUserV3 is used to ban a single user with specific type of ban
-func (userService *UserService) AdminBanUserV3(namespace, userId string, ban, comment,
+func (u *UserService) AdminBanUserV3(namespace, userId string, ban, comment,
 	endDate, reason *string, skipNotif *bool) (*iamclientmodels.ModelUserBanResponseV3, error) {
-	accessToken, err := userService.TokenRepository.GetToken()
+	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
@@ -792,7 +786,7 @@ func (userService *UserService) AdminBanUserV3(namespace, userId string, ban, co
 		UserID:    userId,
 	}
 	created, badRequest, unauthorized, forbidden, notFound, err :=
-		userService.IamService.Users.AdminBanUserV3(param, client.BearerToken(*accessToken.AccessToken))
+		u.Client.Users.AdminBanUserV3(param, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -824,8 +818,8 @@ func (userService *UserService) AdminBanUserV3(namespace, userId string, ban, co
 }
 
 // AdminUpdateUserBanV3 is used to update enable or disable ban for single user
-func (userService *UserService) AdminUpdateUserBanV3(namespace, userId, banId string, enabled, skipNotif *bool) (*iamclientmodels.ModelUserBanResponseV3, error) {
-	accessToken, err := userService.TokenRepository.GetToken()
+func (u *UserService) AdminUpdateUserBanV3(namespace, userId, banId string, enabled, skipNotif *bool) (*iamclientmodels.ModelUserBanResponseV3, error) {
+	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
@@ -839,7 +833,7 @@ func (userService *UserService) AdminUpdateUserBanV3(namespace, userId, banId st
 		BanID:     banId,
 	}
 	ok, badRequest, unauthorized, forbidden, notFound, internalServer, err :=
-		userService.IamService.Users.AdminUpdateUserBanV3(param, client.BearerToken(*accessToken.AccessToken))
+		u.Client.Users.AdminUpdateUserBanV3(param, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -876,8 +870,8 @@ func (userService *UserService) AdminUpdateUserBanV3(namespace, userId, banId st
 }
 
 // AdminSendVerificationCodeV3 is used to send verification code to user
-func (userService *UserService) AdminSendVerificationCodeV3(namespace, userId, context, languageTag string, emailAddress *string) error {
-	accessToken, err := userService.TokenRepository.GetToken()
+func (u *UserService) AdminSendVerificationCodeV3(namespace, userId, context, languageTag string, emailAddress *string) error {
+	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
@@ -891,7 +885,7 @@ func (userService *UserService) AdminSendVerificationCodeV3(namespace, userId, c
 		UserID:    userId,
 	}
 	_, badRequest, unauthorized, forbidden, notFound, conflict, tooManyRequest, err :=
-		userService.IamService.Users.AdminSendVerificationCodeV3(param, client.BearerToken(*accessToken.AccessToken))
+		u.Client.Users.AdminSendVerificationCodeV3(param, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -930,8 +924,8 @@ func (userService *UserService) AdminSendVerificationCodeV3(namespace, userId, c
 }
 
 // AdminVerifyAccountV3 is used to verify account by validating verification code
-func (userService *UserService) AdminVerifyAccountV3(namespace, userId string, code, contactType, languageTag *string) error {
-	accessToken, err := userService.TokenRepository.GetToken()
+func (u *UserService) AdminVerifyAccountV3(namespace, userId string, code, contactType, languageTag *string) error {
+	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
@@ -945,7 +939,7 @@ func (userService *UserService) AdminVerifyAccountV3(namespace, userId string, c
 		UserID:    userId,
 	}
 	_, badRequest, unauthorized, forbidden, notFound, internalServer, err :=
-		userService.IamService.Users.AdminVerifyAccountV3(param, client.BearerToken(*accessToken.AccessToken))
+		u.Client.Users.AdminVerifyAccountV3(param, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -969,8 +963,8 @@ func (userService *UserService) AdminVerifyAccountV3(namespace, userId string, c
 }
 
 // GetUserVerificationCodeV3 is used to get verification code sent to user. [WARNING] This endpoint is only for testing purpose.
-func (userService *UserService) GetUserVerificationCodeV3(namespace, userId string) (*iamclientmodels.ModelVerificationCodeResponse, error) {
-	accessToken, err := userService.TokenRepository.GetToken()
+func (u *UserService) GetUserVerificationCodeV3(namespace, userId string) (*iamclientmodels.ModelVerificationCodeResponse, error) {
+	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
@@ -979,7 +973,7 @@ func (userService *UserService) GetUserVerificationCodeV3(namespace, userId stri
 		UserID:    userId,
 	}
 	ok, badRequest, unauthorized, forbidden, notFound, err :=
-		userService.IamService.Users.GetUserVerificationCode(param, client.BearerToken(*accessToken.AccessToken))
+		u.Client.Users.GetUserVerificationCode(param, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -1003,8 +997,8 @@ func (userService *UserService) GetUserVerificationCodeV3(namespace, userId stri
 }
 
 // AdminGetUserDeletionStatusV3 is to get user deletion status
-func (userService *UserService) AdminGetUserDeletionStatusV3(namespace, userId string) (*iamclientmodels.ModelUserDeletionStatusResponse, error) {
-	accessToken, err := userService.TokenRepository.GetToken()
+func (u *UserService) AdminGetUserDeletionStatusV3(namespace, userId string) (*iamclientmodels.ModelUserDeletionStatusResponse, error) {
+	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
@@ -1013,7 +1007,7 @@ func (userService *UserService) AdminGetUserDeletionStatusV3(namespace, userId s
 		UserID:    userId,
 	}
 	ok, unauthorized, forbidden, notFound, internalServer, err :=
-		userService.IamService.Users.AdminGetUserDeletionStatusV3(param, client.BearerToken(*accessToken.AccessToken))
+		u.Client.Users.AdminGetUserDeletionStatusV3(param, client.BearerToken(*accessToken.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -1045,8 +1039,8 @@ func (userService *UserService) AdminGetUserDeletionStatusV3(namespace, userId s
 }
 
 // AdminUpdateUserDeletionStatusV3 is used to update user deletion status
-func (userService *UserService) AdminUpdateUserDeletionStatusV3(namespace, userId string, enabled *bool) error {
-	accessToken, err := userService.TokenRepository.GetToken()
+func (u *UserService) AdminUpdateUserDeletionStatusV3(namespace, userId string, enabled *bool) error {
+	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
@@ -1056,7 +1050,7 @@ func (userService *UserService) AdminUpdateUserDeletionStatusV3(namespace, userI
 		Body:      &iamclientmodels.ModelUpdateUserDeletionStatusRequest{Enabled: enabled},
 	}
 	_, badRequest, unauthorized, forbidden, notFound, internalServer, err :=
-		userService.IamService.Users.AdminUpdateUserDeletionStatusV3(param, client.BearerToken(*accessToken.AccessToken))
+		u.Client.Users.AdminUpdateUserDeletionStatusV3(param, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -1090,9 +1084,9 @@ func (userService *UserService) AdminUpdateUserDeletionStatusV3(namespace, userI
 }
 
 // AdminUpgradeHeadlessAccountV3 is used to upgrade headless account with verification code
-func (userService *UserService) AdminUpgradeHeadlessAccountV3(namespace, userId, country, dateOfBirth, displayName string,
+func (u *UserService) AdminUpgradeHeadlessAccountV3(namespace, userId, country, dateOfBirth, displayName string,
 	code, emailAddress, password *string) (*iamclientmodels.ModelUserResponseV3, error) {
-	accessToken, err := userService.TokenRepository.GetToken()
+	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
@@ -1109,7 +1103,7 @@ func (userService *UserService) AdminUpgradeHeadlessAccountV3(namespace, userId,
 		UserID:    userId,
 	}
 	ok, badRequest, unauthorized, forbidden, notFound, conflict, internalServer, err :=
-		userService.IamService.Users.AdminUpgradeHeadlessAccountV3(param, client.BearerToken(*accessToken.AccessToken))
+		u.Client.Users.AdminUpgradeHeadlessAccountV3(param, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -1149,8 +1143,8 @@ func (userService *UserService) AdminUpgradeHeadlessAccountV3(namespace, userId,
 }
 
 // AdminDeleteUserInformationV3 is used to delete user's information
-func (userService *UserService) AdminDeleteUserInformationV3(namespace, userId string) error {
-	accessToken, err := userService.TokenRepository.GetToken()
+func (u *UserService) AdminDeleteUserInformationV3(namespace, userId string) error {
+	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
@@ -1159,7 +1153,7 @@ func (userService *UserService) AdminDeleteUserInformationV3(namespace, userId s
 		UserID:    userId,
 	}
 	_, unauthorized, forbidden, notFound, err :=
-		userService.IamService.Users.AdminDeleteUserInformationV3(param, client.BearerToken(*accessToken.AccessToken))
+		u.Client.Users.AdminDeleteUserInformationV3(param, client.BearerToken(*accessToken.AccessToken))
 	if unauthorized != nil {
 		return unauthorized
 	}
@@ -1178,8 +1172,8 @@ func (userService *UserService) AdminDeleteUserInformationV3(namespace, userId s
 }
 
 // AdminGetUserLoginHistoriesV3 is used to get user's login histories
-func (userService *UserService) AdminGetUserLoginHistoriesV3(namespace, userId string, after, before, limit *float64) (*iamclientmodels.ModelLoginHistoriesResponse, error) {
-	accessToken, err := userService.TokenRepository.GetToken()
+func (u *UserService) AdminGetUserLoginHistoriesV3(namespace, userId string, after, before, limit *float64) (*iamclientmodels.ModelLoginHistoriesResponse, error) {
+	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
@@ -1191,7 +1185,7 @@ func (userService *UserService) AdminGetUserLoginHistoriesV3(namespace, userId s
 		UserID:    userId,
 	}
 	ok, unauthorized, forbidden, notFound, err :=
-		userService.IamService.Users.AdminGetUserLoginHistoriesV3(param, client.BearerToken(*accessToken.AccessToken))
+		u.Client.Users.AdminGetUserLoginHistoriesV3(param, client.BearerToken(*accessToken.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -1212,8 +1206,8 @@ func (userService *UserService) AdminGetUserLoginHistoriesV3(namespace, userId s
 }
 
 // AdminUpdateUserPermissionV3 is used to update user permissions
-func (userService *UserService) AdminUpdateUserPermissionV3(namespace, userId string, permissions []*iamclientmodels.AccountcommonPermission) error {
-	accessToken, err := userService.TokenRepository.GetToken()
+func (u *UserService) AdminUpdateUserPermissionV3(namespace, userId string, permissions []*iamclientmodels.AccountcommonPermission) error {
+	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
@@ -1223,7 +1217,7 @@ func (userService *UserService) AdminUpdateUserPermissionV3(namespace, userId st
 		Body:      &iamclientmodels.AccountcommonPermissions{Permissions: permissions},
 	}
 	_, badRequest, unauthorized, forbidden, notFound, err :=
-		userService.IamService.Users.AdminUpdateUserPermissionV3(param, client.BearerToken(*accessToken.AccessToken))
+		u.Client.Users.AdminUpdateUserPermissionV3(param, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -1244,8 +1238,8 @@ func (userService *UserService) AdminUpdateUserPermissionV3(namespace, userId st
 }
 
 // AdminAddUserPermissionsV3 is used to add user permissions
-func (userService *UserService) AdminAddUserPermissionsV3(namespace, userId string, permissions []*iamclientmodels.AccountcommonPermission) error {
-	accessToken, err := userService.TokenRepository.GetToken()
+func (u *UserService) AdminAddUserPermissionsV3(namespace, userId string, permissions []*iamclientmodels.AccountcommonPermission) error {
+	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
@@ -1255,7 +1249,7 @@ func (userService *UserService) AdminAddUserPermissionsV3(namespace, userId stri
 		Body:      &iamclientmodels.AccountcommonPermissions{Permissions: permissions},
 	}
 	_, badRequest, unauthorized, forbidden, notFound, err :=
-		userService.IamService.Users.AdminAddUserPermissionsV3(param, client.BearerToken(*accessToken.AccessToken))
+		u.Client.Users.AdminAddUserPermissionsV3(param, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -1276,8 +1270,8 @@ func (userService *UserService) AdminAddUserPermissionsV3(namespace, userId stri
 }
 
 // AdminDeleteUserPermissionBulkV3 is used to delete user permission
-func (userService *UserService) AdminDeleteUserPermissionBulkV3(namespace, userId string, body []*iamclientmodels.ModelPermissionDeleteRequest) error {
-	accessToken, err := userService.TokenRepository.GetToken()
+func (u *UserService) AdminDeleteUserPermissionBulkV3(namespace, userId string, body []*iamclientmodels.ModelPermissionDeleteRequest) error {
+	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
@@ -1287,7 +1281,7 @@ func (userService *UserService) AdminDeleteUserPermissionBulkV3(namespace, userI
 		UserID:    userId,
 	}
 	_, badRequest, unauthorized, forbidden, notFound, err :=
-		userService.IamService.Users.AdminDeleteUserPermissionBulkV3(param, client.BearerToken(*accessToken.AccessToken))
+		u.Client.Users.AdminDeleteUserPermissionBulkV3(param, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -1308,8 +1302,8 @@ func (userService *UserService) AdminDeleteUserPermissionBulkV3(namespace, userI
 }
 
 // AdminDeleteUserPermissionV3 delete user permission action
-func (userService *UserService) AdminDeleteUserPermissionV3(namespace, userId, resource string, action int64) error {
-	accessToken, err := userService.TokenRepository.GetToken()
+func (u *UserService) AdminDeleteUserPermissionV3(namespace, userId, resource string, action int64) error {
+	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
@@ -1320,7 +1314,7 @@ func (userService *UserService) AdminDeleteUserPermissionV3(namespace, userId, r
 		UserID:    userId,
 	}
 	_, badRequest, unauthorized, forbidden, notFound, err :=
-		userService.IamService.Users.AdminDeleteUserPermissionV3(param, client.BearerToken(*accessToken.AccessToken))
+		u.Client.Users.AdminDeleteUserPermissionV3(param, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -1341,8 +1335,8 @@ func (userService *UserService) AdminDeleteUserPermissionV3(namespace, userId, r
 }
 
 // AdminGetUserPlatformAccountsV3 is used to get platform accounts linked to the user
-func (userService *UserService) AdminGetUserPlatformAccountsV3(namespace, userId string, after, before *string, limit *int64) (*iamclientmodels.AccountcommonUserLinkedPlatformsResponseV3, error) {
-	accessToken, err := userService.TokenRepository.GetToken()
+func (u *UserService) AdminGetUserPlatformAccountsV3(namespace, userId string, after, before *string, limit *int64) (*iamclientmodels.AccountcommonUserLinkedPlatformsResponseV3, error) {
+	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
@@ -1354,7 +1348,7 @@ func (userService *UserService) AdminGetUserPlatformAccountsV3(namespace, userId
 		UserID:    userId,
 	}
 	ok, badRequest, unauthorized, forbidden, notFound, err :=
-		userService.IamService.Users.AdminGetUserPlatformAccountsV3(param, client.BearerToken(*accessToken.AccessToken))
+		u.Client.Users.AdminGetUserPlatformAccountsV3(param, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -1386,8 +1380,8 @@ func (userService *UserService) AdminGetUserPlatformAccountsV3(namespace, userId
 }
 
 // AdminCreateJusticeUser is to create platform justice user from publisher user
-func (userService *UserService) AdminCreateJusticeUser(namespace, targetNamespace, userId string) (*iamclientmodels.ModelCreateJusticeUserResponse, error) {
-	accessToken, err := userService.TokenRepository.GetToken()
+func (u *UserService) AdminCreateJusticeUser(namespace, targetNamespace, userId string) (*iamclientmodels.ModelCreateJusticeUserResponse, error) {
+	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
@@ -1397,7 +1391,7 @@ func (userService *UserService) AdminCreateJusticeUser(namespace, targetNamespac
 		UserID:          userId,
 	}
 	created, badRequest, unauthorized, forbidden, notFound, internalServerError, err :=
-		userService.IamService.Users.AdminCreateJusticeUser(param, client.BearerToken(*accessToken.AccessToken))
+		u.Client.Users.AdminCreateJusticeUser(param, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -1434,8 +1428,8 @@ func (userService *UserService) AdminCreateJusticeUser(namespace, targetNamespac
 }
 
 // AdminLinkPlatformAccount is used to links a platform user account to user account
-func (userService *UserService) AdminLinkPlatformAccount(namespace, userId string, platformId, platformUserId *string) error {
-	accessToken, err := userService.TokenRepository.GetToken()
+func (u *UserService) AdminLinkPlatformAccount(namespace, userId string, platformId, platformUserId *string) error {
+	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
@@ -1448,7 +1442,7 @@ func (userService *UserService) AdminLinkPlatformAccount(namespace, userId strin
 		UserID:    userId,
 	}
 	_, badRequest, unauthorized, forbidden, internalServerError, err :=
-		userService.IamService.Users.AdminLinkPlatformAccount(param, client.BearerToken(*accessToken.AccessToken))
+		u.Client.Users.AdminLinkPlatformAccount(param, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -1477,8 +1471,8 @@ func (userService *UserService) AdminLinkPlatformAccount(namespace, userId strin
 }
 
 // AdminPlatformUnlinkV3 is used to unlink a platform user account to user account
-func (userService *UserService) AdminPlatformUnlinkV3(namespace, platformId, userId, platformNamespace string) error {
-	accessToken, err := userService.TokenRepository.GetToken()
+func (u *UserService) AdminPlatformUnlinkV3(namespace, platformId, userId, platformNamespace string) error {
+	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
@@ -1489,7 +1483,7 @@ func (userService *UserService) AdminPlatformUnlinkV3(namespace, platformId, use
 		UserID:     userId,
 	}
 	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err :=
-		userService.IamService.Users.AdminPlatformUnlinkV3(param, client.BearerToken(*accessToken.AccessToken))
+		u.Client.Users.AdminPlatformUnlinkV3(param, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -1522,8 +1516,8 @@ func (userService *UserService) AdminPlatformUnlinkV3(namespace, platformId, use
 }
 
 // AdminDeleteUserRoleV3 is used to delete user's role
-func (userService *UserService) AdminDeleteUserRoleV3(namespace, userId, roleId string) error {
-	accessToken, err := userService.TokenRepository.GetToken()
+func (u *UserService) AdminDeleteUserRoleV3(namespace, userId, roleId string) error {
+	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
@@ -1533,7 +1527,7 @@ func (userService *UserService) AdminDeleteUserRoleV3(namespace, userId, roleId 
 		UserID:    userId,
 	}
 	_, badRequest, unauthorized, forbidden, notFound, err :=
-		userService.IamService.Users.AdminDeleteUserRoleV3(param, client.BearerToken(*accessToken.AccessToken))
+		u.Client.Users.AdminDeleteUserRoleV3(param, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -1563,8 +1557,8 @@ func (userService *UserService) AdminDeleteUserRoleV3(namespace, userId, roleId 
 }
 
 // AdminDeleteUserRolesV3 is used to delete user's roles
-func (userService *UserService) AdminDeleteUserRolesV3(namespace, userId string, body []string) error {
-	accessToken, err := userService.TokenRepository.GetToken()
+func (u *UserService) AdminDeleteUserRolesV3(namespace, userId string, body []string) error {
+	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
@@ -1574,7 +1568,7 @@ func (userService *UserService) AdminDeleteUserRolesV3(namespace, userId string,
 		UserID:    userId,
 	}
 	_, badRequest, unauthorized, forbidden, notFound, err :=
-		userService.IamService.Users.AdminDeleteUserRolesV3(param, client.BearerToken(*accessToken.AccessToken))
+		u.Client.Users.AdminDeleteUserRolesV3(param, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -1596,8 +1590,8 @@ func (userService *UserService) AdminDeleteUserRolesV3(namespace, userId string,
 }
 
 // AdminSaveUserRoleV3 is used to update user's role
-func (userService *UserService) AdminSaveUserRoleV3(namespace, userId string, body []*iamclientmodels.ModelNamespaceRoleRequest) error {
-	accessToken, err := userService.TokenRepository.GetToken()
+func (u *UserService) AdminSaveUserRoleV3(namespace, userId string, body []*iamclientmodels.ModelNamespaceRoleRequest) error {
+	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
@@ -1607,7 +1601,7 @@ func (userService *UserService) AdminSaveUserRoleV3(namespace, userId string, bo
 		UserID:    userId,
 	}
 	_, badRequest, forbidden, notFound, unprocessableEntity, internalServer, err :=
-		userService.IamService.Users.AdminSaveUserRoleV3(param, client.BearerToken(*accessToken.AccessToken))
+		u.Client.Users.AdminSaveUserRoleV3(param, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -1642,8 +1636,8 @@ func (userService *UserService) AdminSaveUserRoleV3(namespace, userId string, bo
 }
 
 // AdminAddUserRoleV3 is used to add user's role
-func (userService *UserService) AdminAddUserRoleV3(namespace, userId, roleId string) error {
-	accessToken, err := userService.TokenRepository.GetToken()
+func (u *UserService) AdminAddUserRoleV3(namespace, userId, roleId string) error {
+	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
@@ -1653,7 +1647,7 @@ func (userService *UserService) AdminAddUserRoleV3(namespace, userId, roleId str
 		UserID:    userId,
 	}
 	_, badRequest, unauthorized, forbidden, notFound, conflict, err :=
-		userService.IamService.Users.AdminAddUserRoleV3(param, client.BearerToken(*accessToken.AccessToken))
+		u.Client.Users.AdminAddUserRoleV3(param, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -1688,8 +1682,8 @@ func (userService *UserService) AdminAddUserRoleV3(namespace, userId, roleId str
 }
 
 // AdminUpdateUserStatusV3 is used to disable or enable user account
-func (userService *UserService) AdminUpdateUserStatusV3(namespace, userId string, reason *string, enabled *bool) error {
-	accessToken, err := userService.TokenRepository.GetToken()
+func (u *UserService) AdminUpdateUserStatusV3(namespace, userId string, reason *string, enabled *bool) error {
+	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
@@ -1702,7 +1696,7 @@ func (userService *UserService) AdminUpdateUserStatusV3(namespace, userId string
 		},
 	}
 	_, badRequest, unauthorized, forbidden, notFound, err :=
-		userService.IamService.Users.AdminUpdateUserStatusV3(param, client.BearerToken(*accessToken.AccessToken))
+		u.Client.Users.AdminUpdateUserStatusV3(param, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -1730,8 +1724,8 @@ func (userService *UserService) AdminUpdateUserStatusV3(namespace, userId string
 }
 
 // AdminVerifyUserWithoutVerificationCodeV3 is used to force verify user
-func (userService *UserService) AdminVerifyUserWithoutVerificationCodeV3(namespace, userId string) error {
-	accessToken, err := userService.TokenRepository.GetToken()
+func (u *UserService) AdminVerifyUserWithoutVerificationCodeV3(namespace, userId string) error {
+	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
@@ -1740,7 +1734,7 @@ func (userService *UserService) AdminVerifyUserWithoutVerificationCodeV3(namespa
 		UserID:    userId,
 	}
 	_, badRequest, unauthorized, forbidden, notFound, conflict, err :=
-		userService.IamService.Users.AdminVerifyUserWithoutVerificationCodeV3(param, client.BearerToken(*accessToken.AccessToken))
+		u.Client.Users.AdminVerifyUserWithoutVerificationCodeV3(param, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -1775,14 +1769,14 @@ func (userService *UserService) AdminVerifyUserWithoutVerificationCodeV3(namespa
 }
 
 // AdminGetMyUserV3 is used to get user's data
-func (userService *UserService) AdminGetMyUserV3() (*iamclientmodels.ModelUserResponseV3, error) {
-	accessToken, err := userService.TokenRepository.GetToken()
+func (u *UserService) AdminGetMyUserV3() (*iamclientmodels.ModelUserResponseV3, error) {
+	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
 	param := &users.AdminGetMyUserV3Params{}
 	ok, unauthorized, internalServer, err :=
-		userService.IamService.Users.AdminGetMyUserV3(param, client.BearerToken(*accessToken.AccessToken))
+		u.Client.Users.AdminGetMyUserV3(param, client.BearerToken(*accessToken.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -1802,9 +1796,9 @@ func (userService *UserService) AdminGetMyUserV3() (*iamclientmodels.ModelUserRe
 }
 
 // PublicListUserIDByPlatformUserIDsV3 is used to get list user id by platform user id
-func (userService *UserService) PublicListUserIDByPlatformUserIDsV3(namespace, platformId string,
+func (u *UserService) PublicListUserIDByPlatformUserIDsV3(namespace, platformId string,
 	platformUserIds []string) (*iamclientmodels.AccountcommonUserPlatforms, error) {
-	accessToken, err := userService.TokenRepository.GetToken()
+	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
@@ -1814,7 +1808,7 @@ func (userService *UserService) PublicListUserIDByPlatformUserIDsV3(namespace, p
 		PlatformID: platformId,
 	}
 	ok, badRequest, unauthorized, forbidden, internalServer, err :=
-		userService.IamService.Users.PublicListUserIDByPlatformUserIDsV3(params, client.BearerToken(*accessToken.AccessToken))
+		u.Client.Users.PublicListUserIDByPlatformUserIDsV3(params, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -1846,8 +1840,8 @@ func (userService *UserService) PublicListUserIDByPlatformUserIDsV3(namespace, p
 }
 
 // PublicGetUserByPlatformUserIDV3 is used to gets user by platform user ID
-func (userService *UserService) PublicGetUserByPlatformUserIDV3(namespace, platformId, platformUserId string) (*iamclientmodels.ModelUserResponseV3, error) {
-	accessToken, err := userService.TokenRepository.GetToken()
+func (u *UserService) PublicGetUserByPlatformUserIDV3(namespace, platformId, platformUserId string) (*iamclientmodels.ModelUserResponseV3, error) {
+	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
@@ -1857,7 +1851,7 @@ func (userService *UserService) PublicGetUserByPlatformUserIDV3(namespace, platf
 		PlatformUserID: platformUserId,
 	}
 	ok, unauthorized, forbidden, notFound, internalServer, err :=
-		userService.IamService.Users.PublicGetUserByPlatformUserIDV3(params, client.BearerToken(*accessToken.AccessToken))
+		u.Client.Users.PublicGetUserByPlatformUserIDV3(params, client.BearerToken(*accessToken.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -1889,8 +1883,8 @@ func (userService *UserService) PublicGetUserByPlatformUserIDV3(namespace, platf
 }
 
 // PublicGetAsyncStatus is used to get linking status
-func (userService *UserService) PublicGetAsyncStatus(namespace, requestId string) (*iamclientmodels.ModelLinkRequest, error) {
-	accessToken, err := userService.TokenRepository.GetToken()
+func (u *UserService) PublicGetAsyncStatus(namespace, requestId string) (*iamclientmodels.ModelLinkRequest, error) {
+	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
@@ -1899,7 +1893,7 @@ func (userService *UserService) PublicGetAsyncStatus(namespace, requestId string
 		RequestID: requestId,
 	}
 	ok, unauthorized, forbidden, internalServer, err :=
-		userService.IamService.Users.PublicGetAsyncStatus(params, client.BearerToken(*accessToken.AccessToken))
+		u.Client.Users.PublicGetAsyncStatus(params, client.BearerToken(*accessToken.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -1926,8 +1920,8 @@ func (userService *UserService) PublicGetAsyncStatus(namespace, requestId string
 }
 
 // PublicSearchUserV3 is used to search all users on the specified namespace that match the query on these fields: email address, display name, and username
-func (userService *UserService) PublicSearchUserV3(namespace string, by, query *string) (*iamclientmodels.ModelPublicUserInformationResponseV3, error) {
-	accessToken, err := userService.TokenRepository.GetToken()
+func (u *UserService) PublicSearchUserV3(namespace string, by, query *string) (*iamclientmodels.ModelPublicUserInformationResponseV3, error) {
+	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
@@ -1937,7 +1931,7 @@ func (userService *UserService) PublicSearchUserV3(namespace string, by, query *
 		By:        by,
 	}
 	ok, badRequest, unauthorized, notFound, internalServer, err :=
-		userService.IamService.Users.PublicSearchUserV3(params, client.BearerToken(*accessToken.AccessToken))
+		u.Client.Users.PublicSearchUserV3(params, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -1966,9 +1960,9 @@ func (userService *UserService) PublicSearchUserV3(namespace string, by, query *
 	return ok.GetPayload(), nil
 }
 
-// PublicForgotPasswordV3 is used to requests password reset code
-func (userService *UserService) PublicForgotPasswordV3(namespace, languageTag string, emailAddress *string) error {
-	accessToken, err := userService.TokenRepository.GetToken()
+// PublicForgotPasswordV3 is used to request password reset code
+func (u *UserService) PublicForgotPasswordV3(namespace, languageTag string, emailAddress *string) error {
+	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
@@ -1980,7 +1974,7 @@ func (userService *UserService) PublicForgotPasswordV3(namespace, languageTag st
 		Namespace: namespace,
 	}
 	_, badRequest, notFound, tooManyRequests, err :=
-		userService.IamService.Users.PublicForgotPasswordV3(params, client.BearerToken(*accessToken.AccessToken))
+		u.Client.Users.PublicForgotPasswordV3(params, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -2004,8 +1998,8 @@ func (userService *UserService) PublicForgotPasswordV3(namespace, languageTag st
 }
 
 // GetAdminInvitationV3 is used to validate user admin invitation
-func (userService *UserService) GetAdminInvitationV3(namespace, invitationId string) (*iamclientmodels.ModelAdminInvitationV3, error) {
-	accessToken, err := userService.TokenRepository.GetToken()
+func (u *UserService) GetAdminInvitationV3(namespace, invitationId string) (*iamclientmodels.ModelAdminInvitationV3, error) {
+	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
@@ -2014,7 +2008,7 @@ func (userService *UserService) GetAdminInvitationV3(namespace, invitationId str
 		InvitationID: invitationId,
 	}
 	ok, notFound, internalServer, err :=
-		userService.IamService.Users.GetAdminInvitationV3(params, client.BearerToken(*accessToken.AccessToken))
+		u.Client.Users.GetAdminInvitationV3(params, client.BearerToken(*accessToken.AccessToken))
 	if notFound != nil {
 		errorMsg, _ := json.Marshal(*notFound.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -2036,9 +2030,9 @@ func (userService *UserService) GetAdminInvitationV3(namespace, invitationId str
 }
 
 // CreateUserFromInvitationV3 is used to create user from saved roles when creating invitation and submitted data
-func (userService *UserService) CreateUserFromInvitationV3(namespace, invitationId string, authType, country, dateOfBirth, displayName,
+func (u *UserService) CreateUserFromInvitationV3(namespace, invitationId string, authType, country, dateOfBirth, displayName,
 	password *string) (*iamclientmodels.ModelUserCreateResponseV3, error) {
-	accessToken, err := userService.TokenRepository.GetToken()
+	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
@@ -2054,7 +2048,7 @@ func (userService *UserService) CreateUserFromInvitationV3(namespace, invitation
 		Namespace:    namespace,
 	}
 	created, badRequest, notFound, internalServer, err :=
-		userService.IamService.Users.CreateUserFromInvitationV3(params, client.BearerToken(*accessToken.AccessToken))
+		u.Client.Users.CreateUserFromInvitationV3(params, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -2080,10 +2074,10 @@ func (userService *UserService) CreateUserFromInvitationV3(namespace, invitation
 	return created.GetPayload(), nil
 }
 
-// PublicUpdateUserV3 is used to updates user
-func (userService *UserService) PublicUpdateUserV3(namespace, country, dateOfBirth, displayName, languageTag,
+// PublicUpdateUserV3 is used to update user
+func (u *UserService) PublicUpdateUserV3(namespace, country, dateOfBirth, displayName, languageTag,
 	userName string) ([]*iamclientmodels.ModelUserResponseV3, error) {
-	accessToken, err := userService.TokenRepository.GetToken()
+	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
@@ -2098,7 +2092,7 @@ func (userService *UserService) PublicUpdateUserV3(namespace, country, dateOfBir
 		Namespace: namespace,
 	}
 	ok, badRequest, unauthorized, conflict, internalServer, err :=
-		userService.IamService.Users.PublicUpdateUserV3(params, client.BearerToken(*accessToken.AccessToken))
+		u.Client.Users.PublicUpdateUserV3(params, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -2127,10 +2121,10 @@ func (userService *UserService) PublicUpdateUserV3(namespace, country, dateOfBir
 	return ok.GetPayload(), nil
 }
 
-// UpdateUserV3 is used to updates user
-func (userService *UserService) UpdateUserV3(namespace, country, dateOfBirth, displayName, languageTag,
+// UpdateUserV3 is used to update user
+func (u *UserService) UpdateUserV3(namespace, country, dateOfBirth, displayName, languageTag,
 	userName string) ([]*iamclientmodels.ModelUserResponseV3, error) {
-	accessToken, err := userService.TokenRepository.GetToken()
+	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
@@ -2145,7 +2139,7 @@ func (userService *UserService) UpdateUserV3(namespace, country, dateOfBirth, di
 		Namespace: namespace,
 	}
 	ok, badRequest, unauthorized, conflict, internalServer, err :=
-		userService.IamService.Users.UpdateUserV3(params, client.BearerToken(*accessToken.AccessToken))
+		u.Client.Users.UpdateUserV3(params, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -2174,9 +2168,9 @@ func (userService *UserService) UpdateUserV3(namespace, country, dateOfBirth, di
 	return ok.GetPayload(), nil
 }
 
-// PublicSendVerificationCodeV3 is used to sends verification code to user
-func (userService *UserService) PublicSendVerificationCodeV3(namespace, context, languageTag string, emailAddress *string) error {
-	accessToken, err := userService.TokenRepository.GetToken()
+// PublicSendVerificationCodeV3 is used to send verification code to user
+func (u *UserService) PublicSendVerificationCodeV3(namespace, context, languageTag string, emailAddress *string) error {
+	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
@@ -2189,7 +2183,7 @@ func (userService *UserService) PublicSendVerificationCodeV3(namespace, context,
 		Namespace: namespace,
 	}
 	_, badRequest, unauthorized, notFound, conflict, tooManyRequests, err :=
-		userService.IamService.Users.PublicSendVerificationCodeV3(params, client.BearerToken(*accessToken.AccessToken))
+		u.Client.Users.PublicSendVerificationCodeV3(params, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -2222,10 +2216,10 @@ func (userService *UserService) PublicSendVerificationCodeV3(namespace, context,
 	return nil
 }
 
-// PublicUpgradeHeadlessAccountV3 is used to upgrades headless account and automatically verified the email address if it is succeeded
-func (userService *UserService) PublicUpgradeHeadlessAccountV3(namespace, country, dateOfBirth, displayName string, code,
+// PublicUpgradeHeadlessAccountV3 is used to upgrade headless account and automatically verified the email address if it is succeeded
+func (u *UserService) PublicUpgradeHeadlessAccountV3(namespace, country, dateOfBirth, displayName string, code,
 	emailAddress, password *string) (*iamclientmodels.ModelUserResponseV3, error) {
-	accessToken, err := userService.TokenRepository.GetToken()
+	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
@@ -2241,7 +2235,7 @@ func (userService *UserService) PublicUpgradeHeadlessAccountV3(namespace, countr
 		Namespace: namespace,
 	}
 	ok, badRequest, unauthorized, forbidden, notFound, conflict, internalServer, err :=
-		userService.IamService.Users.PublicUpgradeHeadlessAccountV3(params, client.BearerToken(*accessToken.AccessToken))
+		u.Client.Users.PublicUpgradeHeadlessAccountV3(params, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -2280,9 +2274,9 @@ func (userService *UserService) PublicUpgradeHeadlessAccountV3(namespace, countr
 	return ok.GetPayload(), nil
 }
 
-// PublicVerifyHeadlessAccountV3 is used to upgrades user account to full account with email
-func (userService *UserService) PublicVerifyHeadlessAccountV3(namespace string, emailAddress, password *string) (*iamclientmodels.ModelUserResponseV3, error) {
-	accessToken, err := userService.TokenRepository.GetToken()
+// PublicVerifyHeadlessAccountV3 is used to upgrade user account to full account with email
+func (u *UserService) PublicVerifyHeadlessAccountV3(namespace string, emailAddress, password *string) (*iamclientmodels.ModelUserResponseV3, error) {
+	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
@@ -2294,7 +2288,7 @@ func (userService *UserService) PublicVerifyHeadlessAccountV3(namespace string, 
 		Namespace: namespace,
 	}
 	ok, badRequest, unauthorized, notFound, conflict, internalServer, err :=
-		userService.IamService.Users.PublicVerifyHeadlessAccountV3(params, client.BearerToken(*accessToken.AccessToken))
+		u.Client.Users.PublicVerifyHeadlessAccountV3(params, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -2328,9 +2322,9 @@ func (userService *UserService) PublicVerifyHeadlessAccountV3(namespace string, 
 	return ok.GetPayload(), nil
 }
 
-// PublicUpdatePasswordV3 is used to sends verification code to user
-func (userService *UserService) PublicUpdatePasswordV3(namespace string, languageTag, newPassword, oldPassword *string) error {
-	accessToken, err := userService.TokenRepository.GetToken()
+// PublicUpdatePasswordV3 is used to send verification code to user
+func (u *UserService) PublicUpdatePasswordV3(namespace string, languageTag, newPassword, oldPassword *string) error {
+	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
@@ -2343,7 +2337,7 @@ func (userService *UserService) PublicUpdatePasswordV3(namespace string, languag
 		Namespace: namespace,
 	}
 	_, badRequest, unauthorized, internalServer, err :=
-		userService.IamService.Users.PublicUpdatePasswordV3(params, client.BearerToken(*accessToken.AccessToken))
+		u.Client.Users.PublicUpdatePasswordV3(params, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -2366,9 +2360,9 @@ func (userService *UserService) PublicUpdatePasswordV3(namespace string, languag
 	return nil
 }
 
-// PublicCreateJusticeUser is used to creates justice user from publisher user
-func (userService *UserService) PublicCreateJusticeUser(namespace, targetNamespace string) (*iamclientmodels.ModelCreateJusticeUserResponse, error) {
-	accessToken, err := userService.TokenRepository.GetToken()
+// PublicCreateJusticeUser is used to create justice user from publisher user
+func (u *UserService) PublicCreateJusticeUser(namespace, targetNamespace string) (*iamclientmodels.ModelCreateJusticeUserResponse, error) {
+	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
@@ -2377,7 +2371,7 @@ func (userService *UserService) PublicCreateJusticeUser(namespace, targetNamespa
 		TargetNamespace: targetNamespace,
 	}
 	created, badRequest, unauthorized, forbidden, notFound, internalServer, err :=
-		userService.IamService.Users.PublicCreateJusticeUser(params, client.BearerToken(*accessToken.AccessToken))
+		u.Client.Users.PublicCreateJusticeUser(params, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -2413,9 +2407,9 @@ func (userService *UserService) PublicCreateJusticeUser(namespace, targetNamespa
 	return created.GetPayload(), nil
 }
 
-// PublicPlatformLinkV3 is used to links user s account with platform
-func (userService *UserService) PublicPlatformLinkV3(namespace, platformId, ticket string, redirectURI *string) error {
-	accessToken, err := userService.TokenRepository.GetToken()
+// PublicPlatformLinkV3 is used to link user s account with platform
+func (u *UserService) PublicPlatformLinkV3(namespace, platformId, ticket string, redirectURI *string) error {
+	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
@@ -2426,7 +2420,7 @@ func (userService *UserService) PublicPlatformLinkV3(namespace, platformId, tick
 		Ticket:      ticket,
 	}
 	_, badRequest, unauthorized, notFound, conflict, internalServer, err :=
-		userService.IamService.Users.PublicPlatformLinkV3(params, client.BearerToken(*accessToken.AccessToken))
+		u.Client.Users.PublicPlatformLinkV3(params, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -2457,9 +2451,9 @@ func (userService *UserService) PublicPlatformLinkV3(namespace, platformId, tick
 	return nil
 }
 
-// PublicPlatformUnlinkV3 is used to unlinks user s account from specific platform
-func (userService *UserService) PublicPlatformUnlinkV3(namespace, platformId, platformNamespace string) error {
-	accessToken, err := userService.TokenRepository.GetToken()
+// PublicPlatformUnlinkV3 is used to unlink user s account from specific platform
+func (u *UserService) PublicPlatformUnlinkV3(namespace, platformId, platformNamespace string) error {
+	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
@@ -2469,7 +2463,7 @@ func (userService *UserService) PublicPlatformUnlinkV3(namespace, platformId, pl
 		PlatformID: platformId,
 	}
 	_, badRequest, unauthorized, notFound, internalServerError, err :=
-		userService.IamService.Users.PublicPlatformUnlinkV3(param, client.BearerToken(*accessToken.AccessToken))
+		u.Client.Users.PublicPlatformUnlinkV3(param, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -2496,9 +2490,9 @@ func (userService *UserService) PublicPlatformUnlinkV3(namespace, platformId, pl
 	return nil
 }
 
-// PublicWebLinkPlatform is used to creates public web linking
-func (userService *UserService) PublicWebLinkPlatform(namespace, platformId string, clientId, redirectUri *string) (*iamclientmodels.ModelWebLinkingResponse, error) {
-	accessToken, err := userService.TokenRepository.GetToken()
+// PublicWebLinkPlatform is used to create public web linking
+func (u *UserService) PublicWebLinkPlatform(namespace, platformId string, clientId, redirectUri *string) (*iamclientmodels.ModelWebLinkingResponse, error) {
+	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
@@ -2509,7 +2503,7 @@ func (userService *UserService) PublicWebLinkPlatform(namespace, platformId stri
 		RedirectURI: redirectUri,
 	}
 	ok, badRequest, unauthorized, notFound, err :=
-		userService.IamService.Users.PublicWebLinkPlatform(params, client.BearerToken(*accessToken.AccessToken))
+		u.Client.Users.PublicWebLinkPlatform(params, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -2536,8 +2530,8 @@ func (userService *UserService) PublicWebLinkPlatform(namespace, platformId stri
 }
 
 // PublicWebLinkPlatformEstablish is used to establishes link progress
-func (userService *UserService) PublicWebLinkPlatformEstablish(namespace, platformId, state string) error {
-	accessToken, err := userService.TokenRepository.GetToken()
+func (u *UserService) PublicWebLinkPlatformEstablish(namespace, platformId, state string) error {
+	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
@@ -2547,7 +2541,7 @@ func (userService *UserService) PublicWebLinkPlatformEstablish(namespace, platfo
 		State:      state,
 	}
 	found, err :=
-		userService.IamService.Users.PublicWebLinkPlatformEstablish(param, client.BearerToken(*accessToken.AccessToken))
+		u.Client.Users.PublicWebLinkPlatformEstablish(param, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		logrus.Error(err)
 		return err
@@ -2559,8 +2553,8 @@ func (userService *UserService) PublicWebLinkPlatformEstablish(namespace, platfo
 }
 
 // ResetPasswordV3 is used to resets user password
-func (userService *UserService) ResetPasswordV3(namespace string, code, emailAddress, newPassword *string) error {
-	accessToken, err := userService.TokenRepository.GetToken()
+func (u *UserService) ResetPasswordV3(namespace string, code, emailAddress, newPassword *string) error {
+	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
@@ -2573,7 +2567,7 @@ func (userService *UserService) ResetPasswordV3(namespace string, code, emailAdd
 		Namespace: namespace,
 	}
 	_, badRequest, forbidden, notFound, err :=
-		userService.IamService.Users.ResetPasswordV3(params, client.BearerToken(*accessToken.AccessToken))
+		u.Client.Users.ResetPasswordV3(params, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -2596,9 +2590,9 @@ func (userService *UserService) ResetPasswordV3(namespace string, code, emailAdd
 	return nil
 }
 
-// PublicGetUserByUserIDV3 is used to gets user by user ID
-func (userService *UserService) PublicGetUserByUserIDV3(namespace, userId string) (*iamclientmodels.ModelPublicUserResponseV3, error) {
-	accessToken, err := userService.TokenRepository.GetToken()
+// PublicGetUserByUserIDV3 is used to get user by user ID
+func (u *UserService) PublicGetUserByUserIDV3(namespace, userId string) (*iamclientmodels.ModelPublicUserResponseV3, error) {
+	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
@@ -2607,7 +2601,7 @@ func (userService *UserService) PublicGetUserByUserIDV3(namespace, userId string
 		UserID:    userId,
 	}
 	ok, badRequest, notFound, internalServer, err :=
-		userService.IamService.Users.PublicGetUserByUserIDV3(params, client.BearerToken(*accessToken.AccessToken))
+		u.Client.Users.PublicGetUserByUserIDV3(params, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -2633,9 +2627,9 @@ func (userService *UserService) PublicGetUserByUserIDV3(namespace, userId string
 	return ok.GetPayload(), nil
 }
 
-// PublicGetUserBanHistoryV3 is used to gets user s bans
-func (userService *UserService) PublicGetUserBanHistoryV3(namespace, userId string, after, before *string, activeOnly *bool, limit *int64) (*iamclientmodels.ModelGetUserBanV3Response, error) {
-	accessToken, err := userService.TokenRepository.GetToken()
+// PublicGetUserBanHistoryV3 is used to get user s bans
+func (u *UserService) PublicGetUserBanHistoryV3(namespace, userId string, after, before *string, activeOnly *bool, limit *int64) (*iamclientmodels.ModelGetUserBanV3Response, error) {
+	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
@@ -2648,7 +2642,7 @@ func (userService *UserService) PublicGetUserBanHistoryV3(namespace, userId stri
 		UserID:     userId,
 	}
 	ok, badRequest, unauthorized, forbidden, notFound, internalServer, err :=
-		userService.IamService.Users.PublicGetUserBanHistoryV3(params, client.BearerToken(*accessToken.AccessToken))
+		u.Client.Users.PublicGetUserBanHistoryV3(params, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -2674,9 +2668,9 @@ func (userService *UserService) PublicGetUserBanHistoryV3(namespace, userId stri
 	return ok.GetPayload(), nil
 }
 
-// PublicGetUserLoginHistoriesV3 is used to gets user s login histories status
-func (userService *UserService) PublicGetUserLoginHistoriesV3(namespace, userId string, after, before, limit *float64) (*iamclientmodels.ModelLoginHistoriesResponse, error) {
-	accessToken, err := userService.TokenRepository.GetToken()
+// PublicGetUserLoginHistoriesV3 is used to get user s login histories status
+func (u *UserService) PublicGetUserLoginHistoriesV3(namespace, userId string, after, before, limit *float64) (*iamclientmodels.ModelLoginHistoriesResponse, error) {
+	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
@@ -2688,7 +2682,7 @@ func (userService *UserService) PublicGetUserLoginHistoriesV3(namespace, userId 
 		UserID:    userId,
 	}
 	ok, unauthorized, forbidden, notFound, err :=
-		userService.IamService.Users.PublicGetUserLoginHistoriesV3(params, client.BearerToken(*accessToken.AccessToken))
+		u.Client.Users.PublicGetUserLoginHistoriesV3(params, client.BearerToken(*accessToken.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -2709,8 +2703,8 @@ func (userService *UserService) PublicGetUserLoginHistoriesV3(namespace, userId 
 }
 
 // PublicGetUserPlatformAccountsV3 is used to get platform accounts linked to the user
-func (userService *UserService) PublicGetUserPlatformAccountsV3(namespace, userId string, after, before *string, limit *int64) (*iamclientmodels.AccountcommonUserLinkedPlatformsResponseV3, error) {
-	accessToken, err := userService.TokenRepository.GetToken()
+func (u *UserService) PublicGetUserPlatformAccountsV3(namespace, userId string, after, before *string, limit *int64) (*iamclientmodels.AccountcommonUserLinkedPlatformsResponseV3, error) {
+	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
@@ -2722,7 +2716,7 @@ func (userService *UserService) PublicGetUserPlatformAccountsV3(namespace, userI
 		UserID:    userId,
 	}
 	ok, badRequest, unauthorized, forbidden, notFound, err :=
-		userService.IamService.Users.PublicGetUserPlatformAccountsV3(params, client.BearerToken(*accessToken.AccessToken))
+		u.Client.Users.PublicGetUserPlatformAccountsV3(params, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -2753,9 +2747,9 @@ func (userService *UserService) PublicGetUserPlatformAccountsV3(namespace, userI
 	return ok.GetPayload(), nil
 }
 
-// PublicLinkPlatformAccount is used to links a platform user account to user account
-func (userService *UserService) PublicLinkPlatformAccount(namespace, userId string, platformId, platformUserId *string) error {
-	accessToken, err := userService.TokenRepository.GetToken()
+// PublicLinkPlatformAccount is used to link a platform user account to user account
+func (u *UserService) PublicLinkPlatformAccount(namespace, userId string, platformId, platformUserId *string) error {
+	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
@@ -2768,7 +2762,7 @@ func (userService *UserService) PublicLinkPlatformAccount(namespace, userId stri
 		UserID:    userId,
 	}
 	_, badRequest, unauthorized, forbidden, internalServer, err :=
-		userService.IamService.Users.PublicLinkPlatformAccount(params, client.BearerToken(*accessToken.AccessToken))
+		u.Client.Users.PublicLinkPlatformAccount(params, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -2797,8 +2791,8 @@ func (userService *UserService) PublicLinkPlatformAccount(namespace, userId stri
 }
 
 // PublicValidateUserByUserIDAndPasswordV3 is used to validates user password by user ID and password
-func (userService *UserService) PublicValidateUserByUserIDAndPasswordV3(namespace, userId, password string) error {
-	accessToken, err := userService.TokenRepository.GetToken()
+func (u *UserService) PublicValidateUserByUserIDAndPasswordV3(namespace, userId, password string) error {
+	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
@@ -2808,7 +2802,7 @@ func (userService *UserService) PublicValidateUserByUserIDAndPasswordV3(namespac
 		UserID:    userId,
 	}
 	_, badRequest, unauthorized, forbidden, notFound, internalServer, err :=
-		userService.IamService.Users.PublicValidateUserByUserIDAndPasswordV3(params, client.BearerToken(*accessToken.AccessToken))
+		u.Client.Users.PublicValidateUserByUserIDAndPasswordV3(params, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -2832,14 +2826,14 @@ func (userService *UserService) PublicValidateUserByUserIDAndPasswordV3(namespac
 }
 
 // PublicGetMyUserV3 is used to get my user
-func (userService *UserService) PublicGetMyUserV3() (*iamclientmodels.ModelUserResponseV3, error) {
-	accessToken, err := userService.TokenRepository.GetToken()
+func (u *UserService) PublicGetMyUserV3() (*iamclientmodels.ModelUserResponseV3, error) {
+	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
 	params := &users.PublicGetMyUserV3Params{}
 	ok, unauthorized, internalServer, err :=
-		userService.IamService.Users.PublicGetMyUserV3(params, client.BearerToken(*accessToken.AccessToken))
+		u.Client.Users.PublicGetMyUserV3(params, client.BearerToken(*accessToken.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -2858,63 +2852,4 @@ func (userService *UserService) PublicGetMyUserV3() (*iamclientmodels.ModelUserR
 		return nil, errors.New("my user is empty")
 	}
 	return ok.GetPayload(), nil
-}
-
-// Login is used to login with username and password
-func (userService *UserService) Login(username, password string) error {
-	scope := "commerce account social publishing analytics"
-	codeVerifierGenerator, err := utils.CreateCodeVerifier()
-	if err != nil {
-		return err
-	}
-	codeVerifier := codeVerifierGenerator.String()
-	challenge := codeVerifierGenerator.CodeChallengeS256()
-	challengeMethod := "S256"
-	requestId, err := userService.OAuth20Service.Authorize(scope, challenge, challengeMethod)
-	if err != nil {
-		return err
-	}
-	code, err := userService.OAuth20Service.Authenticate(requestId, username, password)
-	if err != nil {
-		return err
-	}
-	err = userService.OAuth20Service.GrantTokenAuthorizationCode(code, codeVerifier, "")
-	if err != nil {
-		return err
-	}
-	return nil
-}
-
-// Logout is used to logout with client service oauth2 revoke
-func (userService *UserService) Logout() error {
-	accessToken, err := userService.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	param := &o_auth2_0.TokenRevocationV3Params{
-		Token: *accessToken.AccessToken,
-	}
-	clientId := userService.OAuth20Service.ConfigRepository.GetClientId()
-	clientSecret := userService.OAuth20Service.ConfigRepository.GetClientSecret()
-	_, badRequest, unauthorized, err := userService.IamService.OAuth20.TokenRevocationV3(param, client.BasicAuth(clientId, clientSecret))
-	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
-		return badRequest
-	}
-	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
-		return unauthorized
-	}
-	if err != nil {
-		logrus.Error(err)
-		return err
-	}
-	err = userService.TokenRepository.RemoveToken()
-	if err != nil {
-		logrus.Error(err)
-		return err
-	}
-	return nil
 }

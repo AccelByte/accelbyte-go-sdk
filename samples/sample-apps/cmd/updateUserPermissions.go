@@ -29,7 +29,7 @@ var updateUserPermissionsCmd = &cobra.Command{
 			return errPermissions
 		}
 		userService := &service.UserService{
-			IamService:      factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
+			Client:          factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		err := userService.AdminUpdateUserPermissionV3(namespace, userId, permissions)

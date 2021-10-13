@@ -22,7 +22,7 @@ var addUserRoleCmd = &cobra.Command{
 		userId := cmd.Flag("userId").Value.String()
 		roleId := cmd.Flag("roleId").Value.String()
 		userService := &service.UserService{
-			IamService:      factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
+			Client:          factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		err := userService.AdminAddUserRoleV3(namespace, userId, roleId)

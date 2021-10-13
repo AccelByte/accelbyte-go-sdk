@@ -27,7 +27,7 @@ var updateAdminUserCmd = &cobra.Command{
 		languageTag := cmd.Flag("languageTag").Value.String()
 		userName := cmd.Flag("userName").Value.String()
 		userService := &service.UserService{
-			IamService:      factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
+			Client:          factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		user, err := userService.AdminUpdateUserV3(namespace, userId, country, dateOfBirth, displayName, languageTag, userName)

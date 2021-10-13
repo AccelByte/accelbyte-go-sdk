@@ -28,7 +28,7 @@ var getUserBansCmd = &cobra.Command{
 			return err
 		}
 		userService := &service.UserService{
-			IamService:      factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
+			Client:          factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		users, err := userService.AdminGetUserBanV3(namespace, userId, &after, &before, &activeOnly, &limit)

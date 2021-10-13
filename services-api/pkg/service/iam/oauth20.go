@@ -8,6 +8,7 @@ import (
 	"encoding/json"
 	"errors"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth2_0_extension"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"net/http"
 	"net/url"
 
@@ -201,6 +202,65 @@ func (a *OAuth20Service) Authorize(scope, challenge, challengeMethod string) (st
 	}
 	requestId := query["request_id"][0]
 	return requestId, nil
+}
+
+// Login is used to login with username and password
+func (a *OAuth20Service) Login(username, password string) error {
+	scope := "commerce account social publishing analytics"
+	codeVerifierGenerator, err := utils.CreateCodeVerifier()
+	if err != nil {
+		return err
+	}
+	codeVerifier := codeVerifierGenerator.String()
+	challenge := codeVerifierGenerator.CodeChallengeS256()
+	challengeMethod := "S256"
+	requestId, err := a.Authorize(scope, challenge, challengeMethod)
+	if err != nil {
+		return err
+	}
+	code, err := a.Authenticate(requestId, username, password)
+	if err != nil {
+		return err
+	}
+	err = a.GrantTokenAuthorizationCode(code, codeVerifier, "")
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+// Logout is used to logout with client service oauth2 revoke
+func (a *OAuth20Service) Logout() error {
+	accessToken, err := a.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	param := &o_auth2_0.TokenRevocationV3Params{
+		Token: *accessToken.AccessToken,
+	}
+	clientId := a.ConfigRepository.GetClientId()
+	clientSecret := a.ConfigRepository.GetClientSecret()
+	_, badRequest, unauthorized, err := a.Client.OAuth20.TokenRevocationV3(param, client.BasicAuth(clientId, clientSecret))
+	if badRequest != nil {
+		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
+		logrus.Error(string(errorMsg))
+		return badRequest
+	}
+	if unauthorized != nil {
+		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
+		logrus.Error(string(errorMsg))
+		return unauthorized
+	}
+	if err != nil {
+		logrus.Error(err)
+		return err
+	}
+	err = a.TokenRepository.RemoveToken()
+	if err != nil {
+		logrus.Error(err)
+		return err
+	}
+	return nil
 }
 
 // new services

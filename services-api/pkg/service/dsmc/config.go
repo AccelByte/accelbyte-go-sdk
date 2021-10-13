@@ -1,4 +1,4 @@
-package service
+package dsmc
 
 import (
 	"encoding/json"
@@ -6,27 +6,21 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/config"
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 	"github.com/sirupsen/logrus"
 )
 
-type DSMCConfig struct {
-	DSMCClient      *dsmcclient.JusticeDsmcService
+type ConfigService struct {
+	Client          *dsmcclient.JusticeDsmcService
 	TokenRepository repository.TokenRepository
 }
 
-func (g *DSMCConfig) AddPort(body *dsmcclientmodels.ModelsCreatePortRequest, name, namespace string) (*dsmcclientmodels.ModelsDSMConfigRecord, error) {
-	token, err := g.TokenRepository.GetToken()
+func (c *ConfigService) AddPort(input *config.AddPortParams) (*dsmcclientmodels.ModelsDSMConfigRecord, error) {
+	token, err := c.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &config.AddPortParams{
-		Body:      body,
-		Name:      name,
-		Namespace: namespace,
-	}
-	created, badRequest, unauthorized, notFound, conflict, internalServerError, err := g.DSMCClient.Config.AddPort(params, client.BearerToken(*token.AccessToken))
+	created, badRequest, unauthorized, notFound, conflict, internalServerError, err := c.Client.Config.AddPort(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -58,15 +52,12 @@ func (g *DSMCConfig) AddPort(body *dsmcclientmodels.ModelsCreatePortRequest, nam
 	return created.GetPayload(), nil
 }
 
-func (g *DSMCConfig) ClearCache(namespace string) error {
-	token, err := g.TokenRepository.GetToken()
+func (c *ConfigService) ClearCache(input *config.ClearCacheParams) error {
+	token, err := c.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	params := &config.ClearCacheParams{
-		Namespace: namespace,
-	}
-	_, unauthorized, internalServerError, err := g.DSMCClient.Config.ClearCache(params, client.BearerToken(*token.AccessToken))
+	_, unauthorized, internalServerError, err := c.Client.Config.ClearCache(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -83,16 +74,12 @@ func (g *DSMCConfig) ClearCache(namespace string) error {
 	return nil
 }
 
-func (g *DSMCConfig) CreateConfig(body *dsmcclientmodels.ModelsCreateDSMConfigRequest, namespace string) (*dsmcclientmodels.ModelsDSMConfigRecord, error) {
-	token, err := g.TokenRepository.GetToken()
+func (c *ConfigService) CreateConfig(input *config.CreateConfigParams) (*dsmcclientmodels.ModelsDSMConfigRecord, error) {
+	token, err := c.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &config.CreateConfigParams{
-		Body:      body,
-		Namespace: namespace,
-	}
-	created, badRequest, unauthorized, internalServerError, err := g.DSMCClient.Config.CreateConfig(params, client.BearerToken(*token.AccessToken))
+	created, badRequest, unauthorized, internalServerError, err := c.Client.Config.CreateConfig(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -114,15 +101,12 @@ func (g *DSMCConfig) CreateConfig(body *dsmcclientmodels.ModelsCreateDSMConfigRe
 	return created.GetPayload(), nil
 }
 
-func (g *DSMCConfig) DeleteConfig(namespace string) error {
-	token, err := g.TokenRepository.GetToken()
+func (c *ConfigService) DeleteConfig(input *config.DeleteConfigParams) error {
+	token, err := c.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	params := &config.DeleteConfigParams{
-		Namespace: namespace,
-	}
-	_, badRequest, unauthorized, notFound, internalServerError, err := g.DSMCClient.Config.DeleteConfig(params, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, notFound, internalServerError, err := c.Client.Config.DeleteConfig(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -149,16 +133,12 @@ func (g *DSMCConfig) DeleteConfig(namespace string) error {
 	return nil
 }
 
-func (g *DSMCConfig) DeletePort(name, namespace string) error {
-	token, err := g.TokenRepository.GetToken()
+func (c *ConfigService) DeletePort(input *config.DeletePortParams) error {
+	token, err := c.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	params := &config.DeletePortParams{
-		Name:      name,
-		Namespace: namespace,
-	}
-	_, badRequest, unauthorized, notFound, internalServerError, err := g.DSMCClient.Config.DeletePort(params, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, notFound, internalServerError, err := c.Client.Config.DeletePort(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -185,15 +165,12 @@ func (g *DSMCConfig) DeletePort(name, namespace string) error {
 	return nil
 }
 
-func (g *DSMCConfig) GetConfig(namespace string) (*dsmcclientmodels.ModelsDSMConfigRecord, error) {
-	token, err := g.TokenRepository.GetToken()
+func (c *ConfigService) GetConfig(input *config.GetConfigParams) (*dsmcclientmodels.ModelsDSMConfigRecord, error) {
+	token, err := c.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &config.GetConfigParams{
-		Namespace: namespace,
-	}
-	ok, unauthorized, notFound, internalServerError, err := g.DSMCClient.Config.GetConfig(params, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, notFound, internalServerError, err := c.Client.Config.GetConfig(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -215,13 +192,13 @@ func (g *DSMCConfig) GetConfig(namespace string) (*dsmcclientmodels.ModelsDSMCon
 	return ok.GetPayload(), nil
 }
 
-func (g *DSMCConfig) ListConfig() (*dsmcclientmodels.ModelsListConfigResponse, error) {
-	token, err := g.TokenRepository.GetToken()
+func (c *ConfigService) ListConfig() (*dsmcclientmodels.ModelsListConfigResponse, error) {
+	token, err := c.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
 	params := &config.ListConfigParams{}
-	ok, unauthorized, internalServerError, err := g.DSMCClient.Config.ListConfig(params, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, internalServerError, err := c.Client.Config.ListConfig(params, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -238,15 +215,12 @@ func (g *DSMCConfig) ListConfig() (*dsmcclientmodels.ModelsListConfigResponse, e
 	return ok.GetPayload(), nil
 }
 
-func (g *DSMCConfig) SaveConfig(body *dsmcclientmodels.ModelsDSMConfigRecord) error {
-	token, err := g.TokenRepository.GetToken()
+func (c *ConfigService) SaveConfig(input *config.SaveConfigParams) error {
+	token, err := c.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	params := &config.SaveConfigParams{
-		Body: body,
-	}
-	_, unauthorized, notFound, internalServerError, err := g.DSMCClient.Config.SaveConfig(params, client.BearerToken(*token.AccessToken))
+	_, unauthorized, notFound, internalServerError, err := c.Client.Config.SaveConfig(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -268,16 +242,12 @@ func (g *DSMCConfig) SaveConfig(body *dsmcclientmodels.ModelsDSMConfigRecord) er
 	return nil
 }
 
-func (g *DSMCConfig) UpdateConfig(body *dsmcclientmodels.ModelsUpdateDSMConfigRequest, namespace string) (*dsmcclientmodels.ModelsDSMConfigRecord, error) {
-	token, err := g.TokenRepository.GetToken()
+func (c *ConfigService) UpdateConfig(input *config.UpdateConfigParams) (*dsmcclientmodels.ModelsDSMConfigRecord, error) {
+	token, err := c.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &config.UpdateConfigParams{
-		Body:      body,
-		Namespace: namespace,
-	}
-	ok, badRequest, unauthorized, notFound, internalServerError, err := g.DSMCClient.Config.UpdateConfig(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, notFound, internalServerError, err := c.Client.Config.UpdateConfig(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -304,17 +274,12 @@ func (g *DSMCConfig) UpdateConfig(body *dsmcclientmodels.ModelsUpdateDSMConfigRe
 	return ok.GetPayload(), nil
 }
 
-func (g *DSMCConfig) UpdatePort(body *dsmcclientmodels.ModelsUpdatePortRequest, name, namespace string) (*dsmcclientmodels.ModelsDSMConfigRecord, error) {
-	token, err := g.TokenRepository.GetToken()
+func (c *ConfigService) UpdatePort(input *config.UpdatePortParams) (*dsmcclientmodels.ModelsDSMConfigRecord, error) {
+	token, err := c.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &config.UpdatePortParams{
-		Body:      body,
-		Name:      name,
-		Namespace: namespace,
-	}
-	ok, badRequest, unauthorized, notFound, internalServerError, err := g.DSMCClient.Config.UpdatePort(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, notFound, internalServerError, err := c.Client.Config.UpdatePort(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -341,15 +306,12 @@ func (g *DSMCConfig) UpdatePort(body *dsmcclientmodels.ModelsUpdatePortRequest, 
 	return ok.GetPayload(), nil
 }
 
-func (g *DSMCConfig) ExportConfigV1(namespace string) (*dsmcclientmodels.ModelsDSMConfigExport, error) {
-	token, err := g.TokenRepository.GetToken()
+func (c *ConfigService) ExportConfigV1(input *config.ExportConfigV1Params) (*dsmcclientmodels.ModelsDSMConfigExport, error) {
+	token, err := c.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &config.ExportConfigV1Params{
-		Namespace: namespace,
-	}
-	ok, badRequest, unauthorized, notFound, internalServerError, err := g.DSMCClient.Config.ExportConfigV1(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, notFound, internalServerError, err := c.Client.Config.ExportConfigV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -376,16 +338,12 @@ func (g *DSMCConfig) ExportConfigV1(namespace string) (*dsmcclientmodels.ModelsD
 	return ok.GetPayload(), nil
 }
 
-func (g *DSMCConfig) ImportConfigV1(file runtime.NamedReadCloser, namespace string) (*dsmcclientmodels.ModelsImportResponse, error) {
-	token, err := g.TokenRepository.GetToken()
+func (c *ConfigService) ImportConfigV1(input *config.ImportConfigV1Params) (*dsmcclientmodels.ModelsImportResponse, error) {
+	token, err := c.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &config.ImportConfigV1Params{
-		File:      file,
-		Namespace: namespace,
-	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := g.DSMCClient.Config.ImportConfigV1(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := c.Client.Config.ImportConfigV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))

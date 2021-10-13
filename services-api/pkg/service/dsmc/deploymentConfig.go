@@ -1,4 +1,4 @@
-package service
+package dsmc
 
 import (
 	"encoding/json"
@@ -10,22 +10,17 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-type DSMCDeploymentConfig struct {
-	DSMCClient      *dsmcclient.JusticeDsmcService
+type DeploymentConfigService struct {
+	Client          *dsmcclient.JusticeDsmcService
 	TokenRepository repository.TokenRepository
 }
 
-func (g *DSMCDeploymentConfig) CreateDeployment(body *dsmcclientmodels.ModelsCreateDeploymentRequest, deployment, namespace string) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
-	token, err := g.TokenRepository.GetToken()
+func (d *DeploymentConfigService) CreateDeployment(input *deployment_config.CreateDeploymentParams) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
+	token, err := d.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &deployment_config.CreateDeploymentParams{
-		Body:       body,
-		Deployment: deployment,
-		Namespace:  namespace,
-	}
-	created, badRequest, unauthorized, conflict, internalServerError, err := g.DSMCClient.DeploymentConfig.CreateDeployment(params, client.BearerToken(*token.AccessToken))
+	created, badRequest, unauthorized, conflict, internalServerError, err := d.Client.DeploymentConfig.CreateDeployment(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -52,18 +47,12 @@ func (g *DSMCDeploymentConfig) CreateDeployment(body *dsmcclientmodels.ModelsCre
 	return created.GetPayload(), nil
 }
 
-func (g *DSMCDeploymentConfig) CreateDeploymentOverride(body *dsmcclientmodels.ModelsCreateDeploymentOverrideRequest, deployment, namespace, version string) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
-	token, err := g.TokenRepository.GetToken()
+func (d *DeploymentConfigService) CreateDeploymentOverride(input *deployment_config.CreateDeploymentOverrideParams) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
+	token, err := d.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &deployment_config.CreateDeploymentOverrideParams{
-		Body:       body,
-		Deployment: deployment,
-		Namespace:  namespace,
-		Version:    version,
-	}
-	created, badRequest, unauthorized, notFound, conflict, internalServerError, err := g.DSMCClient.DeploymentConfig.CreateDeploymentOverride(params, client.BearerToken(*token.AccessToken))
+	created, badRequest, unauthorized, notFound, conflict, internalServerError, err := d.Client.DeploymentConfig.CreateDeploymentOverride(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -95,19 +84,12 @@ func (g *DSMCDeploymentConfig) CreateDeploymentOverride(body *dsmcclientmodels.M
 	return created.GetPayload(), nil
 }
 
-func (g *DSMCDeploymentConfig) CreateOverrideRegionOverride(body *dsmcclientmodels.ModelsCreateRegionOverrideRequest, deployment, namespace, region, version string) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
-	token, err := g.TokenRepository.GetToken()
+func (d *DeploymentConfigService) CreateOverrideRegionOverride(input *deployment_config.CreateOverrideRegionOverrideParams) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
+	token, err := d.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &deployment_config.CreateOverrideRegionOverrideParams{
-		Body:       body,
-		Deployment: deployment,
-		Namespace:  namespace,
-		Region:     region,
-		Version:    version,
-	}
-	created, badRequest, unauthorized, notFound, conflict, internalServerError, err := g.DSMCClient.DeploymentConfig.CreateOverrideRegionOverride(params, client.BearerToken(*token.AccessToken))
+	created, badRequest, unauthorized, notFound, conflict, internalServerError, err := d.Client.DeploymentConfig.CreateOverrideRegionOverride(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -139,18 +121,12 @@ func (g *DSMCDeploymentConfig) CreateOverrideRegionOverride(body *dsmcclientmode
 	return created.GetPayload(), nil
 }
 
-func (g *DSMCDeploymentConfig) CreateRootRegionOverride(body *dsmcclientmodels.ModelsCreateRegionOverrideRequest, deployment, namespace, region string) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
-	token, err := g.TokenRepository.GetToken()
+func (d *DeploymentConfigService) CreateRootRegionOverride(input *deployment_config.CreateRootRegionOverrideParams) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
+	token, err := d.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &deployment_config.CreateRootRegionOverrideParams{
-		Body:       body,
-		Deployment: deployment,
-		Namespace:  namespace,
-		Region:     region,
-	}
-	created, badRequest, unauthorized, notFound, conflict, internalServerError, err := g.DSMCClient.DeploymentConfig.CreateRootRegionOverride(params, client.BearerToken(*token.AccessToken))
+	created, badRequest, unauthorized, notFound, conflict, internalServerError, err := d.Client.DeploymentConfig.CreateRootRegionOverride(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -182,16 +158,12 @@ func (g *DSMCDeploymentConfig) CreateRootRegionOverride(body *dsmcclientmodels.M
 	return created.GetPayload(), nil
 }
 
-func (g *DSMCConfig) DeleteDeployment(deployment, namespace string) error {
-	token, err := g.TokenRepository.GetToken()
+func (d *DeploymentConfigService) DeleteDeployment(input *deployment_config.DeleteDeploymentParams) error {
+	token, err := d.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	params := &deployment_config.DeleteDeploymentParams{
-		Deployment: deployment,
-		Namespace:  namespace,
-	}
-	_, badRequest, unauthorized, notFound, internalServerError, err := g.DSMCClient.DeploymentConfig.DeleteDeployment(params, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, notFound, internalServerError, err := d.Client.DeploymentConfig.DeleteDeployment(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -218,17 +190,12 @@ func (g *DSMCConfig) DeleteDeployment(deployment, namespace string) error {
 	return nil
 }
 
-func (g *DSMCConfig) DeleteDeploymentOverride(deployment, namespace, version string) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
-	token, err := g.TokenRepository.GetToken()
+func (d *DeploymentConfigService) DeleteDeploymentOverride(input *deployment_config.DeleteDeploymentOverrideParams) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
+	token, err := d.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &deployment_config.DeleteDeploymentOverrideParams{
-		Deployment: deployment,
-		Namespace:  namespace,
-		Version:    version,
-	}
-	ok, badRequest, unauthorized, notFound, internalServerError, err := g.DSMCClient.DeploymentConfig.DeleteDeploymentOverride(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, notFound, internalServerError, err := d.Client.DeploymentConfig.DeleteDeploymentOverride(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -255,18 +222,12 @@ func (g *DSMCConfig) DeleteDeploymentOverride(deployment, namespace, version str
 	return ok.GetPayload(), nil
 }
 
-func (g *DSMCConfig) DeleteOverrideRegionOverride(deployment, namespace, region, version string) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
-	token, err := g.TokenRepository.GetToken()
+func (d *DeploymentConfigService) DeleteOverrideRegionOverride(input *deployment_config.DeleteOverrideRegionOverrideParams) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
+	token, err := d.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &deployment_config.DeleteOverrideRegionOverrideParams{
-		Deployment: deployment,
-		Namespace:  namespace,
-		Region:     region,
-		Version:    version,
-	}
-	ok, badRequest, unauthorized, notFound, internalServerError, err := g.DSMCClient.DeploymentConfig.DeleteOverrideRegionOverride(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, notFound, internalServerError, err := d.Client.DeploymentConfig.DeleteOverrideRegionOverride(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -293,17 +254,12 @@ func (g *DSMCConfig) DeleteOverrideRegionOverride(deployment, namespace, region,
 	return ok.GetPayload(), nil
 }
 
-func (g *DSMCConfig) DeleteRootRegionOverride(deployment, namespace, region string) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
-	token, err := g.TokenRepository.GetToken()
+func (d *DeploymentConfigService) DeleteRootRegionOverride(input *deployment_config.DeleteRootRegionOverrideParams) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
+	token, err := d.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &deployment_config.DeleteRootRegionOverrideParams{
-		Deployment: deployment,
-		Namespace:  namespace,
-		Region:     region,
-	}
-	ok, badRequest, unauthorized, notFound, internalServerError, err := g.DSMCClient.DeploymentConfig.DeleteRootRegionOverride(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, notFound, internalServerError, err := d.Client.DeploymentConfig.DeleteRootRegionOverride(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -330,17 +286,12 @@ func (g *DSMCConfig) DeleteRootRegionOverride(deployment, namespace, region stri
 	return ok.GetPayload(), nil
 }
 
-func (g *DSMCConfig) GetAllDeployment(count *int64, namespace string, offset *int64) (*dsmcclientmodels.ModelsListDeploymentResponse, error) {
-	token, err := g.TokenRepository.GetToken()
+func (d *DeploymentConfigService) GetAllDeployment(input *deployment_config.GetAllDeploymentParams) (*dsmcclientmodels.ModelsListDeploymentResponse, error) {
+	token, err := d.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &deployment_config.GetAllDeploymentParams{
-		Count:     count,
-		Namespace: namespace,
-		Offset:    offset,
-	}
-	ok, badRequest, unauthorized, internalServerError, err := g.DSMCClient.DeploymentConfig.GetAllDeployment(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, internalServerError, err := d.Client.DeploymentConfig.GetAllDeployment(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -362,53 +313,12 @@ func (g *DSMCConfig) GetAllDeployment(count *int64, namespace string, offset *in
 	return ok.GetPayload(), nil
 }
 
-func (g *DSMCConfig) GetDeployment(deployment, namespace string) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
-	token, err := g.TokenRepository.GetToken()
+func (d *DeploymentConfigService) GetDeployment(input *deployment_config.GetDeploymentParams) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
+	token, err := d.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &deployment_config.GetDeploymentParams{
-		Deployment: deployment,
-		Namespace:  namespace,
-	}
-	ok, badRequest, unauthorized, notFound, internalServerError, err := g.DSMCClient.DeploymentConfig.GetDeployment(params, client.BearerToken(*token.AccessToken))
-	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, badRequest
-	}
-	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, unauthorized
-	}
-	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, notFound
-	}
-	if internalServerError != nil {
-		errorMsg, _ := json.Marshal(*internalServerError.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, internalServerError
-	}
-	if err != nil {
-		return nil, err
-	}
-	return ok.GetPayload(), nil
-}
-
-func (g *DSMCConfig) UpdateDeployment(body *dsmcclientmodels.ModelsUpdateDeploymentRequest, deployment, namespace string) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
-	token, err := g.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	params := &deployment_config.UpdateDeploymentParams{
-		Body:       body,
-		Deployment: deployment,
-		Namespace:  namespace,
-	}
-	ok, badRequest, unauthorized, notFound, internalServerError, err := g.DSMCClient.DeploymentConfig.UpdateDeployment(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, notFound, internalServerError, err := d.Client.DeploymentConfig.GetDeployment(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -435,18 +345,12 @@ func (g *DSMCConfig) UpdateDeployment(body *dsmcclientmodels.ModelsUpdateDeploym
 	return ok.GetPayload(), nil
 }
 
-func (g *DSMCConfig) UpdateDeploymentOverride(body *dsmcclientmodels.ModelsUpdateDeploymentOverrideRequest, deployment, namespace, version string) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
-	token, err := g.TokenRepository.GetToken()
+func (d *DeploymentConfigService) UpdateDeployment(input *deployment_config.UpdateDeploymentParams) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
+	token, err := d.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &deployment_config.UpdateDeploymentOverrideParams{
-		Body:       body,
-		Deployment: deployment,
-		Namespace:  namespace,
-		Version:    version,
-	}
-	ok, badRequest, unauthorized, notFound, internalServerError, err := g.DSMCClient.DeploymentConfig.UpdateDeploymentOverride(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, notFound, internalServerError, err := d.Client.DeploymentConfig.UpdateDeployment(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -473,19 +377,12 @@ func (g *DSMCConfig) UpdateDeploymentOverride(body *dsmcclientmodels.ModelsUpdat
 	return ok.GetPayload(), nil
 }
 
-func (g *DSMCConfig) UpdateOverrideRegionOverride(body *dsmcclientmodels.ModelsUpdateRegionOverrideRequest, deployment, namespace, region, version string) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
-	token, err := g.TokenRepository.GetToken()
+func (d *DeploymentConfigService) UpdateDeploymentOverride(input *deployment_config.UpdateDeploymentOverrideParams) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
+	token, err := d.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &deployment_config.UpdateOverrideRegionOverrideParams{
-		Body:       body,
-		Deployment: deployment,
-		Namespace:  namespace,
-		Region:     region,
-		Version:    version,
-	}
-	ok, badRequest, unauthorized, notFound, internalServerError, err := g.DSMCClient.DeploymentConfig.UpdateOverrideRegionOverride(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, notFound, internalServerError, err := d.Client.DeploymentConfig.UpdateDeploymentOverride(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -512,18 +409,44 @@ func (g *DSMCConfig) UpdateOverrideRegionOverride(body *dsmcclientmodels.ModelsU
 	return ok.GetPayload(), nil
 }
 
-func (g *DSMCConfig) UpdateRootRegionOverride(body *dsmcclientmodels.ModelsUpdateRegionOverrideRequest, deployment, namespace, region string) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
-	token, err := g.TokenRepository.GetToken()
+func (d *DeploymentConfigService) UpdateOverrideRegionOverride(input *deployment_config.UpdateOverrideRegionOverrideParams) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
+	token, err := d.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &deployment_config.UpdateRootRegionOverrideParams{
-		Body:       body,
-		Deployment: deployment,
-		Namespace:  namespace,
-		Region:     region,
+	ok, badRequest, unauthorized, notFound, internalServerError, err := d.Client.DeploymentConfig.UpdateOverrideRegionOverride(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
+		logrus.Error(string(errorMsg))
+		return nil, badRequest
 	}
-	ok, badRequest, unauthorized, notFound, internalServerError, err := g.DSMCClient.DeploymentConfig.UpdateRootRegionOverride(params, client.BearerToken(*token.AccessToken))
+	if unauthorized != nil {
+		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
+		logrus.Error(string(errorMsg))
+		return nil, unauthorized
+	}
+	if notFound != nil {
+		errorMsg, _ := json.Marshal(*notFound.GetPayload())
+		logrus.Error(string(errorMsg))
+		return nil, notFound
+	}
+	if internalServerError != nil {
+		errorMsg, _ := json.Marshal(*internalServerError.GetPayload())
+		logrus.Error(string(errorMsg))
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (d *DeploymentConfigService) UpdateRootRegionOverride(input *deployment_config.UpdateRootRegionOverrideParams) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
+	token, err := d.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, notFound, internalServerError, err := d.Client.DeploymentConfig.UpdateRootRegionOverride(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))

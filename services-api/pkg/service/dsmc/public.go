@@ -1,4 +1,4 @@
-package service
+package dsmc
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient"
@@ -8,31 +8,31 @@ import (
 	"github.com/go-openapi/runtime/client"
 )
 
-type DSMCPublic struct {
-	DSMCClient      *dsmcclient.JusticeDsmcService
+type PublicService struct {
+	Client          *dsmcclient.JusticeDsmcService
 	TokenRepository repository.TokenRepository
 }
 
-func (g *DSMCPublic) GetDefaultProvider() (*dsmcclientmodels.ModelsDefaultProvider, error) {
-	token, err := g.TokenRepository.GetToken()
+func (p *PublicService) GetDefaultProvider() (*dsmcclientmodels.ModelsDefaultProvider, error) {
+	token, err := p.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
 	params := &public.GetDefaultProviderParams{}
-	ok, err := g.DSMCClient.Public.GetDefaultProvider(params, client.BearerToken(*token.AccessToken))
+	ok, err := p.Client.Public.GetDefaultProvider(params, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (g *DSMCPublic) ListProviders() ([]string, error) {
-	token, err := g.TokenRepository.GetToken()
+func (p *PublicService) ListProviders() ([]string, error) {
+	token, err := p.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
 	params := &public.ListProvidersParams{}
-	ok, err := g.DSMCClient.Public.ListProviders(params, client.BearerToken(*token.AccessToken))
+	ok, err := p.Client.Public.ListProviders(params, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}

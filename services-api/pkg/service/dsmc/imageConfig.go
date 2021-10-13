@@ -1,4 +1,4 @@
-package service
+package dsmc
 
 import (
 	"encoding/json"
@@ -6,25 +6,21 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/image_config"
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 	"github.com/sirupsen/logrus"
 )
 
-type DSMCImageConfig struct {
-	DSMCClient      *dsmcclient.JusticeDsmcService
+type ImageConfigService struct {
+	Client          *dsmcclient.JusticeDsmcService
 	TokenRepository repository.TokenRepository
 }
 
-func (g *DSMCImageConfig) CreateImage(body *dsmcclientmodels.ModelsCreateImageRequest) error {
-	token, err := g.TokenRepository.GetToken()
+func (i *ImageConfigService) CreateImage(input *image_config.CreateImageParams) error {
+	token, err := i.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	params := &image_config.CreateImageParams{
-		Body: body,
-	}
-	_, badRequest, unauthorized, conflict, internalServerError, err := g.DSMCClient.ImageConfig.CreateImage(params, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, conflict, internalServerError, err := i.Client.ImageConfig.CreateImage(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -51,17 +47,12 @@ func (g *DSMCImageConfig) CreateImage(body *dsmcclientmodels.ModelsCreateImageRe
 	return nil
 }
 
-func (g *DSMCConfig) DeleteImage(imageURI, namespace, version string) error {
-	token, err := g.TokenRepository.GetToken()
+func (i *ImageConfigService) DeleteImage(input *image_config.DeleteImageParams) error {
+	token, err := i.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	params := &image_config.DeleteImageParams{
-		ImageURI:  imageURI,
-		Namespace: namespace,
-		Version:   version,
-	}
-	_, badRequest, unauthorized, notFound, unprocessableEntity, internalServerError, err := g.DSMCClient.ImageConfig.DeleteImage(params, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, notFound, unprocessableEntity, internalServerError, err := i.Client.ImageConfig.DeleteImage(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -93,15 +84,12 @@ func (g *DSMCConfig) DeleteImage(imageURI, namespace, version string) error {
 	return nil
 }
 
-func (g *DSMCImageConfig) ExportImages(namespace string) ([]*dsmcclientmodels.ModelsImageRecord, error) {
-	token, err := g.TokenRepository.GetToken()
+func (i *ImageConfigService) ExportImages(input *image_config.ExportImagesParams) ([]*dsmcclientmodels.ModelsImageRecord, error) {
+	token, err := i.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &image_config.ExportImagesParams{
-		Namespace: namespace,
-	}
-	ok, badRequest, unauthorized, forbidden, internalServerError, err := g.DSMCClient.ImageConfig.ExportImages(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, internalServerError, err := i.Client.ImageConfig.ExportImages(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -128,16 +116,12 @@ func (g *DSMCImageConfig) ExportImages(namespace string) ([]*dsmcclientmodels.Mo
 	return ok.GetPayload(), nil
 }
 
-func (g *DSMCImageConfig) GetImageDetail(namespace, version string) (*dsmcclientmodels.ModelsGetImageDetailResponse, error) {
-	token, err := g.TokenRepository.GetToken()
+func (i *ImageConfigService) GetImageDetail(input *image_config.GetImageDetailParams) (*dsmcclientmodels.ModelsGetImageDetailResponse, error) {
+	token, err := i.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &image_config.GetImageDetailParams{
-		Namespace: namespace,
-		Version:   version,
-	}
-	ok, unauthorized, forbidden, internalServerError, err := g.DSMCClient.ImageConfig.GetImageDetail(params, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, internalServerError, err := i.Client.ImageConfig.GetImageDetail(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -159,15 +143,12 @@ func (g *DSMCImageConfig) GetImageDetail(namespace, version string) (*dsmcclient
 	return ok.GetPayload(), nil
 }
 
-func (g *DSMCImageConfig) GetImageLimit(namespace string) (*dsmcclientmodels.ModelsGetImageLimitResponse, error) {
-	token, err := g.TokenRepository.GetToken()
+func (i *ImageConfigService) GetImageLimit(input *image_config.GetImageLimitParams) (*dsmcclientmodels.ModelsGetImageLimitResponse, error) {
+	token, err := i.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &image_config.GetImageLimitParams{
-		Namespace: namespace,
-	}
-	ok, unauthorized, forbidden, internalServerError, err := g.DSMCClient.ImageConfig.GetImageLimit(params, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, internalServerError, err := i.Client.ImageConfig.GetImageLimit(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -189,15 +170,12 @@ func (g *DSMCImageConfig) GetImageLimit(namespace string) (*dsmcclientmodels.Mod
 	return ok.GetPayload(), nil
 }
 
-func (g *DSMCImageConfig) ImportImages(file runtime.NamedReadCloser) (*dsmcclientmodels.ModelsImportResponse, error) {
-	token, err := g.TokenRepository.GetToken()
+func (i *ImageConfigService) ImportImages(input *image_config.ImportImagesParams) (*dsmcclientmodels.ModelsImportResponse, error) {
+	token, err := i.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &image_config.ImportImagesParams{
-		File: file,
-	}
-	ok, badRequest, unauthorized, forbidden, internalServerError, err := g.DSMCClient.ImageConfig.ImportImages(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, internalServerError, err := i.Client.ImageConfig.ImportImages(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -224,18 +202,12 @@ func (g *DSMCImageConfig) ImportImages(file runtime.NamedReadCloser) (*dsmcclien
 	return ok.GetPayload(), nil
 }
 
-func (g *DSMCImageConfig) ListImages(count *int64, namespace string, offset *int64, q *string) (*dsmcclientmodels.ModelsListImageResponse, error) {
-	token, err := g.TokenRepository.GetToken()
+func (i *ImageConfigService) ListImages(input *image_config.ListImagesParams) (*dsmcclientmodels.ModelsListImageResponse, error) {
+	token, err := i.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &image_config.ListImagesParams{
-		Count:     count,
-		Namespace: namespace,
-		Offset:    offset,
-		Q:         q,
-	}
-	ok, badRequest, unauthorized, internalServerError, err := g.DSMCClient.ImageConfig.ListImages(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, internalServerError, err := i.Client.ImageConfig.ListImages(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -257,15 +229,12 @@ func (g *DSMCImageConfig) ListImages(count *int64, namespace string, offset *int
 	return ok.GetPayload(), nil
 }
 
-func (g *DSMCImageConfig) UpdateImage(body *dsmcclientmodels.ModelsImageRecordUpdate) error {
-	token, err := g.TokenRepository.GetToken()
+func (i *ImageConfigService) UpdateImage(input *image_config.UpdateImageParams) error {
+	token, err := i.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	params := &image_config.UpdateImageParams{
-		Body: body,
-	}
-	_, badRequest, unauthorized, internalServerError, err := g.DSMCClient.ImageConfig.UpdateImage(params, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, internalServerError, err := i.Client.ImageConfig.UpdateImage(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))

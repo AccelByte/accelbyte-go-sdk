@@ -1,4 +1,4 @@
-package service
+package dsmc
 
 import (
 	"encoding/json"
@@ -10,22 +10,17 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-type DSMCPodConfig struct {
-	DSMCClient      *dsmcclient.JusticeDsmcService
+type PodConfigService struct {
+	Client          *dsmcclient.JusticeDsmcService
 	TokenRepository repository.TokenRepository
 }
 
-func (g *DSMCPodConfig) CreatePodConfig(body *dsmcclientmodels.ModelsCreatePodConfigRequest, name, namespace string) (*dsmcclientmodels.ModelsPodConfigRecord, error) {
-	token, err := g.TokenRepository.GetToken()
+func (p *PodConfigService) CreatePodConfig(input *pod_config.CreatePodConfigParams) (*dsmcclientmodels.ModelsPodConfigRecord, error) {
+	token, err := p.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &pod_config.CreatePodConfigParams{
-		Body:      body,
-		Name:      name,
-		Namespace: namespace,
-	}
-	created, badRequest, unauthorized, conflict, internalServerError, err := g.DSMCClient.PodConfig.CreatePodConfig(params, client.BearerToken(*token.AccessToken))
+	created, badRequest, unauthorized, conflict, internalServerError, err := p.Client.PodConfig.CreatePodConfig(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -52,16 +47,12 @@ func (g *DSMCPodConfig) CreatePodConfig(body *dsmcclientmodels.ModelsCreatePodCo
 	return created.GetPayload(), nil
 }
 
-func (g *DSMCConfig) DeletePodConfig(name, namespace string) error {
-	token, err := g.TokenRepository.GetToken()
+func (p *PodConfigService) DeletePodConfig(input *pod_config.DeletePodConfigParams) error {
+	token, err := p.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	params := &pod_config.DeletePodConfigParams{
-		Name:      name,
-		Namespace: namespace,
-	}
-	_, badRequest, unauthorized, notFound, unprocessableEntity, internalServerError, err := g.DSMCClient.PodConfig.DeletePodConfig(params, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, notFound, unprocessableEntity, internalServerError, err := p.Client.PodConfig.DeletePodConfig(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -93,17 +84,12 @@ func (g *DSMCConfig) DeletePodConfig(name, namespace string) error {
 	return nil
 }
 
-func (g *DSMCPodConfig) GetAllPodConfig(count *int64, namespace string, offset *int64) (*dsmcclientmodels.ModelsListPodConfigResponse, error) {
-	token, err := g.TokenRepository.GetToken()
+func (p *PodConfigService) GetAllPodConfig(input *pod_config.GetAllPodConfigParams) (*dsmcclientmodels.ModelsListPodConfigResponse, error) {
+	token, err := p.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &pod_config.GetAllPodConfigParams{
-		Count:     count,
-		Namespace: namespace,
-		Offset:    offset,
-	}
-	ok, badRequest, unauthorized, internalServerError, err := g.DSMCClient.PodConfig.GetAllPodConfig(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, internalServerError, err := p.Client.PodConfig.GetAllPodConfig(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -125,16 +111,12 @@ func (g *DSMCPodConfig) GetAllPodConfig(count *int64, namespace string, offset *
 	return ok.GetPayload(), nil
 }
 
-func (g *DSMCPodConfig) GetPodConfig(name, namespace string) (*dsmcclientmodels.ModelsPodConfigRecord, error) {
-	token, err := g.TokenRepository.GetToken()
+func (p *PodConfigService) GetPodConfig(input *pod_config.GetPodConfigParams) (*dsmcclientmodels.ModelsPodConfigRecord, error) {
+	token, err := p.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &pod_config.GetPodConfigParams{
-		Name:      name,
-		Namespace: namespace,
-	}
-	ok, badRequest, unauthorized, notFound, internalServerError, err := g.DSMCClient.PodConfig.GetPodConfig(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, notFound, internalServerError, err := p.Client.PodConfig.GetPodConfig(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -161,17 +143,12 @@ func (g *DSMCPodConfig) GetPodConfig(name, namespace string) (*dsmcclientmodels.
 	return ok.GetPayload(), nil
 }
 
-func (g *DSMCPodConfig) UpdatePodConfig(body *dsmcclientmodels.ModelsUpdatePodConfigRequest, name, namespace string) (*dsmcclientmodels.ModelsPodConfigRecord, error) {
-	token, err := g.TokenRepository.GetToken()
+func (p *PodConfigService) UpdatePodConfig(input *pod_config.UpdatePodConfigParams) (*dsmcclientmodels.ModelsPodConfigRecord, error) {
+	token, err := p.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &pod_config.UpdatePodConfigParams{
-		Body:      body,
-		Name:      name,
-		Namespace: namespace,
-	}
-	ok, badRequest, unauthorized, notFound, conflict, internalServerError, err := g.DSMCClient.PodConfig.UpdatePodConfig(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, notFound, conflict, internalServerError, err := p.Client.PodConfig.UpdatePodConfig(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))

@@ -1,4 +1,4 @@
-package service
+package dsmc
 
 import (
 	"encoding/json"
@@ -10,20 +10,17 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-type DSMCAdmin struct {
-	DSMCClient      *dsmcclient.JusticeDsmcService
+type AdminService struct {
+	Client          *dsmcclient.JusticeDsmcService
 	TokenRepository repository.TokenRepository
 }
 
-func (g *DSMCAdmin) CountServer(namespace string) (*dsmcclientmodels.ModelsCountServerResponse, error) {
-	token, err := g.TokenRepository.GetToken()
+func (a *AdminService) CountServer(input *admin.CountServerParams) (*dsmcclientmodels.ModelsCountServerResponse, error) {
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &admin.CountServerParams{
-		Namespace: namespace,
-	}
-	ok, unauthorized, internalServerError, err := g.DSMCClient.Admin.CountServer(params, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, internalServerError, err := a.Client.Admin.CountServer(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -40,16 +37,12 @@ func (g *DSMCAdmin) CountServer(namespace string) (*dsmcclientmodels.ModelsCount
 	return ok.GetPayload(), nil
 }
 
-func (g *DSMCAdmin) CountServerDetailed(namespace string, region *string) (*dsmcclientmodels.ModelsDetailedCountServerResponse, error) {
-	token, err := g.TokenRepository.GetToken()
+func (a *AdminService) CountServerDetailed(input *admin.CountServerDetailedParams) (*dsmcclientmodels.ModelsDetailedCountServerResponse, error) {
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &admin.CountServerDetailedParams{
-		Namespace: namespace,
-		Region:    region,
-	}
-	ok, unauthorized, internalServerError, err := g.DSMCClient.Admin.CountServerDetailed(params, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, internalServerError, err := a.Client.Admin.CountServerDetailed(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -66,16 +59,12 @@ func (g *DSMCAdmin) CountServerDetailed(namespace string, region *string) (*dsmc
 	return ok.GetPayload(), nil
 }
 
-func (g *DSMCAdmin) CountSession(namespace string, region *string) (*dsmcclientmodels.ModelsCountSessionResponse, error) {
-	token, err := g.TokenRepository.GetToken()
+func (a *AdminService) CountSession(input *admin.CountSessionParams) (*dsmcclientmodels.ModelsCountSessionResponse, error) {
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &admin.CountSessionParams{
-		Namespace: namespace,
-		Region:    region,
-	}
-	ok, unauthorized, internalServerError, err := g.DSMCClient.Admin.CountSession(params, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, internalServerError, err := a.Client.Admin.CountSession(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -93,16 +82,12 @@ func (g *DSMCAdmin) CountSession(namespace string, region *string) (*dsmcclientm
 	return ok.GetPayload(), nil
 }
 
-func (g *DSMCAdmin) DeleteLocalServer(name, namespace string) error {
-	token, err := g.TokenRepository.GetToken()
+func (a *AdminService) DeleteLocalServer(input *admin.DeleteLocalServerParams) error {
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	params := &admin.DeleteLocalServerParams{
-		Name:      name,
-		Namespace: namespace,
-	}
-	_, unauthorized, internalServerError, err := g.DSMCClient.Admin.DeleteLocalServer(params, client.BearerToken(*token.AccessToken))
+	_, unauthorized, internalServerError, err := a.Client.Admin.DeleteLocalServer(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -119,16 +104,12 @@ func (g *DSMCAdmin) DeleteLocalServer(name, namespace string) error {
 	return nil
 }
 
-func (g *DSMCAdmin) DeleteServer(namespace, podName string) error {
-	token, err := g.TokenRepository.GetToken()
+func (a *AdminService) DeleteServer(input *admin.DeleteServerParams) error {
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	params := &admin.DeleteServerParams{
-		Namespace: namespace,
-		PodName:   podName,
-	}
-	_, unauthorized, notFound, internalServerError, err := g.DSMCClient.Admin.DeleteServer(params, client.BearerToken(*token.AccessToken))
+	_, unauthorized, notFound, internalServerError, err := a.Client.Admin.DeleteServer(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -150,16 +131,12 @@ func (g *DSMCAdmin) DeleteServer(namespace, podName string) error {
 	return nil
 }
 
-func (g *DSMCAdmin) DeleteSession(namespace, sessionID string) error {
-	token, err := g.TokenRepository.GetToken()
+func (a *AdminService) DeleteSession(input *admin.DeleteSessionParams) error {
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	params := &admin.DeleteSessionParams{
-		Namespace: namespace,
-		SessionID: sessionID,
-	}
-	_, unauthorized, internalServerError, err := g.DSMCClient.Admin.DeleteSession(params, client.BearerToken(*token.AccessToken))
+	_, unauthorized, internalServerError, err := a.Client.Admin.DeleteSession(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -176,16 +153,12 @@ func (g *DSMCAdmin) DeleteSession(namespace, sessionID string) error {
 	return nil
 }
 
-func (g *DSMCAdmin) GetServer(namespace, podName string) (*dsmcclientmodels.ModelsServer, error) {
-	token, err := g.TokenRepository.GetToken()
+func (a *AdminService) GetServer(input *admin.GetServerParams) (*dsmcclientmodels.ModelsServer, error) {
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &admin.GetServerParams{
-		Namespace: namespace,
-		PodName:   podName,
-	}
-	ok, unauthorized, notFound, internalServerError, err := g.DSMCClient.Admin.GetServer(params, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, notFound, internalServerError, err := a.Client.Admin.GetServer(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -208,15 +181,12 @@ func (g *DSMCAdmin) GetServer(namespace, podName string) (*dsmcclientmodels.Mode
 	return ok.GetPayload(), nil
 }
 
-func (g *DSMCAdmin) ListLocalServer(namespace string) (*dsmcclientmodels.ModelsListServerResponse, error) {
-	token, err := g.TokenRepository.GetToken()
+func (a *AdminService) ListLocalServer(input *admin.ListLocalServerParams) (*dsmcclientmodels.ModelsListServerResponse, error) {
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &admin.ListLocalServerParams{
-		Namespace: namespace,
-	}
-	ok, unauthorized, internalServerError, err := g.DSMCClient.Admin.ListLocalServer(params, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, internalServerError, err := a.Client.Admin.ListLocalServer(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -234,18 +204,12 @@ func (g *DSMCAdmin) ListLocalServer(namespace string) (*dsmcclientmodels.ModelsL
 	return ok.GetPayload(), nil
 }
 
-func (g *DSMCAdmin) ListServer(count *int64, namespace string, offset *int64, region *string) (*dsmcclientmodels.ModelsListServerResponse, error) {
-	token, err := g.TokenRepository.GetToken()
+func (a *AdminService) ListServer(input *admin.ListServerParams) (*dsmcclientmodels.ModelsListServerResponse, error) {
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &admin.ListServerParams{
-		Count:     count,
-		Namespace: namespace,
-		Offset:    offset,
-		Region:    region,
-	}
-	ok, unauthorized, internalServerError, err := g.DSMCClient.Admin.ListServer(params, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, internalServerError, err := a.Client.Admin.ListServer(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -263,19 +227,12 @@ func (g *DSMCAdmin) ListServer(count *int64, namespace string, offset *int64, re
 	return ok.GetPayload(), nil
 }
 
-func (g *DSMCAdmin) ListSession(count *int64, namespace string, offset *int64, region *string, withServer *bool) (*dsmcclientmodels.ModelsListSessionResponse, error) {
-	token, err := g.TokenRepository.GetToken()
+func (a *AdminService) ListSession(input *admin.ListSessionParams) (*dsmcclientmodels.ModelsListSessionResponse, error) {
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &admin.ListSessionParams{
-		Count:      count,
-		Namespace:  namespace,
-		Offset:     offset,
-		Region:     region,
-		WithServer: withServer,
-	}
-	ok, unauthorized, internalServerError, err := g.DSMCClient.Admin.ListSession(params, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, internalServerError, err := a.Client.Admin.ListSession(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -293,16 +250,12 @@ func (g *DSMCAdmin) ListSession(count *int64, namespace string, offset *int64, r
 	return ok.GetPayload(), nil
 }
 
-func (g *DSMCAdmin) GetServerLogs(namespace, podName string) (*dsmcclientmodels.ModelsServerLogs, error) {
-	token, err := g.TokenRepository.GetToken()
+func (a *AdminService) GetServerLogs(input *admin.GetServerLogsParams) (*dsmcclientmodels.ModelsServerLogs, error) {
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &admin.GetServerLogsParams{
-		Namespace: namespace,
-		PodName:   podName,
-	}
-	ok, badRequest, unauthorized, notFound, internalServerError, err := g.DSMCClient.Admin.GetServerLogs(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, notFound, internalServerError, err := a.Client.Admin.GetServerLogs(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))

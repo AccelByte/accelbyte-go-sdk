@@ -1,4 +1,4 @@
-package service
+package dsmc
 
 import (
 	"encoding/json"
@@ -10,21 +10,17 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-type GameSessionService struct {
-	DSMCClient      *dsmcclient.JusticeDsmcService
+type SessionService struct {
+	Client          *dsmcclient.JusticeDsmcService
 	TokenRepository repository.TokenRepository
 }
 
-func (g *GameSessionService) ClaimServer(namespace string, content *dsmcclientmodels.ModelsClaimSessionRequest) error {
-	token, err := g.TokenRepository.GetToken()
+func (s *SessionService) ClaimServer(input *session.ClaimServerParams) error {
+	token, err := s.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	params := &session.ClaimServerParams{
-		Namespace: namespace,
-		Body:      content,
-	}
-	_, unauthorized, notFound, conflict, status425, internalServer, serviceUnavailable, err := g.DSMCClient.Session.ClaimServer(params, client.BearerToken(*token.AccessToken))
+	_, unauthorized, notFound, conflict, status425, internalServer, serviceUnavailable, err := s.Client.Session.ClaimServer(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -62,16 +58,12 @@ func (g *GameSessionService) ClaimServer(namespace string, content *dsmcclientmo
 	return nil
 }
 
-func (g *GameSessionService) CreateSession(namespace string, content *dsmcclientmodels.ModelsCreateSessionRequest) (*dsmcclientmodels.ModelsSessionResponse, error) {
-	token, err := g.TokenRepository.GetToken()
+func (s *SessionService) CreateSession(input *session.CreateSessionParams) (*dsmcclientmodels.ModelsSessionResponse, error) {
+	token, err := s.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &session.CreateSessionParams{
-		Namespace: namespace,
-		Body:      content,
-	}
-	ok, badRequest, unauthorized, notFound, conflict, internalServer, serviceUnavailable, err := g.DSMCClient.Session.CreateSession(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, notFound, conflict, internalServer, serviceUnavailable, err := s.Client.Session.CreateSession(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -108,16 +100,12 @@ func (g *GameSessionService) CreateSession(namespace string, content *dsmcclient
 	return ok.GetPayload(), nil
 }
 
-func (g *GameSessionService) GetSession(namespace, sessionID string) (*dsmcclientmodels.ModelsSessionResponse, error) {
-	token, err := g.TokenRepository.GetToken()
+func (s *SessionService) GetSession(input *session.GetSessionParams) (*dsmcclientmodels.ModelsSessionResponse, error) {
+	token, err := s.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &session.GetSessionParams{
-		Namespace: namespace,
-		SessionID: sessionID,
-	}
-	ok, unauthorized, notFound, internalServer, err := g.DSMCClient.Session.GetSession(params, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, notFound, internalServer, err := s.Client.Session.GetSession(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))

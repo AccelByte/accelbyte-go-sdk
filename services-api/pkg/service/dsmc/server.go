@@ -1,4 +1,4 @@
-package service
+package dsmc
 
 import (
 	"encoding/json"
@@ -10,21 +10,17 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-type DSMCServer struct {
-	DSMCClient      *dsmcclient.JusticeDsmcService
+type ServerService struct {
+	Client          *dsmcclient.JusticeDsmcService
 	TokenRepository repository.TokenRepository
 }
 
-func (g *DSMCImageConfig) DeregisterLocalServer(body *dsmcclientmodels.ModelsDeregisterLocalServerRequest, namespace string) error {
-	token, err := g.TokenRepository.GetToken()
+func (s *ServerService) DeregisterLocalServer(input *server.DeregisterLocalServerParams) error {
+	token, err := s.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	params := &server.DeregisterLocalServerParams{
-		Body:      body,
-		Namespace: namespace,
-	}
-	_, badRequest, unauthorized, internalServerError, err := g.DSMCClient.Server.DeregisterLocalServer(params, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, internalServerError, err := s.Client.Server.DeregisterLocalServer(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -46,16 +42,12 @@ func (g *DSMCImageConfig) DeregisterLocalServer(body *dsmcclientmodels.ModelsDer
 	return nil
 }
 
-func (g *DSMCPodConfig) GetServerSession(namespace, podName string) (*dsmcclientmodels.ModelsServerSessionResponse, error) {
-	token, err := g.TokenRepository.GetToken()
+func (s *ServerService) GetServerSession(input *server.GetServerSessionParams) (*dsmcclientmodels.ModelsServerSessionResponse, error) {
+	token, err := s.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &server.GetServerSessionParams{
-		Namespace: namespace,
-		PodName:   podName,
-	}
-	ok, badRequest, unauthorized, notFound, internalServerError, err := g.DSMCClient.Server.GetServerSession(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, notFound, internalServerError, err := s.Client.Server.GetServerSession(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -82,16 +74,12 @@ func (g *DSMCPodConfig) GetServerSession(namespace, podName string) (*dsmcclient
 	return ok.GetPayload(), nil
 }
 
-func (g *DSMCPodConfig) RegisterLocalServer(body *dsmcclientmodels.ModelsRegisterLocalServerRequest, namespace string) (*dsmcclientmodels.ModelsServer, error) {
-	token, err := g.TokenRepository.GetToken()
+func (s *ServerService) RegisterLocalServer(input *server.RegisterLocalServerParams) (*dsmcclientmodels.ModelsServer, error) {
+	token, err := s.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &server.RegisterLocalServerParams{
-		Body:      body,
-		Namespace: namespace,
-	}
-	ok, badRequest, unauthorized, notFound, internalServerError, err := g.DSMCClient.Server.RegisterLocalServer(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, notFound, internalServerError, err := s.Client.Server.RegisterLocalServer(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -118,16 +106,12 @@ func (g *DSMCPodConfig) RegisterLocalServer(body *dsmcclientmodels.ModelsRegiste
 	return ok.GetPayload(), nil
 }
 
-func (g *DSMCPodConfig) RegisterServer(body *dsmcclientmodels.ModelsRegisterServerRequest, namespace string) (*dsmcclientmodels.ModelsServer, error) {
-	token, err := g.TokenRepository.GetToken()
+func (s *ServerService) RegisterServer(input *server.RegisterServerParams) (*dsmcclientmodels.ModelsServer, error) {
+	token, err := s.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &server.RegisterServerParams{
-		Body:      body,
-		Namespace: namespace,
-	}
-	ok, badRequest, unauthorized, notFound, internalServerError, err := g.DSMCClient.Server.RegisterServer(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, notFound, internalServerError, err := s.Client.Server.RegisterServer(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -154,16 +138,12 @@ func (g *DSMCPodConfig) RegisterServer(body *dsmcclientmodels.ModelsRegisterServ
 	return ok.GetPayload(), nil
 }
 
-func (g *DSMCPodConfig) ShutdownServer(body *dsmcclientmodels.ModelsShutdownServerRequest, namespace string) error {
-	token, err := g.TokenRepository.GetToken()
+func (s *ServerService) ShutdownServer(input *server.ShutdownServerParams) error {
+	token, err := s.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	params := &server.ShutdownServerParams{
-		Body:      body,
-		Namespace: namespace,
-	}
-	_, badRequest, unauthorized, notFound, internalServerError, err := g.DSMCClient.Server.ShutdownServer(params, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, notFound, internalServerError, err := s.Client.Server.ShutdownServer(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))

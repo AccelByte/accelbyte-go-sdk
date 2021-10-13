@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package service
+package iam
 
 import (
 	"encoding/json"
@@ -16,22 +16,17 @@ import (
 )
 
 type SSOCredService struct {
-	IamService      *iamclient.JusticeIamService
+	Client          *iamclient.JusticeIamService
 	TokenRepository repository.TokenRepository
 }
 
-func (s SSOCredService) AddSSOLoginPlatformCredentialV3(body *iamclientmodels.ModelSSOPlatformCredentialRequest, namespace string, platformID string) (*iamclientmodels.ModelSSOPlatformCredentialResponse, error) {
+func (s *SSOCredService) AddSSOLoginPlatformCredential(input *s_s_o_credential.AddSSOLoginPlatformCredentialParams) (*iamclientmodels.ModelSSOPlatformCredentialResponse, error) {
 	token, err := s.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	params := &s_s_o_credential.AddSSOLoginPlatformCredentialParams{
-		Body:       body,
-		Namespace:  namespace,
-		PlatformID: platformID,
-	}
-	ok, badRequest, unauthorized, forbidden, internalServerError, err := s.IamService.SsoCredential.AddSSOLoginPlatformCredential(params, client.BearerToken(*token.AccessToken))
+	created, badRequest, unauthorized, forbidden, internalServerError, err := s.Client.SsoCredential.AddSSOLoginPlatformCredential(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -56,20 +51,16 @@ func (s SSOCredService) AddSSOLoginPlatformCredentialV3(body *iamclientmodels.Mo
 		logrus.Error(err)
 		return nil, err
 	}
-	return ok.GetPayload(), nil
+	return created.GetPayload(), nil
 }
 
-func (s SSOCredService) DeleteSSOLoginPlatformCredentialV3(namespace string, platformID string) error {
+func (s *SSOCredService) DeleteSSOLoginPlatformCredentialV3(input *s_s_o_credential.DeleteSSOLoginPlatformCredentialV3Params) error {
 	token, err := s.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return err
 	}
-	params := &s_s_o_credential.DeleteSSOLoginPlatformCredentialV3Params{
-		Namespace:  namespace,
-		PlatformID: platformID,
-	}
-	_, unauthorized, forbidden, notFound, internalServerError, err := s.IamService.SsoCredential.DeleteSSOLoginPlatformCredentialV3(params, client.BearerToken(*token.AccessToken))
+	_, unauthorized, forbidden, notFound, internalServerError, err := s.Client.SsoCredential.DeleteSSOLoginPlatformCredentialV3(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg := "unauthorized"
 		logrus.Error(errorMsg)
@@ -97,18 +88,13 @@ func (s SSOCredService) DeleteSSOLoginPlatformCredentialV3(namespace string, pla
 	return nil
 }
 
-func (s SSOCredService) RetrieveAllSSOLoginPlatformCredentialV3(limit *int64, namespace string, offset *string) ([]*iamclientmodels.ModelSSOPlatformCredentialResponse, error) {
+func (s *SSOCredService) RetrieveAllSSOLoginPlatformCredentialV3(input *s_s_o_credential.RetrieveAllSSOLoginPlatformCredentialV3Params) ([]*iamclientmodels.ModelSSOPlatformCredentialResponse, error) {
 	token, err := s.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	params := &s_s_o_credential.RetrieveAllSSOLoginPlatformCredentialV3Params{
-		Limit:     limit,
-		Namespace: namespace,
-		Offset:    offset,
-	}
-	ok, unauthorized, forbidden, notFound, internalServerError, err := s.IamService.SsoCredential.RetrieveAllSSOLoginPlatformCredentialV3(params, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, notFound, internalServerError, err := s.Client.SsoCredential.RetrieveAllSSOLoginPlatformCredentialV3(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg := "unauthorized"
 		logrus.Error(errorMsg)
@@ -136,17 +122,13 @@ func (s SSOCredService) RetrieveAllSSOLoginPlatformCredentialV3(limit *int64, na
 	return ok.GetPayload(), nil
 }
 
-func (s SSOCredService) RetrieveSSOLoginPlatformCredentialV3(namespace string, platformID string) (*iamclientmodels.ModelSSOPlatformCredentialResponse, error) {
+func (s *SSOCredService) RetrieveSSOLoginPlatformCredential(input *s_s_o_credential.RetrieveSSOLoginPlatformCredentialParams) (*iamclientmodels.ModelSSOPlatformCredentialResponse, error) {
 	token, err := s.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	params := &s_s_o_credential.RetrieveSSOLoginPlatformCredentialParams{
-		Namespace:  namespace,
-		PlatformID: platformID,
-	}
-	ok, unauthorized, forbidden, notFound, internalServerError, err := s.IamService.SsoCredential.RetrieveSSOLoginPlatformCredential(params, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, notFound, internalServerError, err := s.Client.SsoCredential.RetrieveSSOLoginPlatformCredential(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg := "unauthorized"
 		logrus.Error(errorMsg)
@@ -174,18 +156,9 @@ func (s SSOCredService) RetrieveSSOLoginPlatformCredentialV3(namespace string, p
 	return ok.GetPayload(), nil
 }
 
-func (s SSOCredService) UpdateSSOLoginPlatformCredentialV3(body *iamclientmodels.ModelSSOPlatformCredentialRequest, namespace string, platformID string) (*iamclientmodels.ModelSSOPlatformCredentialResponse, error) {
+func (s *SSOCredService) UpdateSSOPlatformCredential(input *s_s_o_credential.UpdateSSOPlatformCredentialParams) (*iamclientmodels.ModelSSOPlatformCredentialResponse, error) {
 	token, err := s.TokenRepository.GetToken()
-	if err != nil {
-		logrus.Error(err)
-		return nil, err
-	}
-	params := &s_s_o_credential.UpdateSSOPlatformCredentialParams{
-		Body:       body,
-		Namespace:  namespace,
-		PlatformID: platformID,
-	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := s.IamService.SsoCredential.UpdateSSOPlatformCredential(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := s.Client.SsoCredential.UpdateSSOPlatformCredential(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))

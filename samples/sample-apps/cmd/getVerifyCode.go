@@ -7,7 +7,6 @@ import (
 	"encoding/json"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
@@ -22,13 +21,7 @@ var getVerifyCodeCmd = &cobra.Command{
 		namespace := cmd.Flag("namespace").Value.String()
 		userId := cmd.Flag("userId").Value.String()
 		userService := &service.UserService{
-			IamService:   factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
-			BasicService: factory.NewBasicClient(&repository.ConfigRepositoryImpl{}),
-			OAuth20Service: &iam.OAuth20Service{
-				Client:           factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
-				ConfigRepository: &repository.ConfigRepositoryImpl{},
-				TokenRepository:  &repository.TokenRepositoryImpl{},
-			},
+			Client:          factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		user, err := userService.GetUserVerificationCodeV3(namespace, userId)

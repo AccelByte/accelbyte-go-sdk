@@ -6,7 +6,6 @@ package cmd
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/spf13/cobra"
 )
@@ -21,13 +20,7 @@ var verifyTokenCmd = &cobra.Command{
 		namespace := cmd.Flag("namespace").Value.String()
 		contactType := cmd.Flag("contactType").Value.String()
 		userService := &service.UserService{
-			IamService:   factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
-			BasicService: factory.NewBasicClient(&repository.ConfigRepositoryImpl{}),
-			OAuth20Service: &iam.OAuth20Service{
-				Client:           factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
-				ConfigRepository: &repository.ConfigRepositoryImpl{},
-				TokenRepository:  &repository.TokenRepositoryImpl{},
-			},
+			Client:          factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		err := userService.PublicUserVerificationV3(token, contactType, namespace)

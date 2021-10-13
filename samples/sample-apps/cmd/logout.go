@@ -5,7 +5,6 @@ package cmd
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
@@ -18,17 +17,12 @@ var logoutCmd = &cobra.Command{
 	Short: "Logout",
 	Long:  `Logout the user`,
 	RunE: func(cmd *cobra.Command, args []string) error {
-		userService := service.UserService{
-			IamService:      factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
-			BasicService:    factory.NewBasicClient(&repository.ConfigRepositoryImpl{}),
-			TokenRepository: &repository.TokenRepositoryImpl{},
-			OAuth20Service: &iam.OAuth20Service{
-				Client:           factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
-				ConfigRepository: &repository.ConfigRepositoryImpl{},
-				TokenRepository:  &repository.TokenRepositoryImpl{},
-			},
+		oAuth20Service := iam.OAuth20Service{
+			Client:           factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
+			ConfigRepository: &repository.ConfigRepositoryImpl{},
+			TokenRepository:  &repository.TokenRepositoryImpl{},
 		}
-		err := userService.Logout()
+		err := oAuth20Service.Logout()
 		if err != nil {
 			logrus.Error(err)
 			return err

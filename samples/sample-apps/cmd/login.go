@@ -5,7 +5,6 @@ package cmd
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
@@ -20,16 +19,12 @@ var loginCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		username := cmd.Flag("username").Value.String()
 		password := cmd.Flag("password").Value.String()
-		userService := service.UserService{
-			IamService:   factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
-			BasicService: factory.NewBasicClient(&repository.ConfigRepositoryImpl{}),
-			OAuth20Service: &iam.OAuth20Service{
-				Client:           factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
-				ConfigRepository: &repository.ConfigRepositoryImpl{},
-				TokenRepository:  &repository.TokenRepositoryImpl{},
-			},
+		oAuth20Service := iam.OAuth20Service{
+			Client:           factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
+			ConfigRepository: &repository.ConfigRepositoryImpl{},
+			TokenRepository:  &repository.TokenRepositoryImpl{},
 		}
-		err := userService.Login(username, password)
+		err := oAuth20Service.Login(username, password)
 		if err != nil {
 			return err
 		}

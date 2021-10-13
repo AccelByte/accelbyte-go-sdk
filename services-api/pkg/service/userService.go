@@ -1427,7 +1427,7 @@ func (u *UserService) AdminCreateJusticeUser(namespace, targetNamespace, userId 
 	return created.GetPayload(), nil
 }
 
-// AdminLinkPlatformAccount is used to links a platform user account to user account
+// AdminLinkPlatformAccount is used to link a platform user account to user account
 func (u *UserService) AdminLinkPlatformAccount(namespace, userId string, platformId, platformUserId *string) error {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
@@ -2529,7 +2529,7 @@ func (u *UserService) PublicWebLinkPlatform(namespace, platformId string, client
 	return ok.GetPayload(), nil
 }
 
-// PublicWebLinkPlatformEstablish is used to establishes link progress
+// PublicWebLinkPlatformEstablish is used to establishe link progress
 func (u *UserService) PublicWebLinkPlatformEstablish(namespace, platformId, state string) error {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
@@ -2552,7 +2552,7 @@ func (u *UserService) PublicWebLinkPlatformEstablish(namespace, platformId, stat
 	return nil
 }
 
-// ResetPasswordV3 is used to resets user password
+// ResetPasswordV3 is used to reset user password
 func (u *UserService) ResetPasswordV3(namespace string, code, emailAddress, newPassword *string) error {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {

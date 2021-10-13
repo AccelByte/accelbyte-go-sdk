@@ -12,6 +12,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/go-openapi/runtime/client"
 	"github.com/sirupsen/logrus"
@@ -20,7 +21,7 @@ import (
 type UserService struct {
 	IamService      *iamclient.JusticeIamService
 	BasicService    *basicclient.JusticeBasicService
-	OauthService    *OauthService
+	OAuth20Service  *iam.OAuth20Service
 	TokenRepository repository.TokenRepository
 }
 
@@ -2869,15 +2870,15 @@ func (userService *UserService) Login(username, password string) error {
 	codeVerifier := codeVerifierGenerator.String()
 	challenge := codeVerifierGenerator.CodeChallengeS256()
 	challengeMethod := "S256"
-	requestId, err := userService.OauthService.Authorize(scope, challenge, challengeMethod)
+	requestId, err := userService.OAuth20Service.Authorize(scope, challenge, challengeMethod)
 	if err != nil {
 		return err
 	}
-	code, err := userService.OauthService.Authenticate(requestId, username, password)
+	code, err := userService.OAuth20Service.Authenticate(requestId, username, password)
 	if err != nil {
 		return err
 	}
-	err = userService.OauthService.GrantTokenAuthorizationCode(code, codeVerifier, "")
+	err = userService.OAuth20Service.GrantTokenAuthorizationCode(code, codeVerifier, "")
 	if err != nil {
 		return err
 	}
@@ -2893,8 +2894,8 @@ func (userService *UserService) Logout() error {
 	param := &o_auth2_0.TokenRevocationV3Params{
 		Token: *accessToken.AccessToken,
 	}
-	clientId := userService.OauthService.ConfigRepository.GetClientId()
-	clientSecret := userService.OauthService.ConfigRepository.GetClientSecret()
+	clientId := userService.OAuth20Service.ConfigRepository.GetClientId()
+	clientSecret := userService.OAuth20Service.ConfigRepository.GetClientSecret()
 	_, badRequest, unauthorized, err := userService.IamService.OAuth20.TokenRevocationV3(param, client.BasicAuth(clientId, clientSecret))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())

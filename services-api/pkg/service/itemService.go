@@ -5,6 +5,7 @@ package service
 
 import (
 	"encoding/json"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
 
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/item"
@@ -15,7 +16,7 @@ import (
 
 type ItemService struct {
 	PlatformService *platformclient.JusticePlatformService
-	OauthService    *OauthService
+	OauthService    *iam.OAuth20Service
 }
 
 func (itemService *ItemService) GetApp(namespace, itemId, storeId string, activeOnly *bool) (*platformclientmodels.FullAppInfo, error) {

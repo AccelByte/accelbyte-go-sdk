@@ -7,6 +7,7 @@ import (
 	"encoding/json"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
@@ -42,8 +43,8 @@ var getStoreitemCmd = &cobra.Command{
 
 		itemService := &service.ItemService{
 			PlatformService: factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
-			OauthService: &service.OauthService{
-				IamService:       factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
+			OauthService: &iam.OAuth20Service{
+				Client:           factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
 				ConfigRepository: &repository.ConfigRepositoryImpl{},
 				TokenRepository:  &repository.TokenRepositoryImpl{},
 			},

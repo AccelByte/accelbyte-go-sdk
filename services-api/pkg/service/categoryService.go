@@ -2,6 +2,7 @@ package service
 
 import (
 	"encoding/json"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
 
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/category"
@@ -11,7 +12,7 @@ import (
 )
 
 type CategoryService struct {
-	OauthService    *OauthService
+	OauthService    *iam.OAuth20Service
 	PlatformService *platformclient.JusticePlatformService
 }
 

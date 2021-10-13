@@ -7,12 +7,13 @@ package service
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/anonymization"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
 	"github.com/go-openapi/runtime/client"
 	"github.com/sirupsen/logrus"
 )
 
 type AnonymizationService struct {
-	OauthService    *OauthService
+	OauthService    *iam.OAuth20Service
 	PlatformService *platformclient.JusticePlatformService
 }
 

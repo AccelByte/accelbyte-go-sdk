@@ -2,40 +2,40 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package service
+package iam
 
 import (
 	"encoding/json"
 	"errors"
+	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth2_0_extension"
 	"net/http"
 	"net/url"
 
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth2_0"
-	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth2_0_extension"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/go-openapi/runtime/client"
 	"github.com/sirupsen/logrus"
 )
 
-type OauthService struct {
-	IamService       *iamclient.JusticeIamService
+type OAuth20Service struct {
+	Client           *iamclient.JusticeIamService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
 }
 
-func (oauthService *OauthService) GetToken() (string, error) {
-	token, err := oauthService.TokenRepository.GetToken()
+func (a *OAuth20Service) GetToken() (string, error) {
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return "", err
 	}
 	return *token.AccessToken, nil
 }
 
-func (oauthService *OauthService) GrantTokenCredentials(code, codeVerifier string) error {
-	clientId := oauthService.ConfigRepository.GetClientId()
-	clientSecret := oauthService.ConfigRepository.GetClientSecret()
+func (a *OAuth20Service) GrantTokenCredentials(code, codeVerifier string) error {
+	clientId := a.ConfigRepository.GetClientId()
+	clientSecret := a.ConfigRepository.GetClientSecret()
 	if len(clientId) == 0 {
 		return errors.New("client not registered")
 	}
@@ -45,7 +45,7 @@ func (oauthService *OauthService) GrantTokenCredentials(code, codeVerifier strin
 		GrantType:    "client_credentials",
 	}
 	accessToken, badRequest, unauthorized, forbidden, err :=
-		oauthService.IamService.OAuth20.TokenGrantV3(param, client.BasicAuth(clientId, clientSecret))
+		a.Client.OAuth20.TokenGrantV3(param, client.BasicAuth(clientId, clientSecret))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -58,15 +58,15 @@ func (oauthService *OauthService) GrantTokenCredentials(code, codeVerifier strin
 	if accessToken == nil {
 		return errors.New("empty access token")
 	}
-	err = oauthService.TokenRepository.Store(*accessToken.GetPayload())
+	err = a.TokenRepository.Store(*accessToken.GetPayload())
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (oauthService *OauthService) GrantTokenRefreshToken(code, codeVerifier, refreshToken string) error {
-	clientId := oauthService.ConfigRepository.GetClientId()
+func (a *OAuth20Service) GrantTokenRefreshToken(code, codeVerifier, refreshToken string) error {
+	clientId := a.ConfigRepository.GetClientId()
 	if len(clientId) == 0 {
 		return errors.New("client not registered")
 	}
@@ -76,8 +76,7 @@ func (oauthService *OauthService) GrantTokenRefreshToken(code, codeVerifier, ref
 		GrantType:    "refresh_token",
 		RefreshToken: &refreshToken,
 	}
-
-	accessToken, badRequest, unauthorized, forbidden, err := oauthService.IamService.OAuth20.TokenGrantV3(param, client.BasicAuth(clientId, ""))
+	accessToken, badRequest, unauthorized, forbidden, err := a.Client.OAuth20.TokenGrantV3(param, client.BasicAuth(clientId, ""))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -90,15 +89,15 @@ func (oauthService *OauthService) GrantTokenRefreshToken(code, codeVerifier, ref
 	if accessToken == nil {
 		return errors.New("empty access token")
 	}
-	err = oauthService.TokenRepository.Store(*accessToken.GetPayload())
+	err = a.TokenRepository.Store(*accessToken.GetPayload())
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (oauthService *OauthService) GrantTokenAuthorizationCode(code, codeVerifier, redirectUri string) error {
-	clientId := oauthService.ConfigRepository.GetClientId()
+func (a *OAuth20Service) GrantTokenAuthorizationCode(code, codeVerifier, redirectUri string) error {
+	clientId := a.ConfigRepository.GetClientId()
 	if len(clientId) == 0 {
 		return errors.New("client not registered")
 	}
@@ -109,7 +108,7 @@ func (oauthService *OauthService) GrantTokenAuthorizationCode(code, codeVerifier
 		ClientID:     &clientId,
 		RedirectURI:  &redirectUri,
 	}
-	accessToken, badRequest, unauthorized, forbidden, err := oauthService.IamService.OAuth20.TokenGrantV3(param, nil)
+	accessToken, badRequest, unauthorized, forbidden, err := a.Client.OAuth20.TokenGrantV3(param, nil)
 	if badRequest != nil {
 		return badRequest
 	}
@@ -122,16 +121,16 @@ func (oauthService *OauthService) GrantTokenAuthorizationCode(code, codeVerifier
 	if accessToken == nil {
 		return errors.New("empty access token")
 	}
-	err = oauthService.TokenRepository.Store(*accessToken.GetPayload())
+	err = a.TokenRepository.Store(*accessToken.GetPayload())
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (oauthService *OauthService) Authenticate(requestId, username, password string) (string, error) {
+func (a *OAuth20Service) Authenticate(requestId, username, password string) (string, error) {
 	logrus.Infof("Invoke authenticate: %s %s %s", requestId, username, password)
-	clientId := oauthService.ConfigRepository.GetClientId()
+	clientId := a.ConfigRepository.GetClientId()
 	if len(clientId) == 0 {
 		return "", errors.New("client not registered")
 	}
@@ -148,7 +147,7 @@ func (oauthService *OauthService) Authenticate(requestId, username, password str
 		HTTPClient: httpClient,
 	}
 	authenticated, err :=
-		oauthService.IamService.OAuth20Extension.UserAuthenticationV3(param, nil)
+		a.Client.OAuth20Extension.UserAuthenticationV3(param, nil)
 	if err != nil {
 		return "", err
 	}
@@ -168,8 +167,8 @@ func (oauthService *OauthService) Authenticate(requestId, username, password str
 	return code, nil
 }
 
-func (oauthService *OauthService) Authorize(scope, challenge, challengeMethod string) (string, error) {
-	clientId := oauthService.ConfigRepository.GetClientId()
+func (a *OAuth20Service) Authorize(scope, challenge, challengeMethod string) (string, error) {
+	clientId := a.ConfigRepository.GetClientId()
 	if len(clientId) == 0 {
 		return "", errors.New("client not registered")
 	}
@@ -188,7 +187,7 @@ func (oauthService *OauthService) Authorize(scope, challenge, challengeMethod st
 		Scope:               &scope,
 		HTTPClient:          httpClient,
 	}
-	found, err := oauthService.IamService.OAuth20.AuthorizeV3(param, nil)
+	found, err := a.Client.OAuth20.AuthorizeV3(param, nil)
 	if err != nil {
 		return "", err
 	}
@@ -206,27 +205,20 @@ func (oauthService *OauthService) Authorize(scope, challenge, challengeMethod st
 
 // new services
 
-func (oauthService OauthService) AuthCodeRequestV3(clientID *string, platformID string, redirectURI *string, requestID string) (*o_auth2_0.AuthCodeRequestV3Found, error) {
-	token, err := oauthService.TokenRepository.GetToken()
+func (a *OAuth20Service) AuthCodeRequestV3(input *o_auth2_0.AuthCodeRequestV3Params) (*o_auth2_0.AuthCodeRequestV3Found, error) {
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &o_auth2_0.AuthCodeRequestV3Params{
-		ClientID:    clientID,
-		PlatformID:  platformID,
-		RedirectURI: redirectURI,
-		RequestID:   requestID,
-	}
-
-	ok, err := oauthService.IamService.OAuth20.AuthCodeRequestV3(params, client.BearerToken(*token.AccessToken))
+	ok, err := a.Client.OAuth20.AuthCodeRequestV3(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok, nil
 }
 
-func (oauthService OauthService) AuthorizeV3(clientID string, codeChallenge *string, codeChallengeMethode *string, redirectURI *string, responseType string, scope *string, state *string, targetAuthPage *string) (string, error) {
-	clientId := oauthService.ConfigRepository.GetClientId()
+func (a *OAuth20Service) AuthorizeV3(input *o_auth2_0.AuthorizeV3Params) (string, error) {
+	clientId := a.ConfigRepository.GetClientId()
 	if len(clientId) == 0 {
 		return "", errors.New("client not registered")
 	}
@@ -236,17 +228,17 @@ func (oauthService OauthService) AuthorizeV3(clientID string, codeChallenge *str
 		},
 	}
 	params := &o_auth2_0.AuthorizeV3Params{
-		ClientID:            clientID,
-		CodeChallenge:       codeChallenge,
-		CodeChallengeMethod: codeChallengeMethode,
-		RedirectURI:         redirectURI,
-		ResponseType:        responseType,
-		Scope:               scope,
-		State:               state,
-		TargetAuthPage:      targetAuthPage,
+		ClientID:            input.ClientID,
+		CodeChallenge:       input.CodeChallenge,
+		CodeChallengeMethod: input.CodeChallengeMethod,
+		RedirectURI:         input.RedirectURI,
+		ResponseType:        input.ResponseType,
+		Scope:               input.Scope,
+		State:               input.State,
+		TargetAuthPage:      input.TargetAuthPage,
 		HTTPClient:          httpClient,
 	}
-	found, err := oauthService.IamService.OAuth20.AuthorizeV3(params, nil)
+	found, err := a.Client.OAuth20.AuthorizeV3(params, nil)
 	if err != nil {
 		return "", err
 	}
@@ -262,24 +254,24 @@ func (oauthService OauthService) AuthorizeV3(clientID string, codeChallenge *str
 	return requestId, nil
 }
 
-func (oauthService OauthService) GetJWKSV3() (*iamclientmodels.OauthcommonJWKSet, error) {
-	token, err := oauthService.TokenRepository.GetToken()
+func (a *OAuth20Service) GetJWKSV3() (*iamclientmodels.OauthcommonJWKSet, error) {
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := oauthService.IamService.OAuth20.GetJWKSV3(nil, client.BearerToken(*token.AccessToken))
+	ok, err := a.Client.OAuth20.GetJWKSV3(nil, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (oauthService OauthService) GetRevocationListV3() (*iamclientmodels.OauthapiRevocationList, error) {
-	token, err := oauthService.TokenRepository.GetToken()
+func (a *OAuth20Service) GetRevocationListV3() (*iamclientmodels.OauthapiRevocationList, error) {
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, err := oauthService.IamService.OAuth20.GetRevocationListV3(nil, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, err := a.Client.OAuth20.GetRevocationListV3(nil, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -291,18 +283,12 @@ func (oauthService OauthService) GetRevocationListV3() (*iamclientmodels.Oauthap
 	return ok.GetPayload(), nil
 }
 
-func (oauthService OauthService) PlatformTokenGrantV3(clientID *string, deviceID *string, platformID string, platformToken *string) (*iamclientmodels.OauthmodelTokenResponse, error) {
-	token, err := oauthService.TokenRepository.GetToken()
+func (a *OAuth20Service) PlatformTokenGrantV3(input *o_auth2_0.PlatformTokenGrantV3Params) (*iamclientmodels.OauthmodelTokenResponse, error) {
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &o_auth2_0.PlatformTokenGrantV3Params{
-		ClientID:      clientID,
-		DeviceID:      deviceID,
-		PlatformID:    platformID,
-		PlatformToken: platformToken,
-	}
-	ok, badRequest, unauthorized, err := oauthService.IamService.OAuth20.PlatformTokenGrantV3(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, err := a.Client.OAuth20.PlatformTokenGrantV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -319,17 +305,12 @@ func (oauthService OauthService) PlatformTokenGrantV3(clientID *string, deviceID
 	return ok.GetPayload(), nil
 }
 
-func (oauthService OauthService) RetrieveUserThirdPartyPlatformTokenV3(namespace string, platformID string, userID string) (*iamclientmodels.OauthmodelTokenThirdPartyResponse, error) {
-	token, err := oauthService.TokenRepository.GetToken()
+func (a *OAuth20Service) RetrieveUserThirdPartyPlatformTokenV3(input *o_auth2_0.RetrieveUserThirdPartyPlatformTokenV3Params) (*iamclientmodels.OauthmodelTokenThirdPartyResponse, error) {
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &o_auth2_0.RetrieveUserThirdPartyPlatformTokenV3Params{
-		Namespace:  namespace,
-		PlatformID: platformID,
-		UserID:     userID,
-	}
-	ok, unauthorized, forbidden, notFound, err := oauthService.IamService.OAuth20.RetrieveUserThirdPartyPlatformTokenV3(params, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, notFound, err := a.Client.OAuth20.RetrieveUserThirdPartyPlatformTokenV3(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -351,16 +332,12 @@ func (oauthService OauthService) RetrieveUserThirdPartyPlatformTokenV3(namespace
 	return ok.GetPayload(), nil
 }
 
-func (oauthService OauthService) RevokeUserV3(namespace, userID string) error {
-	token, err := oauthService.TokenRepository.GetToken()
+func (a *OAuth20Service) RevokeUserV3(input *o_auth2_0.RevokeUserV3Params) error {
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	params := &o_auth2_0.RevokeUserV3Params{
-		Namespace: namespace,
-		UserID:    userID,
-	}
-	_, badRequest, unauthorized, forbidden, err := oauthService.IamService.OAuth20.RevokeUserV3(params, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, err := a.Client.OAuth20.RevokeUserV3(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -382,21 +359,18 @@ func (oauthService OauthService) RevokeUserV3(namespace, userID string) error {
 	return nil
 }
 
-func (oauthService OauthService) TokenGrantV3(clientID *string, code *string, codeVerifier *string, deviceID *string, grantType string, redirectURI *string, refreshToken *string) (*iamclientmodels.OauthmodelTokenResponseV3, error) {
-	token, err := oauthService.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+func (a *OAuth20Service) TokenGrantV3(input *o_auth2_0.TokenGrantV3Params) (*iamclientmodels.OauthmodelTokenResponseV3, error) {
+	clientId := a.ConfigRepository.GetClientId()
+	clientSecret := a.ConfigRepository.GetClientSecret()
+	if len(clientId) == 0 {
+		return nil, errors.New("client not registered")
 	}
-	params := &o_auth2_0.TokenGrantV3Params{
-		ClientID:     clientID,
-		Code:         code,
-		CodeVerifier: codeVerifier,
-		DeviceID:     deviceID,
-		GrantType:    grantType,
-		RedirectURI:  redirectURI,
-		RefreshToken: refreshToken,
+	ok, badRequest, unauthorized, forbidden, err := a.Client.OAuth20.TokenGrantV3(input, client.BasicAuth(clientId, clientSecret))
+	if badRequest != nil {
+		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
+		logrus.Error(string(errorMsg))
+		return nil, badRequest
 	}
-	ok, badRequest, unauthorized, forbidden, err := oauthService.IamService.OAuth20.TokenGrantV3(params, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -407,26 +381,22 @@ func (oauthService OauthService) TokenGrantV3(clientID *string, code *string, co
 		logrus.Error(string(errorMsg))
 		return nil, forbidden
 	}
-	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, badRequest
+	if ok == nil {
+		return nil, errors.New("empty access token")
 	}
+	err = a.TokenRepository.Store(*ok.GetPayload())
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (oauthService OauthService) TokenIntrospectionV3(token string) (*iamclientmodels.OauthmodelTokenIntrospectResponse, error) {
-	myToken, err := oauthService.TokenRepository.GetToken()
+func (a *OAuth20Service) TokenIntrospectionV3(input *o_auth2_0.TokenIntrospectionV3Params) (*iamclientmodels.OauthmodelTokenIntrospectResponse, error) {
+	myToken, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &o_auth2_0.TokenIntrospectionV3Params{
-		Token: token,
-	}
-	ok, badRequest, unauthorized, err := oauthService.IamService.OAuth20.TokenIntrospectionV3(params, client.BearerToken(*myToken.AccessToken))
+	ok, badRequest, unauthorized, err := a.Client.OAuth20.TokenIntrospectionV3(input, client.BearerToken(*myToken.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -443,8 +413,8 @@ func (oauthService OauthService) TokenIntrospectionV3(token string) (*iamclientm
 	return ok.GetPayload(), nil
 }
 
-func (oauthService OauthService) TokenRevocationV3(token string) error {
-	_, badRequest, unauthorized, err := oauthService.IamService.OAuth20.TokenRevocationV3(nil, client.BearerToken(token))
+func (a *OAuth20Service) TokenRevocationV3(token string) error {
+	_, badRequest, unauthorized, err := a.Client.OAuth20.TokenRevocationV3(nil, client.BearerToken(token))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))

@@ -5,7 +5,7 @@ package cmd
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
@@ -17,12 +17,12 @@ var clientLoginCmd = &cobra.Command{
 	Short: "Login client",
 	Long:  `Login client via client_credentials flow`,
 	RunE: func(cmd *cobra.Command, args []string) error {
-		oauthService := service.OauthService{
-			IamService:       factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
+		oAuth20Service := iam.OAuth20Service{
+			Client:           factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
 			ConfigRepository: &repository.ConfigRepositoryImpl{},
 			TokenRepository:  &repository.TokenRepositoryImpl{},
 		}
-		err := oauthService.GrantTokenCredentials("", "")
+		err := oAuth20Service.GrantTokenCredentials("", "")
 		if err != nil {
 			return err
 		}

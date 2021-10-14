@@ -1,4 +1,4 @@
-package service
+package leaderboard
 
 import (
 	"encoding/json"
@@ -11,21 +11,16 @@ import (
 )
 
 type LeaderboardConfigurationService struct {
-	LeaderboardConfigurationServiceClient *leaderboardclient.JusticeLeaderboardService
-	TokenRepository                       repository.TokenRepository
+	Client          *leaderboardclient.JusticeLeaderboardService
+	TokenRepository repository.TokenRepository
 }
 
-func (l *LeaderboardConfigurationService) GetLeaderboardConfigurationsPublicV2(limit *int64, namespace string, offset *int64) (*leaderboardclientmodels.V2GetAllLeaderboardConfigsPublicResp, error) {
+func (l *LeaderboardConfigurationService) GetLeaderboardConfigurationsPublicV2(input *leaderboard_configuration.GetLeaderboardConfigurationsPublicV2Params) (*leaderboardclientmodels.V2GetAllLeaderboardConfigsPublicResp, error) {
 	token, err := l.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &leaderboard_configuration.GetLeaderboardConfigurationsPublicV2Params{
-		Limit:     limit,
-		Namespace: namespace,
-		Offset:    offset,
-	}
-	ok, badRequest, unauthorized, forbidden, internalServerError, err := l.LeaderboardConfigurationServiceClient.LeaderboardConfiguration.GetLeaderboardConfigurationsPublicV2(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, internalServerError, err := l.Client.LeaderboardConfiguration.GetLeaderboardConfigurationsPublicV2(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -53,58 +48,12 @@ func (l *LeaderboardConfigurationService) GetLeaderboardConfigurationsPublicV2(l
 	return ok.GetPayload(), nil
 }
 
-func (l *LeaderboardConfigurationService) CreateLeaderboardConfigurationAdminV1(body *leaderboardclientmodels.ModelsLeaderboardConfigReq, namespace string) (*leaderboardclientmodels.ModelsLeaderboardConfigReq, error) {
+func (l *LeaderboardConfigurationService) CreateLeaderboardConfigurationAdminV1(input *leaderboard_configuration.CreateLeaderboardConfigurationAdminV1Params) (*leaderboardclientmodels.ModelsLeaderboardConfigReq, error) {
 	token, err := l.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &leaderboard_configuration.CreateLeaderboardConfigurationAdminV1Params{
-		Body:      body,
-		Namespace: namespace,
-	}
-	ok, badRequest, unauthorized, forbidden, conflict, internalServerError, err := l.LeaderboardConfigurationServiceClient.LeaderboardConfiguration.CreateLeaderboardConfigurationAdminV1(params, client.BearerToken(*token.AccessToken))
-	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, badRequest
-	}
-	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, unauthorized
-	}
-	if forbidden != nil {
-		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, forbidden
-	}
-	if conflict != nil {
-		errorMsg, _ := json.Marshal(*conflict.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, conflict
-	}
-	if internalServerError != nil {
-		errorMsg, _ := json.Marshal(*internalServerError.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, internalServerError
-	}
-	if err != nil {
-		logrus.Error(err)
-		return nil, err
-	}
-	return ok.GetPayload(), nil
-}
-
-func (l *LeaderboardConfigurationService) CreateLeaderboardConfigurationPublicV1(body *leaderboardclientmodels.ModelsLeaderboardConfigReq, namespace string) (*leaderboardclientmodels.ModelsLeaderboardConfigReq, error) {
-	token, err := l.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	params := &leaderboard_configuration.CreateLeaderboardConfigurationPublicV1Params{
-		Body:      body,
-		Namespace: namespace,
-	}
-	ok, badRequest, unauthorized, forbidden, conflict, internalServerError, err := l.LeaderboardConfigurationServiceClient.LeaderboardConfiguration.CreateLeaderboardConfigurationPublicV1(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, conflict, internalServerError, err := l.Client.LeaderboardConfiguration.CreateLeaderboardConfigurationAdminV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -137,16 +86,50 @@ func (l *LeaderboardConfigurationService) CreateLeaderboardConfigurationPublicV1
 	return ok.GetPayload(), nil
 }
 
-func (l *LeaderboardConfigurationService) DeleteBulkLeaderboardsV1(body *leaderboardclientmodels.ModelsDeleteBulkLeaderboardsReq, namespace string) (*leaderboardclientmodels.ModelsDeleteBulkLeaderboardsResp, error) {
+func (l *LeaderboardConfigurationService) CreateLeaderboardConfigurationPublicV1(input *leaderboard_configuration.CreateLeaderboardConfigurationPublicV1Params) (*leaderboardclientmodels.ModelsLeaderboardConfigReq, error) {
 	token, err := l.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &leaderboard_configuration.DeleteBulkLeaderboardsV1Params{
-		Body:      body,
-		Namespace: namespace,
+	ok, badRequest, unauthorized, forbidden, conflict, internalServerError, err := l.Client.LeaderboardConfiguration.CreateLeaderboardConfigurationPublicV1(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
+		logrus.Error(string(errorMsg))
+		return nil, badRequest
 	}
-	ok, badRequest, unauthorized, forbidden, internalServerError, err := l.LeaderboardConfigurationServiceClient.LeaderboardConfiguration.DeleteBulkLeaderboardsV1(params, client.BearerToken(*token.AccessToken))
+	if unauthorized != nil {
+		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
+		logrus.Error(string(errorMsg))
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
+		logrus.Error(string(errorMsg))
+		return nil, forbidden
+	}
+	if conflict != nil {
+		errorMsg, _ := json.Marshal(*conflict.GetPayload())
+		logrus.Error(string(errorMsg))
+		return nil, conflict
+	}
+	if internalServerError != nil {
+		errorMsg, _ := json.Marshal(*internalServerError.GetPayload())
+		logrus.Error(string(errorMsg))
+		return nil, internalServerError
+	}
+	if err != nil {
+		logrus.Error(err)
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (l *LeaderboardConfigurationService) DeleteBulkLeaderboardsV1(input *leaderboard_configuration.DeleteBulkLeaderboardsV1Params) (*leaderboardclientmodels.ModelsDeleteBulkLeaderboardsResp, error) {
+	token, err := l.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, forbidden, internalServerError, err := l.Client.LeaderboardConfiguration.DeleteBulkLeaderboardsV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -174,16 +157,12 @@ func (l *LeaderboardConfigurationService) DeleteBulkLeaderboardsV1(body *leaderb
 	return ok.GetPayload(), nil
 }
 
-func (l *LeaderboardConfigurationService) DeleteLeaderboardConfigurationAdminV1(leaderboardCode, namespace string) error {
+func (l *LeaderboardConfigurationService) DeleteLeaderboardConfigurationAdminV1(input *leaderboard_configuration.DeleteLeaderboardConfigurationAdminV1Params) error {
 	token, err := l.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	params := &leaderboard_configuration.DeleteLeaderboardConfigurationAdminV1Params{
-		LeaderboardCode: leaderboardCode,
-		Namespace:       namespace,
-	}
-	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := l.LeaderboardConfigurationServiceClient.LeaderboardConfiguration.DeleteLeaderboardConfigurationAdminV1(params, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := l.Client.LeaderboardConfiguration.DeleteLeaderboardConfigurationAdminV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -216,16 +195,12 @@ func (l *LeaderboardConfigurationService) DeleteLeaderboardConfigurationAdminV1(
 	return nil
 }
 
-func (l *LeaderboardConfigurationService) GetLeaderboardConfigurationAdminV1(leaderboardCode, namespace string) (*leaderboardclientmodels.ModelsGetLeaderboardConfigResp, error) {
+func (l *LeaderboardConfigurationService) GetLeaderboardConfigurationAdminV1(input *leaderboard_configuration.GetLeaderboardConfigurationAdminV1Params) (*leaderboardclientmodels.ModelsGetLeaderboardConfigResp, error) {
 	token, err := l.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &leaderboard_configuration.GetLeaderboardConfigurationAdminV1Params{
-		LeaderboardCode: leaderboardCode,
-		Namespace:       namespace,
-	}
-	ok, badRequest, unauthorized, forbidden, conflict, internalServerError, err := l.LeaderboardConfigurationServiceClient.LeaderboardConfiguration.GetLeaderboardConfigurationAdminV1(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, conflict, internalServerError, err := l.Client.LeaderboardConfiguration.GetLeaderboardConfigurationAdminV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -258,19 +233,12 @@ func (l *LeaderboardConfigurationService) GetLeaderboardConfigurationAdminV1(lea
 	return ok.GetPayload(), nil
 }
 
-func (l *LeaderboardConfigurationService) GetLeaderboardConfigurationsAdminV1(isArchived, isDeleted *bool, limit *int64, namespace string, offset *int64) (*leaderboardclientmodels.ModelsGetAllLeaderboardConfigsResp, error) {
+func (l *LeaderboardConfigurationService) GetLeaderboardConfigurationsAdminV1(input *leaderboard_configuration.GetLeaderboardConfigurationsAdminV1Params) (*leaderboardclientmodels.ModelsGetAllLeaderboardConfigsResp, error) {
 	token, err := l.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &leaderboard_configuration.GetLeaderboardConfigurationsAdminV1Params{
-		IsArchived: isArchived,
-		IsDeleted:  isDeleted,
-		Limit:      limit,
-		Namespace:  namespace,
-		Offset:     offset,
-	}
-	ok, badRequest, unauthorized, forbidden, internalServerError, err := l.LeaderboardConfigurationServiceClient.LeaderboardConfiguration.GetLeaderboardConfigurationsAdminV1(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, internalServerError, err := l.Client.LeaderboardConfiguration.GetLeaderboardConfigurationsAdminV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -298,19 +266,12 @@ func (l *LeaderboardConfigurationService) GetLeaderboardConfigurationsAdminV1(is
 	return ok.GetPayload(), nil
 }
 
-func (l *LeaderboardConfigurationService) GetLeaderboardConfigurationsPublicV1(isArchived, isDeleted *bool, limit *int64, namespace string, offset *int64) (*leaderboardclientmodels.ModelsGetAllLeaderboardConfigsPublicResp, error) {
+func (l *LeaderboardConfigurationService) GetLeaderboardConfigurationsPublicV1(input *leaderboard_configuration.GetLeaderboardConfigurationsPublicV1Params) (*leaderboardclientmodels.ModelsGetAllLeaderboardConfigsPublicResp, error) {
 	token, err := l.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &leaderboard_configuration.GetLeaderboardConfigurationsPublicV1Params{
-		IsArchived: isArchived,
-		IsDeleted:  isDeleted,
-		Limit:      limit,
-		Namespace:  namespace,
-		Offset:     offset,
-	}
-	ok, badRequest, unauthorized, forbidden, internalServerError, err := l.LeaderboardConfigurationServiceClient.LeaderboardConfiguration.GetLeaderboardConfigurationsPublicV1(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, internalServerError, err := l.Client.LeaderboardConfiguration.GetLeaderboardConfigurationsPublicV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -338,17 +299,12 @@ func (l *LeaderboardConfigurationService) GetLeaderboardConfigurationsPublicV1(i
 	return ok.GetPayload(), nil
 }
 
-func (l *LeaderboardConfigurationService) UpdateLeaderboardConfigurationAdminV1(body *leaderboardclientmodels.ModelsUpdateLeaderboardConfigReq, leaderboardCode, namespace string) (*leaderboardclientmodels.ModelsGetLeaderboardConfigResp, error) {
+func (l *LeaderboardConfigurationService) UpdateLeaderboardConfigurationAdminV1(input *leaderboard_configuration.UpdateLeaderboardConfigurationAdminV1Params) (*leaderboardclientmodels.ModelsGetLeaderboardConfigResp, error) {
 	token, err := l.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &leaderboard_configuration.UpdateLeaderboardConfigurationAdminV1Params{
-		Body:            body,
-		LeaderboardCode: leaderboardCode,
-		Namespace:       namespace,
-	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := l.LeaderboardConfigurationServiceClient.LeaderboardConfiguration.UpdateLeaderboardConfigurationAdminV1(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := l.Client.LeaderboardConfiguration.UpdateLeaderboardConfigurationAdminV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))

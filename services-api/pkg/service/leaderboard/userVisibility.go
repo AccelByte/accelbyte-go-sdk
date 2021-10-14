@@ -1,4 +1,4 @@
-package service
+package leaderboard
 
 import (
 	"encoding/json"
@@ -10,23 +10,17 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-type LeaderboardUserVisibilityService struct {
-	LeaderboardUserVisibilityServiceClient *leaderboardclient.JusticeLeaderboardService
-	TokenRepository                        repository.TokenRepository
+type UserVisibilityService struct {
+	Client          *leaderboardclient.JusticeLeaderboardService
+	TokenRepository repository.TokenRepository
 }
 
-func (l *LeaderboardUserVisibilityService) GetHiddenUsersV2(leaderboardCode string, limit *int64, namespace string, offset *int64) (*leaderboardclientmodels.ModelsGetHiddenUserResponse, error) {
-	token, err := l.TokenRepository.GetToken()
+func (u *UserVisibilityService) GetHiddenUsersV2(input *user_visibility.GetHiddenUsersV2Params) (*leaderboardclientmodels.ModelsGetHiddenUserResponse, error) {
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &user_visibility.GetHiddenUsersV2Params{
-		LeaderboardCode: leaderboardCode,
-		Limit:     limit,
-		Namespace: namespace,
-		Offset:    offset,
-	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := l.LeaderboardUserVisibilityServiceClient.UserVisibility.GetHiddenUsersV2(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.UserVisibility.GetHiddenUsersV2(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -59,18 +53,12 @@ func (l *LeaderboardUserVisibilityService) GetHiddenUsersV2(leaderboardCode stri
 	return ok.GetPayload(), nil
 }
 
-
-func (l *LeaderboardUserVisibilityService) GetUserVisibilityStatusV2(leaderboardCode, namespace, userID string) (*leaderboardclientmodels.ModelsGetUserVisibilityResponse, error) {
-	token, err := l.TokenRepository.GetToken()
+func (u *UserVisibilityService) GetUserVisibilityStatusV2(input *user_visibility.GetUserVisibilityStatusV2Params) (*leaderboardclientmodels.ModelsGetUserVisibilityResponse, error) {
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &user_visibility.GetUserVisibilityStatusV2Params{
-		LeaderboardCode: leaderboardCode,
-		Namespace: namespace,
-		UserID: userID,
-	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := l.LeaderboardUserVisibilityServiceClient.UserVisibility.GetUserVisibilityStatusV2(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.UserVisibility.GetUserVisibilityStatusV2(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -103,19 +91,12 @@ func (l *LeaderboardUserVisibilityService) GetUserVisibilityStatusV2(leaderboard
 	return ok.GetPayload(), nil
 }
 
-
-func (l *LeaderboardUserVisibilityService) SetUserLeaderboardVisibilityStatusV2(body *leaderboardclientmodels.ModelsSetUserVisibilityRequest, leaderboardCode, namespace, userID string) (*leaderboardclientmodels.ModelsGetUserVisibilityResponse, error) {
-	token, err := l.TokenRepository.GetToken()
+func (u *UserVisibilityService) SetUserLeaderboardVisibilityStatusV2(input *user_visibility.SetUserLeaderboardVisibilityStatusV2Params) (*leaderboardclientmodels.ModelsGetUserVisibilityResponse, error) {
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &user_visibility.SetUserLeaderboardVisibilityStatusV2Params{
-		Body: body,
-		LeaderboardCode: leaderboardCode,
-		Namespace: namespace,
-		UserID: userID,
-	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := l.LeaderboardUserVisibilityServiceClient.UserVisibility.SetUserLeaderboardVisibilityStatusV2(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.UserVisibility.SetUserLeaderboardVisibilityStatusV2(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -148,18 +129,12 @@ func (l *LeaderboardUserVisibilityService) SetUserLeaderboardVisibilityStatusV2(
 	return ok.GetPayload(), nil
 }
 
-
-func (l *LeaderboardUserVisibilityService) SetUserVisibilityStatusV2(body *leaderboardclientmodels.ModelsSetUserVisibilityRequest, namespace, userID string) (*leaderboardclientmodels.ModelsGetUserVisibilityResponse, error) {
-	token, err := l.TokenRepository.GetToken()
+func (u *UserVisibilityService) SetUserVisibilityStatusV2(input *user_visibility.SetUserVisibilityStatusV2Params) (*leaderboardclientmodels.ModelsGetUserVisibilityResponse, error) {
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &user_visibility.SetUserVisibilityStatusV2Params{
-		Body: body,
-		Namespace: namespace,
-		UserID: userID,
-	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := l.LeaderboardUserVisibilityServiceClient.UserVisibility.SetUserVisibilityStatusV2(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.UserVisibility.SetUserVisibilityStatusV2(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))

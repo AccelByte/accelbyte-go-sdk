@@ -1,4 +1,4 @@
-package service
+package leaderboard
 
 import (
 	"encoding/json"
@@ -10,23 +10,17 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-type LeaderboardUserDataService struct {
-	LeaderboardUserDataServiceClient *leaderboardclient.JusticeLeaderboardService
-	TokenRepository                  repository.TokenRepository
+type UserDataService struct {
+	Client          *leaderboardclient.JusticeLeaderboardService
+	TokenRepository repository.TokenRepository
 }
 
-func (l *LeaderboardUserDataService) GetUserLeaderboardRankingsAdminV1(limit *int64, namespace string, offset *int64, userID string) (*leaderboardclientmodels.ModelsGetAllUserLeaderboardsResp, error) {
-	token, err := l.TokenRepository.GetToken()
+func (u *UserDataService) GetUserLeaderboardRankingsAdminV1(input *user_data.GetUserLeaderboardRankingsAdminV1Params) (*leaderboardclientmodels.ModelsGetAllUserLeaderboardsResp, error) {
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &user_data.GetUserLeaderboardRankingsAdminV1Params{
-		Limit:     limit,
-		Namespace: namespace,
-		Offset:    offset,
-		UserID:    userID,
-	}
-	ok, unauthorized, forbidden, notFound, internalServerError, err := l.LeaderboardUserDataServiceClient.UserData.GetUserLeaderboardRankingsAdminV1(params, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, notFound, internalServerError, err := u.Client.UserData.GetUserLeaderboardRankingsAdminV1(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))

@@ -1,0 +1,99 @@
+githubOwner = 'AccelByte'
+githubRepo = 'accelbyte-go-sdk'
+githubSsh = 'dhanarab-sdkbuild-ssh'
+githubPat = 'dhanarab-sdkbuild-pat-github'
+bitbucketSsh = 'build_account_bitbucket_key'
+
+githubUrl = "git@github.com:${githubOwner}/${githubRepo}.git"
+
+pipeline {
+  agent {
+    label "master"
+  }
+  stages {
+    stage('Prepare') {
+      steps {
+        script {
+          currentBuild.displayName = "#${env.BUILD_NUMBER} ${params.ACTION}"
+          gitHost = sh(script: "echo '${githubUrl}' | grep -oP '(?<=@).+(?=:)'", returnStdout: true).trim()
+          sh "grep -q ${gitHost} ~/.ssh/known_hosts || ssh-keyscan ${gitHost} | tee -a ~/.ssh/known_hosts"
+        }
+      }
+    }
+    stage('Push') {
+      when {
+        expression { 
+          return params.ACTION == 'PUSH' || params.ACTION == 'PUSH+RELEASE'
+        }
+      }
+      steps {
+        script {
+          sh "git checkout master"
+          sshagent(credentials: [githubSsh])
+          {
+            sh "git push ${githubUrl} HEAD:main"
+          }
+        }
+      }
+    }
+    stage('Release') {
+      when {
+        expression { 
+          return params.ACTION == 'PUSH+RELEASE'
+        }
+      }
+      steps {
+        script {
+          sh "git checkout master"
+          sshagent(credentials: [githubSsh])
+          {
+            sh "git push ${githubUrl} ${params.RELEASE_TAG}"
+            
+          }
+          httpRequest(
+            url : "https://api.github.com/repos/${githubOwner}/${githubRepo}/releases",
+            httpMode: "POST",
+            requestBody: """{"tag_name":"${params.RELEASE_TAG}"}""",
+            contentType: "APPLICATION_JSON",
+            authentication: githubPat,
+            validResponseCodes: '200:201'
+          )
+        }
+      }
+    }
+    stage('Pull') {
+      when {
+        expression { 
+          return params.ACTION == 'PULL'
+        }
+      }
+      steps {
+        script {
+          sh "git checkout master"
+          sshagent(credentials: [githubSsh])
+          {
+            sh "git pull ${githubUrl} main"
+          }
+          sshagent(credentials: [bitbucketSsh])
+          {
+            sh "git push"
+          }
+        }
+      }
+    }
+  }
+  post {
+    failure {
+      script {
+        message = """
+            :no_entry: <${env.BUILD_URL}|${env.JOB_NAME}-${env.BUILD_NUMBER}> *failed*
+            
+            |*Action*
+            |${params.ACTION}
+            
+            |""".stripMargin()
+        slackSend(channel: "#activity-justice-codegen-sdk", color: '#FF0000', message: message)
+      }
+    }
+  }
+}

@@ -1,4 +1,4 @@
-package service
+package eventlog
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/eventlog-sdk/pkg/eventlogclient"
@@ -9,26 +9,17 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-type EventlogService struct {
-	EventlogServiceClient *eventlogclient.JusticeEventlogService
-	TokenRepository       repository.TokenRepository
+type EventV2Service struct {
+	Client          *eventlogclient.JusticeEventlogService
+	TokenRepository repository.TokenRepository
 }
 
-func (e *EventlogService) GetEventSpecificUserV2Handler(endDate, eventName *string, namespace string, offset, pageSize *float64, startDate *string, userID string) (*eventlogclientmodels.ModelsEventResponseV2, error) {
+func (e *EventV2Service) GetEventSpecificUserV2Handler(input *event_v2.GetEventSpecificUserV2HandlerParams) (*eventlogclientmodels.ModelsEventResponseV2, error) {
 	token, err := e.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &event_v2.GetEventSpecificUserV2HandlerParams{
-		EndDate:   endDate,
-		EventName: eventName,
-		Namespace: namespace,
-		Offset:    offset,
-		PageSize:  pageSize,
-		StartDate: startDate,
-		UserID:    userID,
-	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, notImplemented, err := e.EventlogServiceClient.EventV2.GetEventSpecificUserV2Handler(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, notImplemented, err := e.Client.EventV2.GetEventSpecificUserV2Handler(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		logrus.Error("Bad Request")
 		return nil, badRequest
@@ -60,21 +51,12 @@ func (e *EventlogService) GetEventSpecificUserV2Handler(endDate, eventName *stri
 	return ok.GetPayload(), nil
 }
 
-func (e *EventlogService) GetPublicEditHistory(endDate *string, namespace string, offset, pageSize *float64, startDate *string, type_ *string, userID string) (*eventlogclientmodels.ModelsEventResponseV2, error) {
+func (e *EventV2Service) GetPublicEditHistory(input *event_v2.GetPublicEditHistoryParams) (*eventlogclientmodels.ModelsEventResponseV2, error) {
 	token, err := e.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &event_v2.GetPublicEditHistoryParams{
-		EndDate:   endDate,
-		Namespace: namespace,
-		Offset:    offset,
-		PageSize:  pageSize,
-		StartDate: startDate,
-		Type:      type_,
-		UserID:    userID,
-	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, notImplemented, err := e.EventlogServiceClient.EventV2.GetPublicEditHistory(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, notImplemented, err := e.Client.EventV2.GetPublicEditHistory(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		logrus.Error("Bad Request")
 		return nil, badRequest
@@ -106,21 +88,12 @@ func (e *EventlogService) GetPublicEditHistory(endDate *string, namespace string
 	return ok.GetPayload(), nil
 }
 
-func (e *EventlogService) GetUserEventsV2Public(endDate, eventName *string, namespace string, offset, pageSize *float64, startDate *string, userID string) (*eventlogclientmodels.ModelsEventResponseV2, error) {
+func (e *EventV2Service) GetUserEventsV2Public(input *event_v2.GetUserEventsV2PublicParams) (*eventlogclientmodels.ModelsEventResponseV2, error) {
 	token, err := e.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &event_v2.GetUserEventsV2PublicParams{
-		EndDate:   endDate,
-		EventName: eventName,
-		Namespace: namespace,
-		Offset:    offset,
-		PageSize:  pageSize,
-		StartDate: startDate,
-		UserID:    userID,
-	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, notImplemented, err := e.EventlogServiceClient.EventV2.GetUserEventsV2Public(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, notImplemented, err := e.Client.EventV2.GetUserEventsV2Public(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		logrus.Error("Bad Request")
 		return nil, badRequest
@@ -152,20 +125,12 @@ func (e *EventlogService) GetUserEventsV2Public(endDate, eventName *string, name
 	return ok.GetPayload(), nil
 }
 
-func (e *EventlogService) QueryEventStreamHandler(body *eventlogclientmodels.ModelsGenericQueryPayload, endDate *string, namespace string, offset, pageSize *float64, startDate *string) (*eventlogclientmodels.ModelsEventResponseV2, error) {
+func (e *EventV2Service) QueryEventStreamHandler(input *event_v2.QueryEventStreamHandlerParams) (*eventlogclientmodels.ModelsEventResponseV2, error) {
 	token, err := e.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &event_v2.QueryEventStreamHandlerParams{
-		Body:      body,
-		EndDate:   endDate,
-		Namespace: namespace,
-		Offset:    offset,
-		PageSize:  pageSize,
-		StartDate: startDate,
-	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, notImplemented, err := e.EventlogServiceClient.EventV2.QueryEventStreamHandler(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, notImplemented, err := e.Client.EventV2.QueryEventStreamHandler(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		logrus.Error("Bad Request")
 		return nil, badRequest

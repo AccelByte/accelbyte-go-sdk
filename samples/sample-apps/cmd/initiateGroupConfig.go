@@ -6,8 +6,9 @@ package cmd
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/AccelByte/accelbyte-go-sdk/group-sdk/pkg/groupclient/configuration"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/group"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 
@@ -21,12 +22,15 @@ var initiateGroupConfigCmd = &cobra.Command{
 	Long:  `Initiate group config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		fmt.Println("initiateGroupConfig called")
-		groupConfigService := &service.GroupConfigService{
-			GroupClient:     factory.NewgroupClient(&repository.ConfigRepositoryImpl{}),
+		namespace := cmd.Flag("namespace").Value.String()
+		input := &configuration.InitiateGroupConfigurationAdminV1Params{
+			Namespace: namespace,
+		}
+		groupConfigService := &group.ConfigurationService{
+			Client:     factory.NewgroupClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		namespace := cmd.Flag("namespace").Value.String()
-		ok, err := groupConfigService.InitiateGroupConfigurationAdminV1(namespace)
+		ok, err := groupConfigService.InitiateGroupConfigurationAdminV1(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

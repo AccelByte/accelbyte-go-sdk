@@ -6,8 +6,10 @@ package cmd
 
 import (
 	"encoding/json"
+	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users"
+	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
@@ -26,11 +28,22 @@ var updateAdminUserCmd = &cobra.Command{
 		displayName := cmd.Flag("displayName").Value.String()
 		languageTag := cmd.Flag("languageTag").Value.String()
 		userName := cmd.Flag("userName").Value.String()
-		userService := &service.UserService{
+		input := &users.AdminUpdateUserV3Params{
+			Body: &iamclientmodels.ModelUserUpdateRequestV3{
+				Country:     country,
+				DateOfBirth: dateOfBirth,
+				DisplayName: displayName,
+				LanguageTag: languageTag,
+				UserName:    userName,
+			},
+			Namespace: namespace,
+			UserID:    userId,
+		}
+		userService := &iam.UserService{
 			Client:          factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		user, err := userService.AdminUpdateUserV3(namespace, userId, country, dateOfBirth, displayName, languageTag, userName)
+		user, err := userService.AdminUpdateUserV3(input)
 		if err != nil {
 			return err
 		}

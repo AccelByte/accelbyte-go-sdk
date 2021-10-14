@@ -4,8 +4,10 @@
 package cmd
 
 import (
+	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users"
+	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
@@ -22,11 +24,20 @@ var verifyAdminAccountTokenCmd = &cobra.Command{
 		code := cmd.Flag("code").Value.String()
 		contactType := cmd.Flag("contactType").Value.String()
 		languageTag := cmd.Flag("languageTag").Value.String()
-		userService := &service.UserService{
+		input := &users.AdminVerifyAccountV3Params{
+			Body: &iamclientmodels.ModelUserVerificationRequest{
+				Code:        &code,
+				ContactType: &contactType,
+				LanguageTag: &languageTag,
+			},
+			Namespace: namespace,
+			UserID:    userId,
+		}
+		userService := &iam.UserService{
 			Client:          factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		err := userService.AdminVerifyAccountV3(namespace, userId, &code, &contactType, &languageTag)
+		err := userService.AdminVerifyAccountV3(input)
 		if err != nil {
 			return err
 		}

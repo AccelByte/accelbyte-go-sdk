@@ -1,7 +1,7 @@
 // Copyright (c) 2021 AccelByte Inc. All Rights Reserved.
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
-package service
+package iam
 
 import (
 	"encoding/json"
@@ -21,19 +21,7 @@ type UserService struct {
 
 // PublicCreateUserV3 is used to create user. Support accepting agreements for the created user. Supply the accepted agreements in acceptedPolicies attribute.
 func (u *UserService) PublicCreateUserV3(input *users.PublicCreateUserV3Params) (*iamclientmodels.ModelUserCreateResponseV3, error) {
-	authType := "EMAILPASSWD"
-	param := &users.PublicCreateUserV3Params{
-		Body: &iamclientmodels.ModelUserCreateRequestV3{
-			AuthType:     &authType,
-			Country:      input.Body.Country,
-			DateOfBirth:  input.Body.DateOfBirth,
-			DisplayName:  input.Body.DisplayName,
-			EmailAddress: input.Body.EmailAddress,
-			Password:     input.Body.Password,
-		},
-		Namespace: input.Namespace,
-	}
-	created, badRequest, notFound, conflict, internalServerError, err := u.Client.Users.PublicCreateUserV3(param, nil)
+	created, badRequest, notFound, conflict, internalServerError, err := u.Client.Users.PublicCreateUserV3(input, nil)
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))

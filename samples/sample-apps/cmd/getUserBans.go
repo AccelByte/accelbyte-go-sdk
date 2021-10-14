@@ -5,8 +5,9 @@ package cmd
 
 import (
 	"encoding/json"
+	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
@@ -27,11 +28,19 @@ var getUserBansCmd = &cobra.Command{
 		if err != nil {
 			return err
 		}
-		userService := &service.UserService{
+		input := &users.AdminGetUserBanV3Params{
+			ActiveOnly: &activeOnly,
+			After:      &after,
+			Before:     &before,
+			Limit:      &limit,
+			Namespace:  namespace,
+			UserID:     userId,
+		}
+		userService := &iam.UserService{
 			Client:          factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		users, err := userService.AdminGetUserBanV3(namespace, userId, &after, &before, &activeOnly, &limit)
+		users, err := userService.AdminGetUserBanV3(input)
 		if err != nil {
 			return err
 		}

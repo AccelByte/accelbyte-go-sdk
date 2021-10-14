@@ -5,8 +5,9 @@
 package cmd
 
 import (
+	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/spf13/cobra"
 )
@@ -20,11 +21,16 @@ var deleteUserRoleCmd = &cobra.Command{
 		namespace := cmd.Flag("namespace").Value.String()
 		userId := cmd.Flag("userId").Value.String()
 		roleId := cmd.Flag("roleId").Value.String()
-		userService := &service.UserService{
+		input := &users.AdminDeleteUserRoleV3Params{
+			Namespace: namespace,
+			RoleID:    roleId,
+			UserID:    userId,
+		}
+		userService := &iam.UserService{
 			Client:          factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		err := userService.AdminDeleteUserRoleV3(namespace, userId, roleId)
+		err := userService.AdminDeleteUserRoleV3(input)
 		if err != nil {
 			return err
 		}

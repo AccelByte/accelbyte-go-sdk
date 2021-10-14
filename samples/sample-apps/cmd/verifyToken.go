@@ -4,8 +4,10 @@
 package cmd
 
 import (
+	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users"
+	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/spf13/cobra"
 )
@@ -16,14 +18,21 @@ var verifyTokenCmd = &cobra.Command{
 	Short: "Verify user registration token",
 	Long:  `Verify user token for admin and non user admin.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
-		token := cmd.Flag("token").Value.String()
+		code := cmd.Flag("code").Value.String()
 		namespace := cmd.Flag("namespace").Value.String()
 		contactType := cmd.Flag("contactType").Value.String()
-		userService := &service.UserService{
+		input := &users.PublicUserVerificationV3Params{
+			Body: &iamclientmodels.ModelUserVerificationRequestV3{
+				Code:        &code,
+				ContactType: &contactType,
+			},
+			Namespace: namespace,
+		}
+		userService := &iam.UserService{
 			Client:          factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		err := userService.PublicUserVerificationV3(token, contactType, namespace)
+		err := userService.PublicUserVerificationV3(input)
 		if err != nil {
 			return err
 		}

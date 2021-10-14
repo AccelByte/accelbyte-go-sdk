@@ -6,9 +6,10 @@ package cmd
 
 import (
 	"encoding/json"
+	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
@@ -28,11 +29,16 @@ var addUserPermissionsCmd = &cobra.Command{
 		if errPermissions != nil {
 			return errPermissions
 		}
-		userService := &service.UserService{
+		input := &users.AdminAddUserPermissionsV3Params{
+			Body:      &iamclientmodels.AccountcommonPermissions{Permissions: permissions},
+			Namespace: namespace,
+			UserID:    userId,
+		}
+		userService := &iam.UserService{
 			Client:          factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		err := userService.AdminUpdateUserPermissionV3(namespace, userId, permissions)
+		err := userService.AdminAddUserPermissionsV3(input)
 		if err != nil {
 			return err
 		}

@@ -5,8 +5,10 @@ package cmd
 
 import (
 	"encoding/json"
+	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users"
+	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
@@ -23,11 +25,20 @@ var enableDisableBanCmd = &cobra.Command{
 		banId := cmd.Flag("banId").Value.String()
 		enable, _ := cmd.Flags().GetBool("enable")
 		skipNotif, _ := cmd.Flags().GetBool("skipNotif")
-		userService := &service.UserService{
+		input := &users.AdminUpdateUserBanV3Params{
+			BanID: banId,
+			Body: &iamclientmodels.ModelBanUpdateRequest{
+				Enabled:   &enable,
+				SkipNotif: &skipNotif,
+			},
+			Namespace: namespace,
+			UserID:    userId,
+		}
+		userService := &iam.UserService{
 			Client:          factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		users, err := userService.AdminUpdateUserBanV3(namespace, userId, banId, &enable, &skipNotif)
+		users, err := userService.AdminUpdateUserBanV3(input)
 		if err != nil {
 			return err
 		}

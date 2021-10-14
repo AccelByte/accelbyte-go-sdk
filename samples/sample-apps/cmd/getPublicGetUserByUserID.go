@@ -6,8 +6,9 @@ package cmd
 
 import (
 	"encoding/json"
+	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
@@ -21,11 +22,15 @@ var getPublicUserByUserIDCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		namespace := cmd.Flag("namespace").Value.String()
 		userId := cmd.Flag("userId").Value.String()
-		userService := &service.UserService{
+		input := &users.PublicGetUserByUserIDV3Params{
+			Namespace: namespace,
+			UserID:    userId,
+		}
+		userService := &iam.UserService{
 			Client:          factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		user, err := userService.PublicGetUserByUserIDV3(namespace, userId)
+		user, err := userService.PublicGetUserByUserIDV3(input)
 		if err != nil {
 			return err
 		}

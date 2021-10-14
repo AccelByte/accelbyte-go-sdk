@@ -4,8 +4,10 @@
 package cmd
 
 import (
+	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users"
+	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
@@ -22,11 +24,20 @@ var verifyAdminSendCodeCmd = &cobra.Command{
 		context := cmd.Flag("context").Value.String()
 		emailAddress := cmd.Flag("emailAddress").Value.String()
 		languageTag := cmd.Flag("languageTag").Value.String()
-		userService := &service.UserService{
+		input := &users.AdminSendVerificationCodeV3Params{
+			Body: &iamclientmodels.ModelSendVerificationCodeRequestV3{
+				Context:      context,
+				EmailAddress: &emailAddress,
+				LanguageTag:  languageTag,
+			},
+			Namespace: namespace,
+			UserID:    userId,
+		}
+		userService := &iam.UserService{
 			Client:          factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		err := userService.AdminSendVerificationCodeV3(namespace, userId, context, languageTag, &emailAddress)
+		err := userService.AdminSendVerificationCodeV3(input)
 		if err != nil {
 			return err
 		}

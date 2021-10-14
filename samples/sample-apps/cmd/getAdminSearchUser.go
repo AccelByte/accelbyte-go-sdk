@@ -6,8 +6,9 @@ package cmd
 
 import (
 	"encoding/json"
+	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
@@ -29,11 +30,20 @@ var getAdminSearchUserCmd = &cobra.Command{
 		if err != nil {
 			return err
 		}
-		userService := &service.UserService{
+		input := &users.AdminSearchUserV3Params{
+			By:        &by,
+			EndDate:   &endDate,
+			Limit:     &limit,
+			Namespace: namespace,
+			Offset:    &offset,
+			Query:     &query,
+			StartDate: &startDate,
+		}
+		userService := &iam.UserService{
 			Client:          factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		user, err := userService.AdminSearchUserV3(namespace, &by, &offset, &endDate, &query, &startDate, &limit)
+		user, err := userService.AdminSearchUserV3(input)
 		if err != nil {
 			return err
 		}

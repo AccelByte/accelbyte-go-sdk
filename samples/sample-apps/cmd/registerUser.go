@@ -4,8 +4,10 @@
 package cmd
 
 import (
+	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users"
+	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
@@ -24,17 +26,35 @@ var registerUserCmd = &cobra.Command{
 		email := cmd.Flag("email").Value.String()
 		namespace := cmd.Flag("namespace").Value.String()
 		roleId := cmd.Flag("roleId").Value.String()
+		authType := "EMAILPASSWD"
 		logrus.Debugf("Params: %s %s %s %s %s %s", name, birthDate, country, password, email, roleId)
-		userService := &service.UserService{
+		userService := &iam.UserService{
 			Client:          factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		user, err := userService.PublicCreateUserV3(namespace, name, birthDate, email, country, password)
+		input := &users.PublicCreateUserV3Params{
+			Body: &iamclientmodels.ModelUserCreateRequestV3{
+				AuthType:     &authType,
+				Country:      &country,
+				DateOfBirth:  &birthDate,
+				DisplayName:  &name,
+				EmailAddress: &email,
+				Password:     &password,
+			},
+			Namespace: namespace,
+		}
+		user, err := userService.PublicCreateUserV3(input)
 		if err != nil {
 			return err
 		}
+		userId := *user.UserID
+		inputRole := &users.AdminAddUserRoleV3Params{
+			Namespace: namespace,
+			RoleID:    roleId,
+			UserID:    userId,
+		}
 		if len(roleId) > 0 {
-			err := userService.AdminAddUserRoleV3(namespace, *user.UserID, roleId)
+			err := userService.AdminAddUserRoleV3(inputRole)
 			if err != nil {
 				return err
 			}

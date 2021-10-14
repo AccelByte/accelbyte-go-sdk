@@ -1,4 +1,4 @@
-package service
+package matchmaking
 
 import (
 	"encoding/json"
@@ -11,20 +11,16 @@ import (
 )
 
 type SocialMatchmakingService struct {
-	SocialMatchmakingServiceClient *matchmakingclient.JusticeMatchmakingService
-	TokenRepository                repository.TokenRepository
+	Client          *matchmakingclient.JusticeMatchmakingService
+	TokenRepository repository.TokenRepository
 }
 
-func (m *SocialMatchmakingService) UpdatePlayTimeWeight(body *matchmakingclientmodels.ModelsUpdatePlayTimeWeightRequest, namespace string) (*matchmakingclientmodels.ModelsUpdatePlayerPlaytimeWeightResponse, error) {
+func (m *SocialMatchmakingService) UpdatePlayTimeWeight(input *social_matchmaking.UpdatePlayTimeWeightParams) (*matchmakingclientmodels.ModelsUpdatePlayerPlaytimeWeightResponse, error) {
 	token, err := m.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &social_matchmaking.UpdatePlayTimeWeightParams{
-		Body:      body,
-		Namespace: namespace,
-	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := m.SocialMatchmakingServiceClient.SocialMatchmaking.UpdatePlayTimeWeight(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := m.Client.SocialMatchmaking.UpdatePlayTimeWeight(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))

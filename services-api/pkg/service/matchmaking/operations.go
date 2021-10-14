@@ -1,4 +1,4 @@
-package service
+package matchmaking
 
 import (
 	"encoding/json"
@@ -10,18 +10,18 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-type MatchmakingOperationService struct {
-	MatchmakingOperationServiceClient *matchmakingclient.JusticeMatchmakingService
-	TokenRepository                   repository.TokenRepository
+type OperationsService struct {
+	Client          *matchmakingclient.JusticeMatchmakingService
+	TokenRepository repository.TokenRepository
 }
 
-func (m *MatchmakingOperationService) Healthz() error {
+func (m *OperationsService) Healthz() error {
 	token, err := m.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
 	params := &operations.HealthzParams{}
-	_, err = m.MatchmakingOperationServiceClient.Operations.Healthz(params, client.BearerToken(*token.AccessToken))
+	_, err = m.Client.Operations.Healthz(params, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		logrus.Error(err)
 		return err
@@ -29,13 +29,13 @@ func (m *MatchmakingOperationService) Healthz() error {
 	return nil
 }
 
-func (m *MatchmakingOperationService) MatchmakingHealthz() error {
+func (m *OperationsService) MatchmakingHealthz() error {
 	token, err := m.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
 	params := &operations.MatchmakingHealthzParams{}
-	_, err = m.MatchmakingOperationServiceClient.Operations.MatchmakingHealthz(params, client.BearerToken(*token.AccessToken))
+	_, err = m.Client.Operations.MatchmakingHealthz(params, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		logrus.Error(err)
 		return err
@@ -43,13 +43,13 @@ func (m *MatchmakingOperationService) MatchmakingHealthz() error {
 	return nil
 }
 
-func (m *MatchmakingOperationService) PublicGetMessages() ([]*matchmakingclientmodels.LogAppMessageDeclaration, error) {
+func (m *OperationsService) PublicGetMessages() ([]*matchmakingclientmodels.LogAppMessageDeclaration, error) {
 	token, err := m.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
 	params := &operations.PublicGetMessagesParams{}
-	ok, internalServerError, err := m.MatchmakingOperationServiceClient.Operations.PublicGetMessages(params, client.BearerToken(*token.AccessToken))
+	ok, internalServerError, err := m.Client.Operations.PublicGetMessages(params, client.BearerToken(*token.AccessToken))
 	if internalServerError != nil {
 		errorMsg, _ := json.Marshal(*internalServerError.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -62,13 +62,13 @@ func (m *MatchmakingOperationService) PublicGetMessages() ([]*matchmakingclientm
 	return ok.GetPayload(), nil
 }
 
-func (m *MatchmakingOperationService) VersionCheckHandler() error {
+func (m *OperationsService) VersionCheckHandler() error {
 	token, err := m.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
 	params := &operations.VersionCheckHandlerParams{}
-	_, err = m.MatchmakingOperationServiceClient.Operations.VersionCheckHandler(params, client.BearerToken(*token.AccessToken))
+	_, err = m.Client.Operations.VersionCheckHandler(params, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return err
 	}

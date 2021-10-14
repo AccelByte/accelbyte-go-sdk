@@ -1,4 +1,4 @@
-package service
+package matchmaking
 
 import (
 	"encoding/json"
@@ -6,29 +6,21 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/matchmaking-sdk/pkg/matchmakingclient/matchmaking"
 	"github.com/AccelByte/accelbyte-go-sdk/matchmaking-sdk/pkg/matchmakingclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"github.com/go-openapi/runtime"
-
 	"github.com/go-openapi/runtime/client"
 	"github.com/sirupsen/logrus"
 )
 
 type MatchmakingService struct {
-	MatchmakingServiceClient *matchmakingclient.JusticeMatchmakingService
-	TokenRepository          repository.TokenRepository
+	Client          *matchmakingclient.JusticeMatchmakingService
+	TokenRepository repository.TokenRepository
 }
 
-func (m *MatchmakingService) AddUserIntoSessionInChannel(body *matchmakingclientmodels.ModelsMatchAddUserIntoSessionRequest, channelName, matchID, namespace string) error {
+func (m *MatchmakingService) AddUserIntoSessionInChannel(input *matchmaking.AddUserIntoSessionInChannelParams) error {
 	token, err := m.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	params := &matchmaking.AddUserIntoSessionInChannelParams{
-		Body:        body,
-		ChannelName: channelName,
-		MatchID:     matchID,
-		Namespace:   namespace,
-	}
-	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := m.MatchmakingServiceClient.Matchmaking.AddUserIntoSessionInChannel(params, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := m.Client.Matchmaking.AddUserIntoSessionInChannel(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -61,16 +53,12 @@ func (m *MatchmakingService) AddUserIntoSessionInChannel(body *matchmakingclient
 	return nil
 }
 
-func (m *MatchmakingService) BulkGetSessions(matchIDs *string, namespace string) ([]*matchmakingclientmodels.ModelsMatchmakingResult, error) {
+func (m *MatchmakingService) BulkGetSessions(input *matchmaking.BulkGetSessionsParams) ([]*matchmakingclientmodels.ModelsMatchmakingResult, error) {
 	token, err := m.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &matchmaking.BulkGetSessionsParams{
-		MatchIDs:  matchIDs,
-		Namespace: namespace,
-	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := m.MatchmakingServiceClient.Matchmaking.BulkGetSessions(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := m.Client.Matchmaking.BulkGetSessions(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -103,16 +91,12 @@ func (m *MatchmakingService) BulkGetSessions(matchIDs *string, namespace string)
 	return ok.GetPayload(), nil
 }
 
-func (m *MatchmakingService) CreateChannelHandler(body *matchmakingclientmodels.ModelsChannelRequest, namespace string) (*matchmakingclientmodels.ModelsCreateChannelResponse, error) {
+func (m *MatchmakingService) CreateChannelHandler(input *matchmaking.CreateChannelHandlerParams) (*matchmakingclientmodels.ModelsCreateChannelResponse, error) {
 	token, err := m.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &matchmaking.CreateChannelHandlerParams{
-		Body:      body,
-		Namespace: namespace,
-	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := m.MatchmakingServiceClient.Matchmaking.CreateChannelHandler(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := m.Client.Matchmaking.CreateChannelHandler(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -145,16 +129,12 @@ func (m *MatchmakingService) CreateChannelHandler(body *matchmakingclientmodels.
 	return ok.GetPayload(), nil
 }
 
-func (m *MatchmakingService) DeleteChannelHandler(channel, namespace string) error {
+func (m *MatchmakingService) DeleteChannelHandler(input *matchmaking.DeleteChannelHandlerParams) error {
 	token, err := m.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	params := &matchmaking.DeleteChannelHandlerParams{
-		Channel:   channel,
-		Namespace: namespace,
-	}
-	_, unauthorized, forbidden, internalServerError, err := m.MatchmakingServiceClient.Matchmaking.DeleteChannelHandler(params, client.BearerToken(*token.AccessToken))
+	_, unauthorized, forbidden, internalServerError, err := m.Client.Matchmaking.DeleteChannelHandler(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -177,17 +157,12 @@ func (m *MatchmakingService) DeleteChannelHandler(channel, namespace string) err
 	return nil
 }
 
-func (m *MatchmakingService) DeleteSessionInChannel(channelName, matchID, namespace string) error {
+func (m *MatchmakingService) DeleteSessionInChannel(input *matchmaking.DeleteSessionInChannelParams) error {
 	token, err := m.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	params := &matchmaking.DeleteSessionInChannelParams{
-		ChannelName: channelName,
-		MatchID:     matchID,
-		Namespace:   namespace,
-	}
-	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := m.MatchmakingServiceClient.Matchmaking.DeleteSessionInChannel(params, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := m.Client.Matchmaking.DeleteSessionInChannel(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -220,17 +195,12 @@ func (m *MatchmakingService) DeleteSessionInChannel(channelName, matchID, namesp
 	return nil
 }
 
-func (m *MatchmakingService) DeleteUserFromSessionInChannel(channelName, matchID, namespace string) error {
+func (m *MatchmakingService) DeleteUserFromSessionInChannel(input *matchmaking.DeleteUserFromSessionInChannelParams) error {
 	token, err := m.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	params := &matchmaking.DeleteUserFromSessionInChannelParams{
-		ChannelName: channelName,
-		MatchID:     matchID,
-		Namespace:   namespace,
-	}
-	_, _, badRequest, unauthorized, forbidden, notFound, internalServerError, err := m.MatchmakingServiceClient.Matchmaking.DeleteUserFromSessionInChannel(params, client.BearerToken(*token.AccessToken))
+	_, _, badRequest, unauthorized, forbidden, notFound, internalServerError, err := m.Client.Matchmaking.DeleteUserFromSessionInChannel(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -263,16 +233,12 @@ func (m *MatchmakingService) DeleteUserFromSessionInChannel(channelName, matchID
 	return nil
 }
 
-func (m *MatchmakingService) DequeueSessionHandler(body *matchmakingclientmodels.ModelsDequeueRequest, namespace string) error {
+func (m *MatchmakingService) DequeueSessionHandler(input *matchmaking.DequeueSessionHandlerParams) error {
 	token, err := m.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	params := &matchmaking.DequeueSessionHandlerParams{
-		Body:      body,
-		Namespace: namespace,
-	}
-	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := m.MatchmakingServiceClient.Matchmaking.DequeueSessionHandler(params, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := m.Client.Matchmaking.DequeueSessionHandler(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -305,15 +271,12 @@ func (m *MatchmakingService) DequeueSessionHandler(body *matchmakingclientmodels
 	return nil
 }
 
-func (m *MatchmakingService) ExportChannels(namespace string) ([]*matchmakingclientmodels.ModelsChannelV1, error) {
+func (m *MatchmakingService) ExportChannels(input *matchmaking.ExportChannelsParams) ([]*matchmakingclientmodels.ModelsChannelV1, error) {
 	token, err := m.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &matchmaking.ExportChannelsParams{
-		Namespace: namespace,
-	}
-	ok, unauthorized, forbidden, internalServerError, err := m.MatchmakingServiceClient.Matchmaking.ExportChannels(params, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, internalServerError, err := m.Client.Matchmaking.ExportChannels(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -336,17 +299,12 @@ func (m *MatchmakingService) ExportChannels(namespace string) ([]*matchmakingcli
 	return ok.GetPayload(), nil
 }
 
-func (m *MatchmakingService) GetAllChannelsHandler(limit *int64, namespace string, offset *int64) (*matchmakingclientmodels.ModelsGetChannelsResponse, error) {
+func (m *MatchmakingService) GetAllChannelsHandler(input *matchmaking.GetAllChannelsHandlerParams) (*matchmakingclientmodels.ModelsGetChannelsResponse, error) {
 	token, err := m.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &matchmaking.GetAllChannelsHandlerParams{
-		Limit:     limit,
-		Namespace: namespace,
-		Offset:    offset,
-	}
-	ok, badRequest, unauthorized, forbidden, conflict, internalServerError, err := m.MatchmakingServiceClient.Matchmaking.GetAllChannelsHandler(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, conflict, internalServerError, err := m.Client.Matchmaking.GetAllChannelsHandler(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -379,15 +337,12 @@ func (m *MatchmakingService) GetAllChannelsHandler(limit *int64, namespace strin
 	return ok.GetPayload(), nil
 }
 
-func (m *MatchmakingService) GetAllPartyInAllChannel(namespace string) (*matchmakingclientmodels.ModelsMatchingParty, error) {
+func (m *MatchmakingService) GetAllPartyInAllChannel(input *matchmaking.GetAllPartyInAllChannelParams) (*matchmakingclientmodels.ModelsMatchingParty, error) {
 	token, err := m.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &matchmaking.GetAllPartyInAllChannelParams{
-		Namespace: namespace,
-	}
-	ok, badRequest, unauthorized, forbidden, conflict, internalServerError, err := m.MatchmakingServiceClient.Matchmaking.GetAllPartyInAllChannel(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, conflict, internalServerError, err := m.Client.Matchmaking.GetAllPartyInAllChannel(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -420,16 +375,12 @@ func (m *MatchmakingService) GetAllPartyInAllChannel(namespace string) (*matchma
 	return ok.GetPayload(), nil
 }
 
-func (m *MatchmakingService) GetAllPartyInChannel(channelName, namespace string) ([]*matchmakingclientmodels.ModelsMatchingParty, error) {
+func (m *MatchmakingService) GetAllPartyInChannel(input *matchmaking.GetAllPartyInChannelParams) ([]*matchmakingclientmodels.ModelsMatchingParty, error) {
 	token, err := m.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &matchmaking.GetAllPartyInChannelParams{
-		ChannelName: channelName,
-		Namespace:   namespace,
-	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := m.MatchmakingServiceClient.Matchmaking.GetAllPartyInChannel(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := m.Client.Matchmaking.GetAllPartyInChannel(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -462,16 +413,12 @@ func (m *MatchmakingService) GetAllPartyInChannel(channelName, namespace string)
 	return ok.GetPayload(), nil
 }
 
-func (m *MatchmakingService) GetAllSessionsInChannel(channelName, namespace string) ([]*matchmakingclientmodels.ModelsMatchmakingResult, error) {
+func (m *MatchmakingService) GetAllSessionsInChannel(input *matchmaking.GetAllSessionsInChannelParams) ([]*matchmakingclientmodels.ModelsMatchmakingResult, error) {
 	token, err := m.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &matchmaking.GetAllSessionsInChannelParams{
-		ChannelName: channelName,
-		Namespace:   namespace,
-	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := m.MatchmakingServiceClient.Matchmaking.GetAllSessionsInChannel(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := m.Client.Matchmaking.GetAllSessionsInChannel(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -504,16 +451,12 @@ func (m *MatchmakingService) GetAllSessionsInChannel(channelName, namespace stri
 	return ok.GetPayload(), nil
 }
 
-func (m *MatchmakingService) GetSessionHistoryDetailed(matchID, namespace string) ([]*matchmakingclientmodels.ServiceGetSessionHistoryDetailedResponseItem, error) {
+func (m *MatchmakingService) GetSessionHistoryDetailed(input *matchmaking.GetSessionHistoryDetailedParams) ([]*matchmakingclientmodels.ServiceGetSessionHistoryDetailedResponseItem, error) {
 	token, err := m.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &matchmaking.GetSessionHistoryDetailedParams{
-		MatchID:   matchID,
-		Namespace: namespace,
-	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := m.MatchmakingServiceClient.Matchmaking.GetSessionHistoryDetailed(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := m.Client.Matchmaking.GetSessionHistoryDetailed(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -546,16 +489,12 @@ func (m *MatchmakingService) GetSessionHistoryDetailed(matchID, namespace string
 	return ok.GetPayload(), nil
 }
 
-func (m *MatchmakingService) GetSingleMatchmakingChannel(channelName, namespace string) (*matchmakingclientmodels.ModelsChannelV1, error) {
+func (m *MatchmakingService) GetSingleMatchmakingChannel(input *matchmaking.GetSingleMatchmakingChannelParams) (*matchmakingclientmodels.ModelsChannelV1, error) {
 	token, err := m.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &matchmaking.GetSingleMatchmakingChannelParams{
-		ChannelName: channelName,
-		Namespace:   namespace,
-	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := m.MatchmakingServiceClient.Matchmaking.GetSingleMatchmakingChannel(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := m.Client.Matchmaking.GetSingleMatchmakingChannel(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -588,17 +527,12 @@ func (m *MatchmakingService) GetSingleMatchmakingChannel(channelName, namespace 
 	return ok.GetPayload(), nil
 }
 
-func (m *MatchmakingService) ImportChannels(file runtime.NamedReadCloser, namespace string, strategy *string) (*matchmakingclientmodels.ModelsImportConfigResponse, error) {
+func (m *MatchmakingService) ImportChannels(input *matchmaking.ImportChannelsParams) (*matchmakingclientmodels.ModelsImportConfigResponse, error) {
 	token, err := m.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &matchmaking.ImportChannelsParams{
-		File:      file,
-		Namespace: namespace,
-		Strategy:  strategy,
-	}
-	ok, badRequest, unauthorized, forbidden, internalServerError, err := m.MatchmakingServiceClient.Matchmaking.ImportChannels(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, internalServerError, err := m.Client.Matchmaking.ImportChannels(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -626,16 +560,12 @@ func (m *MatchmakingService) ImportChannels(file runtime.NamedReadCloser, namesp
 	return ok.GetPayload(), nil
 }
 
-func (m *MatchmakingService) QuerySessionHandler(matchID, namespace string) (*matchmakingclientmodels.ModelsMatchmakingResult, error) {
+func (m *MatchmakingService) QuerySessionHandler(input *matchmaking.QuerySessionHandlerParams) (*matchmakingclientmodels.ModelsMatchmakingResult, error) {
 	token, err := m.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &matchmaking.QuerySessionHandlerParams{
-		MatchID:   matchID,
-		Namespace: namespace,
-	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := m.MatchmakingServiceClient.Matchmaking.QuerySessionHandler(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := m.Client.Matchmaking.QuerySessionHandler(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -668,16 +598,12 @@ func (m *MatchmakingService) QuerySessionHandler(matchID, namespace string) (*ma
 	return ok.GetPayload(), nil
 }
 
-func (m *MatchmakingService) QueueSessionHandler(body *matchmakingclientmodels.ModelsMatchmakingResult, namespace string) error {
+func (m *MatchmakingService) QueueSessionHandler(input *matchmaking.QueueSessionHandlerParams) error {
 	token, err := m.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	params := &matchmaking.QueueSessionHandlerParams{
-		Body:      body,
-		Namespace: namespace,
-	}
-	_, badRequest, unauthorized, forbidden, internalServerError, err := m.MatchmakingServiceClient.Matchmaking.QueueSessionHandler(params, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, internalServerError, err := m.Client.Matchmaking.QueueSessionHandler(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -705,22 +631,12 @@ func (m *MatchmakingService) QueueSessionHandler(body *matchmakingclientmodels.M
 	return nil
 }
 
-func (m *MatchmakingService) SearchSessions(channel *string, deleted *bool, limit float64, matchID *string, namespace string, offset float64, partyID, userID *string) (*matchmakingclientmodels.ServiceGetSessionHistorySearchResponse, error) {
+func (m *MatchmakingService) SearchSessions(input *matchmaking.SearchSessionsParams) (*matchmakingclientmodels.ServiceGetSessionHistorySearchResponse, error) {
 	token, err := m.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &matchmaking.SearchSessionsParams{
-		Channel:   channel,
-		Deleted:   deleted,
-		Limit:     limit,
-		MatchID:   matchID,
-		Namespace: namespace,
-		Offset:    offset,
-		PartyID:   partyID,
-		UserID:    userID,
-	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := m.MatchmakingServiceClient.Matchmaking.SearchSessions(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := m.Client.Matchmaking.SearchSessions(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -753,16 +669,12 @@ func (m *MatchmakingService) SearchSessions(channel *string, deleted *bool, limi
 	return ok.GetPayload(), nil
 }
 
-func (m *MatchmakingService) StoreMatchResults(body *matchmakingclientmodels.ModelsMatchResultRequest, namespace string) (*matchmakingclientmodels.ModelsMatchResultResponse, error) {
+func (m *MatchmakingService) StoreMatchResults(input *matchmaking.StoreMatchResultsParams) (*matchmakingclientmodels.ModelsMatchResultResponse, error) {
 	token, err := m.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &matchmaking.StoreMatchResultsParams{
-		Body:      body,
-		Namespace: namespace,
-	}
-	ok, badRequest, unauthorized, forbidden, internalServerError, err := m.MatchmakingServiceClient.Matchmaking.StoreMatchResults(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, internalServerError, err := m.Client.Matchmaking.StoreMatchResults(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -790,17 +702,12 @@ func (m *MatchmakingService) StoreMatchResults(body *matchmakingclientmodels.Mod
 	return ok.GetPayload(), nil
 }
 
-func (m *MatchmakingService) UpdateMatchmakingChannel(body *matchmakingclientmodels.ModelsUpdateChannelRequest, channelName, namespace string) error {
+func (m *MatchmakingService) UpdateMatchmakingChannel(input *matchmaking.UpdateMatchmakingChannelParams) error {
 	token, err := m.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	params := &matchmaking.UpdateMatchmakingChannelParams{
-		Body:        body,
-		ChannelName: channelName,
-		Namespace:   namespace,
-	}
-	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := m.MatchmakingServiceClient.Matchmaking.UpdateMatchmakingChannel(params, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := m.Client.Matchmaking.UpdateMatchmakingChannel(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))

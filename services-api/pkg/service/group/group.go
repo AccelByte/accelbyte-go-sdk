@@ -1,76 +1,28 @@
-package service
+package group
 
 import (
 	"encoding/json"
 
 	"github.com/AccelByte/accelbyte-go-sdk/group-sdk/pkg/groupclient"
-	"github.com/AccelByte/accelbyte-go-sdk/group-sdk/pkg/groupclient/group_member"
-	"github.com/AccelByte/accelbyte-go-sdk/group-sdk/pkg/groupclient/member_request"
+	"github.com/AccelByte/accelbyte-go-sdk/group-sdk/pkg/groupclient/group"
 	"github.com/AccelByte/accelbyte-go-sdk/group-sdk/pkg/groupclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/go-openapi/runtime/client"
 	"github.com/sirupsen/logrus"
 )
 
-type GroupMemberConfigService struct {
-	GroupClient     *groupclient.JusticeGroupService
+type GroupService struct {
+	Client          *groupclient.JusticeGroupService
 	TokenRepository repository.TokenRepository
 }
 
-func (s *GroupMemberConfigService) CancelGroupJoinRequestV1(namespace, groupId string) (*groupclientmodels.ModelsMemberRequestGroupResponseV1, error) {
-	token, err := s.TokenRepository.GetToken()
+func (g *GroupService) CreateNewGroupPublicV1(input *group.CreateNewGroupPublicV1Params) (*groupclientmodels.ModelsGroupResponseV1, error) {
+	token, err := g.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	params := &group_member.CancelGroupJoinRequestV1Params{
-		GroupID:   groupId,
-		Namespace: namespace,
-	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := s.GroupClient.GroupMember.CancelGroupJoinRequestV1(params, client.BearerToken(*token.AccessToken))
-	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, badRequest
-	}
-	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, unauthorized
-	}
-	if forbidden != nil {
-		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, forbidden
-	}
-	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, notFound
-	}
-	if internalServerError != nil {
-		errorMsg, _ := json.Marshal(*internalServerError.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, internalServerError
-	}
-	if err != nil {
-		logrus.Error(err)
-		return nil, err
-	}
-	return ok.GetPayload(), nil
-}
-
-func (s *GroupMemberConfigService) JoinGroupV1(namespace, groupId string) (*groupclientmodels.ModelsJoinGroupResponseV1, error) {
-	token, err := s.TokenRepository.GetToken()
-	if err != nil {
-		logrus.Error(err)
-		return nil, err
-	}
-	params := &group_member.JoinGroupV1Params{
-		GroupID:   groupId,
-		Namespace: namespace,
-	}
-	created, badRequest, unauthorized, forbidden, conflict, internalServerError, err := s.GroupClient.GroupMember.JoinGroupV1(params, client.BearerToken(*token.AccessToken))
+	created, badRequest, unauthorized, forbidden, conflict, internalServerError, err := g.Client.Group.CreateNewGroupPublicV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -103,17 +55,130 @@ func (s *GroupMemberConfigService) JoinGroupV1(namespace, groupId string) (*grou
 	return created.GetPayload(), nil
 }
 
-func (s *GroupMemberConfigService) AcceptGroupInvitationPublicV1(namespace, groupId string) (*groupclientmodels.ModelsMemberRequestGroupResponseV1, error) {
-	token, err := s.TokenRepository.GetToken()
+func (g *GroupService) DeleteGroupAdminV1(input *group.DeleteGroupAdminV1Params) error {
+	token, err := g.TokenRepository.GetToken()
+	if err != nil {
+		logrus.Error(err)
+		return err
+	}
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := g.Client.Group.DeleteGroupAdminV1(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
+		logrus.Error(string(errorMsg))
+		return badRequest
+	}
+	if unauthorized != nil {
+		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
+		logrus.Error(string(errorMsg))
+		return unauthorized
+	}
+	if forbidden != nil {
+		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
+		logrus.Error(string(errorMsg))
+		return forbidden
+	}
+	if notFound != nil {
+		errorMsg, _ := json.Marshal(*notFound.GetPayload())
+		logrus.Error(string(errorMsg))
+		return notFound
+	}
+	if internalServerError != nil {
+		errorMsg, _ := json.Marshal(*internalServerError.GetPayload())
+		logrus.Error(string(errorMsg))
+		return internalServerError
+	}
+	if err != nil {
+		logrus.Error(err)
+		return err
+	}
+	return nil
+}
+
+func (g *GroupService) DeleteGroupPredefinedRulePublicV1(input *group.DeleteGroupPredefinedRulePublicV1Params) error {
+	token, err := g.TokenRepository.GetToken()
+	if err != nil {
+		logrus.Error(err)
+		return err
+	}
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := g.Client.Group.DeleteGroupPredefinedRulePublicV1(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
+		logrus.Error(string(errorMsg))
+		return badRequest
+	}
+	if unauthorized != nil {
+		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
+		logrus.Error(string(errorMsg))
+		return unauthorized
+	}
+	if forbidden != nil {
+		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
+		logrus.Error(string(errorMsg))
+		return forbidden
+	}
+	if notFound != nil {
+		errorMsg, _ := json.Marshal(*notFound.GetPayload())
+		logrus.Error(string(errorMsg))
+		return notFound
+	}
+	if internalServerError != nil {
+		errorMsg, _ := json.Marshal(*internalServerError.GetPayload())
+		logrus.Error(string(errorMsg))
+		return internalServerError
+	}
+	if err != nil {
+		logrus.Error(err)
+		return err
+	}
+	return nil
+}
+
+func (g *GroupService) DeleteGroupPublicV1(input *group.DeleteGroupPublicV1Params) error {
+	token, err := g.TokenRepository.GetToken()
+	if err != nil {
+		logrus.Error(err)
+		return err
+	}
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := g.Client.Group.DeleteGroupPublicV1(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
+		logrus.Error(string(errorMsg))
+		return badRequest
+	}
+	if unauthorized != nil {
+		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
+		logrus.Error(string(errorMsg))
+		return unauthorized
+	}
+	if forbidden != nil {
+		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
+		logrus.Error(string(errorMsg))
+		return forbidden
+	}
+	if notFound != nil {
+		errorMsg, _ := json.Marshal(*notFound.GetPayload())
+		logrus.Error(string(errorMsg))
+		return notFound
+	}
+	if internalServerError != nil {
+		errorMsg, _ := json.Marshal(*internalServerError.GetPayload())
+		logrus.Error(string(errorMsg))
+		return internalServerError
+	}
+	if err != nil {
+		logrus.Error(err)
+		return err
+	}
+	return nil
+}
+
+func (g *GroupService) GetGroupListAdminV1(input *group.GetGroupListAdminV1Params) (*groupclientmodels.ModelsGetGroupsListResponseV1, error) {
+	token, err := g.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	params := &group_member.AcceptGroupInvitationPublicV1Params{
-		GroupID:   groupId,
-		Namespace: namespace,
-	}
-	ok, badRequest, unauthorized, forbidden, notFound, conflict, internalServerError, err := s.GroupClient.GroupMember.AcceptGroupInvitationPublicV1(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, internalServerError, err := g.Client.Group.GetGroupListAdminV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -129,16 +194,6 @@ func (s *GroupMemberConfigService) AcceptGroupInvitationPublicV1(namespace, grou
 		logrus.Error(string(errorMsg))
 		return nil, forbidden
 	}
-	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, notFound
-	}
-	if conflict != nil {
-		errorMsg, _ := json.Marshal(*conflict.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, conflict
-	}
 	if internalServerError != nil {
 		errorMsg, _ := json.Marshal(*internalServerError.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -151,17 +206,13 @@ func (s *GroupMemberConfigService) AcceptGroupInvitationPublicV1(namespace, grou
 	return ok.GetPayload(), nil
 }
 
-func (s *GroupMemberConfigService) AcceptGroupJoinRequestPublicV1(namespace, userId string) (*groupclientmodels.ModelsMemberRequestGroupResponseV1, error) {
-	token, err := s.TokenRepository.GetToken()
+func (g *GroupService) GetGroupListPublicV1(input *group.GetGroupListPublicV1Params) (*groupclientmodels.ModelsGetGroupsListResponseV1, error) {
+	token, err := g.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	params := &group_member.AcceptGroupJoinRequestPublicV1Params{
-		Namespace: namespace,
-		UserID:    userId,
-	}
-	ok, badRequest, unauthorized, forbidden, notFound, conflict, internalServerError, err := s.GroupClient.GroupMember.AcceptGroupJoinRequestPublicV1(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, internalServerError, err := g.Client.Group.GetGroupListPublicV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -177,16 +228,6 @@ func (s *GroupMemberConfigService) AcceptGroupJoinRequestPublicV1(namespace, use
 		logrus.Error(string(errorMsg))
 		return nil, forbidden
 	}
-	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, notFound
-	}
-	if conflict != nil {
-		errorMsg, _ := json.Marshal(*conflict.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, conflict
-	}
 	if internalServerError != nil {
 		errorMsg, _ := json.Marshal(*internalServerError.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -199,109 +240,13 @@ func (s *GroupMemberConfigService) AcceptGroupJoinRequestPublicV1(namespace, use
 	return ok.GetPayload(), nil
 }
 
-func (s *GroupMemberConfigService) GetGroupMembersListAdminV1(namespace, groupId string, order *string, limit, offset *int64) (*groupclientmodels.ModelsGetGroupMemberListResponseV1, error) {
-	token, err := s.TokenRepository.GetToken()
+func (g *GroupService) GetSingleGroupAdminV1(input *group.GetSingleGroupAdminV1Params) (*groupclientmodels.ModelsGroupResponseV1, error) {
+	token, err := g.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	params := &group_member.GetGroupMembersListAdminV1Params{
-		GroupID:   groupId,
-		Limit:     limit,
-		Namespace: namespace,
-		Offset:    offset,
-		Order:     order,
-	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := s.GroupClient.GroupMember.GetGroupMembersListAdminV1(params, client.BearerToken(*token.AccessToken))
-	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, badRequest
-	}
-	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, unauthorized
-	}
-	if forbidden != nil {
-		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, forbidden
-	}
-	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, notFound
-	}
-	if internalServerError != nil {
-		errorMsg, _ := json.Marshal(*internalServerError.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, internalServerError
-	}
-	if err != nil {
-		logrus.Error(err)
-		return nil, err
-	}
-	return ok.GetPayload(), nil
-}
-
-func (s *GroupMemberConfigService) GetGroupMembersListPublicV1(namespace, groupId string, order *string, limit, offset *int64) (*groupclientmodels.ModelsGetGroupMemberListResponseV1, error) {
-	token, err := s.TokenRepository.GetToken()
-	if err != nil {
-		logrus.Error(err)
-		return nil, err
-	}
-	params := &group_member.GetGroupMembersListPublicV1Params{
-		GroupID:   groupId,
-		Limit:     limit,
-		Namespace: namespace,
-		Offset:    offset,
-		Order:     order,
-	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := s.GroupClient.GroupMember.GetGroupMembersListPublicV1(params, client.BearerToken(*token.AccessToken))
-	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, badRequest
-	}
-	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, unauthorized
-	}
-	if forbidden != nil {
-		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, forbidden
-	}
-	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, notFound
-	}
-	if internalServerError != nil {
-		errorMsg, _ := json.Marshal(*internalServerError.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, internalServerError
-	}
-	if err != nil {
-		logrus.Error(err)
-		return nil, err
-	}
-	return ok.GetPayload(), nil
-}
-
-func (s *GroupMemberConfigService) GetUserGroupInformationPublicV1(namespace, userId string) (*groupclientmodels.ModelsGetUserGroupInformationResponseV1, error) {
-	token, err := s.TokenRepository.GetToken()
-	if err != nil {
-		logrus.Error(err)
-		return nil, err
-	}
-	params := &group_member.GetUserGroupInformationPublicV1Params{
-		Namespace: namespace,
-		UserID:    userId,
-	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := s.GroupClient.GroupMember.GetUserGroupInformationPublicV1(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := g.Client.Group.GetSingleGroupAdminV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -334,65 +279,13 @@ func (s *GroupMemberConfigService) GetUserGroupInformationPublicV1(namespace, us
 	return ok.GetPayload(), nil
 }
 
-func (s *GroupMemberConfigService) InviteGroupPublicV1(namespace, userId string) (*groupclientmodels.ModelsUserInvitationResponseV1, error) {
-	token, err := s.TokenRepository.GetToken()
+func (g *GroupService) GetSingleGroupPublicV1(input *group.GetSingleGroupPublicV1Params) (*groupclientmodels.ModelsGroupResponseV1, error) {
+	token, err := g.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	params := &group_member.InviteGroupPublicV1Params{
-		Namespace: namespace,
-		UserID:    userId,
-	}
-	ok, badRequest, unauthorized, forbidden, notFound, conflict, internalServerError, err := s.GroupClient.GroupMember.InviteGroupPublicV1(params, client.BearerToken(*token.AccessToken))
-	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, badRequest
-	}
-	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, unauthorized
-	}
-	if forbidden != nil {
-		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, forbidden
-	}
-	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, notFound
-	}
-	if conflict != nil {
-		errorMsg, _ := json.Marshal(*conflict.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, conflict
-	}
-	if internalServerError != nil {
-		errorMsg, _ := json.Marshal(*internalServerError.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, internalServerError
-	}
-	if err != nil {
-		logrus.Error(err)
-		return nil, err
-	}
-	return ok.GetPayload(), nil
-}
-
-func (s *GroupMemberConfigService) KickGroupMemberPublicV1(namespace, userId string) (*groupclientmodels.ModelsKickGroupMemberResponseV1, error) {
-	token, err := s.TokenRepository.GetToken()
-	if err != nil {
-		logrus.Error(err)
-		return nil, err
-	}
-	params := &group_member.KickGroupMemberPublicV1Params{
-		Namespace: namespace,
-		UserID:    userId,
-	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := s.GroupClient.GroupMember.KickGroupMemberPublicV1(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := g.Client.Group.GetSingleGroupPublicV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -425,16 +318,13 @@ func (s *GroupMemberConfigService) KickGroupMemberPublicV1(namespace, userId str
 	return ok.GetPayload(), nil
 }
 
-func (s *GroupMemberConfigService) LeaveGroupPublicV1(namespace string) (*groupclientmodels.ModelsLeaveGroupResponseV1, error) {
-	token, err := s.TokenRepository.GetToken()
+func (g *GroupService) UpdateGroupCustomAttributesPublicV1(input *group.UpdateGroupCustomAttributesPublicV1Params) (*groupclientmodels.ModelsGroupResponseV1, error) {
+	token, err := g.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	params := &group_member.LeaveGroupPublicV1Params{
-		Namespace: namespace,
-	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := s.GroupClient.GroupMember.LeaveGroupPublicV1(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := g.Client.Group.UpdateGroupCustomAttributesPublicV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -467,17 +357,13 @@ func (s *GroupMemberConfigService) LeaveGroupPublicV1(namespace string) (*groupc
 	return ok.GetPayload(), nil
 }
 
-func (s *GroupMemberConfigService) RejectGroupInvitationPublicV1(namespace, groupId string) (*groupclientmodels.ModelsMemberRequestGroupResponseV1, error) {
-	token, err := s.TokenRepository.GetToken()
+func (g *GroupService) UpdateGroupCustomRulePublicV1(input *group.UpdateGroupCustomRulePublicV1Params) (*groupclientmodels.ModelsGroupResponseV1, error) {
+	token, err := g.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	params := &group_member.RejectGroupInvitationPublicV1Params{
-		GroupID:   groupId,
-		Namespace: namespace,
-	}
-	ok, badRequest, unauthorized, forbidden, notFound, conflict, internalServerError, err := s.GroupClient.GroupMember.RejectGroupInvitationPublicV1(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := g.Client.Group.UpdateGroupCustomRulePublicV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -498,11 +384,6 @@ func (s *GroupMemberConfigService) RejectGroupInvitationPublicV1(namespace, grou
 		logrus.Error(string(errorMsg))
 		return nil, notFound
 	}
-	if conflict != nil {
-		errorMsg, _ := json.Marshal(*conflict.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, conflict
-	}
 	if internalServerError != nil {
 		errorMsg, _ := json.Marshal(*internalServerError.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -515,17 +396,13 @@ func (s *GroupMemberConfigService) RejectGroupInvitationPublicV1(namespace, grou
 	return ok.GetPayload(), nil
 }
 
-func (s *GroupMemberConfigService) RejectGroupJoinRequestPublicV1(namespace, userId string) (*groupclientmodels.ModelsMemberRequestGroupResponseV1, error) {
-	token, err := s.TokenRepository.GetToken()
+func (g *GroupService) UpdateGroupPredefinedRulePublicV1(input *group.UpdateGroupPredefinedRulePublicV1Params) (*groupclientmodels.ModelsGroupResponseV1, error) {
+	token, err := g.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	params := &group_member.RejectGroupJoinRequestPublicV1Params{
-		Namespace: namespace,
-		UserID:    userId,
-	}
-	ok, badRequest, unauthorized, forbidden, notFound, conflict, internalServerError, err := s.GroupClient.GroupMember.RejectGroupJoinRequestPublicV1(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := g.Client.Group.UpdateGroupPredefinedRulePublicV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -540,11 +417,6 @@ func (s *GroupMemberConfigService) RejectGroupJoinRequestPublicV1(namespace, use
 		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
 		logrus.Error(string(errorMsg))
 		return nil, forbidden
-	}
-	if conflict != nil {
-		errorMsg, _ := json.Marshal(*conflict.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, conflict
 	}
 	if notFound != nil {
 		errorMsg, _ := json.Marshal(*notFound.GetPayload())
@@ -563,18 +435,13 @@ func (s *GroupMemberConfigService) RejectGroupJoinRequestPublicV1(namespace, use
 	return ok.GetPayload(), nil
 }
 
-func (s *GroupMemberConfigService) GetGroupInvitationRequestPublicV1(namespace string, limit, offset *int64) (*groupclientmodels.ModelsGetMemberRequestsListResponseV1, error) {
-	token, err := s.TokenRepository.GetToken()
+func (g *GroupService) UpdateSingleGroupPublicV1(input *group.UpdateSingleGroupPublicV1Params) (*groupclientmodels.ModelsGroupResponseV1, error) {
+	token, err := g.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	params := &member_request.GetGroupInvitationRequestPublicV1Params{
-		Limit:     limit,
-		Namespace: namespace,
-		Offset:    offset,
-	}
-	ok, badRequest, unauthorized, forbidden, internalServerError, err := s.GroupClient.MemberRequest.GetGroupInvitationRequestPublicV1(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := g.Client.Group.UpdateSingleGroupPublicV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -589,6 +456,11 @@ func (s *GroupMemberConfigService) GetGroupInvitationRequestPublicV1(namespace s
 		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
 		logrus.Error(string(errorMsg))
 		return nil, forbidden
+	}
+	if notFound != nil {
+		errorMsg, _ := json.Marshal(*notFound.GetPayload())
+		logrus.Error(string(errorMsg))
+		return nil, notFound
 	}
 	if internalServerError != nil {
 		errorMsg, _ := json.Marshal(*internalServerError.GetPayload())
@@ -602,19 +474,13 @@ func (s *GroupMemberConfigService) GetGroupInvitationRequestPublicV1(namespace s
 	return ok.GetPayload(), nil
 }
 
-func (s *GroupMemberConfigService) GetGroupJoinRequestPublicV1(namespace, groupId string, limit, offset *int64) (*groupclientmodels.ModelsGetMemberRequestsListResponseV1, error) {
-	token, err := s.TokenRepository.GetToken()
+func (g *GroupService) UpdateSingleGroupV1(input *group.UpdateSingleGroupV1Params) (*groupclientmodels.ModelsGroupResponseV1, error) {
+	token, err := g.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	params := &member_request.GetGroupJoinRequestPublicV1Params{
-		GroupID:   groupId,
-		Limit:     limit,
-		Namespace: namespace,
-		Offset:    offset,
-	}
-	ok, badRequest, unauthorized, forbidden, internalServerError, err := s.GroupClient.MemberRequest.GetGroupJoinRequestPublicV1(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := g.Client.Group.UpdateSingleGroupV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -629,6 +495,11 @@ func (s *GroupMemberConfigService) GetGroupJoinRequestPublicV1(namespace, groupI
 		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
 		logrus.Error(string(errorMsg))
 		return nil, forbidden
+	}
+	if notFound != nil {
+		errorMsg, _ := json.Marshal(*notFound.GetPayload())
+		logrus.Error(string(errorMsg))
+		return nil, notFound
 	}
 	if internalServerError != nil {
 		errorMsg, _ := json.Marshal(*internalServerError.GetPayload())

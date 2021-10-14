@@ -6,8 +6,9 @@ package cmd
 
 import (
 	"encoding/json"
+	retrieval "github.com/AccelByte/accelbyte-go-sdk/gdpr-sdk/pkg/gdprclient/data_retrieval"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/gdpr"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
@@ -19,12 +20,15 @@ var getEmailConfigCmd = &cobra.Command{
 	Short: "Get Email Config",
 	Long:  `Get email configuration`,
 	RunE: func(cmd *cobra.Command, args []string) error {
-		gdprService := &service.DataRetrievalService{
-			GdprServiceClient: factory.NewGdprClient(&repository.ConfigRepositoryImpl{}),
-			TokenRepository:   &repository.TokenRepositoryImpl{},
+		gdprService := &gdpr.DataRetrievalService{
+			Client:          factory.NewGdprClient(&repository.ConfigRepositoryImpl{}),
+			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		namespace := cmd.Flag("namespace").Value.String()
-		listEmail, err := gdprService.GetAdminEmailConfiguration(namespace)
+		input := &retrieval.GetAdminEmailConfigurationParams{
+			Namespace: namespace,
+		}
+		listEmail, err := gdprService.GetAdminEmailConfiguration(input)
 		if err != nil {
 			return err
 		}

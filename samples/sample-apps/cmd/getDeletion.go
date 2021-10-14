@@ -6,8 +6,9 @@ package cmd
 
 import (
 	"encoding/json"
+	deletion "github.com/AccelByte/accelbyte-go-sdk/gdpr-sdk/pkg/gdprclient/data_deletion"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/gdpr"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
@@ -19,9 +20,9 @@ var getDeletionCmd = &cobra.Command{
 	Short: "Get deletion",
 	Long:  `Get user account deletion`,
 	RunE: func(cmd *cobra.Command, args []string) error {
-		gdprService := &service.DataDeletionService{
-			GdprServiceClient: factory.NewGdprClient(&repository.ConfigRepositoryImpl{}),
-			TokenRepository:   &repository.TokenRepositoryImpl{},
+		gdprService := &gdpr.DataDeletionService{
+			Client:          factory.NewGdprClient(&repository.ConfigRepositoryImpl{}),
+			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		namespace := cmd.Flag("namespace").Value.String()
 		requestDate := cmd.Flag("requestDate").Value.String()
@@ -35,7 +36,15 @@ var getDeletionCmd = &cobra.Command{
 		if err != nil {
 			return err
 		}
-		deletionList, err := gdprService.AdminGetListDeletionDataRequest(namespace, &requestDate, &after, &before, &limit, &offset)
+		input := &deletion.AdminGetListDeletionDataRequestParams{
+			After:       &after,
+			Before:      &before,
+			Limit:       &limit,
+			Namespace:   namespace,
+			Offset:      &offset,
+			RequestDate: &requestDate,
+		}
+		deletionList, err := gdprService.AdminGetListDeletionDataRequest(input)
 		if err != nil {
 			return err
 		}

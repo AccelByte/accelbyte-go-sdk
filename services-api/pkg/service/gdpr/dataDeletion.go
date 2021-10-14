@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package service
+package gdpr
 
 import (
 	"encoding/json"
@@ -15,26 +15,18 @@ import (
 )
 
 type DataDeletionService struct {
-	GdprServiceClient *gdprclient.JusticeGdprService
-	TokenRepository   repository.TokenRepository
+	Client          *gdprclient.JusticeGdprService
+	TokenRepository repository.TokenRepository
 }
 
 // AdminGetListDeletionDataRequest is used to retrieve all user's account deletion
-func (dataDeletionService *DataDeletionService) AdminGetListDeletionDataRequest(namespace string, after, before, requestDate *string, limit, offset *int64) (*gdprclientmodels.ModelsListDeletionDataResponse, error) {
-	token, err := dataDeletionService.TokenRepository.GetToken()
+func (a *DataDeletionService) AdminGetListDeletionDataRequest(input *deletion.AdminGetListDeletionDataRequestParams) (*gdprclientmodels.ModelsListDeletionDataResponse, error) {
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	params := &deletion.AdminGetListDeletionDataRequestParams{
-		After:       after,
-		Before:      before,
-		Limit:       limit,
-		Namespace:   namespace,
-		Offset:      offset,
-		RequestDate: requestDate,
-	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServer, err := dataDeletionService.GdprServiceClient.DataDeletion.AdminGetListDeletionDataRequest(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServer, err := a.Client.DataDeletion.AdminGetListDeletionDataRequest(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -68,17 +60,13 @@ func (dataDeletionService *DataDeletionService) AdminGetListDeletionDataRequest(
 }
 
 // AdminGetUserAccountDeletionRequest is used to retrieves specific user s account deletion request
-func (dataDeletionService *DataDeletionService) AdminGetUserAccountDeletionRequest(namespace, userId string) (*gdprclientmodels.ModelsDeletionData, error) {
-	token, err := dataDeletionService.TokenRepository.GetToken()
+func (a *DataDeletionService) AdminGetUserAccountDeletionRequest(input *deletion.AdminGetUserAccountDeletionRequestParams) (*gdprclientmodels.ModelsDeletionData, error) {
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	params := &deletion.AdminGetUserAccountDeletionRequestParams{
-		Namespace: namespace,
-		UserID:    userId,
-	}
-	ok, unauthorized, forbidden, notFound, internalServer, err := dataDeletionService.GdprServiceClient.DataDeletion.AdminGetUserAccountDeletionRequest(params, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, notFound, internalServer, err := a.Client.DataDeletion.AdminGetUserAccountDeletionRequest(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -107,17 +95,13 @@ func (dataDeletionService *DataDeletionService) AdminGetUserAccountDeletionReque
 }
 
 // AdminSubmitUserAccountDeletionRequest is used to submits user s account deletion requests
-func (dataDeletionService *DataDeletionService) AdminSubmitUserAccountDeletionRequest(namespace, userId string) (*gdprclientmodels.ModelsRequestDeleteResponse, error) {
-	token, err := dataDeletionService.TokenRepository.GetToken()
+func (a *DataDeletionService) AdminSubmitUserAccountDeletionRequest(input *deletion.AdminSubmitUserAccountDeletionRequestParams) (*gdprclientmodels.ModelsRequestDeleteResponse, error) {
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	params := &deletion.AdminSubmitUserAccountDeletionRequestParams{
-		Namespace: namespace,
-		UserID:    userId,
-	}
-	created, unauthorized, forbidden, notFound, conflict, internalServer, err := dataDeletionService.GdprServiceClient.DataDeletion.AdminSubmitUserAccountDeletionRequest(params, client.BearerToken(*token.AccessToken))
+	created, unauthorized, forbidden, notFound, conflict, internalServer, err := a.Client.DataDeletion.AdminSubmitUserAccountDeletionRequest(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -151,17 +135,13 @@ func (dataDeletionService *DataDeletionService) AdminSubmitUserAccountDeletionRe
 }
 
 // AdminCancelUserAccountDeletionRequest is used to cancels user s account deletion request
-func (dataDeletionService *DataDeletionService) AdminCancelUserAccountDeletionRequest(namespace, userId string) error {
-	token, err := dataDeletionService.TokenRepository.GetToken()
+func (a *DataDeletionService) AdminCancelUserAccountDeletionRequest(input *deletion.AdminCancelUserAccountDeletionRequestParams) error {
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return err
 	}
-	params := &deletion.AdminCancelUserAccountDeletionRequestParams{
-		Namespace: namespace,
-		UserID:    userId,
-	}
-	_, badRequest, unauthorized, forbidden, notFound, internalServer, err := dataDeletionService.GdprServiceClient.DataDeletion.AdminCancelUserAccountDeletionRequest(params, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, internalServer, err := a.Client.DataDeletion.AdminCancelUserAccountDeletionRequest(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -195,17 +175,13 @@ func (dataDeletionService *DataDeletionService) AdminCancelUserAccountDeletionRe
 }
 
 // PublicSubmitUserAccountDeletionRequest is used to submits user s account deletion requests
-func (dataDeletionService *DataDeletionService) PublicSubmitUserAccountDeletionRequest(namespace, userId string) (*gdprclientmodels.ModelsRequestDeleteResponse, error) {
-	token, err := dataDeletionService.TokenRepository.GetToken()
+func (a *DataDeletionService) PublicSubmitUserAccountDeletionRequest(input *deletion.PublicSubmitUserAccountDeletionRequestParams) (*gdprclientmodels.ModelsRequestDeleteResponse, error) {
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	params := &deletion.PublicSubmitUserAccountDeletionRequestParams{
-		Namespace: namespace,
-		UserID:    userId,
-	}
-	created, badRequest, unauthorized, forbidden, notFound, internalServer, err := dataDeletionService.GdprServiceClient.DataDeletion.PublicSubmitUserAccountDeletionRequest(params, client.BearerToken(*token.AccessToken))
+	created, badRequest, unauthorized, forbidden, notFound, internalServer, err := a.Client.DataDeletion.PublicSubmitUserAccountDeletionRequest(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -239,17 +215,13 @@ func (dataDeletionService *DataDeletionService) PublicSubmitUserAccountDeletionR
 }
 
 // PublicCancelUserAccountDeletionRequest is used to cancels user s account deletion request
-func (dataDeletionService *DataDeletionService) PublicCancelUserAccountDeletionRequest(namespace, userId string) error {
-	token, err := dataDeletionService.TokenRepository.GetToken()
+func (a *DataDeletionService) PublicCancelUserAccountDeletionRequest(input *deletion.PublicCancelUserAccountDeletionRequestParams) error {
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return err
 	}
-	params := &deletion.PublicCancelUserAccountDeletionRequestParams{
-		Namespace: namespace,
-		UserID:    userId,
-	}
-	_, unauthorized, forbidden, notFound, internalServer, err := dataDeletionService.GdprServiceClient.DataDeletion.PublicCancelUserAccountDeletionRequest(params, client.BearerToken(*token.AccessToken))
+	_, unauthorized, forbidden, notFound, internalServer, err := a.Client.DataDeletion.PublicCancelUserAccountDeletionRequest(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -278,17 +250,13 @@ func (dataDeletionService *DataDeletionService) PublicCancelUserAccountDeletionR
 }
 
 // PublicGetUserAccountDeletionStatus is used to retrieve specific user s account deletion status
-func (dataDeletionService *DataDeletionService) PublicGetUserAccountDeletionStatus(namespace, userId string) (*gdprclientmodels.ModelsDeletionStatus, error) {
-	token, err := dataDeletionService.TokenRepository.GetToken()
+func (a *DataDeletionService) PublicGetUserAccountDeletionStatus(input *deletion.PublicGetUserAccountDeletionStatusParams) (*gdprclientmodels.ModelsDeletionStatus, error) {
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	params := &deletion.PublicGetUserAccountDeletionStatusParams{
-		Namespace: namespace,
-		UserID:    userId,
-	}
-	ok, unauthorized, forbidden, internalServer, err := dataDeletionService.GdprServiceClient.DataDeletion.PublicGetUserAccountDeletionStatus(params, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, internalServer, err := a.Client.DataDeletion.PublicGetUserAccountDeletionStatus(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))

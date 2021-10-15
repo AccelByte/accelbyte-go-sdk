@@ -5,9 +5,9 @@ package cmd
 
 import (
 	"encoding/json"
+	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/item"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
@@ -19,6 +19,10 @@ var getStoreitemCmd = &cobra.Command{
 	Short: "Get list of item from store",
 	Long:  `Get list of item from store`,
 	RunE: func(cmd *cobra.Command, args []string) error {
+		itemService := &platform.ItemService{
+			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
+			TokenRepository: &repository.TokenRepositoryImpl{},
+		}
 		appType := cmd.Flag("appType").Value.String()
 		baseAppId := cmd.Flag("baseAppId").Value.String()
 		categoryPath := cmd.Flag("categoryPath").Value.String()
@@ -40,16 +44,24 @@ var getStoreitemCmd = &cobra.Command{
 		if err != nil {
 			return err
 		}
-
-		itemService := &service.ItemService{
-			PlatformService: factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
-			OauthService: &iam.OAuth20Service{
-				Client:           factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
-				ConfigRepository: &repository.ConfigRepositoryImpl{},
-				TokenRepository:  &repository.TokenRepositoryImpl{},
-			},
+		input := &item.QueryItemsParams{
+			ActiveOnly:      &activeOnly,
+			AppType:         &appType,
+			AvailableDate:   &availableDate,
+			BaseAppID:       &baseAppId,
+			CategoryPath:    &categoryPath,
+			Features:        &features,
+			ItemType:        &itemType,
+			Limit:           &limit,
+			Namespace:       namespace,
+			Offset:          &offset,
+			Region:          &region,
+			SortBy:          &sortBy,
+			StoreID:         &storeId,
+			Tags:            &tags,
+			TargetNamespace: &targetNamespace,
 		}
-		items, err := itemService.GetItemByCriteria(namespace, &targetNamespace, &appType, &baseAppId, &categoryPath, &features, &itemType, &region, &sortBy, &tags, &storeId, &availableDate, &activeOnly, &limit, &offset)
+		items, err := itemService.GetItemByCriteria(input)
 		if err != nil {
 			return err
 		}

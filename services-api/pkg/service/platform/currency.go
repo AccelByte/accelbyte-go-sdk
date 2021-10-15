@@ -1,4 +1,4 @@
-package service
+package platform
 
 import (
 	"encoding/json"
@@ -12,36 +12,28 @@ import (
 )
 
 type CurrencyService struct {
-	PlatformServiceClient *platformclient.JusticePlatformService
-	TokenRepository       repository.TokenRepository
+	Client          *platformclient.JusticePlatformService
+	TokenRepository repository.TokenRepository
 }
 
-func (c *CurrencyService) ListCurrencies(namespace string) ([]*platformclientmodels.CurrencyInfo, error) {
+func (c *CurrencyService) ListCurrencies(input *currency.ListCurrenciesParams) ([]*platformclientmodels.CurrencyInfo, error) {
 	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &currency.ListCurrenciesParams{
-		Namespace: namespace,
-	}
-	currencies, err := c.PlatformServiceClient.Currency.ListCurrencies(params, client.BearerToken(*accessToken.AccessToken))
+	currencies, err := c.Client.Currency.ListCurrencies(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return currencies.GetPayload(), nil
 }
 
-func (c *CurrencyService) CreateCurrency(namespace string, body *platformclientmodels.CurrencyCreate) (*platformclientmodels.CurrencyInfo, error) {
+func (c *CurrencyService) CreateCurrency(input *currency.CreateCurrencyParams) (*platformclientmodels.CurrencyInfo, error) {
 	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &currency.CreateCurrencyParams{
-		Body:      body,
-		Namespace: namespace,
-	}
-	ok, conflict, unprocessableEntity, err := c.PlatformServiceClient.Currency.CreateCurrency(params, client.BearerToken(*accessToken.AccessToken))
-
+	ok, conflict, unprocessableEntity, err := c.Client.Currency.CreateCurrency(input, client.BearerToken(*accessToken.AccessToken))
 	if unprocessableEntity != nil {
 		errorMsg, _ := json.Marshal(*unprocessableEntity.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -59,16 +51,12 @@ func (c *CurrencyService) CreateCurrency(namespace string, body *platformclientm
 	return ok.GetPayload(), nil
 }
 
-func (c *CurrencyService) GetCurrencySummary(namespace, currencyCode string) (*platformclientmodels.CurrencySummary, error) {
+func (c *CurrencyService) GetCurrencySummary(input *currency.GetCurrencySummaryParams) (*platformclientmodels.CurrencySummary, error) {
 	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &currency.GetCurrencySummaryParams{
-		CurrencyCode: currencyCode,
-		Namespace:    namespace,
-	}
-	currencySummary, notFound, err := c.PlatformServiceClient.Currency.GetCurrencySummary(params, client.BearerToken(*accessToken.AccessToken))
+	currencySummary, notFound, err := c.Client.Currency.GetCurrencySummary(input, client.BearerToken(*accessToken.AccessToken))
 
 	if notFound != nil {
 		errorMsg, _ := json.Marshal(*notFound.GetPayload())
@@ -82,17 +70,12 @@ func (c *CurrencyService) GetCurrencySummary(namespace, currencyCode string) (*p
 	return currencySummary.GetPayload(), nil
 }
 
-func (c *CurrencyService) UpdateCurrency(namespace, currencyCode string, content *platformclientmodels.CurrencyUpdate) (*platformclientmodels.CurrencyInfo, error) {
+func (c *CurrencyService) UpdateCurrency(input *currency.UpdateCurrencyParams) (*platformclientmodels.CurrencyInfo, error) {
 	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &currency.UpdateCurrencyParams{
-		Body:         content,
-		CurrencyCode: currencyCode,
-		Namespace:    namespace,
-	}
-	ok, notFound, unprocessableEntity, err := c.PlatformServiceClient.Currency.UpdateCurrency(params, client.BearerToken(*accessToken.AccessToken))
+	ok, notFound, unprocessableEntity, err := c.Client.Currency.UpdateCurrency(input, client.BearerToken(*accessToken.AccessToken))
 
 	if notFound != nil {
 		errorMsg, _ := json.Marshal(*notFound.GetPayload())
@@ -111,16 +94,12 @@ func (c *CurrencyService) UpdateCurrency(namespace, currencyCode string, content
 	return ok.GetPayload(), nil
 }
 
-func (c *CurrencyService) DeleteCurrency(namespace, currencyCode string) (*platformclientmodels.CurrencyInfo, error) {
+func (c *CurrencyService) DeleteCurrency(input *currency.DeleteCurrencyParams) (*platformclientmodels.CurrencyInfo, error) {
 	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &currency.DeleteCurrencyParams{
-		CurrencyCode: currencyCode,
-		Namespace:    namespace,
-	}
-	ok, notFound, err := c.PlatformServiceClient.Currency.DeleteCurrency(params, client.BearerToken(*accessToken.AccessToken))
+	ok, notFound, err := c.Client.Currency.DeleteCurrency(input, client.BearerToken(*accessToken.AccessToken))
 
 	if notFound != nil {
 		errorMsg, _ := json.Marshal(*notFound.GetPayload())
@@ -134,16 +113,12 @@ func (c *CurrencyService) DeleteCurrency(namespace, currencyCode string) (*platf
 	return ok.GetPayload(), nil
 }
 
-func (c *CurrencyService) GetCurrencyConfig(namespace, currencyCode string) (*platformclientmodels.CurrencyConfig, error) {
+func (c *CurrencyService) GetCurrencyConfig(input *currency.GetCurrencyConfigParams) (*platformclientmodels.CurrencyConfig, error) {
 	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &currency.GetCurrencyConfigParams{
-		CurrencyCode: currencyCode,
-		Namespace:    namespace,
-	}
-	ok, notFound, err := c.PlatformServiceClient.Currency.GetCurrencyConfig(params, client.BearerToken(*accessToken.AccessToken))
+	ok, notFound, err := c.Client.Currency.GetCurrencyConfig(input, client.BearerToken(*accessToken.AccessToken))
 
 	if notFound != nil {
 		errorMsg, _ := json.Marshal(*notFound.GetPayload())
@@ -157,11 +132,8 @@ func (c *CurrencyService) GetCurrencyConfig(namespace, currencyCode string) (*pl
 	return ok.GetPayload(), nil
 }
 
-func (c *CurrencyService) PublicListCurrencies(namespace string) ([]*platformclientmodels.CurrencyInfo, error) {
-	params := &currency.PublicListCurrenciesParams{
-		Namespace: namespace,
-	}
-	ok, err := c.PlatformServiceClient.Currency.PublicListCurrencies(params)
+func (c *CurrencyService) PublicListCurrencies(input *currency.PublicListCurrenciesParams) ([]*platformclientmodels.CurrencyInfo, error) {
+	ok, err := c.Client.Currency.PublicListCurrencies(input)
 
 	if err != nil {
 		logrus.Error(err)

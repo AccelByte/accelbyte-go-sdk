@@ -5,10 +5,10 @@ package cmd
 
 import (
 	"encoding/json"
+	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/store"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
@@ -20,20 +20,15 @@ var createStoreCmd = &cobra.Command{
 	Short: "Create store",
 	Long:  `Create store`,
 	RunE: func(cmd *cobra.Command, args []string) error {
-
+		storeService := &platform.StoreService{
+			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
+			TokenRepository: &repository.TokenRepositoryImpl{},
+		}
 		namespace := cmd.Flag("namespace").Value.String()
 		defaultLang := cmd.Flag("language").Value.String()
 		defaultRegion := cmd.Flag("region").Value.String()
 		description := cmd.Flag("description").Value.String()
 		title := cmd.Flag("title").Value.String()
-		storeService := &service.StoreService{
-			OauthService: &iam.OAuth20Service{
-				Client:           factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
-				ConfigRepository: &repository.ConfigRepositoryImpl{},
-				TokenRepository:  &repository.TokenRepositoryImpl{},
-			},
-			PlatformService: factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
-		}
 		storeCreateParam := &platformclientmodels.StoreCreate{
 			DefaultLanguage:    defaultLang,
 			DefaultRegion:      defaultRegion,
@@ -42,7 +37,11 @@ var createStoreCmd = &cobra.Command{
 			SupportedRegions:   []string{},
 			Title:              &title,
 		}
-		createStore, err := storeService.CreateStore(namespace, *storeCreateParam)
+		input := &store.CreateStoreParams{
+			Body:      storeCreateParam,
+			Namespace: namespace,
+		}
+		createStore, err := storeService.CreateStore(input)
 		if err != nil {
 			return err
 		}

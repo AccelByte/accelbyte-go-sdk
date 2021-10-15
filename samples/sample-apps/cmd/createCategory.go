@@ -5,10 +5,10 @@ package cmd
 
 import (
 	"encoding/json"
+	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/category"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
@@ -24,14 +24,6 @@ var createCategoryCmd = &cobra.Command{
 	"localizationDisplayNames": {"en": "/Games"}
 }`,
 	RunE: func(cmd *cobra.Command, args []string) error {
-		categoryService := &service.CategoryService{
-			OauthService: &iam.OAuth20Service{
-				Client:           factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
-				ConfigRepository: &repository.ConfigRepositoryImpl{},
-				TokenRepository:  &repository.TokenRepositoryImpl{},
-			},
-			PlatformService: factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
-		}
 		namespace := cmd.Flag("namespace").Value.String()
 		storeId := cmd.Flag("storeId").Value.String()
 		categoryPath := cmd.Flag("categoryPath").Value.String()
@@ -42,11 +34,19 @@ var createCategoryCmd = &cobra.Command{
 			logrus.Error("Failed unmarshal localization display name map")
 			return err
 		}
-		categoryCreate := &platformclientmodels.CategoryCreate{
-			CategoryPath:             &categoryPath,
-			LocalizationDisplayNames: localizationDisplayNames,
+		input := &category.CreateCategoryParams{
+			Body: &platformclientmodels.CategoryCreate{
+				CategoryPath:             &categoryPath,
+				LocalizationDisplayNames: localizationDisplayNames,
+			},
+			Namespace: namespace,
+			StoreID:   storeId,
 		}
-		categoryInfo, err := categoryService.CreateCategory(namespace, storeId, *categoryCreate)
+		categoryService := &platform.CategoryService{
+			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
+			TokenRepository: &repository.TokenRepositoryImpl{},
+		}
+		categoryInfo, err := categoryService.CreateCategory(input)
 		if err != nil {
 			return err
 		}

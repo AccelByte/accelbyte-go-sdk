@@ -1,4 +1,4 @@
-package service
+package platform
 
 import (
 	"encoding/json"
@@ -7,25 +7,21 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/reward"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 	"github.com/sirupsen/logrus"
 )
 
 type RewardService struct {
-	PlatformServiceClient *platformclient.JusticePlatformService
-	TokenRepository       repository.TokenRepository
+	Client          *platformclient.JusticePlatformService
+	TokenRepository repository.TokenRepository
 }
 
-func (r *RewardService) ExportRewards(namespace string) error {
+func (r *RewardService) ExportRewards(input *reward.ExportRewardsParams) error {
 	accessToken, err := r.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	params := &reward.ExportRewardsParams{
-		Namespace: namespace,
-	}
-	_, err = r.PlatformServiceClient.Reward.ExportRewards(params, client.BearerToken(*accessToken.AccessToken))
+	_, err = r.Client.Reward.ExportRewards(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		logrus.Error(err)
 		return err
@@ -33,16 +29,12 @@ func (r *RewardService) ExportRewards(namespace string) error {
 	return nil
 }
 
-func (r *RewardService) GetReward(namespace, rewardId string) (*platformclientmodels.RewardInfo, error) {
+func (r *RewardService) GetReward(input *reward.GetRewardParams) (*platformclientmodels.RewardInfo, error) {
 	accessToken, err := r.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &reward.GetRewardParams{
-		Namespace: namespace,
-		RewardID:  rewardId,
-	}
-	ok, notFound, err := r.PlatformServiceClient.Reward.GetReward(params, client.BearerToken(*accessToken.AccessToken))
+	ok, notFound, err := r.Client.Reward.GetReward(input, client.BearerToken(*accessToken.AccessToken))
 	if notFound != nil {
 		errorMsg, _ := json.Marshal(*notFound.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -55,16 +47,12 @@ func (r *RewardService) GetReward(namespace, rewardId string) (*platformclientmo
 	return ok.GetPayload(), err
 }
 
-func (r *RewardService) UpdateReward(namespace, rewardId string) (*platformclientmodels.RewardInfo, error) {
+func (r *RewardService) UpdateReward(input *reward.UpdateRewardParams) (*platformclientmodels.RewardInfo, error) {
 	accessToken, err := r.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &reward.UpdateRewardParams{
-		Namespace: namespace,
-		RewardID:  rewardId,
-	}
-	ok, notFound, conflict, err := r.PlatformServiceClient.Reward.UpdateReward(params, client.BearerToken(*accessToken.AccessToken))
+	ok, notFound, conflict, err := r.Client.Reward.UpdateReward(input, client.BearerToken(*accessToken.AccessToken))
 	if notFound != nil {
 		errorMsg, _ := json.Marshal(*notFound.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -82,16 +70,12 @@ func (r *RewardService) UpdateReward(namespace, rewardId string) (*platformclien
 	return ok.GetPayload(), err
 }
 
-func (r *RewardService) DeleteReward(namespace, rewardId string) (*platformclientmodels.RewardInfo, error) {
+func (r *RewardService) DeleteReward(input *reward.DeleteRewardParams) (*platformclientmodels.RewardInfo, error) {
 	accessToken, err := r.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &reward.DeleteRewardParams{
-		Namespace: namespace,
-		RewardID:  rewardId,
-	}
-	ok, notFound, err := r.PlatformServiceClient.Reward.DeleteReward(params, client.BearerToken(*accessToken.AccessToken))
+	ok, notFound, err := r.Client.Reward.DeleteReward(input, client.BearerToken(*accessToken.AccessToken))
 	if notFound != nil {
 		errorMsg, _ := json.Marshal(*notFound.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -104,17 +88,12 @@ func (r *RewardService) DeleteReward(namespace, rewardId string) (*platformclien
 	return ok.GetPayload(), err
 }
 
-func (r *RewardService) ImportRewards(namespace string, replaceExisting bool, file runtime.NamedReadCloser) error {
+func (r *RewardService) ImportRewards(input *reward.ImportRewardsParams) error {
 	accessToken, err := r.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	params := &reward.ImportRewardsParams{
-		File:            file,
-		Namespace:       namespace,
-		ReplaceExisting: replaceExisting,
-	}
-	_, notFound, err := r.PlatformServiceClient.Reward.ImportRewards(params, client.BearerToken(*accessToken.AccessToken))
+	_, notFound, err := r.Client.Reward.ImportRewards(input, client.BearerToken(*accessToken.AccessToken))
 	if notFound != nil {
 		errorMsg, _ := json.Marshal(*notFound.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -127,16 +106,12 @@ func (r *RewardService) ImportRewards(namespace string, replaceExisting bool, fi
 	return err
 }
 
-func (r *RewardService) CreateReward(namespace string, content *platformclientmodels.RewardCreate) (*platformclientmodels.RewardInfo, error) {
+func (r *RewardService) CreateReward(input *reward.CreateRewardParams) (*platformclientmodels.RewardInfo, error) {
 	accessToken, err := r.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &reward.CreateRewardParams{
-		Body:      content,
-		Namespace: namespace,
-	}
-	ok, notFound, conflict, unprocessableEntity, err := r.PlatformServiceClient.Reward.CreateReward(params, client.BearerToken(*accessToken.AccessToken))
+	ok, notFound, conflict, unprocessableEntity, err := r.Client.Reward.CreateReward(input, client.BearerToken(*accessToken.AccessToken))
 	if notFound != nil {
 		errorMsg, _ := json.Marshal(*notFound.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -159,20 +134,12 @@ func (r *RewardService) CreateReward(namespace string, content *platformclientmo
 	return ok.GetPayload(), err
 }
 
-func (r *RewardService) QueryRewards(namespace string, eventTopic, sort *string, limit, offset *int32) (*platformclientmodels.RewardPagingSlicedResult, error) {
+func (r *RewardService) QueryRewards(input *reward.QueryRewardsParams) (*platformclientmodels.RewardPagingSlicedResult, error) {
 	accessToken, err := r.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &reward.QueryRewardsParams{
-		EventTopic: eventTopic,
-		Limit:      limit,
-		Namespace:  namespace,
-		Offset:     offset,
-		SortBy:     sort,
-	}
-	ok, unprocessableEntity, err := r.PlatformServiceClient.Reward.QueryRewards(params, client.BearerToken(*accessToken.AccessToken))
-
+	ok, unprocessableEntity, err := r.Client.Reward.QueryRewards(input, client.BearerToken(*accessToken.AccessToken))
 	if unprocessableEntity != nil {
 		errorMsg, _ := json.Marshal(*unprocessableEntity.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -185,17 +152,12 @@ func (r *RewardService) QueryRewards(namespace string, eventTopic, sort *string,
 	return ok.GetPayload(), err
 }
 
-func (r *RewardService) PublicGetReward(namespace, rewardId string) (*platformclientmodels.RewardInfo, error) {
+func (r *RewardService) PublicGetReward(input *reward.GetReward1Params) (*platformclientmodels.RewardInfo, error) {
 	accessToken, err := r.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &reward.GetReward1Params{
-		Namespace: namespace,
-		RewardID:  rewardId,
-	}
-	ok, unprocessableEntity, err := r.PlatformServiceClient.Reward.GetReward1(params, client.BearerToken(*accessToken.AccessToken))
-
+	ok, unprocessableEntity, err := r.Client.Reward.GetReward1(input, client.BearerToken(*accessToken.AccessToken))
 	if unprocessableEntity != nil {
 		errorMsg, _ := json.Marshal(*unprocessableEntity.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -208,20 +170,12 @@ func (r *RewardService) PublicGetReward(namespace, rewardId string) (*platformcl
 	return ok.GetPayload(), err
 }
 
-func (r *RewardService) PublicQueryRewards(namespace string, eventTopic, sort *string, limit, offset *int32) (*platformclientmodels.RewardPagingSlicedResult, error) {
+func (r *RewardService) PublicQueryRewards(input *reward.QueryRewards1Params) (*platformclientmodels.RewardPagingSlicedResult, error) {
 	accessToken, err := r.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &reward.QueryRewards1Params{
-		EventTopic: eventTopic,
-		Limit:      limit,
-		Namespace:  namespace,
-		Offset:     offset,
-		SortBy:     sort,
-	}
-	ok, unprocessableEntity, err := r.PlatformServiceClient.Reward.QueryRewards1(params, client.BearerToken(*accessToken.AccessToken))
-
+	ok, unprocessableEntity, err := r.Client.Reward.QueryRewards1(input, client.BearerToken(*accessToken.AccessToken))
 	if unprocessableEntity != nil {
 		errorMsg, _ := json.Marshal(*unprocessableEntity.GetPayload())
 		logrus.Error(string(errorMsg))

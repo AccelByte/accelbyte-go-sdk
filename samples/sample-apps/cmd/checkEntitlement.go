@@ -6,8 +6,9 @@ package cmd
 import (
 	"encoding/json"
 	"errors"
+	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/entitlement"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
@@ -20,6 +21,10 @@ var checkEntitlementCmd = &cobra.Command{
 	Short: "Check user entitlements",
 	Long:  `Check user entitlement`,
 	RunE: func(cmd *cobra.Command, args []string) error {
+		entitlementService := &platform.EntitlementService{
+			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
+			TokenRepository: &repository.TokenRepositoryImpl{},
+		}
 		appIdsString, err := cmd.Flags().GetString("appIds")
 		if err != nil {
 			logrus.Error(err)
@@ -64,12 +69,14 @@ var checkEntitlementCmd = &cobra.Command{
 			logrus.Error(err)
 			return err
 		}
-
-		entitlementService := &service.EntitlementService{
-			PlatformService: factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
-			TokenRepository: &repository.TokenRepositoryImpl{},
+		input := &entitlement.ExistsAnyUserActiveEntitlementParams{
+			AppIds:    appIds,
+			ItemIds:   itemIds,
+			Namespace: namespace,
+			Skus:      skus,
+			UserID:    userId,
 		}
-		userEntitlement, err := entitlementService.ExistsAnyUserActiveEntitlement(namespace, userId, appIds, itemIds, skus)
+		userEntitlement, err := entitlementService.ExistsAnyUserActiveEntitlement(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

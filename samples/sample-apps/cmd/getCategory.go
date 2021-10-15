@@ -5,9 +5,9 @@ package cmd
 
 import (
 	"encoding/json"
+	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/category"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
@@ -19,18 +19,19 @@ var getCategoryCmd = &cobra.Command{
 	Short: "Get category by category path.",
 	Long:  `Get category by category path`,
 	RunE: func(cmd *cobra.Command, args []string) error {
-		categoryService := &service.CategoryService{
-			OauthService: &iam.OAuth20Service{
-				Client:           factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
-				ConfigRepository: &repository.ConfigRepositoryImpl{},
-				TokenRepository:  &repository.TokenRepositoryImpl{},
-			},
-			PlatformService: factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
+		categoryService := &platform.CategoryService{
+			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
+			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		namespace := cmd.Flag("namespace").Value.String()
 		categoryPath := cmd.Flag("categoryPath").Value.String()
 		storeId := cmd.Flag("storeId").Value.String()
-		categoryInfo, err := categoryService.GetCategory(namespace, categoryPath, &storeId)
+		input := &category.GetCategoryParams{
+			CategoryPath: categoryPath,
+			Namespace:    namespace,
+			StoreID:      &storeId,
+		}
+		categoryInfo, err := categoryService.GetCategory(input)
 		if err != nil {
 			return err
 		}

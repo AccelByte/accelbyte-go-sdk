@@ -5,9 +5,10 @@ package cmd
 
 import (
 	"encoding/json"
+	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/entitlement"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
@@ -19,15 +20,15 @@ var grantEntitlementCmd = &cobra.Command{
 	Short: "Grant user entitlement of item",
 	Long:  `Grant user entitlement of item. Grant entitlement executed by admin user.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
-		entitlementService := &service.EntitlementService{
-			PlatformService: factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
+		entitlementService := &platform.EntitlementService{
+			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		userId, err := cmd.Flags().GetString("userId")
 		if err != nil {
 			return err
 		}
-		userNamespace, err := cmd.Flags().GetString("namespace")
+		namespace, err := cmd.Flags().GetString("namespace")
 		if err != nil {
 			return err
 		}
@@ -44,14 +45,19 @@ var grantEntitlementCmd = &cobra.Command{
 			return err
 		}
 
-		var entitlementGrants []platformclientmodels.EntitlementGrant
+		var entitlementGrants []*platformclientmodels.EntitlementGrant
 		entitlementGrant := &platformclientmodels.EntitlementGrant{
 			ItemID:        &itemId,
 			ItemNamespace: &itemNamespace,
 			Quantity:      &quantity,
 		}
-		entitlementGrants = append(entitlementGrants, *entitlementGrant)
-		grantEntitlement, err := entitlementService.GrantUserEntitlement(userNamespace, userId, entitlementGrants)
+		entitlementGrants = append(entitlementGrants, entitlementGrant)
+		input := &entitlement.GrantUserEntitlementParams{
+			Body:      entitlementGrants,
+			Namespace: namespace,
+			UserID:    userId,
+		}
+		grantEntitlement, err := entitlementService.GrantUserEntitlement(input)
 		if err != nil {
 			return err
 		}

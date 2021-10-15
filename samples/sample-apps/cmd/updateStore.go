@@ -5,10 +5,10 @@ package cmd
 
 import (
 	"encoding/json"
+	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/store"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 
@@ -21,27 +21,28 @@ var updateStoreCmd = &cobra.Command{
 	Short: "Update draft store",
 	Long:  `Update draft store`,
 	RunE: func(cmd *cobra.Command, args []string) error {
+		storeService := &platform.StoreService{
+			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
+			TokenRepository: &repository.TokenRepositoryImpl{},
+		}
 		namespace := cmd.Flag("namespace").Value.String()
 		defaultLanguage := cmd.Flag("language").Value.String()
 		defaultRegion := cmd.Flag("region").Value.String()
 		description := cmd.Flag("description").Value.String()
 		title := cmd.Flag("title").Value.String()
 		storeId := cmd.Flag("storeId").Value.String()
-		storeService := &service.StoreService{
-			OauthService: &iam.OAuth20Service{
-				Client:           factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
-				ConfigRepository: &repository.ConfigRepositoryImpl{},
-				TokenRepository:  &repository.TokenRepositoryImpl{},
-			},
-			PlatformService: factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
-		}
 		storeUpdate := &platformclientmodels.StoreUpdate{
 			DefaultLanguage: defaultLanguage,
 			DefaultRegion:   defaultRegion,
 			Description:     description,
 			Title:           &title,
 		}
-		updateStore, err := storeService.UpdateStore(namespace, storeId, *storeUpdate)
+		input := &store.UpdateStoreParams{
+			Body:      storeUpdate,
+			Namespace: namespace,
+			StoreID:   storeId,
+		}
+		updateStore, err := storeService.UpdateStore(input)
 		if err != nil {
 			return err
 		}

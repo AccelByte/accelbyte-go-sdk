@@ -5,8 +5,9 @@ package cmd
 
 import (
 	"encoding/json"
+	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/entitlement"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
@@ -18,14 +19,19 @@ var getUserEntitlementCmd = &cobra.Command{
 	Short: "Get users entitlement",
 	Long:  `Get users entitlement`,
 	RunE: func(cmd *cobra.Command, args []string) error {
+		entitlementService := &platform.EntitlementService{
+			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
+			TokenRepository: &repository.TokenRepositoryImpl{},
+		}
 		namespace := cmd.Flag("namespace").Value.String()
 		userId := cmd.Flag("userId").Value.String()
 		entitlementId := cmd.Flag("entitlementId").Value.String()
-		entitlementService := &service.EntitlementService{
-			PlatformService: factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
-			TokenRepository: &repository.TokenRepositoryImpl{},
+		input := &entitlement.GetUserEntitlementParams{
+			EntitlementID: entitlementId,
+			Namespace:     namespace,
+			UserID:        userId,
 		}
-		userEntitlement, err := entitlementService.GetUserEntitlement(namespace, userId, entitlementId)
+		userEntitlement, err := entitlementService.GetUserEntitlement(input)
 		if err != nil {
 			return err
 		}

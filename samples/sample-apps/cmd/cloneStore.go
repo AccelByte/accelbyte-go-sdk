@@ -5,9 +5,9 @@ package cmd
 
 import (
 	"encoding/json"
+	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/store"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
@@ -19,18 +19,19 @@ var cloneStoreCmd = &cobra.Command{
 	Short: "Clone one store to another store. Source store and target store should in same namespace, same region and same language.",
 	Long:  `Clone one store to another store. Source store and target store should in same namespace, same region and same language.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
-		namespace := cmd.Flag("namespace").Value.String()
-		sourceStoreId := cmd.Flag("sourceStoreId").Value.String()
-		targetStoreId := cmd.Flag("targetStoreId").Value.String()
-		storeService := &service.StoreService{
-			OauthService: &iam.OAuth20Service{
-				Client:           factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
-				ConfigRepository: &repository.ConfigRepositoryImpl{},
-				TokenRepository:  &repository.TokenRepositoryImpl{},
-			},
-			PlatformService: factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
+		storeService := &platform.StoreService{
+			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
+			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		storeInfo, err := storeService.CloneStore(namespace, sourceStoreId, targetStoreId)
+		namespace := cmd.Flag("namespace").Value.String()
+		storeId := cmd.Flag("sourceStoreId").Value.String()
+		targetStoreId := cmd.Flag("targetStoreId").Value.String()
+		input := &store.CloneStoreParams{
+			Namespace:     namespace,
+			StoreID:       storeId,
+			TargetStoreID: &targetStoreId,
+		}
+		storeInfo, err := storeService.CloneStore(input)
 		if err != nil {
 			return err
 		}

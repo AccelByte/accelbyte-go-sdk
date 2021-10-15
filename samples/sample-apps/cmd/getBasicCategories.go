@@ -5,9 +5,9 @@ package cmd
 
 import (
 	"encoding/json"
+	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/category"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
@@ -19,17 +19,17 @@ var getBasicCategoriesCmd = &cobra.Command{
 	Short: "Get categories basic info.",
 	Long:  `Get categories basic info.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
-		categoryService := &service.CategoryService{
-			OauthService: &iam.OAuth20Service{
-				Client:           factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
-				ConfigRepository: &repository.ConfigRepositoryImpl{},
-				TokenRepository:  &repository.TokenRepositoryImpl{},
-			},
-			PlatformService: factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
+		categoryService := &platform.CategoryService{
+			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
+			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		namespace := cmd.Flag("namespace").Value.String()
 		storeId := cmd.Flag("storeId").Value.String()
-		listCategoriesBasic, err := categoryService.ListCategoriesBasic(namespace, &storeId)
+		input := &category.ListCategoriesBasicParams{
+			Namespace: namespace,
+			StoreID:   &storeId,
+		}
+		listCategoriesBasic, err := categoryService.ListCategoriesBasic(input)
 		if err != nil {
 			return err
 		}

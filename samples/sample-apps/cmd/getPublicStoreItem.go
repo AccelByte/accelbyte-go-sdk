@@ -5,9 +5,9 @@ package cmd
 
 import (
 	"encoding/json"
+	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/item"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 
@@ -20,6 +20,10 @@ var getPublicStoreItemCmd = &cobra.Command{
 	Short: "Get public store items",
 	Long:  `Get public store items`,
 	RunE: func(cmd *cobra.Command, args []string) error {
+		itemService := &platform.ItemService{
+			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
+			TokenRepository: &repository.TokenRepositoryImpl{},
+		}
 		appType := cmd.Flag("appType").Value.String()
 		baseAppId := cmd.Flag("baseAppId").Value.String()
 		categoryPath := cmd.Flag("categoryPath").Value.String()
@@ -39,16 +43,22 @@ var getPublicStoreItemCmd = &cobra.Command{
 		if err != nil {
 			return err
 		}
-
-		itemService := &service.ItemService{
-			PlatformService: factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
-			OauthService: &iam.OAuth20Service{
-				Client:           factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
-				ConfigRepository: &repository.ConfigRepositoryImpl{},
-				TokenRepository:  &repository.TokenRepositoryImpl{},
-			},
+		input := &item.PublicQueryItemsParams{
+			AppType:      &appType,
+			BaseAppID:    &baseAppId,
+			CategoryPath: &categoryPath,
+			Features:     &features,
+			ItemType:     &itemType,
+			Language:     &language,
+			Limit:        &limit,
+			Namespace:    namespace,
+			Offset:       &offset,
+			Region:       &region,
+			SortBy:       &sortBy,
+			StoreID:      &storeId,
+			Tags:         &tags,
 		}
-		items, err := itemService.PublicQueryItems(namespace, &language, &appType, &baseAppId, &categoryPath, &features, &itemType, &region, &sortBy, &tags, &storeId, &limit, &offset)
+		items, err := itemService.PublicQueryItems(input)
 		if err != nil {
 			return err
 		}

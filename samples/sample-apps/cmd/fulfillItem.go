@@ -5,9 +5,10 @@ package cmd
 
 import (
 	"encoding/json"
+	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/fulfillment"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 
@@ -20,15 +21,15 @@ var fulfillItemCmd = &cobra.Command{
 	Short: "Fulfill item",
 	Long:  `Fulfill item`,
 	RunE: func(cmd *cobra.Command, args []string) error {
-		fulfillmentService := &service.FulfillmentService{
-			PlatformService: factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
+		fulfillmentService := &platform.FulfillmentService{
+			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		userId, err := cmd.Flags().GetString("userId")
 		if err != nil {
 			return err
 		}
-		userNamespace, err := cmd.Flags().GetString("namespace")
+		namespace, err := cmd.Flags().GetString("namespace")
 		if err != nil {
 			return err
 		}
@@ -45,7 +46,12 @@ var fulfillItemCmd = &cobra.Command{
 			ItemID:   &itemId,
 			Quantity: &quantity,
 		}
-		grantEntitlement, err := fulfillmentService.FulfillItem(userId, userNamespace, *request)
+		input := &fulfillment.FulfillItemParams{
+			Body:      request,
+			Namespace: namespace,
+			UserID:    userId,
+		}
+		grantEntitlement, err := fulfillmentService.FulfillItem(input)
 		if err != nil {
 			return err
 		}

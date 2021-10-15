@@ -5,9 +5,9 @@ package cmd
 
 import (
 	"encoding/json"
+	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/store"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
@@ -19,16 +19,15 @@ var getPublicStoresCmd = &cobra.Command{
 	Short: "Get public stores",
 	Long:  `Get public stores`,
 	RunE: func(cmd *cobra.Command, args []string) error {
-		namespace := cmd.Flag("namespace").Value.String()
-		storeService := &service.StoreService{
-			OauthService: &iam.OAuth20Service{
-				Client:           factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
-				ConfigRepository: &repository.ConfigRepositoryImpl{},
-				TokenRepository:  &repository.TokenRepositoryImpl{},
-			},
-			PlatformService: factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
+		storeService := &platform.StoreService{
+			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
+			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		listStore, err := storeService.PublicListStore(namespace)
+		namespace := cmd.Flag("namespace").Value.String()
+		input := &store.PublicListStoresParams{
+			Namespace: namespace,
+		}
+		listStore, err := storeService.PublicListStore(input)
 		if err != nil {
 			return err
 		}

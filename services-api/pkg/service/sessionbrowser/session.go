@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package service
+package sessionbrowser
 
 import (
 	"encoding/json"
@@ -15,31 +15,19 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-type SessionBrowserService struct {
-	SessionBrowserServiceClient *sessionbrowserclient.JusticeSessionbrowserService
-	TokenRepository             repository.TokenRepository
+type SessionService struct {
+	Client          *sessionbrowserclient.JusticeSessionbrowserService
+	TokenRepository repository.TokenRepository
 }
 
 // QuerySession is used to query an available game session
-func (b *SessionBrowserService) QuerySession(namespace, sessionType string, userId, matchId, gameMode, gameVersion, joinable, serverStatus, offset, limit *string) (*sessionbrowserclientmodels.ModelsSessionQueryResponse, error) {
+func (b *SessionService) QuerySession(input *sessionBrowser.QuerySessionParams) (*sessionbrowserclientmodels.ModelsSessionQueryResponse, error) {
 	token, err := b.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	params := &sessionBrowser.QuerySessionParams{
-		GameMode:     gameMode,
-		GameVersion:  gameVersion,
-		Joinable:     joinable,
-		Limit:        limit,
-		MatchID:      matchId,
-		Namespace:    namespace,
-		Offset:       offset,
-		ServerStatus: serverStatus,
-		SessionType:  sessionType,
-		UserID:       userId,
-	}
-	ok, badRequest, internalServer, err := b.SessionBrowserServiceClient.Session.QuerySession(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, internalServer, err := b.Client.Session.QuerySession(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -58,17 +46,13 @@ func (b *SessionBrowserService) QuerySession(namespace, sessionType string, user
 }
 
 // CreateSession is used to register a new game session by session ID
-func (b *SessionBrowserService) CreateSession(namespace string, body *sessionbrowserclientmodels.ModelsCreateSessionRequest) (*sessionbrowserclientmodels.ModelsSessionResponse, error) {
+func (b *SessionService) CreateSession(input *sessionBrowser.CreateSessionParams) (*sessionbrowserclientmodels.ModelsSessionResponse, error) {
 	token, err := b.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	params := &sessionBrowser.CreateSessionParams{
-		Body:      body,
-		Namespace: namespace,
-	}
-	ok, badRequest, conflict, internalServer, err := b.SessionBrowserServiceClient.Session.CreateSession(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, conflict, internalServer, err := b.Client.Session.CreateSession(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -92,17 +76,13 @@ func (b *SessionBrowserService) CreateSession(namespace string, body *sessionbro
 }
 
 // GetSession is used to get query game sessions by session ids
-func (b *SessionBrowserService) GetSession(namespace, sessionId string) (*sessionbrowserclientmodels.ModelsSessionResponse, error) {
+func (b *SessionService) GetSession(input *sessionBrowser.GetSessionParams) (*sessionbrowserclientmodels.ModelsSessionResponse, error) {
 	token, err := b.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	params := &sessionBrowser.GetSessionParams{
-		Namespace: namespace,
-		SessionID: sessionId,
-	}
-	ok, notFound, internalServer, err := b.SessionBrowserServiceClient.Session.GetSession(params, client.BearerToken(*token.AccessToken))
+	ok, notFound, internalServer, err := b.Client.Session.GetSession(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		errorMsg, _ := json.Marshal(*notFound.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -121,17 +101,13 @@ func (b *SessionBrowserService) GetSession(namespace, sessionId string) (*sessio
 }
 
 // GetSessionByUserIDs is used to get the session by session ID
-func (b *SessionBrowserService) GetSessionByUserIDs(namespace, userIds string) (*sessionbrowserclientmodels.ModelsSessionByUserIDsResponse, error) {
+func (b *SessionService) GetSessionByUserIDs(input *sessionBrowser.GetSessionByUserIDsParams) (*sessionbrowserclientmodels.ModelsSessionByUserIDsResponse, error) {
 	token, err := b.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	params := &sessionBrowser.GetSessionByUserIDsParams{
-		Namespace: namespace,
-		UserIds:   userIds,
-	}
-	ok, notFound, internalServer, err := b.SessionBrowserServiceClient.Session.GetSessionByUserIDs(params, client.BearerToken(*token.AccessToken))
+	ok, notFound, internalServer, err := b.Client.Session.GetSessionByUserIDs(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		errorMsg, _ := json.Marshal(*notFound.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -150,18 +126,13 @@ func (b *SessionBrowserService) GetSessionByUserIDs(namespace, userIds string) (
 }
 
 // UpdateSession is used to update game session, update current player
-func (b *SessionBrowserService) UpdateSession(namespace, sessionId string, body *sessionbrowserclientmodels.ModelsUpdateSessionRequest) (*sessionbrowserclientmodels.ModelsSessionResponse, error) {
+func (b *SessionService) UpdateSession(input *sessionBrowser.UpdateSessionParams) (*sessionbrowserclientmodels.ModelsSessionResponse, error) {
 	token, err := b.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	params := &sessionBrowser.UpdateSessionParams{
-		Body:      body,
-		Namespace: namespace,
-		SessionID: sessionId,
-	}
-	ok, badRequest, conflict, internalServer, err := b.SessionBrowserServiceClient.Session.UpdateSession(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, conflict, internalServer, err := b.Client.Session.UpdateSession(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -185,17 +156,13 @@ func (b *SessionBrowserService) UpdateSession(namespace, sessionId string, body 
 }
 
 // DeleteSession is used to delete specified game session by session ID
-func (b *SessionBrowserService) DeleteSession(namespace, sessionId string) (*sessionbrowserclientmodels.ModelsSessionResponse, error) {
+func (b *SessionService) DeleteSession(input *sessionBrowser.DeleteSessionParams) (*sessionbrowserclientmodels.ModelsSessionResponse, error) {
 	token, err := b.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	params := &sessionBrowser.DeleteSessionParams{
-		Namespace: namespace,
-		SessionID: sessionId,
-	}
-	ok, badRequest, notFound, internalServer, err := b.SessionBrowserServiceClient.Session.DeleteSession(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, notFound, internalServer, err := b.Client.Session.DeleteSession(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -219,18 +186,13 @@ func (b *SessionBrowserService) DeleteSession(namespace, sessionId string) (*ses
 }
 
 // AddPlayerToSession is used to add a new player to a session ID
-func (b *SessionBrowserService) AddPlayerToSession(namespace, sessionId string, body *sessionbrowserclientmodels.ModelsAddPlayerRequest) (*sessionbrowserclientmodels.ModelsAddPlayerResponse, error) {
+func (b *SessionService) AddPlayerToSession(input *sessionBrowser.AddPlayerToSessionParams) (*sessionbrowserclientmodels.ModelsAddPlayerResponse, error) {
 	token, err := b.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	params := &sessionBrowser.AddPlayerToSessionParams{
-		Body:      body,
-		Namespace: namespace,
-		SessionID: sessionId,
-	}
-	ok, badRequest, notFound, internalServer, err := b.SessionBrowserServiceClient.Session.AddPlayerToSession(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, notFound, internalServer, err := b.Client.Session.AddPlayerToSession(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -253,18 +215,14 @@ func (b *SessionBrowserService) AddPlayerToSession(namespace, sessionId string, 
 	return ok.GetPayload(), nil
 }
 
-// AdminGetSession admins get specified session by session ID
-func (b *SessionBrowserService) AdminGetSession(namespace, sessionId string) (*sessionbrowserclientmodels.ModelsAdminSessionResponse, error) {
+// AdminGetSession is used to get specified session by session ID
+func (b *SessionService) AdminGetSession(input *sessionBrowser.AdminGetSessionParams) (*sessionbrowserclientmodels.ModelsAdminSessionResponse, error) {
 	token, err := b.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	params := &sessionBrowser.AdminGetSessionParams{
-		Namespace: namespace,
-		SessionID: sessionId,
-	}
-	ok, notFound, internalServer, err := b.SessionBrowserServiceClient.Session.AdminGetSession(params, client.BearerToken(*token.AccessToken))
+	ok, notFound, internalServer, err := b.Client.Session.AdminGetSession(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		errorMsg, _ := json.Marshal(*notFound.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -282,18 +240,14 @@ func (b *SessionBrowserService) AdminGetSession(namespace, sessionId string) (*s
 	return ok.GetPayload(), nil
 }
 
-// DeleteSessionLocalDS online use for local d s entry will error when calling non-local d s entry
-func (b *SessionBrowserService) DeleteSessionLocalDS(namespace, sessionId string) (*sessionbrowserclientmodels.ModelsSessionResponse, error) {
+// DeleteSessionLocalDS is used to delete session local
+func (b *SessionService) DeleteSessionLocalDS(input *sessionBrowser.DeleteSessionLocalDSParams) (*sessionbrowserclientmodels.ModelsSessionResponse, error) {
 	token, err := b.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	params := &sessionBrowser.DeleteSessionLocalDSParams{
-		Namespace: namespace,
-		SessionID: sessionId,
-	}
-	ok, badRequest, notFound, internalServer, err := b.SessionBrowserServiceClient.Session.DeleteSessionLocalDS(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, notFound, internalServer, err := b.Client.Session.DeleteSessionLocalDS(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -316,19 +270,14 @@ func (b *SessionBrowserService) DeleteSessionLocalDS(namespace, sessionId string
 	return ok.GetPayload(), nil
 }
 
-// GetActiveCustomGameSessions gets all active session for custom game this return only dedicated session type
-func (b *SessionBrowserService) GetActiveCustomGameSessions(namespace string, sessionId, serverRegion *string) (*sessionbrowserclientmodels.ModelsActiveCustomGameResponse, error) {
+// GetActiveCustomGameSessions is used to get all active session for custom game this return only dedicated session type
+func (b *SessionService) GetActiveCustomGameSessions(input *sessionBrowser.GetActiveCustomGameSessionsParams) (*sessionbrowserclientmodels.ModelsActiveCustomGameResponse, error) {
 	token, err := b.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	params := &sessionBrowser.GetActiveCustomGameSessionsParams{
-		Namespace:    namespace,
-		ServerRegion: serverRegion,
-		SessionID:    sessionId,
-	}
-	ok, badRequest, internalServer, err := b.SessionBrowserServiceClient.Session.GetActiveCustomGameSessions(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, internalServer, err := b.Client.Session.GetActiveCustomGameSessions(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -346,20 +295,14 @@ func (b *SessionBrowserService) GetActiveCustomGameSessions(namespace string, se
 	return ok.GetPayload(), nil
 }
 
-// GetActiveMatchmakingGameSessions gets all active session for matchmaking game this return only dedicated session type
-func (b *SessionBrowserService) GetActiveMatchmakingGameSessions(namespace string, sessionId, matchId, serverRegion *string) (*sessionbrowserclientmodels.ModelsActiveMatchmakingGameResponse, error) {
+// GetActiveMatchmakingGameSessions is used to get all active session for matchmaking game this return only dedicated session type
+func (b *SessionService) GetActiveMatchmakingGameSessions(input *sessionBrowser.GetActiveMatchmakingGameSessionsParams) (*sessionbrowserclientmodels.ModelsActiveMatchmakingGameResponse, error) {
 	token, err := b.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	params := &sessionBrowser.GetActiveMatchmakingGameSessionsParams{
-		MatchID:      matchId,
-		Namespace:    namespace,
-		ServerRegion: serverRegion,
-		SessionID:    sessionId,
-	}
-	ok, badRequest, internalServer, err := b.SessionBrowserServiceClient.Session.GetActiveMatchmakingGameSessions(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, internalServer, err := b.Client.Session.GetActiveMatchmakingGameSessions(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -377,18 +320,14 @@ func (b *SessionBrowserService) GetActiveMatchmakingGameSessions(namespace strin
 	return ok.GetPayload(), nil
 }
 
-// GetRecentPlayer queries recent players with given user id
-func (b *SessionBrowserService) GetRecentPlayer(namespace, userId string) (*sessionbrowserclientmodels.ModelsRecentPlayerQueryResponse, error) {
+// GetRecentPlayer is used to query recent players with given user id
+func (b *SessionService) GetRecentPlayer(input *sessionBrowser.GetRecentPlayerParams) (*sessionbrowserclientmodels.ModelsRecentPlayerQueryResponse, error) {
 	token, err := b.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	params := &sessionBrowser.GetRecentPlayerParams{
-		Namespace: namespace,
-		UserID:    userId,
-	}
-	ok, badRequest, internalServer, err := b.SessionBrowserServiceClient.Session.GetRecentPlayer(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, internalServer, err := b.Client.Session.GetRecentPlayer(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -407,17 +346,13 @@ func (b *SessionBrowserService) GetRecentPlayer(namespace, userId string) (*sess
 }
 
 // GetTotalActiveSession gets all active session
-func (b *SessionBrowserService) GetTotalActiveSession(namespace string, sessionType *string) (*sessionbrowserclientmodels.ModelsCountActiveSessionResponse, error) {
+func (b *SessionService) GetTotalActiveSession(input *sessionBrowser.GetTotalActiveSessionParams) (*sessionbrowserclientmodels.ModelsCountActiveSessionResponse, error) {
 	token, err := b.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	params := &sessionBrowser.GetTotalActiveSessionParams{
-		Namespace:   namespace,
-		SessionType: sessionType,
-	}
-	ok, badRequest, internalServer, err := b.SessionBrowserServiceClient.Session.GetTotalActiveSession(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, internalServer, err := b.Client.Session.GetTotalActiveSession(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -435,19 +370,14 @@ func (b *SessionBrowserService) GetTotalActiveSession(namespace string, sessionT
 	return ok.GetPayload(), nil
 }
 
-// JoinSession joins specified session by session ID
-func (b *SessionBrowserService) JoinSession(namespace, sessionId string, body *sessionbrowserclientmodels.ModelsJoinGameSessionRequest) (*sessionbrowserclientmodels.ModelsSessionResponse, error) {
+// JoinSession is used to join specified session by session ID
+func (b *SessionService) JoinSession(input *sessionBrowser.JoinSessionParams) (*sessionbrowserclientmodels.ModelsSessionResponse, error) {
 	token, err := b.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	params := &sessionBrowser.JoinSessionParams{
-		Body:      body,
-		Namespace: namespace,
-		SessionID: sessionId,
-	}
-	ok, badRequest, notFound, internalServer, err := b.SessionBrowserServiceClient.Session.JoinSession(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, notFound, internalServer, err := b.Client.Session.JoinSession(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -470,19 +400,14 @@ func (b *SessionBrowserService) JoinSession(namespace, sessionId string, body *s
 	return ok.GetPayload(), nil
 }
 
-// RemovePlayerFromSession removes player from game session
-func (b *SessionBrowserService) RemovePlayerFromSession(namespace, sessionId, userId string) (*sessionbrowserclientmodels.ModelsAddPlayerResponse, error) {
+// RemovePlayerFromSession is used to remove player from game session
+func (b *SessionService) RemovePlayerFromSession(input *sessionBrowser.RemovePlayerFromSessionParams) (*sessionbrowserclientmodels.ModelsAddPlayerResponse, error) {
 	token, err := b.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	params := &sessionBrowser.RemovePlayerFromSessionParams{
-		Namespace: namespace,
-		SessionID: sessionId,
-		UserID:    userId,
-	}
-	ok, badRequest, notFound, internalServer, err := b.SessionBrowserServiceClient.Session.RemovePlayerFromSession(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, notFound, internalServer, err := b.Client.Session.RemovePlayerFromSession(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))

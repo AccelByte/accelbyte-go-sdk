@@ -8,7 +8,8 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/social"
+	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient/game_profile"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclientmodels"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
@@ -22,20 +23,26 @@ var updateProfile = &cobra.Command{
 	Long:  `Public Update profile`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		fmt.Println("updateProfile called")
-		gameProfileService := &service.GameProfileService{
-			SocialServiceClient: factory.NewSocialClient(&repository.ConfigRepositoryImpl{}),
-			TokenRepository:     &repository.TokenRepositoryImpl{},
+		gameProfileService := &social.GameProfileService{
+			Client:          factory.NewSocialClient(&repository.ConfigRepositoryImpl{}),
+			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		namespace := cmd.Flag("namespace").Value.String()
 		userId := cmd.Flag("userId").Value.String()
 		profileId := cmd.Flag("profileId").Value.String()
 		requestBody := cmd.Flag("body").Value.String()
-		var gameProfileRequest *socialclientmodels.GameProfileRequest
-		err := json.Unmarshal([]byte(requestBody), &gameProfileRequest)
+		var body *socialclientmodels.GameProfileRequest
+		err := json.Unmarshal([]byte(requestBody), &body)
 		if err != nil {
 			return err
 		}
-		ok, err := gameProfileService.PublicUpdateProfile(namespace, userId, profileId, gameProfileRequest)
+		input := &game_profile.PublicUpdateProfileParams{
+			Body:      body,
+			Namespace: namespace,
+			ProfileID: profileId,
+			UserID:    userId,
+		}
+		ok, err := gameProfileService.PublicUpdateProfile(input)
 		if err != nil {
 			return err
 		} else {

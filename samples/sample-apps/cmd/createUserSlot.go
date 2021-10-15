@@ -7,7 +7,8 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/social"
+	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient/slot"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"os"
@@ -22,9 +23,9 @@ var createUserSlotCmd = &cobra.Command{
 	Long:  `Create user slot`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		fmt.Println("createUserSlot called")
-		socialService := &service.SlotService{
-			SocialServiceClient: factory.NewSocialClient(&repository.ConfigRepositoryImpl{}),
-			TokenRepository:     &repository.TokenRepositoryImpl{},
+		socialService := &social.SlotService{
+			Client:          factory.NewSocialClient(&repository.ConfigRepositoryImpl{}),
+			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		namespace := cmd.Flag("namespace").Value.String()
 		userId := cmd.Flag("userId").Value.String()
@@ -42,7 +43,16 @@ var createUserSlotCmd = &cobra.Command{
 		if err != nil {
 			return err
 		}
-		err = socialService.PublicCreateUserNamespaceSlot(namespace, userId, &checksum, &customAttribute, &label, tags, file)
+		input := &slot.PublicCreateUserNamespaceSlotParams{
+			Checksum:        &checksum,
+			CustomAttribute: &customAttribute,
+			File:            file,
+			Label:           &label,
+			Namespace:       namespace,
+			Tags:            tags,
+			UserID:          userId,
+		}
+		err = socialService.PublicCreateUserNamespaceSlot(input)
 		if err != nil {
 			return err
 		}

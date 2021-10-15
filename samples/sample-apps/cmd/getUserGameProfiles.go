@@ -8,7 +8,8 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/social"
+	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient/game_profile"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
@@ -21,16 +22,20 @@ var getUserGameProfiles = &cobra.Command{
 	Long:  `Public Get user game profile`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		fmt.Println("getUserGameProfiles called")
-		gameProfileService := &service.GameProfileService{
-			SocialServiceClient: factory.NewSocialClient(&repository.ConfigRepositoryImpl{}),
-			TokenRepository:     &repository.TokenRepositoryImpl{},
+		gameProfileService := &social.GameProfileService{
+			Client:          factory.NewSocialClient(&repository.ConfigRepositoryImpl{}),
+			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		namespace := cmd.Flag("namespace").Value.String()
 		userIDsInput := cmd.Flag("userIDs").Value.String()
 		var userIDs []string
 		err := json.Unmarshal([]byte(userIDsInput), &userIDs)
 		logrus.Info(userIDs[0])
-		ok, err := gameProfileService.PublicGetUserGameProfiles(namespace, userIDs)
+		input := &game_profile.PublicGetUserGameProfilesParams{
+			Namespace: namespace,
+			UserIds:   userIDs,
+		}
+		ok, err := gameProfileService.PublicGetUserGameProfiles(input)
 		if err != nil {
 			return err
 		} else {
@@ -49,6 +54,6 @@ func init() {
 	rootCmd.AddCommand(getUserGameProfiles)
 	getUserGameProfiles.Flags().StringP("namespace", "n", "", "User namespace")
 	getUserGameProfiles.MarkFlagRequired("namespace")
-	getUserGameProfiles.Flags().StringP( "userIDs", "u","", "Array of User ID. Example: '[\"98603754a2854b83bafde85402086956\",\"98603754a2854b83bafde8540208777\"]' ")
+	getUserGameProfiles.Flags().StringP("userIDs", "u", "", "Array of User ID. Example: '[\"98603754a2854b83bafde85402086956\",\"98603754a2854b83bafde8540208777\"]' ")
 	getUserGameProfiles.MarkFlagRequired("userIDs")
 }

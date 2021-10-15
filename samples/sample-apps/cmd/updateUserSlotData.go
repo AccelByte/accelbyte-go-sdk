@@ -6,7 +6,8 @@ package cmd
 import (
 	"fmt"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/social"
+	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient/slot"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"os"
 
@@ -20,9 +21,9 @@ var updateUserSlotDataCmd = &cobra.Command{
 	Long:  `Update user slot data`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		fmt.Println("updateUserSlotData called")
-		socialService := &service.SlotService{
-			SocialServiceClient: factory.NewSocialClient(&repository.ConfigRepositoryImpl{}),
-			TokenRepository:     &repository.TokenRepositoryImpl{},
+		socialService := &social.SlotService{
+			Client:          factory.NewSocialClient(&repository.ConfigRepositoryImpl{}),
+			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		namespace := cmd.Flag("namespace").Value.String()
 		userId := cmd.Flag("userId").Value.String()
@@ -32,7 +33,17 @@ var updateUserSlotDataCmd = &cobra.Command{
 		if err != nil {
 			return err
 		}
-		_, err = socialService.PublicUpdateUserNamespaceSlot(namespace, userId, slotId, nil, nil, nil, nil, file)
+		input := &slot.PublicUpdateUserNamespaceSlotParams{
+			Checksum:        nil,
+			CustomAttribute: nil,
+			File:            file,
+			Label:           nil,
+			Namespace:       namespace,
+			SlotID:          slotId,
+			Tags:            nil,
+			UserID:          userId,
+		}
+		_, err = socialService.PublicUpdateUserNamespaceSlot(input)
 		if err != nil {
 			return err
 		}

@@ -7,7 +7,8 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/social"
+	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient/stat_configuration"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
@@ -20,9 +21,9 @@ var getStatsByKeywordCmd = &cobra.Command{
 	Long:  `Get stats by keyword`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		fmt.Println("getStatsByKeyword called")
-		socialService := &service.StatisticConfigService{
-			SocialServiceClient: factory.NewSocialClient(&repository.ConfigRepositoryImpl{}),
-			TokenRepository:     &repository.TokenRepositoryImpl{},
+		socialService := &social.StatConfigurationService{
+			Client:          factory.NewSocialClient(&repository.ConfigRepositoryImpl{}),
+			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		namespace := cmd.Flag("namespace").Value.String()
 		keyword := cmd.Flag("keyword").Value.String()
@@ -34,7 +35,13 @@ var getStatsByKeywordCmd = &cobra.Command{
 		if err != nil {
 			return err
 		}
-		stats, err := socialService.QueryStats(namespace, keyword, &limit, &offset)
+		input := &stat_configuration.QueryStatsParams{
+			Keyword:   keyword,
+			Limit:     &limit,
+			Namespace: namespace,
+			Offset:    &offset,
+		}
+		stats, err := socialService.QueryStats(input)
 		response, err := json.MarshalIndent(stats, "", "    ")
 		if err != nil {
 			return err

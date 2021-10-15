@@ -6,7 +6,8 @@ package cmd
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/social"
+	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient/stat_configuration"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
@@ -18,13 +19,17 @@ var deleteStatCmd = &cobra.Command{
 	Short: "delete stat",
 	Long:  `delete stat`,
 	RunE: func(cmd *cobra.Command, args []string) error {
+		socialService := &social.StatConfigurationService{
+			Client:          factory.NewSocialClient(&repository.ConfigRepositoryImpl{}),
+			TokenRepository: &repository.TokenRepositoryImpl{},
+		}
 		namespace := cmd.Flag("namespace").Value.String()
 		statCode := cmd.Flag("statCode").Value.String()
-		socialService := &service.StatisticConfigService{
-			SocialServiceClient: factory.NewSocialClient(&repository.ConfigRepositoryImpl{}),
-			TokenRepository:     &repository.TokenRepositoryImpl{},
+		input := &stat_configuration.DeleteStatParams{
+			Namespace: namespace,
+			StatCode:  statCode,
 		}
-		err := socialService.DeleteStat(namespace, statCode)
+		err := socialService.DeleteStat(input)
 		if err != nil {
 			return err
 		}

@@ -7,7 +7,8 @@ import (
 	"bytes"
 	"fmt"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/social"
+	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient/slot"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
@@ -22,9 +23,9 @@ var getUserSlotDataCmd = &cobra.Command{
 	Long:  `Get user slot data`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		fmt.Println("getUserSlotData called")
-		socialService := &service.SlotService{
-			SocialServiceClient: factory.NewSocialClient(&repository.ConfigRepositoryImpl{}),
-			TokenRepository:     &repository.TokenRepositoryImpl{},
+		socialService := &social.SlotService{
+			Client:          factory.NewSocialClient(&repository.ConfigRepositoryImpl{}),
+			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		namespace := cmd.Flag("namespace").Value.String()
 		userId := cmd.Flag("userId").Value.String()
@@ -33,7 +34,12 @@ var getUserSlotDataCmd = &cobra.Command{
 		logrus.Infof("Output %v", output)
 		file, err := os.Create(output)
 		writer := bytes.NewBuffer(nil)
-		_, err = socialService.GetSlotData(namespace, userId, slotId, writer)
+		input := &slot.GetSlotDataParams{
+			Namespace: namespace,
+			SlotID:    slotId,
+			UserID:    userId,
+		}
+		_, err = socialService.GetSlotData(input, writer)
 		if err != nil {
 			logrus.Error(err)
 			return err

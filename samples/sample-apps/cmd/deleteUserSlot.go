@@ -6,7 +6,8 @@ package cmd
 import (
 	"fmt"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/social"
+	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient/slot"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
@@ -19,14 +20,19 @@ var deleteUserSlotCmd = &cobra.Command{
 	Long:  `Delete user slot`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		fmt.Println("deleteUserSlot called")
-		socialService := &service.SlotService{
-			SocialServiceClient: factory.NewSocialClient(&repository.ConfigRepositoryImpl{}),
-			TokenRepository:     &repository.TokenRepositoryImpl{},
+		socialService := &social.SlotService{
+			Client:          factory.NewSocialClient(&repository.ConfigRepositoryImpl{}),
+			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		namespace := cmd.Flag("namespace").Value.String()
 		userId := cmd.Flag("userId").Value.String()
 		slotId := cmd.Flag("slotId").Value.String()
-		err := socialService.PublicDeleteUserNamespaceSlot(namespace, userId, slotId)
+		input := &slot.PublicDeleteUserNamespaceSlotParams{
+			Namespace: namespace,
+			SlotID:    slotId,
+			UserID:    userId,
+		}
+		err := socialService.PublicDeleteUserNamespaceSlot(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

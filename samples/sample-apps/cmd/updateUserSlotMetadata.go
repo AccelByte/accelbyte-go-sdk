@@ -7,7 +7,8 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/social"
+	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient/slot"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclientmodels"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
@@ -22,20 +23,26 @@ var updateUserSlotMetadataCmd = &cobra.Command{
 	Long:  `Update user slot data`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		fmt.Println("updateUserSlotMetadata called")
-		socialService := &service.SlotService{
-			SocialServiceClient: factory.NewSocialClient(&repository.ConfigRepositoryImpl{}),
-			TokenRepository:     &repository.TokenRepositoryImpl{},
+		socialService := &social.SlotService{
+			Client:          factory.NewSocialClient(&repository.ConfigRepositoryImpl{}),
+			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		namespace := cmd.Flag("namespace").Value.String()
 		userId := cmd.Flag("userId").Value.String()
 		slotId := cmd.Flag("slotId").Value.String()
 		contentString := cmd.Flag("content").Value.String()
-		var content *socialclientmodels.SlotMetadataUpdate
-		errContent := json.Unmarshal([]byte(contentString), &content)
+		var body *socialclientmodels.SlotMetadataUpdate
+		errContent := json.Unmarshal([]byte(contentString), &body)
 		if errContent != nil {
 			return errContent
 		}
-		slots, err := socialService.PublicUpdateUserNamespaceSlotMetadata(namespace, userId, slotId, content)
+		input := &slot.PublicUpdateUserNamespaceSlotMetadataParams{
+			Body:      body,
+			Namespace: namespace,
+			SlotID:    slotId,
+			UserID:    userId,
+		}
+		slots, err := socialService.PublicUpdateUserNamespaceSlotMetadata(input)
 		response, err := json.MarshalIndent(slots, "", "    ")
 		if err != nil {
 			return err

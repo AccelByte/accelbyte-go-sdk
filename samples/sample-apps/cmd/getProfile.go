@@ -8,7 +8,8 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/social"
+	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient/game_profile"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
@@ -21,14 +22,19 @@ var getProfile = &cobra.Command{
 	Long:  `Public Get user profile`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		fmt.Println("getProfile called")
-		gameProfileService := &service.GameProfileService{
-			SocialServiceClient: factory.NewSocialClient(&repository.ConfigRepositoryImpl{}),
-			TokenRepository:     &repository.TokenRepositoryImpl{},
+		gameProfileService := &social.GameProfileService{
+			Client:          factory.NewSocialClient(&repository.ConfigRepositoryImpl{}),
+			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		namespace := cmd.Flag("namespace").Value.String()
 		profileId := cmd.Flag("profileId").Value.String()
 		userId := cmd.Flag("userId").Value.String()
-		ok, err := gameProfileService.PublicGetProfile(namespace, userId, profileId)
+		input := &game_profile.PublicGetProfileParams{
+			Namespace: namespace,
+			ProfileID: profileId,
+			UserID:    userId,
+		}
+		ok, err := gameProfileService.PublicGetProfile(input)
 		if err != nil {
 			return err
 		} else {

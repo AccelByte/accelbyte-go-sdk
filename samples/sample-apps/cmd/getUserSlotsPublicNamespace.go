@@ -7,7 +7,8 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/social"
+	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient/slot"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
@@ -20,13 +21,17 @@ var getUserSlotsPublicNamespacePublicNamespaceCmd = &cobra.Command{
 	Long:  `Get user slots public namespace`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		fmt.Println("getUserSlotsPublicNamespace called")
-		socialService := &service.SlotService{
-			SocialServiceClient: factory.NewSocialClient(&repository.ConfigRepositoryImpl{}),
-			TokenRepository:     &repository.TokenRepositoryImpl{},
+		socialService := &social.SlotService{
+			Client:          factory.NewSocialClient(&repository.ConfigRepositoryImpl{}),
+			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		namespace := cmd.Flag("namespace").Value.String()
 		userId := cmd.Flag("userId").Value.String()
-		slots, err := socialService.PublicGetUserNamespaceSlots(namespace, userId)
+		input := &slot.PublicGetUserNamespaceSlotsParams{
+			Namespace: namespace,
+			UserID:    userId,
+		}
+		slots, err := socialService.PublicGetUserNamespaceSlots(input)
 		response, err := json.MarshalIndent(slots, "", "    ")
 		if err != nil {
 			return err

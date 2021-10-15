@@ -7,7 +7,8 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/social"
+	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient/stat_configuration"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclientmodels"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
@@ -22,9 +23,9 @@ var updateStatCmd = &cobra.Command{
 	Long:  `Update Stat`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		fmt.Println("updateStat called")
-		socialService := &service.StatisticConfigService{
-			SocialServiceClient: factory.NewSocialClient(&repository.ConfigRepositoryImpl{}),
-			TokenRepository:     &repository.TokenRepositoryImpl{},
+		socialService := &social.StatConfigurationService{
+			Client:          factory.NewSocialClient(&repository.ConfigRepositoryImpl{}),
+			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		namespace := cmd.Flag("namespace").Value.String()
 		statCode := cmd.Flag("statCode").Value.String()
@@ -34,7 +35,12 @@ var updateStatCmd = &cobra.Command{
 		if errContent != nil {
 			return errContent
 		}
-		stat, err := socialService.UpdateStat(namespace, statCode, body)
+		input := &stat_configuration.UpdateStatParams{
+			Body:      body,
+			Namespace: namespace,
+			StatCode:  statCode,
+		}
+		stat, err := socialService.UpdateStat(input)
 		response, err := json.MarshalIndent(stat, "", "    ")
 		if err != nil {
 			return err

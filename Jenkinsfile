@@ -3,7 +3,7 @@ library(
   retriever: modernSCM(
     [
       $class: 'GitSCMSource',
-      remote: 'https://bitbucket.com/dhanarab/jenkins-shared-library.git'
+      remote: 'https://github.com/dhanarab/jenkins-pipeline-library.git'
     ]
   )
 )

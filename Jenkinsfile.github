@@ -1,3 +1,13 @@
+library(
+  identifier: 'jenkins-shared-library@master',
+  retriever: modernSCM(
+    [
+      $class: 'GitSCMSource',
+      remote: 'https://github.com/dhanarab/jenkins-pipeline-library.git'
+    ]
+  )
+)
+
 githubOwner = 'AccelByte'
 githubRepo = 'accelbyte-go-sdk'
 githubSsh = 'dhanarab-sdkbuild-ssh'
@@ -50,14 +60,7 @@ pipeline {
             sh "git push ${githubUrl} ${params.RELEASE_TAG}"
             
           }
-          httpRequest(
-            url : "https://api.github.com/repos/${githubOwner}/${githubRepo}/releases",
-            httpMode: "POST",
-            requestBody: """{"tag_name":"${params.RELEASE_TAG}"}""",
-            contentType: "APPLICATION_JSON",
-            authentication: githubPat,
-            validResponseCodes: '200:201'
-          )
+          github.createRelease(githubPat, githubOwner, githubRepo, params.RELEASE_TAG)
         }
       }
     }

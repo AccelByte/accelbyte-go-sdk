@@ -52,11 +52,16 @@ pipeline {
             sh "commitlint --color false --verbose --from ${env.BITBUCKET_PULL_REQUEST_LATEST_COMMIT_FROM_TARGET_BRANCH}"
           }
         }
-        //stage('Lint Source Code') {
-        //  steps {
-        //    sh "make lint"
-        //  }
-        //}
+        stage('Lint Source Code') {
+          steps {
+            sh "make lint || true"    // FIXME Enable later after lint error is fixed
+          }
+        }
+        stage('Lint Mod Outdated') {
+          steps {
+            sh "make lint-mod-outdated || true"   // FIXME Enable later after lint error is fixed
+          }
+        }
       }
     }
     stage('Build') {

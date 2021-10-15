@@ -6,7 +6,7 @@ package cmd
 import (
 	"encoding/json"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/lobby"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
@@ -18,8 +18,8 @@ var getFriendsCmd = &cobra.Command{
 	Short: "Get list of friends",
 	Long:  `Get list of friends`,
 	RunE: func(cmd *cobra.Command, args []string) error {
-		friendService := &service.FriendService{
-			LobbyClient:     factory.NewLobbyClient(&repository.ConfigRepositoryImpl{}),
+		friendService := &lobby.FriendsService{
+			Client:          factory.NewLobbyClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		userId := cmd.Flag("userId").Value.String()

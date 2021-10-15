@@ -1,4 +1,4 @@
-package service
+package lobby
 
 import (
 	"encoding/json"
@@ -10,22 +10,17 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-type LobbyPlayerService struct {
-	LobbyClient     *lobbyclient.JusticeLobbyService
+type PlayerService struct {
+	Client          *lobbyclient.JusticeLobbyService
 	TokenRepository repository.TokenRepository
 }
 
-func (l *LobbyPlayerService) AdminBulkBlockPlayersV1(body *lobbyclientmodels.ModelsListBlockedPlayerRequest, namespace, userID string) (int64, error) {
-	token, err := l.TokenRepository.GetToken()
+func (p *PlayerService) AdminBulkBlockPlayersV1(input *player.AdminBulkBlockPlayersV1Params) (int64, error) {
+	token, err := p.TokenRepository.GetToken()
 	if err != nil {
 		return -1, err
 	}
-	params := &player.AdminBulkBlockPlayersV1Params{
-		Body:      body,
-		Namespace: namespace,
-		UserID:    userID,
-	}
-	ok, badRequest, unauthorized, forbidden, internalServerError, err := l.LobbyClient.Player.AdminBulkBlockPlayersV1(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, internalServerError, err := p.Client.Player.AdminBulkBlockPlayersV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -53,16 +48,12 @@ func (l *LobbyPlayerService) AdminBulkBlockPlayersV1(body *lobbyclientmodels.Mod
 	return ok.GetPayload(), nil
 }
 
-func (l *LobbyPlayerService) AdminGetAllPlayerSessionAttribute(namespace, userID string) (*lobbyclientmodels.ModelsGetAllPlayerSessionAttributeResponse, error) {
-	token, err := l.TokenRepository.GetToken()
+func (p *PlayerService) AdminGetAllPlayerSessionAttribute(input *player.AdminGetAllPlayerSessionAttributeParams) (*lobbyclientmodels.ModelsGetAllPlayerSessionAttributeResponse, error) {
+	token, err := p.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &player.AdminGetAllPlayerSessionAttributeParams{
-		Namespace: namespace,
-		UserID:    userID,
-	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := l.LobbyClient.Player.AdminGetAllPlayerSessionAttribute(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := p.Client.Player.AdminGetAllPlayerSessionAttribute(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -95,16 +86,12 @@ func (l *LobbyPlayerService) AdminGetAllPlayerSessionAttribute(namespace, userID
 	return ok.GetPayload(), nil
 }
 
-func (l *LobbyPlayerService) AdminGetPlayerBlockedByPlayersV1(namespace, userID string) (*lobbyclientmodels.ModelsGetAllPlayerBlockedByUsersResponse, error) {
-	token, err := l.TokenRepository.GetToken()
+func (p *PlayerService) AdminGetPlayerBlockedByPlayersV1(input *player.AdminGetPlayerBlockedByPlayersV1Params) (*lobbyclientmodels.ModelsGetAllPlayerBlockedByUsersResponse, error) {
+	token, err := p.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &player.AdminGetPlayerBlockedByPlayersV1Params{
-		Namespace: namespace,
-		UserID:    userID,
-	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := l.LobbyClient.Player.AdminGetPlayerBlockedByPlayersV1(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := p.Client.Player.AdminGetPlayerBlockedByPlayersV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -137,16 +124,12 @@ func (l *LobbyPlayerService) AdminGetPlayerBlockedByPlayersV1(namespace, userID 
 	return ok.GetPayload(), nil
 }
 
-func (l *LobbyPlayerService) AdminGetPlayerBlockedPlayersV1(namespace, userID string) (*lobbyclientmodels.ModelsGetAllPlayerBlockedUsersResponse, error) {
-	token, err := l.TokenRepository.GetToken()
+func (p *PlayerService) AdminGetPlayerBlockedPlayersV1(input *player.AdminGetPlayerBlockedPlayersV1Params) (*lobbyclientmodels.ModelsGetAllPlayerBlockedUsersResponse, error) {
+	token, err := p.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &player.AdminGetPlayerBlockedPlayersV1Params{
-		Namespace: namespace,
-		UserID:    userID,
-	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := l.LobbyClient.Player.AdminGetPlayerBlockedPlayersV1(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := p.Client.Player.AdminGetPlayerBlockedPlayersV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -179,17 +162,12 @@ func (l *LobbyPlayerService) AdminGetPlayerBlockedPlayersV1(namespace, userID st
 	return ok.GetPayload(), nil
 }
 
-func (l *LobbyPlayerService) AdminGetPlayerSessionAttribute(attribute, namespace, userID string) (*lobbyclientmodels.ModelsGetPlayerSessionAttributeResponse, error) {
-	token, err := l.TokenRepository.GetToken()
+func (p *PlayerService) AdminGetPlayerSessionAttribute(input *player.AdminGetPlayerSessionAttributeParams) (*lobbyclientmodels.ModelsGetPlayerSessionAttributeResponse, error) {
+	token, err := p.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &player.AdminGetPlayerSessionAttributeParams{
-		Attribute: attribute,
-		Namespace: namespace,
-		UserID:    userID,
-	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := l.LobbyClient.Player.AdminGetPlayerSessionAttribute(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := p.Client.Player.AdminGetPlayerSessionAttribute(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -222,17 +200,12 @@ func (l *LobbyPlayerService) AdminGetPlayerSessionAttribute(attribute, namespace
 	return ok.GetPayload(), nil
 }
 
-func (l *LobbyPlayerService) AdminSetPlayerSessionAttribute(body *lobbyclientmodels.ModelsSetPlayerSessionAttributeRequest, namespace, userID string) error {
-	token, err := l.TokenRepository.GetToken()
+func (p *PlayerService) AdminSetPlayerSessionAttribute(input *player.AdminSetPlayerSessionAttributeParams) error {
+	token, err := p.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	params := &player.AdminSetPlayerSessionAttributeParams{
-		Body:      body,
-		Namespace: namespace,
-		UserID:    userID,
-	}
-	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := l.LobbyClient.Player.AdminSetPlayerSessionAttribute(params, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := p.Client.Player.AdminSetPlayerSessionAttribute(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -265,15 +238,12 @@ func (l *LobbyPlayerService) AdminSetPlayerSessionAttribute(body *lobbyclientmod
 	return nil
 }
 
-func (l *LobbyPlayerService) PublicGetPlayerBlockedByPlayersV1(namespace string) (*lobbyclientmodels.ModelsGetAllPlayerBlockedByUsersResponse, error) {
-	token, err := l.TokenRepository.GetToken()
+func (p *PlayerService) PublicGetPlayerBlockedByPlayersV1(input *player.PublicGetPlayerBlockedByPlayersV1Params) (*lobbyclientmodels.ModelsGetAllPlayerBlockedByUsersResponse, error) {
+	token, err := p.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &player.PublicGetPlayerBlockedByPlayersV1Params{
-		Namespace: namespace,
-	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := l.LobbyClient.Player.PublicGetPlayerBlockedByPlayersV1(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := p.Client.Player.PublicGetPlayerBlockedByPlayersV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -306,15 +276,12 @@ func (l *LobbyPlayerService) PublicGetPlayerBlockedByPlayersV1(namespace string)
 	return ok.GetPayload(), nil
 }
 
-func (l *LobbyPlayerService) PublicGetPlayerBlockedPlayersV1(namespace string) (*lobbyclientmodels.ModelsGetAllPlayerBlockedUsersResponse, error) {
-	token, err := l.TokenRepository.GetToken()
+func (p *PlayerService) PublicGetPlayerBlockedPlayersV1(input *player.PublicGetPlayerBlockedPlayersV1Params) (*lobbyclientmodels.ModelsGetAllPlayerBlockedUsersResponse, error) {
+	token, err := p.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &player.PublicGetPlayerBlockedPlayersV1Params{
-		Namespace: namespace,
-	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := l.LobbyClient.Player.PublicGetPlayerBlockedPlayersV1(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := p.Client.Player.PublicGetPlayerBlockedPlayersV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))

@@ -1,4 +1,4 @@
-package service
+package lobby
 
 import (
 	"encoding/json"
@@ -10,22 +10,17 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-type LobbyChatService struct {
-	LobbyClient     *lobbyclient.JusticeLobbyService
+type ChatService struct {
+	Client          *lobbyclient.JusticeLobbyService
 	TokenRepository repository.TokenRepository
 }
 
-func (l *LobbyChatService) AdminChatHistory(friendID, namespace, userID string) ([]*lobbyclientmodels.ModelChatMessageResponse, error) {
-	token, err := l.TokenRepository.GetToken()
+func (c *ChatService) AdminChatHistory(input *chat.AdminChatHistoryParams) ([]*lobbyclientmodels.ModelChatMessageResponse, error) {
+	token, err := c.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &chat.AdminChatHistoryParams{
-		FriendID:  friendID,
-		Namespace: namespace,
-		UserID:    userID,
-	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := l.LobbyClient.Chat.AdminChatHistory(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := c.Client.Chat.AdminChatHistory(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -58,16 +53,12 @@ func (l *LobbyChatService) AdminChatHistory(friendID, namespace, userID string) 
 	return ok.GetPayload(), nil
 }
 
-func (l *LobbyChatService) GetPersonalChatHistoryV1Public(friendID, namespace string) ([]*lobbyclientmodels.ModelChatMessageResponse, error) {
-	token, err := l.TokenRepository.GetToken()
+func (c *ChatService) GetPersonalChatHistoryV1Public(input *chat.GetPersonalChatHistoryV1PublicParams) ([]*lobbyclientmodels.ModelChatMessageResponse, error) {
+	token, err := c.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &chat.GetPersonalChatHistoryV1PublicParams{
-		FriendID:  friendID,
-		Namespace: namespace,
-	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := l.LobbyClient.Chat.GetPersonalChatHistoryV1Public(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := c.Client.Chat.GetPersonalChatHistoryV1Public(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -100,17 +91,12 @@ func (l *LobbyChatService) GetPersonalChatHistoryV1Public(friendID, namespace st
 	return ok.GetPayload(), nil
 }
 
-func (l *LobbyChatService) PersonalChatHistory(friendID, namespace, userID string) ([]*lobbyclientmodels.ModelChatMessageResponse, error) {
-	token, err := l.TokenRepository.GetToken()
+func (c *ChatService) PersonalChatHistory(input *chat.PersonalChatHistoryParams) ([]*lobbyclientmodels.ModelChatMessageResponse, error) {
+	token, err := c.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &chat.PersonalChatHistoryParams{
-		FriendID:  friendID,
-		Namespace: namespace,
-		UserID:    userID,
-	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := l.LobbyClient.Chat.PersonalChatHistory(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := c.Client.Chat.PersonalChatHistory(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))

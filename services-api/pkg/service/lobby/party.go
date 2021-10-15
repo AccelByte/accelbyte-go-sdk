@@ -1,4 +1,4 @@
-package service
+package lobby
 
 import (
 	"encoding/json"
@@ -10,22 +10,17 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-type LobbyPartyService struct {
-	LobbyClient     *lobbyclient.JusticeLobbyService
+type PartyService struct {
+	Client          *lobbyclient.JusticeLobbyService
 	TokenRepository repository.TokenRepository
 }
 
-func (l *LobbyPartyService) AdminGetPartiesDataV1(limit *string, namespace string, offset *string) ([]*lobbyclientmodels.ModelsPartyData, error) {
-	token, err := l.TokenRepository.GetToken()
+func (p *PartyService) AdminGetPartiesDataV1(input *party.AdminGetPartiesDataV1Params) ([]*lobbyclientmodels.ModelsPartyData, error) {
+	token, err := p.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &party.AdminGetPartiesDataV1Params{
-		Limit:     limit,
-		Namespace: namespace,
-		Offset:    offset,
-	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := l.LobbyClient.Party.AdminGetPartiesDataV1(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := p.Client.Party.AdminGetPartiesDataV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -58,16 +53,12 @@ func (l *LobbyPartyService) AdminGetPartiesDataV1(limit *string, namespace strin
 	return ok.GetPayload(), nil
 }
 
-func (l *LobbyPartyService) AdminGetPartyDataV1(namespace, partyID string) (*lobbyclientmodels.ModelsPartyData, error) {
-	token, err := l.TokenRepository.GetToken()
+func (p *PartyService) AdminGetPartyDataV1(input *party.AdminGetPartyDataV1Params) (*lobbyclientmodels.ModelsPartyData, error) {
+	token, err := p.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &party.AdminGetPartyDataV1Params{
-		Namespace: namespace,
-		PartyID:   partyID,
-	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := l.LobbyClient.Party.AdminGetPartyDataV1(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := p.Client.Party.AdminGetPartyDataV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -100,16 +91,12 @@ func (l *LobbyPartyService) AdminGetPartyDataV1(namespace, partyID string) (*lob
 	return ok.GetPayload(), nil
 }
 
-func (l *LobbyPartyService) AdminGetUserPartyV1(namespace, userID string) (*lobbyclientmodels.ModelsPartyData, error) {
-	token, err := l.TokenRepository.GetToken()
+func (p *PartyService) AdminGetUserPartyV1(input *party.AdminGetUserPartyV1Params) (*lobbyclientmodels.ModelsPartyData, error) {
+	token, err := p.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &party.AdminGetUserPartyV1Params{
-		Namespace: namespace,
-		UserID:    userID,
-	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := l.LobbyClient.Party.AdminGetUserPartyV1(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := p.Client.Party.AdminGetUserPartyV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -142,17 +129,12 @@ func (l *LobbyPartyService) AdminGetUserPartyV1(namespace, userID string) (*lobb
 	return ok.GetPayload(), nil
 }
 
-func (l *LobbyPartyService) AdminUpdatePartyAttributesV1(body *lobbyclientmodels.ModelsPartyPUTCustomAttributesRequest, namespace, partyID string) (*lobbyclientmodels.ModelsPartyData, error) {
-	token, err := l.TokenRepository.GetToken()
+func (p *PartyService) AdminUpdatePartyAttributesV1(input *party.AdminUpdatePartyAttributesV1Params) (*lobbyclientmodels.ModelsPartyData, error) {
+	token, err := p.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &party.AdminUpdatePartyAttributesV1Params{
-		Body:      body,
-		Namespace: namespace,
-		PartyID:   partyID,
-	}
-	ok, badRequest, unauthorized, forbidden, notFound, preconditionFailed, internalServerError, err := l.LobbyClient.Party.AdminUpdatePartyAttributesV1(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, preconditionFailed, internalServerError, err := p.Client.Party.AdminUpdatePartyAttributesV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -190,16 +172,12 @@ func (l *LobbyPartyService) AdminUpdatePartyAttributesV1(body *lobbyclientmodels
 	return ok.GetPayload(), nil
 }
 
-func (l *LobbyPartyService) PublicGetPartyDataV1(namespace, partyID string) (*lobbyclientmodels.ModelsPartyData, error) {
-	token, err := l.TokenRepository.GetToken()
+func (p *PartyService) PublicGetPartyDataV1(input *party.PublicGetPartyDataV1Params) (*lobbyclientmodels.ModelsPartyData, error) {
+	token, err := p.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &party.PublicGetPartyDataV1Params{
-		Namespace: namespace,
-		PartyID:   partyID,
-	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := l.LobbyClient.Party.PublicGetPartyDataV1(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := p.Client.Party.PublicGetPartyDataV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -232,17 +210,12 @@ func (l *LobbyPartyService) PublicGetPartyDataV1(namespace, partyID string) (*lo
 	return ok.GetPayload(), nil
 }
 
-func (l *LobbyPartyService) PublicUpdatePartyAttributesV1(body *lobbyclientmodels.ModelsPartyPUTCustomAttributesRequest, namespace, partyID string) (*lobbyclientmodels.ModelsPartyData, error) {
-	token, err := l.TokenRepository.GetToken()
+func (p *PartyService) PublicUpdatePartyAttributesV1(input *party.PublicUpdatePartyAttributesV1Params) (*lobbyclientmodels.ModelsPartyData, error) {
+	token, err := p.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &party.PublicUpdatePartyAttributesV1Params{
-		Body:      body,
-		Namespace: namespace,
-		PartyID:   partyID,
-	}
-	ok, badRequest, unauthorized, forbidden, notFound, preconditionFailed, internalServerError, err := l.LobbyClient.Party.PublicUpdatePartyAttributesV1(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, preconditionFailed, internalServerError, err := p.Client.Party.PublicUpdatePartyAttributesV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))

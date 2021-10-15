@@ -1,4 +1,4 @@
-package service
+package lobby
 
 import (
 	"encoding/json"
@@ -11,18 +11,18 @@ import (
 )
 
 
-type LobbyOperationService struct {
-	LobbyClient     *lobbyclient.JusticeLobbyService
+type OperationsService struct {
+	Client          *lobbyclient.JusticeLobbyService
 	TokenRepository repository.TokenRepository
 }
 
-func (l *LobbyOperationService) PublicGetMessages() ([]*lobbyclientmodels.LogAppMessageDeclaration, error) {
-	token, err := l.TokenRepository.GetToken()
+func (o *OperationsService) PublicGetMessages() ([]*lobbyclientmodels.LogAppMessageDeclaration, error) {
+	token, err := o.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
 	params := &operations.PublicGetMessagesParams{}
-	ok, internalServerError, err := l.LobbyClient.Operations.PublicGetMessages(params, client.BearerToken(*token.AccessToken))
+	ok, internalServerError, err := o.Client.Operations.PublicGetMessages(params, client.BearerToken(*token.AccessToken))
 	if internalServerError != nil {
 		errorMsg, _ := json.Marshal(*internalServerError.GetPayload())
 		logrus.Error(string(errorMsg))

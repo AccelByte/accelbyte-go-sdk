@@ -1,4 +1,4 @@
-package service
+package lobby
 
 import (
 	"encoding/json"
@@ -11,21 +11,17 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-type GameNotificationService struct {
-	LobbyClient     *lobbyclient.JusticeLobbyService
+type NotificationService struct {
+	Client          *lobbyclient.JusticeLobbyService
 	TokenRepository repository.TokenRepository
 }
 
-func (g GameNotificationService) CreateNotificationTemplateV1Admin(namespace string, content *lobbyclientmodels.ModelCreateTemplateRequest) error {
-	accessToken, err := g.TokenRepository.GetToken()
+func (n NotificationService) CreateNotificationTemplateV1Admin(input *notification.CreateNotificationTemplateV1AdminParams) error {
+	accessToken, err := n.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	param := &notification.CreateNotificationTemplateV1AdminParams{
-		Namespace: namespace,
-		Body:      content,
-	}
-	_, badRequest, unauthorized, forbidden, notFound, conflict, err := g.LobbyClient.Notification.CreateNotificationTemplateV1Admin(param, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, conflict, err := n.Client.Notification.CreateNotificationTemplateV1Admin(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -57,16 +53,12 @@ func (g GameNotificationService) CreateNotificationTemplateV1Admin(namespace str
 	return nil
 }
 
-func (g GameNotificationService) CreateNotificationTopicV1Admin(namespace string, content *lobbyclientmodels.ModelCreateTopicRequestV1) error {
-	accessToken, err := g.TokenRepository.GetToken()
+func (n NotificationService) CreateNotificationTopicV1Admin(input *notification.CreateNotificationTopicV1AdminParams) error {
+	accessToken, err := n.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	param := &notification.CreateNotificationTopicV1AdminParams{
-		Namespace: namespace,
-		Body:      content,
-	}
-	_, badRequest, unauthorized, forbidden, err := g.LobbyClient.Notification.CreateNotificationTopicV1Admin(param, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, err := n.Client.Notification.CreateNotificationTopicV1Admin(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -88,54 +80,12 @@ func (g GameNotificationService) CreateNotificationTopicV1Admin(namespace string
 	return nil
 }
 
-func (g GameNotificationService) FreeFormNotification(namespace string, content *lobbyclientmodels.ModelFreeFormNotificationRequest) error {
-	accessToken, err := g.TokenRepository.GetToken()
+func (n NotificationService) FreeFormNotification(input *notification.FreeFormNotificationParams) error {
+	accessToken, err := n.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	param := &notification.FreeFormNotificationParams{
-		Namespace: namespace,
-		Body:      content,
-	}
-	_, badRequest, unauthorized, forbidden, notFound, err := g.LobbyClient.Notification.FreeFormNotification(param, client.BearerToken(*accessToken.AccessToken))
-	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
-		return badRequest
-	}
-	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
-		return unauthorized
-	}
-	if forbidden != nil {
-		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
-		logrus.Error(string(errorMsg))
-		return forbidden
-	}
-	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
-		return notFound
-	}
-	if err != nil {
-		return err
-	}
-	return nil
-}
-
-func (g GameNotificationService) FreeFormNotificationByUserID(namespace, userID string, async *bool, content *lobbyclientmodels.ModelFreeFormNotificationRequest) error {
-	accessToken, err := g.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	param := &notification.FreeFormNotificationByUserIDParams{
-		Namespace: namespace,
-		UserID:    userID,
-		Async:     async,
-		Body:      content,
-	}
-	_, badRequest, unauthorized, forbidden, notFound, err := g.LobbyClient.Notification.FreeFormNotificationByUserID(param, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, err := n.Client.Notification.FreeFormNotification(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -162,50 +112,12 @@ func (g GameNotificationService) FreeFormNotificationByUserID(namespace, userID 
 	return nil
 }
 
-func (g GameNotificationService) SendMultipleUsersFreeformNotificationV1Admin(namespace string, async *bool, content *lobbyclientmodels.ModelBulkUsersFreeFormNotificationRequestV1) error {
-	accessToken, err := g.TokenRepository.GetToken()
+func (n NotificationService) FreeFormNotificationByUserID(input *notification.FreeFormNotificationByUserIDParams) error {
+	accessToken, err := n.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	param := &notification.SendMultipleUsersFreeformNotificationV1AdminParams{
-		Namespace: namespace,
-		Async:     async,
-		Body:      content,
-	}
-	_, badRequest, unauthorized, forbidden, err := g.LobbyClient.Notification.SendMultipleUsersFreeformNotificationV1Admin(param, client.BearerToken(*accessToken.AccessToken))
-	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
-		return badRequest
-	}
-	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
-		return unauthorized
-	}
-	if forbidden != nil {
-		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
-		logrus.Error(string(errorMsg))
-		return forbidden
-	}
-	if err != nil {
-		return err
-	}
-	return nil
-}
-
-func (g GameNotificationService) SendSpecificUserFreeformNotificationV1Admin(namespace, userID string, async *bool, content *lobbyclientmodels.ModelFreeFormNotificationRequestV1) error {
-	accessToken, err := g.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	param := &notification.SendSpecificUserFreeformNotificationV1AdminParams{
-		Namespace: namespace,
-		UserID:    userID,
-		Async:     async,
-		Body:      content,
-	}
-	_, badRequest, unauthorized, forbidden, notFound, err := g.LobbyClient.Notification.SendSpecificUserFreeformNotificationV1Admin(param, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, err := n.Client.Notification.FreeFormNotificationByUserID(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -232,16 +144,39 @@ func (g GameNotificationService) SendSpecificUserFreeformNotificationV1Admin(nam
 	return nil
 }
 
-func (g GameNotificationService) SendUsersFreeformNotificationV1Admin(namespace string, content *lobbyclientmodels.ModelFreeFormNotificationRequestV1) error {
-	accessToken, err := g.TokenRepository.GetToken()
+func (n NotificationService) SendMultipleUsersFreeformNotificationV1Admin(input *notification.SendMultipleUsersFreeformNotificationV1AdminParams) error {
+	accessToken, err := n.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	param := &notification.SendUsersFreeformNotificationV1AdminParams{
-		Namespace: namespace,
-		Body:      content,
+	_, badRequest, unauthorized, forbidden, err := n.Client.Notification.SendMultipleUsersFreeformNotificationV1Admin(input, client.BearerToken(*accessToken.AccessToken))
+	if badRequest != nil {
+		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
+		logrus.Error(string(errorMsg))
+		return badRequest
 	}
-	_, badRequest, unauthorized, forbidden, notFound, err := g.LobbyClient.Notification.SendUsersFreeformNotificationV1Admin(param, client.BearerToken(*accessToken.AccessToken))
+	if unauthorized != nil {
+		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
+		logrus.Error(string(errorMsg))
+		return unauthorized
+	}
+	if forbidden != nil {
+		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
+		logrus.Error(string(errorMsg))
+		return forbidden
+	}
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (n NotificationService) SendSpecificUserFreeformNotificationV1Admin(input *notification.SendSpecificUserFreeformNotificationV1AdminParams) error {
+	accessToken, err := n.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, badRequest, unauthorized, forbidden, notFound, err := n.Client.Notification.SendSpecificUserFreeformNotificationV1Admin(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -268,16 +203,44 @@ func (g GameNotificationService) SendUsersFreeformNotificationV1Admin(namespace 
 	return nil
 }
 
-func (g *GameNotificationService) CreateTemplate(body *lobbyclientmodels.ModelCreateTemplateRequest, namespace string) error {
-	token, err := g.TokenRepository.GetToken()
+func (n NotificationService) SendUsersFreeformNotificationV1Admin(input *notification.SendUsersFreeformNotificationV1AdminParams) error {
+	accessToken, err := n.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	params := &notification.CreateTemplateParams{
-		Body:      body,
-		Namespace: namespace,
+	_, badRequest, unauthorized, forbidden, notFound, err := n.Client.Notification.SendUsersFreeformNotificationV1Admin(input, client.BearerToken(*accessToken.AccessToken))
+	if badRequest != nil {
+		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
+		logrus.Error(string(errorMsg))
+		return badRequest
 	}
-	_, badRequest, unauthorized, forbidden, notFound, err := g.LobbyClient.Notification.CreateTemplate(params, client.BearerToken(*token.AccessToken))
+	if unauthorized != nil {
+		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
+		logrus.Error(string(errorMsg))
+		return unauthorized
+	}
+	if forbidden != nil {
+		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
+		logrus.Error(string(errorMsg))
+		return forbidden
+	}
+	if notFound != nil {
+		errorMsg, _ := json.Marshal(*notFound.GetPayload())
+		logrus.Error(string(errorMsg))
+		return notFound
+	}
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (n *NotificationService) CreateTemplate(input *notification.CreateTemplateParams) error {
+	token, err := n.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, badRequest, unauthorized, forbidden, notFound, err := n.Client.Notification.CreateTemplate(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -305,17 +268,13 @@ func (g *GameNotificationService) CreateTemplate(body *lobbyclientmodels.ModelCr
 	return nil
 }
 
-func (g *GameNotificationService) CreateTopic(body *lobbyclientmodels.ModelCreateTopicRequest, namespace string) error {
-	token, err := g.TokenRepository.GetToken()
+func (n *NotificationService) CreateTopic(input *notification.CreateTopicParams) error {
+	token, err := n.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return err
 	}
-	params := &notification.CreateTopicParams{
-		Body:      body,
-		Namespace: namespace,
-	}
-	_, badRequest, unauthorized, forbidden, conflict, err := g.LobbyClient.Notification.CreateTopic(params, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, conflict, err := n.Client.Notification.CreateTopic(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -343,17 +302,13 @@ func (g *GameNotificationService) CreateTopic(body *lobbyclientmodels.ModelCreat
 	return nil
 }
 
-func (g *GameNotificationService) DeleteNotificationTemplateSlugV1Admin(namespace, templateSlug string) error {
-	token, err := g.TokenRepository.GetToken()
+func (n *NotificationService) DeleteNotificationTemplateSlugV1Admin(input *notification.DeleteNotificationTemplateSlugV1AdminParams) error {
+	token, err := n.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return err
 	}
-	params := &notification.DeleteNotificationTemplateSlugV1AdminParams{
-		Namespace:    namespace,
-		TemplateSlug: templateSlug,
-	}
-	_, badRequest, unauthorized, forbidden, conflict, err := g.LobbyClient.Notification.DeleteNotificationTemplateSlugV1Admin(params, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, conflict, err := n.Client.Notification.DeleteNotificationTemplateSlugV1Admin(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -381,17 +336,13 @@ func (g *GameNotificationService) DeleteNotificationTemplateSlugV1Admin(namespac
 	return nil
 }
 
-func (g *GameNotificationService) DeleteNotificationTopicV1Admin(namespace, topicName string) error {
-	token, err := g.TokenRepository.GetToken()
+func (n *NotificationService) DeleteNotificationTopicV1Admin(input *notification.DeleteNotificationTopicV1AdminParams) error {
+	token, err := n.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return err
 	}
-	params := &notification.DeleteNotificationTopicV1AdminParams{
-		Namespace: namespace,
-		TopicName: topicName,
-	}
-	_, badRequest, unauthorized, forbidden, conflict, err := g.LobbyClient.Notification.DeleteNotificationTopicV1Admin(params, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, conflict, err := n.Client.Notification.DeleteNotificationTopicV1Admin(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -419,18 +370,13 @@ func (g *GameNotificationService) DeleteNotificationTopicV1Admin(namespace, topi
 	return nil
 }
 
-func (g *GameNotificationService) DeleteTemplateLocalization(namespace, templateLanguage, templateSlug string) error {
-	token, err := g.TokenRepository.GetToken()
+func (n *NotificationService) DeleteTemplateLocalization(input *notification.DeleteTemplateLocalizationParams) error {
+	token, err := n.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return err
 	}
-	params := &notification.DeleteTemplateLocalizationParams{
-		Namespace:        namespace,
-		TemplateLanguage: templateLanguage,
-		TemplateSlug:     templateSlug,
-	}
-	_, badRequest, unauthorized, forbidden, conflict, err := g.LobbyClient.Notification.DeleteTemplateLocalization(params, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, conflict, err := n.Client.Notification.DeleteTemplateLocalization(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -458,18 +404,13 @@ func (g *GameNotificationService) DeleteTemplateLocalization(namespace, template
 	return nil
 }
 
-func (g *GameNotificationService) DeleteTemplateLocalizationV1Admin(namespace, templateLanguage, templateSlug string) error {
-	token, err := g.TokenRepository.GetToken()
+func (n *NotificationService) DeleteTemplateLocalizationV1Admin(input *notification.DeleteTemplateLocalizationV1AdminParams) error {
+	token, err := n.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return err
 	}
-	params := &notification.DeleteTemplateLocalizationV1AdminParams{
-		Namespace:        namespace,
-		TemplateLanguage: templateLanguage,
-		TemplateSlug:     templateSlug,
-	}
-	_, badRequest, unauthorized, forbidden, conflict, err := g.LobbyClient.Notification.DeleteTemplateLocalizationV1Admin(params, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, conflict, err := n.Client.Notification.DeleteTemplateLocalizationV1Admin(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -497,17 +438,13 @@ func (g *GameNotificationService) DeleteTemplateLocalizationV1Admin(namespace, t
 	return nil
 }
 
-func (g *GameNotificationService) DeleteTemplateSlug(namespace, templateSlug string) error {
-	token, err := g.TokenRepository.GetToken()
+func (n *NotificationService) DeleteTemplateSlug(input *notification.DeleteTemplateSlugParams) error {
+	token, err := n.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return err
 	}
-	params := &notification.DeleteTemplateSlugParams{
-		Namespace:    namespace,
-		TemplateSlug: templateSlug,
-	}
-	_, badRequest, unauthorized, forbidden, conflict, err := g.LobbyClient.Notification.DeleteTemplateSlug(params, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, conflict, err := n.Client.Notification.DeleteTemplateSlug(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -535,17 +472,13 @@ func (g *GameNotificationService) DeleteTemplateSlug(namespace, templateSlug str
 	return nil
 }
 
-func (g *GameNotificationService) DeleteTopicByTopicName(namespace, topic string) error {
-	token, err := g.TokenRepository.GetToken()
+func (n *NotificationService) DeleteTopicByTopicName(input *notification.DeleteTopicByTopicNameParams) error {
+	token, err := n.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return err
 	}
-	params := &notification.DeleteTopicByTopicNameParams{
-		Namespace: namespace,
-		Topic:     topic,
-	}
-	_, badRequest, unauthorized, forbidden, conflict, err := g.LobbyClient.Notification.DeleteTopicByTopicName(params, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, conflict, err := n.Client.Notification.DeleteTopicByTopicName(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -573,16 +506,13 @@ func (g *GameNotificationService) DeleteTopicByTopicName(namespace, topic string
 	return nil
 }
 
-func (g *GameNotificationService) GetAllNotificationTemplatesV1Admin(namespace string) ([]*lobbyclientmodels.ModelNotificationTemplateResponse, error) {
-	token, err := g.TokenRepository.GetToken()
+func (n *NotificationService) GetAllNotificationTemplatesV1Admin(input *notification.GetAllNotificationTemplatesV1AdminParams) ([]*lobbyclientmodels.ModelNotificationTemplateResponse, error) {
+	token, err := n.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	params := &notification.GetAllNotificationTemplatesV1AdminParams{
-		Namespace: namespace,
-	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := g.LobbyClient.Notification.GetAllNotificationTemplatesV1Admin(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := n.Client.Notification.GetAllNotificationTemplatesV1Admin(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -615,19 +545,13 @@ func (g *GameNotificationService) GetAllNotificationTemplatesV1Admin(namespace s
 	return ok.GetPayload(), nil
 }
 
-func (g *GameNotificationService) GetAllNotificationTopicsV1Admin(after, before *string, limit *int64, namespace string) (*lobbyclientmodels.ModelGetAllNotificationTopicsResponse, error) {
-	token, err := g.TokenRepository.GetToken()
+func (n *NotificationService) GetAllNotificationTopicsV1Admin(input *notification.GetAllNotificationTopicsV1AdminParams) (*lobbyclientmodels.ModelGetAllNotificationTopicsResponse, error) {
+	token, err := n.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	params := &notification.GetAllNotificationTopicsV1AdminParams{
-		After:     after,
-		Before:    before,
-		Limit:     limit,
-		Namespace: namespace,
-	}
-	ok, unauthorized, forbidden, notFound, internalServerError, err := g.LobbyClient.Notification.GetAllNotificationTopicsV1Admin(params, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, notFound, internalServerError, err := n.Client.Notification.GetAllNotificationTopicsV1Admin(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -655,16 +579,13 @@ func (g *GameNotificationService) GetAllNotificationTopicsV1Admin(after, before 
 	return ok.GetPayload(), nil
 }
 
-func (g *GameNotificationService) GetAllStoredNotificationsV1(namespace string) ([]*lobbyclientmodels.ModelGetStoredNotificationResp, error) {
-	token, err := g.TokenRepository.GetToken()
+func (n *NotificationService) GetAllStoredNotificationsV1(input *notification.GetAllStoredNotificationsV1Params) ([]*lobbyclientmodels.ModelGetStoredNotificationResp, error) {
+	token, err := n.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	params := &notification.GetAllStoredNotificationsV1Params{
-		Namespace: namespace,
-	}
-	ok, unauthorized, forbidden, notFound, internalServerError, err := g.LobbyClient.Notification.GetAllStoredNotificationsV1(params, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, notFound, internalServerError, err := n.Client.Notification.GetAllStoredNotificationsV1(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -692,16 +613,13 @@ func (g *GameNotificationService) GetAllStoredNotificationsV1(namespace string) 
 	return ok.GetPayload(), nil
 }
 
-func (g *GameNotificationService) GetGameTemplate(namespace string) ([]*lobbyclientmodels.ModelTemplateResponse, error) {
-	token, err := g.TokenRepository.GetToken()
+func (n *NotificationService) GetGameTemplate(input *notification.GetGameTemplateParams) ([]*lobbyclientmodels.ModelTemplateResponse, error) {
+	token, err := n.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	params := &notification.GetGameTemplateParams{
-		Namespace: namespace,
-	}
-	ok, unauthorized, forbidden, notFound, internalServerError, err := g.LobbyClient.Notification.GetGameTemplate(params, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, notFound, internalServerError, err := n.Client.Notification.GetGameTemplate(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -729,18 +647,13 @@ func (g *GameNotificationService) GetGameTemplate(namespace string) ([]*lobbycli
 	return ok.GetPayload(), nil
 }
 
-func (g *GameNotificationService) GetLocalizationTemplate(namespace, templateLanguage, templateSlug string) (*lobbyclientmodels.ModelTemplateLocalization, error) {
-	token, err := g.TokenRepository.GetToken()
+func (n *NotificationService) GetLocalizationTemplate(input *notification.GetLocalizationTemplateParams) (*lobbyclientmodels.ModelTemplateLocalization, error) {
+	token, err := n.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	params := &notification.GetLocalizationTemplateParams{
-		Namespace:        namespace,
-		TemplateLanguage: templateLanguage,
-		TemplateSlug:     templateSlug,
-	}
-	ok, unauthorized, forbidden, notFound, internalServerError, err := g.LobbyClient.Notification.GetLocalizationTemplate(params, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, notFound, internalServerError, err := n.Client.Notification.GetLocalizationTemplate(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -768,17 +681,13 @@ func (g *GameNotificationService) GetLocalizationTemplate(namespace, templateLan
 	return ok.GetPayload(), nil
 }
 
-func (g *GameNotificationService) GetNotificationTopicV1Admin(namespace, topicName string) (*lobbyclientmodels.ModelNotificationTopicResponseV1, error) {
-	token, err := g.TokenRepository.GetToken()
+func (n *NotificationService) GetNotificationTopicV1Admin(input *notification.GetNotificationTopicV1AdminParams) (*lobbyclientmodels.ModelNotificationTopicResponseV1, error) {
+	token, err := n.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	params := &notification.GetNotificationTopicV1AdminParams{
-		Namespace: namespace,
-		TopicName: topicName,
-	}
-	ok, unauthorized, forbidden, notFound, internalServerError, err := g.LobbyClient.Notification.GetNotificationTopicV1Admin(params, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, notFound, internalServerError, err := n.Client.Notification.GetNotificationTopicV1Admin(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -806,17 +715,13 @@ func (g *GameNotificationService) GetNotificationTopicV1Admin(namespace, topicNa
 	return ok.GetPayload(), nil
 }
 
-func (g *GameNotificationService) GetNotifications(namespace, userID string) ([]*lobbyclientmodels.ModelNotificationResponse, error) {
-	token, err := g.TokenRepository.GetToken()
+func (n *NotificationService) GetNotifications(input *notification.GetNotificationsParams) ([]*lobbyclientmodels.ModelNotificationResponse, error) {
+	token, err := n.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	params := &notification.GetNotificationsParams{
-		Namespace: namespace,
-		UserID:    userID,
-	}
-	ok, unauthorized, forbidden, notFound, internalServerError, err := g.LobbyClient.Notification.GetNotifications(params, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, notFound, internalServerError, err := n.Client.Notification.GetNotifications(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -844,18 +749,13 @@ func (g *GameNotificationService) GetNotifications(namespace, userID string) ([]
 	return ok.GetPayload(), nil
 }
 
-func (g *GameNotificationService) GetSingleTemplateLocalizationV1Admin(namespace, templateLanguage, templateSlug string) (*lobbyclientmodels.ModelLocalization, error) {
-	token, err := g.TokenRepository.GetToken()
+func (n *NotificationService) GetSingleTemplateLocalizationV1Admin(input *notification.GetSingleTemplateLocalizationV1AdminParams) (*lobbyclientmodels.ModelLocalization, error) {
+	token, err := n.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	params := &notification.GetSingleTemplateLocalizationV1AdminParams{
-		Namespace:        namespace,
-		TemplateLanguage: templateLanguage,
-		TemplateSlug:     templateSlug,
-	}
-	ok, unauthorized, forbidden, notFound, internalServerError, err := g.LobbyClient.Notification.GetSingleTemplateLocalizationV1Admin(params, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, notFound, internalServerError, err := n.Client.Notification.GetSingleTemplateLocalizationV1Admin(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -883,20 +783,13 @@ func (g *GameNotificationService) GetSingleTemplateLocalizationV1Admin(namespace
 	return ok.GetPayload(), nil
 }
 
-func (g *GameNotificationService) GetSlugTemplate(after, before *string, limit *int64, namespace, templateSlug string) (*lobbyclientmodels.ModelTemplateLocalizationResponse, error) {
-	token, err := g.TokenRepository.GetToken()
+func (n *NotificationService) GetSlugTemplate(input *notification.GetSlugTemplateParams) (*lobbyclientmodels.ModelTemplateLocalizationResponse, error) {
+	token, err := n.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	params := &notification.GetSlugTemplateParams{
-		After:        after,
-		Before:       before,
-		Limit:        limit,
-		Namespace:    namespace,
-		TemplateSlug: templateSlug,
-	}
-	ok, unauthorized, forbidden, notFound, internalServerError, err := g.LobbyClient.Notification.GetSlugTemplate(params, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, notFound, internalServerError, err := n.Client.Notification.GetSlugTemplate(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -924,20 +817,13 @@ func (g *GameNotificationService) GetSlugTemplate(after, before *string, limit *
 	return ok.GetPayload(), nil
 }
 
-func (g *GameNotificationService) GetTemplateSlugLocalizationsTemplateV1Admin(after, before *string, limit *int64, namespace, templateSlug string) (*lobbyclientmodels.ModelGetAllNotificationTemplateSlugResp, error) {
-	token, err := g.TokenRepository.GetToken()
+func (n *NotificationService) GetTemplateSlugLocalizationsTemplateV1Admin(input *notification.GetTemplateSlugLocalizationsTemplateV1AdminParams) (*lobbyclientmodels.ModelGetAllNotificationTemplateSlugResp, error) {
+	token, err := n.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	params := &notification.GetTemplateSlugLocalizationsTemplateV1AdminParams{
-		After:        after,
-		Before:       before,
-		Limit:        limit,
-		Namespace:    namespace,
-		TemplateSlug: templateSlug,
-	}
-	ok, unauthorized, forbidden, notFound, internalServerError, err := g.LobbyClient.Notification.GetTemplateSlugLocalizationsTemplateV1Admin(params, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, notFound, internalServerError, err := n.Client.Notification.GetTemplateSlugLocalizationsTemplateV1Admin(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -965,19 +851,13 @@ func (g *GameNotificationService) GetTemplateSlugLocalizationsTemplateV1Admin(af
 	return ok.GetPayload(), nil
 }
 
-func (g *GameNotificationService) GetTopicByNamespace(after, before *string, limit *int64, namespace string) (*lobbyclientmodels.ModelTopicByNamespacesResponse, error) {
-	token, err := g.TokenRepository.GetToken()
+func (n *NotificationService) GetTopicByNamespace(input *notification.GetTopicByNamespaceParams) (*lobbyclientmodels.ModelTopicByNamespacesResponse, error) {
+	token, err := n.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	params := &notification.GetTopicByNamespaceParams{
-		After:     after,
-		Before:    before,
-		Limit:     limit,
-		Namespace: namespace,
-	}
-	ok, unauthorized, forbidden, notFound, internalServerError, err := g.LobbyClient.Notification.GetTopicByNamespace(params, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, notFound, internalServerError, err := n.Client.Notification.GetTopicByNamespace(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -1005,17 +885,13 @@ func (g *GameNotificationService) GetTopicByNamespace(after, before *string, lim
 	return ok.GetPayload(), nil
 }
 
-func (g *GameNotificationService) GetTopicByTopicName(namespace, topic string) (*lobbyclientmodels.ModelNotificationTopicResponse, error) {
-	token, err := g.TokenRepository.GetToken()
+func (n *NotificationService) GetTopicByTopicName(input *notification.GetTopicByTopicNameParams) (*lobbyclientmodels.ModelNotificationTopicResponse, error) {
+	token, err := n.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	params := &notification.GetTopicByTopicNameParams{
-		Namespace: namespace,
-		Topic:     topic,
-	}
-	ok, unauthorized, forbidden, notFound, internalServerError, err := g.LobbyClient.Notification.GetTopicByTopicName(params, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, notFound, internalServerError, err := n.Client.Notification.GetTopicByTopicName(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -1043,17 +919,13 @@ func (g *GameNotificationService) GetTopicByTopicName(namespace, topic string) (
 	return ok.GetPayload(), nil
 }
 
-func (g *GameNotificationService) NotificationWithTemplate(body *lobbyclientmodels.ModelNotificationWithTemplateRequest, namespace string) error {
-	token, err := g.TokenRepository.GetToken()
+func (n *NotificationService) NotificationWithTemplate(input *notification.NotificationWithTemplateParams) error {
+	token, err := n.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return err
 	}
-	params := &notification.NotificationWithTemplateParams{
-		Body:      body,
-		Namespace: namespace,
-	}
-	_, unauthorized, forbidden, notFound, internalServerError, err := g.LobbyClient.Notification.NotificationWithTemplate(params, client.BearerToken(*token.AccessToken))
+	_, unauthorized, forbidden, notFound, internalServerError, err := n.Client.Notification.NotificationWithTemplate(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -1081,19 +953,13 @@ func (g *GameNotificationService) NotificationWithTemplate(body *lobbyclientmode
 	return nil
 }
 
-func (g *GameNotificationService) NotificationWithTemplateByUserID(async *bool, body *lobbyclientmodels.ModelNotificationWithTemplateRequest, namespace, userID string) error {
-	token, err := g.TokenRepository.GetToken()
+func (n *NotificationService) NotificationWithTemplateByUserID(input *notification.NotificationWithTemplateByUserIDParams) error {
+	token, err := n.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return err
 	}
-	params := &notification.NotificationWithTemplateByUserIDParams{
-		Async:     async,
-		Body:      body,
-		Namespace: namespace,
-		UserID:    userID,
-	}
-	_, unauthorized, forbidden, notFound, internalServerError, err := g.LobbyClient.Notification.NotificationWithTemplateByUserID(params, client.BearerToken(*token.AccessToken))
+	_, unauthorized, forbidden, notFound, internalServerError, err := n.Client.Notification.NotificationWithTemplateByUserID(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -1121,18 +987,13 @@ func (g *GameNotificationService) NotificationWithTemplateByUserID(async *bool, 
 	return nil
 }
 
-func (g *GameNotificationService) PublishTemplate(namespace, templateLanguage, templateSlug string) error {
-	token, err := g.TokenRepository.GetToken()
+func (n *NotificationService) PublishTemplate(input *notification.PublishTemplateParams) error {
+	token, err := n.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return err
 	}
-	params := &notification.PublishTemplateParams{
-		Namespace:        namespace,
-		TemplateLanguage: templateLanguage,
-		TemplateSlug:     templateSlug,
-	}
-	_, unauthorized, forbidden, notFound, internalServerError, err := g.LobbyClient.Notification.PublishTemplate(params, client.BearerToken(*token.AccessToken))
+	_, unauthorized, forbidden, notFound, internalServerError, err := n.Client.Notification.PublishTemplate(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -1160,18 +1021,13 @@ func (g *GameNotificationService) PublishTemplate(namespace, templateLanguage, t
 	return nil
 }
 
-func (g *GameNotificationService) PublishTemplateLocalizationV1Admin(namespace, templateLanguage, templateSlug string) error {
-	token, err := g.TokenRepository.GetToken()
+func (n *NotificationService) PublishTemplateLocalizationV1Admin(input *notification.PublishTemplateLocalizationV1AdminParams) error {
+	token, err := n.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return err
 	}
-	params := &notification.PublishTemplateLocalizationV1AdminParams{
-		Namespace:        namespace,
-		TemplateLanguage: templateLanguage,
-		TemplateSlug:     templateSlug,
-	}
-	_, unauthorized, forbidden, notFound, internalServerError, err := g.LobbyClient.Notification.PublishTemplateLocalizationV1Admin(params, client.BearerToken(*token.AccessToken))
+	_, unauthorized, forbidden, notFound, internalServerError, err := n.Client.Notification.PublishTemplateLocalizationV1Admin(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -1199,18 +1055,12 @@ func (g *GameNotificationService) PublishTemplateLocalizationV1Admin(namespace, 
 	return nil
 }
 
-func (g GameNotificationService) SendSpecificUserTemplatedNotificationV1Admin(namespace, userID string, async *bool, content *lobbyclientmodels.ModelNotificationWithTemplateRequestV1) error {
-	accessToken, err := g.TokenRepository.GetToken()
+func (n NotificationService) SendSpecificUserTemplatedNotificationV1Admin(input *notification.SendSpecificUserTemplatedNotificationV1AdminParams) error {
+	accessToken, err := n.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	param := &notification.SendSpecificUserTemplatedNotificationV1AdminParams{
-		Namespace: namespace,
-		UserID:    userID,
-		Async:     async,
-		Body:      content,
-	}
-	_, badRequest, unauthorized, forbidden, notFound, err := g.LobbyClient.Notification.SendSpecificUserTemplatedNotificationV1Admin(param, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, err := n.Client.Notification.SendSpecificUserTemplatedNotificationV1Admin(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -1237,16 +1087,12 @@ func (g GameNotificationService) SendSpecificUserTemplatedNotificationV1Admin(na
 	return nil
 }
 
-func (g GameNotificationService) SendUsersTemplatedNotificationV1Admin(body *lobbyclientmodels.ModelNotificationWithTemplateRequestV1, namespace string) error {
-	accessToken, err := g.TokenRepository.GetToken()
+func (n NotificationService) SendUsersTemplatedNotificationV1Admin(input *notification.SendUsersTemplatedNotificationV1AdminParams) error {
+	accessToken, err := n.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	param := &notification.SendUsersTemplatedNotificationV1AdminParams{
-		Body:      body,
-		Namespace: namespace,
-	}
-	_, badRequest, unauthorized, forbidden, notFound, err := g.LobbyClient.Notification.SendUsersTemplatedNotificationV1Admin(param, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, err := n.Client.Notification.SendUsersTemplatedNotificationV1Admin(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -1273,18 +1119,12 @@ func (g GameNotificationService) SendUsersTemplatedNotificationV1Admin(body *lob
 	return nil
 }
 
-func (g GameNotificationService) UpdateLocalizationTemplate(body *lobbyclientmodels.ModelUpdateTemplateRequest, namespace, templateLanguage, templateSlug string) error {
-	accessToken, err := g.TokenRepository.GetToken()
+func (n NotificationService) UpdateLocalizationTemplate(input *notification.UpdateLocalizationTemplateParams) error {
+	accessToken, err := n.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	param := &notification.UpdateLocalizationTemplateParams{
-		Body:             body,
-		Namespace:        namespace,
-		TemplateLanguage: templateLanguage,
-		TemplateSlug:     templateSlug,
-	}
-	_, badRequest, unauthorized, forbidden, notFound, err := g.LobbyClient.Notification.UpdateLocalizationTemplate(param, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, err := n.Client.Notification.UpdateLocalizationTemplate(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -1311,17 +1151,12 @@ func (g GameNotificationService) UpdateLocalizationTemplate(body *lobbyclientmod
 	return nil
 }
 
-func (g GameNotificationService) UpdateNotificationTopicV1Admin(body *lobbyclientmodels.ModelUpdateTopicRequest, namespace, topicName string) error {
-	accessToken, err := g.TokenRepository.GetToken()
+func (n NotificationService) UpdateNotificationTopicV1Admin(input *notification.UpdateNotificationTopicV1AdminParams) error {
+	accessToken, err := n.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	param := &notification.UpdateNotificationTopicV1AdminParams{
-		Body:      body,
-		Namespace: namespace,
-		TopicName: topicName,
-	}
-	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := g.LobbyClient.Notification.UpdateNotificationTopicV1Admin(param, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := n.Client.Notification.UpdateNotificationTopicV1Admin(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -1353,18 +1188,12 @@ func (g GameNotificationService) UpdateNotificationTopicV1Admin(body *lobbyclien
 	return nil
 }
 
-func (g GameNotificationService) UpdateTemplateLocalizationV1Admin(body *lobbyclientmodels.ModelUpdateTemplateRequest, namespace, templateLanguage, templateSlug string) error {
-	accessToken, err := g.TokenRepository.GetToken()
+func (n NotificationService) UpdateTemplateLocalizationV1Admin(input *notification.UpdateTemplateLocalizationV1AdminParams) error {
+	accessToken, err := n.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	param := &notification.UpdateTemplateLocalizationV1AdminParams{
-		Body:             body,
-		Namespace:        namespace,
-		TemplateLanguage: templateLanguage,
-		TemplateSlug:     templateSlug,
-	}
-	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := g.LobbyClient.Notification.UpdateTemplateLocalizationV1Admin(param, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := n.Client.Notification.UpdateTemplateLocalizationV1Admin(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -1396,17 +1225,12 @@ func (g GameNotificationService) UpdateTemplateLocalizationV1Admin(body *lobbycl
 	return nil
 }
 
-func (g GameNotificationService) UpdateTopicByTopicName(body *lobbyclientmodels.ModelUpdateTopicRequest, namespace, topic string) error {
-	accessToken, err := g.TokenRepository.GetToken()
+func (n NotificationService) UpdateTopicByTopicName(input *notification.UpdateTopicByTopicNameParams) error {
+	accessToken, err := n.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	param := &notification.UpdateTopicByTopicNameParams{
-		Body:      body,
-		Namespace: namespace,
-		Topic:     topic,
-	}
-	_, unauthorized, forbidden, notFound, internalServerError, err := g.LobbyClient.Notification.UpdateTopicByTopicName(param, client.BearerToken(*accessToken.AccessToken))
+	_, unauthorized, forbidden, notFound, internalServerError, err := n.Client.Notification.UpdateTopicByTopicName(input, client.BearerToken(*accessToken.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))

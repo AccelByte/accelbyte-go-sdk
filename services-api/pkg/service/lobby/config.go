@@ -1,4 +1,4 @@
-package service
+package lobby
 
 import (
 	"encoding/json"
@@ -10,18 +10,18 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-type LobbyConfigService struct {
-	LobbyClient     *lobbyclient.JusticeLobbyService
+type ConfigService struct {
+	Client          *lobbyclient.JusticeLobbyService
 	TokenRepository repository.TokenRepository
 }
 
-func (l *LobbyConfigService) AdminGetAllConfigV1() (*lobbyclientmodels.ModelsConfigList, error) {
-	token, err := l.TokenRepository.GetToken()
+func (c *ConfigService) AdminGetAllConfigV1() (*lobbyclientmodels.ModelsConfigList, error) {
+	token, err := c.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
 	params := &config.AdminGetAllConfigV1Params{}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := l.LobbyClient.Config.AdminGetAllConfigV1(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := c.Client.Config.AdminGetAllConfigV1(params, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -54,15 +54,12 @@ func (l *LobbyConfigService) AdminGetAllConfigV1() (*lobbyclientmodels.ModelsCon
 	return ok.GetPayload(), nil
 }
 
-func (l *LobbyConfigService) AdminGetConfigV1(namespace string) (*lobbyclientmodels.ModelsConfigReq, error) {
-	token, err := l.TokenRepository.GetToken()
+func (c *ConfigService) AdminGetConfigV1(input *config.AdminGetConfigV1Params) (*lobbyclientmodels.ModelsConfigReq, error) {
+	token, err := c.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &config.AdminGetConfigV1Params{
-		Namespace: namespace,
-	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := l.LobbyClient.Config.AdminGetConfigV1(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := c.Client.Config.AdminGetConfigV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -95,16 +92,12 @@ func (l *LobbyConfigService) AdminGetConfigV1(namespace string) (*lobbyclientmod
 	return ok.GetPayload(), nil
 }
 
-func (l *LobbyConfigService) AdminUpdateConfigV1(body *lobbyclientmodels.ModelsConfigReq, namespace string) (*lobbyclientmodels.ModelsConfigReq, error) {
-	token, err := l.TokenRepository.GetToken()
+func (c *ConfigService) AdminUpdateConfigV1(input *config.AdminUpdateConfigV1Params) (*lobbyclientmodels.ModelsConfigReq, error) {
+	token, err := c.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &config.AdminUpdateConfigV1Params{
-		Body:      body,
-		Namespace: namespace,
-	}
-	ok, badRequest, unauthorized, forbidden, notFound, preconditionFailed, internalServerError, err := l.LobbyClient.Config.AdminUpdateConfigV1(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, preconditionFailed, internalServerError, err := c.Client.Config.AdminUpdateConfigV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))

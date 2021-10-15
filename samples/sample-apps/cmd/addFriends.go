@@ -5,6 +5,8 @@ package cmd
 
 import (
 	"encoding/json"
+	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/friends"
+	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/lobby"
 	"github.com/AccelByte/sample-apps/pkg/repository"
@@ -30,7 +32,14 @@ var addFriendCmd = &cobra.Command{
 		if err != nil {
 			return err
 		}
-		err = friendService.AddFriends(friendIds, namespace, userId)
+		input := &friends.AddFriendsWithoutConfirmationParams{
+			Namespace: namespace,
+			UserID:    userId,
+			Body: &lobbyclientmodels.ModelBulkAddFriendsRequest{
+				FriendIds: friendIds,
+			},
+		}
+		err = friendService.AddFriends(input)
 		if err != nil {
 			return err
 		}

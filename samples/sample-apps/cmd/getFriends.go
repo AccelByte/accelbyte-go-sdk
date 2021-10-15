@@ -5,6 +5,7 @@ package cmd
 
 import (
 	"encoding/json"
+	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/friends"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/lobby"
 	"github.com/AccelByte/sample-apps/pkg/repository"
@@ -26,7 +27,13 @@ var getFriendsCmd = &cobra.Command{
 		namespace := cmd.Flag("namespace").Value.String()
 		limit := cmd.Flag("limit").Value.String()
 		offset := cmd.Flag("offset").Value.String()
-		friendList, err := friendService.GetFriends(namespace, userId, limit, offset)
+		input := &friends.GetListOfFriendsParams{
+			Namespace: namespace,
+			UserID:    userId,
+			Limit:     &limit,
+			Offset:    &offset,
+		}
+		friendList, err := friendService.GetFriends(input)
 		if err != nil {
 			return err
 		}

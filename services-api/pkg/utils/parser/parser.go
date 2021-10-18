@@ -27,18 +27,8 @@ var (
 )
 
 const (
-	newLine      = '\n'
-	keyType      = "type: "
-	keyRequestID = "id: "
-
-	// list of WS command keys
-	channelSlugKey = "channelSlug"
-	payloadKey     = "payload"
-	typeKey        = "type"
-	idKey          = "id"
-	codeKey        = "code"
-	fromKey        = "from"
-	sentAtKey      = "sentAt"
+	newLine = '\n'
+	keyType = "type: "
 )
 
 // UnmarshalResponse converts response message to internal message format
@@ -1673,64 +1663,6 @@ func unmarshalPartyNotif(reader *bufio.Reader) (*model.PartyNotif, error) {
 	}
 
 	return response, nil
-}
-
-func unmarshalJoinDefaultChannelRequest(base *model.BaseRequest, reader *bufio.Reader) (*model.JoinDefaultChannelRequest, error) {
-	request := &model.JoinDefaultChannelRequest{
-		BaseRequest: base,
-	}
-	return request, nil
-}
-
-func unmarshalSendChannelChatRequest(base *model.BaseRequest, reader *bufio.Reader) (*model.SendChannelChatRequest, error) {
-	content, err := readAll(reader)
-	if err != nil {
-		return nil, err
-	}
-	request := &model.SendChannelChatRequest{
-		BaseRequest: base,
-		ChannelSlug: content[channelSlugKey],
-		Payload:     content[payloadKey],
-	}
-	return request, nil
-}
-
-func marshalJoinDefaultChannelResponse(response *model.JoinDefaultChannelResponse) []byte {
-	return []byte(fmt.Sprintf(
-		"%s: %s\n"+
-			"%s: %s\n"+
-			"%s: %s\n"+
-			"%s: %d",
-		typeKey, response.Type(),
-		idKey, response.MessageID,
-		channelSlugKey, response.ChannelSlug,
-		codeKey, response.Code))
-}
-
-func marshalSendChannelChatResponse(response *model.SendChannelChatResponse) []byte {
-	return []byte(fmt.Sprintf(
-		"%s: %s\n"+
-			"%s: %s\n"+
-			"%s: %d",
-		typeKey, response.Type(),
-		idKey, response.MessageID,
-		codeKey, response.Code,
-	))
-}
-
-func marshalChannelChatNotif(notif *model.ChannelChatNotif) []byte {
-	return []byte(fmt.Sprintf(
-		"%s: %s\n"+
-			"%s: %s\n"+
-			"%s: %s\n"+
-			"%s: %s\n"+
-			"%s: %s",
-		typeKey, notif.Type(),
-		fromKey, notif.From,
-		channelSlugKey, notif.ChannelSlug,
-		payloadKey, notif.Payload,
-		sentAtKey, notif.SentAt.Format(time.RFC3339),
-	))
 }
 
 func readAll(reader *bufio.Reader) (map[string]string, error) {

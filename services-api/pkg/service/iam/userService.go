@@ -53,7 +53,7 @@ func (u *UserService) PublicCreateUserV3(input *users.PublicCreateUserV3Params) 
 			return nil, err
 		}
 		logrus.Info("User created")
-		logrus.Info("Response: \n %v", string(payloadString))
+		logrus.Infof("Response: \n %v", string(payloadString))
 	}
 	return created.GetPayload(), nil
 }

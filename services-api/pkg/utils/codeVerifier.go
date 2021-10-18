@@ -28,7 +28,7 @@ func CreateCodeVerifierWithLength(length int) (*CodeVerifier, error) {
 		return nil, errors.New("invalid length")
 	}
 	r := rand.New(rand.NewSource(time.Now().UnixNano()))
-	b := make([]byte, length, length)
+	b := make([]byte, length)
 	for i := 0; i < length; i++ {
 		b[i] = byte(r.Intn(255))
 	}

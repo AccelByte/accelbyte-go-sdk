@@ -157,7 +157,7 @@ func (s *SSOCredService) RetrieveSSOLoginPlatformCredential(input *s_s_o_credent
 }
 
 func (s *SSOCredService) UpdateSSOPlatformCredential(input *s_s_o_credential.UpdateSSOPlatformCredentialParams) (*iamclientmodels.ModelSSOPlatformCredentialResponse, error) {
-	token, err := s.TokenRepository.GetToken()
+	token, _ := s.TokenRepository.GetToken()
 	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := s.Client.SsoCredential.UpdateSSOPlatformCredential(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())

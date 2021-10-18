@@ -56,6 +56,9 @@ func (a *OAuth20Service) GrantTokenCredentials(code, codeVerifier string) error 
 	if forbidden != nil {
 		return forbidden
 	}
+	if err != nil {
+		return err
+	}
 	if accessToken == nil {
 		return errors.New("empty access token")
 	}
@@ -86,6 +89,9 @@ func (a *OAuth20Service) GrantTokenRefreshToken(code, codeVerifier, refreshToken
 	}
 	if forbidden != nil {
 		return forbidden
+	}
+	if err != nil {
+		return err
 	}
 	if accessToken == nil {
 		return errors.New("empty access token")
@@ -118,6 +124,9 @@ func (a *OAuth20Service) GrantTokenAuthorizationCode(code, codeVerifier, redirec
 	}
 	if forbidden != nil {
 		return forbidden
+	}
+	if err != nil {
+		return err
 	}
 	if accessToken == nil {
 		return errors.New("empty access token")
@@ -440,6 +449,9 @@ func (a *OAuth20Service) TokenGrantV3(input *o_auth2_0.TokenGrantV3Params) (*iam
 		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
 		logrus.Error(string(errorMsg))
 		return nil, forbidden
+	}
+	if err != nil {
+		return nil, err
 	}
 	if ok == nil {
 		return nil, errors.New("empty access token")

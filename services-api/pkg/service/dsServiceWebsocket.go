@@ -22,22 +22,22 @@ type DSServiceWebsocket struct {
 
 func (dsService *DSServiceWebsocket) CreateDS(matchID, gameMode, dsName, clientVersion, region, deployment string) error {
 	logrus.Debug("CreateDS")
-	text := fmt.Sprintf(fmt.Sprintf(
-	"type: createDSRequest\n"+
-		"%s\n"+
-		"matchId: %s\n"+
-		"gameMode: %s\n"+
-		"serverName: %s\n"+
-		"clientVersion: %s\n"+
-		"region: %s\n"+
-		"deployment: %s\n",
+	text := fmt.Sprintf(
+		"type: createDSRequest\n"+
+			"%s\n"+
+			"matchId: %s\n"+
+			"gameMode: %s\n"+
+			"serverName: %s\n"+
+			"clientVersion: %s\n"+
+			"region: %s\n"+
+			"deployment: %s\n",
 		utils.GenerateMessageID(),
 		matchID,
 		gameMode,
 		dsName,
 		clientVersion,
 		region,
-		deployment))
+		deployment)
 	err := dsService.ConnectionManager.Get().Conn.WriteMessage(websocket.TextMessage, []byte(text))
 	if err != nil {
 		return err

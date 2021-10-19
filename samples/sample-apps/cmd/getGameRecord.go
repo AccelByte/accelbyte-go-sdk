@@ -40,6 +40,9 @@ to quickly create a Cobra application.`,
 			return err
 		}
 		response, err := json.Marshal(gameRecords)
+		if err != nil {
+			return err
+		}
 		logrus.Infof("Response: %s", response)
 		return nil
 	},
@@ -48,8 +51,8 @@ to quickly create a Cobra application.`,
 func init() {
 	rootCmd.AddCommand(getGameRecordCmd)
 	getGameRecordCmd.Flags().StringP("key", "k", "", "Game record key")
-	getGameRecordCmd.MarkFlagRequired("key")
+	_ = getGameRecordCmd.MarkFlagRequired("key")
 	getGameRecordCmd.Flags().StringP("namespace", "n", "", "Game record key")
-	getGameRecordCmd.MarkFlagRequired("namespace")
+	_ = getGameRecordCmd.MarkFlagRequired("namespace")
 
 }

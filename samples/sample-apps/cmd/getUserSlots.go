@@ -32,6 +32,9 @@ var getUserSlotsCmd = &cobra.Command{
 			UserID:    userId,
 		}
 		slots, err := socialService.GetUserNamespaceSlots(input)
+		if err != nil {
+			return err
+		}
 		response, err := json.MarshalIndent(slots, "", "    ")
 		if err != nil {
 			return err
@@ -44,7 +47,7 @@ var getUserSlotsCmd = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(getUserSlotsCmd)
 	getUserSlotsCmd.Flags().StringP("namespace", "n", "", "User namespace")
-	getUserSlotsCmd.MarkFlagRequired("namespace")
+	_ = getUserSlotsCmd.MarkFlagRequired("namespace")
 	getUserSlotsCmd.Flags().StringP("userId", "u", "", "User ID")
-	getUserSlotsCmd.MarkFlagRequired("userId")
+	_ = getUserSlotsCmd.MarkFlagRequired("userId")
 }

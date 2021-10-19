@@ -48,5 +48,5 @@ func init() {
 	rootCmd.AddCommand(deleteRolePermissionsCmd)
 	deleteRolePermissionsCmd.Flags().StringP("roleId", "r", "", "Role ID")
 	deleteRolePermissionsCmd.Flags().StringP("body", "b", "", "Role's permissions body. In json format, example: '{\"key1\", \"value1\"}'")
-	deleteRolePermissionsCmd.MarkFlagRequired("body")
+	_ = deleteRolePermissionsCmd.MarkFlagRequired("body")
 }

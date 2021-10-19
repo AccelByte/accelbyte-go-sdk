@@ -49,5 +49,5 @@ func init() {
 	rootCmd.AddCommand(deleteRoleManagersCmd)
 	deleteRoleManagersCmd.Flags().StringP("roleId", "r", "", "Role ID")
 	deleteRoleManagersCmd.Flags().StringP("managers", "m", "", "Role's managers. In json format, example: '{\"key1\", \"value1\"}'")
-	deleteRoleManagersCmd.MarkFlagRequired("managers")
+	_ = deleteRoleManagersCmd.MarkFlagRequired("managers")
 }

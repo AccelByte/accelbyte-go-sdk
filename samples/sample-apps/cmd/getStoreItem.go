@@ -81,7 +81,7 @@ func init() {
 	getStoreitemCmd.Flags().StringP("categoryPath", "", "", "Category Path")
 	getStoreitemCmd.Flags().StringP("itemType", "", "", "Item type")
 	getStoreitemCmd.Flags().StringP("namespace", "", "", "Namespace")
-	getStoreitemCmd.MarkFlagRequired("namespace")
+	_ = getStoreitemCmd.MarkFlagRequired("namespace")
 	getStoreitemCmd.Flags().StringP("targetNamespace", "", "", "Target namespace")
 	getStoreitemCmd.Flags().StringP("features", "", "", "Item features")
 	getStoreitemCmd.Flags().StringP("availableDate", "", "", "Item available date")

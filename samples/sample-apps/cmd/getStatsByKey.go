@@ -42,6 +42,9 @@ var getStatsByKeywordCmd = &cobra.Command{
 			Offset:    &offset,
 		}
 		stats, err := socialService.QueryStats(input)
+		if err != nil {
+			return err
+		}
 		response, err := json.MarshalIndent(stats, "", "    ")
 		if err != nil {
 			return err
@@ -54,7 +57,7 @@ var getStatsByKeywordCmd = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(getStatsByKeywordCmd)
 	getStatsByKeywordCmd.Flags().StringP("namespace", "n", "", "User namespace")
-	getStatsByKeywordCmd.MarkFlagRequired("namespace")
+	_ = getStatsByKeywordCmd.MarkFlagRequired("namespace")
 	getStatsByKeywordCmd.Flags().StringP("keyword", "k", "", "Keyword")
 	getStatsByKeywordCmd.Flags().Int32P("offset", "o", 0, "Pagination offset")
 	getStatsByKeywordCmd.Flags().Int32P("limit", "l", 20, "Pagination limit")

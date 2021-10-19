@@ -48,10 +48,10 @@ var createGameRecordCmd = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(createGameRecordCmd)
 	createGameRecordCmd.Flags().StringP("key", "k", "", "Game record key")
-	createGameRecordCmd.MarkFlagRequired("key")
+	_ = createGameRecordCmd.MarkFlagRequired("key")
 	createGameRecordCmd.Flags().StringP("namespace", "n", "", "Namespace")
-	createGameRecordCmd.MarkFlagRequired("namespace")
+	_ = createGameRecordCmd.MarkFlagRequired("namespace")
 	createGameRecordCmd.Flags().StringP("content", "c", "", "Content of game record, string json")
-	createGameRecordCmd.MarkFlagRequired("content")
+	_ = createGameRecordCmd.MarkFlagRequired("content")
 
 }

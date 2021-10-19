@@ -49,10 +49,10 @@ var verifyAdminAccountTokenCmd = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(verifyAdminAccountTokenCmd)
 	verifyAdminAccountTokenCmd.Flags().StringP("namespace", "", "", "User namespace")
-	verifyAdminAccountTokenCmd.MarkFlagRequired("namespace")
+	_ = verifyAdminAccountTokenCmd.MarkFlagRequired("namespace")
 	verifyAdminAccountTokenCmd.Flags().StringP("userId", "u", "", "User ID")
 	verifyAdminAccountTokenCmd.Flags().StringP("code", "c", "", "Code verification received by email")
-	verifyAdminAccountTokenCmd.MarkFlagRequired("code")
+	_ = verifyAdminAccountTokenCmd.MarkFlagRequired("code")
 	verifyAdminAccountTokenCmd.Flags().StringP("contactType", "", "email", "Contact type")
 	verifyAdminAccountTokenCmd.Flags().StringP("languageTag", "l", "", "Language Tag")
 }

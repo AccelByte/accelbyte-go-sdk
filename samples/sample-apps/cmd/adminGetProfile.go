@@ -52,9 +52,9 @@ var adminGetProfile = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(adminGetProfile)
 	adminGetProfile.Flags().StringP("namespace", "n", "", "User namespace")
-	adminGetProfile.MarkFlagRequired("namespace")
+	_ = adminGetProfile.MarkFlagRequired("namespace")
 	adminGetProfile.Flags().StringP("userId", "u", "", "User ID")
-	adminGetProfile.MarkFlagRequired("userId")
+	_ = adminGetProfile.MarkFlagRequired("userId")
 	adminGetProfile.Flags().StringP("profileId", "p", "", "Profile ID")
-	adminGetProfile.MarkFlagRequired("profileId")
+	_ = adminGetProfile.MarkFlagRequired("profileId")
 }

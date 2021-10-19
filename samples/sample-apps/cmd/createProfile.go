@@ -53,9 +53,9 @@ var createProfile = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(createProfile)
 	createProfile.Flags().StringP("namespace", "n", "", "User namespace")
-	createProfile.MarkFlagRequired("namespace")
+	_ = createProfile.MarkFlagRequired("namespace")
 	createProfile.Flags().StringP("userId", "u", "", "User ID")
-	createProfile.MarkFlagRequired("userId")
+	_ = createProfile.MarkFlagRequired("userId")
 	createProfile.Flags().StringP("body", "b", "", "Request Body. Example : '{\"attributes\":{\"skin\":\"Red\"}, \"profileName\":\"Han Solo\"}' ")
-	createProfile.MarkFlagRequired("body")
+	_ = createProfile.MarkFlagRequired("body")
 }

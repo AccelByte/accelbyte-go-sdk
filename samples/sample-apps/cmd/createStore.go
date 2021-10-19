@@ -57,12 +57,12 @@ var createStoreCmd = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(createStoreCmd)
 	createStoreCmd.Flags().StringP("namespace", "n", "", "Store namespace")
-	createStoreCmd.MarkFlagRequired("namespace")
+	_ = createStoreCmd.MarkFlagRequired("namespace")
 	createStoreCmd.Flags().StringP("title", "t", "", "Store title")
-	createStoreCmd.MarkFlagRequired("title")
+	_ = createStoreCmd.MarkFlagRequired("title")
 	createStoreCmd.Flags().StringP("region", "r", "", "Store region")
-	createStoreCmd.MarkFlagRequired("region")
+	_ = createStoreCmd.MarkFlagRequired("region")
 	createStoreCmd.Flags().StringP("language", "l", "", "Store language")
-	createStoreCmd.MarkFlagRequired("language")
+	_ = createStoreCmd.MarkFlagRequired("language")
 	createStoreCmd.Flags().StringP("description", "d", "", "Store description")
 }

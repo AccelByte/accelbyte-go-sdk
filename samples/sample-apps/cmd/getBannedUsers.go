@@ -63,13 +63,13 @@ var getBannedUsers = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(getBannedUsers)
 	getBannedUsers.Flags().BoolP("activeOnly", "a", false, "Active Only. a Boolean value")
-	getBannedUsers.MarkFlagRequired("activeOnly")
+	_ = getBannedUsers.MarkFlagRequired("activeOnly")
 	getBannedUsers.Flags().StringP("banType", "b", "", "Ban Type")
-	getBannedUsers.MarkFlagRequired("banType")
+	_ = getBannedUsers.MarkFlagRequired("banType")
 	getBannedUsers.Flags().Int64P("limit", "l", -1, "limit")
-	getBannedUsers.MarkFlagRequired("limit")
+	_ = getBannedUsers.MarkFlagRequired("limit")
 	getBannedUsers.Flags().StringP("namespace", "n", "", "namespace")
-	getBannedUsers.MarkFlagRequired("namespace")
+	_ = getBannedUsers.MarkFlagRequired("namespace")
 	getBannedUsers.Flags().Int64P("offset", "o", -1, "offset")
-	getBannedUsers.MarkFlagRequired("offset")
+	_ = getBannedUsers.MarkFlagRequired("offset")
 }

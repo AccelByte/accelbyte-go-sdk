@@ -41,7 +41,7 @@ var deleteGameRecordCmd = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(deleteGameRecordCmd)
 	deleteGameRecordCmd.Flags().StringP("key", "k", "", "Game record key")
-	deleteGameRecordCmd.MarkFlagRequired("key")
+	_ = deleteGameRecordCmd.MarkFlagRequired("key")
 	deleteGameRecordCmd.Flags().StringP("namespace", "n", "", "Game record key")
-	deleteGameRecordCmd.MarkFlagRequired("namespace")
+	_ = deleteGameRecordCmd.MarkFlagRequired("namespace")
 }

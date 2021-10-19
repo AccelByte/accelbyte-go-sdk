@@ -30,6 +30,9 @@ var updateClientPermission = &cobra.Command{
 		permissionsInput := cmd.Flag("permissions").Value.String()
 		var permissions *iamclientmodels.AccountcommonClientPermissionsV3
 		err := json.Unmarshal([]byte(permissionsInput), &permissions)
+		if err != nil {
+			return err
+		}
 		input := &clients.AdminUpdateClientPermissionV3Params{
 			Body:      permissions,
 			ClientID:  clientID,
@@ -48,9 +51,9 @@ var updateClientPermission = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(updateClientPermission)
 	updateClientPermission.Flags().StringP("clientID", "c", "", "Client ID")
-	updateClientPermission.MarkFlagRequired("clientID")
+	_ = updateClientPermission.MarkFlagRequired("clientID")
 	updateClientPermission.Flags().StringP("namespace", "n", "", "User namespace")
-	updateClientPermission.MarkFlagRequired("namespace")
+	_ = updateClientPermission.MarkFlagRequired("namespace")
 	updateClientPermission.Flags().StringP("permissions", "p", "", "Permissions. Example: '{\"permissions\":[{\"action\":2,\"resource\":\"ADMIN:NAMESPACE:*:USER:*:STATITEM\"}]}' ")
-	updateClientPermission.MarkFlagRequired("permissions")
+	_ = updateClientPermission.MarkFlagRequired("permissions")
 }

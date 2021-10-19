@@ -58,9 +58,9 @@ var addUserBanCmd = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(addUserBanCmd)
 	addUserBanCmd.Flags().StringP("userId", "u", "", "User ID")
-	addUserBanCmd.MarkFlagRequired("userId")
+	_ = addUserBanCmd.MarkFlagRequired("userId")
 	addUserBanCmd.Flags().StringP("namespace", "", "", "User namespace")
-	addUserBanCmd.MarkFlagRequired("namespace")
+	_ = addUserBanCmd.MarkFlagRequired("namespace")
 	addUserBanCmd.Flags().StringP("ban", "b", "", "Ban")
 	addUserBanCmd.Flags().StringP("comment", "c", "", "Comment")
 	addUserBanCmd.Flags().StringP("endDate", "e", "", "End Date. Example 2021-08-05T06:35:54.106Z")

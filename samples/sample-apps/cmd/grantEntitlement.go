@@ -73,13 +73,13 @@ var grantEntitlementCmd = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(grantEntitlementCmd)
 	grantEntitlementCmd.Flags().StringP("userId", "u", "", "User ID")
-	grantEntitlementCmd.MarkFlagRequired("userId")
+	_ = grantEntitlementCmd.MarkFlagRequired("userId")
 	grantEntitlementCmd.Flags().StringP("itemId", "i", "", "Item ID")
-	grantEntitlementCmd.MarkFlagRequired("itemId")
+	_ = grantEntitlementCmd.MarkFlagRequired("itemId")
 	grantEntitlementCmd.Flags().Int32P("quantity", "q", 1, "item quantity")
-	grantEntitlementCmd.MarkFlagRequired("quantity")
+	_ = grantEntitlementCmd.MarkFlagRequired("quantity")
 	grantEntitlementCmd.Flags().StringP("namespace", "", "", "User namespace")
-	grantEntitlementCmd.MarkFlagRequired("namespace")
+	_ = grantEntitlementCmd.MarkFlagRequired("namespace")
 	grantEntitlementCmd.Flags().StringP("itemNamespace", "", "", "User namespace")
-	grantEntitlementCmd.MarkFlagRequired("itemNamespace")
+	_ = grantEntitlementCmd.MarkFlagRequired("itemNamespace")
 }

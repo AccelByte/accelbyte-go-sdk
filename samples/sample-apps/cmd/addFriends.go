@@ -51,9 +51,9 @@ var addFriendCmd = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(addFriendCmd)
 	addFriendCmd.Flags().StringP("userId", "u", "", "User ID")
-	addFriendCmd.MarkFlagRequired("userId")
+	_ = addFriendCmd.MarkFlagRequired("userId")
 	addFriendCmd.Flags().StringP("namespace", "n", "", "User namespace")
-	addFriendCmd.MarkFlagRequired("namespace")
+	_ = addFriendCmd.MarkFlagRequired("namespace")
 	addFriendCmd.Flags().StringP("friendIds", "f", "", "Friend user IDs, value in json. example: '[\"12345\", \"12346\", \"12347\"]'")
-	addFriendCmd.MarkFlagRequired("friendIds")
+	_ = addFriendCmd.MarkFlagRequired("friendIds")
 }

@@ -60,11 +60,11 @@ var updateProfile = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(updateProfile)
 	updateProfile.Flags().StringP("namespace", "n", "", "User namespace")
-	updateProfile.MarkFlagRequired("namespace")
+	_ = updateProfile.MarkFlagRequired("namespace")
 	updateProfile.Flags().StringP("userId", "u", "", "User ID")
-	updateProfile.MarkFlagRequired("userId")
+	_ = updateProfile.MarkFlagRequired("userId")
 	updateProfile.Flags().StringP("profileId", "p", "", "User Profile ID")
-	updateProfile.MarkFlagRequired("profileId")
+	_ = updateProfile.MarkFlagRequired("profileId")
 	updateProfile.Flags().StringP("body", "b", "", "Request Body. Example : '{\"attributes\":{\"skin\":\"Red\"}, \"profileName\":\"Han Solo\"}' ")
-	updateProfile.MarkFlagRequired("body")
+	_ = updateProfile.MarkFlagRequired("body")
 }

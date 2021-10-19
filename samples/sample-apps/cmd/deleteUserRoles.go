@@ -51,5 +51,5 @@ func init() {
 	deleteUserRolesCmd.Flags().StringP("namespace", "n", "", "User Namespace")
 	deleteUserRolesCmd.Flags().StringP("userId", "u", "", "User ID")
 	deleteUserRolesCmd.Flags().StringP("body", "b", "", "Role's roles body. In json format, example: '{\"roleID1\", \"roleID2\"}'")
-	deleteUserRolesCmd.MarkFlagRequired("body")
+	_ = deleteUserRolesCmd.MarkFlagRequired("body")
 }

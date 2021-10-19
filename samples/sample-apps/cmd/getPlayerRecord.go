@@ -24,19 +24,22 @@ var getPlayerRecordCmd = &cobra.Command{
 		namespace := cmd.Flag("namespace").Value.String()
 		userId := cmd.Flag("userId").Value.String()
 		cloudSaveService := &cloudsave.PublicPlayerRecordService{
-			Client: factory.NewCloudSaveClient(&repository.ConfigRepositoryImpl{}),
-			TokenRepository:        &repository.TokenRepositoryImpl{},
+			Client:          factory.NewCloudSaveClient(&repository.ConfigRepositoryImpl{}),
+			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		input := &public_player_record.GetPlayerPublicRecordHandlerV1Params{
-			UserID: userId,
+			UserID:    userId,
 			Namespace: namespace,
-			Key: key,
+			Key:       key,
 		}
 		playerRecords, err := cloudSaveService.GetPlayerPublicRecordHandlerV1(input)
 		if err != nil {
 			return err
 		}
 		response, err := json.Marshal(playerRecords)
+		if err != nil {
+			return err
+		}
 		logrus.Infof("Response: %s", response)
 		return nil
 	},
@@ -45,9 +48,9 @@ var getPlayerRecordCmd = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(getPlayerRecordCmd)
 	getPlayerRecordCmd.Flags().StringP("key", "k", "", "Player record key")
-	getPlayerRecordCmd.MarkFlagRequired("key")
+	_ = getPlayerRecordCmd.MarkFlagRequired("key")
 	getPlayerRecordCmd.Flags().StringP("namespace", "n", "", "Player namespace")
-	getPlayerRecordCmd.MarkFlagRequired("namespace")
+	_ = getPlayerRecordCmd.MarkFlagRequired("namespace")
 	getPlayerRecordCmd.Flags().StringP("userId", "u", "", "User ID")
-	getPlayerRecordCmd.MarkFlagRequired("userId")
+	_ = getPlayerRecordCmd.MarkFlagRequired("userId")
 }

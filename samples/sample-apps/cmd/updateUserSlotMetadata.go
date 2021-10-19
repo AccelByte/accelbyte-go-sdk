@@ -43,6 +43,9 @@ var updateUserSlotMetadataCmd = &cobra.Command{
 			UserID:    userId,
 		}
 		slots, err := socialService.PublicUpdateUserNamespaceSlotMetadata(input)
+		if err != nil {
+			return err
+		}
 		response, err := json.MarshalIndent(slots, "", "    ")
 		if err != nil {
 			return err
@@ -55,11 +58,11 @@ var updateUserSlotMetadataCmd = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(updateUserSlotMetadataCmd)
 	updateUserSlotMetadataCmd.Flags().StringP("namespace", "n", "", "User namespace")
-	updateUserSlotMetadataCmd.MarkFlagRequired("namespace")
+	_ = updateUserSlotMetadataCmd.MarkFlagRequired("namespace")
 	updateUserSlotMetadataCmd.Flags().StringP("userId", "u", "", "User ID")
-	updateUserSlotMetadataCmd.MarkFlagRequired("userId")
+	_ = updateUserSlotMetadataCmd.MarkFlagRequired("userId")
 	updateUserSlotMetadataCmd.Flags().StringP("slotId", "s", "", "Slot ID")
-	updateUserSlotMetadataCmd.MarkFlagRequired("slotId")
+	_ = updateUserSlotMetadataCmd.MarkFlagRequired("slotId")
 	updateUserSlotMetadataCmd.Flags().StringP("content", "c", "", "Slot Body. Example `{\"Key1\":\"Value1\",\"Key2\":\"Value2\"}'")
-	updateUserSlotMetadataCmd.MarkFlagRequired("content")
+	_ = updateUserSlotMetadataCmd.MarkFlagRequired("content")
 }

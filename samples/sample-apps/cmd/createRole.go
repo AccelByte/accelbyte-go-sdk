@@ -75,9 +75,9 @@ func init() {
 	createUserRoleCmd.Flags().BoolP("adminRole", "a", true, "Admin Role. Default true.")
 	createUserRoleCmd.Flags().BoolP("isWildCard", "w", true, "isWildCard. Default true.")
 	createUserRoleCmd.Flags().StringP("managers", "m", "", "Role's managers. In json format, example: '{\"key1\", \"value1\"}'")
-	createUserRoleCmd.MarkFlagRequired("managers")
+	_ = createUserRoleCmd.MarkFlagRequired("managers")
 	createUserRoleCmd.Flags().StringP("members", "b", "", "Role's members. In json format, example: '{\"key1\", \"value1\"}'")
-	createUserRoleCmd.MarkFlagRequired("members")
+	_ = createUserRoleCmd.MarkFlagRequired("members")
 	createUserRoleCmd.Flags().StringP("permissions", "p", "", "Role's permissions. In json format, example: '{\"key1\", \"value1\"}'")
-	createUserRoleCmd.MarkFlagRequired("permissions")
+	_ = createUserRoleCmd.MarkFlagRequired("permissions")
 }

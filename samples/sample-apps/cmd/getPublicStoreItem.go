@@ -81,7 +81,7 @@ func init() {
 	getPublicStoreItemCmd.Flags().StringP("itemType", "", "", "Item type")
 	getPublicStoreItemCmd.Flags().StringP("language", "", "", "Item language")
 	getPublicStoreItemCmd.Flags().StringP("namespace", "", "", "Namespace")
-	getPublicStoreItemCmd.MarkFlagRequired("namespace")
+	_ = getPublicStoreItemCmd.MarkFlagRequired("namespace")
 	getPublicStoreItemCmd.Flags().StringP("region", "", "", "Region")
 	getPublicStoreItemCmd.Flags().StringP("sortBy", "", "", "Sort by")
 	getPublicStoreItemCmd.Flags().StringP("storeId", "", "", "Store ID")

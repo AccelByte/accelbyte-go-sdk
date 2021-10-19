@@ -48,11 +48,11 @@ var deleteClientPermission = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(deleteClientPermission)
 	deleteClientPermission.Flags().StringP("clientID", "c", "", "Client ID")
-	deleteClientPermission.MarkFlagRequired("clientID")
+	_ = deleteClientPermission.MarkFlagRequired("clientID")
 	deleteClientPermission.Flags().StringP("namespace", "n", "", "User namespace")
-	deleteClientPermission.MarkFlagRequired("namespace")
+	_ = deleteClientPermission.MarkFlagRequired("namespace")
 	deleteClientPermission.Flags().Int64P("action", "a", -1, "")
-	deleteClientPermission.MarkFlagRequired("action")
+	_ = deleteClientPermission.MarkFlagRequired("action")
 	deleteClientPermission.Flags().StringP("resource", "r", "", "")
-	deleteClientPermission.MarkFlagRequired("resource")
+	_ = deleteClientPermission.MarkFlagRequired("resource")
 }

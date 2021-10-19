@@ -52,5 +52,5 @@ func init() {
 	addUserRolesCmd.Flags().StringP("namespace", "n", "", "User Namespace")
 	addUserRolesCmd.Flags().StringP("userId", "u", "", "User ID")
 	addUserRolesCmd.Flags().StringP("body", "b", "", "Role's roles body. In json format, example: '{\"key1\", \"value1\"}'")
-	addUserRolesCmd.MarkFlagRequired("body")
+	_ = addUserRolesCmd.MarkFlagRequired("body")
 }

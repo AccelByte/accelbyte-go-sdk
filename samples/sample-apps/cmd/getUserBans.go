@@ -56,9 +56,9 @@ var getUserBansCmd = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(getUserBansCmd)
 	getUserBansCmd.Flags().StringP("userId", "u", "", "User ID")
-	getUserBansCmd.MarkFlagRequired("userId")
+	_ = getUserBansCmd.MarkFlagRequired("userId")
 	getUserBansCmd.Flags().StringP("namespace", "", "", "User namespace")
-	getUserBansCmd.MarkFlagRequired("namespace")
+	_ = getUserBansCmd.MarkFlagRequired("namespace")
 	getUserBansCmd.Flags().BoolP("activeOnly", "w", true, "activeOnly. Default true.")
 	getUserBansCmd.Flags().StringP("after", "a", "", "After")
 	getUserBansCmd.Flags().StringP("before", "b", "", "Before")

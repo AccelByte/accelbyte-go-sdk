@@ -62,12 +62,12 @@ var updateCategoryCmd = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(updateCategoryCmd)
 	updateCategoryCmd.Flags().StringP("namespace", "n", "", "Store namespace")
-	updateCategoryCmd.MarkFlagRequired("namespace")
+	_ = updateCategoryCmd.MarkFlagRequired("namespace")
 	updateCategoryCmd.Flags().StringP("storeId", "", "", "Store ID")
-	updateCategoryCmd.MarkFlagRequired("storeId")
+	_ = updateCategoryCmd.MarkFlagRequired("storeId")
 	updateCategoryCmd.Flags().StringP("categoryPath", "p", "", "Category path")
-	updateCategoryCmd.MarkFlagRequired("categoryPath")
+	_ = updateCategoryCmd.MarkFlagRequired("categoryPath")
 	updateCategoryCmd.Flags().StringP("localizationDisplayNames", "d", "", "Localization display names must contains default language default names. Value is json string of map. Example: {\"en-US\": \"/Games\"}")
-	updateCategoryCmd.MarkFlagRequired("localizationDisplayNames")
+	_ = updateCategoryCmd.MarkFlagRequired("localizationDisplayNames")
 
 }

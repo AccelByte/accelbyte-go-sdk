@@ -41,6 +41,9 @@ var updateUserSlotConfigCmd = &cobra.Command{
 			UserID:    userId,
 		}
 		slots, err := socialService.UpdateUserSlotConfig(input)
+		if err != nil {
+			return err
+		}
 		response, err := json.MarshalIndent(slots, "", "    ")
 		if err != nil {
 			return err
@@ -53,9 +56,9 @@ var updateUserSlotConfigCmd = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(updateUserSlotConfigCmd)
 	updateUserSlotConfigCmd.Flags().StringP("namespace", "n", "", "User namespace")
-	updateUserSlotConfigCmd.MarkFlagRequired("namespace")
+	_ = updateUserSlotConfigCmd.MarkFlagRequired("namespace")
 	updateUserSlotConfigCmd.Flags().StringP("userId", "u", "", "User ID")
-	updateUserSlotConfigCmd.MarkFlagRequired("userId")
+	_ = updateUserSlotConfigCmd.MarkFlagRequired("userId")
 	updateUserSlotConfigCmd.Flags().StringP("content", "c", "", "Slot Body. Example `{\"Key1\":\"Value1\",\"Key2\":\"Value2\"}'")
-	updateUserSlotConfigCmd.MarkFlagRequired("content")
+	_ = updateUserSlotConfigCmd.MarkFlagRequired("content")
 }

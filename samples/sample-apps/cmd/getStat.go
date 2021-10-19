@@ -32,6 +32,9 @@ var getStatCmd = &cobra.Command{
 			StatCode:  statCode,
 		}
 		stat, err := socialService.GetStat(input)
+		if err != nil {
+			return err
+		}
 		response, err := json.MarshalIndent(stat, "", "    ")
 		if err != nil {
 			return err
@@ -44,6 +47,6 @@ var getStatCmd = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(getStatCmd)
 	getStatCmd.Flags().StringP("namespace", "n", "", "User namespace")
-	getStatCmd.MarkFlagRequired("namespace")
+	_ = getStatCmd.MarkFlagRequired("namespace")
 	getStatCmd.Flags().StringP("statCode", "s", "", "Stat Code")
 }

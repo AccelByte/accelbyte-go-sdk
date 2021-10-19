@@ -53,5 +53,5 @@ func init() {
 	rootCmd.AddCommand(createUserRolePermissionCmd)
 	createUserRolePermissionCmd.Flags().StringP("roleId", "r", "", "Role Name")
 	createUserRolePermissionCmd.Flags().StringP("permissions", "p", "", "Role's permissions. In json format, example: '{\"key1\", \"value1\"}'")
-	createUserRolePermissionCmd.MarkFlagRequired("permissions")
+	_ = createUserRolePermissionCmd.MarkFlagRequired("permissions")
 }

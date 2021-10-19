@@ -30,6 +30,9 @@ var updateClient = &cobra.Command{
 		clientUpdateReqV3Input := cmd.Flag("clientUpdateReqV3").Value.String()
 		var clientUpdateReqV3 *iamclientmodels.ClientmodelClientUpdateV3Request
 		err := json.Unmarshal([]byte(clientUpdateReqV3Input), &clientUpdateReqV3)
+		if err != nil {
+			return err
+		}
 		input := &clients.AdminUpdateClientV3Params{
 			Body:      clientUpdateReqV3,
 			ClientID:  clientID,
@@ -53,9 +56,9 @@ var updateClient = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(updateClient)
 	updateClient.Flags().StringP("clientID", "c", "", "Client ID")
-	updateClient.MarkFlagRequired("clientID")
+	_ = updateClient.MarkFlagRequired("clientID")
 	updateClient.Flags().StringP("namespace", "n", "", "User namespace")
-	updateClient.MarkFlagRequired("namespace")
+	_ = updateClient.MarkFlagRequired("namespace")
 	updateClient.Flags().StringP("clientUpdateReqV3", "r", "", "Client Update Request V3. Example : '{\"clientName\":\"test-jalal3\",\"baseUri\":\"\",\"redirectUri\":\"http://127.0.0.1\"}' ")
-	updateClient.MarkFlagRequired("clientUpdateReqV3")
+	_ = updateClient.MarkFlagRequired("clientUpdateReqV3")
 }

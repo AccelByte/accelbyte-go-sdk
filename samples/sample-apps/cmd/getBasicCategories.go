@@ -45,7 +45,7 @@ var getBasicCategoriesCmd = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(getBasicCategoriesCmd)
 	getBasicCategoriesCmd.Flags().StringP("namespace", "n", "", "Store namespace")
-	getBasicCategoriesCmd.MarkFlagRequired("namespace")
+	_ = getBasicCategoriesCmd.MarkFlagRequired("namespace")
 	getBasicCategoriesCmd.Flags().StringP("storeId", "s", "", "Store ID")
-	getBasicCategoriesCmd.MarkFlagRequired("storeId")
+	_ = getBasicCategoriesCmd.MarkFlagRequired("storeId")
 }

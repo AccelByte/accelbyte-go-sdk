@@ -50,11 +50,11 @@ var createPlayerRecordCmd = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(createPlayerRecordCmd)
 	createPlayerRecordCmd.Flags().StringP("userId", "u", "", "User ID")
-	createPlayerRecordCmd.MarkFlagRequired("userId")
+	_ = createPlayerRecordCmd.MarkFlagRequired("userId")
 	createPlayerRecordCmd.Flags().StringP("namespace", "n", "", "User namespace")
-	createPlayerRecordCmd.MarkFlagRequired("namespace")
+	_ = createPlayerRecordCmd.MarkFlagRequired("namespace")
 	createPlayerRecordCmd.Flags().StringP("key", "k", "", "Player records key")
-	createPlayerRecordCmd.MarkFlagRequired("key")
+	_ = createPlayerRecordCmd.MarkFlagRequired("key")
 	createPlayerRecordCmd.Flags().StringP("content", "c", "", "Player records content. In json format, example: '{\"key1\", \"value1\"}'")
-	createPlayerRecordCmd.MarkFlagRequired("content")
+	_ = createPlayerRecordCmd.MarkFlagRequired("content")
 }

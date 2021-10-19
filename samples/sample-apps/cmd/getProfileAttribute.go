@@ -54,11 +54,11 @@ var getProfileAttribute = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(getProfileAttribute)
 	getProfileAttribute.Flags().StringP("namespace", "n", "", "User namespace")
-	getProfileAttribute.MarkFlagRequired("namespace")
+	_ = getProfileAttribute.MarkFlagRequired("namespace")
 	getProfileAttribute.Flags().StringP("userId", "u", "", "User ID")
-	getProfileAttribute.MarkFlagRequired("userId")
+	_ = getProfileAttribute.MarkFlagRequired("userId")
 	getProfileAttribute.Flags().StringP("profileId", "p", "", "Profile ID")
-	getProfileAttribute.MarkFlagRequired("profileId")
+	_ = getProfileAttribute.MarkFlagRequired("profileId")
 	getProfileAttribute.Flags().StringP("attributeName", "a", "", "Attribute Name")
-	getProfileAttribute.MarkFlagRequired("attributeName")
+	_ = getProfileAttribute.MarkFlagRequired("attributeName")
 }

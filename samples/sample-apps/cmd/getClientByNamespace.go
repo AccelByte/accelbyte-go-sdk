@@ -54,11 +54,11 @@ var getClientBynamespace = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(getClientBynamespace)
 	getClientBynamespace.Flags().StringP("namespace", "n", "", "User namespace")
-	getClientBynamespace.MarkFlagRequired("namespace")
+	_ = getClientBynamespace.MarkFlagRequired("namespace")
 	getClientBynamespace.Flags().StringP("after", "a", "", "after")
-	getClientBynamespace.MarkFlagRequired("after")
+	_ = getClientBynamespace.MarkFlagRequired("after")
 	getClientBynamespace.Flags().StringP("before", "b", "", "before")
-	getClientBynamespace.MarkFlagRequired("before")
+	_ = getClientBynamespace.MarkFlagRequired("before")
 	getClientBynamespace.Flags().Int64P("limit", "l", -1, "limit")
-	getClientBynamespace.MarkFlagRequired("limit")
+	_ = getClientBynamespace.MarkFlagRequired("limit")
 }

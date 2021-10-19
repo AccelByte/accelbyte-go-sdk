@@ -54,11 +54,11 @@ var updateUserSlotDataCmd = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(updateUserSlotDataCmd)
 	updateUserSlotDataCmd.Flags().StringP("namespace", "n", "", "User namespace")
-	updateUserSlotDataCmd.MarkFlagRequired("namespace")
+	_ = updateUserSlotDataCmd.MarkFlagRequired("namespace")
 	updateUserSlotDataCmd.Flags().StringP("userId", "u", "", "User ID")
-	updateUserSlotDataCmd.MarkFlagRequired("userId")
+	_ = updateUserSlotDataCmd.MarkFlagRequired("userId")
 	updateUserSlotDataCmd.Flags().StringP("slotId", "s", "", "Slot ID")
-	updateUserSlotDataCmd.MarkFlagRequired("slotId")
+	_ = updateUserSlotDataCmd.MarkFlagRequired("slotId")
 	updateUserSlotDataCmd.Flags().StringP("filePath", "f", "", "Uploaded file absolute path. example: /home/user/file.jpg")
-	updateUserSlotDataCmd.MarkFlagRequired("filePath")
+	_ = updateUserSlotDataCmd.MarkFlagRequired("filePath")
 }

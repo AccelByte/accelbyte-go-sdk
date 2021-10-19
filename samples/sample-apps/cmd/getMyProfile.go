@@ -44,5 +44,5 @@ var getMyProfileCmd = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(getMyProfileCmd)
 	getMyProfileCmd.Flags().StringP("namespace", "", "", "User namespace")
-	getMyProfileCmd.MarkFlagRequired("namespace")
+	_ = getMyProfileCmd.MarkFlagRequired("namespace")
 }

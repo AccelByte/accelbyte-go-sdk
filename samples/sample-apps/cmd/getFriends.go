@@ -49,9 +49,9 @@ var getFriendsCmd = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(getFriendsCmd)
 	getFriendsCmd.Flags().StringP("userId", "u", "", "User ID")
-	getFriendsCmd.MarkFlagRequired("userId")
+	_ = getFriendsCmd.MarkFlagRequired("userId")
 	getFriendsCmd.Flags().StringP("namespace", "n", "", "User namespace")
-	getFriendsCmd.MarkFlagRequired("namespace")
+	_ = getFriendsCmd.MarkFlagRequired("namespace")
 	getFriendsCmd.Flags().StringP("limit", "l", "10", "Pagination limit. Default 10")
 	getFriendsCmd.Flags().StringP("offset", "o", "0", "Pagination offset. Default 0")
 }

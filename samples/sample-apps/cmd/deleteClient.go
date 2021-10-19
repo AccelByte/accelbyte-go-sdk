@@ -42,7 +42,7 @@ var deleteClient = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(deleteClient)
 	deleteClient.Flags().StringP("clientID", "c", "", "Client ID")
-	deleteClient.MarkFlagRequired("clientID")
+	_ = deleteClient.MarkFlagRequired("clientID")
 	deleteClient.Flags().StringP("namespace", "n", "", "User namespace")
-	deleteClient.MarkFlagRequired("namespace")
+	_ = deleteClient.MarkFlagRequired("namespace")
 }

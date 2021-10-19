@@ -62,13 +62,13 @@ var updateAttribute = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(updateAttribute)
 	updateAttribute.Flags().StringP("namespace", "n", "", "User namespace")
-	updateAttribute.MarkFlagRequired("namespace")
+	_ = updateAttribute.MarkFlagRequired("namespace")
 	updateAttribute.Flags().StringP("userId", "u", "", "User ID")
-	updateAttribute.MarkFlagRequired("userId")
+	_ = updateAttribute.MarkFlagRequired("userId")
 	updateAttribute.Flags().StringP("profileId", "p", "", "User Profile ID")
-	updateAttribute.MarkFlagRequired("profileId")
+	_ = updateAttribute.MarkFlagRequired("profileId")
 	updateAttribute.Flags().StringP("attributeName", "a", "", "Attribute Name")
-	updateAttribute.MarkFlagRequired("attributeName")
+	_ = updateAttribute.MarkFlagRequired("attributeName")
 	updateAttribute.Flags().StringP("body", "b", "", "Request Body. Example : '{\"name\":\"skin\", \"value\":\"White\"}' ")
-	updateAttribute.MarkFlagRequired("body")
+	_ = updateAttribute.MarkFlagRequired("body")
 }

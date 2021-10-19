@@ -46,6 +46,9 @@ var updateUserSlotCmd = &cobra.Command{
 			UserID:          userId,
 		}
 		slots, err := socialService.PublicUpdateUserNamespaceSlot(input)
+		if err != nil {
+			return err
+		}
 		response, err := json.MarshalIndent(slots, "", "    ")
 		if err != nil {
 			return err
@@ -58,11 +61,11 @@ var updateUserSlotCmd = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(updateUserSlotCmd)
 	updateUserSlotCmd.Flags().StringP("namespace", "n", "", "User namespace")
-	updateUserSlotCmd.MarkFlagRequired("namespace")
+	_ = updateUserSlotCmd.MarkFlagRequired("namespace")
 	updateUserSlotCmd.Flags().StringP("userId", "u", "", "User ID")
-	updateUserSlotCmd.MarkFlagRequired("userId")
+	_ = updateUserSlotCmd.MarkFlagRequired("userId")
 	updateUserSlotCmd.Flags().StringP("slotId", "s", "", "Slot ID")
-	updateUserSlotCmd.MarkFlagRequired("slotId")
+	_ = updateUserSlotCmd.MarkFlagRequired("slotId")
 	updateUserSlotCmd.Flags().StringP("filePath", "f", "", "Uploaded file absolute path. example: /home/user/file.jpg")
-	updateUserSlotCmd.MarkFlagRequired("filePath")
+	_ = updateUserSlotCmd.MarkFlagRequired("filePath")
 }

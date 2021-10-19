@@ -49,5 +49,5 @@ func init() {
 	rootCmd.AddCommand(addRoleMembersCmd)
 	addRoleMembersCmd.Flags().StringP("roleId", "r", "", "Role ID")
 	addRoleMembersCmd.Flags().StringP("members", "m", "", "Role's members. In json format, example: '{\"key1\", \"value1\"}'")
-	addRoleMembersCmd.MarkFlagRequired("members")
+	_ = addRoleMembersCmd.MarkFlagRequired("members")
 }

@@ -41,6 +41,9 @@ var updateStatCmd = &cobra.Command{
 			StatCode:  statCode,
 		}
 		stat, err := socialService.UpdateStat(input)
+		if err != nil {
+			return err
+		}
 		response, err := json.MarshalIndent(stat, "", "    ")
 		if err != nil {
 			return err
@@ -53,8 +56,8 @@ var updateStatCmd = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(updateStatCmd)
 	updateStatCmd.Flags().StringP("namespace", "n", "", "User namespace")
-	updateStatCmd.MarkFlagRequired("namespace")
+	_ = updateStatCmd.MarkFlagRequired("namespace")
 	updateStatCmd.Flags().StringP("statCode", "s", "", "Stat Code")
 	updateStatCmd.Flags().StringP("body", "b", "", "Slot Body. Example `{\"Key1\":\"Value1\",\"Key2\":\"Value2\"}'")
-	updateStatCmd.MarkFlagRequired("body")
+	_ = updateStatCmd.MarkFlagRequired("body")
 }

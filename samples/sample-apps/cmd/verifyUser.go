@@ -38,7 +38,7 @@ var verifyUserCmd = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(verifyUserCmd)
 	verifyUserCmd.Flags().StringP("userId", "u", "", "User ID")
-	verifyUserCmd.MarkFlagRequired("userId")
+	_ = verifyUserCmd.MarkFlagRequired("userId")
 	verifyUserCmd.Flags().StringP("namespace", "", "", "User namespace")
-	verifyUserCmd.MarkFlagRequired("namespace")
+	_ = verifyUserCmd.MarkFlagRequired("namespace")
 }

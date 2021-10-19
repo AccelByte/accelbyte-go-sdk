@@ -39,6 +39,9 @@ var createStatCmd = &cobra.Command{
 			Namespace: namespace,
 		}
 		stat, err := socialService.CreateStat(input)
+		if err != nil {
+			return err
+		}
 		response, err := json.MarshalIndent(stat, "", "    ")
 		if err != nil {
 			return err
@@ -51,7 +54,7 @@ var createStatCmd = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(createStatCmd)
 	createStatCmd.Flags().StringP("namespace", "n", "", "User namespace")
-	createStatCmd.MarkFlagRequired("namespace")
+	_ = createStatCmd.MarkFlagRequired("namespace")
 	createStatCmd.Flags().StringP("body", "b", "", "Slot Body. Example `{\"Key1\":\"Value1\",\"Key2\":\"Value2\"}'")
-	createStatCmd.MarkFlagRequired("body")
+	_ = createStatCmd.MarkFlagRequired("body")
 }

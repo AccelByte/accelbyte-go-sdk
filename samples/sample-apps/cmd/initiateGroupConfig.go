@@ -27,7 +27,7 @@ var initiateGroupConfigCmd = &cobra.Command{
 			Namespace: namespace,
 		}
 		groupConfigService := &group.ConfigurationService{
-			Client:     factory.NewgroupClient(&repository.ConfigRepositoryImpl{}),
+			Client:          factory.NewgroupClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		ok, err := groupConfigService.InitiateGroupConfigurationAdminV1(input)
@@ -47,5 +47,5 @@ var initiateGroupConfigCmd = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(initiateGroupConfigCmd)
 	initiateGroupConfigCmd.Flags().StringP("namespace", "n", "", "Namespace")
-	initiateGroupConfigCmd.MarkFlagRequired("namespace")
+	_ = initiateGroupConfigCmd.MarkFlagRequired("namespace")
 }

@@ -47,9 +47,9 @@ var cloneStoreCmd = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(cloneStoreCmd)
 	cloneStoreCmd.Flags().StringP("namespace", "n", "", "Store namespace")
-	cloneStoreCmd.MarkFlagRequired("namespace")
+	_ = cloneStoreCmd.MarkFlagRequired("namespace")
 	cloneStoreCmd.Flags().StringP("sourceStoreId", "s", "", "Source store UD")
-	cloneStoreCmd.MarkFlagRequired("sourceStoreId")
+	_ = cloneStoreCmd.MarkFlagRequired("sourceStoreId")
 	cloneStoreCmd.Flags().StringP("targetStoreId", "t", "", "Target store ID")
-	cloneStoreCmd.MarkFlagRequired("targetStoreId")
+	_ = cloneStoreCmd.MarkFlagRequired("targetStoreId")
 }

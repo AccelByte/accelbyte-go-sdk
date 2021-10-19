@@ -64,13 +64,13 @@ var createUserSlotCmd = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(createUserSlotCmd)
 	createUserSlotCmd.Flags().StringP("namespace", "n", "", "User namespace")
-	createUserSlotCmd.MarkFlagRequired("namespace")
+	_ = createUserSlotCmd.MarkFlagRequired("namespace")
 	createUserSlotCmd.Flags().StringP("userId", "u", "", "User ID")
-	createUserSlotCmd.MarkFlagRequired("userId")
+	_ = createUserSlotCmd.MarkFlagRequired("userId")
 	createUserSlotCmd.Flags().StringP("checksum", "c", "", "Checksum")
 	createUserSlotCmd.Flags().StringP("customAttribute", "a", "", "Custom Attribute")
 	createUserSlotCmd.Flags().StringP("label", "l", "", "label")
 	createUserSlotCmd.Flags().StringP("tags", "t", "", "Tags.  In json format, example: '{\"key1\", \"value1\"}'")
 	createUserSlotCmd.Flags().StringP("filePath", "f", "", "Uploaded file absolute path. example: /home/user/file.jpg")
-	createUserSlotCmd.MarkFlagRequired("filePath")
+	_ = createUserSlotCmd.MarkFlagRequired("filePath")
 }

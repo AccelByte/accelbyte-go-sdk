@@ -54,9 +54,9 @@ var enableDisableBanCmd = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(enableDisableBanCmd)
 	enableDisableBanCmd.Flags().StringP("namespace", "", "", "User namespace")
-	enableDisableBanCmd.MarkFlagRequired("namespace")
+	_ = enableDisableBanCmd.MarkFlagRequired("namespace")
 	enableDisableBanCmd.Flags().StringP("userId", "u", "", "User ID")
-	enableDisableBanCmd.MarkFlagRequired("userId")
+	_ = enableDisableBanCmd.MarkFlagRequired("userId")
 	enableDisableBanCmd.Flags().StringP("banId", "b", "", "Ban ID")
 	enableDisableBanCmd.Flags().BoolP("enable", "e", true, "enable. Default true.")
 	enableDisableBanCmd.Flags().BoolP("skipNotif", "s", true, "skipNotif. Default true.")

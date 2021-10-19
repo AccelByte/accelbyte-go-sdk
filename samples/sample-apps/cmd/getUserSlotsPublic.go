@@ -33,6 +33,9 @@ var getUserSlotsPublicCmd = &cobra.Command{
 		output := cmd.Flag("outputFilePath").Value.String()
 		logrus.Infof("Output %v", output)
 		file, err := os.Create(output)
+		if err != nil {
+			return err
+		}
 		writer := bytes.NewBuffer(nil)
 		input := &slot.PublicGetSlotDataParams{
 			Namespace: namespace,
@@ -56,11 +59,11 @@ var getUserSlotsPublicCmd = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(getUserSlotsPublicCmd)
 	getUserSlotsPublicCmd.Flags().StringP("namespace", "n", "", "User namespace")
-	getUserSlotsPublicCmd.MarkFlagRequired("namespace")
+	_ = getUserSlotsPublicCmd.MarkFlagRequired("namespace")
 	getUserSlotsPublicCmd.Flags().StringP("userId", "u", "", "User ID")
-	getUserSlotsPublicCmd.MarkFlagRequired("userId")
+	_ = getUserSlotsPublicCmd.MarkFlagRequired("userId")
 	getUserSlotsPublicCmd.Flags().StringP("slotId", "s", "", "Slot ID")
-	getUserSlotsPublicCmd.MarkFlagRequired("slotId")
+	_ = getUserSlotsPublicCmd.MarkFlagRequired("slotId")
 	getUserSlotsPublicCmd.Flags().StringP("outputFilePath", "o", "", "Output file path")
-	getUserSlotsPublicCmd.MarkFlagRequired("outputFilePath")
+	_ = getUserSlotsPublicCmd.MarkFlagRequired("outputFilePath")
 }

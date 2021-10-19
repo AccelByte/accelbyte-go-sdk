@@ -49,10 +49,10 @@ var verifyAdminSendCodeCmd = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(verifyAdminSendCodeCmd)
 	verifyAdminSendCodeCmd.Flags().StringP("namespace", "", "", "User namespace")
-	verifyAdminSendCodeCmd.MarkFlagRequired("namespace")
+	_ = verifyAdminSendCodeCmd.MarkFlagRequired("namespace")
 	verifyAdminSendCodeCmd.Flags().StringP("userId", "u", "", "User ID")
 	verifyAdminSendCodeCmd.Flags().StringP("context", "c", "", "Context can be \"UserAccountRegistration\" or \"UpdateEmailAddress\" or \"upgradeHeadlessAccount\"")
-	verifyAdminSendCodeCmd.MarkFlagRequired("context")
+	_ = verifyAdminSendCodeCmd.MarkFlagRequired("context")
 	verifyAdminSendCodeCmd.Flags().StringP("emailAddress", "e", "", "Email Address")
 	verifyAdminSendCodeCmd.Flags().StringP("languageTag", "l", "", "Language Tag")
 }

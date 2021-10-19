@@ -47,9 +47,9 @@ var deleteCategoryCmd = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(deleteCategoryCmd)
 	deleteCategoryCmd.Flags().StringP("namespace", "n", "", "Store namespace")
-	deleteCategoryCmd.MarkFlagRequired("namespace")
+	_ = deleteCategoryCmd.MarkFlagRequired("namespace")
 	deleteCategoryCmd.Flags().StringP("storeId", "", "", "Store ID")
-	deleteCategoryCmd.MarkFlagRequired("storeId")
+	_ = deleteCategoryCmd.MarkFlagRequired("storeId")
 	deleteCategoryCmd.Flags().StringP("categoryPath", "p", "", "Category path")
-	deleteCategoryCmd.MarkFlagRequired("categoryPath")
+	_ = deleteCategoryCmd.MarkFlagRequired("categoryPath")
 }

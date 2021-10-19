@@ -126,7 +126,6 @@ var messageHandler = func(dataByte []byte) {
 			return
 		}
 		logrus.Infof("Response content %v", string(marshal))
-		break
 	case model.TypeCreateResponse:
 		logrus.Infof("Receive response type %v", model.TypeCreateResponse)
 		unmarshal, err := parser.UnmarshalResponse(dataByte)
@@ -140,7 +139,6 @@ var messageHandler = func(dataByte []byte) {
 			return
 		}
 		logrus.Infof("Response content %v", string(marshal))
-		break
 	case model.TypeLeaveResponse:
 		logrus.Infof("Receive response type %v", model.TypeLeaveResponse)
 		unmarshal, err := parser.UnmarshalResponse(dataByte)
@@ -154,7 +152,6 @@ var messageHandler = func(dataByte []byte) {
 			return
 		}
 		logrus.Infof("Response content %v", string(marshal))
-		break
 	case model.TypeLeaveNotif:
 		logrus.Infof("Receive response type %v", model.TypeLeaveNotif)
 		unmarshal, err := parser.UnmarshalResponse(dataByte)
@@ -168,7 +165,6 @@ var messageHandler = func(dataByte []byte) {
 			return
 		}
 		logrus.Infof("Response content %v", string(marshal))
-		break
 	case model.TypeInviteResponse:
 		logrus.Infof("Receive response type %v", model.TypeInviteResponse)
 		unmarshal, err := parser.UnmarshalResponse(dataByte)
@@ -182,7 +178,6 @@ var messageHandler = func(dataByte []byte) {
 			return
 		}
 		logrus.Infof("Response content %v", string(marshal))
-		break
 	case model.TypeInviteNotif:
 		logrus.Infof("Receive response type %v", model.TypeInviteNotif)
 		unmarshal, err := parser.UnmarshalResponse(dataByte)
@@ -196,7 +191,6 @@ var messageHandler = func(dataByte []byte) {
 			return
 		}
 		logrus.Infof("Response content %v", string(marshal))
-		break
 	case model.TypeGetInvitatedNotif:
 		logrus.Infof("Receive response type %v", model.TypeGetInvitatedNotif)
 		unmarshal, err := parser.UnmarshalResponse(dataByte)
@@ -210,7 +204,6 @@ var messageHandler = func(dataByte []byte) {
 			return
 		}
 		logrus.Infof("Response content %v", string(marshal))
-		break
 	case model.TypeJoinResponse:
 		logrus.Infof("Receive response type %v", model.TypeJoinResponse)
 		unmarshal, err := parser.UnmarshalResponse(dataByte)
@@ -224,7 +217,6 @@ var messageHandler = func(dataByte []byte) {
 			return
 		}
 		logrus.Infof("Response content %v", string(marshal))
-		break
 	case model.TypeJoinNotif:
 		logrus.Infof("Receive response type %v", model.TypeJoinNotif)
 		unmarshal, err := parser.UnmarshalResponse(dataByte)
@@ -238,7 +230,6 @@ var messageHandler = func(dataByte []byte) {
 			return
 		}
 		logrus.Infof("Response content %v", string(marshal))
-		break
 	case model.TypeKickResponse:
 		logrus.Infof("Receive response type %v", model.TypeKickResponse)
 		unmarshal, err := parser.UnmarshalResponse(dataByte)
@@ -252,7 +243,6 @@ var messageHandler = func(dataByte []byte) {
 			return
 		}
 		logrus.Infof("Response content %v", string(marshal))
-		break
 	case model.TypeKickNotice:
 		logrus.Infof("Receive response type %v", model.TypeKickNotice)
 		unmarshal, err := parser.UnmarshalResponse(dataByte)
@@ -266,7 +256,6 @@ var messageHandler = func(dataByte []byte) {
 			return
 		}
 		logrus.Infof("Response content %v", string(marshal))
-		break
 	case model.TypeRejectResponse:
 		logrus.Infof("Receive response type %v", model.TypeRejectResponse)
 		unmarshal, err := parser.UnmarshalResponse(dataByte)
@@ -280,7 +269,6 @@ var messageHandler = func(dataByte []byte) {
 			return
 		}
 		logrus.Infof("Response content %v", string(marshal))
-		break
 	case model.TypeRejectNotif:
 		logrus.Infof("Receive response type %v", model.TypeRejectNotif)
 		unmarshal, err := parser.UnmarshalResponse(dataByte)
@@ -294,7 +282,6 @@ var messageHandler = func(dataByte []byte) {
 			return
 		}
 		logrus.Infof("Response content %v", string(marshal))
-		break
 	case model.TypePromoteLeaderResponse:
 		logrus.Infof("Receive response type %v", model.TypePromoteLeaderResponse)
 		unmarshal, err := parser.UnmarshalResponse(dataByte)
@@ -308,7 +295,6 @@ var messageHandler = func(dataByte []byte) {
 			return
 		}
 		logrus.Infof("Response content %v", string(marshal))
-		break
 	case model.TypePersonalChatResponse:
 		logrus.Infof("Receive response type %v", model.TypePersonalChatResponse)
 		unmarshal, err := parser.UnmarshalResponse(dataByte)
@@ -322,7 +308,6 @@ var messageHandler = func(dataByte []byte) {
 			return
 		}
 		logrus.Infof("Response content %v", string(marshal))
-		break
 	case model.TypePersonalChatNotif:
 		logrus.Infof("Receive response type %v", model.TypePersonalChatNotif)
 		unmarshal, err := parser.UnmarshalResponse(dataByte)
@@ -336,7 +321,6 @@ var messageHandler = func(dataByte []byte) {
 			return
 		}
 		logrus.Infof("Response content %v", string(marshal))
-		break
 	case model.TypePartyChatResponse:
 		logrus.Infof("Receive response type %v", model.TypePartyChatResponse)
 		unmarshal, err := parser.UnmarshalResponse(dataByte)
@@ -350,7 +334,6 @@ var messageHandler = func(dataByte []byte) {
 			return
 		}
 		logrus.Infof("Response content %v", string(marshal))
-		break
 	case model.TypePartyChatNotif:
 		logrus.Infof("Receive response type %v", model.TypePartyChatNotif)
 		unmarshal, err := parser.UnmarshalResponse(dataByte)
@@ -364,7 +347,6 @@ var messageHandler = func(dataByte []byte) {
 			return
 		}
 		logrus.Infof("Response content %v", string(marshal))
-		break
 	case model.TypeGetOfflineNotificationResponse:
 		logrus.Infof("Receive response type %v", model.TypeGetOfflineNotificationResponse)
 		unmarshal, err := parser.UnmarshalResponse(dataByte)
@@ -378,7 +360,6 @@ var messageHandler = func(dataByte []byte) {
 			return
 		}
 		logrus.Infof("Response content %v", string(marshal))
-		break
 	case model.TypeFriendsPresenceResponse:
 		logrus.Infof("Receive response type %v", model.TypeFriendsPresenceResponse)
 		unmarshal, err := parser.UnmarshalResponse(dataByte)
@@ -392,7 +373,6 @@ var messageHandler = func(dataByte []byte) {
 			return
 		}
 		logrus.Infof("Response content %v", string(marshal))
-		break
 	case model.TypeSetUserStatusResponse:
 		logrus.Infof("Receive response type %v", model.TypeSetUserStatusResponse)
 		unmarshal, err := parser.UnmarshalResponse(dataByte)
@@ -406,7 +386,6 @@ var messageHandler = func(dataByte []byte) {
 			return
 		}
 		logrus.Infof("Response content %v", string(marshal))
-		break
 	case model.TypeUserStatusNotif:
 		logrus.Infof("Receive response type %v", model.TypeUserStatusNotif)
 		unmarshal, err := parser.UnmarshalResponse(dataByte)
@@ -420,7 +399,6 @@ var messageHandler = func(dataByte []byte) {
 			return
 		}
 		logrus.Infof("Response content %v", string(marshal))
-		break
 	case model.TypeRequestFriendsResponse:
 		logrus.Infof("Receive response type %v", model.TypeRequestFriendsResponse)
 		unmarshal, err := parser.UnmarshalResponse(dataByte)
@@ -434,7 +412,6 @@ var messageHandler = func(dataByte []byte) {
 			return
 		}
 		logrus.Infof("Response content %v", string(marshal))
-		break
 	case model.TypeRequestFriendsNotif:
 		logrus.Infof("Receive response type %v", model.TypeRequestFriendsNotif)
 		unmarshal, err := parser.UnmarshalResponse(dataByte)
@@ -448,7 +425,6 @@ var messageHandler = func(dataByte []byte) {
 			return
 		}
 		logrus.Infof("Response content %v", string(marshal))
-		break
 	case model.TypeListIncomingFriendsResponse:
 		logrus.Infof("Receive response type %v", model.TypeListIncomingFriendsResponse)
 		unmarshal, err := parser.UnmarshalResponse(dataByte)
@@ -462,7 +438,6 @@ var messageHandler = func(dataByte []byte) {
 			return
 		}
 		logrus.Infof("Response content %v", string(marshal))
-		break
 	case model.TypeListOutgoingFriendsResponse:
 		logrus.Infof("Receive response type %v", model.TypeListOutgoingFriendsResponse)
 		unmarshal, err := parser.UnmarshalResponse(dataByte)
@@ -476,7 +451,6 @@ var messageHandler = func(dataByte []byte) {
 			return
 		}
 		logrus.Infof("Response content %v", string(marshal))
-		break
 	case model.TypeAcceptFriendsResponse:
 		logrus.Infof("Receive response type %v", model.TypeAcceptFriendsResponse)
 		unmarshal, err := parser.UnmarshalResponse(dataByte)
@@ -490,7 +464,6 @@ var messageHandler = func(dataByte []byte) {
 			return
 		}
 		logrus.Infof("Response content %v", string(marshal))
-		break
 	case model.TypeAcceptFriendsNotif:
 		logrus.Infof("Receive response type %v", model.TypeAcceptFriendsNotif)
 		unmarshal, err := parser.UnmarshalResponse(dataByte)
@@ -504,7 +477,6 @@ var messageHandler = func(dataByte []byte) {
 			return
 		}
 		logrus.Infof("Response content %v", string(marshal))
-		break
 	case model.TypeRejectFriendsResponse:
 		logrus.Infof("Receive response type %v", model.TypeRejectFriendsResponse)
 		unmarshal, err := parser.UnmarshalResponse(dataByte)
@@ -518,7 +490,6 @@ var messageHandler = func(dataByte []byte) {
 			return
 		}
 		logrus.Infof("Response content %v", string(marshal))
-		break
 	case model.TypeCancelFriendsResponse:
 		logrus.Infof("Receive response type %v", model.TypeCancelFriendsResponse)
 		unmarshal, err := parser.UnmarshalResponse(dataByte)
@@ -532,7 +503,6 @@ var messageHandler = func(dataByte []byte) {
 			return
 		}
 		logrus.Infof("Response content %v", string(marshal))
-		break
 	case model.TypeUnfriendResponse:
 		logrus.Infof("Receive response type %v", model.TypeUnfriendResponse)
 		unmarshal, err := parser.UnmarshalResponse(dataByte)
@@ -546,7 +516,6 @@ var messageHandler = func(dataByte []byte) {
 			return
 		}
 		logrus.Infof("Response content %v", string(marshal))
-		break
 	case model.TypeUnfriendNotif:
 		logrus.Infof("Receive response type %v", model.TypeUnfriendNotif)
 		unmarshal, err := parser.UnmarshalResponse(dataByte)
@@ -560,7 +529,6 @@ var messageHandler = func(dataByte []byte) {
 			return
 		}
 		logrus.Infof("Response content %v", string(marshal))
-		break
 	case model.TypeListOfFriendsResponse:
 		logrus.Infof("Receive response type %v", model.TypeListOfFriendsResponse)
 		unmarshal, err := parser.UnmarshalResponse(dataByte)
@@ -574,7 +542,6 @@ var messageHandler = func(dataByte []byte) {
 			return
 		}
 		logrus.Infof("Response content %v", string(marshal))
-		break
 	case model.TypeGetFriendshipStatusResponse:
 		logrus.Infof("Receive response type %v", model.TypeGetFriendshipStatusResponse)
 		unmarshal, err := parser.UnmarshalResponse(dataByte)
@@ -588,7 +555,6 @@ var messageHandler = func(dataByte []byte) {
 			return
 		}
 		logrus.Infof("Response content %v", string(marshal))
-		break
 	case model.TypePersonalChatHistoryResponse:
 		logrus.Infof("Receive response type %v", model.TypePersonalChatHistoryResponse)
 		unmarshal, err := parser.UnmarshalResponse(dataByte)
@@ -602,7 +568,6 @@ var messageHandler = func(dataByte []byte) {
 			return
 		}
 		logrus.Infof("Response content %v", string(marshal))
-		break
 	case model.TypeJoinDefaultChannelResponse:
 		logrus.Infof("Receive response type %v", model.TypeJoinDefaultChannelResponse)
 		unmarshal, err := parser.UnmarshalResponse(dataByte)
@@ -616,7 +581,6 @@ var messageHandler = func(dataByte []byte) {
 			return
 		}
 		logrus.Infof("Response content %v", string(marshal))
-		break
 	case model.TypeSendChannelChatResponse:
 		logrus.Infof("Receive response type %v", model.TypeSendChannelChatResponse)
 		unmarshal, err := parser.UnmarshalResponse(dataByte)
@@ -630,7 +594,6 @@ var messageHandler = func(dataByte []byte) {
 			return
 		}
 		logrus.Infof("Response content %v", string(marshal))
-		break
 	case model.TypeChannelChatNotif:
 		logrus.Infof("Receive response type %v", model.TypeChannelChatNotif)
 		unmarshal, err := parser.UnmarshalResponse(dataByte)
@@ -644,7 +607,6 @@ var messageHandler = func(dataByte []byte) {
 			return
 		}
 		logrus.Infof("Response content %v", string(marshal))
-		break
 	case model.TypeBlockPlayerResponse:
 		logrus.Infof("Receive response type %v", model.TypeBlockPlayerResponse)
 		unmarshal, err := parser.UnmarshalResponse(dataByte)
@@ -658,7 +620,6 @@ var messageHandler = func(dataByte []byte) {
 			return
 		}
 		logrus.Infof("Response content %v", string(marshal))
-		break
 	case model.TypeBlockPlayerNotif:
 		logrus.Infof("Receive response type %v", model.TypeBlockPlayerNotif)
 		unmarshal, err := parser.UnmarshalResponse(dataByte)
@@ -672,7 +633,6 @@ var messageHandler = func(dataByte []byte) {
 			return
 		}
 		logrus.Infof("Response content %v", string(marshal))
-		break
 	case model.TypeUnblockPlayerResponse:
 		logrus.Infof("Receive response type %v", model.TypeUnblockPlayerResponse)
 		unmarshal, err := parser.UnmarshalResponse(dataByte)
@@ -686,7 +646,6 @@ var messageHandler = func(dataByte []byte) {
 			return
 		}
 		logrus.Infof("Response content %v", string(marshal))
-		break
 	case model.TypeUnblockPlayerNotif:
 		logrus.Infof("Receive response type %v", model.TypeUnblockPlayerNotif)
 		unmarshal, err := parser.UnmarshalResponse(dataByte)
@@ -700,7 +659,6 @@ var messageHandler = func(dataByte []byte) {
 			return
 		}
 		logrus.Infof("Response content %v", string(marshal))
-		break
 	}
 }
 
@@ -722,7 +680,6 @@ Commands:
 %s: Party Chat
 
 # Presence
-%s: Get online friends
 %s: Get offline notifications
 %s: Get Friends Status
 %s: Set User Status
@@ -790,21 +747,18 @@ func serve() {
 				logrus.Error(err)
 				return
 			}
-			break
 		case createCmd:
 			err := partyService.CreateParty()
 			if err != nil {
 				logrus.Error(err)
 				return
 			}
-			break
 		case leaveCmd:
 			err := partyService.LeaveParty()
 			if err != nil {
 				logrus.Error(err)
 				return
 			}
-			break
 		case inviteCmd:
 			fmt.Println("Friend ID:")
 			friendID := getInput()
@@ -814,7 +768,6 @@ func serve() {
 				logrus.Error(err)
 				return
 			}
-			break
 		case joinCmd:
 			fmt.Println("Party ID:")
 			partyID := getInput()
@@ -826,7 +779,6 @@ func serve() {
 				logrus.Error(err)
 				return
 			}
-			break
 		case kickCmd:
 			fmt.Println("Member ID:")
 			id := getInput()
@@ -836,7 +788,6 @@ func serve() {
 				logrus.Error(err)
 				return
 			}
-			break
 		case rejectCmd:
 			fmt.Println("Party ID:")
 			partyID := getInput()
@@ -848,7 +799,6 @@ func serve() {
 				logrus.Error(err)
 				return
 			}
-			break
 		case promoteLeaderCmd:
 			fmt.Println("New leader User ID:")
 			leaderUserID := getInput()
@@ -858,7 +808,6 @@ func serve() {
 				logrus.Error(err)
 				return
 			}
-			break
 		case chatCmd:
 			fmt.Println("Friend ID:")
 			friendID := getInput()
@@ -868,7 +817,6 @@ func serve() {
 			if err != nil {
 				logrus.Error(err)
 			}
-			break
 		case partyChatCmd:
 			fmt.Println("Message:")
 			content := getInput()
@@ -876,25 +824,21 @@ func serve() {
 			if err != nil {
 				logrus.Error(err)
 			}
-			break
 		case joinDefaultChatChannelCmd:
 			err := chatService.JoinDefaultChannel()
 			if err != nil {
 				logrus.Error(err)
 			}
-			break
 		case getOfflineNotificationCmd:
 			err := notificationService.GetOfflineNotification()
 			if err != nil {
 				logrus.Error(err)
 			}
-			break
 		case getFriendsCmd:
 			err := friendService.GetFriendPresenceStatus()
 			if err != nil {
 				logrus.Error(err)
 			}
-			break
 		case setUserStatusCmd:
 			fmt.Println("Availability:")
 			availability := getInput()
@@ -909,7 +853,6 @@ func serve() {
 			if err != nil {
 				logrus.Error(err)
 			}
-			break
 		case requestFriendsCmd:
 			fmt.Println("Friend ID:")
 			friendID := getInput()
@@ -917,19 +860,16 @@ func serve() {
 			if err != nil {
 				logrus.Error(err)
 			}
-			break
 		case listIncomingFriendsCmd:
 			err := friendService.GetIncomingFriendRequest()
 			if err != nil {
 				logrus.Error(err)
 			}
-			break
 		case listOutgoingFriendsCmd:
 			err := friendService.GetOutgoingFriendRequest()
 			if err != nil {
 				logrus.Error(err)
 			}
-			break
 		case acceptFriendsCmd:
 			fmt.Println("Friend ID:")
 			friendID := getInput()
@@ -937,7 +877,6 @@ func serve() {
 			if err != nil {
 				logrus.Error(err)
 			}
-			break
 		case rejectFriendsCmd:
 			fmt.Println("Friend ID:")
 			friendID := getInput()
@@ -945,7 +884,6 @@ func serve() {
 			if err != nil {
 				logrus.Error(err)
 			}
-			break
 		case cancelFriendsRequestCmd:
 			fmt.Println("Friend ID:")
 			friendID := getInput()
@@ -953,7 +891,6 @@ func serve() {
 			if err != nil {
 				logrus.Error(err)
 			}
-			break
 		case unfriendCmd:
 			fmt.Println("Friend ID:")
 			friendID := getInput()
@@ -961,13 +898,11 @@ func serve() {
 			if err != nil {
 				logrus.Error(err)
 			}
-			break
 		case listOfFriendsCmd:
 			err := friendService.GetFriends()
 			if err != nil {
 				logrus.Error(err)
 			}
-			break
 		case getFriendshipStatusCmd:
 			fmt.Println("Friend ID:")
 			friendID := getInput()
@@ -975,7 +910,6 @@ func serve() {
 			if err != nil {
 				logrus.Error(err)
 			}
-			break
 		case personalChatHistoryCmd:
 			fmt.Println("Friend ID:")
 			friendID := getInput()
@@ -983,7 +917,6 @@ func serve() {
 			if err != nil {
 				logrus.Error(err)
 			}
-			break
 		case sendChatChannelCmd:
 			fmt.Println("Channel Slug:")
 			channelSlug := getInput()
@@ -993,7 +926,6 @@ func serve() {
 			if err != nil {
 				logrus.Error(err)
 			}
-			break
 		case blockCmd:
 			fmt.Println("Namespace:")
 			namespace := getInput()
@@ -1005,7 +937,6 @@ func serve() {
 			if err != nil {
 				logrus.Error(err)
 			}
-			break
 		case unblockCmd:
 			fmt.Println("Namespace:")
 			namespace := getInput()
@@ -1017,7 +948,6 @@ func serve() {
 			if err != nil {
 				logrus.Error(err)
 			}
-			break
 		case quitCmd:
 			logrus.Print("disconnect message: ")
 			msg := getInput()

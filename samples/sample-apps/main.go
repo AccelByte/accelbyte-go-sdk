@@ -438,22 +438,3 @@ func getInput() string {
 	text = strings.Replace(text, "\r", "", -1)
 	return text
 }
-
-func decodeWSMessage(msg string) map[string]string {
-	scanner := bufio.NewScanner(strings.NewReader(msg))
-	res := make(map[string]string)
-
-	for scanner.Scan() {
-		str := scanner.Text()
-		keyValue := strings.Split(str, ": ")
-		if len(keyValue) == 2 {
-			res[keyValue[0]] = keyValue[1]
-		}
-	}
-
-	if err := scanner.Err(); err != nil {
-		logrus.Errorf("error reading websocket message: %v", err)
-	}
-
-	return res
-}

@@ -54,7 +54,7 @@ pipeline {
         }
         stage('Lint Source Code') {
           steps {
-            sh "make lint || true"    // FIXME Enable later after lint error is fixed
+            sh "make lint"
           }
         }
         stage('Lint Mod Outdated') {

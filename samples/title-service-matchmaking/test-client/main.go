@@ -106,7 +106,7 @@ func userInfo() {
 User Token: %s
 User ID: %s
 Namespace: %s
-Permissions: %q
+Permissions: %v
 Display Name: %s
 `,
 		*token.AccessToken,
@@ -163,6 +163,9 @@ func createMatchmaking() {
 
 	// send request to custom MM service via AWS API Gateway
 	token, err := oauthService.TokenRepository.GetToken()
+	if err != nil {
+		return
+	}
 	client := utils.GetClient()
 	req, err := http.NewRequest("POST", matchmakingServiceURL, nil)
 	if err != nil {
@@ -224,7 +227,7 @@ var lobbyMessageHandler = func(dataByte []byte) {
 			logrus.Error(err)
 		}
 		logrus.Infof("Response content %v", string(marshal))
-		break
+		return
 	}
 }
 

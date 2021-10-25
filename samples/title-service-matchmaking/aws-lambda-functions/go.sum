@@ -9,8 +9,8 @@ github.com/AccelByte/go-jose v2.1.4+incompatible/go.mod h1:X9vkgMrcPILJ7qhUruCaK
 github.com/AccelByte/go-restful-plugins/v3 v3.2.1/go.mod h1:XkhxnbfR/0z5lj2xI2SVbSuF5PhCi39xVYmVODwFf7k=
 github.com/AccelByte/go-restful-plugins/v3 v3.2.2 h1:ToyjfA3bir1IWfEXc4Uqgj9tOlEyd9DyRWqfhLshfsc=
 github.com/AccelByte/go-restful-plugins/v3 v3.2.2/go.mod h1:XkhxnbfR/0z5lj2xI2SVbSuF5PhCi39xVYmVODwFf7k=
-github.com/AccelByte/go-restful-plugins/v4 v4.4.0 h1:1UQX7C/SxfUQ7eE1jLWTJ+kTaTSxWbKKXqZaoP5eKus=
-github.com/AccelByte/go-restful-plugins/v4 v4.4.0/go.mod h1:6XCO+jEQWLSedCe5JyKhWw6aBfVulYqTAHmN99pwKVg=
+github.com/AccelByte/go-restful-plugins/v4 v4.4.1 h1:M+MtD7u19JozFCqG2UF6rPEnDSlxkPpUwcjfK0dWd1A=
+github.com/AccelByte/go-restful-plugins/v4 v4.4.1/go.mod h1:6XCO+jEQWLSedCe5JyKhWw6aBfVulYqTAHmN99pwKVg=
 github.com/AccelByte/iam-go-sdk v1.1.2/go.mod h1:M1Eplqpph/Msxm7XKgZRI+cYBCCChFdgPiVdKYupwq8=
 github.com/AccelByte/iam-go-sdk v1.6.1-0.20210405044005-78e2f7c47c45/go.mod h1:/+V6I1hNzib2IGZ9IGaKOa/zBIIKrG4Hnk/q96W74kU=
 github.com/AccelByte/iam-go-sdk v1.7.0 h1:JUTMRghKbS7MMOnqujkd2Wp2PUiNnZKHS6u1hSaeCAo=

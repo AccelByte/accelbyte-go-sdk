@@ -7,3 +7,5 @@ require (
 	github.com/aws/aws-lambda-go v1.25.0
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 )
+
+exclude github.com/AccelByte/accelbyte-go-sdk v1.0.0

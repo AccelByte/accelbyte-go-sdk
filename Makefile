@@ -18,7 +18,7 @@ lint-mod-outdated:
 	find -type f -iname go.mod -exec dirname {} \; | while read DIRECTORY; do \
 		echo "$$DIRECTORY"; \
 		docker run -t --rm -u $$(id -u):$$(id -g) -v $$(pwd):/data/ -w /data/ -e GOCACHE=/tmp/.cache golang:1.15-alpine \
-				sh -c "cd $$DIRECTORY && go list -u -m -json all 2>/dev/null" \
+				sh -c "cd $$DIRECTORY && go list -u -m -json all 2>/dev/null -D gomodirectives" \
 				| docker run -i --rm psampaz/go-mod-outdated:v0.7.0 -update -direct \
 				| grep "github.com/AccelByte" && touch lint-mod-outdated.err || true; \
 	done

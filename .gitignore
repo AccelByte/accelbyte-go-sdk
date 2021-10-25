@@ -187,3 +187,10 @@ modules.xml
 
 # Sonarlint plugin
 .idea/sonarlint
+
+# build file from command `samples` in Makefile
+/samples/title-service-matchmaking/aws-lambda-functions/aws-lambda-functions
+/samples/aws-lambda-functions/createUserStats/main
+/samples/aws-lambda-functions/getUserStats/main
+/samples/sample-apps/sample-apps
+/samples/title-service-matchmaking/test-client/sample-apps

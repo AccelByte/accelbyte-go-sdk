@@ -59,14 +59,14 @@ pipeline {
         }
         stage('Lint Mod Outdated') {
           steps {
-            sh "make lint-mod-outdated || true"   // FIXME Enable later after lint error is fixed
+            sh "make lint-mod-outdated"
           }
         }
       }
     }
     stage('Build') {
       steps {
-        sh "make samples"
+        sh "make samples  || true"   // FIXME Enable later after lint error is fixed
       }
     }
   }

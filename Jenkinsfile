@@ -66,7 +66,7 @@ pipeline {
     }
     stage('Build') {
       steps {
-        sh "make samples  || true"   // FIXME Enable later after lint error is fixed
+        sh "make samples"
       }
     }
   }

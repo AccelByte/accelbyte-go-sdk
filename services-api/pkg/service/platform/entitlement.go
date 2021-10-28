@@ -195,7 +195,7 @@ func (e *EntitlementService) UpdateUserEntitlement(input *entitlement.UpdateUser
 	return userEntitlement.GetPayload(), nil
 }
 
-func (e *EntitlementService) GetUserEntitlementOwnershipBySku(input *entitlement.GetUserEntitlementOwnershipBySkuParams) (*platformclientmodels.Ownership, error) {
+func (e *EntitlementService) GetUserEntitlementOwnershipBySku(input *entitlement.GetUserEntitlementOwnershipBySkuParams) (*platformclientmodels.TimedOwnership, error) {
 	accessToken, err := e.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
@@ -449,7 +449,7 @@ func (e *EntitlementService) PublicGetMyAppEntitlementOwnershipByAppID(input *en
 	return ownershipByAppID.GetPayload(), nil
 }
 
-func (e *EntitlementService) PublicGetMyEntitlementOwnershipBySku(input *entitlement.PublicGetMyEntitlementOwnershipBySkuParams) (*platformclientmodels.Ownership, error) {
+func (e *EntitlementService) PublicGetMyEntitlementOwnershipBySku(input *entitlement.PublicGetMyEntitlementOwnershipBySkuParams) (*platformclientmodels.TimedOwnership, error) {
 	accessToken, err := e.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
@@ -555,7 +555,7 @@ func (e *EntitlementService) PublicDeleteUserDistributionReceiver(input *entitle
 	return nil
 }
 
-func (e *EntitlementService) PublicGetUserEntitlementOwnershipBySku(input *entitlement.PublicGetUserEntitlementOwnershipBySkuParams) (*platformclientmodels.Ownership, error) {
+func (e *EntitlementService) PublicGetUserEntitlementOwnershipBySku(input *entitlement.PublicGetUserEntitlementOwnershipBySkuParams) (*platformclientmodels.TimedOwnership, error) {
 	accessToken, err := e.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)

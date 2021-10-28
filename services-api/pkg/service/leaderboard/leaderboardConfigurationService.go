@@ -124,39 +124,6 @@ func (l *LeaderboardConfigurationService) CreateLeaderboardConfigurationPublicV1
 	return ok.GetPayload(), nil
 }
 
-func (l *LeaderboardConfigurationService) DeleteBulkLeaderboardsV1(input *leaderboard_configuration.DeleteBulkLeaderboardsV1Params) (*leaderboardclientmodels.ModelsDeleteBulkLeaderboardsResp, error) {
-	token, err := l.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, badRequest, unauthorized, forbidden, internalServerError, err := l.Client.LeaderboardConfiguration.DeleteBulkLeaderboardsV1(input, client.BearerToken(*token.AccessToken))
-	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, badRequest
-	}
-	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, unauthorized
-	}
-	if forbidden != nil {
-		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, forbidden
-	}
-	if internalServerError != nil {
-		errorMsg, _ := json.Marshal(*internalServerError.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, internalServerError
-	}
-	if err != nil {
-		logrus.Error(err)
-		return nil, err
-	}
-	return ok.GetPayload(), nil
-}
-
 func (l *LeaderboardConfigurationService) DeleteLeaderboardConfigurationAdminV1(input *leaderboard_configuration.DeleteLeaderboardConfigurationAdminV1Params) error {
 	token, err := l.TokenRepository.GetToken()
 	if err != nil {

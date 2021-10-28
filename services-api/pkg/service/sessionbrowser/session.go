@@ -52,11 +52,16 @@ func (b *SessionService) CreateSession(input *sessionBrowser.CreateSessionParams
 		logrus.Error(err)
 		return nil, err
 	}
-	ok, badRequest, conflict, internalServer, err := b.Client.Session.CreateSession(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, forbidden, conflict, internalServer, err := b.Client.Session.CreateSession(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
 		return nil, badRequest
+	}
+	if forbidden != nil {
+		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
+		logrus.Error(string(errorMsg))
+		return nil, forbidden
 	}
 	if conflict != nil {
 		errorMsg, _ := json.Marshal(*conflict.GetPayload())
@@ -377,11 +382,16 @@ func (b *SessionService) JoinSession(input *sessionBrowser.JoinSessionParams) (*
 		logrus.Error(err)
 		return nil, err
 	}
-	ok, badRequest, notFound, internalServer, err := b.Client.Session.JoinSession(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, forbidden, notFound, internalServer, err := b.Client.Session.JoinSession(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
 		return nil, badRequest
+	}
+	if forbidden != nil {
+		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
+		logrus.Error(string(errorMsg))
+		return nil, forbidden
 	}
 	if notFound != nil {
 		errorMsg, _ := json.Marshal(*notFound.GetPayload())

@@ -20,33 +20,33 @@ type AdminContentService struct {
 }
 
 // AdminDeleteContent deletes content
-func (a *AdminContentService) AdminDeleteContent(input *nr_admin_content.AdminDeleteContentParams) (*ugcclientmodels.ModelsCreateContentResponse, error) {
+func (a *AdminContentService) AdminDeleteContent(input *nr_admin_content.AdminDeleteContentParams) error {
 	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
-		return nil, err
+		return err
 	}
-	created, unauthorized, notFound, internalServer, err := a.Client.NrAdminContent.AdminDeleteContent(input, client.BearerToken(*token.AccessToken))
+	_, unauthorized, notFound, internalServer, err := a.Client.NrAdminContent.AdminDeleteContent(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
-		return nil, unauthorized
+		return unauthorized
 	}
 	if notFound != nil {
 		errorMsg, _ := json.Marshal(*notFound.GetPayload())
 		logrus.Error(string(errorMsg))
-		return nil, notFound
+		return notFound
 	}
 	if internalServer != nil {
 		errorMsg, _ := json.Marshal(*internalServer.GetPayload())
 		logrus.Error(string(errorMsg))
-		return nil, internalServer
+		return internalServer
 	}
 	if err != nil {
 		logrus.Error(err)
-		return nil, err
+		return err
 	}
-	return created.GetPayload(), nil
+	return nil
 }
 
 // AdminDownloadContentPreview gets content preview
@@ -360,33 +360,33 @@ func (a *AdminContentService) AdminUploadContentS3(input *nr_admin_content.Admin
 }
 
 // SingleAdminDeleteContent deletes content
-func (a *AdminContentService) SingleAdminDeleteContent(input *nr_admin_content.SingleAdminDeleteContentParams) (*ugcclientmodels.ModelsCreateContentResponse, error) {
+func (a *AdminContentService) SingleAdminDeleteContent(input *nr_admin_content.SingleAdminDeleteContentParams) error {
 	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
-		return nil, err
+		return err
 	}
-	created, unauthorized, notFound, internalServer, err := a.Client.NrAdminContent.SingleAdminDeleteContent(input, client.BearerToken(*token.AccessToken))
+	_, unauthorized, notFound, internalServer, err := a.Client.NrAdminContent.SingleAdminDeleteContent(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
-		return nil, unauthorized
+		return unauthorized
 	}
 	if notFound != nil {
 		errorMsg, _ := json.Marshal(*notFound.GetPayload())
 		logrus.Error(string(errorMsg))
-		return nil, notFound
+		return notFound
 	}
 	if internalServer != nil {
 		errorMsg, _ := json.Marshal(*internalServer.GetPayload())
 		logrus.Error(string(errorMsg))
-		return nil, internalServer
+		return internalServer
 	}
 	if err != nil {
 		logrus.Error(err)
-		return nil, err
+		return err
 	}
-	return created.GetPayload(), nil
+	return nil
 }
 
 // SingleAdminGetContent gets user's generated contents

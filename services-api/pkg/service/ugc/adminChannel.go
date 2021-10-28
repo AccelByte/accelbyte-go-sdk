@@ -50,33 +50,33 @@ func (u *AdminChannelService) AdminCreateChannel(input *nr_admin_channel.AdminCr
 }
 
 // AdminDeleteChannel deletes channel
-func (u *AdminChannelService) AdminDeleteChannel(input *nr_admin_channel.AdminDeleteChannelParams) (*ugcclientmodels.ModelsChannelResponse, error) {
+func (u *AdminChannelService) AdminDeleteChannel(input *nr_admin_channel.AdminDeleteChannelParams) error {
 	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
-		return nil, err
+		return err
 	}
-	ok, unauthorized, notFound, internalServer, err := u.Client.NrAdminChannel.AdminDeleteChannel(input, client.BearerToken(*token.AccessToken))
+	_, unauthorized, notFound, internalServer, err := u.Client.NrAdminChannel.AdminDeleteChannel(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
-		return nil, unauthorized
+		return unauthorized
 	}
 	if notFound != nil {
 		errorMsg, _ := json.Marshal(*notFound.GetPayload())
 		logrus.Error(string(errorMsg))
-		return nil, notFound
+		return notFound
 	}
 	if internalServer != nil {
 		errorMsg, _ := json.Marshal(*internalServer.GetPayload())
 		logrus.Error(string(errorMsg))
-		return nil, internalServer
+		return internalServer
 	}
 	if err != nil {
 		logrus.Error(err)
-		return nil, err
+		return err
 	}
-	return ok.GetPayload(), nil
+	return nil
 }
 
 // AdminGetChannel gets channels
@@ -145,33 +145,33 @@ func (u *AdminChannelService) AdminUpdateChannel(input *nr_admin_channel.AdminUp
 }
 
 // SingleAdminDeleteChannel deletes channel
-func (u *AdminChannelService) SingleAdminDeleteChannel(input *nr_admin_channel.SingleAdminDeleteChannelParams) (*ugcclientmodels.ModelsChannelResponse, error) {
+func (u *AdminChannelService) SingleAdminDeleteChannel(input *nr_admin_channel.SingleAdminDeleteChannelParams) error {
 	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
-		return nil, err
+		return err
 	}
-	ok, unauthorized, notFound, internalServer, err := u.Client.NrAdminChannel.SingleAdminDeleteChannel(input, client.BearerToken(*token.AccessToken))
+	_, unauthorized, notFound, internalServer, err := u.Client.NrAdminChannel.SingleAdminDeleteChannel(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
-		return nil, unauthorized
+		return unauthorized
 	}
 	if notFound != nil {
 		errorMsg, _ := json.Marshal(*notFound.GetPayload())
 		logrus.Error(string(errorMsg))
-		return nil, notFound
+		return notFound
 	}
 	if internalServer != nil {
 		errorMsg, _ := json.Marshal(*internalServer.GetPayload())
 		logrus.Error(string(errorMsg))
-		return nil, internalServer
+		return internalServer
 	}
 	if err != nil {
 		logrus.Error(err)
-		return nil, err
+		return err
 	}
-	return ok.GetPayload(), nil
+	return nil
 }
 
 // SingleAdminGetChannel gets channel

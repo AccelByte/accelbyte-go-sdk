@@ -43,7 +43,7 @@ var fulfillItemCmd = &cobra.Command{
 		}
 
 		request := &platformclientmodels.FulfillmentRequest{
-			ItemID:   &itemId,
+			ItemID:   itemId,
 			Quantity: &quantity,
 		}
 		input := &fulfillment.FulfillItemParams{

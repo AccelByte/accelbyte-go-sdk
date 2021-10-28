@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "description": "Justice Platform Service",
-    "version": "3.34.0",
+    "version": "3.36.0",
     "title": "justice-platform-service",
     "contact": {
       "name": "Engineering Team at AccelByte",
@@ -41,6 +41,9 @@
     },
     {
       "name": "Fulfillment"
+    },
+    {
+      "name": "FulfillmentScript"
     },
     {
       "name": "IAP"
@@ -5986,7 +5989,8 @@
               "ENTITLEMENT",
               "DISTRIBUTION",
               "CODE",
-              "SUBSCRIPTION"
+              "SUBSCRIPTION",
+              "MEDIA"
             ]
           },
           {
@@ -6258,7 +6262,8 @@
               "ENTITLEMENT",
               "DISTRIBUTION",
               "CODE",
-              "SUBSCRIPTION"
+              "SUBSCRIPTION",
+              "MEDIA"
             ]
           },
           {
@@ -6328,7 +6333,8 @@
               "ENTITLEMENT",
               "DISTRIBUTION",
               "CODE",
-              "SUBSCRIPTION"
+              "SUBSCRIPTION",
+              "MEDIA"
             ]
           },
           {
@@ -6697,7 +6703,8 @@
               "ENTITLEMENT",
               "DISTRIBUTION",
               "CODE",
-              "SUBSCRIPTION"
+              "SUBSCRIPTION",
+              "MEDIA"
             ]
           }
         ],
@@ -6705,7 +6712,7 @@
           "200": {
             "description": "successful operation",
             "schema": {
-              "$ref": "#/definitions/Ownership"
+              "$ref": "#/definitions/TimedOwnership"
             }
           }
         },
@@ -6900,6 +6907,70 @@
         }
       }
     },
+    "/admin/namespaces/{namespace}/users/{userId}/entitlements/ownership/byItemId": {
+      "get": {
+        "tags": [
+          "Entitlement"
+        ],
+        "summary": "Get user entitlement ownership by itemId",
+        "description": "Get user entitlement ownership by itemId.<p>Other detail info: <ul><li><i>Required permission</i>: resource=\"ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT\", action=2 (READ)</li></ul>",
+        "operationId": "getUserEntitlementOwnershipByItemId",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "itemId",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "entitlementClazz",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "APP",
+              "ENTITLEMENT",
+              "DISTRIBUTION",
+              "CODE",
+              "SUBSCRIPTION",
+              "MEDIA"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/TimedOwnership"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "x-authorization": {
+          "resource": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT",
+          "action": "2"
+        }
+      }
+    },
     "/admin/namespaces/{namespace}/users/{userId}/entitlements/byAppId": {
       "get": {
         "tags": [
@@ -7075,6 +7146,83 @@
         }
       }
     },
+    "/admin/namespaces/{namespace}/users/{userId}/entitlements/byItemId": {
+      "get": {
+        "tags": [
+          "Entitlement"
+        ],
+        "summary": "Get user entitlement by itemId",
+        "description": "Get user entitlement by itemId.<p>Other detail info: <ul><li><i>Required permission</i>: resource=\"ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT\", action=2 (READ)</li></ul>",
+        "operationId": "getUserEntitlementByItemId",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "itemId",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "entitlementClazz",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "APP",
+              "ENTITLEMENT",
+              "DISTRIBUTION",
+              "CODE",
+              "SUBSCRIPTION",
+              "MEDIA"
+            ]
+          },
+          {
+            "name": "activeOnly",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "default": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/EntitlementInfo"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>31144</td><td>Entitlement with itemId [{itemId}] does not exist in namespace [{namespace}]</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "x-authorization": {
+          "resource": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT",
+          "action": "2"
+        }
+      }
+    },
     "/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/decrement": {
       "put": {
         "tags": [
@@ -7190,7 +7338,7 @@
             }
           },
           "409": {
-            "description": "<table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>31171</td><td>Entitlement [{entitlementId}] already revoked</td></tr><tr><td>31174</td><td>Entitlement [{entitlementId}] already consumed</td></tr><tr><td>31175</td><td>Entitlement [{entitlementId}] already distributed</td></tr><tr><td>31177</td><td>Permanent item already owned</td></tr><tr><td>20006</td><td>optimistic lock</td></tr></table>",
+            "description": "<table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>31171</td><td>Entitlement [{entitlementId}] already revoked</td></tr><tr><td>31174</td><td>Entitlement [{entitlementId}] already consumed</td></tr><tr><td>31175</td><td>Entitlement [{entitlementId}] already distributed</td></tr><tr><td>31177</td><td>Permanent item already owned</td></tr><tr><td>31179</td><td>Duplicate entitlement exists</td></tr><tr><td>20006</td><td>optimistic lock</td></tr></table>",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -7616,7 +7764,8 @@
               "ENTITLEMENT",
               "DISTRIBUTION",
               "CODE",
-              "SUBSCRIPTION"
+              "SUBSCRIPTION",
+              "MEDIA"
             ]
           }
         ],
@@ -7624,7 +7773,65 @@
           "200": {
             "description": "successful operation",
             "schema": {
-              "$ref": "#/definitions/Ownership"
+              "$ref": "#/definitions/TimedOwnership"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "x-authorization": {
+          "resource": "NAMESPACE:{namespace}:ENTITLEMENT",
+          "action": "2"
+        }
+      }
+    },
+    "/public/namespaces/{namespace}/users/me/entitlements/ownership/byItemId": {
+      "get": {
+        "tags": [
+          "Entitlement"
+        ],
+        "summary": "Get my entitlement ownership by itemId",
+        "description": "Get my entitlement ownership by itemId.<p>Other detail info: <ul><li><i>Required permission</i>: resource=\"NAMESPACE:{namespace}:ENTITLEMENT\", action=2 (READ)</li><li><i>Path's namespace</i> : <ul><li>can be filled with <b>publisher namespace</b> in order to get <b>publisher namespace entitlement ownership by sku</b></li><li>can be filled with <b>game namespace</b> in order to get <b>game namespace entitlement ownership by sku</b></li></ul></li></ul>",
+        "operationId": "publicGetMyEntitlementOwnershipByItemId",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "itemId",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "entitlementClazz",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "APP",
+              "ENTITLEMENT",
+              "DISTRIBUTION",
+              "CODE",
+              "SUBSCRIPTION",
+              "MEDIA"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/TimedOwnership"
             }
           }
         },
@@ -7767,62 +7974,6 @@
             "description": "successful operation",
             "schema": {
               "$ref": "#/definitions/Ownership"
-            }
-          }
-        },
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
-        "x-authorization": {
-          "resource": "NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT",
-          "action": "2"
-        }
-      }
-    },
-    "/public/namespaces/{namespace}/users/{userId}/entitlements/byAppId": {
-      "get": {
-        "tags": [
-          "Entitlement"
-        ],
-        "summary": "Get user app entitlement by appId",
-        "description": "Get user app entitlement by appId.<p>Other detail info: <ul><li><i>Required permission</i>: resource=\"NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT\", action=2 (READ)</li></ul>",
-        "operationId": "publicGetUserAppEntitlementByAppId",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "namespace",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "userId",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "appId",
-            "in": "query",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "$ref": "#/definitions/AppEntitlementInfo"
-            }
-          },
-          "404": {
-            "description": "<table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>31142</td><td>Entitlement with appId [{appId}] does not exist in namespace [{namespace}]</td></tr></table>",
-            "schema": {
-              "$ref": "#/definitions/ErrorEntity"
             }
           }
         },
@@ -8057,7 +8208,8 @@
               "ENTITLEMENT",
               "DISTRIBUTION",
               "CODE",
-              "SUBSCRIPTION"
+              "SUBSCRIPTION",
+              "MEDIA"
             ]
           }
         ],
@@ -8065,7 +8217,7 @@
           "200": {
             "description": "successful operation",
             "schema": {
-              "$ref": "#/definitions/Ownership"
+              "$ref": "#/definitions/TimedOwnership"
             }
           }
         },
@@ -8114,7 +8266,8 @@
               "ENTITLEMENT",
               "DISTRIBUTION",
               "CODE",
-              "SUBSCRIPTION"
+              "SUBSCRIPTION",
+              "MEDIA"
             ]
           },
           {
@@ -8287,6 +8440,338 @@
         }
       }
     },
+    "/public/namespaces/{namespace}/users/{userId}/entitlements/byAppType": {
+      "get": {
+        "tags": [
+          "Entitlement"
+        ],
+        "summary": "Query app entitlements by appType",
+        "description": "Query app entitlements by appType.<p>Other detail info: <ul><li><i>Required permission</i>: resource=\"NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT\", action=2 (READ)</li><li><i>Returns</i>: app entitlement pagination</li></ul>",
+        "operationId": "publicQueryUserEntitlementsByAppType",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "appType",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "GAME",
+              "SOFTWARE",
+              "DLC",
+              "DEMO"
+            ]
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "default": 0,
+            "format": "int32"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "default": 20,
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/AppEntitlementPagingSlicedResult"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "x-authorization": {
+          "resource": "NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT",
+          "action": "2"
+        }
+      }
+    },
+    "/public/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/decrement": {
+      "put": {
+        "tags": [
+          "Entitlement"
+        ],
+        "summary": "Consume user entitlement",
+        "description": "Consume user entitlement. If the entitlement useCount is 0, the status will be CONSUMED.<br>Other detail info: <ul><li><i>Required permission</i>: resource=\"NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT\", action=4 (UPDATE)</li><li><i>Returns</i>: consumed entitlement</li></ul>",
+        "operationId": "publicConsumeUserEntitlement",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "entitlementId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/EntitlementDecrement"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/EntitlementInfo"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>31141</td><td>Entitlement [{entitlementId}] does not exist in namespace [{namespace}]</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "409": {
+            "description": "<table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>31171</td><td>Entitlement [{entitlementId}] already revoked</td></tr><tr><td>31172</td><td>Entitlement [{entitlementId}] not active</td></tr><tr><td>31173</td><td>Entitlement [{entitlementId}] is not consumable</td></tr><tr><td>31174</td><td>Entitlement [{entitlementId}] already consumed</td></tr><tr><td>31176</td><td>Entitlement [{entitlementId}] use count is insufficient</td></tr><tr><td>31178</td><td>Entitlement [{entitlementId}] out of time range</td></tr><tr><td>20006</td><td>optimistic lock</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "x-authorization": {
+          "resource": "NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT",
+          "action": "4"
+        }
+      }
+    },
+    "/public/namespaces/{namespace}/users/{userId}/entitlements/ownership/byItemId": {
+      "get": {
+        "tags": [
+          "Entitlement"
+        ],
+        "summary": "Get user entitlement ownership by itemId",
+        "description": "Get user entitlement ownership by itemId.<p>Other detail info: <ul><li><i>Required permission</i>: resource=\"NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT\", action=2 (READ)</li></ul>",
+        "operationId": "publicGetUserEntitlementOwnershipByItemId",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "itemId",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "entitlementClazz",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "APP",
+              "ENTITLEMENT",
+              "DISTRIBUTION",
+              "CODE",
+              "SUBSCRIPTION",
+              "MEDIA"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/TimedOwnership"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "x-authorization": {
+          "resource": "NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT",
+          "action": "2"
+        }
+      }
+    },
+    "/public/namespaces/{namespace}/users/{userId}/entitlements/byAppId": {
+      "get": {
+        "tags": [
+          "Entitlement"
+        ],
+        "summary": "Get user app entitlement by appId",
+        "description": "Get user app entitlement by appId.<p>Other detail info: <ul><li><i>Required permission</i>: resource=\"NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT\", action=2 (READ)</li></ul>",
+        "operationId": "publicGetUserAppEntitlementByAppId",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "appId",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/AppEntitlementInfo"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>31142</td><td>Entitlement with appId [{appId}] does not exist in namespace [{namespace}]</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "x-authorization": {
+          "resource": "NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT",
+          "action": "2"
+        }
+      }
+    },
+    "/public/namespaces/{namespace}/users/{userId}/entitlements/byItemId": {
+      "get": {
+        "tags": [
+          "Entitlement"
+        ],
+        "summary": "Get user entitlement by itemId",
+        "description": "Get user entitlement by itemId.<p>Other detail info: <ul><li><i>Required permission</i>: resource=\"NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT\", action=2 (READ)</li></ul>",
+        "operationId": "publicGetUserEntitlementByItemId",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "itemId",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "entitlementClazz",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "APP",
+              "ENTITLEMENT",
+              "DISTRIBUTION",
+              "CODE",
+              "SUBSCRIPTION",
+              "MEDIA"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/EntitlementInfo"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>31144</td><td>Entitlement with itemId [{itemId}] does not exist in namespace [{namespace}]</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "x-authorization": {
+          "resource": "NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT",
+          "action": "2"
+        }
+      }
+    },
     "/public/namespaces/{namespace}/users/{userId}/entitlements/bySku": {
       "get": {
         "tags": [
@@ -8327,7 +8812,8 @@
               "ENTITLEMENT",
               "DISTRIBUTION",
               "CODE",
-              "SUBSCRIPTION"
+              "SUBSCRIPTION",
+              "MEDIA"
             ]
           }
         ],
@@ -8510,148 +8996,6 @@
         }
       }
     },
-    "/public/namespaces/{namespace}/users/{userId}/entitlements/byAppType": {
-      "get": {
-        "tags": [
-          "Entitlement"
-        ],
-        "summary": "Query app entitlements by appType",
-        "description": "Query app entitlements by appType.<p>Other detail info: <ul><li><i>Required permission</i>: resource=\"NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT\", action=2 (READ)</li><li><i>Returns</i>: app entitlement pagination</li></ul>",
-        "operationId": "publicQueryUserEntitlementsByAppType",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "namespace",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "userId",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "appType",
-            "in": "query",
-            "required": true,
-            "type": "string",
-            "enum": [
-              "GAME",
-              "SOFTWARE",
-              "DLC",
-              "DEMO"
-            ]
-          },
-          {
-            "name": "offset",
-            "in": "query",
-            "required": false,
-            "type": "integer",
-            "default": 0,
-            "format": "int32"
-          },
-          {
-            "name": "limit",
-            "in": "query",
-            "required": false,
-            "type": "integer",
-            "default": 20,
-            "format": "int32"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "$ref": "#/definitions/AppEntitlementPagingSlicedResult"
-            }
-          }
-        },
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
-        "x-authorization": {
-          "resource": "NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT",
-          "action": "2"
-        }
-      }
-    },
-    "/public/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/decrement": {
-      "put": {
-        "tags": [
-          "Entitlement"
-        ],
-        "summary": "Consume user entitlement",
-        "description": "Consume user entitlement. If the entitlement useCount is 0, the status will be CONSUMED.<br>Other detail info: <ul><li><i>Required permission</i>: resource=\"NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT\", action=4 (UPDATE)</li><li><i>Returns</i>: consumed entitlement</li></ul>",
-        "operationId": "publicConsumeUserEntitlement",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "namespace",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "userId",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "entitlementId",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "required": false,
-            "schema": {
-              "$ref": "#/definitions/EntitlementDecrement"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "$ref": "#/definitions/EntitlementInfo"
-            }
-          },
-          "404": {
-            "description": "<table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>31141</td><td>Entitlement [{entitlementId}] does not exist in namespace [{namespace}]</td></tr></table>",
-            "schema": {
-              "$ref": "#/definitions/ErrorEntity"
-            }
-          },
-          "409": {
-            "description": "<table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>31171</td><td>Entitlement [{entitlementId}] already revoked</td></tr><tr><td>31172</td><td>Entitlement [{entitlementId}] not active</td></tr><tr><td>31173</td><td>Entitlement [{entitlementId}] is not consumable</td></tr><tr><td>31174</td><td>Entitlement [{entitlementId}] already consumed</td></tr><tr><td>31176</td><td>Entitlement [{entitlementId}] use count is insufficient</td></tr><tr><td>31178</td><td>Entitlement [{entitlementId}] out of time range</td></tr><tr><td>20006</td><td>optimistic lock</td></tr></table>",
-            "schema": {
-              "$ref": "#/definitions/ErrorEntity"
-            }
-          }
-        },
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
-        "x-authorization": {
-          "resource": "NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT",
-          "action": "4"
-        }
-      }
-    },
     "/admin/namespaces/{namespace}/users/{userId}/anonymization/fulfillment": {
       "delete": {
         "tags": [
@@ -8763,6 +9107,315 @@
         "x-authorization": {
           "resource": "ADMIN:NAMESPACE:{namespace}:FULFILLMENT",
           "action": "2"
+        }
+      }
+    },
+    "/admin/fulfillment/scripts/{id}": {
+      "get": {
+        "tags": [
+          "FulfillmentScript"
+        ],
+        "summary": "Get fulfillment script by id",
+        "description": "Get fulfillment script by id.<br>Other detail info: <ul><li><i>Required permission</i>: resource=\"ADMIN:FULFILLMENT\", action=2 (READ)</li><li><i>Returns</i>: get fulfillment script</li></ul>",
+        "operationId": "getFulfillmentScript",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/FulfillmentScriptInfo"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>38141</td><td>Fulfillment script does not exist</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "x-authorization": {
+          "resource": "ADMIN:FULFILLMENT",
+          "action": "2"
+        }
+      },
+      "post": {
+        "tags": [
+          "FulfillmentScript"
+        ],
+        "summary": "Create fulfillment script",
+        "description": "Create fulfillment script.<br>Other detail info: <ul><li><i>Required permission</i>: resource=\"ADMIN:FULFILLMENT\", action=1 (CREATE)</li></ul>Fulfillment scripts are used for adding custom fulfillment logic based on <b>ITEM_TYPE</b>: [MEDIA,INGAMEITEM] for now, and the custom scripts only cover grantDays.<br>Example for grantDays: <br><code>order && ((order.currency && order.currency.currencyCode) == 'LP' || order.isFree) ? 30 : -1</code><br>",
+        "operationId": "createFulfillmentScript",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/FulfillmentScriptCreate"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/FulfillmentScriptInfo"
+            }
+          },
+          "409": {
+            "description": "<table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>38171</td><td>Fulfillment script already exists</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "x-authorization": {
+          "resource": "ADMIN:FULFILLMENT",
+          "action": "1"
+        }
+      },
+      "delete": {
+        "tags": [
+          "FulfillmentScript"
+        ],
+        "summary": "Delete fulfillment script",
+        "description": "Delete fulfillment script.<br>Other detail info: <ul><li><i>Required permission</i>: resource=\"ADMIN:FULFILLMENT\", action=8 (DELETE)</li></ul>",
+        "operationId": "deleteFulfillmentScript",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "delete fulfillment script successfully"
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "x-authorization": {
+          "resource": "ADMIN:FULFILLMENT",
+          "action": "8"
+        }
+      },
+      "patch": {
+        "tags": [
+          "FulfillmentScript"
+        ],
+        "summary": "Update fulfillment script",
+        "description": "Update fulfillment script.<br>Other detail info: <ul><li><i>Required permission</i>: resource=\"ADMIN:FULFILLMENT\", action=4 (UPDATE)</li></ul>",
+        "operationId": "updateFulfillmentScript",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/FulfillmentScriptUpdate"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/FulfillmentScriptInfo"
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>38141</td><td>Fulfillment script does not exist</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "x-authorization": {
+          "resource": "ADMIN:FULFILLMENT",
+          "action": "4"
+        }
+      }
+    },
+    "/admin/fulfillment/scripts/tests/eval": {
+      "post": {
+        "tags": [
+          "FulfillmentScript"
+        ],
+        "summary": "Test eval fulfillment script",
+        "description": "<b>[TEST FACILITY ONLY]</b>Test eval fulfillment script.<br>Other detail info: <ul><li><i>Required permission</i>: resource=\"ADMIN:FULFILLMENT\", action=2 (READ)</li></ul>",
+        "operationId": "testFulfillmentScriptEval",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/FulfillmentScriptEvalTestRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/FulfillmentScriptEvalTestResult"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "x-authorization": {
+          "resource": "ADMIN:FULFILLMENT",
+          "action": "2"
+        }
+      }
+    },
+    "/admin/fulfillment/scripts": {
+      "get": {
+        "tags": [
+          "FulfillmentScript"
+        ],
+        "summary": "List all fulfillment scripts",
+        "description": "List all fulfillment scripts.<br>Other detail info: <ul><li><i>Required permission</i>: resource=\"ADMIN:FULFILLMENT\", action=2 (READ)</li></ul>",
+        "operationId": "listFulfillmentScripts",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/FulfillmentScriptInfo"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "x-authorization": {
+          "resource": "ADMIN:FULFILLMENT",
+          "action": "2"
+        }
+      }
+    },
+    "/admin/namespaces/{namespace}/users/{userId}/fulfillment/code": {
+      "post": {
+        "tags": [
+          "Fulfillment"
+        ],
+        "summary": "Redeem campaign code",
+        "description": "Redeem campaign code.<br>Other detail info: <ul><li><i>Required permission</i>: resource=\"ADMIN:NAMESPACE:{namespace}:USER:{userId}:FULFILLMENT\", action=1 (CREATED)</li><li><i>Returns</i>: fulfillment result</li></ul>",
+        "operationId": "redeemCode",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/FulfillCodeRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/FulfillmentResult"
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>35123</td><td>Wallet [{walletId}] is inactive</td></tr><tr><td>38121</td><td>Duplicate permanent item exists</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>30341</td><td>Item [{itemId}] does not exist in namespace [{namespace}]</td></tr><tr><td>37142</td><td>Code [{code}] does not exist in namespace [{namespace}]</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "409": {
+            "description": "<table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>37172</td><td>Campaign [{campaignId}] is inactive in namespace [{namespace}]</td></tr><tr><td>37173</td><td>Code [{code}] is inactive in namespace [{namespace}]</td></tr><tr><td>37174</td><td>Exceeded max redeem count per code [{maxCount}]</td></tr><tr><td>37175</td><td>Exceeded max redeem count per code per user [{maxCount}]</td></tr><tr><td>37177</td><td>Code redemption not started</td></tr><tr><td>37178</td><td>Code redemption already ended</td></tr><tr><td>20006</td><td>optimistic lock</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "x-authorization": {
+          "resource": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:FULFILLMENT",
+          "action": "1"
         }
       }
     },
@@ -9991,7 +10644,7 @@
           "IAP"
         ],
         "summary": "Mock fulfill iap item.",
-        "description": "<b>[TEST FACILITY ONLY]</b> Mock fulfill iap item without validate receipt.<p>Other detail info: <ul><li><i>Required permission</i>: resource=\"ADMIN:NAMESPACE:{namespace}:USER:{userId}:IAP\", action=4 (UPDATE)</li><li><i>Returns</i>: </li></ul>",
+        "description": "<b>[TEST FACILITY ONLY] Forbidden in live environment. </b> Mock fulfill iap item without validate receipt.<p>Other detail info: <ul><li><i>Required permission</i>: resource=\"ADMIN:NAMESPACE:{namespace}:USER:{userId}:IAP\", action=4 (UPDATE)</li><li><i>Returns</i>: </li></ul>",
         "operationId": "mockFulfillIAPItem",
         "produces": [
           "application/json"
@@ -13494,7 +14147,7 @@
           "Payment"
         ],
         "summary": "Charge payment order without payment flow",
-        "description": "<b>[TEST FACILITY ONLY]</b> Charge payment order without payment flow for unpaid payment order, usually for test usage to simulate real currency payment process.<br>Other detail info: <ul><li><i>Required permission</i>: resource=\"ADMIN:NAMESPACE:{namespace}:PAYMENT\", action=4 (UPDATE)</li><li><i>Returns</i>: payment order instance</li></ul>",
+        "description": "<b>[TEST FACILITY ONLY] Forbidden in live environment. </b> Charge payment order without payment flow for unpaid payment order, usually for test usage to simulate real currency payment process.<br>Other detail info: <ul><li><i>Required permission</i>: resource=\"ADMIN:NAMESPACE:{namespace}:PAYMENT\", action=4 (UPDATE)</li><li><i>Returns</i>: payment order instance</li></ul>",
         "operationId": "chargePaymentOrder",
         "produces": [
           "application/json"
@@ -13611,7 +14264,7 @@
           "Payment"
         ],
         "summary": "Simulate payment notification",
-        "description": "<b>[TEST FACILITY ONLY]</b> Simulate payment notification on sandbox payment order, usually for test usage to simulate real currency payment notification.<br>Other detail info: <ul><li><i>Required permission</i>: resource=\"ADMIN:NAMESPACE:{namespace}:PAYMENT\", action=4 (UPDATE)</li><li><i>Returns</i>: notification process result</li></ul>",
+        "description": "<b>[TEST FACILITY ONLY] Forbidden in live environment. </b> Simulate payment notification on sandbox payment order, usually for test usage to simulate real currency payment notification.<br>Other detail info: <ul><li><i>Required permission</i>: resource=\"ADMIN:NAMESPACE:{namespace}:PAYMENT\", action=4 (UPDATE)</li><li><i>Returns</i>: notification process result</li></ul>",
         "operationId": "simulatePaymentOrderNotification",
         "produces": [
           "application/json"
@@ -16023,7 +16676,7 @@
           "Subscription"
         ],
         "summary": "Recurring charge subscription",
-        "description": "<b>[TEST FACILITY ONLY]</b> Recurring charge subscription, it will trigger recurring charge if the USER subscription status is ACTIVE, nextBillingDate is before now and no fail recurring charge within X(default 12) hours.<br>Other detail info: <ul><li><i>Required permission</i>: resource=\"ADMIN:NAMESPACE:{namespace}:SUBSCRIPTION\", action=4 (UPDATE)</li><li><i>Returns</i>: recurring charge result</li></ul>",
+        "description": "<b>[TEST FACILITY ONLY] Forbidden in live environment. </b> Recurring charge subscription, it will trigger recurring charge if the USER subscription status is ACTIVE, nextBillingDate is before now and no fail recurring charge within X(default 12) hours.<br>Other detail info: <ul><li><i>Required permission</i>: resource=\"ADMIN:NAMESPACE:{namespace}:SUBSCRIPTION\", action=4 (UPDATE)</li><li><i>Returns</i>: recurring charge result</li></ul>",
         "operationId": "recurringChargeSubscription",
         "consumes": [
           "application/json"
@@ -16667,7 +17320,7 @@
           "Subscription"
         ],
         "summary": "Delete user subscription",
-        "description": "<b>[TEST FACILITY ONLY]</b> Delete user subscription.<br>Other detail info: <ul><li><i>Required permission</i>: resource=\"ADMIN:NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION\", action=8 (DELETE)</li></ul>",
+        "description": "<b>[TEST FACILITY ONLY] Forbidden in live environment. </b> Delete user subscription.<br>Other detail info: <ul><li><i>Required permission</i>: resource=\"ADMIN:NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION\", action=8 (DELETE)</li></ul>",
         "operationId": "deleteUserSubscription",
         "consumes": [
           "application/json"
@@ -22024,7 +22677,8 @@
             "ENTITLEMENT",
             "DISTRIBUTION",
             "CODE",
-            "SUBSCRIPTION"
+            "SUBSCRIPTION",
+            "MEDIA"
           ]
         },
         "type": {
@@ -22490,7 +23144,7 @@
       },
       "description": "A DTO object for updating entitlement API call. Leave the field empty if don't want to update."
     },
-    "Ownership": {
+    "TimedOwnership": {
       "type": "object",
       "required": [
         "owned"
@@ -22499,6 +23153,11 @@
         "owned": {
           "type": "boolean",
           "description": "ownership"
+        },
+        "endDate": {
+          "type": "string",
+          "format": "date-time",
+          "description": "end date"
         }
       }
     },
@@ -22590,6 +23249,18 @@
         }
       }
     },
+    "Ownership": {
+      "type": "object",
+      "required": [
+        "owned"
+      ],
+      "properties": {
+        "owned": {
+          "type": "boolean",
+          "description": "ownership"
+        }
+      }
+    },
     "EntitlementDecrement": {
       "type": "object",
       "properties": {
@@ -22649,7 +23320,8 @@
             "ENTITLEMENT",
             "DISTRIBUTION",
             "CODE",
-            "SUBSCRIPTION"
+            "SUBSCRIPTION",
+            "MEDIA"
           ]
         },
         "type": {
@@ -22933,7 +23605,8 @@
             "ENTITLEMENT",
             "DISTRIBUTION",
             "CODE",
-            "SUBSCRIPTION"
+            "SUBSCRIPTION",
+            "MEDIA"
           ]
         },
         "type": {
@@ -23160,6 +23833,129 @@
         }
       }
     },
+    "FulfillmentScriptInfo": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id"
+        },
+        "grantDays": {
+          "type": "string",
+          "description": "javascript script for grant days, expression expected to return integer, -1 means unlimited. It only execute while there's no endDate specified while do fulfillment"
+        }
+      }
+    },
+    "FulfillmentScriptCreate": {
+      "type": "object",
+      "properties": {
+        "grantDays": {
+          "type": "string",
+          "description": "javascript script for grant days, expression expected to return integer, -1 means unlimited. It only execute while there's no endDate specified while do fulfillment"
+        }
+      }
+    },
+    "FulfillmentScriptEvalTestResult": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "type": "object"
+        },
+        "errorStackTrace": {
+          "type": "string"
+        }
+      }
+    },
+    "FulfillmentScriptContext": {
+      "type": "object",
+      "required": [
+        "item",
+        "namespace",
+        "source"
+      ],
+      "properties": {
+        "namespace": {
+          "type": "string",
+          "description": "fulfillment namespace, default accelbyte"
+        },
+        "source": {
+          "type": "string",
+          "description": "fulfillment source, default PURCHASE",
+          "enum": [
+            "PURCHASE",
+            "IAP",
+            "PROMOTION",
+            "ACHIEVEMENT",
+            "REFERRAL_BONUS",
+            "REDEEM_CODE",
+            "REWARD",
+            "GIFT",
+            "OTHER"
+          ]
+        },
+        "order": {
+          "description": "order summary",
+          "$ref": "#/definitions/OrderSummary"
+        },
+        "item": {
+          "description": "item info",
+          "$ref": "#/definitions/ItemInfo"
+        }
+      }
+    },
+    "FulfillmentScriptEvalTestRequest": {
+      "type": "object",
+      "required": [
+        "context",
+        "script",
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "type, default grantDays",
+          "enum": [
+            "grantDays"
+          ]
+        },
+        "context": {
+          "description": "fulfillment script context",
+          "$ref": "#/definitions/FulfillmentScriptContext"
+        },
+        "script": {
+          "type": "string",
+          "description": "script"
+        }
+      }
+    },
+    "OrderSummary": {
+      "type": "object",
+      "properties": {
+        "currency": {
+          "description": "purchase currency",
+          "$ref": "#/definitions/CurrencySummary"
+        },
+        "ext": {
+          "type": "object",
+          "description": "order custom properties",
+          "additionalProperties": {
+            "type": "object"
+          }
+        },
+        "free": {
+          "type": "boolean"
+        }
+      }
+    },
+    "FulfillmentScriptUpdate": {
+      "type": "object",
+      "properties": {
+        "grantDays": {
+          "type": "string",
+          "description": "javascript script for grant days, expression expected to return integer, -1 means unlimited. It only execute while there's no endDate specified while do fulfillment"
+        }
+      }
+    },
     "FulfillmentResult": {
       "type": "object",
       "required": [
@@ -23258,6 +24054,26 @@
         }
       }
     },
+    "FulfillCodeRequest": {
+      "type": "object",
+      "required": [
+        "code"
+      ],
+      "properties": {
+        "code": {
+          "type": "string",
+          "description": "campaign code"
+        },
+        "region": {
+          "type": "string",
+          "description": "country value from ISO countries"
+        },
+        "language": {
+          "type": "string",
+          "description": "language value from language tag, allowed format: en, en-US"
+        }
+      }
+    },
     "FulfillmentRequest": {
       "type": "object",
       "required": [
@@ -23284,6 +24100,10 @@
         "orderNo": {
           "type": "string",
           "description": "orderNo"
+        },
+        "order": {
+          "description": "order summary for fulfillment scripts",
+          "$ref": "#/definitions/OrderSummary"
         },
         "source": {
           "type": "string",
@@ -23320,26 +24140,6 @@
         }
       },
       "description": "A DTO object for fulfillment request API call."
-    },
-    "FulfillCodeRequest": {
-      "type": "object",
-      "required": [
-        "code"
-      ],
-      "properties": {
-        "code": {
-          "type": "string",
-          "description": "campaign code"
-        },
-        "region": {
-          "type": "string",
-          "description": "country value from ISO countries"
-        },
-        "language": {
-          "type": "string",
-          "description": "language value from language tag, allowed format: en, en-US"
-        }
-      }
     },
     "XblIAPConfigInfo": {
       "type": "object",

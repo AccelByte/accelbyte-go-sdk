@@ -8,7 +8,7 @@
       "url": "https://accelbyte.io",
       "email": "engineering@accelbyte.io"
     },
-    "version": "2.10.0"
+    "version": "2.11.0"
   },
   "paths": {
     "/leaderboard/v1/admin/namespaces/{namespace}/leaderboards": {
@@ -313,7 +313,7 @@
           "LeaderboardConfiguration"
         ],
         "summary": "delete bulk leaderboards. response body will contains failed leaderboard with the reason why it's failed to delete",
-        "operationId": "deleteBulkLeaderboardsV1",
+        "operationId": "deleteBulkLeaderboardConfigurationAdminV1",
         "parameters": [
           {
             "type": "string",
@@ -2984,12 +2984,12 @@
     },
     "models.UserLeaderboardRanking": {
       "required": [
+        "userId",
+        "daily",
         "weekly",
         "monthly",
         "allTime",
         "current",
-        "userId",
-        "daily",
         "leaderboardCode",
         "leaderboardName"
       ],

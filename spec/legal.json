@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "description": "Justice Legal Service",
-    "version": "1.13.1",
+    "version": "1.14.0",
     "title": "justice-legal-service",
     "contact": {
       "name": "Engineering Team at AccelByte",
@@ -2146,7 +2146,6 @@
         },
         "affectedCountries": {
           "type": "array",
-          "uniqueItems": true,
           "items": {
             "type": "string"
           }
@@ -2181,7 +2180,6 @@
         },
         "affectedCountries": {
           "type": "array",
-          "uniqueItems": true,
           "items": {
             "type": "string"
           }
@@ -2236,7 +2234,6 @@
         },
         "affectedCountries": {
           "type": "array",
-          "uniqueItems": true,
           "items": {
             "type": "string"
           }
@@ -2321,7 +2318,6 @@
         },
         "affectedCountries": {
           "type": "array",
-          "uniqueItems": true,
           "items": {
             "type": "string"
           }

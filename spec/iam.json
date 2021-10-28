@@ -8,7 +8,7 @@
       "url": "https://accelbyte.io",
       "email": "engineering@accelbyte.io"
     },
-    "version": "4.4.1"
+    "version": "4.6.0"
   },
   "paths": {
     "/iam/bans": {
@@ -3122,10 +3122,10 @@
         "parameters": [
           {
             "enum": [
-              "refresh_token",
-              "authorization_code",
               "client_credentials",
-              "password"
+              "password",
+              "refresh_token",
+              "authorization_code"
             ],
             "type": "string",
             "default": "client_credentials",
@@ -11549,7 +11549,7 @@
     },
     "/iam/v3/public/namespaces/{namespace}/users": {
       "get": {
-        "description": "<p>Requires valid user access token</p>\n\t\t\t<p>This endpoint search all users on the specified namespace that match the query on these fields: email address, display name, and username.\n\t\t\tIf the query is not defined, then it searches all users on the specified namespace.</p>\n\t\t\t<br>action code : 10132",
+        "description": "<p>Requires valid user access token</p>\n\t\t\t<p>This endpoint search all users on the specified namespace that match the query on these fields: display name, and username.\n\t\t\tThe query length should greater than 1，otherwise will not query the database</p>\n\t\t\t<br>action code : 10132",
         "produces": [
           "application/json"
         ],
@@ -11568,13 +11568,13 @@
           },
           {
             "type": "string",
-            "description": "Query, can be either email address, display name, or username",
+            "description": "Query, can be either display name or username",
             "name": "query",
             "in": "query"
           },
           {
             "type": "string",
-            "description": "Search by given attribute, possible values are emailAddress, displayName, and username",
+            "description": "Search by given attribute, possible values are displayName and username",
             "name": "by",
             "in": "query"
           }
@@ -15151,9 +15151,9 @@
     },
     "account.upgradeHeadlessAccountWithVerificationCodeRequestV4": {
       "required": [
+        "emailAddress",
         "username",
         "password",
-        "emailAddress",
         "code"
       ],
       "properties": {
@@ -15414,33 +15414,6 @@
           "type": "string"
         },
         "zh-CN": {
-          "type": "string"
-        }
-      }
-    },
-    "accountcommon.JWTBan": {
-      "required": [
-        "ban",
-        "endDate",
-        "enabled",
-        "targetedNamespace"
-      ],
-      "properties": {
-        "ban": {
-          "type": "string"
-        },
-        "disabledDate": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "enabled": {
-          "type": "boolean"
-        },
-        "endDate": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "targetedNamespace": {
           "type": "string"
         }
       }
@@ -19188,7 +19161,7 @@
         "bans": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/accountcommon.JWTBan"
+            "$ref": "#/definitions/accountcommon.JWTBanV3"
           }
         },
         "display_name": {

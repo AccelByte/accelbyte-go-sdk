@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "description": "Justice Basic Service",
-    "version": "1.23.0",
+    "version": "1.25.0",
     "title": "justice-basic-service",
     "contact": {
       "name": "Engineering Team at AccelByte",
@@ -12,6 +12,12 @@
   },
   "basePath": "/basic",
   "tags": [
+    {
+      "name": "UserAction"
+    },
+    {
+      "name": "EQU8Config"
+    },
     {
       "name": "FileUpload"
     },
@@ -29,6 +35,610 @@
     }
   ],
   "paths": {
+    "/v1/admin/namespaces/{namespace}/actions/report": {
+      "post": {
+        "tags": [
+          "UserAction"
+        ],
+        "summary": "Report a game player(for game service)",
+        "description": "This API is for game service to report a game player.<p>Other detail info: <ul><li><i>Required permission</i>: resource=\"ADMIN:NAMESPACE:{namespace}:ACTION\", action=1 (CREATE)</li></ul>",
+        "operationId": "reportUser",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "description": "namespace, only accept alphabet and numeric",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/UserReportRequest"
+            }
+          }
+        ],
+        "responses": {
+          "422": {
+            "description": "<table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "x-authorization": {
+          "resource": "ADMIN:NAMESPACE:{namespace}:ACTION",
+          "action": "1"
+        }
+      }
+    },
+    "/v1/admin/namespaces/{namespace}/actions/banned": {
+      "get": {
+        "tags": [
+          "UserAction"
+        ],
+        "summary": "Get banned user",
+        "description": "Get banned status.<br>Unbanned users will not return, for example: request has 8 userIds, only 5 of then were banned, then the api will these 5 user status.Other detail info: <ul><li><i>Required permission</i>: resource=<b>\"ADMIN:NAMESPACE:{namespace}:ACTION\"</b>, action=2 <b>(READ)</b></li></ul>",
+        "operationId": "getBannedUsers",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "description": "namespace, only accept alphabet and numeric",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "userIds",
+            "in": "query",
+            "description": "user ids",
+            "required": true,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/A DTO object for equ8 user ban status"
+              }
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11621</td><td>Invalid EQU8 api key in namespace [{namespace}]</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "422": {
+            "description": "<table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorEntity"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11641</td><td>Equ8 config not found in namespace [{namespace}]</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "500": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "x-authorization": {
+          "resource": "ADMIN:NAMESPACE:{namespace}:ACTION",
+          "action": "2"
+        }
+      }
+    },
+    "/v1/admin/namespaces/{namespace}/actions/unban": {
+      "post": {
+        "tags": [
+          "UserAction"
+        ],
+        "summary": "Unban user",
+        "description": "Unban user.<br>Other detail info: <ul><li><i>Required permission</i>: resource=<b>\"ADMIN:NAMESPACE:{namespace}:ACTION\"</b>, action=4 <b>(UPDATE)</b></li></ul>",
+        "operationId": "unBanUsers",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "description": "namespace, only accept alphabet and numeric",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/A DTO for unban user API call."
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11621</td><td>Invalid EQU8 api key in namespace [{namespace}]</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "422": {
+            "description": "<table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorEntity"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11041</td><td>Equ8 config not found in namespace [{namespace}]</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "500": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "x-authorization": {
+          "resource": "ADMIN:NAMESPACE:{namespace}:ACTION",
+          "action": "4"
+        }
+      }
+    },
+    "/v1/admin/namespaces/{namespace}/actions": {
+      "get": {
+        "tags": [
+          "UserAction"
+        ],
+        "summary": "Get configured actions",
+        "description": "Get configured actions.<br>Other detail info: <ul><li><i>Required permission</i>: resource=<b>\"ADMIN:NAMESPACE:{namespace}:ACTION\"</b>, action=2 <b>(READ)</b></li></ul>",
+        "operationId": "getActions",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "description": "namespace, only accept alphabet and numeric",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Action"
+              }
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11621</td><td>Invalid EQU8 api key in namespace [{namespace}]</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11041</td><td>Equ8 config not found in namespace [{namespace}]</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "500": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "x-authorization": {
+          "resource": "ADMIN:NAMESPACE:{namespace}:ACTION",
+          "action": "2"
+        }
+      }
+    },
+    "/v1/admin/namespaces/{namespace}/actions/status": {
+      "get": {
+        "tags": [
+          "UserAction"
+        ],
+        "summary": "Get user status",
+        "description": "Get user status.<br>If actionId does not exist, then the user is not banned.If actionId and expires exist, then the user is temporarily banned, if expires does not exist, then the user is permanently banned.Other detail info: <ul><li><i>Required permission</i>: resource=<b>\"ADMIN:NAMESPACE:{namespace}:ACTION\"</b>, action=2 <b>(READ)</b></li></ul>",
+        "operationId": "getUserStatus",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "description": "namespace, only accept alphabet and numeric",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "userId",
+            "in": "query",
+            "description": "user id, should follow UUID version 4 without hyphen",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/A DTO object for equ8 user status"
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11621</td><td>Invalid EQU8 api key in namespace [{namespace}]</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "422": {
+            "description": "<table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorEntity"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11641</td><td>Equ8 config not found in namespace [{namespace}]</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "500": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "x-authorization": {
+          "resource": "ADMIN:NAMESPACE:{namespace}:ACTION",
+          "action": "2"
+        }
+      }
+    },
+    "/v1/admin/namespaces/{namespace}/actions/ban": {
+      "post": {
+        "tags": [
+          "UserAction"
+        ],
+        "summary": "Ban user(temporarily or permanently)",
+        "description": "Ban user.<br> actionId: 1 means permanent ban, actionId: 10 means Temporary ban.Other detail info: <ul><li><i>Required permission</i>: resource=<b>\"ADMIN:NAMESPACE:{namespace}:ACTION\"</b>, action=4 <b>(UPDATE)</b></li></ul>",
+        "operationId": "banUsers",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "description": "namespace, only accept alphabet and numeric",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/UserBanRequest"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11621</td><td>Invalid EQU8 api key in namespace [{namespace}]</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "422": {
+            "description": "<table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorEntity"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11041</td><td>Equ8 config not found in namespace [{namespace}]</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "500": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "x-authorization": {
+          "resource": "ADMIN:NAMESPACE:{namespace}:ACTION",
+          "action": "4"
+        }
+      }
+    },
+    "/v1/admin/namespaces/{namespace}/equ8/config": {
+      "get": {
+        "tags": [
+          "EQU8Config"
+        ],
+        "summary": "Get equ8 config",
+        "description": "Get equ8 config.<br>Other detail info: <ul><li><i>Required permission</i>: resource=<b>\"ADMIN:NAMESPACE:{namespace}:EQU8CONFIG\"</b>, action=2 <b>(READ)</b></li></ul>",
+        "operationId": "getConfig",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "description": "namespace, only accept alphabet and numeric",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Equ8Config"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11641</td><td>Equ8 config not found in namespace [{namespace}]</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "500": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "x-authorization": {
+          "resource": "ADMIN:NAMESPACE:{namespace}:EQU8CONFIG",
+          "action": "2"
+        }
+      },
+      "delete": {
+        "tags": [
+          "EQU8Config"
+        ],
+        "summary": "Delete equ8 config",
+        "description": "Delete equ8 config.<br>Other detail info: <ul><li><i>Required permission</i>: resource=<b>\"ADMIN:NAMESPACE:{namespace}:EQU8CONFIG\"</b>, action=8 <b>(DELETE)</b></li></ul>",
+        "operationId": "deleteConfig",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "description": "namespace, only accept alphabet and numeric",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Delete equ8 config successfully"
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "x-authorization": {
+          "resource": "ADMIN:NAMESPACE:{namespace}:EQU8CONFIG",
+          "action": "8"
+        }
+      },
+      "patch": {
+        "tags": [
+          "EQU8Config"
+        ],
+        "summary": "Create or Update equ8 config",
+        "description": "Update equ8 config, create if not exists.<br>Other detail info: <ul><li><i>Required permission</i>: resource=<b>\"ADMIN:NAMESPACE:{namespace}:EQU8CONFIG\"</b>, action=4 <b>(UPDATE)</b></li></ul>",
+        "operationId": "updateConfig",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "description": "namespace, only accept alphabet and numeric",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/A DTO for update equ8 config API call."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Equ8Config"
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11621</td><td>Invalid EQU8 api key in namespace [{namespace}]</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "500": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "x-authorization": {
+          "resource": "ADMIN:NAMESPACE:{namespace}:EQU8CONFIG",
+          "action": "4"
+        }
+      }
+    },
+    "/v1/public/namespaces/{namespace}/users/{userId}/actions/report": {
+      "post": {
+        "tags": [
+          "UserAction"
+        ],
+        "summary": "Report a game user",
+        "description": "This API is used to report a game user.<p>Other detail info: <ul><li><i>Required permission</i>: resource=\"NAMESPACE:{namespace}:USER:{userId}:ACTION\", action=1 (CREATE)</li></ul>",
+        "operationId": "publicReportUser",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "description": "namespace, only accept alphabet and numeric",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "reporter user id, should follow UUID version 4 without hyphen",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/UserReportRequest"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "<table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>20026</td><td>publisher namespace not allowed</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "422": {
+            "description": "<table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "x-authorization": {
+          "resource": "NAMESPACE:{namespace}:USER:{userId}:ACTION",
+          "action": "1"
+        }
+      }
+    },
     "/v1/admin/namespaces/{namespace}/folders/{folder}/files": {
       "post": {
         "tags": [
@@ -3112,27 +3722,6 @@
     }
   },
   "definitions": {
-    "FileUploadUrlInfo": {
-      "type": "object",
-      "properties": {
-        "url": {
-          "type": "string",
-          "description": "URL for uploading file (S3 presigned URL)"
-        },
-        "accessUrl": {
-          "type": "string",
-          "description": "URL for accessing file"
-        },
-        "method": {
-          "type": "string",
-          "description": "HTTP method for uploading file"
-        },
-        "contentType": {
-          "type": "string",
-          "description": "File content-type"
-        }
-      }
-    },
     "FieldValidationError": {
       "type": "object",
       "properties": {
@@ -3180,6 +3769,50 @@
         }
       }
     },
+    "UserReportRequest": {
+      "type": "object",
+      "required": [
+        "category",
+        "userId"
+      ],
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "reportee user id"
+        },
+        "category": {
+          "type": "string",
+          "description": "category"
+        },
+        "subcategory": {
+          "type": "string",
+          "description": "subcategory, default: general"
+        },
+        "description": {
+          "type": "string",
+          "description": "description"
+        },
+        "gameSessionId": {
+          "type": "string",
+          "description": "gameSessionId"
+        }
+      },
+      "description": "A DTO object for reporting user API call."
+    },
+    "A DTO object for equ8 user ban status": {
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "userId"
+        },
+        "expires": {
+          "type": "string",
+          "format": "date-time",
+          "description": "expire time, null if the user is permanently banned"
+        }
+      }
+    },
     "ErrorEntity": {
       "type": "object",
       "required": [
@@ -3206,6 +3839,156 @@
         "devStackTrace": {
           "type": "string",
           "description": "internal server error stack trace in configured environment"
+        }
+      }
+    },
+    "A DTO for unban user API call.": {
+      "type": "object",
+      "required": [
+        "userIds"
+      ],
+      "properties": {
+        "userIds": {
+          "type": "array",
+          "description": "user ids",
+          "items": {
+            "type": "string"
+          }
+        },
+        "comment": {
+          "type": "string",
+          "description": "comment"
+        }
+      }
+    },
+    "Action": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32",
+          "description": "action id"
+        },
+        "name": {
+          "type": "string",
+          "description": "action name"
+        },
+        "description": {
+          "type": "string",
+          "description": "action description"
+        },
+        "priority": {
+          "type": "integer",
+          "format": "int32",
+          "description": "action priority"
+        },
+        "duration": {
+          "type": "integer",
+          "format": "int64",
+          "description": "action duration"
+        },
+        "color": {
+          "type": "string",
+          "description": "color"
+        },
+        "icon": {
+          "type": "string",
+          "description": "icon"
+        }
+      },
+      "description": "A DTO object for equ8 action."
+    },
+    "A DTO object for equ8 user status": {
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "current user"
+        },
+        "actionId": {
+          "type": "integer",
+          "format": "int32",
+          "description": "action id"
+        },
+        "actionComment": {
+          "type": "string",
+          "description": "action comment of this active action"
+        },
+        "when": {
+          "type": "string",
+          "format": "date-time",
+          "description": "action start date"
+        },
+        "expires": {
+          "type": "string",
+          "format": "date-time",
+          "description": "action end date"
+        }
+      }
+    },
+    "UserBanRequest": {
+      "type": "object",
+      "required": [
+        "actionId",
+        "userIds"
+      ],
+      "properties": {
+        "userIds": {
+          "type": "array",
+          "description": "user ids that will be banned",
+          "items": {
+            "type": "string"
+          }
+        },
+        "actionId": {
+          "type": "integer",
+          "format": "int32",
+          "description": "action id"
+        },
+        "comment": {
+          "type": "string",
+          "description": "comment"
+        }
+      },
+      "description": "A DTO for ban(temporarily/permanently) user API call."
+    },
+    "Equ8Config": {
+      "type": "object",
+      "properties": {
+        "namespace": {
+          "type": "string"
+        },
+        "apiKey": {
+          "type": "string"
+        }
+      }
+    },
+    "A DTO for update equ8 config API call.": {
+      "type": "object",
+      "properties": {
+        "apiKey": {
+          "type": "string"
+        }
+      }
+    },
+    "FileUploadUrlInfo": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string",
+          "description": "URL for uploading file (S3 presigned URL)"
+        },
+        "accessUrl": {
+          "type": "string",
+          "description": "URL for accessing file"
+        },
+        "method": {
+          "type": "string",
+          "description": "HTTP method for uploading file"
+        },
+        "contentType": {
+          "type": "string",
+          "description": "File content-type"
         }
       }
     },
@@ -3545,6 +4328,12 @@
         },
         "avatarLargeUrl": {
           "type": "string"
+        },
+        "customAttributes": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object"
+          }
         }
       }
     },

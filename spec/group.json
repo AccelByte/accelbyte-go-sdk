@@ -8,7 +8,7 @@
       "url": "https://accelbyte.io",
       "email": "engineering@accelbyte.io"
     },
-    "version": "2.8.0"
+    "version": "2.9.0"
   },
   "paths": {
     "/group/v1/admin/namespaces/{namespace}/configuration": {

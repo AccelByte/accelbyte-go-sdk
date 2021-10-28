@@ -362,6 +362,12 @@
               "$ref": "#/definitions/restapi.ErrorResponseV2"
             }
           },
+          "403": {
+            "description": "user is banned from creating session",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseV2"
+            }
+          },
           "409": {
             "description": "session already exists",
             "schema": {
@@ -648,6 +654,12 @@
           },
           "400": {
             "description": "malformed request",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseV2"
+            }
+          },
+          "403": {
+            "description": "user is banned from joining session",
             "schema": {
               "$ref": "#/definitions/restapi.ErrorResponseV2"
             }
@@ -970,20 +982,20 @@
     },
     "models.AdminSessionResponse": {
       "required": [
-        "user_id",
-        "session_type",
-        "joinable",
-        "server",
-        "username",
-        "game_session_setting",
-        "match",
-        "session_id",
-        "namespace",
         "created_at",
-        "game_version",
         "players",
         "all_players",
-        "spectators"
+        "joinable",
+        "game_version",
+        "username",
+        "game_session_setting",
+        "server",
+        "session_id",
+        "match",
+        "spectators",
+        "user_id",
+        "session_type",
+        "namespace"
       ],
       "properties": {
         "all_players": {
@@ -1517,11 +1529,11 @@
         "region",
         "status_history",
         "is_override_game_version",
-        "mem_request",
-        "cpu_limit",
         "mem_limit",
         "params",
-        "cpu_request"
+        "cpu_request",
+        "mem_request",
+        "cpu_limit"
       ],
       "properties": {
         "allocation_id": {
@@ -1637,20 +1649,20 @@
     },
     "models.SessionResponse": {
       "required": [
+        "game_version",
         "players",
         "spectators",
-        "joinable",
-        "session_id",
-        "session_type",
-        "server",
         "namespace",
-        "game_version",
-        "game_session_setting",
-        "created_at",
+        "match",
+        "session_id",
         "user_id",
-        "username",
+        "session_type",
+        "game_session_setting",
         "all_players",
-        "match"
+        "joinable",
+        "username",
+        "created_at",
+        "server"
       ],
       "properties": {
         "all_players": {

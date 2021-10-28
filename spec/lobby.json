@@ -1099,7 +1099,7 @@
     },
     "/lobby/v1/admin/notification/namespaces/{namespace}/bulkUsers/freeform/notify": {
       "post": {
-        "description": "Required permission : \u003ccode\u003eADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]\u003c/code\u003e with scope \u003ccode\u003esocial\u003c/code\u003e\n\t\t\t\u003cbr\u003eSends notification to multiple user. There are two types of notification: sync and async. Async message will be stored\n\t\t\tto database if the receiver is offline. This stored message could be retrieved later via websocket command.\u003cbr/\u003e\n\t\t\tAction Code: 50211",
+        "description": "Required permission : \u003ccode\u003eADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]\u003c/code\u003e with scope \u003ccode\u003esocial\u003c/code\u003e\n\t\t\t\u003cbr\u003eSends notification to multiple user.\n\t\t\tAction Code: 50211",
         "consumes": [
           "application/json"
         ],
@@ -1118,12 +1118,6 @@
             "name": "namespace",
             "in": "path",
             "required": true
-          },
-          {
-            "type": "boolean",
-            "description": "notification type",
-            "name": "async",
-            "in": "query"
           },
           {
             "description": "notification content",
@@ -1195,6 +1189,146 @@
         "responses": {
           "202": {
             "description": "Accepted"
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseV1"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseV1"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseV1"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseV1"
+            }
+          }
+        }
+      }
+    },
+    "/lobby/v1/admin/notification/namespaces/{namespace}/parties/{partyId}/freeform/notify": {
+      "post": {
+        "description": "Required permission : \u003ccode\u003eADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]\u003c/code\u003e with scope \u003ccode\u003esocial\u003c/code\u003e\n\t\t\t\t\t\u003cbr\u003eSends notification to a party.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "notification"
+        ],
+        "summary": "send freeform notification to a party",
+        "operationId": "sendPartyFreeformNotificationV1Admin",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "party ID",
+            "name": "partyId",
+            "in": "path",
+            "required": true
+          },
+          {
+            "description": "notification content",
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/model.FreeFormNotificationRequestV1"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseV1"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseV1"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseV1"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseV1"
+            }
+          }
+        }
+      }
+    },
+    "/lobby/v1/admin/notification/namespaces/{namespace}/parties/{partyId}/templates/notify": {
+      "post": {
+        "description": "Required permission : \u003ccode\u003eADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]\u003c/code\u003e with scope \u003ccode\u003esocial\u003c/code\u003e\n\t\t\t\t\t\u003cbr\u003eSends templated notification to a party.\n\t\t\t\t\t\u003cbr\u003eIn the request body, specify which template slug (template identifier) to use and the template language. \n\t\t\t\t\t\u003cbr\u003eNotificationTemplate context is the key-value pair defining the value of each handlebar specified in the template content. \n\t\t\t\t\tTemplate need to be published before it can be use to send notifications\u003cbr\u003e",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "notification"
+        ],
+        "summary": "send templated notification to a party",
+        "operationId": "sendPartyTemplatedNotificationV1Admin",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "party ID",
+            "name": "partyId",
+            "in": "path",
+            "required": true
+          },
+          {
+            "description": "notification content",
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/model.NotificationWithTemplateRequestV1"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
           },
           "400": {
             "description": "Bad Request",
@@ -1368,7 +1502,7 @@
         "tags": [
           "notification"
         ],
-        "summary": "send notification to a user with template",
+        "summary": "send notification to connected users with template",
         "operationId": "sendUsersTemplatedNotificationV1Admin",
         "parameters": [
           {
@@ -2174,7 +2308,7 @@
     },
     "/lobby/v1/admin/notification/namespaces/{namespace}/users/{userId}/freeform/notify": {
       "post": {
-        "description": "Required permission : \u003ccode\u003eADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]\u003c/code\u003e with scope \u003ccode\u003esocial\u003c/code\u003e\n\t\t\t\u003cbr\u003eSends notification to a user. There are two types of notification: sync and async. Async message will be stored \n\t\t\tto database if the receiver is offline. This stored message could be retrieved later via websocket command.\u003cbr/\u003e\n\t\t\tAction Code: 50211",
+        "description": "Required permission : \u003ccode\u003eADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]\u003c/code\u003e with scope \u003ccode\u003esocial\u003c/code\u003e\n\t\t\t\u003cbr\u003eSends notification to a user.\n\t\t\tAction Code: 50211",
         "consumes": [
           "application/json"
         ],
@@ -2200,12 +2334,6 @@
             "name": "userId",
             "in": "path",
             "required": true
-          },
-          {
-            "type": "boolean",
-            "description": "notification type",
-            "name": "async",
-            "in": "query"
           },
           {
             "description": "notification content",
@@ -2250,7 +2378,7 @@
     },
     "/lobby/v1/admin/notification/namespaces/{namespace}/users/{userId}/templates/notify": {
       "post": {
-        "description": "Required permission : \u003ccode\u003eADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]\u003c/code\u003e with scope \u003ccode\u003esocial\u003c/code\u003e\n\t\t\t\u003cbr\u003eSends templated notification to a user. There are two types of notification: sync and async. Async message will be stored \n\t\t\tto database if the receiver is offline. This stored message could be retrieved later via websocket command. \n\t\t\t\u003cbr\u003eIn the request body, specify which template slug (template identifier) to use and the template language. \n\t\t\t\u003cbr\u003eNotificationTemplate context is the key-value pair defining the value of each handlebar specified in the template content. \n\t\t\tTemplate need to be published before it can be use to send notifications\u003cbr\u003e\n\t\t\tAction Code: 50212",
+        "description": "Required permission : \u003ccode\u003eADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]\u003c/code\u003e with scope \u003ccode\u003esocial\u003c/code\u003e\n\t\t\t\u003cbr\u003eSends templated notification to a user.\n\t\t\t\u003cbr\u003eIn the request body, specify which template slug (template identifier) to use and the template language. \n\t\t\t\u003cbr\u003eNotificationTemplate context is the key-value pair defining the value of each handlebar specified in the template content. \n\t\t\tTemplate need to be published before it can be use to send notifications\u003cbr\u003e\n\t\t\tAction Code: 50212",
         "consumes": [
           "application/json"
         ],
@@ -2276,12 +2404,6 @@
             "name": "userId",
             "in": "path",
             "required": true
-          },
-          {
-            "type": "boolean",
-            "description": "notification type",
-            "name": "async",
-            "in": "query"
           },
           {
             "description": "notification content",
@@ -2319,84 +2441,6 @@
             "description": "Not Found",
             "schema": {
               "$ref": "#/definitions/restapi.ErrorResponseV1"
-            }
-          }
-        }
-      }
-    },
-    "/lobby/v1/admin/party/namespaces/{namespace}/parties": {
-      "get": {
-        "description": "Required permission : \u003ccode\u003eADMIN:NAMESPACE:{namespace}:PARTY:STORAGE [READ]\u003c/code\u003e with scope \u003ccode\u003esocial\u003c/code\u003e\n\t\t\t\u003cbr\u003eget parties data in a namespace.",
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "party"
-        ],
-        "summary": "admin get all parties",
-        "operationId": "adminGetPartiesDataV1",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "namespace",
-            "name": "namespace",
-            "in": "path",
-            "required": true
-          },
-          {
-            "type": "string",
-            "description": "maximum number of data",
-            "name": "limit",
-            "in": "query"
-          },
-          {
-            "type": "string",
-            "description": "numbers of row to skip within the result",
-            "name": "offset",
-            "in": "query"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/models.PartyData"
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "schema": {
-              "$ref": "#/definitions/restapi.ErrorResponseBody"
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "schema": {
-              "$ref": "#/definitions/restapi.ErrorResponseBody"
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "schema": {
-              "$ref": "#/definitions/restapi.ErrorResponseBody"
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "schema": {
-              "$ref": "#/definitions/restapi.ErrorResponseBody"
-            }
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "schema": {
-              "$ref": "#/definitions/restapi.ErrorResponseBody"
             }
           }
         }
@@ -2480,9 +2524,6 @@
         ],
         "produces": [
           "application/json"
-        ],
-        "tags": [
-          "party"
         ],
         "summary": "admin update party attributes",
         "operationId": "adminUpdatePartyAttributesV1",
@@ -4324,66 +4365,6 @@
         }
       }
     },
-    "/lobby/v1/public/notification/namespaces/{namespace}/users/me": {
-      "get": {
-        "description": "Required valid user authorization\n\t\t\t\u003cbr\u003eRetrieve all notification stored for a user. Successfully retrieved notifications will not be deleted.",
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "notification"
-        ],
-        "summary": "get all stored notification for a user.",
-        "operationId": "getAllStoredNotificationsV1",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "namespace",
-            "name": "namespace",
-            "in": "path",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/model.GetStoredNotificationResp"
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "schema": {
-              "$ref": "#/definitions/restapi.ErrorResponseV1"
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "schema": {
-              "$ref": "#/definitions/restapi.ErrorResponseV1"
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "schema": {
-              "$ref": "#/definitions/restapi.ErrorResponseV1"
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "schema": {
-              "$ref": "#/definitions/restapi.ErrorResponseV1"
-            }
-          }
-        }
-      }
-    },
     "/lobby/v1/public/party/namespaces/{namespace}/parties/{partyId}": {
       "get": {
         "description": "Required valid user authorization \u003cbr/\u003e\n\t\t\t\u003cbr\u003eload personal party data in a namespace based on Party ID \u003cbr/\u003e\n\t\t\tAction Code: 50101",
@@ -5723,76 +5704,9 @@
         }
       }
     },
-    "/notification/namespaces/{namespace}/users/{userId}": {
-      "get": {
-        "description": "Required permission : \u003ccode\u003eNAMESPACE:{namespace}:USER:{userId}:NOTIFICATION [READ]\u003c/code\u003e with scope \u003ccode\u003esocial\u003c/code\u003e\n\t\t\t\u003cbr\u003eRetrieve all notification stored for a user. Successfully retrieved notifications will not be deleted.",
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "notification"
-        ],
-        "summary": "get all stored notification for a user.",
-        "operationId": "getNotifications",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "namespace",
-            "name": "namespace",
-            "in": "path",
-            "required": true
-          },
-          {
-            "type": "string",
-            "description": "user ID",
-            "name": "userId",
-            "in": "path",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/model.NotificationResponse"
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "schema": {
-              "$ref": "#/definitions/restapi.ErrorResponseBody"
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "schema": {
-              "$ref": "#/definitions/restapi.ErrorResponseBody"
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "schema": {
-              "$ref": "#/definitions/restapi.ErrorResponseBody"
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "schema": {
-              "$ref": "#/definitions/restapi.ErrorResponseBody"
-            }
-          }
-        }
-      }
-    },
     "/notification/namespaces/{namespace}/users/{userId}/freeform": {
       "post": {
-        "description": "Required permission : \u003ccode\u003eNAMESPACE:{namespace}:USER:{userId}:NOTIFICATION [CREATE]\u003c/code\u003e with scope \u003ccode\u003esocial\u003c/code\u003e\n\t\t\t\u003cbr\u003eSends notification to a user. There are two types of notification: sync and async. Async message will be stored \n\t\t\tto database if the receiver is offline. This stored message could be retrieved later via websocket command.",
+        "description": "Required permission : \u003ccode\u003eNAMESPACE:{namespace}:USER:{userId}:NOTIFICATION [CREATE]\u003c/code\u003e with scope \u003ccode\u003esocial\u003c/code\u003e\n\t\t\t\u003cbr\u003eSends notification to a user.",
         "consumes": [
           "application/json"
         ],
@@ -5818,12 +5732,6 @@
             "name": "userId",
             "in": "path",
             "required": true
-          },
-          {
-            "type": "boolean",
-            "description": "notification type",
-            "name": "async",
-            "in": "query"
           },
           {
             "description": "notification content",
@@ -5868,7 +5776,7 @@
     },
     "/notification/namespaces/{namespace}/users/{userId}/templated": {
       "post": {
-        "description": "Required permission : \u003ccode\u003eNAMESPACE:{namespace}:USER:{userId}:NOTIFICATION [CREATE]\u003c/code\u003e with scope \u003ccode\u003esocial\u003c/code\u003e\n\t\t\t\u003cbr\u003eSends notification to a user with predefined template. There are two types of notification: sync and async. Async message will be stored \n\t\t\tto database if the receiver is offline. This stored message could be retrieved later via websocket command. \n\t\t\t\u003cbr\u003eIn the request body, specify which template slug (template identifier) to use and the template language. \n\t\t\t\u003cbr\u003eNotificationTemplate context is the key-value pair defining the value of each handlebar specified in the template content. \n\t\t\tTemplate need to be published before it can be use to send notifications",
+        "description": "Required permission : \u003ccode\u003eNAMESPACE:{namespace}:USER:{userId}:NOTIFICATION [CREATE]\u003c/code\u003e with scope \u003ccode\u003esocial\u003c/code\u003e\n\t\t\t\u003cbr\u003eSends notification to a user with predefined template.\n\t\t\t\u003cbr\u003eIn the request body, specify which template slug (template identifier) to use and the template language. \n\t\t\t\u003cbr\u003eNotificationTemplate context is the key-value pair defining the value of each handlebar specified in the template content. \n\t\t\tTemplate need to be published before it can be use to send notifications",
         "consumes": [
           "application/json"
         ],
@@ -5894,12 +5802,6 @@
             "name": "userId",
             "in": "path",
             "required": true
-          },
-          {
-            "type": "boolean",
-            "description": "notification type",
-            "name": "async",
-            "in": "query"
           },
           {
             "description": "notification content",
@@ -6232,37 +6134,6 @@
         }
       }
     },
-    "model.GetStoredNotificationResp": {
-      "required": [
-        "id",
-        "from",
-        "to",
-        "topicName",
-        "payload",
-        "sentAt"
-      ],
-      "properties": {
-        "from": {
-          "type": "string"
-        },
-        "id": {
-          "type": "string"
-        },
-        "payload": {
-          "type": "string"
-        },
-        "sentAt": {
-          "type": "integer",
-          "format": "int64"
-        },
-        "to": {
-          "type": "string"
-        },
-        "topicName": {
-          "type": "string"
-        }
-      }
-    },
     "model.GetUserFriendsResponse": {
       "required": [
         "friendIDs",
@@ -6332,37 +6203,6 @@
           "$ref": "#/definitions/model.TemplateContent"
         },
         "templateLanguage": {
-          "type": "string"
-        }
-      }
-    },
-    "model.NotificationResponse": {
-      "required": [
-        "id",
-        "from",
-        "to",
-        "topic",
-        "payload",
-        "sentAt"
-      ],
-      "properties": {
-        "from": {
-          "type": "string"
-        },
-        "id": {
-          "type": "string"
-        },
-        "payload": {
-          "type": "string"
-        },
-        "sentAt": {
-          "type": "integer",
-          "format": "int64"
-        },
-        "to": {
-          "type": "string"
-        },
-        "topic": {
           "type": "string"
         }
       }
@@ -6531,10 +6371,10 @@
     "model.TemplateLocalization": {
       "required": [
         "templateSlug",
-        "templateLanguage",
-        "lastPublishedAt",
         "lastDraftAt",
-        "templateContent"
+        "templateContent",
+        "templateLanguage",
+        "lastPublishedAt"
       ],
       "properties": {
         "lastDraftAt": {

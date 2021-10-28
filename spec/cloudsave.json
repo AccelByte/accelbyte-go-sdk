@@ -8,7 +8,7 @@
       "url": "https://accelbyte.io",
       "email": "engineering@accelbyte.io"
     },
-    "version": "1.8.0"
+    "version": "1.9.0"
   },
   "paths": {
     "/cloudsave/v1/admin/namespaces/{namespace}/records": {

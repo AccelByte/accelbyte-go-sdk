@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice DSM Controller Service",
     "title": "justice-dsm-controller-service",
-    "version": "2.6.0"
+    "version": "2.7.0"
   },
   "paths": {
     "/dsmcontroller/admin/configs": {
@@ -2143,6 +2143,29 @@
             "description": "how many items to return",
             "name": "count",
             "in": "query"
+          },
+          {
+            "enum": [
+              "createdAt",
+              "version",
+              "updatedAt"
+            ],
+            "type": "string",
+            "default": "createdAt",
+            "description": "sort by a specific field",
+            "name": "sortBy",
+            "in": "query"
+          },
+          {
+            "enum": [
+              "desc",
+              "asc"
+            ],
+            "type": "string",
+            "default": "asc",
+            "description": "sort direction",
+            "name": "sortDirection",
+            "in": "query"
           }
         ],
         "responses": {
@@ -3709,6 +3732,39 @@
         }
       }
     },
+    "/dsmcontroller/public/providers/regions/{region}": {
+      "get": {
+        "description": "This endpoint returns the providers by region.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Public"
+        ],
+        "summary": "List providers by region",
+        "operationId": "ListProvidersByRegion",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "region of the providers",
+            "name": "region",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Default providers got",
+            "schema": {
+              "$ref": "#/definitions/models.DefaultProvider"
+            }
+          }
+        }
+      }
+    },
     "/dsmcontroller/v1/messages": {
       "get": {
         "description": "get the list of messages.",
@@ -3870,16 +3926,16 @@
     },
     "models.CreateDeploymentOverrideRequest": {
       "required": [
-        "game_version",
-        "regions",
+        "max_count",
+        "buffer_count",
         "buffer_percent",
         "use_buffer_percent",
+        "game_version",
+        "regions",
         "configuration",
         "region_overrides",
         "enable_region_overrides",
-        "min_count",
-        "max_count",
-        "buffer_count"
+        "min_count"
       ],
       "properties": {
         "buffer_count": {
@@ -3926,16 +3982,16 @@
     },
     "models.CreateDeploymentRequest": {
       "required": [
+        "enable_region_overrides",
+        "min_count",
+        "buffer_percent",
         "use_buffer_percent",
         "game_version",
         "regions",
-        "buffer_percent",
-        "min_count",
-        "max_count",
-        "buffer_count",
         "configuration",
         "region_overrides",
-        "enable_region_overrides",
+        "max_count",
+        "buffer_count",
         "allow_version_override",
         "overrides"
       ],
@@ -4084,10 +4140,10 @@
     },
     "models.CreateSessionRequest": {
       "required": [
-        "namespace",
         "game_mode",
         "matching_allies",
         "session_id",
+        "namespace",
         "pod_name",
         "client_version",
         "region",
@@ -4315,11 +4371,11 @@
         "configuration",
         "region_overrides",
         "enable_region_overrides",
-        "min_count",
         "max_count",
         "buffer_count",
         "buffer_percent",
-        "use_buffer_percent"
+        "use_buffer_percent",
+        "min_count"
       ],
       "properties": {
         "buffer_count": {
@@ -4367,16 +4423,16 @@
     "models.DeploymentConfigOverride": {
       "required": [
         "name",
+        "regions",
         "enable_region_overrides",
-        "min_count",
         "buffer_count",
         "buffer_percent",
-        "regions",
-        "configuration",
-        "max_count",
         "use_buffer_percent",
         "game_version",
-        "region_overrides"
+        "configuration",
+        "region_overrides",
+        "max_count",
+        "min_count"
       ],
       "properties": {
         "buffer_count": {
@@ -4432,15 +4488,15 @@
         "updatedAt",
         "modifiedBy",
         "game_version",
+        "configuration",
         "region_overrides",
         "max_count",
-        "use_buffer_percent",
-        "regions",
-        "configuration",
-        "enable_region_overrides",
         "min_count",
+        "regions",
+        "enable_region_overrides",
         "buffer_count",
         "buffer_percent",
+        "use_buffer_percent",
         "allow_version_override",
         "overrides"
       ],
@@ -4924,11 +4980,11 @@
     "models.PodCountConfigOverride": {
       "required": [
         "name",
+        "buffer_count",
+        "buffer_percent",
         "use_buffer_percent",
         "min_count",
-        "max_count",
-        "buffer_count",
-        "buffer_percent"
+        "max_count"
       ],
       "properties": {
         "buffer_count": {
@@ -5315,11 +5371,11 @@
         "regions",
         "configuration",
         "enable_region_overrides",
-        "buffer_count",
-        "buffer_percent",
         "use_buffer_percent",
         "min_count",
-        "max_count"
+        "max_count",
+        "buffer_count",
+        "buffer_percent"
       ],
       "properties": {
         "buffer_count": {
@@ -5365,11 +5421,11 @@
         "configuration",
         "enable_region_overrides",
         "allow_version_override",
+        "buffer_percent",
+        "use_buffer_percent",
         "min_count",
         "max_count",
-        "buffer_count",
-        "buffer_percent",
-        "use_buffer_percent"
+        "buffer_count"
       ],
       "properties": {
         "allow_version_override": {
@@ -5452,11 +5508,11 @@
     },
     "models.UpdateRegionOverrideRequest": {
       "required": [
+        "use_buffer_percent",
         "min_count",
         "max_count",
         "buffer_count",
-        "buffer_percent",
-        "use_buffer_percent"
+        "buffer_percent"
       ],
       "properties": {
         "buffer_count": {

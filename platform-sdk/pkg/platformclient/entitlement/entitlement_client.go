@@ -73,6 +73,8 @@ type ClientService interface {
 
 	PublicExistsAnyUserActiveEntitlement(params *PublicExistsAnyUserActiveEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*PublicExistsAnyUserActiveEntitlementOK, error)
 
+	PublicGetEntitlementOwnershipToken(params *PublicGetEntitlementOwnershipTokenParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetEntitlementOwnershipTokenOK, error)
+
 	PublicGetMyAppEntitlementOwnershipByAppID(params *PublicGetMyAppEntitlementOwnershipByAppIDParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetMyAppEntitlementOwnershipByAppIDOK, error)
 
 	PublicGetMyEntitlementOwnershipBySku(params *PublicGetMyEntitlementOwnershipBySkuParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetMyEntitlementOwnershipBySkuOK, error)
@@ -133,7 +135,7 @@ func (a *Client) ConsumeUserEntitlement(params *ConsumeUserEntitlementParams, au
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/decrement",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &ConsumeUserEntitlementReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -178,7 +180,7 @@ func (a *Client) CreateUserDistributionReceiver(params *CreateUserDistributionRe
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/entitlements/receivers/{extUserId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &CreateUserDistributionReceiverReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -221,7 +223,7 @@ func (a *Client) DeleteUserDistributionReceiver(params *DeleteUserDistributionRe
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/entitlements/receivers/{extUserId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &DeleteUserDistributionReceiverReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -264,7 +266,7 @@ func (a *Client) DisableUserEntitlement(params *DisableUserEntitlementParams, au
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/disable",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &DisableUserEntitlementReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -309,7 +311,7 @@ func (a *Client) EnableUserEntitlement(params *EnableUserEntitlementParams, auth
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/enable",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &EnableUserEntitlementReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -354,7 +356,7 @@ func (a *Client) ExistsAnyUserActiveEntitlement(params *ExistsAnyUserActiveEntit
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/entitlements/ownership/any",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &ExistsAnyUserActiveEntitlementReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -395,7 +397,7 @@ func (a *Client) ExistsAnyUserActiveEntitlementByItemIds(params *ExistsAnyUserAc
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/entitlements/ownership/anyOf",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &ExistsAnyUserActiveEntitlementByItemIdsReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -436,7 +438,7 @@ func (a *Client) GetEntitlement(params *GetEntitlementParams, authInfo runtime.C
 		PathPattern:        "/admin/namespaces/{namespace}/entitlements/{entitlementId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &GetEntitlementReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -479,7 +481,7 @@ func (a *Client) GetUserAppEntitlementByAppID(params *GetUserAppEntitlementByApp
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/entitlements/byAppId",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &GetUserAppEntitlementByAppIDReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -522,7 +524,7 @@ func (a *Client) GetUserAppEntitlementOwnershipByAppID(params *GetUserAppEntitle
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/entitlements/ownership/byAppId",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &GetUserAppEntitlementOwnershipByAppIDReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -563,7 +565,7 @@ func (a *Client) GetUserDistributionReceivers(params *GetUserDistributionReceive
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/entitlements/receivers",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &GetUserDistributionReceiversReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -606,7 +608,7 @@ func (a *Client) GetUserEntitlement(params *GetUserEntitlementParams, authInfo r
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &GetUserEntitlementReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -649,7 +651,7 @@ func (a *Client) GetUserEntitlementBySku(params *GetUserEntitlementBySkuParams, 
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/entitlements/bySku",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &GetUserEntitlementBySkuReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -692,7 +694,7 @@ func (a *Client) GetUserEntitlementHistories(params *GetUserEntitlementHistories
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/history",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &GetUserEntitlementHistoriesReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -733,7 +735,7 @@ func (a *Client) GetUserEntitlementOwnershipBySku(params *GetUserEntitlementOwne
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/entitlements/ownership/bySku",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &GetUserEntitlementOwnershipBySkuReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -774,7 +776,7 @@ func (a *Client) GrantUserEntitlement(params *GrantUserEntitlementParams, authIn
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/entitlements",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &GrantUserEntitlementReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -819,7 +821,7 @@ func (a *Client) PublicConsumeUserEntitlement(params *PublicConsumeUserEntitleme
 		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/decrement",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &PublicConsumeUserEntitlementReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -864,7 +866,7 @@ func (a *Client) PublicCreateUserDistributionReceiver(params *PublicCreateUserDi
 		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/entitlements/receivers/{extUserId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &PublicCreateUserDistributionReceiverReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -907,7 +909,7 @@ func (a *Client) PublicDeleteUserDistributionReceiver(params *PublicDeleteUserDi
 		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/entitlements/receivers/{extUserId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &PublicDeleteUserDistributionReceiverReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -963,7 +965,7 @@ func (a *Client) PublicDistributeUserDistribution(params *PublicDistributeUserDi
 		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/distribute",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &PublicDistributeUserDistributionReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1008,7 +1010,7 @@ func (a *Client) PublicExistsAnyMyActiveEntitlement(params *PublicExistsAnyMyAct
 		PathPattern:        "/public/namespaces/{namespace}/users/me/entitlements/ownership/any",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &PublicExistsAnyMyActiveEntitlementReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1049,7 +1051,7 @@ func (a *Client) PublicExistsAnyUserActiveEntitlement(params *PublicExistsAnyUse
 		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/entitlements/ownership/any",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &PublicExistsAnyUserActiveEntitlementReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1063,6 +1065,76 @@ func (a *Client) PublicExistsAnyUserActiveEntitlement(params *PublicExistsAnyUse
 	switch v := result.(type) {
 
 	case *PublicExistsAnyUserActiveEntitlementOK:
+		return v, nil
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  PublicGetEntitlementOwnershipToken gets an entitlement ownership token
+
+  Gets an entitlement ownership token of specified itemIds, skus and appIds<p>The decoded ownership token header like below:<p><pre><code>{
+  "kid": "9fd4cd5f991cebe3323605cd12d3b8bfdfc73fa4",
+  "typ": "JWT",
+  "alg": "RS256"
+}
+</code></pre>That you can get the jwks by api <baseUrl>/platform/jwks, if the configured private key is same as IAM, <p>you can also get jwks from IAM endpoint. <p>The decoded ownership token payload like below:<p><pre><code>{
+ "namespace": "accelbyte",
+ "entitlements": [
+  {
+    "itemId": "4c1296291f604c199f7bb7f0ee02e5f8",
+    "appType": null,
+    "appId": null,
+    "namespace": "accelbyte",
+    "itemNamespace": "accelbyte",
+    "sku": "prime-plus"
+  },
+  {
+    "itemId": "e8f4974cf45c4e1f8d4f0c6990c518bd",
+    "appType": "GAME",
+    "appId": "omeganebula",
+    "namespace": "accelbyte",
+    "itemNamespace": "accelbyte",
+    "sku": "APPG005ON"
+  }
+ ],
+"sub": "66459eb6a4e44e6fb0040bd20c1079a5",
+"exp": 1619624360,
+"iat": 1619624060
+}
+</code></pre><b>if there's no active entitlement for the specific params, the entitlements section will be omitted</b>.<p>Other detail info: <ul><li><i>Required permission</i>: resource="NAMESPACE:{namespace}:ENTITLEMENT", action=2 (READ)</li></ul>
+*/
+func (a *Client) PublicGetEntitlementOwnershipToken(params *PublicGetEntitlementOwnershipTokenParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetEntitlementOwnershipTokenOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetEntitlementOwnershipTokenParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicGetEntitlementOwnershipToken",
+		Method:             "GET",
+		PathPattern:        "/public/namespaces/{namespace}/users/me/entitlements/ownershipToken",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &PublicGetEntitlementOwnershipTokenReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetEntitlementOwnershipTokenOK:
 		return v, nil
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
@@ -1090,7 +1162,7 @@ func (a *Client) PublicGetMyAppEntitlementOwnershipByAppID(params *PublicGetMyAp
 		PathPattern:        "/public/namespaces/{namespace}/users/me/entitlements/ownership/byAppId",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &PublicGetMyAppEntitlementOwnershipByAppIDReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1131,7 +1203,7 @@ func (a *Client) PublicGetMyEntitlementOwnershipBySku(params *PublicGetMyEntitle
 		PathPattern:        "/public/namespaces/{namespace}/users/me/entitlements/ownership/bySku",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &PublicGetMyEntitlementOwnershipBySkuReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1172,7 +1244,7 @@ func (a *Client) PublicGetUserAppEntitlementByAppID(params *PublicGetUserAppEnti
 		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/entitlements/byAppId",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &PublicGetUserAppEntitlementByAppIDReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1215,7 +1287,7 @@ func (a *Client) PublicGetUserAppEntitlementOwnershipByAppID(params *PublicGetUs
 		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/entitlements/ownership/byAppId",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &PublicGetUserAppEntitlementOwnershipByAppIDReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1256,7 +1328,7 @@ func (a *Client) PublicGetUserDistributionReceivers(params *PublicGetUserDistrib
 		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/entitlements/receivers",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &PublicGetUserDistributionReceiversReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1301,7 +1373,7 @@ func (a *Client) PublicGetUserEntitlement(params *PublicGetUserEntitlementParams
 		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &PublicGetUserEntitlementReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1344,7 +1416,7 @@ func (a *Client) PublicGetUserEntitlementBySku(params *PublicGetUserEntitlementB
 		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/entitlements/bySku",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &PublicGetUserEntitlementBySkuReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1387,7 +1459,7 @@ func (a *Client) PublicGetUserEntitlementOwnershipBySku(params *PublicGetUserEnt
 		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/entitlements/ownership/bySku",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &PublicGetUserEntitlementOwnershipBySkuReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1428,7 +1500,7 @@ func (a *Client) PublicQueryUserEntitlements(params *PublicQueryUserEntitlements
 		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/entitlements",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &PublicQueryUserEntitlementsReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1469,7 +1541,7 @@ func (a *Client) PublicQueryUserEntitlementsByAppType(params *PublicQueryUserEnt
 		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/entitlements/byAppType",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &PublicQueryUserEntitlementsByAppTypeReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1510,7 +1582,7 @@ func (a *Client) PublicUpdateUserDistributionReceiver(params *PublicUpdateUserDi
 		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/entitlements/receivers/{extUserId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &PublicUpdateUserDistributionReceiverReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1551,7 +1623,7 @@ func (a *Client) QueryEntitlements(params *QueryEntitlementsParams, authInfo run
 		PathPattern:        "/admin/namespaces/{namespace}/entitlements",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &QueryEntitlementsReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1592,7 +1664,7 @@ func (a *Client) QueryUserEntitlements(params *QueryUserEntitlementsParams, auth
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/entitlements",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &QueryUserEntitlementsReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1633,7 +1705,7 @@ func (a *Client) QueryUserEntitlementsByAppType(params *QueryUserEntitlementsByA
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/entitlements/byAppType",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &QueryUserEntitlementsByAppTypeReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1674,7 +1746,7 @@ func (a *Client) RevokeUserEntitlement(params *RevokeUserEntitlementParams, auth
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/revoke",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &RevokeUserEntitlementReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1717,7 +1789,7 @@ func (a *Client) RevokeUserEntitlements(params *RevokeUserEntitlementsParams, au
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/entitlements/revoke/byIds",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &RevokeUserEntitlementsReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1758,7 +1830,7 @@ func (a *Client) UpdateUserDistributionReceiver(params *UpdateUserDistributionRe
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/entitlements/receivers/{extUserId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &UpdateUserDistributionReceiverReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1799,7 +1871,7 @@ func (a *Client) UpdateUserEntitlement(params *UpdateUserEntitlementParams, auth
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &UpdateUserEntitlementReader{formats: a.formats},
 		AuthInfo:           authInfo,

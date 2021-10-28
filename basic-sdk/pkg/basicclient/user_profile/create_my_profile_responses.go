@@ -243,7 +243,7 @@ func NewCreateMyProfileConflict() *CreateMyProfileConflict {
 
 /*CreateMyProfileConflict handles this case with default header values.
 
-  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11441</td><td>user profile already exists</td></tr></table>
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11441</td><td>Unable to {action}: User profile already exists</td></tr></table>
 */
 type CreateMyProfileConflict struct {
 	Payload *basicclientmodels.ErrorEntity

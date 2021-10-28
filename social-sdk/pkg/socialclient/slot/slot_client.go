@@ -70,7 +70,7 @@ func (a *Client) GetSlotData(params *GetSlotDataParams, authInfo runtime.ClientA
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/slots/{slotId}",
 		ProducesMediaTypes: []string{"application/octet-stream"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &GetSlotDataReader{formats: a.formats, writer: writer},
 		AuthInfo:           authInfo,
@@ -95,7 +95,7 @@ func (a *Client) GetSlotData(params *GetSlotDataParams, authInfo runtime.ClientA
 /*
   GetUserNamespaceSlots returns list of slots for given user
 
-  Get slots for a given user.<br>Other detail info:<ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTDATA", action=2 (READ)</li><li><i>Returns</i>: list of slots</li></ul>
+  Get slots for a given user.<br>Other detail info:<ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTDATA", action=2 (READ)</li><li><i>Returns</i>: list of slots</li></ul>
 */
 func (a *Client) GetUserNamespaceSlots(params *GetUserNamespaceSlotsParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserNamespaceSlotsOK, error) {
 	// TODO: Validate the params before sending
@@ -113,7 +113,7 @@ func (a *Client) GetUserNamespaceSlots(params *GetUserNamespaceSlotsParams, auth
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/slots",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &GetUserNamespaceSlotsReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -154,7 +154,7 @@ func (a *Client) PublicCreateUserNamespaceSlot(params *PublicCreateUserNamespace
 		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/slots",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"multipart/form-data"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &PublicCreateUserNamespaceSlotReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -199,7 +199,7 @@ func (a *Client) PublicDeleteUserNamespaceSlot(params *PublicDeleteUserNamespace
 		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/slots/{slotId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &PublicDeleteUserNamespaceSlotReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -242,7 +242,7 @@ func (a *Client) PublicGetSlotData(params *PublicGetSlotDataParams, authInfo run
 		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/slots/{slotId}",
 		ProducesMediaTypes: []string{"application/octet-stream"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &PublicGetSlotDataReader{formats: a.formats, writer: writer},
 		AuthInfo:           authInfo,
@@ -267,7 +267,7 @@ func (a *Client) PublicGetSlotData(params *PublicGetSlotDataParams, authInfo run
 /*
   PublicGetUserNamespaceSlots returns slots for given user
 
-  Get list of slots for a given user in namespace.<br>Other detail info:<ul><li><i>Required permission</i>: resource="NAMESPACE:{namespace}:USER:{userId}:SLOTDATA", action=2 (READ)</li><li><i>Returns</i>: list of slots</li></ul>
+  Get list of slots for a given user in namespace.<br>Other detail info:<ul><li><i>Required permission</i>: resource="NAMESPACE:{namespace}:USER:{userId}:SLOTDATA", action=2 (READ)</li><li><i>Returns</i>: list of slots</li></ul>
 */
 func (a *Client) PublicGetUserNamespaceSlots(params *PublicGetUserNamespaceSlotsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserNamespaceSlotsOK, error) {
 	// TODO: Validate the params before sending
@@ -285,7 +285,7 @@ func (a *Client) PublicGetUserNamespaceSlots(params *PublicGetUserNamespaceSlots
 		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/slots",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &PublicGetUserNamespaceSlotsReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -326,7 +326,7 @@ func (a *Client) PublicUpdateUserNamespaceSlot(params *PublicUpdateUserNamespace
 		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/slots/{slotId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"multipart/form-data"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &PublicUpdateUserNamespaceSlotReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -371,7 +371,7 @@ func (a *Client) PublicUpdateUserNamespaceSlotMetadata(params *PublicUpdateUserN
 		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/slots/{slotId}/metadata",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &PublicUpdateUserNamespaceSlotMetadataReader{formats: a.formats},
 		AuthInfo:           authInfo,

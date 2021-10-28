@@ -105,7 +105,7 @@ func NewUpdateCountryGroupBadRequest() *UpdateCountryGroupBadRequest {
 
 /*UpdateCountryGroupBadRequest handles this case with default header values.
 
-  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>20019</td><td>unable to parse request body</td></tr><tr><td>11234</td><td>country belongs to more than one group</td></tr></table>
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>20019</td><td>unable to parse request body</td></tr><tr><td>11234</td><td>Unable to {action}: A country can't be assigned to more than one country group</td></tr></table>
 */
 type UpdateCountryGroupBadRequest struct {
 	Payload *basicclientmodels.ValidationErrorEntity
@@ -204,7 +204,7 @@ func NewUpdateCountryGroupNotFound() *UpdateCountryGroupNotFound {
 
 /*UpdateCountryGroupNotFound handles this case with default header values.
 
-  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11233</td><td>country group not found</td></tr></table>
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11233</td><td>Unable to {action}: Country group with code [{countryGroupCode}] is not found</td></tr></table>
 */
 type UpdateCountryGroupNotFound struct {
 	Payload *basicclientmodels.ErrorEntity

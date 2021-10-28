@@ -111,7 +111,7 @@ func NewCreateUserPaymentOrderBadRequest() *CreateUserPaymentOrderBadRequest {
 
 /*CreateUserPaymentOrderBadRequest handles this case with default header values.
 
-  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>33121</td><td>Recurring payment failed with code: [{errorCode}] and message: [{errorMessage}]</td></tr><tr><td>33122</td><td>Subscription not match when create payment order</td></tr></table>
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>33121</td><td>Recurring payment failed with code: [{errorCode}] and message: [{errorMessage}] by provider: [{provider}]</td></tr><tr><td>33122</td><td>Subscription not match when create payment order</td></tr></table>
 */
 type CreateUserPaymentOrderBadRequest struct {
 	Payload *platformclientmodels.ErrorEntity

@@ -14,12 +14,15 @@ import (
 	"github.com/go-openapi/strfmt"
 
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/anonymization"
+	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/campaign"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/category"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/currency"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/entitlement"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/fulfillment"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/i_a_p"
+	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/integration"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/item"
+	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/key_group"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/order"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/order_dedicated"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/payment"
@@ -29,6 +32,8 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/payment_station"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/reward"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/store"
+	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/subscription"
+	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/ticket"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/wallet"
 )
 
@@ -38,14 +43,14 @@ var Default = NewHTTPClient(nil)
 const (
 	// DefaultHost is the default Host
 	// found in Meta (info) section of spec file
-	DefaultHost string = "jib.noice.accelbyte.io"
+	DefaultHost string = "localhost"
 	// DefaultBasePath is the default BasePath
 	// found in Meta (info) section of spec file
 	DefaultBasePath string = "/platform"
 )
 
 // DefaultSchemes are the default schemes found in Meta (info) section of spec file
-var DefaultSchemes = []string{"https"}
+var DefaultSchemes = []string{"http"}
 
 // NewHTTPClient creates a new justice platform service HTTP client.
 func NewHTTPClient(formats strfmt.Registry) *JusticePlatformService {
@@ -75,12 +80,15 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry) *JusticePla
 	cli := new(JusticePlatformService)
 	cli.Transport = transport
 	cli.Anonymization = anonymization.New(transport, formats)
+	cli.Campaign = campaign.New(transport, formats)
 	cli.Category = category.New(transport, formats)
 	cli.Currency = currency.New(transport, formats)
 	cli.Entitlement = entitlement.New(transport, formats)
 	cli.Fulfillment = fulfillment.New(transport, formats)
 	cli.Iap = i_a_p.New(transport, formats)
+	cli.Integration = integration.New(transport, formats)
 	cli.Item = item.New(transport, formats)
+	cli.KeyGroup = key_group.New(transport, formats)
 	cli.Order = order.New(transport, formats)
 	cli.OrderDedicated = order_dedicated.New(transport, formats)
 	cli.Payment = payment.New(transport, formats)
@@ -90,6 +98,8 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry) *JusticePla
 	cli.PaymentStation = payment_station.New(transport, formats)
 	cli.Reward = reward.New(transport, formats)
 	cli.Store = store.New(transport, formats)
+	cli.Subscription = subscription.New(transport, formats)
+	cli.Ticket = ticket.New(transport, formats)
 	cli.Wallet = wallet.New(transport, formats)
 	return cli
 }
@@ -151,6 +161,8 @@ func (cfg *TransportConfig) WithSchemes(schemes []string) *TransportConfig {
 type JusticePlatformService struct {
 	Anonymization anonymization.ClientService
 
+	Campaign campaign.ClientService
+
 	Category category.ClientService
 
 	Currency currency.ClientService
@@ -161,7 +173,11 @@ type JusticePlatformService struct {
 
 	Iap i_a_p.ClientService
 
+	Integration integration.ClientService
+
 	Item item.ClientService
+
+	KeyGroup key_group.ClientService
 
 	Order order.ClientService
 
@@ -181,6 +197,10 @@ type JusticePlatformService struct {
 
 	Store store.ClientService
 
+	Subscription subscription.ClientService
+
+	Ticket ticket.ClientService
+
 	Wallet wallet.ClientService
 
 	Transport runtime.ClientTransport
@@ -190,12 +210,15 @@ type JusticePlatformService struct {
 func (c *JusticePlatformService) SetTransport(transport runtime.ClientTransport) {
 	c.Transport = transport
 	c.Anonymization.SetTransport(transport)
+	c.Campaign.SetTransport(transport)
 	c.Category.SetTransport(transport)
 	c.Currency.SetTransport(transport)
 	c.Entitlement.SetTransport(transport)
 	c.Fulfillment.SetTransport(transport)
 	c.Iap.SetTransport(transport)
+	c.Integration.SetTransport(transport)
 	c.Item.SetTransport(transport)
+	c.KeyGroup.SetTransport(transport)
 	c.Order.SetTransport(transport)
 	c.OrderDedicated.SetTransport(transport)
 	c.Payment.SetTransport(transport)
@@ -205,5 +228,7 @@ func (c *JusticePlatformService) SetTransport(transport runtime.ClientTransport)
 	c.PaymentStation.SetTransport(transport)
 	c.Reward.SetTransport(transport)
 	c.Store.SetTransport(transport)
+	c.Subscription.SetTransport(transport)
+	c.Ticket.SetTransport(transport)
 	c.Wallet.SetTransport(transport)
 }

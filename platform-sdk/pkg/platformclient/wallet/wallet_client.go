@@ -29,15 +29,15 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	CheckTransactionCreditLimit(params *CheckTransactionCreditLimitParams, authInfo runtime.ClientAuthInfoWriter) (*CheckTransactionCreditLimitNoContent, *CheckTransactionCreditLimitBadRequest, *CheckTransactionCreditLimitConflict, *CheckTransactionCreditLimitUnprocessableEntity, error)
+	CheckWallet(params *CheckWalletParams, authInfo runtime.ClientAuthInfoWriter) (*CheckWalletNoContent, *CheckWalletBadRequest, *CheckWalletConflict, *CheckWalletUnprocessableEntity, error)
 
 	CreditUserWallet(params *CreditUserWalletParams, authInfo runtime.ClientAuthInfoWriter) (*CreditUserWalletOK, *CreditUserWalletBadRequest, *CreditUserWalletConflict, *CreditUserWalletUnprocessableEntity, error)
 
 	DebitUserWallet(params *DebitUserWalletParams, authInfo runtime.ClientAuthInfoWriter) (*DebitUserWalletOK, *DebitUserWalletBadRequest, *DebitUserWalletNotFound, *DebitUserWalletConflict, *DebitUserWalletUnprocessableEntity, error)
 
-	DisableUserWallet(params *DisableUserWalletParams, authInfo runtime.ClientAuthInfoWriter) (*DisableUserWalletNotFound, *DisableUserWalletConflict, error)
+	DisableUserWallet(params *DisableUserWalletParams, authInfo runtime.ClientAuthInfoWriter) (*DisableUserWalletNoContent, *DisableUserWalletNotFound, *DisableUserWalletConflict, error)
 
-	EnableUserWallet(params *EnableUserWalletParams, authInfo runtime.ClientAuthInfoWriter) (*EnableUserWalletNotFound, *EnableUserWalletConflict, error)
+	EnableUserWallet(params *EnableUserWalletParams, authInfo runtime.ClientAuthInfoWriter) (*EnableUserWalletNoContent, *EnableUserWalletNotFound, *EnableUserWalletConflict, error)
 
 	GetUserWallet(params *GetUserWalletParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserWalletOK, *GetUserWalletNotFound, error)
 
@@ -59,14 +59,14 @@ type ClientService interface {
 }
 
 /*
-  CheckTransactionCreditLimit checks credit transaction limit
+  CheckWallet checks wallet
 
-  <b>[SERVICE COMMUNICATION ONLY]</b> Check credit transaction limit of user wallet by currency code.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET", action=2 (READ)</li></ul>
+  <b>[SERVICE COMMUNICATION ONLY]</b> Check wallet whether it's inactive.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET", action=2 (READ)</li></ul>
 */
-func (a *Client) CheckTransactionCreditLimit(params *CheckTransactionCreditLimitParams, authInfo runtime.ClientAuthInfoWriter) (*CheckTransactionCreditLimitNoContent, *CheckTransactionCreditLimitBadRequest, *CheckTransactionCreditLimitConflict, *CheckTransactionCreditLimitUnprocessableEntity, error) {
+func (a *Client) CheckWallet(params *CheckWalletParams, authInfo runtime.ClientAuthInfoWriter) (*CheckWalletNoContent, *CheckWalletBadRequest, *CheckWalletConflict, *CheckWalletUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewCheckTransactionCreditLimitParams()
+		params = NewCheckWalletParams()
 	}
 
 	if params.Context == nil {
@@ -74,14 +74,14 @@ func (a *Client) CheckTransactionCreditLimit(params *CheckTransactionCreditLimit
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "checkTransactionCreditLimit",
-		Method:             "POST",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/checkTransactionCreditLimit",
+		ID:                 "checkWallet",
+		Method:             "GET",
+		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/check",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
-		Reader:             &CheckTransactionCreditLimitReader{formats: a.formats},
+		Reader:             &CheckWalletReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -92,13 +92,13 @@ func (a *Client) CheckTransactionCreditLimit(params *CheckTransactionCreditLimit
 
 	switch v := result.(type) {
 
-	case *CheckTransactionCreditLimitNoContent:
+	case *CheckWalletNoContent:
 		return v, nil, nil, nil, nil
-	case *CheckTransactionCreditLimitBadRequest:
+	case *CheckWalletBadRequest:
 		return nil, v, nil, nil, nil
-	case *CheckTransactionCreditLimitConflict:
+	case *CheckWalletConflict:
 		return nil, nil, v, nil, nil
-	case *CheckTransactionCreditLimitUnprocessableEntity:
+	case *CheckWalletUnprocessableEntity:
 		return nil, nil, nil, v, nil
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
@@ -126,7 +126,7 @@ func (a *Client) CreditUserWallet(params *CreditUserWalletParams, authInfo runti
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/credit",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &CreditUserWalletReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -173,7 +173,7 @@ func (a *Client) DebitUserWallet(params *DebitUserWalletParams, authInfo runtime
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/debit",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &DebitUserWalletReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -206,7 +206,7 @@ func (a *Client) DebitUserWallet(params *DebitUserWalletParams, authInfo runtime
 
   disable a user wallet.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET", action=4 (UPDATE)</li></ul>
 */
-func (a *Client) DisableUserWallet(params *DisableUserWalletParams, authInfo runtime.ClientAuthInfoWriter) (*DisableUserWalletNotFound, *DisableUserWalletConflict, error) {
+func (a *Client) DisableUserWallet(params *DisableUserWalletParams, authInfo runtime.ClientAuthInfoWriter) (*DisableUserWalletNoContent, *DisableUserWalletNotFound, *DisableUserWalletConflict, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDisableUserWalletParams()
@@ -222,7 +222,7 @@ func (a *Client) DisableUserWallet(params *DisableUserWalletParams, authInfo run
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/disable",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &DisableUserWalletReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -230,17 +230,19 @@ func (a *Client) DisableUserWallet(params *DisableUserWalletParams, authInfo run
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, err
+		return nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
+	case *DisableUserWalletNoContent:
+		return v, nil, nil, nil
 	case *DisableUserWalletNotFound:
-		return v, nil, nil
+		return nil, v, nil, nil
 	case *DisableUserWalletConflict:
-		return nil, v, nil
+		return nil, nil, v, nil
 	default:
-		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -249,7 +251,7 @@ func (a *Client) DisableUserWallet(params *DisableUserWalletParams, authInfo run
 
   enable a user wallet.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET", action=4 (UPDATE)</li></ul>
 */
-func (a *Client) EnableUserWallet(params *EnableUserWalletParams, authInfo runtime.ClientAuthInfoWriter) (*EnableUserWalletNotFound, *EnableUserWalletConflict, error) {
+func (a *Client) EnableUserWallet(params *EnableUserWalletParams, authInfo runtime.ClientAuthInfoWriter) (*EnableUserWalletNoContent, *EnableUserWalletNotFound, *EnableUserWalletConflict, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewEnableUserWalletParams()
@@ -265,7 +267,7 @@ func (a *Client) EnableUserWallet(params *EnableUserWalletParams, authInfo runti
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/enable",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &EnableUserWalletReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -273,17 +275,19 @@ func (a *Client) EnableUserWallet(params *EnableUserWalletParams, authInfo runti
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, err
+		return nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
+	case *EnableUserWalletNoContent:
+		return v, nil, nil, nil
 	case *EnableUserWalletNotFound:
-		return v, nil, nil
+		return nil, v, nil, nil
 	case *EnableUserWalletConflict:
-		return nil, v, nil
+		return nil, nil, v, nil
 	default:
-		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -308,7 +312,7 @@ func (a *Client) GetUserWallet(params *GetUserWalletParams, authInfo runtime.Cli
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &GetUserWalletReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -351,7 +355,7 @@ func (a *Client) GetWallet(params *GetWalletParams, authInfo runtime.ClientAuthI
 		PathPattern:        "/admin/namespaces/{namespace}/wallets/{walletId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &GetWalletReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -394,7 +398,7 @@ func (a *Client) ListUserWalletTransactions(params *ListUserWalletTransactionsPa
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/transactions",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &ListUserWalletTransactionsReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -437,7 +441,7 @@ func (a *Client) PayWithUserWallet(params *PayWithUserWalletParams, authInfo run
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/payment",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &PayWithUserWalletReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -484,7 +488,7 @@ func (a *Client) PublicGetMyWallet(params *PublicGetMyWalletParams, authInfo run
 		PathPattern:        "/public/namespaces/{namespace}/users/me/wallets/{currencyCode}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &PublicGetMyWalletReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -525,7 +529,7 @@ func (a *Client) PublicGetWallet(params *PublicGetWalletParams, authInfo runtime
 		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &PublicGetWalletReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -566,7 +570,7 @@ func (a *Client) PublicListUserWalletTransactions(params *PublicListUserWalletTr
 		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/transactions",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &PublicListUserWalletTransactionsReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -607,7 +611,7 @@ func (a *Client) QueryWallets(params *QueryWalletsParams, authInfo runtime.Clien
 		PathPattern:        "/admin/namespaces/{namespace}/wallets",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &QueryWalletsReader{formats: a.formats},
 		AuthInfo:           authInfo,

@@ -24,6 +24,12 @@ type PublicDownloadUserOrderReceiptReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *PublicDownloadUserOrderReceiptReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
+	case 200:
+		result := NewPublicDownloadUserOrderReceiptOK()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 404:
 		result := NewPublicDownloadUserOrderReceiptNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -45,6 +51,27 @@ func (o *PublicDownloadUserOrderReceiptReader) ReadResponse(response runtime.Cli
 
 		return nil, fmt.Errorf("Requested GET /public/namespaces/{namespace}/users/{userId}/orders/{orderNo}/receipt.pdf returns an error %d: %s", response.Code(), string(data))
 	}
+}
+
+// NewPublicDownloadUserOrderReceiptOK creates a PublicDownloadUserOrderReceiptOK with default headers values
+func NewPublicDownloadUserOrderReceiptOK() *PublicDownloadUserOrderReceiptOK {
+	return &PublicDownloadUserOrderReceiptOK{}
+}
+
+/*PublicDownloadUserOrderReceiptOK handles this case with default header values.
+
+  Successful operation
+*/
+type PublicDownloadUserOrderReceiptOK struct {
+}
+
+func (o *PublicDownloadUserOrderReceiptOK) Error() string {
+	return fmt.Sprintf("[GET /public/namespaces/{namespace}/users/{userId}/orders/{orderNo}/receipt.pdf][%d] publicDownloadUserOrderReceiptOK ", 200)
+}
+
+func (o *PublicDownloadUserOrderReceiptOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	return nil
 }
 
 // NewPublicDownloadUserOrderReceiptNotFound creates a PublicDownloadUserOrderReceiptNotFound with default headers values

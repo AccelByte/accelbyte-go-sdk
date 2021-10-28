@@ -31,7 +31,7 @@ type Client struct {
 type ClientService interface {
 	CountOfPurchasedItem(params *CountOfPurchasedItemParams, authInfo runtime.ClientAuthInfoWriter) (*CountOfPurchasedItemOK, error)
 
-	DownloadUserOrderReceipt(params *DownloadUserOrderReceiptParams, authInfo runtime.ClientAuthInfoWriter) (*DownloadUserOrderReceiptNotFound, *DownloadUserOrderReceiptConflict, error)
+	DownloadUserOrderReceipt(params *DownloadUserOrderReceiptParams, authInfo runtime.ClientAuthInfoWriter) (*DownloadUserOrderReceiptOK, *DownloadUserOrderReceiptNotFound, *DownloadUserOrderReceiptConflict, error)
 
 	FulfillUserOrder(params *FulfillUserOrderParams, authInfo runtime.ClientAuthInfoWriter) (*FulfillUserOrderOK, *FulfillUserOrderBadRequest, *FulfillUserOrderNotFound, *FulfillUserOrderConflict, error)
 
@@ -51,7 +51,7 @@ type ClientService interface {
 
 	PublicCreateUserOrder(params *PublicCreateUserOrderParams, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateUserOrderCreated, *PublicCreateUserOrderBadRequest, *PublicCreateUserOrderForbidden, *PublicCreateUserOrderNotFound, *PublicCreateUserOrderConflict, *PublicCreateUserOrderUnprocessableEntity, error)
 
-	PublicDownloadUserOrderReceipt(params *PublicDownloadUserOrderReceiptParams, authInfo runtime.ClientAuthInfoWriter) (*PublicDownloadUserOrderReceiptNotFound, *PublicDownloadUserOrderReceiptConflict, error)
+	PublicDownloadUserOrderReceipt(params *PublicDownloadUserOrderReceiptParams, authInfo runtime.ClientAuthInfoWriter) (*PublicDownloadUserOrderReceiptOK, *PublicDownloadUserOrderReceiptNotFound, *PublicDownloadUserOrderReceiptConflict, error)
 
 	PublicGetUserOrder(params *PublicGetUserOrderParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserOrderOK, *PublicGetUserOrderNotFound, error)
 
@@ -91,7 +91,7 @@ func (a *Client) CountOfPurchasedItem(params *CountOfPurchasedItemParams, authIn
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/orders/countOfItem",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &CountOfPurchasedItemReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -116,7 +116,7 @@ func (a *Client) CountOfPurchasedItem(params *CountOfPurchasedItemParams, authIn
 
   Download user order receipt by orderNo.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:ORDER", action=2 (READ)</li><li><i>Returns</i>: order receipt pdf</li></ul>
 */
-func (a *Client) DownloadUserOrderReceipt(params *DownloadUserOrderReceiptParams, authInfo runtime.ClientAuthInfoWriter) (*DownloadUserOrderReceiptNotFound, *DownloadUserOrderReceiptConflict, error) {
+func (a *Client) DownloadUserOrderReceipt(params *DownloadUserOrderReceiptParams, authInfo runtime.ClientAuthInfoWriter) (*DownloadUserOrderReceiptOK, *DownloadUserOrderReceiptNotFound, *DownloadUserOrderReceiptConflict, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDownloadUserOrderReceiptParams()
@@ -132,7 +132,7 @@ func (a *Client) DownloadUserOrderReceipt(params *DownloadUserOrderReceiptParams
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}/receipt.pdf",
 		ProducesMediaTypes: []string{"application/pdf"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &DownloadUserOrderReceiptReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -140,17 +140,19 @@ func (a *Client) DownloadUserOrderReceipt(params *DownloadUserOrderReceiptParams
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, err
+		return nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
+	case *DownloadUserOrderReceiptOK:
+		return v, nil, nil, nil
 	case *DownloadUserOrderReceiptNotFound:
-		return v, nil, nil
+		return nil, v, nil, nil
 	case *DownloadUserOrderReceiptConflict:
-		return nil, v, nil
+		return nil, nil, v, nil
 	default:
-		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -175,7 +177,7 @@ func (a *Client) FulfillUserOrder(params *FulfillUserOrderParams, authInfo runti
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}/fulfill",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &FulfillUserOrderReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -222,7 +224,7 @@ func (a *Client) GetOrder(params *GetOrderParams, authInfo runtime.ClientAuthInf
 		PathPattern:        "/admin/namespaces/{namespace}/orders/{orderNo}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &GetOrderReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -265,7 +267,7 @@ func (a *Client) GetOrderStatistics(params *GetOrderStatisticsParams, authInfo r
 		PathPattern:        "/admin/namespaces/{namespace}/orders/stats",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &GetOrderStatisticsReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -306,7 +308,7 @@ func (a *Client) GetUserOrder(params *GetUserOrderParams, authInfo runtime.Clien
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &GetUserOrderReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -349,7 +351,7 @@ func (a *Client) GetUserOrderGrant(params *GetUserOrderGrantParams, authInfo run
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}/grant",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &GetUserOrderGrantReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -390,7 +392,7 @@ func (a *Client) GetUserOrderHistories(params *GetUserOrderHistoriesParams, auth
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}/history",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &GetUserOrderHistoriesReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -431,7 +433,7 @@ func (a *Client) ProcessUserOrderNotification(params *ProcessUserOrderNotificati
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}/notifications",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &ProcessUserOrderNotificationReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -474,7 +476,7 @@ func (a *Client) PublicCancelUserOrder(params *PublicCancelUserOrderParams, auth
 		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/orders/{orderNo}/cancel",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &PublicCancelUserOrderReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -519,7 +521,7 @@ func (a *Client) PublicCreateUserOrder(params *PublicCreateUserOrderParams, auth
 		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/orders",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &PublicCreateUserOrderReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -554,7 +556,7 @@ func (a *Client) PublicCreateUserOrder(params *PublicCreateUserOrderParams, auth
 
   Download user order receipt by orderNo.<br>Other detail info: <ul><li><i>Required permission</i>: resource="NAMESPACE:{namespace}:USER:{userId}:ORDER", action=2 (READ)</li><li><i>Returns</i>: order receipt pdf</li></ul>
 */
-func (a *Client) PublicDownloadUserOrderReceipt(params *PublicDownloadUserOrderReceiptParams, authInfo runtime.ClientAuthInfoWriter) (*PublicDownloadUserOrderReceiptNotFound, *PublicDownloadUserOrderReceiptConflict, error) {
+func (a *Client) PublicDownloadUserOrderReceipt(params *PublicDownloadUserOrderReceiptParams, authInfo runtime.ClientAuthInfoWriter) (*PublicDownloadUserOrderReceiptOK, *PublicDownloadUserOrderReceiptNotFound, *PublicDownloadUserOrderReceiptConflict, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublicDownloadUserOrderReceiptParams()
@@ -570,7 +572,7 @@ func (a *Client) PublicDownloadUserOrderReceipt(params *PublicDownloadUserOrderR
 		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/orders/{orderNo}/receipt.pdf",
 		ProducesMediaTypes: []string{"application/pdf"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &PublicDownloadUserOrderReceiptReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -578,17 +580,19 @@ func (a *Client) PublicDownloadUserOrderReceipt(params *PublicDownloadUserOrderR
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, err
+		return nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
+	case *PublicDownloadUserOrderReceiptOK:
+		return v, nil, nil, nil
 	case *PublicDownloadUserOrderReceiptNotFound:
-		return v, nil, nil
+		return nil, v, nil, nil
 	case *PublicDownloadUserOrderReceiptConflict:
-		return nil, v, nil
+		return nil, nil, v, nil
 	default:
-		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -613,7 +617,7 @@ func (a *Client) PublicGetUserOrder(params *PublicGetUserOrderParams, authInfo r
 		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/orders/{orderNo}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &PublicGetUserOrderReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -656,7 +660,7 @@ func (a *Client) PublicGetUserOrderHistories(params *PublicGetUserOrderHistories
 		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/orders/{orderNo}/history",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &PublicGetUserOrderHistoriesReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -697,7 +701,7 @@ func (a *Client) PublicQueryUserOrders(params *PublicQueryUserOrdersParams, auth
 		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/orders",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &PublicQueryUserOrdersReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -738,7 +742,7 @@ func (a *Client) QueryOrders(params *QueryOrdersParams, authInfo runtime.ClientA
 		PathPattern:        "/admin/namespaces/{namespace}/orders",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &QueryOrdersReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -781,7 +785,7 @@ func (a *Client) QueryUserOrders(params *QueryUserOrdersParams, authInfo runtime
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/orders",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &QueryUserOrdersReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -822,7 +826,7 @@ func (a *Client) RefundOrder(params *RefundOrderParams, authInfo runtime.ClientA
 		PathPattern:        "/admin/namespaces/{namespace}/orders/{orderNo}/refund",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &RefundOrderReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -869,7 +873,7 @@ func (a *Client) UpdateUserOrderStatus(params *UpdateUserOrderStatusParams, auth
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &UpdateUserOrderStatusReader{formats: a.formats},
 		AuthInfo:           authInfo,

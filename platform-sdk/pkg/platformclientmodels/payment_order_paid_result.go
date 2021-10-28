@@ -17,6 +17,10 @@ import (
 // swagger:model PaymentOrderPaidResult
 type PaymentOrderPaidResult struct {
 
+	// charging
+	// Required: true
+	Charging *bool `json:"charging"`
+
 	// success
 	// Required: true
 	Success *bool `json:"success"`
@@ -26,6 +30,10 @@ type PaymentOrderPaidResult struct {
 func (m *PaymentOrderPaidResult) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateCharging(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateSuccess(formats); err != nil {
 		res = append(res, err)
 	}
@@ -33,6 +41,15 @@ func (m *PaymentOrderPaidResult) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *PaymentOrderPaidResult) validateCharging(formats strfmt.Registry) error {
+
+	if err := validate.Required("charging", "body", m.Charging); err != nil {
+		return err
+	}
+
 	return nil
 }
 

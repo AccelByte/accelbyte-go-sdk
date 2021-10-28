@@ -21,7 +21,7 @@ type EntitlementGrant struct {
 
 	// entitlement end date time
 	// Format: date-time
-	EndDate *strfmt.DateTime `json:"endDate,omitempty"`
+	EndDate strfmt.DateTime `json:"endDate,omitempty"`
 
 	// grantedCode, the granted code
 	GrantedCode string `json:"grantedCode,omitempty"`
@@ -45,12 +45,15 @@ type EntitlementGrant struct {
 	Region string `json:"region,omitempty"`
 
 	// source
-	// Enum: [PURCHASE IAP PROMOTION ACHIEVEMENT REFERRAL_BONUS REDEEM_CODE OTHER]
+	// Enum: [PURCHASE IAP PROMOTION ACHIEVEMENT REFERRAL_BONUS REDEEM_CODE REWARD GIFT OTHER]
 	Source string `json:"source,omitempty"`
 
 	// entitlement start date time
 	// Format: date-time
-	StartDate *strfmt.DateTime `json:"startDate,omitempty"`
+	StartDate strfmt.DateTime `json:"startDate,omitempty"`
+
+	// storeId
+	StoreID string `json:"storeId,omitempty"`
 }
 
 // Validate validates this entitlement grant
@@ -131,7 +134,7 @@ var entitlementGrantTypeSourcePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["PURCHASE","IAP","PROMOTION","ACHIEVEMENT","REFERRAL_BONUS","REDEEM_CODE","OTHER"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["PURCHASE","IAP","PROMOTION","ACHIEVEMENT","REFERRAL_BONUS","REDEEM_CODE","REWARD","GIFT","OTHER"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -158,6 +161,12 @@ const (
 
 	// EntitlementGrantSourceREDEEMCODE captures enum value "REDEEM_CODE"
 	EntitlementGrantSourceREDEEMCODE string = "REDEEM_CODE"
+
+	// EntitlementGrantSourceREWARD captures enum value "REWARD"
+	EntitlementGrantSourceREWARD string = "REWARD"
+
+	// EntitlementGrantSourceGIFT captures enum value "GIFT"
+	EntitlementGrantSourceGIFT string = "GIFT"
 
 	// EntitlementGrantSourceOTHER captures enum value "OTHER"
 	EntitlementGrantSourceOTHER string = "OTHER"

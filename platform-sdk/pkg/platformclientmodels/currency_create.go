@@ -35,15 +35,6 @@ type CurrencyCreate struct {
 
 	// Description, key is language, value is description max length is 255
 	LocalizationDescriptions map[string]string `json:"localizationDescriptions,omitempty"`
-
-	// max amount of per transaction, default is -1, means no limit
-	MaxAmountPerTransaction int64 `json:"maxAmountPerTransaction,omitempty"`
-
-	// max balance amount of the currency, default is -1, means no limit
-	MaxBalanceAmount int64 `json:"maxBalanceAmount,omitempty"`
-
-	// max transaction amount per day, default is -1, means no limit
-	MaxTransactionAmountPerDay int64 `json:"maxTransactionAmountPerDay,omitempty"`
 }
 
 // Validate validates this currency create

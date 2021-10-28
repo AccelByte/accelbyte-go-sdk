@@ -48,6 +48,8 @@ func NewUserAuthenticationV3Found() *UserAuthenticationV3Found {
   Found. Redirect successful requests to consent page with "list of consent" in query params.
 */
 type UserAuthenticationV3Found struct {
+	/*The Location header
+	 */
 	Location string
 }
 

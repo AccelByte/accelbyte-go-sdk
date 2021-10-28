@@ -300,6 +300,7 @@ func (a *Client) GetRevocationListV3(params *GetRevocationListV3Params, authInfo
 				<li><strong>ps4</strong>: The platform_token’s value is the authorization code returned by Sony OAuth.</li>
 				<li><strong>ps5</strong>: The platform_token’s value is the authorization code returned by Sony OAuth.</li>
 				<li><strong>nintendo</strong>: The platform_token’s value is the authorization code(id_token) returned by Nintendo OAuth.</li>
+				<li><strong>awscognito</strong>: The platform_token’s value is the aws cognito access token (JWT).</li>
 			</ul>
 			<h2>Account Group</h2>
 			<p>Several platforms are grouped under account groups. The accounts on these platforms have the same platform user id.
@@ -411,6 +412,7 @@ Passing platform group name or it's member will return same access token that ca
 	<li>(psn) ps5</li>
 	<li>epicgames</li>
 	<li>twitch</li>
+	<li>awscognito</li>
 </ul>
 */
 func (a *Client) RetrieveUserThirdPartyPlatformTokenV3(params *RetrieveUserThirdPartyPlatformTokenV3Params, authInfo runtime.ClientAuthInfoWriter) (*RetrieveUserThirdPartyPlatformTokenV3OK, *RetrieveUserThirdPartyPlatformTokenV3Unauthorized, *RetrieveUserThirdPartyPlatformTokenV3Forbidden, *RetrieveUserThirdPartyPlatformTokenV3NotFound, error) {

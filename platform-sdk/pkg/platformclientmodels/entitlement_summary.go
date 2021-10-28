@@ -31,7 +31,7 @@ type EntitlementSummary struct {
 
 	// end date time
 	// Format: date-time
-	EndDate *strfmt.DateTime `json:"endDate,omitempty"`
+	EndDate strfmt.DateTime `json:"endDate,omitempty"`
 
 	// granted code
 	GrantedCode string `json:"grantedCode,omitempty"`
@@ -39,6 +39,9 @@ type EntitlementSummary struct {
 	// entitlement id
 	// Required: true
 	ID *string `json:"id"`
+
+	// item id
+	ItemID string `json:"itemId,omitempty"`
 
 	// entitlement namespace
 	// Required: true
@@ -55,7 +58,10 @@ type EntitlementSummary struct {
 
 	// start date time
 	// Format: date-time
-	StartDate *strfmt.DateTime `json:"startDate,omitempty"`
+	StartDate strfmt.DateTime `json:"startDate,omitempty"`
+
+	// item store id, null if published store
+	StoreID string `json:"storeId,omitempty"`
 
 	// entitlement type
 	// Required: true

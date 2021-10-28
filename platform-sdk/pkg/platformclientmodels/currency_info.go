@@ -44,18 +44,6 @@ type CurrencyInfo struct {
 	// Description, key is language, value is description max length is 255
 	LocalizationDescriptions map[string]string `json:"localizationDescriptions,omitempty"`
 
-	// max amount of per transaction, default is -1, means no limit
-	// Required: true
-	MaxAmountPerTransaction *int64 `json:"maxAmountPerTransaction"`
-
-	// max balance amount of the currency, default is -1, means no limit
-	// Required: true
-	MaxBalanceAmount *int64 `json:"maxBalanceAmount"`
-
-	// max transaction amount per day, default is -1, means no limit
-	// Required: true
-	MaxTransactionAmountPerDay *int64 `json:"maxTransactionAmountPerDay"`
-
 	// namespace
 	// Required: true
 	Namespace *string `json:"namespace"`
@@ -87,18 +75,6 @@ func (m *CurrencyInfo) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateDecimals(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateMaxAmountPerTransaction(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateMaxBalanceAmount(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateMaxTransactionAmountPerDay(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -193,33 +169,6 @@ func (m *CurrencyInfo) validateCurrencyType(formats strfmt.Registry) error {
 func (m *CurrencyInfo) validateDecimals(formats strfmt.Registry) error {
 
 	if err := validate.Required("decimals", "body", m.Decimals); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *CurrencyInfo) validateMaxAmountPerTransaction(formats strfmt.Registry) error {
-
-	if err := validate.Required("maxAmountPerTransaction", "body", m.MaxAmountPerTransaction); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *CurrencyInfo) validateMaxBalanceAmount(formats strfmt.Registry) error {
-
-	if err := validate.Required("maxBalanceAmount", "body", m.MaxBalanceAmount); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *CurrencyInfo) validateMaxTransactionAmountPerDay(formats strfmt.Registry) error {
-
-	if err := validate.Required("maxTransactionAmountPerDay", "body", m.MaxTransactionAmountPerDay); err != nil {
 		return err
 	}
 

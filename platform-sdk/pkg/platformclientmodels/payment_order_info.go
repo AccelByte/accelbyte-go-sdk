@@ -71,7 +71,7 @@ type PaymentOrderInfo struct {
 	ExtUserID string `json:"extUserId,omitempty"`
 
 	// Order item type
-	// Enum: [APP COINS INGAMEITEM BUNDLE CODE SUBSCRIPTION]
+	// Enum: [APP COINS INGAMEITEM BUNDLE CODE SUBSCRIPTION SEASON MEDIA]
 	ItemType string `json:"itemType,omitempty"`
 
 	// Payment user language
@@ -433,7 +433,7 @@ var paymentOrderInfoTypeItemTypePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["APP","COINS","INGAMEITEM","BUNDLE","CODE","SUBSCRIPTION"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["APP","COINS","INGAMEITEM","BUNDLE","CODE","SUBSCRIPTION","SEASON","MEDIA"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -460,6 +460,12 @@ const (
 
 	// PaymentOrderInfoItemTypeSUBSCRIPTION captures enum value "SUBSCRIPTION"
 	PaymentOrderInfoItemTypeSUBSCRIPTION string = "SUBSCRIPTION"
+
+	// PaymentOrderInfoItemTypeSEASON captures enum value "SEASON"
+	PaymentOrderInfoItemTypeSEASON string = "SEASON"
+
+	// PaymentOrderInfoItemTypeMEDIA captures enum value "MEDIA"
+	PaymentOrderInfoItemTypeMEDIA string = "MEDIA"
 )
 
 // prop value enum

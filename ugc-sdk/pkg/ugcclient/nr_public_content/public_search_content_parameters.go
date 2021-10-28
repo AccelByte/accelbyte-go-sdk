@@ -135,6 +135,11 @@ type PublicSearchContentParams struct {
 
 	*/
 	Type *string
+	/*UserID
+	  user ID
+
+	*/
+	UserID *string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -293,6 +298,17 @@ func (o *PublicSearchContentParams) WithType(typeVar *string) *PublicSearchConte
 // SetType adds the type to the public search content params
 func (o *PublicSearchContentParams) SetType(typeVar *string) {
 	o.Type = typeVar
+}
+
+// WithUserID adds the userID to the public search content params
+func (o *PublicSearchContentParams) WithUserID(userID *string) *PublicSearchContentParams {
+	o.SetUserID(userID)
+	return o
+}
+
+// SetUserID adds the userId to the public search content params
+func (o *PublicSearchContentParams) SetUserID(userID *string) {
+	o.UserID = userID
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -462,6 +478,22 @@ func (o *PublicSearchContentParams) WriteToRequest(r runtime.ClientRequest, reg 
 		qType := qrType
 		if qType != "" {
 			if err := r.SetQueryParam("type", qType); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.UserID != nil {
+
+		// query param userId
+		var qrUserID string
+		if o.UserID != nil {
+			qrUserID = *o.UserID
+		}
+		qUserID := qrUserID
+		if qUserID != "" {
+			if err := r.SetQueryParam("userId", qUserID); err != nil {
 				return err
 			}
 		}

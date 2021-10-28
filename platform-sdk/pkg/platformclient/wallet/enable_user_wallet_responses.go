@@ -24,6 +24,12 @@ type EnableUserWalletReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *EnableUserWalletReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
+	case 204:
+		result := NewEnableUserWalletNoContent()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 404:
 		result := NewEnableUserWalletNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -45,6 +51,27 @@ func (o *EnableUserWalletReader) ReadResponse(response runtime.ClientResponse, c
 
 		return nil, fmt.Errorf("Requested PUT /admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/enable returns an error %d: %s", response.Code(), string(data))
 	}
+}
+
+// NewEnableUserWalletNoContent creates a EnableUserWalletNoContent with default headers values
+func NewEnableUserWalletNoContent() *EnableUserWalletNoContent {
+	return &EnableUserWalletNoContent{}
+}
+
+/*EnableUserWalletNoContent handles this case with default header values.
+
+  Successful operation
+*/
+type EnableUserWalletNoContent struct {
+}
+
+func (o *EnableUserWalletNoContent) Error() string {
+	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/enable][%d] enableUserWalletNoContent ", 204)
+}
+
+func (o *EnableUserWalletNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	return nil
 }
 
 // NewEnableUserWalletNotFound creates a EnableUserWalletNotFound with default headers values

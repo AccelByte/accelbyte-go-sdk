@@ -48,6 +48,9 @@ func NewPlatformAuthenticationV3Found() *PlatformAuthenticationV3Found {
   Found. Redirect to clients redirection URL with either code or error on the query parameter
 */
 type PlatformAuthenticationV3Found struct {
+	/*The Location header
+	 */
+	Location string
 }
 
 func (o *PlatformAuthenticationV3Found) Error() string {
@@ -55,6 +58,9 @@ func (o *PlatformAuthenticationV3Found) Error() string {
 }
 
 func (o *PlatformAuthenticationV3Found) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// response header Location
+	o.Location = response.GetHeader("Location")
 
 	return nil
 }

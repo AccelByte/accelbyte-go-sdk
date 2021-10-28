@@ -30,6 +30,12 @@ func (o *SearchItemsReader) ReadResponse(response runtime.ClientResponse, consum
 			return nil, err
 		}
 		return result, nil
+	case 404:
+		result := NewSearchItemsNotFound()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 
 	default:
 		data, err := ioutil.ReadAll(response.Body())
@@ -65,6 +71,39 @@ func (o *SearchItemsOK) GetPayload() *platformclientmodels.FullItemPagingSlicedR
 func (o *SearchItemsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(platformclientmodels.FullItemPagingSlicedResult)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewSearchItemsNotFound creates a SearchItemsNotFound with default headers values
+func NewSearchItemsNotFound() *SearchItemsNotFound {
+	return &SearchItemsNotFound{}
+}
+
+/*SearchItemsNotFound handles this case with default header values.
+
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>30141</td><td>Store [{storeId}] does not exist in namespace [{namespace}]</td></tr><tr><td>30142</td><td>Published store does not exist in namespace [{namespace}]</td></tr></table>
+*/
+type SearchItemsNotFound struct {
+	Payload *platformclientmodels.ErrorEntity
+}
+
+func (o *SearchItemsNotFound) Error() string {
+	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/items/search][%d] searchItemsNotFound  %+v", 404, o.Payload)
+}
+
+func (o *SearchItemsNotFound) GetPayload() *platformclientmodels.ErrorEntity {
+	return o.Payload
+}
+
+func (o *SearchItemsNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(platformclientmodels.ErrorEntity)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

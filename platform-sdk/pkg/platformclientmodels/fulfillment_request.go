@@ -21,11 +21,13 @@ type FulfillmentRequest struct {
 
 	// end date time
 	// Format: date-time
-	EndDate *strfmt.DateTime `json:"endDate,omitempty"`
+	EndDate strfmt.DateTime `json:"endDate,omitempty"`
 
 	// itemId
-	// Required: true
-	ItemID *string `json:"itemId"`
+	ItemID string `json:"itemId,omitempty"`
+
+	// itemSku
+	ItemSku string `json:"itemSku,omitempty"`
 
 	// language
 	Language string `json:"language,omitempty"`
@@ -41,12 +43,15 @@ type FulfillmentRequest struct {
 	Region string `json:"region,omitempty"`
 
 	// source
-	// Enum: [PURCHASE IAP PROMOTION ACHIEVEMENT REFERRAL_BONUS REDEEM_CODE OTHER]
+	// Enum: [PURCHASE IAP PROMOTION ACHIEVEMENT REFERRAL_BONUS REDEEM_CODE REWARD GIFT OTHER]
 	Source string `json:"source,omitempty"`
 
 	// start date time
 	// Format: date-time
-	StartDate *strfmt.DateTime `json:"startDate,omitempty"`
+	StartDate strfmt.DateTime `json:"startDate,omitempty"`
+
+	// storeId
+	StoreID string `json:"storeId,omitempty"`
 }
 
 // Validate validates this fulfillment request
@@ -54,10 +59,6 @@ func (m *FulfillmentRequest) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateEndDate(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateItemID(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -92,15 +93,6 @@ func (m *FulfillmentRequest) validateEndDate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *FulfillmentRequest) validateItemID(formats strfmt.Registry) error {
-
-	if err := validate.Required("itemId", "body", m.ItemID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
 func (m *FulfillmentRequest) validateQuantity(formats strfmt.Registry) error {
 
 	if err := validate.Required("quantity", "body", m.Quantity); err != nil {
@@ -114,7 +106,7 @@ var fulfillmentRequestTypeSourcePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["PURCHASE","IAP","PROMOTION","ACHIEVEMENT","REFERRAL_BONUS","REDEEM_CODE","OTHER"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["PURCHASE","IAP","PROMOTION","ACHIEVEMENT","REFERRAL_BONUS","REDEEM_CODE","REWARD","GIFT","OTHER"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -141,6 +133,12 @@ const (
 
 	// FulfillmentRequestSourceREDEEMCODE captures enum value "REDEEM_CODE"
 	FulfillmentRequestSourceREDEEMCODE string = "REDEEM_CODE"
+
+	// FulfillmentRequestSourceREWARD captures enum value "REWARD"
+	FulfillmentRequestSourceREWARD string = "REWARD"
+
+	// FulfillmentRequestSourceGIFT captures enum value "GIFT"
+	FulfillmentRequestSourceGIFT string = "GIFT"
 
 	// FulfillmentRequestSourceOTHER captures enum value "OTHER"
 	FulfillmentRequestSourceOTHER string = "OTHER"

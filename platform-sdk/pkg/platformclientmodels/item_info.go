@@ -33,6 +33,10 @@ type ItemInfo struct {
 	// booth name to get tickets while it's item type is CODE
 	BoothName string `json:"boothName,omitempty"`
 
+	// the items which this item being bounded to
+	// Unique: true
+	BoundItemIds []string `json:"boundItemIds"`
+
 	// Item category path
 	// Required: true
 	CategoryPath *string `json:"categoryPath"`
@@ -75,12 +79,15 @@ type ItemInfo struct {
 
 	// Item type
 	// Required: true
-	// Enum: [APP COINS INGAMEITEM BUNDLE CODE SUBSCRIPTION]
+	// Enum: [APP COINS INGAMEITEM BUNDLE CODE SUBSCRIPTION SEASON MEDIA]
 	ItemType *string `json:"itemType"`
 
 	// language
 	// Required: true
 	Language *string `json:"language"`
+
+	// Whether can be visible in Store for public user
+	Listable bool `json:"listable,omitempty"`
 
 	// local ext
 	LocalExt map[string]interface{} `json:"localExt,omitempty"`
@@ -102,6 +109,9 @@ type ItemInfo struct {
 	// Required: true
 	Namespace *string `json:"namespace"`
 
+	// Whether can be purchased
+	Purchasable bool `json:"purchasable,omitempty"`
+
 	// recurring for subscription
 	Recurring *Recurring `json:"recurring,omitempty"`
 
@@ -111,6 +121,10 @@ type ItemInfo struct {
 
 	// Region data
 	RegionData []*RegionDataItem `json:"regionData"`
+
+	// Season type, required while itemType is SEASON
+	// Enum: [PASS TIER]
+	SeasonType string `json:"seasonType,omitempty"`
 
 	// Sku
 	Sku string `json:"sku,omitempty"`
@@ -157,6 +171,10 @@ func (m *ItemInfo) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateAppType(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateBoundItemIds(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -209,6 +227,10 @@ func (m *ItemInfo) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateRegionData(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSeasonType(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -277,6 +299,19 @@ func (m *ItemInfo) validateAppType(formats strfmt.Registry) error {
 
 	// value enum
 	if err := m.validateAppTypeEnum("appType", "body", m.AppType); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ItemInfo) validateBoundItemIds(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.BoundItemIds) { // not required
+		return nil
+	}
+
+	if err := validate.UniqueItems("boundItemIds", "body", m.BoundItemIds); err != nil {
 		return err
 	}
 
@@ -399,7 +434,7 @@ var itemInfoTypeItemTypePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["APP","COINS","INGAMEITEM","BUNDLE","CODE","SUBSCRIPTION"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["APP","COINS","INGAMEITEM","BUNDLE","CODE","SUBSCRIPTION","SEASON","MEDIA"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -426,6 +461,12 @@ const (
 
 	// ItemInfoItemTypeSUBSCRIPTION captures enum value "SUBSCRIPTION"
 	ItemInfoItemTypeSUBSCRIPTION string = "SUBSCRIPTION"
+
+	// ItemInfoItemTypeSEASON captures enum value "SEASON"
+	ItemInfoItemTypeSEASON string = "SEASON"
+
+	// ItemInfoItemTypeMEDIA captures enum value "MEDIA"
+	ItemInfoItemTypeMEDIA string = "MEDIA"
 )
 
 // prop value enum
@@ -524,6 +565,49 @@ func (m *ItemInfo) validateRegionData(formats strfmt.Registry) error {
 			}
 		}
 
+	}
+
+	return nil
+}
+
+var itemInfoTypeSeasonTypePropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["PASS","TIER"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		itemInfoTypeSeasonTypePropEnum = append(itemInfoTypeSeasonTypePropEnum, v)
+	}
+}
+
+const (
+
+	// ItemInfoSeasonTypePASS captures enum value "PASS"
+	ItemInfoSeasonTypePASS string = "PASS"
+
+	// ItemInfoSeasonTypeTIER captures enum value "TIER"
+	ItemInfoSeasonTypeTIER string = "TIER"
+)
+
+// prop value enum
+func (m *ItemInfo) validateSeasonTypeEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, itemInfoTypeSeasonTypePropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *ItemInfo) validateSeasonType(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.SeasonType) { // not required
+		return nil
+	}
+
+	// value enum
+	if err := m.validateSeasonTypeEnum("seasonType", "body", m.SeasonType); err != nil {
+		return err
 	}
 
 	return nil

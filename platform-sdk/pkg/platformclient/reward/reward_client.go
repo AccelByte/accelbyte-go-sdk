@@ -37,6 +37,8 @@ type ClientService interface {
 
 	GetReward(params *GetRewardParams, authInfo runtime.ClientAuthInfoWriter) (*GetRewardOK, *GetRewardNotFound, error)
 
+	GetRewardByCode(params *GetRewardByCodeParams, authInfo runtime.ClientAuthInfoWriter) (*GetRewardByCodeOK, *GetRewardByCodeNotFound, error)
+
 	GetReward1(params *GetReward1Params, authInfo runtime.ClientAuthInfoWriter) (*GetReward1OK, *GetReward1NotFound, error)
 
 	ImportRewards(params *ImportRewardsParams, authInfo runtime.ClientAuthInfoWriter) (*ImportRewardsOK, *ImportRewardsBadRequest, error)
@@ -71,7 +73,7 @@ func (a *Client) CreateReward(params *CreateRewardParams, authInfo runtime.Clien
 		PathPattern:        "/admin/namespaces/{namespace}/rewards",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &CreateRewardReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -118,7 +120,7 @@ func (a *Client) DeleteReward(params *DeleteRewardParams, authInfo runtime.Clien
 		PathPattern:        "/admin/namespaces/{namespace}/rewards/{rewardId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &DeleteRewardReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -161,7 +163,7 @@ func (a *Client) ExportRewards(params *ExportRewardsParams, authInfo runtime.Cli
 		PathPattern:        "/admin/namespaces/{namespace}/rewards/export",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &ExportRewardsReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -202,7 +204,7 @@ func (a *Client) GetReward(params *GetRewardParams, authInfo runtime.ClientAuthI
 		PathPattern:        "/admin/namespaces/{namespace}/rewards/{rewardId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &GetRewardReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -218,6 +220,49 @@ func (a *Client) GetReward(params *GetRewardParams, authInfo runtime.ClientAuthI
 	case *GetRewardOK:
 		return v, nil, nil
 	case *GetRewardNotFound:
+		return nil, v, nil
+	default:
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  GetRewardByCode gets a reward by code
+
+  This API is used to get reward by reward code.<br>Other detail info: <ul><li><i>Required permission</i>: resource="NAMESPACE:{namespace}:REWARD", action=2 (READ)</li><li><i>Returns</i>: reward instance</li></ul>
+*/
+func (a *Client) GetRewardByCode(params *GetRewardByCodeParams, authInfo runtime.ClientAuthInfoWriter) (*GetRewardByCodeOK, *GetRewardByCodeNotFound, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetRewardByCodeParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getRewardByCode",
+		Method:             "GET",
+		PathPattern:        "/public/namespaces/{namespace}/rewards/byCode",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &GetRewardByCodeReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetRewardByCodeOK:
+		return v, nil, nil
+	case *GetRewardByCodeNotFound:
 		return nil, v, nil
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
@@ -245,7 +290,7 @@ func (a *Client) GetReward1(params *GetReward1Params, authInfo runtime.ClientAut
 		PathPattern:        "/public/namespaces/{namespace}/rewards/{rewardId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &GetReward1Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -288,7 +333,7 @@ func (a *Client) ImportRewards(params *ImportRewardsParams, authInfo runtime.Cli
 		PathPattern:        "/admin/namespaces/{namespace}/rewards/import",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"multipart/form-data"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &ImportRewardsReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -331,7 +376,7 @@ func (a *Client) QueryRewards(params *QueryRewardsParams, authInfo runtime.Clien
 		PathPattern:        "/admin/namespaces/{namespace}/rewards/byCriteria",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &QueryRewardsReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -374,7 +419,7 @@ func (a *Client) QueryRewards1(params *QueryRewards1Params, authInfo runtime.Cli
 		PathPattern:        "/public/namespaces/{namespace}/rewards/byCriteria",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &QueryRewards1Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -417,7 +462,7 @@ func (a *Client) UpdateReward(params *UpdateRewardParams, authInfo runtime.Clien
 		PathPattern:        "/admin/namespaces/{namespace}/rewards/{rewardId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &UpdateRewardReader{formats: a.formats},
 		AuthInfo:           authInfo,

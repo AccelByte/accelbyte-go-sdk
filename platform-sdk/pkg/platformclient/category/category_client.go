@@ -82,7 +82,7 @@ func (a *Client) CreateCategory(params *CreateCategoryParams, authInfo runtime.C
 		PathPattern:        "/admin/namespaces/{namespace}/categories",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &CreateCategoryReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -131,7 +131,7 @@ func (a *Client) DeleteCategory(params *DeleteCategoryParams, authInfo runtime.C
 		PathPattern:        "/admin/namespaces/{namespace}/categories/{categoryPath}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &DeleteCategoryReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -158,7 +158,7 @@ func (a *Client) DeleteCategory(params *DeleteCategoryParams, authInfo runtime.C
 /*
   DownloadCategories downloads store s structured categories
 
-  This API is used to download store's structured categories.<p>Other detail info: <ul><li><i>Optional permission</i>: resource="SANDBOX", action=1(CREATE) (user with this permission can view draft store content)</li><li><i>Returns</i>: structured categories</li></ul>
+  This API is used to download store's structured categories.<p>Other detail info: <ul><li><i>Optional permission</i>: resource="PREVIEW", action=1(CREATE) (user with this permission can view draft store content)</li><li><i>Optional permission</i>: resource="SANDBOX", action=1(CREATE) (user with this permission can view draft store content)</li><li><i>Returns</i>: structured categories</li></ul>
 */
 func (a *Client) DownloadCategories(params *DownloadCategoriesParams) (*DownloadCategoriesOK, *DownloadCategoriesNotFound, error) {
 	// TODO: Validate the params before sending
@@ -176,7 +176,7 @@ func (a *Client) DownloadCategories(params *DownloadCategoriesParams) (*Download
 		PathPattern:        "/public/namespaces/{namespace}/categories/download",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &DownloadCategoriesReader{formats: a.formats},
 		Context:            params.Context,
@@ -218,7 +218,7 @@ func (a *Client) GetCategory(params *GetCategoryParams, authInfo runtime.ClientA
 		PathPattern:        "/admin/namespaces/{namespace}/categories/{categoryPath}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &GetCategoryReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -261,7 +261,7 @@ func (a *Client) GetChildCategories(params *GetChildCategoriesParams, authInfo r
 		PathPattern:        "/admin/namespaces/{namespace}/categories/{categoryPath}/children",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &GetChildCategoriesReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -302,7 +302,7 @@ func (a *Client) GetDescendantCategories(params *GetDescendantCategoriesParams, 
 		PathPattern:        "/admin/namespaces/{namespace}/categories/{categoryPath}/descendants",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &GetDescendantCategoriesReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -343,7 +343,7 @@ func (a *Client) GetRootCategories(params *GetRootCategoriesParams, authInfo run
 		PathPattern:        "/admin/namespaces/{namespace}/categories",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &GetRootCategoriesReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -384,7 +384,7 @@ func (a *Client) ListCategoriesBasic(params *ListCategoriesBasicParams, authInfo
 		PathPattern:        "/admin/namespaces/{namespace}/categories/basic",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &ListCategoriesBasicReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -407,7 +407,7 @@ func (a *Client) ListCategoriesBasic(params *ListCategoriesBasicParams, authInfo
 /*
   PublicGetCategory gets category
 
-  This API is used to get category by category path.<p>Other detail info: <ul><li><i>Optional permission</i>: resource="SANDBOX", action=1 (CREATE)(user with this permission can view draft store category)</li><li><i>Returns</i>: category data</li></ul>
+  This API is used to get category by category path.<p>Other detail info: <ul><li><i>Optional permission</i>: resource="PREVIEW", action=1(CREATE) (user with this permission can view draft store category)</li><li><i>Optional permission</i>: resource="SANDBOX", action=1 (CREATE)(user with this permission can view draft store category)</li><li><i>Returns</i>: category data</li></ul>
 */
 func (a *Client) PublicGetCategory(params *PublicGetCategoryParams) (*PublicGetCategoryOK, *PublicGetCategoryNotFound, error) {
 	// TODO: Validate the params before sending
@@ -425,7 +425,7 @@ func (a *Client) PublicGetCategory(params *PublicGetCategoryParams) (*PublicGetC
 		PathPattern:        "/public/namespaces/{namespace}/categories/{categoryPath}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &PublicGetCategoryReader{formats: a.formats},
 		Context:            params.Context,
@@ -449,7 +449,7 @@ func (a *Client) PublicGetCategory(params *PublicGetCategoryParams) (*PublicGetC
 /*
   PublicGetChildCategories gets child categories
 
-  This API is used to get child categories by category path.<p>Other detail info: <ul><li><i>Optional permission</i>: resource="SANDBOX", action=1(CREATE) (user with this permission can view draft store category)</li><li><i>Returns</i>: list of child categories data</li></ul>
+  This API is used to get child categories by category path.<p>Other detail info: <ul><li><i>Optional permission</i>: resource="PREVIEW", action=1(CREATE) (user with this permission can view draft store category)</li><li><i>Optional permission</i>: resource="SANDBOX", action=1(CREATE) (user with this permission can view draft store category)</li><li><i>Returns</i>: list of child categories data</li></ul>
 */
 func (a *Client) PublicGetChildCategories(params *PublicGetChildCategoriesParams) (*PublicGetChildCategoriesOK, error) {
 	// TODO: Validate the params before sending
@@ -467,7 +467,7 @@ func (a *Client) PublicGetChildCategories(params *PublicGetChildCategoriesParams
 		PathPattern:        "/public/namespaces/{namespace}/categories/{categoryPath}/children",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &PublicGetChildCategoriesReader{formats: a.formats},
 		Context:            params.Context,
@@ -489,7 +489,7 @@ func (a *Client) PublicGetChildCategories(params *PublicGetChildCategoriesParams
 /*
   PublicGetDescendantCategories gets descendant categories
 
-  This API is used to get descendant categories by category path.<p>Other detail info: <ul><li><i>Optional permission</i>: resource="SANDBOX", action=1(CREATE) (user with this permission can view draft store category)</li><li><i>Returns</i>: list of descendant categories data</li></ul>
+  This API is used to get descendant categories by category path.<p>Other detail info: <ul><li><i>Optional permission</i>: resource="PREVIEW", action=1(CREATE) (user with this permission can view draft store category)</li><li><i>Optional permission</i>: resource="SANDBOX", action=1(CREATE) (user with this permission can view draft store category)</li><li><i>Returns</i>: list of descendant categories data</li></ul>
 */
 func (a *Client) PublicGetDescendantCategories(params *PublicGetDescendantCategoriesParams) (*PublicGetDescendantCategoriesOK, error) {
 	// TODO: Validate the params before sending
@@ -507,7 +507,7 @@ func (a *Client) PublicGetDescendantCategories(params *PublicGetDescendantCatego
 		PathPattern:        "/public/namespaces/{namespace}/categories/{categoryPath}/descendants",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &PublicGetDescendantCategoriesReader{formats: a.formats},
 		Context:            params.Context,
@@ -529,7 +529,7 @@ func (a *Client) PublicGetDescendantCategories(params *PublicGetDescendantCatego
 /*
   PublicGetRootCategories gets root categories
 
-  This API is used to get root categories.<p>Other detail info: <ul><li><i>Optional permission</i>: resource="SANDBOX", action=1(CREATE) (user with this permission can view draft store category)</li><li><i>Returns</i>: root category data</li></ul>
+  This API is used to get root categories.<p>Other detail info: <ul><li><i>Optional permission</i>: resource="PREVIEW", action=1(CREATE) (user with this permission can view draft store category)</li><li><i>Optional permission</i>: resource="SANDBOX", action=1(CREATE) (user with this permission can view draft store category)</li><li><i>Returns</i>: root category data</li></ul>
 */
 func (a *Client) PublicGetRootCategories(params *PublicGetRootCategoriesParams) (*PublicGetRootCategoriesOK, error) {
 	// TODO: Validate the params before sending
@@ -547,7 +547,7 @@ func (a *Client) PublicGetRootCategories(params *PublicGetRootCategoriesParams) 
 		PathPattern:        "/public/namespaces/{namespace}/categories",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &PublicGetRootCategoriesReader{formats: a.formats},
 		Context:            params.Context,
@@ -590,7 +590,7 @@ func (a *Client) UpdateCategory(params *UpdateCategoryParams, authInfo runtime.C
 		PathPattern:        "/admin/namespaces/{namespace}/categories/{categoryPath}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &UpdateCategoryReader{formats: a.formats},
 		AuthInfo:           authInfo,

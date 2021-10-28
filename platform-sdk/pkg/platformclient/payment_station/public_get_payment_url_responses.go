@@ -99,7 +99,7 @@ func NewPublicGetPaymentURLBadRequest() *PublicGetPaymentURLBadRequest {
 
 /*PublicGetPaymentURLBadRequest handles this case with default header values.
 
-  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>33321</td><td>Payment provider [{paymentProvider}] not support currency [{currency}]</td></tr><tr><td>33322</td><td>Payment provider [{paymentProvider}] not supported</td></tr></table>
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>33321</td><td>Payment provider [{paymentProvider}] not support currency [{currency}]</td></tr><tr><td>33322</td><td>Payment provider [{paymentProvider}] not supported</td></tr><tr><td>33332</td><td>Amount too small, please contact administrator</td></tr></table>
 */
 type PublicGetPaymentURLBadRequest struct {
 	Payload *platformclientmodels.ErrorEntity

@@ -105,7 +105,7 @@ func NewCreateNamespaceBadRequest() *CreateNamespaceBadRequest {
 
 /*CreateNamespaceBadRequest handles this case with default header values.
 
-  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>20019</td><td>unable to parse request body</td></tr><tr><td>11338</td><td>namespace contains invalid character</td></tr><tr><td>11339</td><td>namespace display name contains invalid character</td></tr></table>
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>20019</td><td>unable to parse request body</td></tr><tr><td>11338</td><td>Unable to {action}: Namespace contains invalid character(s)</td></tr><tr><td>11339</td><td>Unable to {action}: Display name contains invalid character(s)</td></tr></table>
 */
 type CreateNamespaceBadRequest struct {
 	Payload *basicclientmodels.ValidationErrorEntity
@@ -204,7 +204,7 @@ func NewCreateNamespaceConflict() *CreateNamespaceConflict {
 
 /*CreateNamespaceConflict handles this case with default header values.
 
-  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11336</td><td>namespace already exists</td></tr></table>
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11336</td><td>Unable to {action}: Namespace already exists</td></tr></table>
 */
 type CreateNamespaceConflict struct {
 	Payload *basicclientmodels.ErrorEntity

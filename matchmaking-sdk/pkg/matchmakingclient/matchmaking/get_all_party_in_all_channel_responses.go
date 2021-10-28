@@ -81,23 +81,21 @@ func NewGetAllPartyInAllChannelOK() *GetAllPartyInAllChannelOK {
   Operation succeeded
 */
 type GetAllPartyInAllChannelOK struct {
-	Payload *matchmakingclientmodels.ModelsMatchingParty
+	Payload map[string][]matchmakingclientmodels.ModelsMatchingParty
 }
 
 func (o *GetAllPartyInAllChannelOK) Error() string {
 	return fmt.Sprintf("[GET /matchmaking/v1/admin/namespaces/{namespace}/channels/all/parties][%d] getAllPartyInAllChannelOK  %+v", 200, o.Payload)
 }
 
-func (o *GetAllPartyInAllChannelOK) GetPayload() *matchmakingclientmodels.ModelsMatchingParty {
+func (o *GetAllPartyInAllChannelOK) GetPayload() map[string][]matchmakingclientmodels.ModelsMatchingParty {
 	return o.Payload
 }
 
 func (o *GetAllPartyInAllChannelOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(matchmakingclientmodels.ModelsMatchingParty)
-
 	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 

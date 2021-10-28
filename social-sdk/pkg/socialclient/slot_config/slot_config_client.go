@@ -65,7 +65,7 @@ func (a *Client) DeleteNamespaceSlotConfig(params *DeleteNamespaceSlotConfigPara
 		PathPattern:        "/admin/namespaces/{namespace}/config",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &DeleteNamespaceSlotConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -106,7 +106,7 @@ func (a *Client) DeleteUserSlotConfig(params *DeleteUserSlotConfigParams, authIn
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/config",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &DeleteUserSlotConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -147,7 +147,7 @@ func (a *Client) GetNamespaceSlotConfig(params *GetNamespaceSlotConfigParams, au
 		PathPattern:        "/admin/namespaces/{namespace}/config",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &GetNamespaceSlotConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -170,7 +170,7 @@ func (a *Client) GetNamespaceSlotConfig(params *GetNamespaceSlotConfigParams, au
 /*
   GetUserSlotConfig returns a user slot configuration
 
-  Get a user slot configuration in given namespace. In case the user slot configuration is not set, the namespace configuration will be returned.<br>Other detail info:<ul><li>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTCONFIG", action=2 (READ)</li><li>Returns</i>: slot config info</li>
+  Get a user slot configuration in given namespace. In case the user slot configuration is not set, the namespace configuration will be returned.<br>Other detail info:<ul><li>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTCONFIG", action=2 (READ)</li><li>Returns</i>: slot config info</li>
 */
 func (a *Client) GetUserSlotConfig(params *GetUserSlotConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserSlotConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -188,7 +188,7 @@ func (a *Client) GetUserSlotConfig(params *GetUserSlotConfigParams, authInfo run
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/config",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &GetUserSlotConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -229,7 +229,7 @@ func (a *Client) UpdateNamespaceSlotConfig(params *UpdateNamespaceSlotConfigPara
 		PathPattern:        "/admin/namespaces/{namespace}/config",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &UpdateNamespaceSlotConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -270,7 +270,7 @@ func (a *Client) UpdateUserSlotConfig(params *UpdateUserSlotConfigParams, authIn
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/config",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &UpdateUserSlotConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,

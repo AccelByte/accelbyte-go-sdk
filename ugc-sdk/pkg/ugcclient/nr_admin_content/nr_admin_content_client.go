@@ -31,6 +31,8 @@ type Client struct {
 type ClientService interface {
 	AdminDeleteContent(params *AdminDeleteContentParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteContentOK, *AdminDeleteContentUnauthorized, *AdminDeleteContentNotFound, *AdminDeleteContentInternalServerError, error)
 
+	AdminDeleteContentScreenshot(params *AdminDeleteContentScreenshotParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteContentScreenshotNoContent, *AdminDeleteContentScreenshotBadRequest, *AdminDeleteContentScreenshotUnauthorized, *AdminDeleteContentScreenshotNotFound, *AdminDeleteContentScreenshotInternalServerError, error)
+
 	AdminDownloadContentPreview(params *AdminDownloadContentPreviewParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDownloadContentPreviewOK, *AdminDownloadContentPreviewUnauthorized, *AdminDownloadContentPreviewNotFound, *AdminDownloadContentPreviewInternalServerError, error)
 
 	AdminGetContent(params *AdminGetContentParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetContentOK, *AdminGetContentUnauthorized, *AdminGetContentNotFound, *AdminGetContentInternalServerError, error)
@@ -47,9 +49,13 @@ type ClientService interface {
 
 	AdminUpdateContentS3(params *AdminUpdateContentS3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateContentS3OK, *AdminUpdateContentS3BadRequest, *AdminUpdateContentS3Unauthorized, *AdminUpdateContentS3NotFound, *AdminUpdateContentS3InternalServerError, error)
 
+	AdminUpdateScreenshots(params *AdminUpdateScreenshotsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateScreenshotsOK, *AdminUpdateScreenshotsBadRequest, *AdminUpdateScreenshotsUnauthorized, *AdminUpdateScreenshotsNotFound, *AdminUpdateScreenshotsInternalServerError, error)
+
 	AdminUploadContentDirect(params *AdminUploadContentDirectParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUploadContentDirectCreated, *AdminUploadContentDirectBadRequest, *AdminUploadContentDirectUnauthorized, *AdminUploadContentDirectInternalServerError, error)
 
 	AdminUploadContentS3(params *AdminUploadContentS3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUploadContentS3Created, *AdminUploadContentS3BadRequest, *AdminUploadContentS3Unauthorized, *AdminUploadContentS3InternalServerError, error)
+
+	AdminUploadContentScreenshot(params *AdminUploadContentScreenshotParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUploadContentScreenshotCreated, *AdminUploadContentScreenshotBadRequest, *AdminUploadContentScreenshotUnauthorized, *AdminUploadContentScreenshotInternalServerError, error)
 
 	SingleAdminDeleteContent(params *SingleAdminDeleteContentParams, authInfo runtime.ClientAuthInfoWriter) (*SingleAdminDeleteContentOK, *SingleAdminDeleteContentUnauthorized, *SingleAdminDeleteContentNotFound, *SingleAdminDeleteContentInternalServerError, error)
 
@@ -106,6 +112,56 @@ func (a *Client) AdminDeleteContent(params *AdminDeleteContentParams, authInfo r
 		return nil, nil, nil, v, nil
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  AdminDeleteContentScreenshot deletes screenshots content
+
+  Required permission <b>ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [DELETE]</b>.
+
+*/
+func (a *Client) AdminDeleteContentScreenshot(params *AdminDeleteContentScreenshotParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteContentScreenshotNoContent, *AdminDeleteContentScreenshotBadRequest, *AdminDeleteContentScreenshotUnauthorized, *AdminDeleteContentScreenshotNotFound, *AdminDeleteContentScreenshotInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminDeleteContentScreenshotParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminDeleteContentScreenshot",
+		Method:             "DELETE",
+		PathPattern:        "/ugc/v1/admin/namespaces/{namespace}/contents/{contentId}/screenshots/{screenshotId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &AdminDeleteContentScreenshotReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminDeleteContentScreenshotNoContent:
+		return v, nil, nil, nil, nil, nil
+	case *AdminDeleteContentScreenshotBadRequest:
+		return nil, v, nil, nil, nil, nil
+	case *AdminDeleteContentScreenshotUnauthorized:
+		return nil, nil, v, nil, nil, nil
+	case *AdminDeleteContentScreenshotNotFound:
+		return nil, nil, nil, v, nil, nil
+	case *AdminDeleteContentScreenshotInternalServerError:
+		return nil, nil, nil, nil, v, nil
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -493,6 +549,57 @@ func (a *Client) AdminUpdateContentS3(params *AdminUpdateContentS3Params, authIn
 }
 
 /*
+  AdminUpdateScreenshots updates screenshot of content
+
+  Required permission <b>ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]</b>.\n
+					All request body are required.
+
+*/
+func (a *Client) AdminUpdateScreenshots(params *AdminUpdateScreenshotsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateScreenshotsOK, *AdminUpdateScreenshotsBadRequest, *AdminUpdateScreenshotsUnauthorized, *AdminUpdateScreenshotsNotFound, *AdminUpdateScreenshotsInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminUpdateScreenshotsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminUpdateScreenshots",
+		Method:             "PUT",
+		PathPattern:        "/ugc/v1/admin/namespaces/{namespace}/contents/{contentId}/screenshots",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &AdminUpdateScreenshotsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminUpdateScreenshotsOK:
+		return v, nil, nil, nil, nil, nil
+	case *AdminUpdateScreenshotsBadRequest:
+		return nil, v, nil, nil, nil, nil
+	case *AdminUpdateScreenshotsUnauthorized:
+		return nil, nil, v, nil, nil, nil
+	case *AdminUpdateScreenshotsNotFound:
+		return nil, nil, nil, v, nil, nil
+	case *AdminUpdateScreenshotsInternalServerError:
+		return nil, nil, nil, nil, v, nil
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
   AdminUploadContentDirect uploads content to a channel
 
   Required permission <b>ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [CREATE]</b>.\n
@@ -584,6 +691,55 @@ func (a *Client) AdminUploadContentS3(params *AdminUploadContentS3Params, authIn
 	case *AdminUploadContentS3Unauthorized:
 		return nil, nil, v, nil, nil
 	case *AdminUploadContentS3InternalServerError:
+		return nil, nil, nil, v, nil
+	default:
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  AdminUploadContentScreenshot uploads screenshots for content
+
+  Required permission <b>ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [CREATE]</b>.\n
+				All request body are required.
+
+*/
+func (a *Client) AdminUploadContentScreenshot(params *AdminUploadContentScreenshotParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUploadContentScreenshotCreated, *AdminUploadContentScreenshotBadRequest, *AdminUploadContentScreenshotUnauthorized, *AdminUploadContentScreenshotInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminUploadContentScreenshotParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminUploadContentScreenshot",
+		Method:             "POST",
+		PathPattern:        "/ugc/v1/admin/namespaces/{namespace}/contents/{contentId}/screenshots",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &AdminUploadContentScreenshotReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminUploadContentScreenshotCreated:
+		return v, nil, nil, nil, nil
+	case *AdminUploadContentScreenshotBadRequest:
+		return nil, v, nil, nil, nil
+	case *AdminUploadContentScreenshotUnauthorized:
+		return nil, nil, v, nil, nil
+	case *AdminUploadContentScreenshotInternalServerError:
 		return nil, nil, nil, v, nil
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))

@@ -210,7 +210,7 @@ func NewDeleteNamespaceNotFound() *DeleteNamespaceNotFound {
 
 /*DeleteNamespaceNotFound handles this case with default header values.
 
-  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11337</td><td>namespace not found</td></tr></table>
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11337</td><td>Unable to {action}: Namespace not found</td></tr></table>
 */
 type DeleteNamespaceNotFound struct {
 	Payload *basicclientmodels.ErrorEntity

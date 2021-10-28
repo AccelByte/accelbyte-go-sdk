@@ -99,7 +99,7 @@ func NewPublicRedeemCodeBadRequest() *PublicRedeemCodeBadRequest {
 
 /*PublicRedeemCodeBadRequest handles this case with default header values.
 
-  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>35121</td><td>Transaction amount [{actualAmount}] exceed max amount [{maxAmount}] per day</td></tr><tr><td>35122</td><td>Transaction amount [{actualAmount}] exceed max amount [{maxAmount}] per transaction</td></tr><tr><td>35123</td><td>Wallet [{walletId}] is inactive</td></tr><tr><td>35125</td><td>Balance exceed max balance [{maxAmount}]</td></tr><tr><td>38121</td><td>Duplicate permanent item exists</td></tr></table>
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>35123</td><td>Wallet [{walletId}] is inactive</td></tr><tr><td>38121</td><td>Duplicate permanent item exists</td></tr></table>
 */
 type PublicRedeemCodeBadRequest struct {
 	Payload *platformclientmodels.ErrorEntity

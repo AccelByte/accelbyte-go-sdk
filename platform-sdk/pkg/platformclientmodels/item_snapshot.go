@@ -57,12 +57,15 @@ type ItemSnapshot struct {
 
 	// Item type
 	// Required: true
-	// Enum: [APP COINS INGAMEITEM BUNDLE CODE SUBSCRIPTION]
+	// Enum: [APP COINS INGAMEITEM BUNDLE CODE SUBSCRIPTION SEASON MEDIA]
 	ItemType *string `json:"itemType"`
 
 	// language
 	// Required: true
 	Language *string `json:"language"`
+
+	// Whether can be visible in Store for public user
+	Listable bool `json:"listable,omitempty"`
 
 	// Max count, -1 means UNLIMITED, unset when itemType is CODE
 	MaxCount int32 `json:"maxCount,omitempty"`
@@ -78,6 +81,9 @@ type ItemSnapshot struct {
 	// Required: true
 	Namespace *string `json:"namespace"`
 
+	// Whether can be purchased
+	Purchasable bool `json:"purchasable,omitempty"`
+
 	// recurring for subscription
 	Recurring *Recurring `json:"recurring,omitempty"`
 
@@ -87,6 +93,10 @@ type ItemSnapshot struct {
 
 	// Region data
 	RegionDataItem *RegionDataItem `json:"regionDataItem,omitempty"`
+
+	// Season type, required while itemType is SEASON
+	// Enum: [PASS TIER]
+	SeasonType string `json:"seasonType,omitempty"`
 
 	// Sku
 	Sku string `json:"sku,omitempty"`
@@ -167,6 +177,10 @@ func (m *ItemSnapshot) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateRegionDataItem(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSeasonType(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -315,7 +329,7 @@ var itemSnapshotTypeItemTypePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["APP","COINS","INGAMEITEM","BUNDLE","CODE","SUBSCRIPTION"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["APP","COINS","INGAMEITEM","BUNDLE","CODE","SUBSCRIPTION","SEASON","MEDIA"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -342,6 +356,12 @@ const (
 
 	// ItemSnapshotItemTypeSUBSCRIPTION captures enum value "SUBSCRIPTION"
 	ItemSnapshotItemTypeSUBSCRIPTION string = "SUBSCRIPTION"
+
+	// ItemSnapshotItemTypeSEASON captures enum value "SEASON"
+	ItemSnapshotItemTypeSEASON string = "SEASON"
+
+	// ItemSnapshotItemTypeMEDIA captures enum value "MEDIA"
+	ItemSnapshotItemTypeMEDIA string = "MEDIA"
 )
 
 // prop value enum
@@ -433,6 +453,49 @@ func (m *ItemSnapshot) validateRegionDataItem(formats strfmt.Registry) error {
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+var itemSnapshotTypeSeasonTypePropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["PASS","TIER"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		itemSnapshotTypeSeasonTypePropEnum = append(itemSnapshotTypeSeasonTypePropEnum, v)
+	}
+}
+
+const (
+
+	// ItemSnapshotSeasonTypePASS captures enum value "PASS"
+	ItemSnapshotSeasonTypePASS string = "PASS"
+
+	// ItemSnapshotSeasonTypeTIER captures enum value "TIER"
+	ItemSnapshotSeasonTypeTIER string = "TIER"
+)
+
+// prop value enum
+func (m *ItemSnapshot) validateSeasonTypeEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, itemSnapshotTypeSeasonTypePropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *ItemSnapshot) validateSeasonType(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.SeasonType) { // not required
+		return nil
+	}
+
+	// value enum
+	if err := m.validateSeasonTypeEnum("seasonType", "body", m.SeasonType); err != nil {
+		return err
 	}
 
 	return nil

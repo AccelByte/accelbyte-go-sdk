@@ -115,8 +115,6 @@ type ClientService interface {
 
 	AdminUpdateCountryAgeRestrictionV3(params *AdminUpdateCountryAgeRestrictionV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateCountryAgeRestrictionV3OK, *AdminUpdateCountryAgeRestrictionV3BadRequest, *AdminUpdateCountryAgeRestrictionV3Unauthorized, *AdminUpdateCountryAgeRestrictionV3Forbidden, *AdminUpdateCountryAgeRestrictionV3NotFound, *AdminUpdateCountryAgeRestrictionV3InternalServerError, error)
 
-	AdminUpdateMyUserV4(params *AdminUpdateMyUserV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateMyUserV4OK, *AdminUpdateMyUserV4BadRequest, *AdminUpdateMyUserV4Unauthorized, *AdminUpdateMyUserV4Conflict, *AdminUpdateMyUserV4InternalServerError, error)
-
 	AdminUpdateUserBanV3(params *AdminUpdateUserBanV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateUserBanV3OK, *AdminUpdateUserBanV3BadRequest, *AdminUpdateUserBanV3Unauthorized, *AdminUpdateUserBanV3Forbidden, *AdminUpdateUserBanV3NotFound, *AdminUpdateUserBanV3InternalServerError, error)
 
 	AdminUpdateUserDeletionStatusV3(params *AdminUpdateUserDeletionStatusV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateUserDeletionStatusV3NoContent, *AdminUpdateUserDeletionStatusV3BadRequest, *AdminUpdateUserDeletionStatusV3Unauthorized, *AdminUpdateUserDeletionStatusV3Forbidden, *AdminUpdateUserDeletionStatusV3NotFound, *AdminUpdateUserDeletionStatusV3InternalServerError, error)
@@ -1147,7 +1145,7 @@ func (a *Client) AdminEnableUserV2(params *AdminEnableUserV2Params, authInfo run
 		Method:             "PUT",
 		PathPattern:        "/iam/v2/admin/namespaces/{namespace}/users/{userId}/enable",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"text/plain"},
+		ConsumesMediaTypes: []string{"*/*"},
 		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &AdminEnableUserV2Reader{formats: a.formats},
@@ -2600,64 +2598,6 @@ func (a *Client) AdminUpdateCountryAgeRestrictionV3(params *AdminUpdateCountryAg
 }
 
 /*
-  AdminUpdateMyUserV4 admins update my user
-
-  <p>Requires valid user access token </p>
-<br><p>This Endpoint support update user based on given data. <b>Single request can update single field or multi fields.</b></p>
-<p>Supported field {country, displayName, emailAddress, languageTag, dateOfBirth}</p>
-<p>Country use ISO3166-1 alpha-2 two letter, e.g. US.</p>
-<p>Date of Birth format : YYYY-MM-DD, e.g. 2019-04-29.</p>
-<br><b>Several case of updating email address</b>
-<ul><li>User want to update email address of which have been verified, newEmailAddress response field will be filled with new email address.</li>
-<li>User want to update email address of which have not been verified, { oldEmailAddress, emailAddress} response field will be filled with new email address. </li>
-<li>User want to update email address of which have been verified and updated before, { oldEmailAddress, emailAddress} response field will be filled with verified email before. newEmailAddress response field will be filled with newest email address. </li>
-<p>action code : 10103 </p>
-*/
-func (a *Client) AdminUpdateMyUserV4(params *AdminUpdateMyUserV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateMyUserV4OK, *AdminUpdateMyUserV4BadRequest, *AdminUpdateMyUserV4Unauthorized, *AdminUpdateMyUserV4Conflict, *AdminUpdateMyUserV4InternalServerError, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewAdminUpdateMyUserV4Params()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "AdminUpdateMyUserV4",
-		Method:             "PATCH",
-		PathPattern:        "/iam/v4/admin/users/me",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
-		Params:             params,
-		Reader:             &AdminUpdateMyUserV4Reader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, nil, nil, nil, nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *AdminUpdateMyUserV4OK:
-		return v, nil, nil, nil, nil, nil
-	case *AdminUpdateMyUserV4BadRequest:
-		return nil, v, nil, nil, nil, nil
-	case *AdminUpdateMyUserV4Unauthorized:
-		return nil, nil, v, nil, nil, nil
-	case *AdminUpdateMyUserV4Conflict:
-		return nil, nil, nil, v, nil, nil
-	case *AdminUpdateMyUserV4InternalServerError:
-		return nil, nil, nil, nil, v, nil
-	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-/*
   AdminUpdateUserBanV3 enables or disable ban for a single user
 
   Required permission ADMIN:NAMESPACE:{namespace}:BAN:USER:{userId}
@@ -3611,7 +3551,7 @@ func (a *Client) DisableUserBan(params *DisableUserBanParams, authInfo runtime.C
 		Method:             "PUT",
 		PathPattern:        "/iam/namespaces/{namespace}/users/{userId}/bans/{banId}/disable",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"text/plain"},
+		ConsumesMediaTypes: []string{"*/*"},
 		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &DisableUserBanReader{formats: a.formats},
@@ -3661,7 +3601,7 @@ func (a *Client) EnableUser(params *EnableUserParams, authInfo runtime.ClientAut
 		Method:             "PUT",
 		PathPattern:        "/iam/namespaces/{namespace}/users/{userId}/enable",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"text/plain"},
+		ConsumesMediaTypes: []string{"*/*"},
 		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &EnableUserReader{formats: a.formats},
@@ -3710,7 +3650,7 @@ func (a *Client) EnableUserBan(params *EnableUserBanParams, authInfo runtime.Cli
 		Method:             "PUT",
 		PathPattern:        "/iam/namespaces/{namespace}/users/{userId}/bans/{banId}/enable",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"text/plain"},
+		ConsumesMediaTypes: []string{"*/*"},
 		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &EnableUserBanReader{formats: a.formats},
@@ -5339,6 +5279,8 @@ func (a *Client) PublicGetUserBanHistoryV3(params *PublicGetUserBanHistoryV3Para
 
 This endpoint return user information by given platform ID and platform user ID
 
+<strong>nintendo platform user ID</strong>: NSA ID need to be appended with Environment ID using colon as separator. e.g kmzwa8awaa:dd1
+
 */
 func (a *Client) PublicGetUserByPlatformUserIDV3(params *PublicGetUserByPlatformUserIDV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserByPlatformUserIDV3OK, *PublicGetUserByPlatformUserIDV3Unauthorized, *PublicGetUserByPlatformUserIDV3Forbidden, *PublicGetUserByPlatformUserIDV3NotFound, *PublicGetUserByPlatformUserIDV3InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -5629,6 +5571,8 @@ func (a *Client) PublicLinkPlatformAccount(params *PublicLinkPlatformAccountPara
   List User ID By Platform User ID
 This endpoint intended to list game user ID from the given namespace
 This endpoint return list of user ID by given platform ID and list of platform user ID
+
+<strong>nintendo platform user ID</strong>: NSA ID need to be appended with Environment ID using colon as separator. e.g kmzwa8awaa:dd1
 
 */
 func (a *Client) PublicListUserIDByPlatformUserIDsV3(params *PublicListUserIDByPlatformUserIDsV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicListUserIDByPlatformUserIDsV3OK, *PublicListUserIDByPlatformUserIDsV3BadRequest, *PublicListUserIDByPlatformUserIDsV3Unauthorized, *PublicListUserIDByPlatformUserIDsV3Forbidden, *PublicListUserIDByPlatformUserIDsV3InternalServerError, error) {

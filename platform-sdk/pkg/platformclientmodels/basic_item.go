@@ -49,7 +49,7 @@ type BasicItem struct {
 
 	// Item type
 	// Required: true
-	// Enum: [APP COINS INGAMEITEM BUNDLE CODE SUBSCRIPTION]
+	// Enum: [APP COINS INGAMEITEM BUNDLE CODE SUBSCRIPTION SEASON MEDIA]
 	ItemType *string `json:"itemType"`
 
 	// Name
@@ -59,6 +59,10 @@ type BasicItem struct {
 	// Item namespace
 	// Required: true
 	Namespace *string `json:"namespace"`
+
+	// Season type, required while itemType is SEASON
+	// Enum: [PASS TIER]
+	SeasonType string `json:"seasonType,omitempty"`
 
 	// Sku
 	Sku string `json:"sku,omitempty"`
@@ -114,6 +118,10 @@ func (m *BasicItem) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateNamespace(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSeasonType(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -266,7 +274,7 @@ var basicItemTypeItemTypePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["APP","COINS","INGAMEITEM","BUNDLE","CODE","SUBSCRIPTION"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["APP","COINS","INGAMEITEM","BUNDLE","CODE","SUBSCRIPTION","SEASON","MEDIA"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -293,6 +301,12 @@ const (
 
 	// BasicItemItemTypeSUBSCRIPTION captures enum value "SUBSCRIPTION"
 	BasicItemItemTypeSUBSCRIPTION string = "SUBSCRIPTION"
+
+	// BasicItemItemTypeSEASON captures enum value "SEASON"
+	BasicItemItemTypeSEASON string = "SEASON"
+
+	// BasicItemItemTypeMEDIA captures enum value "MEDIA"
+	BasicItemItemTypeMEDIA string = "MEDIA"
 )
 
 // prop value enum
@@ -329,6 +343,49 @@ func (m *BasicItem) validateName(formats strfmt.Registry) error {
 func (m *BasicItem) validateNamespace(formats strfmt.Registry) error {
 
 	if err := validate.Required("namespace", "body", m.Namespace); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+var basicItemTypeSeasonTypePropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["PASS","TIER"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		basicItemTypeSeasonTypePropEnum = append(basicItemTypeSeasonTypePropEnum, v)
+	}
+}
+
+const (
+
+	// BasicItemSeasonTypePASS captures enum value "PASS"
+	BasicItemSeasonTypePASS string = "PASS"
+
+	// BasicItemSeasonTypeTIER captures enum value "TIER"
+	BasicItemSeasonTypeTIER string = "TIER"
+)
+
+// prop value enum
+func (m *BasicItem) validateSeasonTypeEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, basicItemTypeSeasonTypePropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *BasicItem) validateSeasonType(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.SeasonType) { // not required
+		return nil
+	}
+
+	// value enum
+	if err := m.validateSeasonTypeEnum("seasonType", "body", m.SeasonType); err != nil {
 		return err
 	}
 

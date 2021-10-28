@@ -31,13 +31,13 @@ type Client struct {
 type ClientService interface {
 	CloneStore(params *CloneStoreParams, authInfo runtime.ClientAuthInfoWriter) (*CloneStoreOK, *CloneStoreBadRequest, *CloneStoreNotFound, error)
 
-	CreateStore(params *CreateStoreParams, authInfo runtime.ClientAuthInfoWriter) (*CreateStoreCreated, *CreateStoreUnprocessableEntity, error)
+	CreateStore(params *CreateStoreParams, authInfo runtime.ClientAuthInfoWriter) (*CreateStoreCreated, *CreateStoreConflict, *CreateStoreUnprocessableEntity, error)
 
 	DeletePublishedStore(params *DeletePublishedStoreParams, authInfo runtime.ClientAuthInfoWriter) (*DeletePublishedStoreOK, *DeletePublishedStoreNotFound, error)
 
 	DeleteStore(params *DeleteStoreParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteStoreOK, *DeleteStoreNotFound, *DeleteStoreConflict, error)
 
-	ExportStore(params *ExportStoreParams, authInfo runtime.ClientAuthInfoWriter) (*ExportStoreNotFound, error)
+	ExportStore(params *ExportStoreParams, authInfo runtime.ClientAuthInfoWriter) (*ExportStoreOK, *ExportStoreNotFound, error)
 
 	GetPublishedStore(params *GetPublishedStoreParams, authInfo runtime.ClientAuthInfoWriter) (*GetPublishedStoreOK, *GetPublishedStoreNotFound, error)
 
@@ -79,7 +79,7 @@ func (a *Client) CloneStore(params *CloneStoreParams, authInfo runtime.ClientAut
 		PathPattern:        "/admin/namespaces/{namespace}/stores/{storeId}/clone",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &CloneStoreReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -108,7 +108,7 @@ func (a *Client) CloneStore(params *CloneStoreParams, authInfo runtime.ClientAut
 
   This API is used to create a non published store in a namespace.<p>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:STORE", action=1 (CREATE)</li><li><i>Returns</i>: created store data</li></ul>
 */
-func (a *Client) CreateStore(params *CreateStoreParams, authInfo runtime.ClientAuthInfoWriter) (*CreateStoreCreated, *CreateStoreUnprocessableEntity, error) {
+func (a *Client) CreateStore(params *CreateStoreParams, authInfo runtime.ClientAuthInfoWriter) (*CreateStoreCreated, *CreateStoreConflict, *CreateStoreUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCreateStoreParams()
@@ -124,7 +124,7 @@ func (a *Client) CreateStore(params *CreateStoreParams, authInfo runtime.ClientA
 		PathPattern:        "/admin/namespaces/{namespace}/stores",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &CreateStoreReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -132,17 +132,19 @@ func (a *Client) CreateStore(params *CreateStoreParams, authInfo runtime.ClientA
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, err
+		return nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *CreateStoreCreated:
-		return v, nil, nil
+		return v, nil, nil, nil
+	case *CreateStoreConflict:
+		return nil, v, nil, nil
 	case *CreateStoreUnprocessableEntity:
-		return nil, v, nil
+		return nil, nil, v, nil
 	default:
-		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -167,7 +169,7 @@ func (a *Client) DeletePublishedStore(params *DeletePublishedStoreParams, authIn
 		PathPattern:        "/admin/namespaces/{namespace}/stores/published",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &DeletePublishedStoreReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -210,7 +212,7 @@ func (a *Client) DeleteStore(params *DeleteStoreParams, authInfo runtime.ClientA
 		PathPattern:        "/admin/namespaces/{namespace}/stores/{storeId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &DeleteStoreReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -239,7 +241,7 @@ func (a *Client) DeleteStore(params *DeleteStoreParams, authInfo runtime.ClientA
 
   This API is used to export a store.<p>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:STORE", action=2 (READ)</li></ul>
 */
-func (a *Client) ExportStore(params *ExportStoreParams, authInfo runtime.ClientAuthInfoWriter) (*ExportStoreNotFound, error) {
+func (a *Client) ExportStore(params *ExportStoreParams, authInfo runtime.ClientAuthInfoWriter) (*ExportStoreOK, *ExportStoreNotFound, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewExportStoreParams()
@@ -255,7 +257,7 @@ func (a *Client) ExportStore(params *ExportStoreParams, authInfo runtime.ClientA
 		PathPattern:        "/admin/namespaces/{namespace}/stores/{storeId}/export",
 		ProducesMediaTypes: []string{"application/zip"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &ExportStoreReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -263,15 +265,17 @@ func (a *Client) ExportStore(params *ExportStoreParams, authInfo runtime.ClientA
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
 	switch v := result.(type) {
 
+	case *ExportStoreOK:
+		return v, nil, nil
 	case *ExportStoreNotFound:
-		return v, nil
+		return nil, v, nil
 	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -296,7 +300,7 @@ func (a *Client) GetPublishedStore(params *GetPublishedStoreParams, authInfo run
 		PathPattern:        "/admin/namespaces/{namespace}/stores/published",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &GetPublishedStoreReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -339,7 +343,7 @@ func (a *Client) GetPublishedStoreBackup(params *GetPublishedStoreBackupParams, 
 		PathPattern:        "/admin/namespaces/{namespace}/stores/published/backup",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &GetPublishedStoreBackupReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -382,7 +386,7 @@ func (a *Client) GetStore(params *GetStoreParams, authInfo runtime.ClientAuthInf
 		PathPattern:        "/admin/namespaces/{namespace}/stores/{storeId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &GetStoreReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -425,7 +429,7 @@ func (a *Client) ImportStore(params *ImportStoreParams, authInfo runtime.ClientA
 		PathPattern:        "/admin/namespaces/{namespace}/stores/import",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"multipart/form-data"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &ImportStoreReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -470,7 +474,7 @@ func (a *Client) ListStores(params *ListStoresParams, authInfo runtime.ClientAut
 		PathPattern:        "/admin/namespaces/{namespace}/stores",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &ListStoresReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -493,7 +497,7 @@ func (a *Client) ListStores(params *ListStoresParams, authInfo runtime.ClientAut
 /*
   PublicListStores lists all stores
 
-  This API is used to list all stores in a namespace.<p>Other detail info: <ul><li><i>Optional permission</i>: resource="SANDBOX", action=1(CREATE) (user with this permission can view draft store)</li><li><i>Returns</i>: the list of stores</li></ul>
+  This API is used to list all stores in a namespace.<p>Other detail info: <ul><li><i>Optional permission</i>: resource="PREVIEW", action=1(CREATE) (user with this permission can view draft store)</li><li><i>Optional permission</i>: resource="SANDBOX", action=1(CREATE) (user with this permission can view draft store)</li><li><i>Returns</i>: the list of stores</li></ul>
 */
 func (a *Client) PublicListStores(params *PublicListStoresParams) (*PublicListStoresOK, error) {
 	// TODO: Validate the params before sending
@@ -511,7 +515,7 @@ func (a *Client) PublicListStores(params *PublicListStoresParams) (*PublicListSt
 		PathPattern:        "/public/namespaces/{namespace}/stores",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &PublicListStoresReader{formats: a.formats},
 		Context:            params.Context,
@@ -551,7 +555,7 @@ func (a *Client) RollbackPublishedStore(params *RollbackPublishedStoreParams, au
 		PathPattern:        "/admin/namespaces/{namespace}/stores/published/rollback",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &RollbackPublishedStoreReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -594,7 +598,7 @@ func (a *Client) UpdateStore(params *UpdateStoreParams, authInfo runtime.ClientA
 		PathPattern:        "/admin/namespaces/{namespace}/stores/{storeId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &UpdateStoreReader{formats: a.formats},
 		AuthInfo:           authInfo,

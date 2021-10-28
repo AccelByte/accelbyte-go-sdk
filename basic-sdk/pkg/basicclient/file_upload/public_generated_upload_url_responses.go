@@ -105,7 +105,7 @@ func NewPublicGeneratedUploadURLBadRequest() *PublicGeneratedUploadURLBadRequest
 
 /*PublicGeneratedUploadURLBadRequest handles this case with default header values.
 
-  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>11131</td><td>file type not supported</td></tr></table>
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>11131</td><td>Unable to {action}: File type is not supported</td></tr></table>
 */
 type PublicGeneratedUploadURLBadRequest struct {
 	Payload *basicclientmodels.ValidationErrorEntity

@@ -48,6 +48,8 @@ func NewAuthorizeV3Found() *AuthorizeV3Found {
   Found. Redirected to login page with either request_id or error.
 */
 type AuthorizeV3Found struct {
+	/*The Location header
+	 */
 	Location string
 }
 

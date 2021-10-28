@@ -98,7 +98,7 @@ type QueryEntitlementsParams struct {
 	/*EntitlementName*/
 	EntitlementName *string
 	/*ItemID*/
-	ItemID *string
+	ItemID []string
 	/*Limit*/
 	Limit *int32
 	/*Namespace*/
@@ -191,13 +191,13 @@ func (o *QueryEntitlementsParams) SetEntitlementName(entitlementName *string) {
 }
 
 // WithItemID adds the itemID to the query entitlements params
-func (o *QueryEntitlementsParams) WithItemID(itemID *string) *QueryEntitlementsParams {
+func (o *QueryEntitlementsParams) WithItemID(itemID []string) *QueryEntitlementsParams {
 	o.SetItemID(itemID)
 	return o
 }
 
 // SetItemID adds the itemId to the query entitlements params
-func (o *QueryEntitlementsParams) SetItemID(itemID *string) {
+func (o *QueryEntitlementsParams) SetItemID(itemID []string) {
 	o.ItemID = itemID
 }
 
@@ -317,20 +317,12 @@ func (o *QueryEntitlementsParams) WriteToRequest(r runtime.ClientRequest, reg st
 
 	}
 
-	if o.ItemID != nil {
+	valuesItemID := o.ItemID
 
-		// query param itemId
-		var qrItemID string
-		if o.ItemID != nil {
-			qrItemID = *o.ItemID
-		}
-		qItemID := qrItemID
-		if qItemID != "" {
-			if err := r.SetQueryParam("itemId", qItemID); err != nil {
-				return err
-			}
-		}
-
+	joinedItemID := swag.JoinByFormat(valuesItemID, "multi")
+	// query array param itemId
+	if err := r.SetQueryParam("itemId", joinedItemID...); err != nil {
+		return err
 	}
 
 	if o.Limit != nil {

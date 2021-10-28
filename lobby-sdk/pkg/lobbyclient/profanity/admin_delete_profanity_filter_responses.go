@@ -81,14 +81,14 @@ func NewAdminDeleteProfanityFilterOK() *AdminDeleteProfanityFilterOK {
   OK
 */
 type AdminDeleteProfanityFilterOK struct {
-	Payload []lobbyclientmodels.ModelsProfanityFilter
+	Payload []*lobbyclientmodels.ModelsProfanityFilter
 }
 
 func (o *AdminDeleteProfanityFilterOK) Error() string {
 	return fmt.Sprintf("[POST /lobby/v1/admin/profanity/namespaces/{namespace}/list/{list}/filters/delete][%d] adminDeleteProfanityFilterOK  %+v", 200, o.Payload)
 }
 
-func (o *AdminDeleteProfanityFilterOK) GetPayload() []lobbyclientmodels.ModelsProfanityFilter {
+func (o *AdminDeleteProfanityFilterOK) GetPayload() []*lobbyclientmodels.ModelsProfanityFilter {
 	return o.Payload
 }
 

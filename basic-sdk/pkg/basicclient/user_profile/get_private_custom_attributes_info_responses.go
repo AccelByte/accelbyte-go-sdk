@@ -163,7 +163,7 @@ func NewGetPrivateCustomAttributesInfoNotFound() *GetPrivateCustomAttributesInfo
 
 /*GetPrivateCustomAttributesInfoNotFound handles this case with default header values.
 
-  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11440</td><td>user profile not found</td></tr></table>
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11440</td><td>Unable to {action}: User profile not found in namespace [{namespace}]</td></tr></table>
 */
 type GetPrivateCustomAttributesInfoNotFound struct {
 	Payload *basicclientmodels.ErrorEntity

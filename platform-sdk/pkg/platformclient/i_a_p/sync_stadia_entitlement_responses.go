@@ -45,7 +45,7 @@ func NewSyncStadiaEntitlementNoContent() *SyncStadiaEntitlementNoContent {
 
 /*SyncStadiaEntitlementNoContent handles this case with default header values.
 
-  successful operation
+  Successful operation
 */
 type SyncStadiaEntitlementNoContent struct {
 }

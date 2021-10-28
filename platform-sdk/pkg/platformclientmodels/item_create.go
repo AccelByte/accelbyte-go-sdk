@@ -27,7 +27,7 @@ type ItemCreate struct {
 	// Enum: [GAME SOFTWARE DLC DEMO]
 	AppType string `json:"appType,omitempty"`
 
-	// baseAppId, can set value of game appId if want to link to a game, only publisher namespace item will take effect
+	// baseAppId, can set value of game appId if want to link to a game
 	BaseAppID string `json:"baseAppId,omitempty"`
 
 	// booth name to get tickets while ItemType is CODE, Campaign or KeyGroup should located in targetNamespace if targetNamespace not null
@@ -63,8 +63,11 @@ type ItemCreate struct {
 
 	// Item Type
 	// Required: true
-	// Enum: [APP COINS INGAMEITEM BUNDLE CODE SUBSCRIPTION]
+	// Enum: [APP COINS INGAMEITEM BUNDLE CODE SUBSCRIPTION SEASON MEDIA]
 	ItemType *string `json:"itemType"`
+
+	// Whether can be visible in Store for public user
+	Listable bool `json:"listable,omitempty"`
 
 	// Localization, key language, value localization content
 	// Required: true
@@ -80,12 +83,19 @@ type ItemCreate struct {
 	// Required: true
 	Name *string `json:"name"`
 
+	// Whether can be purchased
+	Purchasable bool `json:"purchasable,omitempty"`
+
 	// recurring for subscription
 	Recurring *Recurring `json:"recurring,omitempty"`
 
 	// region data map, key is region, value is region data list
 	// Required: true
 	RegionData map[string][]RegionDataItem `json:"regionData"`
+
+	// seasonType
+	// Enum: [PASS TIER]
+	SeasonType string `json:"seasonType,omitempty"`
 
 	// sku, allowed characters from a-zA-Z0-9_:- and start/end in alphanumeric, max length is 127
 	Sku string `json:"sku,omitempty"`
@@ -156,6 +166,10 @@ func (m *ItemCreate) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateRegionData(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSeasonType(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -316,7 +330,7 @@ var itemCreateTypeItemTypePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["APP","COINS","INGAMEITEM","BUNDLE","CODE","SUBSCRIPTION"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["APP","COINS","INGAMEITEM","BUNDLE","CODE","SUBSCRIPTION","SEASON","MEDIA"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -343,6 +357,12 @@ const (
 
 	// ItemCreateItemTypeSUBSCRIPTION captures enum value "SUBSCRIPTION"
 	ItemCreateItemTypeSUBSCRIPTION string = "SUBSCRIPTION"
+
+	// ItemCreateItemTypeSEASON captures enum value "SEASON"
+	ItemCreateItemTypeSEASON string = "SEASON"
+
+	// ItemCreateItemTypeMEDIA captures enum value "MEDIA"
+	ItemCreateItemTypeMEDIA string = "MEDIA"
 )
 
 // prop value enum
@@ -431,6 +451,49 @@ func (m *ItemCreate) validateRegionData(formats strfmt.Registry) error {
 
 		}
 
+	}
+
+	return nil
+}
+
+var itemCreateTypeSeasonTypePropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["PASS","TIER"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		itemCreateTypeSeasonTypePropEnum = append(itemCreateTypeSeasonTypePropEnum, v)
+	}
+}
+
+const (
+
+	// ItemCreateSeasonTypePASS captures enum value "PASS"
+	ItemCreateSeasonTypePASS string = "PASS"
+
+	// ItemCreateSeasonTypeTIER captures enum value "TIER"
+	ItemCreateSeasonTypeTIER string = "TIER"
+)
+
+// prop value enum
+func (m *ItemCreate) validateSeasonTypeEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, itemCreateTypeSeasonTypePropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *ItemCreate) validateSeasonType(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.SeasonType) { // not required
+		return nil
+	}
+
+	// value enum
+	if err := m.validateSeasonTypeEnum("seasonType", "body", m.SeasonType); err != nil {
+		return err
 	}
 
 	return nil

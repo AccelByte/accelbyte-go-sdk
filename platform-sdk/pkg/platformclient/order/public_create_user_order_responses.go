@@ -111,7 +111,7 @@ func NewPublicCreateUserOrderBadRequest() *PublicCreateUserOrderBadRequest {
 
 /*PublicCreateUserOrderBadRequest handles this case with default header values.
 
-  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>32121</td><td>Order price mismatch</td></tr><tr><td>32122</td><td>Item type [{itemType}] does not support</td></tr><tr><td>35121</td><td>Transaction amount [{actualAmount}] exceed max amount [{maxAmount}] per day</td></tr><tr><td>35122</td><td>Transaction amount [{actualAmount}] exceed max amount [{maxAmount}] per transaction</td></tr><tr><td>35123</td><td>Wallet [{walletId}] is inactive</td></tr><tr><td>35124</td><td>Wallet [{currencyCode}] has insufficient balance</td></tr><tr><td>35125</td><td>Balance exceed max balance [{maxAmount}]</td></tr><tr><td>38121</td><td>Duplicate permanent item exists</td></tr></table>
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>32121</td><td>Order price mismatch</td></tr><tr><td>32122</td><td>Item type [{itemType}] does not support</td></tr><tr><td>32123</td><td>Item is not purchasable</td></tr><tr><td>35123</td><td>Wallet [{walletId}] is inactive</td></tr><tr><td>35124</td><td>Wallet [{currencyCode}] has insufficient balance</td></tr><tr><td>38121</td><td>Duplicate permanent item exists</td></tr></table>
 */
 type PublicCreateUserOrderBadRequest struct {
 	Payload *platformclientmodels.ErrorEntity
@@ -177,7 +177,7 @@ func NewPublicCreateUserOrderNotFound() *PublicCreateUserOrderNotFound {
 
 /*PublicCreateUserOrderNotFound handles this case with default header values.
 
-  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>30341</td><td>Item [{itemId}] does not exist in namespace [{namespace}]</td></tr><tr><td>30141</td><td>Store [{storeId}] does not exist in namespace [{namespace}]</td></tr><tr><td>36141</td><td>Currency [{currencyCode}] does not exist in namespace [{namespace}]</td></tr></table>
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>30341</td><td>Item [{itemId}] does not exist in namespace [{namespace}]</td></tr><tr><td>30141</td><td>Store [{storeId}] does not exist in namespace [{namespace}]</td></tr><tr><td>36141</td><td>Currency [{currencyCode}] does not exist in namespace [{namespace}]</td></tr><tr><td>49147</td><td>Published season does not exist</td></tr></table>
 */
 type PublicCreateUserOrderNotFound struct {
 	Payload *platformclientmodels.ErrorEntity
@@ -210,7 +210,7 @@ func NewPublicCreateUserOrderConflict() *PublicCreateUserOrderConflict {
 
 /*PublicCreateUserOrderConflict handles this case with default header values.
 
-  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>32175</td><td>User [{userId}] exceed item max count [{maxCount}] of per user</td></tr><tr><td>32176</td><td>Exceed item [{itemId}] max count [{maxCount}]</td></tr><tr><td>31177</td><td>Permanent item already owned</td></tr><tr><td>20006</td><td>optimistic lock</td></tr></table>
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>32175</td><td>Exceed item [{itemId}] max count [{maxCount}] per user</td></tr><tr><td>32176</td><td>Exceed item [{itemId}] max count [{maxCount}]</td></tr><tr><td>31177</td><td>Permanent item already owned</td></tr><tr><td>49183</td><td>Pass item does not match published season pass</td></tr><tr><td>49184</td><td>Tier item does not match published season tier</td></tr><tr><td>49185</td><td>Season has not started</td></tr><tr><td>49186</td><td>Pass already owned</td></tr><tr><td>49187</td><td>Exceed max tier count</td></tr><tr><td>20006</td><td>optimistic lock</td></tr></table>
 */
 type PublicCreateUserOrderConflict struct {
 	Payload *platformclientmodels.ErrorEntity

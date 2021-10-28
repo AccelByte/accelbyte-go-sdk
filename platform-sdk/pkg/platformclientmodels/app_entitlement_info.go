@@ -35,6 +35,9 @@ type AppEntitlementInfo struct {
 	// Format: date-time
 	GrantedAt *strfmt.DateTime `json:"grantedAt"`
 
+	// item id
+	ItemID string `json:"itemId,omitempty"`
+
 	// itemSnapshot for distribution
 	ItemSnapshot *ItemSnapshot `json:"itemSnapshot,omitempty"`
 
@@ -53,6 +56,9 @@ type AppEntitlementInfo struct {
 	// Required: true
 	// Enum: [ACTIVE INACTIVE CONSUMED DISTRIBUTED REVOKED]
 	Status *string `json:"status"`
+
+	// item store id, null if published store
+	StoreID string `json:"storeId,omitempty"`
 
 	// entitlement owner
 	// Required: true

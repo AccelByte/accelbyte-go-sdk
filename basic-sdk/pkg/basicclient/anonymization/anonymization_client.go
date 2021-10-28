@@ -29,7 +29,7 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	AnonymizeUserProfile(params *AnonymizeUserProfileParams, authInfo runtime.ClientAuthInfoWriter) (*AnonymizeUserProfileNoContent, *AnonymizeUserProfileBadRequest, *AnonymizeUserProfileUnauthorized, *AnonymizeUserProfileForbidden, *AnonymizeUserProfileNotFound, error)
+	AnonymizeUserProfile(params *AnonymizeUserProfileParams, authInfo runtime.ClientAuthInfoWriter) (*AnonymizeUserProfileNoContent, *AnonymizeUserProfileBadRequest, *AnonymizeUserProfileUnauthorized, *AnonymizeUserProfileForbidden, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -39,7 +39,7 @@ type ClientService interface {
 
   Anonymize user profile.<br>Other detail info: <ul><li><i>Required permission</i>: resource=<b>"ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION"</b>, action=8 <b>(DELETE)</b></li><li><i>Action code</i>: 11501</li></ul>
 */
-func (a *Client) AnonymizeUserProfile(params *AnonymizeUserProfileParams, authInfo runtime.ClientAuthInfoWriter) (*AnonymizeUserProfileNoContent, *AnonymizeUserProfileBadRequest, *AnonymizeUserProfileUnauthorized, *AnonymizeUserProfileForbidden, *AnonymizeUserProfileNotFound, error) {
+func (a *Client) AnonymizeUserProfile(params *AnonymizeUserProfileParams, authInfo runtime.ClientAuthInfoWriter) (*AnonymizeUserProfileNoContent, *AnonymizeUserProfileBadRequest, *AnonymizeUserProfileUnauthorized, *AnonymizeUserProfileForbidden, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAnonymizeUserProfileParams()
@@ -55,7 +55,7 @@ func (a *Client) AnonymizeUserProfile(params *AnonymizeUserProfileParams, authIn
 		PathPattern:        "/v1/admin/namespaces/{namespace}/users/{userId}/anonymization/profiles",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &AnonymizeUserProfileReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -63,23 +63,21 @@ func (a *Client) AnonymizeUserProfile(params *AnonymizeUserProfileParams, authIn
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AnonymizeUserProfileNoContent:
-		return v, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil
 	case *AnonymizeUserProfileBadRequest:
-		return nil, v, nil, nil, nil, nil
+		return nil, v, nil, nil, nil
 	case *AnonymizeUserProfileUnauthorized:
-		return nil, nil, v, nil, nil, nil
+		return nil, nil, v, nil, nil
 	case *AnonymizeUserProfileForbidden:
-		return nil, nil, nil, v, nil, nil
-	case *AnonymizeUserProfileNotFound:
-		return nil, nil, nil, nil, v, nil
+		return nil, nil, nil, v, nil
 	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 

@@ -40,7 +40,7 @@ type RegionDataItem struct {
 	// Format: date-time
 	DiscountExpireAt strfmt.DateTime `json:"discountExpireAt,omitempty"`
 
-	// Discount percentageï¼Œdefault is 0, if this value is not 0, it will override the discountAmount
+	// Discount percentage，default is 0, if this value is not 0, it will override the discountAmount
 	// Maximum: 100
 	// Minimum: 0
 	DiscountPercentage *int32 `json:"discountPercentage,omitempty"`
@@ -64,7 +64,7 @@ type RegionDataItem struct {
 	// Format: date-time
 	PurchaseAt strfmt.DateTime `json:"purchaseAt,omitempty"`
 
-	// trial price, required while fixedTrialCycles set, should &gt;=0 and &lt;= price, default same as trialPrice
+	// trial price, required while fixedTrialCycles set, should >=0 and <= price, default same as trialPrice
 	TrialPrice int32 `json:"trialPrice,omitempty"`
 }
 

@@ -48,6 +48,8 @@ func NewPlatformAuthenticateSAMLV3HandlerFound() *PlatformAuthenticateSAMLV3Hand
   Found. Redirect to clients redirection URL with either code or error on the query parameter
 */
 type PlatformAuthenticateSAMLV3HandlerFound struct {
+	/*The Location header
+	 */
 	Location string
 }
 
@@ -56,6 +58,9 @@ func (o *PlatformAuthenticateSAMLV3HandlerFound) Error() string {
 }
 
 func (o *PlatformAuthenticateSAMLV3HandlerFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// response header Location
+	o.Location = response.GetHeader("Location")
 
 	return nil
 }

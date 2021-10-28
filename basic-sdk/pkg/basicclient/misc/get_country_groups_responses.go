@@ -202,7 +202,7 @@ func NewGetCountryGroupsNotFound() *GetCountryGroupsNotFound {
 
 /*GetCountryGroupsNotFound handles this case with default header values.
 
-  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11233</td><td>country group not found</td></tr></table>
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11233</td><td>Unable to {action}: Country group with code [{countryGroupCode}] is not found</td></tr></table>
 */
 type GetCountryGroupsNotFound struct {
 	Payload *basicclientmodels.ErrorEntity

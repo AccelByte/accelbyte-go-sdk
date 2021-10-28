@@ -45,6 +45,8 @@ type ClientService interface {
 
 	RefundUserPaymentOrder(params *RefundUserPaymentOrderParams, authInfo runtime.ClientAuthInfoWriter) (*RefundUserPaymentOrderOK, *RefundUserPaymentOrderNotFound, *RefundUserPaymentOrderConflict, *RefundUserPaymentOrderUnprocessableEntity, error)
 
+	SimulatePaymentOrderNotification(params *SimulatePaymentOrderNotificationParams, authInfo runtime.ClientAuthInfoWriter) (*SimulatePaymentOrderNotificationOK, *SimulatePaymentOrderNotificationBadRequest, *SimulatePaymentOrderNotificationNotFound, error)
+
 	SetTransport(transport runtime.ClientTransport)
 }
 
@@ -69,7 +71,7 @@ func (a *Client) ChargePaymentOrder(params *ChargePaymentOrderParams, authInfo r
 		PathPattern:        "/admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &ChargePaymentOrderReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -116,7 +118,7 @@ func (a *Client) CreateUserPaymentOrder(params *CreateUserPaymentOrderParams, au
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/payment/orders",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &CreateUserPaymentOrderReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -167,7 +169,7 @@ func (a *Client) GetPaymentOrder(params *GetPaymentOrderParams, authInfo runtime
 		PathPattern:        "/admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &GetPaymentOrderReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -210,7 +212,7 @@ func (a *Client) GetPaymentOrderChargeStatus(params *GetPaymentOrderChargeStatus
 		PathPattern:        "/admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}/status",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &GetPaymentOrderChargeStatusReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -253,7 +255,7 @@ func (a *Client) ListExtOrderNoByExtTxID(params *ListExtOrderNoByExtTxIDParams, 
 		PathPattern:        "/admin/namespaces/{namespace}/payment/orders/byExtTxId",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &ListExtOrderNoByExtTxIDReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -294,7 +296,7 @@ func (a *Client) QueryPaymentNotifications(params *QueryPaymentNotificationsPara
 		PathPattern:        "/admin/namespaces/{namespace}/payment/notifications",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &QueryPaymentNotificationsReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -335,7 +337,7 @@ func (a *Client) QueryPaymentOrders(params *QueryPaymentOrdersParams, authInfo r
 		PathPattern:        "/admin/namespaces/{namespace}/payment/orders",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &QueryPaymentOrdersReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -376,7 +378,7 @@ func (a *Client) RefundUserPaymentOrder(params *RefundUserPaymentOrderParams, au
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/payment/orders/{paymentOrderNo}/refund",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &RefundUserPaymentOrderReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -399,6 +401,51 @@ func (a *Client) RefundUserPaymentOrder(params *RefundUserPaymentOrderParams, au
 		return nil, nil, nil, v, nil
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  SimulatePaymentOrderNotification simulates payment notification
+
+  <b>[TEST FACILITY ONLY]</b> Simulate payment notification on sandbox payment order, usually for test usage to simulate real currency payment notification.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:PAYMENT", action=4 (UPDATE)</li><li><i>Returns</i>: notification process result</li></ul>
+*/
+func (a *Client) SimulatePaymentOrderNotification(params *SimulatePaymentOrderNotificationParams, authInfo runtime.ClientAuthInfoWriter) (*SimulatePaymentOrderNotificationOK, *SimulatePaymentOrderNotificationBadRequest, *SimulatePaymentOrderNotificationNotFound, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewSimulatePaymentOrderNotificationParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "simulatePaymentOrderNotification",
+		Method:             "PUT",
+		PathPattern:        "/admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}/simulate-notification",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &SimulatePaymentOrderNotificationReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *SimulatePaymentOrderNotificationOK:
+		return v, nil, nil, nil
+	case *SimulatePaymentOrderNotificationBadRequest:
+		return nil, v, nil, nil
+	case *SimulatePaymentOrderNotificationNotFound:
+		return nil, nil, v, nil
+	default:
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 

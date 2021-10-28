@@ -30,6 +30,12 @@ func (o *PublicSearchItemsReader) ReadResponse(response runtime.ClientResponse, 
 			return nil, err
 		}
 		return result, nil
+	case 404:
+		result := NewPublicSearchItemsNotFound()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 
 	default:
 		data, err := ioutil.ReadAll(response.Body())
@@ -65,6 +71,39 @@ func (o *PublicSearchItemsOK) GetPayload() *platformclientmodels.ItemPagingSlice
 func (o *PublicSearchItemsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(platformclientmodels.ItemPagingSlicedResult)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewPublicSearchItemsNotFound creates a PublicSearchItemsNotFound with default headers values
+func NewPublicSearchItemsNotFound() *PublicSearchItemsNotFound {
+	return &PublicSearchItemsNotFound{}
+}
+
+/*PublicSearchItemsNotFound handles this case with default header values.
+
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>30141</td><td>Store [{storeId}] does not exist in namespace [{namespace}]</td></tr><tr><td>30142</td><td>Published store does not exist in namespace [{namespace}]</td></tr></table>
+*/
+type PublicSearchItemsNotFound struct {
+	Payload *platformclientmodels.ErrorEntity
+}
+
+func (o *PublicSearchItemsNotFound) Error() string {
+	return fmt.Sprintf("[GET /public/namespaces/{namespace}/items/search][%d] publicSearchItemsNotFound  %+v", 404, o.Payload)
+}
+
+func (o *PublicSearchItemsNotFound) GetPayload() *platformclientmodels.ErrorEntity {
+	return o.Payload
+}
+
+func (o *PublicSearchItemsNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(platformclientmodels.ErrorEntity)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

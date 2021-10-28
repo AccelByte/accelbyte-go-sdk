@@ -29,13 +29,64 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
+	AnonymizeCampaign(params *AnonymizeCampaignParams, authInfo runtime.ClientAuthInfoWriter) (*AnonymizeCampaignNoContent, error)
+
 	AnonymizeEntitlement(params *AnonymizeEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*AnonymizeEntitlementNoContent, error)
 
 	AnonymizeFulfillment(params *AnonymizeFulfillmentParams, authInfo runtime.ClientAuthInfoWriter) (*AnonymizeFulfillmentNoContent, error)
 
+	AnonymizeIntegration(params *AnonymizeIntegrationParams, authInfo runtime.ClientAuthInfoWriter) (*AnonymizeIntegrationNoContent, error)
+
+	AnonymizeOrder(params *AnonymizeOrderParams, authInfo runtime.ClientAuthInfoWriter) (*AnonymizeOrderNoContent, error)
+
+	AnonymizePayment(params *AnonymizePaymentParams, authInfo runtime.ClientAuthInfoWriter) (*AnonymizePaymentNoContent, error)
+
+	AnonymizeSubscription(params *AnonymizeSubscriptionParams, authInfo runtime.ClientAuthInfoWriter) (*AnonymizeSubscriptionNoContent, error)
+
 	AnonymizeWallet(params *AnonymizeWalletParams, authInfo runtime.ClientAuthInfoWriter) (*AnonymizeWalletNoContent, error)
 
 	SetTransport(transport runtime.ClientTransport)
+}
+
+/*
+  AnonymizeCampaign anonymizes campaign
+
+  Anonymize campaign. At current it will only anonymize redeem history.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION", action=8 (DELETE)</li></ul>
+*/
+func (a *Client) AnonymizeCampaign(params *AnonymizeCampaignParams, authInfo runtime.ClientAuthInfoWriter) (*AnonymizeCampaignNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAnonymizeCampaignParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "anonymizeCampaign",
+		Method:             "DELETE",
+		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/anonymization/campaign",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &AnonymizeCampaignReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AnonymizeCampaignNoContent:
+		return v, nil
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
 }
 
 /*
@@ -59,7 +110,7 @@ func (a *Client) AnonymizeEntitlement(params *AnonymizeEntitlementParams, authIn
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/anonymization/entitlements",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &AnonymizeEntitlementReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -100,7 +151,7 @@ func (a *Client) AnonymizeFulfillment(params *AnonymizeFulfillmentParams, authIn
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/anonymization/fulfillment",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &AnonymizeFulfillmentReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -114,6 +165,170 @@ func (a *Client) AnonymizeFulfillment(params *AnonymizeFulfillmentParams, authIn
 	switch v := result.(type) {
 
 	case *AnonymizeFulfillmentNoContent:
+		return v, nil
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  AnonymizeIntegration anonymizes integrations
+
+  Anonymize integrations. At current it will only anonymize iap histories.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION", action=8 (DELETE)</li></ul>
+*/
+func (a *Client) AnonymizeIntegration(params *AnonymizeIntegrationParams, authInfo runtime.ClientAuthInfoWriter) (*AnonymizeIntegrationNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAnonymizeIntegrationParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "anonymizeIntegration",
+		Method:             "DELETE",
+		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/anonymization/integrations",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &AnonymizeIntegrationReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AnonymizeIntegrationNoContent:
+		return v, nil
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  AnonymizeOrder anonymizes order
+
+  Anonymize order. At current it will only anonymize order, order history.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION", action=8 (DELETE)</li></ul>
+*/
+func (a *Client) AnonymizeOrder(params *AnonymizeOrderParams, authInfo runtime.ClientAuthInfoWriter) (*AnonymizeOrderNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAnonymizeOrderParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "anonymizeOrder",
+		Method:             "DELETE",
+		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/anonymization/orders",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &AnonymizeOrderReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AnonymizeOrderNoContent:
+		return v, nil
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  AnonymizePayment anonymizes payment
+
+  Anonymize payment. At current it will only anonymize payment order, payment order history.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION", action=8 (DELETE)</li></ul>
+*/
+func (a *Client) AnonymizePayment(params *AnonymizePaymentParams, authInfo runtime.ClientAuthInfoWriter) (*AnonymizePaymentNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAnonymizePaymentParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "anonymizePayment",
+		Method:             "DELETE",
+		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/anonymization/payment",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &AnonymizePaymentReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AnonymizePaymentNoContent:
+		return v, nil
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  AnonymizeSubscription anonymizes subscription
+
+  Anonymize subscription. At current it will anonymize subscription, billing history and subscription activity.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION", action=8 (DELETE)</li></ul>
+*/
+func (a *Client) AnonymizeSubscription(params *AnonymizeSubscriptionParams, authInfo runtime.ClientAuthInfoWriter) (*AnonymizeSubscriptionNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAnonymizeSubscriptionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "anonymizeSubscription",
+		Method:             "DELETE",
+		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/anonymization/subscriptions",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &AnonymizeSubscriptionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AnonymizeSubscriptionNoContent:
 		return v, nil
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
@@ -141,7 +356,7 @@ func (a *Client) AnonymizeWallet(params *AnonymizeWalletParams, authInfo runtime
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/anonymization/wallets",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &AnonymizeWalletReader{formats: a.formats},
 		AuthInfo:           authInfo,

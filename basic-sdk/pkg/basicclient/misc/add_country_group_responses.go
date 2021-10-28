@@ -105,7 +105,7 @@ func NewAddCountryGroupBadRequest() *AddCountryGroupBadRequest {
 
 /*AddCountryGroupBadRequest handles this case with default header values.
 
-  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>20019</td><td>unable to parse request body</td></tr><tr><td>11234</td><td>country belongs to more than one group</td></tr></table>
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>20019</td><td>unable to parse request body</td></tr><tr><td>11234</td><td>Unable to {action}: A country can't be assigned to more than one country group</td></tr></table>
 */
 type AddCountryGroupBadRequest struct {
 	Payload *basicclientmodels.ErrorEntity
@@ -204,7 +204,7 @@ func NewAddCountryGroupConflict() *AddCountryGroupConflict {
 
 /*AddCountryGroupConflict handles this case with default header values.
 
-  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11235</td><td>country group already exist</td></tr></table>
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11235</td><td>Unable to {action}: Country group with specified code is already exist</td></tr></table>
 */
 type AddCountryGroupConflict struct {
 	Payload *basicclientmodels.ErrorEntity

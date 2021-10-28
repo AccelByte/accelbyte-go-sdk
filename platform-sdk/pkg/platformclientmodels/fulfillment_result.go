@@ -29,6 +29,9 @@ type FulfillmentResult struct {
 	// Required: true
 	Namespace *string `json:"namespace"`
 
+	// affected subscriptions
+	SubscriptionSummaries []*SubscriptionSummary `json:"subscriptionSummaries"`
+
 	// userId
 	// Required: true
 	UserID *string `json:"userId"`
@@ -47,6 +50,10 @@ func (m *FulfillmentResult) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateNamespace(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSubscriptionSummaries(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -114,6 +121,31 @@ func (m *FulfillmentResult) validateNamespace(formats strfmt.Registry) error {
 
 	if err := validate.Required("namespace", "body", m.Namespace); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *FulfillmentResult) validateSubscriptionSummaries(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.SubscriptionSummaries) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.SubscriptionSummaries); i++ {
+		if swag.IsZero(m.SubscriptionSummaries[i]) { // not required
+			continue
+		}
+
+		if m.SubscriptionSummaries[i] != nil {
+			if err := m.SubscriptionSummaries[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("subscriptionSummaries" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
 	}
 
 	return nil

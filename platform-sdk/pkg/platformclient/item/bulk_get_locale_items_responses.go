@@ -30,6 +30,12 @@ func (o *BulkGetLocaleItemsReader) ReadResponse(response runtime.ClientResponse,
 			return nil, err
 		}
 		return result, nil
+	case 404:
+		result := NewBulkGetLocaleItemsNotFound()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 
 	default:
 		data, err := ioutil.ReadAll(response.Body())
@@ -66,6 +72,39 @@ func (o *BulkGetLocaleItemsOK) readResponse(response runtime.ClientResponse, con
 
 	// response payload
 	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewBulkGetLocaleItemsNotFound creates a BulkGetLocaleItemsNotFound with default headers values
+func NewBulkGetLocaleItemsNotFound() *BulkGetLocaleItemsNotFound {
+	return &BulkGetLocaleItemsNotFound{}
+}
+
+/*BulkGetLocaleItemsNotFound handles this case with default header values.
+
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>30141</td><td>Store [{storeId}] does not exist in namespace [{namespace}]</td></tr><tr><td>30142</td><td>Published store does not exist in namespace [{namespace}]</td></tr></table>
+*/
+type BulkGetLocaleItemsNotFound struct {
+	Payload *platformclientmodels.ErrorEntity
+}
+
+func (o *BulkGetLocaleItemsNotFound) Error() string {
+	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/items/locale/byIds][%d] bulkGetLocaleItemsNotFound  %+v", 404, o.Payload)
+}
+
+func (o *BulkGetLocaleItemsNotFound) GetPayload() *platformclientmodels.ErrorEntity {
+	return o.Payload
+}
+
+func (o *BulkGetLocaleItemsNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(platformclientmodels.ErrorEntity)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 

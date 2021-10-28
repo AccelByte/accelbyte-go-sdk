@@ -33,23 +33,19 @@ type ClientService interface {
 
 	DeleteUserProfile(params *DeleteUserProfileParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserProfileOK, *DeleteUserProfileBadRequest, *DeleteUserProfileUnauthorized, *DeleteUserProfileForbidden, *DeleteUserProfileNotFound, error)
 
-	EnableUserProfileStatus(params *EnableUserProfileStatusParams, authInfo runtime.ClientAuthInfoWriter) (*EnableUserProfileStatusOK, *EnableUserProfileStatusBadRequest, *EnableUserProfileStatusUnauthorized, *EnableUserProfileStatusForbidden, *EnableUserProfileStatusNotFound, error)
-
 	GetCustomAttributesInfo(params *GetCustomAttributesInfoParams, authInfo runtime.ClientAuthInfoWriter) (*GetCustomAttributesInfoOK, *GetCustomAttributesInfoUnauthorized, *GetCustomAttributesInfoForbidden, *GetCustomAttributesInfoNotFound, error)
 
-	GetCustomAttributesInfo1(params *GetCustomAttributesInfo1Params, authInfo runtime.ClientAuthInfoWriter) (*GetCustomAttributesInfo1OK, *GetCustomAttributesInfo1Unauthorized, *GetCustomAttributesInfo1NotFound, error)
-
 	GetMyProfileInfo(params *GetMyProfileInfoParams, authInfo runtime.ClientAuthInfoWriter) (*GetMyProfileInfoOK, *GetMyProfileInfoBadRequest, *GetMyProfileInfoUnauthorized, *GetMyProfileInfoForbidden, *GetMyProfileInfoNotFound, error)
+
+	GetMyZipCode(params *GetMyZipCodeParams, authInfo runtime.ClientAuthInfoWriter) (*GetMyZipCodeOK, *GetMyZipCodeUnauthorized, *GetMyZipCodeForbidden, error)
 
 	GetPrivateCustomAttributesInfo(params *GetPrivateCustomAttributesInfoParams, authInfo runtime.ClientAuthInfoWriter) (*GetPrivateCustomAttributesInfoOK, *GetPrivateCustomAttributesInfoUnauthorized, *GetPrivateCustomAttributesInfoForbidden, *GetPrivateCustomAttributesInfoNotFound, error)
 
 	GetUserProfileInfo(params *GetUserProfileInfoParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserProfileInfoOK, *GetUserProfileInfoBadRequest, *GetUserProfileInfoUnauthorized, *GetUserProfileInfoForbidden, *GetUserProfileInfoNotFound, error)
 
-	GetUserZipCode(params *GetUserZipCodeParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserZipCodeOK, *GetUserZipCodeUnauthorized, *GetUserZipCodeForbidden, error)
-
 	PublicCreateUserProfile(params *PublicCreateUserProfileParams, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateUserProfileCreated, *PublicCreateUserProfileBadRequest, *PublicCreateUserProfileUnauthorized, *PublicCreateUserProfileForbidden, *PublicCreateUserProfileConflict, error)
 
-	PublicEnableUserProfileStatus(params *PublicEnableUserProfileStatusParams, authInfo runtime.ClientAuthInfoWriter) (*PublicEnableUserProfileStatusOK, *PublicEnableUserProfileStatusBadRequest, *PublicEnableUserProfileStatusUnauthorized, *PublicEnableUserProfileStatusForbidden, *PublicEnableUserProfileStatusNotFound, error)
+	PublicGetCustomAttributesInfo(params *PublicGetCustomAttributesInfoParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetCustomAttributesInfoOK, *PublicGetCustomAttributesInfoUnauthorized, *PublicGetCustomAttributesInfoNotFound, error)
 
 	PublicGetUserProfileInfo(params *PublicGetUserProfileInfoParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserProfileInfoOK, *PublicGetUserProfileInfoBadRequest, *PublicGetUserProfileInfoUnauthorized, *PublicGetUserProfileInfoForbidden, *PublicGetUserProfileInfoNotFound, error)
 
@@ -57,27 +53,31 @@ type ClientService interface {
 
 	PublicGetUserProfilePublicInfoByIds(params *PublicGetUserProfilePublicInfoByIdsParams) (*PublicGetUserProfilePublicInfoByIdsOK, *PublicGetUserProfilePublicInfoByIdsBadRequest, error)
 
+	PublicUpdateCustomAttributesPartially(params *PublicUpdateCustomAttributesPartiallyParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateCustomAttributesPartiallyOK, *PublicUpdateCustomAttributesPartiallyBadRequest, *PublicUpdateCustomAttributesPartiallyUnauthorized, *PublicUpdateCustomAttributesPartiallyForbidden, *PublicUpdateCustomAttributesPartiallyNotFound, error)
+
 	PublicUpdateUserProfile(params *PublicUpdateUserProfileParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateUserProfileOK, *PublicUpdateUserProfileBadRequest, *PublicUpdateUserProfileUnauthorized, *PublicUpdateUserProfileForbidden, *PublicUpdateUserProfileNotFound, error)
+
+	PublicUpdateUserProfileStatus(params *PublicUpdateUserProfileStatusParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateUserProfileStatusOK, *PublicUpdateUserProfileStatusBadRequest, *PublicUpdateUserProfileStatusUnauthorized, *PublicUpdateUserProfileStatusForbidden, *PublicUpdateUserProfileStatusNotFound, error)
 
 	UpdateCustomAttributesPartially(params *UpdateCustomAttributesPartiallyParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateCustomAttributesPartiallyOK, *UpdateCustomAttributesPartiallyBadRequest, *UpdateCustomAttributesPartiallyUnauthorized, *UpdateCustomAttributesPartiallyForbidden, *UpdateCustomAttributesPartiallyNotFound, error)
 
-	UpdateCustomAttributesPartially1(params *UpdateCustomAttributesPartially1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateCustomAttributesPartially1OK, *UpdateCustomAttributesPartially1BadRequest, *UpdateCustomAttributesPartially1Unauthorized, *UpdateCustomAttributesPartially1Forbidden, *UpdateCustomAttributesPartially1NotFound, error)
-
 	UpdateMyProfile(params *UpdateMyProfileParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateMyProfileOK, *UpdateMyProfileBadRequest, *UpdateMyProfileUnauthorized, *UpdateMyProfileForbidden, *UpdateMyProfileNotFound, error)
+
+	UpdateMyZipCode(params *UpdateMyZipCodeParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateMyZipCodeOK, *UpdateMyZipCodeBadRequest, *UpdateMyZipCodeUnauthorized, *UpdateMyZipCodeForbidden, error)
 
 	UpdatePrivateCustomAttributesPartially(params *UpdatePrivateCustomAttributesPartiallyParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePrivateCustomAttributesPartiallyOK, *UpdatePrivateCustomAttributesPartiallyBadRequest, *UpdatePrivateCustomAttributesPartiallyUnauthorized, *UpdatePrivateCustomAttributesPartiallyForbidden, *UpdatePrivateCustomAttributesPartiallyNotFound, error)
 
 	UpdateUserProfile(params *UpdateUserProfileParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateUserProfileOK, *UpdateUserProfileBadRequest, *UpdateUserProfileUnauthorized, *UpdateUserProfileForbidden, *UpdateUserProfileNotFound, error)
 
-	UpdateUserZipCode(params *UpdateUserZipCodeParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateUserZipCodeOK, *UpdateUserZipCodeBadRequest, *UpdateUserZipCodeUnauthorized, *UpdateUserZipCodeForbidden, error)
+	UpdateUserProfileStatus(params *UpdateUserProfileStatusParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateUserProfileStatusOK, *UpdateUserProfileStatusBadRequest, *UpdateUserProfileStatusUnauthorized, *UpdateUserProfileStatusForbidden, *UpdateUserProfileStatusNotFound, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
 
 /*
-  CreateMyProfile creates user profile
+  CreateMyProfile creates my profile
 
-  Create user profile.<br><b>Client with user token can create user profile in target namespace</b><br>Other detail info: <ul><li><i>Required permission</i>: resource=<b>"NAMESPACE:{namespace}:PROFILE"</b>, action=1 <b>(CREATE)</b></li><li><i>Action code</i>: 11401</li><li><i>Returns</i>: Created user profile</li><li><i>Path's namespace</i> : <ul><li>can be filled with <b>publisher namespace</b> in order to create <b>publisher user profile</b></li><li>can be filled with <b>game namespace</b> in order to create <b>game user profile</b></li></ul></li><li><i>Language</i> : allowed format: en, en-US</li><li><i>Country</i>  : ISO3166-1 alpha-2 two letter, e.g. US </li><li><i>Timezone</i> : IANA time zone, e.g. Asia/Shanghai</li></ul>
+  Create my profile.<br><b>Client with user token can create user profile in target namespace</b><br>Other detail info: <ul><li><i>Required permission</i>: resource=<b>"NAMESPACE:{namespace}:PROFILE"</b>, action=1 <b>(CREATE)</b></li><li><i>Action code</i>: 11401</li><li><i>Returns</i>: Created user profile</li><li><i>Path's namespace</i> : <ul><li>can be filled with <b>publisher namespace</b> in order to create <b>publisher user profile</b></li><li>can be filled with <b>game namespace</b> in order to create <b>game user profile</b></li></ul></li><li><i>Language</i> : allowed format: en, en-US</li><li><i>Country</i>  : ISO3166-1 alpha-2 two letter, e.g. US </li><li><i>Timezone</i> : IANA time zone, e.g. Asia/Shanghai</li></ul>
 */
 func (a *Client) CreateMyProfile(params *CreateMyProfileParams, authInfo runtime.ClientAuthInfoWriter) (*CreateMyProfileCreated, *CreateMyProfileBadRequest, *CreateMyProfileUnauthorized, *CreateMyProfileForbidden, *CreateMyProfileNotFound, *CreateMyProfileConflict, error) {
 	// TODO: Validate the params before sending
@@ -95,7 +95,7 @@ func (a *Client) CreateMyProfile(params *CreateMyProfileParams, authInfo runtime
 		PathPattern:        "/v1/public/namespaces/{namespace}/users/me/profiles",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &CreateMyProfileReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -146,7 +146,7 @@ func (a *Client) DeleteUserProfile(params *DeleteUserProfileParams, authInfo run
 		PathPattern:        "/v1/admin/namespaces/{namespace}/users/{userId}/profiles",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &DeleteUserProfileReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -175,55 +175,6 @@ func (a *Client) DeleteUserProfile(params *DeleteUserProfileParams, authInfo run
 }
 
 /*
-  EnableUserProfileStatus updates user profile status
-
-  Update user profile status.<br>Other detail info: <ul><li><i>Required permission</i>: resource=<b>"ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE"</b>, action=4 <b>(UPDATE)</b></li><li><i>Action code</i>: 11406</li><li><i>Returns</i>: user profile</li></ul>
-*/
-func (a *Client) EnableUserProfileStatus(params *EnableUserProfileStatusParams, authInfo runtime.ClientAuthInfoWriter) (*EnableUserProfileStatusOK, *EnableUserProfileStatusBadRequest, *EnableUserProfileStatusUnauthorized, *EnableUserProfileStatusForbidden, *EnableUserProfileStatusNotFound, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewEnableUserProfileStatusParams()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "enableUserProfileStatus",
-		Method:             "PATCH",
-		PathPattern:        "/v1/admin/namespaces/{namespace}/users/{userId}/profiles/status",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &EnableUserProfileStatusReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, nil, nil, nil, nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *EnableUserProfileStatusOK:
-		return v, nil, nil, nil, nil, nil
-	case *EnableUserProfileStatusBadRequest:
-		return nil, v, nil, nil, nil, nil
-	case *EnableUserProfileStatusUnauthorized:
-		return nil, nil, v, nil, nil, nil
-	case *EnableUserProfileStatusForbidden:
-		return nil, nil, nil, v, nil, nil
-	case *EnableUserProfileStatusNotFound:
-		return nil, nil, nil, nil, v, nil
-	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-/*
   GetCustomAttributesInfo gets user custom attributes
 
   Get user custom attributes.<br>Other detail info: <ul><li><i>Required permission</i>: resource=<b>"ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE"</b>, action=2 <b>(READ)</b></li><li><i>Returns</i>: custom attributes</li><li><i>Action code</i>: 11403</li></ul>
@@ -244,7 +195,7 @@ func (a *Client) GetCustomAttributesInfo(params *GetCustomAttributesInfoParams, 
 		PathPattern:        "/v1/admin/namespaces/{namespace}/users/{userId}/profiles/customAttributes",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &GetCustomAttributesInfoReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -271,54 +222,9 @@ func (a *Client) GetCustomAttributesInfo(params *GetCustomAttributesInfoParams, 
 }
 
 /*
-  GetCustomAttributesInfo1 gets custom attributes info
+  GetMyProfileInfo gets my profile
 
-  Get custom attributes info.<br>Other detail info: <ul><li><i>Required permission</i>: login user</li><li><i>Action code</i>: 11404</li><li><i>Returns</i>: user custom attributes</li></ul>
-*/
-func (a *Client) GetCustomAttributesInfo1(params *GetCustomAttributesInfo1Params, authInfo runtime.ClientAuthInfoWriter) (*GetCustomAttributesInfo1OK, *GetCustomAttributesInfo1Unauthorized, *GetCustomAttributesInfo1NotFound, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewGetCustomAttributesInfo1Params()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "getCustomAttributesInfo_1",
-		Method:             "GET",
-		PathPattern:        "/v1/public/namespaces/{namespace}/users/{userId}/profiles/customAttributes",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &GetCustomAttributesInfo1Reader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, nil, nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *GetCustomAttributesInfo1OK:
-		return v, nil, nil, nil
-	case *GetCustomAttributesInfo1Unauthorized:
-		return nil, v, nil, nil
-	case *GetCustomAttributesInfo1NotFound:
-		return nil, nil, v, nil
-	default:
-		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-/*
-  GetMyProfileInfo gets user profile
-
-  Get user profile<br><b>Client with user token can get user profile in target namespace</b><br>Other detail info: <ul><li><i>Required permission</i>: resource=<b>"NAMESPACE:{namespace}:PROFILE"</b>, action=2 <b>(READ)</b></li><li><i>Action code</i>: 11403</li><li><i>Returns</i>: user profile</li><li><i>Path's namespace</i> : <ul><li>can be filled with <b>publisher namespace</b> in order to get <b>publisher user profile</b></li><li>can be filled with <b>game namespace</b> in order to get <b>game user profile</b></li></ul></li><li><i>Language</i> : allowed format: en, en-US</li><li><i>Timezone</i> : IANA time zone, e.g. Asia/Shanghai</li></ul>
+  Get my profile<br><b>Client with user token can get user profile in target namespace</b><br>Other detail info: <ul><li><i>Required permission</i>: resource=<b>"NAMESPACE:{namespace}:PROFILE"</b>, action=2 <b>(READ)</b></li><li><i>Action code</i>: 11403</li><li><i>Returns</i>: user profile</li><li><i>Path's namespace</i> : <ul><li>can be filled with <b>publisher namespace</b> in order to get <b>publisher user profile</b></li><li>can be filled with <b>game namespace</b> in order to get <b>game user profile</b></li></ul></li><li><i>Language</i> : allowed format: en, en-US</li><li><i>Timezone</i> : IANA time zone, e.g. Asia/Shanghai</li></ul>
 */
 func (a *Client) GetMyProfileInfo(params *GetMyProfileInfoParams, authInfo runtime.ClientAuthInfoWriter) (*GetMyProfileInfoOK, *GetMyProfileInfoBadRequest, *GetMyProfileInfoUnauthorized, *GetMyProfileInfoForbidden, *GetMyProfileInfoNotFound, error) {
 	// TODO: Validate the params before sending
@@ -336,7 +242,7 @@ func (a *Client) GetMyProfileInfo(params *GetMyProfileInfoParams, authInfo runti
 		PathPattern:        "/v1/public/namespaces/{namespace}/users/me/profiles",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &GetMyProfileInfoReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -365,6 +271,51 @@ func (a *Client) GetMyProfileInfo(params *GetMyProfileInfoParams, authInfo runti
 }
 
 /*
+  GetMyZipCode gets my zip code
+
+  Get my zip code.<br>Other detail info: <ul><li><i>Required permission</i>: resource=<b>"NAMESPACE:{namespace}:PROFILE"</b>, action=2 <b>(READ)</b></li><li><i>Action code</i>: 11407</li><li><i>Returns</i>: user zip code</li></ul>
+*/
+func (a *Client) GetMyZipCode(params *GetMyZipCodeParams, authInfo runtime.ClientAuthInfoWriter) (*GetMyZipCodeOK, *GetMyZipCodeUnauthorized, *GetMyZipCodeForbidden, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetMyZipCodeParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getMyZipCode",
+		Method:             "GET",
+		PathPattern:        "/v1/public/namespaces/{namespace}/users/me/profiles/zipCode",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &GetMyZipCodeReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetMyZipCodeOK:
+		return v, nil, nil, nil
+	case *GetMyZipCodeUnauthorized:
+		return nil, v, nil, nil
+	case *GetMyZipCodeForbidden:
+		return nil, nil, v, nil
+	default:
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
   GetPrivateCustomAttributesInfo gets user private custom attributes
 
   Get user private custom attributes.<br>Other detail info: <ul><li><i>Required permission</i>: resource=<b>"ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE"</b>, action=2 <b>(READ)</b></li><li><i>Returns</i>: custom attributes</li><li><i>Action code</i>: 11403</li></ul>
@@ -385,7 +336,7 @@ func (a *Client) GetPrivateCustomAttributesInfo(params *GetPrivateCustomAttribut
 		PathPattern:        "/v1/admin/namespaces/{namespace}/users/{userId}/profiles/privateCustomAttributes",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &GetPrivateCustomAttributesInfoReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -432,7 +383,7 @@ func (a *Client) GetUserProfileInfo(params *GetUserProfileInfoParams, authInfo r
 		PathPattern:        "/v1/admin/namespaces/{namespace}/users/{userId}/profiles",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &GetUserProfileInfoReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -461,51 +412,6 @@ func (a *Client) GetUserProfileInfo(params *GetUserProfileInfoParams, authInfo r
 }
 
 /*
-  GetUserZipCode gets user zip code
-
-  Get user zip code.<br>Other detail info: <ul><li><i>Required permission</i>: resource=<b>"NAMESPACE:{namespace}:PROFILE"</b>, action=2 <b>(READ)</b></li><li><i>Action code</i>: 11407</li><li><i>Returns</i>: user zip code</li></ul>
-*/
-func (a *Client) GetUserZipCode(params *GetUserZipCodeParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserZipCodeOK, *GetUserZipCodeUnauthorized, *GetUserZipCodeForbidden, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewGetUserZipCodeParams()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "getUserZipCode",
-		Method:             "GET",
-		PathPattern:        "/v1/public/namespaces/{namespace}/users/me/profiles/zipCode",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &GetUserZipCodeReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, nil, nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *GetUserZipCodeOK:
-		return v, nil, nil, nil
-	case *GetUserZipCodeUnauthorized:
-		return nil, v, nil, nil
-	case *GetUserZipCodeForbidden:
-		return nil, nil, v, nil
-	default:
-		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-/*
   PublicCreateUserProfile creates user profile
 
   Create user profile.<br>Other detail info: <ul><li><i>Required permission</i>: resource=<b>"NAMESPACE:{namespace}:USER:{userId}:PROFILE"</b>, action=1 <b>(CREATE)</b></li><li><i>Action code</i>: 11401</li><li><i>Language</i> : allowed format: en, en-US</li><li><i>Timezone</i> : IANA time zone, e.g. Asia/Shanghai</li><li><i>Returns</i>: Created user profile</li></ul>
@@ -526,7 +432,7 @@ func (a *Client) PublicCreateUserProfile(params *PublicCreateUserProfileParams, 
 		PathPattern:        "/v1/public/namespaces/{namespace}/users/{userId}/profiles",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &PublicCreateUserProfileReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -555,14 +461,14 @@ func (a *Client) PublicCreateUserProfile(params *PublicCreateUserProfileParams, 
 }
 
 /*
-  PublicEnableUserProfileStatus updates user profile status
+  PublicGetCustomAttributesInfo gets custom attributes info
 
-  Update user profile status.<br>Other detail info: <ul><li><i>Required permission</i>: resource=<b>"NAMESPACE:{namespace}:USER:{userId}:PROFILE"</b>, action=4 <b>(UPDATE)</b></li><li><i>Action code</i>: 11406</li><li><i>Returns</i>: user profile</li></ul>
+  Get custom attributes info.<br>Other detail info: <ul><li><i>Required permission</i>: resource=<b>"NAMESPACE:{namespace}:USER:{userId}:PROFILE"</b>, action=2 <b>(READ)</b></li><li><i>Action code</i>: 11404</li><li><i>Returns</i>: user custom attributes</li></ul>
 */
-func (a *Client) PublicEnableUserProfileStatus(params *PublicEnableUserProfileStatusParams, authInfo runtime.ClientAuthInfoWriter) (*PublicEnableUserProfileStatusOK, *PublicEnableUserProfileStatusBadRequest, *PublicEnableUserProfileStatusUnauthorized, *PublicEnableUserProfileStatusForbidden, *PublicEnableUserProfileStatusNotFound, error) {
+func (a *Client) PublicGetCustomAttributesInfo(params *PublicGetCustomAttributesInfoParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetCustomAttributesInfoOK, *PublicGetCustomAttributesInfoUnauthorized, *PublicGetCustomAttributesInfoNotFound, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewPublicEnableUserProfileStatusParams()
+		params = NewPublicGetCustomAttributesInfoParams()
 	}
 
 	if params.Context == nil {
@@ -570,36 +476,32 @@ func (a *Client) PublicEnableUserProfileStatus(params *PublicEnableUserProfileSt
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "publicEnableUserProfileStatus",
-		Method:             "PATCH",
-		PathPattern:        "/v1/public/namespaces/{namespace}/users/{userId}/profiles/status",
+		ID:                 "publicGetCustomAttributesInfo",
+		Method:             "GET",
+		PathPattern:        "/v1/public/namespaces/{namespace}/users/{userId}/profiles/customAttributes",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
-		Reader:             &PublicEnableUserProfileStatusReader{formats: a.formats},
+		Reader:             &PublicGetCustomAttributesInfoReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, err
+		return nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
-	case *PublicEnableUserProfileStatusOK:
-		return v, nil, nil, nil, nil, nil
-	case *PublicEnableUserProfileStatusBadRequest:
-		return nil, v, nil, nil, nil, nil
-	case *PublicEnableUserProfileStatusUnauthorized:
-		return nil, nil, v, nil, nil, nil
-	case *PublicEnableUserProfileStatusForbidden:
-		return nil, nil, nil, v, nil, nil
-	case *PublicEnableUserProfileStatusNotFound:
-		return nil, nil, nil, nil, v, nil
+	case *PublicGetCustomAttributesInfoOK:
+		return v, nil, nil, nil
+	case *PublicGetCustomAttributesInfoUnauthorized:
+		return nil, v, nil, nil
+	case *PublicGetCustomAttributesInfoNotFound:
+		return nil, nil, v, nil
 	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -624,7 +526,7 @@ func (a *Client) PublicGetUserProfileInfo(params *PublicGetUserProfileInfoParams
 		PathPattern:        "/v1/public/namespaces/{namespace}/users/{userId}/profiles",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &PublicGetUserProfileInfoReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -673,7 +575,7 @@ func (a *Client) PublicGetUserProfilePublicInfo(params *PublicGetUserProfilePubl
 		PathPattern:        "/v1/public/namespaces/{namespace}/users/{userId}/profiles/public",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &PublicGetUserProfilePublicInfoReader{formats: a.formats},
 		Context:            params.Context,
@@ -717,7 +619,7 @@ func (a *Client) PublicGetUserProfilePublicInfoByIds(params *PublicGetUserProfil
 		PathPattern:        "/v1/public/namespaces/{namespace}/profiles/public",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &PublicGetUserProfilePublicInfoByIdsReader{formats: a.formats},
 		Context:            params.Context,
@@ -739,9 +641,58 @@ func (a *Client) PublicGetUserProfilePublicInfoByIds(params *PublicGetUserProfil
 }
 
 /*
+  PublicUpdateCustomAttributesPartially updates partially custom attributes tied to user id
+
+  Update partially custom attributes tied to user id.<br>Other detail info: <ul><li><i>Required permission</i>: resource=<b>"NAMESPACE:{namespace}:USER:{userId}:PROFILE"</b>, action=4 <b>(UPDATE)</b></li><li><i>Action code</i>: 11402</li><li><i>Request body</i> : allowed format: JSON object</li><li><i>Returns</i>: Updated custom attributes</li></ul>
+*/
+func (a *Client) PublicUpdateCustomAttributesPartially(params *PublicUpdateCustomAttributesPartiallyParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateCustomAttributesPartiallyOK, *PublicUpdateCustomAttributesPartiallyBadRequest, *PublicUpdateCustomAttributesPartiallyUnauthorized, *PublicUpdateCustomAttributesPartiallyForbidden, *PublicUpdateCustomAttributesPartiallyNotFound, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicUpdateCustomAttributesPartiallyParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicUpdateCustomAttributesPartially",
+		Method:             "PUT",
+		PathPattern:        "/v1/public/namespaces/{namespace}/users/{userId}/profiles/customAttributes",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &PublicUpdateCustomAttributesPartiallyReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicUpdateCustomAttributesPartiallyOK:
+		return v, nil, nil, nil, nil, nil
+	case *PublicUpdateCustomAttributesPartiallyBadRequest:
+		return nil, v, nil, nil, nil, nil
+	case *PublicUpdateCustomAttributesPartiallyUnauthorized:
+		return nil, nil, v, nil, nil, nil
+	case *PublicUpdateCustomAttributesPartiallyForbidden:
+		return nil, nil, nil, v, nil, nil
+	case *PublicUpdateCustomAttributesPartiallyNotFound:
+		return nil, nil, nil, nil, v, nil
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
   PublicUpdateUserProfile updates user profile
 
-  Update user profile.<br>Other detail info: <ul><li><i>Required permission</i>: resource=<b>"ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE"</b>, action=4 <b>(UPDATE)</b></li><li><i>Action code</i>: 11402</li><li><i>Language</i> : allowed format: en, en-US</li><li><i>Timezone</i> : IANA time zone, e.g. Asia/Shanghai</li><li><i>Returns</i>: Updated user profile</li></ul>
+  Update user profile.<br>Other detail info: <ul><li><i>Required permission</i>: resource=<b>"NAMESPACE:{namespace}:USER:{userId}:PROFILE"</b>, action=4 <b>(UPDATE)</b></li><li><i>Action code</i>: 11402</li><li><i>Language</i> : allowed format: en, en-US</li><li><i>Timezone</i> : IANA time zone, e.g. Asia/Shanghai</li><li><i>Returns</i>: Updated user profile</li></ul>
 */
 func (a *Client) PublicUpdateUserProfile(params *PublicUpdateUserProfileParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateUserProfileOK, *PublicUpdateUserProfileBadRequest, *PublicUpdateUserProfileUnauthorized, *PublicUpdateUserProfileForbidden, *PublicUpdateUserProfileNotFound, error) {
 	// TODO: Validate the params before sending
@@ -759,7 +710,7 @@ func (a *Client) PublicUpdateUserProfile(params *PublicUpdateUserProfileParams, 
 		PathPattern:        "/v1/public/namespaces/{namespace}/users/{userId}/profiles",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &PublicUpdateUserProfileReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -788,6 +739,55 @@ func (a *Client) PublicUpdateUserProfile(params *PublicUpdateUserProfileParams, 
 }
 
 /*
+  PublicUpdateUserProfileStatus updates user profile status
+
+  Update user profile status.<br>Other detail info: <ul><li><i>Required permission</i>: resource=<b>"NAMESPACE:{namespace}:USER:{userId}:PROFILE"</b>, action=4 <b>(UPDATE)</b></li><li><i>Action code</i>: 11406</li><li><i>Returns</i>: user profile</li></ul>
+*/
+func (a *Client) PublicUpdateUserProfileStatus(params *PublicUpdateUserProfileStatusParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateUserProfileStatusOK, *PublicUpdateUserProfileStatusBadRequest, *PublicUpdateUserProfileStatusUnauthorized, *PublicUpdateUserProfileStatusForbidden, *PublicUpdateUserProfileStatusNotFound, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicUpdateUserProfileStatusParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicUpdateUserProfileStatus",
+		Method:             "PATCH",
+		PathPattern:        "/v1/public/namespaces/{namespace}/users/{userId}/profiles/status",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &PublicUpdateUserProfileStatusReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicUpdateUserProfileStatusOK:
+		return v, nil, nil, nil, nil, nil
+	case *PublicUpdateUserProfileStatusBadRequest:
+		return nil, v, nil, nil, nil, nil
+	case *PublicUpdateUserProfileStatusUnauthorized:
+		return nil, nil, v, nil, nil, nil
+	case *PublicUpdateUserProfileStatusForbidden:
+		return nil, nil, nil, v, nil, nil
+	case *PublicUpdateUserProfileStatusNotFound:
+		return nil, nil, nil, nil, v, nil
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
   UpdateCustomAttributesPartially updates partially custom attributes tied to the user id
 
   Update partially custom attributes tied to the user id.<br>Other detail info: <ul><li><i>Required permission</i>: resource=<b>"ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE"</b>, action=4 <b>(UPDATE)</b></li><li><i>Action code</i>: 11402</li><li><i>Request body</i>: allowed format: JSON object</li><li><i>Returns</i>: Updated custom attributes</li></ul>
@@ -808,7 +808,7 @@ func (a *Client) UpdateCustomAttributesPartially(params *UpdateCustomAttributesP
 		PathPattern:        "/v1/admin/namespaces/{namespace}/users/{userId}/profiles/customAttributes",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &UpdateCustomAttributesPartiallyReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -837,58 +837,9 @@ func (a *Client) UpdateCustomAttributesPartially(params *UpdateCustomAttributesP
 }
 
 /*
-  UpdateCustomAttributesPartially1 updates partially custom attributes tied to user id
+  UpdateMyProfile updates my profile
 
-  Update partially custom attributes tied to user id.<br>Other detail info: <ul><li><i>Required permission</i>: resource=<b>"NAMESPACE:{namespace}:USER:{userId}:PROFILE"</b>, action=4 <b>(UPDATE)</b></li><li><i>Action code</i>: 11402</li><li><i>Request body</i> : allowed format: JSON object</li><li><i>Returns</i>: Updated custom attributes</li></ul>
-*/
-func (a *Client) UpdateCustomAttributesPartially1(params *UpdateCustomAttributesPartially1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateCustomAttributesPartially1OK, *UpdateCustomAttributesPartially1BadRequest, *UpdateCustomAttributesPartially1Unauthorized, *UpdateCustomAttributesPartially1Forbidden, *UpdateCustomAttributesPartially1NotFound, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewUpdateCustomAttributesPartially1Params()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "updateCustomAttributesPartially_1",
-		Method:             "PUT",
-		PathPattern:        "/v1/public/namespaces/{namespace}/users/{userId}/profiles/customAttributes",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &UpdateCustomAttributesPartially1Reader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, nil, nil, nil, nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *UpdateCustomAttributesPartially1OK:
-		return v, nil, nil, nil, nil, nil
-	case *UpdateCustomAttributesPartially1BadRequest:
-		return nil, v, nil, nil, nil, nil
-	case *UpdateCustomAttributesPartially1Unauthorized:
-		return nil, nil, v, nil, nil, nil
-	case *UpdateCustomAttributesPartially1Forbidden:
-		return nil, nil, nil, v, nil, nil
-	case *UpdateCustomAttributesPartially1NotFound:
-		return nil, nil, nil, nil, v, nil
-	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-/*
-  UpdateMyProfile updates user profile
-
-  Update user profile.<br>Updates user profile in the target namespace (namespace in the path). If token's namespace doesn't match the target namespace, the service automatically maps the token's user ID into the user ID in the target namespace. The endpoint returns the updated user profile on a successful call.<br>Other detail info: <ul><li><i>Required permission</i>: resource=<b>"NAMESPACE:{namespace}:PROFILE"</b>, action=4 <b>(UPDATE)</b></li><li><i>Action code</i>: 11402</li><li><i>Returns</i>: user profile</li><li><i>Path's namespace</i> : <ul><li>can be filled with <b>publisher namespace</b> in order to update <b>publisher user profile</b></li><li>can be filled with <b>game namespace</b> in order to update <b>game user profile</b></li></ul></li><li><i>Language</i> : allowed format: en, en-US</li><li><i>Timezone</i> : IANA time zone, e.g. Asia/Shanghai</li></ul>
+  Update my profile.<br>Updates user profile in the target namespace (namespace in the path). If token's namespace doesn't match the target namespace, the service automatically maps the token's user ID into the user ID in the target namespace. The endpoint returns the updated user profile on a successful call.<br>Other detail info: <ul><li><i>Required permission</i>: resource=<b>"NAMESPACE:{namespace}:PROFILE"</b>, action=4 <b>(UPDATE)</b></li><li><i>Action code</i>: 11402</li><li><i>Returns</i>: user profile</li><li><i>Path's namespace</i> : <ul><li>can be filled with <b>publisher namespace</b> in order to update <b>publisher user profile</b></li><li>can be filled with <b>game namespace</b> in order to update <b>game user profile</b></li></ul></li><li><i>Language</i> : allowed format: en, en-US</li><li><i>Timezone</i> : IANA time zone, e.g. Asia/Shanghai</li></ul>
 */
 func (a *Client) UpdateMyProfile(params *UpdateMyProfileParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateMyProfileOK, *UpdateMyProfileBadRequest, *UpdateMyProfileUnauthorized, *UpdateMyProfileForbidden, *UpdateMyProfileNotFound, error) {
 	// TODO: Validate the params before sending
@@ -906,7 +857,7 @@ func (a *Client) UpdateMyProfile(params *UpdateMyProfileParams, authInfo runtime
 		PathPattern:        "/v1/public/namespaces/{namespace}/users/me/profiles",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &UpdateMyProfileReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -935,6 +886,53 @@ func (a *Client) UpdateMyProfile(params *UpdateMyProfileParams, authInfo runtime
 }
 
 /*
+  UpdateMyZipCode updates my zip code
+
+  Update my zip code.<br>Other detail info: <ul><li><i>Required permission</i>: resource=<b>"NAMESPACE:{namespace}:PROFILE"</b>, action=4 <b>(UPDATE)</b></li><li><i>Action code</i>: 11408</li><li><i>Returns</i>: user zip code</li></ul>
+*/
+func (a *Client) UpdateMyZipCode(params *UpdateMyZipCodeParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateMyZipCodeOK, *UpdateMyZipCodeBadRequest, *UpdateMyZipCodeUnauthorized, *UpdateMyZipCodeForbidden, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateMyZipCodeParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updateMyZipCode",
+		Method:             "PATCH",
+		PathPattern:        "/v1/public/namespaces/{namespace}/users/me/profiles/zipCode",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &UpdateMyZipCodeReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateMyZipCodeOK:
+		return v, nil, nil, nil, nil
+	case *UpdateMyZipCodeBadRequest:
+		return nil, v, nil, nil, nil
+	case *UpdateMyZipCodeUnauthorized:
+		return nil, nil, v, nil, nil
+	case *UpdateMyZipCodeForbidden:
+		return nil, nil, nil, v, nil
+	default:
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
   UpdatePrivateCustomAttributesPartially updates partially private custom attributes tied to the user id
 
   Update partially private custom attributes tied to the user id.<br>Other detail info: <ul><li><i>Required permission</i>: resource=<b>"ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE"</b>, action=4 <b>(UPDATE)</b></li><li><i>Action code</i>: 11402</li><li><i>Request body</i>: allowed format: JSON object</li><li><i>Returns</i>: Updated custom attributes</li></ul>
@@ -955,7 +953,7 @@ func (a *Client) UpdatePrivateCustomAttributesPartially(params *UpdatePrivateCus
 		PathPattern:        "/v1/admin/namespaces/{namespace}/users/{userId}/profiles/privateCustomAttributes",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &UpdatePrivateCustomAttributesPartiallyReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1004,7 +1002,7 @@ func (a *Client) UpdateUserProfile(params *UpdateUserProfileParams, authInfo run
 		PathPattern:        "/v1/admin/namespaces/{namespace}/users/{userId}/profiles",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &UpdateUserProfileReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1033,14 +1031,14 @@ func (a *Client) UpdateUserProfile(params *UpdateUserProfileParams, authInfo run
 }
 
 /*
-  UpdateUserZipCode updates user zip code
+  UpdateUserProfileStatus updates user profile status
 
-  Update user zip code.<br>Other detail info: <ul><li><i>Required permission</i>: resource=<b>"NAMESPACE:{namespace}:PROFILE"</b>, action=4 <b>(UPDATE)</b></li><li><i>Action code</i>: 11408</li><li><i>Returns</i>: user zip code</li></ul>
+  Update user profile status.<br>Other detail info: <ul><li><i>Required permission</i>: resource=<b>"ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE"</b>, action=4 <b>(UPDATE)</b></li><li><i>Action code</i>: 11406</li><li><i>Returns</i>: user profile</li></ul>
 */
-func (a *Client) UpdateUserZipCode(params *UpdateUserZipCodeParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateUserZipCodeOK, *UpdateUserZipCodeBadRequest, *UpdateUserZipCodeUnauthorized, *UpdateUserZipCodeForbidden, error) {
+func (a *Client) UpdateUserProfileStatus(params *UpdateUserProfileStatusParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateUserProfileStatusOK, *UpdateUserProfileStatusBadRequest, *UpdateUserProfileStatusUnauthorized, *UpdateUserProfileStatusForbidden, *UpdateUserProfileStatusNotFound, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewUpdateUserZipCodeParams()
+		params = NewUpdateUserProfileStatusParams()
 	}
 
 	if params.Context == nil {
@@ -1048,34 +1046,36 @@ func (a *Client) UpdateUserZipCode(params *UpdateUserZipCodeParams, authInfo run
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "updateUserZipCode",
+		ID:                 "updateUserProfileStatus",
 		Method:             "PATCH",
-		PathPattern:        "/v1/public/namespaces/{namespace}/users/me/profiles/zipCode",
+		PathPattern:        "/v1/admin/namespaces/{namespace}/users/{userId}/profiles/status",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
-		Reader:             &UpdateUserZipCodeReader{formats: a.formats},
+		Reader:             &UpdateUserProfileStatusReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
-	case *UpdateUserZipCodeOK:
-		return v, nil, nil, nil, nil
-	case *UpdateUserZipCodeBadRequest:
-		return nil, v, nil, nil, nil
-	case *UpdateUserZipCodeUnauthorized:
-		return nil, nil, v, nil, nil
-	case *UpdateUserZipCodeForbidden:
-		return nil, nil, nil, v, nil
+	case *UpdateUserProfileStatusOK:
+		return v, nil, nil, nil, nil, nil
+	case *UpdateUserProfileStatusBadRequest:
+		return nil, v, nil, nil, nil, nil
+	case *UpdateUserProfileStatusUnauthorized:
+		return nil, nil, v, nil, nil, nil
+	case *UpdateUserProfileStatusForbidden:
+		return nil, nil, nil, v, nil, nil
+	case *UpdateUserProfileStatusNotFound:
+		return nil, nil, nil, nil, v, nil
 	default:
-		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 

@@ -24,6 +24,12 @@ type DownloadUserOrderReceiptReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *DownloadUserOrderReceiptReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
+	case 200:
+		result := NewDownloadUserOrderReceiptOK()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 404:
 		result := NewDownloadUserOrderReceiptNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -45,6 +51,27 @@ func (o *DownloadUserOrderReceiptReader) ReadResponse(response runtime.ClientRes
 
 		return nil, fmt.Errorf("Requested GET /admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}/receipt.pdf returns an error %d: %s", response.Code(), string(data))
 	}
+}
+
+// NewDownloadUserOrderReceiptOK creates a DownloadUserOrderReceiptOK with default headers values
+func NewDownloadUserOrderReceiptOK() *DownloadUserOrderReceiptOK {
+	return &DownloadUserOrderReceiptOK{}
+}
+
+/*DownloadUserOrderReceiptOK handles this case with default header values.
+
+  Successful operation
+*/
+type DownloadUserOrderReceiptOK struct {
+}
+
+func (o *DownloadUserOrderReceiptOK) Error() string {
+	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}/receipt.pdf][%d] downloadUserOrderReceiptOK ", 200)
+}
+
+func (o *DownloadUserOrderReceiptOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	return nil
 }
 
 // NewDownloadUserOrderReceiptNotFound creates a DownloadUserOrderReceiptNotFound with default headers values

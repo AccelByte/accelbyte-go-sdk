@@ -17,7 +17,7 @@ import (
 // swagger:model UserZipCodeUpdate
 type UserZipCodeUpdate struct {
 
-	// zip code
+	// zip code, accept alphabet and numeric string default
 	// Required: true
 	ZipCode *string `json:"zipCode"`
 }

@@ -135,6 +135,11 @@ type AdminSearchContentParams struct {
 
 	*/
 	Type *string
+	/*UserID
+	  user ID
+
+	*/
+	UserID *string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -293,6 +298,17 @@ func (o *AdminSearchContentParams) WithType(typeVar *string) *AdminSearchContent
 // SetType adds the type to the admin search content params
 func (o *AdminSearchContentParams) SetType(typeVar *string) {
 	o.Type = typeVar
+}
+
+// WithUserID adds the userID to the admin search content params
+func (o *AdminSearchContentParams) WithUserID(userID *string) *AdminSearchContentParams {
+	o.SetUserID(userID)
+	return o
+}
+
+// SetUserID adds the userId to the admin search content params
+func (o *AdminSearchContentParams) SetUserID(userID *string) {
+	o.UserID = userID
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -462,6 +478,22 @@ func (o *AdminSearchContentParams) WriteToRequest(r runtime.ClientRequest, reg s
 		qType := qrType
 		if qType != "" {
 			if err := r.SetQueryParam("type", qType); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.UserID != nil {
+
+		// query param userId
+		var qrUserID string
+		if o.UserID != nil {
+			qrUserID = *o.UserID
+		}
+		qUserID := qrUserID
+		if qUserID != "" {
+			if err := r.SetQueryParam("userId", qUserID); err != nil {
 				return err
 			}
 		}

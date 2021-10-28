@@ -90,7 +90,7 @@ func NewResetPasswordBadRequest() *ResetPasswordBadRequest {
 
 /*ResetPasswordBadRequest handles this case with default header values.
 
-  Invalid request
+  ResetPasswordBadRequest reset password bad request
 */
 type ResetPasswordBadRequest struct {
 }
@@ -111,7 +111,7 @@ func NewResetPasswordForbidden() *ResetPasswordForbidden {
 
 /*ResetPasswordForbidden handles this case with default header values.
 
-  Unauthorized access
+  ResetPasswordForbidden reset password forbidden
 */
 type ResetPasswordForbidden struct {
 }
@@ -132,7 +132,7 @@ func NewResetPasswordNotFound() *ResetPasswordNotFound {
 
 /*ResetPasswordNotFound handles this case with default header values.
 
-  Data not found
+  ResetPasswordNotFound reset password not found
 */
 type ResetPasswordNotFound struct {
 }

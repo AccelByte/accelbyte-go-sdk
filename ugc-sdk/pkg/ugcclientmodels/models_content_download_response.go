@@ -79,6 +79,9 @@ type ModelsContentDownloadResponse struct {
 	// payload URL
 	PayloadURL []*ModelsPayloadURL `json:"payloadURL"`
 
+	// screenshots
+	Screenshots []*ModelsScreenshotResponse `json:"screenshots"`
+
 	// share code
 	// Required: true
 	ShareCode *string `json:"shareCode"`
@@ -157,6 +160,10 @@ func (m *ModelsContentDownloadResponse) Validate(formats strfmt.Registry) error 
 	}
 
 	if err := m.validatePayloadURL(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateScreenshots(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -336,6 +343,31 @@ func (m *ModelsContentDownloadResponse) validatePayloadURL(formats strfmt.Regist
 			if err := m.PayloadURL[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("payloadURL" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *ModelsContentDownloadResponse) validateScreenshots(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Screenshots) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.Screenshots); i++ {
+		if swag.IsZero(m.Screenshots[i]) { // not required
+			continue
+		}
+
+		if m.Screenshots[i] != nil {
+			if err := m.Screenshots[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("screenshots" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

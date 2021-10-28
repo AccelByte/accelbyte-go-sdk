@@ -35,6 +35,8 @@ type ClientService interface {
 
 	AdminRemoveUserRoleV4(params *AdminRemoveUserRoleV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminRemoveUserRoleV4NoContent, *AdminRemoveUserRoleV4BadRequest, *AdminRemoveUserRoleV4Forbidden, *AdminRemoveUserRoleV4NotFound, *AdminRemoveUserRoleV4UnprocessableEntity, *AdminRemoveUserRoleV4InternalServerError, error)
 
+	AdminUpdateMyUserV4(params *AdminUpdateMyUserV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateMyUserV4OK, *AdminUpdateMyUserV4BadRequest, *AdminUpdateMyUserV4Unauthorized, *AdminUpdateMyUserV4Conflict, *AdminUpdateMyUserV4InternalServerError, error)
+
 	AdminUpdateUserEmailAddressV4(params *AdminUpdateUserEmailAddressV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateUserEmailAddressV4NoContent, *AdminUpdateUserEmailAddressV4BadRequest, *AdminUpdateUserEmailAddressV4Unauthorized, *AdminUpdateUserEmailAddressV4NotFound, *AdminUpdateUserEmailAddressV4Conflict, *AdminUpdateUserEmailAddressV4InternalServerError, error)
 
 	AdminUpdateUserRoleV4(params *AdminUpdateUserRoleV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateUserRoleV4OK, *AdminUpdateUserRoleV4BadRequest, *AdminUpdateUserRoleV4Forbidden, *AdminUpdateUserRoleV4NotFound, *AdminUpdateUserRoleV4UnprocessableEntity, *AdminUpdateUserRoleV4InternalServerError, error)
@@ -212,6 +214,64 @@ func (a *Client) AdminRemoveUserRoleV4(params *AdminRemoveUserRoleV4Params, auth
 		return nil, nil, nil, nil, nil, v, nil
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  AdminUpdateMyUserV4 admins update my user
+
+  <p>Requires valid user access token </p>
+<br><p>This Endpoint support update user based on given data. <b>Single request can update single field or multi fields.</b></p>
+<p>Supported field {country, displayName, emailAddress, languageTag, dateOfBirth}</p>
+<p>Country use ISO3166-1 alpha-2 two letter, e.g. US.</p>
+<p>Date of Birth format : YYYY-MM-DD, e.g. 2019-04-29.</p>
+<br><b>Several case of updating email address</b>
+<ul><li>User want to update email address of which have been verified, newEmailAddress response field will be filled with new email address.</li>
+<li>User want to update email address of which have not been verified, { oldEmailAddress, emailAddress} response field will be filled with new email address. </li>
+<li>User want to update email address of which have been verified and updated before, { oldEmailAddress, emailAddress} response field will be filled with verified email before. newEmailAddress response field will be filled with newest email address. </li>
+<p>action code : 10103 </p>
+*/
+func (a *Client) AdminUpdateMyUserV4(params *AdminUpdateMyUserV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateMyUserV4OK, *AdminUpdateMyUserV4BadRequest, *AdminUpdateMyUserV4Unauthorized, *AdminUpdateMyUserV4Conflict, *AdminUpdateMyUserV4InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminUpdateMyUserV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminUpdateMyUserV4",
+		Method:             "PATCH",
+		PathPattern:        "/iam/v4/admin/users/me",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &AdminUpdateMyUserV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminUpdateMyUserV4OK:
+		return v, nil, nil, nil, nil, nil
+	case *AdminUpdateMyUserV4BadRequest:
+		return nil, v, nil, nil, nil, nil
+	case *AdminUpdateMyUserV4Unauthorized:
+		return nil, nil, v, nil, nil, nil
+	case *AdminUpdateMyUserV4Conflict:
+		return nil, nil, nil, v, nil, nil
+	case *AdminUpdateMyUserV4InternalServerError:
+		return nil, nil, nil, nil, v, nil
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 

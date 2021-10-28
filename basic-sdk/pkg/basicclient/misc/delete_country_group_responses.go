@@ -24,6 +24,12 @@ type DeleteCountryGroupReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *DeleteCountryGroupReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
+	case 200:
+		result := NewDeleteCountryGroupOK()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 400:
 		result := NewDeleteCountryGroupBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -57,6 +63,27 @@ func (o *DeleteCountryGroupReader) ReadResponse(response runtime.ClientResponse,
 
 		return nil, fmt.Errorf("Requested DELETE /v1/admin/namespaces/{namespace}/misc/countrygroups/{countryGroupCode} returns an error %d: %s", response.Code(), string(data))
 	}
+}
+
+// NewDeleteCountryGroupOK creates a DeleteCountryGroupOK with default headers values
+func NewDeleteCountryGroupOK() *DeleteCountryGroupOK {
+	return &DeleteCountryGroupOK{}
+}
+
+/*DeleteCountryGroupOK handles this case with default header values.
+
+  Successful operation
+*/
+type DeleteCountryGroupOK struct {
+}
+
+func (o *DeleteCountryGroupOK) Error() string {
+	return fmt.Sprintf("[DELETE /v1/admin/namespaces/{namespace}/misc/countrygroups/{countryGroupCode}][%d] deleteCountryGroupOK ", 200)
+}
+
+func (o *DeleteCountryGroupOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	return nil
 }
 
 // NewDeleteCountryGroupBadRequest creates a DeleteCountryGroupBadRequest with default headers values
@@ -165,7 +192,7 @@ func NewDeleteCountryGroupNotFound() *DeleteCountryGroupNotFound {
 
 /*DeleteCountryGroupNotFound handles this case with default header values.
 
-  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11233</td><td>country group not found</td></tr></table>
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11233</td><td>Unable to {action}: Country group with code [{countryGroupCode}] is not found</td></tr></table>
 */
 type DeleteCountryGroupNotFound struct {
 	Payload *basicclientmodels.ErrorEntity

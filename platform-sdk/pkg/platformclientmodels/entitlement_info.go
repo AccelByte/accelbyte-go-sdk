@@ -41,7 +41,7 @@ type EntitlementInfo struct {
 
 	// entitlement end date
 	// Format: date-time
-	EndDate *strfmt.DateTime `json:"endDate,omitempty"`
+	EndDate strfmt.DateTime `json:"endDate,omitempty"`
 
 	// entitlement features
 	// Unique: true
@@ -86,7 +86,7 @@ type EntitlementInfo struct {
 
 	// entitlement source
 	// Required: true
-	// Enum: [PURCHASE IAP PROMOTION ACHIEVEMENT REFERRAL_BONUS REDEEM_CODE OTHER]
+	// Enum: [PURCHASE IAP PROMOTION ACHIEVEMENT REFERRAL_BONUS REDEEM_CODE REWARD GIFT OTHER]
 	Source *string `json:"source"`
 
 	// Whether the CONSUMABLE entitlement is stackable
@@ -94,12 +94,15 @@ type EntitlementInfo struct {
 
 	// entitlement start date
 	// Format: date-time
-	StartDate *strfmt.DateTime `json:"startDate,omitempty"`
+	StartDate strfmt.DateTime `json:"startDate,omitempty"`
 
 	// entitlement status
 	// Required: true
 	// Enum: [ACTIVE INACTIVE CONSUMED DISTRIBUTED REVOKED]
 	Status *string `json:"status"`
+
+	// storeId of the item, published store if omitted
+	StoreID string `json:"storeId,omitempty"`
 
 	// targetNamespace for distribution
 	TargetNamespace string `json:"targetNamespace,omitempty"`
@@ -424,7 +427,7 @@ var entitlementInfoTypeSourcePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["PURCHASE","IAP","PROMOTION","ACHIEVEMENT","REFERRAL_BONUS","REDEEM_CODE","OTHER"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["PURCHASE","IAP","PROMOTION","ACHIEVEMENT","REFERRAL_BONUS","REDEEM_CODE","REWARD","GIFT","OTHER"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -451,6 +454,12 @@ const (
 
 	// EntitlementInfoSourceREDEEMCODE captures enum value "REDEEM_CODE"
 	EntitlementInfoSourceREDEEMCODE string = "REDEEM_CODE"
+
+	// EntitlementInfoSourceREWARD captures enum value "REWARD"
+	EntitlementInfoSourceREWARD string = "REWARD"
+
+	// EntitlementInfoSourceGIFT captures enum value "GIFT"
+	EntitlementInfoSourceGIFT string = "GIFT"
 
 	// EntitlementInfoSourceOTHER captures enum value "OTHER"
 	EntitlementInfoSourceOTHER string = "OTHER"

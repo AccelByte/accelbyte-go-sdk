@@ -198,7 +198,7 @@ func NewAdminSaveUserRoleV3UnprocessableEntity() *AdminSaveUserRoleV3Unprocessab
 
 /*AdminSaveUserRoleV3UnprocessableEntity handles this case with default header values.
 
-  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>10183</td><td>validation error</td></tr></table>
+  AdminSaveUserRoleV3UnprocessableEntity admin save user role v3 unprocessable entity
 */
 type AdminSaveUserRoleV3UnprocessableEntity struct {
 	Payload *iamclientmodels.RestErrorResponse

@@ -24,6 +24,9 @@ type ModelsConfig struct {
 	// chat rate limit duration
 	ChatRateLimitDuration int64 `json:"chatRateLimitDuration,omitempty"`
 
+	// concurrent users limit
+	ConcurrentUsersLimit int32 `json:"concurrentUsersLimit,omitempty"`
+
 	// enable chat
 	EnableChat bool `json:"enableChat,omitempty"`
 

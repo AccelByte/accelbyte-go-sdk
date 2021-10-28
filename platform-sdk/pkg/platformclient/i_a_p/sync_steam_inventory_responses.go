@@ -45,7 +45,7 @@ func NewSyncSteamInventoryNoContent() *SyncSteamInventoryNoContent {
 
 /*SyncSteamInventoryNoContent handles this case with default header values.
 
-  successful operation
+  Successful operation
 */
 type SyncSteamInventoryNoContent struct {
 }

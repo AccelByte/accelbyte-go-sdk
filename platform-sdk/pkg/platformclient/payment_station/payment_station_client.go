@@ -48,7 +48,7 @@ type ClientService interface {
 
 	PublicGetUnpaidPaymentOrder(params *PublicGetUnpaidPaymentOrderParams) (*PublicGetUnpaidPaymentOrderOK, *PublicGetUnpaidPaymentOrderNotFound, *PublicGetUnpaidPaymentOrderConflict, error)
 
-	PublicNormalizePaymentReturnURL(params *PublicNormalizePaymentReturnURLParams) (*PublicNormalizePaymentReturnURLNoContent, error)
+	PublicNormalizePaymentReturnURL(params *PublicNormalizePaymentReturnURLParams) (*PublicNormalizePaymentReturnURLNoContent, *PublicNormalizePaymentReturnURLTemporaryRedirect, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -74,7 +74,7 @@ func (a *Client) GetPaymentCustomization(params *GetPaymentCustomizationParams) 
 		PathPattern:        "/public/namespaces/{namespace}/payment/customization",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &GetPaymentCustomizationReader{formats: a.formats},
 		Context:            params.Context,
@@ -114,7 +114,7 @@ func (a *Client) GetPaymentPublicConfig(params *GetPaymentPublicConfigParams) (*
 		PathPattern:        "/public/namespaces/{namespace}/payment/publicconfig",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &GetPaymentPublicConfigReader{formats: a.formats},
 		Context:            params.Context,
@@ -154,7 +154,7 @@ func (a *Client) GetPaymentTaxValue(params *GetPaymentTaxValueParams) (*GetPayme
 		PathPattern:        "/public/namespaces/{namespace}/payment/tax",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &GetPaymentTaxValueReader{formats: a.formats},
 		Context:            params.Context,
@@ -198,7 +198,7 @@ func (a *Client) Pay(params *PayParams) (*PayOK, *PayBadRequest, *PayNotFound, *
 		PathPattern:        "/public/namespaces/{namespace}/payment/orders/{paymentOrderNo}/pay",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &PayReader{formats: a.formats},
 		Context:            params.Context,
@@ -244,7 +244,7 @@ func (a *Client) PublicCheckPaymentOrderPaidStatus(params *PublicCheckPaymentOrd
 		PathPattern:        "/public/namespaces/{namespace}/payment/orders/{paymentOrderNo}/status",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &PublicCheckPaymentOrderPaidStatusReader{formats: a.formats},
 		Context:            params.Context,
@@ -286,7 +286,7 @@ func (a *Client) PublicGetPaymentMethods(params *PublicGetPaymentMethodsParams) 
 		PathPattern:        "/public/namespaces/{namespace}/payment/methods",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &PublicGetPaymentMethodsReader{formats: a.formats},
 		Context:            params.Context,
@@ -328,7 +328,7 @@ func (a *Client) PublicGetPaymentURL(params *PublicGetPaymentURLParams) (*Public
 		PathPattern:        "/public/namespaces/{namespace}/payment/link",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &PublicGetPaymentURLReader{formats: a.formats},
 		Context:            params.Context,
@@ -374,7 +374,7 @@ func (a *Client) PublicGetQRCode(params *PublicGetQRCodeParams, writer io.Writer
 		PathPattern:        "/public/namespaces/{namespace}/payment/qrcode",
 		ProducesMediaTypes: []string{"image/png"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &PublicGetQRCodeReader{formats: a.formats, writer: writer},
 		Context:            params.Context,
@@ -414,7 +414,7 @@ func (a *Client) PublicGetUnpaidPaymentOrder(params *PublicGetUnpaidPaymentOrder
 		PathPattern:        "/public/namespaces/{namespace}/payment/orders/{paymentOrderNo}/info",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &PublicGetUnpaidPaymentOrderReader{formats: a.formats},
 		Context:            params.Context,
@@ -444,7 +444,7 @@ func (a *Client) PublicGetUnpaidPaymentOrder(params *PublicGetUnpaidPaymentOrder
 
 When the shopper has completed the payment you will receive a successful AUTHORISATION.</li><li>RECEIVED: Inform the shopper that you've received their order, and are waiting for the payment to clear.</li><li>UNKNOWN: An error occurred during the payment processing.</li><li>FAILED: Shopper paid failed because of various reasons.</li></ul></td></tr><tr><td>reason</td><td>String</td><td>No</td><td>payment status reason</td></tr></table>Other detail info: <ul><li><i>xsolla</i>: parameters 'user_id', 'foreinginvoice', 'invoice_id' and 'status' will be automatically added to the link</li><li><i>adyen</i>: https://docs.adyen.com/developers/checkout/web-sdk</li></ul>
 */
-func (a *Client) PublicNormalizePaymentReturnURL(params *PublicNormalizePaymentReturnURLParams) (*PublicNormalizePaymentReturnURLNoContent, error) {
+func (a *Client) PublicNormalizePaymentReturnURL(params *PublicNormalizePaymentReturnURLParams) (*PublicNormalizePaymentReturnURLNoContent, *PublicNormalizePaymentReturnURLTemporaryRedirect, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublicNormalizePaymentReturnURLParams()
@@ -460,22 +460,24 @@ func (a *Client) PublicNormalizePaymentReturnURL(params *PublicNormalizePaymentR
 		PathPattern:        "/public/namespaces/{namespace}/payment/returnurl",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &PublicNormalizePaymentReturnURLReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *PublicNormalizePaymentReturnURLNoContent:
-		return v, nil
+		return v, nil, nil
+	case *PublicNormalizePaymentReturnURLTemporaryRedirect:
+		return nil, v, nil
 	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 

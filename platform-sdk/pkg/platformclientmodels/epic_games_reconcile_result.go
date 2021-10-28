@@ -6,8 +6,12 @@ package platformclientmodels
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
+
+	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // EpicGamesReconcileResult epic games reconcile result
@@ -15,24 +19,80 @@ import (
 // swagger:model EpicGamesReconcileResult
 type EpicGamesReconcileResult struct {
 
-	// Epic games item ID
+	// epic games item Id
 	EpicGamesItemID string `json:"epicGamesItemId,omitempty"`
 
-	// Item ID
+	// item Id
 	ItemID string `json:"itemId,omitempty"`
 
-	// SKU
+	// sku
 	Sku string `json:"sku,omitempty"`
 
-	// IAP order status
+	// status
+	// Enum: [VERIFIED FULFILLED FAILED]
 	Status string `json:"status,omitempty"`
 
-	// Transaction ID
+	// transaction Id
 	TransactionID string `json:"transactionId,omitempty"`
 }
 
 // Validate validates this epic games reconcile result
 func (m *EpicGamesReconcileResult) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateStatus(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+var epicGamesReconcileResultTypeStatusPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["VERIFIED","FULFILLED","FAILED"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		epicGamesReconcileResultTypeStatusPropEnum = append(epicGamesReconcileResultTypeStatusPropEnum, v)
+	}
+}
+
+const (
+
+	// EpicGamesReconcileResultStatusVERIFIED captures enum value "VERIFIED"
+	EpicGamesReconcileResultStatusVERIFIED string = "VERIFIED"
+
+	// EpicGamesReconcileResultStatusFULFILLED captures enum value "FULFILLED"
+	EpicGamesReconcileResultStatusFULFILLED string = "FULFILLED"
+
+	// EpicGamesReconcileResultStatusFAILED captures enum value "FAILED"
+	EpicGamesReconcileResultStatusFAILED string = "FAILED"
+)
+
+// prop value enum
+func (m *EpicGamesReconcileResult) validateStatusEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, epicGamesReconcileResultTypeStatusPropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *EpicGamesReconcileResult) validateStatus(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Status) { // not required
+		return nil
+	}
+
+	// value enum
+	if err := m.validateStatusEnum("status", "body", m.Status); err != nil {
+		return err
+	}
+
 	return nil
 }
 

@@ -35,6 +35,8 @@ type ClientService interface {
 
 	DeleteContent(params *DeleteContentParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteContentOK, *DeleteContentUnauthorized, *DeleteContentNotFound, *DeleteContentInternalServerError, error)
 
+	DeleteContentScreenshot(params *DeleteContentScreenshotParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteContentScreenshotNoContent, *DeleteContentScreenshotBadRequest, *DeleteContentScreenshotUnauthorized, *DeleteContentScreenshotNotFound, *DeleteContentScreenshotInternalServerError, error)
+
 	DownloadContentByShareCode(params *DownloadContentByShareCodeParams, authInfo runtime.ClientAuthInfoWriter) (*DownloadContentByShareCodeOK, *DownloadContentByShareCodeUnauthorized, *DownloadContentByShareCodeNotFound, *DownloadContentByShareCodeInternalServerError, error)
 
 	PublicDownloadContentByContentID(params *PublicDownloadContentByContentIDParams, authInfo runtime.ClientAuthInfoWriter) (*PublicDownloadContentByContentIDOK, *PublicDownloadContentByContentIDUnauthorized, *PublicDownloadContentByContentIDNotFound, *PublicDownloadContentByContentIDInternalServerError, error)
@@ -50,6 +52,10 @@ type ClientService interface {
 	UpdateContentDirect(params *UpdateContentDirectParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateContentDirectOK, *UpdateContentDirectBadRequest, *UpdateContentDirectUnauthorized, *UpdateContentDirectNotFound, *UpdateContentDirectInternalServerError, error)
 
 	UpdateContentS3(params *UpdateContentS3Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateContentS3OK, *UpdateContentS3BadRequest, *UpdateContentS3Unauthorized, *UpdateContentS3NotFound, *UpdateContentS3InternalServerError, error)
+
+	UpdateScreenshots(params *UpdateScreenshotsParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateScreenshotsOK, *UpdateScreenshotsBadRequest, *UpdateScreenshotsUnauthorized, *UpdateScreenshotsNotFound, *UpdateScreenshotsInternalServerError, error)
+
+	UploadContentScreenshot(params *UploadContentScreenshotParams, authInfo runtime.ClientAuthInfoWriter) (*UploadContentScreenshotCreated, *UploadContentScreenshotBadRequest, *UploadContentScreenshotUnauthorized, *UploadContentScreenshotInternalServerError, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -195,6 +201,56 @@ func (a *Client) DeleteContent(params *DeleteContentParams, authInfo runtime.Cli
 		return nil, nil, nil, v, nil
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  DeleteContentScreenshot deletes screenshots content
+
+  Required permission <b>NAMESPACE:{namespace}:USER:{userId}:CONTENT [DELETE]</b>.
+
+*/
+func (a *Client) DeleteContentScreenshot(params *DeleteContentScreenshotParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteContentScreenshotNoContent, *DeleteContentScreenshotBadRequest, *DeleteContentScreenshotUnauthorized, *DeleteContentScreenshotNotFound, *DeleteContentScreenshotInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteContentScreenshotParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "DeleteContentScreenshot",
+		Method:             "DELETE",
+		PathPattern:        "/ugc/v1/public/namespaces/{namespace}/users/{userId}/contents/{contentId}/screenshots/{screenshotId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json", "application/octet-stream"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &DeleteContentScreenshotReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeleteContentScreenshotNoContent:
+		return v, nil, nil, nil, nil, nil
+	case *DeleteContentScreenshotBadRequest:
+		return nil, v, nil, nil, nil, nil
+	case *DeleteContentScreenshotUnauthorized:
+		return nil, nil, v, nil, nil, nil
+	case *DeleteContentScreenshotNotFound:
+		return nil, nil, nil, v, nil, nil
+	case *DeleteContentScreenshotInternalServerError:
+		return nil, nil, nil, nil, v, nil
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -578,6 +634,106 @@ func (a *Client) UpdateContentS3(params *UpdateContentS3Params, authInfo runtime
 		return nil, nil, nil, nil, v, nil
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  UpdateScreenshots updates screenshot of content
+
+  Required permission <b>NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]</b>.\n
+					All request body are required.
+
+*/
+func (a *Client) UpdateScreenshots(params *UpdateScreenshotsParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateScreenshotsOK, *UpdateScreenshotsBadRequest, *UpdateScreenshotsUnauthorized, *UpdateScreenshotsNotFound, *UpdateScreenshotsInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateScreenshotsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "UpdateScreenshots",
+		Method:             "PUT",
+		PathPattern:        "/ugc/v1/public/namespaces/{namespace}/users/{userId}/contents/{contentId}/screenshots",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json", "application/octet-stream"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &UpdateScreenshotsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateScreenshotsOK:
+		return v, nil, nil, nil, nil, nil
+	case *UpdateScreenshotsBadRequest:
+		return nil, v, nil, nil, nil, nil
+	case *UpdateScreenshotsUnauthorized:
+		return nil, nil, v, nil, nil, nil
+	case *UpdateScreenshotsNotFound:
+		return nil, nil, nil, v, nil, nil
+	case *UpdateScreenshotsInternalServerError:
+		return nil, nil, nil, nil, v, nil
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  UploadContentScreenshot uploads screenshots for content
+
+  Required permission <b>NAMESPACE:{namespace}:USER:{userId}:CONTENT [CREATE]</b>.\n
+				All request body are required.
+
+*/
+func (a *Client) UploadContentScreenshot(params *UploadContentScreenshotParams, authInfo runtime.ClientAuthInfoWriter) (*UploadContentScreenshotCreated, *UploadContentScreenshotBadRequest, *UploadContentScreenshotUnauthorized, *UploadContentScreenshotInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUploadContentScreenshotParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "UploadContentScreenshot",
+		Method:             "POST",
+		PathPattern:        "/ugc/v1/public/namespaces/{namespace}/users/{userId}/contents/{contentId}/screenshots",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json", "application/octet-stream"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &UploadContentScreenshotReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UploadContentScreenshotCreated:
+		return v, nil, nil, nil, nil
+	case *UploadContentScreenshotBadRequest:
+		return nil, v, nil, nil, nil
+	case *UploadContentScreenshotUnauthorized:
+		return nil, nil, v, nil, nil
+	case *UploadContentScreenshotInternalServerError:
+		return nil, nil, nil, v, nil
+	default:
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 

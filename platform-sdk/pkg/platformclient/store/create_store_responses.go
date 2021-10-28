@@ -30,6 +30,12 @@ func (o *CreateStoreReader) ReadResponse(response runtime.ClientResponse, consum
 			return nil, err
 		}
 		return result, nil
+	case 409:
+		result := NewCreateStoreConflict()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 422:
 		result := NewCreateStoreUnprocessableEntity()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -71,6 +77,39 @@ func (o *CreateStoreCreated) GetPayload() *platformclientmodels.StoreInfo {
 func (o *CreateStoreCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(platformclientmodels.StoreInfo)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewCreateStoreConflict creates a CreateStoreConflict with default headers values
+func NewCreateStoreConflict() *CreateStoreConflict {
+	return &CreateStoreConflict{}
+}
+
+/*CreateStoreConflict handles this case with default header values.
+
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>30174</td><td>Draft store already exists in namespace [{namespace}]</td></tr></table>
+*/
+type CreateStoreConflict struct {
+	Payload *platformclientmodels.ErrorEntity
+}
+
+func (o *CreateStoreConflict) Error() string {
+	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/stores][%d] createStoreConflict  %+v", 409, o.Payload)
+}
+
+func (o *CreateStoreConflict) GetPayload() *platformclientmodels.ErrorEntity {
+	return o.Payload
+}
+
+func (o *CreateStoreConflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(platformclientmodels.ErrorEntity)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

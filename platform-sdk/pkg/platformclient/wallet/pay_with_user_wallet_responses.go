@@ -99,7 +99,7 @@ func NewPayWithUserWalletBadRequest() *PayWithUserWalletBadRequest {
 
 /*PayWithUserWalletBadRequest handles this case with default header values.
 
-  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>35121</td><td>Transaction amount [{actualAmount}] exceed max amount [{maxAmount}] per day</td></tr><tr><td>35122</td><td>Transaction amount [{actualAmount}] exceed max amount [{maxAmount}] per transaction</td></tr><tr><td>35123</td><td>Wallet [{walletId}] is inactive</td></tr><tr><td>35124</td><td>Wallet [{currencyCode}] has insufficient balance</td></tr></table>
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>35123</td><td>Wallet [{walletId}] is inactive</td></tr><tr><td>35124</td><td>Wallet [{currencyCode}] has insufficient balance</td></tr></table>
 */
 type PayWithUserWalletBadRequest struct {
 	Payload *platformclientmodels.ErrorEntity

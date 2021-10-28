@@ -55,7 +55,7 @@ func (a *Client) SyncOrders(params *SyncOrdersParams, authInfo runtime.ClientAut
 		PathPattern:        "/admin/orders",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &SyncOrdersReader{formats: a.formats},
 		AuthInfo:           authInfo,

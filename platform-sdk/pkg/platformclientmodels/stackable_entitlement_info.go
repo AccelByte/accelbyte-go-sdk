@@ -86,7 +86,7 @@ type StackableEntitlementInfo struct {
 
 	// entitlement source
 	// Required: true
-	// Enum: [PURCHASE IAP PROMOTION ACHIEVEMENT REFERRAL_BONUS REDEEM_CODE OTHER]
+	// Enum: [PURCHASE IAP PROMOTION ACHIEVEMENT REFERRAL_BONUS REDEEM_CODE REWARD GIFT OTHER]
 	Source *string `json:"source"`
 
 	// whether the CONSUMABLE entitlement is stackable
@@ -106,6 +106,9 @@ type StackableEntitlementInfo struct {
 	// Required: true
 	// Enum: [ACTIVE INACTIVE CONSUMED DISTRIBUTED REVOKED]
 	Status *string `json:"status"`
+
+	// storeId of the item, published store if omitted
+	StoreID string `json:"storeId,omitempty"`
 
 	// targetNamespace for distribution
 	TargetNamespace string `json:"targetNamespace,omitempty"`
@@ -430,7 +433,7 @@ var stackableEntitlementInfoTypeSourcePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["PURCHASE","IAP","PROMOTION","ACHIEVEMENT","REFERRAL_BONUS","REDEEM_CODE","OTHER"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["PURCHASE","IAP","PROMOTION","ACHIEVEMENT","REFERRAL_BONUS","REDEEM_CODE","REWARD","GIFT","OTHER"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -457,6 +460,12 @@ const (
 
 	// StackableEntitlementInfoSourceREDEEMCODE captures enum value "REDEEM_CODE"
 	StackableEntitlementInfoSourceREDEEMCODE string = "REDEEM_CODE"
+
+	// StackableEntitlementInfoSourceREWARD captures enum value "REWARD"
+	StackableEntitlementInfoSourceREWARD string = "REWARD"
+
+	// StackableEntitlementInfoSourceGIFT captures enum value "GIFT"
+	StackableEntitlementInfoSourceGIFT string = "GIFT"
 
 	// StackableEntitlementInfoSourceOTHER captures enum value "OTHER"
 	StackableEntitlementInfoSourceOTHER string = "OTHER"

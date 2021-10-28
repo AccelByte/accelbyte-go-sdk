@@ -23,7 +23,7 @@ func NewQueryRewards1Params() *QueryRewards1Params {
 	var (
 		limitDefault  = int32(20)
 		offsetDefault = int32(0)
-		sortByDefault = string("name:asc,displayOrder:asc")
+		sortByDefault = string("namespace:asc,rewardCode:asc")
 	)
 	return &QueryRewards1Params{
 		Limit:  &limitDefault,
@@ -40,7 +40,7 @@ func NewQueryRewards1ParamsWithTimeout(timeout time.Duration) *QueryRewards1Para
 	var (
 		limitDefault  = int32(20)
 		offsetDefault = int32(0)
-		sortByDefault = string("name:asc,displayOrder:asc")
+		sortByDefault = string("namespace:asc,rewardCode:asc")
 	)
 	return &QueryRewards1Params{
 		Limit:  &limitDefault,
@@ -57,7 +57,7 @@ func NewQueryRewards1ParamsWithContext(ctx context.Context) *QueryRewards1Params
 	var (
 		limitDefault  = int32(20)
 		offsetDefault = int32(0)
-		sortByDefault = string("name:asc,displayOrder:asc")
+		sortByDefault = string("namespace:asc,rewardCode:asc")
 	)
 	return &QueryRewards1Params{
 		Limit:  &limitDefault,
@@ -74,7 +74,7 @@ func NewQueryRewards1ParamsWithHTTPClient(client *http.Client) *QueryRewards1Par
 	var (
 		limitDefault  = int32(20)
 		offsetDefault = int32(0)
-		sortByDefault = string("name:asc,displayOrder:asc")
+		sortByDefault = string("namespace:asc,rewardCode:asc")
 	)
 	return &QueryRewards1Params{
 		Limit:      &limitDefault,
@@ -107,7 +107,7 @@ type QueryRewards1Params struct {
 	*/
 	Offset *int32
 	/*SortBy
-	  default is name:asc,displayOrder:asc, allow values: [name, name:asc, name:desc, createdAt, createdAt:asc, createdAt:desc, updatedAt, updatedAt:asc, updatedAt:desc, displayOrder, displayOrder:asc, displayOrder:desc],and support sort group, eg: sortBy=name:asc,createdAt:desc
+	  default is namespace:asc,rewardCode:asc, allow values: [namespace, namespace:asc, namespace:desc, rewardCode, rewardCode:asc, rewardCode:desc],and support sort group, eg: sortBy=namespace:asc,rewardCode:asc
 
 	*/
 	SortBy *string

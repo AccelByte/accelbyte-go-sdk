@@ -27,6 +27,12 @@ func (o *PublicNormalizePaymentReturnURLReader) ReadResponse(response runtime.Cl
 			return nil, err
 		}
 		return result, nil
+	case 307:
+		result := NewPublicNormalizePaymentReturnURLTemporaryRedirect()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 
 	default:
 		data, err := ioutil.ReadAll(response.Body())
@@ -45,7 +51,7 @@ func NewPublicNormalizePaymentReturnURLNoContent() *PublicNormalizePaymentReturn
 
 /*PublicNormalizePaymentReturnURLNoContent handles this case with default header values.
 
-  successful operation
+  no content
 */
 type PublicNormalizePaymentReturnURLNoContent struct {
 }
@@ -55,6 +61,33 @@ func (o *PublicNormalizePaymentReturnURLNoContent) Error() string {
 }
 
 func (o *PublicNormalizePaymentReturnURLNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	return nil
+}
+
+// NewPublicNormalizePaymentReturnURLTemporaryRedirect creates a PublicNormalizePaymentReturnURLTemporaryRedirect with default headers values
+func NewPublicNormalizePaymentReturnURLTemporaryRedirect() *PublicNormalizePaymentReturnURLTemporaryRedirect {
+	return &PublicNormalizePaymentReturnURLTemporaryRedirect{}
+}
+
+/*PublicNormalizePaymentReturnURLTemporaryRedirect handles this case with default header values.
+
+  successful operation
+*/
+type PublicNormalizePaymentReturnURLTemporaryRedirect struct {
+	/*The Location header
+	 */
+	Location string
+}
+
+func (o *PublicNormalizePaymentReturnURLTemporaryRedirect) Error() string {
+	return fmt.Sprintf("[GET /public/namespaces/{namespace}/payment/returnurl][%d] publicNormalizePaymentReturnUrlTemporaryRedirect ", 307)
+}
+
+func (o *PublicNormalizePaymentReturnURLTemporaryRedirect) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// response header Location
+	o.Location = response.GetHeader("Location")
 
 	return nil
 }

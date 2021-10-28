@@ -19,24 +19,24 @@ type AccountcommonJWTBan struct {
 
 	// ban
 	// Required: true
-	Ban *string `json:"Ban"`
+	Ban *string `json:"ban"`
 
 	// disabled date
 	// Format: date-time
-	DisabledDate strfmt.DateTime `json:"DisabledDate,omitempty"`
+	DisabledDate strfmt.DateTime `json:"disabledDate,omitempty"`
 
 	// enabled
 	// Required: true
-	Enabled *bool `json:"Enabled"`
+	Enabled *bool `json:"enabled"`
 
 	// end date
 	// Required: true
 	// Format: date-time
-	EndDate *strfmt.DateTime `json:"EndDate"`
+	EndDate *strfmt.DateTime `json:"endDate"`
 
 	// targeted namespace
 	// Required: true
-	TargetedNamespace *string `json:"TargetedNamespace"`
+	TargetedNamespace *string `json:"targetedNamespace"`
 }
 
 // Validate validates this accountcommon j w t ban
@@ -71,7 +71,7 @@ func (m *AccountcommonJWTBan) Validate(formats strfmt.Registry) error {
 
 func (m *AccountcommonJWTBan) validateBan(formats strfmt.Registry) error {
 
-	if err := validate.Required("Ban", "body", m.Ban); err != nil {
+	if err := validate.Required("ban", "body", m.Ban); err != nil {
 		return err
 	}
 
@@ -84,7 +84,7 @@ func (m *AccountcommonJWTBan) validateDisabledDate(formats strfmt.Registry) erro
 		return nil
 	}
 
-	if err := validate.FormatOf("DisabledDate", "body", "date-time", m.DisabledDate.String(), formats); err != nil {
+	if err := validate.FormatOf("disabledDate", "body", "date-time", m.DisabledDate.String(), formats); err != nil {
 		return err
 	}
 
@@ -93,7 +93,7 @@ func (m *AccountcommonJWTBan) validateDisabledDate(formats strfmt.Registry) erro
 
 func (m *AccountcommonJWTBan) validateEnabled(formats strfmt.Registry) error {
 
-	if err := validate.Required("Enabled", "body", m.Enabled); err != nil {
+	if err := validate.Required("enabled", "body", m.Enabled); err != nil {
 		return err
 	}
 
@@ -102,11 +102,11 @@ func (m *AccountcommonJWTBan) validateEnabled(formats strfmt.Registry) error {
 
 func (m *AccountcommonJWTBan) validateEndDate(formats strfmt.Registry) error {
 
-	if err := validate.Required("EndDate", "body", m.EndDate); err != nil {
+	if err := validate.Required("endDate", "body", m.EndDate); err != nil {
 		return err
 	}
 
-	if err := validate.FormatOf("EndDate", "body", "date-time", m.EndDate.String(), formats); err != nil {
+	if err := validate.FormatOf("endDate", "body", "date-time", m.EndDate.String(), formats); err != nil {
 		return err
 	}
 
@@ -115,7 +115,7 @@ func (m *AccountcommonJWTBan) validateEndDate(formats strfmt.Registry) error {
 
 func (m *AccountcommonJWTBan) validateTargetedNamespace(formats strfmt.Registry) error {
 
-	if err := validate.Required("TargetedNamespace", "body", m.TargetedNamespace); err != nil {
+	if err := validate.Required("targetedNamespace", "body", m.TargetedNamespace); err != nil {
 		return err
 	}
 

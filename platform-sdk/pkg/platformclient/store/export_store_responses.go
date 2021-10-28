@@ -24,6 +24,12 @@ type ExportStoreReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *ExportStoreReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
+	case 200:
+		result := NewExportStoreOK()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 404:
 		result := NewExportStoreNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -39,6 +45,27 @@ func (o *ExportStoreReader) ReadResponse(response runtime.ClientResponse, consum
 
 		return nil, fmt.Errorf("Requested GET /admin/namespaces/{namespace}/stores/{storeId}/export returns an error %d: %s", response.Code(), string(data))
 	}
+}
+
+// NewExportStoreOK creates a ExportStoreOK with default headers values
+func NewExportStoreOK() *ExportStoreOK {
+	return &ExportStoreOK{}
+}
+
+/*ExportStoreOK handles this case with default header values.
+
+  Successful operation
+*/
+type ExportStoreOK struct {
+}
+
+func (o *ExportStoreOK) Error() string {
+	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/stores/{storeId}/export][%d] exportStoreOK ", 200)
+}
+
+func (o *ExportStoreOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	return nil
 }
 
 // NewExportStoreNotFound creates a ExportStoreNotFound with default headers values

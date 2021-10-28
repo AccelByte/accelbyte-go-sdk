@@ -140,6 +140,11 @@ type AdminSearchChannelSpecificContentParams struct {
 
 	*/
 	Type *string
+	/*UserID
+	  user ID
+
+	*/
+	UserID *string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -309,6 +314,17 @@ func (o *AdminSearchChannelSpecificContentParams) WithType(typeVar *string) *Adm
 // SetType adds the type to the admin search channel specific content params
 func (o *AdminSearchChannelSpecificContentParams) SetType(typeVar *string) {
 	o.Type = typeVar
+}
+
+// WithUserID adds the userID to the admin search channel specific content params
+func (o *AdminSearchChannelSpecificContentParams) WithUserID(userID *string) *AdminSearchChannelSpecificContentParams {
+	o.SetUserID(userID)
+	return o
+}
+
+// SetUserID adds the userId to the admin search channel specific content params
+func (o *AdminSearchChannelSpecificContentParams) SetUserID(userID *string) {
+	o.UserID = userID
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -483,6 +499,22 @@ func (o *AdminSearchChannelSpecificContentParams) WriteToRequest(r runtime.Clien
 		qType := qrType
 		if qType != "" {
 			if err := r.SetQueryParam("type", qType); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.UserID != nil {
+
+		// query param userId
+		var qrUserID string
+		if o.UserID != nil {
+			qrUserID = *o.UserID
+		}
+		qUserID := qrUserID
+		if qUserID != "" {
+			if err := r.SetQueryParam("userId", qUserID); err != nil {
 				return err
 			}
 		}

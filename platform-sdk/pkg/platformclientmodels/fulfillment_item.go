@@ -6,6 +6,8 @@ package platformclientmodels
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -17,23 +19,35 @@ import (
 // swagger:model FulfillmentItem
 type FulfillmentItem struct {
 
+	// extra subscription days
+	ExtraSubscriptionDays int32 `json:"extraSubscriptionDays,omitempty"`
+
 	// item id
-	// Required: true
-	ItemID *string `json:"itemId"`
+	ItemID string `json:"itemId,omitempty"`
 
 	// item name
 	ItemName string `json:"itemName,omitempty"`
 
+	// item sku
+	ItemSku string `json:"itemSku,omitempty"`
+
+	// item type
+	// Enum: [APP COINS INGAMEITEM BUNDLE CODE SUBSCRIPTION SEASON MEDIA]
+	ItemType string `json:"itemType,omitempty"`
+
 	// quantity
 	// Required: true
 	Quantity *int32 `json:"quantity"`
+
+	// draft store id, published store if omitted
+	StoreID string `json:"storeId,omitempty"`
 }
 
 // Validate validates this fulfillment item
 func (m *FulfillmentItem) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateItemID(formats); err != nil {
+	if err := m.validateItemType(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -47,9 +61,61 @@ func (m *FulfillmentItem) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *FulfillmentItem) validateItemID(formats strfmt.Registry) error {
+var fulfillmentItemTypeItemTypePropEnum []interface{}
 
-	if err := validate.Required("itemId", "body", m.ItemID); err != nil {
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["APP","COINS","INGAMEITEM","BUNDLE","CODE","SUBSCRIPTION","SEASON","MEDIA"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		fulfillmentItemTypeItemTypePropEnum = append(fulfillmentItemTypeItemTypePropEnum, v)
+	}
+}
+
+const (
+
+	// FulfillmentItemItemTypeAPP captures enum value "APP"
+	FulfillmentItemItemTypeAPP string = "APP"
+
+	// FulfillmentItemItemTypeCOINS captures enum value "COINS"
+	FulfillmentItemItemTypeCOINS string = "COINS"
+
+	// FulfillmentItemItemTypeINGAMEITEM captures enum value "INGAMEITEM"
+	FulfillmentItemItemTypeINGAMEITEM string = "INGAMEITEM"
+
+	// FulfillmentItemItemTypeBUNDLE captures enum value "BUNDLE"
+	FulfillmentItemItemTypeBUNDLE string = "BUNDLE"
+
+	// FulfillmentItemItemTypeCODE captures enum value "CODE"
+	FulfillmentItemItemTypeCODE string = "CODE"
+
+	// FulfillmentItemItemTypeSUBSCRIPTION captures enum value "SUBSCRIPTION"
+	FulfillmentItemItemTypeSUBSCRIPTION string = "SUBSCRIPTION"
+
+	// FulfillmentItemItemTypeSEASON captures enum value "SEASON"
+	FulfillmentItemItemTypeSEASON string = "SEASON"
+
+	// FulfillmentItemItemTypeMEDIA captures enum value "MEDIA"
+	FulfillmentItemItemTypeMEDIA string = "MEDIA"
+)
+
+// prop value enum
+func (m *FulfillmentItem) validateItemTypeEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, fulfillmentItemTypeItemTypePropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *FulfillmentItem) validateItemType(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.ItemType) { // not required
+		return nil
+	}
+
+	// value enum
+	if err := m.validateItemTypeEnum("itemType", "body", m.ItemType); err != nil {
 		return err
 	}
 

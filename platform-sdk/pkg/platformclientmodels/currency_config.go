@@ -20,18 +20,6 @@ type CurrencyConfig struct {
 	// currency symbol
 	// Required: true
 	CurrencySymbol *string `json:"currencySymbol"`
-
-	// max amount of per transaction
-	// Required: true
-	MaxAmountPerTransaction *int64 `json:"maxAmountPerTransaction"`
-
-	// max balance amount of the currency
-	// Required: true
-	MaxBalanceAmount *int64 `json:"maxBalanceAmount"`
-
-	// max transaction amount per day
-	// Required: true
-	MaxTransactionAmountPerDay *int64 `json:"maxTransactionAmountPerDay"`
 }
 
 // Validate validates this currency config
@@ -39,18 +27,6 @@ func (m *CurrencyConfig) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateCurrencySymbol(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateMaxAmountPerTransaction(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateMaxBalanceAmount(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateMaxTransactionAmountPerDay(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -63,33 +39,6 @@ func (m *CurrencyConfig) Validate(formats strfmt.Registry) error {
 func (m *CurrencyConfig) validateCurrencySymbol(formats strfmt.Registry) error {
 
 	if err := validate.Required("currencySymbol", "body", m.CurrencySymbol); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *CurrencyConfig) validateMaxAmountPerTransaction(formats strfmt.Registry) error {
-
-	if err := validate.Required("maxAmountPerTransaction", "body", m.MaxAmountPerTransaction); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *CurrencyConfig) validateMaxBalanceAmount(formats strfmt.Registry) error {
-
-	if err := validate.Required("maxBalanceAmount", "body", m.MaxBalanceAmount); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *CurrencyConfig) validateMaxTransactionAmountPerDay(formats strfmt.Registry) error {
-
-	if err := validate.Required("maxTransactionAmountPerDay", "body", m.MaxTransactionAmountPerDay); err != nil {
 		return err
 	}
 

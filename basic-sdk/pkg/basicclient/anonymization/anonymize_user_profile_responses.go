@@ -48,12 +48,6 @@ func (o *AnonymizeUserProfileReader) ReadResponse(response runtime.ClientRespons
 			return nil, err
 		}
 		return result, nil
-	case 404:
-		result := NewAnonymizeUserProfileNotFound()
-		if err := result.readResponse(response, consumer, o.formats); err != nil {
-			return nil, err
-		}
-		return result, nil
 
 	default:
 		data, err := ioutil.ReadAll(response.Body())
@@ -174,39 +168,6 @@ func (o *AnonymizeUserProfileForbidden) GetPayload() *basicclientmodels.ErrorEnt
 }
 
 func (o *AnonymizeUserProfileForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-
-	o.Payload = new(basicclientmodels.ErrorEntity)
-
-	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
-		return err
-	}
-
-	return nil
-}
-
-// NewAnonymizeUserProfileNotFound creates a AnonymizeUserProfileNotFound with default headers values
-func NewAnonymizeUserProfileNotFound() *AnonymizeUserProfileNotFound {
-	return &AnonymizeUserProfileNotFound{}
-}
-
-/*AnonymizeUserProfileNotFound handles this case with default header values.
-
-  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11540</td><td>user profile not found</td></tr></table>
-*/
-type AnonymizeUserProfileNotFound struct {
-	Payload *basicclientmodels.ErrorEntity
-}
-
-func (o *AnonymizeUserProfileNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /v1/admin/namespaces/{namespace}/users/{userId}/anonymization/profiles][%d] anonymizeUserProfileNotFound  %+v", 404, o.Payload)
-}
-
-func (o *AnonymizeUserProfileNotFound) GetPayload() *basicclientmodels.ErrorEntity {
-	return o.Payload
-}
-
-func (o *AnonymizeUserProfileNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(basicclientmodels.ErrorEntity)
 

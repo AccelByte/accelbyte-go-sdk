@@ -31,7 +31,7 @@ type Client struct {
 type ClientService interface {
 	AcquireItem(params *AcquireItemParams, authInfo runtime.ClientAuthInfoWriter) (*AcquireItemOK, *AcquireItemNotFound, error)
 
-	BulkGetLocaleItems(params *BulkGetLocaleItemsParams, authInfo runtime.ClientAuthInfoWriter) (*BulkGetLocaleItemsOK, error)
+	BulkGetLocaleItems(params *BulkGetLocaleItemsParams, authInfo runtime.ClientAuthInfoWriter) (*BulkGetLocaleItemsOK, *BulkGetLocaleItemsNotFound, error)
 
 	CreateItem(params *CreateItemParams, authInfo runtime.ClientAuthInfoWriter) (*CreateItemCreated, *CreateItemBadRequest, *CreateItemNotFound, *CreateItemConflict, *CreateItemUnprocessableEntity, error)
 
@@ -63,7 +63,7 @@ type ClientService interface {
 
 	ListBasicItemsByFeatures(params *ListBasicItemsByFeaturesParams, authInfo runtime.ClientAuthInfoWriter) (*ListBasicItemsByFeaturesOK, error)
 
-	PublicBulkGetItems(params *PublicBulkGetItemsParams) (*PublicBulkGetItemsOK, error)
+	PublicBulkGetItems(params *PublicBulkGetItemsParams) (*PublicBulkGetItemsOK, *PublicBulkGetItemsNotFound, error)
 
 	PublicGetApp(params *PublicGetAppParams) (*PublicGetAppOK, *PublicGetAppNotFound, error)
 
@@ -77,7 +77,7 @@ type ClientService interface {
 
 	PublicQueryItems(params *PublicQueryItemsParams) (*PublicQueryItemsOK, *PublicQueryItemsNotFound, *PublicQueryItemsUnprocessableEntity, error)
 
-	PublicSearchItems(params *PublicSearchItemsParams) (*PublicSearchItemsOK, error)
+	PublicSearchItems(params *PublicSearchItemsParams) (*PublicSearchItemsOK, *PublicSearchItemsNotFound, error)
 
 	QueryItems(params *QueryItemsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryItemsOK, *QueryItemsNotFound, *QueryItemsUnprocessableEntity, error)
 
@@ -85,7 +85,7 @@ type ClientService interface {
 
 	ReturnItem(params *ReturnItemParams, authInfo runtime.ClientAuthInfoWriter) (*ReturnItemNoContent, *ReturnItemNotFound, *ReturnItemUnprocessableEntity, error)
 
-	SearchItems(params *SearchItemsParams, authInfo runtime.ClientAuthInfoWriter) (*SearchItemsOK, error)
+	SearchItems(params *SearchItemsParams, authInfo runtime.ClientAuthInfoWriter) (*SearchItemsOK, *SearchItemsNotFound, error)
 
 	SyncInGameItem(params *SyncInGameItemParams, authInfo runtime.ClientAuthInfoWriter) (*SyncInGameItemOK, *SyncInGameItemBadRequest, *SyncInGameItemNotFound, *SyncInGameItemConflict, *SyncInGameItemUnprocessableEntity, error)
 
@@ -117,7 +117,7 @@ func (a *Client) AcquireItem(params *AcquireItemParams, authInfo runtime.ClientA
 		PathPattern:        "/admin/namespaces/{namespace}/items/{itemId}/acquire",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &AcquireItemReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -144,7 +144,7 @@ func (a *Client) AcquireItem(params *AcquireItemParams, authInfo runtime.ClientA
 
   This API is used to bulk get locale items. If item not exist in specific region, default region item will return.<p>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:ITEM", action=2 (READ)</li><li><i>Returns</i>: the list of items info</li></ul>
 */
-func (a *Client) BulkGetLocaleItems(params *BulkGetLocaleItemsParams, authInfo runtime.ClientAuthInfoWriter) (*BulkGetLocaleItemsOK, error) {
+func (a *Client) BulkGetLocaleItems(params *BulkGetLocaleItemsParams, authInfo runtime.ClientAuthInfoWriter) (*BulkGetLocaleItemsOK, *BulkGetLocaleItemsNotFound, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewBulkGetLocaleItemsParams()
@@ -160,7 +160,7 @@ func (a *Client) BulkGetLocaleItems(params *BulkGetLocaleItemsParams, authInfo r
 		PathPattern:        "/admin/namespaces/{namespace}/items/locale/byIds",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &BulkGetLocaleItemsReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -168,15 +168,17 @@ func (a *Client) BulkGetLocaleItems(params *BulkGetLocaleItemsParams, authInfo r
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *BulkGetLocaleItemsOK:
-		return v, nil
+		return v, nil, nil
+	case *BulkGetLocaleItemsNotFound:
+		return nil, v, nil
 	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -218,6 +220,8 @@ func (a *Client) BulkGetLocaleItems(params *BulkGetLocaleItemsParams, authInfo r
    \],
    "thumbnailUrl": "optional, thumbnail url",
    "status": "ACTIVE",
+   "listable": true,
+   "purchasable": true,
    "itemType": "APP(allowed: [APP,COINS,INGAMEITEM,CODE,BUNDLE])",
    "name": "required, also will be used as entitlement name",
    "entitlementType": "DURABLE(allowed:[DURABLE,CONSUMABLE], should be CONSUMABLE when item type is COINS)",
@@ -225,6 +229,7 @@ func (a *Client) BulkGetLocaleItems(params *BulkGetLocaleItemsParams, authInfo r
    "stackable": false,
    "appId": "optional, required if itemType is APP",
    "appType": "GAME(optional, required if itemType is APP)",
+   "seasonType": "PASS(optional, required if itemType is SEASON)",
    "baseAppId": "optional, set value of game app id if you want to link to a game",
    "targetCurrencyCode": "optional, required if itemType is COINS",
    "targetNamespace": "optional, required when itemType is INGAMEITEM, the targetNamespace will only take effect when the item
@@ -299,7 +304,7 @@ func (a *Client) CreateItem(params *CreateItemParams, authInfo runtime.ClientAut
 		PathPattern:        "/admin/namespaces/{namespace}/items",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &CreateItemReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -348,7 +353,7 @@ func (a *Client) DefeatureItem(params *DefeatureItemParams, authInfo runtime.Cli
 		PathPattern:        "/admin/namespaces/{namespace}/items/{itemId}/features/{feature}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &DefeatureItemReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -393,7 +398,7 @@ func (a *Client) DeleteItem(params *DeleteItemParams, authInfo runtime.ClientAut
 		PathPattern:        "/admin/namespaces/{namespace}/items/{itemId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &DeleteItemReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -436,7 +441,7 @@ func (a *Client) DisableItem(params *DisableItemParams, authInfo runtime.ClientA
 		PathPattern:        "/admin/namespaces/{namespace}/items/{itemId}/disable",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &DisableItemReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -481,7 +486,7 @@ func (a *Client) EnableItem(params *EnableItemParams, authInfo runtime.ClientAut
 		PathPattern:        "/admin/namespaces/{namespace}/items/{itemId}/enable",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &EnableItemReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -526,7 +531,7 @@ func (a *Client) FeatureItem(params *FeatureItemParams, authInfo runtime.ClientA
 		PathPattern:        "/admin/namespaces/{namespace}/items/{itemId}/features/{feature}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &FeatureItemReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -571,7 +576,7 @@ func (a *Client) GetApp(params *GetAppParams, authInfo runtime.ClientAuthInfoWri
 		PathPattern:        "/admin/namespaces/{namespace}/items/{itemId}/app",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &GetAppReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -612,7 +617,7 @@ func (a *Client) GetItem(params *GetItemParams, authInfo runtime.ClientAuthInfoW
 		PathPattern:        "/admin/namespaces/{namespace}/items/{itemId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &GetItemReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -655,7 +660,7 @@ func (a *Client) GetItemByAppID(params *GetItemByAppIDParams, authInfo runtime.C
 		PathPattern:        "/admin/namespaces/{namespace}/items/byAppId",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &GetItemByAppIDReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -698,7 +703,7 @@ func (a *Client) GetItemBySku(params *GetItemBySkuParams, authInfo runtime.Clien
 		PathPattern:        "/admin/namespaces/{namespace}/items/bySku",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &GetItemBySkuReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -741,7 +746,7 @@ func (a *Client) GetItemDynamicData(params *GetItemDynamicDataParams, authInfo r
 		PathPattern:        "/admin/namespaces/{namespace}/items/{itemId}/dynamic",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &GetItemDynamicDataReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -784,7 +789,7 @@ func (a *Client) GetItemIDBySku(params *GetItemIDBySkuParams, authInfo runtime.C
 		PathPattern:        "/admin/namespaces/{namespace}/items/itemId/bySku",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &GetItemIDBySkuReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -827,7 +832,7 @@ func (a *Client) GetLocaleItem(params *GetLocaleItemParams, authInfo runtime.Cli
 		PathPattern:        "/admin/namespaces/{namespace}/items/{itemId}/locale",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &GetLocaleItemReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -870,7 +875,7 @@ func (a *Client) GetLocaleItemBySku(params *GetLocaleItemBySkuParams, authInfo r
 		PathPattern:        "/admin/namespaces/{namespace}/items/bySku/locale",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &GetLocaleItemBySkuReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -913,7 +918,7 @@ func (a *Client) ListBasicItemsByFeatures(params *ListBasicItemsByFeaturesParams
 		PathPattern:        "/admin/namespaces/{namespace}/items/byFeatures/basic",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &ListBasicItemsByFeaturesReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -936,9 +941,9 @@ func (a *Client) ListBasicItemsByFeatures(params *ListBasicItemsByFeaturesParams
 /*
   PublicBulkGetItems bulks get locale items
 
-  This API is used to bulk get locale items. If item not exist in specific region, default region item will return.<p>Other detail info: <ul><li><i>Optional permission</i>: resource="SANDBOX", action=1(CREATE) (user with this permission can view draft store items)</li><li><i>Returns</i>: the list of items info</li></ul>
+  This API is used to bulk get locale items. If item not exist in specific region, default region item will return.<p>Other detail info: <ul><li><i>Optional permission</i>: resource="PREVIEW", action=1(CREATE) (user with this permission can view draft store items)</li><li><i>Optional permission</i>: resource="SANDBOX", action=1(CREATE) (user with this permission can view draft store items)</li><li><i>Returns</i>: the list of items info</li></ul>
 */
-func (a *Client) PublicBulkGetItems(params *PublicBulkGetItemsParams) (*PublicBulkGetItemsOK, error) {
+func (a *Client) PublicBulkGetItems(params *PublicBulkGetItemsParams) (*PublicBulkGetItemsOK, *PublicBulkGetItemsNotFound, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublicBulkGetItemsParams()
@@ -954,29 +959,31 @@ func (a *Client) PublicBulkGetItems(params *PublicBulkGetItemsParams) (*PublicBu
 		PathPattern:        "/public/namespaces/{namespace}/items/locale/byIds",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &PublicBulkGetItemsReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *PublicBulkGetItemsOK:
-		return v, nil
+		return v, nil, nil
+	case *PublicBulkGetItemsNotFound:
+		return nil, v, nil
 	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   PublicGetApp gets an app in locale
 
-  This API is used to get an app in locale. If app not exist in specific region, default region app will return.<p>Other detail info: <ul><li><i>Optional permission</i>: resource="SANDBOX", action=1(CREATE) (user with this permission can view draft store app)</li><li><i>Returns</i>: app data</li></ul>
+  This API is used to get an app in locale. If app not exist in specific region, default region app will return.<p>Other detail info: <ul><li><i>Optional permission</i>: resource="PREVIEW", action=1(CREATE) (user with this permission can view draft store app)</li><li><i>Optional permission</i>: resource="SANDBOX", action=1(CREATE) (user with this permission can view draft store app)</li><li><i>Returns</i>: app data</li></ul>
 */
 func (a *Client) PublicGetApp(params *PublicGetAppParams) (*PublicGetAppOK, *PublicGetAppNotFound, error) {
 	// TODO: Validate the params before sending
@@ -994,7 +1001,7 @@ func (a *Client) PublicGetApp(params *PublicGetAppParams) (*PublicGetAppOK, *Pub
 		PathPattern:        "/public/namespaces/{namespace}/items/{itemId}/app/locale",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &PublicGetAppReader{formats: a.formats},
 		Context:            params.Context,
@@ -1018,7 +1025,7 @@ func (a *Client) PublicGetApp(params *PublicGetAppParams) (*PublicGetAppOK, *Pub
 /*
   PublicGetItem gets an item in locale
 
-  This API is used to get an item in locale. If item not exist in specific region, default region item will return.<p>Other detail info: <ul><li><i>Optional permission</i>: resource="SANDBOX", action=1(CREATE) (user with this permission can view draft store item)</li><li><i>Returns</i>: item data</li></ul>
+  This API is used to get an item in locale. If item not exist in specific region, default region item will return.<p>Other detail info: <ul><li><i>Optional permission</i>: resource="PREVIEW", action=1(CREATE) (user with this permission can view draft store item)</li><li><i>Optional permission</i>: resource="SANDBOX", action=1(CREATE) (user with this permission can view draft store item)</li><li><i>Returns</i>: item data</li></ul>
 */
 func (a *Client) PublicGetItem(params *PublicGetItemParams) (*PublicGetItemOK, *PublicGetItemNotFound, error) {
 	// TODO: Validate the params before sending
@@ -1036,7 +1043,7 @@ func (a *Client) PublicGetItem(params *PublicGetItemParams) (*PublicGetItemOK, *
 		PathPattern:        "/public/namespaces/{namespace}/items/{itemId}/locale",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &PublicGetItemReader{formats: a.formats},
 		Context:            params.Context,
@@ -1060,7 +1067,7 @@ func (a *Client) PublicGetItem(params *PublicGetItemParams) (*PublicGetItemOK, *
 /*
   PublicGetItemByAppID gets item by app Id
 
-  This API is used to get item by appId.<p>Other detail info: <ul><li><i>Optional permission</i>: resource="SANDBOX", action=1(CREATE) (user with this permission can view draft store item)</li><li><i>Returns</i>: the item with that appId</li></ul>
+  This API is used to get item by appId.<p>Other detail info: <ul><li><i>Optional permission</i>: resource="PREVIEW", action=1(CREATE) (user with this permission can view draft store item)</li><li><i>Optional permission</i>: resource="SANDBOX", action=1(CREATE) (user with this permission can view draft store item)</li><li><i>Returns</i>: the item with that appId</li></ul>
 */
 func (a *Client) PublicGetItemByAppID(params *PublicGetItemByAppIDParams) (*PublicGetItemByAppIDOK, *PublicGetItemByAppIDNotFound, error) {
 	// TODO: Validate the params before sending
@@ -1078,7 +1085,7 @@ func (a *Client) PublicGetItemByAppID(params *PublicGetItemByAppIDParams) (*Publ
 		PathPattern:        "/public/namespaces/{namespace}/items/byAppId",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &PublicGetItemByAppIDReader{formats: a.formats},
 		Context:            params.Context,
@@ -1102,7 +1109,7 @@ func (a *Client) PublicGetItemByAppID(params *PublicGetItemByAppIDParams) (*Publ
 /*
   PublicGetItemBySku gets item by sku
 
-  This API is used to get the item by sku.<p>Other detail info: <ul><li><i>Optional permission</i>: resource="SANDBOX", action=1(CREATE) (user with this permission can view draft store item)</li><li><i>Returns</i>: the item with sku</li></ul>
+  This API is used to get the item by sku.<p>Other detail info: <ul><li><i>Optional permission</i>: resource="PREVIEW", action=1(CREATE) (user with this permission can view draft store item)</li><li><i>Optional permission</i>: resource="SANDBOX", action=1(CREATE) (user with this permission can view draft store item)</li><li><i>Returns</i>: the item with sku</li></ul>
 */
 func (a *Client) PublicGetItemBySku(params *PublicGetItemBySkuParams) (*PublicGetItemBySkuOK, *PublicGetItemBySkuNotFound, error) {
 	// TODO: Validate the params before sending
@@ -1120,7 +1127,7 @@ func (a *Client) PublicGetItemBySku(params *PublicGetItemBySkuParams) (*PublicGe
 		PathPattern:        "/public/namespaces/{namespace}/items/bySku",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &PublicGetItemBySkuReader{formats: a.formats},
 		Context:            params.Context,
@@ -1162,7 +1169,7 @@ func (a *Client) PublicGetItemDynamicData(params *PublicGetItemDynamicDataParams
 		PathPattern:        "/public/namespaces/{namespace}/items/{itemId}/dynamic",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &PublicGetItemDynamicDataReader{formats: a.formats},
 		Context:            params.Context,
@@ -1186,7 +1193,7 @@ func (a *Client) PublicGetItemDynamicData(params *PublicGetItemDynamicDataParams
 /*
   PublicQueryItems queries items by criteria
 
-  This API is used to query items by criteria within a store. If item not exist in specific region, default region item will return.<p>Other detail info: <ul><li><i>Optional permission</i>: resource="SANDBOX", action=1(CREATE) (user with this permission can view draft store item)</li><li><i>Returns</i>: the list of items</li></ul>
+  This API is used to query items by criteria within a store. If item not exist in specific region, default region item will return.<p>Other detail info: <ul><li><i>Optional permission</i>: resource="PREVIEW", action=1(CREATE) (user with this permission can view draft store item)</li><li><i>Optional permission</i>: resource="SANDBOX", action=1(CREATE) (user with this permission can view draft store item)</li><li><i>Returns</i>: the list of items</li></ul>
 */
 func (a *Client) PublicQueryItems(params *PublicQueryItemsParams) (*PublicQueryItemsOK, *PublicQueryItemsNotFound, *PublicQueryItemsUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -1204,7 +1211,7 @@ func (a *Client) PublicQueryItems(params *PublicQueryItemsParams) (*PublicQueryI
 		PathPattern:        "/public/namespaces/{namespace}/items/byCriteria",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &PublicQueryItemsReader{formats: a.formats},
 		Context:            params.Context,
@@ -1230,9 +1237,9 @@ func (a *Client) PublicQueryItems(params *PublicQueryItemsParams) (*PublicQueryI
 /*
   PublicSearchItems searches items by keyword
 
-  This API is used to search items by keyword in title, description and long description, It's language constrained, also if item not exist in specific region, default region item will return.<p>Other detail info: <ul><li><i>Optional permission</i>: resource="SANDBOX", action=1(CREATE) (user with this permission can view draft store item)</li><li><i>Returns</i>: the list of items</li></ul>
+  This API is used to search items by keyword in title, description and long description, It's language constrained, also if item not exist in specific region, default region item will return.<p>Other detail info: <ul><li><i>Optional permission</i>: resource="PREVIEW", action=1(CREATE) (user with this permission can view draft store item)</li><li><i>Optional permission</i>: resource="SANDBOX", action=1(CREATE) (user with this permission can view draft store item)</li><li><i>Returns</i>: the list of items</li></ul>
 */
-func (a *Client) PublicSearchItems(params *PublicSearchItemsParams) (*PublicSearchItemsOK, error) {
+func (a *Client) PublicSearchItems(params *PublicSearchItemsParams) (*PublicSearchItemsOK, *PublicSearchItemsNotFound, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublicSearchItemsParams()
@@ -1248,22 +1255,24 @@ func (a *Client) PublicSearchItems(params *PublicSearchItemsParams) (*PublicSear
 		PathPattern:        "/public/namespaces/{namespace}/items/search",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &PublicSearchItemsReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *PublicSearchItemsOK:
-		return v, nil
+		return v, nil, nil
+	case *PublicSearchItemsNotFound:
+		return nil, v, nil
 	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -1288,7 +1297,7 @@ func (a *Client) QueryItems(params *QueryItemsParams, authInfo runtime.ClientAut
 		PathPattern:        "/admin/namespaces/{namespace}/items/byCriteria",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &QueryItemsReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1333,7 +1342,7 @@ func (a *Client) QueryUncategorizedItems(params *QueryUncategorizedItemsParams, 
 		PathPattern:        "/admin/namespaces/{namespace}/items/uncategorized",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &QueryUncategorizedItemsReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1378,7 +1387,7 @@ func (a *Client) ReturnItem(params *ReturnItemParams, authInfo runtime.ClientAut
 		PathPattern:        "/admin/namespaces/{namespace}/items/{itemId}/return",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &ReturnItemReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1407,7 +1416,7 @@ func (a *Client) ReturnItem(params *ReturnItemParams, authInfo runtime.ClientAut
 
   This API is used to search items by keyword in title, description and long description within a store.<p>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:ITEM", action=2 (READ)<li><i>Returns</i>: the list of items</li></ul>
 */
-func (a *Client) SearchItems(params *SearchItemsParams, authInfo runtime.ClientAuthInfoWriter) (*SearchItemsOK, error) {
+func (a *Client) SearchItems(params *SearchItemsParams, authInfo runtime.ClientAuthInfoWriter) (*SearchItemsOK, *SearchItemsNotFound, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewSearchItemsParams()
@@ -1423,7 +1432,7 @@ func (a *Client) SearchItems(params *SearchItemsParams, authInfo runtime.ClientA
 		PathPattern:        "/admin/namespaces/{namespace}/items/search",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &SearchItemsReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1431,15 +1440,17 @@ func (a *Client) SearchItems(params *SearchItemsParams, authInfo runtime.ClientA
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *SearchItemsOK:
-		return v, nil
+		return v, nil, nil
+	case *SearchItemsNotFound:
+		return nil, v, nil
 	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -1464,7 +1475,7 @@ func (a *Client) SyncInGameItem(params *SyncInGameItemParams, authInfo runtime.C
 		PathPattern:        "/admin/namespaces/{namespace}/items",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &SyncInGameItemReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1554,7 +1565,7 @@ func (a *Client) UpdateApp(params *UpdateAppParams, authInfo runtime.ClientAuthI
 		PathPattern:        "/admin/namespaces/{namespace}/items/{itemId}/app",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &UpdateAppReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1618,6 +1629,8 @@ func (a *Client) UpdateApp(params *UpdateAppParams, authInfo runtime.ClientAuthI
    \],
    "thumbnailUrl": "optional, thumbnail url",
    "status": "ACTIVE",
+   "listable": true,
+   "purchasable": true,
    "itemType": "APP(allowed: [APP,COINS,INGAMEITEM,CODE,BUNDLE])",
    "name": "optional",
    "entitlementType": "DURABLE(allowed:[DURABLE,CONSUMABLE], should be CONSUMABLE when item type is COINS)",
@@ -1626,6 +1639,7 @@ func (a *Client) UpdateApp(params *UpdateAppParams, authInfo runtime.ClientAuthI
    "appId": "optional, required if itemType is APP",
    "baseAppId": "optional, set value of game app id if you want to link to a game",
    "appType": "GAME(optional, required if itemType is APP)",
+   "seasonType": "PASS(optional, required if itemType is SEASON)",
    "sku": "optional, commonly unique item code",
    "targetCurrencyCode": "optional, required if itemType is COINS",
    "targetNamespace": "optional, required when itemType is INGAMEITEM, the targetNamespace will only take effect when the item
@@ -1700,7 +1714,7 @@ func (a *Client) UpdateItem(params *UpdateItemParams, authInfo runtime.ClientAut
 		PathPattern:        "/admin/namespaces/{namespace}/items/{itemId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &UpdateItemReader{formats: a.formats},
 		AuthInfo:           authInfo,

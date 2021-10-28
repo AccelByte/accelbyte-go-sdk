@@ -210,7 +210,7 @@ func NewAdminAddUserRoleV4UnprocessableEntity() *AdminAddUserRoleV4Unprocessable
 
 /*AdminAddUserRoleV4UnprocessableEntity handles this case with default header values.
 
-  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>10183</td><td>unprocessable entity</td></tr></table>
+  AdminAddUserRoleV4UnprocessableEntity admin add user role v4 unprocessable entity
 */
 type AdminAddUserRoleV4UnprocessableEntity struct {
 	Payload *iamclientmodels.RestErrorResponse
@@ -243,7 +243,7 @@ func NewAdminAddUserRoleV4InternalServerError() *AdminAddUserRoleV4InternalServe
 
 /*AdminAddUserRoleV4InternalServerError handles this case with default header values.
 
-  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr></table>
+  AdminAddUserRoleV4InternalServerError admin add user role v4 internal server error
 */
 type AdminAddUserRoleV4InternalServerError struct {
 	Payload *iamclientmodels.RestErrorResponse

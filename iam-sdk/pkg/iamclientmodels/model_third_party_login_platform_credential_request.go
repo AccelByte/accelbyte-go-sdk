@@ -21,6 +21,14 @@ type ModelThirdPartyLoginPlatformCredentialRequest struct {
 	// Required: true
 	ACSURL *string `json:"ACSURL"`
 
+	// a w s cognito region
+	// Required: true
+	AWSCognitoRegion *string `json:"AWSCognitoRegion"`
+
+	// a w s cognito user pool
+	// Required: true
+	AWSCognitoUserPool *string `json:"AWSCognitoUserPool"`
+
 	// app Id
 	// Required: true
 	AppID *string `json:"AppId"`
@@ -59,6 +67,14 @@ func (m *ModelThirdPartyLoginPlatformCredentialRequest) Validate(formats strfmt.
 	var res []error
 
 	if err := m.validateACSURL(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateAWSCognitoRegion(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateAWSCognitoUserPool(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -103,6 +119,24 @@ func (m *ModelThirdPartyLoginPlatformCredentialRequest) Validate(formats strfmt.
 func (m *ModelThirdPartyLoginPlatformCredentialRequest) validateACSURL(formats strfmt.Registry) error {
 
 	if err := validate.Required("ACSURL", "body", m.ACSURL); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelThirdPartyLoginPlatformCredentialRequest) validateAWSCognitoRegion(formats strfmt.Registry) error {
+
+	if err := validate.Required("AWSCognitoRegion", "body", m.AWSCognitoRegion); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelThirdPartyLoginPlatformCredentialRequest) validateAWSCognitoUserPool(formats strfmt.Registry) error {
+
+	if err := validate.Required("AWSCognitoUserPool", "body", m.AWSCognitoUserPool); err != nil {
 		return err
 	}
 

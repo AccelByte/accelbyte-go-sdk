@@ -31,7 +31,7 @@ type Client struct {
 type ClientService interface {
 	AddCountryGroup(params *AddCountryGroupParams, authInfo runtime.ClientAuthInfoWriter) (*AddCountryGroupCreated, *AddCountryGroupBadRequest, *AddCountryGroupUnauthorized, *AddCountryGroupForbidden, *AddCountryGroupConflict, error)
 
-	DeleteCountryGroup(params *DeleteCountryGroupParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteCountryGroupBadRequest, *DeleteCountryGroupUnauthorized, *DeleteCountryGroupForbidden, *DeleteCountryGroupNotFound, error)
+	DeleteCountryGroup(params *DeleteCountryGroupParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteCountryGroupOK, *DeleteCountryGroupBadRequest, *DeleteCountryGroupUnauthorized, *DeleteCountryGroupForbidden, *DeleteCountryGroupNotFound, error)
 
 	GetCountries(params *GetCountriesParams, authInfo runtime.ClientAuthInfoWriter) (*GetCountriesOK, *GetCountriesBadRequest, *GetCountriesUnauthorized, error)
 
@@ -44,6 +44,8 @@ type ClientService interface {
 	PublicGetCountries(params *PublicGetCountriesParams) (*PublicGetCountriesOK, *PublicGetCountriesBadRequest, error)
 
 	PublicGetLanguages(params *PublicGetLanguagesParams) (*PublicGetLanguagesOK, *PublicGetLanguagesBadRequest, error)
+
+	PublicGetTime(params *PublicGetTimeParams) (*PublicGetTimeOK, error)
 
 	PublicGetTimeZones(params *PublicGetTimeZonesParams) (*PublicGetTimeZonesOK, *PublicGetTimeZonesBadRequest, error)
 
@@ -73,7 +75,7 @@ func (a *Client) AddCountryGroup(params *AddCountryGroupParams, authInfo runtime
 		PathPattern:        "/v1/admin/namespaces/{namespace}/misc/countrygroups",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &AddCountryGroupReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -106,7 +108,7 @@ func (a *Client) AddCountryGroup(params *AddCountryGroupParams, authInfo runtime
 
   Delete a country groups by its country group code. This endpoint usually used for testing purpose to cleanup test data.<br>Other detail info: <ul><li><i>Required permission</i>: resource = <b>"ADMIN:NAMESPACE:{namespace}:MISC"</b>, action=8 <b>(DELETE)</b></li></ul>
 */
-func (a *Client) DeleteCountryGroup(params *DeleteCountryGroupParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteCountryGroupBadRequest, *DeleteCountryGroupUnauthorized, *DeleteCountryGroupForbidden, *DeleteCountryGroupNotFound, error) {
+func (a *Client) DeleteCountryGroup(params *DeleteCountryGroupParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteCountryGroupOK, *DeleteCountryGroupBadRequest, *DeleteCountryGroupUnauthorized, *DeleteCountryGroupForbidden, *DeleteCountryGroupNotFound, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteCountryGroupParams()
@@ -122,7 +124,7 @@ func (a *Client) DeleteCountryGroup(params *DeleteCountryGroupParams, authInfo r
 		PathPattern:        "/v1/admin/namespaces/{namespace}/misc/countrygroups/{countryGroupCode}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &DeleteCountryGroupReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -130,21 +132,23 @@ func (a *Client) DeleteCountryGroup(params *DeleteCountryGroupParams, authInfo r
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
+	case *DeleteCountryGroupOK:
+		return v, nil, nil, nil, nil, nil
 	case *DeleteCountryGroupBadRequest:
-		return v, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil
 	case *DeleteCountryGroupUnauthorized:
-		return nil, v, nil, nil, nil
+		return nil, nil, v, nil, nil, nil
 	case *DeleteCountryGroupForbidden:
-		return nil, nil, v, nil, nil
+		return nil, nil, nil, v, nil, nil
 	case *DeleteCountryGroupNotFound:
-		return nil, nil, nil, v, nil
+		return nil, nil, nil, nil, v, nil
 	default:
-		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -169,7 +173,7 @@ func (a *Client) GetCountries(params *GetCountriesParams, authInfo runtime.Clien
 		PathPattern:        "/v1/admin/namespaces/{namespace}/misc/countries",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &GetCountriesReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -214,7 +218,7 @@ func (a *Client) GetCountryGroups(params *GetCountryGroupsParams, authInfo runti
 		PathPattern:        "/v1/admin/namespaces/{namespace}/misc/countrygroups",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &GetCountryGroupsReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -263,7 +267,7 @@ func (a *Client) GetLanguages(params *GetLanguagesParams, authInfo runtime.Clien
 		PathPattern:        "/v1/admin/namespaces/{namespace}/misc/languages",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &GetLanguagesReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -308,7 +312,7 @@ func (a *Client) GetTimeZones(params *GetTimeZonesParams, authInfo runtime.Clien
 		PathPattern:        "/v1/admin/namespaces/{namespace}/misc/timezones",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &GetTimeZonesReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -353,7 +357,7 @@ func (a *Client) PublicGetCountries(params *PublicGetCountriesParams) (*PublicGe
 		PathPattern:        "/v1/public/namespaces/{namespace}/misc/countries",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &PublicGetCountriesReader{formats: a.formats},
 		Context:            params.Context,
@@ -395,7 +399,7 @@ func (a *Client) PublicGetLanguages(params *PublicGetLanguagesParams) (*PublicGe
 		PathPattern:        "/v1/public/namespaces/{namespace}/misc/languages",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &PublicGetLanguagesReader{formats: a.formats},
 		Context:            params.Context,
@@ -413,6 +417,46 @@ func (a *Client) PublicGetLanguages(params *PublicGetLanguagesParams) (*PublicGe
 		return nil, v, nil
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  PublicGetTime gets server time
+
+  Get server time
+*/
+func (a *Client) PublicGetTime(params *PublicGetTimeParams) (*PublicGetTimeOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetTimeParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicGetTime",
+		Method:             "GET",
+		PathPattern:        "/v1/public/misc/time",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &PublicGetTimeReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetTimeOK:
+		return v, nil
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -437,7 +481,7 @@ func (a *Client) PublicGetTimeZones(params *PublicGetTimeZonesParams) (*PublicGe
 		PathPattern:        "/v1/public/namespaces/{namespace}/misc/timezones",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &PublicGetTimeZonesReader{formats: a.formats},
 		Context:            params.Context,
@@ -479,7 +523,7 @@ func (a *Client) UpdateCountryGroup(params *UpdateCountryGroupParams, authInfo r
 		PathPattern:        "/v1/admin/namespaces/{namespace}/misc/countrygroups/{countryGroupCode}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &UpdateCountryGroupReader{formats: a.formats},
 		AuthInfo:           authInfo,

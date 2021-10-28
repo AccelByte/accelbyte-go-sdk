@@ -30,6 +30,12 @@ func (o *PublicBulkGetItemsReader) ReadResponse(response runtime.ClientResponse,
 			return nil, err
 		}
 		return result, nil
+	case 404:
+		result := NewPublicBulkGetItemsNotFound()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 
 	default:
 		data, err := ioutil.ReadAll(response.Body())
@@ -66,6 +72,39 @@ func (o *PublicBulkGetItemsOK) readResponse(response runtime.ClientResponse, con
 
 	// response payload
 	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewPublicBulkGetItemsNotFound creates a PublicBulkGetItemsNotFound with default headers values
+func NewPublicBulkGetItemsNotFound() *PublicBulkGetItemsNotFound {
+	return &PublicBulkGetItemsNotFound{}
+}
+
+/*PublicBulkGetItemsNotFound handles this case with default header values.
+
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>30141</td><td>Store [{storeId}] does not exist in namespace [{namespace}]</td></tr><tr><td>30142</td><td>Published store does not exist in namespace [{namespace}]</td></tr></table>
+*/
+type PublicBulkGetItemsNotFound struct {
+	Payload *platformclientmodels.ErrorEntity
+}
+
+func (o *PublicBulkGetItemsNotFound) Error() string {
+	return fmt.Sprintf("[GET /public/namespaces/{namespace}/items/locale/byIds][%d] publicBulkGetItemsNotFound  %+v", 404, o.Payload)
+}
+
+func (o *PublicBulkGetItemsNotFound) GetPayload() *platformclientmodels.ErrorEntity {
+	return o.Payload
+}
+
+func (o *PublicBulkGetItemsNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(platformclientmodels.ErrorEntity)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 

@@ -87,7 +87,7 @@ func NewPublicFulfillGoogleIAPItemBadRequest() *PublicFulfillGoogleIAPItemBadReq
 
 /*PublicFulfillGoogleIAPItemBadRequest handles this case with default header values.
 
-  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>39122</td><td>Google iap receipt is invalid with status code [{statusCode}] and error message [{message}]</td></tr><tr><td>35121</td><td>Transaction amount [{actualAmount}] exceed max amount [{maxAmount}] per day</td></tr><tr><td>35122</td><td>Transaction amount [{actualAmount}] exceed max amount [{maxAmount}] per transaction</td></tr><tr><td>35123</td><td>Wallet [{walletId}] is inactive</td></tr><tr><td>35125</td><td>Balance exceed max balance [{maxAmount}]</td></tr><tr><td>38121</td><td>Duplicate permanent item exists</td></tr><tr><td>38122</td><td>Subscription endDate required</td></tr></table>
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>39122</td><td>Google iap receipt is invalid with status code [{statusCode}] and error message [{message}]</td></tr><tr><td>35123</td><td>Wallet [{walletId}] is inactive</td></tr><tr><td>38121</td><td>Duplicate permanent item exists</td></tr><tr><td>38122</td><td>Subscription endDate required</td></tr></table>
 */
 type PublicFulfillGoogleIAPItemBadRequest struct {
 	Payload *platformclientmodels.ErrorEntity

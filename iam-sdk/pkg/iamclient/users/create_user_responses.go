@@ -105,28 +105,16 @@ func NewCreateUserBadRequest() *CreateUserBadRequest {
 
 /*CreateUserBadRequest handles this case with default header values.
 
-  Bad request
+  CreateUserBadRequest create user bad request
 */
 type CreateUserBadRequest struct {
-	Payload *iamclientmodels.ModelUserCreateResponse
 }
 
 func (o *CreateUserBadRequest) Error() string {
-	return fmt.Sprintf("[POST /iam/namespaces/{namespace}/users][%d] createUserBadRequest  %+v", 400, o.Payload)
-}
-
-func (o *CreateUserBadRequest) GetPayload() *iamclientmodels.ModelUserCreateResponse {
-	return o.Payload
+	return fmt.Sprintf("[POST /iam/namespaces/{namespace}/users][%d] createUserBadRequest ", 400)
 }
 
 func (o *CreateUserBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-
-	o.Payload = new(iamclientmodels.ModelUserCreateResponse)
-
-	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
-		return err
-	}
 
 	return nil
 }
@@ -180,28 +168,16 @@ func NewCreateUserConflict() *CreateUserConflict {
 
 /*CreateUserConflict handles this case with default header values.
 
-  Conflict
+  CreateUserConflict create user conflict
 */
 type CreateUserConflict struct {
-	Payload *iamclientmodels.ModelUserCreateResponse
 }
 
 func (o *CreateUserConflict) Error() string {
-	return fmt.Sprintf("[POST /iam/namespaces/{namespace}/users][%d] createUserConflict  %+v", 409, o.Payload)
-}
-
-func (o *CreateUserConflict) GetPayload() *iamclientmodels.ModelUserCreateResponse {
-	return o.Payload
+	return fmt.Sprintf("[POST /iam/namespaces/{namespace}/users][%d] createUserConflict ", 409)
 }
 
 func (o *CreateUserConflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-
-	o.Payload = new(iamclientmodels.ModelUserCreateResponse)
-
-	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
-		return err
-	}
 
 	return nil
 }

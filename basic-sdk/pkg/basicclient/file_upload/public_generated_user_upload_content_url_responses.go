@@ -111,7 +111,7 @@ func NewPublicGeneratedUserUploadContentURLBadRequest() *PublicGeneratedUserUplo
 
 /*PublicGeneratedUserUploadContentURLBadRequest handles this case with default header values.
 
-  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>11131</td><td>file type not supported</td></tr></table>
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>11131</td><td>Unable to {action}: File type is not supported</td></tr></table>
 */
 type PublicGeneratedUserUploadContentURLBadRequest struct {
 	Payload *basicclientmodels.ValidationErrorEntity
@@ -210,7 +210,7 @@ func NewPublicGeneratedUserUploadContentURLConflict() *PublicGeneratedUserUpload
 
 /*PublicGeneratedUserUploadContentURLConflict handles this case with default header values.
 
-  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11132</td><td>storage limit exceeded</td></tr></table>
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11132</td><td>Unable to {action}: file storage exceed limitation, user ID: {userId}, namespace: {namespace}</td></tr></table>
 */
 type PublicGeneratedUserUploadContentURLConflict struct {
 	Payload *basicclientmodels.ErrorEntity

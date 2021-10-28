@@ -210,7 +210,7 @@ func NewAdminInviteUserV3UnprocessableEntity() *AdminInviteUserV3UnprocessableEn
 
 /*AdminInviteUserV3UnprocessableEntity handles this case with default header values.
 
-  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>10183</td><td>validation error</td></tr></table>
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>
 */
 type AdminInviteUserV3UnprocessableEntity struct {
 	Payload *iamclientmodels.RestErrorResponse

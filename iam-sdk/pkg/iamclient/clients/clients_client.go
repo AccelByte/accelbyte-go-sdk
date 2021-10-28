@@ -92,7 +92,7 @@ func (a *Client) AddClientPermission(params *AddClientPermissionParams, authInfo
 		Method:             "POST",
 		PathPattern:        "/iam/clients/{clientId}/clientpermissions/{resource}/{action}",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"text/plain"},
+		ConsumesMediaTypes: []string{"*/*"},
 		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &AddClientPermissionReader{formats: a.formats},

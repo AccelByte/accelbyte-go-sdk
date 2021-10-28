@@ -704,19 +704,16 @@ func (e *EntitlementService) PublicConsumeUserEntitlement(input *entitlement.Pub
 		return nil, err
 	}
 	userEntitlement, notFound, conflict, err := e.Client.Entitlement.PublicConsumeUserEntitlement(input, client.BearerToken(*accessToken.AccessToken))
-
 	if notFound != nil {
 		errorMsg, _ := json.Marshal(*notFound.GetPayload())
 		logrus.Error(string(errorMsg))
 		return nil, notFound
 	}
-
 	if conflict != nil {
 		errorMsg, _ := json.Marshal(*conflict.GetPayload())
 		logrus.Error(string(errorMsg))
 		return nil, conflict
 	}
-
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
@@ -731,6 +728,100 @@ func (e *EntitlementService) PublicExistsAnyMyActiveEntitlement(input *entitleme
 		return nil, err
 	}
 	ok, err := e.Client.Entitlement.PublicExistsAnyMyActiveEntitlement(input, client.BearerToken(*accessToken.AccessToken))
+	if err != nil {
+		logrus.Error(err)
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (e *EntitlementService) GetUserEntitlementByItemID(input *entitlement.GetUserEntitlementByItemIDParams) (*platformclientmodels.EntitlementInfo, error) {
+	accessToken, err := e.TokenRepository.GetToken()
+	if err != nil {
+		logrus.Error(err)
+		return nil, err
+	}
+	ok, notFound, err := e.Client.Entitlement.GetUserEntitlementByItemID(input, client.BearerToken(*accessToken.AccessToken))
+	if notFound != nil {
+		errorMsg, _ := json.Marshal(*notFound.GetPayload())
+		logrus.Error(string(errorMsg))
+		return nil, notFound
+	}
+	if err != nil {
+		logrus.Error(err)
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (e *EntitlementService) GetUserEntitlementOwnershipByItemID(input *entitlement.GetUserEntitlementOwnershipByItemIDParams) (*platformclientmodels.TimedOwnership, error) {
+	accessToken, err := e.TokenRepository.GetToken()
+	if err != nil {
+		logrus.Error(err)
+		return nil, err
+	}
+	ok, err := e.Client.Entitlement.GetUserEntitlementOwnershipByItemID(input, client.BearerToken(*accessToken.AccessToken))
+	if err != nil {
+		logrus.Error(err)
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (e *EntitlementService) PublicGetEntitlementOwnershipToken(input *entitlement.PublicGetEntitlementOwnershipTokenParams) (*platformclientmodels.OwnershipToken, error) {
+	accessToken, err := e.TokenRepository.GetToken()
+	if err != nil {
+		logrus.Error(err)
+		return nil, err
+	}
+	ok, err := e.Client.Entitlement.PublicGetEntitlementOwnershipToken(input, client.BearerToken(*accessToken.AccessToken))
+	if err != nil {
+		logrus.Error(err)
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (e *EntitlementService) PublicGetMyEntitlementOwnershipByItemID(input *entitlement.PublicGetMyEntitlementOwnershipByItemIDParams) (*platformclientmodels.TimedOwnership, error) {
+	accessToken, err := e.TokenRepository.GetToken()
+	if err != nil {
+		logrus.Error(err)
+		return nil, err
+	}
+	ok, err := e.Client.Entitlement.PublicGetMyEntitlementOwnershipByItemID(input, client.BearerToken(*accessToken.AccessToken))
+	if err != nil {
+		logrus.Error(err)
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (e *EntitlementService) PublicGetUserEntitlementByItemID(input *entitlement.PublicGetUserEntitlementByItemIDParams) (*platformclientmodels.EntitlementInfo, error) {
+	accessToken, err := e.TokenRepository.GetToken()
+	if err != nil {
+		logrus.Error(err)
+		return nil, err
+	}
+	ok, notFound, err := e.Client.Entitlement.PublicGetUserEntitlementByItemID(input, client.BearerToken(*accessToken.AccessToken))
+	if notFound != nil {
+		errorMsg, _ := json.Marshal(*notFound.GetPayload())
+		logrus.Error(string(errorMsg))
+		return nil, notFound
+	}
+	if err != nil {
+		logrus.Error(err)
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (e *EntitlementService) PublicGetUserEntitlementOwnershipByItemID(input *entitlement.PublicGetUserEntitlementOwnershipByItemIDParams) (*platformclientmodels.TimedOwnership, error) {
+	accessToken, err := e.TokenRepository.GetToken()
+	if err != nil {
+		logrus.Error(err)
+		return nil, err
+	}
+	ok, err := e.Client.Entitlement.PublicGetUserEntitlementOwnershipByItemID(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		logrus.Error(err)
 		return nil, err

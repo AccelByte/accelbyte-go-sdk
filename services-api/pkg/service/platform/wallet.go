@@ -117,12 +117,12 @@ func (w *WalletService) DisableUserWallet(input *wallet.DisableUserWalletParams)
 	if notFound != nil {
 		errorMsg, _ := json.Marshal(*notFound.GetPayload())
 		logrus.Error(string(errorMsg))
-		return  notFound
+		return notFound
 	}
 	if conflict != nil {
 		errorMsg, _ := json.Marshal(*conflict.GetPayload())
 		logrus.Error(string(errorMsg))
-		return  conflict
+		return conflict
 	}
 	if err != nil {
 		logrus.Error(err)
@@ -255,4 +255,32 @@ func (w *WalletService) PublicGetWallet(input *wallet.PublicGetWalletParams) (*p
 		return nil, err
 	}
 	return ok.GetPayload(), nil
+}
+
+func (w *WalletService) CheckWallet(input *wallet.CheckWalletParams) error {
+	accessToken, err := w.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, badRequest, conflict, unprocessableEntity, err := w.Client.Wallet.CheckWallet(input, client.BearerToken(*accessToken.AccessToken))
+	if badRequest != nil {
+		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
+		logrus.Error(string(errorMsg))
+		return badRequest
+	}
+	if conflict != nil {
+		errorMsg, _ := json.Marshal(*conflict.GetPayload())
+		logrus.Error(string(errorMsg))
+		return conflict
+	}
+	if unprocessableEntity != nil {
+		errorMsg, _ := json.Marshal(*unprocessableEntity.GetPayload())
+		logrus.Error(string(errorMsg))
+		return unprocessableEntity
+	}
+	if err != nil {
+		logrus.Error(err)
+		return err
+	}
+	return nil
 }

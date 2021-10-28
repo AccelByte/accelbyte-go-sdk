@@ -1188,3 +1188,67 @@ func (n NotificationService) UpdateTopicByTopicName(input *notification.UpdateTo
 	}
 	return nil
 }
+
+func (n NotificationService) SendPartyFreeformNotificationV1Admin(input *notification.SendPartyFreeformNotificationV1AdminParams) error {
+	accessToken, err := n.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, unauthorized, forbidden, notFound, internalServerError, err := n.Client.Notification.SendPartyFreeformNotificationV1Admin(input, client.BearerToken(*accessToken.AccessToken))
+	if unauthorized != nil {
+		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
+		logrus.Error(string(errorMsg))
+		return unauthorized
+	}
+	if forbidden != nil {
+		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
+		logrus.Error(string(errorMsg))
+		return forbidden
+	}
+	if internalServerError != nil {
+		errorMsg, _ := json.Marshal(*internalServerError.GetPayload())
+		logrus.Error(string(errorMsg))
+		return internalServerError
+	}
+	if notFound != nil {
+		errorMsg, _ := json.Marshal(*notFound.GetPayload())
+		logrus.Error(string(errorMsg))
+		return notFound
+	}
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (n NotificationService) SendPartyTemplatedNotificationV1Admin(input *notification.SendPartyTemplatedNotificationV1AdminParams) error {
+	accessToken, err := n.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, unauthorized, forbidden, notFound, internalServerError, err := n.Client.Notification.SendPartyTemplatedNotificationV1Admin(input, client.BearerToken(*accessToken.AccessToken))
+	if unauthorized != nil {
+		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
+		logrus.Error(string(errorMsg))
+		return unauthorized
+	}
+	if forbidden != nil {
+		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
+		logrus.Error(string(errorMsg))
+		return forbidden
+	}
+	if internalServerError != nil {
+		errorMsg, _ := json.Marshal(*internalServerError.GetPayload())
+		logrus.Error(string(errorMsg))
+		return internalServerError
+	}
+	if notFound != nil {
+		errorMsg, _ := json.Marshal(*notFound.GetPayload())
+		logrus.Error(string(errorMsg))
+		return notFound
+	}
+	if err != nil {
+		return err
+	}
+	return nil
+}

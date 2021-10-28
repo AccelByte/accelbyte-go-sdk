@@ -739,3 +739,79 @@ func (m *MatchmakingService) UpdateMatchmakingChannel(input *matchmaking.UpdateM
 	}
 	return nil
 }
+
+func (m *MatchmakingService) PublicGetAllMatchmakingChannel(input *matchmaking.PublicGetAllMatchmakingChannelParams) ([]*matchmakingclientmodels.ModelsChannelV1, error) {
+	token, err := m.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, forbidden, conflict, internalServerError, err := m.Client.Matchmaking.PublicGetAllMatchmakingChannel(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
+		logrus.Error(string(errorMsg))
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
+		logrus.Error(string(errorMsg))
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
+		logrus.Error(string(errorMsg))
+		return nil, forbidden
+	}
+	if conflict != nil {
+		errorMsg, _ := json.Marshal(*conflict.GetPayload())
+		logrus.Error(string(errorMsg))
+		return nil, conflict
+	}
+	if internalServerError != nil {
+		errorMsg, _ := json.Marshal(*internalServerError.GetPayload())
+		logrus.Error(string(errorMsg))
+		return nil, internalServerError
+	}
+	if err != nil {
+		logrus.Error(err)
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (m *MatchmakingService) PublicGetSingleMatchmakingChannel(input *matchmaking.PublicGetSingleMatchmakingChannelParams) (*matchmakingclientmodels.ModelsChannelV1, error) {
+	token, err := m.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, forbidden, conflict, internalServerError, err := m.Client.Matchmaking.PublicGetSingleMatchmakingChannel(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
+		logrus.Error(string(errorMsg))
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
+		logrus.Error(string(errorMsg))
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
+		logrus.Error(string(errorMsg))
+		return nil, forbidden
+	}
+	if conflict != nil {
+		errorMsg, _ := json.Marshal(*conflict.GetPayload())
+		logrus.Error(string(errorMsg))
+		return nil, conflict
+	}
+	if internalServerError != nil {
+		errorMsg, _ := json.Marshal(*internalServerError.GetPayload())
+		logrus.Error(string(errorMsg))
+		return nil, internalServerError
+	}
+	if err != nil {
+		logrus.Error(err)
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}

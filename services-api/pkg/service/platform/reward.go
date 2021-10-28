@@ -187,3 +187,21 @@ func (r *RewardService) PublicQueryRewards(input *reward.QueryRewards1Params) (*
 	}
 	return ok.GetPayload(), err
 }
+
+func (r *RewardService) GetRewardByCode(input *reward.GetRewardByCodeParams) (*platformclientmodels.RewardInfo, error) {
+	accessToken, err := r.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, unprocessableEntity, err := r.Client.Reward.GetRewardByCode(input, client.BearerToken(*accessToken.AccessToken))
+	if unprocessableEntity != nil {
+		errorMsg, _ := json.Marshal(*unprocessableEntity.GetPayload())
+		logrus.Error(string(errorMsg))
+		return nil, unprocessableEntity
+	}
+	if err != nil {
+		logrus.Error(err)
+		return nil, err
+	}
+	return ok.GetPayload(), err
+}

@@ -58,3 +58,68 @@ func (a *AnonymizationService) AnonymizeWallet(input *anonymization.AnonymizeWal
 	}
 	return nil
 }
+
+func (a *AnonymizationService) AnonymizeCampaign(input *anonymization.AnonymizeCampaignParams) error {
+	token, err := a.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = a.Client.Anonymization.AnonymizeCampaign(input, client.BearerToken(*token.AccessToken))
+	if err != nil {
+		logrus.Error(err)
+		return err
+	}
+	return nil
+}
+
+func (a *AnonymizationService) AnonymizeIntegration(input *anonymization.AnonymizeIntegrationParams) error {
+	token, err := a.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = a.Client.Anonymization.AnonymizeIntegration(input, client.BearerToken(*token.AccessToken))
+	if err != nil {
+		logrus.Error(err)
+		return err
+	}
+	return nil
+}
+
+func (a *AnonymizationService) AnonymizeOrder(input *anonymization.AnonymizeOrderParams) error {
+	token, err := a.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = a.Client.Anonymization.AnonymizeOrder(input, client.BearerToken(*token.AccessToken))
+	if err != nil {
+		logrus.Error(err)
+		return err
+	}
+	return nil
+}
+
+func (a *AnonymizationService) AnonymizePayment(input *anonymization.AnonymizePaymentParams) error {
+	token, err := a.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = a.Client.Anonymization.AnonymizePayment(input, client.BearerToken(*token.AccessToken))
+	if err != nil {
+		logrus.Error(err)
+		return err
+	}
+	return nil
+}
+
+func (a *AnonymizationService) AnonymizeSubscription(input *anonymization.AnonymizeSubscriptionParams) error {
+	token, err := a.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = a.Client.Anonymization.AnonymizeSubscription(input, client.BearerToken(*token.AccessToken))
+	if err != nil {
+		logrus.Error(err)
+		return err
+	}
+	return nil
+}

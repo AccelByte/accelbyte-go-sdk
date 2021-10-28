@@ -38,3 +38,15 @@ func (p *PublicService) ListProviders() ([]string, error) {
 	}
 	return ok.GetPayload(), nil
 }
+
+func (p *PublicService) ListProvidersByRegion(input *public.ListProvidersByRegionParams) (*dsmcclientmodels.ModelsDefaultProvider, error) {
+	token, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := p.Client.Public.ListProvidersByRegion(input, client.BearerToken(*token.AccessToken))
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}

@@ -8,12 +8,12 @@
       "url": "https://accelbyte.io",
       "email": "engineering@accelbyte.io"
     },
-    "version": "1.6.0"
+    "version": "1.6.1"
   },
   "paths": {
     "/ugc/v1/admin/namespaces/{namespace}/channels": {
       "get": {
-        "description": "Required permission \u003cb\u003eADMIN:NAMESPACE:{namespace}:USER:{userId}:CHANNEL [READ]\u003c/b\u003e",
+        "description": "Required permission <b>ADMIN:NAMESPACE:{namespace}:USER:{userId}:CHANNEL [READ]</b>",
         "consumes": [
           "application/json"
         ],
@@ -76,7 +76,7 @@
         }
       },
       "post": {
-        "description": "Required permission \u003cb\u003eADMIN:NAMESPACE:{namespace}:USER:{userId}:CHANNEL [CREATE]\u003c/b\u003e",
+        "description": "Required permission <b>ADMIN:NAMESPACE:{namespace}:USER:{userId}:CHANNEL [CREATE]</b>",
         "consumes": [
           "application/json"
         ],
@@ -135,7 +135,7 @@
     },
     "/ugc/v1/admin/namespaces/{namespace}/channels/{channelId}": {
       "put": {
-        "description": "Required permission \u003cb\u003eADMIN:NAMESPACE:{namespace}:USER:{userId}:CHANNEL [UPDATE]\u003c/b\u003e",
+        "description": "Required permission <b>ADMIN:NAMESPACE:{namespace}:USER:{userId}:CHANNEL [UPDATE]</b>",
         "consumes": [
           "application/json"
         ],
@@ -205,7 +205,7 @@
         }
       },
       "delete": {
-        "description": "Required permission \u003cb\u003eADMIN:NAMESPACE:{namespace}:USER:{userId}:CHANNEL [DELETE]\u003c/b\u003e",
+        "description": "Required permission <b>ADMIN:NAMESPACE:{namespace}:USER:{userId}:CHANNEL [DELETE]</b>",
         "consumes": [
           "application/json"
         ],
@@ -263,7 +263,7 @@
     },
     "/ugc/v1/admin/namespaces/{namespace}/channels/{channelId}/contents": {
       "post": {
-        "description": "Required permission \u003cb\u003eADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [CREATE]\u003c/b\u003e.\\n \n\t\t\t\tAll request body are required except preview and tags.\n\t\t\t\t",
+        "description": "Required permission <b>ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [CREATE]</b>.\\n \n\t\t\t\tAll request body are required except preview and tags.\n\t\t\t\t",
         "consumes": [
           "application/json"
         ],
@@ -330,7 +330,7 @@
     },
     "/ugc/v1/admin/namespaces/{namespace}/channels/{channelId}/contents/s3": {
       "post": {
-        "description": "Required permission \u003cb\u003eADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [CREATE]\u003c/b\u003e.\\n \n\t\t\t\t\t\tAll request body are required except preview and tags.\n\t\t\t\t\t\t",
+        "description": "Required permission <b>ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [CREATE]</b>.\\n \n\t\t\t\t\t\tAll request body are required except preview and tags.\n\t\t\t\t\t\t",
         "consumes": [
           "application/json"
         ],
@@ -396,7 +396,7 @@
     },
     "/ugc/v1/admin/namespaces/{namespace}/channels/{channelId}/contents/s3/{contentId}": {
       "put": {
-        "description": "Required permission \u003cb\u003eADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]\u003c/b\u003e.\\n \n\t\t\t\t\t\tAll request body are required except payload, preview, and tags.",
+        "description": "Required permission <b>ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]</b>.\\n \n\t\t\t\t\t\tAll request body are required except payload, preview, and tags.",
         "consumes": [
           "application/json"
         ],
@@ -475,7 +475,7 @@
     },
     "/ugc/v1/admin/namespaces/{namespace}/channels/{channelId}/contents/search": {
       "get": {
-        "description": "Required permission \u003cb\u003eADMIN:NAMESPACE:{namespace}:USER:*:CONTENT [CREATE]\u003c/b\u003e",
+        "description": "Required permission <b>ADMIN:NAMESPACE:{namespace}:USER:*:CONTENT [CREATE]</b>",
         "consumes": [
           "application/json"
         ],
@@ -563,6 +563,12 @@
             "description": "the offset number to retrieve",
             "name": "offset",
             "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "user ID",
+            "name": "userId",
+            "in": "query"
           }
         ],
         "responses": {
@@ -595,7 +601,7 @@
     },
     "/ugc/v1/admin/namespaces/{namespace}/channels/{channelId}/contents/{contentId}": {
       "put": {
-        "description": "Required permission \u003cb\u003eADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]\u003c/b\u003e.\\n \n\t\t\t\t\tAll request body are required except preview and tags.\n\t\t\t\t\t",
+        "description": "Required permission <b>ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]</b>.\\n \n\t\t\t\t\tAll request body are required except preview and tags.\n\t\t\t\t\t",
         "consumes": [
           "application/json"
         ],
@@ -673,7 +679,7 @@
         }
       },
       "delete": {
-        "description": "Required permission \u003cb\u003eADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [DELETE]\u003c/b\u003e.",
+        "description": "Required permission <b>ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [DELETE]</b>.",
         "consumes": [
           "application/json"
         ],
@@ -738,7 +744,7 @@
     },
     "/ugc/v1/admin/namespaces/{namespace}/contents": {
       "get": {
-        "description": "Required permission \u003cb\u003eADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ]\u003c/b\u003e.",
+        "description": "Required permission <b>ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ]</b>.",
         "consumes": [
           "application/json"
         ],
@@ -803,7 +809,7 @@
     },
     "/ugc/v1/admin/namespaces/{namespace}/contents/search": {
       "get": {
-        "description": "Required permission \u003cb\u003eADMIN:NAMESPACE:{namespace}:USER:*:CONTENT [CREATE]\u003c/b\u003e",
+        "description": "Required permission <b>ADMIN:NAMESPACE:{namespace}:USER:*:CONTENT [CREATE]</b>",
         "consumes": [
           "application/json"
         ],
@@ -884,6 +890,12 @@
             "description": "the offset number to retrieve",
             "name": "offset",
             "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "user ID",
+            "name": "userId",
+            "in": "query"
           }
         ],
         "responses": {
@@ -916,7 +928,7 @@
     },
     "/ugc/v1/admin/namespaces/{namespace}/contents/{contentId}": {
       "get": {
-        "description": "Required permission \u003cb\u003eADMIN:NAMESPACE:{namespace}:USER:*:CONTENT [READ]\u003c/b\u003e.",
+        "description": "Required permission <b>ADMIN:NAMESPACE:{namespace}:USER:*:CONTENT [READ]</b>.",
         "consumes": [
           "application/json"
         ],
@@ -974,7 +986,7 @@
     },
     "/ugc/v1/admin/namespaces/{namespace}/contents/{contentId}/preview": {
       "get": {
-        "description": "Required permission \u003cb\u003eADMIN:NAMESPACE:{namespace}:USER:*:CONTENT [READ]\u003c/b\u003e",
+        "description": "Required permission <b>ADMIN:NAMESPACE:{namespace}:USER:*:CONTENT [READ]</b>",
         "consumes": [
           "application/json"
         ],
@@ -1030,9 +1042,213 @@
         }
       }
     },
+    "/ugc/v1/admin/namespaces/{namespace}/contents/{contentId}/screenshots": {
+      "put": {
+        "description": "Required permission <b>ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]</b>.\\n \n\t\t\t\t\tAll request body are required.\n\t\t\t\t\t",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "[Admin] Content"
+        ],
+        "summary": "Update screenshot of content",
+        "operationId": "AdminUpdateScreenshots",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace of the game",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "content ID",
+            "name": "contentId",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.UpdateScreenshotRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.UpdateScreenshotResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "Required permission <b>ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [CREATE]</b>.\\n \n\t\t\t\tAll request body are required.\n\t\t\t\t",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "[Admin] Content"
+        ],
+        "summary": "Upload screenshots for content",
+        "operationId": "AdminUploadContentScreenshot",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace of the game",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "content ID",
+            "name": "contentId",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.CreateScreenshotRequest"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/models.CreateScreenshotResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        }
+      }
+    },
+    "/ugc/v1/admin/namespaces/{namespace}/contents/{contentId}/screenshots/{screenshotId}": {
+      "delete": {
+        "description": "Required permission <b>ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [DELETE]</b>.\n\t\t\t\t",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "[Admin] Content"
+        ],
+        "summary": "Delete screenshots content",
+        "operationId": "AdminDeleteContentScreenshot",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace of the game",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "content ID",
+            "name": "contentId",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "screenshot ID",
+            "name": "screenshotId",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        }
+      }
+    },
     "/ugc/v1/admin/namespaces/{namespace}/groups": {
       "get": {
-        "description": "Required permission \u003cb\u003eADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENTGROUP [READ]\u003c/b\u003e.",
+        "description": "Required permission <b>ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENTGROUP [READ]</b>.",
         "consumes": [
           "application/json"
         ],
@@ -1154,7 +1370,7 @@
     },
     "/ugc/v1/admin/namespaces/{namespace}/groups/{groupId}": {
       "get": {
-        "description": "Required permission \u003cb\u003eADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENTGROUP [READ]\u003c/b\u003e.",
+        "description": "Required permission <b>ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENTGROUP [READ]</b>.",
         "consumes": [
           "application/json"
         ],
@@ -1335,7 +1551,7 @@
     },
     "/ugc/v1/admin/namespaces/{namespace}/groups/{groupId}/contents": {
       "get": {
-        "description": "Required permission \u003cb\u003eADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ]\u003c/b\u003e.",
+        "description": "Required permission <b>ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ]</b>.",
         "consumes": [
           "application/json"
         ],
@@ -1925,7 +2141,7 @@
     },
     "/ugc/v1/admin/namespaces/{namespace}/users/{userId}/channels": {
       "get": {
-        "description": "Required permission \u003cb\u003eADMIN:NAMESPACE:{namespace}:USER:{userId}:CHANNEL [READ]\u003c/b\u003e",
+        "description": "Required permission <b>ADMIN:NAMESPACE:{namespace}:USER:{userId}:CHANNEL [READ]</b>",
         "consumes": [
           "application/json"
         ],
@@ -1995,7 +2211,7 @@
         }
       },
       "delete": {
-        "description": "Required permission \u003cb\u003eADMIN:NAMESPACE:{namespace}:USER:{userId}:CHANNEL [DELETE]\u003c/b\u003e",
+        "description": "Required permission <b>ADMIN:NAMESPACE:{namespace}:USER:{userId}:CHANNEL [DELETE]</b>",
         "consumes": [
           "application/json"
         ],
@@ -2050,7 +2266,7 @@
     },
     "/ugc/v1/admin/namespaces/{namespace}/users/{userId}/channels/{channelId}": {
       "put": {
-        "description": "Required permission \u003cb\u003eADMIN:NAMESPACE:{namespace}:USER:{userId}:CHANNEL [UPDATE]\u003c/b\u003e",
+        "description": "Required permission <b>ADMIN:NAMESPACE:{namespace}:USER:{userId}:CHANNEL [UPDATE]</b>",
         "consumes": [
           "application/json"
         ],
@@ -2127,7 +2343,7 @@
         }
       },
       "delete": {
-        "description": "Required permission \u003cb\u003eADMIN:NAMESPACE:{namespace}:USER:{userId}:CHANNEL [DELETE]\u003c/b\u003e",
+        "description": "Required permission <b>ADMIN:NAMESPACE:{namespace}:USER:{userId}:CHANNEL [DELETE]</b>",
         "consumes": [
           "application/json"
         ],
@@ -2192,7 +2408,7 @@
     },
     "/ugc/v1/admin/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents/s3/{contentId}": {
       "put": {
-        "description": "Required permission \u003cb\u003eADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]\u003c/b\u003e.\\n \n\t\t\t\t\t\tAll request body are required except payload, preview, and tags.",
+        "description": "Required permission <b>ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]</b>.\\n \n\t\t\t\t\t\tAll request body are required except payload, preview, and tags.",
         "consumes": [
           "application/json"
         ],
@@ -2278,7 +2494,7 @@
     },
     "/ugc/v1/admin/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents/{contentId}": {
       "put": {
-        "description": "Required permission \u003cb\u003eADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]\u003c/b\u003e.\\n \n\t\t\t\t\tAll request body are required except preview and tags.\n\t\t\t\t\t",
+        "description": "Required permission <b>ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]</b>.\\n \n\t\t\t\t\tAll request body are required except preview and tags.\n\t\t\t\t\t",
         "consumes": [
           "application/json"
         ],
@@ -2363,7 +2579,7 @@
         }
       },
       "delete": {
-        "description": "Required permission \u003cb\u003eADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [DELETE]\u003c/b\u003e.",
+        "description": "Required permission <b>ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [DELETE]</b>.",
         "consumes": [
           "application/json"
         ],
@@ -2435,7 +2651,7 @@
     },
     "/ugc/v1/admin/namespaces/{namespace}/users/{userId}/contents": {
       "get": {
-        "description": "Required permission \u003cb\u003eADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ]\u003c/b\u003e.",
+        "description": "Required permission <b>ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ]</b>.",
         "consumes": [
           "application/json"
         ],
@@ -2505,7 +2721,7 @@
         }
       },
       "delete": {
-        "description": "Required permission \u003cb\u003eADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [DELETE]\u003c/b\u003e.",
+        "description": "Required permission <b>ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [DELETE]</b>.",
         "consumes": [
           "application/json"
         ],
@@ -2560,7 +2776,7 @@
     },
     "/ugc/v1/admin/namespaces/{namespace}/users/{userId}/contents/{contentId}/hide": {
       "put": {
-        "description": "Required permission \u003cb\u003eADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]\u003c/b\u003e.",
+        "description": "Required permission <b>ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]</b>.",
         "consumes": [
           "application/json"
         ],
@@ -2633,7 +2849,7 @@
     },
     "/ugc/v1/admin/namespaces/{namespace}/users/{userId}/groups": {
       "get": {
-        "description": "Required permission \u003cb\u003eADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENTGROUP [READ]\u003c/b\u003e.",
+        "description": "Required permission <b>ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENTGROUP [READ]</b>.",
         "consumes": [
           "application/json"
         ],
@@ -2758,7 +2974,7 @@
     },
     "/ugc/v1/admin/namespaces/{namespace}/users/{userId}/groups/{groupId}": {
       "get": {
-        "description": "Required permission \u003cb\u003eADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENTGROUP [READ]\u003c/b\u003e.",
+        "description": "Required permission <b>ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENTGROUP [READ]</b>.",
         "consumes": [
           "application/json"
         ],
@@ -2960,7 +3176,7 @@
     },
     "/ugc/v1/admin/namespaces/{namespace}/users/{userId}/groups/{groupId}/contents": {
       "get": {
-        "description": "Required permission \u003cb\u003eADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ]\u003c/b\u003e.",
+        "description": "Required permission <b>ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ]</b>.",
         "consumes": [
           "application/json"
         ],
@@ -3183,6 +3399,12 @@
             "description": "the offset number to retrieve",
             "name": "offset",
             "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "user ID",
+            "name": "userId",
+            "in": "query"
           }
         ],
         "responses": {
@@ -3296,6 +3518,12 @@
             "default": "0",
             "description": "the offset number to retrieve",
             "name": "offset",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "user ID",
+            "name": "userId",
             "in": "query"
           }
         ],
@@ -3968,7 +4196,7 @@
     },
     "/ugc/v1/public/namespaces/{namespace}/users/{userId}/channels": {
       "get": {
-        "description": "Required permission \u003cb\u003eNAMESPACE:{namespace}:USER:{userId}:CHANNEL [READ]\u003c/b\u003e",
+        "description": "Required permission <b>NAMESPACE:{namespace}:USER:{userId}:CHANNEL [READ]</b>",
         "consumes": [
           "application/json",
           "application/octet-stream"
@@ -4039,7 +4267,7 @@
         }
       },
       "post": {
-        "description": "Required permission \u003cb\u003eNAMESPACE:{namespace}:USER:{userId}:CHANNEL [CREATE]\u003c/b\u003e",
+        "description": "Required permission <b>NAMESPACE:{namespace}:USER:{userId}:CHANNEL [CREATE]</b>",
         "consumes": [
           "application/json",
           "application/octet-stream"
@@ -4104,7 +4332,7 @@
         }
       },
       "delete": {
-        "description": "Required permission \u003cb\u003eNAMESPACE:{namespace}:USER:{userId}:CHANNEL [DELETE]\u003c/b\u003e",
+        "description": "Required permission <b>NAMESPACE:{namespace}:USER:{userId}:CHANNEL [DELETE]</b>",
         "consumes": [
           "application/json",
           "application/octet-stream"
@@ -4160,7 +4388,7 @@
     },
     "/ugc/v1/public/namespaces/{namespace}/users/{userId}/channels/{channelId}": {
       "put": {
-        "description": "Required permission \u003cb\u003eNAMESPACE:{namespace}:USER:{userId}:CHANNEL [UPDATE]\u003c/b\u003e",
+        "description": "Required permission <b>NAMESPACE:{namespace}:USER:{userId}:CHANNEL [UPDATE]</b>",
         "consumes": [
           "application/json",
           "application/octet-stream"
@@ -4238,7 +4466,7 @@
         }
       },
       "delete": {
-        "description": "Required permission \u003cb\u003eNAMESPACE:{namespace}:USER:{userId}:CHANNEL [DELETE]\u003c/b\u003e",
+        "description": "Required permission <b>NAMESPACE:{namespace}:USER:{userId}:CHANNEL [DELETE]</b>",
         "consumes": [
           "application/json",
           "application/octet-stream"
@@ -4304,7 +4532,7 @@
     },
     "/ugc/v1/public/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents": {
       "post": {
-        "description": "Required permission \u003cb\u003eNAMESPACE:{namespace}:USER:{userId}:CONTENT [CREATE]\u003c/b\u003e.\\n \n\t\t\tAll request body are required except preview and tags.\n\t\t\t",
+        "description": "Required permission <b>NAMESPACE:{namespace}:USER:{userId}:CONTENT [CREATE]</b>.\\n \n\t\t\tAll request body are required except preview and tags.\n\t\t\t",
         "consumes": [
           "application/json",
           "application/octet-stream"
@@ -4379,7 +4607,7 @@
     },
     "/ugc/v1/public/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents/s3": {
       "post": {
-        "description": "Required permission \u003cb\u003eNAMESPACE:{namespace}:USER:{userId}:CONTENT [CREATE]\u003c/b\u003e.\\n \n\t\t\t\tAll request body are required except payload, preview, and tags.",
+        "description": "Required permission <b>NAMESPACE:{namespace}:USER:{userId}:CONTENT [CREATE]</b>.\\n \n\t\t\t\tAll request body are required except payload, preview, and tags.",
         "consumes": [
           "application/json",
           "application/octet-stream"
@@ -4453,7 +4681,7 @@
     },
     "/ugc/v1/public/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents/s3/{contentId}": {
       "put": {
-        "description": "Required permission \u003cb\u003eNAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]\u003c/b\u003e.\\n \n\t\t\t\t\tAll request body are required except payload, preview, and tags.",
+        "description": "Required permission <b>NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]</b>.\\n \n\t\t\t\t\tAll request body are required except payload, preview, and tags.",
         "consumes": [
           "application/json",
           "application/octet-stream"
@@ -4540,7 +4768,7 @@
     },
     "/ugc/v1/public/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents/{contentId}": {
       "put": {
-        "description": "Required permission \u003cb\u003eNAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]\u003c/b\u003e.\\n \n\t\t\t\tAll request body are required except preview and tags.\n\t\t\t\t",
+        "description": "Required permission <b>NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]</b>.\\n \n\t\t\t\tAll request body are required except preview and tags.\n\t\t\t\t",
         "consumes": [
           "application/json",
           "application/octet-stream"
@@ -4626,7 +4854,7 @@
         }
       },
       "delete": {
-        "description": "Required permission \u003cb\u003eNAMESPACE:{namespace}:USER:{userId}:CONTENT [DELETE]\u003c/b\u003e.",
+        "description": "Required permission <b>NAMESPACE:{namespace}:USER:{userId}:CONTENT [DELETE]</b>.",
         "consumes": [
           "application/json",
           "application/octet-stream"
@@ -4696,7 +4924,7 @@
     },
     "/ugc/v1/public/namespaces/{namespace}/users/{userId}/contents": {
       "get": {
-        "description": "Required permission \u003cb\u003eNAMESPACE:{namespace}:USER:{userId}:CONTENT [READ]\u003c/b\u003e.",
+        "description": "Required permission <b>NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ]</b>.",
         "consumes": [
           "application/json",
           "application/octet-stream"
@@ -4767,7 +4995,7 @@
         }
       },
       "delete": {
-        "description": "Required permission \u003cb\u003eNAMESPACE:{namespace}:USER:{userId}:CONTENT [DELETE]\u003c/b\u003e.",
+        "description": "Required permission <b>NAMESPACE:{namespace}:USER:{userId}:CONTENT [DELETE]</b>.",
         "consumes": [
           "application/json",
           "application/octet-stream"
@@ -4799,6 +5027,234 @@
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        }
+      }
+    },
+    "/ugc/v1/public/namespaces/{namespace}/users/{userId}/contents/{contentId}/screenshots": {
+      "put": {
+        "description": "Required permission <b>NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]</b>.\\n \n\t\t\t\t\tAll request body are required.\n\t\t\t\t\t",
+        "consumes": [
+          "application/json",
+          "application/octet-stream"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "[Public] Content"
+        ],
+        "summary": "Update screenshot of content",
+        "operationId": "UpdateScreenshots",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace of the game",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "content ID",
+            "name": "contentId",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "user ID",
+            "name": "userId",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.UpdateScreenshotRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.UpdateScreenshotResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "Required permission <b>NAMESPACE:{namespace}:USER:{userId}:CONTENT [CREATE]</b>.\\n \n\t\t\t\tAll request body are required.\n\t\t\t\t",
+        "consumes": [
+          "application/json",
+          "application/octet-stream"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "[Public] Content"
+        ],
+        "summary": "Upload screenshots for content",
+        "operationId": "UploadContentScreenshot",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace of the game",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "content ID",
+            "name": "contentId",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "user ID",
+            "name": "userId",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.CreateScreenshotRequest"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/models.CreateScreenshotResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        }
+      }
+    },
+    "/ugc/v1/public/namespaces/{namespace}/users/{userId}/contents/{contentId}/screenshots/{screenshotId}": {
+      "delete": {
+        "description": "Required permission <b>NAMESPACE:{namespace}:USER:{userId}:CONTENT [DELETE]</b>.\n\t\t\t\t",
+        "consumes": [
+          "application/json",
+          "application/octet-stream"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "[Public] Content"
+        ],
+        "summary": "Delete screenshots content",
+        "operationId": "DeleteContentScreenshot",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace of the game",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "content ID",
+            "name": "contentId",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "screenshot ID",
+            "name": "screenshotId",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "user ID",
+            "name": "userId",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
           },
           "401": {
             "description": "Unauthorized",
@@ -4896,7 +5352,7 @@
     },
     "/ugc/v1/public/namespaces/{namespace}/users/{userId}/groups": {
       "get": {
-        "description": "Required permission \u003cb\u003eNAMESPACE:{namespace}:USER:{userId}:CONTENTGROUP [READ]\u003c/b\u003e.",
+        "description": "Required permission <b>NAMESPACE:{namespace}:USER:{userId}:CONTENTGROUP [READ]</b>.",
         "consumes": [
           "application/json",
           "application/octet-stream"
@@ -5088,7 +5544,7 @@
     },
     "/ugc/v1/public/namespaces/{namespace}/users/{userId}/groups/{groupId}": {
       "get": {
-        "description": "Required permission \u003cb\u003eNAMESPACE:{namespace}:USER:{userId}:CONTENTGROUP [READ]\u003c/b\u003e.",
+        "description": "Required permission <b>NAMESPACE:{namespace}:USER:{userId}:CONTENTGROUP [READ]</b>.",
         "consumes": [
           "application/json",
           "application/octet-stream"
@@ -5293,7 +5749,7 @@
     },
     "/ugc/v1/public/namespaces/{namespace}/users/{userId}/groups/{groupId}/contents": {
       "get": {
-        "description": "Required permission \u003cb\u003eNAMESPACE:{namespace}:USER:{userId}:CONTENT [READ]\u003c/b\u003e.",
+        "description": "Required permission <b>NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ]</b>.",
         "consumes": [
           "application/json",
           "application/octet-stream"
@@ -5548,6 +6004,12 @@
             "$ref": "#/definitions/models.PayloadURL"
           }
         },
+        "screenshots": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/models.ScreenshotResponse"
+          }
+        },
         "shareCode": {
           "type": "string"
         },
@@ -5594,11 +6056,11 @@
     },
     "models.CreateContentRequest": {
       "required": [
-        "tags",
         "name",
         "type",
         "subType",
         "preview",
+        "tags",
         "payload"
       ],
       "properties": {
@@ -5627,11 +6089,11 @@
     },
     "models.CreateContentRequestS3": {
       "required": [
-        "tags",
         "name",
         "type",
         "subType",
         "preview",
+        "tags",
         "fileExtension"
       ],
       "properties": {
@@ -5780,6 +6242,32 @@
         },
         "userId": {
           "type": "string"
+        }
+      }
+    },
+    "models.CreateScreenshotRequest": {
+      "required": [
+        "screenshots"
+      ],
+      "properties": {
+        "screenshots": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/models.createScreenshotRequest"
+          }
+        }
+      }
+    },
+    "models.CreateScreenshotResponse": {
+      "required": [
+        "screenshots"
+      ],
+      "properties": {
+        "screenshots": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/models.ScreenshotResponse"
+          }
         }
       }
     },
@@ -6054,6 +6542,58 @@
         }
       }
     },
+    "models.ScreenshotResponse": {
+      "required": [
+        "screenshotId",
+        "source",
+        "url",
+        "description",
+        "fileExtension"
+      ],
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "fileExtension": {
+          "type": "string"
+        },
+        "screenshotId": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      }
+    },
+    "models.UpdateScreenshotRequest": {
+      "required": [
+        "screenshots"
+      ],
+      "properties": {
+        "screenshots": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/models.updateScreenshot"
+          }
+        }
+      }
+    },
+    "models.UpdateScreenshotResponse": {
+      "required": [
+        "screenshots"
+      ],
+      "properties": {
+        "screenshots": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/models.updateScreenshot"
+          }
+        }
+      }
+    },
     "models.UserFollowRequest": {
       "required": [
         "followStatus"
@@ -6103,6 +6643,34 @@
           }
         },
         "type": {
+          "type": "string"
+        }
+      }
+    },
+    "models.createScreenshotRequest": {
+      "required": [
+        "description",
+        "fileExtension"
+      ],
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "fileExtension": {
+          "type": "string"
+        }
+      }
+    },
+    "models.updateScreenshot": {
+      "required": [
+        "screenshotId",
+        "description"
+      ],
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "screenshotId": {
           "type": "string"
         }
       }

@@ -288,7 +288,7 @@
     },
     "/event/namespaces/{namespace}": {
       "get": {
-        "description": "Required permission \u003ccode\u003eNAMESPACE:{namespace}:EVENT [UPDATE]\u003c/code\u003e and scope \u003ccode\u003eanalytics\u003c/code\u003e",
+        "description": "Required permission <code>NAMESPACE:{namespace}:EVENT [UPDATE]</code> and scope <code>analytics</code>",
         "produces": [
           "application/json"
         ],
@@ -359,7 +359,7 @@
         }
       },
       "post": {
-        "description": "Required permission \u003ccode\u003eNAMESPACE:{namespace}:EVENT [CREATE]\u003c/code\u003eand scope \u003ccode\u003eanalytics\u003c/code\u003e",
+        "description": "Required permission <code>NAMESPACE:{namespace}:EVENT [CREATE]</code>and scope <code>analytics</code>",
         "produces": [
           "application/json"
         ],
@@ -407,7 +407,7 @@
     },
     "/event/namespaces/{namespace}/eventId/{eventId}": {
       "get": {
-        "description": "Required permission \u003ccode\u003eNAMESPACE:{namespace}:EVENT [UPDATE]\u003c/code\u003e and scope \u003ccode\u003eanalytics\u003c/code\u003e",
+        "description": "Required permission <code>NAMESPACE:{namespace}:EVENT [UPDATE]</code> and scope <code>analytics</code>",
         "produces": [
           "application/json"
         ],
@@ -487,7 +487,7 @@
     },
     "/event/namespaces/{namespace}/eventType/{eventType}": {
       "get": {
-        "description": "Required permission \u003ccode\u003eNAMESPACE:{namespace}:EVENT [UPDATE]\u003c/code\u003eand scope \u003ccode\u003eanalytics\u003c/code\u003e",
+        "description": "Required permission <code>NAMESPACE:{namespace}:EVENT [UPDATE]</code>and scope <code>analytics</code>",
         "produces": [
           "application/json"
         ],
@@ -567,7 +567,7 @@
     },
     "/event/namespaces/{namespace}/eventType/{eventType}/eventId/{eventId}": {
       "get": {
-        "description": "Required permission \u003ccode\u003eNAMESPACE:{namespace}:EVENT [UPDATE]\u003c/code\u003eand scope \u003ccode\u003eanalytics\u003c/code\u003e",
+        "description": "Required permission <code>NAMESPACE:{namespace}:EVENT [UPDATE]</code>and scope <code>analytics</code>",
         "produces": [
           "application/json"
         ],
@@ -654,7 +654,7 @@
     },
     "/event/namespaces/{namespace}/users/{userId}": {
       "get": {
-        "description": "Required permission \u003ccode\u003eNAMESPACE:{namespace}:EVENT [UPDATE]\u003c/code\u003e and scope \u003ccode\u003eanalytics\u003c/code\u003e",
+        "description": "Required permission <code>NAMESPACE:{namespace}:EVENT [UPDATE]</code> and scope <code>analytics</code>",
         "produces": [
           "application/json"
         ],
@@ -734,7 +734,7 @@
     },
     "/event/namespaces/{namespace}/users/{userId}/activities": {
       "get": {
-        "description": "Required permission \u003ccode\u003eNAMESPACE:{namespace}:EVENT [UPDATE]\u003c/code\u003eand scope \u003ccode\u003eanalytics\u003c/code\u003e",
+        "description": "Required permission <code>NAMESPACE:{namespace}:EVENT [UPDATE]</code>and scope <code>analytics</code>",
         "produces": [
           "application/json"
         ],
@@ -798,7 +798,7 @@
         }
       },
       "delete": {
-        "description": "Required permission \u003ccode\u003eNAMESPACE:{namespace}:EVENT [UPDATE]\u003c/code\u003eand scope \u003ccode\u003eanalytics\u003c/code\u003e",
+        "description": "Required permission <code>NAMESPACE:{namespace}:EVENT [UPDATE]</code>and scope <code>analytics</code>",
         "produces": [
           "application/json"
         ],
@@ -845,7 +845,7 @@
     },
     "/event/namespaces/{namespace}/users/{userId}/eventId/{eventId}": {
       "get": {
-        "description": "Required permission \u003ccode\u003eNAMESPACE:{namespace}:EVENT [UPDATE]\u003c/code\u003e and scope \u003ccode\u003eanalytics\u003c/code\u003e",
+        "description": "Required permission <code>NAMESPACE:{namespace}:EVENT [UPDATE]</code> and scope <code>analytics</code>",
         "produces": [
           "application/json"
         ],
@@ -932,7 +932,7 @@
     },
     "/event/namespaces/{namespace}/users/{userId}/eventType/{eventType}": {
       "get": {
-        "description": "Required permission \u003ccode\u003eNAMESPACE:{namespace}:EVENT [UPDATE]and scope \u003ccode\u003eanalytics\u003c/code\u003e",
+        "description": "Required permission <code>NAMESPACE:{namespace}:EVENT [UPDATE]and scope <code>analytics</code>",
         "produces": [
           "application/json"
         ],
@@ -1019,7 +1019,7 @@
     },
     "/event/namespaces/{namespace}/users/{userId}/eventType/{eventType}/eventId/{eventId}": {
       "get": {
-        "description": "Required permission \u003ccode\u003eNAMESPACE:{namespace}:EVENT [UPDATE]\u003c/code\u003eand scope \u003ccode\u003eanalytics\u003c/code\u003e",
+        "description": "Required permission <code>NAMESPACE:{namespace}:EVENT [UPDATE]</code>and scope <code>analytics</code>",
         "produces": [
           "application/json"
         ],
@@ -1113,7 +1113,7 @@
     },
     "/event/namespaces/{namespace}/users/{userId}/lastActivityTime": {
       "get": {
-        "description": "Required permission \u003ccode\u003eNAMESPACE:{namespace}:EVENT [UPDATE]\u003c/code\u003eand scope \u003ccode\u003eanalytics\u003c/code\u003e",
+        "description": "Required permission <code>NAMESPACE:{namespace}:EVENT [UPDATE]</code>and scope <code>analytics</code>",
         "produces": [
           "application/json"
         ],
@@ -1163,7 +1163,7 @@
     },
     "/event/registry/eventIds": {
       "get": {
-        "description": "Required permission \u003ccode\u003eADMIN:NAMESPACE:{namespace}:EVENT [READ]\u003c/code\u003eand scope \u003ccode\u003eanalytics\u003c/code\u003e",
+        "description": "Required permission <code>ADMIN:NAMESPACE:{namespace}:EVENT [READ]</code>and scope <code>analytics</code>",
         "produces": [
           "application/json"
         ],
@@ -1192,7 +1192,7 @@
         }
       },
       "post": {
-        "description": "Required permission \u003ccode\u003eADMIN:NAMESPACE:{namespace}:EVENT [CREATE]\u003c/code\u003eand scope \u003ccode\u003eanalytics\u003c/code\u003e",
+        "description": "Required permission <code>ADMIN:NAMESPACE:{namespace}:EVENT [CREATE]</code>and scope <code>analytics</code>",
         "produces": [
           "application/json"
         ],
@@ -1236,7 +1236,7 @@
     },
     "/event/registry/eventIds/{eventId}": {
       "get": {
-        "description": "Required permission \u003ccode\u003eADMIN:NAMESPACE:{namespace}:EVENT [READ]\u003c/code\u003eand scope \u003ccode\u003eanalytics\u003c/code\u003e",
+        "description": "Required permission <code>ADMIN:NAMESPACE:{namespace}:EVENT [READ]</code>and scope <code>analytics</code>",
         "produces": [
           "application/json"
         ],
@@ -1280,7 +1280,7 @@
         }
       },
       "post": {
-        "description": "Required permission \u003ccode\u003eADMIN:NAMESPACE:{namespace}:EVENT [UPDATE]\u003c/code\u003eand scope \u003ccode\u003eanalytics\u003c/code\u003e",
+        "description": "Required permission <code>ADMIN:NAMESPACE:{namespace}:EVENT [UPDATE]</code>and scope <code>analytics</code>",
         "produces": [
           "application/json"
         ],
@@ -1329,7 +1329,7 @@
         }
       },
       "delete": {
-        "description": "Required permission \u003ccode\u003eADMIN:NAMESPACE:{namespace}:EVENT [DELETE]\u003c/code\u003eand scope \u003ccode\u003eanalytics\u003c/code\u003e",
+        "description": "Required permission <code>ADMIN:NAMESPACE:{namespace}:EVENT [DELETE]</code>and scope <code>analytics</code>",
         "produces": [
           "application/json"
         ],
@@ -1369,7 +1369,7 @@
     },
     "/event/registry/eventTypes/{eventType}": {
       "get": {
-        "description": "Required permission \u003ccode\u003eADMIN:NAMESPACE:{namespace}:EVENT [READ]\u003c/code\u003eand scope \u003ccode\u003eanalytics\u003c/code\u003e",
+        "description": "Required permission <code>ADMIN:NAMESPACE:{namespace}:EVENT [READ]</code>and scope <code>analytics</code>",
         "produces": [
           "application/json"
         ],
@@ -1415,7 +1415,7 @@
     },
     "/event/v2/admin/namespaces/{namespace}/query": {
       "post": {
-        "description": "\u003cp\u003eThis endpoint is using POST which is somewhat unfamiliar, \n\t\t\tbut it's logical that we have to send/post a filter (search term) in order to get the data.\u003c/p\u003e\n\t\t\t\u003cp\u003eThis endpoint will not return anything if you give it an empty filters in the request body. \u003c/p\u003e\n\t\t\t\u003cp\u003eRequired permission \u003ccode\u003eADMIN:NAMESPACE:{namespace}:EVENT [READ]\u003c/code\u003e and scope \u003ccode\u003e\"+scope+\"\u003c/code\u003e\u003c/p\u003e",
+        "description": "<p>This endpoint is using POST which is somewhat unfamiliar, \n\t\t\tbut it's logical that we have to send/post a filter (search term) in order to get the data.</p>\n\t\t\t<p>This endpoint will not return anything if you give it an empty filters in the request body. </p>\n\t\t\t<p>Required permission <code>ADMIN:NAMESPACE:{namespace}:EVENT [READ]</code> and scope <code>\"+scope+\"</code></p>",
         "produces": [
           "application/json"
         ],
@@ -1495,7 +1495,7 @@
     },
     "/event/v2/admin/namespaces/{namespace}/users/{userId}/event": {
       "get": {
-        "description": "Required permission \u003ccode\u003eADMIN:NAMESPACE:{namespace}:EVENT [READ]\u003c/code\u003eand scope \u003ccode\u003eanalytics\u003c/code\u003e",
+        "description": "Required permission <code>ADMIN:NAMESPACE:{namespace}:EVENT [READ]</code>and scope <code>analytics</code>",
         "produces": [
           "application/json"
         ],
@@ -1580,7 +1580,7 @@
     },
     "/event/v2/public/namespaces/{namespace}/users/{userId}/edithistory": {
       "get": {
-        "description": "\u003cp\u003eAvailable Type: \u003c/p\u003e\n\t\t\t\u003cul\u003e\n\t\t\t\t\u003cli\u003eemail\u003c/li\u003e\n\t\t\t\t\u003cli\u003epassword\u003c/li\u003e\n\t\t\t\t\u003cli\u003edisplayname\u003c/li\u003e\n\t\t\t\t\u003cli\u003edateofbirth\u003c/li\u003e\n\t\t\t\t\u003cli\u003ecountry\u003c/li\u003e\n\t\t\t\t\u003cli\u003elanguage\u003c/li\u003e\n\t\t\t\u003c/ul\u003e\n\t\t\t\u003cp\u003eRequires a valid user access token\u003c/p\u003e",
+        "description": "<p>Available Type: </p>\n\t\t\t<ul>\n\t\t\t\t<li>email</li>\n\t\t\t\t<li>password</li>\n\t\t\t\t<li>displayname</li>\n\t\t\t\t<li>dateofbirth</li>\n\t\t\t\t<li>country</li>\n\t\t\t\t<li>language</li>\n\t\t\t</ul>\n\t\t\t<p>Requires a valid user access token</p>",
         "produces": [
           "application/json"
         ],
@@ -1665,7 +1665,7 @@
     },
     "/event/v2/public/namespaces/{namespace}/users/{userId}/event": {
       "get": {
-        "description": "\u003cp\u003eRequires valid user access token\u003c/p\u003e",
+        "description": "<p>Requires valid user access token</p>",
         "produces": [
           "application/json"
         ],

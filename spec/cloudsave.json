@@ -8,7 +8,7 @@
       "url": "https://accelbyte.io",
       "email": "engineering@accelbyte.io"
     },
-    "version": "1.7.0"
+    "version": "1.8.0"
   },
   "paths": {
     "/cloudsave/v1/admin/namespaces/{namespace}/records": {
@@ -860,7 +860,7 @@
     },
     "/cloudsave/v1/namespaces/{namespace}/concurrent/records/{key}": {
       "put": {
-        "description": "\u003ctable\u003e\n\t\u003ctr\u003e\n\t\t\u003ctd\u003eRequired Permission\u003c/td\u003e\n\t\t\u003ctd\u003e\u003ccode\u003eNAMESPACE:{namespace}:CLOUDSAVE:RECORD [UPDATE]\u003c/code\u003e\u003c/td\u003e\n\t\u003c/tr\u003e\n\t\u003ctr\u003e\n\t\t\u003ctd\u003eRequired Scope\u003c/td\u003e\n\t\t\u003ctd\u003e\u003ccode\u003esocial\u003c/code\u003e\u003c/td\u003e\n\t\u003c/tr\u003e\n\u003c/table\u003e\n\u003cbr/\u003e\n\nIf record already exists, it will be replaced with the one from request body (all fields will be\ndeleted). If record is not exists, it will create a new one with value from request body.\n\nExample:\n\nReplace all records\n\u003cpre\u003e\n\t// existed record\n\t{\n\t\t\"foo\": \"bar\"\n\t}\n\n\t// new update (request body)\n\t{\n\t\t\"foo_new\": \"bar_new\"\n\t}\n\n\t// result\n\t{\n\t\t\"foo_new\": \"bar_new\"\n\t}\n\u003c/pre\u003e\n\n\u003cb\u003eOptimistic Concurrency Control\u003c/b\u003e\u003cbr\u003e\nThis endpoint implement optimistic concurrency control to avoid race condition.\nIf the record has been updated since the client fetch it, the server will return HTTP status code 412 (precondition failed) \nand client need to redo the operation (fetch data and do update).\nOtherwise, the server will process the request.\n",
+        "description": "<table>\n\t<tr>\n\t\t<td>Required Permission</td>\n\t\t<td><code>NAMESPACE:{namespace}:CLOUDSAVE:RECORD [UPDATE]</code></td>\n\t</tr>\n\t<tr>\n\t\t<td>Required Scope</td>\n\t\t<td><code>social</code></td>\n\t</tr>\n</table>\n<br/>\n\nIf record already exists, it will be replaced with the one from request body (all fields will be\ndeleted). If record is not exists, it will create a new one with value from request body.\n\nExample:\n\nReplace all records\n<pre>\n\t// existed record\n\t{\n\t\t\"foo\": \"bar\"\n\t}\n\n\t// new update (request body)\n\t{\n\t\t\"foo_new\": \"bar_new\"\n\t}\n\n\t// result\n\t{\n\t\t\"foo_new\": \"bar_new\"\n\t}\n</pre>\n\n<b>Optimistic Concurrency Control</b><br>\nThis endpoint implement optimistic concurrency control to avoid race condition.\nIf the record has been updated since the client fetch it, the server will return HTTP status code 412 (precondition failed) \nand client need to redo the operation (fetch data and do update).\nOtherwise, the server will process the request.\n",
         "consumes": [
           "application/json"
         ],
@@ -929,7 +929,7 @@
     },
     "/cloudsave/v1/namespaces/{namespace}/records/{key}": {
       "get": {
-        "description": "\u003ctable\u003e\n\t\u003ctr\u003e\n\t\t\u003ctd\u003eRequired Permission\u003c/td\u003e\n\t\t\u003ctd\u003e\u003ccode\u003eNAMESPACE:{namespace}:CLOUDSAVE:RECORD [READ]\u003c/code\u003e\u003c/td\u003e\n\t\u003c/tr\u003e\n\t\u003ctr\u003e\n\t\t\u003ctd\u003eRequired Scope\u003c/td\u003e\n\t\t\u003ctd\u003e\u003ccode\u003esocial\u003c/code\u003e\u003c/td\u003e\n\t\u003c/tr\u003e\n\u003c/table\u003e\n\u003cbr/\u003e\nGet game record by its key.\n",
+        "description": "<table>\n\t<tr>\n\t\t<td>Required Permission</td>\n\t\t<td><code>NAMESPACE:{namespace}:CLOUDSAVE:RECORD [READ]</code></td>\n\t</tr>\n\t<tr>\n\t\t<td>Required Scope</td>\n\t\t<td><code>social</code></td>\n\t</tr>\n</table>\n<br/>\nGet game record by its key.\n",
         "consumes": [
           "application/json"
         ],
@@ -985,7 +985,7 @@
         }
       },
       "put": {
-        "description": "\u003ctable\u003e\n\t\u003ctr\u003e\n\t\t\u003ctd\u003eRequired Permission\u003c/td\u003e\n\t\t\u003ctd\u003e\u003ccode\u003eNAMESPACE:{namespace}:CLOUDSAVE:RECORD [UPDATE]\u003c/code\u003e\u003c/td\u003e\n\t\u003c/tr\u003e\n\t\u003ctr\u003e\n\t\t\u003ctd\u003eRequired Scope\u003c/td\u003e\n\t\t\u003ctd\u003e\u003ccode\u003esocial\u003c/code\u003e\u003c/td\u003e\n\t\u003c/tr\u003e\n\u003c/table\u003e\n\u003cbr/\u003e\n\nIf record already exists, it will be replaced with the one from request body (all fields will be\ndeleted). If record is not exists, it will create a new one with value from request body.\n\nExample:\n\nReplace all records\n\u003cpre\u003e\n\t// existed record\n\t{\n\t\t\"foo\": \"bar\"\n\t}\n\n\t// new update (request body)\n\t{\n\t\t\"foo_new\": \"bar_new\"\n\t}\n\n\t// result\n\t{\n\t\t\"foo_new\": \"bar_new\"\n\t}\n\u003c/pre\u003e\n",
+        "description": "<table>\n\t<tr>\n\t\t<td>Required Permission</td>\n\t\t<td><code>NAMESPACE:{namespace}:CLOUDSAVE:RECORD [UPDATE]</code></td>\n\t</tr>\n\t<tr>\n\t\t<td>Required Scope</td>\n\t\t<td><code>social</code></td>\n\t</tr>\n</table>\n<br/>\n\nIf record already exists, it will be replaced with the one from request body (all fields will be\ndeleted). If record is not exists, it will create a new one with value from request body.\n\nExample:\n\nReplace all records\n<pre>\n\t// existed record\n\t{\n\t\t\"foo\": \"bar\"\n\t}\n\n\t// new update (request body)\n\t{\n\t\t\"foo_new\": \"bar_new\"\n\t}\n\n\t// result\n\t{\n\t\t\"foo_new\": \"bar_new\"\n\t}\n</pre>\n",
         "consumes": [
           "application/json"
         ],
@@ -1040,7 +1040,7 @@
         }
       },
       "post": {
-        "description": "\u003ctable\u003e\n\t\u003ctr\u003e\n\t\t\u003ctd\u003eRequired Permission\u003c/td\u003e\n\t\t\u003ctd\u003e\u003ccode\u003eNAMESPACE:{namespace}:CLOUDSAVE:RECORD [CREATE]\u003c/code\u003e\u003c/td\u003e\n\t\u003c/tr\u003e\n\t\u003ctr\u003e\n\t\t\u003ctd\u003eRequired Scope\u003c/td\u003e\n\t\t\u003ctd\u003e\u003ccode\u003esocial\u003c/code\u003e\u003c/td\u003e\n\t\u003c/tr\u003e\n\u003c/table\u003e\n\u003cbr/\u003e\n\nIf there's already record, the record will be merged with conditions:\n- If field name is already exist, the value will be replaced\n- If field name is not exists it will append the field and its value\n\nExample:\n\nReplace value in a specific JSON key\n\u003cpre\u003e\n// existed record\n{\n\t\"foo\": \"bar\"\n}\n\n// new update (request body)\n{\n\t\"foo\": \"barUpdated\"\n}\n\n// result\n{\n\t\"foo\": \"barUpdated\"\n}\n\u003c/pre\u003e\n\nAppend new json item\n\u003cpre\u003e\n// existed record\n{\n\t\"foo\": \"bar\"\n}\n\n// new update (request body)\n{\n\t\"foo_new\": \"bar_new\"\n}\n\n// result\n{\n\t\"foo\": \"bar\",\n\t\"foo_new\": \"bar_new\"\n}\n\u003c/pre\u003e\n",
+        "description": "<table>\n\t<tr>\n\t\t<td>Required Permission</td>\n\t\t<td><code>NAMESPACE:{namespace}:CLOUDSAVE:RECORD [CREATE]</code></td>\n\t</tr>\n\t<tr>\n\t\t<td>Required Scope</td>\n\t\t<td><code>social</code></td>\n\t</tr>\n</table>\n<br/>\n\nIf there's already record, the record will be merged with conditions:\n- If field name is already exist, the value will be replaced\n- If field name is not exists it will append the field and its value\n\nExample:\n\nReplace value in a specific JSON key\n<pre>\n// existed record\n{\n\t\"foo\": \"bar\"\n}\n\n// new update (request body)\n{\n\t\"foo\": \"barUpdated\"\n}\n\n// result\n{\n\t\"foo\": \"barUpdated\"\n}\n</pre>\n\nAppend new json item\n<pre>\n// existed record\n{\n\t\"foo\": \"bar\"\n}\n\n// new update (request body)\n{\n\t\"foo_new\": \"bar_new\"\n}\n\n// result\n{\n\t\"foo\": \"bar\",\n\t\"foo_new\": \"bar_new\"\n}\n</pre>\n",
         "consumes": [
           "application/json"
         ],
@@ -1095,7 +1095,7 @@
         }
       },
       "delete": {
-        "description": "\u003ctable\u003e\n\t\u003ctr\u003e\n\t\t\u003ctd\u003eRequired Permission\u003c/td\u003e\n\t\t\u003ctd\u003e\u003ccode\u003eNAMESPACE:{namespace}:CLOUDSAVE:RECORD [DELETE]\u003c/code\u003e\u003c/td\u003e\n\t\u003c/tr\u003e\n\t\u003ctr\u003e\n\t\t\u003ctd\u003eRequired Scope\u003c/td\u003e\n\t\t\u003ctd\u003e\u003ccode\u003esocial\u003c/code\u003e\u003c/td\u003e\n\t\u003c/tr\u003e\n\u003c/table\u003e\n\u003cbr/\u003e\n\nDelete records by its key\n",
+        "description": "<table>\n\t<tr>\n\t\t<td>Required Permission</td>\n\t\t<td><code>NAMESPACE:{namespace}:CLOUDSAVE:RECORD [DELETE]</code></td>\n\t</tr>\n\t<tr>\n\t\t<td>Required Scope</td>\n\t\t<td><code>social</code></td>\n\t</tr>\n</table>\n<br/>\n\nDelete records by its key\n",
         "consumes": [
           "application/json"
         ],
@@ -1199,7 +1199,7 @@
     },
     "/cloudsave/v1/namespaces/{namespace}/users/{userId}/concurrent/records/{key}/public": {
       "put": {
-        "description": "\u003ctable\u003e\n\t\u003ctr\u003e\n\t\t\u003ctd\u003eRequired Permission\u003c/td\u003e\n\t\t\u003ctd\u003e\u003ccode\u003eNAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [UPDATE]\u003c/code\u003e\u003c/td\u003e\n\t\u003c/tr\u003e\n\t\u003ctr\u003e\n\t\t\u003ctd\u003eRequired Scope\u003c/td\u003e\n\t\t\u003ctd\u003e\u003ccode\u003esocial\u003c/code\u003e\u003c/td\u003e\n\t\u003c/tr\u003e\n\u003c/table\u003e\n\u003cbr/\u003e\n\nIf the record is not exist, it will create. If the record already exist, it will replace the record\ninstead. And this operation can only be applied to record with \u003ccode\u003eisPublic=true\u003c/code\u003e.\n\nExample\n\nReplace record\n\u003cpre\u003e\n// existed record\n{\n\t\"foo\": \"bar\"\n}\n\n// new record (request body)\n{\n\t\"foo_new\": \"bar_new\"\n}\n\n// result\n{\n\t\"foo_new\": \"bar_new\"\n}\n\u003c/pre\u003e\n\t\n\u003cb\u003eOptimistic Concurrency Control\u003c/b\u003e\u003cbr\u003e\nThis endpoint implement optimistic concurrency control to avoid race condition.\nIf the record has been updated since the client fetch it, the server will return HTTP status code 412 (precondition failed)\nand client need to redo the operation (fetch data and do update).\nOtherwise, the server will process the request.\n",
+        "description": "<table>\n\t<tr>\n\t\t<td>Required Permission</td>\n\t\t<td><code>NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [UPDATE]</code></td>\n\t</tr>\n\t<tr>\n\t\t<td>Required Scope</td>\n\t\t<td><code>social</code></td>\n\t</tr>\n</table>\n<br/>\n\nIf the record is not exist, it will create. If the record already exist, it will replace the record\ninstead. And this operation can only be applied to record with <code>isPublic=true</code>.\n\nExample\n\nReplace record\n<pre>\n// existed record\n{\n\t\"foo\": \"bar\"\n}\n\n// new record (request body)\n{\n\t\"foo_new\": \"bar_new\"\n}\n\n// result\n{\n\t\"foo_new\": \"bar_new\"\n}\n</pre>\n\t\n<b>Optimistic Concurrency Control</b><br>\nThis endpoint implement optimistic concurrency control to avoid race condition.\nIf the record has been updated since the client fetch it, the server will return HTTP status code 412 (precondition failed)\nand client need to redo the operation (fetch data and do update).\nOtherwise, the server will process the request.\n",
         "consumes": [
           "application/json"
         ],
@@ -1275,7 +1275,7 @@
     },
     "/cloudsave/v1/namespaces/{namespace}/users/{userId}/records/{key}": {
       "get": {
-        "description": "\u003ctable\u003e\n\t\u003ctr\u003e\n\t\t\u003ctd\u003eRequired Permission\u003c/td\u003e\n\t\t\u003ctd\u003e\u003ccode\u003eNAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [READ]\u003c/code\u003e\u003c/td\u003e\n\t\u003c/tr\u003e\n\t\u003ctr\u003e\n\t\t\u003ctd\u003eRequired Scope\u003c/td\u003e\n\t\t\u003ctd\u003e\u003ccode\u003esocial\u003c/code\u003e\u003c/td\u003e\n\t\u003c/tr\u003e\n\u003c/table\u003e\n\u003cbr/\u003e\n\nGet player record by its key",
+        "description": "<table>\n\t<tr>\n\t\t<td>Required Permission</td>\n\t\t<td><code>NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [READ]</code></td>\n\t</tr>\n\t<tr>\n\t\t<td>Required Scope</td>\n\t\t<td><code>social</code></td>\n\t</tr>\n</table>\n<br/>\n\nGet player record by its key",
         "consumes": [
           "application/json"
         ],
@@ -1338,7 +1338,7 @@
         }
       },
       "put": {
-        "description": "\u003ctable\u003e\n\t\u003ctr\u003e\n\t\t\u003ctd\u003eRequired Permission\u003c/td\u003e\n\t\t\u003ctd\u003e\u003ccode\u003eNAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [UPDATE]\u003c/code\u003e\u003c/td\u003e\n\t\u003c/tr\u003e\n\t\u003ctr\u003e\n\t\t\u003ctd\u003eRequired Scope\u003c/td\u003e\n\t\t\u003ctd\u003e\u003ccode\u003esocial\u003c/code\u003e\u003c/td\u003e\n\t\u003c/tr\u003e\n\u003c/table\u003e\n\u003cbr/\u003e\n\nThis endpoint will create new record if it is not exists and it will replace if already exists.\n\nExample\n\nReplace record\n\u003cpre\u003e\n// existed record\n{\n\t\"foo\": \"bar\"\n}\n\n// new record (request body)\n{\n\t\"foo_new\": \"bar_new\"\n}\n\n// result\n{\n\t\"foo_new\": \"bar_new\"\n}\n\u003c/pre\u003e\n",
+        "description": "<table>\n\t<tr>\n\t\t<td>Required Permission</td>\n\t\t<td><code>NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [UPDATE]</code></td>\n\t</tr>\n\t<tr>\n\t\t<td>Required Scope</td>\n\t\t<td><code>social</code></td>\n\t</tr>\n</table>\n<br/>\n\nThis endpoint will create new record if it is not exists and it will replace if already exists.\n\nExample\n\nReplace record\n<pre>\n// existed record\n{\n\t\"foo\": \"bar\"\n}\n\n// new record (request body)\n{\n\t\"foo_new\": \"bar_new\"\n}\n\n// result\n{\n\t\"foo_new\": \"bar_new\"\n}\n</pre>\n",
         "consumes": [
           "application/json"
         ],
@@ -1400,7 +1400,7 @@
         }
       },
       "post": {
-        "description": "\u003ctable\u003e\n\t\u003ctr\u003e\n\t\t\u003ctd\u003eRequired Permission\u003c/td\u003e\n\t\t\u003ctd\u003e\u003ccode\u003eNAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [WRITE]\u003c/code\u003e\u003c/td\u003e\n\t\u003c/tr\u003e\n\t\u003ctr\u003e\n\t\t\u003ctd\u003eRequired Scope\u003c/td\u003e\n\t\t\u003ctd\u003e\u003ccode\u003esocial\u003c/code\u003e\u003c/td\u003e\n\t\u003c/tr\u003e\n\u003c/table\u003e\n\u003cbr/\u003e\n\nCreate player record if it is not exists otherwise merge with these criteria:\n- If field name is already exists, replace the value\n- If field name is not exists, append it\n\nExample\n\nReplace value:\n\u003cpre\u003e\n\t// existed record\n\t{\n\t\t\"foo\": \"bar\"\n\t}\n\n\t// new record (request body)\n\t{\n\t\t\"foo\": \"bar_updated\"\n\t}\n\n\t// result\n\t{\n\t\t\"foo\": \"bar_updated\"\n\t}\n\u003c/pre\u003e\n\nAppend value:\n\u003cpre\u003e\n\t// existed record\n\t{\n\t\t\"foo\": \"bar\"\n\t}\n\n\t// new record (request body)\n\t{\n\t\t\"foo_new\": \"bar_new\"\n\t}\n\n\t// result\n\t{\n\t\t\"foo\": \"bar\",\n\t\t\"foo_new\": \"bar_new\"\n\t}\n\u003c/pre\u003e\n",
+        "description": "<table>\n\t<tr>\n\t\t<td>Required Permission</td>\n\t\t<td><code>NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [WRITE]</code></td>\n\t</tr>\n\t<tr>\n\t\t<td>Required Scope</td>\n\t\t<td><code>social</code></td>\n\t</tr>\n</table>\n<br/>\n\nCreate player record if it is not exists otherwise merge with these criteria:\n- If field name is already exists, replace the value\n- If field name is not exists, append it\n\nExample\n\nReplace value:\n<pre>\n\t// existed record\n\t{\n\t\t\"foo\": \"bar\"\n\t}\n\n\t// new record (request body)\n\t{\n\t\t\"foo\": \"bar_updated\"\n\t}\n\n\t// result\n\t{\n\t\t\"foo\": \"bar_updated\"\n\t}\n</pre>\n\nAppend value:\n<pre>\n\t// existed record\n\t{\n\t\t\"foo\": \"bar\"\n\t}\n\n\t// new record (request body)\n\t{\n\t\t\"foo_new\": \"bar_new\"\n\t}\n\n\t// result\n\t{\n\t\t\"foo\": \"bar\",\n\t\t\"foo_new\": \"bar_new\"\n\t}\n</pre>\n",
         "consumes": [
           "application/json"
         ],
@@ -1462,7 +1462,7 @@
         }
       },
       "delete": {
-        "description": "\u003ctable\u003e\n\t\u003ctr\u003e\n\t\t\u003ctd\u003eRequired Permission\u003c/td\u003e\n\t\t\u003ctd\u003e\u003ccode\u003eNAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [DELETE]\u003c/code\u003e\u003c/td\u003e\n\t\u003c/tr\u003e\n\t\u003ctr\u003e\n\t\t\u003ctd\u003eRequired Scope\u003c/td\u003e\n\t\t\u003ctd\u003e\u003ccode\u003esocial\u003c/code\u003e\u003c/td\u003e\n\t\u003c/tr\u003e\n\u003c/table\u003e\n\u003cbr/\u003e\n\nDelete player record by its key",
+        "description": "<table>\n\t<tr>\n\t\t<td>Required Permission</td>\n\t\t<td><code>NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [DELETE]</code></td>\n\t</tr>\n\t<tr>\n\t\t<td>Required Scope</td>\n\t\t<td><code>social</code></td>\n\t</tr>\n</table>\n<br/>\n\nDelete player record by its key",
         "consumes": [
           "application/json"
         ],
@@ -1518,7 +1518,7 @@
     },
     "/cloudsave/v1/namespaces/{namespace}/users/{userId}/records/{key}/public": {
       "get": {
-        "description": "\u003ctable\u003e\n\t\u003ctr\u003e\n\t\t\u003ctd\u003eRequired Permission\u003c/td\u003e\n\t\t\u003ctd\u003e\u003ccode\u003eNAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [READ]\u003c/code\u003e\u003c/td\u003e\n\t\u003c/tr\u003e\n\t\u003ctr\u003e\n\t\t\u003ctd\u003eRequired Scope\u003c/td\u003e\n\t\t\u003ctd\u003e\u003ccode\u003esocial\u003c/code\u003e\u003c/td\u003e\n\t\u003c/tr\u003e\n\u003c/table\u003e\n\u003cbr/\u003e\n\nGet other player's record that is public. Only record with \u003ccode\u003eisPublic=true\u003c/code\u003e that can be\nretrieved using this endpoint.\n",
+        "description": "<table>\n\t<tr>\n\t\t<td>Required Permission</td>\n\t\t<td><code>NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [READ]</code></td>\n\t</tr>\n\t<tr>\n\t\t<td>Required Scope</td>\n\t\t<td><code>social</code></td>\n\t</tr>\n</table>\n<br/>\n\nGet other player's record that is public. Only record with <code>isPublic=true</code> that can be\nretrieved using this endpoint.\n",
         "consumes": [
           "application/json"
         ],
@@ -1581,7 +1581,7 @@
         }
       },
       "put": {
-        "description": "\u003ctable\u003e\n\t\u003ctr\u003e\n\t\t\u003ctd\u003eRequired Permission\u003c/td\u003e\n\t\t\u003ctd\u003e\u003ccode\u003eNAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [UPDATE]\u003c/code\u003e\u003c/td\u003e\n\t\u003c/tr\u003e\n\t\u003ctr\u003e\n\t\t\u003ctd\u003eRequired Scope\u003c/td\u003e\n\t\t\u003ctd\u003e\u003ccode\u003esocial\u003c/code\u003e\u003c/td\u003e\n\t\u003c/tr\u003e\n\u003c/table\u003e\n\u003cbr/\u003e\n\nIf the record is not exist, it will create. If the record already exist, it will replace the record\ninstead. And this operation can only be applied to record with \u003ccode\u003eisPublic=true\u003c/code\u003e.\n\nExample\n\nReplace record\n\u003cpre\u003e\n// existed record\n{\n\t\"foo\": \"bar\"\n}\n\n// new record (request body)\n{\n\t\"foo_new\": \"bar_new\"\n}\n\n// result\n{\n\t\"foo_new\": \"bar_new\"\n}\n\u003c/pre\u003e\n",
+        "description": "<table>\n\t<tr>\n\t\t<td>Required Permission</td>\n\t\t<td><code>NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [UPDATE]</code></td>\n\t</tr>\n\t<tr>\n\t\t<td>Required Scope</td>\n\t\t<td><code>social</code></td>\n\t</tr>\n</table>\n<br/>\n\nIf the record is not exist, it will create. If the record already exist, it will replace the record\ninstead. And this operation can only be applied to record with <code>isPublic=true</code>.\n\nExample\n\nReplace record\n<pre>\n// existed record\n{\n\t\"foo\": \"bar\"\n}\n\n// new record (request body)\n{\n\t\"foo_new\": \"bar_new\"\n}\n\n// result\n{\n\t\"foo_new\": \"bar_new\"\n}\n</pre>\n",
         "consumes": [
           "application/json"
         ],
@@ -1643,7 +1643,7 @@
         }
       },
       "post": {
-        "description": "\u003ctable\u003e\n\t\u003ctr\u003e\n\t\t\u003ctd\u003eRequired Permission\u003c/td\u003e\n\t\t\u003ctd\u003e\u003ccode\u003eNAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [WRITE]\u003c/code\u003e\u003c/td\u003e\n\t\u003c/tr\u003e\n\t\u003ctr\u003e\n\t\t\u003ctd\u003eRequired Scope\u003c/td\u003e\n\t\t\u003ctd\u003e\u003ccode\u003esocial\u003c/code\u003e\u003c/td\u003e\n\t\u003c/tr\u003e\n\u003c/table\u003e\n\u003cbr/\u003e\n\nThis endpoint will create or update player record with \u003ccode\u003eisPublic=true\u003c/code\u003e meaning that the\nrecord will be available for other player to be retrieved. Other player can only retrieve the record\nand not create, update or even delete.\n\nThis endpoint will create public player record if it is not exists otherwise merge with these criteria:\n- If field name is already exists, replace the value\n- If field name is not exists, append it\n\nExample\n\nReplace value:\n\u003cpre\u003e\n\t// existed record\n\t{\n\t\t\"foo\": \"bar\"\n\t}\n\n\t// new record (request body)\n\t{\n\t\t\"foo\": \"bar_updated\"\n\t}\n\n\t// result\n\t{\n\t\t\"foo\": \"bar_updated\"\n\t}\n\u003c/pre\u003e\n\nAppend value:\n\u003cpre\u003e\n\t// existed record\n\t{\n\t\t\"foo\": \"bar\"\n\t}\n\n\t// new record (request body)\n\t{\n\t\t\"foo_new\": \"bar_new\"\n\t}\n\n\t// result\n\t{\n\t\t\"foo\": \"bar\",\n\t\t\"foo_new\": \"bar_new\"\n\t}\n\u003c/pre\u003e\n",
+        "description": "<table>\n\t<tr>\n\t\t<td>Required Permission</td>\n\t\t<td><code>NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [WRITE]</code></td>\n\t</tr>\n\t<tr>\n\t\t<td>Required Scope</td>\n\t\t<td><code>social</code></td>\n\t</tr>\n</table>\n<br/>\n\nThis endpoint will create or update player record with <code>isPublic=true</code> meaning that the\nrecord will be available for other player to be retrieved. Other player can only retrieve the record\nand not create, update or even delete.\n\nThis endpoint will create public player record if it is not exists otherwise merge with these criteria:\n- If field name is already exists, replace the value\n- If field name is not exists, append it\n\nExample\n\nReplace value:\n<pre>\n\t// existed record\n\t{\n\t\t\"foo\": \"bar\"\n\t}\n\n\t// new record (request body)\n\t{\n\t\t\"foo\": \"bar_updated\"\n\t}\n\n\t// result\n\t{\n\t\t\"foo\": \"bar_updated\"\n\t}\n</pre>\n\nAppend value:\n<pre>\n\t// existed record\n\t{\n\t\t\"foo\": \"bar\"\n\t}\n\n\t// new record (request body)\n\t{\n\t\t\"foo_new\": \"bar_new\"\n\t}\n\n\t// result\n\t{\n\t\t\"foo\": \"bar\",\n\t\t\"foo_new\": \"bar_new\"\n\t}\n</pre>\n",
         "consumes": [
           "application/json"
         ],

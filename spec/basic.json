@@ -1,10 +1,8 @@
 {
   "swagger": "2.0",
-  "host": "jib.noice.accelbyte.io",
-  "schemes": ["https"],
   "info": {
     "description": "Justice Basic Service",
-    "version": "1.17.0",
+    "version": "1.23.0",
     "title": "justice-basic-service",
     "contact": {
       "name": "Engineering Team at AccelByte",
@@ -73,7 +71,7 @@
             }
           },
           "400": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>11131</td><td>file type not supported</td></tr></table>",
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>11131</td><td>Unable to {action}: File type is not supported</td></tr></table>",
             "schema": {
               "$ref": "#/definitions/ValidationErrorEntity"
             }
@@ -150,7 +148,7 @@
             }
           },
           "400": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>11131</td><td>file type not supported</td></tr></table>",
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>11131</td><td>Unable to {action}: File type is not supported</td></tr></table>",
             "schema": {
               "$ref": "#/definitions/ValidationErrorEntity"
             }
@@ -168,7 +166,7 @@
             }
           },
           "409": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11132</td><td>storage limit exceeded</td></tr></table>",
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11132</td><td>Unable to {action}: file storage exceed limitation, user ID: {userId}, namespace: {namespace}</td></tr></table>",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -233,7 +231,7 @@
             }
           },
           "400": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>11131</td><td>file type not supported</td></tr></table>",
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>11131</td><td>Unable to {action}: File type is not supported</td></tr></table>",
             "schema": {
               "$ref": "#/definitions/ValidationErrorEntity"
             }
@@ -310,7 +308,7 @@
             }
           },
           "400": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>11131</td><td>file type not supported</td></tr></table>",
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>11131</td><td>Unable to {action}: File type is not supported</td></tr></table>",
             "schema": {
               "$ref": "#/definitions/ValidationErrorEntity"
             }
@@ -328,7 +326,7 @@
             }
           },
           "409": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11132</td><td>storage limit exceeded</td></tr></table>",
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11132</td><td>Unable to {action}: file storage exceed limitation, user ID: {userId}, namespace: {namespace}</td></tr></table>",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -394,7 +392,7 @@
             }
           },
           "400": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>20019</td><td>unable to parse request body</td></tr><tr><td>11234</td><td>country belongs to more than one group</td></tr></table>",
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>20019</td><td>unable to parse request body</td></tr><tr><td>11234</td><td>Unable to {action}: A country can't be assigned to more than one country group</td></tr></table>",
             "schema": {
               "$ref": "#/definitions/ValidationErrorEntity"
             }
@@ -412,7 +410,7 @@
             }
           },
           "404": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11233</td><td>country group not found</td></tr></table>",
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11233</td><td>Unable to {action}: Country group with code [{countryGroupCode}] is not found</td></tr></table>",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -454,6 +452,9 @@
           }
         ],
         "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
           "400": {
             "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
             "schema": {
@@ -473,7 +474,7 @@
             }
           },
           "404": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11233</td><td>country group not found</td></tr></table>",
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11233</td><td>Unable to {action}: Country group with code [{countryGroupCode}] is not found</td></tr></table>",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -651,7 +652,7 @@
             }
           },
           "404": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11233</td><td>country group not found</td></tr></table>",
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11233</td><td>Unable to {action}: Country group with code [{countryGroupCode}] is not found</td></tr></table>",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -701,7 +702,7 @@
             }
           },
           "400": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>20019</td><td>unable to parse request body</td></tr><tr><td>11234</td><td>country belongs to more than one group</td></tr></table>",
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>20019</td><td>unable to parse request body</td></tr><tr><td>11234</td><td>Unable to {action}: A country can't be assigned to more than one country group</td></tr></table>",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -719,7 +720,7 @@
             }
           },
           "409": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11235</td><td>country group already exist</td></tr></table>",
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11235</td><td>Unable to {action}: Country group with specified code is already exist</td></tr></table>",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -793,6 +794,28 @@
         ],
         "x-authorization": {
           "authenticated": "true"
+        }
+      }
+    },
+    "/v1/public/misc/time": {
+      "get": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "Get server time",
+        "description": "Get server time",
+        "operationId": "publicGetTime",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success retrieve server time",
+            "schema": {
+              "$ref": "#/definitions/RetrieveTimeResponse"
+            }
+          }
         }
       }
     },
@@ -1015,7 +1038,7 @@
             }
           },
           "400": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>20019</td><td>unable to parse request body</td></tr><tr><td>11338</td><td>namespace contains invalid character</td></tr><tr><td>11339</td><td>namespace display name contains invalid character</td></tr></table>",
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>20019</td><td>unable to parse request body</td></tr><tr><td>11338</td><td>Unable to {action}: Namespace contains invalid character(s)</td></tr><tr><td>11339</td><td>Unable to {action}: Display name contains invalid character(s)</td></tr></table>",
             "schema": {
               "$ref": "#/definitions/ValidationErrorEntity"
             }
@@ -1033,7 +1056,7 @@
             }
           },
           "409": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11336</td><td>namespace already exists</td></tr></table>",
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11336</td><td>Unable to {action}: Namespace already exists</td></tr></table>",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -1107,7 +1130,7 @@
             }
           },
           "404": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11337</td><td>namespace not found</td></tr></table>",
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11337</td><td>Unable to {action}: Namespace not found</td></tr></table>",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -1187,7 +1210,7 @@
             }
           },
           "404": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11337</td><td>namespace not found</td></tr></table>",
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11337</td><td>Unable to {action}: Namespace not found</td></tr></table>",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -1259,7 +1282,7 @@
             }
           },
           "404": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11337</td><td>namespace not found</td></tr></table>",
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11337</td><td>Unable to {action}: Namespace not found</td></tr></table>",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -1330,7 +1353,7 @@
             }
           },
           "404": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11337</td><td>namespace not found</td></tr></table>",
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11337</td><td>Unable to {action}: Namespace not found</td></tr></table>",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -1391,7 +1414,7 @@
             }
           },
           "404": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11337</td><td>namespace not found</td></tr></table>",
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11337</td><td>Unable to {action}: Namespace not found</td></tr></table>",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -1463,7 +1486,7 @@
             }
           },
           "404": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11337</td><td>namespace not found</td></tr></table>",
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11337</td><td>Unable to {action}: Namespace not found</td></tr></table>",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -1579,12 +1602,6 @@
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
-          },
-          "404": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11540</td><td>user profile not found</td></tr></table>",
-            "schema": {
-              "$ref": "#/definitions/ErrorEntity"
-            }
           }
         },
         "security": [
@@ -1651,7 +1668,7 @@
             }
           },
           "404": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11440</td><td>user profile not found</td></tr></table>",
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11440</td><td>Unable to {action}: User profile not found in namespace [{namespace}]</td></tr></table>",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -1730,7 +1747,7 @@
             }
           },
           "404": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11440</td><td>user profile not found</td></tr></table>",
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11440</td><td>Unable to {action}: User profile not found in namespace [{namespace}]</td></tr></table>",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -1801,7 +1818,7 @@
             }
           },
           "404": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11440</td><td>user profile not found</td></tr></table>",
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11440</td><td>Unable to {action}: User profile not found in namespace [{namespace}]</td></tr></table>",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -1868,7 +1885,7 @@
             }
           },
           "404": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11440</td><td>user profile not found</td></tr></table>",
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11440</td><td>Unable to {action}: User profile not found in namespace [{namespace}]</td></tr></table>",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -1953,7 +1970,7 @@
             }
           },
           "404": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11440</td><td>user profile not found</td></tr></table>",
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11440</td><td>Unable to {action}: User profile not found in namespace [{namespace}]</td></tr></table>",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -2020,7 +2037,7 @@
             }
           },
           "404": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11440</td><td>user profile not found</td></tr></table>",
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11440</td><td>Unable to {action}: User profile not found in namespace [{namespace}]</td></tr></table>",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -2105,7 +2122,7 @@
             }
           },
           "404": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11440</td><td>user profile not found</td></tr></table>",
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11440</td><td>Unable to {action}: User profile not found in namespace [{namespace}]</td></tr></table>",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -2129,7 +2146,7 @@
         ],
         "summary": "Update user profile status",
         "description": "Update user profile status.<br>Other detail info: <ul><li><i>Required permission</i>: resource=<b>\"ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE\"</b>, action=4 <b>(UPDATE)</b></li><li><i>Action code</i>: 11406</li><li><i>Returns</i>: user profile</li></ul>",
-        "operationId": "enableUserProfileStatus",
+        "operationId": "updateUserProfileStatus",
         "consumes": [
           "application/json"
         ],
@@ -2186,7 +2203,7 @@
             }
           },
           "404": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11440</td><td>user profile not found</td></tr></table>",
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11440</td><td>Unable to {action}: User profile not found in namespace [{namespace}]</td></tr></table>",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -2203,14 +2220,14 @@
         }
       }
     },
-    "/v1/public/namespaces/{namespace}/users/{userId}/profiles/public": {
+    "/v1/public/namespaces/{namespace}/profiles/public": {
       "get": {
         "tags": [
           "UserProfile"
         ],
-        "summary": "Get user profile public info",
-        "description": "Get user profile public info.<br>Other detail info: <ul><li><i>Action code</i>: 11404</li><li><i>Returns</i>: user public profile</li></ul>",
-        "operationId": "publicGetUserProfilePublicInfo",
+        "summary": "Get user profile public info by ids",
+        "description": "Get user public profile by ids.<br>Other detail info: <ul><li><i>Action code</i>: 11405</li><li><i>Returns</i>: user public profiles</li></ul>",
+        "operationId": "publicGetUserProfilePublicInfoByIds",
         "produces": [
           "application/json"
         ],
@@ -2223,9 +2240,9 @@
             "type": "string"
           },
           {
-            "name": "userId",
-            "in": "path",
-            "description": "user's id, should follow UUID version 4 without hyphen",
+            "name": "userIds",
+            "in": "query",
+            "description": "User IDs, should follow UUID version 4 without hyphen, separate the IDs using comma",
             "required": true,
             "type": "string"
           }
@@ -2234,19 +2251,16 @@
           "200": {
             "description": "Successful operation",
             "schema": {
-              "$ref": "#/definitions/UserProfilePublicInfo"
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/UserProfilePublicInfo"
+              }
             }
           },
           "400": {
             "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
             "schema": {
               "$ref": "#/definitions/ValidationErrorEntity"
-            }
-          },
-          "404": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11440</td><td>user profile not found</td></tr></table>",
-            "schema": {
-              "$ref": "#/definitions/ErrorEntity"
             }
           }
         }
@@ -2257,8 +2271,8 @@
         "tags": [
           "UserProfile"
         ],
-        "summary": "Get user profile",
-        "description": "Get user profile<br><b>Client with user token can get user profile in target namespace</b><br>Other detail info: <ul><li><i>Required permission</i>: resource=<b>\"NAMESPACE:{namespace}:PROFILE\"</b>, action=2 <b>(READ)</b></li><li><i>Action code</i>: 11403</li><li><i>Returns</i>: user profile</li><li><i>Path's namespace</i> : <ul><li>can be filled with <b>publisher namespace</b> in order to get <b>publisher user profile</b></li><li>can be filled with <b>game namespace</b> in order to get <b>game user profile</b></li></ul></li><li><i>Language</i> : allowed format: en, en-US</li><li><i>Timezone</i> : IANA time zone, e.g. Asia/Shanghai</li></ul>",
+        "summary": "Get my profile",
+        "description": "Get my profile<br><b>Client with user token can get user profile in target namespace</b><br>Other detail info: <ul><li><i>Required permission</i>: resource=<b>\"NAMESPACE:{namespace}:PROFILE\"</b>, action=2 <b>(READ)</b></li><li><i>Action code</i>: 11403</li><li><i>Returns</i>: user profile</li><li><i>Path's namespace</i> : <ul><li>can be filled with <b>publisher namespace</b> in order to get <b>publisher user profile</b></li><li>can be filled with <b>game namespace</b> in order to get <b>game user profile</b></li></ul></li><li><i>Language</i> : allowed format: en, en-US</li><li><i>Timezone</i> : IANA time zone, e.g. Asia/Shanghai</li></ul>",
         "operationId": "getMyProfileInfo",
         "produces": [
           "application/json"
@@ -2298,7 +2312,7 @@
             }
           },
           "404": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20008</td><td>user not found</td></tr><tr><td>20017</td><td>user not linked</td></tr><tr><td>11440</td><td>user profile not found</td></tr></table>",
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20008</td><td>user not found</td></tr><tr><td>20017</td><td>user not linked</td></tr><tr><td>11440</td><td>Unable to {action}: User profile not found in namespace [{namespace}]</td></tr></table>",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -2318,8 +2332,8 @@
         "tags": [
           "UserProfile"
         ],
-        "summary": "Create user profile",
-        "description": "Create user profile.<br><b>Client with user token can create user profile in target namespace</b><br>Other detail info: <ul><li><i>Required permission</i>: resource=<b>\"NAMESPACE:{namespace}:PROFILE\"</b>, action=1 <b>(CREATE)</b></li><li><i>Action code</i>: 11401</li><li><i>Returns</i>: Created user profile</li><li><i>Path's namespace</i> : <ul><li>can be filled with <b>publisher namespace</b> in order to create <b>publisher user profile</b></li><li>can be filled with <b>game namespace</b> in order to create <b>game user profile</b></li></ul></li><li><i>Language</i> : allowed format: en, en-US</li><li><i>Country</i>  : ISO3166-1 alpha-2 two letter, e.g. US </li><li><i>Timezone</i> : IANA time zone, e.g. Asia/Shanghai</li></ul>",
+        "summary": "Create my profile",
+        "description": "Create my profile.<br><b>Client with user token can create user profile in target namespace</b><br>Other detail info: <ul><li><i>Required permission</i>: resource=<b>\"NAMESPACE:{namespace}:PROFILE\"</b>, action=1 <b>(CREATE)</b></li><li><i>Action code</i>: 11401</li><li><i>Returns</i>: Created user profile</li><li><i>Path's namespace</i> : <ul><li>can be filled with <b>publisher namespace</b> in order to create <b>publisher user profile</b></li><li>can be filled with <b>game namespace</b> in order to create <b>game user profile</b></li></ul></li><li><i>Language</i> : allowed format: en, en-US</li><li><i>Country</i>  : ISO3166-1 alpha-2 two letter, e.g. US </li><li><i>Timezone</i> : IANA time zone, e.g. Asia/Shanghai</li></ul>",
         "operationId": "createMyProfile",
         "consumes": [
           "application/json"
@@ -2376,7 +2390,7 @@
             }
           },
           "409": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11441</td><td>user profile already exists</td></tr></table>",
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11441</td><td>Unable to {action}: User profile already exists</td></tr></table>",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -2396,8 +2410,8 @@
         "tags": [
           "UserProfile"
         ],
-        "summary": "Update user profile",
-        "description": "Update user profile.<br>Updates user profile in the target namespace (namespace in the path). If token's namespace doesn't match the target namespace, the service automatically maps the token's user ID into the user ID in the target namespace. The endpoint returns the updated user profile on a successful call.<br>Other detail info: <ul><li><i>Required permission</i>: resource=<b>\"NAMESPACE:{namespace}:PROFILE\"</b>, action=4 <b>(UPDATE)</b></li><li><i>Action code</i>: 11402</li><li><i>Returns</i>: user profile</li><li><i>Path's namespace</i> : <ul><li>can be filled with <b>publisher namespace</b> in order to update <b>publisher user profile</b></li><li>can be filled with <b>game namespace</b> in order to update <b>game user profile</b></li></ul></li><li><i>Language</i> : allowed format: en, en-US</li><li><i>Timezone</i> : IANA time zone, e.g. Asia/Shanghai</li></ul>",
+        "summary": "Update my profile",
+        "description": "Update my profile.<br>Updates user profile in the target namespace (namespace in the path). If token's namespace doesn't match the target namespace, the service automatically maps the token's user ID into the user ID in the target namespace. The endpoint returns the updated user profile on a successful call.<br>Other detail info: <ul><li><i>Required permission</i>: resource=<b>\"NAMESPACE:{namespace}:PROFILE\"</b>, action=4 <b>(UPDATE)</b></li><li><i>Action code</i>: 11402</li><li><i>Returns</i>: user profile</li><li><i>Path's namespace</i> : <ul><li>can be filled with <b>publisher namespace</b> in order to update <b>publisher user profile</b></li><li>can be filled with <b>game namespace</b> in order to update <b>game user profile</b></li></ul></li><li><i>Language</i> : allowed format: en, en-US</li><li><i>Timezone</i> : IANA time zone, e.g. Asia/Shanghai</li></ul>",
         "operationId": "updateMyProfile",
         "consumes": [
           "application/json"
@@ -2448,7 +2462,7 @@
             }
           },
           "404": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20008</td><td>user not found</td></tr><tr><td>20017</td><td>user not linked</td></tr><tr><td>11440</td><td>user profile not found</td></tr></table>",
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20008</td><td>user not found</td></tr><tr><td>20017</td><td>user not linked</td></tr><tr><td>11440</td><td>Unable to {action}: User profile not found in namespace [{namespace}]</td></tr></table>",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -2470,9 +2484,9 @@
         "tags": [
           "UserProfile"
         ],
-        "summary": "Get user zip code",
-        "description": "Get user zip code.<br>Other detail info: <ul><li><i>Required permission</i>: resource=<b>\"NAMESPACE:{namespace}:PROFILE\"</b>, action=2 <b>(READ)</b></li><li><i>Action code</i>: 11407</li><li><i>Returns</i>: user zip code</li></ul>",
-        "operationId": "getUserZipCode",
+        "summary": "Get my zip code",
+        "description": "Get my zip code.<br>Other detail info: <ul><li><i>Required permission</i>: resource=<b>\"NAMESPACE:{namespace}:PROFILE\"</b>, action=2 <b>(READ)</b></li><li><i>Action code</i>: 11407</li><li><i>Returns</i>: user zip code</li></ul>",
+        "operationId": "getMyZipCode",
         "consumes": [
           "application/json"
         ],
@@ -2522,9 +2536,9 @@
         "tags": [
           "UserProfile"
         ],
-        "summary": "Update user zip code",
-        "description": "Update user zip code.<br>Other detail info: <ul><li><i>Required permission</i>: resource=<b>\"NAMESPACE:{namespace}:PROFILE\"</b>, action=4 <b>(UPDATE)</b></li><li><i>Action code</i>: 11408</li><li><i>Returns</i>: user zip code</li></ul>",
-        "operationId": "updateUserZipCode",
+        "summary": "Update my zip code",
+        "description": "Update my zip code.<br>Other detail info: <ul><li><i>Required permission</i>: resource=<b>\"NAMESPACE:{namespace}:PROFILE\"</b>, action=4 <b>(UPDATE)</b></li><li><i>Action code</i>: 11408</li><li><i>Returns</i>: user zip code</li></ul>",
+        "operationId": "updateMyZipCode",
         "consumes": [
           "application/json"
         ],
@@ -2542,7 +2556,6 @@
           {
             "in": "body",
             "name": "userZipCodeUpdate",
-            "description": "user's zip code, accept alphabet and numeric string default.",
             "required": true,
             "schema": {
               "$ref": "#/definitions/UserZipCodeUpdate"
@@ -2586,14 +2599,14 @@
         }
       }
     },
-    "/v1/public/namespaces/{namespace}/profiles/public": {
+    "/v1/public/namespaces/{namespace}/users/{userId}/profiles/public": {
       "get": {
         "tags": [
           "UserProfile"
         ],
-        "summary": "Get user profile public info by ids",
-        "description": "Get user public profile by ids.<br>Other detail info: <ul><li><i>Action code</i>: 11405</li><li><i>Returns</i>: user public profiles</li></ul>",
-        "operationId": "publicGetUserProfilePublicInfoByIds",
+        "summary": "Get user profile public info",
+        "description": "Get user profile public info.<br>Other detail info: <ul><li><i>Action code</i>: 11404</li><li><i>Returns</i>: user public profile</li></ul>",
+        "operationId": "publicGetUserProfilePublicInfo",
         "produces": [
           "application/json"
         ],
@@ -2606,9 +2619,9 @@
             "type": "string"
           },
           {
-            "name": "userIds",
-            "in": "query",
-            "description": "User IDs, should follow UUID version 4 without hyphen, separate the IDs using comma",
+            "name": "userId",
+            "in": "path",
+            "description": "user's id, should follow UUID version 4 without hyphen",
             "required": true,
             "type": "string"
           }
@@ -2617,16 +2630,19 @@
           "200": {
             "description": "Successful operation",
             "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/UserProfilePublicInfo"
-              }
+              "$ref": "#/definitions/UserProfilePublicInfo"
             }
           },
           "400": {
             "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
             "schema": {
               "$ref": "#/definitions/ValidationErrorEntity"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11440</td><td>Unable to {action}: User profile not found in namespace [{namespace}]</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
             }
           }
         }
@@ -2638,8 +2654,8 @@
           "UserProfile"
         ],
         "summary": "Get custom attributes info",
-        "description": "Get custom attributes info.<br>Other detail info: <ul><li><i>Required permission</i>: login user</li><li><i>Action code</i>: 11404</li><li><i>Returns</i>: user custom attributes</li></ul>",
-        "operationId": "getCustomAttributesInfo_1",
+        "description": "Get custom attributes info.<br>Other detail info: <ul><li><i>Required permission</i>: resource=<b>\"NAMESPACE:{namespace}:USER:{userId}:PROFILE\"</b>, action=2 <b>(READ)</b></li><li><i>Action code</i>: 11404</li><li><i>Returns</i>: user custom attributes</li></ul>",
+        "operationId": "publicGetCustomAttributesInfo",
         "produces": [
           "application/json"
         ],
@@ -2676,7 +2692,7 @@
             }
           },
           "404": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11440</td><td>user profile not found</td></tr></table>",
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11440</td><td>Unable to {action}: User profile not found in namespace [{namespace}]</td></tr></table>",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -2688,7 +2704,8 @@
           }
         ],
         "x-authorization": {
-          "authenticated": "true"
+          "resource": "NAMESPACE:{namespace}:USER:{userId}:PROFILE",
+          "action": "2"
         }
       },
       "put": {
@@ -2697,7 +2714,7 @@
         ],
         "summary": "Update partially custom attributes tied to user id",
         "description": "Update partially custom attributes tied to user id.<br>Other detail info: <ul><li><i>Required permission</i>: resource=<b>\"NAMESPACE:{namespace}:USER:{userId}:PROFILE\"</b>, action=4 <b>(UPDATE)</b></li><li><i>Action code</i>: 11402</li><li><i>Request body</i> : allowed format: JSON object</li><li><i>Returns</i>: Updated custom attributes</li></ul>",
-        "operationId": "updateCustomAttributesPartially_1",
+        "operationId": "publicUpdateCustomAttributesPartially",
         "consumes": [
           "application/json"
         ],
@@ -2760,7 +2777,7 @@
             }
           },
           "404": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11440</td><td>user profile not found</td></tr></table>",
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11440</td><td>Unable to {action}: User profile not found in namespace [{namespace}]</td></tr></table>",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -2830,7 +2847,7 @@
             }
           },
           "404": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11440</td><td>user profile not found</td></tr></table>",
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11440</td><td>Unable to {action}: User profile not found in namespace [{namespace}]</td></tr></table>",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -2909,7 +2926,7 @@
             }
           },
           "409": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11441</td><td>user profile already exists</td></tr></table>",
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11441</td><td>Unable to {action}: User profile already exists</td></tr></table>",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -2930,7 +2947,7 @@
           "UserProfile"
         ],
         "summary": "Update user profile",
-        "description": "Update user profile.<br>Other detail info: <ul><li><i>Required permission</i>: resource=<b>\"ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE\"</b>, action=4 <b>(UPDATE)</b></li><li><i>Action code</i>: 11402</li><li><i>Language</i> : allowed format: en, en-US</li><li><i>Timezone</i> : IANA time zone, e.g. Asia/Shanghai</li><li><i>Returns</i>: Updated user profile</li></ul>",
+        "description": "Update user profile.<br>Other detail info: <ul><li><i>Required permission</i>: resource=<b>\"NAMESPACE:{namespace}:USER:{userId}:PROFILE\"</b>, action=4 <b>(UPDATE)</b></li><li><i>Action code</i>: 11402</li><li><i>Language</i> : allowed format: en, en-US</li><li><i>Timezone</i> : IANA time zone, e.g. Asia/Shanghai</li><li><i>Returns</i>: Updated user profile</li></ul>",
         "operationId": "publicUpdateUserProfile",
         "consumes": [
           "application/json"
@@ -2988,7 +3005,7 @@
             }
           },
           "404": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11440</td><td>user profile not found</td></tr></table>",
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11440</td><td>Unable to {action}: User profile not found in namespace [{namespace}]</td></tr></table>",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -3012,7 +3029,7 @@
         ],
         "summary": "Update user profile status",
         "description": "Update user profile status.<br>Other detail info: <ul><li><i>Required permission</i>: resource=<b>\"NAMESPACE:{namespace}:USER:{userId}:PROFILE\"</b>, action=4 <b>(UPDATE)</b></li><li><i>Action code</i>: 11406</li><li><i>Returns</i>: user profile</li></ul>",
-        "operationId": "publicEnableUserProfileStatus",
+        "operationId": "publicUpdateUserProfileStatus",
         "consumes": [
           "application/json"
         ],
@@ -3069,7 +3086,7 @@
             }
           },
           "404": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11440</td><td>user profile not found</td></tr></table>",
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>11440</td><td>Unable to {action}: User profile not found in namespace [{namespace}]</td></tr></table>",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -3285,6 +3302,14 @@
         }
       }
     },
+    "RetrieveTimeResponse": {
+      "type": "object",
+      "properties": {
+        "currentTime": {
+          "type": "string"
+        }
+      }
+    },
     "NamespaceInfo": {
       "type": "object",
       "properties": {
@@ -3429,6 +3454,23 @@
         }
       }
     },
+    "UserProfileStatusUpdate": {
+      "type": "object",
+      "required": [
+        "status"
+      ],
+      "properties": {
+        "status": {
+          "type": "string",
+          "description": "status, ACTIVE or INACTIVE",
+          "enum": [
+            "ACTIVE",
+            "INACTIVE"
+          ]
+        }
+      },
+      "description": "A DTO object for updating user profile status API call."
+    },
     "UserProfileAdmin": {
       "type": "object",
       "properties": {
@@ -3483,23 +3525,6 @@
       },
       "description": "A DTO object for updating user profile API call."
     },
-    "UserProfileStatusUpdate": {
-      "type": "object",
-      "required": [
-        "status"
-      ],
-      "properties": {
-        "status": {
-          "type": "string",
-          "description": "status, ACTIVE or INACTIVE",
-          "enum": [
-            "ACTIVE",
-            "INACTIVE"
-          ]
-        }
-      },
-      "description": "A DTO object for updating user profile status API call."
-    },
     "UserProfilePublicInfo": {
       "type": "object",
       "properties": {
@@ -3539,8 +3564,7 @@
         "dateOfBirth": {
           "type": "string",
           "format": "date",
-          "description": "date of birth, allowed format: yyyy-MM-dd, valid date range from 1905-01-01 until present",
-          "x-nullable": true
+          "description": "date of birth, allowed format: yyyy-MM-dd, valid date range from 1905-01-01 until present"
         },
         "avatarSmallUrl": {
           "type": "string",
@@ -3642,7 +3666,7 @@
       "properties": {
         "zipCode": {
           "type": "string",
-          "description": "zip code"
+          "description": "zip code, accept alphabet and numeric string default"
         }
       }
     },

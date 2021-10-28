@@ -3099,7 +3099,7 @@
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/*models.ProfanityFilter"
+                "$ref": "#/definitions/models.ProfanityFilter"
               }
             }
           },
@@ -3480,7 +3480,7 @@
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/*models.ProfanityFilter"
+                "$ref": "#/definitions/models.ProfanityFilter"
               }
             }
           },
@@ -5944,7 +5944,6 @@
     }
   },
   "definitions": {
-    "*models.ProfanityFilter": {},
     "handlers.GetUsersPresenceResponse": {
       "required": [
         "data",
@@ -6532,10 +6531,10 @@
     "model.TemplateLocalization": {
       "required": [
         "templateSlug",
+        "templateLanguage",
         "lastPublishedAt",
         "lastDraftAt",
-        "templateContent",
-        "templateLanguage"
+        "templateContent"
       ],
       "properties": {
         "lastDraftAt": {
@@ -6913,6 +6912,10 @@
           "type": "integer",
           "format": "integer"
         },
+        "concurrentUsersLimit": {
+          "type": "integer",
+          "format": "int32"
+        },
         "enableChat": {
           "type": "boolean"
         },
@@ -6967,6 +6970,10 @@
         "chatRateLimitDuration": {
           "type": "integer",
           "format": "integer"
+        },
+        "concurrentUsersLimit": {
+          "type": "integer",
+          "format": "int32"
         },
         "enableChat": {
           "type": "boolean"

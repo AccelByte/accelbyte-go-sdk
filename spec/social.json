@@ -1,12 +1,8 @@
 {
   "swagger": "2.0",
-  "schemes": [
-    "https"
-  ],
-  "host": "jib.noice.accelbyte.io",
   "info": {
     "description": "Justice Social Service",
-    "version": "1.17.1",
+    "version": "1.18.1",
     "title": "justice-social-service",
     "contact": {
       "name": "Engineering Team at AccelByte",
@@ -3751,7 +3747,7 @@
           "Slot"
         ],
         "summary": "Returns list of slots for given user",
-        "description": "Get slots for a given user.<br>Other detail info:<ul><li><i>Required permission</i>: resource=\"ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTDATA\", action=2 (READ)</li><li><i>Returns</i>: list of slots</li></ul>",
+        "description": "Get slots for a given user.<br>Other detail info:<ul><li><i>Required permission</i>: resource=\"ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTDATA\", action=2 (READ)</li><li><i>Returns</i>: list of slots</li></ul>",
         "operationId": "getUserNamespaceSlots",
         "produces": [
           "application/json"
@@ -3800,7 +3796,7 @@
           "SlotConfig"
         ],
         "summary": "Returns a user slot configuration",
-        "description": "Get a user slot configuration in given namespace. In case the user slot configuration is not set, the namespace configuration will be returned.<br>Other detail info:<ul><li>Required permission</i>: resource=\"ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTCONFIG\", action=2 (READ)</li><li>Returns</i>: slot config info</li>",
+        "description": "Get a user slot configuration in given namespace. In case the user slot configuration is not set, the namespace configuration will be returned.<br>Other detail info:<ul><li>Required permission</i>: resource=\"ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTCONFIG\", action=2 (READ)</li><li>Returns</i>: slot config info</li>",
         "operationId": "getUserSlotConfig",
         "produces": [
           "application/json"
@@ -4157,7 +4153,7 @@
           "Slot"
         ],
         "summary": "Returns slots for given user",
-        "description": "Get list of slots for a given user in namespace.<br>Other detail info:<ul><li><i>Required permission</i>: resource=\"NAMESPACE:{namespace}:USER:{userId}:SLOTDATA\", action=2 (READ)</li><li><i>Returns</i>: list of slots</li></ul>",
+        "description": "Get list of slots for a given user in namespace.<br>Other detail info:<ul><li><i>Required permission</i>: resource=\"NAMESPACE:{namespace}:USER:{userId}:SLOTDATA\", action=2 (READ)</li><li><i>Returns</i>: list of slots</li></ul>",
         "operationId": "publicGetUserNamespaceSlots",
         "produces": [
           "application/json"

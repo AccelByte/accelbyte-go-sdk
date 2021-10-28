@@ -13,7 +13,7 @@
   "paths": {
     "/leaderboard/v1/admin/namespaces/{namespace}/leaderboards": {
       "get": {
-        "description": "\u003cp\u003eRequired permission 'ADMIN:NAMESPACE:{namespace}:LEADERBOARD [READ]'\u003c/p\u003e\n\t\t\t\u003cp\u003eThis endpoint return all leaderboard configurations\u003c/p\u003e\t\n\t\t",
+        "description": "<p>Required permission 'ADMIN:NAMESPACE:{namespace}:LEADERBOARD [READ]'</p>\n\t\t\t<p>This endpoint return all leaderboard configurations</p>\t\n\t\t",
         "produces": [
           "application/json"
         ],
@@ -89,7 +89,7 @@
         }
       },
       "post": {
-        "description": "\u003cp\u003eRequired permission 'ADMIN:NAMESPACE:{namespace}:LEADERBOARD [CREATE]'\u003c/p\u003e\n\t\t\t\u003cp\u003e\u003cb\u003eFields :\u003c/b\u003e\u003c/p\u003e\n\t\t\t\u003cul\u003e\u003cli\u003eLeaderboardConfig code must be lowercase and maximum length is 48 characters. \u003cb\u003e(required)\u003c/b\u003e.\u003c/li\u003e\n\t\t\t\t\u003cli\u003eMaximum length for leaderboard name is 128 characters. \u003cb\u003e(required)\u003c/b\u003e.\u003c/li\u003e\n\t\t\t\t\u003cli\u003eStart time must be follow RFC3339 standard. e.g. 2020-10-02T15:00:00.05Z\u003cb\u003e(required)\u003c/b\u003e.\u003c/li\u003e\n\t\t\t\t\u003cli\u003eSeason period must be greater than 31 days.\u003c/li\u003e\n\t\t\t\t\u003cli\u003eIf seasonPeriod is filled, the LeaderboardConfig would have seasonal leaderboard.\u003c/li\u003e\n\t\t\t\t\u003cli\u003eReset Date must be a number 1 - 31. Default is '1'.\u003c/li\u003e\n\t\t\t\t\u003cli\u003eReset Day must be a number 0 - 6. 0 = Sunday, 1 = Monday, 2 = Tuesday, 3 = Wednesday, 4 = Thursday, 5 = Friday, 6 = Saturday (day of week). Default is '0'.\u003c/li\u003e\n\t\t\t\t\u003cli\u003eReset time must be \u003cb\u003ehours:minutes\u003c/b\u003e in 24 hours format e.g. 01:30, 10:30, 15:30, 23:15.Default is '00:00'.\u003c/li\u003e\n\t\t\t\t\u003cli\u003eStat Code is related with statistic code in statistic service. \u003cb\u003e(required)\u003c/b\u003e.\u003c/li\u003e\n\t\t\t\u003c/ul\u003e\n\t\t",
+        "description": "<p>Required permission 'ADMIN:NAMESPACE:{namespace}:LEADERBOARD [CREATE]'</p>\n\t\t\t<p><b>Fields :</b></p>\n\t\t\t<ul><li>LeaderboardConfig code must be lowercase and maximum length is 48 characters. <b>(required)</b>.</li>\n\t\t\t\t<li>Maximum length for leaderboard name is 128 characters. <b>(required)</b>.</li>\n\t\t\t\t<li>Start time must be follow RFC3339 standard. e.g. 2020-10-02T15:00:00.05Z<b>(required)</b>.</li>\n\t\t\t\t<li>Season period must be greater than 31 days.</li>\n\t\t\t\t<li>If seasonPeriod is filled, the LeaderboardConfig would have seasonal leaderboard.</li>\n\t\t\t\t<li>Reset Date must be a number 1 - 31. Default is '1'.</li>\n\t\t\t\t<li>Reset Day must be a number 0 - 6. 0 = Sunday, 1 = Monday, 2 = Tuesday, 3 = Wednesday, 4 = Thursday, 5 = Friday, 6 = Saturday (day of week). Default is '0'.</li>\n\t\t\t\t<li>Reset time must be <b>hours:minutes</b> in 24 hours format e.g. 01:30, 10:30, 15:30, 23:15.Default is '00:00'.</li>\n\t\t\t\t<li>Stat Code is related with statistic code in statistic service. <b>(required)</b>.</li>\n\t\t\t</ul>\n\t\t",
         "consumes": [
           "application/json"
         ],
@@ -160,7 +160,7 @@
     },
     "/leaderboard/v1/admin/namespaces/{namespace}/leaderboards/archived": {
       "get": {
-        "description": "\u003cp\u003eAdmin Get signed url in an all time leaderboard that archived. Notes: This will be a bulk endpoint to get sign url\u003c/p\u003e\n\t\t\t",
+        "description": "<p>Admin Get signed url in an all time leaderboard that archived. Notes: This will be a bulk endpoint to get sign url</p>\n\t\t\t",
         "produces": [
           "application/json"
         ],
@@ -234,7 +234,7 @@
         }
       },
       "post": {
-        "description": "\u003cp\u003eRequired permission 'ADMIN:NAMESPACE:{namespace}:LEADERBOARD [CREATE]'\u003c/p\u003e\n\t\t\t\u003cp\u003eArchive leaderboard ranking data for specified leaderboard codes. NOTE: This will remove all data of the leaderboard on every slug,\n\t\t\tremove the leaderboard code on stat mapping, and remove the leaderboard on the queue reset. This will be a bulk endpoint\u003c/p\u003e\n\t\t\t",
+        "description": "<p>Required permission 'ADMIN:NAMESPACE:{namespace}:LEADERBOARD [CREATE]'</p>\n\t\t\t<p>Archive leaderboard ranking data for specified leaderboard codes. NOTE: This will remove all data of the leaderboard on every slug,\n\t\t\tremove the leaderboard code on stat mapping, and remove the leaderboard on the queue reset. This will be a bulk endpoint</p>\n\t\t\t",
         "consumes": [
           "application/json"
         ],
@@ -302,7 +302,7 @@
     },
     "/leaderboard/v1/admin/namespaces/{namespace}/leaderboards/delete": {
       "post": {
-        "description": "\u003cp\u003eRequired permission 'ADMIN:NAMESPACE:{namespace}:LEADERBOARD [DELETE]'\u003c/p\u003e\n\t\t\t\u003cp\u003eThis endpoint delete multiple leaderboards configuration in one request\u003c/p\u003e\t\n\t\t",
+        "description": "<p>Required permission 'ADMIN:NAMESPACE:{namespace}:LEADERBOARD [DELETE]'</p>\n\t\t\t<p>This endpoint delete multiple leaderboards configuration in one request</p>\t\n\t\t",
         "consumes": [
           "application/json"
         ],
@@ -367,7 +367,7 @@
     },
     "/leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}": {
       "get": {
-        "description": "\u003cp\u003eRequired permission 'ADMIN:NAMESPACE:{namespace}:LEADERBOARD [READ]'\u003c/p\u003e\n\t\t\t\u003cp\u003eThis endpoint returns a leaderboard configuration\u003c/p\u003e\t\n\t\t",
+        "description": "<p>Required permission 'ADMIN:NAMESPACE:{namespace}:LEADERBOARD [READ]'</p>\n\t\t\t<p>This endpoint returns a leaderboard configuration</p>\t\n\t\t",
         "produces": [
           "application/json"
         ],
@@ -432,7 +432,7 @@
         }
       },
       "put": {
-        "description": "\u003cp\u003eRequired permission 'ADMIN:NAMESPACE:{namespace}:LEADERBOARD [UPDATE]'\u003c/p\u003e\n\t\t\t\u003cp\u003e\u003cb\u003eFields :\u003c/b\u003e\u003c/p\u003e\n\t\t\t\u003cul\u003e\n\t\t\t\t\u003cli\u003eMaximum length for leaderboard name is 128 characters.\u003c/li\u003e\n\t\t\t\t\u003cli\u003eStart time must be follow RFC3339 standard. e.g. 2020-10-02T15:00:00.05Z\u003c/li\u003e\n\t\t\t\t\u003cli\u003eSeason period must be greater than 31 days.\u003c/li\u003e\n\t\t\t\t\u003cli\u003eIf seasonPeriod is filled, the LeaderboardConfig would have seasonal leaderboard.\u003c/li\u003e\n\t\t\t\t\u003cli\u003eReset Date must be a number 1 - 31. Default is '1'.\u003c/li\u003e\n\t\t\t\t\u003cli\u003eReset Day must be a number 0 - 6. 0 = Sunday, 1 = Monday, 2 = Tuesday, 3 = Wednesday, 4 = Thursday, 5 = Friday, 6 = Saturday (day of week). Default is '0'.\u003c/li\u003e\n\t\t\t\t\u003cli\u003eReset time must be \u003cb\u003ehours:minutes\u003c/b\u003e in 24 hours format e.g. 01:30, 10:30, 15:30, 23:15.\u003c/li\u003e\n\t\t\t\u003c/ul\u003e\n\t\t",
+        "description": "<p>Required permission 'ADMIN:NAMESPACE:{namespace}:LEADERBOARD [UPDATE]'</p>\n\t\t\t<p><b>Fields :</b></p>\n\t\t\t<ul>\n\t\t\t\t<li>Maximum length for leaderboard name is 128 characters.</li>\n\t\t\t\t<li>Start time must be follow RFC3339 standard. e.g. 2020-10-02T15:00:00.05Z</li>\n\t\t\t\t<li>Season period must be greater than 31 days.</li>\n\t\t\t\t<li>If seasonPeriod is filled, the LeaderboardConfig would have seasonal leaderboard.</li>\n\t\t\t\t<li>Reset Date must be a number 1 - 31. Default is '1'.</li>\n\t\t\t\t<li>Reset Day must be a number 0 - 6. 0 = Sunday, 1 = Monday, 2 = Tuesday, 3 = Wednesday, 4 = Thursday, 5 = Friday, 6 = Saturday (day of week). Default is '0'.</li>\n\t\t\t\t<li>Reset time must be <b>hours:minutes</b> in 24 hours format e.g. 01:30, 10:30, 15:30, 23:15.</li>\n\t\t\t</ul>\n\t\t",
         "produces": [
           "application/json"
         ],
@@ -505,7 +505,7 @@
         }
       },
       "delete": {
-        "description": "\u003cp\u003eRequired permission 'ADMIN:NAMESPACE:{namespace}:LEADERBOARD [DELETE]'\u003c/p\u003e\n\t\t\t\u003cp\u003eThis endpoint delete a leaderboard configuration\u003c/p\u003e\t\n\t\t",
+        "description": "<p>Required permission 'ADMIN:NAMESPACE:{namespace}:LEADERBOARD [DELETE]'</p>\n\t\t\t<p>This endpoint delete a leaderboard configuration</p>\t\n\t\t",
         "produces": [
           "application/json"
         ],
@@ -569,7 +569,7 @@
     },
     "/leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/alltime": {
       "get": {
-        "description": "\u003cp\u003eRequired permission 'ADMIN:NAMESPACE:{namespace}:LEADERBOARD [READ]'\u003c/p\u003e\n\t\t\t\u003cp\u003eGet rankings in an all time leaderboard.\u003c/p\u003e\n\t\t\t",
+        "description": "<p>Required permission 'ADMIN:NAMESPACE:{namespace}:LEADERBOARD [READ]'</p>\n\t\t\t<p>Get rankings in an all time leaderboard.</p>\n\t\t\t",
         "produces": [
           "application/json"
         ],
@@ -648,7 +648,7 @@
     },
     "/leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/month": {
       "get": {
-        "description": "\u003cp\u003eRequired permission 'ADMIN:NAMESPACE:{namespace}:LEADERBOARD [READ]'\u003c/p\u003e\n\t\t\t\u003cp\u003eGet rankings in current month leaderboard.\u003c/p\u003e\n\t\t\t",
+        "description": "<p>Required permission 'ADMIN:NAMESPACE:{namespace}:LEADERBOARD [READ]'</p>\n\t\t\t<p>Get rankings in current month leaderboard.</p>\n\t\t\t",
         "produces": [
           "application/json"
         ],
@@ -727,7 +727,7 @@
     },
     "/leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/season": {
       "get": {
-        "description": "\u003cp\u003eRequired permission 'ADMIN:NAMESPACE:{namespace}:LEADERBOARD [READ]'\u003c/p\u003e\n\t\t\t\u003cp\u003eGet rankings in current season leaderboard.\u003c/p\u003e\n\t\t\t",
+        "description": "<p>Required permission 'ADMIN:NAMESPACE:{namespace}:LEADERBOARD [READ]'</p>\n\t\t\t<p>Get rankings in current season leaderboard.</p>\n\t\t\t",
         "produces": [
           "application/json"
         ],
@@ -806,7 +806,7 @@
     },
     "/leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/today": {
       "get": {
-        "description": "\u003cp\u003eRequired permission 'ADMIN:NAMESPACE:{namespace}:LEADERBOARD [READ]'\u003c/p\u003e\n\t\t\t\u003cp\u003eGet rankings in today leaderboard.\u003c/p\u003e\n\t\t\t",
+        "description": "<p>Required permission 'ADMIN:NAMESPACE:{namespace}:LEADERBOARD [READ]'</p>\n\t\t\t<p>Get rankings in today leaderboard.</p>\n\t\t\t",
         "produces": [
           "application/json"
         ],
@@ -885,7 +885,7 @@
     },
     "/leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/{userId}": {
       "get": {
-        "description": "\u003cp\u003eRequired permission 'ADMIN:NAMESPACE:{namespace}:LEADERBOARD [READ]'\u003c/p\u003e\n\t\t\t\u003cp\u003eGet user ranking in leaderboard\u003c/p\u003e\n\t\t\t",
+        "description": "<p>Required permission 'ADMIN:NAMESPACE:{namespace}:LEADERBOARD [READ]'</p>\n\t\t\t<p>Get user ranking in leaderboard</p>\n\t\t\t",
         "produces": [
           "application/json"
         ],
@@ -951,7 +951,7 @@
         }
       },
       "put": {
-        "description": "\u003cp\u003eUpdate user point in a leaderboard. This endpoint uses for test utility only.\u003c/p\u003e\n\t\t\t\u003cp\u003eOther detail info:\u003c/p\u003e\n\t\t\t\u003cul\u003e\n\t\t\t\t\u003cli\u003eRequired permission: resource=\"ADMIN:NAMESPACE:{namespace}:USER:(userId):LEADERBOARD\", action=4 (UPDATE)\u003c/li\u003e\n\t\t\t\t\u003cli\u003eReturns: user ranking\u003c/li\u003e\n\t\t\t\u003c/ul\u003e\n\t\t",
+        "description": "<p>Update user point in a leaderboard. This endpoint uses for test utility only.</p>\n\t\t\t<p>Other detail info:</p>\n\t\t\t<ul>\n\t\t\t\t<li>Required permission: resource=\"ADMIN:NAMESPACE:{namespace}:USER:(userId):LEADERBOARD\", action=4 (UPDATE)</li>\n\t\t\t\t<li>Returns: user ranking</li>\n\t\t\t</ul>\n\t\t",
         "consumes": [
           "application/json"
         ],
@@ -1102,7 +1102,7 @@
     },
     "/leaderboard/v1/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/week": {
       "get": {
-        "description": "\u003cp\u003eRequired permission 'ADMIN:NAMESPACE:{namespace}:LEADERBOARD [READ]'\u003c/p\u003e\n\t\t\t\u003cp\u003eGet rankings in current week leaderboard.\u003c/p\u003e\n\t\t\t",
+        "description": "<p>Required permission 'ADMIN:NAMESPACE:{namespace}:LEADERBOARD [READ]'</p>\n\t\t\t<p>Get rankings in current week leaderboard.</p>\n\t\t\t",
         "produces": [
           "application/json"
         ],
@@ -1253,7 +1253,7 @@
     },
     "/leaderboard/v1/admin/namespaces/{namespace}/users/{userId}/leaderboards": {
       "get": {
-        "description": "\u003cp\u003eRequired permission 'ADMIN:NAMESPACE:{namespace}:LEADERBOARD [READ]'\u003c/p\u003e\n\t\t\t\u003cp\u003eGet user leaderboard rankings\u003c/p\u003e\n\t\t\t",
+        "description": "<p>Required permission 'ADMIN:NAMESPACE:{namespace}:LEADERBOARD [READ]'</p>\n\t\t\t<p>Get user leaderboard rankings</p>\n\t\t\t",
         "produces": [
           "application/json"
         ],
@@ -1326,7 +1326,7 @@
     },
     "/leaderboard/v1/public/namespaces/{namespace}/leaderboards": {
       "get": {
-        "description": "\u003cp\u003eThis endpoint return all leaderboard configurations\u003c/p\u003e\t\n\t\t",
+        "description": "<p>This endpoint return all leaderboard configurations</p>\t\n\t\t",
         "produces": [
           "application/json"
         ],
@@ -1402,7 +1402,7 @@
         }
       },
       "post": {
-        "description": "Public endpoint to create a new leaderboard.\n\n\u003cp\u003eRequired permission 'NAMESPACE:{namespace}:LEADERBOARD [CREATE]'\u003c/p\u003e\n\u003cp\u003e\u003cb\u003eFields :\u003c/b\u003e\u003c/p\u003e\n\u003cul\u003e\u003cli\u003eLeaderboardConfig code must be lowercase and maximum length is 48 characters. \u003cb\u003e(required)\u003c/b\u003e.\u003c/li\u003e\n\t\u003cli\u003eMaximum length for leaderboard name is 128 characters. \u003cb\u003e(required)\u003c/b\u003e.\u003c/li\u003e\n\t\u003cli\u003eStart time must be follow RFC3339 standard. e.g. 2020-10-02T15:00:00.05Z\u003cb\u003e(required)\u003c/b\u003e.\u003c/li\u003e\n\t\u003cli\u003eSeason period must be greater than 31 days.\u003c/li\u003e\n\t\u003cli\u003eIf seasonPeriod is filled, the LeaderboardConfig would have seasonal leaderboard.\u003c/li\u003e\n\t\u003cli\u003eReset Date must be a number 1 - 31. Default is '1'.\u003c/li\u003e\n\t\u003cli\u003eReset Day must be a number 0 - 6. 0 = Sunday, 1 = Monday, 2 = Tuesday, 3 = Wednesday, 4 = Thursday, 5 = Friday, 6 = Saturday (day of week). Default is '0'.\u003c/li\u003e\n\t\u003cli\u003eReset time must be \u003cb\u003ehours:minutes\u003c/b\u003e in 24 hours format e.g. 01:30, 10:30, 15:30, 23:15.Default is '00:00'.\u003c/li\u003e\n\t\u003cli\u003eStat Code is related with statistic code in statistic service. \u003cb\u003e(required)\u003c/b\u003e.\u003c/li\u003e\n\u003c/ul\u003e\n",
+        "description": "Public endpoint to create a new leaderboard.\n\n<p>Required permission 'NAMESPACE:{namespace}:LEADERBOARD [CREATE]'</p>\n<p><b>Fields :</b></p>\n<ul><li>LeaderboardConfig code must be lowercase and maximum length is 48 characters. <b>(required)</b>.</li>\n\t<li>Maximum length for leaderboard name is 128 characters. <b>(required)</b>.</li>\n\t<li>Start time must be follow RFC3339 standard. e.g. 2020-10-02T15:00:00.05Z<b>(required)</b>.</li>\n\t<li>Season period must be greater than 31 days.</li>\n\t<li>If seasonPeriod is filled, the LeaderboardConfig would have seasonal leaderboard.</li>\n\t<li>Reset Date must be a number 1 - 31. Default is '1'.</li>\n\t<li>Reset Day must be a number 0 - 6. 0 = Sunday, 1 = Monday, 2 = Tuesday, 3 = Wednesday, 4 = Thursday, 5 = Friday, 6 = Saturday (day of week). Default is '0'.</li>\n\t<li>Reset time must be <b>hours:minutes</b> in 24 hours format e.g. 01:30, 10:30, 15:30, 23:15.Default is '00:00'.</li>\n\t<li>Stat Code is related with statistic code in statistic service. <b>(required)</b>.</li>\n</ul>\n",
         "consumes": [
           "application/json"
         ],
@@ -1473,7 +1473,7 @@
     },
     "/leaderboard/v1/public/namespaces/{namespace}/leaderboards/{leaderboardCode}/alltime": {
       "get": {
-        "description": "\t\u003cp\u003eGet rankings in an all time leaderboard.\u003c/p\u003e\n\t\t\t",
+        "description": "\t<p>Get rankings in an all time leaderboard.</p>\n\t\t\t",
         "produces": [
           "application/json"
         ],
@@ -1552,7 +1552,7 @@
     },
     "/leaderboard/v1/public/namespaces/{namespace}/leaderboards/{leaderboardCode}/archived": {
       "get": {
-        "description": "\t\u003cp\u003eGet signed url in an all time leaderboard that archived. NOTE: This will be a bulk endpoint to get sign url\u003c/p\u003e\n\t\t\t",
+        "description": "\t<p>Get signed url in an all time leaderboard that archived. NOTE: This will be a bulk endpoint to get sign url</p>\n\t\t\t",
         "produces": [
           "application/json"
         ],
@@ -1635,7 +1635,7 @@
     },
     "/leaderboard/v1/public/namespaces/{namespace}/leaderboards/{leaderboardCode}/month": {
       "get": {
-        "description": "\u003cp\u003eGet rankings in current month leaderboard.\u003c/p\u003e",
+        "description": "<p>Get rankings in current month leaderboard.</p>",
         "produces": [
           "application/json"
         ],
@@ -1714,7 +1714,7 @@
     },
     "/leaderboard/v1/public/namespaces/{namespace}/leaderboards/{leaderboardCode}/season": {
       "get": {
-        "description": "\u003cp\u003eGet rankings in current season leaderboard.\u003c/p\u003e",
+        "description": "<p>Get rankings in current season leaderboard.</p>",
         "produces": [
           "application/json"
         ],
@@ -1793,7 +1793,7 @@
     },
     "/leaderboard/v1/public/namespaces/{namespace}/leaderboards/{leaderboardCode}/today": {
       "get": {
-        "description": "\u003cp\u003eGet rankings in today leaderboard.\u003c/p\u003e",
+        "description": "<p>Get rankings in today leaderboard.</p>",
         "produces": [
           "application/json"
         ],
@@ -1872,7 +1872,7 @@
     },
     "/leaderboard/v1/public/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/{userId}": {
       "get": {
-        "description": "\u003cp\u003eGet user ranking in leaderboard\u003c/p\u003e",
+        "description": "<p>Get user ranking in leaderboard</p>",
         "produces": [
           "application/json"
         ],
@@ -2006,7 +2006,7 @@
     },
     "/leaderboard/v1/public/namespaces/{namespace}/leaderboards/{leaderboardCode}/week": {
       "get": {
-        "description": "\u003cp\u003eGet rankings in current week leaderboard.\u003c/p\u003e",
+        "description": "<p>Get rankings in current week leaderboard.</p>",
         "produces": [
           "application/json"
         ],
@@ -2164,7 +2164,7 @@
     },
     "/leaderboard/v2/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/{userId}/visibility": {
       "get": {
-        "description": "User with false visibility status will have \u003cb\u003ehidden\u003c/b\u003e attribute set to true on it's leaderboard entry",
+        "description": "User with false visibility status will have <b>hidden</b> attribute set to true on it's leaderboard entry",
         "produces": [
           "application/json"
         ],
@@ -2236,7 +2236,7 @@
         }
       },
       "put": {
-        "description": "User with false visibility status will have \u003cb\u003ehidden\u003c/b\u003e attribute  set to true on it's leaderboard entry",
+        "description": "User with false visibility status will have <b>hidden</b> attribute  set to true on it's leaderboard entry",
         "consumes": [
           "application/json"
         ],
@@ -2321,7 +2321,7 @@
     },
     "/leaderboard/v2/admin/namespaces/{namespace}/users/{userId}/visibility": {
       "put": {
-        "description": "User with false visibility status will have \u003cb\u003ehidden\u003c/b\u003e attribute  set to true on it's leaderboard entry",
+        "description": "User with false visibility status will have <b>hidden</b> attribute  set to true on it's leaderboard entry",
         "consumes": [
           "application/json"
         ],

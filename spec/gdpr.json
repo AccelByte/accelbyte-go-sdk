@@ -8,12 +8,12 @@
       "url": "https://accelbyte.io",
       "email": "engineering@accelbyte.io"
     },
-    "version": "1.9.0"
+    "version": "1.10.1"
   },
   "paths": {
     "/gdpr/admin/namespaces/{namespace}/deletions": {
       "get": {
-        "description": "\u003cp\u003eRequired permission \u003ccode\u003eADMIN:NAMESPACE:{namespace}:INFORMATION:USER[READ]\u003c/code\u003e and scope \u003ccode\u003eaccount\u003c/code\u003e\u003c/p\u003e",
+        "description": "<p>Required permission <code>ADMIN:NAMESPACE:{namespace}:INFORMATION:USER[READ]</code> and scope <code>account</code></p>",
         "consumes": [
           "application/json"
         ],
@@ -106,7 +106,7 @@
     },
     "/gdpr/admin/namespaces/{namespace}/emails/configurations": {
       "get": {
-        "description": "Get list of admin email address configuration. \n\t\t\t\u003cp\u003eRequired permission \u003ccode\u003eADMIN:NAMESPACE:{namespace}:EMAIL:CONFIGURATION [READ]\u003c/code\u003e and scope \u003ccode\u003eaccount\u003c/code\u003e\u003c/p\u003e",
+        "description": "Get list of admin email address configuration. \n\t\t\t<p>Required permission <code>ADMIN:NAMESPACE:{namespace}:EMAIL:CONFIGURATION [READ]</code> and scope <code>account</code></p>",
         "consumes": [
           "application/json"
         ],
@@ -152,7 +152,7 @@
         }
       },
       "put": {
-        "description": "Update admin email address for receiving personal data request notification. \u003cp\u003eRequired permission \u003ccode\u003eADMIN:NAMESPACE:{namespace}:EMAIL:CONFIGURATION [UPDATE]\u003c/code\u003e\u003c/p\u003e",
+        "description": "Update admin email address for receiving personal data request notification. <p>Required permission <code>ADMIN:NAMESPACE:{namespace}:EMAIL:CONFIGURATION [UPDATE]</code></p>",
         "consumes": [
           "application/json"
         ],
@@ -209,7 +209,7 @@
         }
       },
       "post": {
-        "description": "Add admin email address for receiving personal data request notification. \n\t\t\t\u003cp\u003eRequired permission \u003ccode\u003eADMIN:NAMESPACE:{namespace}:EMAIL:CONFIGURATION [CREATE]\u003c/code\u003e and scope \u003ccode\u003eaccount\u003c/code\u003e\u003c/p\u003e",
+        "description": "Add admin email address for receiving personal data request notification. \n\t\t\t<p>Required permission <code>ADMIN:NAMESPACE:{namespace}:EMAIL:CONFIGURATION [CREATE]</code> and scope <code>account</code></p>",
         "consumes": [
           "application/json"
         ],
@@ -266,7 +266,7 @@
         }
       },
       "delete": {
-        "description": "Delete a list of admin email addresses to stop receiving personal data request notification. \n\t\t\t\u003cp\u003eRequired permission \u003ccode\u003eADMIN:NAMESPACE:{namespace}:EMAIL:CONFIGURATION [DELETE]\u003c/code\u003e and scope \u003ccode\u003eaccount\u003c/code\u003e\u003c/p\u003e",
+        "description": "Delete a list of admin email addresses to stop receiving personal data request notification. \n\t\t\t<p>Required permission <code>ADMIN:NAMESPACE:{namespace}:EMAIL:CONFIGURATION [DELETE]</code> and scope <code>account</code></p>",
         "consumes": [
           "application/json"
         ],
@@ -337,7 +337,7 @@
     },
     "/gdpr/admin/namespaces/{namespace}/requests": {
       "get": {
-        "description": "\u003cp\u003eRequired permission \u003ccode\u003eADMIN:NAMESPACE:{namespace}:INFORMATION:USER [READ]\u003c/code\u003e and scope \u003ccode\u003eaccount\u003c/code\u003e\u003c/p\u003e",
+        "description": "<p>Required permission <code>ADMIN:NAMESPACE:{namespace}:INFORMATION:USER [READ]</code> and scope <code>account</code></p>",
         "consumes": [
           "application/json"
         ],
@@ -418,7 +418,7 @@
     },
     "/gdpr/admin/namespaces/{namespace}/users/{userId}/deletions": {
       "get": {
-        "description": "\u003cp\u003eRequired permission \u003ccode\u003eADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId}[READ]\u003c/code\u003e and scope \u003ccode\u003eaccount\u003c/code\u003e\u003c/p\u003e",
+        "description": "<p>Required permission <code>ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId}[READ]</code> and scope <code>account</code></p>",
         "consumes": [
           "application/json"
         ],
@@ -480,7 +480,7 @@
         }
       },
       "post": {
-        "description": "\u003cp\u003eRequired permission \u003ccode\u003eADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [CREATE]\u003c/code\u003e and scope \u003ccode\u003eaccount\u003c/code\u003e\u003c/p\u003e",
+        "description": "<p>Required permission <code>ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [CREATE]</code> and scope <code>account</code></p>",
         "consumes": [
           "application/x-www-form-urlencoded"
         ],
@@ -548,7 +548,7 @@
         }
       },
       "delete": {
-        "description": "\u003cp\u003eRequired permission \u003ccode\u003eADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [DELETE]\u003c/code\u003e and scope \u003ccode\u003eaccount\u003c/code\u003e\u003c/p\u003e",
+        "description": "<p>Required permission <code>ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [DELETE]</code> and scope <code>account</code></p>",
         "consumes": [
           "application/json"
         ],
@@ -615,7 +615,7 @@
     },
     "/gdpr/admin/namespaces/{namespace}/users/{userId}/requests": {
       "get": {
-        "description": "\u003cp\u003eRequired permission \u003ccode\u003eADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [READ]\u003c/code\u003e and scope \u003ccode\u003eaccount\u003c/code\u003e\u003c/p\u003e",
+        "description": "<p>Required permission <code>ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [READ]</code> and scope <code>account</code></p>",
         "consumes": [
           "application/json"
         ],
@@ -683,7 +683,7 @@
         }
       },
       "post": {
-        "description": "\u003cp\u003eRequired permission \u003ccode\u003eADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [CREATE]\u003c/code\u003e and scope \u003ccode\u003eaccount\u003c/code\u003e\u003c/p\u003e\n\u003cp\u003eIf admin request data for themselves, password is need to be set\u003c/p\u003e",
+        "description": "<p>Required permission <code>ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [CREATE]</code> and scope <code>account</code></p>\n<p>If admin request data for themselves, password is need to be set</p>",
         "consumes": [
           "application/x-www-form-urlencoded"
         ],
@@ -747,7 +747,7 @@
     },
     "/gdpr/admin/namespaces/{namespace}/users/{userId}/requests/{requestDate}": {
       "delete": {
-        "description": "\u003cp\u003eRequired permission \u003ccode\u003eADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [DELETE]\u003c/code\u003e and scope \u003ccode\u003eaccount\u003c/code\u003e\u003c/p\u003e",
+        "description": "<p>Required permission <code>ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [DELETE]</code> and scope <code>account</code></p>",
         "consumes": [
           "application/json"
         ],
@@ -815,7 +815,7 @@
     },
     "/gdpr/admin/namespaces/{namespace}/users/{userId}/requests/{requestDate}/generate": {
       "post": {
-        "description": "\u003cp\u003eRequired permission \u003ccode\u003eADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [READ]\u003c/code\u003e and scope \u003ccode\u003eaccount\u003c/code\u003e\u003c/p\u003e",
+        "description": "<p>Required permission <code>ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [READ]</code> and scope <code>account</code></p>",
         "consumes": [
           "application/x-www-form-urlencoded"
         ],
@@ -893,7 +893,7 @@
     },
     "/gdpr/public/namespaces/{namespace}/users/{userId}/deletions": {
       "post": {
-        "description": "\u003cp\u003eRequires valid user access token and password",
+        "description": "<p>Requires valid user access token and password",
         "consumes": [
           "application/x-www-form-urlencoded"
         ],
@@ -968,7 +968,7 @@
         }
       },
       "delete": {
-        "description": "\u003cp\u003eRequires valid user access token\u003c/p\u003e",
+        "description": "<p>Requires valid user access token</p>",
         "consumes": [
           "application/json"
         ],
@@ -1029,7 +1029,7 @@
     },
     "/gdpr/public/namespaces/{namespace}/users/{userId}/deletions/status": {
       "get": {
-        "description": "\u003cp\u003eRequires valid user access token\u003c/p\u003e",
+        "description": "<p>Requires valid user access token</p>",
         "consumes": [
           "application/json"
         ],
@@ -1087,7 +1087,7 @@
     },
     "/gdpr/public/namespaces/{namespace}/users/{userId}/requests": {
       "get": {
-        "description": "\u003cp\u003eRequires valid user access token\u003c/p\u003e",
+        "description": "<p>Requires valid user access token</p>",
         "consumes": [
           "application/json"
         ],
@@ -1155,7 +1155,7 @@
         }
       },
       "post": {
-        "description": "\u003cp\u003eRequires valid user access token\u003c/p\u003e",
+        "description": "<p>Requires valid user access token</p>",
         "consumes": [
           "application/x-www-form-urlencoded"
         ],
@@ -1220,7 +1220,7 @@
     },
     "/gdpr/public/namespaces/{namespace}/users/{userId}/requests/{requestDate}": {
       "delete": {
-        "description": "\u003cp\u003eRequires valid user access token\u003c/p\u003e",
+        "description": "<p>Requires valid user access token</p>",
         "consumes": [
           "application/json"
         ],
@@ -1291,7 +1291,7 @@
     },
     "/gdpr/public/namespaces/{namespace}/users/{userId}/requests/{requestDate}/generate": {
       "post": {
-        "description": "\u003cp\u003eRequires valid user access token\u003c/p\u003e",
+        "description": "<p>Requires valid user access token</p>",
         "consumes": [
           "application/x-www-form-urlencoded"
         ],

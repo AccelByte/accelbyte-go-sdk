@@ -8,7 +8,7 @@
   "paths": {
     "/achievement/v1/admin/namespaces/{namespace}/achievements": {
       "get": {
-        "description": "\u003cp\u003eRequired permission \n\u003ccode\u003eADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [READ]\u003c/code\u003e and scope \u003ccode\u003esocial\u003c/code\u003e\u003c/p\u003e",
+        "description": "<p>Required permission \n<code>ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [READ]</code> and scope <code>social</code></p>",
         "consumes": [
           "application/json"
         ],
@@ -84,7 +84,7 @@
         }
       },
       "post": {
-        "description": "\u003cp\u003eRequired permission \n\t\t\t\u003ccode\u003eADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [CREATE]\u003c/code\u003e and scope \u003ccode\u003esocial\u003c/code\u003e\u003c/p\u003e\n        \tOther detail info:\n          - achievementCode: Human readable unique code to indentify the achievement. Must be lowercase \n\t\t\tand maximum length is 32\n          - incremental:  If the achievement is not incremental, it does not need to store a goal value \n\t\t\t\t\t\t\tof a stat to be unlocked.\n                          If the achievement is incremental, it needs to set statCode and goalValue\n          - statCode: Selected statistic code, from the published statistic code event.Human readable unique \n\t\t\tcode to indentify the achievement. Must be lowercase and maximum length is 32\n          - goalValue: Statistics value required to unlock the achievement.\n          - defaultLanguage: localozation for achievement name and achievement description. Allowed format : en, en-US\n          - slug: specify the image they want to use, it can be file image name or something \n\t\t\tto define the achievement icon.",
+        "description": "<p>Required permission \n\t\t\t<code>ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [CREATE]</code> and scope <code>social</code></p>\n        \tOther detail info:\n          - achievementCode: Human readable unique code to indentify the achievement. Must be lowercase \n\t\t\tand maximum length is 32\n          - incremental:  If the achievement is not incremental, it does not need to store a goal value \n\t\t\t\t\t\t\tof a stat to be unlocked.\n                          If the achievement is incremental, it needs to set statCode and goalValue\n          - statCode: Selected statistic code, from the published statistic code event.Human readable unique \n\t\t\tcode to indentify the achievement. Must be lowercase and maximum length is 32\n          - goalValue: Statistics value required to unlock the achievement.\n          - defaultLanguage: localozation for achievement name and achievement description. Allowed format : en, en-US\n          - slug: specify the image they want to use, it can be file image name or something \n\t\t\tto define the achievement icon.",
         "consumes": [
           "application/json"
         ],
@@ -260,7 +260,7 @@
     },
     "/achievement/v1/admin/namespaces/{namespace}/achievements/{achievementCode}": {
       "get": {
-        "description": "\u003cp\u003eRequired permission \n\u003ccode\u003eADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [READ]\u003c/code\u003e and scope \u003ccode\u003esocial\u003c/code\u003e\u003c/p\u003e",
+        "description": "<p>Required permission \n<code>ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [READ]</code> and scope <code>social</code></p>",
         "consumes": [
           "application/json"
         ],
@@ -322,7 +322,7 @@
         }
       },
       "put": {
-        "description": "\u003cp\u003eRequired permission \n\u003ccode\u003eADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [UPDATE]\u003c/code\u003e and scope \u003ccode\u003esocial\u003c/code\u003e\u003c/p\u003e",
+        "description": "<p>Required permission \n<code>ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [UPDATE]</code> and scope <code>social</code></p>",
         "consumes": [
           "application/json"
         ],
@@ -392,7 +392,7 @@
         }
       },
       "delete": {
-        "description": "\u003cp\u003eRequired permission \n\u003ccode\u003eADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [DELETE]\u003c/code\u003e and scope \u003ccode\u003esocial\u003c/code\u003e\u003c/p\u003e",
+        "description": "<p>Required permission \n<code>ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [DELETE]</code> and scope <code>social</code></p>",
         "consumes": [
           "application/json"
         ],
@@ -451,7 +451,7 @@
         }
       },
       "patch": {
-        "description": "\u003cp\u003eRequired permission \n\u003ccode\u003eADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [UPDATE]\u003c/code\u003e and scope \u003ccode\u003esocial\u003c/code\u003e\u003c/p\u003e",
+        "description": "<p>Required permission \n<code>ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [UPDATE]</code> and scope <code>social</code></p>",
         "consumes": [
           "application/json"
         ],
@@ -520,7 +520,7 @@
     },
     "/achievement/v1/admin/namespaces/{namespace}/users/{userId}/achievements": {
       "get": {
-        "description": "\u003cp\u003eRequired permission\n\u003ccode\u003eADMIN:NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [READ]\u003c/code\u003e and scope \u003ccode\u003esocial\u003c/code\u003e\u003c/p\u003e",
+        "description": "<p>Required permission\n<code>ADMIN:NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [READ]</code> and scope <code>social</code></p>",
         "consumes": [
           "application/json"
         ],
@@ -605,7 +605,7 @@
     },
     "/achievement/v1/admin/namespaces/{namespace}/users/{userId}/achievements/{achievementCode}/unlock": {
       "put": {
-        "description": "\u003cp\u003eRequired permission \n\u003ccode\u003eADMIN:NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [UPDATE]\u003c/code\u003e and scope \u003ccode\u003esocial\u003c/code\u003e\u003c/p\u003e",
+        "description": "<p>Required permission \n<code>ADMIN:NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [UPDATE]</code> and scope <code>social</code></p>",
         "consumes": [
           "application/json"
         ],
@@ -667,7 +667,7 @@
     },
     "/achievement/v1/public/namespaces/{namespace}/achievements": {
       "get": {
-        "description": "\u003cp\u003eRequired permission \n\u003ccode\u003eNAMESPACE:{namespace}:ACHIEVEMENT [READ]\u003c/code\u003e and scope \u003ccode\u003esocial\u003c/code\u003e\u003c/p\u003e",
+        "description": "<p>Required permission \n<code>NAMESPACE:{namespace}:ACHIEVEMENT [READ]</code> and scope <code>social</code></p>",
         "consumes": [
           "application/json"
         ],
@@ -752,7 +752,7 @@
     },
     "/achievement/v1/public/namespaces/{namespace}/achievements/{achievementCode}": {
       "get": {
-        "description": "\u003cp\u003eRequired permission \n\u003ccode\u003eNAMESPACE:{namespace}:ACHIEVEMENT [READ]\u003c/code\u003e and scope \u003ccode\u003esocial\u003c/code\u003e\u003c/p\u003e",
+        "description": "<p>Required permission \n<code>NAMESPACE:{namespace}:ACHIEVEMENT [READ]</code> and scope <code>social</code></p>",
         "consumes": [
           "application/json"
         ],
@@ -823,7 +823,7 @@
     },
     "/achievement/v1/public/namespaces/{namespace}/users/{userId}/achievements": {
       "get": {
-        "description": "\u003cp\u003eRequired permission \n\u003ccode\u003eNAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [READ]\u003c/code\u003e and scope \u003ccode\u003esocial\u003c/code\u003e\u003c/p\u003e",
+        "description": "<p>Required permission \n<code>NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [READ]</code> and scope <code>social</code></p>",
         "consumes": [
           "application/json"
         ],
@@ -908,7 +908,7 @@
     },
     "/achievement/v1/public/namespaces/{namespace}/users/{userId}/achievements/{achievementCode}/unlock": {
       "put": {
-        "description": "\u003cp\u003eRequired permission \n\u003ccode\u003eNAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [UPDATE]\u003c/code\u003e and scope \u003ccode\u003esocial\u003c/code\u003e\u003c/p\u003e",
+        "description": "<p>Required permission \n<code>NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [UPDATE]</code> and scope <code>social</code></p>",
         "consumes": [
           "application/json"
         ],

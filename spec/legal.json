@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "description": "Justice Legal Service",
-    "version": "1.13.0",
+    "version": "1.13.1",
     "title": "justice-legal-service",
     "contact": {
       "name": "Engineering Team at AccelByte",

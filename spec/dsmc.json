@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice DSM Controller Service",
     "title": "justice-dsm-controller-service",
-    "version": "2.5.0"
+    "version": "2.6.0"
   },
   "paths": {
     "/dsmcontroller/admin/configs": {
@@ -3870,16 +3870,16 @@
     },
     "models.CreateDeploymentOverrideRequest": {
       "required": [
-        "buffer_count",
-        "use_buffer_percent",
-        "min_count",
+        "game_version",
         "regions",
+        "buffer_percent",
+        "use_buffer_percent",
+        "configuration",
         "region_overrides",
         "enable_region_overrides",
+        "min_count",
         "max_count",
-        "game_version",
-        "configuration",
-        "buffer_percent"
+        "buffer_count"
       ],
       "properties": {
         "buffer_count": {
@@ -3926,14 +3926,14 @@
     },
     "models.CreateDeploymentRequest": {
       "required": [
-        "max_count",
-        "game_version",
-        "configuration",
-        "buffer_percent",
-        "buffer_count",
         "use_buffer_percent",
-        "min_count",
+        "game_version",
         "regions",
+        "buffer_percent",
+        "min_count",
+        "max_count",
+        "buffer_count",
+        "configuration",
         "region_overrides",
         "enable_region_overrides",
         "allow_version_override",
@@ -4084,10 +4084,10 @@
     },
     "models.CreateSessionRequest": {
       "required": [
+        "namespace",
         "game_mode",
         "matching_allies",
         "session_id",
-        "namespace",
         "pod_name",
         "client_version",
         "region",
@@ -4315,11 +4315,11 @@
         "configuration",
         "region_overrides",
         "enable_region_overrides",
-        "buffer_percent",
-        "use_buffer_percent",
         "min_count",
         "max_count",
-        "buffer_count"
+        "buffer_count",
+        "buffer_percent",
+        "use_buffer_percent"
       ],
       "properties": {
         "buffer_count": {
@@ -4368,15 +4368,15 @@
       "required": [
         "name",
         "enable_region_overrides",
-        "buffer_percent",
-        "use_buffer_percent",
         "min_count",
         "buffer_count",
+        "buffer_percent",
         "regions",
         "configuration",
-        "region_overrides",
         "max_count",
-        "game_version"
+        "use_buffer_percent",
+        "game_version",
+        "region_overrides"
       ],
       "properties": {
         "buffer_count": {
@@ -4431,18 +4431,18 @@
         "createdAt",
         "updatedAt",
         "modifiedBy",
-        "buffer_count",
-        "regions",
-        "enable_region_overrides",
-        "buffer_percent",
-        "use_buffer_percent",
-        "min_count",
         "game_version",
-        "configuration",
         "region_overrides",
         "max_count",
-        "overrides",
-        "allow_version_override"
+        "use_buffer_percent",
+        "regions",
+        "configuration",
+        "enable_region_overrides",
+        "min_count",
+        "buffer_count",
+        "buffer_percent",
+        "allow_version_override",
+        "overrides"
       ],
       "properties": {
         "allow_version_override": {
@@ -4924,11 +4924,11 @@
     "models.PodCountConfigOverride": {
       "required": [
         "name",
-        "buffer_count",
-        "buffer_percent",
         "use_buffer_percent",
         "min_count",
-        "max_count"
+        "max_count",
+        "buffer_count",
+        "buffer_percent"
       ],
       "properties": {
         "buffer_count": {
@@ -5315,11 +5315,11 @@
         "regions",
         "configuration",
         "enable_region_overrides",
-        "max_count",
         "buffer_count",
         "buffer_percent",
         "use_buffer_percent",
-        "min_count"
+        "min_count",
+        "max_count"
       ],
       "properties": {
         "buffer_count": {

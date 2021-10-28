@@ -970,20 +970,20 @@
     },
     "models.AdminSessionResponse": {
       "required": [
-        "username",
-        "game_version",
-        "game_session_setting",
-        "spectators",
-        "server",
-        "session_id",
+        "user_id",
         "session_type",
         "joinable",
-        "user_id",
-        "created_at",
+        "server",
+        "username",
+        "game_session_setting",
+        "match",
+        "session_id",
         "namespace",
+        "created_at",
+        "game_version",
         "players",
         "all_players",
-        "match"
+        "spectators"
       ],
       "properties": {
         "all_players": {
@@ -1517,11 +1517,11 @@
         "region",
         "status_history",
         "is_override_game_version",
-        "cpu_request",
         "mem_request",
         "cpu_limit",
         "mem_limit",
-        "params"
+        "params",
+        "cpu_request"
       ],
       "properties": {
         "allocation_id": {
@@ -1637,19 +1637,19 @@
     },
     "models.SessionResponse": {
       "required": [
-        "username",
-        "game_version",
-        "game_session_setting",
-        "session_id",
-        "server",
-        "user_id",
-        "created_at",
-        "all_players",
+        "players",
         "spectators",
         "joinable",
-        "namespace",
+        "session_id",
         "session_type",
-        "players",
+        "server",
+        "namespace",
+        "game_version",
+        "game_session_setting",
+        "created_at",
+        "user_id",
+        "username",
+        "all_players",
         "match"
       ],
       "properties": {

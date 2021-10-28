@@ -337,7 +337,7 @@ func (m *MatchmakingService) GetAllChannelsHandler(input *matchmaking.GetAllChan
 	return ok.GetPayload(), nil
 }
 
-func (m *MatchmakingService) GetAllPartyInAllChannel(input *matchmaking.GetAllPartyInAllChannelParams) (*matchmakingclientmodels.ModelsMatchingParty, error) {
+func (m *MatchmakingService) GetAllPartyInAllChannel(input *matchmaking.GetAllPartyInAllChannelParams) (map[string][]matchmakingclientmodels.ModelsMatchingParty, error) {
 	token, err := m.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err

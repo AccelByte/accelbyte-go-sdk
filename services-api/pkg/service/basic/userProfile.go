@@ -94,40 +94,6 @@ func (u *UserProfileService) DeleteUserProfile(input *user_profile.DeleteUserPro
 	return ok.GetPayload(), nil
 }
 
-func (u *UserProfileService) EnableUserProfileStatus(input *user_profile.EnableUserProfileStatusParams) (*basicclientmodels.UserProfilePrivateInfo, error) {
-	accessToken, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, badRequest, unauthorized, forbidden, notFound, err :=
-		u.Client.UserProfile.EnableUserProfileStatus(input, client.BearerToken(*accessToken.AccessToken))
-	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, badRequest
-	}
-	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, unauthorized
-	}
-	if forbidden != nil {
-		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, forbidden
-	}
-	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, notFound
-	}
-	if err != nil {
-		logrus.Error(err)
-		return nil, err
-	}
-	return ok.GetPayload(), nil
-}
-
 func (u *UserProfileService) GetCustomAttributesInfo(input *user_profile.GetCustomAttributesInfoParams) (map[string]interface{}, error) {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
@@ -144,30 +110,6 @@ func (u *UserProfileService) GetCustomAttributesInfo(input *user_profile.GetCust
 		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
 		logrus.Error(string(errorMsg))
 		return nil, forbidden
-	}
-	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, notFound
-	}
-	if err != nil {
-		logrus.Error(err)
-		return nil, err
-	}
-	return ok.GetPayload(), nil
-}
-
-func (u *UserProfileService) GetCustomAttributesInfo1(input *user_profile.GetCustomAttributesInfo1Params) (map[string]interface{}, error) {
-	accessToken, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, unauthorized, notFound, err :=
-		u.Client.UserProfile.GetCustomAttributesInfo1(input, client.BearerToken(*accessToken.AccessToken))
-	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, unauthorized
 	}
 	if notFound != nil {
 		errorMsg, _ := json.Marshal(*notFound.GetPayload())
@@ -278,30 +220,6 @@ func (u *UserProfileService) GetUserProfileInfo(input *user_profile.GetUserProfi
 	return ok.GetPayload(), nil
 }
 
-func (u *UserProfileService) GetUserZipCode(input *user_profile.GetUserZipCodeParams) (*basicclientmodels.UserZipCode, error) {
-	accessToken, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, unauthorized, forbidden, err :=
-		u.Client.UserProfile.GetUserZipCode(input, client.BearerToken(*accessToken.AccessToken))
-	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, unauthorized
-	}
-	if forbidden != nil {
-		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, forbidden
-	}
-	if err != nil {
-		logrus.Error(err)
-		return nil, err
-	}
-	return ok.GetPayload(), nil
-}
-
 func (u *UserProfileService) PublicCreateUserProfile(input *user_profile.PublicCreateUserProfileParams) (*basicclientmodels.UserProfileInfo, error) {
 	logrus.Infof("Invoke CreateProfile with parameter %s", input.Namespace)
 	accessToken, err := u.TokenRepository.GetToken()
@@ -335,41 +253,6 @@ func (u *UserProfileService) PublicCreateUserProfile(input *user_profile.PublicC
 		return nil, err
 	}
 	return created.GetPayload(), nil
-}
-
-func (u *UserProfileService) PublicEnableUserProfileStatus(input *user_profile.PublicEnableUserProfileStatusParams) (*basicclientmodels.UserProfileInfo, error) {
-	logrus.Infof("Invoke CreateProfile with parameter %s", input.Namespace)
-	accessToken, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, badRequest, unauthorized, forbidden, notFound, err :=
-		u.Client.UserProfile.PublicEnableUserProfileStatus(input, client.BearerToken(*accessToken.AccessToken))
-	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, badRequest
-	}
-	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, unauthorized
-	}
-	if forbidden != nil {
-		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, forbidden
-	}
-	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, notFound
-	}
-	if err != nil {
-		logrus.Error(err)
-		return nil, err
-	}
-	return ok.GetPayload(), nil
 }
 
 func (u *UserProfileService) PublicGetUserProfileInfo(input *user_profile.PublicGetUserProfileInfoParams) (*basicclientmodels.UserProfileInfo, error) {
@@ -519,40 +402,6 @@ func (u *UserProfileService) UpdateCustomAttributesPartially(input *user_profile
 	return ok.GetPayload(), nil
 }
 
-func (u *UserProfileService) UpdateCustomAttributesPartially1(input *user_profile.UpdateCustomAttributesPartially1Params) (map[string]interface{}, error) {
-	accessToken, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, badRequest, unauthorized, forbidden, notFound, err :=
-		u.Client.UserProfile.UpdateCustomAttributesPartially1(input, client.BearerToken(*accessToken.AccessToken))
-	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, badRequest
-	}
-	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, unauthorized
-	}
-	if forbidden != nil {
-		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, forbidden
-	}
-	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, notFound
-	}
-	if err != nil {
-		logrus.Error(err)
-		return nil, err
-	}
-	return ok.GetPayload(), nil
-}
-
 func (u *UserProfileService) UpdateMyProfile(input *user_profile.UpdateMyProfileParams) (*basicclientmodels.UserProfilePrivateInfo, error) {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
@@ -647,35 +496,6 @@ func (u *UserProfileService) UpdateUserProfile(input *user_profile.UpdateUserPro
 		errorMsg, _ := json.Marshal(*notFound.GetPayload())
 		logrus.Error(string(errorMsg))
 		return nil, notFound
-	}
-	if err != nil {
-		logrus.Error(err)
-		return nil, err
-	}
-	return ok.GetPayload(), nil
-}
-
-func (u *UserProfileService) UpdateUserZipCode(input *user_profile.UpdateUserZipCodeParams) (*basicclientmodels.UserZipCode, error) {
-	accessToken, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, badRequest, unauthorized, forbidden, err :=
-		u.Client.UserProfile.UpdateUserZipCode(input, client.BearerToken(*accessToken.AccessToken))
-	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, badRequest
-	}
-	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, unauthorized
-	}
-	if forbidden != nil {
-		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, forbidden
 	}
 	if err != nil {
 		logrus.Error(err)

@@ -25,7 +25,7 @@ func (a *AnonymizationService) AnonymizeUserProfile(input *anonymization.Anonymi
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, err :=
+	_, badRequest, unauthorized, forbidden, err :=
 		a.Client.Anonymization.AnonymizeUserProfile(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
@@ -41,11 +41,6 @@ func (a *AnonymizationService) AnonymizeUserProfile(input *anonymization.Anonymi
 		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
 		logrus.Error(string(errorMsg))
 		return forbidden
-	}
-	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
-		return notFound
 	}
 	if err != nil {
 		logrus.Error(err)

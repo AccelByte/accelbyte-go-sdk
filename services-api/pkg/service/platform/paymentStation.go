@@ -3,6 +3,7 @@ package platform
 import (
 	"encoding/json"
 	"io"
+	"net/http"
 
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/payment_station"
@@ -82,13 +83,40 @@ func (p *PaymentStation) GetPaymentPublicConfig(input *payment_station.GetPaymen
 	return ok.GetPayload(), nil
 }
 
-func (p *PaymentStation) PublicNormalizePaymentReturnURL(input *payment_station.PublicNormalizePaymentReturnURLParams) error {
-	_, err := p.Client.PaymentStation.PublicNormalizePaymentReturnURL(input)
+func (p *PaymentStation) PublicNormalizePaymentReturnURL(input *payment_station.PublicNormalizePaymentReturnURLParams) (string, error) {
+	httpClient := &http.Client{
+		CheckRedirect: func(req *http.Request, via []*http.Request) error {
+			return http.ErrUseLastResponse
+		},
+	}
+	newInput := &payment_station.PublicNormalizePaymentReturnURLParams{
+		PayerID: input.PayerID,
+		Foreinginvoice: input.Foreinginvoice,
+		InvoiceID: input.InvoiceID,
+		Namespace: input.Namespace,
+		OrderNo: input.OrderNo,
+		Payload: input.Payload,
+		PaymentOrderNo: input.PaymentOrderNo,
+		PaymentProvider: input.PaymentProvider,
+		ResultCode: input.ResultCode,
+		ReturnURL: input.ReturnURL,
+		Status: input.Status,
+		Token: input.Token,
+		Type: input.Type,
+		UserID: input.UserID,
+		HTTPClient: httpClient,
+	}
+	_, returnedURL, err := p.Client.PaymentStation.PublicNormalizePaymentReturnURL(newInput)
+	if returnedURL != nil{
+		logrus.Infof("Successfully operation")
+		return returnedURL.Location, nil
+	}
 	if err != nil {
 		logrus.Error(err)
-		return err
+		return "", err
 	}
-	return nil
+	logrus.Infof("URL is empty")
+	return "", nil
 }
 
 func (p *PaymentStation) PublicGetPaymentMethods(input *payment_station.PublicGetPaymentMethodsParams) ([]*platformclientmodels.PaymentMethod, error) {

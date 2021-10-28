@@ -34,40 +34,12 @@ func (w *WalletService) ListUserWalletTransactions(input *wallet.ListUserWalletT
 	return ok.GetPayload(), nil
 }
 
-func (w *WalletService) CheckTransactionCreditLimit(input *wallet.CheckTransactionCreditLimitParams) error {
-	accessToken, err := w.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	_, badRequest, conflict, unprocessableEntity, err := w.Client.Wallet.CheckTransactionCreditLimit(input, client.BearerToken(*accessToken.AccessToken))
-	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
-		return badRequest
-	}
-	if conflict != nil {
-		errorMsg, _ := json.Marshal(*conflict.GetPayload())
-		logrus.Error(string(errorMsg))
-		return conflict
-	}
-	if unprocessableEntity != nil {
-		errorMsg, _ := json.Marshal(*unprocessableEntity.GetPayload())
-		logrus.Error(string(errorMsg))
-		return unprocessableEntity
-	}
-	if err != nil {
-		logrus.Error(err)
-		return err
-	}
-	return nil
-}
-
 func (w *WalletService) EnableUserWallet(input *wallet.EnableUserWalletParams) error {
 	accessToken, err := w.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	notFound, conflict, err := w.Client.Wallet.EnableUserWallet(input, client.BearerToken(*accessToken.AccessToken))
+	_, notFound, conflict, err := w.Client.Wallet.EnableUserWallet(input, client.BearerToken(*accessToken.AccessToken))
 	if notFound != nil {
 		errorMsg, _ := json.Marshal(*notFound.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -136,22 +108,27 @@ func (w *WalletService) GetUserWallet(input *wallet.GetUserWalletParams) (*platf
 	return ok.GetPayload(), nil
 }
 
-func (w *WalletService) DisableUserWallet(input *wallet.DisableUserWalletParams) (*platformclientmodels.ErrorEntity, error) {
+func (w *WalletService) DisableUserWallet(input *wallet.DisableUserWalletParams) error {
 	accessToken, err := w.TokenRepository.GetToken()
 	if err != nil {
-		return nil, err
+		return err
 	}
-	ok, notFound, err := w.Client.Wallet.DisableUserWallet(input, client.BearerToken(*accessToken.AccessToken))
+	_, notFound, conflict, err := w.Client.Wallet.DisableUserWallet(input, client.BearerToken(*accessToken.AccessToken))
 	if notFound != nil {
 		errorMsg, _ := json.Marshal(*notFound.GetPayload())
 		logrus.Error(string(errorMsg))
-		return nil, notFound
+		return  notFound
+	}
+	if conflict != nil {
+		errorMsg, _ := json.Marshal(*conflict.GetPayload())
+		logrus.Error(string(errorMsg))
+		return  conflict
 	}
 	if err != nil {
 		logrus.Error(err)
-		return nil, err
+		return err
 	}
-	return ok.GetPayload(), nil
+	return nil
 }
 
 func (w *WalletService) CreditUserWallet(input *wallet.CreditUserWalletParams) (*platformclientmodels.WalletInfo, error) {

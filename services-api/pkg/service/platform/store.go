@@ -120,7 +120,12 @@ func (s *StoreService) CreateStore(input *store.CreateStoreParams) (*platformcli
 	if err != nil {
 		return nil, err
 	}
-	storeCreated, unprocessableEntity, err := s.Client.Store.CreateStore(input, client.BearerToken(*accessToken.AccessToken))
+	storeCreated, conflict, unprocessableEntity, err := s.Client.Store.CreateStore(input, client.BearerToken(*accessToken.AccessToken))
+	if conflict != nil {
+		errorMsg, _ := json.Marshal(*conflict.GetPayload())
+		logrus.Error(string(errorMsg))
+		return nil, conflict
+	}
 	if unprocessableEntity != nil {
 		errorMsg, _ := json.Marshal(*unprocessableEntity.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -215,7 +220,7 @@ func (s *StoreService) ExportStore(input *store.ExportStoreParams) error {
 	if err != nil {
 		return err
 	}
-	notFound, err := s.Client.Store.ExportStore(input, client.BearerToken(*accessToken.AccessToken))
+	_, notFound, err := s.Client.Store.ExportStore(input, client.BearerToken(*accessToken.AccessToken))
 	if notFound != nil {
 		errorMsg, _ := json.Marshal(*notFound.GetPayload())
 		logrus.Error(string(errorMsg))

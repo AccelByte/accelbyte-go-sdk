@@ -129,7 +129,7 @@ func (p *ProfanityService) AdminCreateProfanityList(input *profanity.AdminCreate
 	return nil
 }
 
-func (p *ProfanityService) AdminDebugProfanityFilters(input *profanity.AdminDebugProfanityFiltersParams) ([]lobbyclientmodels.ModelsProfanityFilter, error) {
+func (p *ProfanityService) AdminDebugProfanityFilters(input *profanity.AdminDebugProfanityFiltersParams) ([]*lobbyclientmodels.ModelsProfanityFilter, error) {
 	token, err := p.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -167,7 +167,7 @@ func (p *ProfanityService) AdminDebugProfanityFilters(input *profanity.AdminDebu
 	return ok.GetPayload(), nil
 }
 
-func (p *ProfanityService) AdminDeleteProfanityFilter(input *profanity.AdminDeleteProfanityFilterParams) ([]lobbyclientmodels.ModelsProfanityFilter, error) {
+func (p *ProfanityService) AdminDeleteProfanityFilter(input *profanity.AdminDeleteProfanityFilterParams) ([]*lobbyclientmodels.ModelsProfanityFilter, error) {
 	token, err := p.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err

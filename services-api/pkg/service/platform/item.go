@@ -340,7 +340,12 @@ func (e *ItemService) SearchItem(input *item.SearchItemsParams) (*platformclient
 	if err != nil {
 		return nil, err
 	}
-	items, err := e.Client.Item.SearchItems(input, client.BearerToken(*accessToken.AccessToken))
+	items, notFound, err := e.Client.Item.SearchItems(input, client.BearerToken(*accessToken.AccessToken))
+	if notFound != nil {
+		errorMsg, _ := json.Marshal(*notFound.GetPayload())
+		logrus.Error(string(errorMsg))
+		return nil, notFound
+	}
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
@@ -376,7 +381,12 @@ func (e *ItemService) BulkGetLocaleItem(input *item.BulkGetLocaleItemsParams) ([
 	if err != nil {
 		return nil, err
 	}
-	items, err := e.Client.Item.BulkGetLocaleItems(input, client.BearerToken(*accessToken.AccessToken))
+	items, notFound, err := e.Client.Item.BulkGetLocaleItems(input, client.BearerToken(*accessToken.AccessToken))
+	if notFound != nil {
+		errorMsg, _ := json.Marshal(*notFound.GetPayload())
+		logrus.Error(string(errorMsg))
+		return nil, notFound
+	}
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
@@ -553,7 +563,12 @@ func (e *ItemService) PublicGetItemBySku(input *item.PublicGetItemBySkuParams) (
 }
 
 func (e *ItemService) PublicSearchItem(input *item.PublicSearchItemsParams) (*platformclientmodels.ItemPagingSlicedResult, error) {
-	items, err := e.Client.Item.PublicSearchItems(input)
+	items, notFound, err := e.Client.Item.PublicSearchItems(input)
+	if notFound != nil {
+		errorMsg, _ := json.Marshal(*notFound.GetPayload())
+		logrus.Error(string(errorMsg))
+		return nil, notFound
+	}
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
@@ -623,7 +638,12 @@ func (e *ItemService) PublicGetItemDynamicData(input *item.PublicGetItemDynamicD
 }
 
 func (e *ItemService) PublicGetBulkItems(input *item.PublicBulkGetItemsParams) ([]*platformclientmodels.ItemInfo, error) {
-	items, err := e.Client.Item.PublicBulkGetItems(input)
+	items, notFound, err := e.Client.Item.PublicBulkGetItems(input)
+	if notFound != nil {
+		errorMsg, _ := json.Marshal(*notFound.GetPayload())
+		logrus.Error(string(errorMsg))
+		return nil, notFound
+	}
 	if err != nil {
 		logrus.Error(err)
 		return nil, err

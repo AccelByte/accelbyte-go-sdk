@@ -59,7 +59,7 @@ func (m *MiscService) DeleteCountryGroup(input *misc.DeleteCountryGroupParams) e
 	if err != nil {
 		return err
 	}
-	badRequest, unauthorized, forbidden, notFound, err :=
+	_, badRequest, unauthorized, forbidden, notFound, err :=
 		m.Client.Misc.DeleteCountryGroup(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())

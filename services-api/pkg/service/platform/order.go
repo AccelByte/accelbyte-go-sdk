@@ -100,7 +100,7 @@ func (o *OrderService) DownloadUserOrderReceipt(input *order.DownloadUserOrderRe
 	if err != nil {
 		return err
 	}
-	notFound, conflict, err := o.Client.Order.DownloadUserOrderReceipt(input, client.BearerToken(*accessToken.AccessToken))
+	_, notFound, conflict, err := o.Client.Order.DownloadUserOrderReceipt(input, client.BearerToken(*accessToken.AccessToken))
 	if notFound != nil {
 		errorMsg, _ := json.Marshal(*notFound.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -335,7 +335,7 @@ func (o *OrderService) PublicDownloadUserOrderReceipt(input *order.PublicDownloa
 	if err != nil {
 		return err
 	}
-	notFound, conflict, err := o.Client.Order.PublicDownloadUserOrderReceipt(input, client.BearerToken(*accessToken.AccessToken))
+	_, notFound, conflict, err := o.Client.Order.PublicDownloadUserOrderReceipt(input, client.BearerToken(*accessToken.AccessToken))
 	if notFound != nil {
 		errorMsg, _ := json.Marshal(*notFound.GetPayload())
 		logrus.Error(string(errorMsg))

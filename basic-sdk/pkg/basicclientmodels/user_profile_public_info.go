@@ -24,6 +24,9 @@ type UserProfilePublicInfo struct {
 	// avatar Url
 	AvatarURL string `json:"avatarUrl,omitempty"`
 
+	// custom attributes
+	CustomAttributes map[string]interface{} `json:"customAttributes,omitempty"`
+
 	// namespace
 	Namespace string `json:"namespace,omitempty"`
 

@@ -35,7 +35,7 @@ type ClientService interface {
 
 	CreateLeaderboardConfigurationPublicV1(params *CreateLeaderboardConfigurationPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*CreateLeaderboardConfigurationPublicV1Created, *CreateLeaderboardConfigurationPublicV1BadRequest, *CreateLeaderboardConfigurationPublicV1Unauthorized, *CreateLeaderboardConfigurationPublicV1Forbidden, *CreateLeaderboardConfigurationPublicV1Conflict, *CreateLeaderboardConfigurationPublicV1InternalServerError, error)
 
-	DeleteBulkLeaderboardsV1(params *DeleteBulkLeaderboardsV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteBulkLeaderboardsV1OK, *DeleteBulkLeaderboardsV1BadRequest, *DeleteBulkLeaderboardsV1Unauthorized, *DeleteBulkLeaderboardsV1Forbidden, *DeleteBulkLeaderboardsV1InternalServerError, error)
+	DeleteBulkLeaderboardConfigurationAdminV1(params *DeleteBulkLeaderboardConfigurationAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteBulkLeaderboardConfigurationAdminV1OK, *DeleteBulkLeaderboardConfigurationAdminV1BadRequest, *DeleteBulkLeaderboardConfigurationAdminV1Unauthorized, *DeleteBulkLeaderboardConfigurationAdminV1Forbidden, *DeleteBulkLeaderboardConfigurationAdminV1InternalServerError, error)
 
 	DeleteLeaderboardConfigurationAdminV1(params *DeleteLeaderboardConfigurationAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteLeaderboardConfigurationAdminV1NoContent, *DeleteLeaderboardConfigurationAdminV1BadRequest, *DeleteLeaderboardConfigurationAdminV1Unauthorized, *DeleteLeaderboardConfigurationAdminV1Forbidden, *DeleteLeaderboardConfigurationAdminV1NotFound, *DeleteLeaderboardConfigurationAdminV1InternalServerError, error)
 
@@ -228,16 +228,16 @@ func (a *Client) CreateLeaderboardConfigurationPublicV1(params *CreateLeaderboar
 }
 
 /*
-  DeleteBulkLeaderboardsV1 deletes bulk leaderboards response body will contains failed leaderboard with the reason why it s failed to delete
+  DeleteBulkLeaderboardConfigurationAdminV1 deletes bulk leaderboards response body will contains failed leaderboard with the reason why it s failed to delete
 
   <p>Required permission 'ADMIN:NAMESPACE:{namespace}:LEADERBOARD [DELETE]'</p>
 			<p>This endpoint delete multiple leaderboards configuration in one request</p>
 
 */
-func (a *Client) DeleteBulkLeaderboardsV1(params *DeleteBulkLeaderboardsV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteBulkLeaderboardsV1OK, *DeleteBulkLeaderboardsV1BadRequest, *DeleteBulkLeaderboardsV1Unauthorized, *DeleteBulkLeaderboardsV1Forbidden, *DeleteBulkLeaderboardsV1InternalServerError, error) {
+func (a *Client) DeleteBulkLeaderboardConfigurationAdminV1(params *DeleteBulkLeaderboardConfigurationAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteBulkLeaderboardConfigurationAdminV1OK, *DeleteBulkLeaderboardConfigurationAdminV1BadRequest, *DeleteBulkLeaderboardConfigurationAdminV1Unauthorized, *DeleteBulkLeaderboardConfigurationAdminV1Forbidden, *DeleteBulkLeaderboardConfigurationAdminV1InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewDeleteBulkLeaderboardsV1Params()
+		params = NewDeleteBulkLeaderboardConfigurationAdminV1Params()
 	}
 
 	if params.Context == nil {
@@ -245,14 +245,14 @@ func (a *Client) DeleteBulkLeaderboardsV1(params *DeleteBulkLeaderboardsV1Params
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "deleteBulkLeaderboardsV1",
+		ID:                 "deleteBulkLeaderboardConfigurationAdminV1",
 		Method:             "POST",
 		PathPattern:        "/leaderboard/v1/admin/namespaces/{namespace}/leaderboards/delete",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http"},
 		Params:             params,
-		Reader:             &DeleteBulkLeaderboardsV1Reader{formats: a.formats},
+		Reader:             &DeleteBulkLeaderboardConfigurationAdminV1Reader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -263,15 +263,15 @@ func (a *Client) DeleteBulkLeaderboardsV1(params *DeleteBulkLeaderboardsV1Params
 
 	switch v := result.(type) {
 
-	case *DeleteBulkLeaderboardsV1OK:
+	case *DeleteBulkLeaderboardConfigurationAdminV1OK:
 		return v, nil, nil, nil, nil, nil
-	case *DeleteBulkLeaderboardsV1BadRequest:
+	case *DeleteBulkLeaderboardConfigurationAdminV1BadRequest:
 		return nil, v, nil, nil, nil, nil
-	case *DeleteBulkLeaderboardsV1Unauthorized:
+	case *DeleteBulkLeaderboardConfigurationAdminV1Unauthorized:
 		return nil, nil, v, nil, nil, nil
-	case *DeleteBulkLeaderboardsV1Forbidden:
+	case *DeleteBulkLeaderboardConfigurationAdminV1Forbidden:
 		return nil, nil, nil, v, nil, nil
-	case *DeleteBulkLeaderboardsV1InternalServerError:
+	case *DeleteBulkLeaderboardConfigurationAdminV1InternalServerError:
 		return nil, nil, nil, nil, v, nil
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))

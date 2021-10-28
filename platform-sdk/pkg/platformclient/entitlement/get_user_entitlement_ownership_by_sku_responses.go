@@ -51,20 +51,20 @@ func NewGetUserEntitlementOwnershipBySkuOK() *GetUserEntitlementOwnershipBySkuOK
   successful operation
 */
 type GetUserEntitlementOwnershipBySkuOK struct {
-	Payload *platformclientmodels.Ownership
+	Payload *platformclientmodels.TimedOwnership
 }
 
 func (o *GetUserEntitlementOwnershipBySkuOK) Error() string {
 	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/users/{userId}/entitlements/ownership/bySku][%d] getUserEntitlementOwnershipBySkuOK  %+v", 200, o.Payload)
 }
 
-func (o *GetUserEntitlementOwnershipBySkuOK) GetPayload() *platformclientmodels.Ownership {
+func (o *GetUserEntitlementOwnershipBySkuOK) GetPayload() *platformclientmodels.TimedOwnership {
 	return o.Payload
 }
 
 func (o *GetUserEntitlementOwnershipBySkuOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(platformclientmodels.Ownership)
+	o.Payload = new(platformclientmodels.TimedOwnership)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

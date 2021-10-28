@@ -24,8 +24,8 @@ type AdminDeleteChannelReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *AdminDeleteChannelReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-	case 200:
-		result := NewAdminDeleteChannelOK()
+	case 204:
+		result := NewAdminDeleteChannelNoContent()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -59,35 +59,23 @@ func (o *AdminDeleteChannelReader) ReadResponse(response runtime.ClientResponse,
 	}
 }
 
-// NewAdminDeleteChannelOK creates a AdminDeleteChannelOK with default headers values
-func NewAdminDeleteChannelOK() *AdminDeleteChannelOK {
-	return &AdminDeleteChannelOK{}
+// NewAdminDeleteChannelNoContent creates a AdminDeleteChannelNoContent with default headers values
+func NewAdminDeleteChannelNoContent() *AdminDeleteChannelNoContent {
+	return &AdminDeleteChannelNoContent{}
 }
 
-/*AdminDeleteChannelOK handles this case with default header values.
+/*AdminDeleteChannelNoContent handles this case with default header values.
 
-  OK
+  No Content
 */
-type AdminDeleteChannelOK struct {
-	Payload *ugcclientmodels.ModelsChannelResponse
+type AdminDeleteChannelNoContent struct {
 }
 
-func (o *AdminDeleteChannelOK) Error() string {
-	return fmt.Sprintf("[DELETE /ugc/v1/admin/namespaces/{namespace}/users/{userId}/channels/{channelId}][%d] adminDeleteChannelOK  %+v", 200, o.Payload)
+func (o *AdminDeleteChannelNoContent) Error() string {
+	return fmt.Sprintf("[DELETE /ugc/v1/admin/namespaces/{namespace}/users/{userId}/channels/{channelId}][%d] adminDeleteChannelNoContent ", 204)
 }
 
-func (o *AdminDeleteChannelOK) GetPayload() *ugcclientmodels.ModelsChannelResponse {
-	return o.Payload
-}
-
-func (o *AdminDeleteChannelOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-
-	o.Payload = new(ugcclientmodels.ModelsChannelResponse)
-
-	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
-		return err
-	}
+func (o *AdminDeleteChannelNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }

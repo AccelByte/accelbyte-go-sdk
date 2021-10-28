@@ -29,21 +29,21 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	AdminDeleteAllUserChannels(params *AdminDeleteAllUserChannelsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteAllUserChannelsOK, *AdminDeleteAllUserChannelsUnauthorized, *AdminDeleteAllUserChannelsNotFound, *AdminDeleteAllUserChannelsInternalServerError, error)
+	AdminDeleteAllUserChannels(params *AdminDeleteAllUserChannelsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteAllUserChannelsNoContent, *AdminDeleteAllUserChannelsUnauthorized, *AdminDeleteAllUserChannelsNotFound, *AdminDeleteAllUserChannelsInternalServerError, error)
 
-	AdminDeleteAllUserContents(params *AdminDeleteAllUserContentsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteAllUserContentsOK, *AdminDeleteAllUserContentsUnauthorized, *AdminDeleteAllUserContentsNotFound, *AdminDeleteAllUserContentsInternalServerError, error)
+	AdminDeleteAllUserContents(params *AdminDeleteAllUserContentsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteAllUserContentsNoContent, *AdminDeleteAllUserContentsUnauthorized, *AdminDeleteAllUserContentsNotFound, *AdminDeleteAllUserContentsInternalServerError, error)
 
-	AdminDeleteAllUserGroup(params *AdminDeleteAllUserGroupParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteAllUserGroupOK, *AdminDeleteAllUserGroupUnauthorized, *AdminDeleteAllUserGroupNotFound, *AdminDeleteAllUserGroupInternalServerError, error)
+	AdminDeleteAllUserGroup(params *AdminDeleteAllUserGroupParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteAllUserGroupNoContent, *AdminDeleteAllUserGroupUnauthorized, *AdminDeleteAllUserGroupNotFound, *AdminDeleteAllUserGroupInternalServerError, error)
 
-	AdminDeleteAllUserStates(params *AdminDeleteAllUserStatesParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteAllUserStatesOK, *AdminDeleteAllUserStatesBadRequest, *AdminDeleteAllUserStatesUnauthorized, *AdminDeleteAllUserStatesInternalServerError, error)
+	AdminDeleteAllUserStates(params *AdminDeleteAllUserStatesParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteAllUserStatesNoContent, *AdminDeleteAllUserStatesBadRequest, *AdminDeleteAllUserStatesUnauthorized, *AdminDeleteAllUserStatesInternalServerError, error)
 
-	DeleteAllUserChannel(params *DeleteAllUserChannelParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteAllUserChannelOK, *DeleteAllUserChannelUnauthorized, *DeleteAllUserChannelNotFound, *DeleteAllUserChannelInternalServerError, error)
+	DeleteAllUserChannel(params *DeleteAllUserChannelParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteAllUserChannelNoContent, *DeleteAllUserChannelUnauthorized, *DeleteAllUserChannelNotFound, *DeleteAllUserChannelInternalServerError, error)
 
-	DeleteAllUserContents(params *DeleteAllUserContentsParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteAllUserContentsOK, *DeleteAllUserContentsUnauthorized, *DeleteAllUserContentsNotFound, *DeleteAllUserContentsInternalServerError, error)
+	DeleteAllUserContents(params *DeleteAllUserContentsParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteAllUserContentsNoContent, *DeleteAllUserContentsUnauthorized, *DeleteAllUserContentsNotFound, *DeleteAllUserContentsInternalServerError, error)
 
-	DeleteAllUserGroup(params *DeleteAllUserGroupParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteAllUserGroupOK, *DeleteAllUserGroupUnauthorized, *DeleteAllUserGroupNotFound, *DeleteAllUserGroupInternalServerError, error)
+	DeleteAllUserGroup(params *DeleteAllUserGroupParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteAllUserGroupNoContent, *DeleteAllUserGroupUnauthorized, *DeleteAllUserGroupNotFound, *DeleteAllUserGroupInternalServerError, error)
 
-	DeleteAllUserStates(params *DeleteAllUserStatesParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteAllUserStatesOK, *DeleteAllUserStatesBadRequest, *DeleteAllUserStatesUnauthorized, *DeleteAllUserStatesInternalServerError, error)
+	DeleteAllUserStates(params *DeleteAllUserStatesParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteAllUserStatesNoContent, *DeleteAllUserStatesBadRequest, *DeleteAllUserStatesUnauthorized, *DeleteAllUserStatesInternalServerError, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -53,7 +53,7 @@ type ClientService interface {
 
   Required permission <b>ADMIN:NAMESPACE:{namespace}:USER:{userId}:CHANNEL [DELETE]</b>
 */
-func (a *Client) AdminDeleteAllUserChannels(params *AdminDeleteAllUserChannelsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteAllUserChannelsOK, *AdminDeleteAllUserChannelsUnauthorized, *AdminDeleteAllUserChannelsNotFound, *AdminDeleteAllUserChannelsInternalServerError, error) {
+func (a *Client) AdminDeleteAllUserChannels(params *AdminDeleteAllUserChannelsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteAllUserChannelsNoContent, *AdminDeleteAllUserChannelsUnauthorized, *AdminDeleteAllUserChannelsNotFound, *AdminDeleteAllUserChannelsInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminDeleteAllUserChannelsParams()
@@ -82,7 +82,7 @@ func (a *Client) AdminDeleteAllUserChannels(params *AdminDeleteAllUserChannelsPa
 
 	switch v := result.(type) {
 
-	case *AdminDeleteAllUserChannelsOK:
+	case *AdminDeleteAllUserChannelsNoContent:
 		return v, nil, nil, nil, nil
 	case *AdminDeleteAllUserChannelsUnauthorized:
 		return nil, v, nil, nil, nil
@@ -100,7 +100,7 @@ func (a *Client) AdminDeleteAllUserChannels(params *AdminDeleteAllUserChannelsPa
 
   Required permission <b>ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [DELETE]</b>.
 */
-func (a *Client) AdminDeleteAllUserContents(params *AdminDeleteAllUserContentsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteAllUserContentsOK, *AdminDeleteAllUserContentsUnauthorized, *AdminDeleteAllUserContentsNotFound, *AdminDeleteAllUserContentsInternalServerError, error) {
+func (a *Client) AdminDeleteAllUserContents(params *AdminDeleteAllUserContentsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteAllUserContentsNoContent, *AdminDeleteAllUserContentsUnauthorized, *AdminDeleteAllUserContentsNotFound, *AdminDeleteAllUserContentsInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminDeleteAllUserContentsParams()
@@ -129,7 +129,7 @@ func (a *Client) AdminDeleteAllUserContents(params *AdminDeleteAllUserContentsPa
 
 	switch v := result.(type) {
 
-	case *AdminDeleteAllUserContentsOK:
+	case *AdminDeleteAllUserContentsNoContent:
 		return v, nil, nil, nil, nil
 	case *AdminDeleteAllUserContentsUnauthorized:
 		return nil, v, nil, nil, nil
@@ -147,7 +147,7 @@ func (a *Client) AdminDeleteAllUserContents(params *AdminDeleteAllUserContentsPa
 
   Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENTGROUP [DELETE]
 */
-func (a *Client) AdminDeleteAllUserGroup(params *AdminDeleteAllUserGroupParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteAllUserGroupOK, *AdminDeleteAllUserGroupUnauthorized, *AdminDeleteAllUserGroupNotFound, *AdminDeleteAllUserGroupInternalServerError, error) {
+func (a *Client) AdminDeleteAllUserGroup(params *AdminDeleteAllUserGroupParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteAllUserGroupNoContent, *AdminDeleteAllUserGroupUnauthorized, *AdminDeleteAllUserGroupNotFound, *AdminDeleteAllUserGroupInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminDeleteAllUserGroupParams()
@@ -176,7 +176,7 @@ func (a *Client) AdminDeleteAllUserGroup(params *AdminDeleteAllUserGroupParams, 
 
 	switch v := result.(type) {
 
-	case *AdminDeleteAllUserGroupOK:
+	case *AdminDeleteAllUserGroupNoContent:
 		return v, nil, nil, nil, nil
 	case *AdminDeleteAllUserGroupUnauthorized:
 		return nil, v, nil, nil, nil
@@ -194,7 +194,7 @@ func (a *Client) AdminDeleteAllUserGroup(params *AdminDeleteAllUserGroupParams, 
 
   Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId} [DELETE]
 */
-func (a *Client) AdminDeleteAllUserStates(params *AdminDeleteAllUserStatesParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteAllUserStatesOK, *AdminDeleteAllUserStatesBadRequest, *AdminDeleteAllUserStatesUnauthorized, *AdminDeleteAllUserStatesInternalServerError, error) {
+func (a *Client) AdminDeleteAllUserStates(params *AdminDeleteAllUserStatesParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteAllUserStatesNoContent, *AdminDeleteAllUserStatesBadRequest, *AdminDeleteAllUserStatesUnauthorized, *AdminDeleteAllUserStatesInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminDeleteAllUserStatesParams()
@@ -223,7 +223,7 @@ func (a *Client) AdminDeleteAllUserStates(params *AdminDeleteAllUserStatesParams
 
 	switch v := result.(type) {
 
-	case *AdminDeleteAllUserStatesOK:
+	case *AdminDeleteAllUserStatesNoContent:
 		return v, nil, nil, nil, nil
 	case *AdminDeleteAllUserStatesBadRequest:
 		return nil, v, nil, nil, nil
@@ -241,7 +241,7 @@ func (a *Client) AdminDeleteAllUserStates(params *AdminDeleteAllUserStatesParams
 
   Required permission <b>NAMESPACE:{namespace}:USER:{userId}:CHANNEL [DELETE]</b>
 */
-func (a *Client) DeleteAllUserChannel(params *DeleteAllUserChannelParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteAllUserChannelOK, *DeleteAllUserChannelUnauthorized, *DeleteAllUserChannelNotFound, *DeleteAllUserChannelInternalServerError, error) {
+func (a *Client) DeleteAllUserChannel(params *DeleteAllUserChannelParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteAllUserChannelNoContent, *DeleteAllUserChannelUnauthorized, *DeleteAllUserChannelNotFound, *DeleteAllUserChannelInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteAllUserChannelParams()
@@ -270,7 +270,7 @@ func (a *Client) DeleteAllUserChannel(params *DeleteAllUserChannelParams, authIn
 
 	switch v := result.(type) {
 
-	case *DeleteAllUserChannelOK:
+	case *DeleteAllUserChannelNoContent:
 		return v, nil, nil, nil, nil
 	case *DeleteAllUserChannelUnauthorized:
 		return nil, v, nil, nil, nil
@@ -288,7 +288,7 @@ func (a *Client) DeleteAllUserChannel(params *DeleteAllUserChannelParams, authIn
 
   Required permission <b>NAMESPACE:{namespace}:USER:{userId}:CONTENT [DELETE]</b>.
 */
-func (a *Client) DeleteAllUserContents(params *DeleteAllUserContentsParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteAllUserContentsOK, *DeleteAllUserContentsUnauthorized, *DeleteAllUserContentsNotFound, *DeleteAllUserContentsInternalServerError, error) {
+func (a *Client) DeleteAllUserContents(params *DeleteAllUserContentsParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteAllUserContentsNoContent, *DeleteAllUserContentsUnauthorized, *DeleteAllUserContentsNotFound, *DeleteAllUserContentsInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteAllUserContentsParams()
@@ -317,7 +317,7 @@ func (a *Client) DeleteAllUserContents(params *DeleteAllUserContentsParams, auth
 
 	switch v := result.(type) {
 
-	case *DeleteAllUserContentsOK:
+	case *DeleteAllUserContentsNoContent:
 		return v, nil, nil, nil, nil
 	case *DeleteAllUserContentsUnauthorized:
 		return nil, v, nil, nil, nil
@@ -335,7 +335,7 @@ func (a *Client) DeleteAllUserContents(params *DeleteAllUserContentsParams, auth
 
   Required permission NAMESPACE:{namespace}:USER:{userId}:CONTENTGROUP [DELETE]
 */
-func (a *Client) DeleteAllUserGroup(params *DeleteAllUserGroupParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteAllUserGroupOK, *DeleteAllUserGroupUnauthorized, *DeleteAllUserGroupNotFound, *DeleteAllUserGroupInternalServerError, error) {
+func (a *Client) DeleteAllUserGroup(params *DeleteAllUserGroupParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteAllUserGroupNoContent, *DeleteAllUserGroupUnauthorized, *DeleteAllUserGroupNotFound, *DeleteAllUserGroupInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteAllUserGroupParams()
@@ -364,7 +364,7 @@ func (a *Client) DeleteAllUserGroup(params *DeleteAllUserGroupParams, authInfo r
 
 	switch v := result.(type) {
 
-	case *DeleteAllUserGroupOK:
+	case *DeleteAllUserGroupNoContent:
 		return v, nil, nil, nil, nil
 	case *DeleteAllUserGroupUnauthorized:
 		return nil, v, nil, nil, nil
@@ -382,7 +382,7 @@ func (a *Client) DeleteAllUserGroup(params *DeleteAllUserGroupParams, authInfo r
 
   Required permission NAMESPACE:{namespace}:USER:{userId}" [DELETE]
 */
-func (a *Client) DeleteAllUserStates(params *DeleteAllUserStatesParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteAllUserStatesOK, *DeleteAllUserStatesBadRequest, *DeleteAllUserStatesUnauthorized, *DeleteAllUserStatesInternalServerError, error) {
+func (a *Client) DeleteAllUserStates(params *DeleteAllUserStatesParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteAllUserStatesNoContent, *DeleteAllUserStatesBadRequest, *DeleteAllUserStatesUnauthorized, *DeleteAllUserStatesInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteAllUserStatesParams()
@@ -411,7 +411,7 @@ func (a *Client) DeleteAllUserStates(params *DeleteAllUserStatesParams, authInfo
 
 	switch v := result.(type) {
 
-	case *DeleteAllUserStatesOK:
+	case *DeleteAllUserStatesNoContent:
 		return v, nil, nil, nil, nil
 	case *DeleteAllUserStatesBadRequest:
 		return nil, v, nil, nil, nil

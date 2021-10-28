@@ -32,6 +32,9 @@ type FulfillmentRequest struct {
 	// language
 	Language string `json:"language,omitempty"`
 
+	// order summary for fulfillment scripts
+	Order *OrderSummary `json:"order,omitempty"`
+
 	// orderNo
 	OrderNo string `json:"orderNo,omitempty"`
 
@@ -62,6 +65,10 @@ func (m *FulfillmentRequest) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateOrder(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateQuantity(formats); err != nil {
 		res = append(res, err)
 	}
@@ -88,6 +95,24 @@ func (m *FulfillmentRequest) validateEndDate(formats strfmt.Registry) error {
 
 	if err := validate.FormatOf("endDate", "body", "date-time", m.EndDate.String(), formats); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *FulfillmentRequest) validateOrder(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Order) { // not required
+		return nil
+	}
+
+	if m.Order != nil {
+		if err := m.Order.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("order")
+			}
+			return err
+		}
 	}
 
 	return nil

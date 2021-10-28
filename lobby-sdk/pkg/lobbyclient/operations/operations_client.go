@@ -29,9 +29,65 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
+	AdminUpdatePartyAttributesV1(params *AdminUpdatePartyAttributesV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdatePartyAttributesV1OK, *AdminUpdatePartyAttributesV1BadRequest, *AdminUpdatePartyAttributesV1Unauthorized, *AdminUpdatePartyAttributesV1Forbidden, *AdminUpdatePartyAttributesV1NotFound, *AdminUpdatePartyAttributesV1PreconditionFailed, *AdminUpdatePartyAttributesV1InternalServerError, error)
+
 	PublicGetMessages(params *PublicGetMessagesParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetMessagesOK, *PublicGetMessagesInternalServerError, error)
 
 	SetTransport(transport runtime.ClientTransport)
+}
+
+/*
+  AdminUpdatePartyAttributesV1 admins update party attributes
+
+  Required permission : <code>ADMIN:NAMESPACE:{namespace}:PARTY:STORAGE [UPDATE]</code> with scope <code>social</code>
+			<br>update party attributes in a namespace.
+*/
+func (a *Client) AdminUpdatePartyAttributesV1(params *AdminUpdatePartyAttributesV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdatePartyAttributesV1OK, *AdminUpdatePartyAttributesV1BadRequest, *AdminUpdatePartyAttributesV1Unauthorized, *AdminUpdatePartyAttributesV1Forbidden, *AdminUpdatePartyAttributesV1NotFound, *AdminUpdatePartyAttributesV1PreconditionFailed, *AdminUpdatePartyAttributesV1InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminUpdatePartyAttributesV1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminUpdatePartyAttributesV1",
+		Method:             "PUT",
+		PathPattern:        "/lobby/v1/admin/party/namespaces/{namespace}/parties/{partyId}/attributes",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &AdminUpdatePartyAttributesV1Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminUpdatePartyAttributesV1OK:
+		return v, nil, nil, nil, nil, nil, nil, nil
+	case *AdminUpdatePartyAttributesV1BadRequest:
+		return nil, v, nil, nil, nil, nil, nil, nil
+	case *AdminUpdatePartyAttributesV1Unauthorized:
+		return nil, nil, v, nil, nil, nil, nil, nil
+	case *AdminUpdatePartyAttributesV1Forbidden:
+		return nil, nil, nil, v, nil, nil, nil, nil
+	case *AdminUpdatePartyAttributesV1NotFound:
+		return nil, nil, nil, nil, v, nil, nil, nil
+	case *AdminUpdatePartyAttributesV1PreconditionFailed:
+		return nil, nil, nil, nil, nil, v, nil, nil
+	case *AdminUpdatePartyAttributesV1InternalServerError:
+		return nil, nil, nil, nil, nil, nil, v, nil
+	default:
+		return nil, nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
 }
 
 /*

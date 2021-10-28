@@ -14,7 +14,6 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
-	"github.com/go-openapi/swag"
 
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclientmodels"
 )
@@ -63,11 +62,6 @@ for the notification with template by user ID operation typically these are writ
 */
 type NotificationWithTemplateByUserIDParams struct {
 
-	/*Async
-	  notification type
-
-	*/
-	Async *bool
 	/*Body
 	  notification content
 
@@ -122,17 +116,6 @@ func (o *NotificationWithTemplateByUserIDParams) SetHTTPClient(client *http.Clie
 	o.HTTPClient = client
 }
 
-// WithAsync adds the async to the notification with template by user ID params
-func (o *NotificationWithTemplateByUserIDParams) WithAsync(async *bool) *NotificationWithTemplateByUserIDParams {
-	o.SetAsync(async)
-	return o
-}
-
-// SetAsync adds the async to the notification with template by user ID params
-func (o *NotificationWithTemplateByUserIDParams) SetAsync(async *bool) {
-	o.Async = async
-}
-
 // WithBody adds the body to the notification with template by user ID params
 func (o *NotificationWithTemplateByUserIDParams) WithBody(body *lobbyclientmodels.ModelNotificationWithTemplateRequest) *NotificationWithTemplateByUserIDParams {
 	o.SetBody(body)
@@ -173,22 +156,6 @@ func (o *NotificationWithTemplateByUserIDParams) WriteToRequest(r runtime.Client
 		return err
 	}
 	var res []error
-
-	if o.Async != nil {
-
-		// query param async
-		var qrAsync bool
-		if o.Async != nil {
-			qrAsync = *o.Async
-		}
-		qAsync := swag.FormatBool(qrAsync)
-		if qAsync != "" {
-			if err := r.SetQueryParam("async", qAsync); err != nil {
-				return err
-			}
-		}
-
-	}
 
 	if o.Body != nil {
 		if err := r.SetBodyParam(o.Body); err != nil {

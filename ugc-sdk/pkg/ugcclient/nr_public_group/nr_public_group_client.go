@@ -31,7 +31,7 @@ type Client struct {
 type ClientService interface {
 	CreateGroup(params *CreateGroupParams, authInfo runtime.ClientAuthInfoWriter) (*CreateGroupCreated, *CreateGroupBadRequest, *CreateGroupUnauthorized, *CreateGroupInternalServerError, error)
 
-	DeleteGroup(params *DeleteGroupParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteGroupOK, *DeleteGroupUnauthorized, *DeleteGroupNotFound, *DeleteGroupInternalServerError, error)
+	DeleteGroup(params *DeleteGroupParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteGroupNoContent, *DeleteGroupUnauthorized, *DeleteGroupNotFound, *DeleteGroupInternalServerError, error)
 
 	GetGroup(params *GetGroupParams, authInfo runtime.ClientAuthInfoWriter) (*GetGroupOK, *GetGroupUnauthorized, *GetGroupNotFound, *GetGroupInternalServerError, error)
 
@@ -96,7 +96,7 @@ func (a *Client) CreateGroup(params *CreateGroupParams, authInfo runtime.ClientA
 
   Required permission NAMESPACE:{namespace}:USER:{userId}:CONTENTGROUP [DELETE]
 */
-func (a *Client) DeleteGroup(params *DeleteGroupParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteGroupOK, *DeleteGroupUnauthorized, *DeleteGroupNotFound, *DeleteGroupInternalServerError, error) {
+func (a *Client) DeleteGroup(params *DeleteGroupParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteGroupNoContent, *DeleteGroupUnauthorized, *DeleteGroupNotFound, *DeleteGroupInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteGroupParams()
@@ -125,7 +125,7 @@ func (a *Client) DeleteGroup(params *DeleteGroupParams, authInfo runtime.ClientA
 
 	switch v := result.(type) {
 
-	case *DeleteGroupOK:
+	case *DeleteGroupNoContent:
 		return v, nil, nil, nil, nil
 	case *DeleteGroupUnauthorized:
 		return nil, v, nil, nil, nil

@@ -29,7 +29,7 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	AdminDeleteContent(params *AdminDeleteContentParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteContentOK, *AdminDeleteContentUnauthorized, *AdminDeleteContentNotFound, *AdminDeleteContentInternalServerError, error)
+	AdminDeleteContent(params *AdminDeleteContentParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteContentNoContent, *AdminDeleteContentUnauthorized, *AdminDeleteContentNotFound, *AdminDeleteContentInternalServerError, error)
 
 	AdminDeleteContentScreenshot(params *AdminDeleteContentScreenshotParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteContentScreenshotNoContent, *AdminDeleteContentScreenshotBadRequest, *AdminDeleteContentScreenshotUnauthorized, *AdminDeleteContentScreenshotNotFound, *AdminDeleteContentScreenshotInternalServerError, error)
 
@@ -57,7 +57,7 @@ type ClientService interface {
 
 	AdminUploadContentScreenshot(params *AdminUploadContentScreenshotParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUploadContentScreenshotCreated, *AdminUploadContentScreenshotBadRequest, *AdminUploadContentScreenshotUnauthorized, *AdminUploadContentScreenshotInternalServerError, error)
 
-	SingleAdminDeleteContent(params *SingleAdminDeleteContentParams, authInfo runtime.ClientAuthInfoWriter) (*SingleAdminDeleteContentOK, *SingleAdminDeleteContentUnauthorized, *SingleAdminDeleteContentNotFound, *SingleAdminDeleteContentInternalServerError, error)
+	SingleAdminDeleteContent(params *SingleAdminDeleteContentParams, authInfo runtime.ClientAuthInfoWriter) (*SingleAdminDeleteContentNoContent, *SingleAdminDeleteContentUnauthorized, *SingleAdminDeleteContentNotFound, *SingleAdminDeleteContentInternalServerError, error)
 
 	SingleAdminGetContent(params *SingleAdminGetContentParams, authInfo runtime.ClientAuthInfoWriter) (*SingleAdminGetContentOK, *SingleAdminGetContentUnauthorized, *SingleAdminGetContentNotFound, *SingleAdminGetContentInternalServerError, error)
 
@@ -73,7 +73,7 @@ type ClientService interface {
 
   Required permission <b>ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [DELETE]</b>.
 */
-func (a *Client) AdminDeleteContent(params *AdminDeleteContentParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteContentOK, *AdminDeleteContentUnauthorized, *AdminDeleteContentNotFound, *AdminDeleteContentInternalServerError, error) {
+func (a *Client) AdminDeleteContent(params *AdminDeleteContentParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteContentNoContent, *AdminDeleteContentUnauthorized, *AdminDeleteContentNotFound, *AdminDeleteContentInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminDeleteContentParams()
@@ -102,7 +102,7 @@ func (a *Client) AdminDeleteContent(params *AdminDeleteContentParams, authInfo r
 
 	switch v := result.(type) {
 
-	case *AdminDeleteContentOK:
+	case *AdminDeleteContentNoContent:
 		return v, nil, nil, nil, nil
 	case *AdminDeleteContentUnauthorized:
 		return nil, v, nil, nil, nil
@@ -751,7 +751,7 @@ func (a *Client) AdminUploadContentScreenshot(params *AdminUploadContentScreensh
 
   Required permission <b>ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [DELETE]</b>.
 */
-func (a *Client) SingleAdminDeleteContent(params *SingleAdminDeleteContentParams, authInfo runtime.ClientAuthInfoWriter) (*SingleAdminDeleteContentOK, *SingleAdminDeleteContentUnauthorized, *SingleAdminDeleteContentNotFound, *SingleAdminDeleteContentInternalServerError, error) {
+func (a *Client) SingleAdminDeleteContent(params *SingleAdminDeleteContentParams, authInfo runtime.ClientAuthInfoWriter) (*SingleAdminDeleteContentNoContent, *SingleAdminDeleteContentUnauthorized, *SingleAdminDeleteContentNotFound, *SingleAdminDeleteContentInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewSingleAdminDeleteContentParams()
@@ -780,7 +780,7 @@ func (a *Client) SingleAdminDeleteContent(params *SingleAdminDeleteContentParams
 
 	switch v := result.(type) {
 
-	case *SingleAdminDeleteContentOK:
+	case *SingleAdminDeleteContentNoContent:
 		return v, nil, nil, nil, nil
 	case *SingleAdminDeleteContentUnauthorized:
 		return nil, v, nil, nil, nil

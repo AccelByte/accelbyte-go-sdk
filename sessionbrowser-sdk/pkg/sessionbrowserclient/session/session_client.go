@@ -33,7 +33,7 @@ type ClientService interface {
 
 	AdminGetSession(params *AdminGetSessionParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetSessionOK, *AdminGetSessionNotFound, *AdminGetSessionInternalServerError, error)
 
-	CreateSession(params *CreateSessionParams, authInfo runtime.ClientAuthInfoWriter) (*CreateSessionOK, *CreateSessionBadRequest, *CreateSessionConflict, *CreateSessionInternalServerError, error)
+	CreateSession(params *CreateSessionParams, authInfo runtime.ClientAuthInfoWriter) (*CreateSessionOK, *CreateSessionBadRequest, *CreateSessionForbidden, *CreateSessionConflict, *CreateSessionInternalServerError, error)
 
 	DeleteSession(params *DeleteSessionParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteSessionOK, *DeleteSessionBadRequest, *DeleteSessionNotFound, *DeleteSessionInternalServerError, error)
 
@@ -51,7 +51,7 @@ type ClientService interface {
 
 	GetTotalActiveSession(params *GetTotalActiveSessionParams, authInfo runtime.ClientAuthInfoWriter) (*GetTotalActiveSessionOK, *GetTotalActiveSessionBadRequest, *GetTotalActiveSessionInternalServerError, error)
 
-	JoinSession(params *JoinSessionParams, authInfo runtime.ClientAuthInfoWriter) (*JoinSessionOK, *JoinSessionBadRequest, *JoinSessionNotFound, *JoinSessionInternalServerError, error)
+	JoinSession(params *JoinSessionParams, authInfo runtime.ClientAuthInfoWriter) (*JoinSessionOK, *JoinSessionBadRequest, *JoinSessionForbidden, *JoinSessionNotFound, *JoinSessionInternalServerError, error)
 
 	QuerySession(params *QuerySessionParams, authInfo runtime.ClientAuthInfoWriter) (*QuerySessionOK, *QuerySessionBadRequest, *QuerySessionInternalServerError, error)
 
@@ -171,7 +171,7 @@ Required scope: social
 
 This end point intended to be called directly by P2P game client host or by DSMC
 */
-func (a *Client) CreateSession(params *CreateSessionParams, authInfo runtime.ClientAuthInfoWriter) (*CreateSessionOK, *CreateSessionBadRequest, *CreateSessionConflict, *CreateSessionInternalServerError, error) {
+func (a *Client) CreateSession(params *CreateSessionParams, authInfo runtime.ClientAuthInfoWriter) (*CreateSessionOK, *CreateSessionBadRequest, *CreateSessionForbidden, *CreateSessionConflict, *CreateSessionInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCreateSessionParams()
@@ -195,21 +195,23 @@ func (a *Client) CreateSession(params *CreateSessionParams, authInfo runtime.Cli
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *CreateSessionOK:
-		return v, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil
 	case *CreateSessionBadRequest:
-		return nil, v, nil, nil, nil
+		return nil, v, nil, nil, nil, nil
+	case *CreateSessionForbidden:
+		return nil, nil, v, nil, nil, nil
 	case *CreateSessionConflict:
-		return nil, nil, v, nil, nil
+		return nil, nil, nil, v, nil, nil
 	case *CreateSessionInternalServerError:
-		return nil, nil, nil, v, nil
+		return nil, nil, nil, nil, v, nil
 	default:
-		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -612,7 +614,7 @@ Required scope: social
 
 Join the specified session by session ID. Possible the game required a password to join
 */
-func (a *Client) JoinSession(params *JoinSessionParams, authInfo runtime.ClientAuthInfoWriter) (*JoinSessionOK, *JoinSessionBadRequest, *JoinSessionNotFound, *JoinSessionInternalServerError, error) {
+func (a *Client) JoinSession(params *JoinSessionParams, authInfo runtime.ClientAuthInfoWriter) (*JoinSessionOK, *JoinSessionBadRequest, *JoinSessionForbidden, *JoinSessionNotFound, *JoinSessionInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewJoinSessionParams()
@@ -636,21 +638,23 @@ func (a *Client) JoinSession(params *JoinSessionParams, authInfo runtime.ClientA
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *JoinSessionOK:
-		return v, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil
 	case *JoinSessionBadRequest:
-		return nil, v, nil, nil, nil
+		return nil, v, nil, nil, nil, nil
+	case *JoinSessionForbidden:
+		return nil, nil, v, nil, nil, nil
 	case *JoinSessionNotFound:
-		return nil, nil, v, nil, nil
+		return nil, nil, nil, v, nil, nil
 	case *JoinSessionInternalServerError:
-		return nil, nil, nil, v, nil
+		return nil, nil, nil, nil, v, nil
 	default:
-		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 

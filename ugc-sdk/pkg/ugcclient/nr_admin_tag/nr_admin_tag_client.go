@@ -31,7 +31,7 @@ type Client struct {
 type ClientService interface {
 	AdminCreateTag(params *AdminCreateTagParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateTagCreated, *AdminCreateTagBadRequest, *AdminCreateTagUnauthorized, *AdminCreateTagConflict, *AdminCreateTagInternalServerError, error)
 
-	AdminDeleteTag(params *AdminDeleteTagParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteTagOK, *AdminDeleteTagUnauthorized, *AdminDeleteTagNotFound, *AdminDeleteTagInternalServerError, error)
+	AdminDeleteTag(params *AdminDeleteTagParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteTagNoContent, *AdminDeleteTagUnauthorized, *AdminDeleteTagNotFound, *AdminDeleteTagInternalServerError, error)
 
 	AdminGetTag(params *AdminGetTagParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetTagOK, *AdminGetTagUnauthorized, *AdminGetTagNotFound, *AdminGetTagInternalServerError, error)
 
@@ -95,7 +95,7 @@ func (a *Client) AdminCreateTag(params *AdminCreateTagParams, authInfo runtime.C
 
   Required permission ADMIN:NAMESPACE:{namespace}:UGCCONFIG [DELETE]
 */
-func (a *Client) AdminDeleteTag(params *AdminDeleteTagParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteTagOK, *AdminDeleteTagUnauthorized, *AdminDeleteTagNotFound, *AdminDeleteTagInternalServerError, error) {
+func (a *Client) AdminDeleteTag(params *AdminDeleteTagParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteTagNoContent, *AdminDeleteTagUnauthorized, *AdminDeleteTagNotFound, *AdminDeleteTagInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminDeleteTagParams()
@@ -124,7 +124,7 @@ func (a *Client) AdminDeleteTag(params *AdminDeleteTagParams, authInfo runtime.C
 
 	switch v := result.(type) {
 
-	case *AdminDeleteTagOK:
+	case *AdminDeleteTagNoContent:
 		return v, nil, nil, nil, nil
 	case *AdminDeleteTagUnauthorized:
 		return nil, v, nil, nil, nil

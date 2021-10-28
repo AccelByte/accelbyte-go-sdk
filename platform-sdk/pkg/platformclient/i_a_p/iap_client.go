@@ -677,7 +677,7 @@ func (a *Client) GetXblIAPConfig(params *GetXblIAPConfigParams, authInfo runtime
 /*
   MockFulfillIAPItem mocks fulfill iap item
 
-  <b>[TEST FACILITY ONLY]</b> Mock fulfill iap item without validate receipt.<p>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:IAP", action=4 (UPDATE)</li><li><i>Returns</i>: </li></ul>
+  <b>[TEST FACILITY ONLY] Forbidden in live environment. </b> Mock fulfill iap item without validate receipt.<p>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:IAP", action=4 (UPDATE)</li><li><i>Returns</i>: </li></ul>
 */
 func (a *Client) MockFulfillIAPItem(params *MockFulfillIAPItemParams, authInfo runtime.ClientAuthInfoWriter) (*MockFulfillIAPItemNoContent, *MockFulfillIAPItemBadRequest, *MockFulfillIAPItemNotFound, *MockFulfillIAPItemConflict, error) {
 	// TODO: Validate the params before sending

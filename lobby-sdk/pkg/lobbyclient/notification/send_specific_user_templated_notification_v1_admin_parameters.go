@@ -14,7 +14,6 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
-	"github.com/go-openapi/swag"
 
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclientmodels"
 )
@@ -63,11 +62,6 @@ for the send specific user templated notification v1 admin operation typically t
 */
 type SendSpecificUserTemplatedNotificationV1AdminParams struct {
 
-	/*Async
-	  notification type
-
-	*/
-	Async *bool
 	/*Body
 	  notification content
 
@@ -122,17 +116,6 @@ func (o *SendSpecificUserTemplatedNotificationV1AdminParams) SetHTTPClient(clien
 	o.HTTPClient = client
 }
 
-// WithAsync adds the async to the send specific user templated notification v1 admin params
-func (o *SendSpecificUserTemplatedNotificationV1AdminParams) WithAsync(async *bool) *SendSpecificUserTemplatedNotificationV1AdminParams {
-	o.SetAsync(async)
-	return o
-}
-
-// SetAsync adds the async to the send specific user templated notification v1 admin params
-func (o *SendSpecificUserTemplatedNotificationV1AdminParams) SetAsync(async *bool) {
-	o.Async = async
-}
-
 // WithBody adds the body to the send specific user templated notification v1 admin params
 func (o *SendSpecificUserTemplatedNotificationV1AdminParams) WithBody(body *lobbyclientmodels.ModelNotificationWithTemplateRequestV1) *SendSpecificUserTemplatedNotificationV1AdminParams {
 	o.SetBody(body)
@@ -173,22 +156,6 @@ func (o *SendSpecificUserTemplatedNotificationV1AdminParams) WriteToRequest(r ru
 		return err
 	}
 	var res []error
-
-	if o.Async != nil {
-
-		// query param async
-		var qrAsync bool
-		if o.Async != nil {
-			qrAsync = *o.Async
-		}
-		qAsync := swag.FormatBool(qrAsync)
-		if qAsync != "" {
-			if err := r.SetQueryParam("async", qAsync); err != nil {
-				return err
-			}
-		}
-
-	}
 
 	if o.Body != nil {
 		if err := r.SetBodyParam(o.Body); err != nil {

@@ -22,7 +22,6 @@ type UpdateBasePolicyRequest struct {
 	AffectedClientIds []string `json:"affectedClientIds"`
 
 	// affected countries
-	// Unique: true
 	AffectedCountries []string `json:"affectedCountries"`
 
 	// base policy name
@@ -47,10 +46,6 @@ func (m *UpdateBasePolicyRequest) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateAffectedCountries(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.validateTags(formats); err != nil {
 		res = append(res, err)
 	}
@@ -68,19 +63,6 @@ func (m *UpdateBasePolicyRequest) validateAffectedClientIds(formats strfmt.Regis
 	}
 
 	if err := validate.UniqueItems("affectedClientIds", "body", m.AffectedClientIds); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *UpdateBasePolicyRequest) validateAffectedCountries(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.AffectedCountries) { // not required
-		return nil
-	}
-
-	if err := validate.UniqueItems("affectedCountries", "body", m.AffectedCountries); err != nil {
 		return err
 	}
 

@@ -31,7 +31,7 @@ type Client struct {
 type ClientService interface {
 	CreateChannel(params *CreateChannelParams, authInfo runtime.ClientAuthInfoWriter) (*CreateChannelCreated, *CreateChannelBadRequest, *CreateChannelUnauthorized, *CreateChannelInternalServerError, error)
 
-	DeleteChannel(params *DeleteChannelParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteChannelOK, *DeleteChannelUnauthorized, *DeleteChannelNotFound, *DeleteChannelInternalServerError, error)
+	DeleteChannel(params *DeleteChannelParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteChannelNoContent, *DeleteChannelUnauthorized, *DeleteChannelNotFound, *DeleteChannelInternalServerError, error)
 
 	GetChannels(params *GetChannelsParams, authInfo runtime.ClientAuthInfoWriter) (*GetChannelsOK, *GetChannelsUnauthorized, *GetChannelsNotFound, *GetChannelsInternalServerError, error)
 
@@ -92,7 +92,7 @@ func (a *Client) CreateChannel(params *CreateChannelParams, authInfo runtime.Cli
 
   Required permission <b>NAMESPACE:{namespace}:USER:{userId}:CHANNEL [DELETE]</b>
 */
-func (a *Client) DeleteChannel(params *DeleteChannelParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteChannelOK, *DeleteChannelUnauthorized, *DeleteChannelNotFound, *DeleteChannelInternalServerError, error) {
+func (a *Client) DeleteChannel(params *DeleteChannelParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteChannelNoContent, *DeleteChannelUnauthorized, *DeleteChannelNotFound, *DeleteChannelInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteChannelParams()
@@ -121,7 +121,7 @@ func (a *Client) DeleteChannel(params *DeleteChannelParams, authInfo runtime.Cli
 
 	switch v := result.(type) {
 
-	case *DeleteChannelOK:
+	case *DeleteChannelNoContent:
 		return v, nil, nil, nil, nil
 	case *DeleteChannelUnauthorized:
 		return nil, v, nil, nil, nil

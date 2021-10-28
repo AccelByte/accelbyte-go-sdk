@@ -24,8 +24,8 @@ type AdminDeleteAllUserStatesReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *AdminDeleteAllUserStatesReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-	case 200:
-		result := NewAdminDeleteAllUserStatesOK()
+	case 204:
+		result := NewAdminDeleteAllUserStatesNoContent()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -59,23 +59,23 @@ func (o *AdminDeleteAllUserStatesReader) ReadResponse(response runtime.ClientRes
 	}
 }
 
-// NewAdminDeleteAllUserStatesOK creates a AdminDeleteAllUserStatesOK with default headers values
-func NewAdminDeleteAllUserStatesOK() *AdminDeleteAllUserStatesOK {
-	return &AdminDeleteAllUserStatesOK{}
+// NewAdminDeleteAllUserStatesNoContent creates a AdminDeleteAllUserStatesNoContent with default headers values
+func NewAdminDeleteAllUserStatesNoContent() *AdminDeleteAllUserStatesNoContent {
+	return &AdminDeleteAllUserStatesNoContent{}
 }
 
-/*AdminDeleteAllUserStatesOK handles this case with default header values.
+/*AdminDeleteAllUserStatesNoContent handles this case with default header values.
 
-  OK
+  No Content
 */
-type AdminDeleteAllUserStatesOK struct {
+type AdminDeleteAllUserStatesNoContent struct {
 }
 
-func (o *AdminDeleteAllUserStatesOK) Error() string {
-	return fmt.Sprintf("[DELETE /ugc/v1/admin/namespaces/{namespace}/users/{userId}/states][%d] adminDeleteAllUserStatesOK ", 200)
+func (o *AdminDeleteAllUserStatesNoContent) Error() string {
+	return fmt.Sprintf("[DELETE /ugc/v1/admin/namespaces/{namespace}/users/{userId}/states][%d] adminDeleteAllUserStatesNoContent ", 204)
 }
 
-func (o *AdminDeleteAllUserStatesOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *AdminDeleteAllUserStatesNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }

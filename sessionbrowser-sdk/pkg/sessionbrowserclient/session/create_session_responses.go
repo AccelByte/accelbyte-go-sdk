@@ -36,6 +36,12 @@ func (o *CreateSessionReader) ReadResponse(response runtime.ClientResponse, cons
 			return nil, err
 		}
 		return result, nil
+	case 403:
+		result := NewCreateSessionForbidden()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 409:
 		result := NewCreateSessionConflict()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -114,6 +120,39 @@ func (o *CreateSessionBadRequest) GetPayload() *sessionbrowserclientmodels.Resta
 }
 
 func (o *CreateSessionBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(sessionbrowserclientmodels.RestapiErrorResponseV2)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewCreateSessionForbidden creates a CreateSessionForbidden with default headers values
+func NewCreateSessionForbidden() *CreateSessionForbidden {
+	return &CreateSessionForbidden{}
+}
+
+/*CreateSessionForbidden handles this case with default header values.
+
+  user is banned from creating session
+*/
+type CreateSessionForbidden struct {
+	Payload *sessionbrowserclientmodels.RestapiErrorResponseV2
+}
+
+func (o *CreateSessionForbidden) Error() string {
+	return fmt.Sprintf("[POST /sessionbrowser/namespaces/{namespace}/gamesession][%d] createSessionForbidden  %+v", 403, o.Payload)
+}
+
+func (o *CreateSessionForbidden) GetPayload() *sessionbrowserclientmodels.RestapiErrorResponseV2 {
+	return o.Payload
+}
+
+func (o *CreateSessionForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(sessionbrowserclientmodels.RestapiErrorResponseV2)
 

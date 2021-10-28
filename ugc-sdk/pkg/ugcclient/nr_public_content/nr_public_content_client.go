@@ -33,7 +33,7 @@ type ClientService interface {
 
 	CreateContentS3(params *CreateContentS3Params, authInfo runtime.ClientAuthInfoWriter) (*CreateContentS3Created, *CreateContentS3BadRequest, *CreateContentS3Unauthorized, *CreateContentS3InternalServerError, error)
 
-	DeleteContent(params *DeleteContentParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteContentOK, *DeleteContentUnauthorized, *DeleteContentNotFound, *DeleteContentInternalServerError, error)
+	DeleteContent(params *DeleteContentParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteContentNoContent, *DeleteContentUnauthorized, *DeleteContentNotFound, *DeleteContentInternalServerError, error)
 
 	DeleteContentScreenshot(params *DeleteContentScreenshotParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteContentScreenshotNoContent, *DeleteContentScreenshotBadRequest, *DeleteContentScreenshotUnauthorized, *DeleteContentScreenshotNotFound, *DeleteContentScreenshotInternalServerError, error)
 
@@ -162,7 +162,7 @@ func (a *Client) CreateContentS3(params *CreateContentS3Params, authInfo runtime
 
   Required permission <b>NAMESPACE:{namespace}:USER:{userId}:CONTENT [DELETE]</b>.
 */
-func (a *Client) DeleteContent(params *DeleteContentParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteContentOK, *DeleteContentUnauthorized, *DeleteContentNotFound, *DeleteContentInternalServerError, error) {
+func (a *Client) DeleteContent(params *DeleteContentParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteContentNoContent, *DeleteContentUnauthorized, *DeleteContentNotFound, *DeleteContentInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteContentParams()
@@ -191,7 +191,7 @@ func (a *Client) DeleteContent(params *DeleteContentParams, authInfo runtime.Cli
 
 	switch v := result.(type) {
 
-	case *DeleteContentOK:
+	case *DeleteContentNoContent:
 		return v, nil, nil, nil, nil
 	case *DeleteContentUnauthorized:
 		return nil, v, nil, nil, nil

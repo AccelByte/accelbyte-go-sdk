@@ -53,9 +53,13 @@ type ClientService interface {
 
 	GetUserEntitlement(params *GetUserEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserEntitlementOK, *GetUserEntitlementNotFound, error)
 
+	GetUserEntitlementByItemID(params *GetUserEntitlementByItemIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserEntitlementByItemIDOK, *GetUserEntitlementByItemIDNotFound, error)
+
 	GetUserEntitlementBySku(params *GetUserEntitlementBySkuParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserEntitlementBySkuOK, *GetUserEntitlementBySkuNotFound, error)
 
 	GetUserEntitlementHistories(params *GetUserEntitlementHistoriesParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserEntitlementHistoriesOK, error)
+
+	GetUserEntitlementOwnershipByItemID(params *GetUserEntitlementOwnershipByItemIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserEntitlementOwnershipByItemIDOK, error)
 
 	GetUserEntitlementOwnershipBySku(params *GetUserEntitlementOwnershipBySkuParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserEntitlementOwnershipBySkuOK, error)
 
@@ -77,6 +81,8 @@ type ClientService interface {
 
 	PublicGetMyAppEntitlementOwnershipByAppID(params *PublicGetMyAppEntitlementOwnershipByAppIDParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetMyAppEntitlementOwnershipByAppIDOK, error)
 
+	PublicGetMyEntitlementOwnershipByItemID(params *PublicGetMyEntitlementOwnershipByItemIDParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetMyEntitlementOwnershipByItemIDOK, error)
+
 	PublicGetMyEntitlementOwnershipBySku(params *PublicGetMyEntitlementOwnershipBySkuParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetMyEntitlementOwnershipBySkuOK, error)
 
 	PublicGetUserAppEntitlementByAppID(params *PublicGetUserAppEntitlementByAppIDParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserAppEntitlementByAppIDOK, *PublicGetUserAppEntitlementByAppIDNotFound, error)
@@ -87,7 +93,11 @@ type ClientService interface {
 
 	PublicGetUserEntitlement(params *PublicGetUserEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserEntitlementOK, *PublicGetUserEntitlementNotFound, error)
 
+	PublicGetUserEntitlementByItemID(params *PublicGetUserEntitlementByItemIDParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserEntitlementByItemIDOK, *PublicGetUserEntitlementByItemIDNotFound, error)
+
 	PublicGetUserEntitlementBySku(params *PublicGetUserEntitlementBySkuParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserEntitlementBySkuOK, *PublicGetUserEntitlementBySkuNotFound, error)
+
+	PublicGetUserEntitlementOwnershipByItemID(params *PublicGetUserEntitlementOwnershipByItemIDParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserEntitlementOwnershipByItemIDOK, error)
 
 	PublicGetUserEntitlementOwnershipBySku(params *PublicGetUserEntitlementOwnershipBySkuParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserEntitlementOwnershipBySkuOK, error)
 
@@ -631,6 +641,49 @@ func (a *Client) GetUserEntitlement(params *GetUserEntitlementParams, authInfo r
 }
 
 /*
+  GetUserEntitlementByItemID gets user entitlement by item Id
+
+  Get user entitlement by itemId.<p>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT", action=2 (READ)</li></ul>
+*/
+func (a *Client) GetUserEntitlementByItemID(params *GetUserEntitlementByItemIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserEntitlementByItemIDOK, *GetUserEntitlementByItemIDNotFound, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetUserEntitlementByItemIDParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getUserEntitlementByItemId",
+		Method:             "GET",
+		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/entitlements/byItemId",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &GetUserEntitlementByItemIDReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetUserEntitlementByItemIDOK:
+		return v, nil, nil
+	case *GetUserEntitlementByItemIDNotFound:
+		return nil, v, nil
+	default:
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
   GetUserEntitlementBySku gets user entitlement by sku
 
   Get user entitlement by sku.<p>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT", action=2 (READ)</li></ul>
@@ -708,6 +761,47 @@ func (a *Client) GetUserEntitlementHistories(params *GetUserEntitlementHistories
 	switch v := result.(type) {
 
 	case *GetUserEntitlementHistoriesOK:
+		return v, nil
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  GetUserEntitlementOwnershipByItemID gets user entitlement ownership by item Id
+
+  Get user entitlement ownership by itemId.<p>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT", action=2 (READ)</li></ul>
+*/
+func (a *Client) GetUserEntitlementOwnershipByItemID(params *GetUserEntitlementOwnershipByItemIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserEntitlementOwnershipByItemIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetUserEntitlementOwnershipByItemIDParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getUserEntitlementOwnershipByItemId",
+		Method:             "GET",
+		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/entitlements/ownership/byItemId",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &GetUserEntitlementOwnershipByItemIDReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetUserEntitlementOwnershipByItemIDOK:
 		return v, nil
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
@@ -1183,6 +1277,47 @@ func (a *Client) PublicGetMyAppEntitlementOwnershipByAppID(params *PublicGetMyAp
 }
 
 /*
+  PublicGetMyEntitlementOwnershipByItemID gets my entitlement ownership by item Id
+
+  Get my entitlement ownership by itemId.<p>Other detail info: <ul><li><i>Required permission</i>: resource="NAMESPACE:{namespace}:ENTITLEMENT", action=2 (READ)</li><li><i>Path's namespace</i> : <ul><li>can be filled with <b>publisher namespace</b> in order to get <b>publisher namespace entitlement ownership by sku</b></li><li>can be filled with <b>game namespace</b> in order to get <b>game namespace entitlement ownership by sku</b></li></ul></li></ul>
+*/
+func (a *Client) PublicGetMyEntitlementOwnershipByItemID(params *PublicGetMyEntitlementOwnershipByItemIDParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetMyEntitlementOwnershipByItemIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetMyEntitlementOwnershipByItemIDParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicGetMyEntitlementOwnershipByItemId",
+		Method:             "GET",
+		PathPattern:        "/public/namespaces/{namespace}/users/me/entitlements/ownership/byItemId",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &PublicGetMyEntitlementOwnershipByItemIDReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetMyEntitlementOwnershipByItemIDOK:
+		return v, nil
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
   PublicGetMyEntitlementOwnershipBySku gets my entitlement ownership by sku
 
   Get my entitlement ownership by sku.<p>Other detail info: <ul><li><i>Required permission</i>: resource="NAMESPACE:{namespace}:ENTITLEMENT", action=2 (READ)</li><li><i>Path's namespace</i> : <ul><li>can be filled with <b>publisher namespace</b> in order to get <b>publisher namespace entitlement ownership by sku</b></li><li>can be filled with <b>game namespace</b> in order to get <b>game namespace entitlement ownership by sku</b></li></ul></li></ul>
@@ -1396,6 +1531,49 @@ func (a *Client) PublicGetUserEntitlement(params *PublicGetUserEntitlementParams
 }
 
 /*
+  PublicGetUserEntitlementByItemID gets user entitlement by item Id
+
+  Get user entitlement by itemId.<p>Other detail info: <ul><li><i>Required permission</i>: resource="NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT", action=2 (READ)</li></ul>
+*/
+func (a *Client) PublicGetUserEntitlementByItemID(params *PublicGetUserEntitlementByItemIDParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserEntitlementByItemIDOK, *PublicGetUserEntitlementByItemIDNotFound, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetUserEntitlementByItemIDParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicGetUserEntitlementByItemId",
+		Method:             "GET",
+		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/entitlements/byItemId",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &PublicGetUserEntitlementByItemIDReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetUserEntitlementByItemIDOK:
+		return v, nil, nil
+	case *PublicGetUserEntitlementByItemIDNotFound:
+		return nil, v, nil
+	default:
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
   PublicGetUserEntitlementBySku gets user entitlement by sku
 
   Get user entitlement by sku.<p>Other detail info: <ul><li><i>Required permission</i>: resource="NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT", action=2 (READ)</li></ul>
@@ -1435,6 +1613,47 @@ func (a *Client) PublicGetUserEntitlementBySku(params *PublicGetUserEntitlementB
 		return nil, v, nil
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  PublicGetUserEntitlementOwnershipByItemID gets user entitlement ownership by item Id
+
+  Get user entitlement ownership by itemId.<p>Other detail info: <ul><li><i>Required permission</i>: resource="NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT", action=2 (READ)</li></ul>
+*/
+func (a *Client) PublicGetUserEntitlementOwnershipByItemID(params *PublicGetUserEntitlementOwnershipByItemIDParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserEntitlementOwnershipByItemIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetUserEntitlementOwnershipByItemIDParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicGetUserEntitlementOwnershipByItemId",
+		Method:             "GET",
+		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/entitlements/ownership/byItemId",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &PublicGetUserEntitlementOwnershipByItemIDReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetUserEntitlementOwnershipByItemIDOK:
+		return v, nil
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 

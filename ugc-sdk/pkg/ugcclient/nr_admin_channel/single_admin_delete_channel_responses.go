@@ -24,8 +24,8 @@ type SingleAdminDeleteChannelReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *SingleAdminDeleteChannelReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-	case 200:
-		result := NewSingleAdminDeleteChannelOK()
+	case 204:
+		result := NewSingleAdminDeleteChannelNoContent()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -59,35 +59,23 @@ func (o *SingleAdminDeleteChannelReader) ReadResponse(response runtime.ClientRes
 	}
 }
 
-// NewSingleAdminDeleteChannelOK creates a SingleAdminDeleteChannelOK with default headers values
-func NewSingleAdminDeleteChannelOK() *SingleAdminDeleteChannelOK {
-	return &SingleAdminDeleteChannelOK{}
+// NewSingleAdminDeleteChannelNoContent creates a SingleAdminDeleteChannelNoContent with default headers values
+func NewSingleAdminDeleteChannelNoContent() *SingleAdminDeleteChannelNoContent {
+	return &SingleAdminDeleteChannelNoContent{}
 }
 
-/*SingleAdminDeleteChannelOK handles this case with default header values.
+/*SingleAdminDeleteChannelNoContent handles this case with default header values.
 
-  OK
+  No Content
 */
-type SingleAdminDeleteChannelOK struct {
-	Payload *ugcclientmodels.ModelsChannelResponse
+type SingleAdminDeleteChannelNoContent struct {
 }
 
-func (o *SingleAdminDeleteChannelOK) Error() string {
-	return fmt.Sprintf("[DELETE /ugc/v1/admin/namespaces/{namespace}/channels/{channelId}][%d] singleAdminDeleteChannelOK  %+v", 200, o.Payload)
+func (o *SingleAdminDeleteChannelNoContent) Error() string {
+	return fmt.Sprintf("[DELETE /ugc/v1/admin/namespaces/{namespace}/channels/{channelId}][%d] singleAdminDeleteChannelNoContent ", 204)
 }
 
-func (o *SingleAdminDeleteChannelOK) GetPayload() *ugcclientmodels.ModelsChannelResponse {
-	return o.Payload
-}
-
-func (o *SingleAdminDeleteChannelOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-
-	o.Payload = new(ugcclientmodels.ModelsChannelResponse)
-
-	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
-		return err
-	}
+func (o *SingleAdminDeleteChannelNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }

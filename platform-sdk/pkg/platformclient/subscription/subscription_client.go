@@ -159,7 +159,7 @@ func (a *Client) CheckUserSubscriptionSubscribableByItemID(params *CheckUserSubs
 /*
   DeleteUserSubscription deletes user subscription
 
-  <b>[TEST FACILITY ONLY]</b> Delete user subscription.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION", action=8 (DELETE)</li></ul>
+  <b>[TEST FACILITY ONLY] Forbidden in live environment. </b> Delete user subscription.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION", action=8 (DELETE)</li></ul>
 */
 func (a *Client) DeleteUserSubscription(params *DeleteUserSubscriptionParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserSubscriptionNoContent, error) {
 	// TODO: Validate the params before sending
@@ -851,7 +851,7 @@ func (a *Client) QueryUserSubscriptions(params *QueryUserSubscriptionsParams, au
 /*
   RecurringChargeSubscription recurrings charge subscription
 
-  <b>[TEST FACILITY ONLY]</b> Recurring charge subscription, it will trigger recurring charge if the USER subscription status is ACTIVE, nextBillingDate is before now and no fail recurring charge within X(default 12) hours.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:SUBSCRIPTION", action=4 (UPDATE)</li><li><i>Returns</i>: recurring charge result</li></ul>
+  <b>[TEST FACILITY ONLY] Forbidden in live environment. </b> Recurring charge subscription, it will trigger recurring charge if the USER subscription status is ACTIVE, nextBillingDate is before now and no fail recurring charge within X(default 12) hours.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:SUBSCRIPTION", action=4 (UPDATE)</li><li><i>Returns</i>: recurring charge result</li></ul>
 */
 func (a *Client) RecurringChargeSubscription(params *RecurringChargeSubscriptionParams, authInfo runtime.ClientAuthInfoWriter) (*RecurringChargeSubscriptionOK, error) {
 	// TODO: Validate the params before sending

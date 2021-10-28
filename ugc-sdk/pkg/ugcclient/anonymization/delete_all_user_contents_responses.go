@@ -24,8 +24,8 @@ type DeleteAllUserContentsReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *DeleteAllUserContentsReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-	case 200:
-		result := NewDeleteAllUserContentsOK()
+	case 204:
+		result := NewDeleteAllUserContentsNoContent()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -59,23 +59,23 @@ func (o *DeleteAllUserContentsReader) ReadResponse(response runtime.ClientRespon
 	}
 }
 
-// NewDeleteAllUserContentsOK creates a DeleteAllUserContentsOK with default headers values
-func NewDeleteAllUserContentsOK() *DeleteAllUserContentsOK {
-	return &DeleteAllUserContentsOK{}
+// NewDeleteAllUserContentsNoContent creates a DeleteAllUserContentsNoContent with default headers values
+func NewDeleteAllUserContentsNoContent() *DeleteAllUserContentsNoContent {
+	return &DeleteAllUserContentsNoContent{}
 }
 
-/*DeleteAllUserContentsOK handles this case with default header values.
+/*DeleteAllUserContentsNoContent handles this case with default header values.
 
-  OK
+  No Content
 */
-type DeleteAllUserContentsOK struct {
+type DeleteAllUserContentsNoContent struct {
 }
 
-func (o *DeleteAllUserContentsOK) Error() string {
-	return fmt.Sprintf("[DELETE /ugc/v1/public/namespaces/{namespace}/users/{userId}/contents][%d] deleteAllUserContentsOK ", 200)
+func (o *DeleteAllUserContentsNoContent) Error() string {
+	return fmt.Sprintf("[DELETE /ugc/v1/public/namespaces/{namespace}/users/{userId}/contents][%d] deleteAllUserContentsNoContent ", 204)
 }
 
-func (o *DeleteAllUserContentsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *DeleteAllUserContentsNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }

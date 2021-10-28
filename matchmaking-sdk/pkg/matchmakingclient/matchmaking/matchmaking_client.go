@@ -59,6 +59,10 @@ type ClientService interface {
 
 	ImportChannels(params *ImportChannelsParams, authInfo runtime.ClientAuthInfoWriter) (*ImportChannelsOK, *ImportChannelsBadRequest, *ImportChannelsUnauthorized, *ImportChannelsForbidden, *ImportChannelsInternalServerError, error)
 
+	PublicGetAllMatchmakingChannel(params *PublicGetAllMatchmakingChannelParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetAllMatchmakingChannelOK, *PublicGetAllMatchmakingChannelBadRequest, *PublicGetAllMatchmakingChannelUnauthorized, *PublicGetAllMatchmakingChannelForbidden, *PublicGetAllMatchmakingChannelConflict, *PublicGetAllMatchmakingChannelInternalServerError, error)
+
+	PublicGetSingleMatchmakingChannel(params *PublicGetSingleMatchmakingChannelParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetSingleMatchmakingChannelOK, *PublicGetSingleMatchmakingChannelBadRequest, *PublicGetSingleMatchmakingChannelUnauthorized, *PublicGetSingleMatchmakingChannelForbidden, *PublicGetSingleMatchmakingChannelNotFound, *PublicGetSingleMatchmakingChannelInternalServerError, error)
+
 	QuerySessionHandler(params *QuerySessionHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*QuerySessionHandlerOK, *QuerySessionHandlerBadRequest, *QuerySessionHandlerUnauthorized, *QuerySessionHandlerForbidden, *QuerySessionHandlerNotFound, *QuerySessionHandlerInternalServerError, error)
 
 	QueueSessionHandler(params *QueueSessionHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*QueueSessionHandlerNoContent, *QueueSessionHandlerBadRequest, *QueueSessionHandlerUnauthorized, *QueueSessionHandlerForbidden, *QueueSessionHandlerInternalServerError, error)
@@ -918,6 +922,110 @@ func (a *Client) ImportChannels(params *ImportChannelsParams, authInfo runtime.C
 		return nil, nil, nil, nil, v, nil
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  PublicGetAllMatchmakingChannel gets all channels
+
+  Reads all available channels in a namespace
+
+*/
+func (a *Client) PublicGetAllMatchmakingChannel(params *PublicGetAllMatchmakingChannelParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetAllMatchmakingChannelOK, *PublicGetAllMatchmakingChannelBadRequest, *PublicGetAllMatchmakingChannelUnauthorized, *PublicGetAllMatchmakingChannelForbidden, *PublicGetAllMatchmakingChannelConflict, *PublicGetAllMatchmakingChannelInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetAllMatchmakingChannelParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicGetAllMatchmakingChannel",
+		Method:             "GET",
+		PathPattern:        "/matchmaking/v1/public/namespaces/{namespace}/channels",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &PublicGetAllMatchmakingChannelReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetAllMatchmakingChannelOK:
+		return v, nil, nil, nil, nil, nil, nil
+	case *PublicGetAllMatchmakingChannelBadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+	case *PublicGetAllMatchmakingChannelUnauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+	case *PublicGetAllMatchmakingChannelForbidden:
+		return nil, nil, nil, v, nil, nil, nil
+	case *PublicGetAllMatchmakingChannelConflict:
+		return nil, nil, nil, nil, v, nil, nil
+	case *PublicGetAllMatchmakingChannelInternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  PublicGetSingleMatchmakingChannel gets single channel
+
+  Reads single channel based on namespace and channel name
+
+*/
+func (a *Client) PublicGetSingleMatchmakingChannel(params *PublicGetSingleMatchmakingChannelParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetSingleMatchmakingChannelOK, *PublicGetSingleMatchmakingChannelBadRequest, *PublicGetSingleMatchmakingChannelUnauthorized, *PublicGetSingleMatchmakingChannelForbidden, *PublicGetSingleMatchmakingChannelNotFound, *PublicGetSingleMatchmakingChannelInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetSingleMatchmakingChannelParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicGetSingleMatchmakingChannel",
+		Method:             "GET",
+		PathPattern:        "/matchmaking/v1/public/namespaces/{namespace}/channels/{channelName}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &PublicGetSingleMatchmakingChannelReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetSingleMatchmakingChannelOK:
+		return v, nil, nil, nil, nil, nil, nil
+	case *PublicGetSingleMatchmakingChannelBadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+	case *PublicGetSingleMatchmakingChannelUnauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+	case *PublicGetSingleMatchmakingChannelForbidden:
+		return nil, nil, nil, v, nil, nil, nil
+	case *PublicGetSingleMatchmakingChannelNotFound:
+		return nil, nil, nil, nil, v, nil, nil
+	case *PublicGetSingleMatchmakingChannelInternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 

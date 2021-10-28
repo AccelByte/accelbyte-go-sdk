@@ -36,6 +36,12 @@ func (o *JoinSessionReader) ReadResponse(response runtime.ClientResponse, consum
 			return nil, err
 		}
 		return result, nil
+	case 403:
+		result := NewJoinSessionForbidden()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 404:
 		result := NewJoinSessionNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -114,6 +120,39 @@ func (o *JoinSessionBadRequest) GetPayload() *sessionbrowserclientmodels.Restapi
 }
 
 func (o *JoinSessionBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(sessionbrowserclientmodels.RestapiErrorResponseV2)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewJoinSessionForbidden creates a JoinSessionForbidden with default headers values
+func NewJoinSessionForbidden() *JoinSessionForbidden {
+	return &JoinSessionForbidden{}
+}
+
+/*JoinSessionForbidden handles this case with default header values.
+
+  user is banned from joining session
+*/
+type JoinSessionForbidden struct {
+	Payload *sessionbrowserclientmodels.RestapiErrorResponseV2
+}
+
+func (o *JoinSessionForbidden) Error() string {
+	return fmt.Sprintf("[POST /sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/join][%d] joinSessionForbidden  %+v", 403, o.Payload)
+}
+
+func (o *JoinSessionForbidden) GetPayload() *sessionbrowserclientmodels.RestapiErrorResponseV2 {
+	return o.Payload
+}
+
+func (o *JoinSessionForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(sessionbrowserclientmodels.RestapiErrorResponseV2)
 

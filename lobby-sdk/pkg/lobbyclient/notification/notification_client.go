@@ -57,15 +57,11 @@ type ClientService interface {
 
 	GetAllNotificationTopicsV1Admin(params *GetAllNotificationTopicsV1AdminParams, authInfo runtime.ClientAuthInfoWriter) (*GetAllNotificationTopicsV1AdminOK, *GetAllNotificationTopicsV1AdminUnauthorized, *GetAllNotificationTopicsV1AdminForbidden, *GetAllNotificationTopicsV1AdminNotFound, *GetAllNotificationTopicsV1AdminInternalServerError, error)
 
-	GetAllStoredNotificationsV1(params *GetAllStoredNotificationsV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetAllStoredNotificationsV1OK, *GetAllStoredNotificationsV1BadRequest, *GetAllStoredNotificationsV1Unauthorized, *GetAllStoredNotificationsV1Forbidden, *GetAllStoredNotificationsV1NotFound, error)
-
 	GetGameTemplate(params *GetGameTemplateParams, authInfo runtime.ClientAuthInfoWriter) (*GetGameTemplateOK, *GetGameTemplateBadRequest, *GetGameTemplateUnauthorized, *GetGameTemplateForbidden, *GetGameTemplateNotFound, error)
 
 	GetLocalizationTemplate(params *GetLocalizationTemplateParams, authInfo runtime.ClientAuthInfoWriter) (*GetLocalizationTemplateOK, *GetLocalizationTemplateBadRequest, *GetLocalizationTemplateUnauthorized, *GetLocalizationTemplateForbidden, *GetLocalizationTemplateNotFound, error)
 
 	GetNotificationTopicV1Admin(params *GetNotificationTopicV1AdminParams, authInfo runtime.ClientAuthInfoWriter) (*GetNotificationTopicV1AdminOK, *GetNotificationTopicV1AdminUnauthorized, *GetNotificationTopicV1AdminForbidden, *GetNotificationTopicV1AdminNotFound, *GetNotificationTopicV1AdminInternalServerError, error)
-
-	GetNotifications(params *GetNotificationsParams, authInfo runtime.ClientAuthInfoWriter) (*GetNotificationsOK, *GetNotificationsBadRequest, *GetNotificationsUnauthorized, *GetNotificationsForbidden, *GetNotificationsNotFound, error)
 
 	GetSingleTemplateLocalizationV1Admin(params *GetSingleTemplateLocalizationV1AdminParams, authInfo runtime.ClientAuthInfoWriter) (*GetSingleTemplateLocalizationV1AdminOK, *GetSingleTemplateLocalizationV1AdminUnauthorized, *GetSingleTemplateLocalizationV1AdminForbidden, *GetSingleTemplateLocalizationV1AdminNotFound, *GetSingleTemplateLocalizationV1AdminInternalServerError, error)
 
@@ -86,6 +82,10 @@ type ClientService interface {
 	PublishTemplateLocalizationV1Admin(params *PublishTemplateLocalizationV1AdminParams, authInfo runtime.ClientAuthInfoWriter) (*PublishTemplateLocalizationV1AdminNoContent, *PublishTemplateLocalizationV1AdminUnauthorized, *PublishTemplateLocalizationV1AdminForbidden, *PublishTemplateLocalizationV1AdminNotFound, *PublishTemplateLocalizationV1AdminInternalServerError, error)
 
 	SendMultipleUsersFreeformNotificationV1Admin(params *SendMultipleUsersFreeformNotificationV1AdminParams, authInfo runtime.ClientAuthInfoWriter) (*SendMultipleUsersFreeformNotificationV1AdminNoContent, *SendMultipleUsersFreeformNotificationV1AdminBadRequest, *SendMultipleUsersFreeformNotificationV1AdminUnauthorized, *SendMultipleUsersFreeformNotificationV1AdminForbidden, error)
+
+	SendPartyFreeformNotificationV1Admin(params *SendPartyFreeformNotificationV1AdminParams, authInfo runtime.ClientAuthInfoWriter) (*SendPartyFreeformNotificationV1AdminNoContent, *SendPartyFreeformNotificationV1AdminBadRequest, *SendPartyFreeformNotificationV1AdminUnauthorized, *SendPartyFreeformNotificationV1AdminForbidden, *SendPartyFreeformNotificationV1AdminNotFound, error)
+
+	SendPartyTemplatedNotificationV1Admin(params *SendPartyTemplatedNotificationV1AdminParams, authInfo runtime.ClientAuthInfoWriter) (*SendPartyTemplatedNotificationV1AdminNoContent, *SendPartyTemplatedNotificationV1AdminBadRequest, *SendPartyTemplatedNotificationV1AdminUnauthorized, *SendPartyTemplatedNotificationV1AdminForbidden, *SendPartyTemplatedNotificationV1AdminNotFound, error)
 
 	SendSpecificUserFreeformNotificationV1Admin(params *SendSpecificUserFreeformNotificationV1AdminParams, authInfo runtime.ClientAuthInfoWriter) (*SendSpecificUserFreeformNotificationV1AdminNoContent, *SendSpecificUserFreeformNotificationV1AdminBadRequest, *SendSpecificUserFreeformNotificationV1AdminUnauthorized, *SendSpecificUserFreeformNotificationV1AdminForbidden, *SendSpecificUserFreeformNotificationV1AdminNotFound, error)
 
@@ -679,8 +679,7 @@ func (a *Client) FreeFormNotification(params *FreeFormNotificationParams, authIn
   FreeFormNotificationByUserID sends freeform notification to a user
 
   Required permission : <code>NAMESPACE:{namespace}:USER:{userId}:NOTIFICATION [CREATE]</code> with scope <code>social</code>
-			<br>Sends notification to a user. There are two types of notification: sync and async. Async message will be stored
-			to database if the receiver is offline. This stored message could be retrieved later via websocket command.
+			<br>Sends notification to a user.
 */
 func (a *Client) FreeFormNotificationByUserID(params *FreeFormNotificationByUserIDParams, authInfo runtime.ClientAuthInfoWriter) (*FreeFormNotificationByUserIDNoContent, *FreeFormNotificationByUserIDBadRequest, *FreeFormNotificationByUserIDUnauthorized, *FreeFormNotificationByUserIDForbidden, *FreeFormNotificationByUserIDNotFound, error) {
 	// TODO: Validate the params before sending
@@ -824,56 +823,6 @@ func (a *Client) GetAllNotificationTopicsV1Admin(params *GetAllNotificationTopic
 	case *GetAllNotificationTopicsV1AdminNotFound:
 		return nil, nil, nil, v, nil, nil
 	case *GetAllNotificationTopicsV1AdminInternalServerError:
-		return nil, nil, nil, nil, v, nil
-	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-/*
-  GetAllStoredNotificationsV1 gets all stored notification for a user
-
-  Required valid user authorization
-			<br>Retrieve all notification stored for a user. Successfully retrieved notifications will not be deleted.
-*/
-func (a *Client) GetAllStoredNotificationsV1(params *GetAllStoredNotificationsV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetAllStoredNotificationsV1OK, *GetAllStoredNotificationsV1BadRequest, *GetAllStoredNotificationsV1Unauthorized, *GetAllStoredNotificationsV1Forbidden, *GetAllStoredNotificationsV1NotFound, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewGetAllStoredNotificationsV1Params()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "getAllStoredNotificationsV1",
-		Method:             "GET",
-		PathPattern:        "/lobby/v1/public/notification/namespaces/{namespace}/users/me",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
-		Params:             params,
-		Reader:             &GetAllStoredNotificationsV1Reader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, nil, nil, nil, nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *GetAllStoredNotificationsV1OK:
-		return v, nil, nil, nil, nil, nil
-	case *GetAllStoredNotificationsV1BadRequest:
-		return nil, v, nil, nil, nil, nil
-	case *GetAllStoredNotificationsV1Unauthorized:
-		return nil, nil, v, nil, nil, nil
-	case *GetAllStoredNotificationsV1Forbidden:
-		return nil, nil, nil, v, nil, nil
-	case *GetAllStoredNotificationsV1NotFound:
 		return nil, nil, nil, nil, v, nil
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
@@ -1025,56 +974,6 @@ func (a *Client) GetNotificationTopicV1Admin(params *GetNotificationTopicV1Admin
 	case *GetNotificationTopicV1AdminNotFound:
 		return nil, nil, nil, v, nil, nil
 	case *GetNotificationTopicV1AdminInternalServerError:
-		return nil, nil, nil, nil, v, nil
-	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-/*
-  GetNotifications gets all stored notification for a user
-
-  Required permission : <code>NAMESPACE:{namespace}:USER:{userId}:NOTIFICATION [READ]</code> with scope <code>social</code>
-			<br>Retrieve all notification stored for a user. Successfully retrieved notifications will not be deleted.
-*/
-func (a *Client) GetNotifications(params *GetNotificationsParams, authInfo runtime.ClientAuthInfoWriter) (*GetNotificationsOK, *GetNotificationsBadRequest, *GetNotificationsUnauthorized, *GetNotificationsForbidden, *GetNotificationsNotFound, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewGetNotificationsParams()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "getNotifications",
-		Method:             "GET",
-		PathPattern:        "/notification/namespaces/{namespace}/users/{userId}",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
-		Params:             params,
-		Reader:             &GetNotificationsReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, nil, nil, nil, nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *GetNotificationsOK:
-		return v, nil, nil, nil, nil, nil
-	case *GetNotificationsBadRequest:
-		return nil, v, nil, nil, nil, nil
-	case *GetNotificationsUnauthorized:
-		return nil, nil, v, nil, nil, nil
-	case *GetNotificationsForbidden:
-		return nil, nil, nil, v, nil, nil
-	case *GetNotificationsNotFound:
 		return nil, nil, nil, nil, v, nil
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
@@ -1390,8 +1289,7 @@ func (a *Client) NotificationWithTemplate(params *NotificationWithTemplateParams
   NotificationWithTemplateByUserID sends notification to a user with template
 
   Required permission : <code>NAMESPACE:{namespace}:USER:{userId}:NOTIFICATION [CREATE]</code> with scope <code>social</code>
-			<br>Sends notification to a user with predefined template. There are two types of notification: sync and async. Async message will be stored
-			to database if the receiver is offline. This stored message could be retrieved later via websocket command.
+			<br>Sends notification to a user with predefined template.
 			<br>In the request body, specify which template slug (template identifier) to use and the template language.
 			<br>NotificationTemplate context is the key-value pair defining the value of each handlebar specified in the template content.
 			Template need to be published before it can be use to send notifications
@@ -1545,8 +1443,7 @@ func (a *Client) PublishTemplateLocalizationV1Admin(params *PublishTemplateLocal
   SendMultipleUsersFreeformNotificationV1Admin sends freeform notification to multiple users
 
   Required permission : <code>ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]</code> with scope <code>social</code>
-			<br>Sends notification to multiple user. There are two types of notification: sync and async. Async message will be stored
-			to database if the receiver is offline. This stored message could be retrieved later via websocket command.<br/>
+			<br>Sends notification to multiple user.
 			Action Code: 50211
 */
 func (a *Client) SendMultipleUsersFreeformNotificationV1Admin(params *SendMultipleUsersFreeformNotificationV1AdminParams, authInfo runtime.ClientAuthInfoWriter) (*SendMultipleUsersFreeformNotificationV1AdminNoContent, *SendMultipleUsersFreeformNotificationV1AdminBadRequest, *SendMultipleUsersFreeformNotificationV1AdminUnauthorized, *SendMultipleUsersFreeformNotificationV1AdminForbidden, error) {
@@ -1592,11 +1489,113 @@ func (a *Client) SendMultipleUsersFreeformNotificationV1Admin(params *SendMultip
 }
 
 /*
+  SendPartyFreeformNotificationV1Admin sends freeform notification to a party
+
+  Required permission : <code>ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]</code> with scope <code>social</code>
+					<br>Sends notification to a party.
+*/
+func (a *Client) SendPartyFreeformNotificationV1Admin(params *SendPartyFreeformNotificationV1AdminParams, authInfo runtime.ClientAuthInfoWriter) (*SendPartyFreeformNotificationV1AdminNoContent, *SendPartyFreeformNotificationV1AdminBadRequest, *SendPartyFreeformNotificationV1AdminUnauthorized, *SendPartyFreeformNotificationV1AdminForbidden, *SendPartyFreeformNotificationV1AdminNotFound, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewSendPartyFreeformNotificationV1AdminParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "sendPartyFreeformNotificationV1Admin",
+		Method:             "POST",
+		PathPattern:        "/lobby/v1/admin/notification/namespaces/{namespace}/parties/{partyId}/freeform/notify",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &SendPartyFreeformNotificationV1AdminReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *SendPartyFreeformNotificationV1AdminNoContent:
+		return v, nil, nil, nil, nil, nil
+	case *SendPartyFreeformNotificationV1AdminBadRequest:
+		return nil, v, nil, nil, nil, nil
+	case *SendPartyFreeformNotificationV1AdminUnauthorized:
+		return nil, nil, v, nil, nil, nil
+	case *SendPartyFreeformNotificationV1AdminForbidden:
+		return nil, nil, nil, v, nil, nil
+	case *SendPartyFreeformNotificationV1AdminNotFound:
+		return nil, nil, nil, nil, v, nil
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  SendPartyTemplatedNotificationV1Admin sends templated notification to a party
+
+  Required permission : <code>ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]</code> with scope <code>social</code>
+					<br>Sends templated notification to a party.
+					<br>In the request body, specify which template slug (template identifier) to use and the template language.
+					<br>NotificationTemplate context is the key-value pair defining the value of each handlebar specified in the template content.
+					Template need to be published before it can be use to send notifications<br>
+*/
+func (a *Client) SendPartyTemplatedNotificationV1Admin(params *SendPartyTemplatedNotificationV1AdminParams, authInfo runtime.ClientAuthInfoWriter) (*SendPartyTemplatedNotificationV1AdminNoContent, *SendPartyTemplatedNotificationV1AdminBadRequest, *SendPartyTemplatedNotificationV1AdminUnauthorized, *SendPartyTemplatedNotificationV1AdminForbidden, *SendPartyTemplatedNotificationV1AdminNotFound, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewSendPartyTemplatedNotificationV1AdminParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "sendPartyTemplatedNotificationV1Admin",
+		Method:             "POST",
+		PathPattern:        "/lobby/v1/admin/notification/namespaces/{namespace}/parties/{partyId}/templates/notify",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &SendPartyTemplatedNotificationV1AdminReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *SendPartyTemplatedNotificationV1AdminNoContent:
+		return v, nil, nil, nil, nil, nil
+	case *SendPartyTemplatedNotificationV1AdminBadRequest:
+		return nil, v, nil, nil, nil, nil
+	case *SendPartyTemplatedNotificationV1AdminUnauthorized:
+		return nil, nil, v, nil, nil, nil
+	case *SendPartyTemplatedNotificationV1AdminForbidden:
+		return nil, nil, nil, v, nil, nil
+	case *SendPartyTemplatedNotificationV1AdminNotFound:
+		return nil, nil, nil, nil, v, nil
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
   SendSpecificUserFreeformNotificationV1Admin sends freeform notification to a user
 
   Required permission : <code>ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]</code> with scope <code>social</code>
-			<br>Sends notification to a user. There are two types of notification: sync and async. Async message will be stored
-			to database if the receiver is offline. This stored message could be retrieved later via websocket command.<br/>
+			<br>Sends notification to a user.
 			Action Code: 50211
 */
 func (a *Client) SendSpecificUserFreeformNotificationV1Admin(params *SendSpecificUserFreeformNotificationV1AdminParams, authInfo runtime.ClientAuthInfoWriter) (*SendSpecificUserFreeformNotificationV1AdminNoContent, *SendSpecificUserFreeformNotificationV1AdminBadRequest, *SendSpecificUserFreeformNotificationV1AdminUnauthorized, *SendSpecificUserFreeformNotificationV1AdminForbidden, *SendSpecificUserFreeformNotificationV1AdminNotFound, error) {
@@ -1647,8 +1646,7 @@ func (a *Client) SendSpecificUserFreeformNotificationV1Admin(params *SendSpecifi
   SendSpecificUserTemplatedNotificationV1Admin sends templated notification to specific user
 
   Required permission : <code>ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]</code> with scope <code>social</code>
-			<br>Sends templated notification to a user. There are two types of notification: sync and async. Async message will be stored
-			to database if the receiver is offline. This stored message could be retrieved later via websocket command.
+			<br>Sends templated notification to a user.
 			<br>In the request body, specify which template slug (template identifier) to use and the template language.
 			<br>NotificationTemplate context is the key-value pair defining the value of each handlebar specified in the template content.
 			Template need to be published before it can be use to send notifications<br>
@@ -1750,7 +1748,7 @@ func (a *Client) SendUsersFreeformNotificationV1Admin(params *SendUsersFreeformN
 }
 
 /*
-  SendUsersTemplatedNotificationV1Admin sends notification to a user with template
+  SendUsersTemplatedNotificationV1Admin sends notification to connected users with template
 
   Required permission : <code>ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]</code> with scope <code>social</code>
 			<br>Sends notification to all connected users in a namespace with predefined template.

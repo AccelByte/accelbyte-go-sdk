@@ -14,9 +14,11 @@ import (
 	"github.com/go-openapi/strfmt"
 
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclient/anonymization"
+	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclient/e_q_u8_config"
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclient/file_upload"
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclient/misc"
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclient/namespace"
+	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclient/user_action"
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclient/user_profile"
 )
 
@@ -63,9 +65,11 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry) *JusticeBas
 	cli := new(JusticeBasicService)
 	cli.Transport = transport
 	cli.Anonymization = anonymization.New(transport, formats)
+	cli.EqU8Config = e_q_u8_config.New(transport, formats)
 	cli.FileUpload = file_upload.New(transport, formats)
 	cli.Misc = misc.New(transport, formats)
 	cli.Namespace = namespace.New(transport, formats)
+	cli.UserAction = user_action.New(transport, formats)
 	cli.UserProfile = user_profile.New(transport, formats)
 	return cli
 }
@@ -127,11 +131,15 @@ func (cfg *TransportConfig) WithSchemes(schemes []string) *TransportConfig {
 type JusticeBasicService struct {
 	Anonymization anonymization.ClientService
 
+	EqU8Config e_q_u8_config.ClientService
+
 	FileUpload file_upload.ClientService
 
 	Misc misc.ClientService
 
 	Namespace namespace.ClientService
+
+	UserAction user_action.ClientService
 
 	UserProfile user_profile.ClientService
 
@@ -142,8 +150,10 @@ type JusticeBasicService struct {
 func (c *JusticeBasicService) SetTransport(transport runtime.ClientTransport) {
 	c.Transport = transport
 	c.Anonymization.SetTransport(transport)
+	c.EqU8Config.SetTransport(transport)
 	c.FileUpload.SetTransport(transport)
 	c.Misc.SetTransport(transport)
 	c.Namespace.SetTransport(transport)
+	c.UserAction.SetTransport(transport)
 	c.UserProfile.SetTransport(transport)
 }

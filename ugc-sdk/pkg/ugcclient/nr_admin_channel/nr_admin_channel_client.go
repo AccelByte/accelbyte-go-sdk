@@ -31,13 +31,13 @@ type Client struct {
 type ClientService interface {
 	AdminCreateChannel(params *AdminCreateChannelParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateChannelCreated, *AdminCreateChannelBadRequest, *AdminCreateChannelUnauthorized, *AdminCreateChannelInternalServerError, error)
 
-	AdminDeleteChannel(params *AdminDeleteChannelParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteChannelOK, *AdminDeleteChannelUnauthorized, *AdminDeleteChannelNotFound, *AdminDeleteChannelInternalServerError, error)
+	AdminDeleteChannel(params *AdminDeleteChannelParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteChannelNoContent, *AdminDeleteChannelUnauthorized, *AdminDeleteChannelNotFound, *AdminDeleteChannelInternalServerError, error)
 
 	AdminGetChannel(params *AdminGetChannelParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetChannelOK, *AdminGetChannelUnauthorized, *AdminGetChannelNotFound, *AdminGetChannelInternalServerError, error)
 
 	AdminUpdateChannel(params *AdminUpdateChannelParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateChannelOK, *AdminUpdateChannelBadRequest, *AdminUpdateChannelUnauthorized, *AdminUpdateChannelNotFound, *AdminUpdateChannelInternalServerError, error)
 
-	SingleAdminDeleteChannel(params *SingleAdminDeleteChannelParams, authInfo runtime.ClientAuthInfoWriter) (*SingleAdminDeleteChannelOK, *SingleAdminDeleteChannelUnauthorized, *SingleAdminDeleteChannelNotFound, *SingleAdminDeleteChannelInternalServerError, error)
+	SingleAdminDeleteChannel(params *SingleAdminDeleteChannelParams, authInfo runtime.ClientAuthInfoWriter) (*SingleAdminDeleteChannelNoContent, *SingleAdminDeleteChannelUnauthorized, *SingleAdminDeleteChannelNotFound, *SingleAdminDeleteChannelInternalServerError, error)
 
 	SingleAdminGetChannel(params *SingleAdminGetChannelParams, authInfo runtime.ClientAuthInfoWriter) (*SingleAdminGetChannelOK, *SingleAdminGetChannelUnauthorized, *SingleAdminGetChannelNotFound, *SingleAdminGetChannelInternalServerError, error)
 
@@ -98,7 +98,7 @@ func (a *Client) AdminCreateChannel(params *AdminCreateChannelParams, authInfo r
 
   Required permission <b>ADMIN:NAMESPACE:{namespace}:USER:{userId}:CHANNEL [DELETE]</b>
 */
-func (a *Client) AdminDeleteChannel(params *AdminDeleteChannelParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteChannelOK, *AdminDeleteChannelUnauthorized, *AdminDeleteChannelNotFound, *AdminDeleteChannelInternalServerError, error) {
+func (a *Client) AdminDeleteChannel(params *AdminDeleteChannelParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteChannelNoContent, *AdminDeleteChannelUnauthorized, *AdminDeleteChannelNotFound, *AdminDeleteChannelInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminDeleteChannelParams()
@@ -127,7 +127,7 @@ func (a *Client) AdminDeleteChannel(params *AdminDeleteChannelParams, authInfo r
 
 	switch v := result.(type) {
 
-	case *AdminDeleteChannelOK:
+	case *AdminDeleteChannelNoContent:
 		return v, nil, nil, nil, nil
 	case *AdminDeleteChannelUnauthorized:
 		return nil, v, nil, nil, nil
@@ -241,7 +241,7 @@ func (a *Client) AdminUpdateChannel(params *AdminUpdateChannelParams, authInfo r
 
   Required permission <b>ADMIN:NAMESPACE:{namespace}:USER:{userId}:CHANNEL [DELETE]</b>
 */
-func (a *Client) SingleAdminDeleteChannel(params *SingleAdminDeleteChannelParams, authInfo runtime.ClientAuthInfoWriter) (*SingleAdminDeleteChannelOK, *SingleAdminDeleteChannelUnauthorized, *SingleAdminDeleteChannelNotFound, *SingleAdminDeleteChannelInternalServerError, error) {
+func (a *Client) SingleAdminDeleteChannel(params *SingleAdminDeleteChannelParams, authInfo runtime.ClientAuthInfoWriter) (*SingleAdminDeleteChannelNoContent, *SingleAdminDeleteChannelUnauthorized, *SingleAdminDeleteChannelNotFound, *SingleAdminDeleteChannelInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewSingleAdminDeleteChannelParams()
@@ -270,7 +270,7 @@ func (a *Client) SingleAdminDeleteChannel(params *SingleAdminDeleteChannelParams
 
 	switch v := result.(type) {
 
-	case *SingleAdminDeleteChannelOK:
+	case *SingleAdminDeleteChannelNoContent:
 		return v, nil, nil, nil, nil
 	case *SingleAdminDeleteChannelUnauthorized:
 		return nil, v, nil, nil, nil

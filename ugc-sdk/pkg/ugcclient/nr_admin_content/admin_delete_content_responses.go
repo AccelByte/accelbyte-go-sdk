@@ -24,8 +24,8 @@ type AdminDeleteContentReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *AdminDeleteContentReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-	case 200:
-		result := NewAdminDeleteContentOK()
+	case 204:
+		result := NewAdminDeleteContentNoContent()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -59,35 +59,23 @@ func (o *AdminDeleteContentReader) ReadResponse(response runtime.ClientResponse,
 	}
 }
 
-// NewAdminDeleteContentOK creates a AdminDeleteContentOK with default headers values
-func NewAdminDeleteContentOK() *AdminDeleteContentOK {
-	return &AdminDeleteContentOK{}
+// NewAdminDeleteContentNoContent creates a AdminDeleteContentNoContent with default headers values
+func NewAdminDeleteContentNoContent() *AdminDeleteContentNoContent {
+	return &AdminDeleteContentNoContent{}
 }
 
-/*AdminDeleteContentOK handles this case with default header values.
+/*AdminDeleteContentNoContent handles this case with default header values.
 
-  OK
+  No Content
 */
-type AdminDeleteContentOK struct {
-	Payload *ugcclientmodels.ModelsCreateContentResponse
+type AdminDeleteContentNoContent struct {
 }
 
-func (o *AdminDeleteContentOK) Error() string {
-	return fmt.Sprintf("[DELETE /ugc/v1/admin/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents/{contentId}][%d] adminDeleteContentOK  %+v", 200, o.Payload)
+func (o *AdminDeleteContentNoContent) Error() string {
+	return fmt.Sprintf("[DELETE /ugc/v1/admin/namespaces/{namespace}/users/{userId}/channels/{channelId}/contents/{contentId}][%d] adminDeleteContentNoContent ", 204)
 }
 
-func (o *AdminDeleteContentOK) GetPayload() *ugcclientmodels.ModelsCreateContentResponse {
-	return o.Payload
-}
-
-func (o *AdminDeleteContentOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-
-	o.Payload = new(ugcclientmodels.ModelsCreateContentResponse)
-
-	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
-		return err
-	}
+func (o *AdminDeleteContentNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }

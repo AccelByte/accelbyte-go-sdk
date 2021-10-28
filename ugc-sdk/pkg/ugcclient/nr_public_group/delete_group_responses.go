@@ -24,8 +24,8 @@ type DeleteGroupReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *DeleteGroupReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-	case 200:
-		result := NewDeleteGroupOK()
+	case 204:
+		result := NewDeleteGroupNoContent()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -59,23 +59,23 @@ func (o *DeleteGroupReader) ReadResponse(response runtime.ClientResponse, consum
 	}
 }
 
-// NewDeleteGroupOK creates a DeleteGroupOK with default headers values
-func NewDeleteGroupOK() *DeleteGroupOK {
-	return &DeleteGroupOK{}
+// NewDeleteGroupNoContent creates a DeleteGroupNoContent with default headers values
+func NewDeleteGroupNoContent() *DeleteGroupNoContent {
+	return &DeleteGroupNoContent{}
 }
 
-/*DeleteGroupOK handles this case with default header values.
+/*DeleteGroupNoContent handles this case with default header values.
 
-  OK
+  No Content
 */
-type DeleteGroupOK struct {
+type DeleteGroupNoContent struct {
 }
 
-func (o *DeleteGroupOK) Error() string {
-	return fmt.Sprintf("[DELETE /ugc/v1/public/namespaces/{namespace}/users/{userId}/groups/{groupId}][%d] deleteGroupOK ", 200)
+func (o *DeleteGroupNoContent) Error() string {
+	return fmt.Sprintf("[DELETE /ugc/v1/public/namespaces/{namespace}/users/{userId}/groups/{groupId}][%d] deleteGroupNoContent ", 204)
 }
 
-func (o *DeleteGroupOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *DeleteGroupNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }

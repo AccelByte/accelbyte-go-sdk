@@ -31,7 +31,7 @@ type Client struct {
 type ClientService interface {
 	AdminCreateGroup(params *AdminCreateGroupParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateGroupCreated, *AdminCreateGroupBadRequest, *AdminCreateGroupUnauthorized, *AdminCreateGroupInternalServerError, error)
 
-	AdminDeleteGroup(params *AdminDeleteGroupParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteGroupOK, *AdminDeleteGroupUnauthorized, *AdminDeleteGroupNotFound, *AdminDeleteGroupInternalServerError, error)
+	AdminDeleteGroup(params *AdminDeleteGroupParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteGroupNoContent, *AdminDeleteGroupUnauthorized, *AdminDeleteGroupNotFound, *AdminDeleteGroupInternalServerError, error)
 
 	AdminGetAllGroups(params *AdminGetAllGroupsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetAllGroupsOK, *AdminGetAllGroupsUnauthorized, *AdminGetAllGroupsNotFound, *AdminGetAllGroupsInternalServerError, error)
 
@@ -41,7 +41,7 @@ type ClientService interface {
 
 	AdminUpdateGroup(params *AdminUpdateGroupParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateGroupOK, *AdminUpdateGroupBadRequest, *AdminUpdateGroupUnauthorized, *AdminUpdateGroupNotFound, *AdminUpdateGroupInternalServerError, error)
 
-	SingleAdminDeleteGroup(params *SingleAdminDeleteGroupParams, authInfo runtime.ClientAuthInfoWriter) (*SingleAdminDeleteGroupOK, *SingleAdminDeleteGroupUnauthorized, *SingleAdminDeleteGroupNotFound, *SingleAdminDeleteGroupInternalServerError, error)
+	SingleAdminDeleteGroup(params *SingleAdminDeleteGroupParams, authInfo runtime.ClientAuthInfoWriter) (*SingleAdminDeleteGroupNoContent, *SingleAdminDeleteGroupUnauthorized, *SingleAdminDeleteGroupNotFound, *SingleAdminDeleteGroupInternalServerError, error)
 
 	SingleAdminGetAllGroups(params *SingleAdminGetAllGroupsParams, authInfo runtime.ClientAuthInfoWriter) (*SingleAdminGetAllGroupsOK, *SingleAdminGetAllGroupsUnauthorized, *SingleAdminGetAllGroupsNotFound, *SingleAdminGetAllGroupsInternalServerError, error)
 
@@ -106,7 +106,7 @@ func (a *Client) AdminCreateGroup(params *AdminCreateGroupParams, authInfo runti
 
   Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENTGROUP [DELETE]
 */
-func (a *Client) AdminDeleteGroup(params *AdminDeleteGroupParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteGroupOK, *AdminDeleteGroupUnauthorized, *AdminDeleteGroupNotFound, *AdminDeleteGroupInternalServerError, error) {
+func (a *Client) AdminDeleteGroup(params *AdminDeleteGroupParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteGroupNoContent, *AdminDeleteGroupUnauthorized, *AdminDeleteGroupNotFound, *AdminDeleteGroupInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminDeleteGroupParams()
@@ -135,7 +135,7 @@ func (a *Client) AdminDeleteGroup(params *AdminDeleteGroupParams, authInfo runti
 
 	switch v := result.(type) {
 
-	case *AdminDeleteGroupOK:
+	case *AdminDeleteGroupNoContent:
 		return v, nil, nil, nil, nil
 	case *AdminDeleteGroupUnauthorized:
 		return nil, v, nil, nil, nil
@@ -344,7 +344,7 @@ func (a *Client) AdminUpdateGroup(params *AdminUpdateGroupParams, authInfo runti
 
   Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENTGROUP [DELETE]
 */
-func (a *Client) SingleAdminDeleteGroup(params *SingleAdminDeleteGroupParams, authInfo runtime.ClientAuthInfoWriter) (*SingleAdminDeleteGroupOK, *SingleAdminDeleteGroupUnauthorized, *SingleAdminDeleteGroupNotFound, *SingleAdminDeleteGroupInternalServerError, error) {
+func (a *Client) SingleAdminDeleteGroup(params *SingleAdminDeleteGroupParams, authInfo runtime.ClientAuthInfoWriter) (*SingleAdminDeleteGroupNoContent, *SingleAdminDeleteGroupUnauthorized, *SingleAdminDeleteGroupNotFound, *SingleAdminDeleteGroupInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewSingleAdminDeleteGroupParams()
@@ -373,7 +373,7 @@ func (a *Client) SingleAdminDeleteGroup(params *SingleAdminDeleteGroupParams, au
 
 	switch v := result.(type) {
 
-	case *SingleAdminDeleteGroupOK:
+	case *SingleAdminDeleteGroupNoContent:
 		return v, nil, nil, nil, nil
 	case *SingleAdminDeleteGroupUnauthorized:
 		return nil, v, nil, nil, nil

@@ -24,8 +24,8 @@ type SingleAdminDeleteGroupReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *SingleAdminDeleteGroupReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-	case 200:
-		result := NewSingleAdminDeleteGroupOK()
+	case 204:
+		result := NewSingleAdminDeleteGroupNoContent()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -59,23 +59,23 @@ func (o *SingleAdminDeleteGroupReader) ReadResponse(response runtime.ClientRespo
 	}
 }
 
-// NewSingleAdminDeleteGroupOK creates a SingleAdminDeleteGroupOK with default headers values
-func NewSingleAdminDeleteGroupOK() *SingleAdminDeleteGroupOK {
-	return &SingleAdminDeleteGroupOK{}
+// NewSingleAdminDeleteGroupNoContent creates a SingleAdminDeleteGroupNoContent with default headers values
+func NewSingleAdminDeleteGroupNoContent() *SingleAdminDeleteGroupNoContent {
+	return &SingleAdminDeleteGroupNoContent{}
 }
 
-/*SingleAdminDeleteGroupOK handles this case with default header values.
+/*SingleAdminDeleteGroupNoContent handles this case with default header values.
 
-  OK
+  No Content
 */
-type SingleAdminDeleteGroupOK struct {
+type SingleAdminDeleteGroupNoContent struct {
 }
 
-func (o *SingleAdminDeleteGroupOK) Error() string {
-	return fmt.Sprintf("[DELETE /ugc/v1/admin/namespaces/{namespace}/groups/{groupId}][%d] singleAdminDeleteGroupOK ", 200)
+func (o *SingleAdminDeleteGroupNoContent) Error() string {
+	return fmt.Sprintf("[DELETE /ugc/v1/admin/namespaces/{namespace}/groups/{groupId}][%d] singleAdminDeleteGroupNoContent ", 204)
 }
 
-func (o *SingleAdminDeleteGroupOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *SingleAdminDeleteGroupNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }

@@ -35,6 +35,8 @@ type ClientService interface {
 
 	QueryFulfillmentHistories(params *QueryFulfillmentHistoriesParams, authInfo runtime.ClientAuthInfoWriter) (*QueryFulfillmentHistoriesOK, error)
 
+	RedeemCode(params *RedeemCodeParams, authInfo runtime.ClientAuthInfoWriter) (*RedeemCodeOK, *RedeemCodeBadRequest, *RedeemCodeNotFound, *RedeemCodeConflict, error)
+
 	SetTransport(transport runtime.ClientTransport)
 }
 
@@ -170,6 +172,53 @@ func (a *Client) QueryFulfillmentHistories(params *QueryFulfillmentHistoriesPara
 		return v, nil
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  RedeemCode redeems campaign code
+
+  Redeem campaign code.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:FULFILLMENT", action=1 (CREATED)</li><li><i>Returns</i>: fulfillment result</li></ul>
+*/
+func (a *Client) RedeemCode(params *RedeemCodeParams, authInfo runtime.ClientAuthInfoWriter) (*RedeemCodeOK, *RedeemCodeBadRequest, *RedeemCodeNotFound, *RedeemCodeConflict, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRedeemCodeParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "redeemCode",
+		Method:             "POST",
+		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/fulfillment/code",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &RedeemCodeReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *RedeemCodeOK:
+		return v, nil, nil, nil, nil
+	case *RedeemCodeBadRequest:
+		return nil, v, nil, nil, nil
+	case *RedeemCodeNotFound:
+		return nil, nil, v, nil, nil
+	case *RedeemCodeConflict:
+		return nil, nil, nil, v, nil
+	default:
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 

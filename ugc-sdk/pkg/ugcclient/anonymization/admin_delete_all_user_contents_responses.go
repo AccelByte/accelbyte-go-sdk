@@ -24,8 +24,8 @@ type AdminDeleteAllUserContentsReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *AdminDeleteAllUserContentsReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-	case 200:
-		result := NewAdminDeleteAllUserContentsOK()
+	case 204:
+		result := NewAdminDeleteAllUserContentsNoContent()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -59,23 +59,23 @@ func (o *AdminDeleteAllUserContentsReader) ReadResponse(response runtime.ClientR
 	}
 }
 
-// NewAdminDeleteAllUserContentsOK creates a AdminDeleteAllUserContentsOK with default headers values
-func NewAdminDeleteAllUserContentsOK() *AdminDeleteAllUserContentsOK {
-	return &AdminDeleteAllUserContentsOK{}
+// NewAdminDeleteAllUserContentsNoContent creates a AdminDeleteAllUserContentsNoContent with default headers values
+func NewAdminDeleteAllUserContentsNoContent() *AdminDeleteAllUserContentsNoContent {
+	return &AdminDeleteAllUserContentsNoContent{}
 }
 
-/*AdminDeleteAllUserContentsOK handles this case with default header values.
+/*AdminDeleteAllUserContentsNoContent handles this case with default header values.
 
-  OK
+  No Content
 */
-type AdminDeleteAllUserContentsOK struct {
+type AdminDeleteAllUserContentsNoContent struct {
 }
 
-func (o *AdminDeleteAllUserContentsOK) Error() string {
-	return fmt.Sprintf("[DELETE /ugc/v1/admin/namespaces/{namespace}/users/{userId}/contents][%d] adminDeleteAllUserContentsOK ", 200)
+func (o *AdminDeleteAllUserContentsNoContent) Error() string {
+	return fmt.Sprintf("[DELETE /ugc/v1/admin/namespaces/{namespace}/users/{userId}/contents][%d] adminDeleteAllUserContentsNoContent ", 204)
 }
 
-func (o *AdminDeleteAllUserContentsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *AdminDeleteAllUserContentsNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }

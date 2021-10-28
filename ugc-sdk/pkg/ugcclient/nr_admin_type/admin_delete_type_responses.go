@@ -24,8 +24,8 @@ type AdminDeleteTypeReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *AdminDeleteTypeReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-	case 200:
-		result := NewAdminDeleteTypeOK()
+	case 204:
+		result := NewAdminDeleteTypeNoContent()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -59,23 +59,23 @@ func (o *AdminDeleteTypeReader) ReadResponse(response runtime.ClientResponse, co
 	}
 }
 
-// NewAdminDeleteTypeOK creates a AdminDeleteTypeOK with default headers values
-func NewAdminDeleteTypeOK() *AdminDeleteTypeOK {
-	return &AdminDeleteTypeOK{}
+// NewAdminDeleteTypeNoContent creates a AdminDeleteTypeNoContent with default headers values
+func NewAdminDeleteTypeNoContent() *AdminDeleteTypeNoContent {
+	return &AdminDeleteTypeNoContent{}
 }
 
-/*AdminDeleteTypeOK handles this case with default header values.
+/*AdminDeleteTypeNoContent handles this case with default header values.
 
-  OK
+  No Content
 */
-type AdminDeleteTypeOK struct {
+type AdminDeleteTypeNoContent struct {
 }
 
-func (o *AdminDeleteTypeOK) Error() string {
-	return fmt.Sprintf("[DELETE /ugc/v1/admin/namespaces/{namespace}/types/{typeId}][%d] adminDeleteTypeOK ", 200)
+func (o *AdminDeleteTypeNoContent) Error() string {
+	return fmt.Sprintf("[DELETE /ugc/v1/admin/namespaces/{namespace}/types/{typeId}][%d] adminDeleteTypeNoContent ", 204)
 }
 
-func (o *AdminDeleteTypeOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *AdminDeleteTypeNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }

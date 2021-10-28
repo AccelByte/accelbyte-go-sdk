@@ -29,71 +29,15 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	AdminGetPartiesDataV1(params *AdminGetPartiesDataV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetPartiesDataV1OK, *AdminGetPartiesDataV1BadRequest, *AdminGetPartiesDataV1Unauthorized, *AdminGetPartiesDataV1Forbidden, *AdminGetPartiesDataV1NotFound, *AdminGetPartiesDataV1InternalServerError, error)
-
 	AdminGetPartyDataV1(params *AdminGetPartyDataV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetPartyDataV1OK, *AdminGetPartyDataV1BadRequest, *AdminGetPartyDataV1Unauthorized, *AdminGetPartyDataV1Forbidden, *AdminGetPartyDataV1NotFound, *AdminGetPartyDataV1InternalServerError, error)
 
 	AdminGetUserPartyV1(params *AdminGetUserPartyV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserPartyV1OK, *AdminGetUserPartyV1BadRequest, *AdminGetUserPartyV1Unauthorized, *AdminGetUserPartyV1Forbidden, *AdminGetUserPartyV1NotFound, *AdminGetUserPartyV1InternalServerError, error)
-
-	AdminUpdatePartyAttributesV1(params *AdminUpdatePartyAttributesV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdatePartyAttributesV1OK, *AdminUpdatePartyAttributesV1BadRequest, *AdminUpdatePartyAttributesV1Unauthorized, *AdminUpdatePartyAttributesV1Forbidden, *AdminUpdatePartyAttributesV1NotFound, *AdminUpdatePartyAttributesV1PreconditionFailed, *AdminUpdatePartyAttributesV1InternalServerError, error)
 
 	PublicGetPartyDataV1(params *PublicGetPartyDataV1Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetPartyDataV1OK, *PublicGetPartyDataV1BadRequest, *PublicGetPartyDataV1Unauthorized, *PublicGetPartyDataV1Forbidden, *PublicGetPartyDataV1NotFound, *PublicGetPartyDataV1InternalServerError, error)
 
 	PublicUpdatePartyAttributesV1(params *PublicUpdatePartyAttributesV1Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdatePartyAttributesV1OK, *PublicUpdatePartyAttributesV1BadRequest, *PublicUpdatePartyAttributesV1Unauthorized, *PublicUpdatePartyAttributesV1Forbidden, *PublicUpdatePartyAttributesV1NotFound, *PublicUpdatePartyAttributesV1PreconditionFailed, *PublicUpdatePartyAttributesV1InternalServerError, error)
 
 	SetTransport(transport runtime.ClientTransport)
-}
-
-/*
-  AdminGetPartiesDataV1 admins get all parties
-
-  Required permission : <code>ADMIN:NAMESPACE:{namespace}:PARTY:STORAGE [READ]</code> with scope <code>social</code>
-			<br>get parties data in a namespace.
-*/
-func (a *Client) AdminGetPartiesDataV1(params *AdminGetPartiesDataV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetPartiesDataV1OK, *AdminGetPartiesDataV1BadRequest, *AdminGetPartiesDataV1Unauthorized, *AdminGetPartiesDataV1Forbidden, *AdminGetPartiesDataV1NotFound, *AdminGetPartiesDataV1InternalServerError, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewAdminGetPartiesDataV1Params()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "adminGetPartiesDataV1",
-		Method:             "GET",
-		PathPattern:        "/lobby/v1/admin/party/namespaces/{namespace}/parties",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
-		Params:             params,
-		Reader:             &AdminGetPartiesDataV1Reader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, nil, nil, nil, nil, nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *AdminGetPartiesDataV1OK:
-		return v, nil, nil, nil, nil, nil, nil
-	case *AdminGetPartiesDataV1BadRequest:
-		return nil, v, nil, nil, nil, nil, nil
-	case *AdminGetPartiesDataV1Unauthorized:
-		return nil, nil, v, nil, nil, nil, nil
-	case *AdminGetPartiesDataV1Forbidden:
-		return nil, nil, nil, v, nil, nil, nil
-	case *AdminGetPartiesDataV1NotFound:
-		return nil, nil, nil, nil, v, nil, nil
-	case *AdminGetPartiesDataV1InternalServerError:
-		return nil, nil, nil, nil, nil, v, nil
-	default:
-		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
 }
 
 /*
@@ -197,60 +141,6 @@ func (a *Client) AdminGetUserPartyV1(params *AdminGetUserPartyV1Params, authInfo
 		return nil, nil, nil, nil, nil, v, nil
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-/*
-  AdminUpdatePartyAttributesV1 admins update party attributes
-
-  Required permission : <code>ADMIN:NAMESPACE:{namespace}:PARTY:STORAGE [UPDATE]</code> with scope <code>social</code>
-			<br>update party attributes in a namespace.
-*/
-func (a *Client) AdminUpdatePartyAttributesV1(params *AdminUpdatePartyAttributesV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdatePartyAttributesV1OK, *AdminUpdatePartyAttributesV1BadRequest, *AdminUpdatePartyAttributesV1Unauthorized, *AdminUpdatePartyAttributesV1Forbidden, *AdminUpdatePartyAttributesV1NotFound, *AdminUpdatePartyAttributesV1PreconditionFailed, *AdminUpdatePartyAttributesV1InternalServerError, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewAdminUpdatePartyAttributesV1Params()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "adminUpdatePartyAttributesV1",
-		Method:             "PUT",
-		PathPattern:        "/lobby/v1/admin/party/namespaces/{namespace}/parties/{partyId}/attributes",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
-		Params:             params,
-		Reader:             &AdminUpdatePartyAttributesV1Reader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, nil, nil, nil, nil, nil, nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *AdminUpdatePartyAttributesV1OK:
-		return v, nil, nil, nil, nil, nil, nil, nil
-	case *AdminUpdatePartyAttributesV1BadRequest:
-		return nil, v, nil, nil, nil, nil, nil, nil
-	case *AdminUpdatePartyAttributesV1Unauthorized:
-		return nil, nil, v, nil, nil, nil, nil, nil
-	case *AdminUpdatePartyAttributesV1Forbidden:
-		return nil, nil, nil, v, nil, nil, nil, nil
-	case *AdminUpdatePartyAttributesV1NotFound:
-		return nil, nil, nil, nil, v, nil, nil, nil
-	case *AdminUpdatePartyAttributesV1PreconditionFailed:
-		return nil, nil, nil, nil, nil, v, nil, nil
-	case *AdminUpdatePartyAttributesV1InternalServerError:
-		return nil, nil, nil, nil, nil, nil, v, nil
-	default:
-		return nil, nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 

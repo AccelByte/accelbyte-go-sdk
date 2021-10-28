@@ -25,7 +25,7 @@ type OauthmodelTokenResponse struct {
 
 	// bans
 	// Required: true
-	Bans []*AccountcommonJWTBan `json:"bans"`
+	Bans []*AccountcommonJWTBanV3 `json:"bans"`
 
 	// display name
 	// Required: true

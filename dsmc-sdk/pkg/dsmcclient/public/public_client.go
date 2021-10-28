@@ -33,6 +33,8 @@ type ClientService interface {
 
 	ListProviders(params *ListProvidersParams, authInfo runtime.ClientAuthInfoWriter) (*ListProvidersOK, error)
 
+	ListProvidersByRegion(params *ListProvidersByRegionParams, authInfo runtime.ClientAuthInfoWriter) (*ListProvidersByRegionOK, error)
+
 	SetTransport(transport runtime.ClientTransport)
 }
 
@@ -112,6 +114,47 @@ func (a *Client) ListProviders(params *ListProvidersParams, authInfo runtime.Cli
 	switch v := result.(type) {
 
 	case *ListProvidersOK:
+		return v, nil
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  ListProvidersByRegion lists providers by region
+
+  This endpoint returns the providers by region.
+*/
+func (a *Client) ListProvidersByRegion(params *ListProvidersByRegionParams, authInfo runtime.ClientAuthInfoWriter) (*ListProvidersByRegionOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewListProvidersByRegionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "ListProvidersByRegion",
+		Method:             "GET",
+		PathPattern:        "/dsmcontroller/public/providers/regions/{region}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &ListProvidersByRegionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *ListProvidersByRegionOK:
 		return v, nil
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))

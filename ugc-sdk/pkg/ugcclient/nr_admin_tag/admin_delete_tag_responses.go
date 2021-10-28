@@ -24,8 +24,8 @@ type AdminDeleteTagReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *AdminDeleteTagReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-	case 200:
-		result := NewAdminDeleteTagOK()
+	case 204:
+		result := NewAdminDeleteTagNoContent()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -59,23 +59,23 @@ func (o *AdminDeleteTagReader) ReadResponse(response runtime.ClientResponse, con
 	}
 }
 
-// NewAdminDeleteTagOK creates a AdminDeleteTagOK with default headers values
-func NewAdminDeleteTagOK() *AdminDeleteTagOK {
-	return &AdminDeleteTagOK{}
+// NewAdminDeleteTagNoContent creates a AdminDeleteTagNoContent with default headers values
+func NewAdminDeleteTagNoContent() *AdminDeleteTagNoContent {
+	return &AdminDeleteTagNoContent{}
 }
 
-/*AdminDeleteTagOK handles this case with default header values.
+/*AdminDeleteTagNoContent handles this case with default header values.
 
-  OK
+  No Content
 */
-type AdminDeleteTagOK struct {
+type AdminDeleteTagNoContent struct {
 }
 
-func (o *AdminDeleteTagOK) Error() string {
-	return fmt.Sprintf("[DELETE /ugc/v1/admin/namespaces/{namespace}/tags/{tagId}][%d] adminDeleteTagOK ", 200)
+func (o *AdminDeleteTagNoContent) Error() string {
+	return fmt.Sprintf("[DELETE /ugc/v1/admin/namespaces/{namespace}/tags/{tagId}][%d] adminDeleteTagNoContent ", 204)
 }
 
-func (o *AdminDeleteTagOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *AdminDeleteTagNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }

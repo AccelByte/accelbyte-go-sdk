@@ -53,7 +53,7 @@ type ClientService interface {
 /*
   ChargePaymentOrder charges payment order without payment flow
 
-  <b>[TEST FACILITY ONLY]</b> Charge payment order without payment flow for unpaid payment order, usually for test usage to simulate real currency payment process.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:PAYMENT", action=4 (UPDATE)</li><li><i>Returns</i>: payment order instance</li></ul>
+  <b>[TEST FACILITY ONLY] Forbidden in live environment. </b> Charge payment order without payment flow for unpaid payment order, usually for test usage to simulate real currency payment process.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:PAYMENT", action=4 (UPDATE)</li><li><i>Returns</i>: payment order instance</li></ul>
 */
 func (a *Client) ChargePaymentOrder(params *ChargePaymentOrderParams, authInfo runtime.ClientAuthInfoWriter) (*ChargePaymentOrderOK, *ChargePaymentOrderBadRequest, *ChargePaymentOrderNotFound, *ChargePaymentOrderConflict, error) {
 	// TODO: Validate the params before sending
@@ -407,7 +407,7 @@ func (a *Client) RefundUserPaymentOrder(params *RefundUserPaymentOrderParams, au
 /*
   SimulatePaymentOrderNotification simulates payment notification
 
-  <b>[TEST FACILITY ONLY]</b> Simulate payment notification on sandbox payment order, usually for test usage to simulate real currency payment notification.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:PAYMENT", action=4 (UPDATE)</li><li><i>Returns</i>: notification process result</li></ul>
+  <b>[TEST FACILITY ONLY] Forbidden in live environment. </b> Simulate payment notification on sandbox payment order, usually for test usage to simulate real currency payment notification.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:PAYMENT", action=4 (UPDATE)</li><li><i>Returns</i>: notification process result</li></ul>
 */
 func (a *Client) SimulatePaymentOrderNotification(params *SimulatePaymentOrderNotificationParams, authInfo runtime.ClientAuthInfoWriter) (*SimulatePaymentOrderNotificationOK, *SimulatePaymentOrderNotificationBadRequest, *SimulatePaymentOrderNotificationNotFound, error) {
 	// TODO: Validate the params before sending

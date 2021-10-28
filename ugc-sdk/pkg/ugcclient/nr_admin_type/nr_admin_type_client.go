@@ -31,7 +31,7 @@ type Client struct {
 type ClientService interface {
 	AdminCreateType(params *AdminCreateTypeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateTypeCreated, *AdminCreateTypeBadRequest, *AdminCreateTypeUnauthorized, *AdminCreateTypeConflict, *AdminCreateTypeInternalServerError, error)
 
-	AdminDeleteType(params *AdminDeleteTypeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteTypeOK, *AdminDeleteTypeUnauthorized, *AdminDeleteTypeNotFound, *AdminDeleteTypeInternalServerError, error)
+	AdminDeleteType(params *AdminDeleteTypeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteTypeNoContent, *AdminDeleteTypeUnauthorized, *AdminDeleteTypeNotFound, *AdminDeleteTypeInternalServerError, error)
 
 	AdminGetType(params *AdminGetTypeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetTypeOK, *AdminGetTypeUnauthorized, *AdminGetTypeNotFound, *AdminGetTypeInternalServerError, error)
 
@@ -95,7 +95,7 @@ func (a *Client) AdminCreateType(params *AdminCreateTypeParams, authInfo runtime
 
   Required permission ADMIN:NAMESPACE:{namespace}:UGCCONFIG [DELETE]
 */
-func (a *Client) AdminDeleteType(params *AdminDeleteTypeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteTypeOK, *AdminDeleteTypeUnauthorized, *AdminDeleteTypeNotFound, *AdminDeleteTypeInternalServerError, error) {
+func (a *Client) AdminDeleteType(params *AdminDeleteTypeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteTypeNoContent, *AdminDeleteTypeUnauthorized, *AdminDeleteTypeNotFound, *AdminDeleteTypeInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminDeleteTypeParams()
@@ -124,7 +124,7 @@ func (a *Client) AdminDeleteType(params *AdminDeleteTypeParams, authInfo runtime
 
 	switch v := result.(type) {
 
-	case *AdminDeleteTypeOK:
+	case *AdminDeleteTypeNoContent:
 		return v, nil, nil, nil, nil
 	case *AdminDeleteTypeUnauthorized:
 		return nil, v, nil, nil, nil

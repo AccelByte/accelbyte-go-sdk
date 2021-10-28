@@ -20,8 +20,13 @@ import (
 // NewListImagesParams creates a new ListImagesParams object
 // with the default values initialized.
 func NewListImagesParams() *ListImagesParams {
-	var ()
+	var (
+		sortByDefault        = string("createdAt")
+		sortDirectionDefault = string("asc")
+	)
 	return &ListImagesParams{
+		SortBy:        &sortByDefault,
+		SortDirection: &sortDirectionDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -30,8 +35,13 @@ func NewListImagesParams() *ListImagesParams {
 // NewListImagesParamsWithTimeout creates a new ListImagesParams object
 // with the default values initialized, and the ability to set a timeout on a request
 func NewListImagesParamsWithTimeout(timeout time.Duration) *ListImagesParams {
-	var ()
+	var (
+		sortByDefault        = string("createdAt")
+		sortDirectionDefault = string("asc")
+	)
 	return &ListImagesParams{
+		SortBy:        &sortByDefault,
+		SortDirection: &sortDirectionDefault,
 
 		timeout: timeout,
 	}
@@ -40,8 +50,13 @@ func NewListImagesParamsWithTimeout(timeout time.Duration) *ListImagesParams {
 // NewListImagesParamsWithContext creates a new ListImagesParams object
 // with the default values initialized, and the ability to set a context for a request
 func NewListImagesParamsWithContext(ctx context.Context) *ListImagesParams {
-	var ()
+	var (
+		sortByDefault        = string("createdAt")
+		sortDirectionDefault = string("asc")
+	)
 	return &ListImagesParams{
+		SortBy:        &sortByDefault,
+		SortDirection: &sortDirectionDefault,
 
 		Context: ctx,
 	}
@@ -50,9 +65,14 @@ func NewListImagesParamsWithContext(ctx context.Context) *ListImagesParams {
 // NewListImagesParamsWithHTTPClient creates a new ListImagesParams object
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewListImagesParamsWithHTTPClient(client *http.Client) *ListImagesParams {
-	var ()
+	var (
+		sortByDefault        = string("createdAt")
+		sortDirectionDefault = string("asc")
+	)
 	return &ListImagesParams{
-		HTTPClient: client,
+		SortBy:        &sortByDefault,
+		SortDirection: &sortDirectionDefault,
+		HTTPClient:    client,
 	}
 }
 
@@ -81,6 +101,16 @@ type ListImagesParams struct {
 
 	*/
 	Q *string
+	/*SortBy
+	  sort by a specific field
+
+	*/
+	SortBy *string
+	/*SortDirection
+	  sort direction
+
+	*/
+	SortDirection *string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -164,6 +194,28 @@ func (o *ListImagesParams) SetQ(q *string) {
 	o.Q = q
 }
 
+// WithSortBy adds the sortBy to the list images params
+func (o *ListImagesParams) WithSortBy(sortBy *string) *ListImagesParams {
+	o.SetSortBy(sortBy)
+	return o
+}
+
+// SetSortBy adds the sortBy to the list images params
+func (o *ListImagesParams) SetSortBy(sortBy *string) {
+	o.SortBy = sortBy
+}
+
+// WithSortDirection adds the sortDirection to the list images params
+func (o *ListImagesParams) WithSortDirection(sortDirection *string) *ListImagesParams {
+	o.SetSortDirection(sortDirection)
+	return o
+}
+
+// SetSortDirection adds the sortDirection to the list images params
+func (o *ListImagesParams) SetSortDirection(sortDirection *string) {
+	o.SortDirection = sortDirection
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *ListImagesParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -219,6 +271,38 @@ func (o *ListImagesParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Re
 		qQ := qrQ
 		if qQ != "" {
 			if err := r.SetQueryParam("q", qQ); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.SortBy != nil {
+
+		// query param sortBy
+		var qrSortBy string
+		if o.SortBy != nil {
+			qrSortBy = *o.SortBy
+		}
+		qSortBy := qrSortBy
+		if qSortBy != "" {
+			if err := r.SetQueryParam("sortBy", qSortBy); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.SortDirection != nil {
+
+		// query param sortDirection
+		var qrSortDirection string
+		if o.SortDirection != nil {
+			qrSortDirection = *o.SortDirection
+		}
+		qSortDirection := qrSortDirection
+		if qSortDirection != "" {
+			if err := r.SetQueryParam("sortDirection", qSortDirection); err != nil {
 				return err
 			}
 		}

@@ -61,7 +61,7 @@ for the public search user v3 operation typically these are written to a http.Re
 type PublicSearchUserV3Params struct {
 
 	/*By
-	  Search by given attribute, possible values are emailAddress, displayName, and username
+	  Search by given attribute, possible values are displayName and username
 
 	*/
 	By *string
@@ -71,7 +71,7 @@ type PublicSearchUserV3Params struct {
 	*/
 	Namespace string
 	/*Query
-	  Query, can be either email address, display name, or username
+	  Query, can be either display name or username
 
 	*/
 	Query *string

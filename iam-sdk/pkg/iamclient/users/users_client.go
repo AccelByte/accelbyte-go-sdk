@@ -5876,8 +5876,8 @@ func (a *Client) PublicResetPasswordV2(params *PublicResetPasswordV2Params, auth
   PublicSearchUserV3 searches user
 
   <p>Requires valid user access token</p>
-			<p>This endpoint search all users on the specified namespace that match the query on these fields: email address, display name, and username.
-			If the query is not defined, then it searches all users on the specified namespace.</p>
+			<p>This endpoint search all users on the specified namespace that match the query on these fields: display name, and username.
+			The query length should greater than 1，otherwise will not query the database</p>
 			<br>action code : 10132
 */
 func (a *Client) PublicSearchUserV3(params *PublicSearchUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicSearchUserV3OK, *PublicSearchUserV3BadRequest, *PublicSearchUserV3Unauthorized, *PublicSearchUserV3NotFound, *PublicSearchUserV3InternalServerError, error) {

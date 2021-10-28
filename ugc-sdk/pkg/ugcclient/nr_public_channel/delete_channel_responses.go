@@ -24,8 +24,8 @@ type DeleteChannelReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *DeleteChannelReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-	case 200:
-		result := NewDeleteChannelOK()
+	case 204:
+		result := NewDeleteChannelNoContent()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -59,35 +59,23 @@ func (o *DeleteChannelReader) ReadResponse(response runtime.ClientResponse, cons
 	}
 }
 
-// NewDeleteChannelOK creates a DeleteChannelOK with default headers values
-func NewDeleteChannelOK() *DeleteChannelOK {
-	return &DeleteChannelOK{}
+// NewDeleteChannelNoContent creates a DeleteChannelNoContent with default headers values
+func NewDeleteChannelNoContent() *DeleteChannelNoContent {
+	return &DeleteChannelNoContent{}
 }
 
-/*DeleteChannelOK handles this case with default header values.
+/*DeleteChannelNoContent handles this case with default header values.
 
-  OK
+  No Content
 */
-type DeleteChannelOK struct {
-	Payload *ugcclientmodels.ModelsChannelResponse
+type DeleteChannelNoContent struct {
 }
 
-func (o *DeleteChannelOK) Error() string {
-	return fmt.Sprintf("[DELETE /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels/{channelId}][%d] deleteChannelOK  %+v", 200, o.Payload)
+func (o *DeleteChannelNoContent) Error() string {
+	return fmt.Sprintf("[DELETE /ugc/v1/public/namespaces/{namespace}/users/{userId}/channels/{channelId}][%d] deleteChannelNoContent ", 204)
 }
 
-func (o *DeleteChannelOK) GetPayload() *ugcclientmodels.ModelsChannelResponse {
-	return o.Payload
-}
-
-func (o *DeleteChannelOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-
-	o.Payload = new(ugcclientmodels.ModelsChannelResponse)
-
-	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
-		return err
-	}
+func (o *DeleteChannelNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }

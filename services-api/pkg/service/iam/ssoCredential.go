@@ -15,12 +15,12 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-type SSOCredService struct {
+type SSOCredentialService struct {
 	Client          *iamclient.JusticeIamService
 	TokenRepository repository.TokenRepository
 }
 
-func (s *SSOCredService) AddSSOLoginPlatformCredential(input *s_s_o_credential.AddSSOLoginPlatformCredentialParams) (*iamclientmodels.ModelSSOPlatformCredentialResponse, error) {
+func (s *SSOCredentialService) AddSSOLoginPlatformCredential(input *s_s_o_credential.AddSSOLoginPlatformCredentialParams) (*iamclientmodels.ModelSSOPlatformCredentialResponse, error) {
 	token, err := s.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
@@ -54,7 +54,7 @@ func (s *SSOCredService) AddSSOLoginPlatformCredential(input *s_s_o_credential.A
 	return created.GetPayload(), nil
 }
 
-func (s *SSOCredService) DeleteSSOLoginPlatformCredentialV3(input *s_s_o_credential.DeleteSSOLoginPlatformCredentialV3Params) error {
+func (s *SSOCredentialService) DeleteSSOLoginPlatformCredentialV3(input *s_s_o_credential.DeleteSSOLoginPlatformCredentialV3Params) error {
 	token, err := s.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
@@ -88,7 +88,7 @@ func (s *SSOCredService) DeleteSSOLoginPlatformCredentialV3(input *s_s_o_credent
 	return nil
 }
 
-func (s *SSOCredService) RetrieveAllSSOLoginPlatformCredentialV3(input *s_s_o_credential.RetrieveAllSSOLoginPlatformCredentialV3Params) ([]*iamclientmodels.ModelSSOPlatformCredentialResponse, error) {
+func (s *SSOCredentialService) RetrieveAllSSOLoginPlatformCredentialV3(input *s_s_o_credential.RetrieveAllSSOLoginPlatformCredentialV3Params) ([]*iamclientmodels.ModelSSOPlatformCredentialResponse, error) {
 	token, err := s.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
@@ -122,7 +122,7 @@ func (s *SSOCredService) RetrieveAllSSOLoginPlatformCredentialV3(input *s_s_o_cr
 	return ok.GetPayload(), nil
 }
 
-func (s *SSOCredService) RetrieveSSOLoginPlatformCredential(input *s_s_o_credential.RetrieveSSOLoginPlatformCredentialParams) (*iamclientmodels.ModelSSOPlatformCredentialResponse, error) {
+func (s *SSOCredentialService) RetrieveSSOLoginPlatformCredential(input *s_s_o_credential.RetrieveSSOLoginPlatformCredentialParams) (*iamclientmodels.ModelSSOPlatformCredentialResponse, error) {
 	token, err := s.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
@@ -156,7 +156,7 @@ func (s *SSOCredService) RetrieveSSOLoginPlatformCredential(input *s_s_o_credent
 	return ok.GetPayload(), nil
 }
 
-func (s *SSOCredService) UpdateSSOPlatformCredential(input *s_s_o_credential.UpdateSSOPlatformCredentialParams) (*iamclientmodels.ModelSSOPlatformCredentialResponse, error) {
+func (s *SSOCredentialService) UpdateSSOPlatformCredential(input *s_s_o_credential.UpdateSSOPlatformCredentialParams) (*iamclientmodels.ModelSSOPlatformCredentialResponse, error) {
 	token, _ := s.TokenRepository.GetToken()
 	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := s.Client.SsoCredential.UpdateSSOPlatformCredential(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {

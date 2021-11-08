@@ -19,13 +19,13 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-type OAuth20ExtService struct {
+type OAuth20ExtensionService struct {
 	Client           *iamclient.JusticeIamService
 	ConfigRepository repository.ConfigRepository
 	TokenRepository  repository.TokenRepository
 }
 
-func (a *OAuth20ExtService) GetCountryLocationV3() (*iamclientmodels.OauthmodelCountryLocationResponse, error) {
+func (a *OAuth20ExtensionService) GetCountryLocationV3() (*iamclientmodels.OauthmodelCountryLocationResponse, error) {
 	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -37,7 +37,7 @@ func (a *OAuth20ExtService) GetCountryLocationV3() (*iamclientmodels.OauthmodelC
 	return ok.GetPayload(), nil
 }
 
-func (a *OAuth20ExtService) Logout() error {
+func (a *OAuth20ExtensionService) Logout() error {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return err
@@ -70,7 +70,7 @@ func (a *OAuth20ExtService) Logout() error {
 	return nil
 }
 
-func (a *OAuth20ExtService) PlatformAuthenticationV3(input *o_auth2_0_extension.PlatformAuthenticationV3Params) error {
+func (a *OAuth20ExtensionService) PlatformAuthenticationV3(input *o_auth2_0_extension.PlatformAuthenticationV3Params) error {
 	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return err
@@ -82,7 +82,7 @@ func (a *OAuth20ExtService) PlatformAuthenticationV3(input *o_auth2_0_extension.
 	return nil
 }
 
-func (a *OAuth20ExtService) UserAuthenticationV3(input *o_auth2_0_extension.UserAuthenticationV3Params) (string, error) {
+func (a *OAuth20ExtensionService) UserAuthenticationV3(input *o_auth2_0_extension.UserAuthenticationV3Params) (string, error) {
 	logrus.Infof("Invoke authenticate: %s %s %s", input.RequestID, input.UserName, input.Password)
 	clientId := a.ConfigRepository.GetClientId()
 	if len(clientId) == 0 {

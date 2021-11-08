@@ -20,7 +20,7 @@ var setRoleAsAdminCmd = &cobra.Command{
 	Long:  `Set role as admin`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		roleId := cmd.Flag("roleId").Value.String()
-		roleService := &iam.RoleService{
+		roleService := &iam.RolesService{
 			Client:          factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}

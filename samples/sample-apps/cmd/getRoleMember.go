@@ -27,7 +27,7 @@ var getRoleMemberCmd = &cobra.Command{
 		if err != nil {
 			return err
 		}
-		roleService := &iam.RoleService{
+		roleService := &iam.RolesService{
 			Client:          factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}

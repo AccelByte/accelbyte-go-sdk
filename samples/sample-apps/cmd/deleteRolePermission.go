@@ -25,7 +25,7 @@ var deleteRolePermissionCmd = &cobra.Command{
 		if errAction != nil {
 			return errAction
 		}
-		roleService := &iam.RoleService{
+		roleService := &iam.RolesService{
 			Client:          factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}

@@ -28,7 +28,7 @@ var createUserRolePermissionCmd = &cobra.Command{
 		if errPermissions != nil {
 			return errPermissions
 		}
-		roleService := &iam.RoleService{
+		roleService := &iam.RolesService{
 			Client:          factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}

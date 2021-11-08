@@ -14,13 +14,13 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-type RoleService struct {
+type RolesService struct {
 	Client          *iamclient.JusticeIamService
 	TokenRepository repository.TokenRepository
 }
 
 // AdminGetRolesV3 is for admin to get the roles
-func (r *RoleService) AdminGetRolesV3(input *roles.AdminGetRolesV3Params) (*iamclientmodels.ModelRoleResponseWithManagersAndPaginationV3, error) {
+func (r *RolesService) AdminGetRolesV3(input *roles.AdminGetRolesV3Params) (*iamclientmodels.ModelRoleResponseWithManagersAndPaginationV3, error) {
 	accessToken, err := r.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -49,7 +49,7 @@ func (r *RoleService) AdminGetRolesV3(input *roles.AdminGetRolesV3Params) (*iamc
 }
 
 // AdminCreateRoleV3 is for admin to create the roles
-func (r *RoleService) AdminCreateRoleV3(input *roles.AdminCreateRoleV3Params) (*iamclientmodels.AccountcommonRoleV3, error) {
+func (r *RolesService) AdminCreateRoleV3(input *roles.AdminCreateRoleV3Params) (*iamclientmodels.AccountcommonRoleV3, error) {
 	accessToken, err := r.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -78,7 +78,7 @@ func (r *RoleService) AdminCreateRoleV3(input *roles.AdminCreateRoleV3Params) (*
 }
 
 // AdminGetRoleV3 is for admin to get the roles by roleId
-func (r *RoleService) AdminGetRoleV3(input *roles.AdminGetRoleV3Params) (*iamclientmodels.ModelRoleResponseV3, error) {
+func (r *RolesService) AdminGetRoleV3(input *roles.AdminGetRoleV3Params) (*iamclientmodels.ModelRoleResponseV3, error) {
 	accessToken, err := r.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -112,7 +112,7 @@ func (r *RoleService) AdminGetRoleV3(input *roles.AdminGetRoleV3Params) (*iamcli
 }
 
 // AdminDeleteRoleV3 is for admin to delete the roles
-func (r *RoleService) AdminDeleteRoleV3(input *roles.AdminDeleteRoleV3Params) error {
+func (r *RolesService) AdminDeleteRoleV3(input *roles.AdminDeleteRoleV3Params) error {
 	accessToken, err := r.TokenRepository.GetToken()
 	if err != nil {
 		return err
@@ -149,7 +149,7 @@ func (r *RoleService) AdminDeleteRoleV3(input *roles.AdminDeleteRoleV3Params) er
 }
 
 // AdminUpdateRoleV3 is for admin to update existing role
-func (r *RoleService) AdminUpdateRoleV3(input *roles.AdminUpdateRoleV3Params) (*iamclientmodels.ModelRoleResponseV3, error) {
+func (r *RolesService) AdminUpdateRoleV3(input *roles.AdminUpdateRoleV3Params) (*iamclientmodels.ModelRoleResponseV3, error) {
 	accessToken, err := r.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -183,7 +183,7 @@ func (r *RoleService) AdminUpdateRoleV3(input *roles.AdminUpdateRoleV3Params) (*
 }
 
 // AdminGetRoleAdminStatusV3 is for admin to get admin status
-func (r *RoleService) AdminGetRoleAdminStatusV3(input *roles.AdminGetRoleAdminStatusV3Params) (*iamclientmodels.ModelRoleAdminStatusResponseV3, error) {
+func (r *RolesService) AdminGetRoleAdminStatusV3(input *roles.AdminGetRoleAdminStatusV3Params) (*iamclientmodels.ModelRoleAdminStatusResponseV3, error) {
 	accessToken, err := r.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -217,7 +217,7 @@ func (r *RoleService) AdminGetRoleAdminStatusV3(input *roles.AdminGetRoleAdminSt
 }
 
 // AdminUpdateAdminRoleStatusV3 is for admin to update role set as admin
-func (r *RoleService) AdminUpdateAdminRoleStatusV3(input *roles.AdminUpdateAdminRoleStatusV3Params) error {
+func (r *RolesService) AdminUpdateAdminRoleStatusV3(input *roles.AdminUpdateAdminRoleStatusV3Params) error {
 	accessToken, err := r.TokenRepository.GetToken()
 	if err != nil {
 		return err
@@ -254,7 +254,7 @@ func (r *RoleService) AdminUpdateAdminRoleStatusV3(input *roles.AdminUpdateAdmin
 }
 
 // AdminRemoveRoleAdminV3 is for admin to delete role admin status
-func (r *RoleService) AdminRemoveRoleAdminV3(input *roles.AdminRemoveRoleAdminV3Params) error {
+func (r *RolesService) AdminRemoveRoleAdminV3(input *roles.AdminRemoveRoleAdminV3Params) error {
 	accessToken, err := r.TokenRepository.GetToken()
 	if err != nil {
 		return err
@@ -291,7 +291,7 @@ func (r *RoleService) AdminRemoveRoleAdminV3(input *roles.AdminRemoveRoleAdminV3
 }
 
 // AdminGetRoleManagers is for admin to get the roles by role's managers
-func (r *RoleService) AdminGetRoleManagers(input *roles.AdminGetRoleManagersV3Params) (*iamclientmodels.ModelRoleManagersResponsesV3, error) {
+func (r *RolesService) AdminGetRoleManagers(input *roles.AdminGetRoleManagersV3Params) (*iamclientmodels.ModelRoleManagersResponsesV3, error) {
 	accessToken, err := r.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -325,7 +325,7 @@ func (r *RoleService) AdminGetRoleManagers(input *roles.AdminGetRoleManagersV3Pa
 }
 
 // AdminAddRoleManagersV3 is for admin to add role by role's managers
-func (r *RoleService) AdminAddRoleManagersV3(input *roles.AdminAddRoleManagersV3Params) error {
+func (r *RolesService) AdminAddRoleManagersV3(input *roles.AdminAddRoleManagersV3Params) error {
 	accessToken, err := r.TokenRepository.GetToken()
 	if err != nil {
 		return err
@@ -364,7 +364,7 @@ func (r *RoleService) AdminAddRoleManagersV3(input *roles.AdminAddRoleManagersV3
 }
 
 // AdminRemoveRoleManagersV3 is for admin to delete assigned role by role's managers
-func (r *RoleService) AdminRemoveRoleManagersV3(input *roles.AdminRemoveRoleManagersV3Params) error {
+func (r *RolesService) AdminRemoveRoleManagersV3(input *roles.AdminRemoveRoleManagersV3Params) error {
 	accessToken, err := r.TokenRepository.GetToken()
 	if err != nil {
 		return err
@@ -398,7 +398,7 @@ func (r *RoleService) AdminRemoveRoleManagersV3(input *roles.AdminRemoveRoleMana
 }
 
 // AdminGetRoleMembersV3 is for admin to get the role members
-func (r *RoleService) AdminGetRoleMembersV3(input *roles.AdminGetRoleMembersV3Params) (*iamclientmodels.ModelRoleMembersResponseV3, error) {
+func (r *RolesService) AdminGetRoleMembersV3(input *roles.AdminGetRoleMembersV3Params) (*iamclientmodels.ModelRoleMembersResponseV3, error) {
 	accessToken, err := r.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -432,7 +432,7 @@ func (r *RoleService) AdminGetRoleMembersV3(input *roles.AdminGetRoleMembersV3Pa
 }
 
 // AdminAddRoleMembersV3 is for admin to add role by role's manager listed in members
-func (r *RoleService) AdminAddRoleMembersV3(input *roles.AdminAddRoleMembersV3Params) error {
+func (r *RolesService) AdminAddRoleMembersV3(input *roles.AdminAddRoleMembersV3Params) error {
 	accessToken, err := r.TokenRepository.GetToken()
 	if err != nil {
 		return err
@@ -471,7 +471,7 @@ func (r *RoleService) AdminAddRoleMembersV3(input *roles.AdminAddRoleMembersV3Pa
 }
 
 // AdminRemoveRoleMembersV3 is for admin to delete role by role's manager listed in members
-func (r *RoleService) AdminRemoveRoleMembersV3(input *roles.AdminRemoveRoleMembersV3Params) error {
+func (r *RolesService) AdminRemoveRoleMembersV3(input *roles.AdminRemoveRoleMembersV3Params) error {
 	accessToken, err := r.TokenRepository.GetToken()
 	if err != nil {
 		return err
@@ -505,7 +505,7 @@ func (r *RoleService) AdminRemoveRoleMembersV3(input *roles.AdminRemoveRoleMembe
 }
 
 // AdminUpdateRolePermissionsV3 is for admin to update existing role's permission
-func (r *RoleService) AdminUpdateRolePermissionsV3(input *roles.AdminUpdateRolePermissionsV3Params) error {
+func (r *RolesService) AdminUpdateRolePermissionsV3(input *roles.AdminUpdateRolePermissionsV3Params) error {
 	accessToken, err := r.TokenRepository.GetToken()
 	if err != nil {
 		return err
@@ -539,7 +539,7 @@ func (r *RoleService) AdminUpdateRolePermissionsV3(input *roles.AdminUpdateRoleP
 }
 
 // AdminAddRolePermissionsV3 is for admin to add role's permission
-func (r *RoleService) AdminAddRolePermissionsV3(input *roles.AdminAddRolePermissionsV3Params) error {
+func (r *RolesService) AdminAddRolePermissionsV3(input *roles.AdminAddRolePermissionsV3Params) error {
 	accessToken, err := r.TokenRepository.GetToken()
 	if err != nil {
 		return err
@@ -573,7 +573,7 @@ func (r *RoleService) AdminAddRolePermissionsV3(input *roles.AdminAddRolePermiss
 }
 
 // AdminDeleteRolePermissionsV3 is for admin to delete role's permissions
-func (r *RoleService) AdminDeleteRolePermissionsV3(input *roles.AdminDeleteRolePermissionsV3Params) error {
+func (r *RolesService) AdminDeleteRolePermissionsV3(input *roles.AdminDeleteRolePermissionsV3Params) error {
 	accessToken, err := r.TokenRepository.GetToken()
 	if err != nil {
 		return err
@@ -596,7 +596,7 @@ func (r *RoleService) AdminDeleteRolePermissionsV3(input *roles.AdminDeleteRoleP
 }
 
 // AdminDeleteRolePermissionV3 is for admin to delete a role's permission
-func (r *RoleService) AdminDeleteRolePermissionV3(input *roles.AdminDeleteRolePermissionV3Params) error {
+func (r *RolesService) AdminDeleteRolePermissionV3(input *roles.AdminDeleteRolePermissionV3Params) error {
 	accessToken, err := r.TokenRepository.GetToken()
 	if err != nil {
 		return err
@@ -633,7 +633,7 @@ func (r *RoleService) AdminDeleteRolePermissionV3(input *roles.AdminDeleteRolePe
 }
 
 // PublicGetRolesV3 is for public to get the roles
-func (r *RoleService) PublicGetRolesV3(input *roles.PublicGetRolesV3Params) (*iamclientmodels.ModelRoleNamesResponseV3, error) {
+func (r *RolesService) PublicGetRolesV3(input *roles.PublicGetRolesV3Params) (*iamclientmodels.ModelRoleNamesResponseV3, error) {
 	accessToken, err := r.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -652,7 +652,7 @@ func (r *RoleService) PublicGetRolesV3(input *roles.PublicGetRolesV3Params) (*ia
 }
 
 // PublicGetRoleV3 is for public to get the roles by id
-func (r *RoleService) PublicGetRoleV3(input *roles.PublicGetRoleV3Params) (*iamclientmodels.ModelRoleResponse, error) {
+func (r *RolesService) PublicGetRoleV3(input *roles.PublicGetRoleV3Params) (*iamclientmodels.ModelRoleResponse, error) {
 	accessToken, err := r.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err

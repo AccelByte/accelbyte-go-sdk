@@ -24,7 +24,7 @@ var updateRoleByIDCmd = &cobra.Command{
 		roleId := cmd.Flag("roleId").Value.String()
 		roleName := cmd.Flag("roleName").Value.String()
 		isWildCard, _ := cmd.Flags().GetBool("isWildCard")
-		roleService := &iam.RoleService{
+		roleService := &iam.RolesService{
 			Client:          factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}

@@ -19,7 +19,7 @@ var getAdminMyUserCmd = &cobra.Command{
 	Short: "Get Admin my user",
 	Long:  `Get Admin my user`,
 	RunE: func(cmd *cobra.Command, args []string) error {
-		userService := &iam.UserService{
+		userService := &iam.UsersService{
 			Client:          factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}

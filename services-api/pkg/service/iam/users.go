@@ -14,13 +14,13 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-type UserService struct {
+type UsersService struct {
 	Client          *iamclient.JusticeIamService
 	TokenRepository repository.TokenRepository
 }
 
 // PublicCreateUserV3 is used to create user. Support accepting agreements for the created user. Supply the accepted agreements in acceptedPolicies attribute.
-func (u *UserService) PublicCreateUserV3(input *users.PublicCreateUserV3Params) (*iamclientmodels.ModelUserCreateResponseV3, error) {
+func (u *UsersService) PublicCreateUserV3(input *users.PublicCreateUserV3Params) (*iamclientmodels.ModelUserCreateResponseV3, error) {
 	created, badRequest, notFound, conflict, internalServerError, err := u.Client.Users.PublicCreateUserV3(input, nil)
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
@@ -59,7 +59,7 @@ func (u *UserService) PublicCreateUserV3(input *users.PublicCreateUserV3Params) 
 }
 
 // PublicUserVerificationV3 is used to redeem verification code sent to user
-func (u *UserService) PublicUserVerificationV3(input *users.PublicUserVerificationV3Params) error {
+func (u *UsersService) PublicUserVerificationV3(input *users.PublicUserVerificationV3Params) error {
 	logrus.Infof("Invoke VerifyToken with parameter %v %v %v", input.Body.Code, input.Body.ContactType, input.Namespace)
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
@@ -95,7 +95,7 @@ func (u *UserService) PublicUserVerificationV3(input *users.PublicUserVerificati
 }
 
 // ListAdminsV3 is used to get list of admins by admin
-func (u *UserService) ListAdminsV3(input *users.ListAdminsV3Params) (*iamclientmodels.ModelGetUsersResponseWithPaginationV3, error) {
+func (u *UsersService) ListAdminsV3(input *users.ListAdminsV3Params) (*iamclientmodels.ModelGetUsersResponseWithPaginationV3, error) {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -128,7 +128,7 @@ func (u *UserService) ListAdminsV3(input *users.ListAdminsV3Params) (*iamclientm
 }
 
 // AdminGetAgeRestrictionStatusV3 is used to get age restriction status
-func (u *UserService) AdminGetAgeRestrictionStatusV3(input *users.AdminGetAgeRestrictionStatusV3Params) (*iamclientmodels.ModelAgeRestrictionResponseV3, error) {
+func (u *UsersService) AdminGetAgeRestrictionStatusV3(input *users.AdminGetAgeRestrictionStatusV3Params) (*iamclientmodels.ModelAgeRestrictionResponseV3, error) {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -171,7 +171,7 @@ func (u *UserService) AdminGetAgeRestrictionStatusV3(input *users.AdminGetAgeRes
 }
 
 // AdminUpdateAgeRestrictionConfigV3 is used to update age restriction config value
-func (u *UserService) AdminUpdateAgeRestrictionConfigV3(input *users.AdminUpdateAgeRestrictionConfigV3Params) (*iamclientmodels.ModelAgeRestrictionResponseV3, error) {
+func (u *UsersService) AdminUpdateAgeRestrictionConfigV3(input *users.AdminUpdateAgeRestrictionConfigV3Params) (*iamclientmodels.ModelAgeRestrictionResponseV3, error) {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -209,7 +209,7 @@ func (u *UserService) AdminUpdateAgeRestrictionConfigV3(input *users.AdminUpdate
 }
 
 // AdminGetListCountryAgeRestrictionV3 is used to get age restriction country list
-func (u *UserService) AdminGetListCountryAgeRestrictionV3(input *users.AdminGetListCountryAgeRestrictionV3Params) ([]*iamclientmodels.ModelCountryV3Response, error) {
+func (u *UsersService) AdminGetListCountryAgeRestrictionV3(input *users.AdminGetListCountryAgeRestrictionV3Params) ([]*iamclientmodels.ModelCountryV3Response, error) {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -247,7 +247,7 @@ func (u *UserService) AdminGetListCountryAgeRestrictionV3(input *users.AdminGetL
 }
 
 // AdminUpdateCountryAgeRestrictionV3 is used to get age restriction country list
-func (u *UserService) AdminUpdateCountryAgeRestrictionV3(input *users.AdminUpdateCountryAgeRestrictionV3Params) (*iamclientmodels.ModelCountryV3Response, error) {
+func (u *UsersService) AdminUpdateCountryAgeRestrictionV3(input *users.AdminUpdateCountryAgeRestrictionV3Params) (*iamclientmodels.ModelCountryV3Response, error) {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -290,7 +290,7 @@ func (u *UserService) AdminUpdateCountryAgeRestrictionV3(input *users.AdminUpdat
 }
 
 // GetAdminUsersByRoleIDV3 is used to get list of admin users which have the roleId
-func (u *UserService) GetAdminUsersByRoleIDV3(input *users.GetAdminUsersByRoleIDV3Params) (*iamclientmodels.ModelGetUsersResponseWithPaginationV3, error) {
+func (u *UsersService) GetAdminUsersByRoleIDV3(input *users.GetAdminUsersByRoleIDV3Params) (*iamclientmodels.ModelGetUsersResponseWithPaginationV3, error) {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -331,7 +331,7 @@ func (u *UserService) GetAdminUsersByRoleIDV3(input *users.GetAdminUsersByRoleID
 }
 
 // AdminGetUserByEmailAddressV3 is used to get users by email
-func (u *UserService) AdminGetUserByEmailAddressV3(input *users.AdminGetUserByEmailAddressV3Params) (*iamclientmodels.ModelUserResponseV3, error) {
+func (u *UsersService) AdminGetUserByEmailAddressV3(input *users.AdminGetUserByEmailAddressV3Params) (*iamclientmodels.ModelUserResponseV3, error) {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -374,7 +374,7 @@ func (u *UserService) AdminGetUserByEmailAddressV3(input *users.AdminGetUserByEm
 }
 
 // AdminInviteUserV3 is used to invite admin user and assign role to them
-func (u *UserService) AdminInviteUserV3(input *users.AdminInviteUserV3Params) (*iamclientmodels.ModelInviteAdminResponseV3, error) {
+func (u *UsersService) AdminInviteUserV3(input *users.AdminInviteUserV3Params) (*iamclientmodels.ModelInviteAdminResponseV3, error) {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -417,7 +417,7 @@ func (u *UserService) AdminInviteUserV3(input *users.AdminInviteUserV3Params) (*
 }
 
 // AdminListUsersV3 is used to get list of users ID and namespace with their Justice platform account, under a namespace
-func (u *UserService) AdminListUsersV3(input *users.AdminListUsersV3Params) (*iamclientmodels.AccountcommonListUsersWithPlatformAccountsResponse, error) {
+func (u *UsersService) AdminListUsersV3(input *users.AdminListUsersV3Params) (*iamclientmodels.AccountcommonListUsersWithPlatformAccountsResponse, error) {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -455,7 +455,7 @@ func (u *UserService) AdminListUsersV3(input *users.AdminListUsersV3Params) (*ia
 }
 
 // AdminSearchUserV3 is used to search user
-func (u *UserService) AdminSearchUserV3(input *users.AdminSearchUserV3Params) (*iamclientmodels.ModelSearchUsersResponseWithPaginationV3, error) {
+func (u *UsersService) AdminSearchUserV3(input *users.AdminSearchUserV3Params) (*iamclientmodels.ModelSearchUsersResponseWithPaginationV3, error) {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -491,7 +491,7 @@ func (u *UserService) AdminSearchUserV3(input *users.AdminSearchUserV3Params) (*
 }
 
 // AdminGetBulkUserByEmailAddressV3 is used to get bulk user by email address
-func (u *UserService) AdminGetBulkUserByEmailAddressV3(input *users.AdminGetBulkUserByEmailAddressV3Params) (*iamclientmodels.ModelListUserResponseV3, error) {
+func (u *UsersService) AdminGetBulkUserByEmailAddressV3(input *users.AdminGetBulkUserByEmailAddressV3Params) (*iamclientmodels.ModelListUserResponseV3, error) {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -534,7 +534,7 @@ func (u *UserService) AdminGetBulkUserByEmailAddressV3(input *users.AdminGetBulk
 }
 
 // AdminGetUserByUserIDV3 is used to get user by userId
-func (u *UserService) AdminGetUserByUserIDV3(input *users.AdminGetUserByUserIDV3Params) (*iamclientmodels.ModelUserResponseV3, error) {
+func (u *UsersService) AdminGetUserByUserIDV3(input *users.AdminGetUserByUserIDV3Params) (*iamclientmodels.ModelUserResponseV3, error) {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -577,7 +577,7 @@ func (u *UserService) AdminGetUserByUserIDV3(input *users.AdminGetUserByUserIDV3
 }
 
 // AdminUpdateUserV3 is used to update user by userId
-func (u *UserService) AdminUpdateUserV3(input *users.AdminUpdateUserV3Params) (*iamclientmodels.ModelUserResponseV3, error) {
+func (u *UsersService) AdminUpdateUserV3(input *users.AdminUpdateUserV3Params) (*iamclientmodels.ModelUserResponseV3, error) {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -623,7 +623,7 @@ func (u *UserService) AdminUpdateUserV3(input *users.AdminUpdateUserV3Params) (*
 }
 
 // AdminGetUserBanV3 is to get the first page of the data if after and before parameters is empty
-func (u *UserService) AdminGetUserBanV3(input *users.AdminGetUserBanV3Params) (*iamclientmodels.ModelGetUserBanV3Response, error) {
+func (u *UsersService) AdminGetUserBanV3(input *users.AdminGetUserBanV3Params) (*iamclientmodels.ModelGetUserBanV3Response, error) {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -661,7 +661,7 @@ func (u *UserService) AdminGetUserBanV3(input *users.AdminGetUserBanV3Params) (*
 }
 
 // AdminBanUserV3 is used to ban a single user with specific type of ban
-func (u *UserService) AdminBanUserV3(input *users.AdminBanUserV3Params) (*iamclientmodels.ModelUserBanResponseV3, error) {
+func (u *UsersService) AdminBanUserV3(input *users.AdminBanUserV3Params) (*iamclientmodels.ModelUserBanResponseV3, error) {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -699,7 +699,7 @@ func (u *UserService) AdminBanUserV3(input *users.AdminBanUserV3Params) (*iamcli
 }
 
 // AdminUpdateUserBanV3 is used to update enable or disable ban for single user
-func (u *UserService) AdminUpdateUserBanV3(input *users.AdminUpdateUserBanV3Params) (*iamclientmodels.ModelUserBanResponseV3, error) {
+func (u *UsersService) AdminUpdateUserBanV3(input *users.AdminUpdateUserBanV3Params) (*iamclientmodels.ModelUserBanResponseV3, error) {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -742,7 +742,7 @@ func (u *UserService) AdminUpdateUserBanV3(input *users.AdminUpdateUserBanV3Para
 }
 
 // AdminSendVerificationCodeV3 is used to send verification code to user
-func (u *UserService) AdminSendVerificationCodeV3(input *users.AdminSendVerificationCodeV3Params) error {
+func (u *UsersService) AdminSendVerificationCodeV3(input *users.AdminSendVerificationCodeV3Params) error {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
@@ -787,7 +787,7 @@ func (u *UserService) AdminSendVerificationCodeV3(input *users.AdminSendVerifica
 }
 
 // AdminVerifyAccountV3 is used to verify account by validating verification code
-func (u *UserService) AdminVerifyAccountV3(input *users.AdminVerifyAccountV3Params) error {
+func (u *UsersService) AdminVerifyAccountV3(input *users.AdminVerifyAccountV3Params) error {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
@@ -817,7 +817,7 @@ func (u *UserService) AdminVerifyAccountV3(input *users.AdminVerifyAccountV3Para
 }
 
 // GetUserVerificationCodeV3 is used to get verification code sent to user. [WARNING] This endpoint is only for testing purpose.
-func (u *UserService) GetUserVerificationCodeV3(input *users.GetUserVerificationCodeParams) (*iamclientmodels.ModelVerificationCodeResponse, error) {
+func (u *UsersService) GetUserVerificationCodeV3(input *users.GetUserVerificationCodeParams) (*iamclientmodels.ModelVerificationCodeResponse, error) {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -847,7 +847,7 @@ func (u *UserService) GetUserVerificationCodeV3(input *users.GetUserVerification
 }
 
 // AdminGetUserDeletionStatusV3 is to get user deletion status
-func (u *UserService) AdminGetUserDeletionStatusV3(input *users.AdminGetUserDeletionStatusV3Params) (*iamclientmodels.ModelUserDeletionStatusResponse, error) {
+func (u *UsersService) AdminGetUserDeletionStatusV3(input *users.AdminGetUserDeletionStatusV3Params) (*iamclientmodels.ModelUserDeletionStatusResponse, error) {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -885,7 +885,7 @@ func (u *UserService) AdminGetUserDeletionStatusV3(input *users.AdminGetUserDele
 }
 
 // AdminUpdateUserDeletionStatusV3 is used to update user deletion status
-func (u *UserService) AdminUpdateUserDeletionStatusV3(input *users.AdminUpdateUserDeletionStatusV3Params) error {
+func (u *UsersService) AdminUpdateUserDeletionStatusV3(input *users.AdminUpdateUserDeletionStatusV3Params) error {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
@@ -925,7 +925,7 @@ func (u *UserService) AdminUpdateUserDeletionStatusV3(input *users.AdminUpdateUs
 }
 
 // AdminUpgradeHeadlessAccountV3 is used to upgrade headless account with verification code
-func (u *UserService) AdminUpgradeHeadlessAccountV3(input *users.AdminUpgradeHeadlessAccountV3Params) (*iamclientmodels.ModelUserResponseV3, error) {
+func (u *UsersService) AdminUpgradeHeadlessAccountV3(input *users.AdminUpgradeHeadlessAccountV3Params) (*iamclientmodels.ModelUserResponseV3, error) {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -971,7 +971,7 @@ func (u *UserService) AdminUpgradeHeadlessAccountV3(input *users.AdminUpgradeHea
 }
 
 // AdminDeleteUserInformationV3 is used to delete user's information
-func (u *UserService) AdminDeleteUserInformationV3(input *users.AdminDeleteUserInformationV3Params) error {
+func (u *UsersService) AdminDeleteUserInformationV3(input *users.AdminDeleteUserInformationV3Params) error {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
@@ -996,7 +996,7 @@ func (u *UserService) AdminDeleteUserInformationV3(input *users.AdminDeleteUserI
 }
 
 // AdminGetUserLoginHistoriesV3 is used to get user's login histories
-func (u *UserService) AdminGetUserLoginHistoriesV3(input *users.AdminGetUserLoginHistoriesV3Params) (*iamclientmodels.ModelLoginHistoriesResponse, error) {
+func (u *UsersService) AdminGetUserLoginHistoriesV3(input *users.AdminGetUserLoginHistoriesV3Params) (*iamclientmodels.ModelLoginHistoriesResponse, error) {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -1023,7 +1023,7 @@ func (u *UserService) AdminGetUserLoginHistoriesV3(input *users.AdminGetUserLogi
 }
 
 // AdminUpdateUserPermissionV3 is used to update user permissions
-func (u *UserService) AdminUpdateUserPermissionV3(input *users.AdminUpdateUserPermissionV3Params) error {
+func (u *UsersService) AdminUpdateUserPermissionV3(input *users.AdminUpdateUserPermissionV3Params) error {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
@@ -1050,7 +1050,7 @@ func (u *UserService) AdminUpdateUserPermissionV3(input *users.AdminUpdateUserPe
 }
 
 // AdminAddUserPermissionsV3 is used to add user permissions
-func (u *UserService) AdminAddUserPermissionsV3(input *users.AdminAddUserPermissionsV3Params) error {
+func (u *UsersService) AdminAddUserPermissionsV3(input *users.AdminAddUserPermissionsV3Params) error {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
@@ -1077,7 +1077,7 @@ func (u *UserService) AdminAddUserPermissionsV3(input *users.AdminAddUserPermiss
 }
 
 // AdminDeleteUserPermissionBulkV3 is used to delete user permission
-func (u *UserService) AdminDeleteUserPermissionBulkV3(input *users.AdminDeleteUserPermissionBulkV3Params) error {
+func (u *UsersService) AdminDeleteUserPermissionBulkV3(input *users.AdminDeleteUserPermissionBulkV3Params) error {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
@@ -1104,7 +1104,7 @@ func (u *UserService) AdminDeleteUserPermissionBulkV3(input *users.AdminDeleteUs
 }
 
 // AdminDeleteUserPermissionV3 delete user permission action
-func (u *UserService) AdminDeleteUserPermissionV3(input *users.AdminDeleteUserPermissionV3Params) error {
+func (u *UsersService) AdminDeleteUserPermissionV3(input *users.AdminDeleteUserPermissionV3Params) error {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
@@ -1131,7 +1131,7 @@ func (u *UserService) AdminDeleteUserPermissionV3(input *users.AdminDeleteUserPe
 }
 
 // AdminGetUserPlatformAccountsV3 is used to get platform accounts linked to the user
-func (u *UserService) AdminGetUserPlatformAccountsV3(input *users.AdminGetUserPlatformAccountsV3Params) (*iamclientmodels.AccountcommonUserLinkedPlatformsResponseV3, error) {
+func (u *UsersService) AdminGetUserPlatformAccountsV3(input *users.AdminGetUserPlatformAccountsV3Params) (*iamclientmodels.AccountcommonUserLinkedPlatformsResponseV3, error) {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -1169,7 +1169,7 @@ func (u *UserService) AdminGetUserPlatformAccountsV3(input *users.AdminGetUserPl
 }
 
 // AdminCreateJusticeUser is to create platform justice user from publisher user
-func (u *UserService) AdminCreateJusticeUser(input *users.AdminCreateJusticeUserParams) (*iamclientmodels.ModelCreateJusticeUserResponse, error) {
+func (u *UsersService) AdminCreateJusticeUser(input *users.AdminCreateJusticeUserParams) (*iamclientmodels.ModelCreateJusticeUserResponse, error) {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -1212,7 +1212,7 @@ func (u *UserService) AdminCreateJusticeUser(input *users.AdminCreateJusticeUser
 }
 
 // AdminLinkPlatformAccount is used to link a platform user account to user account
-func (u *UserService) AdminLinkPlatformAccount(input *users.AdminLinkPlatformAccountParams) error {
+func (u *UsersService) AdminLinkPlatformAccount(input *users.AdminLinkPlatformAccountParams) error {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
@@ -1247,7 +1247,7 @@ func (u *UserService) AdminLinkPlatformAccount(input *users.AdminLinkPlatformAcc
 }
 
 // AdminPlatformUnlinkV3 is used to unlink a platform user account to user account
-func (u *UserService) AdminPlatformUnlinkV3(input *users.AdminPlatformUnlinkV3Params) error {
+func (u *UsersService) AdminPlatformUnlinkV3(input *users.AdminPlatformUnlinkV3Params) error {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
@@ -1286,7 +1286,7 @@ func (u *UserService) AdminPlatformUnlinkV3(input *users.AdminPlatformUnlinkV3Pa
 }
 
 // AdminDeleteUserRoleV3 is used to delete user's role
-func (u *UserService) AdminDeleteUserRoleV3(input *users.AdminDeleteUserRoleV3Params) error {
+func (u *UsersService) AdminDeleteUserRoleV3(input *users.AdminDeleteUserRoleV3Params) error {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
@@ -1322,7 +1322,7 @@ func (u *UserService) AdminDeleteUserRoleV3(input *users.AdminDeleteUserRoleV3Pa
 }
 
 // AdminDeleteUserRolesV3 is used to delete user's roles
-func (u *UserService) AdminDeleteUserRolesV3(input *users.AdminDeleteUserRolesV3Params) error {
+func (u *UsersService) AdminDeleteUserRolesV3(input *users.AdminDeleteUserRolesV3Params) error {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
@@ -1350,7 +1350,7 @@ func (u *UserService) AdminDeleteUserRolesV3(input *users.AdminDeleteUserRolesV3
 }
 
 // AdminSaveUserRoleV3 is used to update user's role
-func (u *UserService) AdminSaveUserRoleV3(input *users.AdminSaveUserRoleV3Params) error {
+func (u *UsersService) AdminSaveUserRoleV3(input *users.AdminSaveUserRoleV3Params) error {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
@@ -1391,7 +1391,7 @@ func (u *UserService) AdminSaveUserRoleV3(input *users.AdminSaveUserRoleV3Params
 }
 
 // AdminAddUserRoleV3 is used to add user's role
-func (u *UserService) AdminAddUserRoleV3(input *users.AdminAddUserRoleV3Params) error {
+func (u *UsersService) AdminAddUserRoleV3(input *users.AdminAddUserRoleV3Params) error {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
@@ -1432,7 +1432,7 @@ func (u *UserService) AdminAddUserRoleV3(input *users.AdminAddUserRoleV3Params) 
 }
 
 // AdminUpdateUserStatusV3 is used to disable or enable user account
-func (u *UserService) AdminUpdateUserStatusV3(input *users.AdminUpdateUserStatusV3Params) error {
+func (u *UsersService) AdminUpdateUserStatusV3(input *users.AdminUpdateUserStatusV3Params) error {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
@@ -1466,7 +1466,7 @@ func (u *UserService) AdminUpdateUserStatusV3(input *users.AdminUpdateUserStatus
 }
 
 // AdminVerifyUserWithoutVerificationCodeV3 is used to force verify user
-func (u *UserService) AdminVerifyUserWithoutVerificationCodeV3(input *users.AdminVerifyUserWithoutVerificationCodeV3Params) error {
+func (u *UsersService) AdminVerifyUserWithoutVerificationCodeV3(input *users.AdminVerifyUserWithoutVerificationCodeV3Params) error {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
@@ -1507,7 +1507,7 @@ func (u *UserService) AdminVerifyUserWithoutVerificationCodeV3(input *users.Admi
 }
 
 // AdminGetMyUserV3 is used to get user's data
-func (u *UserService) AdminGetMyUserV3() (*iamclientmodels.ModelUserResponseV3, error) {
+func (u *UsersService) AdminGetMyUserV3() (*iamclientmodels.ModelUserResponseV3, error) {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -1533,7 +1533,7 @@ func (u *UserService) AdminGetMyUserV3() (*iamclientmodels.ModelUserResponseV3, 
 }
 
 // PublicListUserIDByPlatformUserIDsV3 is used to get list user id by platform user id
-func (u *UserService) PublicListUserIDByPlatformUserIDsV3(input *users.PublicListUserIDByPlatformUserIDsV3Params) (*iamclientmodels.AccountcommonUserPlatforms, error) {
+func (u *UsersService) PublicListUserIDByPlatformUserIDsV3(input *users.PublicListUserIDByPlatformUserIDsV3Params) (*iamclientmodels.AccountcommonUserPlatforms, error) {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -1571,7 +1571,7 @@ func (u *UserService) PublicListUserIDByPlatformUserIDsV3(input *users.PublicLis
 }
 
 // PublicGetUserByPlatformUserIDV3 is used to gets user by platform user ID
-func (u *UserService) PublicGetUserByPlatformUserIDV3(input *users.PublicGetUserByPlatformUserIDV3Params) (*iamclientmodels.ModelUserResponseV3, error) {
+func (u *UsersService) PublicGetUserByPlatformUserIDV3(input *users.PublicGetUserByPlatformUserIDV3Params) (*iamclientmodels.ModelUserResponseV3, error) {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -1609,7 +1609,7 @@ func (u *UserService) PublicGetUserByPlatformUserIDV3(input *users.PublicGetUser
 }
 
 // PublicGetAsyncStatus is used to get linking status
-func (u *UserService) PublicGetAsyncStatus(input *users.PublicGetAsyncStatusParams) (*iamclientmodels.ModelLinkRequest, error) {
+func (u *UsersService) PublicGetAsyncStatus(input *users.PublicGetAsyncStatusParams) (*iamclientmodels.ModelLinkRequest, error) {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -1642,7 +1642,7 @@ func (u *UserService) PublicGetAsyncStatus(input *users.PublicGetAsyncStatusPara
 }
 
 // PublicSearchUserV3 is used to search all users on the specified namespace that match the query on these fields: email address, display name, and username
-func (u *UserService) PublicSearchUserV3(input *users.PublicSearchUserV3Params) (*iamclientmodels.ModelPublicUserInformationResponseV3, error) {
+func (u *UsersService) PublicSearchUserV3(input *users.PublicSearchUserV3Params) (*iamclientmodels.ModelPublicUserInformationResponseV3, error) {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -1678,7 +1678,7 @@ func (u *UserService) PublicSearchUserV3(input *users.PublicSearchUserV3Params) 
 }
 
 // PublicForgotPasswordV3 is used to request password reset code
-func (u *UserService) PublicForgotPasswordV3(input *users.PublicForgotPasswordV3Params) error {
+func (u *UsersService) PublicForgotPasswordV3(input *users.PublicForgotPasswordV3Params) error {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
@@ -1708,7 +1708,7 @@ func (u *UserService) PublicForgotPasswordV3(input *users.PublicForgotPasswordV3
 }
 
 // GetAdminInvitationV3 is used to validate user admin invitation
-func (u *UserService) GetAdminInvitationV3(input *users.GetAdminInvitationV3Params) (*iamclientmodels.ModelAdminInvitationV3, error) {
+func (u *UsersService) GetAdminInvitationV3(input *users.GetAdminInvitationV3Params) (*iamclientmodels.ModelAdminInvitationV3, error) {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -1736,7 +1736,7 @@ func (u *UserService) GetAdminInvitationV3(input *users.GetAdminInvitationV3Para
 }
 
 // CreateUserFromInvitationV3 is used to create user from saved roles when creating invitation and submitted data
-func (u *UserService) CreateUserFromInvitationV3(input *users.CreateUserFromInvitationV3Params) (*iamclientmodels.ModelUserCreateResponseV3, error) {
+func (u *UsersService) CreateUserFromInvitationV3(input *users.CreateUserFromInvitationV3Params) (*iamclientmodels.ModelUserCreateResponseV3, error) {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -1769,7 +1769,7 @@ func (u *UserService) CreateUserFromInvitationV3(input *users.CreateUserFromInvi
 }
 
 // PublicUpdateUserV3 is used to update user
-func (u *UserService) PublicUpdateUserV3(input *users.PublicUpdateUserV3Params) ([]*iamclientmodels.ModelUserResponseV3, error) {
+func (u *UsersService) PublicUpdateUserV3(input *users.PublicUpdateUserV3Params) ([]*iamclientmodels.ModelUserResponseV3, error) {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -1805,7 +1805,7 @@ func (u *UserService) PublicUpdateUserV3(input *users.PublicUpdateUserV3Params) 
 }
 
 // UpdateUserV3 is used to update user
-func (u *UserService) UpdateUserV3(input *users.UpdateUserV3Params) ([]*iamclientmodels.ModelUserResponseV3, error) {
+func (u *UsersService) UpdateUserV3(input *users.UpdateUserV3Params) ([]*iamclientmodels.ModelUserResponseV3, error) {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -1841,7 +1841,7 @@ func (u *UserService) UpdateUserV3(input *users.UpdateUserV3Params) ([]*iamclien
 }
 
 // PublicSendVerificationCodeV3 is used to send verification code to user
-func (u *UserService) PublicSendVerificationCodeV3(input *users.PublicSendVerificationCodeV3Params) error {
+func (u *UsersService) PublicSendVerificationCodeV3(input *users.PublicSendVerificationCodeV3Params) error {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
@@ -1881,7 +1881,7 @@ func (u *UserService) PublicSendVerificationCodeV3(input *users.PublicSendVerifi
 }
 
 // PublicUpgradeHeadlessAccountV3 is used to upgrade headless account and automatically verified the email address if it is succeeded
-func (u *UserService) PublicUpgradeHeadlessAccountV3(input *users.PublicUpgradeHeadlessAccountV3Params) (*iamclientmodels.ModelUserResponseV3, error) {
+func (u *UsersService) PublicUpgradeHeadlessAccountV3(input *users.PublicUpgradeHeadlessAccountV3Params) (*iamclientmodels.ModelUserResponseV3, error) {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -1927,7 +1927,7 @@ func (u *UserService) PublicUpgradeHeadlessAccountV3(input *users.PublicUpgradeH
 }
 
 // PublicVerifyHeadlessAccountV3 is used to upgrade user account to full account with email
-func (u *UserService) PublicVerifyHeadlessAccountV3(input *users.PublicVerifyHeadlessAccountV3Params) (*iamclientmodels.ModelUserResponseV3, error) {
+func (u *UsersService) PublicVerifyHeadlessAccountV3(input *users.PublicVerifyHeadlessAccountV3Params) (*iamclientmodels.ModelUserResponseV3, error) {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -1968,7 +1968,7 @@ func (u *UserService) PublicVerifyHeadlessAccountV3(input *users.PublicVerifyHea
 }
 
 // PublicUpdatePasswordV3 is used to send verification code to user
-func (u *UserService) PublicUpdatePasswordV3(input *users.PublicUpdatePasswordV3Params) error {
+func (u *UsersService) PublicUpdatePasswordV3(input *users.PublicUpdatePasswordV3Params) error {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
@@ -1998,7 +1998,7 @@ func (u *UserService) PublicUpdatePasswordV3(input *users.PublicUpdatePasswordV3
 }
 
 // PublicCreateJusticeUser is used to create justice user from publisher user
-func (u *UserService) PublicCreateJusticeUser(input *users.PublicCreateJusticeUserParams) (*iamclientmodels.ModelCreateJusticeUserResponse, error) {
+func (u *UsersService) PublicCreateJusticeUser(input *users.PublicCreateJusticeUserParams) (*iamclientmodels.ModelCreateJusticeUserResponse, error) {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -2041,7 +2041,7 @@ func (u *UserService) PublicCreateJusticeUser(input *users.PublicCreateJusticeUs
 }
 
 // PublicPlatformLinkV3 is used to link user s account with platform
-func (u *UserService) PublicPlatformLinkV3(input *users.PublicPlatformLinkV3Params) error {
+func (u *UsersService) PublicPlatformLinkV3(input *users.PublicPlatformLinkV3Params) error {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
@@ -2079,7 +2079,7 @@ func (u *UserService) PublicPlatformLinkV3(input *users.PublicPlatformLinkV3Para
 }
 
 // PublicPlatformUnlinkV3 is used to unlink user s account from specific platform
-func (u *UserService) PublicPlatformUnlinkV3(input *users.PublicPlatformUnlinkV3Params) error {
+func (u *UsersService) PublicPlatformUnlinkV3(input *users.PublicPlatformUnlinkV3Params) error {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
@@ -2113,7 +2113,7 @@ func (u *UserService) PublicPlatformUnlinkV3(input *users.PublicPlatformUnlinkV3
 }
 
 // PublicWebLinkPlatform is used to create public web linking
-func (u *UserService) PublicWebLinkPlatform(input *users.PublicWebLinkPlatformParams) (*iamclientmodels.ModelWebLinkingResponse, error) {
+func (u *UsersService) PublicWebLinkPlatform(input *users.PublicWebLinkPlatformParams) (*iamclientmodels.ModelWebLinkingResponse, error) {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -2146,7 +2146,7 @@ func (u *UserService) PublicWebLinkPlatform(input *users.PublicWebLinkPlatformPa
 }
 
 // PublicWebLinkPlatformEstablish is used to established link progress
-func (u *UserService) PublicWebLinkPlatformEstablish(input *users.PublicWebLinkPlatformEstablishParams) error {
+func (u *UsersService) PublicWebLinkPlatformEstablish(input *users.PublicWebLinkPlatformEstablishParams) error {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
@@ -2164,7 +2164,7 @@ func (u *UserService) PublicWebLinkPlatformEstablish(input *users.PublicWebLinkP
 }
 
 // ResetPasswordV3 is used to reset user password
-func (u *UserService) ResetPasswordV3(input *users.ResetPasswordV3Params) error {
+func (u *UsersService) ResetPasswordV3(input *users.ResetPasswordV3Params) error {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
@@ -2194,7 +2194,7 @@ func (u *UserService) ResetPasswordV3(input *users.ResetPasswordV3Params) error 
 }
 
 // PublicGetUserByUserIDV3 is used to get user by user ID
-func (u *UserService) PublicGetUserByUserIDV3(input *users.PublicGetUserByUserIDV3Params) (*iamclientmodels.ModelPublicUserResponseV3, error) {
+func (u *UsersService) PublicGetUserByUserIDV3(input *users.PublicGetUserByUserIDV3Params) (*iamclientmodels.ModelPublicUserResponseV3, error) {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -2227,7 +2227,7 @@ func (u *UserService) PublicGetUserByUserIDV3(input *users.PublicGetUserByUserID
 }
 
 // PublicGetUserBanHistoryV3 is used to get user s bans
-func (u *UserService) PublicGetUserBanHistoryV3(input *users.PublicGetUserBanHistoryV3Params) (*iamclientmodels.ModelGetUserBanV3Response, error) {
+func (u *UsersService) PublicGetUserBanHistoryV3(input *users.PublicGetUserBanHistoryV3Params) (*iamclientmodels.ModelGetUserBanV3Response, error) {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -2260,7 +2260,7 @@ func (u *UserService) PublicGetUserBanHistoryV3(input *users.PublicGetUserBanHis
 }
 
 // PublicGetUserLoginHistoriesV3 is used to get user s login histories status
-func (u *UserService) PublicGetUserLoginHistoriesV3(input *users.PublicGetUserLoginHistoriesV3Params) (*iamclientmodels.ModelLoginHistoriesResponse, error) {
+func (u *UsersService) PublicGetUserLoginHistoriesV3(input *users.PublicGetUserLoginHistoriesV3Params) (*iamclientmodels.ModelLoginHistoriesResponse, error) {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -2287,7 +2287,7 @@ func (u *UserService) PublicGetUserLoginHistoriesV3(input *users.PublicGetUserLo
 }
 
 // PublicGetUserPlatformAccountsV3 is used to get platform accounts linked to the user
-func (u *UserService) PublicGetUserPlatformAccountsV3(input *users.PublicGetUserPlatformAccountsV3Params) (*iamclientmodels.AccountcommonUserLinkedPlatformsResponseV3, error) {
+func (u *UsersService) PublicGetUserPlatformAccountsV3(input *users.PublicGetUserPlatformAccountsV3Params) (*iamclientmodels.AccountcommonUserLinkedPlatformsResponseV3, error) {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -2325,7 +2325,7 @@ func (u *UserService) PublicGetUserPlatformAccountsV3(input *users.PublicGetUser
 }
 
 // PublicLinkPlatformAccount is used to link a platform user account to user account
-func (u *UserService) PublicLinkPlatformAccount(input *users.PublicLinkPlatformAccountParams) error {
+func (u *UsersService) PublicLinkPlatformAccount(input *users.PublicLinkPlatformAccountParams) error {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
@@ -2360,7 +2360,7 @@ func (u *UserService) PublicLinkPlatformAccount(input *users.PublicLinkPlatformA
 }
 
 // PublicValidateUserByUserIDAndPasswordV3 is used to validates user password by user ID and password
-func (u *UserService) PublicValidateUserByUserIDAndPasswordV3(input *users.PublicValidateUserByUserIDAndPasswordV3Params) error {
+func (u *UsersService) PublicValidateUserByUserIDAndPasswordV3(input *users.PublicValidateUserByUserIDAndPasswordV3Params) error {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
@@ -2390,7 +2390,7 @@ func (u *UserService) PublicValidateUserByUserIDAndPasswordV3(input *users.Publi
 }
 
 // PublicGetMyUserV3 is used to get my user
-func (u *UserService) PublicGetMyUserV3() (*iamclientmodels.ModelUserResponseV3, error) {
+func (u *UsersService) PublicGetMyUserV3() (*iamclientmodels.ModelUserResponseV3, error) {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err

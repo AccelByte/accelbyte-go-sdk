@@ -28,7 +28,7 @@ var registerUserCmd = &cobra.Command{
 		roleId := cmd.Flag("roleId").Value.String()
 		authType := "EMAILPASSWD"
 		logrus.Debugf("Params: %s %s %s %s %s %s", name, birthDate, country, password, email, roleId)
-		userService := &iam.UserService{
+		userService := &iam.UsersService{
 			Client:          factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}

@@ -39,7 +39,7 @@ var getAdminSearchUserCmd = &cobra.Command{
 			Query:     &query,
 			StartDate: &startDate,
 		}
-		userService := &iam.UserService{
+		userService := &iam.UsersService{
 			Client:          factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}

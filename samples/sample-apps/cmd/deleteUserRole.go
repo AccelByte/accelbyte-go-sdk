@@ -26,7 +26,7 @@ var deleteUserRoleCmd = &cobra.Command{
 			RoleID:    roleId,
 			UserID:    userId,
 		}
-		userService := &iam.UserService{
+		userService := &iam.UsersService{
 			Client:          factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}

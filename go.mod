@@ -1,6 +1,6 @@
 module github.com/AccelByte/accelbyte-go-sdk
 
-go 1.15
+go 1.16
 
 require (
 	github.com/go-openapi/errors v0.20.0
@@ -11,4 +11,9 @@ require (
 	github.com/google/uuid v1.3.0
 	github.com/gorilla/websocket v1.4.2
 	github.com/sirupsen/logrus v1.8.1
+)
+
+retract (
+	// Published v1 too early
+	[v1.0.0, v1.0.1]
 )

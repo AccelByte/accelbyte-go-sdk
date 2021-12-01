@@ -2,6 +2,7 @@
 ## [Unreleased]
 
 ### Chore
+- upgrade to Go 1.16 + retract v1.0.0
 - rename tag/group typo for ssoCredential
 - rename tag/group typo for sso
 - rename tag/group typo for oAuth20Extension
@@ -21,7 +22,7 @@
 - **makefile:** moved to codegen repositoy
 - **spec:** consolidate the specs which were used to generate the sdk
 
-### Ci
+### CI
 - fix build error not causing ci to fail
 - consolidate library
 - lint source code & mod outdated

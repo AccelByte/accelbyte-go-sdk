@@ -169,7 +169,7 @@ func serve() {
 func printHelp() {
 	fmt.Printf(`
 Commands:
-# PoC Matchmaking
+# Tic-tac-toe client app
 %s: Login
 %s: Create Matchmaking
 %s: User info

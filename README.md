@@ -3,11 +3,15 @@
 ## Setup
 
 Add the following to your project's `go.mod`:
+
 ```
 require (
-	github.com/AccelByte/accelbyte-go-sdk v0.6.1
+	github.com/AccelByte/accelbyte-go-sdk {VERSION}
 )
 ```
+
+Replace `{VERSION}` with a specific release version tag. When starting a new project, 
+using the latest release version is recommended.
 
 ## Usage
 
@@ -53,11 +57,4 @@ To interact with Justice services which use WebSocket endpoints e.g. Justice Lob
 
 `ConnectionManager` manages WebSocket connection that save, get and close the WebSocket connection. In other words, client should maintain WebSocket connection using `ConnectionManager`. For reference, see [samples/cli/pkg/utils/connectionManager.go](samples/cli/pkg/utils/connectionManager.go).
 
-For a working example, see [samples/cli/main.go](samples/cli/main.go). To test this, you can start sample-apps in websocket mode.
-
-```
-sample-apps --wsMode
-```
-When using websocket mode sample-apps will stand by and continue listen to websocket connection. 
-
-**Please note that before entering websocket mode, you must login first.**
+For a working example, see [samples/cli](samples/cli).

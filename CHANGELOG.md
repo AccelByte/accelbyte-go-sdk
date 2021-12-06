@@ -1,8 +1,8 @@
-<a name="unreleased"></a>
-## [Unreleased]
+<a name="v0.7.0"></a>
+## [v0.7.0] - 2021-12-7
 
 ### Chore
-- upgrade to Go 1.16 + retract v1.0.0
+- upgrade to Go 1.16 + retract v1.0.0 [(link)](https://github.com/AccelByte/accelbyte-go-sdk/commit/28c8f46681dab78061548239abff183f97d7f34f)
 - rename tag/group typo for ssoCredential
 - rename tag/group typo for sso
 - rename tag/group typo for oAuth20Extension
@@ -21,6 +21,7 @@
 - **jenkinsfile:** add commit lint + improve build status
 - **makefile:** moved to codegen repositoy
 - **spec:** consolidate the specs which were used to generate the sdk
+- **samples:** rearrange folders in samples
 
 ### CI
 - fix build error not causing ci to fail
@@ -30,6 +31,9 @@
 - **jenkinsfile:** consolidate jenkins library
 
 ### Docs
+- improve README setup + remove redundant info
+- update README.md
+- add CHANGELOG.md
 - **license:** add mit license file
 
 ### Feat
@@ -89,6 +93,7 @@
 - adjust sample-apps getUserRoles parameter
 
 ### Fix
+- **samples:** tic-tac-toe client app title name
 - import on matchmaking sdk by regenerate the sdk
 - update generated sdk code
 - adjust ResetUserStatItemValue params
@@ -243,10 +248,11 @@ The wrapper have been refactored and has breaking change, these are the list:
 - delete go.mod ([#1](https://github.com/AccelByte/accelbyte-go-sdk/issues/1))
 
 
-[Unreleased]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.6.1...HEAD
+[v0.7.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.6.1...v0.7.0
 [v0.6.1]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.6.0...v0.6.1
 [v0.6.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.5.0...v0.6.0
 [v0.5.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.4.0...v0.5.0
 [v0.4.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.3.0...v0.4.0
 [v0.3.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.2.0...v0.3.0
 [v0.2.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.1.0...v0.2.0
+

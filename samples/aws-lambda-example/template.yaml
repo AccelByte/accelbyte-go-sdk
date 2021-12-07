@@ -1,0 +1,61 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  aws-lambda-example
+
+  AccelByte Go SDK Lambda Example
+
+Globals:
+  Function:
+    Timeout: 15
+    Environment:
+      Variables:
+        ACCELBYTE_BASE_URL: https://demo.accelbyte.io
+        APP_CLIENT_ID: <Put your AccelByte Client ID here>
+        APP_CLIENT_SECRET: <Put your AccelByte Client Secret here>
+
+Resources:
+  CreateUserStatsFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: CreateUserStats
+      Handler: main
+      Runtime: go1.x
+      Events:
+        CreateUserStats:
+          Type: Api
+          Properties:
+            Path: /CreateUserStats
+            Method: POST
+  GetUserStatsFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: GetUserStats
+      Handler: main
+      Runtime: go1.x
+      Events:
+        GetUserStats:
+          Type: Api
+          Properties:
+            Path: /GetUserStats
+            Method: GET
+
+Outputs:
+  CreateUserStatsApi:
+    Description: "API Gateway endpoint URL for Prod stage for Create User Stats Function"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/CreateUserStats"
+  CreateUserStatsFunction:
+    Description: "Create User Stats Function ARN"
+    Value: !GetAtt CreateUserStatsFunction.Arn
+  CreateUserStatsFunctionIamRole:
+    Description: "Implicit IAM Role created for Create User Stats Function"
+    Value: !GetAtt CreateUserStatsFunctionRole.Arn
+  GetUserStatsApi:
+    Description: "API Gateway endpoint URL for Prod stage for Get User Stats Function"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/hello/GetUserStats"
+  GetUserStatsFunction:
+    Description: "Get User Stats Function Function ARN"
+    Value: !GetAtt GetUserStatsFunction.Arn
+  GetUserStatsFunctionIamRole:
+    Description: "Implicit IAM Role created for Get User Stats Function"
+    Value: !GetAtt GetUserStatsFunctionRole.Arn

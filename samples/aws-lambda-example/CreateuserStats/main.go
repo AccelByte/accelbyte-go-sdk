@@ -2,13 +2,14 @@ package main
 
 import (
 	"encoding/json"
+	"os"
+
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service"
-	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient/user_statistic"
+	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
 	"github.com/dgrijalva/jwt-go"
-	"os"
 )
 
 type TokenRepositoryImpl struct {
@@ -18,12 +19,9 @@ type ConfigRepositoryImpl struct {
 }
 
 type RequestParams struct {
-	Limit     int    `json:"limit"`
 	Namespace string `json:"namespace"`
-	Offset    int    `json:"offset"`
-	StatCodes string `json:"statCodes"`
-	Tags      string `json:"tags"`
 	UserID    string `json:"userId"`
+	StatCode  string `json:"statCode"`
 }
 
 type Request struct {
@@ -37,47 +35,43 @@ func main() {
 	lambda.Start(Handler)
 }
 
-func Handler(request *Request) (interface{}, error) {
+func Handler(evt events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
+	request := Request{}
+	err := json.Unmarshal([]byte(evt.Body), &request)
+	if err != nil {
+		return events.APIGatewayProxyResponse{}, err
+	}
 	accessToken := request.AccessToken
 	tokenResponseV3, err := convertTokenToTokenResponseV3(accessToken)
 	if err != nil {
-		return nil, err
+		return events.APIGatewayProxyResponse{}, err
 	}
 	tokenRepositoryImpl := &TokenRepositoryImpl{}
 	if tokenResponseV3 != nil {
 		err = tokenRepositoryImpl.Store(*tokenResponseV3)
 		if err != nil {
-			return nil, err
+			return events.APIGatewayProxyResponse{}, err
 		}
 	}
-	params := convertRequestBodyToUserStatItemParams(request.Params)
-	return getUserStatItem(params, tokenRepositoryImpl)
+	_, err = createUserStatItem(request.Params, tokenRepositoryImpl)
+	if err != nil {
+		return events.APIGatewayProxyResponse{}, err
+	}
+	return events.APIGatewayProxyResponse{
+		StatusCode: 200,
+	}, nil
 }
 
-func getUserStatItem(params *user_statistic.GetUserStatItemsParams, tokenRepositoryImpl *TokenRepositoryImpl) (interface{}, error) {
+func createUserStatItem(params RequestParams, tokenRepositoryImpl *TokenRepositoryImpl) (interface{}, error) {
 	statisticService := service.StatisticService{
 		SocialServiceClient: factory.NewSocialClient(&ConfigRepositoryImpl{}),
 		TokenRepository:     tokenRepositoryImpl,
 	}
-	ok, err := statisticService.GetUserStatItems(params.Namespace, params.UserID, params.StatCodes, params.Tags, params.Limit, params.Offset)
+	err := statisticService.CreateUserStatItem(params.Namespace, params.UserID, params.StatCode)
 	if err != nil {
 		return nil, err
 	}
-	return ok, nil
-}
-
-func convertRequestBodyToUserStatItemParams(requestParams RequestParams) *user_statistic.GetUserStatItemsParams {
-	offset := int32(requestParams.Offset)
-	limit := int32(requestParams.Limit)
-	params := user_statistic.GetUserStatItemsParams{
-		Namespace: requestParams.Namespace,
-		UserID:    requestParams.UserID,
-		StatCodes: &requestParams.StatCodes,
-		Tags:      &requestParams.Tags,
-		Offset:    &offset,
-		Limit:     &limit,
-	}
-	return &params
+	return nil, nil
 }
 
 func convertTokenToTokenResponseV3(accessToken string) (*iamclientmodels.OauthmodelTokenResponseV3, error) {

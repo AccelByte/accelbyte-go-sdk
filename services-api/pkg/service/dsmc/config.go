@@ -79,7 +79,7 @@ func (c *ConfigService) CreateConfig(input *config.CreateConfigParams) (*dsmccli
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, unauthorized, internalServerError, err := c.Client.Config.CreateConfig(input, client.BearerToken(*token.AccessToken))
+	created, badRequest, unauthorized, conflict, internalServerError, err := c.Client.Config.CreateConfig(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -89,6 +89,11 @@ func (c *ConfigService) CreateConfig(input *config.CreateConfigParams) (*dsmccli
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
 		return nil, unauthorized
+	}
+	if conflict != nil {
+		errorMsg, _ := json.Marshal(*conflict.GetPayload())
+		logrus.Error(string(errorMsg))
+		return nil, conflict
 	}
 	if internalServerError != nil {
 		errorMsg, _ := json.Marshal(*internalServerError.GetPayload())

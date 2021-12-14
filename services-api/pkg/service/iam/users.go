@@ -374,7 +374,7 @@ func (u *UsersService) AdminGetUserByEmailAddressV3(input *users.AdminGetUserByE
 }
 
 // AdminInviteUserV3 is used to invite admin user and assign role to them
-func (u *UsersService) AdminInviteUserV3(input *users.AdminInviteUserV3Params) (*iamclientmodels.ModelInviteAdminResponseV3, error) {
+func (u *UsersService) AdminInviteUserV3(input *users.AdminInviteUserV3Params) (*iamclientmodels.ModelInviteUserResponseV3, error) {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -1708,7 +1708,7 @@ func (u *UsersService) PublicForgotPasswordV3(input *users.PublicForgotPasswordV
 }
 
 // GetAdminInvitationV3 is used to validate user admin invitation
-func (u *UsersService) GetAdminInvitationV3(input *users.GetAdminInvitationV3Params) (*iamclientmodels.ModelAdminInvitationV3, error) {
+func (u *UsersService) GetAdminInvitationV3(input *users.GetAdminInvitationV3Params) (*iamclientmodels.ModelUserInvitationV3, error) {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err

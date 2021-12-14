@@ -156,13 +156,13 @@ func (f *FriendsService) GetListOfFriends(input *friends.GetListOfFriendsParams)
 	return ok.GetPayload(), nil
 }
 
-func (f *FriendsService) GetUserFriends(input *friends.GetUserFriendsParams) ([]*lobbyclientmodels.ModelGetUserFriendsResponse, error) {
+func (f *FriendsService) GetUserFriends(input *friends.GetUserFriendsUpdatedParams) ([]*lobbyclientmodels.ModelGetUserFriendsResponse, error) {
 	accessToken, err := f.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
 	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err :=
-		f.Client.Friends.GetUserFriends(input, client.BearerToken(*accessToken.AccessToken))
+		f.Client.Friends.GetUserFriendsUpdated(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))

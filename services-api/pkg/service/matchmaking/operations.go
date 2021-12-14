@@ -20,8 +20,8 @@ func (m *OperationsService) Healthz() error {
 	if err != nil {
 		return err
 	}
-	params := &operations.HealthzParams{}
-	_, err = m.Client.Operations.Healthz(params, client.BearerToken(*token.AccessToken))
+	params := &operations.GetHealthcheckInfoParams{}
+	_, err = m.Client.Operations.GetHealthcheckInfo(params, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		logrus.Error(err)
 		return err
@@ -34,8 +34,8 @@ func (m *OperationsService) MatchmakingHealthz() error {
 	if err != nil {
 		return err
 	}
-	params := &operations.MatchmakingHealthzParams{}
-	_, err = m.Client.Operations.MatchmakingHealthz(params, client.BearerToken(*token.AccessToken))
+	params := &operations.HandlerV3HealthzParams{}
+	_, err = m.Client.Operations.HandlerV3Healthz(params, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		logrus.Error(err)
 		return err

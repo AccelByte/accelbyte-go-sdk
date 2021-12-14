@@ -30,30 +30,31 @@ type Client struct {
 // ClientService is the interface for Client methods
 type ClientService interface {
 	CloneStore(params *CloneStoreParams, authInfo runtime.ClientAuthInfoWriter) (*CloneStoreOK, *CloneStoreBadRequest, *CloneStoreNotFound, error)
-
+	CloneStoreShort(params *CloneStoreParams, authInfo runtime.ClientAuthInfoWriter) (*CloneStoreOK, error)
 	CreateStore(params *CreateStoreParams, authInfo runtime.ClientAuthInfoWriter) (*CreateStoreCreated, *CreateStoreConflict, *CreateStoreUnprocessableEntity, error)
-
+	CreateStoreShort(params *CreateStoreParams, authInfo runtime.ClientAuthInfoWriter) (*CreateStoreCreated, error)
 	DeletePublishedStore(params *DeletePublishedStoreParams, authInfo runtime.ClientAuthInfoWriter) (*DeletePublishedStoreOK, *DeletePublishedStoreNotFound, error)
-
+	DeletePublishedStoreShort(params *DeletePublishedStoreParams, authInfo runtime.ClientAuthInfoWriter) (*DeletePublishedStoreOK, error)
 	DeleteStore(params *DeleteStoreParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteStoreOK, *DeleteStoreNotFound, *DeleteStoreConflict, error)
-
+	DeleteStoreShort(params *DeleteStoreParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteStoreOK, error)
 	ExportStore(params *ExportStoreParams, authInfo runtime.ClientAuthInfoWriter) (*ExportStoreOK, *ExportStoreNotFound, error)
-
+	ExportStoreShort(params *ExportStoreParams, authInfo runtime.ClientAuthInfoWriter) (*ExportStoreOK, error)
 	GetPublishedStore(params *GetPublishedStoreParams, authInfo runtime.ClientAuthInfoWriter) (*GetPublishedStoreOK, *GetPublishedStoreNotFound, error)
-
+	GetPublishedStoreShort(params *GetPublishedStoreParams, authInfo runtime.ClientAuthInfoWriter) (*GetPublishedStoreOK, error)
 	GetPublishedStoreBackup(params *GetPublishedStoreBackupParams, authInfo runtime.ClientAuthInfoWriter) (*GetPublishedStoreBackupOK, *GetPublishedStoreBackupNotFound, error)
-
+	GetPublishedStoreBackupShort(params *GetPublishedStoreBackupParams, authInfo runtime.ClientAuthInfoWriter) (*GetPublishedStoreBackupOK, error)
 	GetStore(params *GetStoreParams, authInfo runtime.ClientAuthInfoWriter) (*GetStoreOK, *GetStoreNotFound, error)
-
+	GetStoreShort(params *GetStoreParams, authInfo runtime.ClientAuthInfoWriter) (*GetStoreOK, error)
 	ImportStore(params *ImportStoreParams, authInfo runtime.ClientAuthInfoWriter) (*ImportStoreOK, *ImportStoreBadRequest, *ImportStoreNotFound, error)
-
+	ImportStoreShort(params *ImportStoreParams, authInfo runtime.ClientAuthInfoWriter) (*ImportStoreOK, error)
 	ListStores(params *ListStoresParams, authInfo runtime.ClientAuthInfoWriter) (*ListStoresOK, error)
-
+	ListStoresShort(params *ListStoresParams, authInfo runtime.ClientAuthInfoWriter) (*ListStoresOK, error)
 	PublicListStores(params *PublicListStoresParams) (*PublicListStoresOK, error)
-
+	PublicListStoresShort(params *PublicListStoresParams) (*PublicListStoresOK, error)
 	RollbackPublishedStore(params *RollbackPublishedStoreParams, authInfo runtime.ClientAuthInfoWriter) (*RollbackPublishedStoreOK, *RollbackPublishedStoreNotFound, error)
-
+	RollbackPublishedStoreShort(params *RollbackPublishedStoreParams, authInfo runtime.ClientAuthInfoWriter) (*RollbackPublishedStoreOK, error)
 	UpdateStore(params *UpdateStoreParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateStoreOK, *UpdateStoreNotFound, *UpdateStoreConflict, *UpdateStoreUnprocessableEntity, error)
+	UpdateStoreShort(params *UpdateStoreParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateStoreOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -61,7 +62,7 @@ type ClientService interface {
 /*
   CloneStore clones a store
 
-  This API is used to clone a store. Usually clone a draft store to published store because published store can't directly edit content.<p>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:STORE", action=1 (CREATE)</li><li><i>Returns</i>: clone store info</li></ul>
+  This API is used to clone a store. Usually clone a draft store to published store because published store can&#39;t directly edit content.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STORE&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: clone store info&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) CloneStore(params *CloneStoreParams, authInfo runtime.ClientAuthInfoWriter) (*CloneStoreOK, *CloneStoreBadRequest, *CloneStoreNotFound, error) {
 	// TODO: Validate the params before sending
@@ -79,7 +80,7 @@ func (a *Client) CloneStore(params *CloneStoreParams, authInfo runtime.ClientAut
 		PathPattern:        "/admin/namespaces/{namespace}/stores/{storeId}/clone",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &CloneStoreReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -94,19 +95,63 @@ func (a *Client) CloneStore(params *CloneStoreParams, authInfo runtime.ClientAut
 
 	case *CloneStoreOK:
 		return v, nil, nil, nil
+
 	case *CloneStoreBadRequest:
 		return nil, v, nil, nil
+
 	case *CloneStoreNotFound:
 		return nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) CloneStoreShort(params *CloneStoreParams, authInfo runtime.ClientAuthInfoWriter) (*CloneStoreOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCloneStoreParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "cloneStore",
+		Method:             "PUT",
+		PathPattern:        "/admin/namespaces/{namespace}/stores/{storeId}/clone",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CloneStoreReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *CloneStoreOK:
+		return v, nil
+	case *CloneStoreBadRequest:
+		return nil, v
+	case *CloneStoreNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   CreateStore creates a store
 
-  This API is used to create a non published store in a namespace.<p>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:STORE", action=1 (CREATE)</li><li><i>Returns</i>: created store data</li></ul>
+  This API is used to create a non published store in a namespace.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STORE&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: created store data&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) CreateStore(params *CreateStoreParams, authInfo runtime.ClientAuthInfoWriter) (*CreateStoreCreated, *CreateStoreConflict, *CreateStoreUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -124,7 +169,7 @@ func (a *Client) CreateStore(params *CreateStoreParams, authInfo runtime.ClientA
 		PathPattern:        "/admin/namespaces/{namespace}/stores",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &CreateStoreReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -139,19 +184,63 @@ func (a *Client) CreateStore(params *CreateStoreParams, authInfo runtime.ClientA
 
 	case *CreateStoreCreated:
 		return v, nil, nil, nil
+
 	case *CreateStoreConflict:
 		return nil, v, nil, nil
+
 	case *CreateStoreUnprocessableEntity:
 		return nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) CreateStoreShort(params *CreateStoreParams, authInfo runtime.ClientAuthInfoWriter) (*CreateStoreCreated, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreateStoreParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "createStore",
+		Method:             "POST",
+		PathPattern:        "/admin/namespaces/{namespace}/stores",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CreateStoreReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *CreateStoreCreated:
+		return v, nil
+	case *CreateStoreConflict:
+		return nil, v
+	case *CreateStoreUnprocessableEntity:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   DeletePublishedStore deletes published store
 
-  This API is used to delete published store including category and items before release to public.<p><b>Warning: Please do not use this API once published to public user.</b><p>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:STORE", action=8 (DELETE)</li></ul>
+  This API is used to delete published store including category and items before release to public.&lt;p&gt;&lt;b&gt;Warning: Please do not use this API once published to public user.&lt;/b&gt;&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STORE&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) DeletePublishedStore(params *DeletePublishedStoreParams, authInfo runtime.ClientAuthInfoWriter) (*DeletePublishedStoreOK, *DeletePublishedStoreNotFound, error) {
 	// TODO: Validate the params before sending
@@ -169,7 +258,7 @@ func (a *Client) DeletePublishedStore(params *DeletePublishedStoreParams, authIn
 		PathPattern:        "/admin/namespaces/{namespace}/stores/published",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeletePublishedStoreReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -184,17 +273,58 @@ func (a *Client) DeletePublishedStore(params *DeletePublishedStoreParams, authIn
 
 	case *DeletePublishedStoreOK:
 		return v, nil, nil
+
 	case *DeletePublishedStoreNotFound:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) DeletePublishedStoreShort(params *DeletePublishedStoreParams, authInfo runtime.ClientAuthInfoWriter) (*DeletePublishedStoreOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeletePublishedStoreParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "deletePublishedStore",
+		Method:             "DELETE",
+		PathPattern:        "/admin/namespaces/{namespace}/stores/published",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeletePublishedStoreReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeletePublishedStoreOK:
+		return v, nil
+	case *DeletePublishedStoreNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   DeleteStore deletes a store
 
-  This API is used to delete a store. Only non published store can be deleted.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:STORE", action=8 (DELETE)</li><li><i>Returns</i>: store</li></ul>
+  This API is used to delete a store. Only non published store can be deleted.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STORE&#34;, action=8 (DELETE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: store&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) DeleteStore(params *DeleteStoreParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteStoreOK, *DeleteStoreNotFound, *DeleteStoreConflict, error) {
 	// TODO: Validate the params before sending
@@ -212,7 +342,7 @@ func (a *Client) DeleteStore(params *DeleteStoreParams, authInfo runtime.ClientA
 		PathPattern:        "/admin/namespaces/{namespace}/stores/{storeId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteStoreReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -227,19 +357,63 @@ func (a *Client) DeleteStore(params *DeleteStoreParams, authInfo runtime.ClientA
 
 	case *DeleteStoreOK:
 		return v, nil, nil, nil
+
 	case *DeleteStoreNotFound:
 		return nil, v, nil, nil
+
 	case *DeleteStoreConflict:
 		return nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) DeleteStoreShort(params *DeleteStoreParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteStoreOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteStoreParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "deleteStore",
+		Method:             "DELETE",
+		PathPattern:        "/admin/namespaces/{namespace}/stores/{storeId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteStoreReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeleteStoreOK:
+		return v, nil
+	case *DeleteStoreNotFound:
+		return nil, v
+	case *DeleteStoreConflict:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   ExportStore exports a store
 
-  This API is used to export a store.<p>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:STORE", action=2 (READ)</li></ul>
+  This API is used to export a store.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STORE&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) ExportStore(params *ExportStoreParams, authInfo runtime.ClientAuthInfoWriter) (*ExportStoreOK, *ExportStoreNotFound, error) {
 	// TODO: Validate the params before sending
@@ -257,7 +431,7 @@ func (a *Client) ExportStore(params *ExportStoreParams, authInfo runtime.ClientA
 		PathPattern:        "/admin/namespaces/{namespace}/stores/{storeId}/export",
 		ProducesMediaTypes: []string{"application/zip"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &ExportStoreReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -272,17 +446,58 @@ func (a *Client) ExportStore(params *ExportStoreParams, authInfo runtime.ClientA
 
 	case *ExportStoreOK:
 		return v, nil, nil
+
 	case *ExportStoreNotFound:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) ExportStoreShort(params *ExportStoreParams, authInfo runtime.ClientAuthInfoWriter) (*ExportStoreOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewExportStoreParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "exportStore",
+		Method:             "GET",
+		PathPattern:        "/admin/namespaces/{namespace}/stores/{storeId}/export",
+		ProducesMediaTypes: []string{"application/zip"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ExportStoreReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *ExportStoreOK:
+		return v, nil
+	case *ExportStoreNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   GetPublishedStore gets published store
 
-  This API is used to get a published store basic info, exclude category and item information.<p>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:STORE", action=2 (READ)</li><li><i>Returns</i>: store data</li></ul>
+  This API is used to get a published store basic info, exclude category and item information.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STORE&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: store data&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) GetPublishedStore(params *GetPublishedStoreParams, authInfo runtime.ClientAuthInfoWriter) (*GetPublishedStoreOK, *GetPublishedStoreNotFound, error) {
 	// TODO: Validate the params before sending
@@ -300,7 +515,7 @@ func (a *Client) GetPublishedStore(params *GetPublishedStoreParams, authInfo run
 		PathPattern:        "/admin/namespaces/{namespace}/stores/published",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetPublishedStoreReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -315,17 +530,58 @@ func (a *Client) GetPublishedStore(params *GetPublishedStoreParams, authInfo run
 
 	case *GetPublishedStoreOK:
 		return v, nil, nil
+
 	case *GetPublishedStoreNotFound:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetPublishedStoreShort(params *GetPublishedStoreParams, authInfo runtime.ClientAuthInfoWriter) (*GetPublishedStoreOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetPublishedStoreParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getPublishedStore",
+		Method:             "GET",
+		PathPattern:        "/admin/namespaces/{namespace}/stores/published",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetPublishedStoreReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetPublishedStoreOK:
+		return v, nil
+	case *GetPublishedStoreNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   GetPublishedStoreBackup gets a published store s backup
 
-  This API is used to get a store's backup. <p>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:STORE", action=2 (READ)</li><li><i>Returns</i>: store backup info</li></ul>
+  This API is used to get a store&#39;s backup. &lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STORE&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: store backup info&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) GetPublishedStoreBackup(params *GetPublishedStoreBackupParams, authInfo runtime.ClientAuthInfoWriter) (*GetPublishedStoreBackupOK, *GetPublishedStoreBackupNotFound, error) {
 	// TODO: Validate the params before sending
@@ -343,7 +599,7 @@ func (a *Client) GetPublishedStoreBackup(params *GetPublishedStoreBackupParams, 
 		PathPattern:        "/admin/namespaces/{namespace}/stores/published/backup",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetPublishedStoreBackupReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -358,17 +614,58 @@ func (a *Client) GetPublishedStoreBackup(params *GetPublishedStoreBackupParams, 
 
 	case *GetPublishedStoreBackupOK:
 		return v, nil, nil
+
 	case *GetPublishedStoreBackupNotFound:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetPublishedStoreBackupShort(params *GetPublishedStoreBackupParams, authInfo runtime.ClientAuthInfoWriter) (*GetPublishedStoreBackupOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetPublishedStoreBackupParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getPublishedStoreBackup",
+		Method:             "GET",
+		PathPattern:        "/admin/namespaces/{namespace}/stores/published/backup",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetPublishedStoreBackupReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetPublishedStoreBackupOK:
+		return v, nil
+	case *GetPublishedStoreBackupNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   GetStore gets a store
 
-  This API is used to get a store.<p>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:STORE", action=2 (READ)</li><li><i>Returns</i>: store data</li></ul>
+  This API is used to get a store.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STORE&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: store data&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) GetStore(params *GetStoreParams, authInfo runtime.ClientAuthInfoWriter) (*GetStoreOK, *GetStoreNotFound, error) {
 	// TODO: Validate the params before sending
@@ -386,7 +683,7 @@ func (a *Client) GetStore(params *GetStoreParams, authInfo runtime.ClientAuthInf
 		PathPattern:        "/admin/namespaces/{namespace}/stores/{storeId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetStoreReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -401,17 +698,58 @@ func (a *Client) GetStore(params *GetStoreParams, authInfo runtime.ClientAuthInf
 
 	case *GetStoreOK:
 		return v, nil, nil
+
 	case *GetStoreNotFound:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetStoreShort(params *GetStoreParams, authInfo runtime.ClientAuthInfoWriter) (*GetStoreOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetStoreParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getStore",
+		Method:             "GET",
+		PathPattern:        "/admin/namespaces/{namespace}/stores/{storeId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetStoreReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetStoreOK:
+		return v, nil
+	case *GetStoreNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   ImportStore imports a store
 
-  This API is used to import a store.<p>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:STORE", action=4 (UPDATE)</li></ul>
+  This API is used to import a store.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STORE&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) ImportStore(params *ImportStoreParams, authInfo runtime.ClientAuthInfoWriter) (*ImportStoreOK, *ImportStoreBadRequest, *ImportStoreNotFound, error) {
 	// TODO: Validate the params before sending
@@ -429,7 +767,7 @@ func (a *Client) ImportStore(params *ImportStoreParams, authInfo runtime.ClientA
 		PathPattern:        "/admin/namespaces/{namespace}/stores/import",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"multipart/form-data"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &ImportStoreReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -444,19 +782,63 @@ func (a *Client) ImportStore(params *ImportStoreParams, authInfo runtime.ClientA
 
 	case *ImportStoreOK:
 		return v, nil, nil, nil
+
 	case *ImportStoreBadRequest:
 		return nil, v, nil, nil
+
 	case *ImportStoreNotFound:
 		return nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) ImportStoreShort(params *ImportStoreParams, authInfo runtime.ClientAuthInfoWriter) (*ImportStoreOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewImportStoreParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "importStore",
+		Method:             "PUT",
+		PathPattern:        "/admin/namespaces/{namespace}/stores/import",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"multipart/form-data"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ImportStoreReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *ImportStoreOK:
+		return v, nil
+	case *ImportStoreBadRequest:
+		return nil, v
+	case *ImportStoreNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   ListStores lists stores
 
-  This API is used to list stores in a namespace.<p>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:STORE", action=2 (READ)</li><li><i>Returns</i>: the list of stores</li></ul>
+  This API is used to list stores in a namespace.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STORE&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: the list of stores&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) ListStores(params *ListStoresParams, authInfo runtime.ClientAuthInfoWriter) (*ListStoresOK, error) {
 	// TODO: Validate the params before sending
@@ -474,7 +856,7 @@ func (a *Client) ListStores(params *ListStoresParams, authInfo runtime.ClientAut
 		PathPattern:        "/admin/namespaces/{namespace}/stores",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &ListStoresReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -489,6 +871,44 @@ func (a *Client) ListStores(params *ListStoresParams, authInfo runtime.ClientAut
 
 	case *ListStoresOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) ListStoresShort(params *ListStoresParams, authInfo runtime.ClientAuthInfoWriter) (*ListStoresOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewListStoresParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "listStores",
+		Method:             "GET",
+		PathPattern:        "/admin/namespaces/{namespace}/stores",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ListStoresReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *ListStoresOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -497,7 +917,7 @@ func (a *Client) ListStores(params *ListStoresParams, authInfo runtime.ClientAut
 /*
   PublicListStores lists all stores
 
-  This API is used to list all stores in a namespace.<p>Other detail info: <ul><li><i>Optional permission</i>: resource="PREVIEW", action=1(CREATE) (user with this permission can view draft store)</li><li><i>Optional permission</i>: resource="SANDBOX", action=1(CREATE) (user with this permission can view draft store)</li><li><i>Returns</i>: the list of stores</li></ul>
+  This API is used to list all stores in a namespace.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Optional permission&lt;/i&gt;: resource=&#34;PREVIEW&#34;, action=1(CREATE) (user with this permission can view draft store)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Optional permission&lt;/i&gt;: resource=&#34;SANDBOX&#34;, action=1(CREATE) (user with this permission can view draft store)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: the list of stores&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) PublicListStores(params *PublicListStoresParams) (*PublicListStoresOK, error) {
 	// TODO: Validate the params before sending
@@ -515,7 +935,7 @@ func (a *Client) PublicListStores(params *PublicListStoresParams) (*PublicListSt
 		PathPattern:        "/public/namespaces/{namespace}/stores",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicListStoresReader{formats: a.formats},
 		Context:            params.Context,
@@ -529,6 +949,43 @@ func (a *Client) PublicListStores(params *PublicListStoresParams) (*PublicListSt
 
 	case *PublicListStoresOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicListStoresShort(params *PublicListStoresParams) (*PublicListStoresOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicListStoresParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicListStores",
+		Method:             "GET",
+		PathPattern:        "/public/namespaces/{namespace}/stores",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicListStoresReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicListStoresOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -537,7 +994,7 @@ func (a *Client) PublicListStores(params *PublicListStoresParams) (*PublicListSt
 /*
   RollbackPublishedStore rollbacks a published store
 
-  This API is used to rollback a published store. <p>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:STORE", action=4 (UPDATE)</li><li><i>Returns</i>: updated store info</li></ul>
+  This API is used to rollback a published store. &lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STORE&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated store info&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) RollbackPublishedStore(params *RollbackPublishedStoreParams, authInfo runtime.ClientAuthInfoWriter) (*RollbackPublishedStoreOK, *RollbackPublishedStoreNotFound, error) {
 	// TODO: Validate the params before sending
@@ -555,7 +1012,7 @@ func (a *Client) RollbackPublishedStore(params *RollbackPublishedStoreParams, au
 		PathPattern:        "/admin/namespaces/{namespace}/stores/published/rollback",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &RollbackPublishedStoreReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -570,17 +1027,58 @@ func (a *Client) RollbackPublishedStore(params *RollbackPublishedStoreParams, au
 
 	case *RollbackPublishedStoreOK:
 		return v, nil, nil
+
 	case *RollbackPublishedStoreNotFound:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) RollbackPublishedStoreShort(params *RollbackPublishedStoreParams, authInfo runtime.ClientAuthInfoWriter) (*RollbackPublishedStoreOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRollbackPublishedStoreParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "rollbackPublishedStore",
+		Method:             "PUT",
+		PathPattern:        "/admin/namespaces/{namespace}/stores/published/rollback",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &RollbackPublishedStoreReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *RollbackPublishedStoreOK:
+		return v, nil
+	case *RollbackPublishedStoreNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   UpdateStore updates a store
 
-  This API is used to Update a store basic info.<p>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:STORE", action=4 (UPDATE)</li><li><i>Returns</i>: updated store data</li></ul>
+  This API is used to Update a store basic info.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STORE&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated store data&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) UpdateStore(params *UpdateStoreParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateStoreOK, *UpdateStoreNotFound, *UpdateStoreConflict, *UpdateStoreUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -598,7 +1096,7 @@ func (a *Client) UpdateStore(params *UpdateStoreParams, authInfo runtime.ClientA
 		PathPattern:        "/admin/namespaces/{namespace}/stores/{storeId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &UpdateStoreReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -613,14 +1111,61 @@ func (a *Client) UpdateStore(params *UpdateStoreParams, authInfo runtime.ClientA
 
 	case *UpdateStoreOK:
 		return v, nil, nil, nil, nil
+
 	case *UpdateStoreNotFound:
 		return nil, v, nil, nil, nil
+
 	case *UpdateStoreConflict:
 		return nil, nil, v, nil, nil
+
 	case *UpdateStoreUnprocessableEntity:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) UpdateStoreShort(params *UpdateStoreParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateStoreOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateStoreParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updateStore",
+		Method:             "PUT",
+		PathPattern:        "/admin/namespaces/{namespace}/stores/{storeId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateStoreReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateStoreOK:
+		return v, nil
+	case *UpdateStoreNotFound:
+		return nil, v
+	case *UpdateStoreConflict:
+		return nil, v
+	case *UpdateStoreUnprocessableEntity:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 

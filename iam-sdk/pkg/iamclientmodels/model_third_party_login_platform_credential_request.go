@@ -49,6 +49,10 @@ type ModelThirdPartyLoginPlatformCredentialRequest struct {
 	// Required: true
 	IsActive *bool `json:"IsActive"`
 
+	// key ID
+	// Required: true
+	KeyID *string `json:"KeyID"`
+
 	// organization Id
 	// Required: true
 	OrganizationID *string `json:"OrganizationId"`
@@ -60,6 +64,10 @@ type ModelThirdPartyLoginPlatformCredentialRequest struct {
 	// secret
 	// Required: true
 	Secret *string `json:"Secret"`
+
+	// team ID
+	// Required: true
+	TeamID *string `json:"TeamID"`
 }
 
 // Validate validates this model third party login platform credential request
@@ -98,6 +106,10 @@ func (m *ModelThirdPartyLoginPlatformCredentialRequest) Validate(formats strfmt.
 		res = append(res, err)
 	}
 
+	if err := m.validateKeyID(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateOrganizationID(formats); err != nil {
 		res = append(res, err)
 	}
@@ -107,6 +119,10 @@ func (m *ModelThirdPartyLoginPlatformCredentialRequest) Validate(formats strfmt.
 	}
 
 	if err := m.validateSecret(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateTeamID(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -188,6 +204,15 @@ func (m *ModelThirdPartyLoginPlatformCredentialRequest) validateIsActive(formats
 	return nil
 }
 
+func (m *ModelThirdPartyLoginPlatformCredentialRequest) validateKeyID(formats strfmt.Registry) error {
+
+	if err := validate.Required("KeyID", "body", m.KeyID); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *ModelThirdPartyLoginPlatformCredentialRequest) validateOrganizationID(formats strfmt.Registry) error {
 
 	if err := validate.Required("OrganizationId", "body", m.OrganizationID); err != nil {
@@ -209,6 +234,15 @@ func (m *ModelThirdPartyLoginPlatformCredentialRequest) validateRedirectURI(form
 func (m *ModelThirdPartyLoginPlatformCredentialRequest) validateSecret(formats strfmt.Registry) error {
 
 	if err := validate.Required("Secret", "body", m.Secret); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelThirdPartyLoginPlatformCredentialRequest) validateTeamID(formats strfmt.Registry) error {
+
+	if err := validate.Required("TeamID", "body", m.TeamID); err != nil {
 		return err
 	}
 

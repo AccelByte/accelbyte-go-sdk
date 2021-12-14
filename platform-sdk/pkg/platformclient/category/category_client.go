@@ -30,30 +30,31 @@ type Client struct {
 // ClientService is the interface for Client methods
 type ClientService interface {
 	CreateCategory(params *CreateCategoryParams, authInfo runtime.ClientAuthInfoWriter) (*CreateCategoryCreated, *CreateCategoryBadRequest, *CreateCategoryNotFound, *CreateCategoryConflict, *CreateCategoryUnprocessableEntity, error)
-
+	CreateCategoryShort(params *CreateCategoryParams, authInfo runtime.ClientAuthInfoWriter) (*CreateCategoryCreated, error)
 	DeleteCategory(params *DeleteCategoryParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteCategoryOK, *DeleteCategoryNotFound, *DeleteCategoryConflict, error)
-
+	DeleteCategoryShort(params *DeleteCategoryParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteCategoryOK, error)
 	DownloadCategories(params *DownloadCategoriesParams) (*DownloadCategoriesOK, *DownloadCategoriesNotFound, error)
-
+	DownloadCategoriesShort(params *DownloadCategoriesParams) (*DownloadCategoriesOK, error)
 	GetCategory(params *GetCategoryParams, authInfo runtime.ClientAuthInfoWriter) (*GetCategoryOK, *GetCategoryNotFound, error)
-
+	GetCategoryShort(params *GetCategoryParams, authInfo runtime.ClientAuthInfoWriter) (*GetCategoryOK, error)
 	GetChildCategories(params *GetChildCategoriesParams, authInfo runtime.ClientAuthInfoWriter) (*GetChildCategoriesOK, error)
-
+	GetChildCategoriesShort(params *GetChildCategoriesParams, authInfo runtime.ClientAuthInfoWriter) (*GetChildCategoriesOK, error)
 	GetDescendantCategories(params *GetDescendantCategoriesParams, authInfo runtime.ClientAuthInfoWriter) (*GetDescendantCategoriesOK, error)
-
+	GetDescendantCategoriesShort(params *GetDescendantCategoriesParams, authInfo runtime.ClientAuthInfoWriter) (*GetDescendantCategoriesOK, error)
 	GetRootCategories(params *GetRootCategoriesParams, authInfo runtime.ClientAuthInfoWriter) (*GetRootCategoriesOK, error)
-
+	GetRootCategoriesShort(params *GetRootCategoriesParams, authInfo runtime.ClientAuthInfoWriter) (*GetRootCategoriesOK, error)
 	ListCategoriesBasic(params *ListCategoriesBasicParams, authInfo runtime.ClientAuthInfoWriter) (*ListCategoriesBasicOK, error)
-
+	ListCategoriesBasicShort(params *ListCategoriesBasicParams, authInfo runtime.ClientAuthInfoWriter) (*ListCategoriesBasicOK, error)
 	PublicGetCategory(params *PublicGetCategoryParams) (*PublicGetCategoryOK, *PublicGetCategoryNotFound, error)
-
+	PublicGetCategoryShort(params *PublicGetCategoryParams) (*PublicGetCategoryOK, error)
 	PublicGetChildCategories(params *PublicGetChildCategoriesParams) (*PublicGetChildCategoriesOK, error)
-
+	PublicGetChildCategoriesShort(params *PublicGetChildCategoriesParams) (*PublicGetChildCategoriesOK, error)
 	PublicGetDescendantCategories(params *PublicGetDescendantCategoriesParams) (*PublicGetDescendantCategoriesOK, error)
-
+	PublicGetDescendantCategoriesShort(params *PublicGetDescendantCategoriesParams) (*PublicGetDescendantCategoriesOK, error)
 	PublicGetRootCategories(params *PublicGetRootCategoriesParams) (*PublicGetRootCategoriesOK, error)
-
+	PublicGetRootCategoriesShort(params *PublicGetRootCategoriesParams) (*PublicGetRootCategoriesOK, error)
 	UpdateCategory(params *UpdateCategoryParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateCategoryOK, *UpdateCategoryBadRequest, *UpdateCategoryNotFound, *UpdateCategoryConflict, *UpdateCategoryUnprocessableEntity, error)
+	UpdateCategoryShort(params *UpdateCategoryParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateCategoryOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -61,10 +62,10 @@ type ClientService interface {
 /*
   CreateCategory creates category
 
-  This API is used to create category.<p>A category is a path separated by "/". A category also has localized display names. Example:<p><pre><code>{
-	"categoryPath": "/games",
-	"localizationDisplayNames": \{"en" : "Games"}
-}</code></pre>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:CATEGORY", action=1 (CREATE)</li><li><i>Returns</i>: created category data</li></ul>
+  This API is used to create category.&lt;p&gt;A category is a path separated by &#34;/&#34;. A category also has localized display names. Example:&lt;p&gt;&lt;pre&gt;&lt;code&gt;{
+	&#34;categoryPath&#34;: &#34;/games&#34;,
+	&#34;localizationDisplayNames&#34;: \{&#34;en&#34; : &#34;Games&#34;}
+}&lt;/code&gt;&lt;/pre&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:CATEGORY&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: created category data&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) CreateCategory(params *CreateCategoryParams, authInfo runtime.ClientAuthInfoWriter) (*CreateCategoryCreated, *CreateCategoryBadRequest, *CreateCategoryNotFound, *CreateCategoryConflict, *CreateCategoryUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -82,7 +83,7 @@ func (a *Client) CreateCategory(params *CreateCategoryParams, authInfo runtime.C
 		PathPattern:        "/admin/namespaces/{namespace}/categories",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &CreateCategoryReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -97,23 +98,73 @@ func (a *Client) CreateCategory(params *CreateCategoryParams, authInfo runtime.C
 
 	case *CreateCategoryCreated:
 		return v, nil, nil, nil, nil, nil
+
 	case *CreateCategoryBadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *CreateCategoryNotFound:
 		return nil, nil, v, nil, nil, nil
+
 	case *CreateCategoryConflict:
 		return nil, nil, nil, v, nil, nil
+
 	case *CreateCategoryUnprocessableEntity:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) CreateCategoryShort(params *CreateCategoryParams, authInfo runtime.ClientAuthInfoWriter) (*CreateCategoryCreated, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreateCategoryParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "createCategory",
+		Method:             "POST",
+		PathPattern:        "/admin/namespaces/{namespace}/categories",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CreateCategoryReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *CreateCategoryCreated:
+		return v, nil
+	case *CreateCategoryBadRequest:
+		return nil, v
+	case *CreateCategoryNotFound:
+		return nil, v
+	case *CreateCategoryConflict:
+		return nil, v
+	case *CreateCategoryUnprocessableEntity:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   DeleteCategory deletes category
 
-  This API is used to delete category by category path. <p>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:CATEGORY", action=8 (DELETE)</li><li><i>Returns</i>: the deleted category data</li></ul>
+  This API is used to delete category by category path. &lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:CATEGORY&#34;, action=8 (DELETE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: the deleted category data&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) DeleteCategory(params *DeleteCategoryParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteCategoryOK, *DeleteCategoryNotFound, *DeleteCategoryConflict, error) {
 	// TODO: Validate the params before sending
@@ -131,7 +182,7 @@ func (a *Client) DeleteCategory(params *DeleteCategoryParams, authInfo runtime.C
 		PathPattern:        "/admin/namespaces/{namespace}/categories/{categoryPath}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteCategoryReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -146,19 +197,63 @@ func (a *Client) DeleteCategory(params *DeleteCategoryParams, authInfo runtime.C
 
 	case *DeleteCategoryOK:
 		return v, nil, nil, nil
+
 	case *DeleteCategoryNotFound:
 		return nil, v, nil, nil
+
 	case *DeleteCategoryConflict:
 		return nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) DeleteCategoryShort(params *DeleteCategoryParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteCategoryOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteCategoryParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "deleteCategory",
+		Method:             "DELETE",
+		PathPattern:        "/admin/namespaces/{namespace}/categories/{categoryPath}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteCategoryReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeleteCategoryOK:
+		return v, nil
+	case *DeleteCategoryNotFound:
+		return nil, v
+	case *DeleteCategoryConflict:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   DownloadCategories downloads store s structured categories
 
-  This API is used to download store's structured categories.<p>Other detail info: <ul><li><i>Optional permission</i>: resource="PREVIEW", action=1(CREATE) (user with this permission can view draft store content)</li><li><i>Optional permission</i>: resource="SANDBOX", action=1(CREATE) (user with this permission can view draft store content)</li><li><i>Returns</i>: structured categories</li></ul>
+  This API is used to download store&#39;s structured categories.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Optional permission&lt;/i&gt;: resource=&#34;PREVIEW&#34;, action=1(CREATE) (user with this permission can view draft store content)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Optional permission&lt;/i&gt;: resource=&#34;SANDBOX&#34;, action=1(CREATE) (user with this permission can view draft store content)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: structured categories&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) DownloadCategories(params *DownloadCategoriesParams) (*DownloadCategoriesOK, *DownloadCategoriesNotFound, error) {
 	// TODO: Validate the params before sending
@@ -176,7 +271,7 @@ func (a *Client) DownloadCategories(params *DownloadCategoriesParams) (*Download
 		PathPattern:        "/public/namespaces/{namespace}/categories/download",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DownloadCategoriesReader{formats: a.formats},
 		Context:            params.Context,
@@ -190,17 +285,57 @@ func (a *Client) DownloadCategories(params *DownloadCategoriesParams) (*Download
 
 	case *DownloadCategoriesOK:
 		return v, nil, nil
+
 	case *DownloadCategoriesNotFound:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) DownloadCategoriesShort(params *DownloadCategoriesParams) (*DownloadCategoriesOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDownloadCategoriesParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "downloadCategories",
+		Method:             "GET",
+		PathPattern:        "/public/namespaces/{namespace}/categories/download",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DownloadCategoriesReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DownloadCategoriesOK:
+		return v, nil
+	case *DownloadCategoriesNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   GetCategory gets category
 
-  This API is used to get category by category path.<p>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:CATEGORY", action=2 (READ)</li><li><i>Returns</i>: category data</li></ul>
+  This API is used to get category by category path.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:CATEGORY&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: category data&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) GetCategory(params *GetCategoryParams, authInfo runtime.ClientAuthInfoWriter) (*GetCategoryOK, *GetCategoryNotFound, error) {
 	// TODO: Validate the params before sending
@@ -218,7 +353,7 @@ func (a *Client) GetCategory(params *GetCategoryParams, authInfo runtime.ClientA
 		PathPattern:        "/admin/namespaces/{namespace}/categories/{categoryPath}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetCategoryReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -233,17 +368,58 @@ func (a *Client) GetCategory(params *GetCategoryParams, authInfo runtime.ClientA
 
 	case *GetCategoryOK:
 		return v, nil, nil
+
 	case *GetCategoryNotFound:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetCategoryShort(params *GetCategoryParams, authInfo runtime.ClientAuthInfoWriter) (*GetCategoryOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetCategoryParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getCategory",
+		Method:             "GET",
+		PathPattern:        "/admin/namespaces/{namespace}/categories/{categoryPath}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetCategoryReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetCategoryOK:
+		return v, nil
+	case *GetCategoryNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   GetChildCategories gets child categories
 
-  This API is used to get child categories by category path.<p>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:CATEGORY", action=2 (READ)</li><li><i>Returns</i>: list of child categories data</li></ul>
+  This API is used to get child categories by category path.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:CATEGORY&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: list of child categories data&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) GetChildCategories(params *GetChildCategoriesParams, authInfo runtime.ClientAuthInfoWriter) (*GetChildCategoriesOK, error) {
 	// TODO: Validate the params before sending
@@ -261,7 +437,7 @@ func (a *Client) GetChildCategories(params *GetChildCategoriesParams, authInfo r
 		PathPattern:        "/admin/namespaces/{namespace}/categories/{categoryPath}/children",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetChildCategoriesReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -276,6 +452,44 @@ func (a *Client) GetChildCategories(params *GetChildCategoriesParams, authInfo r
 
 	case *GetChildCategoriesOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetChildCategoriesShort(params *GetChildCategoriesParams, authInfo runtime.ClientAuthInfoWriter) (*GetChildCategoriesOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetChildCategoriesParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getChildCategories",
+		Method:             "GET",
+		PathPattern:        "/admin/namespaces/{namespace}/categories/{categoryPath}/children",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetChildCategoriesReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetChildCategoriesOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -284,7 +498,7 @@ func (a *Client) GetChildCategories(params *GetChildCategoriesParams, authInfo r
 /*
   GetDescendantCategories gets descendant categories
 
-  This API is used to get descendant categories by category path.<p>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:CATEGORY", action=2 (READ)</li><li><i>Returns</i>: list of descendant categories data</li></ul>
+  This API is used to get descendant categories by category path.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:CATEGORY&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: list of descendant categories data&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) GetDescendantCategories(params *GetDescendantCategoriesParams, authInfo runtime.ClientAuthInfoWriter) (*GetDescendantCategoriesOK, error) {
 	// TODO: Validate the params before sending
@@ -302,7 +516,7 @@ func (a *Client) GetDescendantCategories(params *GetDescendantCategoriesParams, 
 		PathPattern:        "/admin/namespaces/{namespace}/categories/{categoryPath}/descendants",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetDescendantCategoriesReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -317,6 +531,44 @@ func (a *Client) GetDescendantCategories(params *GetDescendantCategoriesParams, 
 
 	case *GetDescendantCategoriesOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetDescendantCategoriesShort(params *GetDescendantCategoriesParams, authInfo runtime.ClientAuthInfoWriter) (*GetDescendantCategoriesOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetDescendantCategoriesParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getDescendantCategories",
+		Method:             "GET",
+		PathPattern:        "/admin/namespaces/{namespace}/categories/{categoryPath}/descendants",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetDescendantCategoriesReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetDescendantCategoriesOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -325,7 +577,7 @@ func (a *Client) GetDescendantCategories(params *GetDescendantCategoriesParams, 
 /*
   GetRootCategories gets root categories
 
-  This API is used to get root categories.<p>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:CATEGORY", action=2 (READ)</li><li><i>Returns</i>: root category data</li></ul>
+  This API is used to get root categories.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:CATEGORY&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: root category data&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) GetRootCategories(params *GetRootCategoriesParams, authInfo runtime.ClientAuthInfoWriter) (*GetRootCategoriesOK, error) {
 	// TODO: Validate the params before sending
@@ -343,7 +595,7 @@ func (a *Client) GetRootCategories(params *GetRootCategoriesParams, authInfo run
 		PathPattern:        "/admin/namespaces/{namespace}/categories",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetRootCategoriesReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -358,6 +610,44 @@ func (a *Client) GetRootCategories(params *GetRootCategoriesParams, authInfo run
 
 	case *GetRootCategoriesOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetRootCategoriesShort(params *GetRootCategoriesParams, authInfo runtime.ClientAuthInfoWriter) (*GetRootCategoriesOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetRootCategoriesParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getRootCategories",
+		Method:             "GET",
+		PathPattern:        "/admin/namespaces/{namespace}/categories",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetRootCategoriesReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetRootCategoriesOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -366,7 +656,7 @@ func (a *Client) GetRootCategories(params *GetRootCategoriesParams, authInfo run
 /*
   ListCategoriesBasic lists categories basic info
 
-  This API is used to list all categories' basic info of a store ordered by category path.<p>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:CATEGORY", action=2 (READ)</li><li><i>Returns</i>: list of categories' paths</li></ul>
+  This API is used to list all categories&#39; basic info of a store ordered by category path.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:CATEGORY&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: list of categories&#39; paths&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) ListCategoriesBasic(params *ListCategoriesBasicParams, authInfo runtime.ClientAuthInfoWriter) (*ListCategoriesBasicOK, error) {
 	// TODO: Validate the params before sending
@@ -384,7 +674,7 @@ func (a *Client) ListCategoriesBasic(params *ListCategoriesBasicParams, authInfo
 		PathPattern:        "/admin/namespaces/{namespace}/categories/basic",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &ListCategoriesBasicReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -399,6 +689,44 @@ func (a *Client) ListCategoriesBasic(params *ListCategoriesBasicParams, authInfo
 
 	case *ListCategoriesBasicOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) ListCategoriesBasicShort(params *ListCategoriesBasicParams, authInfo runtime.ClientAuthInfoWriter) (*ListCategoriesBasicOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewListCategoriesBasicParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "listCategoriesBasic",
+		Method:             "GET",
+		PathPattern:        "/admin/namespaces/{namespace}/categories/basic",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ListCategoriesBasicReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *ListCategoriesBasicOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -407,7 +735,7 @@ func (a *Client) ListCategoriesBasic(params *ListCategoriesBasicParams, authInfo
 /*
   PublicGetCategory gets category
 
-  This API is used to get category by category path.<p>Other detail info: <ul><li><i>Optional permission</i>: resource="PREVIEW", action=1(CREATE) (user with this permission can view draft store category)</li><li><i>Optional permission</i>: resource="SANDBOX", action=1 (CREATE)(user with this permission can view draft store category)</li><li><i>Returns</i>: category data</li></ul>
+  This API is used to get category by category path.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Optional permission&lt;/i&gt;: resource=&#34;PREVIEW&#34;, action=1(CREATE) (user with this permission can view draft store category)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Optional permission&lt;/i&gt;: resource=&#34;SANDBOX&#34;, action=1 (CREATE)(user with this permission can view draft store category)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: category data&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) PublicGetCategory(params *PublicGetCategoryParams) (*PublicGetCategoryOK, *PublicGetCategoryNotFound, error) {
 	// TODO: Validate the params before sending
@@ -425,7 +753,7 @@ func (a *Client) PublicGetCategory(params *PublicGetCategoryParams) (*PublicGetC
 		PathPattern:        "/public/namespaces/{namespace}/categories/{categoryPath}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicGetCategoryReader{formats: a.formats},
 		Context:            params.Context,
@@ -439,17 +767,57 @@ func (a *Client) PublicGetCategory(params *PublicGetCategoryParams) (*PublicGetC
 
 	case *PublicGetCategoryOK:
 		return v, nil, nil
+
 	case *PublicGetCategoryNotFound:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicGetCategoryShort(params *PublicGetCategoryParams) (*PublicGetCategoryOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetCategoryParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicGetCategory",
+		Method:             "GET",
+		PathPattern:        "/public/namespaces/{namespace}/categories/{categoryPath}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicGetCategoryReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetCategoryOK:
+		return v, nil
+	case *PublicGetCategoryNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   PublicGetChildCategories gets child categories
 
-  This API is used to get child categories by category path.<p>Other detail info: <ul><li><i>Optional permission</i>: resource="PREVIEW", action=1(CREATE) (user with this permission can view draft store category)</li><li><i>Optional permission</i>: resource="SANDBOX", action=1(CREATE) (user with this permission can view draft store category)</li><li><i>Returns</i>: list of child categories data</li></ul>
+  This API is used to get child categories by category path.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Optional permission&lt;/i&gt;: resource=&#34;PREVIEW&#34;, action=1(CREATE) (user with this permission can view draft store category)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Optional permission&lt;/i&gt;: resource=&#34;SANDBOX&#34;, action=1(CREATE) (user with this permission can view draft store category)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: list of child categories data&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) PublicGetChildCategories(params *PublicGetChildCategoriesParams) (*PublicGetChildCategoriesOK, error) {
 	// TODO: Validate the params before sending
@@ -467,7 +835,7 @@ func (a *Client) PublicGetChildCategories(params *PublicGetChildCategoriesParams
 		PathPattern:        "/public/namespaces/{namespace}/categories/{categoryPath}/children",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicGetChildCategoriesReader{formats: a.formats},
 		Context:            params.Context,
@@ -481,6 +849,43 @@ func (a *Client) PublicGetChildCategories(params *PublicGetChildCategoriesParams
 
 	case *PublicGetChildCategoriesOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicGetChildCategoriesShort(params *PublicGetChildCategoriesParams) (*PublicGetChildCategoriesOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetChildCategoriesParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicGetChildCategories",
+		Method:             "GET",
+		PathPattern:        "/public/namespaces/{namespace}/categories/{categoryPath}/children",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicGetChildCategoriesReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetChildCategoriesOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -489,7 +894,7 @@ func (a *Client) PublicGetChildCategories(params *PublicGetChildCategoriesParams
 /*
   PublicGetDescendantCategories gets descendant categories
 
-  This API is used to get descendant categories by category path.<p>Other detail info: <ul><li><i>Optional permission</i>: resource="PREVIEW", action=1(CREATE) (user with this permission can view draft store category)</li><li><i>Optional permission</i>: resource="SANDBOX", action=1(CREATE) (user with this permission can view draft store category)</li><li><i>Returns</i>: list of descendant categories data</li></ul>
+  This API is used to get descendant categories by category path.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Optional permission&lt;/i&gt;: resource=&#34;PREVIEW&#34;, action=1(CREATE) (user with this permission can view draft store category)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Optional permission&lt;/i&gt;: resource=&#34;SANDBOX&#34;, action=1(CREATE) (user with this permission can view draft store category)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: list of descendant categories data&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) PublicGetDescendantCategories(params *PublicGetDescendantCategoriesParams) (*PublicGetDescendantCategoriesOK, error) {
 	// TODO: Validate the params before sending
@@ -507,7 +912,7 @@ func (a *Client) PublicGetDescendantCategories(params *PublicGetDescendantCatego
 		PathPattern:        "/public/namespaces/{namespace}/categories/{categoryPath}/descendants",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicGetDescendantCategoriesReader{formats: a.formats},
 		Context:            params.Context,
@@ -521,6 +926,43 @@ func (a *Client) PublicGetDescendantCategories(params *PublicGetDescendantCatego
 
 	case *PublicGetDescendantCategoriesOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicGetDescendantCategoriesShort(params *PublicGetDescendantCategoriesParams) (*PublicGetDescendantCategoriesOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetDescendantCategoriesParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicGetDescendantCategories",
+		Method:             "GET",
+		PathPattern:        "/public/namespaces/{namespace}/categories/{categoryPath}/descendants",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicGetDescendantCategoriesReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetDescendantCategoriesOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -529,7 +971,7 @@ func (a *Client) PublicGetDescendantCategories(params *PublicGetDescendantCatego
 /*
   PublicGetRootCategories gets root categories
 
-  This API is used to get root categories.<p>Other detail info: <ul><li><i>Optional permission</i>: resource="PREVIEW", action=1(CREATE) (user with this permission can view draft store category)</li><li><i>Optional permission</i>: resource="SANDBOX", action=1(CREATE) (user with this permission can view draft store category)</li><li><i>Returns</i>: root category data</li></ul>
+  This API is used to get root categories.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Optional permission&lt;/i&gt;: resource=&#34;PREVIEW&#34;, action=1(CREATE) (user with this permission can view draft store category)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Optional permission&lt;/i&gt;: resource=&#34;SANDBOX&#34;, action=1(CREATE) (user with this permission can view draft store category)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: root category data&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) PublicGetRootCategories(params *PublicGetRootCategoriesParams) (*PublicGetRootCategoriesOK, error) {
 	// TODO: Validate the params before sending
@@ -547,7 +989,7 @@ func (a *Client) PublicGetRootCategories(params *PublicGetRootCategoriesParams) 
 		PathPattern:        "/public/namespaces/{namespace}/categories",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicGetRootCategoriesReader{formats: a.formats},
 		Context:            params.Context,
@@ -561,6 +1003,43 @@ func (a *Client) PublicGetRootCategories(params *PublicGetRootCategoriesParams) 
 
 	case *PublicGetRootCategoriesOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicGetRootCategoriesShort(params *PublicGetRootCategoriesParams) (*PublicGetRootCategoriesOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetRootCategoriesParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicGetRootCategories",
+		Method:             "GET",
+		PathPattern:        "/public/namespaces/{namespace}/categories",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicGetRootCategoriesReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetRootCategoriesOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -569,10 +1048,10 @@ func (a *Client) PublicGetRootCategories(params *PublicGetRootCategoriesParams) 
 /*
   UpdateCategory updates category
 
-  This API is used to update category. <p> The category update data is a category object, example as:<pre><code>{
-	"storeId": "store-id",
-	"localizationDisplayNames": {"en" : "Games"}
-}</code></pre>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:CATEGORY", action=4 (UPDATE)</li><li><i>Returns</i>: the updated category data</li></ul>
+  This API is used to update category. &lt;p&gt; The category update data is a category object, example as:&lt;pre&gt;&lt;code&gt;{
+	&#34;storeId&#34;: &#34;store-id&#34;,
+	&#34;localizationDisplayNames&#34;: {&#34;en&#34; : &#34;Games&#34;}
+}&lt;/code&gt;&lt;/pre&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:CATEGORY&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: the updated category data&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) UpdateCategory(params *UpdateCategoryParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateCategoryOK, *UpdateCategoryBadRequest, *UpdateCategoryNotFound, *UpdateCategoryConflict, *UpdateCategoryUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -590,7 +1069,7 @@ func (a *Client) UpdateCategory(params *UpdateCategoryParams, authInfo runtime.C
 		PathPattern:        "/admin/namespaces/{namespace}/categories/{categoryPath}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &UpdateCategoryReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -605,16 +1084,66 @@ func (a *Client) UpdateCategory(params *UpdateCategoryParams, authInfo runtime.C
 
 	case *UpdateCategoryOK:
 		return v, nil, nil, nil, nil, nil
+
 	case *UpdateCategoryBadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *UpdateCategoryNotFound:
 		return nil, nil, v, nil, nil, nil
+
 	case *UpdateCategoryConflict:
 		return nil, nil, nil, v, nil, nil
+
 	case *UpdateCategoryUnprocessableEntity:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) UpdateCategoryShort(params *UpdateCategoryParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateCategoryOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateCategoryParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updateCategory",
+		Method:             "PUT",
+		PathPattern:        "/admin/namespaces/{namespace}/categories/{categoryPath}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateCategoryReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateCategoryOK:
+		return v, nil
+	case *UpdateCategoryBadRequest:
+		return nil, v
+	case *UpdateCategoryNotFound:
+		return nil, v
+	case *UpdateCategoryConflict:
+		return nil, v
+	case *UpdateCategoryUnprocessableEntity:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 

@@ -29,24 +29,25 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	Healthz(params *HealthzParams, authInfo runtime.ClientAuthInfoWriter) (*HealthzOK, error)
-
-	MatchmakingHealthz(params *MatchmakingHealthzParams, authInfo runtime.ClientAuthInfoWriter) (*MatchmakingHealthzOK, error)
-
+	GetHealthcheckInfo(params *GetHealthcheckInfoParams, authInfo runtime.ClientAuthInfoWriter) (*GetHealthcheckInfoOK, error)
+	GetHealthcheckInfoShort(params *GetHealthcheckInfoParams, authInfo runtime.ClientAuthInfoWriter) (*GetHealthcheckInfoOK, error)
+	HandlerV3Healthz(params *HandlerV3HealthzParams, authInfo runtime.ClientAuthInfoWriter) (*HandlerV3HealthzOK, error)
+	HandlerV3HealthzShort(params *HandlerV3HealthzParams, authInfo runtime.ClientAuthInfoWriter) (*HandlerV3HealthzOK, error)
 	PublicGetMessages(params *PublicGetMessagesParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetMessagesOK, *PublicGetMessagesInternalServerError, error)
-
+	PublicGetMessagesShort(params *PublicGetMessagesParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetMessagesOK, error)
 	VersionCheckHandler(params *VersionCheckHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*VersionCheckHandlerOK, error)
+	VersionCheckHandlerShort(params *VersionCheckHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*VersionCheckHandlerOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
 
 /*
-  Healthz healthz API
+  GetHealthcheckInfo get healthcheck info API
 */
-func (a *Client) Healthz(params *HealthzParams, authInfo runtime.ClientAuthInfoWriter) (*HealthzOK, error) {
+func (a *Client) GetHealthcheckInfo(params *GetHealthcheckInfoParams, authInfo runtime.ClientAuthInfoWriter) (*GetHealthcheckInfoOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewHealthzParams()
+		params = NewGetHealthcheckInfoParams()
 	}
 
 	if params.Context == nil {
@@ -54,14 +55,14 @@ func (a *Client) Healthz(params *HealthzParams, authInfo runtime.ClientAuthInfoW
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "healthz",
+		ID:                 "GetHealthcheckInfo",
 		Method:             "GET",
 		PathPattern:        "/healthz",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &HealthzReader{formats: a.formats},
+		Reader:             &GetHealthcheckInfoReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -72,20 +73,58 @@ func (a *Client) Healthz(params *HealthzParams, authInfo runtime.ClientAuthInfoW
 
 	switch v := result.(type) {
 
-	case *HealthzOK:
+	case *GetHealthcheckInfoOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetHealthcheckInfoShort(params *GetHealthcheckInfoParams, authInfo runtime.ClientAuthInfoWriter) (*GetHealthcheckInfoOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetHealthcheckInfoParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetHealthcheckInfo",
+		Method:             "GET",
+		PathPattern:        "/healthz",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetHealthcheckInfoReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetHealthcheckInfoOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
-  MatchmakingHealthz matchmaking healthz API
+  HandlerV3Healthz handler v3 healthz API
 */
-func (a *Client) MatchmakingHealthz(params *MatchmakingHealthzParams, authInfo runtime.ClientAuthInfoWriter) (*MatchmakingHealthzOK, error) {
+func (a *Client) HandlerV3Healthz(params *HandlerV3HealthzParams, authInfo runtime.ClientAuthInfoWriter) (*HandlerV3HealthzOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewMatchmakingHealthzParams()
+		params = NewHandlerV3HealthzParams()
 	}
 
 	if params.Context == nil {
@@ -93,14 +132,14 @@ func (a *Client) MatchmakingHealthz(params *MatchmakingHealthzParams, authInfo r
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "matchmakingHealthz",
+		ID:                 "handlerV3Healthz",
 		Method:             "GET",
 		PathPattern:        "/matchmaking/healthz",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &MatchmakingHealthzReader{formats: a.formats},
+		Reader:             &HandlerV3HealthzReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -111,8 +150,46 @@ func (a *Client) MatchmakingHealthz(params *MatchmakingHealthzParams, authInfo r
 
 	switch v := result.(type) {
 
-	case *MatchmakingHealthzOK:
+	case *HandlerV3HealthzOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) HandlerV3HealthzShort(params *HandlerV3HealthzParams, authInfo runtime.ClientAuthInfoWriter) (*HandlerV3HealthzOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewHandlerV3HealthzParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "handlerV3Healthz",
+		Method:             "GET",
+		PathPattern:        "/matchmaking/healthz",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &HandlerV3HealthzReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *HandlerV3HealthzOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -139,7 +216,7 @@ func (a *Client) PublicGetMessages(params *PublicGetMessagesParams, authInfo run
 		PathPattern:        "/matchmaking/v1/messages",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicGetMessagesReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -154,10 +231,51 @@ func (a *Client) PublicGetMessages(params *PublicGetMessagesParams, authInfo run
 
 	case *PublicGetMessagesOK:
 		return v, nil, nil
+
 	case *PublicGetMessagesInternalServerError:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicGetMessagesShort(params *PublicGetMessagesParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetMessagesOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetMessagesParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicGetMessages",
+		Method:             "GET",
+		PathPattern:        "/matchmaking/v1/messages",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicGetMessagesReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetMessagesOK:
+		return v, nil
+	case *PublicGetMessagesInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -180,7 +298,7 @@ func (a *Client) VersionCheckHandler(params *VersionCheckHandlerParams, authInfo
 		PathPattern:        "/matchmaking/version",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &VersionCheckHandlerReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -195,6 +313,44 @@ func (a *Client) VersionCheckHandler(params *VersionCheckHandlerParams, authInfo
 
 	case *VersionCheckHandlerOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) VersionCheckHandlerShort(params *VersionCheckHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*VersionCheckHandlerOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewVersionCheckHandlerParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "versionCheckHandler",
+		Method:             "GET",
+		PathPattern:        "/matchmaking/version",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &VersionCheckHandlerReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *VersionCheckHandlerOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}

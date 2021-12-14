@@ -30,12 +30,13 @@ type Client struct {
 // ClientService is the interface for Client methods
 type ClientService interface {
 	GetEventSpecificUserV2Handler(params *GetEventSpecificUserV2HandlerParams, authInfo runtime.ClientAuthInfoWriter) (*GetEventSpecificUserV2HandlerOK, *GetEventSpecificUserV2HandlerBadRequest, *GetEventSpecificUserV2HandlerUnauthorized, *GetEventSpecificUserV2HandlerForbidden, *GetEventSpecificUserV2HandlerNotFound, *GetEventSpecificUserV2HandlerInternalServerError, *GetEventSpecificUserV2HandlerNotImplemented, error)
-
+	GetEventSpecificUserV2HandlerShort(params *GetEventSpecificUserV2HandlerParams, authInfo runtime.ClientAuthInfoWriter) (*GetEventSpecificUserV2HandlerOK, error)
 	GetPublicEditHistory(params *GetPublicEditHistoryParams, authInfo runtime.ClientAuthInfoWriter) (*GetPublicEditHistoryOK, *GetPublicEditHistoryBadRequest, *GetPublicEditHistoryUnauthorized, *GetPublicEditHistoryForbidden, *GetPublicEditHistoryNotFound, *GetPublicEditHistoryInternalServerError, *GetPublicEditHistoryNotImplemented, error)
-
+	GetPublicEditHistoryShort(params *GetPublicEditHistoryParams, authInfo runtime.ClientAuthInfoWriter) (*GetPublicEditHistoryOK, error)
 	GetUserEventsV2Public(params *GetUserEventsV2PublicParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserEventsV2PublicOK, *GetUserEventsV2PublicBadRequest, *GetUserEventsV2PublicUnauthorized, *GetUserEventsV2PublicForbidden, *GetUserEventsV2PublicNotFound, *GetUserEventsV2PublicInternalServerError, *GetUserEventsV2PublicNotImplemented, error)
-
+	GetUserEventsV2PublicShort(params *GetUserEventsV2PublicParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserEventsV2PublicOK, error)
 	QueryEventStreamHandler(params *QueryEventStreamHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*QueryEventStreamHandlerOK, *QueryEventStreamHandlerBadRequest, *QueryEventStreamHandlerUnauthorized, *QueryEventStreamHandlerForbidden, *QueryEventStreamHandlerNotFound, *QueryEventStreamHandlerInternalServerError, *QueryEventStreamHandlerNotImplemented, error)
+	QueryEventStreamHandlerShort(params *QueryEventStreamHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*QueryEventStreamHandlerOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -43,7 +44,7 @@ type ClientService interface {
 /*
   GetEventSpecificUserV2Handler gets events from a specific user
 
-  Required permission <code>ADMIN:NAMESPACE:{namespace}:EVENT [READ]</code>and scope <code>analytics</code>
+  Required permission &lt;code&gt;ADMIN:NAMESPACE:{namespace}:EVENT [READ]&lt;/code&gt;and scope &lt;code&gt;analytics&lt;/code&gt;
 */
 func (a *Client) GetEventSpecificUserV2Handler(params *GetEventSpecificUserV2HandlerParams, authInfo runtime.ClientAuthInfoWriter) (*GetEventSpecificUserV2HandlerOK, *GetEventSpecificUserV2HandlerBadRequest, *GetEventSpecificUserV2HandlerUnauthorized, *GetEventSpecificUserV2HandlerForbidden, *GetEventSpecificUserV2HandlerNotFound, *GetEventSpecificUserV2HandlerInternalServerError, *GetEventSpecificUserV2HandlerNotImplemented, error) {
 	// TODO: Validate the params before sending
@@ -61,7 +62,7 @@ func (a *Client) GetEventSpecificUserV2Handler(params *GetEventSpecificUserV2Han
 		PathPattern:        "/event/v2/admin/namespaces/{namespace}/users/{userId}/event",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetEventSpecificUserV2HandlerReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -76,36 +77,92 @@ func (a *Client) GetEventSpecificUserV2Handler(params *GetEventSpecificUserV2Han
 
 	case *GetEventSpecificUserV2HandlerOK:
 		return v, nil, nil, nil, nil, nil, nil, nil
+
 	case *GetEventSpecificUserV2HandlerBadRequest:
 		return nil, v, nil, nil, nil, nil, nil, nil
+
 	case *GetEventSpecificUserV2HandlerUnauthorized:
 		return nil, nil, v, nil, nil, nil, nil, nil
+
 	case *GetEventSpecificUserV2HandlerForbidden:
 		return nil, nil, nil, v, nil, nil, nil, nil
+
 	case *GetEventSpecificUserV2HandlerNotFound:
 		return nil, nil, nil, nil, v, nil, nil, nil
+
 	case *GetEventSpecificUserV2HandlerInternalServerError:
 		return nil, nil, nil, nil, nil, v, nil, nil
+
 	case *GetEventSpecificUserV2HandlerNotImplemented:
 		return nil, nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetEventSpecificUserV2HandlerShort(params *GetEventSpecificUserV2HandlerParams, authInfo runtime.ClientAuthInfoWriter) (*GetEventSpecificUserV2HandlerOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetEventSpecificUserV2HandlerParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetEventSpecificUserV2Handler",
+		Method:             "GET",
+		PathPattern:        "/event/v2/admin/namespaces/{namespace}/users/{userId}/event",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetEventSpecificUserV2HandlerReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetEventSpecificUserV2HandlerOK:
+		return v, nil
+	case *GetEventSpecificUserV2HandlerBadRequest:
+		return nil, v
+	case *GetEventSpecificUserV2HandlerUnauthorized:
+		return nil, v
+	case *GetEventSpecificUserV2HandlerForbidden:
+		return nil, v
+	case *GetEventSpecificUserV2HandlerNotFound:
+		return nil, v
+	case *GetEventSpecificUserV2HandlerInternalServerError:
+		return nil, v
+	case *GetEventSpecificUserV2HandlerNotImplemented:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   GetPublicEditHistory gets a user edit history based on the provided type
 
-  <p>Available Type: </p>
-			<ul>
-				<li>email</li>
-				<li>password</li>
-				<li>displayname</li>
-				<li>dateofbirth</li>
-				<li>country</li>
-				<li>language</li>
-			</ul>
-			<p>Requires a valid user access token</p>
+  &lt;p&gt;Available Type: &lt;/p&gt;
+			&lt;ul&gt;
+				&lt;li&gt;email&lt;/li&gt;
+				&lt;li&gt;password&lt;/li&gt;
+				&lt;li&gt;displayname&lt;/li&gt;
+				&lt;li&gt;dateofbirth&lt;/li&gt;
+				&lt;li&gt;country&lt;/li&gt;
+				&lt;li&gt;language&lt;/li&gt;
+			&lt;/ul&gt;
+			&lt;p&gt;Requires a valid user access token&lt;/p&gt;
 */
 func (a *Client) GetPublicEditHistory(params *GetPublicEditHistoryParams, authInfo runtime.ClientAuthInfoWriter) (*GetPublicEditHistoryOK, *GetPublicEditHistoryBadRequest, *GetPublicEditHistoryUnauthorized, *GetPublicEditHistoryForbidden, *GetPublicEditHistoryNotFound, *GetPublicEditHistoryInternalServerError, *GetPublicEditHistoryNotImplemented, error) {
 	// TODO: Validate the params before sending
@@ -123,7 +180,7 @@ func (a *Client) GetPublicEditHistory(params *GetPublicEditHistoryParams, authIn
 		PathPattern:        "/event/v2/public/namespaces/{namespace}/users/{userId}/edithistory",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetPublicEditHistoryReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -138,27 +195,83 @@ func (a *Client) GetPublicEditHistory(params *GetPublicEditHistoryParams, authIn
 
 	case *GetPublicEditHistoryOK:
 		return v, nil, nil, nil, nil, nil, nil, nil
+
 	case *GetPublicEditHistoryBadRequest:
 		return nil, v, nil, nil, nil, nil, nil, nil
+
 	case *GetPublicEditHistoryUnauthorized:
 		return nil, nil, v, nil, nil, nil, nil, nil
+
 	case *GetPublicEditHistoryForbidden:
 		return nil, nil, nil, v, nil, nil, nil, nil
+
 	case *GetPublicEditHistoryNotFound:
 		return nil, nil, nil, nil, v, nil, nil, nil
+
 	case *GetPublicEditHistoryInternalServerError:
 		return nil, nil, nil, nil, nil, v, nil, nil
+
 	case *GetPublicEditHistoryNotImplemented:
 		return nil, nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetPublicEditHistoryShort(params *GetPublicEditHistoryParams, authInfo runtime.ClientAuthInfoWriter) (*GetPublicEditHistoryOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetPublicEditHistoryParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetPublicEditHistory",
+		Method:             "GET",
+		PathPattern:        "/event/v2/public/namespaces/{namespace}/users/{userId}/edithistory",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetPublicEditHistoryReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetPublicEditHistoryOK:
+		return v, nil
+	case *GetPublicEditHistoryBadRequest:
+		return nil, v
+	case *GetPublicEditHistoryUnauthorized:
+		return nil, v
+	case *GetPublicEditHistoryForbidden:
+		return nil, v
+	case *GetPublicEditHistoryNotFound:
+		return nil, v
+	case *GetPublicEditHistoryInternalServerError:
+		return nil, v
+	case *GetPublicEditHistoryNotImplemented:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   GetUserEventsV2Public gets events from a specific user
 
-  <p>Requires valid user access token</p>
+  &lt;p&gt;Requires valid user access token&lt;/p&gt;
 */
 func (a *Client) GetUserEventsV2Public(params *GetUserEventsV2PublicParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserEventsV2PublicOK, *GetUserEventsV2PublicBadRequest, *GetUserEventsV2PublicUnauthorized, *GetUserEventsV2PublicForbidden, *GetUserEventsV2PublicNotFound, *GetUserEventsV2PublicInternalServerError, *GetUserEventsV2PublicNotImplemented, error) {
 	// TODO: Validate the params before sending
@@ -176,7 +289,7 @@ func (a *Client) GetUserEventsV2Public(params *GetUserEventsV2PublicParams, auth
 		PathPattern:        "/event/v2/public/namespaces/{namespace}/users/{userId}/event",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetUserEventsV2PublicReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -191,30 +304,86 @@ func (a *Client) GetUserEventsV2Public(params *GetUserEventsV2PublicParams, auth
 
 	case *GetUserEventsV2PublicOK:
 		return v, nil, nil, nil, nil, nil, nil, nil
+
 	case *GetUserEventsV2PublicBadRequest:
 		return nil, v, nil, nil, nil, nil, nil, nil
+
 	case *GetUserEventsV2PublicUnauthorized:
 		return nil, nil, v, nil, nil, nil, nil, nil
+
 	case *GetUserEventsV2PublicForbidden:
 		return nil, nil, nil, v, nil, nil, nil, nil
+
 	case *GetUserEventsV2PublicNotFound:
 		return nil, nil, nil, nil, v, nil, nil, nil
+
 	case *GetUserEventsV2PublicInternalServerError:
 		return nil, nil, nil, nil, nil, v, nil, nil
+
 	case *GetUserEventsV2PublicNotImplemented:
 		return nil, nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetUserEventsV2PublicShort(params *GetUserEventsV2PublicParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserEventsV2PublicOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetUserEventsV2PublicParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetUserEventsV2Public",
+		Method:             "GET",
+		PathPattern:        "/event/v2/public/namespaces/{namespace}/users/{userId}/event",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetUserEventsV2PublicReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetUserEventsV2PublicOK:
+		return v, nil
+	case *GetUserEventsV2PublicBadRequest:
+		return nil, v
+	case *GetUserEventsV2PublicUnauthorized:
+		return nil, v
+	case *GetUserEventsV2PublicForbidden:
+		return nil, v
+	case *GetUserEventsV2PublicNotFound:
+		return nil, v
+	case *GetUserEventsV2PublicInternalServerError:
+		return nil, v
+	case *GetUserEventsV2PublicNotImplemented:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   QueryEventStreamHandler as generic query to get a set of events based on the provided filters
 
-  <p>This endpoint is using POST which is somewhat unfamiliar,
-			but it's logical that we have to send/post a filter (search term) in order to get the data.</p>
-			<p>This endpoint will not return anything if you give it an empty filters in the request body. </p>
-			<p>Required permission <code>ADMIN:NAMESPACE:{namespace}:EVENT [READ]</code> and scope <code>"+scope+"</code></p>
+  &lt;p&gt;This endpoint is using POST which is somewhat unfamiliar,
+			but it&#39;s logical that we have to send/post a filter (search term) in order to get the data.&lt;/p&gt;
+			&lt;p&gt;This endpoint will not return anything if you give it an empty filters in the request body. &lt;/p&gt;
+			&lt;p&gt;Required permission &lt;code&gt;ADMIN:NAMESPACE:{namespace}:EVENT [READ]&lt;/code&gt; and scope &lt;code&gt;&#34;+scope+&#34;&lt;/code&gt;&lt;/p&gt;
 */
 func (a *Client) QueryEventStreamHandler(params *QueryEventStreamHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*QueryEventStreamHandlerOK, *QueryEventStreamHandlerBadRequest, *QueryEventStreamHandlerUnauthorized, *QueryEventStreamHandlerForbidden, *QueryEventStreamHandlerNotFound, *QueryEventStreamHandlerInternalServerError, *QueryEventStreamHandlerNotImplemented, error) {
 	// TODO: Validate the params before sending
@@ -232,7 +401,7 @@ func (a *Client) QueryEventStreamHandler(params *QueryEventStreamHandlerParams, 
 		PathPattern:        "/event/v2/admin/namespaces/{namespace}/query",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &QueryEventStreamHandlerReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -247,20 +416,76 @@ func (a *Client) QueryEventStreamHandler(params *QueryEventStreamHandlerParams, 
 
 	case *QueryEventStreamHandlerOK:
 		return v, nil, nil, nil, nil, nil, nil, nil
+
 	case *QueryEventStreamHandlerBadRequest:
 		return nil, v, nil, nil, nil, nil, nil, nil
+
 	case *QueryEventStreamHandlerUnauthorized:
 		return nil, nil, v, nil, nil, nil, nil, nil
+
 	case *QueryEventStreamHandlerForbidden:
 		return nil, nil, nil, v, nil, nil, nil, nil
+
 	case *QueryEventStreamHandlerNotFound:
 		return nil, nil, nil, nil, v, nil, nil, nil
+
 	case *QueryEventStreamHandlerInternalServerError:
 		return nil, nil, nil, nil, nil, v, nil, nil
+
 	case *QueryEventStreamHandlerNotImplemented:
 		return nil, nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) QueryEventStreamHandlerShort(params *QueryEventStreamHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*QueryEventStreamHandlerOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewQueryEventStreamHandlerParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "QueryEventStreamHandler",
+		Method:             "POST",
+		PathPattern:        "/event/v2/admin/namespaces/{namespace}/query",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &QueryEventStreamHandlerReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *QueryEventStreamHandlerOK:
+		return v, nil
+	case *QueryEventStreamHandlerBadRequest:
+		return nil, v
+	case *QueryEventStreamHandlerUnauthorized:
+		return nil, v
+	case *QueryEventStreamHandlerForbidden:
+		return nil, v
+	case *QueryEventStreamHandlerNotFound:
+		return nil, v
+	case *QueryEventStreamHandlerInternalServerError:
+		return nil, v
+	case *QueryEventStreamHandlerNotImplemented:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 

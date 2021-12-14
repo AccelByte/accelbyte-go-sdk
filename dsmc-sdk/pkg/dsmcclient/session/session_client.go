@@ -30,10 +30,11 @@ type Client struct {
 // ClientService is the interface for Client methods
 type ClientService interface {
 	ClaimServer(params *ClaimServerParams, authInfo runtime.ClientAuthInfoWriter) (*ClaimServerNoContent, *ClaimServerUnauthorized, *ClaimServerNotFound, *ClaimServerConflict, *ClaimServerStatus425, *ClaimServerInternalServerError, *ClaimServerServiceUnavailable, error)
-
+	ClaimServerShort(params *ClaimServerParams, authInfo runtime.ClientAuthInfoWriter) (*ClaimServerNoContent, error)
 	CreateSession(params *CreateSessionParams, authInfo runtime.ClientAuthInfoWriter) (*CreateSessionOK, *CreateSessionBadRequest, *CreateSessionUnauthorized, *CreateSessionNotFound, *CreateSessionConflict, *CreateSessionInternalServerError, *CreateSessionServiceUnavailable, error)
-
+	CreateSessionShort(params *CreateSessionParams, authInfo runtime.ClientAuthInfoWriter) (*CreateSessionOK, error)
 	GetSession(params *GetSessionParams, authInfo runtime.ClientAuthInfoWriter) (*GetSessionOK, *GetSessionUnauthorized, *GetSessionNotFound, *GetSessionInternalServerError, error)
+	GetSessionShort(params *GetSessionParams, authInfo runtime.ClientAuthInfoWriter) (*GetSessionOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -63,7 +64,7 @@ func (a *Client) ClaimServer(params *ClaimServerParams, authInfo runtime.ClientA
 		PathPattern:        "/dsmcontroller/namespaces/{namespace}/sessions/claim",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &ClaimServerReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -78,20 +79,76 @@ func (a *Client) ClaimServer(params *ClaimServerParams, authInfo runtime.ClientA
 
 	case *ClaimServerNoContent:
 		return v, nil, nil, nil, nil, nil, nil, nil
+
 	case *ClaimServerUnauthorized:
 		return nil, v, nil, nil, nil, nil, nil, nil
+
 	case *ClaimServerNotFound:
 		return nil, nil, v, nil, nil, nil, nil, nil
+
 	case *ClaimServerConflict:
 		return nil, nil, nil, v, nil, nil, nil, nil
+
 	case *ClaimServerStatus425:
 		return nil, nil, nil, nil, v, nil, nil, nil
+
 	case *ClaimServerInternalServerError:
 		return nil, nil, nil, nil, nil, v, nil, nil
+
 	case *ClaimServerServiceUnavailable:
 		return nil, nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) ClaimServerShort(params *ClaimServerParams, authInfo runtime.ClientAuthInfoWriter) (*ClaimServerNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewClaimServerParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "ClaimServer",
+		Method:             "POST",
+		PathPattern:        "/dsmcontroller/namespaces/{namespace}/sessions/claim",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ClaimServerReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *ClaimServerNoContent:
+		return v, nil
+	case *ClaimServerUnauthorized:
+		return nil, v
+	case *ClaimServerNotFound:
+		return nil, v
+	case *ClaimServerConflict:
+		return nil, v
+	case *ClaimServerStatus425:
+		return nil, v
+	case *ClaimServerInternalServerError:
+		return nil, v
+	case *ClaimServerServiceUnavailable:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -126,7 +183,7 @@ func (a *Client) CreateSession(params *CreateSessionParams, authInfo runtime.Cli
 		PathPattern:        "/dsmcontroller/namespaces/{namespace}/sessions",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &CreateSessionReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -141,20 +198,76 @@ func (a *Client) CreateSession(params *CreateSessionParams, authInfo runtime.Cli
 
 	case *CreateSessionOK:
 		return v, nil, nil, nil, nil, nil, nil, nil
+
 	case *CreateSessionBadRequest:
 		return nil, v, nil, nil, nil, nil, nil, nil
+
 	case *CreateSessionUnauthorized:
 		return nil, nil, v, nil, nil, nil, nil, nil
+
 	case *CreateSessionNotFound:
 		return nil, nil, nil, v, nil, nil, nil, nil
+
 	case *CreateSessionConflict:
 		return nil, nil, nil, nil, v, nil, nil, nil
+
 	case *CreateSessionInternalServerError:
 		return nil, nil, nil, nil, nil, v, nil, nil
+
 	case *CreateSessionServiceUnavailable:
 		return nil, nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) CreateSessionShort(params *CreateSessionParams, authInfo runtime.ClientAuthInfoWriter) (*CreateSessionOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreateSessionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "CreateSession",
+		Method:             "POST",
+		PathPattern:        "/dsmcontroller/namespaces/{namespace}/sessions",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CreateSessionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *CreateSessionOK:
+		return v, nil
+	case *CreateSessionBadRequest:
+		return nil, v
+	case *CreateSessionUnauthorized:
+		return nil, v
+	case *CreateSessionNotFound:
+		return nil, v
+	case *CreateSessionConflict:
+		return nil, v
+	case *CreateSessionInternalServerError:
+		return nil, v
+	case *CreateSessionServiceUnavailable:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -185,7 +298,7 @@ func (a *Client) GetSession(params *GetSessionParams, authInfo runtime.ClientAut
 		PathPattern:        "/dsmcontroller/namespaces/{namespace}/sessions/{sessionID}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetSessionReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -200,14 +313,61 @@ func (a *Client) GetSession(params *GetSessionParams, authInfo runtime.ClientAut
 
 	case *GetSessionOK:
 		return v, nil, nil, nil, nil
+
 	case *GetSessionUnauthorized:
 		return nil, v, nil, nil, nil
+
 	case *GetSessionNotFound:
 		return nil, nil, v, nil, nil
+
 	case *GetSessionInternalServerError:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetSessionShort(params *GetSessionParams, authInfo runtime.ClientAuthInfoWriter) (*GetSessionOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetSessionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetSession",
+		Method:             "GET",
+		PathPattern:        "/dsmcontroller/namespaces/{namespace}/sessions/{sessionID}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetSessionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetSessionOK:
+		return v, nil
+	case *GetSessionUnauthorized:
+		return nil, v
+	case *GetSessionNotFound:
+		return nil, v
+	case *GetSessionInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 

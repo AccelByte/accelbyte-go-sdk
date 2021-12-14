@@ -61,7 +61,7 @@ func (o *PublicUpdateUserV3Reader) ReadResponse(response runtime.ClientResponse,
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /iam/v3/public/namespaces/{namespace}/users/me returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PATCH /iam/v3/public/namespaces/{namespace}/users/me returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -79,7 +79,7 @@ type PublicUpdateUserV3OK struct {
 }
 
 func (o *PublicUpdateUserV3OK) Error() string {
-	return fmt.Sprintf("[PUT /iam/v3/public/namespaces/{namespace}/users/me][%d] publicUpdateUserV3OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PATCH /iam/v3/public/namespaces/{namespace}/users/me][%d] publicUpdateUserV3OK  %+v", 200, o.Payload)
 }
 
 func (o *PublicUpdateUserV3OK) GetPayload() []*iamclientmodels.ModelUserResponseV3 {
@@ -110,7 +110,7 @@ type PublicUpdateUserV3BadRequest struct {
 }
 
 func (o *PublicUpdateUserV3BadRequest) Error() string {
-	return fmt.Sprintf("[PUT /iam/v3/public/namespaces/{namespace}/users/me][%d] publicUpdateUserV3BadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PATCH /iam/v3/public/namespaces/{namespace}/users/me][%d] publicUpdateUserV3BadRequest  %+v", 400, o.Payload)
 }
 
 func (o *PublicUpdateUserV3BadRequest) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -143,7 +143,7 @@ type PublicUpdateUserV3Unauthorized struct {
 }
 
 func (o *PublicUpdateUserV3Unauthorized) Error() string {
-	return fmt.Sprintf("[PUT /iam/v3/public/namespaces/{namespace}/users/me][%d] publicUpdateUserV3Unauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[PATCH /iam/v3/public/namespaces/{namespace}/users/me][%d] publicUpdateUserV3Unauthorized  %+v", 401, o.Payload)
 }
 
 func (o *PublicUpdateUserV3Unauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -176,7 +176,7 @@ type PublicUpdateUserV3Conflict struct {
 }
 
 func (o *PublicUpdateUserV3Conflict) Error() string {
-	return fmt.Sprintf("[PUT /iam/v3/public/namespaces/{namespace}/users/me][%d] publicUpdateUserV3Conflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[PATCH /iam/v3/public/namespaces/{namespace}/users/me][%d] publicUpdateUserV3Conflict  %+v", 409, o.Payload)
 }
 
 func (o *PublicUpdateUserV3Conflict) GetPayload() *iamclientmodels.RestErrorResponse {
@@ -208,7 +208,7 @@ type PublicUpdateUserV3InternalServerError struct {
 }
 
 func (o *PublicUpdateUserV3InternalServerError) Error() string {
-	return fmt.Sprintf("[PUT /iam/v3/public/namespaces/{namespace}/users/me][%d] publicUpdateUserV3InternalServerError ", 500)
+	return fmt.Sprintf("[PATCH /iam/v3/public/namespaces/{namespace}/users/me][%d] publicUpdateUserV3InternalServerError ", 500)
 }
 
 func (o *PublicUpdateUserV3InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

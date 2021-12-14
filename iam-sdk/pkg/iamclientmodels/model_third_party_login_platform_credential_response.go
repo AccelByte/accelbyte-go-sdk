@@ -49,6 +49,10 @@ type ModelThirdPartyLoginPlatformCredentialResponse struct {
 	// Required: true
 	IsActive *bool `json:"IsActive"`
 
+	// key ID
+	// Required: true
+	KeyID *string `json:"KeyID"`
+
 	// namespace
 	// Required: true
 	Namespace *string `json:"Namespace"`
@@ -68,6 +72,10 @@ type ModelThirdPartyLoginPlatformCredentialResponse struct {
 	// secret
 	// Required: true
 	Secret *string `json:"Secret"`
+
+	// team ID
+	// Required: true
+	TeamID *string `json:"TeamID"`
 }
 
 // Validate validates this model third party login platform credential response
@@ -106,6 +114,10 @@ func (m *ModelThirdPartyLoginPlatformCredentialResponse) Validate(formats strfmt
 		res = append(res, err)
 	}
 
+	if err := m.validateKeyID(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateNamespace(formats); err != nil {
 		res = append(res, err)
 	}
@@ -123,6 +135,10 @@ func (m *ModelThirdPartyLoginPlatformCredentialResponse) Validate(formats strfmt
 	}
 
 	if err := m.validateSecret(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateTeamID(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -204,6 +220,15 @@ func (m *ModelThirdPartyLoginPlatformCredentialResponse) validateIsActive(format
 	return nil
 }
 
+func (m *ModelThirdPartyLoginPlatformCredentialResponse) validateKeyID(formats strfmt.Registry) error {
+
+	if err := validate.Required("KeyID", "body", m.KeyID); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *ModelThirdPartyLoginPlatformCredentialResponse) validateNamespace(formats strfmt.Registry) error {
 
 	if err := validate.Required("Namespace", "body", m.Namespace); err != nil {
@@ -243,6 +268,15 @@ func (m *ModelThirdPartyLoginPlatformCredentialResponse) validateRedirectURI(for
 func (m *ModelThirdPartyLoginPlatformCredentialResponse) validateSecret(formats strfmt.Registry) error {
 
 	if err := validate.Required("Secret", "body", m.Secret); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelThirdPartyLoginPlatformCredentialResponse) validateTeamID(formats strfmt.Registry) error {
+
+	if err := validate.Required("TeamID", "body", m.TeamID); err != nil {
 		return err
 	}
 

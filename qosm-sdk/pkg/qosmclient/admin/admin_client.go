@@ -30,8 +30,9 @@ type Client struct {
 // ClientService is the interface for Client methods
 type ClientService interface {
 	DeleteServer(params *DeleteServerParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteServerNoContent, *DeleteServerInternalServerError, error)
-
+	DeleteServerShort(params *DeleteServerParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteServerNoContent, error)
 	SetServerAlias(params *SetServerAliasParams, authInfo runtime.ClientAuthInfoWriter) (*SetServerAliasNoContent, *SetServerAliasBadRequest, *SetServerAliasNotFound, *SetServerAliasInternalServerError, error)
+	SetServerAliasShort(params *SetServerAliasParams, authInfo runtime.ClientAuthInfoWriter) (*SetServerAliasNoContent, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -62,7 +63,7 @@ func (a *Client) DeleteServer(params *DeleteServerParams, authInfo runtime.Clien
 		PathPattern:        "/qosm/admin/servers/{region}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteServerReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -77,10 +78,51 @@ func (a *Client) DeleteServer(params *DeleteServerParams, authInfo runtime.Clien
 
 	case *DeleteServerNoContent:
 		return v, nil, nil
+
 	case *DeleteServerInternalServerError:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) DeleteServerShort(params *DeleteServerParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteServerNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteServerParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "DeleteServer",
+		Method:             "DELETE",
+		PathPattern:        "/qosm/admin/servers/{region}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteServerReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeleteServerNoContent:
+		return v, nil
+	case *DeleteServerInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -91,7 +133,7 @@ func (a *Client) DeleteServer(params *DeleteServerParams, authInfo runtime.Clien
 Required permission: ADMIN:QOS:SERVER [UDPATE]
 Required scope: social
 
-This endpoint modifies a registered QoS service's region alias.
+This endpoint modifies a registered QoS service&#39;s region alias.
 ```
 */
 func (a *Client) SetServerAlias(params *SetServerAliasParams, authInfo runtime.ClientAuthInfoWriter) (*SetServerAliasNoContent, *SetServerAliasBadRequest, *SetServerAliasNotFound, *SetServerAliasInternalServerError, error) {
@@ -110,7 +152,7 @@ func (a *Client) SetServerAlias(params *SetServerAliasParams, authInfo runtime.C
 		PathPattern:        "/qosm/admin/servers/{region}/alias",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &SetServerAliasReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -125,14 +167,61 @@ func (a *Client) SetServerAlias(params *SetServerAliasParams, authInfo runtime.C
 
 	case *SetServerAliasNoContent:
 		return v, nil, nil, nil, nil
+
 	case *SetServerAliasBadRequest:
 		return nil, v, nil, nil, nil
+
 	case *SetServerAliasNotFound:
 		return nil, nil, v, nil, nil
+
 	case *SetServerAliasInternalServerError:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) SetServerAliasShort(params *SetServerAliasParams, authInfo runtime.ClientAuthInfoWriter) (*SetServerAliasNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewSetServerAliasParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "SetServerAlias",
+		Method:             "POST",
+		PathPattern:        "/qosm/admin/servers/{region}/alias",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &SetServerAliasReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *SetServerAliasNoContent:
+		return v, nil
+	case *SetServerAliasBadRequest:
+		return nil, v
+	case *SetServerAliasNotFound:
+		return nil, v
+	case *SetServerAliasInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 

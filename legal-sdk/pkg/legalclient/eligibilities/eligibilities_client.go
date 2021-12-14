@@ -30,8 +30,9 @@ type Client struct {
 // ClientService is the interface for Client methods
 type ClientService interface {
 	RetrieveEligibilitiesPublic(params *RetrieveEligibilitiesPublicParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveEligibilitiesPublicOK, error)
-
+	RetrieveEligibilitiesPublicShort(params *RetrieveEligibilitiesPublicParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveEligibilitiesPublicOK, error)
 	RetrieveEligibilitiesPublicIndirect(params *RetrieveEligibilitiesPublicIndirectParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveEligibilitiesPublicIndirectOK, error)
+	RetrieveEligibilitiesPublicIndirectShort(params *RetrieveEligibilitiesPublicIndirectParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveEligibilitiesPublicIndirectOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -39,7 +40,7 @@ type ClientService interface {
 /*
   RetrieveEligibilitiesPublic checks user legal eligibility
 
-  Retrieve the active policies and its conformance status by user.<br>This process supports cross-namespace checking, that means if the active policy already accepted by the same user in other namespace, then it will be considered as eligible.<br/><br/>Other detail info: <ul><li><i>Required permission</i>: login user</li></ul>
+  Retrieve the active policies and its conformance status by user.&lt;br&gt;This process supports cross-namespace checking, that means if the active policy already accepted by the same user in other namespace, then it will be considered as eligible.&lt;br/&gt;&lt;br/&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: login user&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) RetrieveEligibilitiesPublic(params *RetrieveEligibilitiesPublicParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveEligibilitiesPublicOK, error) {
 	// TODO: Validate the params before sending
@@ -57,7 +58,7 @@ func (a *Client) RetrieveEligibilitiesPublic(params *RetrieveEligibilitiesPublic
 		PathPattern:        "/public/eligibilities/namespaces/{namespace}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &RetrieveEligibilitiesPublicReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -72,6 +73,44 @@ func (a *Client) RetrieveEligibilitiesPublic(params *RetrieveEligibilitiesPublic
 
 	case *RetrieveEligibilitiesPublicOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) RetrieveEligibilitiesPublicShort(params *RetrieveEligibilitiesPublicParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveEligibilitiesPublicOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRetrieveEligibilitiesPublicParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "retrieveEligibilitiesPublic",
+		Method:             "GET",
+		PathPattern:        "/public/eligibilities/namespaces/{namespace}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &RetrieveEligibilitiesPublicReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *RetrieveEligibilitiesPublicOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -80,7 +119,7 @@ func (a *Client) RetrieveEligibilitiesPublic(params *RetrieveEligibilitiesPublic
 /*
   RetrieveEligibilitiesPublicIndirect checks user legal eligibility
 
-  Retrieve the active policies and its conformance status by user. This endpoint used by Authentication Service during user login.<br>This process supports cross-namespace checking, that means if the active policy already accepted by the same user in other namespace, then it will be considered as eligible.<br/><br/>Other detail info: <ul><li><i>Required permission</i>: login user</li></ul>
+  Retrieve the active policies and its conformance status by user. This endpoint used by Authentication Service during user login.&lt;br&gt;This process supports cross-namespace checking, that means if the active policy already accepted by the same user in other namespace, then it will be considered as eligible.&lt;br/&gt;&lt;br/&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: login user&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) RetrieveEligibilitiesPublicIndirect(params *RetrieveEligibilitiesPublicIndirectParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveEligibilitiesPublicIndirectOK, error) {
 	// TODO: Validate the params before sending
@@ -98,7 +137,7 @@ func (a *Client) RetrieveEligibilitiesPublicIndirect(params *RetrieveEligibiliti
 		PathPattern:        "/public/eligibilities/namespaces/{namespace}/countries/{countryCode}/clients/{clientId}/users/{userId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &RetrieveEligibilitiesPublicIndirectReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -113,6 +152,44 @@ func (a *Client) RetrieveEligibilitiesPublicIndirect(params *RetrieveEligibiliti
 
 	case *RetrieveEligibilitiesPublicIndirectOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) RetrieveEligibilitiesPublicIndirectShort(params *RetrieveEligibilitiesPublicIndirectParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveEligibilitiesPublicIndirectOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRetrieveEligibilitiesPublicIndirectParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "retrieveEligibilitiesPublicIndirect",
+		Method:             "GET",
+		PathPattern:        "/public/eligibilities/namespaces/{namespace}/countries/{countryCode}/clients/{clientId}/users/{userId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &RetrieveEligibilitiesPublicIndirectReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *RetrieveEligibilitiesPublicIndirectOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}

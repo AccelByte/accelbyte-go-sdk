@@ -30,30 +30,33 @@ type Client struct {
 // ClientService is the interface for Client methods
 type ClientService interface {
 	AdminAddUserRoleV4(params *AdminAddUserRoleV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminAddUserRoleV4OK, *AdminAddUserRoleV4BadRequest, *AdminAddUserRoleV4Forbidden, *AdminAddUserRoleV4NotFound, *AdminAddUserRoleV4UnprocessableEntity, *AdminAddUserRoleV4InternalServerError, error)
-
+	AdminAddUserRoleV4Short(params *AdminAddUserRoleV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminAddUserRoleV4OK, error)
 	AdminListUserRolesV4(params *AdminListUserRolesV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminListUserRolesV4OK, *AdminListUserRolesV4Forbidden, *AdminListUserRolesV4NotFound, *AdminListUserRolesV4InternalServerError, error)
-
+	AdminListUserRolesV4Short(params *AdminListUserRolesV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminListUserRolesV4OK, error)
 	AdminRemoveUserRoleV4(params *AdminRemoveUserRoleV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminRemoveUserRoleV4NoContent, *AdminRemoveUserRoleV4BadRequest, *AdminRemoveUserRoleV4Forbidden, *AdminRemoveUserRoleV4NotFound, *AdminRemoveUserRoleV4UnprocessableEntity, *AdminRemoveUserRoleV4InternalServerError, error)
-
+	AdminRemoveUserRoleV4Short(params *AdminRemoveUserRoleV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminRemoveUserRoleV4NoContent, error)
 	AdminUpdateMyUserV4(params *AdminUpdateMyUserV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateMyUserV4OK, *AdminUpdateMyUserV4BadRequest, *AdminUpdateMyUserV4Unauthorized, *AdminUpdateMyUserV4Conflict, *AdminUpdateMyUserV4InternalServerError, error)
-
+	AdminUpdateMyUserV4Short(params *AdminUpdateMyUserV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateMyUserV4OK, error)
 	AdminUpdateUserEmailAddressV4(params *AdminUpdateUserEmailAddressV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateUserEmailAddressV4NoContent, *AdminUpdateUserEmailAddressV4BadRequest, *AdminUpdateUserEmailAddressV4Unauthorized, *AdminUpdateUserEmailAddressV4NotFound, *AdminUpdateUserEmailAddressV4Conflict, *AdminUpdateUserEmailAddressV4InternalServerError, error)
-
+	AdminUpdateUserEmailAddressV4Short(params *AdminUpdateUserEmailAddressV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateUserEmailAddressV4NoContent, error)
 	AdminUpdateUserRoleV4(params *AdminUpdateUserRoleV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateUserRoleV4OK, *AdminUpdateUserRoleV4BadRequest, *AdminUpdateUserRoleV4Forbidden, *AdminUpdateUserRoleV4NotFound, *AdminUpdateUserRoleV4UnprocessableEntity, *AdminUpdateUserRoleV4InternalServerError, error)
-
+	AdminUpdateUserRoleV4Short(params *AdminUpdateUserRoleV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateUserRoleV4OK, error)
 	AdminUpdateUserV4(params *AdminUpdateUserV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateUserV4OK, *AdminUpdateUserV4BadRequest, *AdminUpdateUserV4Unauthorized, *AdminUpdateUserV4Forbidden, *AdminUpdateUserV4NotFound, *AdminUpdateUserV4Conflict, *AdminUpdateUserV4InternalServerError, error)
-
+	AdminUpdateUserV4Short(params *AdminUpdateUserV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateUserV4OK, error)
 	CreateUserFromInvitationV4(params *CreateUserFromInvitationV4Params, authInfo runtime.ClientAuthInfoWriter) (*CreateUserFromInvitationV4Created, *CreateUserFromInvitationV4BadRequest, *CreateUserFromInvitationV4NotFound, *CreateUserFromInvitationV4InternalServerError, error)
-
+	CreateUserFromInvitationV4Short(params *CreateUserFromInvitationV4Params, authInfo runtime.ClientAuthInfoWriter) (*CreateUserFromInvitationV4Created, error)
+	PublicCreateTestUserV4(params *PublicCreateTestUserV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateTestUserV4Created, *PublicCreateTestUserV4BadRequest, *PublicCreateTestUserV4NotFound, *PublicCreateTestUserV4Conflict, *PublicCreateTestUserV4InternalServerError, error)
+	PublicCreateTestUserV4Short(params *PublicCreateTestUserV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateTestUserV4Created, error)
 	PublicCreateUserV4(params *PublicCreateUserV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateUserV4Created, *PublicCreateUserV4BadRequest, *PublicCreateUserV4NotFound, *PublicCreateUserV4Conflict, *PublicCreateUserV4InternalServerError, error)
-
+	PublicCreateUserV4Short(params *PublicCreateUserV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateUserV4Created, error)
 	PublicUpdateUserEmailAddressV4(params *PublicUpdateUserEmailAddressV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateUserEmailAddressV4NoContent, *PublicUpdateUserEmailAddressV4BadRequest, *PublicUpdateUserEmailAddressV4Unauthorized, *PublicUpdateUserEmailAddressV4NotFound, *PublicUpdateUserEmailAddressV4Conflict, *PublicUpdateUserEmailAddressV4InternalServerError, error)
-
+	PublicUpdateUserEmailAddressV4Short(params *PublicUpdateUserEmailAddressV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateUserEmailAddressV4NoContent, error)
 	PublicUpdateUserV4(params *PublicUpdateUserV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateUserV4OK, *PublicUpdateUserV4BadRequest, *PublicUpdateUserV4Unauthorized, *PublicUpdateUserV4Conflict, *PublicUpdateUserV4InternalServerError, error)
-
+	PublicUpdateUserV4Short(params *PublicUpdateUserV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateUserV4OK, error)
 	PublicUpgradeHeadlessAccountV4(params *PublicUpgradeHeadlessAccountV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUpgradeHeadlessAccountV4OK, *PublicUpgradeHeadlessAccountV4BadRequest, *PublicUpgradeHeadlessAccountV4Unauthorized, *PublicUpgradeHeadlessAccountV4NotFound, *PublicUpgradeHeadlessAccountV4Conflict, *PublicUpgradeHeadlessAccountV4InternalServerError, error)
-
+	PublicUpgradeHeadlessAccountV4Short(params *PublicUpgradeHeadlessAccountV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUpgradeHeadlessAccountV4OK, error)
 	PublicUpgradeHeadlessAccountWithVerificationCodeV4(params *PublicUpgradeHeadlessAccountWithVerificationCodeV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUpgradeHeadlessAccountWithVerificationCodeV4OK, *PublicUpgradeHeadlessAccountWithVerificationCodeV4BadRequest, *PublicUpgradeHeadlessAccountWithVerificationCodeV4Unauthorized, *PublicUpgradeHeadlessAccountWithVerificationCodeV4Forbidden, *PublicUpgradeHeadlessAccountWithVerificationCodeV4NotFound, *PublicUpgradeHeadlessAccountWithVerificationCodeV4Conflict, *PublicUpgradeHeadlessAccountWithVerificationCodeV4InternalServerError, error)
+	PublicUpgradeHeadlessAccountWithVerificationCodeV4Short(params *PublicUpgradeHeadlessAccountWithVerificationCodeV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUpgradeHeadlessAccountWithVerificationCodeV4OK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -63,7 +66,7 @@ type ClientService interface {
 
   This endpoint requires ADMIN:NAMESPACE:{namespace}:ROLE:USER:* [UPDATE] permission.
 
-New role will be appended to user's current roles. Request body need to specify allowed namespace for given role to support new role restriction.
+New role will be appended to user&#39;s current roles. Request body need to specify allowed namespace for given role to support new role restriction.
 Skipped the check whether the user performing the request is a role manager / assigner since there is a plan to discard the role manager / assigner.
 
 */
@@ -83,7 +86,7 @@ func (a *Client) AdminAddUserRoleV4(params *AdminAddUserRoleV4Params, authInfo r
 		PathPattern:        "/iam/v4/admin/namespaces/{namespace}/users/{userId}/roles",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminAddUserRoleV4Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -98,18 +101,71 @@ func (a *Client) AdminAddUserRoleV4(params *AdminAddUserRoleV4Params, authInfo r
 
 	case *AdminAddUserRoleV4OK:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *AdminAddUserRoleV4BadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *AdminAddUserRoleV4Forbidden:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *AdminAddUserRoleV4NotFound:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *AdminAddUserRoleV4UnprocessableEntity:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *AdminAddUserRoleV4InternalServerError:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminAddUserRoleV4Short(params *AdminAddUserRoleV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminAddUserRoleV4OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminAddUserRoleV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminAddUserRoleV4",
+		Method:             "POST",
+		PathPattern:        "/iam/v4/admin/namespaces/{namespace}/users/{userId}/roles",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminAddUserRoleV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminAddUserRoleV4OK:
+		return v, nil
+	case *AdminAddUserRoleV4BadRequest:
+		return nil, v
+	case *AdminAddUserRoleV4Forbidden:
+		return nil, v
+	case *AdminAddUserRoleV4NotFound:
+		return nil, v
+	case *AdminAddUserRoleV4UnprocessableEntity:
+		return nil, v
+	case *AdminAddUserRoleV4InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -137,7 +193,7 @@ func (a *Client) AdminListUserRolesV4(params *AdminListUserRolesV4Params, authIn
 		PathPattern:        "/iam/v4/admin/namespaces/{namespace}/users/{userId}/roles",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminListUserRolesV4Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -152,14 +208,61 @@ func (a *Client) AdminListUserRolesV4(params *AdminListUserRolesV4Params, authIn
 
 	case *AdminListUserRolesV4OK:
 		return v, nil, nil, nil, nil
+
 	case *AdminListUserRolesV4Forbidden:
 		return nil, v, nil, nil, nil
+
 	case *AdminListUserRolesV4NotFound:
 		return nil, nil, v, nil, nil
+
 	case *AdminListUserRolesV4InternalServerError:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminListUserRolesV4Short(params *AdminListUserRolesV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminListUserRolesV4OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminListUserRolesV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminListUserRolesV4",
+		Method:             "GET",
+		PathPattern:        "/iam/v4/admin/namespaces/{namespace}/users/{userId}/roles",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminListUserRolesV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminListUserRolesV4OK:
+		return v, nil
+	case *AdminListUserRolesV4Forbidden:
+		return nil, v
+	case *AdminListUserRolesV4NotFound:
+		return nil, v
+	case *AdminListUserRolesV4InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -168,7 +271,7 @@ func (a *Client) AdminListUserRolesV4(params *AdminListUserRolesV4Params, authIn
 
   This endpoint requires ADMIN:NAMESPACE:{namespace}:ROLE:USER:* [Delete] permission.
 
-Remove a role from user's roles.
+Remove a role from user&#39;s roles.
 
 */
 func (a *Client) AdminRemoveUserRoleV4(params *AdminRemoveUserRoleV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminRemoveUserRoleV4NoContent, *AdminRemoveUserRoleV4BadRequest, *AdminRemoveUserRoleV4Forbidden, *AdminRemoveUserRoleV4NotFound, *AdminRemoveUserRoleV4UnprocessableEntity, *AdminRemoveUserRoleV4InternalServerError, error) {
@@ -187,7 +290,7 @@ func (a *Client) AdminRemoveUserRoleV4(params *AdminRemoveUserRoleV4Params, auth
 		PathPattern:        "/iam/v4/admin/namespaces/{namespace}/users/{userId}/roles",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminRemoveUserRoleV4Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -202,34 +305,87 @@ func (a *Client) AdminRemoveUserRoleV4(params *AdminRemoveUserRoleV4Params, auth
 
 	case *AdminRemoveUserRoleV4NoContent:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *AdminRemoveUserRoleV4BadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *AdminRemoveUserRoleV4Forbidden:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *AdminRemoveUserRoleV4NotFound:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *AdminRemoveUserRoleV4UnprocessableEntity:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *AdminRemoveUserRoleV4InternalServerError:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminRemoveUserRoleV4Short(params *AdminRemoveUserRoleV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminRemoveUserRoleV4NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminRemoveUserRoleV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminRemoveUserRoleV4",
+		Method:             "DELETE",
+		PathPattern:        "/iam/v4/admin/namespaces/{namespace}/users/{userId}/roles",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminRemoveUserRoleV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminRemoveUserRoleV4NoContent:
+		return v, nil
+	case *AdminRemoveUserRoleV4BadRequest:
+		return nil, v
+	case *AdminRemoveUserRoleV4Forbidden:
+		return nil, v
+	case *AdminRemoveUserRoleV4NotFound:
+		return nil, v
+	case *AdminRemoveUserRoleV4UnprocessableEntity:
+		return nil, v
+	case *AdminRemoveUserRoleV4InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   AdminUpdateMyUserV4 admins update my user
 
-  <p>Requires valid user access token </p>
-<br><p>This Endpoint support update user based on given data. <b>Single request can update single field or multi fields.</b></p>
-<p>Supported field {country, displayName, emailAddress, languageTag, dateOfBirth}</p>
-<p>Country use ISO3166-1 alpha-2 two letter, e.g. US.</p>
-<p>Date of Birth format : YYYY-MM-DD, e.g. 2019-04-29.</p>
-<br><b>Several case of updating email address</b>
-<ul><li>User want to update email address of which have been verified, newEmailAddress response field will be filled with new email address.</li>
-<li>User want to update email address of which have not been verified, { oldEmailAddress, emailAddress} response field will be filled with new email address. </li>
-<li>User want to update email address of which have been verified and updated before, { oldEmailAddress, emailAddress} response field will be filled with verified email before. newEmailAddress response field will be filled with newest email address. </li>
-<p>action code : 10103 </p>
+  &lt;p&gt;Requires valid user access token &lt;/p&gt;
+&lt;br&gt;&lt;p&gt;This Endpoint support update user based on given data. &lt;b&gt;Single request can update single field or multi fields.&lt;/b&gt;&lt;/p&gt;
+&lt;p&gt;Supported field {country, displayName, emailAddress, languageTag, dateOfBirth}&lt;/p&gt;
+&lt;p&gt;Country use ISO3166-1 alpha-2 two letter, e.g. US.&lt;/p&gt;
+&lt;p&gt;Date of Birth format : YYYY-MM-DD, e.g. 2019-04-29.&lt;/p&gt;
+&lt;br&gt;&lt;b&gt;Several case of updating email address&lt;/b&gt;
+&lt;ul&gt;&lt;li&gt;User want to update email address of which have been verified, newEmailAddress response field will be filled with new email address.&lt;/li&gt;
+&lt;li&gt;User want to update email address of which have not been verified, { oldEmailAddress, emailAddress} response field will be filled with new email address. &lt;/li&gt;
+&lt;li&gt;User want to update email address of which have been verified and updated before, { oldEmailAddress, emailAddress} response field will be filled with verified email before. newEmailAddress response field will be filled with newest email address. &lt;/li&gt;
+&lt;p&gt;action code : 10103 &lt;/p&gt;
 */
 func (a *Client) AdminUpdateMyUserV4(params *AdminUpdateMyUserV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateMyUserV4OK, *AdminUpdateMyUserV4BadRequest, *AdminUpdateMyUserV4Unauthorized, *AdminUpdateMyUserV4Conflict, *AdminUpdateMyUserV4InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -247,7 +403,7 @@ func (a *Client) AdminUpdateMyUserV4(params *AdminUpdateMyUserV4Params, authInfo
 		PathPattern:        "/iam/v4/admin/users/me",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminUpdateMyUserV4Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -262,26 +418,76 @@ func (a *Client) AdminUpdateMyUserV4(params *AdminUpdateMyUserV4Params, authInfo
 
 	case *AdminUpdateMyUserV4OK:
 		return v, nil, nil, nil, nil, nil
+
 	case *AdminUpdateMyUserV4BadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *AdminUpdateMyUserV4Unauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *AdminUpdateMyUserV4Conflict:
 		return nil, nil, nil, v, nil, nil
+
 	case *AdminUpdateMyUserV4InternalServerError:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminUpdateMyUserV4Short(params *AdminUpdateMyUserV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateMyUserV4OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminUpdateMyUserV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminUpdateMyUserV4",
+		Method:             "PATCH",
+		PathPattern:        "/iam/v4/admin/users/me",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminUpdateMyUserV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminUpdateMyUserV4OK:
+		return v, nil
+	case *AdminUpdateMyUserV4BadRequest:
+		return nil, v
+	case *AdminUpdateMyUserV4Unauthorized:
+		return nil, v
+	case *AdminUpdateMyUserV4Conflict:
+		return nil, v
+	case *AdminUpdateMyUserV4InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   AdminUpdateUserEmailAddressV4 updates a user email address
 
-  <p>Required permission <pre>'ADMIN:NAMESPACE:{namespace}:USER:{userId} [UPDATE]'</pre></p>
+  &lt;p&gt;Required permission &lt;pre&gt;&#39;ADMIN:NAMESPACE:{namespace}:USER:{userId} [UPDATE]&#39;&lt;/pre&gt;&lt;/p&gt;
 
-<br><p>This is the endpoint for an admin to update a user email address.
-This endpoint need a valid user token from an admin to verify its identity (email) before updating a user.</p>
+&lt;br&gt;&lt;p&gt;This is the endpoint for an admin to update a user email address.
+This endpoint need a valid user token from an admin to verify its identity (email) before updating a user.&lt;/p&gt;
 
 */
 func (a *Client) AdminUpdateUserEmailAddressV4(params *AdminUpdateUserEmailAddressV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateUserEmailAddressV4NoContent, *AdminUpdateUserEmailAddressV4BadRequest, *AdminUpdateUserEmailAddressV4Unauthorized, *AdminUpdateUserEmailAddressV4NotFound, *AdminUpdateUserEmailAddressV4Conflict, *AdminUpdateUserEmailAddressV4InternalServerError, error) {
@@ -300,7 +506,7 @@ func (a *Client) AdminUpdateUserEmailAddressV4(params *AdminUpdateUserEmailAddre
 		PathPattern:        "/iam/v4/admin/namespaces/{namespace}/users/{userId}/email",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminUpdateUserEmailAddressV4Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -315,18 +521,71 @@ func (a *Client) AdminUpdateUserEmailAddressV4(params *AdminUpdateUserEmailAddre
 
 	case *AdminUpdateUserEmailAddressV4NoContent:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *AdminUpdateUserEmailAddressV4BadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *AdminUpdateUserEmailAddressV4Unauthorized:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *AdminUpdateUserEmailAddressV4NotFound:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *AdminUpdateUserEmailAddressV4Conflict:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *AdminUpdateUserEmailAddressV4InternalServerError:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminUpdateUserEmailAddressV4Short(params *AdminUpdateUserEmailAddressV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateUserEmailAddressV4NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminUpdateUserEmailAddressV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminUpdateUserEmailAddressV4",
+		Method:             "PUT",
+		PathPattern:        "/iam/v4/admin/namespaces/{namespace}/users/{userId}/email",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminUpdateUserEmailAddressV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminUpdateUserEmailAddressV4NoContent:
+		return v, nil
+	case *AdminUpdateUserEmailAddressV4BadRequest:
+		return nil, v
+	case *AdminUpdateUserEmailAddressV4Unauthorized:
+		return nil, v
+	case *AdminUpdateUserEmailAddressV4NotFound:
+		return nil, v
+	case *AdminUpdateUserEmailAddressV4Conflict:
+		return nil, v
+	case *AdminUpdateUserEmailAddressV4InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -335,7 +594,7 @@ func (a *Client) AdminUpdateUserEmailAddressV4(params *AdminUpdateUserEmailAddre
 
   This endpoint requires ADMIN:NAMESPACE:{namespace}:ROLE:USER:* [UPDATE] permission.
 
-User's roles will be replaced with roles from request body.
+User&#39;s roles will be replaced with roles from request body.
 
 */
 func (a *Client) AdminUpdateUserRoleV4(params *AdminUpdateUserRoleV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateUserRoleV4OK, *AdminUpdateUserRoleV4BadRequest, *AdminUpdateUserRoleV4Forbidden, *AdminUpdateUserRoleV4NotFound, *AdminUpdateUserRoleV4UnprocessableEntity, *AdminUpdateUserRoleV4InternalServerError, error) {
@@ -354,7 +613,7 @@ func (a *Client) AdminUpdateUserRoleV4(params *AdminUpdateUserRoleV4Params, auth
 		PathPattern:        "/iam/v4/admin/namespaces/{namespace}/users/{userId}/roles",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminUpdateUserRoleV4Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -369,31 +628,84 @@ func (a *Client) AdminUpdateUserRoleV4(params *AdminUpdateUserRoleV4Params, auth
 
 	case *AdminUpdateUserRoleV4OK:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *AdminUpdateUserRoleV4BadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *AdminUpdateUserRoleV4Forbidden:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *AdminUpdateUserRoleV4NotFound:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *AdminUpdateUserRoleV4UnprocessableEntity:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *AdminUpdateUserRoleV4InternalServerError:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminUpdateUserRoleV4Short(params *AdminUpdateUserRoleV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateUserRoleV4OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminUpdateUserRoleV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminUpdateUserRoleV4",
+		Method:             "PUT",
+		PathPattern:        "/iam/v4/admin/namespaces/{namespace}/users/{userId}/roles",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminUpdateUserRoleV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminUpdateUserRoleV4OK:
+		return v, nil
+	case *AdminUpdateUserRoleV4BadRequest:
+		return nil, v
+	case *AdminUpdateUserRoleV4Forbidden:
+		return nil, v
+	case *AdminUpdateUserRoleV4NotFound:
+		return nil, v
+	case *AdminUpdateUserRoleV4UnprocessableEntity:
+		return nil, v
+	case *AdminUpdateUserRoleV4InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   AdminUpdateUserV4 updates user
 
-  <p>This endpoint requires ADMIN:NAMESPACE:{namespace}:USER:{userId} [UPDATE] permission</p>
-<br><p>This Endpoint support update user based on given data. <b>Single request can update single field or multi fields.</b></p>
-<p>Supported field {country, displayName, languageTag, dateOfBirth}</p>
-<p>Country use ISO3166-1 alpha-2 two letter, e.g. US.</p>
-<p>Date of Birth format : YYYY-MM-DD, e.g. 2019-04-29.</p>
-<br><b>Several case of updating email address</b>
-<p>action code : 10103 </p>
+  &lt;p&gt;This endpoint requires ADMIN:NAMESPACE:{namespace}:USER:{userId} [UPDATE] permission&lt;/p&gt;
+&lt;br&gt;&lt;p&gt;This Endpoint support update user based on given data. &lt;b&gt;Single request can update single field or multi fields.&lt;/b&gt;&lt;/p&gt;
+&lt;p&gt;Supported field {country, displayName, languageTag, dateOfBirth}&lt;/p&gt;
+&lt;p&gt;Country use ISO3166-1 alpha-2 two letter, e.g. US.&lt;/p&gt;
+&lt;p&gt;Date of Birth format : YYYY-MM-DD, e.g. 2019-04-29.&lt;/p&gt;
+&lt;br&gt;&lt;b&gt;Several case of updating email address&lt;/b&gt;
+&lt;p&gt;action code : 10103 &lt;/p&gt;
 */
 func (a *Client) AdminUpdateUserV4(params *AdminUpdateUserV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateUserV4OK, *AdminUpdateUserV4BadRequest, *AdminUpdateUserV4Unauthorized, *AdminUpdateUserV4Forbidden, *AdminUpdateUserV4NotFound, *AdminUpdateUserV4Conflict, *AdminUpdateUserV4InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -411,7 +723,7 @@ func (a *Client) AdminUpdateUserV4(params *AdminUpdateUserV4Params, authInfo run
 		PathPattern:        "/iam/v4/admin/namespaces/{namespace}/users/{userId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminUpdateUserV4Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -426,25 +738,81 @@ func (a *Client) AdminUpdateUserV4(params *AdminUpdateUserV4Params, authInfo run
 
 	case *AdminUpdateUserV4OK:
 		return v, nil, nil, nil, nil, nil, nil, nil
+
 	case *AdminUpdateUserV4BadRequest:
 		return nil, v, nil, nil, nil, nil, nil, nil
+
 	case *AdminUpdateUserV4Unauthorized:
 		return nil, nil, v, nil, nil, nil, nil, nil
+
 	case *AdminUpdateUserV4Forbidden:
 		return nil, nil, nil, v, nil, nil, nil, nil
+
 	case *AdminUpdateUserV4NotFound:
 		return nil, nil, nil, nil, v, nil, nil, nil
+
 	case *AdminUpdateUserV4Conflict:
 		return nil, nil, nil, nil, nil, v, nil, nil
+
 	case *AdminUpdateUserV4InternalServerError:
 		return nil, nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
+func (a *Client) AdminUpdateUserV4Short(params *AdminUpdateUserV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateUserV4OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminUpdateUserV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminUpdateUserV4",
+		Method:             "PUT",
+		PathPattern:        "/iam/v4/admin/namespaces/{namespace}/users/{userId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminUpdateUserV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminUpdateUserV4OK:
+		return v, nil
+	case *AdminUpdateUserV4BadRequest:
+		return nil, v
+	case *AdminUpdateUserV4Unauthorized:
+		return nil, v
+	case *AdminUpdateUserV4Forbidden:
+		return nil, v
+	case *AdminUpdateUserV4NotFound:
+		return nil, v
+	case *AdminUpdateUserV4Conflict:
+		return nil, v
+	case *AdminUpdateUserV4InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
 /*
-  CreateUserFromInvitationV4 creates user admin from invitation
+  CreateUserFromInvitationV4 creates user from invitation
 
   This endpoint create user from saved roles when creating invitation and submitted data.
 User will be able to login after completing submitting the data through this endpoint.
@@ -481,7 +849,7 @@ func (a *Client) CreateUserFromInvitationV4(params *CreateUserFromInvitationV4Pa
 		PathPattern:        "/iam/v4/public/namespaces/{namespace}/users/invite/{invitationId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &CreateUserFromInvitationV4Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -496,14 +864,175 @@ func (a *Client) CreateUserFromInvitationV4(params *CreateUserFromInvitationV4Pa
 
 	case *CreateUserFromInvitationV4Created:
 		return v, nil, nil, nil, nil
+
 	case *CreateUserFromInvitationV4BadRequest:
 		return nil, v, nil, nil, nil
+
 	case *CreateUserFromInvitationV4NotFound:
 		return nil, nil, v, nil, nil
+
 	case *CreateUserFromInvitationV4InternalServerError:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) CreateUserFromInvitationV4Short(params *CreateUserFromInvitationV4Params, authInfo runtime.ClientAuthInfoWriter) (*CreateUserFromInvitationV4Created, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreateUserFromInvitationV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "CreateUserFromInvitationV4",
+		Method:             "POST",
+		PathPattern:        "/iam/v4/public/namespaces/{namespace}/users/invite/{invitationId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CreateUserFromInvitationV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *CreateUserFromInvitationV4Created:
+		return v, nil
+	case *CreateUserFromInvitationV4BadRequest:
+		return nil, v
+	case *CreateUserFromInvitationV4NotFound:
+		return nil, v
+	case *CreateUserFromInvitationV4InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  PublicCreateTestUserV4 ts e s t f a c i l i t y o n l y create test user
+
+  Create a test user and not send verification code email
+		&lt;p&gt;
+		&lt;b&gt;Required attributes:&lt;/b&gt;
+		- verified: this new user is verified or not
+		- authType: possible value is EMAILPASSWD
+		- emailAddress: 5 to 254 characters
+		- username: 3 to 48 characters, case insensitive, alphanumeric with allowed symbols underscore (_) and dot (.)
+		- password: 8 to 32 characters, satisfy at least 3 out of 4 conditions(uppercase, lowercase letters, numbers and special characters) and should not have more than 2 equal characters in a row.
+		- country: ISO3166-1 alpha-2 two letter, e.g. US.
+		- dateOfBirth: YYYY-MM-DD, e.g. 1990-01-01. valid values are between 1905-01-01 until current date.
+		&lt;br/&gt;
+		&lt;b&gt;Not required attributes:&lt;/b&gt;
+		- displayName: 1 to 48 characters
+		&lt;/p&gt;
+		&lt;p&gt;This endpoint support accepting agreements for the created user. Supply the accepted agreements in acceptedPolicies attribute.&lt;/p&gt;
+
+*/
+func (a *Client) PublicCreateTestUserV4(params *PublicCreateTestUserV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateTestUserV4Created, *PublicCreateTestUserV4BadRequest, *PublicCreateTestUserV4NotFound, *PublicCreateTestUserV4Conflict, *PublicCreateTestUserV4InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicCreateTestUserV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicCreateTestUserV4",
+		Method:             "POST",
+		PathPattern:        "/iam/v4/public/namespaces/{namespace}/test_users",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicCreateTestUserV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicCreateTestUserV4Created:
+		return v, nil, nil, nil, nil, nil
+
+	case *PublicCreateTestUserV4BadRequest:
+		return nil, v, nil, nil, nil, nil
+
+	case *PublicCreateTestUserV4NotFound:
+		return nil, nil, v, nil, nil, nil
+
+	case *PublicCreateTestUserV4Conflict:
+		return nil, nil, nil, v, nil, nil
+
+	case *PublicCreateTestUserV4InternalServerError:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicCreateTestUserV4Short(params *PublicCreateTestUserV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateTestUserV4Created, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicCreateTestUserV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicCreateTestUserV4",
+		Method:             "POST",
+		PathPattern:        "/iam/v4/public/namespaces/{namespace}/test_users",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicCreateTestUserV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicCreateTestUserV4Created:
+		return v, nil
+	case *PublicCreateTestUserV4BadRequest:
+		return nil, v
+	case *PublicCreateTestUserV4NotFound:
+		return nil, v
+	case *PublicCreateTestUserV4Conflict:
+		return nil, v
+	case *PublicCreateTestUserV4InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -511,16 +1040,19 @@ func (a *Client) CreateUserFromInvitationV4(params *CreateUserFromInvitationV4Pa
   PublicCreateUserV4 creates user
 
   Create a new user with unique email address and username.
-		<p>
-		<b>Required attributes:</b>
+		&lt;p&gt;
+		&lt;b&gt;Required attributes:&lt;/b&gt;
 		- authType: possible value is EMAILPASSWD
-		- emailAddress
-		- username: case insensitive, alphanumeric with allowed symbols underscore (_) and dot (.)
+		- emailAddress: 5 to 254 characters
+		- username: 3 to 48 characters, case insensitive, alphanumeric with allowed symbols underscore (_) and dot (.)
 		- password: 8 to 32 characters, satisfy at least 3 out of 4 conditions(uppercase, lowercase letters, numbers and special characters) and should not have more than 2 equal characters in a row.
 		- country: ISO3166-1 alpha-2 two letter, e.g. US.
 		- dateOfBirth: YYYY-MM-DD, e.g. 1990-01-01. valid values are between 1905-01-01 until current date.
-		</p>
-		<p>This endpoint support accepting agreements for the created user. Supply the accepted agreements in acceptedPolicies attribute.</p>
+		&lt;br/&gt;
+		&lt;b&gt;Not required attributes:&lt;/b&gt;
+		- displayName: 1 to 48 characters
+		&lt;/p&gt;
+		&lt;p&gt;This endpoint support accepting agreements for the created user. Supply the accepted agreements in acceptedPolicies attribute.&lt;/p&gt;
 
 */
 func (a *Client) PublicCreateUserV4(params *PublicCreateUserV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateUserV4Created, *PublicCreateUserV4BadRequest, *PublicCreateUserV4NotFound, *PublicCreateUserV4Conflict, *PublicCreateUserV4InternalServerError, error) {
@@ -539,7 +1071,7 @@ func (a *Client) PublicCreateUserV4(params *PublicCreateUserV4Params, authInfo r
 		PathPattern:        "/iam/v4/public/namespaces/{namespace}/users",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicCreateUserV4Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -554,24 +1086,74 @@ func (a *Client) PublicCreateUserV4(params *PublicCreateUserV4Params, authInfo r
 
 	case *PublicCreateUserV4Created:
 		return v, nil, nil, nil, nil, nil
+
 	case *PublicCreateUserV4BadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *PublicCreateUserV4NotFound:
 		return nil, nil, v, nil, nil, nil
+
 	case *PublicCreateUserV4Conflict:
 		return nil, nil, nil, v, nil, nil
+
 	case *PublicCreateUserV4InternalServerError:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicCreateUserV4Short(params *PublicCreateUserV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateUserV4Created, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicCreateUserV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicCreateUserV4",
+		Method:             "POST",
+		PathPattern:        "/iam/v4/public/namespaces/{namespace}/users",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicCreateUserV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicCreateUserV4Created:
+		return v, nil
+	case *PublicCreateUserV4BadRequest:
+		return nil, v
+	case *PublicCreateUserV4NotFound:
+		return nil, v
+	case *PublicCreateUserV4Conflict:
+		return nil, v
+	case *PublicCreateUserV4InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   PublicUpdateUserEmailAddressV4 updates my email address
 
-  <p>The endpoint to update my email address. </p>
-<p>It requires a verification code from <pre>/users/me/code/request</pre> with <b>UpdateEmailAddress</b> context.</p>
+  &lt;p&gt;The endpoint to update my email address. &lt;/p&gt;
+&lt;p&gt;It requires a verification code from &lt;pre&gt;/users/me/code/request&lt;/pre&gt; with &lt;b&gt;UpdateEmailAddress&lt;/b&gt; context.&lt;/p&gt;
 
 */
 func (a *Client) PublicUpdateUserEmailAddressV4(params *PublicUpdateUserEmailAddressV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateUserEmailAddressV4NoContent, *PublicUpdateUserEmailAddressV4BadRequest, *PublicUpdateUserEmailAddressV4Unauthorized, *PublicUpdateUserEmailAddressV4NotFound, *PublicUpdateUserEmailAddressV4Conflict, *PublicUpdateUserEmailAddressV4InternalServerError, error) {
@@ -590,7 +1172,7 @@ func (a *Client) PublicUpdateUserEmailAddressV4(params *PublicUpdateUserEmailAdd
 		PathPattern:        "/iam/v4/public/namespaces/{namespace}/users/me/email",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicUpdateUserEmailAddressV4Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -605,31 +1187,84 @@ func (a *Client) PublicUpdateUserEmailAddressV4(params *PublicUpdateUserEmailAdd
 
 	case *PublicUpdateUserEmailAddressV4NoContent:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *PublicUpdateUserEmailAddressV4BadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *PublicUpdateUserEmailAddressV4Unauthorized:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *PublicUpdateUserEmailAddressV4NotFound:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *PublicUpdateUserEmailAddressV4Conflict:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *PublicUpdateUserEmailAddressV4InternalServerError:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicUpdateUserEmailAddressV4Short(params *PublicUpdateUserEmailAddressV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateUserEmailAddressV4NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicUpdateUserEmailAddressV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicUpdateUserEmailAddressV4",
+		Method:             "PUT",
+		PathPattern:        "/iam/v4/public/namespaces/{namespace}/users/me/email",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicUpdateUserEmailAddressV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicUpdateUserEmailAddressV4NoContent:
+		return v, nil
+	case *PublicUpdateUserEmailAddressV4BadRequest:
+		return nil, v
+	case *PublicUpdateUserEmailAddressV4Unauthorized:
+		return nil, v
+	case *PublicUpdateUserEmailAddressV4NotFound:
+		return nil, v
+	case *PublicUpdateUserEmailAddressV4Conflict:
+		return nil, v
+	case *PublicUpdateUserEmailAddressV4InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   PublicUpdateUserV4 updates user
 
-  <p>Requires valid user access token </p>
-<br><p>This Endpoint support update user based on given data. <b>Single request can update single field or multi fields.</b></p>
-<p>Supported field {country, displayName, languageTag, dateOfBirth}</p>
-<p>Country use ISO3166-1 alpha-2 two letter, e.g. US.</p>
-<p>Date of Birth format : YYYY-MM-DD, e.g. 2019-04-29.</p>
-<br><b>Several case of updating email address</b>
-<p>action code : 10103 </p>
+  &lt;p&gt;Requires valid user access token &lt;/p&gt;
+&lt;br&gt;&lt;p&gt;This Endpoint support update user based on given data. &lt;b&gt;Single request can update single field or multi fields.&lt;/b&gt;&lt;/p&gt;
+&lt;p&gt;Supported field {country, displayName, languageTag, dateOfBirth}&lt;/p&gt;
+&lt;p&gt;Country use ISO3166-1 alpha-2 two letter, e.g. US.&lt;/p&gt;
+&lt;p&gt;Date of Birth format : YYYY-MM-DD, e.g. 2019-04-29.&lt;/p&gt;
+&lt;br&gt;&lt;b&gt;Several case of updating email address&lt;/b&gt;
+&lt;p&gt;action code : 10103 &lt;/p&gt;
 */
 func (a *Client) PublicUpdateUserV4(params *PublicUpdateUserV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateUserV4OK, *PublicUpdateUserV4BadRequest, *PublicUpdateUserV4Unauthorized, *PublicUpdateUserV4Conflict, *PublicUpdateUserV4InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -647,7 +1282,7 @@ func (a *Client) PublicUpdateUserV4(params *PublicUpdateUserV4Params, authInfo r
 		PathPattern:        "/iam/v4/public/namespaces/{namespace}/users/me",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicUpdateUserV4Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -662,16 +1297,66 @@ func (a *Client) PublicUpdateUserV4(params *PublicUpdateUserV4Params, authInfo r
 
 	case *PublicUpdateUserV4OK:
 		return v, nil, nil, nil, nil, nil
+
 	case *PublicUpdateUserV4BadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *PublicUpdateUserV4Unauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *PublicUpdateUserV4Conflict:
 		return nil, nil, nil, v, nil, nil
+
 	case *PublicUpdateUserV4InternalServerError:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicUpdateUserV4Short(params *PublicUpdateUserV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateUserV4OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicUpdateUserV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicUpdateUserV4",
+		Method:             "PATCH",
+		PathPattern:        "/iam/v4/public/namespaces/{namespace}/users/me",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicUpdateUserV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicUpdateUserV4OK:
+		return v, nil
+	case *PublicUpdateUserV4BadRequest:
+		return nil, v
+	case *PublicUpdateUserV4Unauthorized:
+		return nil, v
+	case *PublicUpdateUserV4Conflict:
+		return nil, v
+	case *PublicUpdateUserV4InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -680,7 +1365,7 @@ func (a *Client) PublicUpdateUserV4(params *PublicUpdateUserV4Params, authInfo r
 
   Require valid user authorization
 			Upgrade headless account to full account without verifying email address. Client does not need to provide verification code which sent to email address.
-			<br>action code : 10124 </p>
+			&lt;br&gt;action code : 10124 &lt;/p&gt;
 */
 func (a *Client) PublicUpgradeHeadlessAccountV4(params *PublicUpgradeHeadlessAccountV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUpgradeHeadlessAccountV4OK, *PublicUpgradeHeadlessAccountV4BadRequest, *PublicUpgradeHeadlessAccountV4Unauthorized, *PublicUpgradeHeadlessAccountV4NotFound, *PublicUpgradeHeadlessAccountV4Conflict, *PublicUpgradeHeadlessAccountV4InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -698,7 +1383,7 @@ func (a *Client) PublicUpgradeHeadlessAccountV4(params *PublicUpgradeHeadlessAcc
 		PathPattern:        "/iam/v4/public/namespaces/{namespace}/users/me/headless/verify",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicUpgradeHeadlessAccountV4Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -713,18 +1398,71 @@ func (a *Client) PublicUpgradeHeadlessAccountV4(params *PublicUpgradeHeadlessAcc
 
 	case *PublicUpgradeHeadlessAccountV4OK:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *PublicUpgradeHeadlessAccountV4BadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *PublicUpgradeHeadlessAccountV4Unauthorized:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *PublicUpgradeHeadlessAccountV4NotFound:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *PublicUpgradeHeadlessAccountV4Conflict:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *PublicUpgradeHeadlessAccountV4InternalServerError:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicUpgradeHeadlessAccountV4Short(params *PublicUpgradeHeadlessAccountV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUpgradeHeadlessAccountV4OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicUpgradeHeadlessAccountV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicUpgradeHeadlessAccountV4",
+		Method:             "POST",
+		PathPattern:        "/iam/v4/public/namespaces/{namespace}/users/me/headless/verify",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicUpgradeHeadlessAccountV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicUpgradeHeadlessAccountV4OK:
+		return v, nil
+	case *PublicUpgradeHeadlessAccountV4BadRequest:
+		return nil, v
+	case *PublicUpgradeHeadlessAccountV4Unauthorized:
+		return nil, v
+	case *PublicUpgradeHeadlessAccountV4NotFound:
+		return nil, v
+	case *PublicUpgradeHeadlessAccountV4Conflict:
+		return nil, v
+	case *PublicUpgradeHeadlessAccountV4InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -734,17 +1472,17 @@ func (a *Client) PublicUpgradeHeadlessAccountV4(params *PublicUpgradeHeadlessAcc
   Require valid user access token.
         	The endpoint upgrades a headless account by linking the headless account with the email address, username, and password.
 			By upgrading the headless account into a full account, the user could use the email address, username, and password for using Justice IAM.
-        	<br>
+        	&lt;br&gt;
 			The endpoint is a shortcut for upgrading a headless account and verifying the email address in one call.
-			In order to get a verification code for the endpoint, please check the <a href="#operations-Users-PublicSendVerificationCodeV3">send verification code endpoint</a>.
-        	<br>
+			In order to get a verification code for the endpoint, please check the &lt;a href=&#34;#operations-Users-PublicSendVerificationCodeV3&#34;&gt;send verification code endpoint&lt;/a&gt;.
+        	&lt;br&gt;
 			This endpoint also have an ability to update user data (if the user data field is specified) right after the upgrade account process is done.
 			Supported user data fields:
-				<ul>
-					<li>displayName</li>
-					<li>dateOfBirth : format YYYY-MM-DD, e.g. 2019-04-29</li>
-					<li>country : format ISO3166-1 alpha-2 two letter, e.g. US</li>
-				</ul>
+				&lt;ul&gt;
+					&lt;li&gt;displayName&lt;/li&gt;
+					&lt;li&gt;dateOfBirth : format YYYY-MM-DD, e.g. 2019-04-29&lt;/li&gt;
+					&lt;li&gt;country : format ISO3166-1 alpha-2 two letter, e.g. US&lt;/li&gt;
+				&lt;/ul&gt;
         	action code : 10124
 */
 func (a *Client) PublicUpgradeHeadlessAccountWithVerificationCodeV4(params *PublicUpgradeHeadlessAccountWithVerificationCodeV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUpgradeHeadlessAccountWithVerificationCodeV4OK, *PublicUpgradeHeadlessAccountWithVerificationCodeV4BadRequest, *PublicUpgradeHeadlessAccountWithVerificationCodeV4Unauthorized, *PublicUpgradeHeadlessAccountWithVerificationCodeV4Forbidden, *PublicUpgradeHeadlessAccountWithVerificationCodeV4NotFound, *PublicUpgradeHeadlessAccountWithVerificationCodeV4Conflict, *PublicUpgradeHeadlessAccountWithVerificationCodeV4InternalServerError, error) {
@@ -763,7 +1501,7 @@ func (a *Client) PublicUpgradeHeadlessAccountWithVerificationCodeV4(params *Publ
 		PathPattern:        "/iam/v4/public/namespaces/{namespace}/users/me/headless/code/verify",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicUpgradeHeadlessAccountWithVerificationCodeV4Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -778,20 +1516,76 @@ func (a *Client) PublicUpgradeHeadlessAccountWithVerificationCodeV4(params *Publ
 
 	case *PublicUpgradeHeadlessAccountWithVerificationCodeV4OK:
 		return v, nil, nil, nil, nil, nil, nil, nil
+
 	case *PublicUpgradeHeadlessAccountWithVerificationCodeV4BadRequest:
 		return nil, v, nil, nil, nil, nil, nil, nil
+
 	case *PublicUpgradeHeadlessAccountWithVerificationCodeV4Unauthorized:
 		return nil, nil, v, nil, nil, nil, nil, nil
+
 	case *PublicUpgradeHeadlessAccountWithVerificationCodeV4Forbidden:
 		return nil, nil, nil, v, nil, nil, nil, nil
+
 	case *PublicUpgradeHeadlessAccountWithVerificationCodeV4NotFound:
 		return nil, nil, nil, nil, v, nil, nil, nil
+
 	case *PublicUpgradeHeadlessAccountWithVerificationCodeV4Conflict:
 		return nil, nil, nil, nil, nil, v, nil, nil
+
 	case *PublicUpgradeHeadlessAccountWithVerificationCodeV4InternalServerError:
 		return nil, nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicUpgradeHeadlessAccountWithVerificationCodeV4Short(params *PublicUpgradeHeadlessAccountWithVerificationCodeV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUpgradeHeadlessAccountWithVerificationCodeV4OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicUpgradeHeadlessAccountWithVerificationCodeV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicUpgradeHeadlessAccountWithVerificationCodeV4",
+		Method:             "POST",
+		PathPattern:        "/iam/v4/public/namespaces/{namespace}/users/me/headless/code/verify",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicUpgradeHeadlessAccountWithVerificationCodeV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicUpgradeHeadlessAccountWithVerificationCodeV4OK:
+		return v, nil
+	case *PublicUpgradeHeadlessAccountWithVerificationCodeV4BadRequest:
+		return nil, v
+	case *PublicUpgradeHeadlessAccountWithVerificationCodeV4Unauthorized:
+		return nil, v
+	case *PublicUpgradeHeadlessAccountWithVerificationCodeV4Forbidden:
+		return nil, v
+	case *PublicUpgradeHeadlessAccountWithVerificationCodeV4NotFound:
+		return nil, v
+	case *PublicUpgradeHeadlessAccountWithVerificationCodeV4Conflict:
+		return nil, v
+	case *PublicUpgradeHeadlessAccountWithVerificationCodeV4InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 

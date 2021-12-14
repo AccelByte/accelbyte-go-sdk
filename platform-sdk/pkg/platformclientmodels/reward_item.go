@@ -15,6 +15,9 @@ import (
 // swagger:model RewardItem
 type RewardItem struct {
 
+	// duration
+	Duration int32 `json:"duration,omitempty"`
+
 	// item Id
 	ItemID string `json:"itemId,omitempty"`
 

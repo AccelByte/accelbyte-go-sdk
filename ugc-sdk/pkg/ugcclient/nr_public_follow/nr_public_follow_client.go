@@ -30,10 +30,11 @@ type Client struct {
 // ClientService is the interface for Client methods
 type ClientService interface {
 	GetFollowedContent(params *GetFollowedContentParams, authInfo runtime.ClientAuthInfoWriter) (*GetFollowedContentOK, *GetFollowedContentUnauthorized, *GetFollowedContentNotFound, *GetFollowedContentInternalServerError, error)
-
+	GetFollowedContentShort(params *GetFollowedContentParams, authInfo runtime.ClientAuthInfoWriter) (*GetFollowedContentOK, error)
 	GetFollowedUsers(params *GetFollowedUsersParams, authInfo runtime.ClientAuthInfoWriter) (*GetFollowedUsersOK, *GetFollowedUsersUnauthorized, *GetFollowedUsersNotFound, *GetFollowedUsersInternalServerError, error)
-
+	GetFollowedUsersShort(params *GetFollowedUsersParams, authInfo runtime.ClientAuthInfoWriter) (*GetFollowedUsersOK, error)
 	UpdateUserFollowStatus(params *UpdateUserFollowStatusParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateUserFollowStatusOK, *UpdateUserFollowStatusBadRequest, *UpdateUserFollowStatusUnauthorized, *UpdateUserFollowStatusNotFound, *UpdateUserFollowStatusInternalServerError, error)
+	UpdateUserFollowStatusShort(params *UpdateUserFollowStatusParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateUserFollowStatusOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -59,7 +60,7 @@ func (a *Client) GetFollowedContent(params *GetFollowedContentParams, authInfo r
 		PathPattern:        "/ugc/v1/public/namespaces/{namespace}/contents/followed",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json", "application/octet-stream"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetFollowedContentReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -74,14 +75,61 @@ func (a *Client) GetFollowedContent(params *GetFollowedContentParams, authInfo r
 
 	case *GetFollowedContentOK:
 		return v, nil, nil, nil, nil
+
 	case *GetFollowedContentUnauthorized:
 		return nil, v, nil, nil, nil
+
 	case *GetFollowedContentNotFound:
 		return nil, nil, v, nil, nil
+
 	case *GetFollowedContentInternalServerError:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetFollowedContentShort(params *GetFollowedContentParams, authInfo runtime.ClientAuthInfoWriter) (*GetFollowedContentOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetFollowedContentParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetFollowedContent",
+		Method:             "GET",
+		PathPattern:        "/ugc/v1/public/namespaces/{namespace}/contents/followed",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json", "application/octet-stream"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetFollowedContentReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetFollowedContentOK:
+		return v, nil
+	case *GetFollowedContentUnauthorized:
+		return nil, v
+	case *GetFollowedContentNotFound:
+		return nil, v
+	case *GetFollowedContentInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -106,7 +154,7 @@ func (a *Client) GetFollowedUsers(params *GetFollowedUsersParams, authInfo runti
 		PathPattern:        "/ugc/v1/public/namespaces/{namespace}/users/followed",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json", "application/octet-stream"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetFollowedUsersReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -121,14 +169,61 @@ func (a *Client) GetFollowedUsers(params *GetFollowedUsersParams, authInfo runti
 
 	case *GetFollowedUsersOK:
 		return v, nil, nil, nil, nil
+
 	case *GetFollowedUsersUnauthorized:
 		return nil, v, nil, nil, nil
+
 	case *GetFollowedUsersNotFound:
 		return nil, nil, v, nil, nil
+
 	case *GetFollowedUsersInternalServerError:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetFollowedUsersShort(params *GetFollowedUsersParams, authInfo runtime.ClientAuthInfoWriter) (*GetFollowedUsersOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetFollowedUsersParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetFollowedUsers",
+		Method:             "GET",
+		PathPattern:        "/ugc/v1/public/namespaces/{namespace}/users/followed",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json", "application/octet-stream"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetFollowedUsersReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetFollowedUsersOK:
+		return v, nil
+	case *GetFollowedUsersUnauthorized:
+		return nil, v
+	case *GetFollowedUsersNotFound:
+		return nil, v
+	case *GetFollowedUsersInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -153,7 +248,7 @@ func (a *Client) UpdateUserFollowStatus(params *UpdateUserFollowStatusParams, au
 		PathPattern:        "/ugc/v1/public/namespaces/{namespace}/users/{userId}/follow",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json", "application/octet-stream"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &UpdateUserFollowStatusReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -168,16 +263,66 @@ func (a *Client) UpdateUserFollowStatus(params *UpdateUserFollowStatusParams, au
 
 	case *UpdateUserFollowStatusOK:
 		return v, nil, nil, nil, nil, nil
+
 	case *UpdateUserFollowStatusBadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *UpdateUserFollowStatusUnauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *UpdateUserFollowStatusNotFound:
 		return nil, nil, nil, v, nil, nil
+
 	case *UpdateUserFollowStatusInternalServerError:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) UpdateUserFollowStatusShort(params *UpdateUserFollowStatusParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateUserFollowStatusOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateUserFollowStatusParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "UpdateUserFollowStatus",
+		Method:             "PUT",
+		PathPattern:        "/ugc/v1/public/namespaces/{namespace}/users/{userId}/follow",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json", "application/octet-stream"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateUserFollowStatusReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateUserFollowStatusOK:
+		return v, nil
+	case *UpdateUserFollowStatusBadRequest:
+		return nil, v
+	case *UpdateUserFollowStatusUnauthorized:
+		return nil, v
+	case *UpdateUserFollowStatusNotFound:
+		return nil, v
+	case *UpdateUserFollowStatusInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 

@@ -30,22 +30,23 @@ type Client struct {
 // ClientService is the interface for Client methods
 type ClientService interface {
 	ChargePaymentOrder(params *ChargePaymentOrderParams, authInfo runtime.ClientAuthInfoWriter) (*ChargePaymentOrderOK, *ChargePaymentOrderBadRequest, *ChargePaymentOrderNotFound, *ChargePaymentOrderConflict, error)
-
+	ChargePaymentOrderShort(params *ChargePaymentOrderParams, authInfo runtime.ClientAuthInfoWriter) (*ChargePaymentOrderOK, error)
 	CreateUserPaymentOrder(params *CreateUserPaymentOrderParams, authInfo runtime.ClientAuthInfoWriter) (*CreateUserPaymentOrderCreated, *CreateUserPaymentOrderBadRequest, *CreateUserPaymentOrderForbidden, *CreateUserPaymentOrderNotFound, *CreateUserPaymentOrderConflict, *CreateUserPaymentOrderUnprocessableEntity, error)
-
+	CreateUserPaymentOrderShort(params *CreateUserPaymentOrderParams, authInfo runtime.ClientAuthInfoWriter) (*CreateUserPaymentOrderCreated, error)
 	GetPaymentOrder(params *GetPaymentOrderParams, authInfo runtime.ClientAuthInfoWriter) (*GetPaymentOrderOK, *GetPaymentOrderNotFound, error)
-
+	GetPaymentOrderShort(params *GetPaymentOrderParams, authInfo runtime.ClientAuthInfoWriter) (*GetPaymentOrderOK, error)
 	GetPaymentOrderChargeStatus(params *GetPaymentOrderChargeStatusParams, authInfo runtime.ClientAuthInfoWriter) (*GetPaymentOrderChargeStatusOK, *GetPaymentOrderChargeStatusNotFound, error)
-
+	GetPaymentOrderChargeStatusShort(params *GetPaymentOrderChargeStatusParams, authInfo runtime.ClientAuthInfoWriter) (*GetPaymentOrderChargeStatusOK, error)
 	ListExtOrderNoByExtTxID(params *ListExtOrderNoByExtTxIDParams, authInfo runtime.ClientAuthInfoWriter) (*ListExtOrderNoByExtTxIDOK, error)
-
+	ListExtOrderNoByExtTxIDShort(params *ListExtOrderNoByExtTxIDParams, authInfo runtime.ClientAuthInfoWriter) (*ListExtOrderNoByExtTxIDOK, error)
 	QueryPaymentNotifications(params *QueryPaymentNotificationsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryPaymentNotificationsOK, error)
-
+	QueryPaymentNotificationsShort(params *QueryPaymentNotificationsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryPaymentNotificationsOK, error)
 	QueryPaymentOrders(params *QueryPaymentOrdersParams, authInfo runtime.ClientAuthInfoWriter) (*QueryPaymentOrdersOK, error)
-
+	QueryPaymentOrdersShort(params *QueryPaymentOrdersParams, authInfo runtime.ClientAuthInfoWriter) (*QueryPaymentOrdersOK, error)
 	RefundUserPaymentOrder(params *RefundUserPaymentOrderParams, authInfo runtime.ClientAuthInfoWriter) (*RefundUserPaymentOrderOK, *RefundUserPaymentOrderNotFound, *RefundUserPaymentOrderConflict, *RefundUserPaymentOrderUnprocessableEntity, error)
-
+	RefundUserPaymentOrderShort(params *RefundUserPaymentOrderParams, authInfo runtime.ClientAuthInfoWriter) (*RefundUserPaymentOrderOK, error)
 	SimulatePaymentOrderNotification(params *SimulatePaymentOrderNotificationParams, authInfo runtime.ClientAuthInfoWriter) (*SimulatePaymentOrderNotificationOK, *SimulatePaymentOrderNotificationBadRequest, *SimulatePaymentOrderNotificationNotFound, error)
+	SimulatePaymentOrderNotificationShort(params *SimulatePaymentOrderNotificationParams, authInfo runtime.ClientAuthInfoWriter) (*SimulatePaymentOrderNotificationOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -53,7 +54,7 @@ type ClientService interface {
 /*
   ChargePaymentOrder charges payment order without payment flow
 
-  <b>[TEST FACILITY ONLY] Forbidden in live environment. </b> Charge payment order without payment flow for unpaid payment order, usually for test usage to simulate real currency payment process.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:PAYMENT", action=4 (UPDATE)</li><li><i>Returns</i>: payment order instance</li></ul>
+  &lt;b&gt;[TEST FACILITY ONLY] Forbidden in live environment. &lt;/b&gt; Charge payment order without payment flow for unpaid payment order, usually for test usage to simulate real currency payment process.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:PAYMENT&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: payment order instance&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) ChargePaymentOrder(params *ChargePaymentOrderParams, authInfo runtime.ClientAuthInfoWriter) (*ChargePaymentOrderOK, *ChargePaymentOrderBadRequest, *ChargePaymentOrderNotFound, *ChargePaymentOrderConflict, error) {
 	// TODO: Validate the params before sending
@@ -71,7 +72,7 @@ func (a *Client) ChargePaymentOrder(params *ChargePaymentOrderParams, authInfo r
 		PathPattern:        "/admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &ChargePaymentOrderReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -86,21 +87,68 @@ func (a *Client) ChargePaymentOrder(params *ChargePaymentOrderParams, authInfo r
 
 	case *ChargePaymentOrderOK:
 		return v, nil, nil, nil, nil
+
 	case *ChargePaymentOrderBadRequest:
 		return nil, v, nil, nil, nil
+
 	case *ChargePaymentOrderNotFound:
 		return nil, nil, v, nil, nil
+
 	case *ChargePaymentOrderConflict:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) ChargePaymentOrderShort(params *ChargePaymentOrderParams, authInfo runtime.ClientAuthInfoWriter) (*ChargePaymentOrderOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewChargePaymentOrderParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "chargePaymentOrder",
+		Method:             "PUT",
+		PathPattern:        "/admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ChargePaymentOrderReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *ChargePaymentOrderOK:
+		return v, nil
+	case *ChargePaymentOrderBadRequest:
+		return nil, v
+	case *ChargePaymentOrderNotFound:
+		return nil, v
+	case *ChargePaymentOrderConflict:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   CreateUserPaymentOrder creates payment order
 
-  <b>[SERVICE COMMUNICATION ONLY]</b> This API is used to create payment order from justice service. The result contains the payment station url.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:PAYMENT", action=1 (CREATE)</li><li>It will be forbidden while the user is banned: PAYMENT_INITIATE or ORDER_AND_PAYMENT</li><li><i>Returns</i>: created order</li></ul>
+  &lt;b&gt;[SERVICE COMMUNICATION ONLY]&lt;/b&gt; This API is used to create payment order from justice service. The result contains the payment station url.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:PAYMENT&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;It will be forbidden while the user is banned: PAYMENT_INITIATE or ORDER_AND_PAYMENT&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: created order&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) CreateUserPaymentOrder(params *CreateUserPaymentOrderParams, authInfo runtime.ClientAuthInfoWriter) (*CreateUserPaymentOrderCreated, *CreateUserPaymentOrderBadRequest, *CreateUserPaymentOrderForbidden, *CreateUserPaymentOrderNotFound, *CreateUserPaymentOrderConflict, *CreateUserPaymentOrderUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -118,7 +166,7 @@ func (a *Client) CreateUserPaymentOrder(params *CreateUserPaymentOrderParams, au
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/payment/orders",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &CreateUserPaymentOrderReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -133,25 +181,78 @@ func (a *Client) CreateUserPaymentOrder(params *CreateUserPaymentOrderParams, au
 
 	case *CreateUserPaymentOrderCreated:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *CreateUserPaymentOrderBadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *CreateUserPaymentOrderForbidden:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *CreateUserPaymentOrderNotFound:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *CreateUserPaymentOrderConflict:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *CreateUserPaymentOrderUnprocessableEntity:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) CreateUserPaymentOrderShort(params *CreateUserPaymentOrderParams, authInfo runtime.ClientAuthInfoWriter) (*CreateUserPaymentOrderCreated, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreateUserPaymentOrderParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "createUserPaymentOrder",
+		Method:             "POST",
+		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/payment/orders",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CreateUserPaymentOrderReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *CreateUserPaymentOrderCreated:
+		return v, nil
+	case *CreateUserPaymentOrderBadRequest:
+		return nil, v
+	case *CreateUserPaymentOrderForbidden:
+		return nil, v
+	case *CreateUserPaymentOrderNotFound:
+		return nil, v
+	case *CreateUserPaymentOrderConflict:
+		return nil, v
+	case *CreateUserPaymentOrderUnprocessableEntity:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   GetPaymentOrder gets payment order
 
-  Get payment order by paymentOrderNo.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:PAYMENT", action=2 (READ)</li><li><i>Returns</i>: payment order instance</li></ul>
+  Get payment order by paymentOrderNo.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:PAYMENT&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: payment order instance&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) GetPaymentOrder(params *GetPaymentOrderParams, authInfo runtime.ClientAuthInfoWriter) (*GetPaymentOrderOK, *GetPaymentOrderNotFound, error) {
 	// TODO: Validate the params before sending
@@ -169,7 +270,7 @@ func (a *Client) GetPaymentOrder(params *GetPaymentOrderParams, authInfo runtime
 		PathPattern:        "/admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetPaymentOrderReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -184,17 +285,58 @@ func (a *Client) GetPaymentOrder(params *GetPaymentOrderParams, authInfo runtime
 
 	case *GetPaymentOrderOK:
 		return v, nil, nil
+
 	case *GetPaymentOrderNotFound:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetPaymentOrderShort(params *GetPaymentOrderParams, authInfo runtime.ClientAuthInfoWriter) (*GetPaymentOrderOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetPaymentOrderParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getPaymentOrder",
+		Method:             "GET",
+		PathPattern:        "/admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetPaymentOrderReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetPaymentOrderOK:
+		return v, nil
+	case *GetPaymentOrderNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   GetPaymentOrderChargeStatus gets payment order charge status
 
-  Get payment order charge status.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:PAYMENT", action=2 (READ)</li><li><i>Returns</i>: payment order charge status</li></ul>
+  Get payment order charge status.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:PAYMENT&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: payment order charge status&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) GetPaymentOrderChargeStatus(params *GetPaymentOrderChargeStatusParams, authInfo runtime.ClientAuthInfoWriter) (*GetPaymentOrderChargeStatusOK, *GetPaymentOrderChargeStatusNotFound, error) {
 	// TODO: Validate the params before sending
@@ -212,7 +354,7 @@ func (a *Client) GetPaymentOrderChargeStatus(params *GetPaymentOrderChargeStatus
 		PathPattern:        "/admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}/status",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetPaymentOrderChargeStatusReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -227,17 +369,58 @@ func (a *Client) GetPaymentOrderChargeStatus(params *GetPaymentOrderChargeStatus
 
 	case *GetPaymentOrderChargeStatusOK:
 		return v, nil, nil
+
 	case *GetPaymentOrderChargeStatusNotFound:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetPaymentOrderChargeStatusShort(params *GetPaymentOrderChargeStatusParams, authInfo runtime.ClientAuthInfoWriter) (*GetPaymentOrderChargeStatusOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetPaymentOrderChargeStatusParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getPaymentOrderChargeStatus",
+		Method:             "GET",
+		PathPattern:        "/admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}/status",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetPaymentOrderChargeStatusReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetPaymentOrderChargeStatusOK:
+		return v, nil
+	case *GetPaymentOrderChargeStatusNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   ListExtOrderNoByExtTxID lists external order no by external transaction id
 
-  List external order No by external transaction id.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:PAYMENT", action=2 (READ)</li><li><i>Returns</i>: payment orders</li></ul>
+  List external order No by external transaction id.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:PAYMENT&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: payment orders&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) ListExtOrderNoByExtTxID(params *ListExtOrderNoByExtTxIDParams, authInfo runtime.ClientAuthInfoWriter) (*ListExtOrderNoByExtTxIDOK, error) {
 	// TODO: Validate the params before sending
@@ -255,7 +438,7 @@ func (a *Client) ListExtOrderNoByExtTxID(params *ListExtOrderNoByExtTxIDParams, 
 		PathPattern:        "/admin/namespaces/{namespace}/payment/orders/byExtTxId",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &ListExtOrderNoByExtTxIDReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -270,6 +453,44 @@ func (a *Client) ListExtOrderNoByExtTxID(params *ListExtOrderNoByExtTxIDParams, 
 
 	case *ListExtOrderNoByExtTxIDOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) ListExtOrderNoByExtTxIDShort(params *ListExtOrderNoByExtTxIDParams, authInfo runtime.ClientAuthInfoWriter) (*ListExtOrderNoByExtTxIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewListExtOrderNoByExtTxIDParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "listExtOrderNoByExtTxId",
+		Method:             "GET",
+		PathPattern:        "/admin/namespaces/{namespace}/payment/orders/byExtTxId",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ListExtOrderNoByExtTxIDReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *ListExtOrderNoByExtTxIDOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -278,7 +499,7 @@ func (a *Client) ListExtOrderNoByExtTxID(params *ListExtOrderNoByExtTxIDParams, 
 /*
   QueryPaymentNotifications queries payment notifications
 
-  Query payment notifications.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:PAYMENT:NOTIFICATION", action=2 (READ)</li><li><i>Returns</i>: Payment notifications</li></ul>
+  Query payment notifications.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:PAYMENT:NOTIFICATION&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: Payment notifications&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) QueryPaymentNotifications(params *QueryPaymentNotificationsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryPaymentNotificationsOK, error) {
 	// TODO: Validate the params before sending
@@ -296,7 +517,7 @@ func (a *Client) QueryPaymentNotifications(params *QueryPaymentNotificationsPara
 		PathPattern:        "/admin/namespaces/{namespace}/payment/notifications",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &QueryPaymentNotificationsReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -311,6 +532,44 @@ func (a *Client) QueryPaymentNotifications(params *QueryPaymentNotificationsPara
 
 	case *QueryPaymentNotificationsOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) QueryPaymentNotificationsShort(params *QueryPaymentNotificationsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryPaymentNotificationsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewQueryPaymentNotificationsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "queryPaymentNotifications",
+		Method:             "GET",
+		PathPattern:        "/admin/namespaces/{namespace}/payment/notifications",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &QueryPaymentNotificationsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *QueryPaymentNotificationsOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -319,7 +578,7 @@ func (a *Client) QueryPaymentNotifications(params *QueryPaymentNotificationsPara
 /*
   QueryPaymentOrders queries payment orders
 
-  Query payment orders.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:PAYMENT", action=2 (READ)</li><li><i>Returns</i>: query payment orders</li></ul>
+  Query payment orders.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:PAYMENT&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: query payment orders&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) QueryPaymentOrders(params *QueryPaymentOrdersParams, authInfo runtime.ClientAuthInfoWriter) (*QueryPaymentOrdersOK, error) {
 	// TODO: Validate the params before sending
@@ -337,7 +596,7 @@ func (a *Client) QueryPaymentOrders(params *QueryPaymentOrdersParams, authInfo r
 		PathPattern:        "/admin/namespaces/{namespace}/payment/orders",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &QueryPaymentOrdersReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -352,6 +611,44 @@ func (a *Client) QueryPaymentOrders(params *QueryPaymentOrdersParams, authInfo r
 
 	case *QueryPaymentOrdersOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) QueryPaymentOrdersShort(params *QueryPaymentOrdersParams, authInfo runtime.ClientAuthInfoWriter) (*QueryPaymentOrdersOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewQueryPaymentOrdersParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "queryPaymentOrders",
+		Method:             "GET",
+		PathPattern:        "/admin/namespaces/{namespace}/payment/orders",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &QueryPaymentOrdersReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *QueryPaymentOrdersOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -360,7 +657,7 @@ func (a *Client) QueryPaymentOrders(params *QueryPaymentOrdersParams, authInfo r
 /*
   RefundUserPaymentOrder refunds payment order
 
-  <b>[SERVICE COMMUNICATION ONLY]</b> This API is used to refund order by paymentOrderNo from justice service.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:PAYMENT", action=4 (UPDATE)</li></ul>
+  &lt;b&gt;[SERVICE COMMUNICATION ONLY]&lt;/b&gt; This API is used to refund order by paymentOrderNo from justice service.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:PAYMENT&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) RefundUserPaymentOrder(params *RefundUserPaymentOrderParams, authInfo runtime.ClientAuthInfoWriter) (*RefundUserPaymentOrderOK, *RefundUserPaymentOrderNotFound, *RefundUserPaymentOrderConflict, *RefundUserPaymentOrderUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -378,7 +675,7 @@ func (a *Client) RefundUserPaymentOrder(params *RefundUserPaymentOrderParams, au
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/payment/orders/{paymentOrderNo}/refund",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &RefundUserPaymentOrderReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -393,21 +690,68 @@ func (a *Client) RefundUserPaymentOrder(params *RefundUserPaymentOrderParams, au
 
 	case *RefundUserPaymentOrderOK:
 		return v, nil, nil, nil, nil
+
 	case *RefundUserPaymentOrderNotFound:
 		return nil, v, nil, nil, nil
+
 	case *RefundUserPaymentOrderConflict:
 		return nil, nil, v, nil, nil
+
 	case *RefundUserPaymentOrderUnprocessableEntity:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) RefundUserPaymentOrderShort(params *RefundUserPaymentOrderParams, authInfo runtime.ClientAuthInfoWriter) (*RefundUserPaymentOrderOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRefundUserPaymentOrderParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "refundUserPaymentOrder",
+		Method:             "PUT",
+		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/payment/orders/{paymentOrderNo}/refund",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &RefundUserPaymentOrderReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *RefundUserPaymentOrderOK:
+		return v, nil
+	case *RefundUserPaymentOrderNotFound:
+		return nil, v
+	case *RefundUserPaymentOrderConflict:
+		return nil, v
+	case *RefundUserPaymentOrderUnprocessableEntity:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   SimulatePaymentOrderNotification simulates payment notification
 
-  <b>[TEST FACILITY ONLY] Forbidden in live environment. </b> Simulate payment notification on sandbox payment order, usually for test usage to simulate real currency payment notification.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:PAYMENT", action=4 (UPDATE)</li><li><i>Returns</i>: notification process result</li></ul>
+  &lt;b&gt;[TEST FACILITY ONLY] Forbidden in live environment. &lt;/b&gt; Simulate payment notification on sandbox payment order, usually for test usage to simulate real currency payment notification.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:PAYMENT&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: notification process result&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) SimulatePaymentOrderNotification(params *SimulatePaymentOrderNotificationParams, authInfo runtime.ClientAuthInfoWriter) (*SimulatePaymentOrderNotificationOK, *SimulatePaymentOrderNotificationBadRequest, *SimulatePaymentOrderNotificationNotFound, error) {
 	// TODO: Validate the params before sending
@@ -425,7 +769,7 @@ func (a *Client) SimulatePaymentOrderNotification(params *SimulatePaymentOrderNo
 		PathPattern:        "/admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}/simulate-notification",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &SimulatePaymentOrderNotificationReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -440,12 +784,56 @@ func (a *Client) SimulatePaymentOrderNotification(params *SimulatePaymentOrderNo
 
 	case *SimulatePaymentOrderNotificationOK:
 		return v, nil, nil, nil
+
 	case *SimulatePaymentOrderNotificationBadRequest:
 		return nil, v, nil, nil
+
 	case *SimulatePaymentOrderNotificationNotFound:
 		return nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) SimulatePaymentOrderNotificationShort(params *SimulatePaymentOrderNotificationParams, authInfo runtime.ClientAuthInfoWriter) (*SimulatePaymentOrderNotificationOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewSimulatePaymentOrderNotificationParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "simulatePaymentOrderNotification",
+		Method:             "PUT",
+		PathPattern:        "/admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}/simulate-notification",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &SimulatePaymentOrderNotificationReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *SimulatePaymentOrderNotificationOK:
+		return v, nil
+	case *SimulatePaymentOrderNotificationBadRequest:
+		return nil, v
+	case *SimulatePaymentOrderNotificationNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 

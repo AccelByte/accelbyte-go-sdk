@@ -30,8 +30,9 @@ type Client struct {
 // ClientService is the interface for Client methods
 type ClientService interface {
 	PutGameRecordConcurrentHandlerV1(params *PutGameRecordConcurrentHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PutGameRecordConcurrentHandlerV1NoContent, *PutGameRecordConcurrentHandlerV1BadRequest, *PutGameRecordConcurrentHandlerV1Unauthorized, *PutGameRecordConcurrentHandlerV1PreconditionFailed, *PutGameRecordConcurrentHandlerV1InternalServerError, error)
-
+	PutGameRecordConcurrentHandlerV1Short(params *PutGameRecordConcurrentHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PutGameRecordConcurrentHandlerV1NoContent, error)
 	PutPlayerPublicRecordConcurrentHandlerV1(params *PutPlayerPublicRecordConcurrentHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PutPlayerPublicRecordConcurrentHandlerV1NoContent, *PutPlayerPublicRecordConcurrentHandlerV1BadRequest, *PutPlayerPublicRecordConcurrentHandlerV1Unauthorized, *PutPlayerPublicRecordConcurrentHandlerV1PreconditionFailed, *PutPlayerPublicRecordConcurrentHandlerV1InternalServerError, error)
+	PutPlayerPublicRecordConcurrentHandlerV1Short(params *PutPlayerPublicRecordConcurrentHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PutPlayerPublicRecordConcurrentHandlerV1NoContent, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -39,17 +40,17 @@ type ClientService interface {
 /*
   PutGameRecordConcurrentHandlerV1 creates or replace game record
 
-  <table>
-	<tr>
-		<td>Required Permission</td>
-		<td><code>NAMESPACE:{namespace}:CLOUDSAVE:RECORD [UPDATE]</code></td>
-	</tr>
-	<tr>
-		<td>Required Scope</td>
-		<td><code>social</code></td>
-	</tr>
-</table>
-<br/>
+  &lt;table&gt;
+	&lt;tr&gt;
+		&lt;td&gt;Required Permission&lt;/td&gt;
+		&lt;td&gt;&lt;code&gt;NAMESPACE:{namespace}:CLOUDSAVE:RECORD [UPDATE]&lt;/code&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;Required Scope&lt;/td&gt;
+		&lt;td&gt;&lt;code&gt;social&lt;/code&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+&lt;br/&gt;
 
 If record already exists, it will be replaced with the one from request body (all fields will be
 deleted). If record is not exists, it will create a new one with value from request body.
@@ -57,24 +58,24 @@ deleted). If record is not exists, it will create a new one with value from requ
 Example:
 
 Replace all records
-<pre>
+&lt;pre&gt;
 	// existed record
 	{
-		"foo": "bar"
+		&#34;foo&#34;: &#34;bar&#34;
 	}
 
 	// new update (request body)
 	{
-		"foo_new": "bar_new"
+		&#34;foo_new&#34;: &#34;bar_new&#34;
 	}
 
 	// result
 	{
-		"foo_new": "bar_new"
+		&#34;foo_new&#34;: &#34;bar_new&#34;
 	}
-</pre>
+&lt;/pre&gt;
 
-<b>Optimistic Concurrency Control</b><br>
+&lt;b&gt;Optimistic Concurrency Control&lt;/b&gt;&lt;br&gt;
 This endpoint implement optimistic concurrency control to avoid race condition.
 If the record has been updated since the client fetch it, the server will return HTTP status code 412 (precondition failed)
 and client need to redo the operation (fetch data and do update).
@@ -97,7 +98,7 @@ func (a *Client) PutGameRecordConcurrentHandlerV1(params *PutGameRecordConcurren
 		PathPattern:        "/cloudsave/v1/namespaces/{namespace}/concurrent/records/{key}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PutGameRecordConcurrentHandlerV1Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -112,58 +113,108 @@ func (a *Client) PutGameRecordConcurrentHandlerV1(params *PutGameRecordConcurren
 
 	case *PutGameRecordConcurrentHandlerV1NoContent:
 		return v, nil, nil, nil, nil, nil
+
 	case *PutGameRecordConcurrentHandlerV1BadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *PutGameRecordConcurrentHandlerV1Unauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *PutGameRecordConcurrentHandlerV1PreconditionFailed:
 		return nil, nil, nil, v, nil, nil
+
 	case *PutGameRecordConcurrentHandlerV1InternalServerError:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PutGameRecordConcurrentHandlerV1Short(params *PutGameRecordConcurrentHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PutGameRecordConcurrentHandlerV1NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPutGameRecordConcurrentHandlerV1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "putGameRecordConcurrentHandlerV1",
+		Method:             "PUT",
+		PathPattern:        "/cloudsave/v1/namespaces/{namespace}/concurrent/records/{key}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PutGameRecordConcurrentHandlerV1Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PutGameRecordConcurrentHandlerV1NoContent:
+		return v, nil
+	case *PutGameRecordConcurrentHandlerV1BadRequest:
+		return nil, v
+	case *PutGameRecordConcurrentHandlerV1Unauthorized:
+		return nil, v
+	case *PutGameRecordConcurrentHandlerV1PreconditionFailed:
+		return nil, v
+	case *PutGameRecordConcurrentHandlerV1InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   PutPlayerPublicRecordConcurrentHandlerV1 creates or replace player record
 
-  <table>
-	<tr>
-		<td>Required Permission</td>
-		<td><code>NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [UPDATE]</code></td>
-	</tr>
-	<tr>
-		<td>Required Scope</td>
-		<td><code>social</code></td>
-	</tr>
-</table>
-<br/>
+  &lt;table&gt;
+	&lt;tr&gt;
+		&lt;td&gt;Required Permission&lt;/td&gt;
+		&lt;td&gt;&lt;code&gt;NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [UPDATE]&lt;/code&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;Required Scope&lt;/td&gt;
+		&lt;td&gt;&lt;code&gt;social&lt;/code&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+&lt;br/&gt;
 
 If the record is not exist, it will create. If the record already exist, it will replace the record
-instead. And this operation can only be applied to record with <code>isPublic=true</code>.
+instead. And this operation can only be applied to record with &lt;code&gt;isPublic=true&lt;/code&gt;.
 
 Example
 
 Replace record
-<pre>
+&lt;pre&gt;
 // existed record
 {
-	"foo": "bar"
+	&#34;foo&#34;: &#34;bar&#34;
 }
 
 // new record (request body)
 {
-	"foo_new": "bar_new"
+	&#34;foo_new&#34;: &#34;bar_new&#34;
 }
 
 // result
 {
-	"foo_new": "bar_new"
+	&#34;foo_new&#34;: &#34;bar_new&#34;
 }
-</pre>
+&lt;/pre&gt;
 
-<b>Optimistic Concurrency Control</b><br>
+&lt;b&gt;Optimistic Concurrency Control&lt;/b&gt;&lt;br&gt;
 This endpoint implement optimistic concurrency control to avoid race condition.
 If the record has been updated since the client fetch it, the server will return HTTP status code 412 (precondition failed)
 and client need to redo the operation (fetch data and do update).
@@ -186,7 +237,7 @@ func (a *Client) PutPlayerPublicRecordConcurrentHandlerV1(params *PutPlayerPubli
 		PathPattern:        "/cloudsave/v1/namespaces/{namespace}/users/{userId}/concurrent/records/{key}/public",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PutPlayerPublicRecordConcurrentHandlerV1Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -201,16 +252,66 @@ func (a *Client) PutPlayerPublicRecordConcurrentHandlerV1(params *PutPlayerPubli
 
 	case *PutPlayerPublicRecordConcurrentHandlerV1NoContent:
 		return v, nil, nil, nil, nil, nil
+
 	case *PutPlayerPublicRecordConcurrentHandlerV1BadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *PutPlayerPublicRecordConcurrentHandlerV1Unauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *PutPlayerPublicRecordConcurrentHandlerV1PreconditionFailed:
 		return nil, nil, nil, v, nil, nil
+
 	case *PutPlayerPublicRecordConcurrentHandlerV1InternalServerError:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PutPlayerPublicRecordConcurrentHandlerV1Short(params *PutPlayerPublicRecordConcurrentHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PutPlayerPublicRecordConcurrentHandlerV1NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPutPlayerPublicRecordConcurrentHandlerV1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "putPlayerPublicRecordConcurrentHandlerV1",
+		Method:             "PUT",
+		PathPattern:        "/cloudsave/v1/namespaces/{namespace}/users/{userId}/concurrent/records/{key}/public",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PutPlayerPublicRecordConcurrentHandlerV1Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PutPlayerPublicRecordConcurrentHandlerV1NoContent:
+		return v, nil
+	case *PutPlayerPublicRecordConcurrentHandlerV1BadRequest:
+		return nil, v
+	case *PutPlayerPublicRecordConcurrentHandlerV1Unauthorized:
+		return nil, v
+	case *PutPlayerPublicRecordConcurrentHandlerV1PreconditionFailed:
+		return nil, v
+	case *PutPlayerPublicRecordConcurrentHandlerV1InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 

@@ -30,6 +30,7 @@ type Client struct {
 // ClientService is the interface for Client methods
 type ClientService interface {
 	UsersPresenceHandlerV1(params *UsersPresenceHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*UsersPresenceHandlerV1OK, *UsersPresenceHandlerV1BadRequest, *UsersPresenceHandlerV1Unauthorized, *UsersPresenceHandlerV1InternalServerError, error)
+	UsersPresenceHandlerV1Short(params *UsersPresenceHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*UsersPresenceHandlerV1OK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -55,7 +56,7 @@ func (a *Client) UsersPresenceHandlerV1(params *UsersPresenceHandlerV1Params, au
 		PathPattern:        "/lobby/v1/public/presence/namespaces/{namespace}/users/presence",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &UsersPresenceHandlerV1Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -70,14 +71,61 @@ func (a *Client) UsersPresenceHandlerV1(params *UsersPresenceHandlerV1Params, au
 
 	case *UsersPresenceHandlerV1OK:
 		return v, nil, nil, nil, nil
+
 	case *UsersPresenceHandlerV1BadRequest:
 		return nil, v, nil, nil, nil
+
 	case *UsersPresenceHandlerV1Unauthorized:
 		return nil, nil, v, nil, nil
+
 	case *UsersPresenceHandlerV1InternalServerError:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) UsersPresenceHandlerV1Short(params *UsersPresenceHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*UsersPresenceHandlerV1OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUsersPresenceHandlerV1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "UsersPresenceHandlerV1",
+		Method:             "GET",
+		PathPattern:        "/lobby/v1/public/presence/namespaces/{namespace}/users/presence",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UsersPresenceHandlerV1Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UsersPresenceHandlerV1OK:
+		return v, nil
+	case *UsersPresenceHandlerV1BadRequest:
+		return nil, v
+	case *UsersPresenceHandlerV1Unauthorized:
+		return nil, v
+	case *UsersPresenceHandlerV1InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 

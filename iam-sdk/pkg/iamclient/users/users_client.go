@@ -30,266 +30,273 @@ type Client struct {
 // ClientService is the interface for Client methods
 type ClientService interface {
 	AddUserPermission(params *AddUserPermissionParams, authInfo runtime.ClientAuthInfoWriter) (*AddUserPermissionNoContent, *AddUserPermissionBadRequest, *AddUserPermissionUnauthorized, *AddUserPermissionForbidden, *AddUserPermissionNotFound, error)
-
+	AddUserPermissionShort(params *AddUserPermissionParams, authInfo runtime.ClientAuthInfoWriter) (*AddUserPermissionNoContent, error)
 	AddUserRole(params *AddUserRoleParams, authInfo runtime.ClientAuthInfoWriter) (*AddUserRoleNoContent, *AddUserRoleUnauthorized, *AddUserRoleForbidden, *AddUserRoleNotFound, *AddUserRoleConflict, *AddUserRoleInternalServerError, error)
-
+	AddUserRoleShort(params *AddUserRoleParams, authInfo runtime.ClientAuthInfoWriter) (*AddUserRoleNoContent, error)
 	AdminAddUserPermissionsV3(params *AdminAddUserPermissionsV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminAddUserPermissionsV3NoContent, *AdminAddUserPermissionsV3BadRequest, *AdminAddUserPermissionsV3Unauthorized, *AdminAddUserPermissionsV3Forbidden, *AdminAddUserPermissionsV3NotFound, error)
-
+	AdminAddUserPermissionsV3Short(params *AdminAddUserPermissionsV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminAddUserPermissionsV3NoContent, error)
 	AdminAddUserRoleV3(params *AdminAddUserRoleV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminAddUserRoleV3NoContent, *AdminAddUserRoleV3BadRequest, *AdminAddUserRoleV3Unauthorized, *AdminAddUserRoleV3Forbidden, *AdminAddUserRoleV3NotFound, *AdminAddUserRoleV3Conflict, error)
-
+	AdminAddUserRoleV3Short(params *AdminAddUserRoleV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminAddUserRoleV3NoContent, error)
 	AdminBanUserV2(params *AdminBanUserV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBanUserV2Created, *AdminBanUserV2BadRequest, *AdminBanUserV2Unauthorized, *AdminBanUserV2Forbidden, *AdminBanUserV2NotFound, *AdminBanUserV2InternalServerError, error)
-
+	AdminBanUserV2Short(params *AdminBanUserV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBanUserV2Created, error)
 	AdminBanUserV3(params *AdminBanUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBanUserV3Created, *AdminBanUserV3BadRequest, *AdminBanUserV3Unauthorized, *AdminBanUserV3Forbidden, *AdminBanUserV3NotFound, error)
-
+	AdminBanUserV3Short(params *AdminBanUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBanUserV3Created, error)
 	AdminCreateJusticeUser(params *AdminCreateJusticeUserParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateJusticeUserCreated, *AdminCreateJusticeUserBadRequest, *AdminCreateJusticeUserUnauthorized, *AdminCreateJusticeUserForbidden, *AdminCreateJusticeUserNotFound, *AdminCreateJusticeUserInternalServerError, error)
-
+	AdminCreateJusticeUserShort(params *AdminCreateJusticeUserParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateJusticeUserCreated, error)
 	AdminCreateUserRolesV2(params *AdminCreateUserRolesV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateUserRolesV2NoContent, *AdminCreateUserRolesV2BadRequest, *AdminCreateUserRolesV2Unauthorized, *AdminCreateUserRolesV2Forbidden, *AdminCreateUserRolesV2NotFound, *AdminCreateUserRolesV2Conflict, error)
-
+	AdminCreateUserRolesV2Short(params *AdminCreateUserRolesV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateUserRolesV2NoContent, error)
 	AdminDeletePlatformLinkV2(params *AdminDeletePlatformLinkV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeletePlatformLinkV2NoContent, *AdminDeletePlatformLinkV2BadRequest, *AdminDeletePlatformLinkV2Unauthorized, *AdminDeletePlatformLinkV2Forbidden, *AdminDeletePlatformLinkV2NotFound, *AdminDeletePlatformLinkV2InternalServerError, error)
-
+	AdminDeletePlatformLinkV2Short(params *AdminDeletePlatformLinkV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeletePlatformLinkV2NoContent, error)
 	AdminDeleteUserInformationV3(params *AdminDeleteUserInformationV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteUserInformationV3NoContent, *AdminDeleteUserInformationV3Unauthorized, *AdminDeleteUserInformationV3Forbidden, *AdminDeleteUserInformationV3NotFound, error)
-
+	AdminDeleteUserInformationV3Short(params *AdminDeleteUserInformationV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteUserInformationV3NoContent, error)
 	AdminDeleteUserPermissionBulkV3(params *AdminDeleteUserPermissionBulkV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteUserPermissionBulkV3NoContent, *AdminDeleteUserPermissionBulkV3BadRequest, *AdminDeleteUserPermissionBulkV3Unauthorized, *AdminDeleteUserPermissionBulkV3Forbidden, *AdminDeleteUserPermissionBulkV3NotFound, error)
-
+	AdminDeleteUserPermissionBulkV3Short(params *AdminDeleteUserPermissionBulkV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteUserPermissionBulkV3NoContent, error)
 	AdminDeleteUserPermissionV3(params *AdminDeleteUserPermissionV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteUserPermissionV3NoContent, *AdminDeleteUserPermissionV3BadRequest, *AdminDeleteUserPermissionV3Unauthorized, *AdminDeleteUserPermissionV3Forbidden, *AdminDeleteUserPermissionV3NotFound, error)
-
+	AdminDeleteUserPermissionV3Short(params *AdminDeleteUserPermissionV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteUserPermissionV3NoContent, error)
 	AdminDeleteUserRoleV3(params *AdminDeleteUserRoleV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteUserRoleV3NoContent, *AdminDeleteUserRoleV3BadRequest, *AdminDeleteUserRoleV3Unauthorized, *AdminDeleteUserRoleV3Forbidden, *AdminDeleteUserRoleV3NotFound, error)
-
+	AdminDeleteUserRoleV3Short(params *AdminDeleteUserRoleV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteUserRoleV3NoContent, error)
 	AdminDeleteUserRolesV3(params *AdminDeleteUserRolesV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteUserRolesV3NoContent, *AdminDeleteUserRolesV3BadRequest, *AdminDeleteUserRolesV3Unauthorized, *AdminDeleteUserRolesV3Forbidden, *AdminDeleteUserRolesV3NotFound, error)
-
+	AdminDeleteUserRolesV3Short(params *AdminDeleteUserRolesV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteUserRolesV3NoContent, error)
 	AdminDisableUserV2(params *AdminDisableUserV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDisableUserV2NoContent, *AdminDisableUserV2BadRequest, *AdminDisableUserV2Unauthorized, *AdminDisableUserV2Forbidden, *AdminDisableUserV2NotFound, *AdminDisableUserV2InternalServerError, error)
-
+	AdminDisableUserV2Short(params *AdminDisableUserV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDisableUserV2NoContent, error)
 	AdminEnableUserV2(params *AdminEnableUserV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminEnableUserV2NoContent, *AdminEnableUserV2Unauthorized, *AdminEnableUserV2Forbidden, *AdminEnableUserV2NotFound, *AdminEnableUserV2InternalServerError, error)
-
+	AdminEnableUserV2Short(params *AdminEnableUserV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminEnableUserV2NoContent, error)
 	AdminGetAgeRestrictionStatusV2(params *AdminGetAgeRestrictionStatusV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetAgeRestrictionStatusV2OK, *AdminGetAgeRestrictionStatusV2Unauthorized, *AdminGetAgeRestrictionStatusV2Forbidden, *AdminGetAgeRestrictionStatusV2NotFound, error)
-
+	AdminGetAgeRestrictionStatusV2Short(params *AdminGetAgeRestrictionStatusV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetAgeRestrictionStatusV2OK, error)
 	AdminGetAgeRestrictionStatusV3(params *AdminGetAgeRestrictionStatusV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetAgeRestrictionStatusV3OK, *AdminGetAgeRestrictionStatusV3BadRequest, *AdminGetAgeRestrictionStatusV3Unauthorized, *AdminGetAgeRestrictionStatusV3Forbidden, *AdminGetAgeRestrictionStatusV3NotFound, *AdminGetAgeRestrictionStatusV3InternalServerError, error)
-
+	AdminGetAgeRestrictionStatusV3Short(params *AdminGetAgeRestrictionStatusV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetAgeRestrictionStatusV3OK, error)
 	AdminGetBulkUserByEmailAddressV3(params *AdminGetBulkUserByEmailAddressV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetBulkUserByEmailAddressV3OK, *AdminGetBulkUserByEmailAddressV3BadRequest, *AdminGetBulkUserByEmailAddressV3Unauthorized, *AdminGetBulkUserByEmailAddressV3Forbidden, *AdminGetBulkUserByEmailAddressV3NotFound, *AdminGetBulkUserByEmailAddressV3InternalServerError, error)
-
+	AdminGetBulkUserByEmailAddressV3Short(params *AdminGetBulkUserByEmailAddressV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetBulkUserByEmailAddressV3OK, error)
 	AdminGetListCountryAgeRestrictionV3(params *AdminGetListCountryAgeRestrictionV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetListCountryAgeRestrictionV3OK, *AdminGetListCountryAgeRestrictionV3BadRequest, *AdminGetListCountryAgeRestrictionV3Unauthorized, *AdminGetListCountryAgeRestrictionV3Forbidden, *AdminGetListCountryAgeRestrictionV3InternalServerError, error)
-
+	AdminGetListCountryAgeRestrictionV3Short(params *AdminGetListCountryAgeRestrictionV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetListCountryAgeRestrictionV3OK, error)
+	AdminGetListJusticePlatformAccounts(params *AdminGetListJusticePlatformAccountsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetListJusticePlatformAccountsOK, *AdminGetListJusticePlatformAccountsBadRequest, *AdminGetListJusticePlatformAccountsUnauthorized, *AdminGetListJusticePlatformAccountsForbidden, *AdminGetListJusticePlatformAccountsNotFound, *AdminGetListJusticePlatformAccountsInternalServerError, error)
+	AdminGetListJusticePlatformAccountsShort(params *AdminGetListJusticePlatformAccountsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetListJusticePlatformAccountsOK, error)
 	AdminGetMyUserV3(params *AdminGetMyUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetMyUserV3OK, *AdminGetMyUserV3Unauthorized, *AdminGetMyUserV3InternalServerError, error)
-
+	AdminGetMyUserV3Short(params *AdminGetMyUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetMyUserV3OK, error)
 	AdminGetUserBanV2(params *AdminGetUserBanV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserBanV2OK, *AdminGetUserBanV2Unauthorized, *AdminGetUserBanV2Forbidden, *AdminGetUserBanV2NotFound, error)
-
+	AdminGetUserBanV2Short(params *AdminGetUserBanV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserBanV2OK, error)
 	AdminGetUserBanV3(params *AdminGetUserBanV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserBanV3OK, *AdminGetUserBanV3BadRequest, *AdminGetUserBanV3Unauthorized, *AdminGetUserBanV3Forbidden, *AdminGetUserBanV3NotFound, error)
-
+	AdminGetUserBanV3Short(params *AdminGetUserBanV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserBanV3OK, error)
 	AdminGetUserByEmailAddressV3(params *AdminGetUserByEmailAddressV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserByEmailAddressV3OK, *AdminGetUserByEmailAddressV3BadRequest, *AdminGetUserByEmailAddressV3Unauthorized, *AdminGetUserByEmailAddressV3Forbidden, *AdminGetUserByEmailAddressV3NotFound, *AdminGetUserByEmailAddressV3InternalServerError, error)
-
+	AdminGetUserByEmailAddressV3Short(params *AdminGetUserByEmailAddressV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserByEmailAddressV3OK, error)
+	AdminGetUserByPlatformUserIDV3(params *AdminGetUserByPlatformUserIDV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserByPlatformUserIDV3OK, *AdminGetUserByPlatformUserIDV3Unauthorized, *AdminGetUserByPlatformUserIDV3Forbidden, *AdminGetUserByPlatformUserIDV3NotFound, *AdminGetUserByPlatformUserIDV3InternalServerError, error)
+	AdminGetUserByPlatformUserIDV3Short(params *AdminGetUserByPlatformUserIDV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserByPlatformUserIDV3OK, error)
 	AdminGetUserByUserIDV2(params *AdminGetUserByUserIDV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserByUserIDV2OK, *AdminGetUserByUserIDV2NotFound, *AdminGetUserByUserIDV2InternalServerError, error)
-
+	AdminGetUserByUserIDV2Short(params *AdminGetUserByUserIDV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserByUserIDV2OK, error)
 	AdminGetUserByUserIDV3(params *AdminGetUserByUserIDV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserByUserIDV3OK, *AdminGetUserByUserIDV3BadRequest, *AdminGetUserByUserIDV3Unauthorized, *AdminGetUserByUserIDV3Forbidden, *AdminGetUserByUserIDV3NotFound, *AdminGetUserByUserIDV3InternalServerError, error)
-
+	AdminGetUserByUserIDV3Short(params *AdminGetUserByUserIDV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserByUserIDV3OK, error)
 	AdminGetUserDeletionStatusV3(params *AdminGetUserDeletionStatusV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserDeletionStatusV3OK, *AdminGetUserDeletionStatusV3Unauthorized, *AdminGetUserDeletionStatusV3Forbidden, *AdminGetUserDeletionStatusV3NotFound, *AdminGetUserDeletionStatusV3InternalServerError, error)
-
+	AdminGetUserDeletionStatusV3Short(params *AdminGetUserDeletionStatusV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserDeletionStatusV3OK, error)
 	AdminGetUserLoginHistoriesV3(params *AdminGetUserLoginHistoriesV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserLoginHistoriesV3OK, *AdminGetUserLoginHistoriesV3Unauthorized, *AdminGetUserLoginHistoriesV3Forbidden, *AdminGetUserLoginHistoriesV3NotFound, error)
-
+	AdminGetUserLoginHistoriesV3Short(params *AdminGetUserLoginHistoriesV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserLoginHistoriesV3OK, error)
 	AdminGetUserPlatformAccountsV3(params *AdminGetUserPlatformAccountsV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserPlatformAccountsV3OK, *AdminGetUserPlatformAccountsV3BadRequest, *AdminGetUserPlatformAccountsV3Unauthorized, *AdminGetUserPlatformAccountsV3Forbidden, *AdminGetUserPlatformAccountsV3NotFound, error)
-
+	AdminGetUserPlatformAccountsV3Short(params *AdminGetUserPlatformAccountsV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserPlatformAccountsV3OK, error)
 	AdminInviteUserV3(params *AdminInviteUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminInviteUserV3Created, *AdminInviteUserV3BadRequest, *AdminInviteUserV3NotFound, *AdminInviteUserV3Conflict, *AdminInviteUserV3UnprocessableEntity, *AdminInviteUserV3InternalServerError, error)
-
+	AdminInviteUserV3Short(params *AdminInviteUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminInviteUserV3Created, error)
 	AdminLinkPlatformAccount(params *AdminLinkPlatformAccountParams, authInfo runtime.ClientAuthInfoWriter) (*AdminLinkPlatformAccountNoContent, *AdminLinkPlatformAccountBadRequest, *AdminLinkPlatformAccountUnauthorized, *AdminLinkPlatformAccountForbidden, *AdminLinkPlatformAccountInternalServerError, error)
-
+	AdminLinkPlatformAccountShort(params *AdminLinkPlatformAccountParams, authInfo runtime.ClientAuthInfoWriter) (*AdminLinkPlatformAccountNoContent, error)
 	AdminListUsersV3(params *AdminListUsersV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminListUsersV3OK, *AdminListUsersV3BadRequest, *AdminListUsersV3Unauthorized, *AdminListUsersV3Forbidden, *AdminListUsersV3InternalServerError, error)
-
+	AdminListUsersV3Short(params *AdminListUsersV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminListUsersV3OK, error)
 	AdminPlatformLinkV3(params *AdminPlatformLinkV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPlatformLinkV3NoContent, *AdminPlatformLinkV3BadRequest, *AdminPlatformLinkV3Unauthorized, *AdminPlatformLinkV3Forbidden, *AdminPlatformLinkV3NotFound, *AdminPlatformLinkV3Conflict, *AdminPlatformLinkV3InternalServerError, error)
-
+	AdminPlatformLinkV3Short(params *AdminPlatformLinkV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPlatformLinkV3NoContent, error)
 	AdminPlatformUnlinkV3(params *AdminPlatformUnlinkV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPlatformUnlinkV3NoContent, *AdminPlatformUnlinkV3BadRequest, *AdminPlatformUnlinkV3Unauthorized, *AdminPlatformUnlinkV3Forbidden, *AdminPlatformUnlinkV3NotFound, *AdminPlatformUnlinkV3InternalServerError, error)
-
+	AdminPlatformUnlinkV3Short(params *AdminPlatformUnlinkV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPlatformUnlinkV3NoContent, error)
 	AdminPutUserRolesV2(params *AdminPutUserRolesV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutUserRolesV2NoContent, *AdminPutUserRolesV2BadRequest, *AdminPutUserRolesV2Unauthorized, *AdminPutUserRolesV2Forbidden, *AdminPutUserRolesV2NotFound, error)
-
+	AdminPutUserRolesV2Short(params *AdminPutUserRolesV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutUserRolesV2NoContent, error)
 	AdminResetPasswordV2(params *AdminResetPasswordV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminResetPasswordV2NoContent, *AdminResetPasswordV2BadRequest, *AdminResetPasswordV2Unauthorized, *AdminResetPasswordV2Forbidden, *AdminResetPasswordV2NotFound, *AdminResetPasswordV2InternalServerError, error)
-
+	AdminResetPasswordV2Short(params *AdminResetPasswordV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminResetPasswordV2NoContent, error)
 	AdminSaveUserRoleV3(params *AdminSaveUserRoleV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminSaveUserRoleV3NoContent, *AdminSaveUserRoleV3BadRequest, *AdminSaveUserRoleV3Forbidden, *AdminSaveUserRoleV3NotFound, *AdminSaveUserRoleV3UnprocessableEntity, *AdminSaveUserRoleV3InternalServerError, error)
-
+	AdminSaveUserRoleV3Short(params *AdminSaveUserRoleV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminSaveUserRoleV3NoContent, error)
 	AdminSearchUserV3(params *AdminSearchUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminSearchUserV3OK, *AdminSearchUserV3BadRequest, *AdminSearchUserV3Unauthorized, *AdminSearchUserV3Forbidden, *AdminSearchUserV3InternalServerError, error)
-
+	AdminSearchUserV3Short(params *AdminSearchUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminSearchUserV3OK, error)
 	AdminSearchUsersV2(params *AdminSearchUsersV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminSearchUsersV2OK, *AdminSearchUsersV2BadRequest, *AdminSearchUsersV2Unauthorized, *AdminSearchUsersV2Forbidden, error)
-
+	AdminSearchUsersV2Short(params *AdminSearchUsersV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminSearchUsersV2OK, error)
 	AdminSendVerificationCodeV3(params *AdminSendVerificationCodeV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminSendVerificationCodeV3NoContent, *AdminSendVerificationCodeV3BadRequest, *AdminSendVerificationCodeV3Unauthorized, *AdminSendVerificationCodeV3Forbidden, *AdminSendVerificationCodeV3NotFound, *AdminSendVerificationCodeV3Conflict, *AdminSendVerificationCodeV3TooManyRequests, error)
-
+	AdminSendVerificationCodeV3Short(params *AdminSendVerificationCodeV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminSendVerificationCodeV3NoContent, error)
 	AdminUpdateAgeRestrictionConfigV2(params *AdminUpdateAgeRestrictionConfigV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateAgeRestrictionConfigV2OK, *AdminUpdateAgeRestrictionConfigV2BadRequest, *AdminUpdateAgeRestrictionConfigV2Unauthorized, *AdminUpdateAgeRestrictionConfigV2Forbidden, *AdminUpdateAgeRestrictionConfigV2NotFound, error)
-
+	AdminUpdateAgeRestrictionConfigV2Short(params *AdminUpdateAgeRestrictionConfigV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateAgeRestrictionConfigV2OK, error)
 	AdminUpdateAgeRestrictionConfigV3(params *AdminUpdateAgeRestrictionConfigV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateAgeRestrictionConfigV3OK, *AdminUpdateAgeRestrictionConfigV3BadRequest, *AdminUpdateAgeRestrictionConfigV3Unauthorized, *AdminUpdateAgeRestrictionConfigV3Forbidden, *AdminUpdateAgeRestrictionConfigV3InternalServerError, error)
-
+	AdminUpdateAgeRestrictionConfigV3Short(params *AdminUpdateAgeRestrictionConfigV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateAgeRestrictionConfigV3OK, error)
 	AdminUpdateCountryAgeRestrictionV3(params *AdminUpdateCountryAgeRestrictionV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateCountryAgeRestrictionV3OK, *AdminUpdateCountryAgeRestrictionV3BadRequest, *AdminUpdateCountryAgeRestrictionV3Unauthorized, *AdminUpdateCountryAgeRestrictionV3Forbidden, *AdminUpdateCountryAgeRestrictionV3NotFound, *AdminUpdateCountryAgeRestrictionV3InternalServerError, error)
-
+	AdminUpdateCountryAgeRestrictionV3Short(params *AdminUpdateCountryAgeRestrictionV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateCountryAgeRestrictionV3OK, error)
 	AdminUpdateUserBanV3(params *AdminUpdateUserBanV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateUserBanV3OK, *AdminUpdateUserBanV3BadRequest, *AdminUpdateUserBanV3Unauthorized, *AdminUpdateUserBanV3Forbidden, *AdminUpdateUserBanV3NotFound, *AdminUpdateUserBanV3InternalServerError, error)
-
+	AdminUpdateUserBanV3Short(params *AdminUpdateUserBanV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateUserBanV3OK, error)
 	AdminUpdateUserDeletionStatusV3(params *AdminUpdateUserDeletionStatusV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateUserDeletionStatusV3NoContent, *AdminUpdateUserDeletionStatusV3BadRequest, *AdminUpdateUserDeletionStatusV3Unauthorized, *AdminUpdateUserDeletionStatusV3Forbidden, *AdminUpdateUserDeletionStatusV3NotFound, *AdminUpdateUserDeletionStatusV3InternalServerError, error)
-
+	AdminUpdateUserDeletionStatusV3Short(params *AdminUpdateUserDeletionStatusV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateUserDeletionStatusV3NoContent, error)
 	AdminUpdateUserPermissionV3(params *AdminUpdateUserPermissionV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateUserPermissionV3NoContent, *AdminUpdateUserPermissionV3BadRequest, *AdminUpdateUserPermissionV3Unauthorized, *AdminUpdateUserPermissionV3Forbidden, *AdminUpdateUserPermissionV3NotFound, error)
-
+	AdminUpdateUserPermissionV3Short(params *AdminUpdateUserPermissionV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateUserPermissionV3NoContent, error)
 	AdminUpdateUserStatusV3(params *AdminUpdateUserStatusV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateUserStatusV3NoContent, *AdminUpdateUserStatusV3BadRequest, *AdminUpdateUserStatusV3Unauthorized, *AdminUpdateUserStatusV3Forbidden, *AdminUpdateUserStatusV3NotFound, error)
-
+	AdminUpdateUserStatusV3Short(params *AdminUpdateUserStatusV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateUserStatusV3NoContent, error)
 	AdminUpdateUserV2(params *AdminUpdateUserV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateUserV2OK, *AdminUpdateUserV2BadRequest, *AdminUpdateUserV2Unauthorized, *AdminUpdateUserV2NotFound, *AdminUpdateUserV2Conflict, *AdminUpdateUserV2InternalServerError, error)
-
+	AdminUpdateUserV2Short(params *AdminUpdateUserV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateUserV2OK, error)
 	AdminUpdateUserV3(params *AdminUpdateUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateUserV3OK, *AdminUpdateUserV3BadRequest, *AdminUpdateUserV3Unauthorized, *AdminUpdateUserV3Forbidden, *AdminUpdateUserV3NotFound, *AdminUpdateUserV3Conflict, *AdminUpdateUserV3InternalServerError, error)
-
+	AdminUpdateUserV3Short(params *AdminUpdateUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateUserV3OK, error)
 	AdminUpgradeHeadlessAccountV3(params *AdminUpgradeHeadlessAccountV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpgradeHeadlessAccountV3OK, *AdminUpgradeHeadlessAccountV3BadRequest, *AdminUpgradeHeadlessAccountV3Unauthorized, *AdminUpgradeHeadlessAccountV3Forbidden, *AdminUpgradeHeadlessAccountV3NotFound, *AdminUpgradeHeadlessAccountV3Conflict, *AdminUpgradeHeadlessAccountV3InternalServerError, error)
-
+	AdminUpgradeHeadlessAccountV3Short(params *AdminUpgradeHeadlessAccountV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpgradeHeadlessAccountV3OK, error)
 	AdminVerifyAccountV3(params *AdminVerifyAccountV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminVerifyAccountV3NoContent, *AdminVerifyAccountV3BadRequest, *AdminVerifyAccountV3Unauthorized, *AdminVerifyAccountV3Forbidden, *AdminVerifyAccountV3NotFound, *AdminVerifyAccountV3InternalServerError, error)
-
+	AdminVerifyAccountV3Short(params *AdminVerifyAccountV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminVerifyAccountV3NoContent, error)
 	AdminVerifyUserWithoutVerificationCodeV3(params *AdminVerifyUserWithoutVerificationCodeV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminVerifyUserWithoutVerificationCodeV3NoContent, *AdminVerifyUserWithoutVerificationCodeV3BadRequest, *AdminVerifyUserWithoutVerificationCodeV3Unauthorized, *AdminVerifyUserWithoutVerificationCodeV3Forbidden, *AdminVerifyUserWithoutVerificationCodeV3NotFound, *AdminVerifyUserWithoutVerificationCodeV3Conflict, error)
-
+	AdminVerifyUserWithoutVerificationCodeV3Short(params *AdminVerifyUserWithoutVerificationCodeV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminVerifyUserWithoutVerificationCodeV3NoContent, error)
 	BanUser(params *BanUserParams, authInfo runtime.ClientAuthInfoWriter) (*BanUserCreated, *BanUserBadRequest, *BanUserUnauthorized, *BanUserForbidden, *BanUserNotFound, *BanUserInternalServerError, error)
-
+	BanUserShort(params *BanUserParams, authInfo runtime.ClientAuthInfoWriter) (*BanUserCreated, error)
 	CreateUser(params *CreateUserParams, authInfo runtime.ClientAuthInfoWriter) (*CreateUserCreated, *CreateUserBadRequest, *CreateUserUnauthorized, *CreateUserForbidden, *CreateUserConflict, error)
-
+	CreateUserShort(params *CreateUserParams, authInfo runtime.ClientAuthInfoWriter) (*CreateUserCreated, error)
 	CreateUserFromInvitationV3(params *CreateUserFromInvitationV3Params, authInfo runtime.ClientAuthInfoWriter) (*CreateUserFromInvitationV3Created, *CreateUserFromInvitationV3BadRequest, *CreateUserFromInvitationV3NotFound, *CreateUserFromInvitationV3InternalServerError, error)
-
+	CreateUserFromInvitationV3Short(params *CreateUserFromInvitationV3Params, authInfo runtime.ClientAuthInfoWriter) (*CreateUserFromInvitationV3Created, error)
 	DeleteUser(params *DeleteUserParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserNoContent, *DeleteUserUnauthorized, *DeleteUserForbidden, *DeleteUserNotFound, error)
-
+	DeleteUserShort(params *DeleteUserParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserNoContent, error)
 	DeleteUserInformation(params *DeleteUserInformationParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserInformationNoContent, *DeleteUserInformationUnauthorized, *DeleteUserInformationForbidden, *DeleteUserInformationNotFound, error)
-
+	DeleteUserInformationShort(params *DeleteUserInformationParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserInformationNoContent, error)
 	DeleteUserPermission(params *DeleteUserPermissionParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserPermissionNoContent, *DeleteUserPermissionBadRequest, *DeleteUserPermissionUnauthorized, *DeleteUserPermissionForbidden, *DeleteUserPermissionNotFound, error)
-
+	DeleteUserPermissionShort(params *DeleteUserPermissionParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserPermissionNoContent, error)
 	DeleteUserRole(params *DeleteUserRoleParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserRoleNoContent, *DeleteUserRoleUnauthorized, *DeleteUserRoleForbidden, *DeleteUserRoleNotFound, *DeleteUserRoleInternalServerError, error)
-
+	DeleteUserRoleShort(params *DeleteUserRoleParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserRoleNoContent, error)
 	DisableUser(params *DisableUserParams, authInfo runtime.ClientAuthInfoWriter) (*DisableUserNoContent, *DisableUserBadRequest, *DisableUserUnauthorized, *DisableUserForbidden, *DisableUserNotFound, *DisableUserInternalServerError, error)
-
+	DisableUserShort(params *DisableUserParams, authInfo runtime.ClientAuthInfoWriter) (*DisableUserNoContent, error)
 	DisableUserBan(params *DisableUserBanParams, authInfo runtime.ClientAuthInfoWriter) (*DisableUserBanOK, *DisableUserBanUnauthorized, *DisableUserBanForbidden, *DisableUserBanNotFound, *DisableUserBanInternalServerError, error)
-
+	DisableUserBanShort(params *DisableUserBanParams, authInfo runtime.ClientAuthInfoWriter) (*DisableUserBanOK, error)
 	EnableUser(params *EnableUserParams, authInfo runtime.ClientAuthInfoWriter) (*EnableUserNoContent, *EnableUserUnauthorized, *EnableUserForbidden, *EnableUserNotFound, *EnableUserInternalServerError, error)
-
+	EnableUserShort(params *EnableUserParams, authInfo runtime.ClientAuthInfoWriter) (*EnableUserNoContent, error)
 	EnableUserBan(params *EnableUserBanParams, authInfo runtime.ClientAuthInfoWriter) (*EnableUserBanOK, *EnableUserBanUnauthorized, *EnableUserBanForbidden, *EnableUserBanNotFound, *EnableUserBanInternalServerError, error)
-
+	EnableUserBanShort(params *EnableUserBanParams, authInfo runtime.ClientAuthInfoWriter) (*EnableUserBanOK, error)
 	ForgotPassword(params *ForgotPasswordParams, authInfo runtime.ClientAuthInfoWriter) (*ForgotPasswordNoContent, *ForgotPasswordBadRequest, *ForgotPasswordUnauthorized, *ForgotPasswordForbidden, *ForgotPasswordNotFound, error)
-
+	ForgotPasswordShort(params *ForgotPasswordParams, authInfo runtime.ClientAuthInfoWriter) (*ForgotPasswordNoContent, error)
 	GetAdminInvitationV3(params *GetAdminInvitationV3Params, authInfo runtime.ClientAuthInfoWriter) (*GetAdminInvitationV3OK, *GetAdminInvitationV3NotFound, *GetAdminInvitationV3InternalServerError, error)
-
+	GetAdminInvitationV3Short(params *GetAdminInvitationV3Params, authInfo runtime.ClientAuthInfoWriter) (*GetAdminInvitationV3OK, error)
 	GetAdminUsersByRoleID(params *GetAdminUsersByRoleIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetAdminUsersByRoleIDOK, *GetAdminUsersByRoleIDBadRequest, *GetAdminUsersByRoleIDUnauthorized, *GetAdminUsersByRoleIDForbidden, *GetAdminUsersByRoleIDNotFound, *GetAdminUsersByRoleIDInternalServerError, error)
-
+	GetAdminUsersByRoleIDShort(params *GetAdminUsersByRoleIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetAdminUsersByRoleIDOK, error)
 	GetAdminUsersByRoleIDV3(params *GetAdminUsersByRoleIDV3Params, authInfo runtime.ClientAuthInfoWriter) (*GetAdminUsersByRoleIDV3OK, *GetAdminUsersByRoleIDV3BadRequest, *GetAdminUsersByRoleIDV3Unauthorized, *GetAdminUsersByRoleIDV3Forbidden, *GetAdminUsersByRoleIDV3NotFound, *GetAdminUsersByRoleIDV3InternalServerError, error)
-
+	GetAdminUsersByRoleIDV3Short(params *GetAdminUsersByRoleIDV3Params, authInfo runtime.ClientAuthInfoWriter) (*GetAdminUsersByRoleIDV3OK, error)
 	GetListCountryAgeRestriction(params *GetListCountryAgeRestrictionParams, authInfo runtime.ClientAuthInfoWriter) (*GetListCountryAgeRestrictionOK, *GetListCountryAgeRestrictionUnauthorized, *GetListCountryAgeRestrictionForbidden, *GetListCountryAgeRestrictionNotFound, error)
-
+	GetListCountryAgeRestrictionShort(params *GetListCountryAgeRestrictionParams, authInfo runtime.ClientAuthInfoWriter) (*GetListCountryAgeRestrictionOK, error)
 	GetListJusticePlatformAccounts(params *GetListJusticePlatformAccountsParams, authInfo runtime.ClientAuthInfoWriter) (*GetListJusticePlatformAccountsOK, *GetListJusticePlatformAccountsBadRequest, *GetListJusticePlatformAccountsNotFound, error)
-
+	GetListJusticePlatformAccountsShort(params *GetListJusticePlatformAccountsParams, authInfo runtime.ClientAuthInfoWriter) (*GetListJusticePlatformAccountsOK, error)
 	GetPublisherUser(params *GetPublisherUserParams, authInfo runtime.ClientAuthInfoWriter) (*GetPublisherUserOK, *GetPublisherUserBadRequest, *GetPublisherUserUnauthorized, *GetPublisherUserForbidden, *GetPublisherUserNotFound, error)
-
+	GetPublisherUserShort(params *GetPublisherUserParams, authInfo runtime.ClientAuthInfoWriter) (*GetPublisherUserOK, error)
 	GetUserBanHistory(params *GetUserBanHistoryParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserBanHistoryOK, *GetUserBanHistoryUnauthorized, *GetUserBanHistoryForbidden, *GetUserBanHistoryNotFound, error)
-
+	GetUserBanHistoryShort(params *GetUserBanHistoryParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserBanHistoryOK, error)
 	GetUserByLoginID(params *GetUserByLoginIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserByLoginIDOK, *GetUserByLoginIDBadRequest, *GetUserByLoginIDNotFound, *GetUserByLoginIDInternalServerError, error)
-
+	GetUserByLoginIDShort(params *GetUserByLoginIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserByLoginIDOK, error)
 	GetUserByPlatformUserID(params *GetUserByPlatformUserIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserByPlatformUserIDOK, *GetUserByPlatformUserIDBadRequest, *GetUserByPlatformUserIDUnauthorized, *GetUserByPlatformUserIDForbidden, *GetUserByPlatformUserIDNotFound, error)
-
+	GetUserByPlatformUserIDShort(params *GetUserByPlatformUserIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserByPlatformUserIDOK, error)
 	GetUserByUserID(params *GetUserByUserIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserByUserIDOK, *GetUserByUserIDNotFound, *GetUserByUserIDInternalServerError, error)
-
+	GetUserByUserIDShort(params *GetUserByUserIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserByUserIDOK, error)
 	GetUserInformation(params *GetUserInformationParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserInformationOK, *GetUserInformationUnauthorized, *GetUserInformationForbidden, *GetUserInformationNotFound, error)
-
+	GetUserInformationShort(params *GetUserInformationParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserInformationOK, error)
 	GetUserJusticePlatformAccount(params *GetUserJusticePlatformAccountParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserJusticePlatformAccountOK, *GetUserJusticePlatformAccountBadRequest, *GetUserJusticePlatformAccountUnauthorized, *GetUserJusticePlatformAccountForbidden, error)
-
+	GetUserJusticePlatformAccountShort(params *GetUserJusticePlatformAccountParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserJusticePlatformAccountOK, error)
 	GetUserLoginHistories(params *GetUserLoginHistoriesParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserLoginHistoriesOK, *GetUserLoginHistoriesUnauthorized, *GetUserLoginHistoriesForbidden, *GetUserLoginHistoriesNotFound, error)
-
+	GetUserLoginHistoriesShort(params *GetUserLoginHistoriesParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserLoginHistoriesOK, error)
 	GetUserMapping(params *GetUserMappingParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserMappingOK, *GetUserMappingBadRequest, *GetUserMappingUnauthorized, *GetUserMappingForbidden, *GetUserMappingNotFound, error)
-
+	GetUserMappingShort(params *GetUserMappingParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserMappingOK, error)
 	GetUserPlatformAccounts(params *GetUserPlatformAccountsParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserPlatformAccountsOK, *GetUserPlatformAccountsBadRequest, *GetUserPlatformAccountsUnauthorized, *GetUserPlatformAccountsForbidden, error)
-
+	GetUserPlatformAccountsShort(params *GetUserPlatformAccountsParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserPlatformAccountsOK, error)
 	GetUsersByLoginIds(params *GetUsersByLoginIdsParams, authInfo runtime.ClientAuthInfoWriter) (*GetUsersByLoginIdsOK, *GetUsersByLoginIdsBadRequest, *GetUsersByLoginIdsUnauthorized, *GetUsersByLoginIdsForbidden, error)
-
+	GetUsersByLoginIdsShort(params *GetUsersByLoginIdsParams, authInfo runtime.ClientAuthInfoWriter) (*GetUsersByLoginIdsOK, error)
 	ListAdminsV3(params *ListAdminsV3Params, authInfo runtime.ClientAuthInfoWriter) (*ListAdminsV3OK, *ListAdminsV3Unauthorized, *ListAdminsV3Forbidden, *ListAdminsV3InternalServerError, error)
-
+	ListAdminsV3Short(params *ListAdminsV3Params, authInfo runtime.ClientAuthInfoWriter) (*ListAdminsV3OK, error)
 	ListCrossNamespaceAccountLink(params *ListCrossNamespaceAccountLinkParams, authInfo runtime.ClientAuthInfoWriter) (*ListCrossNamespaceAccountLinkOK, *ListCrossNamespaceAccountLinkBadRequest, *ListCrossNamespaceAccountLinkUnauthorized, *ListCrossNamespaceAccountLinkForbidden, *ListCrossNamespaceAccountLinkNotFound, error)
-
+	ListCrossNamespaceAccountLinkShort(params *ListCrossNamespaceAccountLinkParams, authInfo runtime.ClientAuthInfoWriter) (*ListCrossNamespaceAccountLinkOK, error)
 	PlatformLink(params *PlatformLinkParams, authInfo runtime.ClientAuthInfoWriter) (*PlatformLinkNoContent, *PlatformLinkBadRequest, *PlatformLinkUnauthorized, *PlatformLinkForbidden, *PlatformLinkNotFound, *PlatformLinkConflict, *PlatformLinkInternalServerError, error)
-
+	PlatformLinkShort(params *PlatformLinkParams, authInfo runtime.ClientAuthInfoWriter) (*PlatformLinkNoContent, error)
 	PlatformUnlink(params *PlatformUnlinkParams, authInfo runtime.ClientAuthInfoWriter) (*PlatformUnlinkNoContent, *PlatformUnlinkBadRequest, *PlatformUnlinkUnauthorized, *PlatformUnlinkForbidden, *PlatformUnlinkNotFound, *PlatformUnlinkInternalServerError, error)
-
+	PlatformUnlinkShort(params *PlatformUnlinkParams, authInfo runtime.ClientAuthInfoWriter) (*PlatformUnlinkNoContent, error)
+	PublicBulkGetUsers(params *PublicBulkGetUsersParams, authInfo runtime.ClientAuthInfoWriter) (*PublicBulkGetUsersOK, *PublicBulkGetUsersBadRequest, *PublicBulkGetUsersUnauthorized, *PublicBulkGetUsersInternalServerError, error)
+	PublicBulkGetUsersShort(params *PublicBulkGetUsersParams, authInfo runtime.ClientAuthInfoWriter) (*PublicBulkGetUsersOK, error)
 	PublicCreateJusticeUser(params *PublicCreateJusticeUserParams, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateJusticeUserCreated, *PublicCreateJusticeUserBadRequest, *PublicCreateJusticeUserUnauthorized, *PublicCreateJusticeUserForbidden, *PublicCreateJusticeUserNotFound, *PublicCreateJusticeUserInternalServerError, error)
-
+	PublicCreateJusticeUserShort(params *PublicCreateJusticeUserParams, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateJusticeUserCreated, error)
 	PublicCreateUserV2(params *PublicCreateUserV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateUserV2Created, *PublicCreateUserV2BadRequest, *PublicCreateUserV2Unauthorized, *PublicCreateUserV2Forbidden, *PublicCreateUserV2Conflict, error)
-
+	PublicCreateUserV2Short(params *PublicCreateUserV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateUserV2Created, error)
 	PublicCreateUserV3(params *PublicCreateUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateUserV3Created, *PublicCreateUserV3BadRequest, *PublicCreateUserV3NotFound, *PublicCreateUserV3Conflict, *PublicCreateUserV3InternalServerError, error)
-
+	PublicCreateUserV3Short(params *PublicCreateUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateUserV3Created, error)
 	PublicDeletePlatformLinkV2(params *PublicDeletePlatformLinkV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicDeletePlatformLinkV2NoContent, *PublicDeletePlatformLinkV2BadRequest, *PublicDeletePlatformLinkV2Unauthorized, *PublicDeletePlatformLinkV2Forbidden, *PublicDeletePlatformLinkV2NotFound, *PublicDeletePlatformLinkV2InternalServerError, error)
-
+	PublicDeletePlatformLinkV2Short(params *PublicDeletePlatformLinkV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicDeletePlatformLinkV2NoContent, error)
 	PublicForgotPasswordV2(params *PublicForgotPasswordV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicForgotPasswordV2NoContent, *PublicForgotPasswordV2BadRequest, *PublicForgotPasswordV2NotFound, *PublicForgotPasswordV2TooManyRequests, *PublicForgotPasswordV2InternalServerError, error)
-
+	PublicForgotPasswordV2Short(params *PublicForgotPasswordV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicForgotPasswordV2NoContent, error)
 	PublicForgotPasswordV3(params *PublicForgotPasswordV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicForgotPasswordV3NoContent, *PublicForgotPasswordV3BadRequest, *PublicForgotPasswordV3NotFound, *PublicForgotPasswordV3TooManyRequests, error)
-
+	PublicForgotPasswordV3Short(params *PublicForgotPasswordV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicForgotPasswordV3NoContent, error)
 	PublicGetAsyncStatus(params *PublicGetAsyncStatusParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetAsyncStatusOK, *PublicGetAsyncStatusUnauthorized, *PublicGetAsyncStatusForbidden, *PublicGetAsyncStatusInternalServerError, error)
-
+	PublicGetAsyncStatusShort(params *PublicGetAsyncStatusParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetAsyncStatusOK, error)
 	PublicGetMyUserV3(params *PublicGetMyUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetMyUserV3OK, *PublicGetMyUserV3Unauthorized, *PublicGetMyUserV3InternalServerError, error)
-
+	PublicGetMyUserV3Short(params *PublicGetMyUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetMyUserV3OK, error)
 	PublicGetUserBan(params *PublicGetUserBanParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserBanOK, *PublicGetUserBanUnauthorized, *PublicGetUserBanForbidden, *PublicGetUserBanNotFound, error)
-
+	PublicGetUserBanShort(params *PublicGetUserBanParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserBanOK, error)
 	PublicGetUserBanHistoryV3(params *PublicGetUserBanHistoryV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserBanHistoryV3OK, *PublicGetUserBanHistoryV3BadRequest, *PublicGetUserBanHistoryV3Unauthorized, *PublicGetUserBanHistoryV3Forbidden, *PublicGetUserBanHistoryV3NotFound, *PublicGetUserBanHistoryV3InternalServerError, error)
-
+	PublicGetUserBanHistoryV3Short(params *PublicGetUserBanHistoryV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserBanHistoryV3OK, error)
 	PublicGetUserByPlatformUserIDV3(params *PublicGetUserByPlatformUserIDV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserByPlatformUserIDV3OK, *PublicGetUserByPlatformUserIDV3Unauthorized, *PublicGetUserByPlatformUserIDV3Forbidden, *PublicGetUserByPlatformUserIDV3NotFound, *PublicGetUserByPlatformUserIDV3InternalServerError, error)
-
+	PublicGetUserByPlatformUserIDV3Short(params *PublicGetUserByPlatformUserIDV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserByPlatformUserIDV3OK, error)
 	PublicGetUserByUserIDV2(params *PublicGetUserByUserIDV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserByUserIDV2OK, *PublicGetUserByUserIDV2NotFound, *PublicGetUserByUserIDV2InternalServerError, error)
-
+	PublicGetUserByUserIDV2Short(params *PublicGetUserByUserIDV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserByUserIDV2OK, error)
 	PublicGetUserByUserIDV3(params *PublicGetUserByUserIDV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserByUserIDV3OK, *PublicGetUserByUserIDV3BadRequest, *PublicGetUserByUserIDV3NotFound, *PublicGetUserByUserIDV3InternalServerError, error)
-
+	PublicGetUserByUserIDV3Short(params *PublicGetUserByUserIDV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserByUserIDV3OK, error)
 	PublicGetUserLoginHistoriesV3(params *PublicGetUserLoginHistoriesV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserLoginHistoriesV3OK, *PublicGetUserLoginHistoriesV3Unauthorized, *PublicGetUserLoginHistoriesV3Forbidden, *PublicGetUserLoginHistoriesV3NotFound, error)
-
+	PublicGetUserLoginHistoriesV3Short(params *PublicGetUserLoginHistoriesV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserLoginHistoriesV3OK, error)
 	PublicGetUserPlatformAccountsV3(params *PublicGetUserPlatformAccountsV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserPlatformAccountsV3OK, *PublicGetUserPlatformAccountsV3BadRequest, *PublicGetUserPlatformAccountsV3Unauthorized, *PublicGetUserPlatformAccountsV3Forbidden, *PublicGetUserPlatformAccountsV3NotFound, error)
-
+	PublicGetUserPlatformAccountsV3Short(params *PublicGetUserPlatformAccountsV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserPlatformAccountsV3OK, error)
 	PublicLinkPlatformAccount(params *PublicLinkPlatformAccountParams, authInfo runtime.ClientAuthInfoWriter) (*PublicLinkPlatformAccountNoContent, *PublicLinkPlatformAccountBadRequest, *PublicLinkPlatformAccountUnauthorized, *PublicLinkPlatformAccountForbidden, *PublicLinkPlatformAccountInternalServerError, error)
-
+	PublicLinkPlatformAccountShort(params *PublicLinkPlatformAccountParams, authInfo runtime.ClientAuthInfoWriter) (*PublicLinkPlatformAccountNoContent, error)
 	PublicListUserIDByPlatformUserIDsV3(params *PublicListUserIDByPlatformUserIDsV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicListUserIDByPlatformUserIDsV3OK, *PublicListUserIDByPlatformUserIDsV3BadRequest, *PublicListUserIDByPlatformUserIDsV3Unauthorized, *PublicListUserIDByPlatformUserIDsV3Forbidden, *PublicListUserIDByPlatformUserIDsV3InternalServerError, error)
-
+	PublicListUserIDByPlatformUserIDsV3Short(params *PublicListUserIDByPlatformUserIDsV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicListUserIDByPlatformUserIDsV3OK, error)
 	PublicPlatformLinkV2(params *PublicPlatformLinkV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicPlatformLinkV2NoContent, *PublicPlatformLinkV2BadRequest, *PublicPlatformLinkV2Unauthorized, *PublicPlatformLinkV2Forbidden, *PublicPlatformLinkV2NotFound, *PublicPlatformLinkV2Conflict, *PublicPlatformLinkV2InternalServerError, error)
-
+	PublicPlatformLinkV2Short(params *PublicPlatformLinkV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicPlatformLinkV2NoContent, error)
 	PublicPlatformLinkV3(params *PublicPlatformLinkV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicPlatformLinkV3NoContent, *PublicPlatformLinkV3BadRequest, *PublicPlatformLinkV3Unauthorized, *PublicPlatformLinkV3NotFound, *PublicPlatformLinkV3Conflict, *PublicPlatformLinkV3InternalServerError, error)
-
+	PublicPlatformLinkV3Short(params *PublicPlatformLinkV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicPlatformLinkV3NoContent, error)
 	PublicPlatformUnlinkV3(params *PublicPlatformUnlinkV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicPlatformUnlinkV3NoContent, *PublicPlatformUnlinkV3BadRequest, *PublicPlatformUnlinkV3Unauthorized, *PublicPlatformUnlinkV3NotFound, *PublicPlatformUnlinkV3InternalServerError, error)
-
+	PublicPlatformUnlinkV3Short(params *PublicPlatformUnlinkV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicPlatformUnlinkV3NoContent, error)
 	PublicResetPasswordV2(params *PublicResetPasswordV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicResetPasswordV2NoContent, *PublicResetPasswordV2BadRequest, *PublicResetPasswordV2Forbidden, *PublicResetPasswordV2NotFound, *PublicResetPasswordV2InternalServerError, error)
-
+	PublicResetPasswordV2Short(params *PublicResetPasswordV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicResetPasswordV2NoContent, error)
 	PublicSearchUserV3(params *PublicSearchUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicSearchUserV3OK, *PublicSearchUserV3BadRequest, *PublicSearchUserV3Unauthorized, *PublicSearchUserV3NotFound, *PublicSearchUserV3InternalServerError, error)
-
+	PublicSearchUserV3Short(params *PublicSearchUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicSearchUserV3OK, error)
 	PublicSendVerificationCodeV3(params *PublicSendVerificationCodeV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicSendVerificationCodeV3NoContent, *PublicSendVerificationCodeV3BadRequest, *PublicSendVerificationCodeV3Unauthorized, *PublicSendVerificationCodeV3NotFound, *PublicSendVerificationCodeV3Conflict, *PublicSendVerificationCodeV3TooManyRequests, error)
-
+	PublicSendVerificationCodeV3Short(params *PublicSendVerificationCodeV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicSendVerificationCodeV3NoContent, error)
 	PublicUpdatePasswordV2(params *PublicUpdatePasswordV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdatePasswordV2NoContent, *PublicUpdatePasswordV2BadRequest, *PublicUpdatePasswordV2Unauthorized, *PublicUpdatePasswordV2Forbidden, *PublicUpdatePasswordV2NotFound, *PublicUpdatePasswordV2InternalServerError, error)
-
+	PublicUpdatePasswordV2Short(params *PublicUpdatePasswordV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdatePasswordV2NoContent, error)
 	PublicUpdatePasswordV3(params *PublicUpdatePasswordV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdatePasswordV3NoContent, *PublicUpdatePasswordV3BadRequest, *PublicUpdatePasswordV3Unauthorized, *PublicUpdatePasswordV3InternalServerError, error)
-
+	PublicUpdatePasswordV3Short(params *PublicUpdatePasswordV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdatePasswordV3NoContent, error)
 	PublicUpdateUserV2(params *PublicUpdateUserV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateUserV2OK, *PublicUpdateUserV2BadRequest, *PublicUpdateUserV2Unauthorized, *PublicUpdateUserV2NotFound, *PublicUpdateUserV2Conflict, *PublicUpdateUserV2InternalServerError, error)
-
+	PublicUpdateUserV2Short(params *PublicUpdateUserV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateUserV2OK, error)
 	PublicUpdateUserV3(params *PublicUpdateUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateUserV3OK, *PublicUpdateUserV3BadRequest, *PublicUpdateUserV3Unauthorized, *PublicUpdateUserV3Conflict, *PublicUpdateUserV3InternalServerError, error)
-
+	PublicUpdateUserV3Short(params *PublicUpdateUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateUserV3OK, error)
 	PublicUpgradeHeadlessAccountV3(params *PublicUpgradeHeadlessAccountV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUpgradeHeadlessAccountV3OK, *PublicUpgradeHeadlessAccountV3BadRequest, *PublicUpgradeHeadlessAccountV3Unauthorized, *PublicUpgradeHeadlessAccountV3Forbidden, *PublicUpgradeHeadlessAccountV3NotFound, *PublicUpgradeHeadlessAccountV3Conflict, *PublicUpgradeHeadlessAccountV3InternalServerError, error)
-
+	PublicUpgradeHeadlessAccountV3Short(params *PublicUpgradeHeadlessAccountV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUpgradeHeadlessAccountV3OK, error)
 	PublicUserVerificationV3(params *PublicUserVerificationV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUserVerificationV3NoContent, *PublicUserVerificationV3BadRequest, *PublicUserVerificationV3Unauthorized, *PublicUserVerificationV3Forbidden, *PublicUserVerificationV3Conflict, error)
-
+	PublicUserVerificationV3Short(params *PublicUserVerificationV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUserVerificationV3NoContent, error)
 	PublicValidateUserByUserIDAndPasswordV3(params *PublicValidateUserByUserIDAndPasswordV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicValidateUserByUserIDAndPasswordV3NoContent, *PublicValidateUserByUserIDAndPasswordV3BadRequest, *PublicValidateUserByUserIDAndPasswordV3Unauthorized, *PublicValidateUserByUserIDAndPasswordV3Forbidden, *PublicValidateUserByUserIDAndPasswordV3NotFound, *PublicValidateUserByUserIDAndPasswordV3InternalServerError, error)
-
+	PublicValidateUserByUserIDAndPasswordV3Short(params *PublicValidateUserByUserIDAndPasswordV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicValidateUserByUserIDAndPasswordV3NoContent, error)
 	PublicVerifyHeadlessAccountV3(params *PublicVerifyHeadlessAccountV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicVerifyHeadlessAccountV3OK, *PublicVerifyHeadlessAccountV3BadRequest, *PublicVerifyHeadlessAccountV3Unauthorized, *PublicVerifyHeadlessAccountV3NotFound, *PublicVerifyHeadlessAccountV3Conflict, *PublicVerifyHeadlessAccountV3InternalServerError, error)
-
+	PublicVerifyHeadlessAccountV3Short(params *PublicVerifyHeadlessAccountV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicVerifyHeadlessAccountV3OK, error)
 	PublicWebLinkPlatform(params *PublicWebLinkPlatformParams, authInfo runtime.ClientAuthInfoWriter) (*PublicWebLinkPlatformOK, *PublicWebLinkPlatformBadRequest, *PublicWebLinkPlatformUnauthorized, *PublicWebLinkPlatformNotFound, error)
-
+	PublicWebLinkPlatformShort(params *PublicWebLinkPlatformParams, authInfo runtime.ClientAuthInfoWriter) (*PublicWebLinkPlatformOK, error)
 	PublicWebLinkPlatformEstablish(params *PublicWebLinkPlatformEstablishParams, authInfo runtime.ClientAuthInfoWriter) (*PublicWebLinkPlatformEstablishFound, error)
-
+	PublicWebLinkPlatformEstablishShort(params *PublicWebLinkPlatformEstablishParams, authInfo runtime.ClientAuthInfoWriter) (*PublicWebLinkPlatformEstablishFound, error)
 	ResetPassword(params *ResetPasswordParams, authInfo runtime.ClientAuthInfoWriter) (*ResetPasswordNoContent, *ResetPasswordBadRequest, *ResetPasswordForbidden, *ResetPasswordNotFound, *ResetPasswordInternalServerError, error)
-
+	ResetPasswordShort(params *ResetPasswordParams, authInfo runtime.ClientAuthInfoWriter) (*ResetPasswordNoContent, error)
 	ResetPasswordV3(params *ResetPasswordV3Params, authInfo runtime.ClientAuthInfoWriter) (*ResetPasswordV3NoContent, *ResetPasswordV3BadRequest, *ResetPasswordV3Forbidden, *ResetPasswordV3NotFound, error)
-
+	ResetPasswordV3Short(params *ResetPasswordV3Params, authInfo runtime.ClientAuthInfoWriter) (*ResetPasswordV3NoContent, error)
 	SaveUserPermission(params *SaveUserPermissionParams, authInfo runtime.ClientAuthInfoWriter) (*SaveUserPermissionNoContent, *SaveUserPermissionBadRequest, *SaveUserPermissionUnauthorized, *SaveUserPermissionForbidden, *SaveUserPermissionNotFound, error)
-
+	SaveUserPermissionShort(params *SaveUserPermissionParams, authInfo runtime.ClientAuthInfoWriter) (*SaveUserPermissionNoContent, error)
 	SaveUserRoles(params *SaveUserRolesParams, authInfo runtime.ClientAuthInfoWriter) (*SaveUserRolesNoContent, *SaveUserRolesBadRequest, *SaveUserRolesUnauthorized, *SaveUserRolesForbidden, *SaveUserRolesNotFound, *SaveUserRolesConflict, error)
-
+	SaveUserRolesShort(params *SaveUserRolesParams, authInfo runtime.ClientAuthInfoWriter) (*SaveUserRolesNoContent, error)
 	SearchUser(params *SearchUserParams, authInfo runtime.ClientAuthInfoWriter) (*SearchUserOK, *SearchUserBadRequest, *SearchUserUnauthorized, *SearchUserForbidden, error)
-
+	SearchUserShort(params *SearchUserParams, authInfo runtime.ClientAuthInfoWriter) (*SearchUserOK, error)
 	SendVerificationCode(params *SendVerificationCodeParams, authInfo runtime.ClientAuthInfoWriter) (*SendVerificationCodeNoContent, *SendVerificationCodeBadRequest, *SendVerificationCodeUnauthorized, *SendVerificationCodeForbidden, *SendVerificationCodeNotFound, *SendVerificationCodeConflict, *SendVerificationCodeTooManyRequests, *SendVerificationCodeInternalServerError, error)
-
+	SendVerificationCodeShort(params *SendVerificationCodeParams, authInfo runtime.ClientAuthInfoWriter) (*SendVerificationCodeNoContent, error)
 	UpdateCountryAgeRestriction(params *UpdateCountryAgeRestrictionParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateCountryAgeRestrictionOK, *UpdateCountryAgeRestrictionBadRequest, *UpdateCountryAgeRestrictionUnauthorized, *UpdateCountryAgeRestrictionForbidden, *UpdateCountryAgeRestrictionNotFound, error)
-
+	UpdateCountryAgeRestrictionShort(params *UpdateCountryAgeRestrictionParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateCountryAgeRestrictionOK, error)
 	UpdatePassword(params *UpdatePasswordParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePasswordNoContent, *UpdatePasswordBadRequest, *UpdatePasswordUnauthorized, *UpdatePasswordForbidden, *UpdatePasswordNotFound, *UpdatePasswordInternalServerError, error)
-
+	UpdatePasswordShort(params *UpdatePasswordParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePasswordNoContent, error)
 	UpdateUser(params *UpdateUserParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateUserOK, *UpdateUserBadRequest, *UpdateUserUnauthorized, *UpdateUserNotFound, *UpdateUserConflict, *UpdateUserInternalServerError, error)
-
+	UpdateUserShort(params *UpdateUserParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateUserOK, error)
 	UpdateUserV3(params *UpdateUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateUserV3OK, *UpdateUserV3BadRequest, *UpdateUserV3Unauthorized, *UpdateUserV3Conflict, *UpdateUserV3InternalServerError, error)
-
+	UpdateUserV3Short(params *UpdateUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateUserV3OK, error)
 	UpgradeHeadlessAccountWithVerificationCode(params *UpgradeHeadlessAccountWithVerificationCodeParams, authInfo runtime.ClientAuthInfoWriter) (*UpgradeHeadlessAccountWithVerificationCodeOK, *UpgradeHeadlessAccountWithVerificationCodeBadRequest, *UpgradeHeadlessAccountWithVerificationCodeUnauthorized, *UpgradeHeadlessAccountWithVerificationCodeForbidden, *UpgradeHeadlessAccountWithVerificationCodeConflict, error)
-
+	UpgradeHeadlessAccountWithVerificationCodeShort(params *UpgradeHeadlessAccountWithVerificationCodeParams, authInfo runtime.ClientAuthInfoWriter) (*UpgradeHeadlessAccountWithVerificationCodeOK, error)
 	UserVerification(params *UserVerificationParams, authInfo runtime.ClientAuthInfoWriter) (*UserVerificationNoContent, *UserVerificationBadRequest, *UserVerificationUnauthorized, *UserVerificationForbidden, *UserVerificationNotFound, *UserVerificationInternalServerError, error)
-
+	UserVerificationShort(params *UserVerificationParams, authInfo runtime.ClientAuthInfoWriter) (*UserVerificationNoContent, error)
 	GetUserVerificationCode(params *GetUserVerificationCodeParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserVerificationCodeOK, *GetUserVerificationCodeUnauthorized, *GetUserVerificationCodeForbidden, *GetUserVerificationCodeNotFound, *GetUserVerificationCodeInternalServerError, error)
-
+	GetUserVerificationCodeShort(params *GetUserVerificationCodeParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserVerificationCodeOK, error)
 	UpgradeHeadlessAccount(params *UpgradeHeadlessAccountParams, authInfo runtime.ClientAuthInfoWriter) (*UpgradeHeadlessAccountOK, *UpgradeHeadlessAccountUnauthorized, *UpgradeHeadlessAccountForbidden, *UpgradeHeadlessAccountConflict, error)
+	UpgradeHeadlessAccountShort(params *UpgradeHeadlessAccountParams, authInfo runtime.ClientAuthInfoWriter) (*UpgradeHeadlessAccountOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -297,33 +304,33 @@ type ClientService interface {
 /*
   AddUserPermission adds user permission
 
-  <p>Required permission 'ADMIN:NAMESPACE:{namespace}:PERMISSION:USER:{userId} [UPDATE]'</p>
-			<p>This endpoint will update existing permission (bitwise OR the action) if found one with same resource, otherwise it will append a new permission</p>
-			<p>Schedule contains cron string or date range (both are UTC, also in cron syntax) to indicate when a permission and action are in effect.</p>
-			<p>Both schedule types accepts quartz compatible cron syntax e.g. * * * * * * *.</p>
-			<p>In ranged schedule, first element will be start date, and second one will be end date</p>
-			<p>If schedule is set, the scheduled action must be valid too, that is between 1 to 15, inclusive</p>
-			<p>Syntax reference</p>
-			<p>Fields:</p>
-			<ol>
-			<li>Seconds: 0-59 * / , -</li>
-			<li>Minutes: 0-59 * / , -</li>
-			<li>Hours: 0-23 * / , -</li>
-			<li>Day of month: 1-31 * / , - L W</li>
-			<li>Month: 1-12 JAN-DEC * / , -</li>
-			<li>Day of week: 0-6 SUN-SAT * / , - L #</li>
-			<li>Year: 1970-2099 * / , -</li>
-			</ol>
-			<p>Special characters:</p>
-			<ol>
-			<li>*: all values in the fields, e.g. * in seconds fields indicates every second</li>
-			<li>/: increments of ranges, e.g. 3-59/15 in the minute field indicate the third minute of the hour and every 15 minutes thereafter</li>
-			<li>,: separate items of a list, e.g. MON,WED,FRI in day of week</li>
-			<li>-: range, e.g. 2010-2018 indicates every year between 2010 and 2018, inclusive</li>
-			<li>L: last, e.g. When used in the day-of-week field, it allows you to specify constructs such as "the last Friday" (5L) of a given month. In the day-of-month field, it specifies the last day of the month.</li>
-			<li>W: business day, e.g. if you were to specify 15W as the value for the day-of-month field, the meaning is: "the nearest business day to the 15th of the month."</li>
-			<li>#: must be followed by a number between one and five. It allows you to specify constructs such as "the second Friday" of a given month.</li>
-			</ol>
+  &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:PERMISSION:USER:{userId} [UPDATE]&#39;&lt;/p&gt;
+			&lt;p&gt;This endpoint will update existing permission (bitwise OR the action) if found one with same resource, otherwise it will append a new permission&lt;/p&gt;
+			&lt;p&gt;Schedule contains cron string or date range (both are UTC, also in cron syntax) to indicate when a permission and action are in effect.&lt;/p&gt;
+			&lt;p&gt;Both schedule types accepts quartz compatible cron syntax e.g. * * * * * * *.&lt;/p&gt;
+			&lt;p&gt;In ranged schedule, first element will be start date, and second one will be end date&lt;/p&gt;
+			&lt;p&gt;If schedule is set, the scheduled action must be valid too, that is between 1 to 15, inclusive&lt;/p&gt;
+			&lt;p&gt;Syntax reference&lt;/p&gt;
+			&lt;p&gt;Fields:&lt;/p&gt;
+			&lt;ol&gt;
+			&lt;li&gt;Seconds: 0-59 * / , -&lt;/li&gt;
+			&lt;li&gt;Minutes: 0-59 * / , -&lt;/li&gt;
+			&lt;li&gt;Hours: 0-23 * / , -&lt;/li&gt;
+			&lt;li&gt;Day of month: 1-31 * / , - L W&lt;/li&gt;
+			&lt;li&gt;Month: 1-12 JAN-DEC * / , -&lt;/li&gt;
+			&lt;li&gt;Day of week: 0-6 SUN-SAT * / , - L #&lt;/li&gt;
+			&lt;li&gt;Year: 1970-2099 * / , -&lt;/li&gt;
+			&lt;/ol&gt;
+			&lt;p&gt;Special characters:&lt;/p&gt;
+			&lt;ol&gt;
+			&lt;li&gt;*: all values in the fields, e.g. * in seconds fields indicates every second&lt;/li&gt;
+			&lt;li&gt;/: increments of ranges, e.g. 3-59/15 in the minute field indicate the third minute of the hour and every 15 minutes thereafter&lt;/li&gt;
+			&lt;li&gt;,: separate items of a list, e.g. MON,WED,FRI in day of week&lt;/li&gt;
+			&lt;li&gt;-: range, e.g. 2010-2018 indicates every year between 2010 and 2018, inclusive&lt;/li&gt;
+			&lt;li&gt;L: last, e.g. When used in the day-of-week field, it allows you to specify constructs such as &#34;the last Friday&#34; (5L) of a given month. In the day-of-month field, it specifies the last day of the month.&lt;/li&gt;
+			&lt;li&gt;W: business day, e.g. if you were to specify 15W as the value for the day-of-month field, the meaning is: &#34;the nearest business day to the 15th of the month.&#34;&lt;/li&gt;
+			&lt;li&gt;#: must be followed by a number between one and five. It allows you to specify constructs such as &#34;the second Friday&#34; of a given month.&lt;/li&gt;
+			&lt;/ol&gt;
 
 */
 func (a *Client) AddUserPermission(params *AddUserPermissionParams, authInfo runtime.ClientAuthInfoWriter) (*AddUserPermissionNoContent, *AddUserPermissionBadRequest, *AddUserPermissionUnauthorized, *AddUserPermissionForbidden, *AddUserPermissionNotFound, error) {
@@ -342,7 +349,7 @@ func (a *Client) AddUserPermission(params *AddUserPermissionParams, authInfo run
 		PathPattern:        "/iam/namespaces/{namespace}/users/{userId}/permissions/{resource}/{action}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AddUserPermissionReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -357,23 +364,73 @@ func (a *Client) AddUserPermission(params *AddUserPermissionParams, authInfo run
 
 	case *AddUserPermissionNoContent:
 		return v, nil, nil, nil, nil, nil
+
 	case *AddUserPermissionBadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *AddUserPermissionUnauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *AddUserPermissionForbidden:
 		return nil, nil, nil, v, nil, nil
+
 	case *AddUserPermissionNotFound:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AddUserPermissionShort(params *AddUserPermissionParams, authInfo runtime.ClientAuthInfoWriter) (*AddUserPermissionNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAddUserPermissionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AddUserPermission",
+		Method:             "POST",
+		PathPattern:        "/iam/namespaces/{namespace}/users/{userId}/permissions/{resource}/{action}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AddUserPermissionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AddUserPermissionNoContent:
+		return v, nil
+	case *AddUserPermissionBadRequest:
+		return nil, v
+	case *AddUserPermissionUnauthorized:
+		return nil, v
+	case *AddUserPermissionForbidden:
+		return nil, v
+	case *AddUserPermissionNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   AddUserRole adds user role
 
-  Required permission 'ADMIN:NAMESPACE:{namespace}:ROLE:USER:{userId} [UPDATE]'
+  Required permission &#39;ADMIN:NAMESPACE:{namespace}:ROLE:USER:{userId} [UPDATE]&#39;
 */
 func (a *Client) AddUserRole(params *AddUserRoleParams, authInfo runtime.ClientAuthInfoWriter) (*AddUserRoleNoContent, *AddUserRoleUnauthorized, *AddUserRoleForbidden, *AddUserRoleNotFound, *AddUserRoleConflict, *AddUserRoleInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -391,7 +448,7 @@ func (a *Client) AddUserRole(params *AddUserRoleParams, authInfo runtime.ClientA
 		PathPattern:        "/iam/namespaces/{namespace}/users/{userId}/roles/{roleId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json", "text/plain"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AddUserRoleReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -406,51 +463,104 @@ func (a *Client) AddUserRole(params *AddUserRoleParams, authInfo runtime.ClientA
 
 	case *AddUserRoleNoContent:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *AddUserRoleUnauthorized:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *AddUserRoleForbidden:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *AddUserRoleNotFound:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *AddUserRoleConflict:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *AddUserRoleInternalServerError:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AddUserRoleShort(params *AddUserRoleParams, authInfo runtime.ClientAuthInfoWriter) (*AddUserRoleNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAddUserRoleParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AddUserRole",
+		Method:             "POST",
+		PathPattern:        "/iam/namespaces/{namespace}/users/{userId}/roles/{roleId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json", "text/plain"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AddUserRoleReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AddUserRoleNoContent:
+		return v, nil
+	case *AddUserRoleUnauthorized:
+		return nil, v
+	case *AddUserRoleForbidden:
+		return nil, v
+	case *AddUserRoleNotFound:
+		return nil, v
+	case *AddUserRoleConflict:
+		return nil, v
+	case *AddUserRoleInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   AdminAddUserPermissionsV3 adds user permissions
 
-  <p>Required permission 'ADMIN:NAMESPACE:{namespace}:PERMISSION:USER:{userId} [CREATE]'</p>
-			<p>This endpoint will APPEND user's permissions with the ones defined in body</p>
-			<p>Schedule contains cron string or date range (both are UTC, also in cron syntax) to indicate when a permission and action are in effect.</p>
-			<p>Both schedule types accepts quartz compatible cron syntax e.g. * * * * * * *.</p>
-			<p>In ranged schedule, first element will be start date, and second one will be end date</p>
-			<p>If schedule is set, the scheduled action must be valid too, that is between 1 to 15, inclusive</p>
-			<p>Syntax reference</p>
-			<p>Fields:</p>
-			<ol>
-			<li>Seconds: 0-59 * / , -</li>
-			<li>Minutes: 0-59 * / , -</li>
-			<li>Hours: 0-23 * / , -</li>
-			<li>Day of month: 1-31 * / , - L W</li>
-			<li>Month: 1-12 JAN-DEC * / , -</li>
-			<li>Day of week: 0-6 SUN-SAT * / , - L #</li>
-			<li>Year: 1970-2099 * / , -</li>
-			</ol>
-			<p>Special characters:</p>
-			<ol>
-			<li>*: all values in the fields, e.g. * in seconds fields indicates every second</li>
-			<li>/: increments of ranges, e.g. 3-59/15 in the minute field indicate the third minute of the hour and every 15 minutes thereafter</li>
-			<li>,: separate items of a list, e.g. MON,WED,FRI in day of week</li>
-			<li>-: range, e.g. 2010-2018 indicates every year between 2010 and 2018, inclusive</li>
-			<li>L: last, e.g. When used in the day-of-week field, it allows you to specify constructs such as "the last Friday" (5L) of a given month. In the day-of-month field, it specifies the last day of the month.</li>
-			<li>W: business day, e.g. if you were to specify 15W as the value for the day-of-month field, the meaning is: "the nearest business day to the 15th of the month."</li>
-			<li>#: must be followed by a number between one and five. It allows you to specify constructs such as "the second Friday" of a given month.</li>
-			</ol>
+  &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:PERMISSION:USER:{userId} [CREATE]&#39;&lt;/p&gt;
+			&lt;p&gt;This endpoint will APPEND user&#39;s permissions with the ones defined in body&lt;/p&gt;
+			&lt;p&gt;Schedule contains cron string or date range (both are UTC, also in cron syntax) to indicate when a permission and action are in effect.&lt;/p&gt;
+			&lt;p&gt;Both schedule types accepts quartz compatible cron syntax e.g. * * * * * * *.&lt;/p&gt;
+			&lt;p&gt;In ranged schedule, first element will be start date, and second one will be end date&lt;/p&gt;
+			&lt;p&gt;If schedule is set, the scheduled action must be valid too, that is between 1 to 15, inclusive&lt;/p&gt;
+			&lt;p&gt;Syntax reference&lt;/p&gt;
+			&lt;p&gt;Fields:&lt;/p&gt;
+			&lt;ol&gt;
+			&lt;li&gt;Seconds: 0-59 * / , -&lt;/li&gt;
+			&lt;li&gt;Minutes: 0-59 * / , -&lt;/li&gt;
+			&lt;li&gt;Hours: 0-23 * / , -&lt;/li&gt;
+			&lt;li&gt;Day of month: 1-31 * / , - L W&lt;/li&gt;
+			&lt;li&gt;Month: 1-12 JAN-DEC * / , -&lt;/li&gt;
+			&lt;li&gt;Day of week: 0-6 SUN-SAT * / , - L #&lt;/li&gt;
+			&lt;li&gt;Year: 1970-2099 * / , -&lt;/li&gt;
+			&lt;/ol&gt;
+			&lt;p&gt;Special characters:&lt;/p&gt;
+			&lt;ol&gt;
+			&lt;li&gt;*: all values in the fields, e.g. * in seconds fields indicates every second&lt;/li&gt;
+			&lt;li&gt;/: increments of ranges, e.g. 3-59/15 in the minute field indicate the third minute of the hour and every 15 minutes thereafter&lt;/li&gt;
+			&lt;li&gt;,: separate items of a list, e.g. MON,WED,FRI in day of week&lt;/li&gt;
+			&lt;li&gt;-: range, e.g. 2010-2018 indicates every year between 2010 and 2018, inclusive&lt;/li&gt;
+			&lt;li&gt;L: last, e.g. When used in the day-of-week field, it allows you to specify constructs such as &#34;the last Friday&#34; (5L) of a given month. In the day-of-month field, it specifies the last day of the month.&lt;/li&gt;
+			&lt;li&gt;W: business day, e.g. if you were to specify 15W as the value for the day-of-month field, the meaning is: &#34;the nearest business day to the 15th of the month.&#34;&lt;/li&gt;
+			&lt;li&gt;#: must be followed by a number between one and five. It allows you to specify constructs such as &#34;the second Friday&#34; of a given month.&lt;/li&gt;
+			&lt;/ol&gt;
 
 */
 func (a *Client) AdminAddUserPermissionsV3(params *AdminAddUserPermissionsV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminAddUserPermissionsV3NoContent, *AdminAddUserPermissionsV3BadRequest, *AdminAddUserPermissionsV3Unauthorized, *AdminAddUserPermissionsV3Forbidden, *AdminAddUserPermissionsV3NotFound, error) {
@@ -469,7 +579,7 @@ func (a *Client) AdminAddUserPermissionsV3(params *AdminAddUserPermissionsV3Para
 		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/users/{userId}/permissions",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminAddUserPermissionsV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -484,24 +594,74 @@ func (a *Client) AdminAddUserPermissionsV3(params *AdminAddUserPermissionsV3Para
 
 	case *AdminAddUserPermissionsV3NoContent:
 		return v, nil, nil, nil, nil, nil
+
 	case *AdminAddUserPermissionsV3BadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *AdminAddUserPermissionsV3Unauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *AdminAddUserPermissionsV3Forbidden:
 		return nil, nil, nil, v, nil, nil
+
 	case *AdminAddUserPermissionsV3NotFound:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminAddUserPermissionsV3Short(params *AdminAddUserPermissionsV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminAddUserPermissionsV3NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminAddUserPermissionsV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminAddUserPermissionsV3",
+		Method:             "POST",
+		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/users/{userId}/permissions",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminAddUserPermissionsV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminAddUserPermissionsV3NoContent:
+		return v, nil
+	case *AdminAddUserPermissionsV3BadRequest:
+		return nil, v
+	case *AdminAddUserPermissionsV3Unauthorized:
+		return nil, v
+	case *AdminAddUserPermissionsV3Forbidden:
+		return nil, v
+	case *AdminAddUserPermissionsV3NotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   AdminAddUserRoleV3 adds user role
 
-  <p>This endpoint adds role to user. Required permission ADMIN:NAMESPACE:{namespace}:ROLE:USER:{userId} [UPDATE]</p>
-<p>action code: 10109</p>
+  &lt;p&gt;This endpoint adds role to user. Required permission ADMIN:NAMESPACE:{namespace}:ROLE:USER:{userId} [UPDATE]&lt;/p&gt;
+&lt;p&gt;action code: 10109&lt;/p&gt;
 
 */
 func (a *Client) AdminAddUserRoleV3(params *AdminAddUserRoleV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminAddUserRoleV3NoContent, *AdminAddUserRoleV3BadRequest, *AdminAddUserRoleV3Unauthorized, *AdminAddUserRoleV3Forbidden, *AdminAddUserRoleV3NotFound, *AdminAddUserRoleV3Conflict, error) {
@@ -520,7 +680,7 @@ func (a *Client) AdminAddUserRoleV3(params *AdminAddUserRoleV3Params, authInfo r
 		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/users/{userId}/roles/{roleId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminAddUserRoleV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -535,25 +695,78 @@ func (a *Client) AdminAddUserRoleV3(params *AdminAddUserRoleV3Params, authInfo r
 
 	case *AdminAddUserRoleV3NoContent:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *AdminAddUserRoleV3BadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *AdminAddUserRoleV3Unauthorized:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *AdminAddUserRoleV3Forbidden:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *AdminAddUserRoleV3NotFound:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *AdminAddUserRoleV3Conflict:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminAddUserRoleV3Short(params *AdminAddUserRoleV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminAddUserRoleV3NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminAddUserRoleV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminAddUserRoleV3",
+		Method:             "POST",
+		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/users/{userId}/roles/{roleId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminAddUserRoleV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminAddUserRoleV3NoContent:
+		return v, nil
+	case *AdminAddUserRoleV3BadRequest:
+		return nil, v
+	case *AdminAddUserRoleV3Unauthorized:
+		return nil, v
+	case *AdminAddUserRoleV3Forbidden:
+		return nil, v
+	case *AdminAddUserRoleV3NotFound:
+		return nil, v
+	case *AdminAddUserRoleV3Conflict:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   AdminBanUserV2 bans a single user
 
-  Required permission 'ADMIN:NAMESPACE:{namespace}:BAN:USER:{userId} [CREATE]'.
+  Required permission &#39;ADMIN:NAMESPACE:{namespace}:BAN:USER:{userId} [CREATE]&#39;.
 */
 func (a *Client) AdminBanUserV2(params *AdminBanUserV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBanUserV2Created, *AdminBanUserV2BadRequest, *AdminBanUserV2Unauthorized, *AdminBanUserV2Forbidden, *AdminBanUserV2NotFound, *AdminBanUserV2InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -571,7 +784,7 @@ func (a *Client) AdminBanUserV2(params *AdminBanUserV2Params, authInfo runtime.C
 		PathPattern:        "/iam/v2/admin/namespaces/{namespace}/users/{userId}/ban",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminBanUserV2Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -586,27 +799,80 @@ func (a *Client) AdminBanUserV2(params *AdminBanUserV2Params, authInfo runtime.C
 
 	case *AdminBanUserV2Created:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *AdminBanUserV2BadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *AdminBanUserV2Unauthorized:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *AdminBanUserV2Forbidden:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *AdminBanUserV2NotFound:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *AdminBanUserV2InternalServerError:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminBanUserV2Short(params *AdminBanUserV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBanUserV2Created, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminBanUserV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminBanUserV2",
+		Method:             "POST",
+		PathPattern:        "/iam/v2/admin/namespaces/{namespace}/users/{userId}/ban",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminBanUserV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminBanUserV2Created:
+		return v, nil
+	case *AdminBanUserV2BadRequest:
+		return nil, v
+	case *AdminBanUserV2Unauthorized:
+		return nil, v
+	case *AdminBanUserV2Forbidden:
+		return nil, v
+	case *AdminBanUserV2NotFound:
+		return nil, v
+	case *AdminBanUserV2InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   AdminBanUserV3 bans a single user
 
-  <p>Required permission 'ADMIN:NAMESPACE:{namespace}:BAN:USER:{userId} [CREATE]'.</p>
-<p>Bans a user with specific type of ban. Ban types and reason can be queried. </p>
-<p>action code : 10141 </p>
+  &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:BAN:USER:{userId} [CREATE]&#39;.&lt;/p&gt;
+&lt;p&gt;Bans a user with specific type of ban. Ban types and reason can be queried. &lt;/p&gt;
+&lt;p&gt;action code : 10141 &lt;/p&gt;
 
 */
 func (a *Client) AdminBanUserV3(params *AdminBanUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBanUserV3Created, *AdminBanUserV3BadRequest, *AdminBanUserV3Unauthorized, *AdminBanUserV3Forbidden, *AdminBanUserV3NotFound, error) {
@@ -625,7 +891,7 @@ func (a *Client) AdminBanUserV3(params *AdminBanUserV3Params, authInfo runtime.C
 		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/users/{userId}/bans",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminBanUserV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -640,16 +906,66 @@ func (a *Client) AdminBanUserV3(params *AdminBanUserV3Params, authInfo runtime.C
 
 	case *AdminBanUserV3Created:
 		return v, nil, nil, nil, nil, nil
+
 	case *AdminBanUserV3BadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *AdminBanUserV3Unauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *AdminBanUserV3Forbidden:
 		return nil, nil, nil, v, nil, nil
+
 	case *AdminBanUserV3NotFound:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminBanUserV3Short(params *AdminBanUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBanUserV3Created, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminBanUserV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminBanUserV3",
+		Method:             "POST",
+		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/users/{userId}/bans",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminBanUserV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminBanUserV3Created:
+		return v, nil
+	case *AdminBanUserV3BadRequest:
+		return nil, v
+	case *AdminBanUserV3Unauthorized:
+		return nil, v
+	case *AdminBanUserV3Forbidden:
+		return nil, v
+	case *AdminBanUserV3NotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -677,7 +993,7 @@ func (a *Client) AdminCreateJusticeUser(params *AdminCreateJusticeUserParams, au
 		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/justice/{targetNamespace}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminCreateJusticeUserReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -692,25 +1008,78 @@ func (a *Client) AdminCreateJusticeUser(params *AdminCreateJusticeUserParams, au
 
 	case *AdminCreateJusticeUserCreated:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *AdminCreateJusticeUserBadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *AdminCreateJusticeUserUnauthorized:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *AdminCreateJusticeUserForbidden:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *AdminCreateJusticeUserNotFound:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *AdminCreateJusticeUserInternalServerError:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminCreateJusticeUserShort(params *AdminCreateJusticeUserParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateJusticeUserCreated, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminCreateJusticeUserParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminCreateJusticeUser",
+		Method:             "POST",
+		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/justice/{targetNamespace}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminCreateJusticeUserReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminCreateJusticeUserCreated:
+		return v, nil
+	case *AdminCreateJusticeUserBadRequest:
+		return nil, v
+	case *AdminCreateJusticeUserUnauthorized:
+		return nil, v
+	case *AdminCreateJusticeUserForbidden:
+		return nil, v
+	case *AdminCreateJusticeUserNotFound:
+		return nil, v
+	case *AdminCreateJusticeUserInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   AdminCreateUserRolesV2 saves user roles
 
-  Required permission 'ADMIN:NAMESPACE:{namespace}:ROLE:USER:{userId} [UPDATE]'
+  Required permission &#39;ADMIN:NAMESPACE:{namespace}:ROLE:USER:{userId} [UPDATE]&#39;
 */
 func (a *Client) AdminCreateUserRolesV2(params *AdminCreateUserRolesV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateUserRolesV2NoContent, *AdminCreateUserRolesV2BadRequest, *AdminCreateUserRolesV2Unauthorized, *AdminCreateUserRolesV2Forbidden, *AdminCreateUserRolesV2NotFound, *AdminCreateUserRolesV2Conflict, error) {
 	// TODO: Validate the params before sending
@@ -728,7 +1097,7 @@ func (a *Client) AdminCreateUserRolesV2(params *AdminCreateUserRolesV2Params, au
 		PathPattern:        "/iam/v2/admin/namespaces/{namespace}/users/{userId}/roles",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminCreateUserRolesV2Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -743,40 +1112,93 @@ func (a *Client) AdminCreateUserRolesV2(params *AdminCreateUserRolesV2Params, au
 
 	case *AdminCreateUserRolesV2NoContent:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *AdminCreateUserRolesV2BadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *AdminCreateUserRolesV2Unauthorized:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *AdminCreateUserRolesV2Forbidden:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *AdminCreateUserRolesV2NotFound:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *AdminCreateUserRolesV2Conflict:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminCreateUserRolesV2Short(params *AdminCreateUserRolesV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateUserRolesV2NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminCreateUserRolesV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminCreateUserRolesV2",
+		Method:             "POST",
+		PathPattern:        "/iam/v2/admin/namespaces/{namespace}/users/{userId}/roles",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminCreateUserRolesV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminCreateUserRolesV2NoContent:
+		return v, nil
+	case *AdminCreateUserRolesV2BadRequest:
+		return nil, v
+	case *AdminCreateUserRolesV2Unauthorized:
+		return nil, v
+	case *AdminCreateUserRolesV2Forbidden:
+		return nil, v
+	case *AdminCreateUserRolesV2NotFound:
+		return nil, v
+	case *AdminCreateUserRolesV2Conflict:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   AdminDeletePlatformLinkV2 deletes the link of user s account with platform
 
-  <p>Required permission 'ADMIN:NAMESPACE:{namespace}:USER:{userId} [DELETE]'.</p>
-<h2>Supported platforms:</h2>
-			<ul>
-				<li><strong>steam</strong></li>
-				<li><strong>steamopenid</strong></li>
-				<li><strong>facebook</strong></li>
-				<li><strong>google</strong></li>
-				<li><strong>oculus</strong></li>
-				<li><strong>twitch</strong></li>
-				<li><strong>android</strong></li>
-				<li><strong>ios</strong></li>
-				<li><strong>device</strong></li>
-				<li><strong>discord</strong></li>
-			</ul>
-			<p>Delete link of user's account with platform. 'justice' platform might have multiple accounts from different namespaces linked. platform_namespace need to be specified when the platform ID is 'justice'.
-			<br>Delete link of justice platform will enable password token grant and password update. </p>
+  &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:USER:{userId} [DELETE]&#39;.&lt;/p&gt;
+&lt;h2&gt;Supported platforms:&lt;/h2&gt;
+			&lt;ul&gt;
+				&lt;li&gt;&lt;strong&gt;steam&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;steamopenid&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;facebook&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;google&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;oculus&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;twitch&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;android&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;ios&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;device&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;discord&lt;/strong&gt;&lt;/li&gt;
+			&lt;/ul&gt;
+			&lt;p&gt;Delete link of user&#39;s account with platform. &#39;justice&#39; platform might have multiple accounts from different namespaces linked. platform_namespace need to be specified when the platform ID is &#39;justice&#39;.
+			&lt;br&gt;Delete link of justice platform will enable password token grant and password update. &lt;/p&gt;
 */
 func (a *Client) AdminDeletePlatformLinkV2(params *AdminDeletePlatformLinkV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeletePlatformLinkV2NoContent, *AdminDeletePlatformLinkV2BadRequest, *AdminDeletePlatformLinkV2Unauthorized, *AdminDeletePlatformLinkV2Forbidden, *AdminDeletePlatformLinkV2NotFound, *AdminDeletePlatformLinkV2InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -794,7 +1216,7 @@ func (a *Client) AdminDeletePlatformLinkV2(params *AdminDeletePlatformLinkV2Para
 		PathPattern:        "/iam/v2/admin/namespaces/{namespace}/users/{userId}/platforms/{platformId}/link",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded", "text/plain"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminDeletePlatformLinkV2Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -809,25 +1231,78 @@ func (a *Client) AdminDeletePlatformLinkV2(params *AdminDeletePlatformLinkV2Para
 
 	case *AdminDeletePlatformLinkV2NoContent:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *AdminDeletePlatformLinkV2BadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *AdminDeletePlatformLinkV2Unauthorized:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *AdminDeletePlatformLinkV2Forbidden:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *AdminDeletePlatformLinkV2NotFound:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *AdminDeletePlatformLinkV2InternalServerError:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminDeletePlatformLinkV2Short(params *AdminDeletePlatformLinkV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeletePlatformLinkV2NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminDeletePlatformLinkV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminDeletePlatformLinkV2",
+		Method:             "DELETE",
+		PathPattern:        "/iam/v2/admin/namespaces/{namespace}/users/{userId}/platforms/{platformId}/link",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded", "text/plain"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminDeletePlatformLinkV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminDeletePlatformLinkV2NoContent:
+		return v, nil
+	case *AdminDeletePlatformLinkV2BadRequest:
+		return nil, v
+	case *AdminDeletePlatformLinkV2Unauthorized:
+		return nil, v
+	case *AdminDeletePlatformLinkV2Forbidden:
+		return nil, v
+	case *AdminDeletePlatformLinkV2NotFound:
+		return nil, v
+	case *AdminDeletePlatformLinkV2InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   AdminDeleteUserInformationV3 deletes user s information
 
-  Required permissions 'ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [DELETE]'.
+  Required permissions &#39;ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [DELETE]&#39;.
 */
 func (a *Client) AdminDeleteUserInformationV3(params *AdminDeleteUserInformationV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteUserInformationV3NoContent, *AdminDeleteUserInformationV3Unauthorized, *AdminDeleteUserInformationV3Forbidden, *AdminDeleteUserInformationV3NotFound, error) {
 	// TODO: Validate the params before sending
@@ -845,7 +1320,7 @@ func (a *Client) AdminDeleteUserInformationV3(params *AdminDeleteUserInformation
 		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/users/{userId}/information",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminDeleteUserInformationV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -860,21 +1335,68 @@ func (a *Client) AdminDeleteUserInformationV3(params *AdminDeleteUserInformation
 
 	case *AdminDeleteUserInformationV3NoContent:
 		return v, nil, nil, nil, nil
+
 	case *AdminDeleteUserInformationV3Unauthorized:
 		return nil, v, nil, nil, nil
+
 	case *AdminDeleteUserInformationV3Forbidden:
 		return nil, nil, v, nil, nil
+
 	case *AdminDeleteUserInformationV3NotFound:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminDeleteUserInformationV3Short(params *AdminDeleteUserInformationV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteUserInformationV3NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminDeleteUserInformationV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminDeleteUserInformationV3",
+		Method:             "DELETE",
+		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/users/{userId}/information",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminDeleteUserInformationV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminDeleteUserInformationV3NoContent:
+		return v, nil
+	case *AdminDeleteUserInformationV3Unauthorized:
+		return nil, v
+	case *AdminDeleteUserInformationV3Forbidden:
+		return nil, v
+	case *AdminDeleteUserInformationV3NotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   AdminDeleteUserPermissionBulkV3 deletes user permission
 
-  Required permission 'ADMIN:NAMESPACE:{namespace}:PERMISSION:USER:{userId} [DELETE]'
+  Required permission &#39;ADMIN:NAMESPACE:{namespace}:PERMISSION:USER:{userId} [DELETE]&#39;
 */
 func (a *Client) AdminDeleteUserPermissionBulkV3(params *AdminDeleteUserPermissionBulkV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteUserPermissionBulkV3NoContent, *AdminDeleteUserPermissionBulkV3BadRequest, *AdminDeleteUserPermissionBulkV3Unauthorized, *AdminDeleteUserPermissionBulkV3Forbidden, *AdminDeleteUserPermissionBulkV3NotFound, error) {
 	// TODO: Validate the params before sending
@@ -892,7 +1414,7 @@ func (a *Client) AdminDeleteUserPermissionBulkV3(params *AdminDeleteUserPermissi
 		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/users/{userId}/permissions",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminDeleteUserPermissionBulkV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -907,23 +1429,73 @@ func (a *Client) AdminDeleteUserPermissionBulkV3(params *AdminDeleteUserPermissi
 
 	case *AdminDeleteUserPermissionBulkV3NoContent:
 		return v, nil, nil, nil, nil, nil
+
 	case *AdminDeleteUserPermissionBulkV3BadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *AdminDeleteUserPermissionBulkV3Unauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *AdminDeleteUserPermissionBulkV3Forbidden:
 		return nil, nil, nil, v, nil, nil
+
 	case *AdminDeleteUserPermissionBulkV3NotFound:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminDeleteUserPermissionBulkV3Short(params *AdminDeleteUserPermissionBulkV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteUserPermissionBulkV3NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminDeleteUserPermissionBulkV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminDeleteUserPermissionBulkV3",
+		Method:             "DELETE",
+		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/users/{userId}/permissions",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminDeleteUserPermissionBulkV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminDeleteUserPermissionBulkV3NoContent:
+		return v, nil
+	case *AdminDeleteUserPermissionBulkV3BadRequest:
+		return nil, v
+	case *AdminDeleteUserPermissionBulkV3Unauthorized:
+		return nil, v
+	case *AdminDeleteUserPermissionBulkV3Forbidden:
+		return nil, v
+	case *AdminDeleteUserPermissionBulkV3NotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   AdminDeleteUserPermissionV3 deletes user permission
 
-  Required permission 'ADMIN:NAMESPACE:{namespace}:PERMISSION:USER:{userId} [DELETE]'
+  Required permission &#39;ADMIN:NAMESPACE:{namespace}:PERMISSION:USER:{userId} [DELETE]&#39;
 */
 func (a *Client) AdminDeleteUserPermissionV3(params *AdminDeleteUserPermissionV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteUserPermissionV3NoContent, *AdminDeleteUserPermissionV3BadRequest, *AdminDeleteUserPermissionV3Unauthorized, *AdminDeleteUserPermissionV3Forbidden, *AdminDeleteUserPermissionV3NotFound, error) {
 	// TODO: Validate the params before sending
@@ -941,7 +1513,7 @@ func (a *Client) AdminDeleteUserPermissionV3(params *AdminDeleteUserPermissionV3
 		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/users/{userId}/permissions/{resource}/{action}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminDeleteUserPermissionV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -956,24 +1528,74 @@ func (a *Client) AdminDeleteUserPermissionV3(params *AdminDeleteUserPermissionV3
 
 	case *AdminDeleteUserPermissionV3NoContent:
 		return v, nil, nil, nil, nil, nil
+
 	case *AdminDeleteUserPermissionV3BadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *AdminDeleteUserPermissionV3Unauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *AdminDeleteUserPermissionV3Forbidden:
 		return nil, nil, nil, v, nil, nil
+
 	case *AdminDeleteUserPermissionV3NotFound:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminDeleteUserPermissionV3Short(params *AdminDeleteUserPermissionV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteUserPermissionV3NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminDeleteUserPermissionV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminDeleteUserPermissionV3",
+		Method:             "DELETE",
+		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/users/{userId}/permissions/{resource}/{action}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminDeleteUserPermissionV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminDeleteUserPermissionV3NoContent:
+		return v, nil
+	case *AdminDeleteUserPermissionV3BadRequest:
+		return nil, v
+	case *AdminDeleteUserPermissionV3Unauthorized:
+		return nil, v
+	case *AdminDeleteUserPermissionV3Forbidden:
+		return nil, v
+	case *AdminDeleteUserPermissionV3NotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   AdminDeleteUserRoleV3 deletes user role
 
-  <p>This endpoint removes role from user. Required permission ADMIN:NAMESPACE:{namespace}:ROLE:USER:{userId} [DELETE]</p>
-<p>action code: 10110</p>
+  &lt;p&gt;This endpoint removes role from user. Required permission ADMIN:NAMESPACE:{namespace}:ROLE:USER:{userId} [DELETE]&lt;/p&gt;
+&lt;p&gt;action code: 10110&lt;/p&gt;
 
 */
 func (a *Client) AdminDeleteUserRoleV3(params *AdminDeleteUserRoleV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteUserRoleV3NoContent, *AdminDeleteUserRoleV3BadRequest, *AdminDeleteUserRoleV3Unauthorized, *AdminDeleteUserRoleV3Forbidden, *AdminDeleteUserRoleV3NotFound, error) {
@@ -992,7 +1614,7 @@ func (a *Client) AdminDeleteUserRoleV3(params *AdminDeleteUserRoleV3Params, auth
 		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/users/{userId}/roles/{roleId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminDeleteUserRoleV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1007,23 +1629,73 @@ func (a *Client) AdminDeleteUserRoleV3(params *AdminDeleteUserRoleV3Params, auth
 
 	case *AdminDeleteUserRoleV3NoContent:
 		return v, nil, nil, nil, nil, nil
+
 	case *AdminDeleteUserRoleV3BadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *AdminDeleteUserRoleV3Unauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *AdminDeleteUserRoleV3Forbidden:
 		return nil, nil, nil, v, nil, nil
+
 	case *AdminDeleteUserRoleV3NotFound:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminDeleteUserRoleV3Short(params *AdminDeleteUserRoleV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteUserRoleV3NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminDeleteUserRoleV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminDeleteUserRoleV3",
+		Method:             "DELETE",
+		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/users/{userId}/roles/{roleId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminDeleteUserRoleV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminDeleteUserRoleV3NoContent:
+		return v, nil
+	case *AdminDeleteUserRoleV3BadRequest:
+		return nil, v
+	case *AdminDeleteUserRoleV3Unauthorized:
+		return nil, v
+	case *AdminDeleteUserRoleV3Forbidden:
+		return nil, v
+	case *AdminDeleteUserRoleV3NotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   AdminDeleteUserRolesV3 deletes user roles
 
-  Required permission 'ADMIN:NAMESPACE:{namespace}:ROLE:USER:{userId} [DELETE]'
+  Required permission &#39;ADMIN:NAMESPACE:{namespace}:ROLE:USER:{userId} [DELETE]&#39;
 */
 func (a *Client) AdminDeleteUserRolesV3(params *AdminDeleteUserRolesV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteUserRolesV3NoContent, *AdminDeleteUserRolesV3BadRequest, *AdminDeleteUserRolesV3Unauthorized, *AdminDeleteUserRolesV3Forbidden, *AdminDeleteUserRolesV3NotFound, error) {
 	// TODO: Validate the params before sending
@@ -1041,7 +1713,7 @@ func (a *Client) AdminDeleteUserRolesV3(params *AdminDeleteUserRolesV3Params, au
 		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/users/{userId}/roles",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminDeleteUserRolesV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1056,28 +1728,78 @@ func (a *Client) AdminDeleteUserRolesV3(params *AdminDeleteUserRolesV3Params, au
 
 	case *AdminDeleteUserRolesV3NoContent:
 		return v, nil, nil, nil, nil, nil
+
 	case *AdminDeleteUserRolesV3BadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *AdminDeleteUserRolesV3Unauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *AdminDeleteUserRolesV3Forbidden:
 		return nil, nil, nil, v, nil, nil
+
 	case *AdminDeleteUserRolesV3NotFound:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminDeleteUserRolesV3Short(params *AdminDeleteUserRolesV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteUserRolesV3NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminDeleteUserRolesV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminDeleteUserRolesV3",
+		Method:             "DELETE",
+		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/users/{userId}/roles",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminDeleteUserRolesV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminDeleteUserRolesV3NoContent:
+		return v, nil
+	case *AdminDeleteUserRolesV3BadRequest:
+		return nil, v
+	case *AdminDeleteUserRolesV3Unauthorized:
+		return nil, v
+	case *AdminDeleteUserRolesV3Forbidden:
+		return nil, v
+	case *AdminDeleteUserRolesV3NotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   AdminDisableUserV2 disables a user
 
-  Required permissions 'ADMIN:NAMESPACE:{namespace}:USERSTATUS:USER:{userId} [UPDATE]'
-		<p>For <strong>Deletion Account</strong> purpose fill the reason with:</p>
-		<ul>
-		<li><strong>DeactivateAccount</strong> : if your deletion request comes from user</li>
-		<li><strong>AdminDeactivateAccount</strong> : if your deletion request comes from admin</li>
-		</ul>
+  Required permissions &#39;ADMIN:NAMESPACE:{namespace}:USERSTATUS:USER:{userId} [UPDATE]&#39;
+		&lt;p&gt;For &lt;strong&gt;Deletion Account&lt;/strong&gt; purpose fill the reason with:&lt;/p&gt;
+		&lt;ul&gt;
+		&lt;li&gt;&lt;strong&gt;DeactivateAccount&lt;/strong&gt; : if your deletion request comes from user&lt;/li&gt;
+		&lt;li&gt;&lt;strong&gt;AdminDeactivateAccount&lt;/strong&gt; : if your deletion request comes from admin&lt;/li&gt;
+		&lt;/ul&gt;
 */
 func (a *Client) AdminDisableUserV2(params *AdminDisableUserV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDisableUserV2NoContent, *AdminDisableUserV2BadRequest, *AdminDisableUserV2Unauthorized, *AdminDisableUserV2Forbidden, *AdminDisableUserV2NotFound, *AdminDisableUserV2InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1095,7 +1817,7 @@ func (a *Client) AdminDisableUserV2(params *AdminDisableUserV2Params, authInfo r
 		PathPattern:        "/iam/v2/admin/namespaces/{namespace}/users/{userId}/disable",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminDisableUserV2Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1110,25 +1832,78 @@ func (a *Client) AdminDisableUserV2(params *AdminDisableUserV2Params, authInfo r
 
 	case *AdminDisableUserV2NoContent:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *AdminDisableUserV2BadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *AdminDisableUserV2Unauthorized:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *AdminDisableUserV2Forbidden:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *AdminDisableUserV2NotFound:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *AdminDisableUserV2InternalServerError:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminDisableUserV2Short(params *AdminDisableUserV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDisableUserV2NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminDisableUserV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminDisableUserV2",
+		Method:             "PUT",
+		PathPattern:        "/iam/v2/admin/namespaces/{namespace}/users/{userId}/disable",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminDisableUserV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminDisableUserV2NoContent:
+		return v, nil
+	case *AdminDisableUserV2BadRequest:
+		return nil, v
+	case *AdminDisableUserV2Unauthorized:
+		return nil, v
+	case *AdminDisableUserV2Forbidden:
+		return nil, v
+	case *AdminDisableUserV2NotFound:
+		return nil, v
+	case *AdminDisableUserV2InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   AdminEnableUserV2 enables a user
 
-  Required permissions 'ADMIN:NAMESPACE:{namespace}:USERSTATUS:USER:{userId} [UPDATE]'
+  Required permissions &#39;ADMIN:NAMESPACE:{namespace}:USERSTATUS:USER:{userId} [UPDATE]&#39;
 */
 func (a *Client) AdminEnableUserV2(params *AdminEnableUserV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminEnableUserV2NoContent, *AdminEnableUserV2Unauthorized, *AdminEnableUserV2Forbidden, *AdminEnableUserV2NotFound, *AdminEnableUserV2InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1146,7 +1921,7 @@ func (a *Client) AdminEnableUserV2(params *AdminEnableUserV2Params, authInfo run
 		PathPattern:        "/iam/v2/admin/namespaces/{namespace}/users/{userId}/enable",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"*/*"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminEnableUserV2Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1161,23 +1936,73 @@ func (a *Client) AdminEnableUserV2(params *AdminEnableUserV2Params, authInfo run
 
 	case *AdminEnableUserV2NoContent:
 		return v, nil, nil, nil, nil, nil
+
 	case *AdminEnableUserV2Unauthorized:
 		return nil, v, nil, nil, nil, nil
+
 	case *AdminEnableUserV2Forbidden:
 		return nil, nil, v, nil, nil, nil
+
 	case *AdminEnableUserV2NotFound:
 		return nil, nil, nil, v, nil, nil
+
 	case *AdminEnableUserV2InternalServerError:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminEnableUserV2Short(params *AdminEnableUserV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminEnableUserV2NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminEnableUserV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminEnableUserV2",
+		Method:             "PUT",
+		PathPattern:        "/iam/v2/admin/namespaces/{namespace}/users/{userId}/enable",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"*/*"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminEnableUserV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminEnableUserV2NoContent:
+		return v, nil
+	case *AdminEnableUserV2Unauthorized:
+		return nil, v
+	case *AdminEnableUserV2Forbidden:
+		return nil, v
+	case *AdminEnableUserV2NotFound:
+		return nil, v
+	case *AdminEnableUserV2InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   AdminGetAgeRestrictionStatusV2 gets age restriction status
 
-  Required permission 'ADMIN:NAMESPACE:{namespace}:AGERESTRICTION [READ]'
+  Required permission &#39;ADMIN:NAMESPACE:{namespace}:AGERESTRICTION [READ]&#39;
 */
 func (a *Client) AdminGetAgeRestrictionStatusV2(params *AdminGetAgeRestrictionStatusV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetAgeRestrictionStatusV2OK, *AdminGetAgeRestrictionStatusV2Unauthorized, *AdminGetAgeRestrictionStatusV2Forbidden, *AdminGetAgeRestrictionStatusV2NotFound, error) {
 	// TODO: Validate the params before sending
@@ -1195,7 +2020,7 @@ func (a *Client) AdminGetAgeRestrictionStatusV2(params *AdminGetAgeRestrictionSt
 		PathPattern:        "/iam/v2/admin/namespaces/{namespace}/agerestrictions",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminGetAgeRestrictionStatusV2Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1210,21 +2035,68 @@ func (a *Client) AdminGetAgeRestrictionStatusV2(params *AdminGetAgeRestrictionSt
 
 	case *AdminGetAgeRestrictionStatusV2OK:
 		return v, nil, nil, nil, nil
+
 	case *AdminGetAgeRestrictionStatusV2Unauthorized:
 		return nil, v, nil, nil, nil
+
 	case *AdminGetAgeRestrictionStatusV2Forbidden:
 		return nil, nil, v, nil, nil
+
 	case *AdminGetAgeRestrictionStatusV2NotFound:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminGetAgeRestrictionStatusV2Short(params *AdminGetAgeRestrictionStatusV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetAgeRestrictionStatusV2OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGetAgeRestrictionStatusV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminGetAgeRestrictionStatusV2",
+		Method:             "GET",
+		PathPattern:        "/iam/v2/admin/namespaces/{namespace}/agerestrictions",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGetAgeRestrictionStatusV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGetAgeRestrictionStatusV2OK:
+		return v, nil
+	case *AdminGetAgeRestrictionStatusV2Unauthorized:
+		return nil, v
+	case *AdminGetAgeRestrictionStatusV2Forbidden:
+		return nil, v
+	case *AdminGetAgeRestrictionStatusV2NotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   AdminGetAgeRestrictionStatusV3 gets age restriction status
 
-  Required permission 'ADMIN:NAMESPACE:{namespace}:AGERESTRICTION [READ]'<br>action code: 10138
+  Required permission &#39;ADMIN:NAMESPACE:{namespace}:AGERESTRICTION [READ]&#39;&lt;br&gt;action code: 10138
 */
 func (a *Client) AdminGetAgeRestrictionStatusV3(params *AdminGetAgeRestrictionStatusV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetAgeRestrictionStatusV3OK, *AdminGetAgeRestrictionStatusV3BadRequest, *AdminGetAgeRestrictionStatusV3Unauthorized, *AdminGetAgeRestrictionStatusV3Forbidden, *AdminGetAgeRestrictionStatusV3NotFound, *AdminGetAgeRestrictionStatusV3InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1242,7 +2114,7 @@ func (a *Client) AdminGetAgeRestrictionStatusV3(params *AdminGetAgeRestrictionSt
 		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/agerestrictions",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminGetAgeRestrictionStatusV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1257,27 +2129,80 @@ func (a *Client) AdminGetAgeRestrictionStatusV3(params *AdminGetAgeRestrictionSt
 
 	case *AdminGetAgeRestrictionStatusV3OK:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *AdminGetAgeRestrictionStatusV3BadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *AdminGetAgeRestrictionStatusV3Unauthorized:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *AdminGetAgeRestrictionStatusV3Forbidden:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *AdminGetAgeRestrictionStatusV3NotFound:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *AdminGetAgeRestrictionStatusV3InternalServerError:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminGetAgeRestrictionStatusV3Short(params *AdminGetAgeRestrictionStatusV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetAgeRestrictionStatusV3OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGetAgeRestrictionStatusV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminGetAgeRestrictionStatusV3",
+		Method:             "GET",
+		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/agerestrictions",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGetAgeRestrictionStatusV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGetAgeRestrictionStatusV3OK:
+		return v, nil
+	case *AdminGetAgeRestrictionStatusV3BadRequest:
+		return nil, v
+	case *AdminGetAgeRestrictionStatusV3Unauthorized:
+		return nil, v
+	case *AdminGetAgeRestrictionStatusV3Forbidden:
+		return nil, v
+	case *AdminGetAgeRestrictionStatusV3NotFound:
+		return nil, v
+	case *AdminGetAgeRestrictionStatusV3InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   AdminGetBulkUserByEmailAddressV3 gets bulk user by email address
 
-  <p>Required permission 'ADMIN:NAMESPACE:{namespace}:USER [READ]'</p>
-			<p>This endpoint search user by the list of email addresses</p>
-			<br>action code : 10132
+  &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:USER [READ]&#39;&lt;/p&gt;
+			&lt;p&gt;This endpoint search user by the list of email addresses&lt;/p&gt;
+			&lt;br&gt;action code : 10132
 */
 func (a *Client) AdminGetBulkUserByEmailAddressV3(params *AdminGetBulkUserByEmailAddressV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetBulkUserByEmailAddressV3OK, *AdminGetBulkUserByEmailAddressV3BadRequest, *AdminGetBulkUserByEmailAddressV3Unauthorized, *AdminGetBulkUserByEmailAddressV3Forbidden, *AdminGetBulkUserByEmailAddressV3NotFound, *AdminGetBulkUserByEmailAddressV3InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1295,7 +2220,7 @@ func (a *Client) AdminGetBulkUserByEmailAddressV3(params *AdminGetBulkUserByEmai
 		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/users/search/bulk",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminGetBulkUserByEmailAddressV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1310,25 +2235,78 @@ func (a *Client) AdminGetBulkUserByEmailAddressV3(params *AdminGetBulkUserByEmai
 
 	case *AdminGetBulkUserByEmailAddressV3OK:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *AdminGetBulkUserByEmailAddressV3BadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *AdminGetBulkUserByEmailAddressV3Unauthorized:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *AdminGetBulkUserByEmailAddressV3Forbidden:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *AdminGetBulkUserByEmailAddressV3NotFound:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *AdminGetBulkUserByEmailAddressV3InternalServerError:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminGetBulkUserByEmailAddressV3Short(params *AdminGetBulkUserByEmailAddressV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetBulkUserByEmailAddressV3OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGetBulkUserByEmailAddressV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminGetBulkUserByEmailAddressV3",
+		Method:             "POST",
+		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/users/search/bulk",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGetBulkUserByEmailAddressV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGetBulkUserByEmailAddressV3OK:
+		return v, nil
+	case *AdminGetBulkUserByEmailAddressV3BadRequest:
+		return nil, v
+	case *AdminGetBulkUserByEmailAddressV3Unauthorized:
+		return nil, v
+	case *AdminGetBulkUserByEmailAddressV3Forbidden:
+		return nil, v
+	case *AdminGetBulkUserByEmailAddressV3NotFound:
+		return nil, v
+	case *AdminGetBulkUserByEmailAddressV3InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   AdminGetListCountryAgeRestrictionV3 gets list country age restriction
 
-  Required permission 'ADMIN:NAMESPACE:{namespace}:AGERESTRICTION [READ]<br>action code : 10139
+  Required permission &#39;ADMIN:NAMESPACE:{namespace}:AGERESTRICTION [READ]&lt;br&gt;action code : 10139
 */
 func (a *Client) AdminGetListCountryAgeRestrictionV3(params *AdminGetListCountryAgeRestrictionV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetListCountryAgeRestrictionV3OK, *AdminGetListCountryAgeRestrictionV3BadRequest, *AdminGetListCountryAgeRestrictionV3Unauthorized, *AdminGetListCountryAgeRestrictionV3Forbidden, *AdminGetListCountryAgeRestrictionV3InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1346,7 +2324,7 @@ func (a *Client) AdminGetListCountryAgeRestrictionV3(params *AdminGetListCountry
 		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/agerestrictions/countries",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminGetListCountryAgeRestrictionV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1361,23 +2339,177 @@ func (a *Client) AdminGetListCountryAgeRestrictionV3(params *AdminGetListCountry
 
 	case *AdminGetListCountryAgeRestrictionV3OK:
 		return v, nil, nil, nil, nil, nil
+
 	case *AdminGetListCountryAgeRestrictionV3BadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *AdminGetListCountryAgeRestrictionV3Unauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *AdminGetListCountryAgeRestrictionV3Forbidden:
 		return nil, nil, nil, v, nil, nil
+
 	case *AdminGetListCountryAgeRestrictionV3InternalServerError:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminGetListCountryAgeRestrictionV3Short(params *AdminGetListCountryAgeRestrictionV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetListCountryAgeRestrictionV3OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGetListCountryAgeRestrictionV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminGetListCountryAgeRestrictionV3",
+		Method:             "GET",
+		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/agerestrictions/countries",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGetListCountryAgeRestrictionV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGetListCountryAgeRestrictionV3OK:
+		return v, nil
+	case *AdminGetListCountryAgeRestrictionV3BadRequest:
+		return nil, v
+	case *AdminGetListCountryAgeRestrictionV3Unauthorized:
+		return nil, v
+	case *AdminGetListCountryAgeRestrictionV3Forbidden:
+		return nil, v
+	case *AdminGetListCountryAgeRestrictionV3InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  AdminGetListJusticePlatformAccounts gets user justice platform accounts
+
+  This endpoint gets list justice platform account by providing publisher namespace and publisher userID.
+*/
+func (a *Client) AdminGetListJusticePlatformAccounts(params *AdminGetListJusticePlatformAccountsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetListJusticePlatformAccountsOK, *AdminGetListJusticePlatformAccountsBadRequest, *AdminGetListJusticePlatformAccountsUnauthorized, *AdminGetListJusticePlatformAccountsForbidden, *AdminGetListJusticePlatformAccountsNotFound, *AdminGetListJusticePlatformAccountsInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGetListJusticePlatformAccountsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminGetListJusticePlatformAccounts",
+		Method:             "GET",
+		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/justice",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGetListJusticePlatformAccountsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGetListJusticePlatformAccountsOK:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *AdminGetListJusticePlatformAccountsBadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *AdminGetListJusticePlatformAccountsUnauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *AdminGetListJusticePlatformAccountsForbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *AdminGetListJusticePlatformAccountsNotFound:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *AdminGetListJusticePlatformAccountsInternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminGetListJusticePlatformAccountsShort(params *AdminGetListJusticePlatformAccountsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetListJusticePlatformAccountsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGetListJusticePlatformAccountsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminGetListJusticePlatformAccounts",
+		Method:             "GET",
+		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/justice",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGetListJusticePlatformAccountsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGetListJusticePlatformAccountsOK:
+		return v, nil
+	case *AdminGetListJusticePlatformAccountsBadRequest:
+		return nil, v
+	case *AdminGetListJusticePlatformAccountsUnauthorized:
+		return nil, v
+	case *AdminGetListJusticePlatformAccountsForbidden:
+		return nil, v
+	case *AdminGetListJusticePlatformAccountsNotFound:
+		return nil, v
+	case *AdminGetListJusticePlatformAccountsInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   AdminGetMyUserV3 gets my user
 
-  <p>Require valid user authorization<br>Get my user data<br>action code : 10147 </p>
+  &lt;p&gt;Require valid user authorization&lt;br&gt;Get my user data&lt;br&gt;action code : 10147 &lt;/p&gt;
 */
 func (a *Client) AdminGetMyUserV3(params *AdminGetMyUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetMyUserV3OK, *AdminGetMyUserV3Unauthorized, *AdminGetMyUserV3InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1395,7 +2527,7 @@ func (a *Client) AdminGetMyUserV3(params *AdminGetMyUserV3Params, authInfo runti
 		PathPattern:        "/iam/v3/admin/users/me",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminGetMyUserV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1410,19 +2542,63 @@ func (a *Client) AdminGetMyUserV3(params *AdminGetMyUserV3Params, authInfo runti
 
 	case *AdminGetMyUserV3OK:
 		return v, nil, nil, nil
+
 	case *AdminGetMyUserV3Unauthorized:
 		return nil, v, nil, nil
+
 	case *AdminGetMyUserV3InternalServerError:
 		return nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminGetMyUserV3Short(params *AdminGetMyUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetMyUserV3OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGetMyUserV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminGetMyUserV3",
+		Method:             "GET",
+		PathPattern:        "/iam/v3/admin/users/me",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGetMyUserV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGetMyUserV3OK:
+		return v, nil
+	case *AdminGetMyUserV3Unauthorized:
+		return nil, v
+	case *AdminGetMyUserV3InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   AdminGetUserBanV2 gets user s bans
 
-  Required permission 'ADMIN:NAMESPACE:{namespace}:BAN:USER:{userId} [READ]'.
+  Required permission &#39;ADMIN:NAMESPACE:{namespace}:BAN:USER:{userId} [READ]&#39;.
 */
 func (a *Client) AdminGetUserBanV2(params *AdminGetUserBanV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserBanV2OK, *AdminGetUserBanV2Unauthorized, *AdminGetUserBanV2Forbidden, *AdminGetUserBanV2NotFound, error) {
 	// TODO: Validate the params before sending
@@ -1440,7 +2616,7 @@ func (a *Client) AdminGetUserBanV2(params *AdminGetUserBanV2Params, authInfo run
 		PathPattern:        "/iam/v2/admin/namespaces/{namespace}/users/{userId}/bans",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminGetUserBanV2Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1455,23 +2631,70 @@ func (a *Client) AdminGetUserBanV2(params *AdminGetUserBanV2Params, authInfo run
 
 	case *AdminGetUserBanV2OK:
 		return v, nil, nil, nil, nil
+
 	case *AdminGetUserBanV2Unauthorized:
 		return nil, v, nil, nil, nil
+
 	case *AdminGetUserBanV2Forbidden:
 		return nil, nil, v, nil, nil
+
 	case *AdminGetUserBanV2NotFound:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminGetUserBanV2Short(params *AdminGetUserBanV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserBanV2OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGetUserBanV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminGetUserBanV2",
+		Method:             "GET",
+		PathPattern:        "/iam/v2/admin/namespaces/{namespace}/users/{userId}/bans",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGetUserBanV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGetUserBanV2OK:
+		return v, nil
+	case *AdminGetUserBanV2Unauthorized:
+		return nil, v
+	case *AdminGetUserBanV2Forbidden:
+		return nil, v
+	case *AdminGetUserBanV2NotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   AdminGetUserBanV3 gets user s bans
 
-  <p>Required permission 'ADMIN:NAMESPACE:{namespace}:BAN:USER:{userId} [READ]'</p>
-<p>This endpoint retrieve the first page of the data if after and before parameters is empty</p>
-<p>action code : 10126</p>
+  &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:BAN:USER:{userId} [READ]&#39;&lt;/p&gt;
+&lt;p&gt;This endpoint retrieve the first page of the data if after and before parameters is empty&lt;/p&gt;
+&lt;p&gt;action code : 10126&lt;/p&gt;
 
 */
 func (a *Client) AdminGetUserBanV3(params *AdminGetUserBanV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserBanV3OK, *AdminGetUserBanV3BadRequest, *AdminGetUserBanV3Unauthorized, *AdminGetUserBanV3Forbidden, *AdminGetUserBanV3NotFound, error) {
@@ -1490,7 +2713,7 @@ func (a *Client) AdminGetUserBanV3(params *AdminGetUserBanV3Params, authInfo run
 		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/users/{userId}/bans",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminGetUserBanV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1505,25 +2728,75 @@ func (a *Client) AdminGetUserBanV3(params *AdminGetUserBanV3Params, authInfo run
 
 	case *AdminGetUserBanV3OK:
 		return v, nil, nil, nil, nil, nil
+
 	case *AdminGetUserBanV3BadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *AdminGetUserBanV3Unauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *AdminGetUserBanV3Forbidden:
 		return nil, nil, nil, v, nil, nil
+
 	case *AdminGetUserBanV3NotFound:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminGetUserBanV3Short(params *AdminGetUserBanV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserBanV3OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGetUserBanV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminGetUserBanV3",
+		Method:             "GET",
+		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/users/{userId}/bans",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGetUserBanV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGetUserBanV3OK:
+		return v, nil
+	case *AdminGetUserBanV3BadRequest:
+		return nil, v
+	case *AdminGetUserBanV3Unauthorized:
+		return nil, v
+	case *AdminGetUserBanV3Forbidden:
+		return nil, v
+	case *AdminGetUserBanV3NotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   AdminGetUserByEmailAddressV3 gets user by email address
 
-  <p>Required permission 'ADMIN:NAMESPACE:{namespace}:USER [READ]'</p>
-			<p>This endpoint search user who owns the given email address</p>
-			<br>action code : 10132
+  &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:USER [READ]&#39;&lt;/p&gt;
+			&lt;p&gt;This endpoint search user who owns the given email address&lt;/p&gt;
+			&lt;br&gt;action code : 10132
 */
 func (a *Client) AdminGetUserByEmailAddressV3(params *AdminGetUserByEmailAddressV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserByEmailAddressV3OK, *AdminGetUserByEmailAddressV3BadRequest, *AdminGetUserByEmailAddressV3Unauthorized, *AdminGetUserByEmailAddressV3Forbidden, *AdminGetUserByEmailAddressV3NotFound, *AdminGetUserByEmailAddressV3InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1541,7 +2814,7 @@ func (a *Client) AdminGetUserByEmailAddressV3(params *AdminGetUserByEmailAddress
 		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/users",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminGetUserByEmailAddressV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1556,25 +2829,182 @@ func (a *Client) AdminGetUserByEmailAddressV3(params *AdminGetUserByEmailAddress
 
 	case *AdminGetUserByEmailAddressV3OK:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *AdminGetUserByEmailAddressV3BadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *AdminGetUserByEmailAddressV3Unauthorized:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *AdminGetUserByEmailAddressV3Forbidden:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *AdminGetUserByEmailAddressV3NotFound:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *AdminGetUserByEmailAddressV3InternalServerError:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminGetUserByEmailAddressV3Short(params *AdminGetUserByEmailAddressV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserByEmailAddressV3OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGetUserByEmailAddressV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminGetUserByEmailAddressV3",
+		Method:             "GET",
+		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/users",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGetUserByEmailAddressV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGetUserByEmailAddressV3OK:
+		return v, nil
+	case *AdminGetUserByEmailAddressV3BadRequest:
+		return nil, v
+	case *AdminGetUserByEmailAddressV3Unauthorized:
+		return nil, v
+	case *AdminGetUserByEmailAddressV3Forbidden:
+		return nil, v
+	case *AdminGetUserByEmailAddressV3NotFound:
+		return nil, v
+	case *AdminGetUserByEmailAddressV3InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  AdminGetUserByPlatformUserIDV3 admins get user by platform user ID
+
+  Get User By Platform User ID
+
+This endpoint return user information by given platform ID and platform user ID
+
+&lt;strong&gt;nintendo platform user ID&lt;/strong&gt;: NSA ID need to be appended with Environment ID using colon as separator. e.g kmzwa8awaa:dd1
+
+*/
+func (a *Client) AdminGetUserByPlatformUserIDV3(params *AdminGetUserByPlatformUserIDV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserByPlatformUserIDV3OK, *AdminGetUserByPlatformUserIDV3Unauthorized, *AdminGetUserByPlatformUserIDV3Forbidden, *AdminGetUserByPlatformUserIDV3NotFound, *AdminGetUserByPlatformUserIDV3InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGetUserByPlatformUserIDV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminGetUserByPlatformUserIDV3",
+		Method:             "GET",
+		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/users/{platformUserId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGetUserByPlatformUserIDV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGetUserByPlatformUserIDV3OK:
+		return v, nil, nil, nil, nil, nil
+
+	case *AdminGetUserByPlatformUserIDV3Unauthorized:
+		return nil, v, nil, nil, nil, nil
+
+	case *AdminGetUserByPlatformUserIDV3Forbidden:
+		return nil, nil, v, nil, nil, nil
+
+	case *AdminGetUserByPlatformUserIDV3NotFound:
+		return nil, nil, nil, v, nil, nil
+
+	case *AdminGetUserByPlatformUserIDV3InternalServerError:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminGetUserByPlatformUserIDV3Short(params *AdminGetUserByPlatformUserIDV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserByPlatformUserIDV3OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGetUserByPlatformUserIDV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminGetUserByPlatformUserIDV3",
+		Method:             "GET",
+		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/users/{platformUserId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGetUserByPlatformUserIDV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGetUserByPlatformUserIDV3OK:
+		return v, nil
+	case *AdminGetUserByPlatformUserIDV3Unauthorized:
+		return nil, v
+	case *AdminGetUserByPlatformUserIDV3Forbidden:
+		return nil, v
+	case *AdminGetUserByPlatformUserIDV3NotFound:
+		return nil, v
+	case *AdminGetUserByPlatformUserIDV3InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   AdminGetUserByUserIDV2 gets user by user Id
 
-  Required permission 'ADMIN:NAMESPACE:{namespace}:USER:{userId} [READ]'
+  Required permission &#39;ADMIN:NAMESPACE:{namespace}:USER:{userId} [READ]&#39;
 */
 func (a *Client) AdminGetUserByUserIDV2(params *AdminGetUserByUserIDV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserByUserIDV2OK, *AdminGetUserByUserIDV2NotFound, *AdminGetUserByUserIDV2InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1592,7 +3022,7 @@ func (a *Client) AdminGetUserByUserIDV2(params *AdminGetUserByUserIDV2Params, au
 		PathPattern:        "/iam/v2/admin/namespaces/{namespace}/users/{userId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminGetUserByUserIDV2Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1607,19 +3037,63 @@ func (a *Client) AdminGetUserByUserIDV2(params *AdminGetUserByUserIDV2Params, au
 
 	case *AdminGetUserByUserIDV2OK:
 		return v, nil, nil, nil
+
 	case *AdminGetUserByUserIDV2NotFound:
 		return nil, v, nil, nil
+
 	case *AdminGetUserByUserIDV2InternalServerError:
 		return nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminGetUserByUserIDV2Short(params *AdminGetUserByUserIDV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserByUserIDV2OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGetUserByUserIDV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminGetUserByUserIdV2",
+		Method:             "GET",
+		PathPattern:        "/iam/v2/admin/namespaces/{namespace}/users/{userId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGetUserByUserIDV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGetUserByUserIDV2OK:
+		return v, nil
+	case *AdminGetUserByUserIDV2NotFound:
+		return nil, v
+	case *AdminGetUserByUserIDV2InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   AdminGetUserByUserIDV3 admins get user by user Id
 
-  Required permission 'ADMIN:NAMESPACE:{namespace}:USER:{userId} [READ]'
+  Required permission &#39;ADMIN:NAMESPACE:{namespace}:USER:{userId} [READ]&#39;
 */
 func (a *Client) AdminGetUserByUserIDV3(params *AdminGetUserByUserIDV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserByUserIDV3OK, *AdminGetUserByUserIDV3BadRequest, *AdminGetUserByUserIDV3Unauthorized, *AdminGetUserByUserIDV3Forbidden, *AdminGetUserByUserIDV3NotFound, *AdminGetUserByUserIDV3InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1637,7 +3111,7 @@ func (a *Client) AdminGetUserByUserIDV3(params *AdminGetUserByUserIDV3Params, au
 		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/users/{userId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminGetUserByUserIDV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1652,25 +3126,78 @@ func (a *Client) AdminGetUserByUserIDV3(params *AdminGetUserByUserIDV3Params, au
 
 	case *AdminGetUserByUserIDV3OK:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *AdminGetUserByUserIDV3BadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *AdminGetUserByUserIDV3Unauthorized:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *AdminGetUserByUserIDV3Forbidden:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *AdminGetUserByUserIDV3NotFound:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *AdminGetUserByUserIDV3InternalServerError:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminGetUserByUserIDV3Short(params *AdminGetUserByUserIDV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserByUserIDV3OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGetUserByUserIDV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminGetUserByUserIdV3",
+		Method:             "GET",
+		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/users/{userId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGetUserByUserIDV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGetUserByUserIDV3OK:
+		return v, nil
+	case *AdminGetUserByUserIDV3BadRequest:
+		return nil, v
+	case *AdminGetUserByUserIDV3Unauthorized:
+		return nil, v
+	case *AdminGetUserByUserIDV3Forbidden:
+		return nil, v
+	case *AdminGetUserByUserIDV3NotFound:
+		return nil, v
+	case *AdminGetUserByUserIDV3InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   AdminGetUserDeletionStatusV3 gets user deletion status
 
-  Required permissions 'ADMIN:NAMESPACE:{namespace}:DELETIONSTATUS:USER:{userId} [READ]' <br>action code : 10145
+  Required permissions &#39;ADMIN:NAMESPACE:{namespace}:DELETIONSTATUS:USER:{userId} [READ]&#39; &lt;br&gt;action code : 10145
 */
 func (a *Client) AdminGetUserDeletionStatusV3(params *AdminGetUserDeletionStatusV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserDeletionStatusV3OK, *AdminGetUserDeletionStatusV3Unauthorized, *AdminGetUserDeletionStatusV3Forbidden, *AdminGetUserDeletionStatusV3NotFound, *AdminGetUserDeletionStatusV3InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1688,7 +3215,7 @@ func (a *Client) AdminGetUserDeletionStatusV3(params *AdminGetUserDeletionStatus
 		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/users/{userId}/deletion/status",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminGetUserDeletionStatusV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1703,23 +3230,73 @@ func (a *Client) AdminGetUserDeletionStatusV3(params *AdminGetUserDeletionStatus
 
 	case *AdminGetUserDeletionStatusV3OK:
 		return v, nil, nil, nil, nil, nil
+
 	case *AdminGetUserDeletionStatusV3Unauthorized:
 		return nil, v, nil, nil, nil, nil
+
 	case *AdminGetUserDeletionStatusV3Forbidden:
 		return nil, nil, v, nil, nil, nil
+
 	case *AdminGetUserDeletionStatusV3NotFound:
 		return nil, nil, nil, v, nil, nil
+
 	case *AdminGetUserDeletionStatusV3InternalServerError:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminGetUserDeletionStatusV3Short(params *AdminGetUserDeletionStatusV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserDeletionStatusV3OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGetUserDeletionStatusV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminGetUserDeletionStatusV3",
+		Method:             "GET",
+		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/users/{userId}/deletion/status",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGetUserDeletionStatusV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGetUserDeletionStatusV3OK:
+		return v, nil
+	case *AdminGetUserDeletionStatusV3Unauthorized:
+		return nil, v
+	case *AdminGetUserDeletionStatusV3Forbidden:
+		return nil, v
+	case *AdminGetUserDeletionStatusV3NotFound:
+		return nil, v
+	case *AdminGetUserDeletionStatusV3InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   AdminGetUserLoginHistoriesV3 gets user s login histories
 
-  Required permission 'ADMIN:NAMESPACE:{namespace}:HISTORY:LOGIN:USER:{userId} [READ]'<p>Notes for this endpoint: </p> <ul><li>This endpoint retrieve the first page of the data if `after` and `before` parameters is empty.</li><li>The maximum value of the limit is 100 and the minimum value of the limit is 1.</li><li>This endpoint retrieve the next page of the data if we provide `after` parameters with valid Unix timestamp.</li><li>This endpoint retrieve the previous page of the data if we provide `before` parameter with valid data Unix timestamp.</li><ul>
+  Required permission &#39;ADMIN:NAMESPACE:{namespace}:HISTORY:LOGIN:USER:{userId} [READ]&#39;&lt;p&gt;Notes for this endpoint: &lt;/p&gt; &lt;ul&gt;&lt;li&gt;This endpoint retrieve the first page of the data if `after` and `before` parameters is empty.&lt;/li&gt;&lt;li&gt;The maximum value of the limit is 100 and the minimum value of the limit is 1.&lt;/li&gt;&lt;li&gt;This endpoint retrieve the next page of the data if we provide `after` parameters with valid Unix timestamp.&lt;/li&gt;&lt;li&gt;This endpoint retrieve the previous page of the data if we provide `before` parameter with valid data Unix timestamp.&lt;/li&gt;&lt;ul&gt;
 */
 func (a *Client) AdminGetUserLoginHistoriesV3(params *AdminGetUserLoginHistoriesV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserLoginHistoriesV3OK, *AdminGetUserLoginHistoriesV3Unauthorized, *AdminGetUserLoginHistoriesV3Forbidden, *AdminGetUserLoginHistoriesV3NotFound, error) {
 	// TODO: Validate the params before sending
@@ -1737,7 +3314,7 @@ func (a *Client) AdminGetUserLoginHistoriesV3(params *AdminGetUserLoginHistories
 		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/users/{userId}/logins/histories",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminGetUserLoginHistoriesV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1752,26 +3329,73 @@ func (a *Client) AdminGetUserLoginHistoriesV3(params *AdminGetUserLoginHistories
 
 	case *AdminGetUserLoginHistoriesV3OK:
 		return v, nil, nil, nil, nil
+
 	case *AdminGetUserLoginHistoriesV3Unauthorized:
 		return nil, v, nil, nil, nil
+
 	case *AdminGetUserLoginHistoriesV3Forbidden:
 		return nil, nil, v, nil, nil
+
 	case *AdminGetUserLoginHistoriesV3NotFound:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminGetUserLoginHistoriesV3Short(params *AdminGetUserLoginHistoriesV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserLoginHistoriesV3OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGetUserLoginHistoriesV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminGetUserLoginHistoriesV3",
+		Method:             "GET",
+		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/users/{userId}/logins/histories",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGetUserLoginHistoriesV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGetUserLoginHistoriesV3OK:
+		return v, nil
+	case *AdminGetUserLoginHistoriesV3Unauthorized:
+		return nil, v
+	case *AdminGetUserLoginHistoriesV3Forbidden:
+		return nil, v
+	case *AdminGetUserLoginHistoriesV3NotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   AdminGetUserPlatformAccountsV3 gets platform accounts linked to the user
 
-  <p>Required permission 'ADMIN:NAMESPACE:{namespace}:USER:{userId} [READ]'.</p>
-			<h2>Justice Platform Account</h2>
-			<p>The permission ’ADMIN:NAMESPACE:{namespace}:JUSTICE:USER:{userId}’ [READ]
-				is required in order to read the UserID who linked with the user.</p>
-			<br>Gets platform accounts that are already linked with user account
-        	<br>action code : 10128
+  &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:USER:{userId} [READ]&#39;.&lt;/p&gt;
+			&lt;h2&gt;Justice Platform Account&lt;/h2&gt;
+			&lt;p&gt;The permission ’ADMIN:NAMESPACE:{namespace}:JUSTICE:USER:{userId}’ [READ]
+				is required in order to read the UserID who linked with the user.&lt;/p&gt;
+			&lt;br&gt;Gets platform accounts that are already linked with user account
+        	&lt;br&gt;action code : 10128
 */
 func (a *Client) AdminGetUserPlatformAccountsV3(params *AdminGetUserPlatformAccountsV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserPlatformAccountsV3OK, *AdminGetUserPlatformAccountsV3BadRequest, *AdminGetUserPlatformAccountsV3Unauthorized, *AdminGetUserPlatformAccountsV3Forbidden, *AdminGetUserPlatformAccountsV3NotFound, error) {
 	// TODO: Validate the params before sending
@@ -1789,7 +3413,7 @@ func (a *Client) AdminGetUserPlatformAccountsV3(params *AdminGetUserPlatformAcco
 		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminGetUserPlatformAccountsV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1804,29 +3428,80 @@ func (a *Client) AdminGetUserPlatformAccountsV3(params *AdminGetUserPlatformAcco
 
 	case *AdminGetUserPlatformAccountsV3OK:
 		return v, nil, nil, nil, nil, nil
+
 	case *AdminGetUserPlatformAccountsV3BadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *AdminGetUserPlatformAccountsV3Unauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *AdminGetUserPlatformAccountsV3Forbidden:
 		return nil, nil, nil, v, nil, nil
+
 	case *AdminGetUserPlatformAccountsV3NotFound:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
+func (a *Client) AdminGetUserPlatformAccountsV3Short(params *AdminGetUserPlatformAccountsV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserPlatformAccountsV3OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGetUserPlatformAccountsV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminGetUserPlatformAccountsV3",
+		Method:             "GET",
+		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGetUserPlatformAccountsV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGetUserPlatformAccountsV3OK:
+		return v, nil
+	case *AdminGetUserPlatformAccountsV3BadRequest:
+		return nil, v
+	case *AdminGetUserPlatformAccountsV3Unauthorized:
+		return nil, v
+	case *AdminGetUserPlatformAccountsV3Forbidden:
+		return nil, v
+	case *AdminGetUserPlatformAccountsV3NotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
 /*
-  AdminInviteUserV3 invites user admin
+  AdminInviteUserV3 invites user
 
-  Required permission 'ADMIN:NAMESPACE:{namespace}:USER:INVITE [CREATE]
+  Required permission &#39;ADMIN:NAMESPACE:{namespace}:USER:INVITE [CREATE]
 
-Use this endpoint to invite admin user and assign role to them. The role must be scoped to namespace.
-Substitute the namespace in path parameter to desired role's namespace'. An admin user can only
+Use this endpoint to invite admin or non-admin user and assign role to them. The role must be scoped to namespace.
+Substitute the namespace in path parameter to desired role&#39;s namespace&#39;. An admin user can only
 assign role to namespaces that the admin user has the required permission.
+Role is optional, if not specified then it will only assign User role
 
-The invited admin will also assigned with "User" role by default.
+The invited admin will also assigned with &#34;User&#34; role by default.
 
 */
 func (a *Client) AdminInviteUserV3(params *AdminInviteUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminInviteUserV3Created, *AdminInviteUserV3BadRequest, *AdminInviteUserV3NotFound, *AdminInviteUserV3Conflict, *AdminInviteUserV3UnprocessableEntity, *AdminInviteUserV3InternalServerError, error) {
@@ -1845,7 +3520,7 @@ func (a *Client) AdminInviteUserV3(params *AdminInviteUserV3Params, authInfo run
 		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/users/invite",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminInviteUserV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1860,25 +3535,78 @@ func (a *Client) AdminInviteUserV3(params *AdminInviteUserV3Params, authInfo run
 
 	case *AdminInviteUserV3Created:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *AdminInviteUserV3BadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *AdminInviteUserV3NotFound:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *AdminInviteUserV3Conflict:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *AdminInviteUserV3UnprocessableEntity:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *AdminInviteUserV3InternalServerError:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminInviteUserV3Short(params *AdminInviteUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminInviteUserV3Created, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminInviteUserV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminInviteUserV3",
+		Method:             "POST",
+		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/users/invite",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminInviteUserV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminInviteUserV3Created:
+		return v, nil
+	case *AdminInviteUserV3BadRequest:
+		return nil, v
+	case *AdminInviteUserV3NotFound:
+		return nil, v
+	case *AdminInviteUserV3Conflict:
+		return nil, v
+	case *AdminInviteUserV3UnprocessableEntity:
+		return nil, v
+	case *AdminInviteUserV3InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   AdminLinkPlatformAccount links a platform user account to user account
 
-  <p>Required permission 'ADMIN:NAMESPACE:{namespace}:USER:{userId} [UPDATE]'</p>
+  &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:USER:{userId} [UPDATE]&#39;&lt;/p&gt;
 Force linking platform account to user User Account. This endpoint intended for admin to forcefully link account to user.
 
 */
@@ -1898,7 +3626,7 @@ func (a *Client) AdminLinkPlatformAccount(params *AdminLinkPlatformAccountParams
 		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/link",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminLinkPlatformAccountReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1913,16 +3641,66 @@ func (a *Client) AdminLinkPlatformAccount(params *AdminLinkPlatformAccountParams
 
 	case *AdminLinkPlatformAccountNoContent:
 		return v, nil, nil, nil, nil, nil
+
 	case *AdminLinkPlatformAccountBadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *AdminLinkPlatformAccountUnauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *AdminLinkPlatformAccountForbidden:
 		return nil, nil, nil, v, nil, nil
+
 	case *AdminLinkPlatformAccountInternalServerError:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminLinkPlatformAccountShort(params *AdminLinkPlatformAccountParams, authInfo runtime.ClientAuthInfoWriter) (*AdminLinkPlatformAccountNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminLinkPlatformAccountParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminLinkPlatformAccount",
+		Method:             "POST",
+		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/link",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminLinkPlatformAccountReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminLinkPlatformAccountNoContent:
+		return v, nil
+	case *AdminLinkPlatformAccountBadRequest:
+		return nil, v
+	case *AdminLinkPlatformAccountUnauthorized:
+		return nil, v
+	case *AdminLinkPlatformAccountForbidden:
+		return nil, v
+	case *AdminLinkPlatformAccountInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -1932,7 +3710,7 @@ func (a *Client) AdminLinkPlatformAccount(params *AdminLinkPlatformAccountParams
   This endpoint requires ADMIN:NAMESPACE:{namespace}:USER [READ] permission.
 
 Returns list of users ID and namespace with their Justice platform account, under a namespace. If user
-doesn't have Justice platform account, the linkedPlatforms will be empty array.'
+doesn&#39;t have Justice platform account, the linkedPlatforms will be empty array.&#39;
 
 */
 func (a *Client) AdminListUsersV3(params *AdminListUsersV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminListUsersV3OK, *AdminListUsersV3BadRequest, *AdminListUsersV3Unauthorized, *AdminListUsersV3Forbidden, *AdminListUsersV3InternalServerError, error) {
@@ -1951,7 +3729,7 @@ func (a *Client) AdminListUsersV3(params *AdminListUsersV3Params, authInfo runti
 		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/users/platforms/justice",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminListUsersV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1966,37 +3744,92 @@ func (a *Client) AdminListUsersV3(params *AdminListUsersV3Params, authInfo runti
 
 	case *AdminListUsersV3OK:
 		return v, nil, nil, nil, nil, nil
+
 	case *AdminListUsersV3BadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *AdminListUsersV3Unauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *AdminListUsersV3Forbidden:
 		return nil, nil, nil, v, nil, nil
+
 	case *AdminListUsersV3InternalServerError:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminListUsersV3Short(params *AdminListUsersV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminListUsersV3OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminListUsersV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminListUsersV3",
+		Method:             "GET",
+		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/users/platforms/justice",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminListUsersV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminListUsersV3OK:
+		return v, nil
+	case *AdminListUsersV3BadRequest:
+		return nil, v
+	case *AdminListUsersV3Unauthorized:
+		return nil, v
+	case *AdminListUsersV3Forbidden:
+		return nil, v
+	case *AdminListUsersV3InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   AdminPlatformLinkV3 links user s account with platform
 
-  <p>Required permission 'ADMIN:NAMESPACE:{namespace}:USER:{userId} [UPDATE]'.</p>
-			<p><br><b>Prerequisite:</b> Platform client configuration need to be added to database for specific platformId. Namespace service URL need to be specified (refer to required environment variables).
-<h2>Supported platforms:</h2>
-			<ul>
-				<li><strong>steam</strong>: The ticket’s value is the authentication code returned by Steam.</li>
-				<li><strong>steamopenid</strong>: Steam's user authentication method using OpenID 2.0. The ticket's value is URL generated by Steam on web authentication</li>
-				<li><strong>facebook</strong>: The ticket’s value is the authorization code returned by Facebook OAuth</li>
-				<li><strong>google</strong>: The ticket’s value is the authorization code returned by Google OAuth</li>
-				<li><strong>oculus</strong>: The ticket’s value is a string composed of Oculus's user ID and the nonce separated by a colon (:).</li>
-				<li><strong>twitch</strong>: The ticket’s value is the authorization code returned by Twitch OAuth.</li>
-				<li><strong>android</strong>: The ticket's value is the Android’s device ID</li>
-				<li><strong>ios</strong>: The ticket's value is the iOS’s device ID.</li>
-				<li><strong>device</strong>: Every device that does’nt run Android and iOS is categorized as a device platform. The ticket's value is the device’s ID.</li>
-				<li><strong>discord</strong>: The ticket’s value is the authorization code returned by Discord OAuth.</li>
-			</ul>
+  &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:USER:{userId} [UPDATE]&#39;.&lt;/p&gt;
+			&lt;p&gt;&lt;br&gt;&lt;b&gt;Prerequisite:&lt;/b&gt; Platform client configuration need to be added to database for specific platformId. Namespace service URL need to be specified (refer to required environment variables).
+&lt;h2&gt;Supported platforms:&lt;/h2&gt;
+			&lt;ul&gt;
+				&lt;li&gt;&lt;strong&gt;steam&lt;/strong&gt;: The ticket’s value is the authentication code returned by Steam.&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;steamopenid&lt;/strong&gt;: Steam&#39;s user authentication method using OpenID 2.0. The ticket&#39;s value is URL generated by Steam on web authentication&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;facebook&lt;/strong&gt;: The ticket’s value is the authorization code returned by Facebook OAuth&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;google&lt;/strong&gt;: The ticket’s value is the authorization code returned by Google OAuth&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;oculus&lt;/strong&gt;: The ticket’s value is a string composed of Oculus&#39;s user ID and the nonce separated by a colon (:).&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;twitch&lt;/strong&gt;: The ticket’s value is the authorization code returned by Twitch OAuth.&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;android&lt;/strong&gt;: The ticket&#39;s value is the Android’s device ID&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;ios&lt;/strong&gt;: The ticket&#39;s value is the iOS’s device ID.&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;apple&lt;/strong&gt;: The ticket’s value is the authorization code returned by Apple OAuth.&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;device&lt;/strong&gt;: Every device that does’nt run Android and iOS is categorized as a device platform. The ticket&#39;s value is the device’s ID.&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;discord&lt;/strong&gt;: The ticket’s value is the authorization code returned by Discord OAuth.&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;awscognito&lt;/strong&gt;: The ticket’s value is the aws cognito access token (JWT).&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;epicgames&lt;/strong&gt;: The ticket’s value is an access-token obtained from Epicgames EOS Account Service.&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;nintendo&lt;/strong&gt;: The ticket’s value is the authorization code(id_token) returned by Nintendo OAuth.&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;stadia&lt;/strong&gt;: The ticket’s value is a JWT Token, which can be obtained after calling the Stadia SDK&#39;s function.&lt;/li&gt;
+			&lt;/ul&gt;
 */
 func (a *Client) AdminPlatformLinkV3(params *AdminPlatformLinkV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPlatformLinkV3NoContent, *AdminPlatformLinkV3BadRequest, *AdminPlatformLinkV3Unauthorized, *AdminPlatformLinkV3Forbidden, *AdminPlatformLinkV3NotFound, *AdminPlatformLinkV3Conflict, *AdminPlatformLinkV3InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -2014,7 +3847,7 @@ func (a *Client) AdminPlatformLinkV3(params *AdminPlatformLinkV3Params, authInfo
 		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/{platformId}/link",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminPlatformLinkV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -2029,48 +3862,109 @@ func (a *Client) AdminPlatformLinkV3(params *AdminPlatformLinkV3Params, authInfo
 
 	case *AdminPlatformLinkV3NoContent:
 		return v, nil, nil, nil, nil, nil, nil, nil
+
 	case *AdminPlatformLinkV3BadRequest:
 		return nil, v, nil, nil, nil, nil, nil, nil
+
 	case *AdminPlatformLinkV3Unauthorized:
 		return nil, nil, v, nil, nil, nil, nil, nil
+
 	case *AdminPlatformLinkV3Forbidden:
 		return nil, nil, nil, v, nil, nil, nil, nil
+
 	case *AdminPlatformLinkV3NotFound:
 		return nil, nil, nil, nil, v, nil, nil, nil
+
 	case *AdminPlatformLinkV3Conflict:
 		return nil, nil, nil, nil, nil, v, nil, nil
+
 	case *AdminPlatformLinkV3InternalServerError:
 		return nil, nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminPlatformLinkV3Short(params *AdminPlatformLinkV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPlatformLinkV3NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminPlatformLinkV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminPlatformLinkV3",
+		Method:             "POST",
+		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/{platformId}/link",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminPlatformLinkV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminPlatformLinkV3NoContent:
+		return v, nil
+	case *AdminPlatformLinkV3BadRequest:
+		return nil, v
+	case *AdminPlatformLinkV3Unauthorized:
+		return nil, v
+	case *AdminPlatformLinkV3Forbidden:
+		return nil, v
+	case *AdminPlatformLinkV3NotFound:
+		return nil, v
+	case *AdminPlatformLinkV3Conflict:
+		return nil, v
+	case *AdminPlatformLinkV3InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   AdminPlatformUnlinkV3 unlinks user s account from specific platform
 
-  <p>Required permission 'ADMIN:NAMESPACE:{namespace}:USER:{userId} [DELETE]'.
-			<h2>Supported platforms:</h2>
-			<ul>
-				<li><strong>steam</strong></li>
-				<li><strong>steamopenid</strong></li>
-				<li><strong>facebook</strong></li>
-				<li><strong>google</strong></li>
-				<li><strong>oculus</strong></li>
-				<li><strong>twitch</strong></li>
-				<li><strong>android</strong></li>
-				<li><strong>ios</strong></li>
-				<li><strong>device</strong></li>
-				<li><strong>discord</strong></li>
-			</ul>
-			<p>Unlink user's account from a specific platform. 'justice' platform might have multiple accounts from different namespaces linked.
-			<br><i>platformNamespace</i> need to be specified when the platform ID is 'justice'.
-			<br>
-			<br>Unlink user's account from justice platform will enable password token grant and password update.
-			<br>
-			<br>If you want to unlink user's account in a game namespace, you have to specify <i>platformNamespace</i> to that game namespace.
-			<br>
-			<br>action code : 10121 </p>
+  &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:USER:{userId} [DELETE]&#39;.
+			&lt;h2&gt;Supported platforms:&lt;/h2&gt;
+			&lt;ul&gt;
+				&lt;li&gt;&lt;strong&gt;steam&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;steamopenid&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;facebook&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;google&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;oculus&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;twitch&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;android&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;ios&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;apple&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;device&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;discord&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;awscognito&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;epicgames&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;nintendo&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;stadia&lt;/strong&gt;&lt;/li&gt;
+			&lt;/ul&gt;
+			&lt;p&gt;Unlink user&#39;s account from a specific platform. &#39;justice&#39; platform might have multiple accounts from different namespaces linked.
+			&lt;br&gt;&lt;i&gt;platformNamespace&lt;/i&gt; need to be specified when the platform ID is &#39;justice&#39;.
+			&lt;br&gt;
+			&lt;br&gt;Unlink user&#39;s account from justice platform will enable password token grant and password update.
+			&lt;br&gt;
+			&lt;br&gt;If you want to unlink user&#39;s account in a game namespace, you have to specify &lt;i&gt;platformNamespace&lt;/i&gt; to that game namespace.
+			&lt;br&gt;
+			&lt;br&gt;action code : 10121 &lt;/p&gt;
 */
 func (a *Client) AdminPlatformUnlinkV3(params *AdminPlatformUnlinkV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPlatformUnlinkV3NoContent, *AdminPlatformUnlinkV3BadRequest, *AdminPlatformUnlinkV3Unauthorized, *AdminPlatformUnlinkV3Forbidden, *AdminPlatformUnlinkV3NotFound, *AdminPlatformUnlinkV3InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -2088,7 +3982,7 @@ func (a *Client) AdminPlatformUnlinkV3(params *AdminPlatformUnlinkV3Params, auth
 		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/{platformId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminPlatformUnlinkV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -2103,25 +3997,78 @@ func (a *Client) AdminPlatformUnlinkV3(params *AdminPlatformUnlinkV3Params, auth
 
 	case *AdminPlatformUnlinkV3NoContent:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *AdminPlatformUnlinkV3BadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *AdminPlatformUnlinkV3Unauthorized:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *AdminPlatformUnlinkV3Forbidden:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *AdminPlatformUnlinkV3NotFound:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *AdminPlatformUnlinkV3InternalServerError:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminPlatformUnlinkV3Short(params *AdminPlatformUnlinkV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPlatformUnlinkV3NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminPlatformUnlinkV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminPlatformUnlinkV3",
+		Method:             "DELETE",
+		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/{platformId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminPlatformUnlinkV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminPlatformUnlinkV3NoContent:
+		return v, nil
+	case *AdminPlatformUnlinkV3BadRequest:
+		return nil, v
+	case *AdminPlatformUnlinkV3Unauthorized:
+		return nil, v
+	case *AdminPlatformUnlinkV3Forbidden:
+		return nil, v
+	case *AdminPlatformUnlinkV3NotFound:
+		return nil, v
+	case *AdminPlatformUnlinkV3InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   AdminPutUserRolesV2 updates user roles will replace all the existing roles
 
-  Required permission 'ADMIN:NAMESPACE:{namespace}:ROLE:USER:{userId} [UPDATE]'
+  Required permission &#39;ADMIN:NAMESPACE:{namespace}:ROLE:USER:{userId} [UPDATE]&#39;
 */
 func (a *Client) AdminPutUserRolesV2(params *AdminPutUserRolesV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutUserRolesV2NoContent, *AdminPutUserRolesV2BadRequest, *AdminPutUserRolesV2Unauthorized, *AdminPutUserRolesV2Forbidden, *AdminPutUserRolesV2NotFound, error) {
 	// TODO: Validate the params before sending
@@ -2139,7 +4086,7 @@ func (a *Client) AdminPutUserRolesV2(params *AdminPutUserRolesV2Params, authInfo
 		PathPattern:        "/iam/v2/admin/namespaces/{namespace}/users/{userId}/roles",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminPutUserRolesV2Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -2154,23 +4101,73 @@ func (a *Client) AdminPutUserRolesV2(params *AdminPutUserRolesV2Params, authInfo
 
 	case *AdminPutUserRolesV2NoContent:
 		return v, nil, nil, nil, nil, nil
+
 	case *AdminPutUserRolesV2BadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *AdminPutUserRolesV2Unauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *AdminPutUserRolesV2Forbidden:
 		return nil, nil, nil, v, nil, nil
+
 	case *AdminPutUserRolesV2NotFound:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminPutUserRolesV2Short(params *AdminPutUserRolesV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutUserRolesV2NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminPutUserRolesV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminPutUserRolesV2",
+		Method:             "PUT",
+		PathPattern:        "/iam/v2/admin/namespaces/{namespace}/users/{userId}/roles",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminPutUserRolesV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminPutUserRolesV2NoContent:
+		return v, nil
+	case *AdminPutUserRolesV2BadRequest:
+		return nil, v
+	case *AdminPutUserRolesV2Unauthorized:
+		return nil, v
+	case *AdminPutUserRolesV2Forbidden:
+		return nil, v
+	case *AdminPutUserRolesV2NotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   AdminResetPasswordV2 updates user password
 
-  Required permission 'ADMIN:NAMESPACE:{namespace}:PASSWORD:USER:{userId} [UPDATE]'
+  Required permission &#39;ADMIN:NAMESPACE:{namespace}:PASSWORD:USER:{userId} [UPDATE]&#39;
 */
 func (a *Client) AdminResetPasswordV2(params *AdminResetPasswordV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminResetPasswordV2NoContent, *AdminResetPasswordV2BadRequest, *AdminResetPasswordV2Unauthorized, *AdminResetPasswordV2Forbidden, *AdminResetPasswordV2NotFound, *AdminResetPasswordV2InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -2188,7 +4185,7 @@ func (a *Client) AdminResetPasswordV2(params *AdminResetPasswordV2Params, authIn
 		PathPattern:        "/iam/v2/admin/namespaces/{namespace}/users/{userId}/password",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminResetPasswordV2Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -2203,18 +4200,71 @@ func (a *Client) AdminResetPasswordV2(params *AdminResetPasswordV2Params, authIn
 
 	case *AdminResetPasswordV2NoContent:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *AdminResetPasswordV2BadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *AdminResetPasswordV2Unauthorized:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *AdminResetPasswordV2Forbidden:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *AdminResetPasswordV2NotFound:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *AdminResetPasswordV2InternalServerError:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminResetPasswordV2Short(params *AdminResetPasswordV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminResetPasswordV2NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminResetPasswordV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminResetPasswordV2",
+		Method:             "PUT",
+		PathPattern:        "/iam/v2/admin/namespaces/{namespace}/users/{userId}/password",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminResetPasswordV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminResetPasswordV2NoContent:
+		return v, nil
+	case *AdminResetPasswordV2BadRequest:
+		return nil, v
+	case *AdminResetPasswordV2Unauthorized:
+		return nil, v
+	case *AdminResetPasswordV2Forbidden:
+		return nil, v
+	case *AdminResetPasswordV2NotFound:
+		return nil, v
+	case *AdminResetPasswordV2InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -2223,7 +4273,7 @@ func (a *Client) AdminResetPasswordV2(params *AdminResetPasswordV2Params, authIn
 
   This endpoint requires ADMIN:NAMESPACE:{namespace}:ROLE:USER:{userId} [UPDATE] permission.
 
-User's roles will be updated with given roles (replacing current user's role). Request body need to specify allowed namespace for given role to support new role restriction.
+User&#39;s roles will be updated with given roles (replacing current user&#39;s role). Request body need to specify allowed namespace for given role to support new role restriction.
 Skipped the check whether the user performing the request is a role manager / assigner since there is a plan to discard the role manager / assigner.
 
 */
@@ -2243,7 +4293,7 @@ func (a *Client) AdminSaveUserRoleV3(params *AdminSaveUserRoleV3Params, authInfo
 		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/users/{userId}/roles",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminSaveUserRoleV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -2258,34 +4308,90 @@ func (a *Client) AdminSaveUserRoleV3(params *AdminSaveUserRoleV3Params, authInfo
 
 	case *AdminSaveUserRoleV3NoContent:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *AdminSaveUserRoleV3BadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *AdminSaveUserRoleV3Forbidden:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *AdminSaveUserRoleV3NotFound:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *AdminSaveUserRoleV3UnprocessableEntity:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *AdminSaveUserRoleV3InternalServerError:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminSaveUserRoleV3Short(params *AdminSaveUserRoleV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminSaveUserRoleV3NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminSaveUserRoleV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminSaveUserRoleV3",
+		Method:             "PATCH",
+		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/users/{userId}/roles",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminSaveUserRoleV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminSaveUserRoleV3NoContent:
+		return v, nil
+	case *AdminSaveUserRoleV3BadRequest:
+		return nil, v
+	case *AdminSaveUserRoleV3Forbidden:
+		return nil, v
+	case *AdminSaveUserRoleV3NotFound:
+		return nil, v
+	case *AdminSaveUserRoleV3UnprocessableEntity:
+		return nil, v
+	case *AdminSaveUserRoleV3InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   AdminSearchUserV3 searches user
 
-  <p>Required permission ADMIN:NAMESPACE:{namespace}:USER [READ]</p>
-  <p>Endpoint behavior :
-  <ul><li>by default this endpoint searches all users on the specified namespace</li>
-  <li>if query parameter is defined, endpoint will search users whose email address, display name, or username partially  match with the query</li>
-  <li>if startDate and endDate parameters is defined, endpoint will search users which created on the certain date range</li>
-  <li>if query, startDate and endDate parameters are defined, endpoint will search users whose email address and display name match and created on the certain date range</li>
-  <li>if startDate parameter is defined, endpoint will search users that created start from the defined date</li>
-  <li>if endDate parameter is defined, endpoint will search users that created until the defined date</li>
-  </ul></p>
-<br>action code : 10133
+  &lt;p&gt;Required permission ADMIN:NAMESPACE:{namespace}:USER [READ]&lt;/p&gt;
+               &lt;p&gt;Endpoint behavior :
+               &lt;ul&gt;&lt;li&gt;by default this endpoint searches all users on the specified namespace&lt;/li&gt;
+               &lt;li&gt;if query parameter is defined, endpoint will search users whose email address, display name, username, or third party partially match with the query&lt;/li&gt;
+               &lt;li&gt;if startDate and endDate parameters is defined, endpoint will search users which created on the certain date range&lt;/li&gt;
+               &lt;li&gt;if query, startDate and endDate parameters are defined, endpoint will search users whose email address and display name match and created on the certain date range&lt;/li&gt;
+               &lt;li&gt;if startDate parameter is defined, endpoint will search users that created start from the defined date&lt;/li&gt;
+               &lt;li&gt;if endDate parameter is defined, endpoint will search users that created until the defined date&lt;/li&gt;
+&lt;li&gt;if platformId parameter is defined and by parameter is using thirdparty, endpoint will search users based on the platformId they have linked to &lt;/li&gt;
+&lt;li&gt;if platformBy parameter is defined and by parameter is using thirdparty, endpoint will search users based on the platformUserId or platformDisplayName they have linked to, example value: platformUserId or platformDisplayName&lt;/li&gt;
+               &lt;li&gt;if limit is not defined, The default limit is 100&lt;/li&gt;
+&lt;/ul&gt;&lt;/p&gt;
+             &lt;br&gt;action code : 10133
 */
 func (a *Client) AdminSearchUserV3(params *AdminSearchUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminSearchUserV3OK, *AdminSearchUserV3BadRequest, *AdminSearchUserV3Unauthorized, *AdminSearchUserV3Forbidden, *AdminSearchUserV3InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -2303,7 +4409,7 @@ func (a *Client) AdminSearchUserV3(params *AdminSearchUserV3Params, authInfo run
 		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/users/search",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminSearchUserV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -2318,23 +4424,73 @@ func (a *Client) AdminSearchUserV3(params *AdminSearchUserV3Params, authInfo run
 
 	case *AdminSearchUserV3OK:
 		return v, nil, nil, nil, nil, nil
+
 	case *AdminSearchUserV3BadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *AdminSearchUserV3Unauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *AdminSearchUserV3Forbidden:
 		return nil, nil, nil, v, nil, nil
+
 	case *AdminSearchUserV3InternalServerError:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminSearchUserV3Short(params *AdminSearchUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminSearchUserV3OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminSearchUserV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminSearchUserV3",
+		Method:             "GET",
+		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/users/search",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminSearchUserV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminSearchUserV3OK:
+		return v, nil
+	case *AdminSearchUserV3BadRequest:
+		return nil, v
+	case *AdminSearchUserV3Unauthorized:
+		return nil, v
+	case *AdminSearchUserV3Forbidden:
+		return nil, v
+	case *AdminSearchUserV3InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   AdminSearchUsersV2 searches users
 
-  Required permission 'ADMIN:NAMESPACE:{namespace}:USER [READ]'.
+  Required permission &#39;ADMIN:NAMESPACE:{namespace}:USER [READ]&#39;.
 */
 func (a *Client) AdminSearchUsersV2(params *AdminSearchUsersV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminSearchUsersV2OK, *AdminSearchUsersV2BadRequest, *AdminSearchUsersV2Unauthorized, *AdminSearchUsersV2Forbidden, error) {
 	// TODO: Validate the params before sending
@@ -2352,7 +4508,7 @@ func (a *Client) AdminSearchUsersV2(params *AdminSearchUsersV2Params, authInfo r
 		PathPattern:        "/iam/v2/admin/namespaces/{namespace}/users",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminSearchUsersV2Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -2367,37 +4523,84 @@ func (a *Client) AdminSearchUsersV2(params *AdminSearchUsersV2Params, authInfo r
 
 	case *AdminSearchUsersV2OK:
 		return v, nil, nil, nil, nil
+
 	case *AdminSearchUsersV2BadRequest:
 		return nil, v, nil, nil, nil
+
 	case *AdminSearchUsersV2Unauthorized:
 		return nil, nil, v, nil, nil
+
 	case *AdminSearchUsersV2Forbidden:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminSearchUsersV2Short(params *AdminSearchUsersV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminSearchUsersV2OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminSearchUsersV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminSearchUsersV2",
+		Method:             "GET",
+		PathPattern:        "/iam/v2/admin/namespaces/{namespace}/users",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminSearchUsersV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminSearchUsersV2OK:
+		return v, nil
+	case *AdminSearchUsersV2BadRequest:
+		return nil, v
+	case *AdminSearchUsersV2Unauthorized:
+		return nil, v
+	case *AdminSearchUsersV2Forbidden:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   AdminSendVerificationCodeV3 sends verification code to user
 
-  Required permission 'ADMIN:NAMESPACE:{namespace}:USER:{userId} [UPDATE]'
-<p>The verification code is sent to email address.</p>
-<p>Available contexts for use : </p>
-<ol>
-	<li><strong>UserAccountRegistration</strong>
-		<p>a context type used for verifying email address in user account registration. It returns 409 if the email address already verified.
-		<strong><em>It is the default context if the Context field is empty</em></strong></p>
-	</li>
-	<li><strong>UpdateEmailAddress</strong>
-		<p>a context type used for verify user before updating email address.(Without email address verified checking)</p>
-	</li>
-	<li><strong>upgradeHeadlessAccount</strong>
-		<p>The context is intended to be used whenever the email address wanted to be automatically verified on upgrading a headless account.
-			If this context used, IAM rejects the request if the email address is already used by others by returning HTTP Status Code 409.</p>
-	</li>
-</ol>
-<p>action code: 10116</p>
+  Required permission &#39;ADMIN:NAMESPACE:{namespace}:USER:{userId} [UPDATE]&#39;
+&lt;p&gt;The verification code is sent to email address.&lt;/p&gt;
+&lt;p&gt;Available contexts for use : &lt;/p&gt;
+&lt;ol&gt;
+	&lt;li&gt;&lt;strong&gt;UserAccountRegistration&lt;/strong&gt;
+		&lt;p&gt;a context type used for verifying email address in user account registration. It returns 409 if the email address already verified.
+		&lt;strong&gt;&lt;em&gt;It is the default context if the Context field is empty&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+	&lt;/li&gt;
+	&lt;li&gt;&lt;strong&gt;UpdateEmailAddress&lt;/strong&gt;
+		&lt;p&gt;a context type used for verify user before updating email address.(Without email address verified checking)&lt;/p&gt;
+	&lt;/li&gt;
+	&lt;li&gt;&lt;strong&gt;upgradeHeadlessAccount&lt;/strong&gt;
+		&lt;p&gt;The context is intended to be used whenever the email address wanted to be automatically verified on upgrading a headless account.
+			If this context used, IAM rejects the request if the email address is already used by others by returning HTTP Status Code 409.&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;action code: 10116&lt;/p&gt;
 
 */
 func (a *Client) AdminSendVerificationCodeV3(params *AdminSendVerificationCodeV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminSendVerificationCodeV3NoContent, *AdminSendVerificationCodeV3BadRequest, *AdminSendVerificationCodeV3Unauthorized, *AdminSendVerificationCodeV3Forbidden, *AdminSendVerificationCodeV3NotFound, *AdminSendVerificationCodeV3Conflict, *AdminSendVerificationCodeV3TooManyRequests, error) {
@@ -2416,7 +4619,7 @@ func (a *Client) AdminSendVerificationCodeV3(params *AdminSendVerificationCodeV3
 		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/users/{userId}/code/request",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminSendVerificationCodeV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -2431,27 +4634,83 @@ func (a *Client) AdminSendVerificationCodeV3(params *AdminSendVerificationCodeV3
 
 	case *AdminSendVerificationCodeV3NoContent:
 		return v, nil, nil, nil, nil, nil, nil, nil
+
 	case *AdminSendVerificationCodeV3BadRequest:
 		return nil, v, nil, nil, nil, nil, nil, nil
+
 	case *AdminSendVerificationCodeV3Unauthorized:
 		return nil, nil, v, nil, nil, nil, nil, nil
+
 	case *AdminSendVerificationCodeV3Forbidden:
 		return nil, nil, nil, v, nil, nil, nil, nil
+
 	case *AdminSendVerificationCodeV3NotFound:
 		return nil, nil, nil, nil, v, nil, nil, nil
+
 	case *AdminSendVerificationCodeV3Conflict:
 		return nil, nil, nil, nil, nil, v, nil, nil
+
 	case *AdminSendVerificationCodeV3TooManyRequests:
 		return nil, nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminSendVerificationCodeV3Short(params *AdminSendVerificationCodeV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminSendVerificationCodeV3NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminSendVerificationCodeV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminSendVerificationCodeV3",
+		Method:             "POST",
+		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/users/{userId}/code/request",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminSendVerificationCodeV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminSendVerificationCodeV3NoContent:
+		return v, nil
+	case *AdminSendVerificationCodeV3BadRequest:
+		return nil, v
+	case *AdminSendVerificationCodeV3Unauthorized:
+		return nil, v
+	case *AdminSendVerificationCodeV3Forbidden:
+		return nil, v
+	case *AdminSendVerificationCodeV3NotFound:
+		return nil, v
+	case *AdminSendVerificationCodeV3Conflict:
+		return nil, v
+	case *AdminSendVerificationCodeV3TooManyRequests:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   AdminUpdateAgeRestrictionConfigV2 updates age restriction config value
 
-  Required permission 'ADMIN:NAMESPACE:{namespace}:AGERESTRICTION [UPDATE]'
+  Required permission &#39;ADMIN:NAMESPACE:{namespace}:AGERESTRICTION [UPDATE]&#39;
 */
 func (a *Client) AdminUpdateAgeRestrictionConfigV2(params *AdminUpdateAgeRestrictionConfigV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateAgeRestrictionConfigV2OK, *AdminUpdateAgeRestrictionConfigV2BadRequest, *AdminUpdateAgeRestrictionConfigV2Unauthorized, *AdminUpdateAgeRestrictionConfigV2Forbidden, *AdminUpdateAgeRestrictionConfigV2NotFound, error) {
 	// TODO: Validate the params before sending
@@ -2469,7 +4728,7 @@ func (a *Client) AdminUpdateAgeRestrictionConfigV2(params *AdminUpdateAgeRestric
 		PathPattern:        "/iam/v2/admin/namespaces/{namespace}/agerestrictions",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminUpdateAgeRestrictionConfigV2Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -2484,23 +4743,73 @@ func (a *Client) AdminUpdateAgeRestrictionConfigV2(params *AdminUpdateAgeRestric
 
 	case *AdminUpdateAgeRestrictionConfigV2OK:
 		return v, nil, nil, nil, nil, nil
+
 	case *AdminUpdateAgeRestrictionConfigV2BadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *AdminUpdateAgeRestrictionConfigV2Unauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *AdminUpdateAgeRestrictionConfigV2Forbidden:
 		return nil, nil, nil, v, nil, nil
+
 	case *AdminUpdateAgeRestrictionConfigV2NotFound:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminUpdateAgeRestrictionConfigV2Short(params *AdminUpdateAgeRestrictionConfigV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateAgeRestrictionConfigV2OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminUpdateAgeRestrictionConfigV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminUpdateAgeRestrictionConfigV2",
+		Method:             "PATCH",
+		PathPattern:        "/iam/v2/admin/namespaces/{namespace}/agerestrictions",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminUpdateAgeRestrictionConfigV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminUpdateAgeRestrictionConfigV2OK:
+		return v, nil
+	case *AdminUpdateAgeRestrictionConfigV2BadRequest:
+		return nil, v
+	case *AdminUpdateAgeRestrictionConfigV2Unauthorized:
+		return nil, v
+	case *AdminUpdateAgeRestrictionConfigV2Forbidden:
+		return nil, v
+	case *AdminUpdateAgeRestrictionConfigV2NotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   AdminUpdateAgeRestrictionConfigV3 updates age restriction config value
 
-  Required permission 'ADMIN:NAMESPACE:{namespace}:AGERESTRICTION [UPDATE]' <br> action code: 10122
+  Required permission &#39;ADMIN:NAMESPACE:{namespace}:AGERESTRICTION [UPDATE]&#39; &lt;br&gt; action code: 10122
 */
 func (a *Client) AdminUpdateAgeRestrictionConfigV3(params *AdminUpdateAgeRestrictionConfigV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateAgeRestrictionConfigV3OK, *AdminUpdateAgeRestrictionConfigV3BadRequest, *AdminUpdateAgeRestrictionConfigV3Unauthorized, *AdminUpdateAgeRestrictionConfigV3Forbidden, *AdminUpdateAgeRestrictionConfigV3InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -2518,7 +4827,7 @@ func (a *Client) AdminUpdateAgeRestrictionConfigV3(params *AdminUpdateAgeRestric
 		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/agerestrictions",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminUpdateAgeRestrictionConfigV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -2533,23 +4842,73 @@ func (a *Client) AdminUpdateAgeRestrictionConfigV3(params *AdminUpdateAgeRestric
 
 	case *AdminUpdateAgeRestrictionConfigV3OK:
 		return v, nil, nil, nil, nil, nil
+
 	case *AdminUpdateAgeRestrictionConfigV3BadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *AdminUpdateAgeRestrictionConfigV3Unauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *AdminUpdateAgeRestrictionConfigV3Forbidden:
 		return nil, nil, nil, v, nil, nil
+
 	case *AdminUpdateAgeRestrictionConfigV3InternalServerError:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminUpdateAgeRestrictionConfigV3Short(params *AdminUpdateAgeRestrictionConfigV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateAgeRestrictionConfigV3OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminUpdateAgeRestrictionConfigV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminUpdateAgeRestrictionConfigV3",
+		Method:             "PATCH",
+		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/agerestrictions",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminUpdateAgeRestrictionConfigV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminUpdateAgeRestrictionConfigV3OK:
+		return v, nil
+	case *AdminUpdateAgeRestrictionConfigV3BadRequest:
+		return nil, v
+	case *AdminUpdateAgeRestrictionConfigV3Unauthorized:
+		return nil, v
+	case *AdminUpdateAgeRestrictionConfigV3Forbidden:
+		return nil, v
+	case *AdminUpdateAgeRestrictionConfigV3InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   AdminUpdateCountryAgeRestrictionV3 updates country s age restriction
 
-  Required permission 'ADMIN:NAMESPACE:{namespace}:AGERESTRICTION [UPDATE]'<br>action code: 10123
+  Required permission &#39;ADMIN:NAMESPACE:{namespace}:AGERESTRICTION [UPDATE]&#39;&lt;br&gt;action code: 10123
 */
 func (a *Client) AdminUpdateCountryAgeRestrictionV3(params *AdminUpdateCountryAgeRestrictionV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateCountryAgeRestrictionV3OK, *AdminUpdateCountryAgeRestrictionV3BadRequest, *AdminUpdateCountryAgeRestrictionV3Unauthorized, *AdminUpdateCountryAgeRestrictionV3Forbidden, *AdminUpdateCountryAgeRestrictionV3NotFound, *AdminUpdateCountryAgeRestrictionV3InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -2567,7 +4926,7 @@ func (a *Client) AdminUpdateCountryAgeRestrictionV3(params *AdminUpdateCountryAg
 		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/agerestrictions/countries/{countryCode}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminUpdateCountryAgeRestrictionV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -2582,18 +4941,71 @@ func (a *Client) AdminUpdateCountryAgeRestrictionV3(params *AdminUpdateCountryAg
 
 	case *AdminUpdateCountryAgeRestrictionV3OK:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *AdminUpdateCountryAgeRestrictionV3BadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *AdminUpdateCountryAgeRestrictionV3Unauthorized:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *AdminUpdateCountryAgeRestrictionV3Forbidden:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *AdminUpdateCountryAgeRestrictionV3NotFound:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *AdminUpdateCountryAgeRestrictionV3InternalServerError:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminUpdateCountryAgeRestrictionV3Short(params *AdminUpdateCountryAgeRestrictionV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateCountryAgeRestrictionV3OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminUpdateCountryAgeRestrictionV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminUpdateCountryAgeRestrictionV3",
+		Method:             "PATCH",
+		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/agerestrictions/countries/{countryCode}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminUpdateCountryAgeRestrictionV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminUpdateCountryAgeRestrictionV3OK:
+		return v, nil
+	case *AdminUpdateCountryAgeRestrictionV3BadRequest:
+		return nil, v
+	case *AdminUpdateCountryAgeRestrictionV3Unauthorized:
+		return nil, v
+	case *AdminUpdateCountryAgeRestrictionV3Forbidden:
+		return nil, v
+	case *AdminUpdateCountryAgeRestrictionV3NotFound:
+		return nil, v
+	case *AdminUpdateCountryAgeRestrictionV3InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -2601,9 +5013,9 @@ func (a *Client) AdminUpdateCountryAgeRestrictionV3(params *AdminUpdateCountryAg
   AdminUpdateUserBanV3 enables or disable ban for a single user
 
   Required permission ADMIN:NAMESPACE:{namespace}:BAN:USER:{userId}
-[UPDATE] <br>Set ban status for a single user for a specific ban. Retrieve
+[UPDATE] &lt;br&gt;Set ban status for a single user for a specific ban. Retrieve
 user ban and choose the ban ID. Set the form parameter to true/false to enable
-or disable the ban. <br>action code : 10142'
+or disable the ban. &lt;br&gt;action code : 10142&#39;
 
 */
 func (a *Client) AdminUpdateUserBanV3(params *AdminUpdateUserBanV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateUserBanV3OK, *AdminUpdateUserBanV3BadRequest, *AdminUpdateUserBanV3Unauthorized, *AdminUpdateUserBanV3Forbidden, *AdminUpdateUserBanV3NotFound, *AdminUpdateUserBanV3InternalServerError, error) {
@@ -2622,7 +5034,7 @@ func (a *Client) AdminUpdateUserBanV3(params *AdminUpdateUserBanV3Params, authIn
 		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/users/{userId}/bans/{banId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminUpdateUserBanV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -2637,25 +5049,78 @@ func (a *Client) AdminUpdateUserBanV3(params *AdminUpdateUserBanV3Params, authIn
 
 	case *AdminUpdateUserBanV3OK:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *AdminUpdateUserBanV3BadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *AdminUpdateUserBanV3Unauthorized:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *AdminUpdateUserBanV3Forbidden:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *AdminUpdateUserBanV3NotFound:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *AdminUpdateUserBanV3InternalServerError:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminUpdateUserBanV3Short(params *AdminUpdateUserBanV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateUserBanV3OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminUpdateUserBanV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminUpdateUserBanV3",
+		Method:             "PATCH",
+		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/users/{userId}/bans/{banId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminUpdateUserBanV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminUpdateUserBanV3OK:
+		return v, nil
+	case *AdminUpdateUserBanV3BadRequest:
+		return nil, v
+	case *AdminUpdateUserBanV3Unauthorized:
+		return nil, v
+	case *AdminUpdateUserBanV3Forbidden:
+		return nil, v
+	case *AdminUpdateUserBanV3NotFound:
+		return nil, v
+	case *AdminUpdateUserBanV3InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   AdminUpdateUserDeletionStatusV3 updates user deletion status
 
-  Required permissions 'ADMIN:NAMESPACE:{namespace}:DELETIONSTATUS:USER:{userId} [UPDATE]' <br>action code : 10144
+  Required permissions &#39;ADMIN:NAMESPACE:{namespace}:DELETIONSTATUS:USER:{userId} [UPDATE]&#39; &lt;br&gt;action code : 10144
 */
 func (a *Client) AdminUpdateUserDeletionStatusV3(params *AdminUpdateUserDeletionStatusV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateUserDeletionStatusV3NoContent, *AdminUpdateUserDeletionStatusV3BadRequest, *AdminUpdateUserDeletionStatusV3Unauthorized, *AdminUpdateUserDeletionStatusV3Forbidden, *AdminUpdateUserDeletionStatusV3NotFound, *AdminUpdateUserDeletionStatusV3InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -2673,7 +5138,7 @@ func (a *Client) AdminUpdateUserDeletionStatusV3(params *AdminUpdateUserDeletion
 		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/users/{userId}/deletion/status",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminUpdateUserDeletionStatusV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -2688,51 +5153,104 @@ func (a *Client) AdminUpdateUserDeletionStatusV3(params *AdminUpdateUserDeletion
 
 	case *AdminUpdateUserDeletionStatusV3NoContent:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *AdminUpdateUserDeletionStatusV3BadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *AdminUpdateUserDeletionStatusV3Unauthorized:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *AdminUpdateUserDeletionStatusV3Forbidden:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *AdminUpdateUserDeletionStatusV3NotFound:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *AdminUpdateUserDeletionStatusV3InternalServerError:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminUpdateUserDeletionStatusV3Short(params *AdminUpdateUserDeletionStatusV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateUserDeletionStatusV3NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminUpdateUserDeletionStatusV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminUpdateUserDeletionStatusV3",
+		Method:             "PATCH",
+		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/users/{userId}/deletion/status",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminUpdateUserDeletionStatusV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminUpdateUserDeletionStatusV3NoContent:
+		return v, nil
+	case *AdminUpdateUserDeletionStatusV3BadRequest:
+		return nil, v
+	case *AdminUpdateUserDeletionStatusV3Unauthorized:
+		return nil, v
+	case *AdminUpdateUserDeletionStatusV3Forbidden:
+		return nil, v
+	case *AdminUpdateUserDeletionStatusV3NotFound:
+		return nil, v
+	case *AdminUpdateUserDeletionStatusV3InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   AdminUpdateUserPermissionV3 updates user permissions
 
-  <p>Required permission 'ADMIN:NAMESPACE:{namespace}:PERMISSION:USER:{userId} [UPDATE]'</p>
-			<p>This endpoint will REPLACE user's permissions with the ones defined in body</p>
-			<p>Schedule contains cron string or date range (both are UTC, also in cron syntax) to indicate when a permission and action are in effect.</p>
-			<p>Both schedule types accepts quartz compatible cron syntax e.g. * * * * * * *.</p>
-			<p>In ranged schedule, first element will be start date, and second one will be end date</p>
-			<p>If schedule is set, the scheduled action must be valid too, that is between 1 to 15, inclusive</p>
-			<p>Syntax reference</p>
-			<p>Fields:</p>
-			<ol>
-			<li>Seconds: 0-59 * / , -</li>
-			<li>Minutes: 0-59 * / , -</li>
-			<li>Hours: 0-23 * / , -</li>
-			<li>Day of month: 1-31 * / , - L W</li>
-			<li>Month: 1-12 JAN-DEC * / , -</li>
-			<li>Day of week: 0-6 SUN-SAT * / , - L #</li>
-			<li>Year: 1970-2099 * / , -</li>
-			</ol>
-			<p>Special characters:</p>
-			<ol>
-			<li>*: all values in the fields, e.g. * in seconds fields indicates every second</li>
-			<li>/: increments of ranges, e.g. 3-59/15 in the minute field indicate the third minute of the hour and every 15 minutes thereafter</li>
-			<li>,: separate items of a list, e.g. MON,WED,FRI in day of week</li>
-			<li>-: range, e.g. 2010-2018 indicates every year between 2010 and 2018, inclusive</li>
-			<li>L: last, e.g. When used in the day-of-week field, it allows you to specify constructs such as "the last Friday" (5L) of a given month. In the day-of-month field, it specifies the last day of the month.</li>
-			<li>W: business day, e.g. if you were to specify 15W as the value for the day-of-month field, the meaning is: "the nearest business day to the 15th of the month."</li>
-			<li>#: must be followed by a number between one and five. It allows you to specify constructs such as "the second Friday" of a given month.</li>
-			</ol>
+  &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:PERMISSION:USER:{userId} [UPDATE]&#39;&lt;/p&gt;
+			&lt;p&gt;This endpoint will REPLACE user&#39;s permissions with the ones defined in body&lt;/p&gt;
+			&lt;p&gt;Schedule contains cron string or date range (both are UTC, also in cron syntax) to indicate when a permission and action are in effect.&lt;/p&gt;
+			&lt;p&gt;Both schedule types accepts quartz compatible cron syntax e.g. * * * * * * *.&lt;/p&gt;
+			&lt;p&gt;In ranged schedule, first element will be start date, and second one will be end date&lt;/p&gt;
+			&lt;p&gt;If schedule is set, the scheduled action must be valid too, that is between 1 to 15, inclusive&lt;/p&gt;
+			&lt;p&gt;Syntax reference&lt;/p&gt;
+			&lt;p&gt;Fields:&lt;/p&gt;
+			&lt;ol&gt;
+			&lt;li&gt;Seconds: 0-59 * / , -&lt;/li&gt;
+			&lt;li&gt;Minutes: 0-59 * / , -&lt;/li&gt;
+			&lt;li&gt;Hours: 0-23 * / , -&lt;/li&gt;
+			&lt;li&gt;Day of month: 1-31 * / , - L W&lt;/li&gt;
+			&lt;li&gt;Month: 1-12 JAN-DEC * / , -&lt;/li&gt;
+			&lt;li&gt;Day of week: 0-6 SUN-SAT * / , - L #&lt;/li&gt;
+			&lt;li&gt;Year: 1970-2099 * / , -&lt;/li&gt;
+			&lt;/ol&gt;
+			&lt;p&gt;Special characters:&lt;/p&gt;
+			&lt;ol&gt;
+			&lt;li&gt;*: all values in the fields, e.g. * in seconds fields indicates every second&lt;/li&gt;
+			&lt;li&gt;/: increments of ranges, e.g. 3-59/15 in the minute field indicate the third minute of the hour and every 15 minutes thereafter&lt;/li&gt;
+			&lt;li&gt;,: separate items of a list, e.g. MON,WED,FRI in day of week&lt;/li&gt;
+			&lt;li&gt;-: range, e.g. 2010-2018 indicates every year between 2010 and 2018, inclusive&lt;/li&gt;
+			&lt;li&gt;L: last, e.g. When used in the day-of-week field, it allows you to specify constructs such as &#34;the last Friday&#34; (5L) of a given month. In the day-of-month field, it specifies the last day of the month.&lt;/li&gt;
+			&lt;li&gt;W: business day, e.g. if you were to specify 15W as the value for the day-of-month field, the meaning is: &#34;the nearest business day to the 15th of the month.&#34;&lt;/li&gt;
+			&lt;li&gt;#: must be followed by a number between one and five. It allows you to specify constructs such as &#34;the second Friday&#34; of a given month.&lt;/li&gt;
+			&lt;/ol&gt;
 
 */
 func (a *Client) AdminUpdateUserPermissionV3(params *AdminUpdateUserPermissionV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateUserPermissionV3NoContent, *AdminUpdateUserPermissionV3BadRequest, *AdminUpdateUserPermissionV3Unauthorized, *AdminUpdateUserPermissionV3Forbidden, *AdminUpdateUserPermissionV3NotFound, error) {
@@ -2751,7 +5269,7 @@ func (a *Client) AdminUpdateUserPermissionV3(params *AdminUpdateUserPermissionV3
 		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/users/{userId}/permissions",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminUpdateUserPermissionV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -2766,30 +5284,80 @@ func (a *Client) AdminUpdateUserPermissionV3(params *AdminUpdateUserPermissionV3
 
 	case *AdminUpdateUserPermissionV3NoContent:
 		return v, nil, nil, nil, nil, nil
+
 	case *AdminUpdateUserPermissionV3BadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *AdminUpdateUserPermissionV3Unauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *AdminUpdateUserPermissionV3Forbidden:
 		return nil, nil, nil, v, nil, nil
+
 	case *AdminUpdateUserPermissionV3NotFound:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminUpdateUserPermissionV3Short(params *AdminUpdateUserPermissionV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateUserPermissionV3NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminUpdateUserPermissionV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminUpdateUserPermissionV3",
+		Method:             "PUT",
+		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/users/{userId}/permissions",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminUpdateUserPermissionV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminUpdateUserPermissionV3NoContent:
+		return v, nil
+	case *AdminUpdateUserPermissionV3BadRequest:
+		return nil, v
+	case *AdminUpdateUserPermissionV3Unauthorized:
+		return nil, v
+	case *AdminUpdateUserPermissionV3Forbidden:
+		return nil, v
+	case *AdminUpdateUserPermissionV3NotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   AdminUpdateUserStatusV3 updates user status
 
-  Required permissions 'ADMIN:NAMESPACE:{namespace}:USERSTATUS:USER:{userId} [UPDATE]'
-		<p>This endpoint disable or enable user account. Set the enable status on the request body to true to enable user account or set to false to disable it. </p>
-		<p>Disable user for <strong>Account Disable </strong> purpose fill the reason with:</p>
-		<ul>
-		<li><strong>AdminDeactivateAccount</strong> : if your disable account request comes from admin</li>
-		</ul>
-		<p>Enable user ignore field 'reason' in the request body. </p>
-		<br>action code : 10143
+  Required permissions &#39;ADMIN:NAMESPACE:{namespace}:USERSTATUS:USER:{userId} [UPDATE]&#39;
+		&lt;p&gt;This endpoint disable or enable user account. Set the enable status on the request body to true to enable user account or set to false to disable it. &lt;/p&gt;
+		&lt;p&gt;Disable user for &lt;strong&gt;Account Disable &lt;/strong&gt; purpose fill the reason with:&lt;/p&gt;
+		&lt;ul&gt;
+		&lt;li&gt;&lt;strong&gt;AdminDeactivateAccount&lt;/strong&gt; : if your disable account request comes from admin&lt;/li&gt;
+		&lt;/ul&gt;
+		&lt;p&gt;Enable user ignore field &#39;reason&#39; in the request body. &lt;/p&gt;
+		&lt;br&gt;action code : 10143
 */
 func (a *Client) AdminUpdateUserStatusV3(params *AdminUpdateUserStatusV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateUserStatusV3NoContent, *AdminUpdateUserStatusV3BadRequest, *AdminUpdateUserStatusV3Unauthorized, *AdminUpdateUserStatusV3Forbidden, *AdminUpdateUserStatusV3NotFound, error) {
 	// TODO: Validate the params before sending
@@ -2807,7 +5375,7 @@ func (a *Client) AdminUpdateUserStatusV3(params *AdminUpdateUserStatusV3Params, 
 		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/users/{userId}/status",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminUpdateUserStatusV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -2822,23 +5390,73 @@ func (a *Client) AdminUpdateUserStatusV3(params *AdminUpdateUserStatusV3Params, 
 
 	case *AdminUpdateUserStatusV3NoContent:
 		return v, nil, nil, nil, nil, nil
+
 	case *AdminUpdateUserStatusV3BadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *AdminUpdateUserStatusV3Unauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *AdminUpdateUserStatusV3Forbidden:
 		return nil, nil, nil, v, nil, nil
+
 	case *AdminUpdateUserStatusV3NotFound:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminUpdateUserStatusV3Short(params *AdminUpdateUserStatusV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateUserStatusV3NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminUpdateUserStatusV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminUpdateUserStatusV3",
+		Method:             "PATCH",
+		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/users/{userId}/status",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminUpdateUserStatusV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminUpdateUserStatusV3NoContent:
+		return v, nil
+	case *AdminUpdateUserStatusV3BadRequest:
+		return nil, v
+	case *AdminUpdateUserStatusV3Unauthorized:
+		return nil, v
+	case *AdminUpdateUserStatusV3Forbidden:
+		return nil, v
+	case *AdminUpdateUserStatusV3NotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   AdminUpdateUserV2 updates user
 
-  <p>Required permission 'ADMIN:NAMESPACE:{namespace}:USER:{userId} [UPDATE]'</p><br><p>This Endpoint support update user based on given data. <b>Single request can update single field or multi fields.</b></p> <p>Supported field {Country, DisplayName, LanguageTag}</p><p>Country use ISO3166-1 alpha-2 two letter, e.g. US.</p><br><b>Several case of updating email address</b><ul><li>User want to update email address of which have been verified, NewEmailAddress response field will be filled with new email address.</li><li>User want to update email address of which have not been verified, {LoginId, OldEmailAddress, EmailAddress} response field will be filled with new email address. </li><li>User want to update email address of which have been verified and updated before, {LoginId, OldEmailAddress, EmailAddress} response field will be filled with verified email before. NewEmailAddress response field will be filled with newest email address. </li>
+  &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:USER:{userId} [UPDATE]&#39;&lt;/p&gt;&lt;br&gt;&lt;p&gt;This Endpoint support update user based on given data. &lt;b&gt;Single request can update single field or multi fields.&lt;/b&gt;&lt;/p&gt; &lt;p&gt;Supported field {Country, DisplayName, LanguageTag}&lt;/p&gt;&lt;p&gt;Country use ISO3166-1 alpha-2 two letter, e.g. US.&lt;/p&gt;&lt;br&gt;&lt;b&gt;Several case of updating email address&lt;/b&gt;&lt;ul&gt;&lt;li&gt;User want to update email address of which have been verified, NewEmailAddress response field will be filled with new email address.&lt;/li&gt;&lt;li&gt;User want to update email address of which have not been verified, {LoginId, OldEmailAddress, EmailAddress} response field will be filled with new email address. &lt;/li&gt;&lt;li&gt;User want to update email address of which have been verified and updated before, {LoginId, OldEmailAddress, EmailAddress} response field will be filled with verified email before. NewEmailAddress response field will be filled with newest email address. &lt;/li&gt;
 */
 func (a *Client) AdminUpdateUserV2(params *AdminUpdateUserV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateUserV2OK, *AdminUpdateUserV2BadRequest, *AdminUpdateUserV2Unauthorized, *AdminUpdateUserV2NotFound, *AdminUpdateUserV2Conflict, *AdminUpdateUserV2InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -2856,7 +5474,7 @@ func (a *Client) AdminUpdateUserV2(params *AdminUpdateUserV2Params, authInfo run
 		PathPattern:        "/iam/v2/admin/namespaces/{namespace}/users/{userId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminUpdateUserV2Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -2871,34 +5489,87 @@ func (a *Client) AdminUpdateUserV2(params *AdminUpdateUserV2Params, authInfo run
 
 	case *AdminUpdateUserV2OK:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *AdminUpdateUserV2BadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *AdminUpdateUserV2Unauthorized:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *AdminUpdateUserV2NotFound:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *AdminUpdateUserV2Conflict:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *AdminUpdateUserV2InternalServerError:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminUpdateUserV2Short(params *AdminUpdateUserV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateUserV2OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminUpdateUserV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminUpdateUserV2",
+		Method:             "PATCH",
+		PathPattern:        "/iam/v2/admin/namespaces/{namespace}/users/{userId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminUpdateUserV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminUpdateUserV2OK:
+		return v, nil
+	case *AdminUpdateUserV2BadRequest:
+		return nil, v
+	case *AdminUpdateUserV2Unauthorized:
+		return nil, v
+	case *AdminUpdateUserV2NotFound:
+		return nil, v
+	case *AdminUpdateUserV2Conflict:
+		return nil, v
+	case *AdminUpdateUserV2InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   AdminUpdateUserV3 updates user
 
-  <p>Required permission 'ADMIN:NAMESPACE:{namespace}:USER:{userId} [UPDATE]'</p>
-<br><p>This Endpoint support update user based on given data. <b>Single request can update single field or multi fields.</b></p>
-<p>Supported field {country, displayName, emailAddress, languageTag, dateOfBirth}</p>
-<p>Country use ISO3166-1 alpha-2 two letter, e.g. US.</p>
-<p>Date of Birth format : YYYY-MM-DD, e.g. 2019-04-29.</p>
-<br><b>Several case of updating email address</b>
-<ul><li>User want to update email address of which have been verified, NewEmailAddress response field will be filled with new email address.</li>
-<li>User want to update email address of which have not been verified, {LoginId, OldEmailAddress, EmailAddress} response field will be filled with new email address. </li>
-<li>User want to update email address of which have been verified and updated before, {LoginId, OldEmailAddress, EmailAddress} response field will be filled with verified email before. NewEmailAddress response field will be filled with newest email address. </li>
-<p>action code : 10103 </p>
+  &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:USER:{userId} [UPDATE]&#39;&lt;/p&gt;
+&lt;br&gt;&lt;p&gt;This Endpoint support update user based on given data. &lt;b&gt;Single request can update single field or multi fields.&lt;/b&gt;&lt;/p&gt;
+&lt;p&gt;Supported field {country, displayName, emailAddress, languageTag, dateOfBirth}&lt;/p&gt;
+&lt;p&gt;Country use ISO3166-1 alpha-2 two letter, e.g. US.&lt;/p&gt;
+&lt;p&gt;Date of Birth format : YYYY-MM-DD, e.g. 2019-04-29.&lt;/p&gt;
+&lt;br&gt;&lt;b&gt;Several case of updating email address&lt;/b&gt;
+&lt;ul&gt;&lt;li&gt;User want to update email address of which have been verified, NewEmailAddress response field will be filled with new email address.&lt;/li&gt;
+&lt;li&gt;User want to update email address of which have not been verified, {LoginId, OldEmailAddress, EmailAddress} response field will be filled with new email address. &lt;/li&gt;
+&lt;li&gt;User want to update email address of which have been verified and updated before, {LoginId, OldEmailAddress, EmailAddress} response field will be filled with verified email before. NewEmailAddress response field will be filled with newest email address. &lt;/li&gt;
+&lt;p&gt;action code : 10103 &lt;/p&gt;
 */
 func (a *Client) AdminUpdateUserV3(params *AdminUpdateUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateUserV3OK, *AdminUpdateUserV3BadRequest, *AdminUpdateUserV3Unauthorized, *AdminUpdateUserV3Forbidden, *AdminUpdateUserV3NotFound, *AdminUpdateUserV3Conflict, *AdminUpdateUserV3InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -2916,7 +5587,7 @@ func (a *Client) AdminUpdateUserV3(params *AdminUpdateUserV3Params, authInfo run
 		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/users/{userId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminUpdateUserV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -2931,39 +5602,95 @@ func (a *Client) AdminUpdateUserV3(params *AdminUpdateUserV3Params, authInfo run
 
 	case *AdminUpdateUserV3OK:
 		return v, nil, nil, nil, nil, nil, nil, nil
+
 	case *AdminUpdateUserV3BadRequest:
 		return nil, v, nil, nil, nil, nil, nil, nil
+
 	case *AdminUpdateUserV3Unauthorized:
 		return nil, nil, v, nil, nil, nil, nil, nil
+
 	case *AdminUpdateUserV3Forbidden:
 		return nil, nil, nil, v, nil, nil, nil, nil
+
 	case *AdminUpdateUserV3NotFound:
 		return nil, nil, nil, nil, v, nil, nil, nil
+
 	case *AdminUpdateUserV3Conflict:
 		return nil, nil, nil, nil, nil, v, nil, nil
+
 	case *AdminUpdateUserV3InternalServerError:
 		return nil, nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminUpdateUserV3Short(params *AdminUpdateUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateUserV3OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminUpdateUserV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminUpdateUserV3",
+		Method:             "PATCH",
+		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/users/{userId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminUpdateUserV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminUpdateUserV3OK:
+		return v, nil
+	case *AdminUpdateUserV3BadRequest:
+		return nil, v
+	case *AdminUpdateUserV3Unauthorized:
+		return nil, v
+	case *AdminUpdateUserV3Forbidden:
+		return nil, v
+	case *AdminUpdateUserV3NotFound:
+		return nil, v
+	case *AdminUpdateUserV3Conflict:
+		return nil, v
+	case *AdminUpdateUserV3InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   AdminUpgradeHeadlessAccountV3 upgrades headless account with verification code
 
-  Required permission 'ADMIN:NAMESPACE:{namespace}:USER:{userId} [UPDATE]'
-        	<p>The endpoint upgrades a headless account by linking the headless account with the email address and the password.
-				By upgrading the headless account into a full account, the user could use the email address and password for using Justice IAM. </p>
-        	<p>The endpoint is a shortcut for upgrading a headless account and verifying the email address in one call.
-				In order to get a verification code for the endpoint, please check the send verification code endpoint. </p>
-        	<p>This endpoint also have an ability to update user data (if the user data field is specified) right after the upgrade account process is done.<br/>
+  Required permission &#39;ADMIN:NAMESPACE:{namespace}:USER:{userId} [UPDATE]&#39;
+        	&lt;p&gt;The endpoint upgrades a headless account by linking the headless account with the email address and the password.
+				By upgrading the headless account into a full account, the user could use the email address and password for using Justice IAM. &lt;/p&gt;
+        	&lt;p&gt;The endpoint is a shortcut for upgrading a headless account and verifying the email address in one call.
+				In order to get a verification code for the endpoint, please check the send verification code endpoint. &lt;/p&gt;
+        	&lt;p&gt;This endpoint also have an ability to update user data (if the user data field is specified) right after the upgrade account process is done.&lt;br/&gt;
 				Supported user data fields :
-				<ul>
-					<li>displayName</li>
-					<li>dateOfBirth : format YYYY-MM-DD, e.g. 2019-04-29</li>
-					<li>country : format ISO3166-1 alpha-2 two letter, e.g. US</li>
-				</ul>
-			<br>action code : 10124</p>
+				&lt;ul&gt;
+					&lt;li&gt;displayName&lt;/li&gt;
+					&lt;li&gt;dateOfBirth : format YYYY-MM-DD, e.g. 2019-04-29&lt;/li&gt;
+					&lt;li&gt;country : format ISO3166-1 alpha-2 two letter, e.g. US&lt;/li&gt;
+				&lt;/ul&gt;
+			&lt;br&gt;action code : 10124&lt;/p&gt;
 */
 func (a *Client) AdminUpgradeHeadlessAccountV3(params *AdminUpgradeHeadlessAccountV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpgradeHeadlessAccountV3OK, *AdminUpgradeHeadlessAccountV3BadRequest, *AdminUpgradeHeadlessAccountV3Unauthorized, *AdminUpgradeHeadlessAccountV3Forbidden, *AdminUpgradeHeadlessAccountV3NotFound, *AdminUpgradeHeadlessAccountV3Conflict, *AdminUpgradeHeadlessAccountV3InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -2981,7 +5708,7 @@ func (a *Client) AdminUpgradeHeadlessAccountV3(params *AdminUpgradeHeadlessAccou
 		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/users/{userId}/headless/code/verify",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminUpgradeHeadlessAccountV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -2996,29 +5723,85 @@ func (a *Client) AdminUpgradeHeadlessAccountV3(params *AdminUpgradeHeadlessAccou
 
 	case *AdminUpgradeHeadlessAccountV3OK:
 		return v, nil, nil, nil, nil, nil, nil, nil
+
 	case *AdminUpgradeHeadlessAccountV3BadRequest:
 		return nil, v, nil, nil, nil, nil, nil, nil
+
 	case *AdminUpgradeHeadlessAccountV3Unauthorized:
 		return nil, nil, v, nil, nil, nil, nil, nil
+
 	case *AdminUpgradeHeadlessAccountV3Forbidden:
 		return nil, nil, nil, v, nil, nil, nil, nil
+
 	case *AdminUpgradeHeadlessAccountV3NotFound:
 		return nil, nil, nil, nil, v, nil, nil, nil
+
 	case *AdminUpgradeHeadlessAccountV3Conflict:
 		return nil, nil, nil, nil, nil, v, nil, nil
+
 	case *AdminUpgradeHeadlessAccountV3InternalServerError:
 		return nil, nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminUpgradeHeadlessAccountV3Short(params *AdminUpgradeHeadlessAccountV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpgradeHeadlessAccountV3OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminUpgradeHeadlessAccountV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminUpgradeHeadlessAccountV3",
+		Method:             "POST",
+		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/users/{userId}/headless/code/verify",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminUpgradeHeadlessAccountV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminUpgradeHeadlessAccountV3OK:
+		return v, nil
+	case *AdminUpgradeHeadlessAccountV3BadRequest:
+		return nil, v
+	case *AdminUpgradeHeadlessAccountV3Unauthorized:
+		return nil, v
+	case *AdminUpgradeHeadlessAccountV3Forbidden:
+		return nil, v
+	case *AdminUpgradeHeadlessAccountV3NotFound:
+		return nil, v
+	case *AdminUpgradeHeadlessAccountV3Conflict:
+		return nil, v
+	case *AdminUpgradeHeadlessAccountV3InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   AdminVerifyAccountV3 verifies account by validating verification code
 
-  <p>Required permission 'ADMIN:NAMESPACE:{namespace}:USER:{userId} [UPDATE]'</p>
-			Redeems a verification code sent to a user to verify the user's contact address is correct
-			<p>Available ContactType : <b>email<b/> or <b>phone<b/> </p>
+  &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:USER:{userId} [UPDATE]&#39;&lt;/p&gt;
+			Redeems a verification code sent to a user to verify the user&#39;s contact address is correct
+			&lt;p&gt;Available ContactType : &lt;b&gt;email&lt;b/&gt; or &lt;b&gt;phone&lt;b/&gt; &lt;/p&gt;
 */
 func (a *Client) AdminVerifyAccountV3(params *AdminVerifyAccountV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminVerifyAccountV3NoContent, *AdminVerifyAccountV3BadRequest, *AdminVerifyAccountV3Unauthorized, *AdminVerifyAccountV3Forbidden, *AdminVerifyAccountV3NotFound, *AdminVerifyAccountV3InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -3036,7 +5819,7 @@ func (a *Client) AdminVerifyAccountV3(params *AdminVerifyAccountV3Params, authIn
 		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/users/{userId}/code/verify",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminVerifyAccountV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -3051,26 +5834,79 @@ func (a *Client) AdminVerifyAccountV3(params *AdminVerifyAccountV3Params, authIn
 
 	case *AdminVerifyAccountV3NoContent:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *AdminVerifyAccountV3BadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *AdminVerifyAccountV3Unauthorized:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *AdminVerifyAccountV3Forbidden:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *AdminVerifyAccountV3NotFound:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *AdminVerifyAccountV3InternalServerError:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminVerifyAccountV3Short(params *AdminVerifyAccountV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminVerifyAccountV3NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminVerifyAccountV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminVerifyAccountV3",
+		Method:             "POST",
+		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/users/{userId}/code/verify",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminVerifyAccountV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminVerifyAccountV3NoContent:
+		return v, nil
+	case *AdminVerifyAccountV3BadRequest:
+		return nil, v
+	case *AdminVerifyAccountV3Unauthorized:
+		return nil, v
+	case *AdminVerifyAccountV3Forbidden:
+		return nil, v
+	case *AdminVerifyAccountV3NotFound:
+		return nil, v
+	case *AdminVerifyAccountV3InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   AdminVerifyUserWithoutVerificationCodeV3 verifies user without verification code
 
-  <p>This endpoint force verify user. Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId} [UPDATE]</p>
-<p>action code: 10118</p>
+  &lt;p&gt;This endpoint force verify user. Required permission ADMIN:NAMESPACE:{namespace}:USER:{userId} [UPDATE]&lt;/p&gt;
+&lt;p&gt;action code: 10118&lt;/p&gt;
 
 */
 func (a *Client) AdminVerifyUserWithoutVerificationCodeV3(params *AdminVerifyUserWithoutVerificationCodeV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminVerifyUserWithoutVerificationCodeV3NoContent, *AdminVerifyUserWithoutVerificationCodeV3BadRequest, *AdminVerifyUserWithoutVerificationCodeV3Unauthorized, *AdminVerifyUserWithoutVerificationCodeV3Forbidden, *AdminVerifyUserWithoutVerificationCodeV3NotFound, *AdminVerifyUserWithoutVerificationCodeV3Conflict, error) {
@@ -3089,7 +5925,7 @@ func (a *Client) AdminVerifyUserWithoutVerificationCodeV3(params *AdminVerifyUse
 		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/users/{userId}/verify",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminVerifyUserWithoutVerificationCodeV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -3104,25 +5940,78 @@ func (a *Client) AdminVerifyUserWithoutVerificationCodeV3(params *AdminVerifyUse
 
 	case *AdminVerifyUserWithoutVerificationCodeV3NoContent:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *AdminVerifyUserWithoutVerificationCodeV3BadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *AdminVerifyUserWithoutVerificationCodeV3Unauthorized:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *AdminVerifyUserWithoutVerificationCodeV3Forbidden:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *AdminVerifyUserWithoutVerificationCodeV3NotFound:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *AdminVerifyUserWithoutVerificationCodeV3Conflict:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminVerifyUserWithoutVerificationCodeV3Short(params *AdminVerifyUserWithoutVerificationCodeV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminVerifyUserWithoutVerificationCodeV3NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminVerifyUserWithoutVerificationCodeV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminVerifyUserWithoutVerificationCodeV3",
+		Method:             "PUT",
+		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/users/{userId}/verify",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminVerifyUserWithoutVerificationCodeV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminVerifyUserWithoutVerificationCodeV3NoContent:
+		return v, nil
+	case *AdminVerifyUserWithoutVerificationCodeV3BadRequest:
+		return nil, v
+	case *AdminVerifyUserWithoutVerificationCodeV3Unauthorized:
+		return nil, v
+	case *AdminVerifyUserWithoutVerificationCodeV3Forbidden:
+		return nil, v
+	case *AdminVerifyUserWithoutVerificationCodeV3NotFound:
+		return nil, v
+	case *AdminVerifyUserWithoutVerificationCodeV3Conflict:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   BanUser bans a single user
 
-  Required permission 'ADMIN:NAMESPACE:{namespace}:BAN:USER:{userId} [CREATE]'.
+  Required permission &#39;ADMIN:NAMESPACE:{namespace}:BAN:USER:{userId} [CREATE]&#39;.
 */
 func (a *Client) BanUser(params *BanUserParams, authInfo runtime.ClientAuthInfoWriter) (*BanUserCreated, *BanUserBadRequest, *BanUserUnauthorized, *BanUserForbidden, *BanUserNotFound, *BanUserInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -3140,7 +6029,7 @@ func (a *Client) BanUser(params *BanUserParams, authInfo runtime.ClientAuthInfoW
 		PathPattern:        "/iam/namespaces/{namespace}/users/{userId}/ban",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &BanUserReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -3155,31 +6044,84 @@ func (a *Client) BanUser(params *BanUserParams, authInfo runtime.ClientAuthInfoW
 
 	case *BanUserCreated:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *BanUserBadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *BanUserUnauthorized:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *BanUserForbidden:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *BanUserNotFound:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *BanUserInternalServerError:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) BanUserShort(params *BanUserParams, authInfo runtime.ClientAuthInfoWriter) (*BanUserCreated, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewBanUserParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "BanUser",
+		Method:             "POST",
+		PathPattern:        "/iam/namespaces/{namespace}/users/{userId}/ban",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &BanUserReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *BanUserCreated:
+		return v, nil
+	case *BanUserBadRequest:
+		return nil, v
+	case *BanUserUnauthorized:
+		return nil, v
+	case *BanUserForbidden:
+		return nil, v
+	case *BanUserNotFound:
+		return nil, v
+	case *BanUserInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   CreateUser creates user
 
-  <p>Required permission 'NAMESPACE:{namespace}:USER [CREATE]'.</p>
-<p>Available Authentication Types:</p>
-<ol>
-<li><strong>EMAILPASSWD</strong>: an authentication type used for new user registration through email.</li>
-<li><strong>PHONEPASSWD</strong>: an authentication type used for new user registration through phone number.</li>
-</ol>
-<p>Country use ISO3166-1 alpha-2 two letter, e.g. US.</p>
+  &lt;p&gt;Required permission &#39;NAMESPACE:{namespace}:USER [CREATE]&#39;.&lt;/p&gt;
+&lt;p&gt;Available Authentication Types:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;EMAILPASSWD&lt;/strong&gt;: an authentication type used for new user registration through email.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;PHONEPASSWD&lt;/strong&gt;: an authentication type used for new user registration through phone number.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Country use ISO3166-1 alpha-2 two letter, e.g. US.&lt;/p&gt;
 
 */
 func (a *Client) CreateUser(params *CreateUserParams, authInfo runtime.ClientAuthInfoWriter) (*CreateUserCreated, *CreateUserBadRequest, *CreateUserUnauthorized, *CreateUserForbidden, *CreateUserConflict, error) {
@@ -3198,7 +6140,7 @@ func (a *Client) CreateUser(params *CreateUserParams, authInfo runtime.ClientAut
 		PathPattern:        "/iam/namespaces/{namespace}/users",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &CreateUserReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -3213,21 +6155,71 @@ func (a *Client) CreateUser(params *CreateUserParams, authInfo runtime.ClientAut
 
 	case *CreateUserCreated:
 		return v, nil, nil, nil, nil, nil
+
 	case *CreateUserBadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *CreateUserUnauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *CreateUserForbidden:
 		return nil, nil, nil, v, nil, nil
+
 	case *CreateUserConflict:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
+func (a *Client) CreateUserShort(params *CreateUserParams, authInfo runtime.ClientAuthInfoWriter) (*CreateUserCreated, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreateUserParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "CreateUser",
+		Method:             "POST",
+		PathPattern:        "/iam/namespaces/{namespace}/users",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CreateUserReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *CreateUserCreated:
+		return v, nil
+	case *CreateUserBadRequest:
+		return nil, v
+	case *CreateUserUnauthorized:
+		return nil, v
+	case *CreateUserForbidden:
+		return nil, v
+	case *CreateUserConflict:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
 /*
-  CreateUserFromInvitationV3 creates user admin from invitation
+  CreateUserFromInvitationV3 creates user from invitation
 
   This endpoint create user from saved roles when creating invitation and submitted data.
 User will be able to login after completing submitting the data through this endpoint.
@@ -3256,7 +6248,7 @@ func (a *Client) CreateUserFromInvitationV3(params *CreateUserFromInvitationV3Pa
 		PathPattern:        "/iam/v3/public/namespaces/{namespace}/users/invite/{invitationId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &CreateUserFromInvitationV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -3271,21 +6263,68 @@ func (a *Client) CreateUserFromInvitationV3(params *CreateUserFromInvitationV3Pa
 
 	case *CreateUserFromInvitationV3Created:
 		return v, nil, nil, nil, nil
+
 	case *CreateUserFromInvitationV3BadRequest:
 		return nil, v, nil, nil, nil
+
 	case *CreateUserFromInvitationV3NotFound:
 		return nil, nil, v, nil, nil
+
 	case *CreateUserFromInvitationV3InternalServerError:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) CreateUserFromInvitationV3Short(params *CreateUserFromInvitationV3Params, authInfo runtime.ClientAuthInfoWriter) (*CreateUserFromInvitationV3Created, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreateUserFromInvitationV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "CreateUserFromInvitationV3",
+		Method:             "POST",
+		PathPattern:        "/iam/v3/public/namespaces/{namespace}/users/invite/{invitationId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CreateUserFromInvitationV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *CreateUserFromInvitationV3Created:
+		return v, nil
+	case *CreateUserFromInvitationV3BadRequest:
+		return nil, v
+	case *CreateUserFromInvitationV3NotFound:
+		return nil, v
+	case *CreateUserFromInvitationV3InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   DeleteUser deletes user
 
-  Required permission 'NAMESPACE:{namespace}:USER:{userId} [DELETE]'
+  Required permission &#39;NAMESPACE:{namespace}:USER:{userId} [DELETE]&#39;
 */
 func (a *Client) DeleteUser(params *DeleteUserParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserNoContent, *DeleteUserUnauthorized, *DeleteUserForbidden, *DeleteUserNotFound, error) {
 	// TODO: Validate the params before sending
@@ -3303,7 +6342,7 @@ func (a *Client) DeleteUser(params *DeleteUserParams, authInfo runtime.ClientAut
 		PathPattern:        "/iam/namespaces/{namespace}/users/{userId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteUserReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -3318,21 +6357,68 @@ func (a *Client) DeleteUser(params *DeleteUserParams, authInfo runtime.ClientAut
 
 	case *DeleteUserNoContent:
 		return v, nil, nil, nil, nil
+
 	case *DeleteUserUnauthorized:
 		return nil, v, nil, nil, nil
+
 	case *DeleteUserForbidden:
 		return nil, nil, v, nil, nil
+
 	case *DeleteUserNotFound:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) DeleteUserShort(params *DeleteUserParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteUserParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "DeleteUser",
+		Method:             "DELETE",
+		PathPattern:        "/iam/namespaces/{namespace}/users/{userId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteUserReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeleteUserNoContent:
+		return v, nil
+	case *DeleteUserUnauthorized:
+		return nil, v
+	case *DeleteUserForbidden:
+		return nil, v
+	case *DeleteUserNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   DeleteUserInformation deletes user s information
 
-  Required permissions 'ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [DELETE]'.
+  Required permissions &#39;ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [DELETE]&#39;.
 */
 func (a *Client) DeleteUserInformation(params *DeleteUserInformationParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserInformationNoContent, *DeleteUserInformationUnauthorized, *DeleteUserInformationForbidden, *DeleteUserInformationNotFound, error) {
 	// TODO: Validate the params before sending
@@ -3350,7 +6436,7 @@ func (a *Client) DeleteUserInformation(params *DeleteUserInformationParams, auth
 		PathPattern:        "/iam/namespaces/{namespace}/users/{userId}/information",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteUserInformationReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -3365,21 +6451,68 @@ func (a *Client) DeleteUserInformation(params *DeleteUserInformationParams, auth
 
 	case *DeleteUserInformationNoContent:
 		return v, nil, nil, nil, nil
+
 	case *DeleteUserInformationUnauthorized:
 		return nil, v, nil, nil, nil
+
 	case *DeleteUserInformationForbidden:
 		return nil, nil, v, nil, nil
+
 	case *DeleteUserInformationNotFound:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) DeleteUserInformationShort(params *DeleteUserInformationParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserInformationNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteUserInformationParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "DeleteUserInformation",
+		Method:             "DELETE",
+		PathPattern:        "/iam/namespaces/{namespace}/users/{userId}/information",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteUserInformationReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeleteUserInformationNoContent:
+		return v, nil
+	case *DeleteUserInformationUnauthorized:
+		return nil, v
+	case *DeleteUserInformationForbidden:
+		return nil, v
+	case *DeleteUserInformationNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   DeleteUserPermission deletes user permission
 
-  Required permission 'ADMIN:NAMESPACE:{namespace}:PERMISSION:USER:{userId} [DELETE]'
+  Required permission &#39;ADMIN:NAMESPACE:{namespace}:PERMISSION:USER:{userId} [DELETE]&#39;
 */
 func (a *Client) DeleteUserPermission(params *DeleteUserPermissionParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserPermissionNoContent, *DeleteUserPermissionBadRequest, *DeleteUserPermissionUnauthorized, *DeleteUserPermissionForbidden, *DeleteUserPermissionNotFound, error) {
 	// TODO: Validate the params before sending
@@ -3397,7 +6530,7 @@ func (a *Client) DeleteUserPermission(params *DeleteUserPermissionParams, authIn
 		PathPattern:        "/iam/namespaces/{namespace}/users/{userId}/permissions/{resource}/{action}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteUserPermissionReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -3412,23 +6545,73 @@ func (a *Client) DeleteUserPermission(params *DeleteUserPermissionParams, authIn
 
 	case *DeleteUserPermissionNoContent:
 		return v, nil, nil, nil, nil, nil
+
 	case *DeleteUserPermissionBadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *DeleteUserPermissionUnauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *DeleteUserPermissionForbidden:
 		return nil, nil, nil, v, nil, nil
+
 	case *DeleteUserPermissionNotFound:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) DeleteUserPermissionShort(params *DeleteUserPermissionParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserPermissionNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteUserPermissionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "DeleteUserPermission",
+		Method:             "DELETE",
+		PathPattern:        "/iam/namespaces/{namespace}/users/{userId}/permissions/{resource}/{action}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteUserPermissionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeleteUserPermissionNoContent:
+		return v, nil
+	case *DeleteUserPermissionBadRequest:
+		return nil, v
+	case *DeleteUserPermissionUnauthorized:
+		return nil, v
+	case *DeleteUserPermissionForbidden:
+		return nil, v
+	case *DeleteUserPermissionNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   DeleteUserRole deletes user role
 
-  Required permission 'ADMIN:NAMESPACE:{namespace}:ROLE:USER:{userId} [DELETE]'
+  Required permission &#39;ADMIN:NAMESPACE:{namespace}:ROLE:USER:{userId} [DELETE]&#39;
 */
 func (a *Client) DeleteUserRole(params *DeleteUserRoleParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserRoleNoContent, *DeleteUserRoleUnauthorized, *DeleteUserRoleForbidden, *DeleteUserRoleNotFound, *DeleteUserRoleInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -3446,7 +6629,7 @@ func (a *Client) DeleteUserRole(params *DeleteUserRoleParams, authInfo runtime.C
 		PathPattern:        "/iam/namespaces/{namespace}/users/{userId}/roles/{roleId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json", "text/plain"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteUserRoleReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -3461,29 +6644,79 @@ func (a *Client) DeleteUserRole(params *DeleteUserRoleParams, authInfo runtime.C
 
 	case *DeleteUserRoleNoContent:
 		return v, nil, nil, nil, nil, nil
+
 	case *DeleteUserRoleUnauthorized:
 		return nil, v, nil, nil, nil, nil
+
 	case *DeleteUserRoleForbidden:
 		return nil, nil, v, nil, nil, nil
+
 	case *DeleteUserRoleNotFound:
 		return nil, nil, nil, v, nil, nil
+
 	case *DeleteUserRoleInternalServerError:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) DeleteUserRoleShort(params *DeleteUserRoleParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserRoleNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteUserRoleParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "DeleteUserRole",
+		Method:             "DELETE",
+		PathPattern:        "/iam/namespaces/{namespace}/users/{userId}/roles/{roleId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json", "text/plain"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteUserRoleReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeleteUserRoleNoContent:
+		return v, nil
+	case *DeleteUserRoleUnauthorized:
+		return nil, v
+	case *DeleteUserRoleForbidden:
+		return nil, v
+	case *DeleteUserRoleNotFound:
+		return nil, v
+	case *DeleteUserRoleInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   DisableUser disables a user
 
-  <h2>The endpoint is going to be deprecated. Please use this instead: iam/v2/admin/namespaces/{namespace}/users/{userId}/disable</h2>
-+				<p>Required permissions 'ADMIN:NAMESPACE:{namespace}:USERSTATUS:USER:{userId} [UPDATE]'<p>
-		<p>For <strong>Deletion Account</strong> purpose fill the reason with:</p>
-		<ul>
-		<li><strong>DeactivateAccount</strong> : if your deletion request comes from user</li>
-		<li><strong>AdminDeactivateAccount</strong> : if your deletion request comes from admin</li>
-		</ul>
+  &lt;h2&gt;The endpoint is going to be deprecated. Please use this instead: iam/v2/admin/namespaces/{namespace}/users/{userId}/disable&lt;/h2&gt;
++				&lt;p&gt;Required permissions &#39;ADMIN:NAMESPACE:{namespace}:USERSTATUS:USER:{userId} [UPDATE]&#39;&lt;p&gt;
+		&lt;p&gt;For &lt;strong&gt;Deletion Account&lt;/strong&gt; purpose fill the reason with:&lt;/p&gt;
+		&lt;ul&gt;
+		&lt;li&gt;&lt;strong&gt;DeactivateAccount&lt;/strong&gt; : if your deletion request comes from user&lt;/li&gt;
+		&lt;li&gt;&lt;strong&gt;AdminDeactivateAccount&lt;/strong&gt; : if your deletion request comes from admin&lt;/li&gt;
+		&lt;/ul&gt;
 */
 func (a *Client) DisableUser(params *DisableUserParams, authInfo runtime.ClientAuthInfoWriter) (*DisableUserNoContent, *DisableUserBadRequest, *DisableUserUnauthorized, *DisableUserForbidden, *DisableUserNotFound, *DisableUserInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -3501,7 +6734,7 @@ func (a *Client) DisableUser(params *DisableUserParams, authInfo runtime.ClientA
 		PathPattern:        "/iam/namespaces/{namespace}/users/{userId}/disable",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DisableUserReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -3516,25 +6749,78 @@ func (a *Client) DisableUser(params *DisableUserParams, authInfo runtime.ClientA
 
 	case *DisableUserNoContent:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *DisableUserBadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *DisableUserUnauthorized:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *DisableUserForbidden:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *DisableUserNotFound:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *DisableUserInternalServerError:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) DisableUserShort(params *DisableUserParams, authInfo runtime.ClientAuthInfoWriter) (*DisableUserNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDisableUserParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "DisableUser",
+		Method:             "PUT",
+		PathPattern:        "/iam/namespaces/{namespace}/users/{userId}/disable",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DisableUserReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DisableUserNoContent:
+		return v, nil
+	case *DisableUserBadRequest:
+		return nil, v
+	case *DisableUserUnauthorized:
+		return nil, v
+	case *DisableUserForbidden:
+		return nil, v
+	case *DisableUserNotFound:
+		return nil, v
+	case *DisableUserInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   DisableUserBan disables ban for a single user
 
-  Required permission 'ADMIN:NAMESPACE:{namespace}:BAN:USER:{userId} [UPDATE]'.<br><br><b>Notes for using IAM in publisher - game studio scenarios</b><br><p>The endpoint allows:</p> <ul><li>The admin user in publisher namespace disables user’s ban in publisher namespace.</li><li>The admin user in game namespace disables user’s ban in game namespace.</li><li>The admin user in publisher namespace disables user’s ban in publisher namespace.</li></ul><p>Other scenarios are not supported and will return 403: Forbidden.</p>
+  Required permission &#39;ADMIN:NAMESPACE:{namespace}:BAN:USER:{userId} [UPDATE]&#39;.&lt;br&gt;&lt;br&gt;&lt;b&gt;Notes for using IAM in publisher - game studio scenarios&lt;/b&gt;&lt;br&gt;&lt;p&gt;The endpoint allows:&lt;/p&gt; &lt;ul&gt;&lt;li&gt;The admin user in publisher namespace disables user’s ban in publisher namespace.&lt;/li&gt;&lt;li&gt;The admin user in game namespace disables user’s ban in game namespace.&lt;/li&gt;&lt;li&gt;The admin user in publisher namespace disables user’s ban in publisher namespace.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Other scenarios are not supported and will return 403: Forbidden.&lt;/p&gt;
 */
 func (a *Client) DisableUserBan(params *DisableUserBanParams, authInfo runtime.ClientAuthInfoWriter) (*DisableUserBanOK, *DisableUserBanUnauthorized, *DisableUserBanForbidden, *DisableUserBanNotFound, *DisableUserBanInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -3552,7 +6838,7 @@ func (a *Client) DisableUserBan(params *DisableUserBanParams, authInfo runtime.C
 		PathPattern:        "/iam/namespaces/{namespace}/users/{userId}/bans/{banId}/disable",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"*/*"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DisableUserBanReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -3567,24 +6853,74 @@ func (a *Client) DisableUserBan(params *DisableUserBanParams, authInfo runtime.C
 
 	case *DisableUserBanOK:
 		return v, nil, nil, nil, nil, nil
+
 	case *DisableUserBanUnauthorized:
 		return nil, v, nil, nil, nil, nil
+
 	case *DisableUserBanForbidden:
 		return nil, nil, v, nil, nil, nil
+
 	case *DisableUserBanNotFound:
 		return nil, nil, nil, v, nil, nil
+
 	case *DisableUserBanInternalServerError:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) DisableUserBanShort(params *DisableUserBanParams, authInfo runtime.ClientAuthInfoWriter) (*DisableUserBanOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDisableUserBanParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "DisableUserBan",
+		Method:             "PUT",
+		PathPattern:        "/iam/namespaces/{namespace}/users/{userId}/bans/{banId}/disable",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"*/*"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DisableUserBanReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DisableUserBanOK:
+		return v, nil
+	case *DisableUserBanUnauthorized:
+		return nil, v
+	case *DisableUserBanForbidden:
+		return nil, v
+	case *DisableUserBanNotFound:
+		return nil, v
+	case *DisableUserBanInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   EnableUser enables a user
 
-  <h2>The endpoint is going to be deprecated. Please use this instead: iam/v2/admin/namespaces/{namespace}/users/{userId}/enable</h2>
-				<p>Required permissions 'ADMIN:NAMESPACE:{namespace}:USERSTATUS:USER:{userId} [UPDATE]'<p>
+  &lt;h2&gt;The endpoint is going to be deprecated. Please use this instead: iam/v2/admin/namespaces/{namespace}/users/{userId}/enable&lt;/h2&gt;
+				&lt;p&gt;Required permissions &#39;ADMIN:NAMESPACE:{namespace}:USERSTATUS:USER:{userId} [UPDATE]&#39;&lt;p&gt;
 */
 func (a *Client) EnableUser(params *EnableUserParams, authInfo runtime.ClientAuthInfoWriter) (*EnableUserNoContent, *EnableUserUnauthorized, *EnableUserForbidden, *EnableUserNotFound, *EnableUserInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -3602,7 +6938,7 @@ func (a *Client) EnableUser(params *EnableUserParams, authInfo runtime.ClientAut
 		PathPattern:        "/iam/namespaces/{namespace}/users/{userId}/enable",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"*/*"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &EnableUserReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -3617,23 +6953,73 @@ func (a *Client) EnableUser(params *EnableUserParams, authInfo runtime.ClientAut
 
 	case *EnableUserNoContent:
 		return v, nil, nil, nil, nil, nil
+
 	case *EnableUserUnauthorized:
 		return nil, v, nil, nil, nil, nil
+
 	case *EnableUserForbidden:
 		return nil, nil, v, nil, nil, nil
+
 	case *EnableUserNotFound:
 		return nil, nil, nil, v, nil, nil
+
 	case *EnableUserInternalServerError:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) EnableUserShort(params *EnableUserParams, authInfo runtime.ClientAuthInfoWriter) (*EnableUserNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewEnableUserParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "EnableUser",
+		Method:             "PUT",
+		PathPattern:        "/iam/namespaces/{namespace}/users/{userId}/enable",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"*/*"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &EnableUserReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *EnableUserNoContent:
+		return v, nil
+	case *EnableUserUnauthorized:
+		return nil, v
+	case *EnableUserForbidden:
+		return nil, v
+	case *EnableUserNotFound:
+		return nil, v
+	case *EnableUserInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   EnableUserBan enables ban for a single user
 
-  Required permission 'ADMIN:NAMESPACE:{namespace}:BAN:USER:{userId} [UPDATE]'.
+  Required permission &#39;ADMIN:NAMESPACE:{namespace}:BAN:USER:{userId} [UPDATE]&#39;.
 */
 func (a *Client) EnableUserBan(params *EnableUserBanParams, authInfo runtime.ClientAuthInfoWriter) (*EnableUserBanOK, *EnableUserBanUnauthorized, *EnableUserBanForbidden, *EnableUserBanNotFound, *EnableUserBanInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -3651,7 +7037,7 @@ func (a *Client) EnableUserBan(params *EnableUserBanParams, authInfo runtime.Cli
 		PathPattern:        "/iam/namespaces/{namespace}/users/{userId}/bans/{banId}/enable",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"*/*"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &EnableUserBanReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -3666,23 +7052,73 @@ func (a *Client) EnableUserBan(params *EnableUserBanParams, authInfo runtime.Cli
 
 	case *EnableUserBanOK:
 		return v, nil, nil, nil, nil, nil
+
 	case *EnableUserBanUnauthorized:
 		return nil, v, nil, nil, nil, nil
+
 	case *EnableUserBanForbidden:
 		return nil, nil, v, nil, nil, nil
+
 	case *EnableUserBanNotFound:
 		return nil, nil, nil, v, nil, nil
+
 	case *EnableUserBanInternalServerError:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) EnableUserBanShort(params *EnableUserBanParams, authInfo runtime.ClientAuthInfoWriter) (*EnableUserBanOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewEnableUserBanParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "EnableUserBan",
+		Method:             "PUT",
+		PathPattern:        "/iam/namespaces/{namespace}/users/{userId}/bans/{banId}/enable",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"*/*"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &EnableUserBanReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *EnableUserBanOK:
+		return v, nil
+	case *EnableUserBanUnauthorized:
+		return nil, v
+	case *EnableUserBanForbidden:
+		return nil, v
+	case *EnableUserBanNotFound:
+		return nil, v
+	case *EnableUserBanInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   ForgotPassword requests password reset code
 
-  Required permission 'ADMIN:NAMESPACE:{namespace}:PASSWORD:USER [UPDATE]' or valid basic auth header<p><strong>Special note for publisher-game scenario:</strong> Game Client should provide game namespace path parameter and Publisher Client should provide publisher namespace path parameter. </p><p>The password reset code will be sent to the publisher account's email address. </p>
+  Required permission &#39;ADMIN:NAMESPACE:{namespace}:PASSWORD:USER [UPDATE]&#39; or valid basic auth header&lt;p&gt;&lt;strong&gt;Special note for publisher-game scenario:&lt;/strong&gt; Game Client should provide game namespace path parameter and Publisher Client should provide publisher namespace path parameter. &lt;/p&gt;&lt;p&gt;The password reset code will be sent to the publisher account&#39;s email address. &lt;/p&gt;
 */
 func (a *Client) ForgotPassword(params *ForgotPasswordParams, authInfo runtime.ClientAuthInfoWriter) (*ForgotPasswordNoContent, *ForgotPasswordBadRequest, *ForgotPasswordUnauthorized, *ForgotPasswordForbidden, *ForgotPasswordNotFound, error) {
 	// TODO: Validate the params before sending
@@ -3700,7 +7136,7 @@ func (a *Client) ForgotPassword(params *ForgotPasswordParams, authInfo runtime.C
 		PathPattern:        "/iam/namespaces/{namespace}/users/forgotPassword",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &ForgotPasswordReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -3715,23 +7151,73 @@ func (a *Client) ForgotPassword(params *ForgotPasswordParams, authInfo runtime.C
 
 	case *ForgotPasswordNoContent:
 		return v, nil, nil, nil, nil, nil
+
 	case *ForgotPasswordBadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *ForgotPasswordUnauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *ForgotPasswordForbidden:
 		return nil, nil, nil, v, nil, nil
+
 	case *ForgotPasswordNotFound:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
-/*
-  GetAdminInvitationV3 gets user admin invitation
+func (a *Client) ForgotPasswordShort(params *ForgotPasswordParams, authInfo runtime.ClientAuthInfoWriter) (*ForgotPasswordNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewForgotPasswordParams()
+	}
 
-  Endpoint to validate user admin invitation. When not found, it could also means the invitation has expired.
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "ForgotPassword",
+		Method:             "POST",
+		PathPattern:        "/iam/namespaces/{namespace}/users/forgotPassword",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ForgotPasswordReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *ForgotPasswordNoContent:
+		return v, nil
+	case *ForgotPasswordBadRequest:
+		return nil, v
+	case *ForgotPasswordUnauthorized:
+		return nil, v
+	case *ForgotPasswordForbidden:
+		return nil, v
+	case *ForgotPasswordNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  GetAdminInvitationV3 gets user invitation
+
+  Endpoint to validate user invitation. When not found, it could also means the invitation has expired.
 
 */
 func (a *Client) GetAdminInvitationV3(params *GetAdminInvitationV3Params, authInfo runtime.ClientAuthInfoWriter) (*GetAdminInvitationV3OK, *GetAdminInvitationV3NotFound, *GetAdminInvitationV3InternalServerError, error) {
@@ -3750,7 +7236,7 @@ func (a *Client) GetAdminInvitationV3(params *GetAdminInvitationV3Params, authIn
 		PathPattern:        "/iam/v3/public/namespaces/{namespace}/users/invite/{invitationId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetAdminInvitationV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -3765,22 +7251,66 @@ func (a *Client) GetAdminInvitationV3(params *GetAdminInvitationV3Params, authIn
 
 	case *GetAdminInvitationV3OK:
 		return v, nil, nil, nil
+
 	case *GetAdminInvitationV3NotFound:
 		return nil, v, nil, nil
+
 	case *GetAdminInvitationV3InternalServerError:
 		return nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetAdminInvitationV3Short(params *GetAdminInvitationV3Params, authInfo runtime.ClientAuthInfoWriter) (*GetAdminInvitationV3OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetAdminInvitationV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetAdminInvitationV3",
+		Method:             "GET",
+		PathPattern:        "/iam/v3/public/namespaces/{namespace}/users/invite/{invitationId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetAdminInvitationV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetAdminInvitationV3OK:
+		return v, nil
+	case *GetAdminInvitationV3NotFound:
+		return nil, v
+	case *GetAdminInvitationV3InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   GetAdminUsersByRoleID gets admin users by role Id
 
-  <p>Required permission 'ADMIN:NAMESPACE:{namespace}:USER [READ]'</p>
-			<p>This endpoint search admin users which have the roleId</p>
-			<p>Notes : this endpoint only accept admin role. Admin Role is role which have admin status and members.
-			Use endpoint [GET] /roles/{roleId}/admin to check the role status</p>
+  &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:USER [READ]&#39;&lt;/p&gt;
+			&lt;p&gt;This endpoint search admin users which have the roleId&lt;/p&gt;
+			&lt;p&gt;Notes : this endpoint only accept admin role. Admin Role is role which have admin status and members.
+			Use endpoint [GET] /roles/{roleId}/admin to check the role status&lt;/p&gt;
 */
 func (a *Client) GetAdminUsersByRoleID(params *GetAdminUsersByRoleIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetAdminUsersByRoleIDOK, *GetAdminUsersByRoleIDBadRequest, *GetAdminUsersByRoleIDUnauthorized, *GetAdminUsersByRoleIDForbidden, *GetAdminUsersByRoleIDNotFound, *GetAdminUsersByRoleIDInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -3798,7 +7328,7 @@ func (a *Client) GetAdminUsersByRoleID(params *GetAdminUsersByRoleIDParams, auth
 		PathPattern:        "/iam/namespaces/{namespace}/users/admin",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetAdminUsersByRoleIDReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -3813,29 +7343,82 @@ func (a *Client) GetAdminUsersByRoleID(params *GetAdminUsersByRoleIDParams, auth
 
 	case *GetAdminUsersByRoleIDOK:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *GetAdminUsersByRoleIDBadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *GetAdminUsersByRoleIDUnauthorized:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *GetAdminUsersByRoleIDForbidden:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *GetAdminUsersByRoleIDNotFound:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *GetAdminUsersByRoleIDInternalServerError:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetAdminUsersByRoleIDShort(params *GetAdminUsersByRoleIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetAdminUsersByRoleIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetAdminUsersByRoleIDParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetAdminUsersByRoleID",
+		Method:             "GET",
+		PathPattern:        "/iam/namespaces/{namespace}/users/admin",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetAdminUsersByRoleIDReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetAdminUsersByRoleIDOK:
+		return v, nil
+	case *GetAdminUsersByRoleIDBadRequest:
+		return nil, v
+	case *GetAdminUsersByRoleIDUnauthorized:
+		return nil, v
+	case *GetAdminUsersByRoleIDForbidden:
+		return nil, v
+	case *GetAdminUsersByRoleIDNotFound:
+		return nil, v
+	case *GetAdminUsersByRoleIDInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   GetAdminUsersByRoleIDV3 gets admin users by role Id
 
-  <p>Required permission 'ADMIN:NAMESPACE:{namespace}:USER [READ]'</p>
-			<p>This endpoint search admin users which have the roleId</p>
-			<p>Notes : this endpoint only accept admin role. Admin Role is role which have admin status and members.
-			Use endpoint [GET] /roles/{roleId}/admin to check the role status</p>
-			<br>action code : 10140
+  &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:USER [READ]&#39;&lt;/p&gt;
+			&lt;p&gt;This endpoint search admin users which have the roleId&lt;/p&gt;
+			&lt;p&gt;Notes : this endpoint only accept admin role. Admin Role is role which have admin status and members.
+			Use endpoint [GET] /roles/{roleId}/admin to check the role status&lt;/p&gt;
+			&lt;br&gt;action code : 10140
 */
 func (a *Client) GetAdminUsersByRoleIDV3(params *GetAdminUsersByRoleIDV3Params, authInfo runtime.ClientAuthInfoWriter) (*GetAdminUsersByRoleIDV3OK, *GetAdminUsersByRoleIDV3BadRequest, *GetAdminUsersByRoleIDV3Unauthorized, *GetAdminUsersByRoleIDV3Forbidden, *GetAdminUsersByRoleIDV3NotFound, *GetAdminUsersByRoleIDV3InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -3853,7 +7436,7 @@ func (a *Client) GetAdminUsersByRoleIDV3(params *GetAdminUsersByRoleIDV3Params, 
 		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/roles/{roleId}/users",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetAdminUsersByRoleIDV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -3868,25 +7451,78 @@ func (a *Client) GetAdminUsersByRoleIDV3(params *GetAdminUsersByRoleIDV3Params, 
 
 	case *GetAdminUsersByRoleIDV3OK:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *GetAdminUsersByRoleIDV3BadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *GetAdminUsersByRoleIDV3Unauthorized:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *GetAdminUsersByRoleIDV3Forbidden:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *GetAdminUsersByRoleIDV3NotFound:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *GetAdminUsersByRoleIDV3InternalServerError:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetAdminUsersByRoleIDV3Short(params *GetAdminUsersByRoleIDV3Params, authInfo runtime.ClientAuthInfoWriter) (*GetAdminUsersByRoleIDV3OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetAdminUsersByRoleIDV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetAdminUsersByRoleIdV3",
+		Method:             "GET",
+		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/roles/{roleId}/users",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetAdminUsersByRoleIDV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetAdminUsersByRoleIDV3OK:
+		return v, nil
+	case *GetAdminUsersByRoleIDV3BadRequest:
+		return nil, v
+	case *GetAdminUsersByRoleIDV3Unauthorized:
+		return nil, v
+	case *GetAdminUsersByRoleIDV3Forbidden:
+		return nil, v
+	case *GetAdminUsersByRoleIDV3NotFound:
+		return nil, v
+	case *GetAdminUsersByRoleIDV3InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   GetListCountryAgeRestriction gets list country age restriction
 
-  Required permission 'ADMIN:NAMESPACE:{namespace}:AGERESTRICTION [READ]'
+  Required permission &#39;ADMIN:NAMESPACE:{namespace}:AGERESTRICTION [READ]&#39;
 */
 func (a *Client) GetListCountryAgeRestriction(params *GetListCountryAgeRestrictionParams, authInfo runtime.ClientAuthInfoWriter) (*GetListCountryAgeRestrictionOK, *GetListCountryAgeRestrictionUnauthorized, *GetListCountryAgeRestrictionForbidden, *GetListCountryAgeRestrictionNotFound, error) {
 	// TODO: Validate the params before sending
@@ -3904,7 +7540,7 @@ func (a *Client) GetListCountryAgeRestriction(params *GetListCountryAgeRestricti
 		PathPattern:        "/iam/v2/admin/namespaces/{namespace}/countries/agerestrictions",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetListCountryAgeRestrictionReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -3919,14 +7555,61 @@ func (a *Client) GetListCountryAgeRestriction(params *GetListCountryAgeRestricti
 
 	case *GetListCountryAgeRestrictionOK:
 		return v, nil, nil, nil, nil
+
 	case *GetListCountryAgeRestrictionUnauthorized:
 		return nil, v, nil, nil, nil
+
 	case *GetListCountryAgeRestrictionForbidden:
 		return nil, nil, v, nil, nil
+
 	case *GetListCountryAgeRestrictionNotFound:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetListCountryAgeRestrictionShort(params *GetListCountryAgeRestrictionParams, authInfo runtime.ClientAuthInfoWriter) (*GetListCountryAgeRestrictionOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetListCountryAgeRestrictionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetListCountryAgeRestriction",
+		Method:             "GET",
+		PathPattern:        "/iam/v2/admin/namespaces/{namespace}/countries/agerestrictions",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetListCountryAgeRestrictionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetListCountryAgeRestrictionOK:
+		return v, nil
+	case *GetListCountryAgeRestrictionUnauthorized:
+		return nil, v
+	case *GetListCountryAgeRestrictionForbidden:
+		return nil, v
+	case *GetListCountryAgeRestrictionNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -3951,7 +7634,7 @@ func (a *Client) GetListJusticePlatformAccounts(params *GetListJusticePlatformAc
 		PathPattern:        "/iam/v2/public/namespaces/{namespace}/users/{userId}/platforms/justice",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetListJusticePlatformAccountsReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -3966,21 +7649,65 @@ func (a *Client) GetListJusticePlatformAccounts(params *GetListJusticePlatformAc
 
 	case *GetListJusticePlatformAccountsOK:
 		return v, nil, nil, nil
+
 	case *GetListJusticePlatformAccountsBadRequest:
 		return nil, v, nil, nil
+
 	case *GetListJusticePlatformAccountsNotFound:
 		return nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetListJusticePlatformAccountsShort(params *GetListJusticePlatformAccountsParams, authInfo runtime.ClientAuthInfoWriter) (*GetListJusticePlatformAccountsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetListJusticePlatformAccountsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetListJusticePlatformAccounts",
+		Method:             "GET",
+		PathPattern:        "/iam/v2/public/namespaces/{namespace}/users/{userId}/platforms/justice",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetListJusticePlatformAccountsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetListJusticePlatformAccountsOK:
+		return v, nil
+	case *GetListJusticePlatformAccountsBadRequest:
+		return nil, v
+	case *GetListJusticePlatformAccountsNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   GetPublisherUser gets publisher user
 
-  <p>Required permissions 'NAMESPACE:{namespace}:PUBLISHER:USER:{userId} [GET].</p>
-	<p><strong>Restriction:</strong>
-		Path Parameter <strong>namespace</strong> can be provided only with game namespace</p>
+  &lt;p&gt;Required permissions &#39;NAMESPACE:{namespace}:PUBLISHER:USER:{userId} [GET].&lt;/p&gt;
+	&lt;p&gt;&lt;strong&gt;Restriction:&lt;/strong&gt;
+		Path Parameter &lt;strong&gt;namespace&lt;/strong&gt; can be provided only with game namespace&lt;/p&gt;
 */
 func (a *Client) GetPublisherUser(params *GetPublisherUserParams, authInfo runtime.ClientAuthInfoWriter) (*GetPublisherUserOK, *GetPublisherUserBadRequest, *GetPublisherUserUnauthorized, *GetPublisherUserForbidden, *GetPublisherUserNotFound, error) {
 	// TODO: Validate the params before sending
@@ -3998,7 +7725,7 @@ func (a *Client) GetPublisherUser(params *GetPublisherUserParams, authInfo runti
 		PathPattern:        "/iam/namespaces/{namespace}/users/{userId}/publisher",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetPublisherUserReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -4013,23 +7740,73 @@ func (a *Client) GetPublisherUser(params *GetPublisherUserParams, authInfo runti
 
 	case *GetPublisherUserOK:
 		return v, nil, nil, nil, nil, nil
+
 	case *GetPublisherUserBadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *GetPublisherUserUnauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *GetPublisherUserForbidden:
 		return nil, nil, nil, v, nil, nil
+
 	case *GetPublisherUserNotFound:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetPublisherUserShort(params *GetPublisherUserParams, authInfo runtime.ClientAuthInfoWriter) (*GetPublisherUserOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetPublisherUserParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetPublisherUser",
+		Method:             "GET",
+		PathPattern:        "/iam/namespaces/{namespace}/users/{userId}/publisher",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetPublisherUserReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetPublisherUserOK:
+		return v, nil
+	case *GetPublisherUserBadRequest:
+		return nil, v
+	case *GetPublisherUserUnauthorized:
+		return nil, v
+	case *GetPublisherUserForbidden:
+		return nil, v
+	case *GetPublisherUserNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   GetUserBanHistory gets user s bans history
 
-  Required permissions 'ADMIN:NAMESPACE:{namespace}:BAN:USER:{userId} [READ]'.
+  Required permissions &#39;ADMIN:NAMESPACE:{namespace}:BAN:USER:{userId} [READ]&#39;.
 */
 func (a *Client) GetUserBanHistory(params *GetUserBanHistoryParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserBanHistoryOK, *GetUserBanHistoryUnauthorized, *GetUserBanHistoryForbidden, *GetUserBanHistoryNotFound, error) {
 	// TODO: Validate the params before sending
@@ -4047,7 +7824,7 @@ func (a *Client) GetUserBanHistory(params *GetUserBanHistoryParams, authInfo run
 		PathPattern:        "/iam/namespaces/{namespace}/users/{userId}/bans",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetUserBanHistoryReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -4062,21 +7839,68 @@ func (a *Client) GetUserBanHistory(params *GetUserBanHistoryParams, authInfo run
 
 	case *GetUserBanHistoryOK:
 		return v, nil, nil, nil, nil
+
 	case *GetUserBanHistoryUnauthorized:
 		return nil, v, nil, nil, nil
+
 	case *GetUserBanHistoryForbidden:
 		return nil, nil, v, nil, nil
+
 	case *GetUserBanHistoryNotFound:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetUserBanHistoryShort(params *GetUserBanHistoryParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserBanHistoryOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetUserBanHistoryParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetUserBanHistory",
+		Method:             "GET",
+		PathPattern:        "/iam/namespaces/{namespace}/users/{userId}/bans",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetUserBanHistoryReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetUserBanHistoryOK:
+		return v, nil
+	case *GetUserBanHistoryUnauthorized:
+		return nil, v
+	case *GetUserBanHistoryForbidden:
+		return nil, v
+	case *GetUserBanHistoryNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   GetUserByLoginID gets user by login Id
 
-  Required permission 'NAMESPACE:{namespace}:USER [READ]'
+  Required permission &#39;NAMESPACE:{namespace}:USER [READ]&#39;
 */
 func (a *Client) GetUserByLoginID(params *GetUserByLoginIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserByLoginIDOK, *GetUserByLoginIDBadRequest, *GetUserByLoginIDNotFound, *GetUserByLoginIDInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -4094,7 +7918,7 @@ func (a *Client) GetUserByLoginID(params *GetUserByLoginIDParams, authInfo runti
 		PathPattern:        "/iam/namespaces/{namespace}/users/byLoginId",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetUserByLoginIDReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -4109,21 +7933,68 @@ func (a *Client) GetUserByLoginID(params *GetUserByLoginIDParams, authInfo runti
 
 	case *GetUserByLoginIDOK:
 		return v, nil, nil, nil, nil
+
 	case *GetUserByLoginIDBadRequest:
 		return nil, v, nil, nil, nil
+
 	case *GetUserByLoginIDNotFound:
 		return nil, nil, v, nil, nil
+
 	case *GetUserByLoginIDInternalServerError:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetUserByLoginIDShort(params *GetUserByLoginIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserByLoginIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetUserByLoginIDParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetUserByLoginID",
+		Method:             "GET",
+		PathPattern:        "/iam/namespaces/{namespace}/users/byLoginId",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetUserByLoginIDReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetUserByLoginIDOK:
+		return v, nil
+	case *GetUserByLoginIDBadRequest:
+		return nil, v
+	case *GetUserByLoginIDNotFound:
+		return nil, v
+	case *GetUserByLoginIDInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   GetUserByPlatformUserID gets user by platform user ID
 
-  Required permission 'NAMESPACE:{namespace}:USER [READ]'
+  Required permission &#39;NAMESPACE:{namespace}:USER [READ]&#39;
 */
 func (a *Client) GetUserByPlatformUserID(params *GetUserByPlatformUserIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserByPlatformUserIDOK, *GetUserByPlatformUserIDBadRequest, *GetUserByPlatformUserIDUnauthorized, *GetUserByPlatformUserIDForbidden, *GetUserByPlatformUserIDNotFound, error) {
 	// TODO: Validate the params before sending
@@ -4141,7 +8012,7 @@ func (a *Client) GetUserByPlatformUserID(params *GetUserByPlatformUserIDParams, 
 		PathPattern:        "/iam/namespaces/{namespace}/users/byPlatformUserID",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetUserByPlatformUserIDReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -4156,23 +8027,73 @@ func (a *Client) GetUserByPlatformUserID(params *GetUserByPlatformUserIDParams, 
 
 	case *GetUserByPlatformUserIDOK:
 		return v, nil, nil, nil, nil, nil
+
 	case *GetUserByPlatformUserIDBadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *GetUserByPlatformUserIDUnauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *GetUserByPlatformUserIDForbidden:
 		return nil, nil, nil, v, nil, nil
+
 	case *GetUserByPlatformUserIDNotFound:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetUserByPlatformUserIDShort(params *GetUserByPlatformUserIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserByPlatformUserIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetUserByPlatformUserIDParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetUserByPlatformUserID",
+		Method:             "GET",
+		PathPattern:        "/iam/namespaces/{namespace}/users/byPlatformUserID",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetUserByPlatformUserIDReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetUserByPlatformUserIDOK:
+		return v, nil
+	case *GetUserByPlatformUserIDBadRequest:
+		return nil, v
+	case *GetUserByPlatformUserIDUnauthorized:
+		return nil, v
+	case *GetUserByPlatformUserIDForbidden:
+		return nil, v
+	case *GetUserByPlatformUserIDNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   GetUserByUserID gets user by user Id
 
-  Required permission 'NAMESPACE:{namespace}:USER:{userId} [READ]'
+  Required permission &#39;NAMESPACE:{namespace}:USER:{userId} [READ]&#39;
 */
 func (a *Client) GetUserByUserID(params *GetUserByUserIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserByUserIDOK, *GetUserByUserIDNotFound, *GetUserByUserIDInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -4190,7 +8111,7 @@ func (a *Client) GetUserByUserID(params *GetUserByUserIDParams, authInfo runtime
 		PathPattern:        "/iam/namespaces/{namespace}/users/{userId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetUserByUserIDReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -4205,19 +8126,63 @@ func (a *Client) GetUserByUserID(params *GetUserByUserIDParams, authInfo runtime
 
 	case *GetUserByUserIDOK:
 		return v, nil, nil, nil
+
 	case *GetUserByUserIDNotFound:
 		return nil, v, nil, nil
+
 	case *GetUserByUserIDInternalServerError:
 		return nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetUserByUserIDShort(params *GetUserByUserIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserByUserIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetUserByUserIDParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetUserByUserID",
+		Method:             "GET",
+		PathPattern:        "/iam/namespaces/{namespace}/users/{userId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetUserByUserIDReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetUserByUserIDOK:
+		return v, nil
+	case *GetUserByUserIDNotFound:
+		return nil, v
+	case *GetUserByUserIDInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   GetUserInformation gets user s information
 
-  Required permissions 'NAMESPACE:{namespace}:INFORMATION:USER:{userId} [READ]'.
+  Required permissions &#39;NAMESPACE:{namespace}:INFORMATION:USER:{userId} [READ]&#39;.
 */
 func (a *Client) GetUserInformation(params *GetUserInformationParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserInformationOK, *GetUserInformationUnauthorized, *GetUserInformationForbidden, *GetUserInformationNotFound, error) {
 	// TODO: Validate the params before sending
@@ -4235,7 +8200,7 @@ func (a *Client) GetUserInformation(params *GetUserInformationParams, authInfo r
 		PathPattern:        "/iam/namespaces/{namespace}/users/{userId}/information",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetUserInformationReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -4250,26 +8215,73 @@ func (a *Client) GetUserInformation(params *GetUserInformationParams, authInfo r
 
 	case *GetUserInformationOK:
 		return v, nil, nil, nil, nil
+
 	case *GetUserInformationUnauthorized:
 		return nil, v, nil, nil, nil
+
 	case *GetUserInformationForbidden:
 		return nil, nil, v, nil, nil
+
 	case *GetUserInformationNotFound:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetUserInformationShort(params *GetUserInformationParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserInformationOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetUserInformationParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetUserInformation",
+		Method:             "GET",
+		PathPattern:        "/iam/namespaces/{namespace}/users/{userId}/information",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetUserInformationReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetUserInformationOK:
+		return v, nil
+	case *GetUserInformationUnauthorized:
+		return nil, v
+	case *GetUserInformationForbidden:
+		return nil, v
+	case *GetUserInformationNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   GetUserJusticePlatformAccount gets the justice linked accounts on the designated namespace
 
-  <p>This endpoint requires the client access token as the bearer token. Required permission 'ADMIN:NAMESPACE:{namespace}:JUSTICE:USER:{userId} [UPDATE]'</p>
-<p><strong>It is going to be removed on November 26th, 2018</strong></p>
-<p>The endpoint returns user Justice platform account linked with the given user. If the user Justice platform account doesn't exist in the designated namespace, the endpoint is going to <strong>create and return the new Justice platform account.</strong>
-The newly user Justice platform account is going to be forced to perform token grant through the given user and can't perform password update</p>
-<h3>Read Justice Platform Account UserID</h3>
-<p>In order to read the Justice platform account UserID, it is required to have the permission: <strong>NAMESPACE:{namespace}:JUSTICE:USER:{userId} [READ]</strong>, otherwise the UserID is going to be censored and replaced with “Redacted” text.</p>
+  &lt;p&gt;This endpoint requires the client access token as the bearer token. Required permission &#39;ADMIN:NAMESPACE:{namespace}:JUSTICE:USER:{userId} [UPDATE]&#39;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;It is going to be removed on November 26th, 2018&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The endpoint returns user Justice platform account linked with the given user. If the user Justice platform account doesn&#39;t exist in the designated namespace, the endpoint is going to &lt;strong&gt;create and return the new Justice platform account.&lt;/strong&gt;
+The newly user Justice platform account is going to be forced to perform token grant through the given user and can&#39;t perform password update&lt;/p&gt;
+&lt;h3&gt;Read Justice Platform Account UserID&lt;/h3&gt;
+&lt;p&gt;In order to read the Justice platform account UserID, it is required to have the permission: &lt;strong&gt;NAMESPACE:{namespace}:JUSTICE:USER:{userId} [READ]&lt;/strong&gt;, otherwise the UserID is going to be censored and replaced with “Redacted” text.&lt;/p&gt;
 */
 func (a *Client) GetUserJusticePlatformAccount(params *GetUserJusticePlatformAccountParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserJusticePlatformAccountOK, *GetUserJusticePlatformAccountBadRequest, *GetUserJusticePlatformAccountUnauthorized, *GetUserJusticePlatformAccountForbidden, error) {
 	// TODO: Validate the params before sending
@@ -4287,7 +8299,7 @@ func (a *Client) GetUserJusticePlatformAccount(params *GetUserJusticePlatformAcc
 		PathPattern:        "/iam/namespaces/{namespace}/users/{userId}/platforms/justice/{targetNamespace}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetUserJusticePlatformAccountReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -4302,21 +8314,68 @@ func (a *Client) GetUserJusticePlatformAccount(params *GetUserJusticePlatformAcc
 
 	case *GetUserJusticePlatformAccountOK:
 		return v, nil, nil, nil, nil
+
 	case *GetUserJusticePlatformAccountBadRequest:
 		return nil, v, nil, nil, nil
+
 	case *GetUserJusticePlatformAccountUnauthorized:
 		return nil, nil, v, nil, nil
+
 	case *GetUserJusticePlatformAccountForbidden:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetUserJusticePlatformAccountShort(params *GetUserJusticePlatformAccountParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserJusticePlatformAccountOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetUserJusticePlatformAccountParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetUserJusticePlatformAccount",
+		Method:             "POST",
+		PathPattern:        "/iam/namespaces/{namespace}/users/{userId}/platforms/justice/{targetNamespace}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetUserJusticePlatformAccountReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetUserJusticePlatformAccountOK:
+		return v, nil
+	case *GetUserJusticePlatformAccountBadRequest:
+		return nil, v
+	case *GetUserJusticePlatformAccountUnauthorized:
+		return nil, v
+	case *GetUserJusticePlatformAccountForbidden:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   GetUserLoginHistories gets user s login histories
 
-  Required permission 'NAMESPACE:{namespace}:HISTORY:LOGIN:USER:{userId} [READ]'<p>Notes for this endpoint: </p> <ul><li>This endpoint retrieve the first page of the data if `after` and `before` parameters is empty.</li><li>The maximum value of the limit is 100 and the minimum value of the limit is 1.</li><li>This endpoint retrieve the next page of the data if we provide `after` parameters with valid Unix timestamp.</li><li>This endpoint retrieve the previous page of the data if we provide `before` parameter with valid data Unix timestamp.</li><ul>
+  Required permission &#39;NAMESPACE:{namespace}:HISTORY:LOGIN:USER:{userId} [READ]&#39;&lt;p&gt;Notes for this endpoint: &lt;/p&gt; &lt;ul&gt;&lt;li&gt;This endpoint retrieve the first page of the data if `after` and `before` parameters is empty.&lt;/li&gt;&lt;li&gt;The maximum value of the limit is 100 and the minimum value of the limit is 1.&lt;/li&gt;&lt;li&gt;This endpoint retrieve the next page of the data if we provide `after` parameters with valid Unix timestamp.&lt;/li&gt;&lt;li&gt;This endpoint retrieve the previous page of the data if we provide `before` parameter with valid data Unix timestamp.&lt;/li&gt;&lt;ul&gt;
 */
 func (a *Client) GetUserLoginHistories(params *GetUserLoginHistoriesParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserLoginHistoriesOK, *GetUserLoginHistoriesUnauthorized, *GetUserLoginHistoriesForbidden, *GetUserLoginHistoriesNotFound, error) {
 	// TODO: Validate the params before sending
@@ -4334,7 +8393,7 @@ func (a *Client) GetUserLoginHistories(params *GetUserLoginHistoriesParams, auth
 		PathPattern:        "/iam/namespaces/{namespace}/users/{userId}/logins/histories",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetUserLoginHistoriesReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -4349,24 +8408,71 @@ func (a *Client) GetUserLoginHistories(params *GetUserLoginHistoriesParams, auth
 
 	case *GetUserLoginHistoriesOK:
 		return v, nil, nil, nil, nil
+
 	case *GetUserLoginHistoriesUnauthorized:
 		return nil, v, nil, nil, nil
+
 	case *GetUserLoginHistoriesForbidden:
 		return nil, nil, v, nil, nil
+
 	case *GetUserLoginHistoriesNotFound:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetUserLoginHistoriesShort(params *GetUserLoginHistoriesParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserLoginHistoriesOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetUserLoginHistoriesParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetUserLoginHistories",
+		Method:             "GET",
+		PathPattern:        "/iam/namespaces/{namespace}/users/{userId}/logins/histories",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetUserLoginHistoriesReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetUserLoginHistoriesOK:
+		return v, nil
+	case *GetUserLoginHistoriesUnauthorized:
+		return nil, v
+	case *GetUserLoginHistoriesForbidden:
+		return nil, v
+	case *GetUserLoginHistoriesNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   GetUserMapping gets user mapping
 
-  <p>This endpoint requires the client access token as the bearer token. Required permission 'ADMIN:NAMESPACE:{namespace}:JUSTICE:USER:{userId} [READ]'</p>
-			<p>This endpoint will support publisher access to game and game access to publisher</p>
-			<p>If targetNamespace filled with publisher namespace then this endpoint will return its game user id and game namespace</p>
-			<p>If targetNamespace filled with game namespace then this endpoint will return its publisher user id and publisher namespace</p>
+  &lt;p&gt;This endpoint requires the client access token as the bearer token. Required permission &#39;ADMIN:NAMESPACE:{namespace}:JUSTICE:USER:{userId} [READ]&#39;&lt;/p&gt;
+			&lt;p&gt;This endpoint will support publisher access to game and game access to publisher&lt;/p&gt;
+			&lt;p&gt;If targetNamespace filled with publisher namespace then this endpoint will return its game user id and game namespace&lt;/p&gt;
+			&lt;p&gt;If targetNamespace filled with game namespace then this endpoint will return its publisher user id and publisher namespace&lt;/p&gt;
 */
 func (a *Client) GetUserMapping(params *GetUserMappingParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserMappingOK, *GetUserMappingBadRequest, *GetUserMappingUnauthorized, *GetUserMappingForbidden, *GetUserMappingNotFound, error) {
 	// TODO: Validate the params before sending
@@ -4384,7 +8490,7 @@ func (a *Client) GetUserMapping(params *GetUserMappingParams, authInfo runtime.C
 		PathPattern:        "/iam/namespaces/{namespace}/users/{userId}/platforms/justice/{targetNamespace}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetUserMappingReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -4399,16 +8505,66 @@ func (a *Client) GetUserMapping(params *GetUserMappingParams, authInfo runtime.C
 
 	case *GetUserMappingOK:
 		return v, nil, nil, nil, nil, nil
+
 	case *GetUserMappingBadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *GetUserMappingUnauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *GetUserMappingForbidden:
 		return nil, nil, nil, v, nil, nil
+
 	case *GetUserMappingNotFound:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetUserMappingShort(params *GetUserMappingParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserMappingOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetUserMappingParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetUserMapping",
+		Method:             "GET",
+		PathPattern:        "/iam/namespaces/{namespace}/users/{userId}/platforms/justice/{targetNamespace}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetUserMappingReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetUserMappingOK:
+		return v, nil
+	case *GetUserMappingBadRequest:
+		return nil, v
+	case *GetUserMappingUnauthorized:
+		return nil, v
+	case *GetUserMappingForbidden:
+		return nil, v
+	case *GetUserMappingNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -4416,9 +8572,9 @@ func (a *Client) GetUserMapping(params *GetUserMappingParams, authInfo runtime.C
   GetUserPlatformAccounts gets platform accounts linked to the user
 
 
-<p>Required permission 'NAMESPACE:{namespace}:USER:{userId} [READ]'.</p>
-<h2>Justice Platform Account</h2>
-<p>The permission ’ADMIN:NAMESPACE:{namespace}:JUSTICE:USER:{userId}’ [READ] is required in order to read the UserID who linked with the user.</p>
+&lt;p&gt;Required permission &#39;NAMESPACE:{namespace}:USER:{userId} [READ]&#39;.&lt;/p&gt;
+&lt;h2&gt;Justice Platform Account&lt;/h2&gt;
+&lt;p&gt;The permission ’ADMIN:NAMESPACE:{namespace}:JUSTICE:USER:{userId}’ [READ] is required in order to read the UserID who linked with the user.&lt;/p&gt;
 
 */
 func (a *Client) GetUserPlatformAccounts(params *GetUserPlatformAccountsParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserPlatformAccountsOK, *GetUserPlatformAccountsBadRequest, *GetUserPlatformAccountsUnauthorized, *GetUserPlatformAccountsForbidden, error) {
@@ -4437,7 +8593,7 @@ func (a *Client) GetUserPlatformAccounts(params *GetUserPlatformAccountsParams, 
 		PathPattern:        "/iam/namespaces/{namespace}/users/{userId}/platforms",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetUserPlatformAccountsReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -4452,21 +8608,68 @@ func (a *Client) GetUserPlatformAccounts(params *GetUserPlatformAccountsParams, 
 
 	case *GetUserPlatformAccountsOK:
 		return v, nil, nil, nil, nil
+
 	case *GetUserPlatformAccountsBadRequest:
 		return nil, v, nil, nil, nil
+
 	case *GetUserPlatformAccountsUnauthorized:
 		return nil, nil, v, nil, nil
+
 	case *GetUserPlatformAccountsForbidden:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetUserPlatformAccountsShort(params *GetUserPlatformAccountsParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserPlatformAccountsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetUserPlatformAccountsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetUserPlatformAccounts",
+		Method:             "GET",
+		PathPattern:        "/iam/namespaces/{namespace}/users/{userId}/platforms",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetUserPlatformAccountsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetUserPlatformAccountsOK:
+		return v, nil
+	case *GetUserPlatformAccountsBadRequest:
+		return nil, v
+	case *GetUserPlatformAccountsUnauthorized:
+		return nil, v
+	case *GetUserPlatformAccountsForbidden:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   GetUsersByLoginIds gets a list of users by their login Id
 
-  Required permission 'NAMESPACE:{namespace}:USER [READ]'
+  Required permission &#39;NAMESPACE:{namespace}:USER [READ]&#39;
 */
 func (a *Client) GetUsersByLoginIds(params *GetUsersByLoginIdsParams, authInfo runtime.ClientAuthInfoWriter) (*GetUsersByLoginIdsOK, *GetUsersByLoginIdsBadRequest, *GetUsersByLoginIdsUnauthorized, *GetUsersByLoginIdsForbidden, error) {
 	// TODO: Validate the params before sending
@@ -4484,7 +8687,7 @@ func (a *Client) GetUsersByLoginIds(params *GetUsersByLoginIdsParams, authInfo r
 		PathPattern:        "/iam/namespaces/{namespace}/users/listByLoginIds",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetUsersByLoginIdsReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -4499,14 +8702,61 @@ func (a *Client) GetUsersByLoginIds(params *GetUsersByLoginIdsParams, authInfo r
 
 	case *GetUsersByLoginIdsOK:
 		return v, nil, nil, nil, nil
+
 	case *GetUsersByLoginIdsBadRequest:
 		return nil, v, nil, nil, nil
+
 	case *GetUsersByLoginIdsUnauthorized:
 		return nil, nil, v, nil, nil
+
 	case *GetUsersByLoginIdsForbidden:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetUsersByLoginIdsShort(params *GetUsersByLoginIdsParams, authInfo runtime.ClientAuthInfoWriter) (*GetUsersByLoginIdsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetUsersByLoginIdsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetUsersByLoginIds",
+		Method:             "GET",
+		PathPattern:        "/iam/namespaces/{namespace}/users/listByLoginIds",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetUsersByLoginIdsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetUsersByLoginIdsOK:
+		return v, nil
+	case *GetUsersByLoginIdsBadRequest:
+		return nil, v
+	case *GetUsersByLoginIdsUnauthorized:
+		return nil, v
+	case *GetUsersByLoginIdsForbidden:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -4534,7 +8784,7 @@ func (a *Client) ListAdminsV3(params *ListAdminsV3Params, authInfo runtime.Clien
 		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/admins",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &ListAdminsV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -4549,27 +8799,74 @@ func (a *Client) ListAdminsV3(params *ListAdminsV3Params, authInfo runtime.Clien
 
 	case *ListAdminsV3OK:
 		return v, nil, nil, nil, nil
+
 	case *ListAdminsV3Unauthorized:
 		return nil, v, nil, nil, nil
+
 	case *ListAdminsV3Forbidden:
 		return nil, nil, v, nil, nil
+
 	case *ListAdminsV3InternalServerError:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) ListAdminsV3Short(params *ListAdminsV3Params, authInfo runtime.ClientAuthInfoWriter) (*ListAdminsV3OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewListAdminsV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "ListAdminsV3",
+		Method:             "GET",
+		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/admins",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ListAdminsV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *ListAdminsV3OK:
+		return v, nil
+	case *ListAdminsV3Unauthorized:
+		return nil, v
+	case *ListAdminsV3Forbidden:
+		return nil, v
+	case *ListAdminsV3InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   ListCrossNamespaceAccountLink links existing account with another account in different namespace
 
-  <h2>The endpoint is going to be deprecated at 9 July, 2018. Please use this instead: /users/{userId}/platforms/{platformId}/link</h2>
-<p>Required permission 'NAMESPACE:{namespace}:USER:{userId} [UPDATE]'.</p>
-<p>
+  &lt;h2&gt;The endpoint is going to be deprecated at 9 July, 2018. Please use this instead: /users/{userId}/platforms/{platformId}/link&lt;/h2&gt;
+&lt;p&gt;Required permission &#39;NAMESPACE:{namespace}:USER:{userId} [UPDATE]&#39;.&lt;/p&gt;
+&lt;p&gt;
 	Access token from original namespace is needed as authorization header. Access token from designated account needed as form parameter to verify the ownership of that account.
 	When platformID (device platfom ID) is specified, platform login method for that specific platform ID is removed.
 	This means to protect account from second hand device usage.
-</p>
+&lt;/p&gt;
 */
 func (a *Client) ListCrossNamespaceAccountLink(params *ListCrossNamespaceAccountLinkParams, authInfo runtime.ClientAuthInfoWriter) (*ListCrossNamespaceAccountLinkOK, *ListCrossNamespaceAccountLinkBadRequest, *ListCrossNamespaceAccountLinkUnauthorized, *ListCrossNamespaceAccountLinkForbidden, *ListCrossNamespaceAccountLinkNotFound, error) {
 	// TODO: Validate the params before sending
@@ -4587,7 +8884,7 @@ func (a *Client) ListCrossNamespaceAccountLink(params *ListCrossNamespaceAccount
 		PathPattern:        "/iam/namespaces/{namespace}/users/{userId}/crosslink",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &ListCrossNamespaceAccountLinkReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -4602,37 +8899,88 @@ func (a *Client) ListCrossNamespaceAccountLink(params *ListCrossNamespaceAccount
 
 	case *ListCrossNamespaceAccountLinkOK:
 		return v, nil, nil, nil, nil, nil
+
 	case *ListCrossNamespaceAccountLinkBadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *ListCrossNamespaceAccountLinkUnauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *ListCrossNamespaceAccountLinkForbidden:
 		return nil, nil, nil, v, nil, nil
+
 	case *ListCrossNamespaceAccountLinkNotFound:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) ListCrossNamespaceAccountLinkShort(params *ListCrossNamespaceAccountLinkParams, authInfo runtime.ClientAuthInfoWriter) (*ListCrossNamespaceAccountLinkOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewListCrossNamespaceAccountLinkParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "ListCrossNamespaceAccountLink",
+		Method:             "POST",
+		PathPattern:        "/iam/namespaces/{namespace}/users/{userId}/crosslink",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ListCrossNamespaceAccountLinkReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *ListCrossNamespaceAccountLinkOK:
+		return v, nil
+	case *ListCrossNamespaceAccountLinkBadRequest:
+		return nil, v
+	case *ListCrossNamespaceAccountLinkUnauthorized:
+		return nil, v
+	case *ListCrossNamespaceAccountLinkForbidden:
+		return nil, v
+	case *ListCrossNamespaceAccountLinkNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   PlatformLink links user s account with platform
 
-  <p>Required permission 'NAMESPACE:{namespace}:USER:{userId} [UPDATE]'.</p>
-			<p><br><b>Prerequisite:</b> Platform client configuration need to be added to database for specific platformId. Namespace service URL need to be specified (refer to required environment variables).
-<h2>Supported platforms:</h2>
-			<ul>
-				<li><strong>steam</strong>: The ticket’s value is the authentication code returned by Steam.</li>
-				<li><strong>steamopenid</strong>: Steam's user authentication method using OpenID 2.0. The ticket's value is URL generated by Steam on web authentication</li>
-				<li><strong>facebook</strong>: The ticket’s value is the authorization code returned by Facebook OAuth</li>
-				<li><strong>google</strong>: The ticket’s value is the authorization code returned by Google OAuth</li>
-				<li><strong>oculus</strong>: The ticket’s value is a string composed of Oculus's user ID and the nonce separated by a colon (:).</li>
-				<li><strong>twitch</strong>: The ticket’s value is the authorization code returned by Twitch OAuth.</li>
-				<li><strong>android</strong>: The ticket's value is the Android’s device ID</li>
-				<li><strong>ios</strong>: The ticket's value is the iOS’s device ID.</li>
-				<li><strong>device</strong>: Every device that does’nt run Android and iOS is categorized as a device platform. The ticket's value is the device’s ID.</li>
-				<li><strong>discord</strong>: The ticket’s value is the authorization code returned by Discord OAuth.</li>
-			</ul>
+  &lt;p&gt;Required permission &#39;NAMESPACE:{namespace}:USER:{userId} [UPDATE]&#39;.&lt;/p&gt;
+			&lt;p&gt;&lt;br&gt;&lt;b&gt;Prerequisite:&lt;/b&gt; Platform client configuration need to be added to database for specific platformId. Namespace service URL need to be specified (refer to required environment variables).
+&lt;h2&gt;Supported platforms:&lt;/h2&gt;
+			&lt;ul&gt;
+				&lt;li&gt;&lt;strong&gt;steam&lt;/strong&gt;: The ticket’s value is the authentication code returned by Steam.&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;steamopenid&lt;/strong&gt;: Steam&#39;s user authentication method using OpenID 2.0. The ticket&#39;s value is URL generated by Steam on web authentication&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;facebook&lt;/strong&gt;: The ticket’s value is the authorization code returned by Facebook OAuth&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;google&lt;/strong&gt;: The ticket’s value is the authorization code returned by Google OAuth&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;oculus&lt;/strong&gt;: The ticket’s value is a string composed of Oculus&#39;s user ID and the nonce separated by a colon (:).&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;twitch&lt;/strong&gt;: The ticket’s value is the authorization code returned by Twitch OAuth.&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;android&lt;/strong&gt;: The ticket&#39;s value is the Android’s device ID&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;ios&lt;/strong&gt;: The ticket&#39;s value is the iOS’s device ID.&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;apple&lt;/strong&gt;: The ticket’s value is the authorization code returned by Apple OAuth.&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;device&lt;/strong&gt;: Every device that does’nt run Android and iOS is categorized as a device platform. The ticket&#39;s value is the device’s ID.&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;discord&lt;/strong&gt;: The ticket’s value is the authorization code returned by Discord OAuth.&lt;/li&gt;
+			&lt;/ul&gt;
 */
 func (a *Client) PlatformLink(params *PlatformLinkParams, authInfo runtime.ClientAuthInfoWriter) (*PlatformLinkNoContent, *PlatformLinkBadRequest, *PlatformLinkUnauthorized, *PlatformLinkForbidden, *PlatformLinkNotFound, *PlatformLinkConflict, *PlatformLinkInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -4650,7 +8998,7 @@ func (a *Client) PlatformLink(params *PlatformLinkParams, authInfo runtime.Clien
 		PathPattern:        "/iam/namespaces/{namespace}/users/{userId}/platforms/{platformId}/link",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PlatformLinkReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -4665,42 +9013,98 @@ func (a *Client) PlatformLink(params *PlatformLinkParams, authInfo runtime.Clien
 
 	case *PlatformLinkNoContent:
 		return v, nil, nil, nil, nil, nil, nil, nil
+
 	case *PlatformLinkBadRequest:
 		return nil, v, nil, nil, nil, nil, nil, nil
+
 	case *PlatformLinkUnauthorized:
 		return nil, nil, v, nil, nil, nil, nil, nil
+
 	case *PlatformLinkForbidden:
 		return nil, nil, nil, v, nil, nil, nil, nil
+
 	case *PlatformLinkNotFound:
 		return nil, nil, nil, nil, v, nil, nil, nil
+
 	case *PlatformLinkConflict:
 		return nil, nil, nil, nil, nil, v, nil, nil
+
 	case *PlatformLinkInternalServerError:
 		return nil, nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PlatformLinkShort(params *PlatformLinkParams, authInfo runtime.ClientAuthInfoWriter) (*PlatformLinkNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPlatformLinkParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PlatformLink",
+		Method:             "POST",
+		PathPattern:        "/iam/namespaces/{namespace}/users/{userId}/platforms/{platformId}/link",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PlatformLinkReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PlatformLinkNoContent:
+		return v, nil
+	case *PlatformLinkBadRequest:
+		return nil, v
+	case *PlatformLinkUnauthorized:
+		return nil, v
+	case *PlatformLinkForbidden:
+		return nil, v
+	case *PlatformLinkNotFound:
+		return nil, v
+	case *PlatformLinkConflict:
+		return nil, v
+	case *PlatformLinkInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   PlatformUnlink unlinks user s account with platform
 
-  <p>Required permission 'NAMESPACE:{namespace}:USER:{userId} [UPDATE]'.</p>
-<h2>Supported platforms:</h2>
-			<ul>
-				<li><strong>steam</strong></li>
-				<li><strong>steamopenid</strong></li>
-				<li><strong>facebook</strong></li>
-				<li><strong>google</strong></li>
-				<li><strong>oculus</strong></li>
-				<li><strong>twitch</strong></li>
-				<li><strong>android</strong></li>
-				<li><strong>ios</strong></li>
-				<li><strong>device</strong></li>
-				<li><strong>justice</strong>: A user might have several 'justice’ platform on different namespaces. That’s why the platform_namespace need to be specified when the platform ID is ‘justice’. The platform_namespace is the designated user’s namespace.</li>
-			</ul>
-			<p>Unlink user's account with platform. 'justice' platform might have multiple accounts from different namespaces linked. platform_namespace need to be specified when the platform ID is 'justice'.
-			<br>Unlinking justice platform will enable password token grant and password update. </p>
+  &lt;p&gt;Required permission &#39;NAMESPACE:{namespace}:USER:{userId} [UPDATE]&#39;.&lt;/p&gt;
+&lt;h2&gt;Supported platforms:&lt;/h2&gt;
+			&lt;ul&gt;
+				&lt;li&gt;&lt;strong&gt;steam&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;steamopenid&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;facebook&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;google&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;oculus&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;twitch&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;android&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;ios&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;device&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;justice&lt;/strong&gt;: A user might have several &#39;justice’ platform on different namespaces. That’s why the platform_namespace need to be specified when the platform ID is ‘justice’. The platform_namespace is the designated user’s namespace.&lt;/li&gt;
+			&lt;/ul&gt;
+			&lt;p&gt;Unlink user&#39;s account with platform. &#39;justice&#39; platform might have multiple accounts from different namespaces linked. platform_namespace need to be specified when the platform ID is &#39;justice&#39;.
+			&lt;br&gt;Unlinking justice platform will enable password token grant and password update. &lt;/p&gt;
 */
 func (a *Client) PlatformUnlink(params *PlatformUnlinkParams, authInfo runtime.ClientAuthInfoWriter) (*PlatformUnlinkNoContent, *PlatformUnlinkBadRequest, *PlatformUnlinkUnauthorized, *PlatformUnlinkForbidden, *PlatformUnlinkNotFound, *PlatformUnlinkInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -4718,7 +9122,7 @@ func (a *Client) PlatformUnlink(params *PlatformUnlinkParams, authInfo runtime.C
 		PathPattern:        "/iam/namespaces/{namespace}/users/{userId}/platforms/{platformId}/unlink",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded", "text/plain"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PlatformUnlinkReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -4733,18 +9137,171 @@ func (a *Client) PlatformUnlink(params *PlatformUnlinkParams, authInfo runtime.C
 
 	case *PlatformUnlinkNoContent:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *PlatformUnlinkBadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *PlatformUnlinkUnauthorized:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *PlatformUnlinkForbidden:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *PlatformUnlinkNotFound:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *PlatformUnlinkInternalServerError:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PlatformUnlinkShort(params *PlatformUnlinkParams, authInfo runtime.ClientAuthInfoWriter) (*PlatformUnlinkNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPlatformUnlinkParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PlatformUnlink",
+		Method:             "POST",
+		PathPattern:        "/iam/namespaces/{namespace}/users/{userId}/platforms/{platformId}/unlink",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded", "text/plain"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PlatformUnlinkReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PlatformUnlinkNoContent:
+		return v, nil
+	case *PlatformUnlinkBadRequest:
+		return nil, v
+	case *PlatformUnlinkUnauthorized:
+		return nil, v
+	case *PlatformUnlinkForbidden:
+		return nil, v
+	case *PlatformUnlinkNotFound:
+		return nil, v
+	case *PlatformUnlinkInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  PublicBulkGetUsers bulks get game users basic info by user Id
+
+  Required valid user authorization.
+		&lt;p&gt;Notes:&lt;/p&gt;
+		&lt;ul&gt;
+			&lt;li&gt;This endpoint bulk get game users&#39; basic info by userId, max allowed 20 at a time&lt;/li&gt;
+			&lt;li&gt;&lt;strong&gt;Result will include displayName(if it exists)&lt;/strong&gt;&lt;/li&gt;
+		&lt;/ul&gt;
+
+*/
+func (a *Client) PublicBulkGetUsers(params *PublicBulkGetUsersParams, authInfo runtime.ClientAuthInfoWriter) (*PublicBulkGetUsersOK, *PublicBulkGetUsersBadRequest, *PublicBulkGetUsersUnauthorized, *PublicBulkGetUsersInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicBulkGetUsersParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicBulkGetUsers",
+		Method:             "POST",
+		PathPattern:        "/iam/v3/public/namespaces/{namespace}/users/bulk/basic",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicBulkGetUsersReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicBulkGetUsersOK:
+		return v, nil, nil, nil, nil
+
+	case *PublicBulkGetUsersBadRequest:
+		return nil, v, nil, nil, nil
+
+	case *PublicBulkGetUsersUnauthorized:
+		return nil, nil, v, nil, nil
+
+	case *PublicBulkGetUsersInternalServerError:
+		return nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicBulkGetUsersShort(params *PublicBulkGetUsersParams, authInfo runtime.ClientAuthInfoWriter) (*PublicBulkGetUsersOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicBulkGetUsersParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicBulkGetUsers",
+		Method:             "POST",
+		PathPattern:        "/iam/v3/public/namespaces/{namespace}/users/bulk/basic",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicBulkGetUsersReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicBulkGetUsersOK:
+		return v, nil
+	case *PublicBulkGetUsersBadRequest:
+		return nil, v
+	case *PublicBulkGetUsersUnauthorized:
+		return nil, v
+	case *PublicBulkGetUsersInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -4770,7 +9327,7 @@ func (a *Client) PublicCreateJusticeUser(params *PublicCreateJusticeUserParams, 
 		PathPattern:        "/iam/v3/public/namespaces/{namespace}/users/me/platforms/justice/{targetNamespace}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicCreateJusticeUserReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -4785,18 +9342,71 @@ func (a *Client) PublicCreateJusticeUser(params *PublicCreateJusticeUserParams, 
 
 	case *PublicCreateJusticeUserCreated:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *PublicCreateJusticeUserBadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *PublicCreateJusticeUserUnauthorized:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *PublicCreateJusticeUserForbidden:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *PublicCreateJusticeUserNotFound:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *PublicCreateJusticeUserInternalServerError:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicCreateJusticeUserShort(params *PublicCreateJusticeUserParams, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateJusticeUserCreated, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicCreateJusticeUserParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicCreateJusticeUser",
+		Method:             "POST",
+		PathPattern:        "/iam/v3/public/namespaces/{namespace}/users/me/platforms/justice/{targetNamespace}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicCreateJusticeUserReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicCreateJusticeUserCreated:
+		return v, nil
+	case *PublicCreateJusticeUserBadRequest:
+		return nil, v
+	case *PublicCreateJusticeUserUnauthorized:
+		return nil, v
+	case *PublicCreateJusticeUserForbidden:
+		return nil, v
+	case *PublicCreateJusticeUserNotFound:
+		return nil, v
+	case *PublicCreateJusticeUserInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -4804,11 +9414,11 @@ func (a *Client) PublicCreateJusticeUser(params *PublicCreateJusticeUserParams, 
   PublicCreateUserV2 creates user
 
 
-<p>Available Authentication Types:</p>
-<ol>
-<li><strong>EMAILPASSWD</strong>: an authentication type used for new user registration through email.</li>
-</ol>
-<p>Country use ISO3166-1 alpha-2 two letter, e.g. US.</p>
+&lt;p&gt;Available Authentication Types:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;EMAILPASSWD&lt;/strong&gt;: an authentication type used for new user registration through email.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Country use ISO3166-1 alpha-2 two letter, e.g. US.&lt;/p&gt;
 
 */
 func (a *Client) PublicCreateUserV2(params *PublicCreateUserV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateUserV2Created, *PublicCreateUserV2BadRequest, *PublicCreateUserV2Unauthorized, *PublicCreateUserV2Forbidden, *PublicCreateUserV2Conflict, error) {
@@ -4827,7 +9437,7 @@ func (a *Client) PublicCreateUserV2(params *PublicCreateUserV2Params, authInfo r
 		PathPattern:        "/iam/v2/public/namespaces/{namespace}/users",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicCreateUserV2Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -4842,16 +9452,66 @@ func (a *Client) PublicCreateUserV2(params *PublicCreateUserV2Params, authInfo r
 
 	case *PublicCreateUserV2Created:
 		return v, nil, nil, nil, nil, nil
+
 	case *PublicCreateUserV2BadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *PublicCreateUserV2Unauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *PublicCreateUserV2Forbidden:
 		return nil, nil, nil, v, nil, nil
+
 	case *PublicCreateUserV2Conflict:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicCreateUserV2Short(params *PublicCreateUserV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateUserV2Created, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicCreateUserV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicCreateUserV2",
+		Method:             "POST",
+		PathPattern:        "/iam/v2/public/namespaces/{namespace}/users",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicCreateUserV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicCreateUserV2Created:
+		return v, nil
+	case *PublicCreateUserV2BadRequest:
+		return nil, v
+	case *PublicCreateUserV2Unauthorized:
+		return nil, v
+	case *PublicCreateUserV2Forbidden:
+		return nil, v
+	case *PublicCreateUserV2Conflict:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -4859,13 +9519,13 @@ func (a *Client) PublicCreateUserV2(params *PublicCreateUserV2Params, authInfo r
   PublicCreateUserV3 creates user
 
 
-<p>Available Authentication Types:</p>
-<ol>
-<li><strong>EMAILPASSWD</strong>: an authentication type used for new user registration through email.</li>
-</ol>
-<p>Country use ISO3166-1 alpha-2 two letter, e.g. US.</p>
-<p>Date of Birth format : YYYY-MM-DD, e.g. 2019-04-29.</p>
-<p>This endpoint support accepting agreements for the created user. Supply the accepted agreements in acceptedPolicies attribute.</p>
+&lt;p&gt;Available Authentication Types:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;EMAILPASSWD&lt;/strong&gt;: an authentication type used for new user registration through email.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Country use ISO3166-1 alpha-2 two letter, e.g. US.&lt;/p&gt;
+&lt;p&gt;Date of Birth format : YYYY-MM-DD, e.g. 2019-04-29.&lt;/p&gt;
+&lt;p&gt;This endpoint support accepting agreements for the created user. Supply the accepted agreements in acceptedPolicies attribute.&lt;/p&gt;
 
 */
 func (a *Client) PublicCreateUserV3(params *PublicCreateUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateUserV3Created, *PublicCreateUserV3BadRequest, *PublicCreateUserV3NotFound, *PublicCreateUserV3Conflict, *PublicCreateUserV3InternalServerError, error) {
@@ -4884,7 +9544,7 @@ func (a *Client) PublicCreateUserV3(params *PublicCreateUserV3Params, authInfo r
 		PathPattern:        "/iam/v3/public/namespaces/{namespace}/users",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicCreateUserV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -4899,37 +9559,87 @@ func (a *Client) PublicCreateUserV3(params *PublicCreateUserV3Params, authInfo r
 
 	case *PublicCreateUserV3Created:
 		return v, nil, nil, nil, nil, nil
+
 	case *PublicCreateUserV3BadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *PublicCreateUserV3NotFound:
 		return nil, nil, v, nil, nil, nil
+
 	case *PublicCreateUserV3Conflict:
 		return nil, nil, nil, v, nil, nil
+
 	case *PublicCreateUserV3InternalServerError:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicCreateUserV3Short(params *PublicCreateUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateUserV3Created, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicCreateUserV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicCreateUserV3",
+		Method:             "POST",
+		PathPattern:        "/iam/v3/public/namespaces/{namespace}/users",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicCreateUserV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicCreateUserV3Created:
+		return v, nil
+	case *PublicCreateUserV3BadRequest:
+		return nil, v
+	case *PublicCreateUserV3NotFound:
+		return nil, v
+	case *PublicCreateUserV3Conflict:
+		return nil, v
+	case *PublicCreateUserV3InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   PublicDeletePlatformLinkV2 deletes the link of user s account with platform
 
-  <h2>Supported platforms:</h2>
-			<ul>
-				<li><strong>steam</strong></li>
-				<li><strong>steamopenid</strong></li>
-				<li><strong>facebook</strong></li>
-				<li><strong>google</strong></li>
-				<li><strong>oculus</strong></li>
-				<li><strong>twitch</strong></li>
-				<li><strong>android</strong></li>
-				<li><strong>ios</strong></li>
-				<li><strong>device</strong></li>
-				<li><strong>discord</strong></li>
-			</ul>
-			<p>Delete link of user's account with platform. 'justice' platform might have multiple accounts from different namespaces linked. platform_namespace need to be specified when the platform ID is 'justice'.
-			<br>Delete link of justice platform will enable password token grant and password update. </p>
+  &lt;h2&gt;Supported platforms:&lt;/h2&gt;
+			&lt;ul&gt;
+				&lt;li&gt;&lt;strong&gt;steam&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;steamopenid&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;facebook&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;google&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;oculus&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;twitch&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;android&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;ios&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;device&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;discord&lt;/strong&gt;&lt;/li&gt;
+			&lt;/ul&gt;
+			&lt;p&gt;Delete link of user&#39;s account with platform. &#39;justice&#39; platform might have multiple accounts from different namespaces linked. platform_namespace need to be specified when the platform ID is &#39;justice&#39;.
+			&lt;br&gt;Delete link of justice platform will enable password token grant and password update. &lt;/p&gt;
 */
 func (a *Client) PublicDeletePlatformLinkV2(params *PublicDeletePlatformLinkV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicDeletePlatformLinkV2NoContent, *PublicDeletePlatformLinkV2BadRequest, *PublicDeletePlatformLinkV2Unauthorized, *PublicDeletePlatformLinkV2Forbidden, *PublicDeletePlatformLinkV2NotFound, *PublicDeletePlatformLinkV2InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -4947,7 +9657,7 @@ func (a *Client) PublicDeletePlatformLinkV2(params *PublicDeletePlatformLinkV2Pa
 		PathPattern:        "/iam/v2/public/namespaces/{namespace}/users/{userId}/platforms/{platformId}/link",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded", "text/plain"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicDeletePlatformLinkV2Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -4962,25 +9672,78 @@ func (a *Client) PublicDeletePlatformLinkV2(params *PublicDeletePlatformLinkV2Pa
 
 	case *PublicDeletePlatformLinkV2NoContent:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *PublicDeletePlatformLinkV2BadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *PublicDeletePlatformLinkV2Unauthorized:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *PublicDeletePlatformLinkV2Forbidden:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *PublicDeletePlatformLinkV2NotFound:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *PublicDeletePlatformLinkV2InternalServerError:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicDeletePlatformLinkV2Short(params *PublicDeletePlatformLinkV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicDeletePlatformLinkV2NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicDeletePlatformLinkV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicDeletePlatformLinkV2",
+		Method:             "DELETE",
+		PathPattern:        "/iam/v2/public/namespaces/{namespace}/users/{userId}/platforms/{platformId}/link",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded", "text/plain"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicDeletePlatformLinkV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicDeletePlatformLinkV2NoContent:
+		return v, nil
+	case *PublicDeletePlatformLinkV2BadRequest:
+		return nil, v
+	case *PublicDeletePlatformLinkV2Unauthorized:
+		return nil, v
+	case *PublicDeletePlatformLinkV2Forbidden:
+		return nil, v
+	case *PublicDeletePlatformLinkV2NotFound:
+		return nil, v
+	case *PublicDeletePlatformLinkV2InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   PublicForgotPasswordV2 requests password reset code
 
-  <p><strong>Special note for publisher-game scenario:</strong> Game Client should provide game namespace path parameter and Publisher Client should provide publisher namespace path parameter. </p><p>The password reset code will be sent to the publisher account's email address. </p>
+  &lt;p&gt;&lt;strong&gt;Special note for publisher-game scenario:&lt;/strong&gt; Game Client should provide game namespace path parameter and Publisher Client should provide publisher namespace path parameter. &lt;/p&gt;&lt;p&gt;The password reset code will be sent to the publisher account&#39;s email address. &lt;/p&gt;
 */
 func (a *Client) PublicForgotPasswordV2(params *PublicForgotPasswordV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicForgotPasswordV2NoContent, *PublicForgotPasswordV2BadRequest, *PublicForgotPasswordV2NotFound, *PublicForgotPasswordV2TooManyRequests, *PublicForgotPasswordV2InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -4998,7 +9761,7 @@ func (a *Client) PublicForgotPasswordV2(params *PublicForgotPasswordV2Params, au
 		PathPattern:        "/iam/v2/public/namespaces/{namespace}/users/forgotPassword",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicForgotPasswordV2Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -5013,27 +9776,77 @@ func (a *Client) PublicForgotPasswordV2(params *PublicForgotPasswordV2Params, au
 
 	case *PublicForgotPasswordV2NoContent:
 		return v, nil, nil, nil, nil, nil
+
 	case *PublicForgotPasswordV2BadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *PublicForgotPasswordV2NotFound:
 		return nil, nil, v, nil, nil, nil
+
 	case *PublicForgotPasswordV2TooManyRequests:
 		return nil, nil, nil, v, nil, nil
+
 	case *PublicForgotPasswordV2InternalServerError:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicForgotPasswordV2Short(params *PublicForgotPasswordV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicForgotPasswordV2NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicForgotPasswordV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicForgotPasswordV2",
+		Method:             "POST",
+		PathPattern:        "/iam/v2/public/namespaces/{namespace}/users/forgotPassword",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicForgotPasswordV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicForgotPasswordV2NoContent:
+		return v, nil
+	case *PublicForgotPasswordV2BadRequest:
+		return nil, v
+	case *PublicForgotPasswordV2NotFound:
+		return nil, v
+	case *PublicForgotPasswordV2TooManyRequests:
+		return nil, v
+	case *PublicForgotPasswordV2InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   PublicForgotPasswordV3 requests password reset code
 
-  <p><strong>Special note for publisher-game scenario:</strong>
+  &lt;p&gt;&lt;strong&gt;Special note for publisher-game scenario:&lt;/strong&gt;
 Game Client should provide game namespace path parameter and Publisher
-Client should provide publisher namespace path parameter. </p>
-<p>The password reset code will be sent to the publisher account's email address. </p>
-<p>action code : 10104 </p>
+Client should provide publisher namespace path parameter. &lt;/p&gt;
+&lt;p&gt;The password reset code will be sent to the publisher account&#39;s email address. &lt;/p&gt;
+&lt;p&gt;action code : 10104 &lt;/p&gt;
 
 */
 func (a *Client) PublicForgotPasswordV3(params *PublicForgotPasswordV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicForgotPasswordV3NoContent, *PublicForgotPasswordV3BadRequest, *PublicForgotPasswordV3NotFound, *PublicForgotPasswordV3TooManyRequests, error) {
@@ -5052,7 +9865,7 @@ func (a *Client) PublicForgotPasswordV3(params *PublicForgotPasswordV3Params, au
 		PathPattern:        "/iam/v3/public/namespaces/{namespace}/users/forgot",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicForgotPasswordV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -5067,14 +9880,61 @@ func (a *Client) PublicForgotPasswordV3(params *PublicForgotPasswordV3Params, au
 
 	case *PublicForgotPasswordV3NoContent:
 		return v, nil, nil, nil, nil
+
 	case *PublicForgotPasswordV3BadRequest:
 		return nil, v, nil, nil, nil
+
 	case *PublicForgotPasswordV3NotFound:
 		return nil, nil, v, nil, nil
+
 	case *PublicForgotPasswordV3TooManyRequests:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicForgotPasswordV3Short(params *PublicForgotPasswordV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicForgotPasswordV3NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicForgotPasswordV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicForgotPasswordV3",
+		Method:             "POST",
+		PathPattern:        "/iam/v3/public/namespaces/{namespace}/users/forgot",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicForgotPasswordV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicForgotPasswordV3NoContent:
+		return v, nil
+	case *PublicForgotPasswordV3BadRequest:
+		return nil, v
+	case *PublicForgotPasswordV3NotFound:
+		return nil, v
+	case *PublicForgotPasswordV3TooManyRequests:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -5099,7 +9959,7 @@ func (a *Client) PublicGetAsyncStatus(params *PublicGetAsyncStatusParams, authIn
 		PathPattern:        "/iam/v3/public/namespaces/{namespace}/requests/{requestId}/async/status",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicGetAsyncStatusReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -5114,21 +9974,68 @@ func (a *Client) PublicGetAsyncStatus(params *PublicGetAsyncStatusParams, authIn
 
 	case *PublicGetAsyncStatusOK:
 		return v, nil, nil, nil, nil
+
 	case *PublicGetAsyncStatusUnauthorized:
 		return nil, v, nil, nil, nil
+
 	case *PublicGetAsyncStatusForbidden:
 		return nil, nil, v, nil, nil
+
 	case *PublicGetAsyncStatusInternalServerError:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicGetAsyncStatusShort(params *PublicGetAsyncStatusParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetAsyncStatusOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetAsyncStatusParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicGetAsyncStatus",
+		Method:             "GET",
+		PathPattern:        "/iam/v3/public/namespaces/{namespace}/requests/{requestId}/async/status",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicGetAsyncStatusReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetAsyncStatusOK:
+		return v, nil
+	case *PublicGetAsyncStatusUnauthorized:
+		return nil, v
+	case *PublicGetAsyncStatusForbidden:
+		return nil, v
+	case *PublicGetAsyncStatusInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   PublicGetMyUserV3 gets my user
 
-  <p>Require valid user authorization<br>Get my user data<br>action code : 10147 </p>
+  &lt;p&gt;Require valid user authorization&lt;br&gt;Get my user data&lt;br&gt;action code : 10147 &lt;/p&gt;
 */
 func (a *Client) PublicGetMyUserV3(params *PublicGetMyUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetMyUserV3OK, *PublicGetMyUserV3Unauthorized, *PublicGetMyUserV3InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -5146,7 +10053,7 @@ func (a *Client) PublicGetMyUserV3(params *PublicGetMyUserV3Params, authInfo run
 		PathPattern:        "/iam/v3/public/users/me",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicGetMyUserV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -5161,12 +10068,56 @@ func (a *Client) PublicGetMyUserV3(params *PublicGetMyUserV3Params, authInfo run
 
 	case *PublicGetMyUserV3OK:
 		return v, nil, nil, nil
+
 	case *PublicGetMyUserV3Unauthorized:
 		return nil, v, nil, nil
+
 	case *PublicGetMyUserV3InternalServerError:
 		return nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicGetMyUserV3Short(params *PublicGetMyUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetMyUserV3OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetMyUserV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicGetMyUserV3",
+		Method:             "GET",
+		PathPattern:        "/iam/v3/public/users/me",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicGetMyUserV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetMyUserV3OK:
+		return v, nil
+	case *PublicGetMyUserV3Unauthorized:
+		return nil, v
+	case *PublicGetMyUserV3InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -5189,7 +10140,7 @@ func (a *Client) PublicGetUserBan(params *PublicGetUserBanParams, authInfo runti
 		PathPattern:        "/iam/v2/public/namespaces/{namespace}/users/{userId}/bans",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicGetUserBanReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -5204,14 +10155,61 @@ func (a *Client) PublicGetUserBan(params *PublicGetUserBanParams, authInfo runti
 
 	case *PublicGetUserBanOK:
 		return v, nil, nil, nil, nil
+
 	case *PublicGetUserBanUnauthorized:
 		return nil, v, nil, nil, nil
+
 	case *PublicGetUserBanForbidden:
 		return nil, nil, v, nil, nil
+
 	case *PublicGetUserBanNotFound:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicGetUserBanShort(params *PublicGetUserBanParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserBanOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetUserBanParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicGetUserBan",
+		Method:             "GET",
+		PathPattern:        "/iam/v2/public/namespaces/{namespace}/users/{userId}/bans",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicGetUserBanReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetUserBanOK:
+		return v, nil
+	case *PublicGetUserBanUnauthorized:
+		return nil, v
+	case *PublicGetUserBanForbidden:
+		return nil, v
+	case *PublicGetUserBanNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -5219,11 +10217,11 @@ func (a *Client) PublicGetUserBan(params *PublicGetUserBanParams, authInfo runti
   PublicGetUserBanHistoryV3 gets user s bans
 
   Required valid user authorization.
-		<p>Notes:</p>
-		<ul>
-			<li>This endpoint retrieve the first page of the data if after and before parameters is empty</li>
-			<li><strong>The pagination is not working yet</strong></li>
-		</ul>
+		&lt;p&gt;Notes:&lt;/p&gt;
+		&lt;ul&gt;
+			&lt;li&gt;This endpoint retrieve the first page of the data if after and before parameters is empty&lt;/li&gt;
+			&lt;li&gt;&lt;strong&gt;The pagination is not working yet&lt;/strong&gt;&lt;/li&gt;
+		&lt;/ul&gt;
 
 */
 func (a *Client) PublicGetUserBanHistoryV3(params *PublicGetUserBanHistoryV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserBanHistoryV3OK, *PublicGetUserBanHistoryV3BadRequest, *PublicGetUserBanHistoryV3Unauthorized, *PublicGetUserBanHistoryV3Forbidden, *PublicGetUserBanHistoryV3NotFound, *PublicGetUserBanHistoryV3InternalServerError, error) {
@@ -5242,7 +10240,7 @@ func (a *Client) PublicGetUserBanHistoryV3(params *PublicGetUserBanHistoryV3Para
 		PathPattern:        "/iam/v3/public/namespaces/{namespace}/users/{userId}/bans",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicGetUserBanHistoryV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -5257,18 +10255,71 @@ func (a *Client) PublicGetUserBanHistoryV3(params *PublicGetUserBanHistoryV3Para
 
 	case *PublicGetUserBanHistoryV3OK:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *PublicGetUserBanHistoryV3BadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *PublicGetUserBanHistoryV3Unauthorized:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *PublicGetUserBanHistoryV3Forbidden:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *PublicGetUserBanHistoryV3NotFound:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *PublicGetUserBanHistoryV3InternalServerError:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicGetUserBanHistoryV3Short(params *PublicGetUserBanHistoryV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserBanHistoryV3OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetUserBanHistoryV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicGetUserBanHistoryV3",
+		Method:             "GET",
+		PathPattern:        "/iam/v3/public/namespaces/{namespace}/users/{userId}/bans",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicGetUserBanHistoryV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetUserBanHistoryV3OK:
+		return v, nil
+	case *PublicGetUserBanHistoryV3BadRequest:
+		return nil, v
+	case *PublicGetUserBanHistoryV3Unauthorized:
+		return nil, v
+	case *PublicGetUserBanHistoryV3Forbidden:
+		return nil, v
+	case *PublicGetUserBanHistoryV3NotFound:
+		return nil, v
+	case *PublicGetUserBanHistoryV3InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -5279,7 +10330,7 @@ func (a *Client) PublicGetUserBanHistoryV3(params *PublicGetUserBanHistoryV3Para
 
 This endpoint return user information by given platform ID and platform user ID
 
-<strong>nintendo platform user ID</strong>: NSA ID need to be appended with Environment ID using colon as separator. e.g kmzwa8awaa:dd1
+&lt;strong&gt;nintendo platform user ID&lt;/strong&gt;: NSA ID need to be appended with Environment ID using colon as separator. e.g kmzwa8awaa:dd1
 
 */
 func (a *Client) PublicGetUserByPlatformUserIDV3(params *PublicGetUserByPlatformUserIDV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserByPlatformUserIDV3OK, *PublicGetUserByPlatformUserIDV3Unauthorized, *PublicGetUserByPlatformUserIDV3Forbidden, *PublicGetUserByPlatformUserIDV3NotFound, *PublicGetUserByPlatformUserIDV3InternalServerError, error) {
@@ -5298,7 +10349,7 @@ func (a *Client) PublicGetUserByPlatformUserIDV3(params *PublicGetUserByPlatform
 		PathPattern:        "/iam/v3/public/namespaces/{namespace}/platforms/{platformId}/users/{platformUserId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicGetUserByPlatformUserIDV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -5313,16 +10364,66 @@ func (a *Client) PublicGetUserByPlatformUserIDV3(params *PublicGetUserByPlatform
 
 	case *PublicGetUserByPlatformUserIDV3OK:
 		return v, nil, nil, nil, nil, nil
+
 	case *PublicGetUserByPlatformUserIDV3Unauthorized:
 		return nil, v, nil, nil, nil, nil
+
 	case *PublicGetUserByPlatformUserIDV3Forbidden:
 		return nil, nil, v, nil, nil, nil
+
 	case *PublicGetUserByPlatformUserIDV3NotFound:
 		return nil, nil, nil, v, nil, nil
+
 	case *PublicGetUserByPlatformUserIDV3InternalServerError:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicGetUserByPlatformUserIDV3Short(params *PublicGetUserByPlatformUserIDV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserByPlatformUserIDV3OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetUserByPlatformUserIDV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicGetUserByPlatformUserIDV3",
+		Method:             "GET",
+		PathPattern:        "/iam/v3/public/namespaces/{namespace}/platforms/{platformId}/users/{platformUserId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicGetUserByPlatformUserIDV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetUserByPlatformUserIDV3OK:
+		return v, nil
+	case *PublicGetUserByPlatformUserIDV3Unauthorized:
+		return nil, v
+	case *PublicGetUserByPlatformUserIDV3Forbidden:
+		return nil, v
+	case *PublicGetUserByPlatformUserIDV3NotFound:
+		return nil, v
+	case *PublicGetUserByPlatformUserIDV3InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -5345,7 +10446,7 @@ func (a *Client) PublicGetUserByUserIDV2(params *PublicGetUserByUserIDV2Params, 
 		PathPattern:        "/iam/v2/public/namespaces/{namespace}/users/{userId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicGetUserByUserIDV2Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -5360,19 +10461,63 @@ func (a *Client) PublicGetUserByUserIDV2(params *PublicGetUserByUserIDV2Params, 
 
 	case *PublicGetUserByUserIDV2OK:
 		return v, nil, nil, nil
+
 	case *PublicGetUserByUserIDV2NotFound:
 		return nil, v, nil, nil
+
 	case *PublicGetUserByUserIDV2InternalServerError:
 		return nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicGetUserByUserIDV2Short(params *PublicGetUserByUserIDV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserByUserIDV2OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetUserByUserIDV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicGetUserByUserIDV2",
+		Method:             "GET",
+		PathPattern:        "/iam/v2/public/namespaces/{namespace}/users/{userId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicGetUserByUserIDV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetUserByUserIDV2OK:
+		return v, nil
+	case *PublicGetUserByUserIDV2NotFound:
+		return nil, v
+	case *PublicGetUserByUserIDV2InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   PublicGetUserByUserIDV3 gets user by user ID
 
-  <p>This endpoint retrieve user attributes. action code: 10129</p>
+  &lt;p&gt;This endpoint retrieve user attributes. action code: 10129&lt;/p&gt;
 */
 func (a *Client) PublicGetUserByUserIDV3(params *PublicGetUserByUserIDV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserByUserIDV3OK, *PublicGetUserByUserIDV3BadRequest, *PublicGetUserByUserIDV3NotFound, *PublicGetUserByUserIDV3InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -5390,7 +10535,7 @@ func (a *Client) PublicGetUserByUserIDV3(params *PublicGetUserByUserIDV3Params, 
 		PathPattern:        "/iam/v3/public/namespaces/{namespace}/users/{userId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicGetUserByUserIDV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -5405,21 +10550,68 @@ func (a *Client) PublicGetUserByUserIDV3(params *PublicGetUserByUserIDV3Params, 
 
 	case *PublicGetUserByUserIDV3OK:
 		return v, nil, nil, nil, nil
+
 	case *PublicGetUserByUserIDV3BadRequest:
 		return nil, v, nil, nil, nil
+
 	case *PublicGetUserByUserIDV3NotFound:
 		return nil, nil, v, nil, nil
+
 	case *PublicGetUserByUserIDV3InternalServerError:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicGetUserByUserIDV3Short(params *PublicGetUserByUserIDV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserByUserIDV3OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetUserByUserIDV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicGetUserByUserIdV3",
+		Method:             "GET",
+		PathPattern:        "/iam/v3/public/namespaces/{namespace}/users/{userId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicGetUserByUserIDV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetUserByUserIDV3OK:
+		return v, nil
+	case *PublicGetUserByUserIDV3BadRequest:
+		return nil, v
+	case *PublicGetUserByUserIDV3NotFound:
+		return nil, v
+	case *PublicGetUserByUserIDV3InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   PublicGetUserLoginHistoriesV3 gets user s login histories
 
-  Required valid user authorization.<p>Notes for this endpoint: </p> <ul><li>This endpoint retrieve the first page of the data if `after` and `before` parameters is empty.</li><li>The maximum value of the limit is 100 and the minimum value of the limit is 1.</li><li>This endpoint retrieve the next page of the data if we provide `after` parameters with valid Unix timestamp.</li><li>This endpoint retrieve the previous page of the data if we provide `before` parameter with valid data Unix timestamp.</li><ul>
+  Required valid user authorization.&lt;p&gt;Notes for this endpoint: &lt;/p&gt; &lt;ul&gt;&lt;li&gt;This endpoint retrieve the first page of the data if `after` and `before` parameters is empty.&lt;/li&gt;&lt;li&gt;The maximum value of the limit is 100 and the minimum value of the limit is 1.&lt;/li&gt;&lt;li&gt;This endpoint retrieve the next page of the data if we provide `after` parameters with valid Unix timestamp.&lt;/li&gt;&lt;li&gt;This endpoint retrieve the previous page of the data if we provide `before` parameter with valid data Unix timestamp.&lt;/li&gt;&lt;ul&gt;
 */
 func (a *Client) PublicGetUserLoginHistoriesV3(params *PublicGetUserLoginHistoriesV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserLoginHistoriesV3OK, *PublicGetUserLoginHistoriesV3Unauthorized, *PublicGetUserLoginHistoriesV3Forbidden, *PublicGetUserLoginHistoriesV3NotFound, error) {
 	// TODO: Validate the params before sending
@@ -5437,7 +10629,7 @@ func (a *Client) PublicGetUserLoginHistoriesV3(params *PublicGetUserLoginHistori
 		PathPattern:        "/iam/v3/public/namespaces/{namespace}/users/{userId}/logins/histories",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicGetUserLoginHistoriesV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -5452,22 +10644,69 @@ func (a *Client) PublicGetUserLoginHistoriesV3(params *PublicGetUserLoginHistori
 
 	case *PublicGetUserLoginHistoriesV3OK:
 		return v, nil, nil, nil, nil
+
 	case *PublicGetUserLoginHistoriesV3Unauthorized:
 		return nil, v, nil, nil, nil
+
 	case *PublicGetUserLoginHistoriesV3Forbidden:
 		return nil, nil, v, nil, nil
+
 	case *PublicGetUserLoginHistoriesV3NotFound:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicGetUserLoginHistoriesV3Short(params *PublicGetUserLoginHistoriesV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserLoginHistoriesV3OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetUserLoginHistoriesV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicGetUserLoginHistoriesV3",
+		Method:             "GET",
+		PathPattern:        "/iam/v3/public/namespaces/{namespace}/users/{userId}/logins/histories",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicGetUserLoginHistoriesV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetUserLoginHistoriesV3OK:
+		return v, nil
+	case *PublicGetUserLoginHistoriesV3Unauthorized:
+		return nil, v
+	case *PublicGetUserLoginHistoriesV3Forbidden:
+		return nil, v
+	case *PublicGetUserLoginHistoriesV3NotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   PublicGetUserPlatformAccountsV3 gets platform accounts linked to the user
 
-  <p>This endpoint retrieves platform accounts linked to user. Required valid user authorization.
-					<br>action code: 10128 </p>
+  &lt;p&gt;This endpoint retrieves platform accounts linked to user. Required valid user authorization.
+					&lt;br&gt;action code: 10128 &lt;/p&gt;
 */
 func (a *Client) PublicGetUserPlatformAccountsV3(params *PublicGetUserPlatformAccountsV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserPlatformAccountsV3OK, *PublicGetUserPlatformAccountsV3BadRequest, *PublicGetUserPlatformAccountsV3Unauthorized, *PublicGetUserPlatformAccountsV3Forbidden, *PublicGetUserPlatformAccountsV3NotFound, error) {
 	// TODO: Validate the params before sending
@@ -5485,7 +10724,7 @@ func (a *Client) PublicGetUserPlatformAccountsV3(params *PublicGetUserPlatformAc
 		PathPattern:        "/iam/v3/public/namespaces/{namespace}/users/{userId}/platforms",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicGetUserPlatformAccountsV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -5500,16 +10739,66 @@ func (a *Client) PublicGetUserPlatformAccountsV3(params *PublicGetUserPlatformAc
 
 	case *PublicGetUserPlatformAccountsV3OK:
 		return v, nil, nil, nil, nil, nil
+
 	case *PublicGetUserPlatformAccountsV3BadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *PublicGetUserPlatformAccountsV3Unauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *PublicGetUserPlatformAccountsV3Forbidden:
 		return nil, nil, nil, v, nil, nil
+
 	case *PublicGetUserPlatformAccountsV3NotFound:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicGetUserPlatformAccountsV3Short(params *PublicGetUserPlatformAccountsV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserPlatformAccountsV3OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetUserPlatformAccountsV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicGetUserPlatformAccountsV3",
+		Method:             "GET",
+		PathPattern:        "/iam/v3/public/namespaces/{namespace}/users/{userId}/platforms",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicGetUserPlatformAccountsV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetUserPlatformAccountsV3OK:
+		return v, nil
+	case *PublicGetUserPlatformAccountsV3BadRequest:
+		return nil, v
+	case *PublicGetUserPlatformAccountsV3Unauthorized:
+		return nil, v
+	case *PublicGetUserPlatformAccountsV3Forbidden:
+		return nil, v
+	case *PublicGetUserPlatformAccountsV3NotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -5537,7 +10826,7 @@ func (a *Client) PublicLinkPlatformAccount(params *PublicLinkPlatformAccountPara
 		PathPattern:        "/iam/v3/public/namespaces/{namespace}/users/{userId}/platforms/link",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicLinkPlatformAccountReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -5552,16 +10841,66 @@ func (a *Client) PublicLinkPlatformAccount(params *PublicLinkPlatformAccountPara
 
 	case *PublicLinkPlatformAccountNoContent:
 		return v, nil, nil, nil, nil, nil
+
 	case *PublicLinkPlatformAccountBadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *PublicLinkPlatformAccountUnauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *PublicLinkPlatformAccountForbidden:
 		return nil, nil, nil, v, nil, nil
+
 	case *PublicLinkPlatformAccountInternalServerError:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicLinkPlatformAccountShort(params *PublicLinkPlatformAccountParams, authInfo runtime.ClientAuthInfoWriter) (*PublicLinkPlatformAccountNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicLinkPlatformAccountParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicLinkPlatformAccount",
+		Method:             "POST",
+		PathPattern:        "/iam/v3/public/namespaces/{namespace}/users/{userId}/platforms/link",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicLinkPlatformAccountReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicLinkPlatformAccountNoContent:
+		return v, nil
+	case *PublicLinkPlatformAccountBadRequest:
+		return nil, v
+	case *PublicLinkPlatformAccountUnauthorized:
+		return nil, v
+	case *PublicLinkPlatformAccountForbidden:
+		return nil, v
+	case *PublicLinkPlatformAccountInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -5572,7 +10911,7 @@ func (a *Client) PublicLinkPlatformAccount(params *PublicLinkPlatformAccountPara
 This endpoint intended to list game user ID from the given namespace
 This endpoint return list of user ID by given platform ID and list of platform user ID
 
-<strong>nintendo platform user ID</strong>: NSA ID need to be appended with Environment ID using colon as separator. e.g kmzwa8awaa:dd1
+&lt;strong&gt;nintendo platform user ID&lt;/strong&gt;: NSA ID need to be appended with Environment ID using colon as separator. e.g kmzwa8awaa:dd1
 
 */
 func (a *Client) PublicListUserIDByPlatformUserIDsV3(params *PublicListUserIDByPlatformUserIDsV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicListUserIDByPlatformUserIDsV3OK, *PublicListUserIDByPlatformUserIDsV3BadRequest, *PublicListUserIDByPlatformUserIDsV3Unauthorized, *PublicListUserIDByPlatformUserIDsV3Forbidden, *PublicListUserIDByPlatformUserIDsV3InternalServerError, error) {
@@ -5591,7 +10930,7 @@ func (a *Client) PublicListUserIDByPlatformUserIDsV3(params *PublicListUserIDByP
 		PathPattern:        "/iam/v3/public/namespaces/{namespace}/platforms/{platformId}/users",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicListUserIDByPlatformUserIDsV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -5606,37 +10945,87 @@ func (a *Client) PublicListUserIDByPlatformUserIDsV3(params *PublicListUserIDByP
 
 	case *PublicListUserIDByPlatformUserIDsV3OK:
 		return v, nil, nil, nil, nil, nil
+
 	case *PublicListUserIDByPlatformUserIDsV3BadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *PublicListUserIDByPlatformUserIDsV3Unauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *PublicListUserIDByPlatformUserIDsV3Forbidden:
 		return nil, nil, nil, v, nil, nil
+
 	case *PublicListUserIDByPlatformUserIDsV3InternalServerError:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicListUserIDByPlatformUserIDsV3Short(params *PublicListUserIDByPlatformUserIDsV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicListUserIDByPlatformUserIDsV3OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicListUserIDByPlatformUserIDsV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicListUserIDByPlatformUserIDsV3",
+		Method:             "POST",
+		PathPattern:        "/iam/v3/public/namespaces/{namespace}/platforms/{platformId}/users",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicListUserIDByPlatformUserIDsV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicListUserIDByPlatformUserIDsV3OK:
+		return v, nil
+	case *PublicListUserIDByPlatformUserIDsV3BadRequest:
+		return nil, v
+	case *PublicListUserIDByPlatformUserIDsV3Unauthorized:
+		return nil, v
+	case *PublicListUserIDByPlatformUserIDsV3Forbidden:
+		return nil, v
+	case *PublicListUserIDByPlatformUserIDsV3InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   PublicPlatformLinkV2 links user s account with platform
 
-  <p><br><b>Prerequisite:</b>
+  &lt;p&gt;&lt;br&gt;&lt;b&gt;Prerequisite:&lt;/b&gt;
 		Platform client configuration need to be added to database for specific platformId. Namespace service URL need to be specified (refer to required environment variables).
-			<h2>Supported platforms:</h2>
-			<ul>
-				<li><strong>steam</strong>: The ticket’s value is the authentication code returned by Steam.</li>
-				<li><strong>steamopenid</strong>: Steam's user authentication method using OpenID 2.0. The ticket's value is URL generated by Steam on web authentication</li>
-				<li><strong>facebook</strong>: The ticket’s value is the authorization code returned by Facebook OAuth</li>
-				<li><strong>google</strong>: The ticket’s value is the authorization code returned by Google OAuth</li>
-				<li><strong>oculus</strong>: The ticket’s value is a string composed of Oculus's user ID and the nonce separated by a colon (:).</li>
-				<li><strong>twitch</strong>: The ticket’s value is the authorization code returned by Twitch OAuth.</li>
-				<li><strong>android</strong>: The ticket's value is the Android’s device ID</li>
-				<li><strong>ios</strong>: The ticket's value is the iOS’s device ID.</li>
-				<li><strong>device</strong>: Every device that doesn't run Android and iOS is categorized as a device platform. The ticket's value is the device’s ID.</li>
-				<li><strong>discord</strong>: The ticket’s value is the authorization code returned by Discord OAuth.</li>
-			</ul>
+			&lt;h2&gt;Supported platforms:&lt;/h2&gt;
+			&lt;ul&gt;
+				&lt;li&gt;&lt;strong&gt;steam&lt;/strong&gt;: The ticket’s value is the authentication code returned by Steam.&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;steamopenid&lt;/strong&gt;: Steam&#39;s user authentication method using OpenID 2.0. The ticket&#39;s value is URL generated by Steam on web authentication&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;facebook&lt;/strong&gt;: The ticket’s value is the authorization code returned by Facebook OAuth&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;google&lt;/strong&gt;: The ticket’s value is the authorization code returned by Google OAuth&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;oculus&lt;/strong&gt;: The ticket’s value is a string composed of Oculus&#39;s user ID and the nonce separated by a colon (:).&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;twitch&lt;/strong&gt;: The ticket’s value is the authorization code returned by Twitch OAuth.&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;android&lt;/strong&gt;: The ticket&#39;s value is the Android’s device ID&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;ios&lt;/strong&gt;: The ticket&#39;s value is the iOS’s device ID.&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;device&lt;/strong&gt;: Every device that doesn&#39;t run Android and iOS is categorized as a device platform. The ticket&#39;s value is the device’s ID.&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;discord&lt;/strong&gt;: The ticket’s value is the authorization code returned by Discord OAuth.&lt;/li&gt;
+			&lt;/ul&gt;
 */
 func (a *Client) PublicPlatformLinkV2(params *PublicPlatformLinkV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicPlatformLinkV2NoContent, *PublicPlatformLinkV2BadRequest, *PublicPlatformLinkV2Unauthorized, *PublicPlatformLinkV2Forbidden, *PublicPlatformLinkV2NotFound, *PublicPlatformLinkV2Conflict, *PublicPlatformLinkV2InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -5654,7 +11043,7 @@ func (a *Client) PublicPlatformLinkV2(params *PublicPlatformLinkV2Params, authIn
 		PathPattern:        "/iam/v2/public/namespaces/{namespace}/users/{userId}/platforms/{platformId}/link",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicPlatformLinkV2Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -5669,20 +11058,76 @@ func (a *Client) PublicPlatformLinkV2(params *PublicPlatformLinkV2Params, authIn
 
 	case *PublicPlatformLinkV2NoContent:
 		return v, nil, nil, nil, nil, nil, nil, nil
+
 	case *PublicPlatformLinkV2BadRequest:
 		return nil, v, nil, nil, nil, nil, nil, nil
+
 	case *PublicPlatformLinkV2Unauthorized:
 		return nil, nil, v, nil, nil, nil, nil, nil
+
 	case *PublicPlatformLinkV2Forbidden:
 		return nil, nil, nil, v, nil, nil, nil, nil
+
 	case *PublicPlatformLinkV2NotFound:
 		return nil, nil, nil, nil, v, nil, nil, nil
+
 	case *PublicPlatformLinkV2Conflict:
 		return nil, nil, nil, nil, nil, v, nil, nil
+
 	case *PublicPlatformLinkV2InternalServerError:
 		return nil, nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicPlatformLinkV2Short(params *PublicPlatformLinkV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicPlatformLinkV2NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicPlatformLinkV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicPlatformLinkV2",
+		Method:             "POST",
+		PathPattern:        "/iam/v2/public/namespaces/{namespace}/users/{userId}/platforms/{platformId}/link",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicPlatformLinkV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicPlatformLinkV2NoContent:
+		return v, nil
+	case *PublicPlatformLinkV2BadRequest:
+		return nil, v
+	case *PublicPlatformLinkV2Unauthorized:
+		return nil, v
+	case *PublicPlatformLinkV2Forbidden:
+		return nil, v
+	case *PublicPlatformLinkV2NotFound:
+		return nil, v
+	case *PublicPlatformLinkV2Conflict:
+		return nil, v
+	case *PublicPlatformLinkV2InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -5690,24 +11135,29 @@ func (a *Client) PublicPlatformLinkV2(params *PublicPlatformLinkV2Params, authIn
   PublicPlatformLinkV3 links user s account with platform
 
   Required valid user authorization.
-		<p><br><b>Prerequisite:</b>
+		&lt;p&gt;&lt;br&gt;&lt;b&gt;Prerequisite:&lt;/b&gt;
 		Platform client configuration need to be added to database for specific platformId. Namespace service URL need to be specified (refer to required environment variables).
-			<h2>Supported platforms:</h2>
-			<ul>
-				<li><strong>steam</strong>: The ticket’s value is the authentication code returned by Steam.</li>
-				<li><strong>steamopenid</strong>: Steam's user authentication method using OpenID 2.0. The ticket's value is URL generated by Steam on web authentication</li>
-				<li><strong>facebook</strong>: The ticket’s value is the authorization code returned by Facebook OAuth</li>
-				<li><strong>google</strong>: The ticket’s value is the authorization code returned by Google OAuth</li>
-				<li><strong>oculus</strong>: The ticket’s value is a string composed of Oculus's user ID and the nonce separated by a colon (:).</li>
-				<li><strong>twitch</strong>: The ticket’s value is the authorization code returned by Twitch OAuth.</li>
-				<li><strong>android</strong>: The ticket's value is the Android’s device ID</li>
-				<li><strong>ios</strong>: The ticket's value is the iOS’s device ID.</li>
-				<li><strong>device</strong>: Every device that doesn't run Android and iOS is categorized as a device platform. The ticket's value is the device’s ID.</li>
-				<li><strong>discord</strong>: The ticket’s value is the authorization code returned by Discord OAuth.</li>
-				<li><strong>ps4web</strong>: The ticket’s value is the authorization code returned by PSN OAuth.</li>
-				<li><strong>xblweb</strong>: The ticket’s value is the authorization code returned by XBox Live OAuth.</li>
-			</ul>
-		<br>action code : 10144
+			&lt;h2&gt;Supported platforms:&lt;/h2&gt;
+			&lt;ul&gt;
+				&lt;li&gt;&lt;strong&gt;steam&lt;/strong&gt;: The ticket’s value is the authentication code returned by Steam.&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;steamopenid&lt;/strong&gt;: Steam&#39;s user authentication method using OpenID 2.0. The ticket&#39;s value is URL generated by Steam on web authentication&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;facebook&lt;/strong&gt;: The ticket’s value is the authorization code returned by Facebook OAuth&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;google&lt;/strong&gt;: The ticket’s value is the authorization code returned by Google OAuth&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;oculus&lt;/strong&gt;: The ticket’s value is a string composed of Oculus&#39;s user ID and the nonce separated by a colon (:).&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;twitch&lt;/strong&gt;: The ticket’s value is the authorization code returned by Twitch OAuth.&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;android&lt;/strong&gt;: The ticket&#39;s value is the Android’s device ID&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;ios&lt;/strong&gt;: The ticket&#39;s value is the iOS’s device ID.&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;apple&lt;/strong&gt;: The ticket’s value is the authorization code returned by Apple OAuth.&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;device&lt;/strong&gt;: Every device that doesn&#39;t run Android and iOS is categorized as a device platform. The ticket&#39;s value is the device’s ID.&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;discord&lt;/strong&gt;: The ticket’s value is the authorization code returned by Discord OAuth.&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;ps4web&lt;/strong&gt;: The ticket’s value is the authorization code returned by PSN OAuth.&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;xblweb&lt;/strong&gt;: The ticket’s value is the authorization code returned by XBox Live OAuth.&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;awscognito&lt;/strong&gt;: The ticket’s value is the aws cognito access token (JWT).&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;epicgames&lt;/strong&gt;: The ticket’s value is an access-token obtained from Epicgames EOS Account Service.&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;nintendo&lt;/strong&gt;: The ticket’s value is the authorization code(id_token) returned by Nintendo OAuth.&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;stadia&lt;/strong&gt;: The ticket’s value is a JWT Token, which can be obtained after calling the Stadia SDK&#39;s function.&lt;/li&gt;
+			&lt;/ul&gt;
+		&lt;br&gt;action code : 10144
 */
 func (a *Client) PublicPlatformLinkV3(params *PublicPlatformLinkV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicPlatformLinkV3NoContent, *PublicPlatformLinkV3BadRequest, *PublicPlatformLinkV3Unauthorized, *PublicPlatformLinkV3NotFound, *PublicPlatformLinkV3Conflict, *PublicPlatformLinkV3InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -5725,7 +11175,7 @@ func (a *Client) PublicPlatformLinkV3(params *PublicPlatformLinkV3Params, authIn
 		PathPattern:        "/iam/v3/public/namespaces/{namespace}/users/me/platforms/{platformId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicPlatformLinkV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -5740,18 +11190,71 @@ func (a *Client) PublicPlatformLinkV3(params *PublicPlatformLinkV3Params, authIn
 
 	case *PublicPlatformLinkV3NoContent:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *PublicPlatformLinkV3BadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *PublicPlatformLinkV3Unauthorized:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *PublicPlatformLinkV3NotFound:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *PublicPlatformLinkV3Conflict:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *PublicPlatformLinkV3InternalServerError:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicPlatformLinkV3Short(params *PublicPlatformLinkV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicPlatformLinkV3NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicPlatformLinkV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicPlatformLinkV3",
+		Method:             "POST",
+		PathPattern:        "/iam/v3/public/namespaces/{namespace}/users/me/platforms/{platformId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicPlatformLinkV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicPlatformLinkV3NoContent:
+		return v, nil
+	case *PublicPlatformLinkV3BadRequest:
+		return nil, v
+	case *PublicPlatformLinkV3Unauthorized:
+		return nil, v
+	case *PublicPlatformLinkV3NotFound:
+		return nil, v
+	case *PublicPlatformLinkV3Conflict:
+		return nil, v
+	case *PublicPlatformLinkV3InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -5759,27 +11262,32 @@ func (a *Client) PublicPlatformLinkV3(params *PublicPlatformLinkV3Params, authIn
   PublicPlatformUnlinkV3 unlinks user s account from specific platform
 
   Required valid user authorization.
-			<h2>Supported platforms:</h2>
-			<ul>
-				<li><strong>steam</strong></li>
-				<li><strong>steamopenid</strong></li>
-				<li><strong>facebook</strong></li>
-				<li><strong>google</strong></li>
-				<li><strong>oculus</strong></li>
-				<li><strong>twitch</strong></li>
-				<li><strong>android</strong></li>
-				<li><strong>ios</strong></li>
-				<li><strong>device</strong></li>
-				<li><strong>discord</strong></li>
-			</ul>
-			<p>Unlink user's account from a specific platform. 'justice' platform might have multiple accounts from different namespaces linked.
-			<br><i>platformNamespace</i> need to be specified when the platform ID is 'justice'.
-			<br>
-			<br>Unlink user's account from justice platform will enable password token grant and password update.
-			<br>
-			<br>If you want to unlink user's account in a game namespace, you have to specify <i>platformNamespace</i> to that game namespace.
-			<br>
-			<br>action code : 10121 </p>
+			&lt;h2&gt;Supported platforms:&lt;/h2&gt;
+			&lt;ul&gt;
+				&lt;li&gt;&lt;strong&gt;steam&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;steamopenid&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;facebook&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;google&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;oculus&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;twitch&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;android&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;ios&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;apple&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;device&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;discord&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;awscognito&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;epicgames&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;nintendo&lt;/strong&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;stadia&lt;/strong&gt;&lt;/li&gt;
+			&lt;/ul&gt;
+			&lt;p&gt;Unlink user&#39;s account from a specific platform. &#39;justice&#39; platform might have multiple accounts from different namespaces linked.
+			&lt;br&gt;&lt;i&gt;platformNamespace&lt;/i&gt; need to be specified when the platform ID is &#39;justice&#39;.
+			&lt;br&gt;
+			&lt;br&gt;Unlink user&#39;s account from justice platform will enable password token grant and password update.
+			&lt;br&gt;
+			&lt;br&gt;If you want to unlink user&#39;s account in a game namespace, you have to specify &lt;i&gt;platformNamespace&lt;/i&gt; to that game namespace.
+			&lt;br&gt;
+			&lt;br&gt;action code : 10121 &lt;/p&gt;
 */
 func (a *Client) PublicPlatformUnlinkV3(params *PublicPlatformUnlinkV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicPlatformUnlinkV3NoContent, *PublicPlatformUnlinkV3BadRequest, *PublicPlatformUnlinkV3Unauthorized, *PublicPlatformUnlinkV3NotFound, *PublicPlatformUnlinkV3InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -5797,7 +11305,7 @@ func (a *Client) PublicPlatformUnlinkV3(params *PublicPlatformUnlinkV3Params, au
 		PathPattern:        "/iam/v3/public/namespaces/{namespace}/users/me/platforms/{platformId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicPlatformUnlinkV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -5812,16 +11320,66 @@ func (a *Client) PublicPlatformUnlinkV3(params *PublicPlatformUnlinkV3Params, au
 
 	case *PublicPlatformUnlinkV3NoContent:
 		return v, nil, nil, nil, nil, nil
+
 	case *PublicPlatformUnlinkV3BadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *PublicPlatformUnlinkV3Unauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *PublicPlatformUnlinkV3NotFound:
 		return nil, nil, nil, v, nil, nil
+
 	case *PublicPlatformUnlinkV3InternalServerError:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicPlatformUnlinkV3Short(params *PublicPlatformUnlinkV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicPlatformUnlinkV3NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicPlatformUnlinkV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicPlatformUnlinkV3",
+		Method:             "DELETE",
+		PathPattern:        "/iam/v3/public/namespaces/{namespace}/users/me/platforms/{platformId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicPlatformUnlinkV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicPlatformUnlinkV3NoContent:
+		return v, nil
+	case *PublicPlatformUnlinkV3BadRequest:
+		return nil, v
+	case *PublicPlatformUnlinkV3Unauthorized:
+		return nil, v
+	case *PublicPlatformUnlinkV3NotFound:
+		return nil, v
+	case *PublicPlatformUnlinkV3InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -5844,7 +11402,7 @@ func (a *Client) PublicResetPasswordV2(params *PublicResetPasswordV2Params, auth
 		PathPattern:        "/iam/v2/public/namespaces/{namespace}/users/resetPassword",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicResetPasswordV2Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -5859,26 +11417,76 @@ func (a *Client) PublicResetPasswordV2(params *PublicResetPasswordV2Params, auth
 
 	case *PublicResetPasswordV2NoContent:
 		return v, nil, nil, nil, nil, nil
+
 	case *PublicResetPasswordV2BadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *PublicResetPasswordV2Forbidden:
 		return nil, nil, v, nil, nil, nil
+
 	case *PublicResetPasswordV2NotFound:
 		return nil, nil, nil, v, nil, nil
+
 	case *PublicResetPasswordV2InternalServerError:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicResetPasswordV2Short(params *PublicResetPasswordV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicResetPasswordV2NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicResetPasswordV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicResetPasswordV2",
+		Method:             "POST",
+		PathPattern:        "/iam/v2/public/namespaces/{namespace}/users/resetPassword",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicResetPasswordV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicResetPasswordV2NoContent:
+		return v, nil
+	case *PublicResetPasswordV2BadRequest:
+		return nil, v
+	case *PublicResetPasswordV2Forbidden:
+		return nil, v
+	case *PublicResetPasswordV2NotFound:
+		return nil, v
+	case *PublicResetPasswordV2InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   PublicSearchUserV3 searches user
 
-  <p>Requires valid user access token</p>
-			<p>This endpoint search all users on the specified namespace that match the query on these fields: display name, and username.
-			The query length should greater than 1，otherwise will not query the database</p>
-			<br>action code : 10132
+  &lt;p&gt;Requires valid user access token&lt;/p&gt;
+			&lt;p&gt;This endpoint search all users on the specified namespace that match the query on these fields: display name, and username.
+			The query length should greater than 1，otherwise will not query the database. The default limit value is 100&lt;/p&gt;
+			&lt;br&gt;action code : 10132
 */
 func (a *Client) PublicSearchUserV3(params *PublicSearchUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicSearchUserV3OK, *PublicSearchUserV3BadRequest, *PublicSearchUserV3Unauthorized, *PublicSearchUserV3NotFound, *PublicSearchUserV3InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -5896,7 +11504,7 @@ func (a *Client) PublicSearchUserV3(params *PublicSearchUserV3Params, authInfo r
 		PathPattern:        "/iam/v3/public/namespaces/{namespace}/users",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicSearchUserV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -5911,16 +11519,66 @@ func (a *Client) PublicSearchUserV3(params *PublicSearchUserV3Params, authInfo r
 
 	case *PublicSearchUserV3OK:
 		return v, nil, nil, nil, nil, nil
+
 	case *PublicSearchUserV3BadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *PublicSearchUserV3Unauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *PublicSearchUserV3NotFound:
 		return nil, nil, nil, v, nil, nil
+
 	case *PublicSearchUserV3InternalServerError:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicSearchUserV3Short(params *PublicSearchUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicSearchUserV3OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicSearchUserV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicSearchUserV3",
+		Method:             "GET",
+		PathPattern:        "/iam/v3/public/namespaces/{namespace}/users",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicSearchUserV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicSearchUserV3OK:
+		return v, nil
+	case *PublicSearchUserV3BadRequest:
+		return nil, v
+	case *PublicSearchUserV3Unauthorized:
+		return nil, v
+	case *PublicSearchUserV3NotFound:
+		return nil, v
+	case *PublicSearchUserV3InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -5928,24 +11586,24 @@ func (a *Client) PublicSearchUserV3(params *PublicSearchUserV3Params, authInfo r
   PublicSendVerificationCodeV3 sends verification code to user
 
   Required valid user authorization
-<p>The verification code is sent to email address</p>
-<p>Available contexts for use : </p>
-<ol>
-	<li>
-		<strong>UserAccountRegistration</strong>
-		<p>a context type used for verifying email address in user account registration. It returns 409 if the email address already verified.
-		<strong><em>It is the default context if the Context field is empty</em></strong></p>
-	</li>
-	<li>
-		<strong>UpdateEmailAddress</strong>
-		<p>a context type used for verify user before updating email address.(Without email address verified checking)</p>
-	</li>
-	<li><strong>upgradeHeadlessAccount</strong>
-		<p>The context is intended to be used whenever the email address wanted to be automatically verified on upgrading a headless account.
-		If this context used, IAM rejects the request if the email address is already used by others by returning HTTP Status Code 409.</p>
-	</li>
-</ol>
-<p>action code: 10116</p>
+&lt;p&gt;The verification code is sent to email address&lt;/p&gt;
+&lt;p&gt;Available contexts for use : &lt;/p&gt;
+&lt;ol&gt;
+	&lt;li&gt;
+		&lt;strong&gt;UserAccountRegistration&lt;/strong&gt;
+		&lt;p&gt;a context type used for verifying email address in user account registration. It returns 409 if the email address already verified.
+		&lt;strong&gt;&lt;em&gt;It is the default context if the Context field is empty&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+	&lt;/li&gt;
+	&lt;li&gt;
+		&lt;strong&gt;UpdateEmailAddress&lt;/strong&gt;
+		&lt;p&gt;a context type used for verify user before updating email address.(Without email address verified checking)&lt;/p&gt;
+	&lt;/li&gt;
+	&lt;li&gt;&lt;strong&gt;upgradeHeadlessAccount&lt;/strong&gt;
+		&lt;p&gt;The context is intended to be used whenever the email address wanted to be automatically verified on upgrading a headless account.
+		If this context used, IAM rejects the request if the email address is already used by others by returning HTTP Status Code 409.&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;action code: 10116&lt;/p&gt;
 
 */
 func (a *Client) PublicSendVerificationCodeV3(params *PublicSendVerificationCodeV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicSendVerificationCodeV3NoContent, *PublicSendVerificationCodeV3BadRequest, *PublicSendVerificationCodeV3Unauthorized, *PublicSendVerificationCodeV3NotFound, *PublicSendVerificationCodeV3Conflict, *PublicSendVerificationCodeV3TooManyRequests, error) {
@@ -5964,7 +11622,7 @@ func (a *Client) PublicSendVerificationCodeV3(params *PublicSendVerificationCode
 		PathPattern:        "/iam/v3/public/namespaces/{namespace}/users/me/code/request",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicSendVerificationCodeV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -5979,18 +11637,71 @@ func (a *Client) PublicSendVerificationCodeV3(params *PublicSendVerificationCode
 
 	case *PublicSendVerificationCodeV3NoContent:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *PublicSendVerificationCodeV3BadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *PublicSendVerificationCodeV3Unauthorized:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *PublicSendVerificationCodeV3NotFound:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *PublicSendVerificationCodeV3Conflict:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *PublicSendVerificationCodeV3TooManyRequests:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicSendVerificationCodeV3Short(params *PublicSendVerificationCodeV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicSendVerificationCodeV3NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicSendVerificationCodeV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicSendVerificationCodeV3",
+		Method:             "POST",
+		PathPattern:        "/iam/v3/public/namespaces/{namespace}/users/me/code/request",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicSendVerificationCodeV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicSendVerificationCodeV3NoContent:
+		return v, nil
+	case *PublicSendVerificationCodeV3BadRequest:
+		return nil, v
+	case *PublicSendVerificationCodeV3Unauthorized:
+		return nil, v
+	case *PublicSendVerificationCodeV3NotFound:
+		return nil, v
+	case *PublicSendVerificationCodeV3Conflict:
+		return nil, v
+	case *PublicSendVerificationCodeV3TooManyRequests:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -6015,7 +11726,7 @@ func (a *Client) PublicUpdatePasswordV2(params *PublicUpdatePasswordV2Params, au
 		PathPattern:        "/iam/v2/public/namespaces/{namespace}/users/{userId}/password",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicUpdatePasswordV2Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -6030,25 +11741,78 @@ func (a *Client) PublicUpdatePasswordV2(params *PublicUpdatePasswordV2Params, au
 
 	case *PublicUpdatePasswordV2NoContent:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *PublicUpdatePasswordV2BadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *PublicUpdatePasswordV2Unauthorized:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *PublicUpdatePasswordV2Forbidden:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *PublicUpdatePasswordV2NotFound:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *PublicUpdatePasswordV2InternalServerError:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicUpdatePasswordV2Short(params *PublicUpdatePasswordV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdatePasswordV2NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicUpdatePasswordV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicUpdatePasswordV2",
+		Method:             "PUT",
+		PathPattern:        "/iam/v2/public/namespaces/{namespace}/users/{userId}/password",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicUpdatePasswordV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicUpdatePasswordV2NoContent:
+		return v, nil
+	case *PublicUpdatePasswordV2BadRequest:
+		return nil, v
+	case *PublicUpdatePasswordV2Unauthorized:
+		return nil, v
+	case *PublicUpdatePasswordV2Forbidden:
+		return nil, v
+	case *PublicUpdatePasswordV2NotFound:
+		return nil, v
+	case *PublicUpdatePasswordV2InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   PublicUpdatePasswordV3 updates user password
 
-  Required valid user authorization. <br> action code: 10107
+  Required valid user authorization. &lt;br&gt; action code: 10107
 */
 func (a *Client) PublicUpdatePasswordV3(params *PublicUpdatePasswordV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdatePasswordV3NoContent, *PublicUpdatePasswordV3BadRequest, *PublicUpdatePasswordV3Unauthorized, *PublicUpdatePasswordV3InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -6066,7 +11830,7 @@ func (a *Client) PublicUpdatePasswordV3(params *PublicUpdatePasswordV3Params, au
 		PathPattern:        "/iam/v3/public/namespaces/{namespace}/users/me/password",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicUpdatePasswordV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -6081,21 +11845,68 @@ func (a *Client) PublicUpdatePasswordV3(params *PublicUpdatePasswordV3Params, au
 
 	case *PublicUpdatePasswordV3NoContent:
 		return v, nil, nil, nil, nil
+
 	case *PublicUpdatePasswordV3BadRequest:
 		return nil, v, nil, nil, nil
+
 	case *PublicUpdatePasswordV3Unauthorized:
 		return nil, nil, v, nil, nil
+
 	case *PublicUpdatePasswordV3InternalServerError:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicUpdatePasswordV3Short(params *PublicUpdatePasswordV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdatePasswordV3NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicUpdatePasswordV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicUpdatePasswordV3",
+		Method:             "PUT",
+		PathPattern:        "/iam/v3/public/namespaces/{namespace}/users/me/password",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicUpdatePasswordV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicUpdatePasswordV3NoContent:
+		return v, nil
+	case *PublicUpdatePasswordV3BadRequest:
+		return nil, v
+	case *PublicUpdatePasswordV3Unauthorized:
+		return nil, v
+	case *PublicUpdatePasswordV3InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   PublicUpdateUserV2 updates user
 
-  <br><p>This Endpoint support update user based on given data. <b>Single request can update single field or multi fields.</b></p> This endpoint require valid user access token to accessed. <p>Supported field {Country, DisplayName, LanguageTag}</p>
+  &lt;br&gt;&lt;p&gt;This Endpoint support update user based on given data. &lt;b&gt;Single request can update single field or multi fields.&lt;/b&gt;&lt;/p&gt; This endpoint require valid user access token to accessed. &lt;p&gt;Supported field {Country, DisplayName, LanguageTag}&lt;/p&gt;
 */
 func (a *Client) PublicUpdateUserV2(params *PublicUpdateUserV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateUserV2OK, *PublicUpdateUserV2BadRequest, *PublicUpdateUserV2Unauthorized, *PublicUpdateUserV2NotFound, *PublicUpdateUserV2Conflict, *PublicUpdateUserV2InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -6113,7 +11924,7 @@ func (a *Client) PublicUpdateUserV2(params *PublicUpdateUserV2Params, authInfo r
 		PathPattern:        "/iam/v2/public/namespaces/{namespace}/users/{userId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicUpdateUserV2Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -6128,37 +11939,87 @@ func (a *Client) PublicUpdateUserV2(params *PublicUpdateUserV2Params, authInfo r
 
 	case *PublicUpdateUserV2OK:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *PublicUpdateUserV2BadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *PublicUpdateUserV2Unauthorized:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *PublicUpdateUserV2NotFound:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *PublicUpdateUserV2Conflict:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *PublicUpdateUserV2InternalServerError:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicUpdateUserV2Short(params *PublicUpdateUserV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateUserV2OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicUpdateUserV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicUpdateUserV2",
+		Method:             "PATCH",
+		PathPattern:        "/iam/v2/public/namespaces/{namespace}/users/{userId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicUpdateUserV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicUpdateUserV2OK:
+		return v, nil
+	case *PublicUpdateUserV2BadRequest:
+		return nil, v
+	case *PublicUpdateUserV2Unauthorized:
+		return nil, v
+	case *PublicUpdateUserV2NotFound:
+		return nil, v
+	case *PublicUpdateUserV2Conflict:
+		return nil, v
+	case *PublicUpdateUserV2InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   PublicUpdateUserV3 updates user
 
-  <p>Requires valid user access token </p>
-<br><p>This Endpoint support update user based on given data. <b>Single request can update single field or multi fields.</b></p>
-<p>Supported field {country, displayName, languageTag, dateOfBirth}</p>
-<p>Country use ISO3166-1 alpha-2 two letter, e.g. US.</p>
-<p>Date of Birth format : YYYY-MM-DD, e.g. 2019-04-29.</p>
-<br><b>Several case of updating email address</b>
-<ul><li>User want to update email address of which have been verified, newEmailAddress response field will be filled with new email address.</li>
-<li>User want to update email address of which have not been verified, { oldEmailAddress, emailAddress} response field will be filled with new email address. </li>
-<li>User want to update email address of which have been verified and updated before, { oldEmailAddress, emailAddress} response field will be filled with verified email before. newEmailAddress response field will be filled with newest email address. </li>
-<br><b>Important notes:</b>
-<br><p>This endpoint provides support for client that doesn't have PATCH support, i.e. UE4 before v4.23 released.
-<br>If the client support PATCH method, use [PATCH] /iam/v3/public/namespaces/{namespace}/users/me instead</p><br>
-<p>action code : 10103 </p>
+  &lt;p&gt;Requires valid user access token &lt;/p&gt;
+&lt;br&gt;&lt;p&gt;This Endpoint support update user based on given data. &lt;b&gt;Single request can update single field or multi fields.&lt;/b&gt;&lt;/p&gt;
+&lt;p&gt;Supported field {country, displayName, languageTag, dateOfBirth}&lt;/p&gt;
+&lt;p&gt;Country use ISO3166-1 alpha-2 two letter, e.g. US.&lt;/p&gt;
+&lt;p&gt;Date of Birth format : YYYY-MM-DD, e.g. 2019-04-29.&lt;/p&gt;
+&lt;br&gt;&lt;b&gt;Several case of updating email address&lt;/b&gt;
+&lt;ul&gt;&lt;li&gt;User want to update email address of which have been verified, newEmailAddress response field will be filled with new email address.&lt;/li&gt;
+&lt;li&gt;User want to update email address of which have not been verified, { oldEmailAddress, emailAddress} response field will be filled with new email address. &lt;/li&gt;
+&lt;li&gt;User want to update email address of which have been verified and updated before, { oldEmailAddress, emailAddress} response field will be filled with verified email before. newEmailAddress response field will be filled with newest email address. &lt;/li&gt;
+&lt;p&gt;action code : 10103 &lt;/p&gt;
 */
 func (a *Client) PublicUpdateUserV3(params *PublicUpdateUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateUserV3OK, *PublicUpdateUserV3BadRequest, *PublicUpdateUserV3Unauthorized, *PublicUpdateUserV3Conflict, *PublicUpdateUserV3InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -6172,11 +12033,11 @@ func (a *Client) PublicUpdateUserV3(params *PublicUpdateUserV3Params, authInfo r
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "PublicUpdateUserV3",
-		Method:             "PUT",
+		Method:             "PATCH",
 		PathPattern:        "/iam/v3/public/namespaces/{namespace}/users/me",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicUpdateUserV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -6191,16 +12052,66 @@ func (a *Client) PublicUpdateUserV3(params *PublicUpdateUserV3Params, authInfo r
 
 	case *PublicUpdateUserV3OK:
 		return v, nil, nil, nil, nil, nil
+
 	case *PublicUpdateUserV3BadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *PublicUpdateUserV3Unauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *PublicUpdateUserV3Conflict:
 		return nil, nil, nil, v, nil, nil
+
 	case *PublicUpdateUserV3InternalServerError:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicUpdateUserV3Short(params *PublicUpdateUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateUserV3OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicUpdateUserV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicUpdateUserV3",
+		Method:             "PATCH",
+		PathPattern:        "/iam/v3/public/namespaces/{namespace}/users/me",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicUpdateUserV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicUpdateUserV3OK:
+		return v, nil
+	case *PublicUpdateUserV3BadRequest:
+		return nil, v
+	case *PublicUpdateUserV3Unauthorized:
+		return nil, v
+	case *PublicUpdateUserV3Conflict:
+		return nil, v
+	case *PublicUpdateUserV3InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -6208,18 +12119,18 @@ func (a *Client) PublicUpdateUserV3(params *PublicUpdateUserV3Params, authInfo r
   PublicUpgradeHeadlessAccountV3 upgrades headless account and automatically verified the email address if it is succeeded
 
   Require valid user access token.
-        	<p>The endpoint upgrades a headless account by linking the headless account with the email address and the password.
-			By upgrading the headless account into a full account, the user could use the email address and password for using Justice IAM. </p>
-        	<p>The endpoint is a shortcut for upgrading a headless account and verifying the email address in one call.
-			In order to get a verification code for the endpoint, please check the send verification code endpoint.</p>
-        	<p>This endpoint also have an ability to update user data (if the user data field is specified) right after the upgrade account process is done.<br/>
+        	&lt;p&gt;The endpoint upgrades a headless account by linking the headless account with the email address and the password.
+			By upgrading the headless account into a full account, the user could use the email address and password for using Justice IAM. &lt;/p&gt;
+        	&lt;p&gt;The endpoint is a shortcut for upgrading a headless account and verifying the email address in one call.
+			In order to get a verification code for the endpoint, please check the send verification code endpoint.&lt;/p&gt;
+        	&lt;p&gt;This endpoint also have an ability to update user data (if the user data field is specified) right after the upgrade account process is done.&lt;br/&gt;
 				Supported user data fields :
-				<ul>
-					<li>displayName</li>
-					<li>dateOfBirth : format YYYY-MM-DD, e.g. 2019-04-29</li>
-					<li>country : format ISO3166-1 alpha-2 two letter, e.g. US</li>
-				</ul>
-        	<br>action code : 10124</p>
+				&lt;ul&gt;
+					&lt;li&gt;displayName&lt;/li&gt;
+					&lt;li&gt;dateOfBirth : format YYYY-MM-DD, e.g. 2019-04-29&lt;/li&gt;
+					&lt;li&gt;country : format ISO3166-1 alpha-2 two letter, e.g. US&lt;/li&gt;
+				&lt;/ul&gt;
+        	&lt;br&gt;action code : 10124&lt;/p&gt;
 */
 func (a *Client) PublicUpgradeHeadlessAccountV3(params *PublicUpgradeHeadlessAccountV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUpgradeHeadlessAccountV3OK, *PublicUpgradeHeadlessAccountV3BadRequest, *PublicUpgradeHeadlessAccountV3Unauthorized, *PublicUpgradeHeadlessAccountV3Forbidden, *PublicUpgradeHeadlessAccountV3NotFound, *PublicUpgradeHeadlessAccountV3Conflict, *PublicUpgradeHeadlessAccountV3InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -6237,7 +12148,7 @@ func (a *Client) PublicUpgradeHeadlessAccountV3(params *PublicUpgradeHeadlessAcc
 		PathPattern:        "/iam/v3/public/namespaces/{namespace}/users/me/headless/code/verify",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicUpgradeHeadlessAccountV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -6252,30 +12163,86 @@ func (a *Client) PublicUpgradeHeadlessAccountV3(params *PublicUpgradeHeadlessAcc
 
 	case *PublicUpgradeHeadlessAccountV3OK:
 		return v, nil, nil, nil, nil, nil, nil, nil
+
 	case *PublicUpgradeHeadlessAccountV3BadRequest:
 		return nil, v, nil, nil, nil, nil, nil, nil
+
 	case *PublicUpgradeHeadlessAccountV3Unauthorized:
 		return nil, nil, v, nil, nil, nil, nil, nil
+
 	case *PublicUpgradeHeadlessAccountV3Forbidden:
 		return nil, nil, nil, v, nil, nil, nil, nil
+
 	case *PublicUpgradeHeadlessAccountV3NotFound:
 		return nil, nil, nil, nil, v, nil, nil, nil
+
 	case *PublicUpgradeHeadlessAccountV3Conflict:
 		return nil, nil, nil, nil, nil, v, nil, nil
+
 	case *PublicUpgradeHeadlessAccountV3InternalServerError:
 		return nil, nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicUpgradeHeadlessAccountV3Short(params *PublicUpgradeHeadlessAccountV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUpgradeHeadlessAccountV3OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicUpgradeHeadlessAccountV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicUpgradeHeadlessAccountV3",
+		Method:             "POST",
+		PathPattern:        "/iam/v3/public/namespaces/{namespace}/users/me/headless/code/verify",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicUpgradeHeadlessAccountV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicUpgradeHeadlessAccountV3OK:
+		return v, nil
+	case *PublicUpgradeHeadlessAccountV3BadRequest:
+		return nil, v
+	case *PublicUpgradeHeadlessAccountV3Unauthorized:
+		return nil, v
+	case *PublicUpgradeHeadlessAccountV3Forbidden:
+		return nil, v
+	case *PublicUpgradeHeadlessAccountV3NotFound:
+		return nil, v
+	case *PublicUpgradeHeadlessAccountV3Conflict:
+		return nil, v
+	case *PublicUpgradeHeadlessAccountV3InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   PublicUserVerificationV3 redeems verification code sent to user
 
-  <p>Required valid user authorization</p>
-<p>Redeems a verification code sent to a user to verify the user's contact address is correct</p>
-<p>Available ContactType : <b>email</b></p>
-<p>action code: 10107</p>
+  &lt;p&gt;Required valid user authorization&lt;/p&gt;
+&lt;p&gt;Redeems a verification code sent to a user to verify the user&#39;s contact address is correct&lt;/p&gt;
+&lt;p&gt;Available ContactType : &lt;b&gt;email&lt;/b&gt;&lt;/p&gt;
+&lt;p&gt;action code: 10107&lt;/p&gt;
 
 */
 func (a *Client) PublicUserVerificationV3(params *PublicUserVerificationV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUserVerificationV3NoContent, *PublicUserVerificationV3BadRequest, *PublicUserVerificationV3Unauthorized, *PublicUserVerificationV3Forbidden, *PublicUserVerificationV3Conflict, error) {
@@ -6294,7 +12261,7 @@ func (a *Client) PublicUserVerificationV3(params *PublicUserVerificationV3Params
 		PathPattern:        "/iam/v3/public/namespaces/{namespace}/users/me/code/verify",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicUserVerificationV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -6309,16 +12276,66 @@ func (a *Client) PublicUserVerificationV3(params *PublicUserVerificationV3Params
 
 	case *PublicUserVerificationV3NoContent:
 		return v, nil, nil, nil, nil, nil
+
 	case *PublicUserVerificationV3BadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *PublicUserVerificationV3Unauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *PublicUserVerificationV3Forbidden:
 		return nil, nil, nil, v, nil, nil
+
 	case *PublicUserVerificationV3Conflict:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicUserVerificationV3Short(params *PublicUserVerificationV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUserVerificationV3NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicUserVerificationV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicUserVerificationV3",
+		Method:             "POST",
+		PathPattern:        "/iam/v3/public/namespaces/{namespace}/users/me/code/verify",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicUserVerificationV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicUserVerificationV3NoContent:
+		return v, nil
+	case *PublicUserVerificationV3BadRequest:
+		return nil, v
+	case *PublicUserVerificationV3Unauthorized:
+		return nil, v
+	case *PublicUserVerificationV3Forbidden:
+		return nil, v
+	case *PublicUserVerificationV3Conflict:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -6326,10 +12343,10 @@ func (a *Client) PublicUserVerificationV3(params *PublicUserVerificationV3Params
   PublicValidateUserByUserIDAndPasswordV3 validates user password by user ID and password
 
   This endpoint is used to validate the user password. Required valid user authorization and valid user ID.
-		<p>Notes:</p>
-		<ul>
-			<li>This endpoint validate the user password by specifying the userId and password</li>
-		</ul>
+		&lt;p&gt;Notes:&lt;/p&gt;
+		&lt;ul&gt;
+			&lt;li&gt;This endpoint validate the user password by specifying the userId and password&lt;/li&gt;
+		&lt;/ul&gt;
 
 */
 func (a *Client) PublicValidateUserByUserIDAndPasswordV3(params *PublicValidateUserByUserIDAndPasswordV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicValidateUserByUserIDAndPasswordV3NoContent, *PublicValidateUserByUserIDAndPasswordV3BadRequest, *PublicValidateUserByUserIDAndPasswordV3Unauthorized, *PublicValidateUserByUserIDAndPasswordV3Forbidden, *PublicValidateUserByUserIDAndPasswordV3NotFound, *PublicValidateUserByUserIDAndPasswordV3InternalServerError, error) {
@@ -6348,7 +12365,7 @@ func (a *Client) PublicValidateUserByUserIDAndPasswordV3(params *PublicValidateU
 		PathPattern:        "/iam/v3/public/namespaces/{namespace}/users/{userId}/validate",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicValidateUserByUserIDAndPasswordV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -6363,25 +12380,78 @@ func (a *Client) PublicValidateUserByUserIDAndPasswordV3(params *PublicValidateU
 
 	case *PublicValidateUserByUserIDAndPasswordV3NoContent:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *PublicValidateUserByUserIDAndPasswordV3BadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *PublicValidateUserByUserIDAndPasswordV3Unauthorized:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *PublicValidateUserByUserIDAndPasswordV3Forbidden:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *PublicValidateUserByUserIDAndPasswordV3NotFound:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *PublicValidateUserByUserIDAndPasswordV3InternalServerError:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicValidateUserByUserIDAndPasswordV3Short(params *PublicValidateUserByUserIDAndPasswordV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicValidateUserByUserIDAndPasswordV3NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicValidateUserByUserIDAndPasswordV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicValidateUserByUserIDAndPasswordV3",
+		Method:             "POST",
+		PathPattern:        "/iam/v3/public/namespaces/{namespace}/users/{userId}/validate",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicValidateUserByUserIDAndPasswordV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicValidateUserByUserIDAndPasswordV3NoContent:
+		return v, nil
+	case *PublicValidateUserByUserIDAndPasswordV3BadRequest:
+		return nil, v
+	case *PublicValidateUserByUserIDAndPasswordV3Unauthorized:
+		return nil, v
+	case *PublicValidateUserByUserIDAndPasswordV3Forbidden:
+		return nil, v
+	case *PublicValidateUserByUserIDAndPasswordV3NotFound:
+		return nil, v
+	case *PublicValidateUserByUserIDAndPasswordV3InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   PublicVerifyHeadlessAccountV3 upgrades user account to full account with email
 
-  <p>Require valid user authorization<br>action code : 10124 </p>
+  &lt;p&gt;Require valid user authorization&lt;br&gt;action code : 10124 &lt;/p&gt;
 */
 func (a *Client) PublicVerifyHeadlessAccountV3(params *PublicVerifyHeadlessAccountV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicVerifyHeadlessAccountV3OK, *PublicVerifyHeadlessAccountV3BadRequest, *PublicVerifyHeadlessAccountV3Unauthorized, *PublicVerifyHeadlessAccountV3NotFound, *PublicVerifyHeadlessAccountV3Conflict, *PublicVerifyHeadlessAccountV3InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -6399,7 +12469,7 @@ func (a *Client) PublicVerifyHeadlessAccountV3(params *PublicVerifyHeadlessAccou
 		PathPattern:        "/iam/v3/public/namespaces/{namespace}/users/me/headless/verify",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicVerifyHeadlessAccountV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -6414,18 +12484,71 @@ func (a *Client) PublicVerifyHeadlessAccountV3(params *PublicVerifyHeadlessAccou
 
 	case *PublicVerifyHeadlessAccountV3OK:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *PublicVerifyHeadlessAccountV3BadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *PublicVerifyHeadlessAccountV3Unauthorized:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *PublicVerifyHeadlessAccountV3NotFound:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *PublicVerifyHeadlessAccountV3Conflict:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *PublicVerifyHeadlessAccountV3InternalServerError:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicVerifyHeadlessAccountV3Short(params *PublicVerifyHeadlessAccountV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicVerifyHeadlessAccountV3OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicVerifyHeadlessAccountV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicVerifyHeadlessAccountV3",
+		Method:             "POST",
+		PathPattern:        "/iam/v3/public/namespaces/{namespace}/users/me/headless/verify",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicVerifyHeadlessAccountV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicVerifyHeadlessAccountV3OK:
+		return v, nil
+	case *PublicVerifyHeadlessAccountV3BadRequest:
+		return nil, v
+	case *PublicVerifyHeadlessAccountV3Unauthorized:
+		return nil, v
+	case *PublicVerifyHeadlessAccountV3NotFound:
+		return nil, v
+	case *PublicVerifyHeadlessAccountV3Conflict:
+		return nil, v
+	case *PublicVerifyHeadlessAccountV3InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -6450,7 +12573,7 @@ func (a *Client) PublicWebLinkPlatform(params *PublicWebLinkPlatformParams, auth
 		PathPattern:        "/iam/v3/public/namespaces/{namespace}/users/me/platforms/{platformId}/web/link",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicWebLinkPlatformReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -6465,14 +12588,61 @@ func (a *Client) PublicWebLinkPlatform(params *PublicWebLinkPlatformParams, auth
 
 	case *PublicWebLinkPlatformOK:
 		return v, nil, nil, nil, nil
+
 	case *PublicWebLinkPlatformBadRequest:
 		return nil, v, nil, nil, nil
+
 	case *PublicWebLinkPlatformUnauthorized:
 		return nil, nil, v, nil, nil
+
 	case *PublicWebLinkPlatformNotFound:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicWebLinkPlatformShort(params *PublicWebLinkPlatformParams, authInfo runtime.ClientAuthInfoWriter) (*PublicWebLinkPlatformOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicWebLinkPlatformParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicWebLinkPlatform",
+		Method:             "GET",
+		PathPattern:        "/iam/v3/public/namespaces/{namespace}/users/me/platforms/{platformId}/web/link",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicWebLinkPlatformReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicWebLinkPlatformOK:
+		return v, nil
+	case *PublicWebLinkPlatformBadRequest:
+		return nil, v
+	case *PublicWebLinkPlatformUnauthorized:
+		return nil, v
+	case *PublicWebLinkPlatformNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -6497,7 +12667,7 @@ func (a *Client) PublicWebLinkPlatformEstablish(params *PublicWebLinkPlatformEst
 		PathPattern:        "/iam/v3/public/namespaces/{namespace}/users/me/platforms/{platformId}/web/link/establish",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicWebLinkPlatformEstablishReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -6512,6 +12682,44 @@ func (a *Client) PublicWebLinkPlatformEstablish(params *PublicWebLinkPlatformEst
 
 	case *PublicWebLinkPlatformEstablishFound:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicWebLinkPlatformEstablishShort(params *PublicWebLinkPlatformEstablishParams, authInfo runtime.ClientAuthInfoWriter) (*PublicWebLinkPlatformEstablishFound, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicWebLinkPlatformEstablishParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicWebLinkPlatformEstablish",
+		Method:             "GET",
+		PathPattern:        "/iam/v3/public/namespaces/{namespace}/users/me/platforms/{platformId}/web/link/establish",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicWebLinkPlatformEstablishReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicWebLinkPlatformEstablishFound:
+		return nil, v
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -6520,7 +12728,7 @@ func (a *Client) PublicWebLinkPlatformEstablish(params *PublicWebLinkPlatformEst
 /*
   ResetPassword resets user password
 
-  Required permission 'ADMIN:NAMESPACE:{namespace}:PASSWORD:USER [UPDATE]' or valid basic auth header
+  Required permission &#39;ADMIN:NAMESPACE:{namespace}:PASSWORD:USER [UPDATE]&#39; or valid basic auth header
 */
 func (a *Client) ResetPassword(params *ResetPasswordParams, authInfo runtime.ClientAuthInfoWriter) (*ResetPasswordNoContent, *ResetPasswordBadRequest, *ResetPasswordForbidden, *ResetPasswordNotFound, *ResetPasswordInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -6538,7 +12746,7 @@ func (a *Client) ResetPassword(params *ResetPasswordParams, authInfo runtime.Cli
 		PathPattern:        "/iam/namespaces/{namespace}/users/resetPassword",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &ResetPasswordReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -6553,23 +12761,73 @@ func (a *Client) ResetPassword(params *ResetPasswordParams, authInfo runtime.Cli
 
 	case *ResetPasswordNoContent:
 		return v, nil, nil, nil, nil, nil
+
 	case *ResetPasswordBadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *ResetPasswordForbidden:
 		return nil, nil, v, nil, nil, nil
+
 	case *ResetPasswordNotFound:
 		return nil, nil, nil, v, nil, nil
+
 	case *ResetPasswordInternalServerError:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) ResetPasswordShort(params *ResetPasswordParams, authInfo runtime.ClientAuthInfoWriter) (*ResetPasswordNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewResetPasswordParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "ResetPassword",
+		Method:             "POST",
+		PathPattern:        "/iam/namespaces/{namespace}/users/resetPassword",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ResetPasswordReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *ResetPasswordNoContent:
+		return v, nil
+	case *ResetPasswordBadRequest:
+		return nil, v
+	case *ResetPasswordForbidden:
+		return nil, v
+	case *ResetPasswordNotFound:
+		return nil, v
+	case *ResetPasswordInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   ResetPasswordV3 resets user password
 
-  <p>action code: 10105</p>
+  &lt;p&gt;action code: 10105&lt;/p&gt;
 */
 func (a *Client) ResetPasswordV3(params *ResetPasswordV3Params, authInfo runtime.ClientAuthInfoWriter) (*ResetPasswordV3NoContent, *ResetPasswordV3BadRequest, *ResetPasswordV3Forbidden, *ResetPasswordV3NotFound, error) {
 	// TODO: Validate the params before sending
@@ -6587,7 +12845,7 @@ func (a *Client) ResetPasswordV3(params *ResetPasswordV3Params, authInfo runtime
 		PathPattern:        "/iam/v3/public/namespaces/{namespace}/users/reset",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &ResetPasswordV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -6602,47 +12860,94 @@ func (a *Client) ResetPasswordV3(params *ResetPasswordV3Params, authInfo runtime
 
 	case *ResetPasswordV3NoContent:
 		return v, nil, nil, nil, nil
+
 	case *ResetPasswordV3BadRequest:
 		return nil, v, nil, nil, nil
+
 	case *ResetPasswordV3Forbidden:
 		return nil, nil, v, nil, nil
+
 	case *ResetPasswordV3NotFound:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) ResetPasswordV3Short(params *ResetPasswordV3Params, authInfo runtime.ClientAuthInfoWriter) (*ResetPasswordV3NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewResetPasswordV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "ResetPasswordV3",
+		Method:             "POST",
+		PathPattern:        "/iam/v3/public/namespaces/{namespace}/users/reset",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ResetPasswordV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *ResetPasswordV3NoContent:
+		return v, nil
+	case *ResetPasswordV3BadRequest:
+		return nil, v
+	case *ResetPasswordV3Forbidden:
+		return nil, v
+	case *ResetPasswordV3NotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   SaveUserPermission saves user permissions
 
-  <p>Required permission 'ADMIN:NAMESPACE:{namespace}:PERMISSION:USER:{userId} [UPDATE]'</p>
-			<p>This endpoint will REPLACE user's permissions with the ones defined in body</p>
-			<p>Schedule contains cron string or date range (both are UTC, also in cron syntax) to indicate when a permission and action are in effect.</p>
-			<p>Both schedule types accepts quartz compatible cron syntax e.g. * * * * * * *.</p>
-			<p>In ranged schedule, first element will be start date, and second one will be end date</p>
-			<p>If schedule is set, the scheduled action must be valid too, that is between 1 to 15, inclusive</p>
-			<p>Syntax reference</p>
-			<p>Fields:</p>
-			<ol>
-			<li>Seconds: 0-59 * / , -</li>
-			<li>Minutes: 0-59 * / , -</li>
-			<li>Hours: 0-23 * / , -</li>
-			<li>Day of month: 1-31 * / , - L W</li>
-			<li>Month: 1-12 JAN-DEC * / , -</li>
-			<li>Day of week: 0-6 SUN-SAT * / , - L #</li>
-			<li>Year: 1970-2099 * / , -</li>
-			</ol>
-			<p>Special characters:</p>
-			<ol>
-			<li>*: all values in the fields, e.g. * in seconds fields indicates every second</li>
-			<li>/: increments of ranges, e.g. 3-59/15 in the minute field indicate the third minute of the hour and every 15 minutes thereafter</li>
-			<li>,: separate items of a list, e.g. MON,WED,FRI in day of week</li>
-			<li>-: range, e.g. 2010-2018 indicates every year between 2010 and 2018, inclusive</li>
-			<li>L: last, e.g. When used in the day-of-week field, it allows you to specify constructs such as "the last Friday" (5L) of a given month. In the day-of-month field, it specifies the last day of the month.</li>
-			<li>W: business day, e.g. if you were to specify 15W as the value for the day-of-month field, the meaning is: "the nearest business day to the 15th of the month."</li>
-			<li>#: must be followed by a number between one and five. It allows you to specify constructs such as "the second Friday" of a given month.</li>
-			</ol>
+  &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:PERMISSION:USER:{userId} [UPDATE]&#39;&lt;/p&gt;
+			&lt;p&gt;This endpoint will REPLACE user&#39;s permissions with the ones defined in body&lt;/p&gt;
+			&lt;p&gt;Schedule contains cron string or date range (both are UTC, also in cron syntax) to indicate when a permission and action are in effect.&lt;/p&gt;
+			&lt;p&gt;Both schedule types accepts quartz compatible cron syntax e.g. * * * * * * *.&lt;/p&gt;
+			&lt;p&gt;In ranged schedule, first element will be start date, and second one will be end date&lt;/p&gt;
+			&lt;p&gt;If schedule is set, the scheduled action must be valid too, that is between 1 to 15, inclusive&lt;/p&gt;
+			&lt;p&gt;Syntax reference&lt;/p&gt;
+			&lt;p&gt;Fields:&lt;/p&gt;
+			&lt;ol&gt;
+			&lt;li&gt;Seconds: 0-59 * / , -&lt;/li&gt;
+			&lt;li&gt;Minutes: 0-59 * / , -&lt;/li&gt;
+			&lt;li&gt;Hours: 0-23 * / , -&lt;/li&gt;
+			&lt;li&gt;Day of month: 1-31 * / , - L W&lt;/li&gt;
+			&lt;li&gt;Month: 1-12 JAN-DEC * / , -&lt;/li&gt;
+			&lt;li&gt;Day of week: 0-6 SUN-SAT * / , - L #&lt;/li&gt;
+			&lt;li&gt;Year: 1970-2099 * / , -&lt;/li&gt;
+			&lt;/ol&gt;
+			&lt;p&gt;Special characters:&lt;/p&gt;
+			&lt;ol&gt;
+			&lt;li&gt;*: all values in the fields, e.g. * in seconds fields indicates every second&lt;/li&gt;
+			&lt;li&gt;/: increments of ranges, e.g. 3-59/15 in the minute field indicate the third minute of the hour and every 15 minutes thereafter&lt;/li&gt;
+			&lt;li&gt;,: separate items of a list, e.g. MON,WED,FRI in day of week&lt;/li&gt;
+			&lt;li&gt;-: range, e.g. 2010-2018 indicates every year between 2010 and 2018, inclusive&lt;/li&gt;
+			&lt;li&gt;L: last, e.g. When used in the day-of-week field, it allows you to specify constructs such as &#34;the last Friday&#34; (5L) of a given month. In the day-of-month field, it specifies the last day of the month.&lt;/li&gt;
+			&lt;li&gt;W: business day, e.g. if you were to specify 15W as the value for the day-of-month field, the meaning is: &#34;the nearest business day to the 15th of the month.&#34;&lt;/li&gt;
+			&lt;li&gt;#: must be followed by a number between one and five. It allows you to specify constructs such as &#34;the second Friday&#34; of a given month.&lt;/li&gt;
+			&lt;/ol&gt;
 
 */
 func (a *Client) SaveUserPermission(params *SaveUserPermissionParams, authInfo runtime.ClientAuthInfoWriter) (*SaveUserPermissionNoContent, *SaveUserPermissionBadRequest, *SaveUserPermissionUnauthorized, *SaveUserPermissionForbidden, *SaveUserPermissionNotFound, error) {
@@ -6661,7 +12966,7 @@ func (a *Client) SaveUserPermission(params *SaveUserPermissionParams, authInfo r
 		PathPattern:        "/iam/namespaces/{namespace}/users/{userId}/permissions",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &SaveUserPermissionReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -6676,23 +12981,73 @@ func (a *Client) SaveUserPermission(params *SaveUserPermissionParams, authInfo r
 
 	case *SaveUserPermissionNoContent:
 		return v, nil, nil, nil, nil, nil
+
 	case *SaveUserPermissionBadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *SaveUserPermissionUnauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *SaveUserPermissionForbidden:
 		return nil, nil, nil, v, nil, nil
+
 	case *SaveUserPermissionNotFound:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) SaveUserPermissionShort(params *SaveUserPermissionParams, authInfo runtime.ClientAuthInfoWriter) (*SaveUserPermissionNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewSaveUserPermissionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "SaveUserPermission",
+		Method:             "POST",
+		PathPattern:        "/iam/namespaces/{namespace}/users/{userId}/permissions",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &SaveUserPermissionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *SaveUserPermissionNoContent:
+		return v, nil
+	case *SaveUserPermissionBadRequest:
+		return nil, v
+	case *SaveUserPermissionUnauthorized:
+		return nil, v
+	case *SaveUserPermissionForbidden:
+		return nil, v
+	case *SaveUserPermissionNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   SaveUserRoles saves user roles
 
-  Required permission 'ADMIN:NAMESPACE:{namespace}:ROLE:USER:{userId} [UPDATE]'
+  Required permission &#39;ADMIN:NAMESPACE:{namespace}:ROLE:USER:{userId} [UPDATE]&#39;
 */
 func (a *Client) SaveUserRoles(params *SaveUserRolesParams, authInfo runtime.ClientAuthInfoWriter) (*SaveUserRolesNoContent, *SaveUserRolesBadRequest, *SaveUserRolesUnauthorized, *SaveUserRolesForbidden, *SaveUserRolesNotFound, *SaveUserRolesConflict, error) {
 	// TODO: Validate the params before sending
@@ -6710,7 +13065,7 @@ func (a *Client) SaveUserRoles(params *SaveUserRolesParams, authInfo runtime.Cli
 		PathPattern:        "/iam/namespaces/{namespace}/users/{userId}/roles",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &SaveUserRolesReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -6725,28 +13080,81 @@ func (a *Client) SaveUserRoles(params *SaveUserRolesParams, authInfo runtime.Cli
 
 	case *SaveUserRolesNoContent:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *SaveUserRolesBadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *SaveUserRolesUnauthorized:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *SaveUserRolesForbidden:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *SaveUserRolesNotFound:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *SaveUserRolesConflict:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) SaveUserRolesShort(params *SaveUserRolesParams, authInfo runtime.ClientAuthInfoWriter) (*SaveUserRolesNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewSaveUserRolesParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "SaveUserRoles",
+		Method:             "POST",
+		PathPattern:        "/iam/namespaces/{namespace}/users/{userId}/roles",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &SaveUserRolesReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *SaveUserRolesNoContent:
+		return v, nil
+	case *SaveUserRolesBadRequest:
+		return nil, v
+	case *SaveUserRolesUnauthorized:
+		return nil, v
+	case *SaveUserRolesForbidden:
+		return nil, v
+	case *SaveUserRolesNotFound:
+		return nil, v
+	case *SaveUserRolesConflict:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   SearchUser searches users
 
-  <h2>The endpoint is deprecated. Please use this instead: iam/v3/admin/namespaces/{namespace}/users/search</h2>
-<p>Search all users that match the query on these fields: all login IDs (email address, phone number, and platform user id),
+  &lt;h2&gt;The endpoint is deprecated. Please use this instead: iam/v3/admin/namespaces/{namespace}/users/search&lt;/h2&gt;
+&lt;p&gt;Search all users that match the query on these fields: all login IDs (email address, phone number, and platform user id),
 userID, display name, and on the specified namespace. If the query is not defined, then it searches all users on the specified namespace.
-Required permission 'ADMIN:NAMESPACE:{namespace}:USER:* [READ]'</p>
+Required permission &#39;ADMIN:NAMESPACE:{namespace}:USER:* [READ]&#39;&lt;/p&gt;
 */
 func (a *Client) SearchUser(params *SearchUserParams, authInfo runtime.ClientAuthInfoWriter) (*SearchUserOK, *SearchUserBadRequest, *SearchUserUnauthorized, *SearchUserForbidden, error) {
 	// TODO: Validate the params before sending
@@ -6764,7 +13172,7 @@ func (a *Client) SearchUser(params *SearchUserParams, authInfo runtime.ClientAut
 		PathPattern:        "/iam/namespaces/{namespace}/users/search",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &SearchUserReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -6779,28 +13187,75 @@ func (a *Client) SearchUser(params *SearchUserParams, authInfo runtime.ClientAut
 
 	case *SearchUserOK:
 		return v, nil, nil, nil, nil
+
 	case *SearchUserBadRequest:
 		return nil, v, nil, nil, nil
+
 	case *SearchUserUnauthorized:
 		return nil, nil, v, nil, nil
+
 	case *SearchUserForbidden:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) SearchUserShort(params *SearchUserParams, authInfo runtime.ClientAuthInfoWriter) (*SearchUserOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewSearchUserParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "SearchUser",
+		Method:             "GET",
+		PathPattern:        "/iam/namespaces/{namespace}/users/search",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &SearchUserReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *SearchUserOK:
+		return v, nil
+	case *SearchUserBadRequest:
+		return nil, v
+	case *SearchUserUnauthorized:
+		return nil, v
+	case *SearchUserForbidden:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   SendVerificationCode sends verification code to user
 
-  Required permission 'NAMESPACE:{namespace}:USER:{userId} [UPDATE]'
-			<p>The verification code is sent to either the phone number or email address. It depends on the LoginID's value.</p>
-			<p>Available contexts for use : </p>
-			<ol>
-			<li><strong>UserAccountRegistration</strong><p>a context type used for verifying email address in user account registration. It returns 409 if the email address already verified. <strong><em>It is the default context if the Context field is empty</em></strong></p></li>
-			<li><strong>UpdateEmailAddress</strong><p>a context type used for verify user before updating email address.(Without email address verified checking)</p></li>
-			<li><strong>upgradeHeadlessAccount</strong><p>The context is intended to be used whenever the email address wanted to be automatically verified on upgrading a headless account.  If this context used, IAM rejects the request if the loginId field's value is already used by others by returning HTTP Status Code 409.</p></li>
-			</ol>
+  Required permission &#39;NAMESPACE:{namespace}:USER:{userId} [UPDATE]&#39;
+			&lt;p&gt;The verification code is sent to either the phone number or email address. It depends on the LoginID&#39;s value.&lt;/p&gt;
+			&lt;p&gt;Available contexts for use : &lt;/p&gt;
+			&lt;ol&gt;
+			&lt;li&gt;&lt;strong&gt;UserAccountRegistration&lt;/strong&gt;&lt;p&gt;a context type used for verifying email address in user account registration. It returns 409 if the email address already verified. &lt;strong&gt;&lt;em&gt;It is the default context if the Context field is empty&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;strong&gt;UpdateEmailAddress&lt;/strong&gt;&lt;p&gt;a context type used for verify user before updating email address.(Without email address verified checking)&lt;/p&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;strong&gt;upgradeHeadlessAccount&lt;/strong&gt;&lt;p&gt;The context is intended to be used whenever the email address wanted to be automatically verified on upgrading a headless account.  If this context used, IAM rejects the request if the loginId field&#39;s value is already used by others by returning HTTP Status Code 409.&lt;/p&gt;&lt;/li&gt;
+			&lt;/ol&gt;
 */
 func (a *Client) SendVerificationCode(params *SendVerificationCodeParams, authInfo runtime.ClientAuthInfoWriter) (*SendVerificationCodeNoContent, *SendVerificationCodeBadRequest, *SendVerificationCodeUnauthorized, *SendVerificationCodeForbidden, *SendVerificationCodeNotFound, *SendVerificationCodeConflict, *SendVerificationCodeTooManyRequests, *SendVerificationCodeInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -6818,7 +13273,7 @@ func (a *Client) SendVerificationCode(params *SendVerificationCodeParams, authIn
 		PathPattern:        "/iam/namespaces/{namespace}/users/{userId}/verificationcode",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &SendVerificationCodeReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -6833,29 +13288,88 @@ func (a *Client) SendVerificationCode(params *SendVerificationCodeParams, authIn
 
 	case *SendVerificationCodeNoContent:
 		return v, nil, nil, nil, nil, nil, nil, nil, nil
+
 	case *SendVerificationCodeBadRequest:
 		return nil, v, nil, nil, nil, nil, nil, nil, nil
+
 	case *SendVerificationCodeUnauthorized:
 		return nil, nil, v, nil, nil, nil, nil, nil, nil
+
 	case *SendVerificationCodeForbidden:
 		return nil, nil, nil, v, nil, nil, nil, nil, nil
+
 	case *SendVerificationCodeNotFound:
 		return nil, nil, nil, nil, v, nil, nil, nil, nil
+
 	case *SendVerificationCodeConflict:
 		return nil, nil, nil, nil, nil, v, nil, nil, nil
+
 	case *SendVerificationCodeTooManyRequests:
 		return nil, nil, nil, nil, nil, nil, v, nil, nil
+
 	case *SendVerificationCodeInternalServerError:
 		return nil, nil, nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) SendVerificationCodeShort(params *SendVerificationCodeParams, authInfo runtime.ClientAuthInfoWriter) (*SendVerificationCodeNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewSendVerificationCodeParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "SendVerificationCode",
+		Method:             "POST",
+		PathPattern:        "/iam/namespaces/{namespace}/users/{userId}/verificationcode",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &SendVerificationCodeReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *SendVerificationCodeNoContent:
+		return v, nil
+	case *SendVerificationCodeBadRequest:
+		return nil, v
+	case *SendVerificationCodeUnauthorized:
+		return nil, v
+	case *SendVerificationCodeForbidden:
+		return nil, v
+	case *SendVerificationCodeNotFound:
+		return nil, v
+	case *SendVerificationCodeConflict:
+		return nil, v
+	case *SendVerificationCodeTooManyRequests:
+		return nil, v
+	case *SendVerificationCodeInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   UpdateCountryAgeRestriction updates country s age restriction
 
-  Required permission 'ADMIN:NAMESPACE:{namespace}:AGERESTRICTION [UPDATE]'
+  Required permission &#39;ADMIN:NAMESPACE:{namespace}:AGERESTRICTION [UPDATE]&#39;
 */
 func (a *Client) UpdateCountryAgeRestriction(params *UpdateCountryAgeRestrictionParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateCountryAgeRestrictionOK, *UpdateCountryAgeRestrictionBadRequest, *UpdateCountryAgeRestrictionUnauthorized, *UpdateCountryAgeRestrictionForbidden, *UpdateCountryAgeRestrictionNotFound, error) {
 	// TODO: Validate the params before sending
@@ -6873,7 +13387,7 @@ func (a *Client) UpdateCountryAgeRestriction(params *UpdateCountryAgeRestriction
 		PathPattern:        "/iam/v2/admin/namespaces/{namespace}/countries/{countryCode}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &UpdateCountryAgeRestrictionReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -6888,24 +13402,74 @@ func (a *Client) UpdateCountryAgeRestriction(params *UpdateCountryAgeRestriction
 
 	case *UpdateCountryAgeRestrictionOK:
 		return v, nil, nil, nil, nil, nil
+
 	case *UpdateCountryAgeRestrictionBadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *UpdateCountryAgeRestrictionUnauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *UpdateCountryAgeRestrictionForbidden:
 		return nil, nil, nil, v, nil, nil
+
 	case *UpdateCountryAgeRestrictionNotFound:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) UpdateCountryAgeRestrictionShort(params *UpdateCountryAgeRestrictionParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateCountryAgeRestrictionOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateCountryAgeRestrictionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "UpdateCountryAgeRestriction",
+		Method:             "PATCH",
+		PathPattern:        "/iam/v2/admin/namespaces/{namespace}/countries/{countryCode}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateCountryAgeRestrictionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateCountryAgeRestrictionOK:
+		return v, nil
+	case *UpdateCountryAgeRestrictionBadRequest:
+		return nil, v
+	case *UpdateCountryAgeRestrictionUnauthorized:
+		return nil, v
+	case *UpdateCountryAgeRestrictionForbidden:
+		return nil, v
+	case *UpdateCountryAgeRestrictionNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   UpdatePassword updates user password
 
-  <h2>The endpoint is going to be deprecated. Admin user please use this instead: iam/v2/admin/namespaces/{namespace}/users/{userId}/password</h2>
-+				<p>Required permission 'NAMESPACE:{namespace}:PASSWORD:USER:{userId} [UPDATE]'<p>
+  &lt;h2&gt;The endpoint is going to be deprecated. Admin user please use this instead: iam/v2/admin/namespaces/{namespace}/users/{userId}/password&lt;/h2&gt;
++				&lt;p&gt;Required permission &#39;NAMESPACE:{namespace}:PASSWORD:USER:{userId} [UPDATE]&#39;&lt;p&gt;
 */
 func (a *Client) UpdatePassword(params *UpdatePasswordParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePasswordNoContent, *UpdatePasswordBadRequest, *UpdatePasswordUnauthorized, *UpdatePasswordForbidden, *UpdatePasswordNotFound, *UpdatePasswordInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -6923,7 +13487,7 @@ func (a *Client) UpdatePassword(params *UpdatePasswordParams, authInfo runtime.C
 		PathPattern:        "/iam/namespaces/{namespace}/users/{userId}/password",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &UpdatePasswordReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -6938,25 +13502,78 @@ func (a *Client) UpdatePassword(params *UpdatePasswordParams, authInfo runtime.C
 
 	case *UpdatePasswordNoContent:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *UpdatePasswordBadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *UpdatePasswordUnauthorized:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *UpdatePasswordForbidden:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *UpdatePasswordNotFound:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *UpdatePasswordInternalServerError:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) UpdatePasswordShort(params *UpdatePasswordParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePasswordNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdatePasswordParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "UpdatePassword",
+		Method:             "PUT",
+		PathPattern:        "/iam/namespaces/{namespace}/users/{userId}/password",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdatePasswordReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdatePasswordNoContent:
+		return v, nil
+	case *UpdatePasswordBadRequest:
+		return nil, v
+	case *UpdatePasswordUnauthorized:
+		return nil, v
+	case *UpdatePasswordForbidden:
+		return nil, v
+	case *UpdatePasswordNotFound:
+		return nil, v
+	case *UpdatePasswordInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   UpdateUser updates user
 
-  <p>Required permission 'NAMESPACE:{namespace}:USER:{userId} [UPDATE]'</p><br><p>This Endpoint support update user based on given data. <b>Single request can update single field or multi fields.</b></p> <p>Supported field {Country, DisplayName, LanguageTag}</p><p>Country use ISO3166-1 alpha-2 two letter, e.g. US.</p><br><b>Several case of updating email address</b><ul><li>User want to update email address of which have been verified, NewEmailAddress response field will be filled with new email address.</li><li>User want to update email address of which have not been verified, {LoginId, OldEmailAddress, EmailAddress} response field will be filled with new email address. </li><li>User want to update email address of which have been verified and updated before, {LoginId, OldEmailAddress, EmailAddress} response field will be filled with verified email before. NewEmailAddress response field will be filled with newest email address. </li>
+  &lt;p&gt;Required permission &#39;NAMESPACE:{namespace}:USER:{userId} [UPDATE]&#39;&lt;/p&gt;&lt;br&gt;&lt;p&gt;This Endpoint support update user based on given data. &lt;b&gt;Single request can update single field or multi fields.&lt;/b&gt;&lt;/p&gt; &lt;p&gt;Supported field {Country, DisplayName, LanguageTag}&lt;/p&gt;&lt;p&gt;Country use ISO3166-1 alpha-2 two letter, e.g. US.&lt;/p&gt;&lt;br&gt;&lt;b&gt;Several case of updating email address&lt;/b&gt;&lt;ul&gt;&lt;li&gt;User want to update email address of which have been verified, NewEmailAddress response field will be filled with new email address.&lt;/li&gt;&lt;li&gt;User want to update email address of which have not been verified, {LoginId, OldEmailAddress, EmailAddress} response field will be filled with new email address. &lt;/li&gt;&lt;li&gt;User want to update email address of which have been verified and updated before, {LoginId, OldEmailAddress, EmailAddress} response field will be filled with verified email before. NewEmailAddress response field will be filled with newest email address. &lt;/li&gt;
 */
 func (a *Client) UpdateUser(params *UpdateUserParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateUserOK, *UpdateUserBadRequest, *UpdateUserUnauthorized, *UpdateUserNotFound, *UpdateUserConflict, *UpdateUserInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -6974,7 +13591,7 @@ func (a *Client) UpdateUser(params *UpdateUserParams, authInfo runtime.ClientAut
 		PathPattern:        "/iam/namespaces/{namespace}/users/{userId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &UpdateUserReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -6989,34 +13606,90 @@ func (a *Client) UpdateUser(params *UpdateUserParams, authInfo runtime.ClientAut
 
 	case *UpdateUserOK:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *UpdateUserBadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *UpdateUserUnauthorized:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *UpdateUserNotFound:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *UpdateUserConflict:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *UpdateUserInternalServerError:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) UpdateUserShort(params *UpdateUserParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateUserOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateUserParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "UpdateUser",
+		Method:             "PUT",
+		PathPattern:        "/iam/namespaces/{namespace}/users/{userId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateUserReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateUserOK:
+		return v, nil
+	case *UpdateUserBadRequest:
+		return nil, v
+	case *UpdateUserUnauthorized:
+		return nil, v
+	case *UpdateUserNotFound:
+		return nil, v
+	case *UpdateUserConflict:
+		return nil, v
+	case *UpdateUserInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   UpdateUserV3 updates user
 
-  <p>Requires valid user access token </p>
-<br><p>This Endpoint support update user based on given data. <b>Single request can update single field or multi fields.</b></p>
-<p>Supported field {country, displayName, languageTag, dateOfBirth}</p>
-<p>Country use ISO3166-1 alpha-2 two letter, e.g. US.</p>
-<p>Date of Birth format : YYYY-MM-DD, e.g. 2019-04-29.</p>
-<br><b>Several case of updating email address</b>
-<ul><li>User want to update email address of which have been verified, newEmailAddress response field will be filled with new email address.</li>
-<li>User want to update email address of which have not been verified, { oldEmailAddress, emailAddress} response field will be filled with new email address. </li>
-<li>User want to update email address of which have been verified and updated before, { oldEmailAddress, emailAddress} response field will be filled with verified email before. newEmailAddress response field will be filled with newest email address. </li>
-<p>action code : 10103 </p>
+  &lt;p&gt;Requires valid user access token &lt;/p&gt;
+&lt;br&gt;&lt;p&gt;This Endpoint support update user based on given data. &lt;b&gt;Single request can update single field or multi fields.&lt;/b&gt;&lt;/p&gt;
+&lt;p&gt;Supported field {country, displayName, languageTag, dateOfBirth}&lt;/p&gt;
+&lt;p&gt;Country use ISO3166-1 alpha-2 two letter, e.g. US.&lt;/p&gt;
+&lt;p&gt;Date of Birth format : YYYY-MM-DD, e.g. 2019-04-29.&lt;/p&gt;
+&lt;br&gt;&lt;b&gt;Several case of updating email address&lt;/b&gt;
+&lt;ul&gt;&lt;li&gt;User want to update email address of which have been verified, newEmailAddress response field will be filled with new email address.&lt;/li&gt;
+&lt;li&gt;User want to update email address of which have not been verified, { oldEmailAddress, emailAddress} response field will be filled with new email address. &lt;/li&gt;
+&lt;li&gt;User want to update email address of which have been verified and updated before, { oldEmailAddress, emailAddress} response field will be filled with verified email before. newEmailAddress response field will be filled with newest email address. &lt;/li&gt;
+&lt;br&gt;&lt;b&gt;Important notes:&lt;/b&gt;
+&lt;br&gt;&lt;p&gt;This endpoint provides support for client that doesn&#39;t have PATCH support, i.e. UE4 before v4.23 released.
+&lt;br&gt;If the client support PATCH method, use [PATCH] /iam/v3/public/namespaces/{namespace}/users/me instead&lt;/p&gt;&lt;br&gt;
+&lt;p&gt;action code : 10103 &lt;/p&gt;
 */
 func (a *Client) UpdateUserV3(params *UpdateUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateUserV3OK, *UpdateUserV3BadRequest, *UpdateUserV3Unauthorized, *UpdateUserV3Conflict, *UpdateUserV3InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -7030,11 +13703,11 @@ func (a *Client) UpdateUserV3(params *UpdateUserV3Params, authInfo runtime.Clien
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "UpdateUserV3",
-		Method:             "PATCH",
+		Method:             "PUT",
 		PathPattern:        "/iam/v3/public/namespaces/{namespace}/users/me",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &UpdateUserV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -7049,25 +13722,75 @@ func (a *Client) UpdateUserV3(params *UpdateUserV3Params, authInfo runtime.Clien
 
 	case *UpdateUserV3OK:
 		return v, nil, nil, nil, nil, nil
+
 	case *UpdateUserV3BadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *UpdateUserV3Unauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *UpdateUserV3Conflict:
 		return nil, nil, nil, v, nil, nil
+
 	case *UpdateUserV3InternalServerError:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) UpdateUserV3Short(params *UpdateUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateUserV3OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateUserV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "UpdateUserV3",
+		Method:             "PUT",
+		PathPattern:        "/iam/v3/public/namespaces/{namespace}/users/me",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateUserV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateUserV3OK:
+		return v, nil
+	case *UpdateUserV3BadRequest:
+		return nil, v
+	case *UpdateUserV3Unauthorized:
+		return nil, v
+	case *UpdateUserV3Conflict:
+		return nil, v
+	case *UpdateUserV3InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   UpgradeHeadlessAccountWithVerificationCode upgrades headless account and automatically verified the email address if it is succeeded
 
-  Required permission 'NAMESPACE:{namespace}:USER:{userId} [UPDATE]'
-<p>The endpoint upgrades a headless account by linking the headless account with the email address and the password. By upgrading the headless account into a full account, the user could use the email address and password for using Justice IAM.
-The endpoint is a shortcut for upgrading a headless account and verifying the email address in one call. In order to get a verification code for the endpoint, please check the send verification code endpoint.</p>
+  Required permission &#39;NAMESPACE:{namespace}:USER:{userId} [UPDATE]&#39;
+&lt;p&gt;The endpoint upgrades a headless account by linking the headless account with the email address and the password. By upgrading the headless account into a full account, the user could use the email address and password for using Justice IAM.
+The endpoint is a shortcut for upgrading a headless account and verifying the email address in one call. In order to get a verification code for the endpoint, please check the send verification code endpoint.&lt;/p&gt;
 */
 func (a *Client) UpgradeHeadlessAccountWithVerificationCode(params *UpgradeHeadlessAccountWithVerificationCodeParams, authInfo runtime.ClientAuthInfoWriter) (*UpgradeHeadlessAccountWithVerificationCodeOK, *UpgradeHeadlessAccountWithVerificationCodeBadRequest, *UpgradeHeadlessAccountWithVerificationCodeUnauthorized, *UpgradeHeadlessAccountWithVerificationCodeForbidden, *UpgradeHeadlessAccountWithVerificationCodeConflict, error) {
 	// TODO: Validate the params before sending
@@ -7085,7 +13808,7 @@ func (a *Client) UpgradeHeadlessAccountWithVerificationCode(params *UpgradeHeadl
 		PathPattern:        "/iam/namespaces/{namespace}/users/{userId}/upgradeHeadlessAccountWithVerificationCode",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &UpgradeHeadlessAccountWithVerificationCodeReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -7100,25 +13823,75 @@ func (a *Client) UpgradeHeadlessAccountWithVerificationCode(params *UpgradeHeadl
 
 	case *UpgradeHeadlessAccountWithVerificationCodeOK:
 		return v, nil, nil, nil, nil, nil
+
 	case *UpgradeHeadlessAccountWithVerificationCodeBadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *UpgradeHeadlessAccountWithVerificationCodeUnauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *UpgradeHeadlessAccountWithVerificationCodeForbidden:
 		return nil, nil, nil, v, nil, nil
+
 	case *UpgradeHeadlessAccountWithVerificationCodeConflict:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) UpgradeHeadlessAccountWithVerificationCodeShort(params *UpgradeHeadlessAccountWithVerificationCodeParams, authInfo runtime.ClientAuthInfoWriter) (*UpgradeHeadlessAccountWithVerificationCodeOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpgradeHeadlessAccountWithVerificationCodeParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "UpgradeHeadlessAccountWithVerificationCode",
+		Method:             "POST",
+		PathPattern:        "/iam/namespaces/{namespace}/users/{userId}/upgradeHeadlessAccountWithVerificationCode",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpgradeHeadlessAccountWithVerificationCodeReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpgradeHeadlessAccountWithVerificationCodeOK:
+		return v, nil
+	case *UpgradeHeadlessAccountWithVerificationCodeBadRequest:
+		return nil, v
+	case *UpgradeHeadlessAccountWithVerificationCodeUnauthorized:
+		return nil, v
+	case *UpgradeHeadlessAccountWithVerificationCodeForbidden:
+		return nil, v
+	case *UpgradeHeadlessAccountWithVerificationCodeConflict:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   UserVerification redeems verification code sent to user
 
-  <p>Required permission 'NAMESPACE:{namespace}:USER:{userId} [UPDATE]'</p>
-			Redeems a verification code sent to a user to verify the user's contact address is correct
-			<p>Available ContactType : <b>email<b/> or <b>phone<b/> </p>
+  &lt;p&gt;Required permission &#39;NAMESPACE:{namespace}:USER:{userId} [UPDATE]&#39;&lt;/p&gt;
+			Redeems a verification code sent to a user to verify the user&#39;s contact address is correct
+			&lt;p&gt;Available ContactType : &lt;b&gt;email&lt;b/&gt; or &lt;b&gt;phone&lt;b/&gt; &lt;/p&gt;
 */
 func (a *Client) UserVerification(params *UserVerificationParams, authInfo runtime.ClientAuthInfoWriter) (*UserVerificationNoContent, *UserVerificationBadRequest, *UserVerificationUnauthorized, *UserVerificationForbidden, *UserVerificationNotFound, *UserVerificationInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -7136,7 +13909,7 @@ func (a *Client) UserVerification(params *UserVerificationParams, authInfo runti
 		PathPattern:        "/iam/namespaces/{namespace}/users/{userId}/verification",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &UserVerificationReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -7151,28 +13924,81 @@ func (a *Client) UserVerification(params *UserVerificationParams, authInfo runti
 
 	case *UserVerificationNoContent:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *UserVerificationBadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *UserVerificationUnauthorized:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *UserVerificationForbidden:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *UserVerificationNotFound:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *UserVerificationInternalServerError:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) UserVerificationShort(params *UserVerificationParams, authInfo runtime.ClientAuthInfoWriter) (*UserVerificationNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUserVerificationParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "UserVerification",
+		Method:             "POST",
+		PathPattern:        "/iam/namespaces/{namespace}/users/{userId}/verification",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UserVerificationReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UserVerificationNoContent:
+		return v, nil
+	case *UserVerificationBadRequest:
+		return nil, v
+	case *UserVerificationUnauthorized:
+		return nil, v
+	case *UserVerificationForbidden:
+		return nil, v
+	case *UserVerificationNotFound:
+		return nil, v
+	case *UserVerificationInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   GetUserVerificationCode gets verification code sent to user
 
-  [WARNING] This endpoint is only for testing purpose. <br>This endpoint get active user verification
+  [WARNING] This endpoint is only for testing purpose. &lt;br&gt;This endpoint get active user verification
 		code. There are 3 scenario of getting verification codes : after account registration, after reset password
 		request, and after headless account upgrade. All of them will be returned on this endpoint. Required permission
- 		'ADMIN:NAMESPACE:{namespace}:USER:{userId}:CODE' [READ] <br>action code: 10146
+ 		&#39;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CODE&#39; [READ] &lt;br&gt;action code: 10146
 */
 func (a *Client) GetUserVerificationCode(params *GetUserVerificationCodeParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserVerificationCodeOK, *GetUserVerificationCodeUnauthorized, *GetUserVerificationCodeForbidden, *GetUserVerificationCodeNotFound, *GetUserVerificationCodeInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -7190,7 +14016,7 @@ func (a *Client) GetUserVerificationCode(params *GetUserVerificationCodeParams, 
 		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/users/{userId}/codes",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetUserVerificationCodeReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -7205,23 +14031,73 @@ func (a *Client) GetUserVerificationCode(params *GetUserVerificationCodeParams, 
 
 	case *GetUserVerificationCodeOK:
 		return v, nil, nil, nil, nil, nil
+
 	case *GetUserVerificationCodeUnauthorized:
 		return nil, v, nil, nil, nil, nil
+
 	case *GetUserVerificationCodeForbidden:
 		return nil, nil, v, nil, nil, nil
+
 	case *GetUserVerificationCodeNotFound:
 		return nil, nil, nil, v, nil, nil
+
 	case *GetUserVerificationCodeInternalServerError:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetUserVerificationCodeShort(params *GetUserVerificationCodeParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserVerificationCodeOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetUserVerificationCodeParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getUserVerificationCode",
+		Method:             "GET",
+		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/users/{userId}/codes",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetUserVerificationCodeReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetUserVerificationCodeOK:
+		return v, nil
+	case *GetUserVerificationCodeUnauthorized:
+		return nil, v
+	case *GetUserVerificationCodeForbidden:
+		return nil, v
+	case *GetUserVerificationCodeNotFound:
+		return nil, v
+	case *GetUserVerificationCodeInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   UpgradeHeadlessAccount upgrades user account to full account with email
 
-  Required permission 'NAMESPACE:{namespace}:USER:{userId} [UPDATE]'
+  Required permission &#39;NAMESPACE:{namespace}:USER:{userId} [UPDATE]&#39;
 */
 func (a *Client) UpgradeHeadlessAccount(params *UpgradeHeadlessAccountParams, authInfo runtime.ClientAuthInfoWriter) (*UpgradeHeadlessAccountOK, *UpgradeHeadlessAccountUnauthorized, *UpgradeHeadlessAccountForbidden, *UpgradeHeadlessAccountConflict, error) {
 	// TODO: Validate the params before sending
@@ -7239,7 +14115,7 @@ func (a *Client) UpgradeHeadlessAccount(params *UpgradeHeadlessAccountParams, au
 		PathPattern:        "/iam/namespaces/{namespace}/users/{userId}/upgradeHeadlessAccount",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &UpgradeHeadlessAccountReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -7254,14 +14130,61 @@ func (a *Client) UpgradeHeadlessAccount(params *UpgradeHeadlessAccountParams, au
 
 	case *UpgradeHeadlessAccountOK:
 		return v, nil, nil, nil, nil
+
 	case *UpgradeHeadlessAccountUnauthorized:
 		return nil, v, nil, nil, nil
+
 	case *UpgradeHeadlessAccountForbidden:
 		return nil, nil, v, nil, nil
+
 	case *UpgradeHeadlessAccountConflict:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) UpgradeHeadlessAccountShort(params *UpgradeHeadlessAccountParams, authInfo runtime.ClientAuthInfoWriter) (*UpgradeHeadlessAccountOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpgradeHeadlessAccountParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "upgradeHeadlessAccount",
+		Method:             "POST",
+		PathPattern:        "/iam/namespaces/{namespace}/users/{userId}/upgradeHeadlessAccount",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpgradeHeadlessAccountReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpgradeHeadlessAccountOK:
+		return v, nil
+	case *UpgradeHeadlessAccountUnauthorized:
+		return nil, v
+	case *UpgradeHeadlessAccountForbidden:
+		return nil, v
+	case *UpgradeHeadlessAccountConflict:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 

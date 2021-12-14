@@ -17,6 +17,9 @@ import (
 // swagger:model models.MatchAddUserIntoSessionRequest
 type ModelsMatchAddUserIntoSessionRequest struct {
 
+	// blocked players
+	BlockedPlayers []string `json:"blocked_players"`
+
 	// party id
 	PartyID *string `json:"party_id,omitempty"`
 

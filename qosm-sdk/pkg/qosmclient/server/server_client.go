@@ -30,6 +30,7 @@ type Client struct {
 // ClientService is the interface for Client methods
 type ClientService interface {
 	Heartbeat(params *HeartbeatParams, authInfo runtime.ClientAuthInfoWriter) (*HeartbeatNoContent, *HeartbeatBadRequest, *HeartbeatInternalServerError, error)
+	HeartbeatShort(params *HeartbeatParams, authInfo runtime.ClientAuthInfoWriter) (*HeartbeatNoContent, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -61,7 +62,7 @@ func (a *Client) Heartbeat(params *HeartbeatParams, authInfo runtime.ClientAuthI
 		PathPattern:        "/qosm/servers/heartbeat",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &HeartbeatReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -76,12 +77,56 @@ func (a *Client) Heartbeat(params *HeartbeatParams, authInfo runtime.ClientAuthI
 
 	case *HeartbeatNoContent:
 		return v, nil, nil, nil
+
 	case *HeartbeatBadRequest:
 		return nil, v, nil, nil
+
 	case *HeartbeatInternalServerError:
 		return nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) HeartbeatShort(params *HeartbeatParams, authInfo runtime.ClientAuthInfoWriter) (*HeartbeatNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewHeartbeatParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "Heartbeat",
+		Method:             "POST",
+		PathPattern:        "/qosm/servers/heartbeat",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &HeartbeatReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *HeartbeatNoContent:
+		return v, nil
+	case *HeartbeatBadRequest:
+		return nil, v
+	case *HeartbeatInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 

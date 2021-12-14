@@ -30,28 +30,29 @@ type Client struct {
 // ClientService is the interface for Client methods
 type ClientService interface {
 	AddPort(params *AddPortParams, authInfo runtime.ClientAuthInfoWriter) (*AddPortCreated, *AddPortBadRequest, *AddPortUnauthorized, *AddPortNotFound, *AddPortConflict, *AddPortInternalServerError, error)
-
+	AddPortShort(params *AddPortParams, authInfo runtime.ClientAuthInfoWriter) (*AddPortCreated, error)
 	ClearCache(params *ClearCacheParams, authInfo runtime.ClientAuthInfoWriter) (*ClearCacheNoContent, *ClearCacheUnauthorized, *ClearCacheInternalServerError, error)
-
-	CreateConfig(params *CreateConfigParams, authInfo runtime.ClientAuthInfoWriter) (*CreateConfigCreated, *CreateConfigBadRequest, *CreateConfigUnauthorized, *CreateConfigInternalServerError, error)
-
+	ClearCacheShort(params *ClearCacheParams, authInfo runtime.ClientAuthInfoWriter) (*ClearCacheNoContent, error)
+	CreateConfig(params *CreateConfigParams, authInfo runtime.ClientAuthInfoWriter) (*CreateConfigCreated, *CreateConfigBadRequest, *CreateConfigUnauthorized, *CreateConfigConflict, *CreateConfigInternalServerError, error)
+	CreateConfigShort(params *CreateConfigParams, authInfo runtime.ClientAuthInfoWriter) (*CreateConfigCreated, error)
 	DeleteConfig(params *DeleteConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteConfigNoContent, *DeleteConfigBadRequest, *DeleteConfigUnauthorized, *DeleteConfigNotFound, *DeleteConfigInternalServerError, error)
-
+	DeleteConfigShort(params *DeleteConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteConfigNoContent, error)
 	DeletePort(params *DeletePortParams, authInfo runtime.ClientAuthInfoWriter) (*DeletePortOK, *DeletePortBadRequest, *DeletePortUnauthorized, *DeletePortNotFound, *DeletePortInternalServerError, error)
-
+	DeletePortShort(params *DeletePortParams, authInfo runtime.ClientAuthInfoWriter) (*DeletePortOK, error)
 	GetConfig(params *GetConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetConfigOK, *GetConfigUnauthorized, *GetConfigNotFound, *GetConfigInternalServerError, error)
-
+	GetConfigShort(params *GetConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetConfigOK, error)
 	ListConfig(params *ListConfigParams, authInfo runtime.ClientAuthInfoWriter) (*ListConfigOK, *ListConfigUnauthorized, *ListConfigInternalServerError, error)
-
+	ListConfigShort(params *ListConfigParams, authInfo runtime.ClientAuthInfoWriter) (*ListConfigOK, error)
 	SaveConfig(params *SaveConfigParams, authInfo runtime.ClientAuthInfoWriter) (*SaveConfigNoContent, *SaveConfigBadRequest, *SaveConfigUnauthorized, *SaveConfigInternalServerError, error)
-
+	SaveConfigShort(params *SaveConfigParams, authInfo runtime.ClientAuthInfoWriter) (*SaveConfigNoContent, error)
 	UpdateConfig(params *UpdateConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateConfigOK, *UpdateConfigBadRequest, *UpdateConfigUnauthorized, *UpdateConfigNotFound, *UpdateConfigInternalServerError, error)
-
+	UpdateConfigShort(params *UpdateConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateConfigOK, error)
 	UpdatePort(params *UpdatePortParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePortOK, *UpdatePortBadRequest, *UpdatePortUnauthorized, *UpdatePortNotFound, *UpdatePortInternalServerError, error)
-
+	UpdatePortShort(params *UpdatePortParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePortOK, error)
 	ExportConfigV1(params *ExportConfigV1Params, authInfo runtime.ClientAuthInfoWriter) (*ExportConfigV1OK, *ExportConfigV1Unauthorized, *ExportConfigV1Forbidden, *ExportConfigV1NotFound, *ExportConfigV1InternalServerError, error)
-
+	ExportConfigV1Short(params *ExportConfigV1Params, authInfo runtime.ClientAuthInfoWriter) (*ExportConfigV1OK, error)
 	ImportConfigV1(params *ImportConfigV1Params, authInfo runtime.ClientAuthInfoWriter) (*ImportConfigV1OK, *ImportConfigV1BadRequest, *ImportConfigV1Unauthorized, *ImportConfigV1Forbidden, *ImportConfigV1NotFound, *ImportConfigV1InternalServerError, error)
+	ImportConfigV1Short(params *ImportConfigV1Params, authInfo runtime.ClientAuthInfoWriter) (*ImportConfigV1OK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -81,7 +82,7 @@ func (a *Client) AddPort(params *AddPortParams, authInfo runtime.ClientAuthInfoW
 		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/configs/ports/{name}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AddPortReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -96,18 +97,71 @@ func (a *Client) AddPort(params *AddPortParams, authInfo runtime.ClientAuthInfoW
 
 	case *AddPortCreated:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *AddPortBadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *AddPortUnauthorized:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *AddPortNotFound:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *AddPortConflict:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *AddPortInternalServerError:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AddPortShort(params *AddPortParams, authInfo runtime.ClientAuthInfoWriter) (*AddPortCreated, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAddPortParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AddPort",
+		Method:             "POST",
+		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/configs/ports/{name}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AddPortReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AddPortCreated:
+		return v, nil
+	case *AddPortBadRequest:
+		return nil, v
+	case *AddPortUnauthorized:
+		return nil, v
+	case *AddPortNotFound:
+		return nil, v
+	case *AddPortConflict:
+		return nil, v
+	case *AddPortInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -136,7 +190,7 @@ func (a *Client) ClearCache(params *ClearCacheParams, authInfo runtime.ClientAut
 		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/configs/cache",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &ClearCacheReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -151,12 +205,56 @@ func (a *Client) ClearCache(params *ClearCacheParams, authInfo runtime.ClientAut
 
 	case *ClearCacheNoContent:
 		return v, nil, nil, nil
+
 	case *ClearCacheUnauthorized:
 		return nil, v, nil, nil
+
 	case *ClearCacheInternalServerError:
 		return nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) ClearCacheShort(params *ClearCacheParams, authInfo runtime.ClientAuthInfoWriter) (*ClearCacheNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewClearCacheParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "ClearCache",
+		Method:             "DELETE",
+		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/configs/cache",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ClearCacheReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *ClearCacheNoContent:
+		return v, nil
+	case *ClearCacheUnauthorized:
+		return nil, v
+	case *ClearCacheInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -169,7 +267,7 @@ Required scope: social
 
 This endpoint creates config.
 
-Port is where your game listens for incoming UDP connection, if empty it'll be set to 15000
+Port is where your game listens for incoming UDP connection, if empty it&#39;ll be set to 15000
 
 CPU and Memory limit / request are formatted with Kubernetes format,
 e.g. CPU of 1000m is 1 core, and Memory of 512Mi is 512 MB.
@@ -183,21 +281,21 @@ Heartbeat timeout is time limit for DS to give heartbeat before marked as UNREAC
 
 Sample config:
 {
-	"namespace": "accelbyte",
-	"providers": [
-	"aws"
+	&#34;namespace&#34;: &#34;accelbyte&#34;,
+	&#34;providers&#34;: [
+	&#34;aws&#34;
 	],
-	"port": 7777,
-	"protocol": "udp",
-	"creation_timeout": 120,
-	"claim_timeout": 60,
-	"session_timeout": 1800,
-	"heartbeat_timeout": 30,
-	"unreachable_timeout": 30,
+	&#34;port&#34;: 7777,
+	&#34;protocol&#34;: &#34;udp&#34;,
+	&#34;creation_timeout&#34;: 120,
+	&#34;claim_timeout&#34;: 60,
+	&#34;session_timeout&#34;: 1800,
+	&#34;heartbeat_timeout&#34;: 30,
+	&#34;unreachable_timeout&#34;: 30,
 }
 ```
 */
-func (a *Client) CreateConfig(params *CreateConfigParams, authInfo runtime.ClientAuthInfoWriter) (*CreateConfigCreated, *CreateConfigBadRequest, *CreateConfigUnauthorized, *CreateConfigInternalServerError, error) {
+func (a *Client) CreateConfig(params *CreateConfigParams, authInfo runtime.ClientAuthInfoWriter) (*CreateConfigCreated, *CreateConfigBadRequest, *CreateConfigUnauthorized, *CreateConfigConflict, *CreateConfigInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCreateConfigParams()
@@ -213,7 +311,7 @@ func (a *Client) CreateConfig(params *CreateConfigParams, authInfo runtime.Clien
 		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/configs",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &CreateConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -221,21 +319,73 @@ func (a *Client) CreateConfig(params *CreateConfigParams, authInfo runtime.Clien
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *CreateConfigCreated:
-		return v, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil
+
 	case *CreateConfigBadRequest:
-		return nil, v, nil, nil, nil
+		return nil, v, nil, nil, nil, nil
+
 	case *CreateConfigUnauthorized:
-		return nil, nil, v, nil, nil
+		return nil, nil, v, nil, nil, nil
+
+	case *CreateConfigConflict:
+		return nil, nil, nil, v, nil, nil
+
 	case *CreateConfigInternalServerError:
-		return nil, nil, nil, v, nil
+		return nil, nil, nil, nil, v, nil
+
 	default:
-		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) CreateConfigShort(params *CreateConfigParams, authInfo runtime.ClientAuthInfoWriter) (*CreateConfigCreated, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreateConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "CreateConfig",
+		Method:             "POST",
+		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/configs",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CreateConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *CreateConfigCreated:
+		return v, nil
+	case *CreateConfigBadRequest:
+		return nil, v
+	case *CreateConfigUnauthorized:
+		return nil, v
+	case *CreateConfigConflict:
+		return nil, v
+	case *CreateConfigInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -266,7 +416,7 @@ func (a *Client) DeleteConfig(params *DeleteConfigParams, authInfo runtime.Clien
 		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/configs",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -281,16 +431,66 @@ func (a *Client) DeleteConfig(params *DeleteConfigParams, authInfo runtime.Clien
 
 	case *DeleteConfigNoContent:
 		return v, nil, nil, nil, nil, nil
+
 	case *DeleteConfigBadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *DeleteConfigUnauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *DeleteConfigNotFound:
 		return nil, nil, nil, v, nil, nil
+
 	case *DeleteConfigInternalServerError:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) DeleteConfigShort(params *DeleteConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteConfigNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "DeleteConfig",
+		Method:             "DELETE",
+		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/configs",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeleteConfigNoContent:
+		return v, nil
+	case *DeleteConfigBadRequest:
+		return nil, v
+	case *DeleteConfigUnauthorized:
+		return nil, v
+	case *DeleteConfigNotFound:
+		return nil, v
+	case *DeleteConfigInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -319,7 +519,7 @@ func (a *Client) DeletePort(params *DeletePortParams, authInfo runtime.ClientAut
 		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/configs/ports/{name}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeletePortReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -334,16 +534,66 @@ func (a *Client) DeletePort(params *DeletePortParams, authInfo runtime.ClientAut
 
 	case *DeletePortOK:
 		return v, nil, nil, nil, nil, nil
+
 	case *DeletePortBadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *DeletePortUnauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *DeletePortNotFound:
 		return nil, nil, nil, v, nil, nil
+
 	case *DeletePortInternalServerError:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) DeletePortShort(params *DeletePortParams, authInfo runtime.ClientAuthInfoWriter) (*DeletePortOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeletePortParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "DeletePort",
+		Method:             "DELETE",
+		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/configs/ports/{name}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeletePortReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeletePortOK:
+		return v, nil
+	case *DeletePortBadRequest:
+		return nil, v
+	case *DeletePortUnauthorized:
+		return nil, v
+	case *DeletePortNotFound:
+		return nil, v
+	case *DeletePortInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -372,7 +622,7 @@ func (a *Client) GetConfig(params *GetConfigParams, authInfo runtime.ClientAuthI
 		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/configs",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -387,14 +637,61 @@ func (a *Client) GetConfig(params *GetConfigParams, authInfo runtime.ClientAuthI
 
 	case *GetConfigOK:
 		return v, nil, nil, nil, nil
+
 	case *GetConfigUnauthorized:
 		return nil, v, nil, nil, nil
+
 	case *GetConfigNotFound:
 		return nil, nil, v, nil, nil
+
 	case *GetConfigInternalServerError:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetConfigShort(params *GetConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetConfigOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetConfig",
+		Method:             "GET",
+		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/configs",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetConfigOK:
+		return v, nil
+	case *GetConfigUnauthorized:
+		return nil, v
+	case *GetConfigNotFound:
+		return nil, v
+	case *GetConfigInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -423,7 +720,7 @@ func (a *Client) ListConfig(params *ListConfigParams, authInfo runtime.ClientAut
 		PathPattern:        "/dsmcontroller/admin/configs",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &ListConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -438,12 +735,56 @@ func (a *Client) ListConfig(params *ListConfigParams, authInfo runtime.ClientAut
 
 	case *ListConfigOK:
 		return v, nil, nil, nil
+
 	case *ListConfigUnauthorized:
 		return nil, v, nil, nil
+
 	case *ListConfigInternalServerError:
 		return nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) ListConfigShort(params *ListConfigParams, authInfo runtime.ClientAuthInfoWriter) (*ListConfigOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewListConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "ListConfig",
+		Method:             "GET",
+		PathPattern:        "/dsmcontroller/admin/configs",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ListConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *ListConfigOK:
+		return v, nil
+	case *ListConfigUnauthorized:
+		return nil, v
+	case *ListConfigInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -457,7 +798,7 @@ Required scope: social
 This endpoint adds/modifies config. When there are ready servers and
 the server version is updated, those servers will be replaced with newer version.
 
-Port is where your game listens for incoming UDP connection, if empty it'll be set to 15000
+Port is where your game listens for incoming UDP connection, if empty it&#39;ll be set to 15000
 
 CPU and Memory limit / request are formatted with Kubernetes format,
 e.g. CPU of 1000m is 1 core, and Memory of 512Mi is 512 MB.
@@ -471,55 +812,55 @@ Heartbeat timeout is time limit for DS to give heartbeat before marked as UNREAC
 
 Sample config:
 {
-	"namespace": "accelbyte",
-	"providers": [
-	"aws"
+	&#34;namespace&#34;: &#34;accelbyte&#34;,
+	&#34;providers&#34;: [
+	&#34;aws&#34;
 	],
-	"port": 7777,
-	"protocol": "udp",
-	"creation_timeout": 120,
-	"claim_timeout": 60,
-	"session_timeout": 1800,
-	"heartbeat_timeout": 30,
-	"unreachable_timeout": 30,
-	"image_version_mapping": {
-		"1.4.0": "accelbyte/sample-ds-go:1.4.0"
+	&#34;port&#34;: 7777,
+	&#34;protocol&#34;: &#34;udp&#34;,
+	&#34;creation_timeout&#34;: 120,
+	&#34;claim_timeout&#34;: 60,
+	&#34;session_timeout&#34;: 1800,
+	&#34;heartbeat_timeout&#34;: 30,
+	&#34;unreachable_timeout&#34;: 30,
+	&#34;image_version_mapping&#34;: {
+		&#34;1.4.0&#34;: &#34;accelbyte/sample-ds-go:1.4.0&#34;
 	},
-	"default_version": "1.4.0",
-	"cpu_limit": "100",
-	"mem_limit": "64",
-	"params": "",
-	"min_count": 0,
-	"max_count": 0,
-	"buffer_count": 0,
-	"configurations": {
-		"1player": {
-			"cpu_limit": "100",
-			"mem_limit": "64",
-			"params": "-gamemode 1p",
+	&#34;default_version&#34;: &#34;1.4.0&#34;,
+	&#34;cpu_limit&#34;: &#34;100&#34;,
+	&#34;mem_limit&#34;: &#34;64&#34;,
+	&#34;params&#34;: &#34;&#34;,
+	&#34;min_count&#34;: 0,
+	&#34;max_count&#34;: 0,
+	&#34;buffer_count&#34;: 0,
+	&#34;configurations&#34;: {
+		&#34;1player&#34;: {
+			&#34;cpu_limit&#34;: &#34;100&#34;,
+			&#34;mem_limit&#34;: &#34;64&#34;,
+			&#34;params&#34;: &#34;-gamemode 1p&#34;,
 		},
-		"50players": {
-			"cpu_limit": "200",
-			"mem_limit": "512",
-			"params": "-gamemode 50p",
+		&#34;50players&#34;: {
+			&#34;cpu_limit&#34;: &#34;200&#34;,
+			&#34;mem_limit&#34;: &#34;512&#34;,
+			&#34;params&#34;: &#34;-gamemode 50p&#34;,
 		}
 	},
-	"deployments": {
-		"global-1p": {
-			"game_version": "1.4.0"",
-			"regions": ["us-west", "ap-southeast"],
-			"configuration": "1player",
-			"min_count": 0,
-			"max_count": 0,
-			"buffer_count": 2
+	&#34;deployments&#34;: {
+		&#34;global-1p&#34;: {
+			&#34;game_version&#34;: &#34;1.4.0&#34;&#34;,
+			&#34;regions&#34;: [&#34;us-west&#34;, &#34;ap-southeast&#34;],
+			&#34;configuration&#34;: &#34;1player&#34;,
+			&#34;min_count&#34;: 0,
+			&#34;max_count&#34;: 0,
+			&#34;buffer_count&#34;: 2
 		},
-		"us-50p": {
-			"game_version": "1.4.0"",
-			"regions": ["us-west"],
-			"configuration": "50players",
-			"min_count": 0,
-			"max_count": 0,
-			"buffer_count": 5
+		&#34;us-50p&#34;: {
+			&#34;game_version&#34;: &#34;1.4.0&#34;&#34;,
+			&#34;regions&#34;: [&#34;us-west&#34;],
+			&#34;configuration&#34;: &#34;50players&#34;,
+			&#34;min_count&#34;: 0,
+			&#34;max_count&#34;: 0,
+			&#34;buffer_count&#34;: 5
 		},
 	},
 }
@@ -541,7 +882,7 @@ func (a *Client) SaveConfig(params *SaveConfigParams, authInfo runtime.ClientAut
 		PathPattern:        "/dsmcontroller/admin/configs",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &SaveConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -556,14 +897,61 @@ func (a *Client) SaveConfig(params *SaveConfigParams, authInfo runtime.ClientAut
 
 	case *SaveConfigNoContent:
 		return v, nil, nil, nil, nil
+
 	case *SaveConfigBadRequest:
 		return nil, v, nil, nil, nil
+
 	case *SaveConfigUnauthorized:
 		return nil, nil, v, nil, nil
+
 	case *SaveConfigInternalServerError:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) SaveConfigShort(params *SaveConfigParams, authInfo runtime.ClientAuthInfoWriter) (*SaveConfigNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewSaveConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "SaveConfig",
+		Method:             "POST",
+		PathPattern:        "/dsmcontroller/admin/configs",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &SaveConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *SaveConfigNoContent:
+		return v, nil
+	case *SaveConfigBadRequest:
+		return nil, v
+	case *SaveConfigUnauthorized:
+		return nil, v
+	case *SaveConfigInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -577,7 +965,7 @@ Required scope: social
 This endpoint modifies config. When there are ready servers and
 the server version is updated, those servers will be replaced with newer version.
 
-Port is where your game listens for incoming UDP connection, if empty it'll be set to 15000
+Port is where your game listens for incoming UDP connection, if empty it&#39;ll be set to 15000
 
 CPU and Memory limit / request are formatted with Kubernetes format,
 e.g. CPU of 1000m is 1 core, and Memory of 512Mi is 512 MB.
@@ -591,17 +979,17 @@ Heartbeat timeout is time limit for DS to give heartbeat before marked as UNREAC
 
 Sample config:
 {
-	"namespace": "accelbyte",
-	"providers": [
-	"aws"
+	&#34;namespace&#34;: &#34;accelbyte&#34;,
+	&#34;providers&#34;: [
+	&#34;aws&#34;
 	],
-	"port": 7777,
-	"protocol": "udp",
-	"creation_timeout": 120,
-	"claim_timeout": 60,
-	"session_timeout": 1800,
-	"heartbeat_timeout": 30,
-	"unreachable_timeout": 30,
+	&#34;port&#34;: 7777,
+	&#34;protocol&#34;: &#34;udp&#34;,
+	&#34;creation_timeout&#34;: 120,
+	&#34;claim_timeout&#34;: 60,
+	&#34;session_timeout&#34;: 1800,
+	&#34;heartbeat_timeout&#34;: 30,
+	&#34;unreachable_timeout&#34;: 30,
 }
 ```
 */
@@ -621,7 +1009,7 @@ func (a *Client) UpdateConfig(params *UpdateConfigParams, authInfo runtime.Clien
 		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/configs",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &UpdateConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -636,16 +1024,66 @@ func (a *Client) UpdateConfig(params *UpdateConfigParams, authInfo runtime.Clien
 
 	case *UpdateConfigOK:
 		return v, nil, nil, nil, nil, nil
+
 	case *UpdateConfigBadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *UpdateConfigUnauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *UpdateConfigNotFound:
 		return nil, nil, nil, v, nil, nil
+
 	case *UpdateConfigInternalServerError:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) UpdateConfigShort(params *UpdateConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateConfigOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "UpdateConfig",
+		Method:             "PATCH",
+		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/configs",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateConfigOK:
+		return v, nil
+	case *UpdateConfigBadRequest:
+		return nil, v
+	case *UpdateConfigUnauthorized:
+		return nil, v
+	case *UpdateConfigNotFound:
+		return nil, v
+	case *UpdateConfigInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -674,7 +1112,7 @@ func (a *Client) UpdatePort(params *UpdatePortParams, authInfo runtime.ClientAut
 		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/configs/ports/{name}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &UpdatePortReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -689,16 +1127,66 @@ func (a *Client) UpdatePort(params *UpdatePortParams, authInfo runtime.ClientAut
 
 	case *UpdatePortOK:
 		return v, nil, nil, nil, nil, nil
+
 	case *UpdatePortBadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *UpdatePortUnauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *UpdatePortNotFound:
 		return nil, nil, nil, v, nil, nil
+
 	case *UpdatePortInternalServerError:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) UpdatePortShort(params *UpdatePortParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePortOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdatePortParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "UpdatePort",
+		Method:             "PATCH",
+		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/configs/ports/{name}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdatePortReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdatePortOK:
+		return v, nil
+	case *UpdatePortBadRequest:
+		return nil, v
+	case *UpdatePortUnauthorized:
+		return nil, v
+	case *UpdatePortNotFound:
+		return nil, v
+	case *UpdatePortInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -728,7 +1216,7 @@ func (a *Client) ExportConfigV1(params *ExportConfigV1Params, authInfo runtime.C
 		PathPattern:        "/dsmcontroller/admin/v1/namespaces/{namespace}/configs/export",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &ExportConfigV1Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -743,16 +1231,66 @@ func (a *Client) ExportConfigV1(params *ExportConfigV1Params, authInfo runtime.C
 
 	case *ExportConfigV1OK:
 		return v, nil, nil, nil, nil, nil
+
 	case *ExportConfigV1Unauthorized:
 		return nil, v, nil, nil, nil, nil
+
 	case *ExportConfigV1Forbidden:
 		return nil, nil, v, nil, nil, nil
+
 	case *ExportConfigV1NotFound:
 		return nil, nil, nil, v, nil, nil
+
 	case *ExportConfigV1InternalServerError:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) ExportConfigV1Short(params *ExportConfigV1Params, authInfo runtime.ClientAuthInfoWriter) (*ExportConfigV1OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewExportConfigV1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "exportConfigV1",
+		Method:             "GET",
+		PathPattern:        "/dsmcontroller/admin/v1/namespaces/{namespace}/configs/export",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ExportConfigV1Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *ExportConfigV1OK:
+		return v, nil
+	case *ExportConfigV1Unauthorized:
+		return nil, v
+	case *ExportConfigV1Forbidden:
+		return nil, v
+	case *ExportConfigV1NotFound:
+		return nil, v
+	case *ExportConfigV1InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -784,7 +1322,7 @@ func (a *Client) ImportConfigV1(params *ImportConfigV1Params, authInfo runtime.C
 		PathPattern:        "/dsmcontroller/admin/v1/namespaces/{namespace}/configs/import",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"multipart/form-data"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &ImportConfigV1Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -799,18 +1337,71 @@ func (a *Client) ImportConfigV1(params *ImportConfigV1Params, authInfo runtime.C
 
 	case *ImportConfigV1OK:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *ImportConfigV1BadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *ImportConfigV1Unauthorized:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *ImportConfigV1Forbidden:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *ImportConfigV1NotFound:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *ImportConfigV1InternalServerError:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) ImportConfigV1Short(params *ImportConfigV1Params, authInfo runtime.ClientAuthInfoWriter) (*ImportConfigV1OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewImportConfigV1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "importConfigV1",
+		Method:             "POST",
+		PathPattern:        "/dsmcontroller/admin/v1/namespaces/{namespace}/configs/import",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"multipart/form-data"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ImportConfigV1Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *ImportConfigV1OK:
+		return v, nil
+	case *ImportConfigV1BadRequest:
+		return nil, v
+	case *ImportConfigV1Unauthorized:
+		return nil, v
+	case *ImportConfigV1Forbidden:
+		return nil, v
+	case *ImportConfigV1NotFound:
+		return nil, v
+	case *ImportConfigV1InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 

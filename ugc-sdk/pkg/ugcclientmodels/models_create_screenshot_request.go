@@ -6,6 +6,8 @@ package ugcclientmodels
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"strconv"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -14,27 +16,19 @@ import (
 
 // ModelsCreateScreenshotRequest models create screenshot request
 //
-// swagger:model models.createScreenshotRequest
+// swagger:model models.CreateScreenshotRequest
 type ModelsCreateScreenshotRequest struct {
 
-	// description
+	// screenshots
 	// Required: true
-	Description *string `json:"description"`
-
-	// file extension
-	// Required: true
-	FileExtension *string `json:"fileExtension"`
+	Screenshots []*ModelsCreateScreenshotRequestItem `json:"screenshots"`
 }
 
 // Validate validates this models create screenshot request
 func (m *ModelsCreateScreenshotRequest) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateDescription(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateFileExtension(formats); err != nil {
+	if err := m.validateScreenshots(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -44,19 +38,26 @@ func (m *ModelsCreateScreenshotRequest) Validate(formats strfmt.Registry) error 
 	return nil
 }
 
-func (m *ModelsCreateScreenshotRequest) validateDescription(formats strfmt.Registry) error {
+func (m *ModelsCreateScreenshotRequest) validateScreenshots(formats strfmt.Registry) error {
 
-	if err := validate.Required("description", "body", m.Description); err != nil {
+	if err := validate.Required("screenshots", "body", m.Screenshots); err != nil {
 		return err
 	}
 
-	return nil
-}
+	for i := 0; i < len(m.Screenshots); i++ {
+		if swag.IsZero(m.Screenshots[i]) { // not required
+			continue
+		}
 
-func (m *ModelsCreateScreenshotRequest) validateFileExtension(formats strfmt.Registry) error {
+		if m.Screenshots[i] != nil {
+			if err := m.Screenshots[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("screenshots" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
 
-	if err := validate.Required("fileExtension", "body", m.FileExtension); err != nil {
-		return err
 	}
 
 	return nil

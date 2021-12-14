@@ -30,6 +30,7 @@ type Client struct {
 // ClientService is the interface for Client methods
 type ClientService interface {
 	ListTerminatedServers(params *ListTerminatedServersParams, authInfo runtime.ClientAuthInfoWriter) (*ListTerminatedServersOK, *ListTerminatedServersBadRequest, *ListTerminatedServersUnauthorized, *ListTerminatedServersInternalServerError, error)
+	ListTerminatedServersShort(params *ListTerminatedServersParams, authInfo runtime.ClientAuthInfoWriter) (*ListTerminatedServersOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -59,7 +60,7 @@ func (a *Client) ListTerminatedServers(params *ListTerminatedServersParams, auth
 		PathPattern:        "/dslogmanager/namespaces/{namespace}/servers/search",
 		ProducesMediaTypes: []string{"application/json", "text/x-log"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &ListTerminatedServersReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -74,14 +75,61 @@ func (a *Client) ListTerminatedServers(params *ListTerminatedServersParams, auth
 
 	case *ListTerminatedServersOK:
 		return v, nil, nil, nil, nil
+
 	case *ListTerminatedServersBadRequest:
 		return nil, v, nil, nil, nil
+
 	case *ListTerminatedServersUnauthorized:
 		return nil, nil, v, nil, nil
+
 	case *ListTerminatedServersInternalServerError:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) ListTerminatedServersShort(params *ListTerminatedServersParams, authInfo runtime.ClientAuthInfoWriter) (*ListTerminatedServersOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewListTerminatedServersParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "listTerminatedServers",
+		Method:             "GET",
+		PathPattern:        "/dslogmanager/namespaces/{namespace}/servers/search",
+		ProducesMediaTypes: []string{"application/json", "text/x-log"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ListTerminatedServersReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *ListTerminatedServersOK:
+		return v, nil
+	case *ListTerminatedServersBadRequest:
+		return nil, v
+	case *ListTerminatedServersUnauthorized:
+		return nil, v
+	case *ListTerminatedServersInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 

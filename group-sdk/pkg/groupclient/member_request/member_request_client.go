@@ -30,8 +30,9 @@ type Client struct {
 // ClientService is the interface for Client methods
 type ClientService interface {
 	GetGroupInvitationRequestPublicV1(params *GetGroupInvitationRequestPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetGroupInvitationRequestPublicV1OK, *GetGroupInvitationRequestPublicV1BadRequest, *GetGroupInvitationRequestPublicV1Unauthorized, *GetGroupInvitationRequestPublicV1Forbidden, *GetGroupInvitationRequestPublicV1InternalServerError, error)
-
+	GetGroupInvitationRequestPublicV1Short(params *GetGroupInvitationRequestPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetGroupInvitationRequestPublicV1OK, error)
 	GetGroupJoinRequestPublicV1(params *GetGroupJoinRequestPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetGroupJoinRequestPublicV1OK, *GetGroupJoinRequestPublicV1BadRequest, *GetGroupJoinRequestPublicV1Unauthorized, *GetGroupJoinRequestPublicV1Forbidden, *GetGroupJoinRequestPublicV1InternalServerError, error)
+	GetGroupJoinRequestPublicV1Short(params *GetGroupJoinRequestPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetGroupJoinRequestPublicV1OK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -39,10 +40,10 @@ type ClientService interface {
 /*
   GetGroupInvitationRequestPublicV1 gets group invitation request list
 
-  <p>Required valid user authentication </p>
-			<p>This endpoint is used to Get Group Invitation Request List</p>
-			<p>Get Group Invitation Request List for specific group. It will check any group invitation for this user</p>
-			<p>Action Code: 73502</p>
+  &lt;p&gt;Required valid user authentication &lt;/p&gt;
+			&lt;p&gt;This endpoint is used to Get Group Invitation Request List&lt;/p&gt;
+			&lt;p&gt;Get Group Invitation Request List for specific group. It will check any group invitation for this user&lt;/p&gt;
+			&lt;p&gt;Action Code: 73502&lt;/p&gt;
 
 */
 func (a *Client) GetGroupInvitationRequestPublicV1(params *GetGroupInvitationRequestPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetGroupInvitationRequestPublicV1OK, *GetGroupInvitationRequestPublicV1BadRequest, *GetGroupInvitationRequestPublicV1Unauthorized, *GetGroupInvitationRequestPublicV1Forbidden, *GetGroupInvitationRequestPublicV1InternalServerError, error) {
@@ -61,7 +62,7 @@ func (a *Client) GetGroupInvitationRequestPublicV1(params *GetGroupInvitationReq
 		PathPattern:        "/group/v1/public/namespaces/{namespace}/users/me/invite/request",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetGroupInvitationRequestPublicV1Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -76,27 +77,77 @@ func (a *Client) GetGroupInvitationRequestPublicV1(params *GetGroupInvitationReq
 
 	case *GetGroupInvitationRequestPublicV1OK:
 		return v, nil, nil, nil, nil, nil
+
 	case *GetGroupInvitationRequestPublicV1BadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *GetGroupInvitationRequestPublicV1Unauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *GetGroupInvitationRequestPublicV1Forbidden:
 		return nil, nil, nil, v, nil, nil
+
 	case *GetGroupInvitationRequestPublicV1InternalServerError:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetGroupInvitationRequestPublicV1Short(params *GetGroupInvitationRequestPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetGroupInvitationRequestPublicV1OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetGroupInvitationRequestPublicV1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getGroupInvitationRequestPublicV1",
+		Method:             "GET",
+		PathPattern:        "/group/v1/public/namespaces/{namespace}/users/me/invite/request",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetGroupInvitationRequestPublicV1Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetGroupInvitationRequestPublicV1OK:
+		return v, nil
+	case *GetGroupInvitationRequestPublicV1BadRequest:
+		return nil, v
+	case *GetGroupInvitationRequestPublicV1Unauthorized:
+		return nil, v
+	case *GetGroupInvitationRequestPublicV1Forbidden:
+		return nil, v
+	case *GetGroupInvitationRequestPublicV1InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   GetGroupJoinRequestPublicV1 gets group join request list
 
-  <p>Required valid user authentication </p>
-			<p>Required Member Role Permission: "GROUP:JOIN [READ]"</p>
-			<p>This endpoint is used to Get Group Join Request List</p>
-			<p>Get Group Join Request List for specific group. Group members needs to have permission and also belong to the group to access this endpoint</p>
-			<p>Action Code: 73501</p>
+  &lt;p&gt;Required valid user authentication &lt;/p&gt;
+			&lt;p&gt;Required Member Role Permission: &#34;GROUP:JOIN [READ]&#34;&lt;/p&gt;
+			&lt;p&gt;This endpoint is used to Get Group Join Request List&lt;/p&gt;
+			&lt;p&gt;Get Group Join Request List for specific group. Group members needs to have permission and also belong to the group to access this endpoint&lt;/p&gt;
+			&lt;p&gt;Action Code: 73501&lt;/p&gt;
 
 */
 func (a *Client) GetGroupJoinRequestPublicV1(params *GetGroupJoinRequestPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetGroupJoinRequestPublicV1OK, *GetGroupJoinRequestPublicV1BadRequest, *GetGroupJoinRequestPublicV1Unauthorized, *GetGroupJoinRequestPublicV1Forbidden, *GetGroupJoinRequestPublicV1InternalServerError, error) {
@@ -115,7 +166,7 @@ func (a *Client) GetGroupJoinRequestPublicV1(params *GetGroupJoinRequestPublicV1
 		PathPattern:        "/group/v1/public/namespaces/{namespace}/groups/{groupId}/join/request",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetGroupJoinRequestPublicV1Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -130,16 +181,66 @@ func (a *Client) GetGroupJoinRequestPublicV1(params *GetGroupJoinRequestPublicV1
 
 	case *GetGroupJoinRequestPublicV1OK:
 		return v, nil, nil, nil, nil, nil
+
 	case *GetGroupJoinRequestPublicV1BadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *GetGroupJoinRequestPublicV1Unauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *GetGroupJoinRequestPublicV1Forbidden:
 		return nil, nil, nil, v, nil, nil
+
 	case *GetGroupJoinRequestPublicV1InternalServerError:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetGroupJoinRequestPublicV1Short(params *GetGroupJoinRequestPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetGroupJoinRequestPublicV1OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetGroupJoinRequestPublicV1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getGroupJoinRequestPublicV1",
+		Method:             "GET",
+		PathPattern:        "/group/v1/public/namespaces/{namespace}/groups/{groupId}/join/request",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetGroupJoinRequestPublicV1Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetGroupJoinRequestPublicV1OK:
+		return v, nil
+	case *GetGroupJoinRequestPublicV1BadRequest:
+		return nil, v
+	case *GetGroupJoinRequestPublicV1Unauthorized:
+		return nil, v
+	case *GetGroupJoinRequestPublicV1Forbidden:
+		return nil, v
+	case *GetGroupJoinRequestPublicV1InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 

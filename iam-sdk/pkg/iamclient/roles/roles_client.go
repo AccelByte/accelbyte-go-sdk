@@ -30,100 +30,101 @@ type Client struct {
 // ClientService is the interface for Client methods
 type ClientService interface {
 	AddRoleManagers(params *AddRoleManagersParams, authInfo runtime.ClientAuthInfoWriter) (*AddRoleManagersNoContent, *AddRoleManagersBadRequest, *AddRoleManagersUnauthorized, *AddRoleManagersForbidden, *AddRoleManagersNotFound, error)
-
+	AddRoleManagersShort(params *AddRoleManagersParams, authInfo runtime.ClientAuthInfoWriter) (*AddRoleManagersNoContent, error)
 	AddRoleMembers(params *AddRoleMembersParams, authInfo runtime.ClientAuthInfoWriter) (*AddRoleMembersNoContent, *AddRoleMembersBadRequest, *AddRoleMembersUnauthorized, *AddRoleMembersForbidden, *AddRoleMembersNotFound, error)
-
+	AddRoleMembersShort(params *AddRoleMembersParams, authInfo runtime.ClientAuthInfoWriter) (*AddRoleMembersNoContent, error)
 	AddRolePermission(params *AddRolePermissionParams, authInfo runtime.ClientAuthInfoWriter) (*AddRolePermissionNoContent, *AddRolePermissionBadRequest, *AddRolePermissionUnauthorized, *AddRolePermissionForbidden, *AddRolePermissionNotFound, error)
-
+	AddRolePermissionShort(params *AddRolePermissionParams, authInfo runtime.ClientAuthInfoWriter) (*AddRolePermissionNoContent, error)
 	AdminAddRoleManagersV3(params *AdminAddRoleManagersV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminAddRoleManagersV3NoContent, *AdminAddRoleManagersV3BadRequest, *AdminAddRoleManagersV3Unauthorized, *AdminAddRoleManagersV3Forbidden, *AdminAddRoleManagersV3NotFound, *AdminAddRoleManagersV3Conflict, error)
-
+	AdminAddRoleManagersV3Short(params *AdminAddRoleManagersV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminAddRoleManagersV3NoContent, error)
 	AdminAddRoleMembersV3(params *AdminAddRoleMembersV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminAddRoleMembersV3NoContent, *AdminAddRoleMembersV3BadRequest, *AdminAddRoleMembersV3Unauthorized, *AdminAddRoleMembersV3Forbidden, *AdminAddRoleMembersV3NotFound, *AdminAddRoleMembersV3Conflict, error)
-
+	AdminAddRoleMembersV3Short(params *AdminAddRoleMembersV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminAddRoleMembersV3NoContent, error)
 	AdminAddRolePermissionsV3(params *AdminAddRolePermissionsV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminAddRolePermissionsV3NoContent, *AdminAddRolePermissionsV3BadRequest, *AdminAddRolePermissionsV3Unauthorized, *AdminAddRolePermissionsV3Forbidden, *AdminAddRolePermissionsV3NotFound, error)
-
+	AdminAddRolePermissionsV3Short(params *AdminAddRolePermissionsV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminAddRolePermissionsV3NoContent, error)
 	AdminAddRolePermissionsV4(params *AdminAddRolePermissionsV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminAddRolePermissionsV4OK, *AdminAddRolePermissionsV4BadRequest, *AdminAddRolePermissionsV4Unauthorized, *AdminAddRolePermissionsV4Forbidden, *AdminAddRolePermissionsV4NotFound, error)
-
+	AdminAddRolePermissionsV4Short(params *AdminAddRolePermissionsV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminAddRolePermissionsV4OK, error)
 	AdminAssignUserToRoleV4(params *AdminAssignUserToRoleV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminAssignUserToRoleV4Created, *AdminAssignUserToRoleV4BadRequest, *AdminAssignUserToRoleV4Unauthorized, *AdminAssignUserToRoleV4Forbidden, *AdminAssignUserToRoleV4NotFound, *AdminAssignUserToRoleV4Conflict, *AdminAssignUserToRoleV4UnprocessableEntity, error)
-
+	AdminAssignUserToRoleV4Short(params *AdminAssignUserToRoleV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminAssignUserToRoleV4Created, error)
 	AdminCreateRoleV3(params *AdminCreateRoleV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateRoleV3Created, *AdminCreateRoleV3BadRequest, *AdminCreateRoleV3Unauthorized, *AdminCreateRoleV3Forbidden, error)
-
+	AdminCreateRoleV3Short(params *AdminCreateRoleV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateRoleV3Created, error)
 	AdminCreateRoleV4(params *AdminCreateRoleV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateRoleV4Created, *AdminCreateRoleV4BadRequest, *AdminCreateRoleV4Unauthorized, *AdminCreateRoleV4Forbidden, error)
-
+	AdminCreateRoleV4Short(params *AdminCreateRoleV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateRoleV4Created, error)
 	AdminDeleteRolePermissionV3(params *AdminDeleteRolePermissionV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteRolePermissionV3NoContent, *AdminDeleteRolePermissionV3BadRequest, *AdminDeleteRolePermissionV3Unauthorized, *AdminDeleteRolePermissionV3Forbidden, *AdminDeleteRolePermissionV3NotFound, *AdminDeleteRolePermissionV3InternalServerError, error)
-
+	AdminDeleteRolePermissionV3Short(params *AdminDeleteRolePermissionV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteRolePermissionV3NoContent, error)
 	AdminDeleteRolePermissionsV3(params *AdminDeleteRolePermissionsV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteRolePermissionsV3NoContent, *AdminDeleteRolePermissionsV3Unauthorized, *AdminDeleteRolePermissionsV3Forbidden, *AdminDeleteRolePermissionsV3NotFound, error)
-
+	AdminDeleteRolePermissionsV3Short(params *AdminDeleteRolePermissionsV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteRolePermissionsV3NoContent, error)
 	AdminDeleteRolePermissionsV4(params *AdminDeleteRolePermissionsV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteRolePermissionsV4NoContent, *AdminDeleteRolePermissionsV4Unauthorized, *AdminDeleteRolePermissionsV4Forbidden, *AdminDeleteRolePermissionsV4NotFound, error)
-
+	AdminDeleteRolePermissionsV4Short(params *AdminDeleteRolePermissionsV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteRolePermissionsV4NoContent, error)
 	AdminDeleteRoleV3(params *AdminDeleteRoleV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteRoleV3NoContent, *AdminDeleteRoleV3BadRequest, *AdminDeleteRoleV3Unauthorized, *AdminDeleteRoleV3Forbidden, *AdminDeleteRoleV3NotFound, *AdminDeleteRoleV3InternalServerError, error)
-
+	AdminDeleteRoleV3Short(params *AdminDeleteRoleV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteRoleV3NoContent, error)
 	AdminDeleteRoleV4(params *AdminDeleteRoleV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteRoleV4NoContent, *AdminDeleteRoleV4BadRequest, *AdminDeleteRoleV4Unauthorized, *AdminDeleteRoleV4Forbidden, *AdminDeleteRoleV4NotFound, *AdminDeleteRoleV4InternalServerError, error)
-
+	AdminDeleteRoleV4Short(params *AdminDeleteRoleV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteRoleV4NoContent, error)
 	AdminGetRoleAdminStatusV3(params *AdminGetRoleAdminStatusV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRoleAdminStatusV3OK, *AdminGetRoleAdminStatusV3BadRequest, *AdminGetRoleAdminStatusV3Unauthorized, *AdminGetRoleAdminStatusV3Forbidden, *AdminGetRoleAdminStatusV3NotFound, error)
-
+	AdminGetRoleAdminStatusV3Short(params *AdminGetRoleAdminStatusV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRoleAdminStatusV3OK, error)
 	AdminGetRoleManagersV3(params *AdminGetRoleManagersV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRoleManagersV3OK, *AdminGetRoleManagersV3BadRequest, *AdminGetRoleManagersV3Unauthorized, *AdminGetRoleManagersV3Forbidden, *AdminGetRoleManagersV3NotFound, error)
-
+	AdminGetRoleManagersV3Short(params *AdminGetRoleManagersV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRoleManagersV3OK, error)
 	AdminGetRoleMembersV3(params *AdminGetRoleMembersV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRoleMembersV3OK, *AdminGetRoleMembersV3BadRequest, *AdminGetRoleMembersV3Unauthorized, *AdminGetRoleMembersV3Forbidden, *AdminGetRoleMembersV3NotFound, error)
-
+	AdminGetRoleMembersV3Short(params *AdminGetRoleMembersV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRoleMembersV3OK, error)
 	AdminGetRoleV3(params *AdminGetRoleV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRoleV3OK, *AdminGetRoleV3BadRequest, *AdminGetRoleV3Unauthorized, *AdminGetRoleV3Forbidden, *AdminGetRoleV3NotFound, error)
-
+	AdminGetRoleV3Short(params *AdminGetRoleV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRoleV3OK, error)
 	AdminGetRoleV4(params *AdminGetRoleV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRoleV4OK, *AdminGetRoleV4BadRequest, *AdminGetRoleV4Unauthorized, *AdminGetRoleV4Forbidden, *AdminGetRoleV4NotFound, error)
-
+	AdminGetRoleV4Short(params *AdminGetRoleV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRoleV4OK, error)
 	AdminGetRolesV3(params *AdminGetRolesV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRolesV3OK, *AdminGetRolesV3BadRequest, *AdminGetRolesV3Unauthorized, *AdminGetRolesV3Forbidden, error)
-
+	AdminGetRolesV3Short(params *AdminGetRolesV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRolesV3OK, error)
 	AdminGetRolesV4(params *AdminGetRolesV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRolesV4OK, *AdminGetRolesV4BadRequest, *AdminGetRolesV4Unauthorized, *AdminGetRolesV4Forbidden, error)
-
+	AdminGetRolesV4Short(params *AdminGetRolesV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRolesV4OK, error)
 	AdminListAssignedUsersV4(params *AdminListAssignedUsersV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminListAssignedUsersV4OK, *AdminListAssignedUsersV4BadRequest, *AdminListAssignedUsersV4Unauthorized, *AdminListAssignedUsersV4Forbidden, *AdminListAssignedUsersV4NotFound, error)
-
+	AdminListAssignedUsersV4Short(params *AdminListAssignedUsersV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminListAssignedUsersV4OK, error)
 	AdminRemoveRoleAdminV3(params *AdminRemoveRoleAdminV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminRemoveRoleAdminV3NoContent, *AdminRemoveRoleAdminV3BadRequest, *AdminRemoveRoleAdminV3Unauthorized, *AdminRemoveRoleAdminV3Forbidden, *AdminRemoveRoleAdminV3NotFound, *AdminRemoveRoleAdminV3InternalServerError, error)
-
+	AdminRemoveRoleAdminV3Short(params *AdminRemoveRoleAdminV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminRemoveRoleAdminV3NoContent, error)
 	AdminRemoveRoleManagersV3(params *AdminRemoveRoleManagersV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminRemoveRoleManagersV3NoContent, *AdminRemoveRoleManagersV3BadRequest, *AdminRemoveRoleManagersV3Unauthorized, *AdminRemoveRoleManagersV3Forbidden, *AdminRemoveRoleManagersV3NotFound, error)
-
+	AdminRemoveRoleManagersV3Short(params *AdminRemoveRoleManagersV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminRemoveRoleManagersV3NoContent, error)
 	AdminRemoveRoleMembersV3(params *AdminRemoveRoleMembersV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminRemoveRoleMembersV3NoContent, *AdminRemoveRoleMembersV3BadRequest, *AdminRemoveRoleMembersV3Unauthorized, *AdminRemoveRoleMembersV3Forbidden, *AdminRemoveRoleMembersV3NotFound, error)
-
+	AdminRemoveRoleMembersV3Short(params *AdminRemoveRoleMembersV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminRemoveRoleMembersV3NoContent, error)
 	AdminRevokeUserFromRoleV4(params *AdminRevokeUserFromRoleV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminRevokeUserFromRoleV4NoContent, *AdminRevokeUserFromRoleV4BadRequest, *AdminRevokeUserFromRoleV4Unauthorized, *AdminRevokeUserFromRoleV4Forbidden, *AdminRevokeUserFromRoleV4NotFound, error)
-
+	AdminRevokeUserFromRoleV4Short(params *AdminRevokeUserFromRoleV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminRevokeUserFromRoleV4NoContent, error)
 	AdminUpdateAdminRoleStatusV3(params *AdminUpdateAdminRoleStatusV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateAdminRoleStatusV3NoContent, *AdminUpdateAdminRoleStatusV3BadRequest, *AdminUpdateAdminRoleStatusV3Unauthorized, *AdminUpdateAdminRoleStatusV3Forbidden, *AdminUpdateAdminRoleStatusV3NotFound, *AdminUpdateAdminRoleStatusV3InternalServerError, error)
-
+	AdminUpdateAdminRoleStatusV3Short(params *AdminUpdateAdminRoleStatusV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateAdminRoleStatusV3NoContent, error)
 	AdminUpdateRolePermissionsV3(params *AdminUpdateRolePermissionsV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateRolePermissionsV3NoContent, *AdminUpdateRolePermissionsV3BadRequest, *AdminUpdateRolePermissionsV3Unauthorized, *AdminUpdateRolePermissionsV3Forbidden, *AdminUpdateRolePermissionsV3NotFound, error)
-
+	AdminUpdateRolePermissionsV3Short(params *AdminUpdateRolePermissionsV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateRolePermissionsV3NoContent, error)
 	AdminUpdateRolePermissionsV4(params *AdminUpdateRolePermissionsV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateRolePermissionsV4OK, *AdminUpdateRolePermissionsV4BadRequest, *AdminUpdateRolePermissionsV4Unauthorized, *AdminUpdateRolePermissionsV4Forbidden, *AdminUpdateRolePermissionsV4NotFound, error)
-
+	AdminUpdateRolePermissionsV4Short(params *AdminUpdateRolePermissionsV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateRolePermissionsV4OK, error)
 	AdminUpdateRoleV3(params *AdminUpdateRoleV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateRoleV3OK, *AdminUpdateRoleV3BadRequest, *AdminUpdateRoleV3Unauthorized, *AdminUpdateRoleV3Forbidden, *AdminUpdateRoleV3NotFound, error)
-
+	AdminUpdateRoleV3Short(params *AdminUpdateRoleV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateRoleV3OK, error)
 	AdminUpdateRoleV4(params *AdminUpdateRoleV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateRoleV4OK, *AdminUpdateRoleV4BadRequest, *AdminUpdateRoleV4Unauthorized, *AdminUpdateRoleV4Forbidden, *AdminUpdateRoleV4NotFound, error)
-
+	AdminUpdateRoleV4Short(params *AdminUpdateRoleV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateRoleV4OK, error)
 	CreateRole(params *CreateRoleParams, authInfo runtime.ClientAuthInfoWriter) (*CreateRoleCreated, *CreateRoleBadRequest, *CreateRoleUnauthorized, *CreateRoleForbidden, error)
-
+	CreateRoleShort(params *CreateRoleParams, authInfo runtime.ClientAuthInfoWriter) (*CreateRoleCreated, error)
 	DeleteRole(params *DeleteRoleParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteRoleNoContent, *DeleteRoleUnauthorized, *DeleteRoleForbidden, *DeleteRoleNotFound, error)
-
+	DeleteRoleShort(params *DeleteRoleParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteRoleNoContent, error)
 	DeleteRolePermission(params *DeleteRolePermissionParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteRolePermissionNoContent, *DeleteRolePermissionBadRequest, *DeleteRolePermissionUnauthorized, *DeleteRolePermissionForbidden, *DeleteRolePermissionNotFound, error)
-
+	DeleteRolePermissionShort(params *DeleteRolePermissionParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteRolePermissionNoContent, error)
 	GetRole(params *GetRoleParams, authInfo runtime.ClientAuthInfoWriter) (*GetRoleOK, *GetRoleUnauthorized, *GetRoleForbidden, *GetRoleNotFound, error)
-
+	GetRoleShort(params *GetRoleParams, authInfo runtime.ClientAuthInfoWriter) (*GetRoleOK, error)
 	GetRoleAdminStatus(params *GetRoleAdminStatusParams, authInfo runtime.ClientAuthInfoWriter) (*GetRoleAdminStatusOK, *GetRoleAdminStatusBadRequest, *GetRoleAdminStatusUnauthorized, *GetRoleAdminStatusForbidden, *GetRoleAdminStatusNotFound, error)
-
+	GetRoleAdminStatusShort(params *GetRoleAdminStatusParams, authInfo runtime.ClientAuthInfoWriter) (*GetRoleAdminStatusOK, error)
 	GetRoleManagers(params *GetRoleManagersParams, authInfo runtime.ClientAuthInfoWriter) (*GetRoleManagersOK, *GetRoleManagersBadRequest, *GetRoleManagersUnauthorized, *GetRoleManagersForbidden, *GetRoleManagersNotFound, error)
-
+	GetRoleManagersShort(params *GetRoleManagersParams, authInfo runtime.ClientAuthInfoWriter) (*GetRoleManagersOK, error)
 	GetRoleMembers(params *GetRoleMembersParams, authInfo runtime.ClientAuthInfoWriter) (*GetRoleMembersOK, *GetRoleMembersBadRequest, *GetRoleMembersUnauthorized, *GetRoleMembersForbidden, *GetRoleMembersNotFound, error)
-
+	GetRoleMembersShort(params *GetRoleMembersParams, authInfo runtime.ClientAuthInfoWriter) (*GetRoleMembersOK, error)
 	GetRoles(params *GetRolesParams, authInfo runtime.ClientAuthInfoWriter) (*GetRolesOK, *GetRolesUnauthorized, *GetRolesForbidden, error)
-
+	GetRolesShort(params *GetRolesParams, authInfo runtime.ClientAuthInfoWriter) (*GetRolesOK, error)
 	PublicGetRoleV3(params *PublicGetRoleV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetRoleV3OK, *PublicGetRoleV3BadRequest, *PublicGetRoleV3NotFound, error)
-
+	PublicGetRoleV3Short(params *PublicGetRoleV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetRoleV3OK, error)
 	PublicGetRolesV3(params *PublicGetRolesV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetRolesV3OK, *PublicGetRolesV3BadRequest, error)
-
+	PublicGetRolesV3Short(params *PublicGetRolesV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetRolesV3OK, error)
 	RemoveRoleAdmin(params *RemoveRoleAdminParams, authInfo runtime.ClientAuthInfoWriter) (*RemoveRoleAdminNoContent, *RemoveRoleAdminBadRequest, *RemoveRoleAdminUnauthorized, *RemoveRoleAdminForbidden, *RemoveRoleAdminNotFound, error)
-
+	RemoveRoleAdminShort(params *RemoveRoleAdminParams, authInfo runtime.ClientAuthInfoWriter) (*RemoveRoleAdminNoContent, error)
 	RemoveRoleManagers(params *RemoveRoleManagersParams, authInfo runtime.ClientAuthInfoWriter) (*RemoveRoleManagersNoContent, *RemoveRoleManagersBadRequest, *RemoveRoleManagersUnauthorized, *RemoveRoleManagersForbidden, *RemoveRoleManagersNotFound, error)
-
+	RemoveRoleManagersShort(params *RemoveRoleManagersParams, authInfo runtime.ClientAuthInfoWriter) (*RemoveRoleManagersNoContent, error)
 	RemoveRoleMembers(params *RemoveRoleMembersParams, authInfo runtime.ClientAuthInfoWriter) (*RemoveRoleMembersNoContent, *RemoveRoleMembersBadRequest, *RemoveRoleMembersUnauthorized, *RemoveRoleMembersForbidden, *RemoveRoleMembersNotFound, error)
-
+	RemoveRoleMembersShort(params *RemoveRoleMembersParams, authInfo runtime.ClientAuthInfoWriter) (*RemoveRoleMembersNoContent, error)
 	SetRoleAsAdmin(params *SetRoleAsAdminParams, authInfo runtime.ClientAuthInfoWriter) (*SetRoleAsAdminNoContent, *SetRoleAsAdminBadRequest, *SetRoleAsAdminUnauthorized, *SetRoleAsAdminForbidden, *SetRoleAsAdminNotFound, error)
-
+	SetRoleAsAdminShort(params *SetRoleAsAdminParams, authInfo runtime.ClientAuthInfoWriter) (*SetRoleAsAdminNoContent, error)
 	UpdateRole(params *UpdateRoleParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateRoleOK, *UpdateRoleBadRequest, *UpdateRoleUnauthorized, *UpdateRoleForbidden, *UpdateRoleNotFound, error)
-
+	UpdateRoleShort(params *UpdateRoleParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateRoleOK, error)
 	UpdateRolePermissions(params *UpdateRolePermissionsParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateRolePermissionsNoContent, *UpdateRolePermissionsBadRequest, *UpdateRolePermissionsUnauthorized, *UpdateRolePermissionsForbidden, *UpdateRolePermissionsNotFound, error)
+	UpdateRolePermissionsShort(params *UpdateRolePermissionsParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateRolePermissionsNoContent, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -131,10 +132,10 @@ type ClientService interface {
 /*
   AddRoleManagers adds role managers
 
-  <p>Required permission 'ROLE:ADMIN [UPDATE]' or 'ADMIN:ROLE [UPDATE]'</p>
-			<p>Required Permission 'ROLE:ADMIN [UPDATE]' is going to be <strong>DEPRECATED</strong> for security purpose.
-			It is going to be deprecated on <strong>31 JANUARY 2019</strong>, please use permission 'ADMIN:ROLE [UPDATE]' instead.</p>
-			<p>Role can only be assigned to other users by the role's manager.</p>
+  &lt;p&gt;Required permission &#39;ROLE:ADMIN [UPDATE]&#39; or &#39;ADMIN:ROLE [UPDATE]&#39;&lt;/p&gt;
+			&lt;p&gt;Required Permission &#39;ROLE:ADMIN [UPDATE]&#39; is going to be &lt;strong&gt;DEPRECATED&lt;/strong&gt; for security purpose.
+			It is going to be deprecated on &lt;strong&gt;31 JANUARY 2019&lt;/strong&gt;, please use permission &#39;ADMIN:ROLE [UPDATE]&#39; instead.&lt;/p&gt;
+			&lt;p&gt;Role can only be assigned to other users by the role&#39;s manager.&lt;/p&gt;
 */
 func (a *Client) AddRoleManagers(params *AddRoleManagersParams, authInfo runtime.ClientAuthInfoWriter) (*AddRoleManagersNoContent, *AddRoleManagersBadRequest, *AddRoleManagersUnauthorized, *AddRoleManagersForbidden, *AddRoleManagersNotFound, error) {
 	// TODO: Validate the params before sending
@@ -152,7 +153,7 @@ func (a *Client) AddRoleManagers(params *AddRoleManagersParams, authInfo runtime
 		PathPattern:        "/iam/roles/{roleId}/managers",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AddRoleManagersReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -167,27 +168,77 @@ func (a *Client) AddRoleManagers(params *AddRoleManagersParams, authInfo runtime
 
 	case *AddRoleManagersNoContent:
 		return v, nil, nil, nil, nil, nil
+
 	case *AddRoleManagersBadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *AddRoleManagersUnauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *AddRoleManagersForbidden:
 		return nil, nil, nil, v, nil, nil
+
 	case *AddRoleManagersNotFound:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AddRoleManagersShort(params *AddRoleManagersParams, authInfo runtime.ClientAuthInfoWriter) (*AddRoleManagersNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAddRoleManagersParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AddRoleManagers",
+		Method:             "POST",
+		PathPattern:        "/iam/roles/{roleId}/managers",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AddRoleManagersReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AddRoleManagersNoContent:
+		return v, nil
+	case *AddRoleManagersBadRequest:
+		return nil, v
+	case *AddRoleManagersUnauthorized:
+		return nil, v
+	case *AddRoleManagersForbidden:
+		return nil, v
+	case *AddRoleManagersNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   AddRoleMembers adds role members
 
-  <p>Required permission 'ROLE:ADMIN [UPDATE]' or 'ADMIN:ROLE [UPDATE]'</p>
-			<p>Required Permission 'ROLE:ADMIN [UPDATE]' is going to be <strong>DEPRECATED</strong> for security purpose.
-			It is going to be deprecated on <strong>31 JANUARY 2019</strong>, please use permission 'ADMIN:ROLE [UPDATE]' instead.</p>
-			<p>Admin roles has its members listed in the role.</p>
-			<p>Role can only be assigned to other users by the role's manager.</p>
+  &lt;p&gt;Required permission &#39;ROLE:ADMIN [UPDATE]&#39; or &#39;ADMIN:ROLE [UPDATE]&#39;&lt;/p&gt;
+			&lt;p&gt;Required Permission &#39;ROLE:ADMIN [UPDATE]&#39; is going to be &lt;strong&gt;DEPRECATED&lt;/strong&gt; for security purpose.
+			It is going to be deprecated on &lt;strong&gt;31 JANUARY 2019&lt;/strong&gt;, please use permission &#39;ADMIN:ROLE [UPDATE]&#39; instead.&lt;/p&gt;
+			&lt;p&gt;Admin roles has its members listed in the role.&lt;/p&gt;
+			&lt;p&gt;Role can only be assigned to other users by the role&#39;s manager.&lt;/p&gt;
 */
 func (a *Client) AddRoleMembers(params *AddRoleMembersParams, authInfo runtime.ClientAuthInfoWriter) (*AddRoleMembersNoContent, *AddRoleMembersBadRequest, *AddRoleMembersUnauthorized, *AddRoleMembersForbidden, *AddRoleMembersNotFound, error) {
 	// TODO: Validate the params before sending
@@ -205,7 +256,7 @@ func (a *Client) AddRoleMembers(params *AddRoleMembersParams, authInfo runtime.C
 		PathPattern:        "/iam/roles/{roleId}/members",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AddRoleMembersReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -220,51 +271,101 @@ func (a *Client) AddRoleMembers(params *AddRoleMembersParams, authInfo runtime.C
 
 	case *AddRoleMembersNoContent:
 		return v, nil, nil, nil, nil, nil
+
 	case *AddRoleMembersBadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *AddRoleMembersUnauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *AddRoleMembersForbidden:
 		return nil, nil, nil, v, nil, nil
+
 	case *AddRoleMembersNotFound:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AddRoleMembersShort(params *AddRoleMembersParams, authInfo runtime.ClientAuthInfoWriter) (*AddRoleMembersNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAddRoleMembersParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AddRoleMembers",
+		Method:             "POST",
+		PathPattern:        "/iam/roles/{roleId}/members",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AddRoleMembersReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AddRoleMembersNoContent:
+		return v, nil
+	case *AddRoleMembersBadRequest:
+		return nil, v
+	case *AddRoleMembersUnauthorized:
+		return nil, v
+	case *AddRoleMembersForbidden:
+		return nil, v
+	case *AddRoleMembersNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   AddRolePermission adds role permission
 
-  <p>Required permission 'ROLE:ADMIN [UPDATE]' Or 'ADMIN:ROLE [UPDATE]'</p>
-			<p>Required Permission 'ROLE:ADMIN [UPDATE]' is going to be <strong>DEPRECATED</strong> for security purpose.
-			It is going to be deprecated on <strong>31 JANUARY 2019</strong>, please use permission 'ADMIN:ROLE [UPDATE]' instead.</p>
-			<p>This endpoint will update existing permission (bitwise OR the action) if found one with same resource, otherwise it will append a new permission</p>
-			<p>Schedule contains cron string or date range (both are UTC, also in cron syntax) to indicate when a permission and action are in effect.</p>
-			<p>Both schedule types accepts quartz compatible cron syntax e.g. * * * * * * *.</p>
-			<p>In ranged schedule, first element will be start date, and second one will be end date</p>
-			<p>If schedule is set, the scheduled action must be valid too, that is between 1 to 15, inclusive</p>
-			<p>Syntax reference</p>
-			<p>Fields:</p>
-			<ol>
-			<li>Seconds: 0-59 * / , -</li>
-			<li>Minutes: 0-59 * / , -</li>
-			<li>Hours: 0-23 * / , -</li>
-			<li>Day of month: 1-31 * / , - L W</li>
-			<li>Month: 1-12 JAN-DEC * / , -</li>
-			<li>Day of week: 0-6 SUN-SAT * / , - L #</li>
-			<li>Year: 1970-2099 * / , -</li>
-			</ol>
-			<p>Special characters:</p>
-			<ol>
-			<li>*: all values in the fields, e.g. * in seconds fields indicates every second</li>
-			<li>/: increments of ranges, e.g. 3-59/15 in the minute field indicate the third minute of the hour and every 15 minutes thereafter</li>
-			<li>,: separate items of a list, e.g. MON,WED,FRI in day of week</li>
-			<li>-: range, e.g. 2010-2018 indicates every year between 2010 and 2018, inclusive</li>
-			<li>L: last, e.g. When used in the day-of-week field, it allows you to specify constructs such as "the last Friday" (5L) of a given month. In the day-of-month field, it specifies the last day of the month.</li>
-			<li>W: business day, e.g. if you were to specify 15W as the value for the day-of-month field, the meaning is: "the nearest business day to the 15th of the month."</li>
-			<li>#: must be followed by a number between one and five. It allows you to specify constructs such as "the second Friday" of a given month.</li>
-			</ol>
+  &lt;p&gt;Required permission &#39;ROLE:ADMIN [UPDATE]&#39; Or &#39;ADMIN:ROLE [UPDATE]&#39;&lt;/p&gt;
+			&lt;p&gt;Required Permission &#39;ROLE:ADMIN [UPDATE]&#39; is going to be &lt;strong&gt;DEPRECATED&lt;/strong&gt; for security purpose.
+			It is going to be deprecated on &lt;strong&gt;31 JANUARY 2019&lt;/strong&gt;, please use permission &#39;ADMIN:ROLE [UPDATE]&#39; instead.&lt;/p&gt;
+			&lt;p&gt;This endpoint will update existing permission (bitwise OR the action) if found one with same resource, otherwise it will append a new permission&lt;/p&gt;
+			&lt;p&gt;Schedule contains cron string or date range (both are UTC, also in cron syntax) to indicate when a permission and action are in effect.&lt;/p&gt;
+			&lt;p&gt;Both schedule types accepts quartz compatible cron syntax e.g. * * * * * * *.&lt;/p&gt;
+			&lt;p&gt;In ranged schedule, first element will be start date, and second one will be end date&lt;/p&gt;
+			&lt;p&gt;If schedule is set, the scheduled action must be valid too, that is between 1 to 15, inclusive&lt;/p&gt;
+			&lt;p&gt;Syntax reference&lt;/p&gt;
+			&lt;p&gt;Fields:&lt;/p&gt;
+			&lt;ol&gt;
+			&lt;li&gt;Seconds: 0-59 * / , -&lt;/li&gt;
+			&lt;li&gt;Minutes: 0-59 * / , -&lt;/li&gt;
+			&lt;li&gt;Hours: 0-23 * / , -&lt;/li&gt;
+			&lt;li&gt;Day of month: 1-31 * / , - L W&lt;/li&gt;
+			&lt;li&gt;Month: 1-12 JAN-DEC * / , -&lt;/li&gt;
+			&lt;li&gt;Day of week: 0-6 SUN-SAT * / , - L #&lt;/li&gt;
+			&lt;li&gt;Year: 1970-2099 * / , -&lt;/li&gt;
+			&lt;/ol&gt;
+			&lt;p&gt;Special characters:&lt;/p&gt;
+			&lt;ol&gt;
+			&lt;li&gt;*: all values in the fields, e.g. * in seconds fields indicates every second&lt;/li&gt;
+			&lt;li&gt;/: increments of ranges, e.g. 3-59/15 in the minute field indicate the third minute of the hour and every 15 minutes thereafter&lt;/li&gt;
+			&lt;li&gt;,: separate items of a list, e.g. MON,WED,FRI in day of week&lt;/li&gt;
+			&lt;li&gt;-: range, e.g. 2010-2018 indicates every year between 2010 and 2018, inclusive&lt;/li&gt;
+			&lt;li&gt;L: last, e.g. When used in the day-of-week field, it allows you to specify constructs such as &#34;the last Friday&#34; (5L) of a given month. In the day-of-month field, it specifies the last day of the month.&lt;/li&gt;
+			&lt;li&gt;W: business day, e.g. if you were to specify 15W as the value for the day-of-month field, the meaning is: &#34;the nearest business day to the 15th of the month.&#34;&lt;/li&gt;
+			&lt;li&gt;#: must be followed by a number between one and five. It allows you to specify constructs such as &#34;the second Friday&#34; of a given month.&lt;/li&gt;
+			&lt;/ol&gt;
 
 */
 func (a *Client) AddRolePermission(params *AddRolePermissionParams, authInfo runtime.ClientAuthInfoWriter) (*AddRolePermissionNoContent, *AddRolePermissionBadRequest, *AddRolePermissionUnauthorized, *AddRolePermissionForbidden, *AddRolePermissionNotFound, error) {
@@ -283,7 +384,7 @@ func (a *Client) AddRolePermission(params *AddRolePermissionParams, authInfo run
 		PathPattern:        "/iam/roles/{roleId}/permissions/{resource}/{action}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AddRolePermissionReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -298,24 +399,74 @@ func (a *Client) AddRolePermission(params *AddRolePermissionParams, authInfo run
 
 	case *AddRolePermissionNoContent:
 		return v, nil, nil, nil, nil, nil
+
 	case *AddRolePermissionBadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *AddRolePermissionUnauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *AddRolePermissionForbidden:
 		return nil, nil, nil, v, nil, nil
+
 	case *AddRolePermissionNotFound:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AddRolePermissionShort(params *AddRolePermissionParams, authInfo runtime.ClientAuthInfoWriter) (*AddRolePermissionNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAddRolePermissionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AddRolePermission",
+		Method:             "POST",
+		PathPattern:        "/iam/roles/{roleId}/permissions/{resource}/{action}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AddRolePermissionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AddRolePermissionNoContent:
+		return v, nil
+	case *AddRolePermissionBadRequest:
+		return nil, v
+	case *AddRolePermissionUnauthorized:
+		return nil, v
+	case *AddRolePermissionForbidden:
+		return nil, v
+	case *AddRolePermissionNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   AdminAddRoleManagersV3 adds role managers
 
-  <p>Role can only be assigned to other users by the role's manager.</p>
-			<br><p>Required permission 'ADMIN:ROLE [UPDATE]'</p><br>action code: 10408
+  &lt;p&gt;Role can only be assigned to other users by the role&#39;s manager.&lt;/p&gt;
+			&lt;br&gt;&lt;p&gt;Required permission &#39;ADMIN:ROLE [UPDATE]&#39;&lt;/p&gt;&lt;br&gt;action code: 10408
 */
 func (a *Client) AdminAddRoleManagersV3(params *AdminAddRoleManagersV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminAddRoleManagersV3NoContent, *AdminAddRoleManagersV3BadRequest, *AdminAddRoleManagersV3Unauthorized, *AdminAddRoleManagersV3Forbidden, *AdminAddRoleManagersV3NotFound, *AdminAddRoleManagersV3Conflict, error) {
 	// TODO: Validate the params before sending
@@ -333,7 +484,7 @@ func (a *Client) AdminAddRoleManagersV3(params *AdminAddRoleManagersV3Params, au
 		PathPattern:        "/iam/v3/admin/roles/{roleId}/managers",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminAddRoleManagersV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -348,27 +499,80 @@ func (a *Client) AdminAddRoleManagersV3(params *AdminAddRoleManagersV3Params, au
 
 	case *AdminAddRoleManagersV3NoContent:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *AdminAddRoleManagersV3BadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *AdminAddRoleManagersV3Unauthorized:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *AdminAddRoleManagersV3Forbidden:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *AdminAddRoleManagersV3NotFound:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *AdminAddRoleManagersV3Conflict:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminAddRoleManagersV3Short(params *AdminAddRoleManagersV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminAddRoleManagersV3NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminAddRoleManagersV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminAddRoleManagersV3",
+		Method:             "POST",
+		PathPattern:        "/iam/v3/admin/roles/{roleId}/managers",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminAddRoleManagersV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminAddRoleManagersV3NoContent:
+		return v, nil
+	case *AdminAddRoleManagersV3BadRequest:
+		return nil, v
+	case *AdminAddRoleManagersV3Unauthorized:
+		return nil, v
+	case *AdminAddRoleManagersV3Forbidden:
+		return nil, v
+	case *AdminAddRoleManagersV3NotFound:
+		return nil, v
+	case *AdminAddRoleManagersV3Conflict:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   AdminAddRoleMembersV3 adds role members
 
-  <p>Required permission 'ADMIN:ROLE [UPDATE]'</p>
-			<p>Admin roles has its members listed in the role.</p>
-			<p>Role can only be assigned to other users by the role's manager.</p> <br>action code: 10410</br>
+  &lt;p&gt;Required permission &#39;ADMIN:ROLE [UPDATE]&#39;&lt;/p&gt;
+			&lt;p&gt;Admin roles has its members listed in the role.&lt;/p&gt;
+			&lt;p&gt;Role can only be assigned to other users by the role&#39;s manager.&lt;/p&gt; &lt;br&gt;action code: 10410&lt;/br&gt;
 */
 func (a *Client) AdminAddRoleMembersV3(params *AdminAddRoleMembersV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminAddRoleMembersV3NoContent, *AdminAddRoleMembersV3BadRequest, *AdminAddRoleMembersV3Unauthorized, *AdminAddRoleMembersV3Forbidden, *AdminAddRoleMembersV3NotFound, *AdminAddRoleMembersV3Conflict, error) {
 	// TODO: Validate the params before sending
@@ -386,7 +590,7 @@ func (a *Client) AdminAddRoleMembersV3(params *AdminAddRoleMembersV3Params, auth
 		PathPattern:        "/iam/v3/admin/roles/{roleId}/members",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminAddRoleMembersV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -401,52 +605,105 @@ func (a *Client) AdminAddRoleMembersV3(params *AdminAddRoleMembersV3Params, auth
 
 	case *AdminAddRoleMembersV3NoContent:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *AdminAddRoleMembersV3BadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *AdminAddRoleMembersV3Unauthorized:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *AdminAddRoleMembersV3Forbidden:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *AdminAddRoleMembersV3NotFound:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *AdminAddRoleMembersV3Conflict:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminAddRoleMembersV3Short(params *AdminAddRoleMembersV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminAddRoleMembersV3NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminAddRoleMembersV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminAddRoleMembersV3",
+		Method:             "POST",
+		PathPattern:        "/iam/v3/admin/roles/{roleId}/members",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminAddRoleMembersV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminAddRoleMembersV3NoContent:
+		return v, nil
+	case *AdminAddRoleMembersV3BadRequest:
+		return nil, v
+	case *AdminAddRoleMembersV3Unauthorized:
+		return nil, v
+	case *AdminAddRoleMembersV3Forbidden:
+		return nil, v
+	case *AdminAddRoleMembersV3NotFound:
+		return nil, v
+	case *AdminAddRoleMembersV3Conflict:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   AdminAddRolePermissionsV3 adds role permissions
 
-  <p>Required permission 'ADMIN:ROLE [UPDATE]'</p>
-			<p>This endpoint will ATTACH permission(s) into the role</p>
-			<br>action code: 10404<br>
-			<p>Schedule contains cron string or date range (both are UTC, also in cron syntax) to indicate when a permission and action are in effect.</p>
-			<p>Both schedule types accepts quartz compatible cron syntax e.g. * * * * * * *.</p>
-			<p>In ranged schedule, first element will be start date, and second one will be end date</p>
-			<p>If schedule is set, the scheduled action must be valid too, that is between 1 to 15, inclusive</p>
-			<p>Syntax reference</p>
-			<p>Fields:</p>
-			<ol>
-			<li>Seconds: 0-59 * / , -</li>
-			<li>Minutes: 0-59 * / , -</li>
-			<li>Hours: 0-23 * / , -</li>
-			<li>Day of month: 1-31 * / , - L W</li>
-			<li>Month: 1-12 JAN-DEC * / , -</li>
-			<li>Day of week: 0-6 SUN-SAT * / , - L #</li>
-			<li>Year: 1970-2099 * / , -</li>
-			</ol>
-			<p>Special characters:</p>
-			<ol>
-			<li>*: all values in the fields, e.g. * in seconds fields indicates every second</li>
-			<li>/: increments of ranges, e.g. 3-59/15 in the minute field indicate the third minute of the hour and every 15 minutes thereafter</li>
-			<li>,: separate items of a list, e.g. MON,WED,FRI in day of week</li>
-			<li>-: range, e.g. 2010-2018 indicates every year between 2010 and 2018, inclusive</li>
-			<li>L: last, e.g. When used in the day-of-week field, it allows you to specify constructs such as "the last Friday" (5L) of a given month. In the day-of-month field, it specifies the last day of the month.</li>
-			<li>W: business day, e.g. if you were to specify 15W as the value for the day-of-month field, the meaning is: "the nearest business day to the 15th of the month."</li>
-			<li>#: must be followed by a number between one and five. It allows you to specify constructs such as "the second Friday" of a given month.</li>
-			</ol>
+  &lt;p&gt;Required permission &#39;ADMIN:ROLE [UPDATE]&#39;&lt;/p&gt;
+			&lt;p&gt;This endpoint will ATTACH permission(s) into the role&lt;/p&gt;
+			&lt;br&gt;action code: 10404&lt;br&gt;
+			&lt;p&gt;Schedule contains cron string or date range (both are UTC, also in cron syntax) to indicate when a permission and action are in effect.&lt;/p&gt;
+			&lt;p&gt;Both schedule types accepts quartz compatible cron syntax e.g. * * * * * * *.&lt;/p&gt;
+			&lt;p&gt;In ranged schedule, first element will be start date, and second one will be end date&lt;/p&gt;
+			&lt;p&gt;If schedule is set, the scheduled action must be valid too, that is between 1 to 15, inclusive&lt;/p&gt;
+			&lt;p&gt;Syntax reference&lt;/p&gt;
+			&lt;p&gt;Fields:&lt;/p&gt;
+			&lt;ol&gt;
+			&lt;li&gt;Seconds: 0-59 * / , -&lt;/li&gt;
+			&lt;li&gt;Minutes: 0-59 * / , -&lt;/li&gt;
+			&lt;li&gt;Hours: 0-23 * / , -&lt;/li&gt;
+			&lt;li&gt;Day of month: 1-31 * / , - L W&lt;/li&gt;
+			&lt;li&gt;Month: 1-12 JAN-DEC * / , -&lt;/li&gt;
+			&lt;li&gt;Day of week: 0-6 SUN-SAT * / , - L #&lt;/li&gt;
+			&lt;li&gt;Year: 1970-2099 * / , -&lt;/li&gt;
+			&lt;/ol&gt;
+			&lt;p&gt;Special characters:&lt;/p&gt;
+			&lt;ol&gt;
+			&lt;li&gt;*: all values in the fields, e.g. * in seconds fields indicates every second&lt;/li&gt;
+			&lt;li&gt;/: increments of ranges, e.g. 3-59/15 in the minute field indicate the third minute of the hour and every 15 minutes thereafter&lt;/li&gt;
+			&lt;li&gt;,: separate items of a list, e.g. MON,WED,FRI in day of week&lt;/li&gt;
+			&lt;li&gt;-: range, e.g. 2010-2018 indicates every year between 2010 and 2018, inclusive&lt;/li&gt;
+			&lt;li&gt;L: last, e.g. When used in the day-of-week field, it allows you to specify constructs such as &#34;the last Friday&#34; (5L) of a given month. In the day-of-month field, it specifies the last day of the month.&lt;/li&gt;
+			&lt;li&gt;W: business day, e.g. if you were to specify 15W as the value for the day-of-month field, the meaning is: &#34;the nearest business day to the 15th of the month.&#34;&lt;/li&gt;
+			&lt;li&gt;#: must be followed by a number between one and five. It allows you to specify constructs such as &#34;the second Friday&#34; of a given month.&lt;/li&gt;
+			&lt;/ol&gt;
 
 */
 func (a *Client) AdminAddRolePermissionsV3(params *AdminAddRolePermissionsV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminAddRolePermissionsV3NoContent, *AdminAddRolePermissionsV3BadRequest, *AdminAddRolePermissionsV3Unauthorized, *AdminAddRolePermissionsV3Forbidden, *AdminAddRolePermissionsV3NotFound, error) {
@@ -465,7 +722,7 @@ func (a *Client) AdminAddRolePermissionsV3(params *AdminAddRolePermissionsV3Para
 		PathPattern:        "/iam/v3/admin/roles/{roleId}/permissions",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminAddRolePermissionsV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -480,50 +737,100 @@ func (a *Client) AdminAddRolePermissionsV3(params *AdminAddRolePermissionsV3Para
 
 	case *AdminAddRolePermissionsV3NoContent:
 		return v, nil, nil, nil, nil, nil
+
 	case *AdminAddRolePermissionsV3BadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *AdminAddRolePermissionsV3Unauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *AdminAddRolePermissionsV3Forbidden:
 		return nil, nil, nil, v, nil, nil
+
 	case *AdminAddRolePermissionsV3NotFound:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminAddRolePermissionsV3Short(params *AdminAddRolePermissionsV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminAddRolePermissionsV3NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminAddRolePermissionsV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminAddRolePermissionsV3",
+		Method:             "POST",
+		PathPattern:        "/iam/v3/admin/roles/{roleId}/permissions",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminAddRolePermissionsV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminAddRolePermissionsV3NoContent:
+		return v, nil
+	case *AdminAddRolePermissionsV3BadRequest:
+		return nil, v
+	case *AdminAddRolePermissionsV3Unauthorized:
+		return nil, v
+	case *AdminAddRolePermissionsV3Forbidden:
+		return nil, v
+	case *AdminAddRolePermissionsV3NotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   AdminAddRolePermissionsV4 adds role permissions v4
 
-  <p>Required permission 'ADMIN:ROLE [UPDATE]'</p>
-<p>This endpoint will ATTACH permission(s) into the role</p>
-<br>action code: 10404<br>
-<p>Schedule contains cron string or date range (both are UTC, also in cron syntax) to indicate when a permission and action are in effect.</p>
-<p>Both schedule types accepts quartz compatible cron syntax e.g. * * * * * * *.</p>
-<p>In ranged schedule, first element will be start date, and second one will be end date</p>
-<p>If schedule is set, the scheduled action must be valid too, that is between 1 to 15, inclusive</p>
-<p>Syntax reference</p>
-<p>Fields:</p>
-<ol>
-<li>Seconds: 0-59 * / , -</li>
-<li>Minutes: 0-59 * / , -</li>
-<li>Hours: 0-23 * / , -</li>
-<li>Day of month: 1-31 * / , - L W</li>
-<li>Month: 1-12 JAN-DEC * / , -</li>
-<li>Day of week: 0-6 SUN-SAT * / , - L #</li>
-<li>Year: 1970-2099 * / , -</li>
-</ol>
-<p>Special characters:</p>
-<ol>
-<li>*: all values in the fields, e.g. * in seconds fields indicates every second</li>
-<li>/: increments of ranges, e.g. 3-59/15 in the minute field indicate the third minute of the hour and every 15 minutes thereafter</li>
-<li>,: separate items of a list, e.g. MON,WED,FRI in day of week</li>
-<li>-: range, e.g. 2010-2018 indicates every year between 2010 and 2018, inclusive</li>
-<li>L: last, e.g. When used in the day-of-week field, it allows you to specify constructs such as "the last Friday" (5L) of a given month. In the day-of-month field, it specifies the last day of the month.</li>
-<li>W: business day, e.g. if you were to specify 15W as the value for the day-of-month field, the meaning is: "the nearest business day to the 15th of the month."</li>
-<li>#: must be followed by a number between one and five. It allows you to specify constructs such as "the second Friday" of a given month.</li>
-</ol>
+  &lt;p&gt;Required permission &#39;ADMIN:ROLE [UPDATE]&#39;&lt;/p&gt;
+&lt;p&gt;This endpoint will ATTACH permission(s) into the role&lt;/p&gt;
+&lt;br&gt;action code: 10404&lt;br&gt;
+&lt;p&gt;Schedule contains cron string or date range (both are UTC, also in cron syntax) to indicate when a permission and action are in effect.&lt;/p&gt;
+&lt;p&gt;Both schedule types accepts quartz compatible cron syntax e.g. * * * * * * *.&lt;/p&gt;
+&lt;p&gt;In ranged schedule, first element will be start date, and second one will be end date&lt;/p&gt;
+&lt;p&gt;If schedule is set, the scheduled action must be valid too, that is between 1 to 15, inclusive&lt;/p&gt;
+&lt;p&gt;Syntax reference&lt;/p&gt;
+&lt;p&gt;Fields:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Seconds: 0-59 * / , -&lt;/li&gt;
+&lt;li&gt;Minutes: 0-59 * / , -&lt;/li&gt;
+&lt;li&gt;Hours: 0-23 * / , -&lt;/li&gt;
+&lt;li&gt;Day of month: 1-31 * / , - L W&lt;/li&gt;
+&lt;li&gt;Month: 1-12 JAN-DEC * / , -&lt;/li&gt;
+&lt;li&gt;Day of week: 0-6 SUN-SAT * / , - L #&lt;/li&gt;
+&lt;li&gt;Year: 1970-2099 * / , -&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Special characters:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;*: all values in the fields, e.g. * in seconds fields indicates every second&lt;/li&gt;
+&lt;li&gt;/: increments of ranges, e.g. 3-59/15 in the minute field indicate the third minute of the hour and every 15 minutes thereafter&lt;/li&gt;
+&lt;li&gt;,: separate items of a list, e.g. MON,WED,FRI in day of week&lt;/li&gt;
+&lt;li&gt;-: range, e.g. 2010-2018 indicates every year between 2010 and 2018, inclusive&lt;/li&gt;
+&lt;li&gt;L: last, e.g. When used in the day-of-week field, it allows you to specify constructs such as &#34;the last Friday&#34; (5L) of a given month. In the day-of-month field, it specifies the last day of the month.&lt;/li&gt;
+&lt;li&gt;W: business day, e.g. if you were to specify 15W as the value for the day-of-month field, the meaning is: &#34;the nearest business day to the 15th of the month.&#34;&lt;/li&gt;
+&lt;li&gt;#: must be followed by a number between one and five. It allows you to specify constructs such as &#34;the second Friday&#34; of a given month.&lt;/li&gt;
+&lt;/ol&gt;
 
 */
 func (a *Client) AdminAddRolePermissionsV4(params *AdminAddRolePermissionsV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminAddRolePermissionsV4OK, *AdminAddRolePermissionsV4BadRequest, *AdminAddRolePermissionsV4Unauthorized, *AdminAddRolePermissionsV4Forbidden, *AdminAddRolePermissionsV4NotFound, error) {
@@ -542,7 +849,7 @@ func (a *Client) AdminAddRolePermissionsV4(params *AdminAddRolePermissionsV4Para
 		PathPattern:        "/iam/v4/admin/roles/{roleId}/permissions",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminAddRolePermissionsV4Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -557,16 +864,66 @@ func (a *Client) AdminAddRolePermissionsV4(params *AdminAddRolePermissionsV4Para
 
 	case *AdminAddRolePermissionsV4OK:
 		return v, nil, nil, nil, nil, nil
+
 	case *AdminAddRolePermissionsV4BadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *AdminAddRolePermissionsV4Unauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *AdminAddRolePermissionsV4Forbidden:
 		return nil, nil, nil, v, nil, nil
+
 	case *AdminAddRolePermissionsV4NotFound:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminAddRolePermissionsV4Short(params *AdminAddRolePermissionsV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminAddRolePermissionsV4OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminAddRolePermissionsV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminAddRolePermissionsV4",
+		Method:             "POST",
+		PathPattern:        "/iam/v4/admin/roles/{roleId}/permissions",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminAddRolePermissionsV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminAddRolePermissionsV4OK:
+		return v, nil
+	case *AdminAddRolePermissionsV4BadRequest:
+		return nil, v
+	case *AdminAddRolePermissionsV4Unauthorized:
+		return nil, v
+	case *AdminAddRolePermissionsV4Forbidden:
+		return nil, v
+	case *AdminAddRolePermissionsV4NotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -598,7 +955,7 @@ func (a *Client) AdminAssignUserToRoleV4(params *AdminAssignUserToRoleV4Params, 
 		PathPattern:        "/iam/v4/admin/roles/{roleId}/users",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminAssignUserToRoleV4Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -613,27 +970,83 @@ func (a *Client) AdminAssignUserToRoleV4(params *AdminAssignUserToRoleV4Params, 
 
 	case *AdminAssignUserToRoleV4Created:
 		return v, nil, nil, nil, nil, nil, nil, nil
+
 	case *AdminAssignUserToRoleV4BadRequest:
 		return nil, v, nil, nil, nil, nil, nil, nil
+
 	case *AdminAssignUserToRoleV4Unauthorized:
 		return nil, nil, v, nil, nil, nil, nil, nil
+
 	case *AdminAssignUserToRoleV4Forbidden:
 		return nil, nil, nil, v, nil, nil, nil, nil
+
 	case *AdminAssignUserToRoleV4NotFound:
 		return nil, nil, nil, nil, v, nil, nil, nil
+
 	case *AdminAssignUserToRoleV4Conflict:
 		return nil, nil, nil, nil, nil, v, nil, nil
+
 	case *AdminAssignUserToRoleV4UnprocessableEntity:
 		return nil, nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminAssignUserToRoleV4Short(params *AdminAssignUserToRoleV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminAssignUserToRoleV4Created, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminAssignUserToRoleV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminAssignUserToRoleV4",
+		Method:             "POST",
+		PathPattern:        "/iam/v4/admin/roles/{roleId}/users",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminAssignUserToRoleV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminAssignUserToRoleV4Created:
+		return v, nil
+	case *AdminAssignUserToRoleV4BadRequest:
+		return nil, v
+	case *AdminAssignUserToRoleV4Unauthorized:
+		return nil, v
+	case *AdminAssignUserToRoleV4Forbidden:
+		return nil, v
+	case *AdminAssignUserToRoleV4NotFound:
+		return nil, v
+	case *AdminAssignUserToRoleV4Conflict:
+		return nil, v
+	case *AdminAssignUserToRoleV4UnprocessableEntity:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   AdminCreateRoleV3 creates role
 
-  Required permission 'ADMIN:ROLE [CREATE]' <br>action code: 10401
+  Required permission &#39;ADMIN:ROLE [CREATE]&#39; &lt;br&gt;action code: 10401
 */
 func (a *Client) AdminCreateRoleV3(params *AdminCreateRoleV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateRoleV3Created, *AdminCreateRoleV3BadRequest, *AdminCreateRoleV3Unauthorized, *AdminCreateRoleV3Forbidden, error) {
 	// TODO: Validate the params before sending
@@ -651,7 +1064,7 @@ func (a *Client) AdminCreateRoleV3(params *AdminCreateRoleV3Params, authInfo run
 		PathPattern:        "/iam/v3/admin/roles",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminCreateRoleV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -666,14 +1079,61 @@ func (a *Client) AdminCreateRoleV3(params *AdminCreateRoleV3Params, authInfo run
 
 	case *AdminCreateRoleV3Created:
 		return v, nil, nil, nil, nil
+
 	case *AdminCreateRoleV3BadRequest:
 		return nil, v, nil, nil, nil
+
 	case *AdminCreateRoleV3Unauthorized:
 		return nil, nil, v, nil, nil
+
 	case *AdminCreateRoleV3Forbidden:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminCreateRoleV3Short(params *AdminCreateRoleV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateRoleV3Created, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminCreateRoleV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminCreateRoleV3",
+		Method:             "POST",
+		PathPattern:        "/iam/v3/admin/roles",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminCreateRoleV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminCreateRoleV3Created:
+		return v, nil
+	case *AdminCreateRoleV3BadRequest:
+		return nil, v
+	case *AdminCreateRoleV3Unauthorized:
+		return nil, v
+	case *AdminCreateRoleV3Forbidden:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -705,7 +1165,7 @@ func (a *Client) AdminCreateRoleV4(params *AdminCreateRoleV4Params, authInfo run
 		PathPattern:        "/iam/v4/admin/roles",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminCreateRoleV4Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -720,21 +1180,68 @@ func (a *Client) AdminCreateRoleV4(params *AdminCreateRoleV4Params, authInfo run
 
 	case *AdminCreateRoleV4Created:
 		return v, nil, nil, nil, nil
+
 	case *AdminCreateRoleV4BadRequest:
 		return nil, v, nil, nil, nil
+
 	case *AdminCreateRoleV4Unauthorized:
 		return nil, nil, v, nil, nil
+
 	case *AdminCreateRoleV4Forbidden:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminCreateRoleV4Short(params *AdminCreateRoleV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateRoleV4Created, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminCreateRoleV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminCreateRoleV4",
+		Method:             "POST",
+		PathPattern:        "/iam/v4/admin/roles",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminCreateRoleV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminCreateRoleV4Created:
+		return v, nil
+	case *AdminCreateRoleV4BadRequest:
+		return nil, v
+	case *AdminCreateRoleV4Unauthorized:
+		return nil, v
+	case *AdminCreateRoleV4Forbidden:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   AdminDeleteRolePermissionV3 deletes role permission
 
-  Required permission 'ADMIN:ROLE [UPDATE]' <br>action code: 10406<br>
+  Required permission &#39;ADMIN:ROLE [UPDATE]&#39; &lt;br&gt;action code: 10406&lt;br&gt;
 */
 func (a *Client) AdminDeleteRolePermissionV3(params *AdminDeleteRolePermissionV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteRolePermissionV3NoContent, *AdminDeleteRolePermissionV3BadRequest, *AdminDeleteRolePermissionV3Unauthorized, *AdminDeleteRolePermissionV3Forbidden, *AdminDeleteRolePermissionV3NotFound, *AdminDeleteRolePermissionV3InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -752,7 +1259,7 @@ func (a *Client) AdminDeleteRolePermissionV3(params *AdminDeleteRolePermissionV3
 		PathPattern:        "/iam/v3/admin/roles/{roleId}/permissions/{resource}/{action}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminDeleteRolePermissionV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -767,25 +1274,78 @@ func (a *Client) AdminDeleteRolePermissionV3(params *AdminDeleteRolePermissionV3
 
 	case *AdminDeleteRolePermissionV3NoContent:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *AdminDeleteRolePermissionV3BadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *AdminDeleteRolePermissionV3Unauthorized:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *AdminDeleteRolePermissionV3Forbidden:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *AdminDeleteRolePermissionV3NotFound:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *AdminDeleteRolePermissionV3InternalServerError:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminDeleteRolePermissionV3Short(params *AdminDeleteRolePermissionV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteRolePermissionV3NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminDeleteRolePermissionV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminDeleteRolePermissionV3",
+		Method:             "DELETE",
+		PathPattern:        "/iam/v3/admin/roles/{roleId}/permissions/{resource}/{action}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminDeleteRolePermissionV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminDeleteRolePermissionV3NoContent:
+		return v, nil
+	case *AdminDeleteRolePermissionV3BadRequest:
+		return nil, v
+	case *AdminDeleteRolePermissionV3Unauthorized:
+		return nil, v
+	case *AdminDeleteRolePermissionV3Forbidden:
+		return nil, v
+	case *AdminDeleteRolePermissionV3NotFound:
+		return nil, v
+	case *AdminDeleteRolePermissionV3InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   AdminDeleteRolePermissionsV3 deletes role
 
-  Required permission 'ADMIN:ROLE [UPDATE]'
+  Required permission &#39;ADMIN:ROLE [UPDATE]&#39;
 */
 func (a *Client) AdminDeleteRolePermissionsV3(params *AdminDeleteRolePermissionsV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteRolePermissionsV3NoContent, *AdminDeleteRolePermissionsV3Unauthorized, *AdminDeleteRolePermissionsV3Forbidden, *AdminDeleteRolePermissionsV3NotFound, error) {
 	// TODO: Validate the params before sending
@@ -803,7 +1363,7 @@ func (a *Client) AdminDeleteRolePermissionsV3(params *AdminDeleteRolePermissions
 		PathPattern:        "/iam/v3/admin/roles/{roleId}/permissions",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminDeleteRolePermissionsV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -818,14 +1378,61 @@ func (a *Client) AdminDeleteRolePermissionsV3(params *AdminDeleteRolePermissions
 
 	case *AdminDeleteRolePermissionsV3NoContent:
 		return v, nil, nil, nil, nil
+
 	case *AdminDeleteRolePermissionsV3Unauthorized:
 		return nil, v, nil, nil, nil
+
 	case *AdminDeleteRolePermissionsV3Forbidden:
 		return nil, nil, v, nil, nil
+
 	case *AdminDeleteRolePermissionsV3NotFound:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminDeleteRolePermissionsV3Short(params *AdminDeleteRolePermissionsV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteRolePermissionsV3NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminDeleteRolePermissionsV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminDeleteRolePermissionsV3",
+		Method:             "DELETE",
+		PathPattern:        "/iam/v3/admin/roles/{roleId}/permissions",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminDeleteRolePermissionsV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminDeleteRolePermissionsV3NoContent:
+		return v, nil
+	case *AdminDeleteRolePermissionsV3Unauthorized:
+		return nil, v
+	case *AdminDeleteRolePermissionsV3Forbidden:
+		return nil, v
+	case *AdminDeleteRolePermissionsV3NotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -851,7 +1458,7 @@ func (a *Client) AdminDeleteRolePermissionsV4(params *AdminDeleteRolePermissions
 		PathPattern:        "/iam/v4/admin/roles/{roleId}/permissions",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminDeleteRolePermissionsV4Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -866,21 +1473,68 @@ func (a *Client) AdminDeleteRolePermissionsV4(params *AdminDeleteRolePermissions
 
 	case *AdminDeleteRolePermissionsV4NoContent:
 		return v, nil, nil, nil, nil
+
 	case *AdminDeleteRolePermissionsV4Unauthorized:
 		return nil, v, nil, nil, nil
+
 	case *AdminDeleteRolePermissionsV4Forbidden:
 		return nil, nil, v, nil, nil
+
 	case *AdminDeleteRolePermissionsV4NotFound:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminDeleteRolePermissionsV4Short(params *AdminDeleteRolePermissionsV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteRolePermissionsV4NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminDeleteRolePermissionsV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminDeleteRolePermissionsV4",
+		Method:             "DELETE",
+		PathPattern:        "/iam/v4/admin/roles/{roleId}/permissions",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminDeleteRolePermissionsV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminDeleteRolePermissionsV4NoContent:
+		return v, nil
+	case *AdminDeleteRolePermissionsV4Unauthorized:
+		return nil, v
+	case *AdminDeleteRolePermissionsV4Forbidden:
+		return nil, v
+	case *AdminDeleteRolePermissionsV4NotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   AdminDeleteRoleV3 deletes role
 
-  Required permission ''ADMIN:ROLE [DELETE]'' <br>action code: 10403
+  Required permission &#39;&#39;ADMIN:ROLE [DELETE]&#39;&#39; &lt;br&gt;action code: 10403
 */
 func (a *Client) AdminDeleteRoleV3(params *AdminDeleteRoleV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteRoleV3NoContent, *AdminDeleteRoleV3BadRequest, *AdminDeleteRoleV3Unauthorized, *AdminDeleteRoleV3Forbidden, *AdminDeleteRoleV3NotFound, *AdminDeleteRoleV3InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -898,7 +1552,7 @@ func (a *Client) AdminDeleteRoleV3(params *AdminDeleteRoleV3Params, authInfo run
 		PathPattern:        "/iam/v3/admin/roles/{roleId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminDeleteRoleV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -913,18 +1567,71 @@ func (a *Client) AdminDeleteRoleV3(params *AdminDeleteRoleV3Params, authInfo run
 
 	case *AdminDeleteRoleV3NoContent:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *AdminDeleteRoleV3BadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *AdminDeleteRoleV3Unauthorized:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *AdminDeleteRoleV3Forbidden:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *AdminDeleteRoleV3NotFound:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *AdminDeleteRoleV3InternalServerError:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminDeleteRoleV3Short(params *AdminDeleteRoleV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteRoleV3NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminDeleteRoleV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminDeleteRoleV3",
+		Method:             "DELETE",
+		PathPattern:        "/iam/v3/admin/roles/{roleId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminDeleteRoleV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminDeleteRoleV3NoContent:
+		return v, nil
+	case *AdminDeleteRoleV3BadRequest:
+		return nil, v
+	case *AdminDeleteRoleV3Unauthorized:
+		return nil, v
+	case *AdminDeleteRoleV3Forbidden:
+		return nil, v
+	case *AdminDeleteRoleV3NotFound:
+		return nil, v
+	case *AdminDeleteRoleV3InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -933,7 +1640,7 @@ func (a *Client) AdminDeleteRoleV3(params *AdminDeleteRoleV3Params, authInfo run
 
   Required permission ADMIN:ROLE [DELETE]
 
-Removes role ID from user's Roles and NamespaceRoles before deleting the role.
+Removes role ID from user&#39;s Roles and NamespaceRoles before deleting the role.
 
 action code: 10403
 */
@@ -953,7 +1660,7 @@ func (a *Client) AdminDeleteRoleV4(params *AdminDeleteRoleV4Params, authInfo run
 		PathPattern:        "/iam/v4/admin/roles/{roleId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminDeleteRoleV4Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -968,27 +1675,80 @@ func (a *Client) AdminDeleteRoleV4(params *AdminDeleteRoleV4Params, authInfo run
 
 	case *AdminDeleteRoleV4NoContent:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *AdminDeleteRoleV4BadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *AdminDeleteRoleV4Unauthorized:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *AdminDeleteRoleV4Forbidden:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *AdminDeleteRoleV4NotFound:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *AdminDeleteRoleV4InternalServerError:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminDeleteRoleV4Short(params *AdminDeleteRoleV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteRoleV4NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminDeleteRoleV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminDeleteRoleV4",
+		Method:             "DELETE",
+		PathPattern:        "/iam/v4/admin/roles/{roleId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminDeleteRoleV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminDeleteRoleV4NoContent:
+		return v, nil
+	case *AdminDeleteRoleV4BadRequest:
+		return nil, v
+	case *AdminDeleteRoleV4Unauthorized:
+		return nil, v
+	case *AdminDeleteRoleV4Forbidden:
+		return nil, v
+	case *AdminDeleteRoleV4NotFound:
+		return nil, v
+	case *AdminDeleteRoleV4InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   AdminGetRoleAdminStatusV3 gets role admin status
 
-  <p>Required permission 'ADMIN:ROLE [READ]'</p>
-			<p>Admin roles has its members listed in the role.</p>
-			<p>action code: 10420</p>
+  &lt;p&gt;Required permission &#39;ADMIN:ROLE [READ]&#39;&lt;/p&gt;
+			&lt;p&gt;Admin roles has its members listed in the role.&lt;/p&gt;
+			&lt;p&gt;action code: 10420&lt;/p&gt;
 */
 func (a *Client) AdminGetRoleAdminStatusV3(params *AdminGetRoleAdminStatusV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRoleAdminStatusV3OK, *AdminGetRoleAdminStatusV3BadRequest, *AdminGetRoleAdminStatusV3Unauthorized, *AdminGetRoleAdminStatusV3Forbidden, *AdminGetRoleAdminStatusV3NotFound, error) {
 	// TODO: Validate the params before sending
@@ -1006,7 +1766,7 @@ func (a *Client) AdminGetRoleAdminStatusV3(params *AdminGetRoleAdminStatusV3Para
 		PathPattern:        "/iam/v3/admin/roles/{roleId}/admin",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminGetRoleAdminStatusV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1021,24 +1781,74 @@ func (a *Client) AdminGetRoleAdminStatusV3(params *AdminGetRoleAdminStatusV3Para
 
 	case *AdminGetRoleAdminStatusV3OK:
 		return v, nil, nil, nil, nil, nil
+
 	case *AdminGetRoleAdminStatusV3BadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *AdminGetRoleAdminStatusV3Unauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *AdminGetRoleAdminStatusV3Forbidden:
 		return nil, nil, nil, v, nil, nil
+
 	case *AdminGetRoleAdminStatusV3NotFound:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminGetRoleAdminStatusV3Short(params *AdminGetRoleAdminStatusV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRoleAdminStatusV3OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGetRoleAdminStatusV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminGetRoleAdminStatusV3",
+		Method:             "GET",
+		PathPattern:        "/iam/v3/admin/roles/{roleId}/admin",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGetRoleAdminStatusV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGetRoleAdminStatusV3OK:
+		return v, nil
+	case *AdminGetRoleAdminStatusV3BadRequest:
+		return nil, v
+	case *AdminGetRoleAdminStatusV3Unauthorized:
+		return nil, v
+	case *AdminGetRoleAdminStatusV3Forbidden:
+		return nil, v
+	case *AdminGetRoleAdminStatusV3NotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   AdminGetRoleManagersV3 gets role managers
 
-  <p>Required permission 'ADMIN:ROLE [READ]'</p>
-			<p>Role can only be assigned to other users by the role's manager.</p><br/>
+  &lt;p&gt;Required permission &#39;ADMIN:ROLE [READ]&#39;&lt;/p&gt;
+			&lt;p&gt;Role can only be assigned to other users by the role&#39;s manager.&lt;/p&gt;&lt;br/&gt;
 			action code: 10415
 */
 func (a *Client) AdminGetRoleManagersV3(params *AdminGetRoleManagersV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRoleManagersV3OK, *AdminGetRoleManagersV3BadRequest, *AdminGetRoleManagersV3Unauthorized, *AdminGetRoleManagersV3Forbidden, *AdminGetRoleManagersV3NotFound, error) {
@@ -1057,7 +1867,7 @@ func (a *Client) AdminGetRoleManagersV3(params *AdminGetRoleManagersV3Params, au
 		PathPattern:        "/iam/v3/admin/roles/{roleId}/managers",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminGetRoleManagersV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1072,25 +1882,75 @@ func (a *Client) AdminGetRoleManagersV3(params *AdminGetRoleManagersV3Params, au
 
 	case *AdminGetRoleManagersV3OK:
 		return v, nil, nil, nil, nil, nil
+
 	case *AdminGetRoleManagersV3BadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *AdminGetRoleManagersV3Unauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *AdminGetRoleManagersV3Forbidden:
 		return nil, nil, nil, v, nil, nil
+
 	case *AdminGetRoleManagersV3NotFound:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminGetRoleManagersV3Short(params *AdminGetRoleManagersV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRoleManagersV3OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGetRoleManagersV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminGetRoleManagersV3",
+		Method:             "GET",
+		PathPattern:        "/iam/v3/admin/roles/{roleId}/managers",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGetRoleManagersV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGetRoleManagersV3OK:
+		return v, nil
+	case *AdminGetRoleManagersV3BadRequest:
+		return nil, v
+	case *AdminGetRoleManagersV3Unauthorized:
+		return nil, v
+	case *AdminGetRoleManagersV3Forbidden:
+		return nil, v
+	case *AdminGetRoleManagersV3NotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   AdminGetRoleMembersV3 gets role members
 
-  <p>Required permission 'ADMIN:ROLE [READ]'</p>
-<p>Admin roles has its members listed in the role.</p>
-<p>action code: 10416</p>
+  &lt;p&gt;Required permission &#39;ADMIN:ROLE [READ]&#39;&lt;/p&gt;
+&lt;p&gt;Admin roles has its members listed in the role.&lt;/p&gt;
+&lt;p&gt;action code: 10416&lt;/p&gt;
 
 */
 func (a *Client) AdminGetRoleMembersV3(params *AdminGetRoleMembersV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRoleMembersV3OK, *AdminGetRoleMembersV3BadRequest, *AdminGetRoleMembersV3Unauthorized, *AdminGetRoleMembersV3Forbidden, *AdminGetRoleMembersV3NotFound, error) {
@@ -1109,7 +1969,7 @@ func (a *Client) AdminGetRoleMembersV3(params *AdminGetRoleMembersV3Params, auth
 		PathPattern:        "/iam/v3/admin/roles/{roleId}/members",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminGetRoleMembersV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1124,23 +1984,73 @@ func (a *Client) AdminGetRoleMembersV3(params *AdminGetRoleMembersV3Params, auth
 
 	case *AdminGetRoleMembersV3OK:
 		return v, nil, nil, nil, nil, nil
+
 	case *AdminGetRoleMembersV3BadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *AdminGetRoleMembersV3Unauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *AdminGetRoleMembersV3Forbidden:
 		return nil, nil, nil, v, nil, nil
+
 	case *AdminGetRoleMembersV3NotFound:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminGetRoleMembersV3Short(params *AdminGetRoleMembersV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRoleMembersV3OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGetRoleMembersV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminGetRoleMembersV3",
+		Method:             "GET",
+		PathPattern:        "/iam/v3/admin/roles/{roleId}/members",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGetRoleMembersV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGetRoleMembersV3OK:
+		return v, nil
+	case *AdminGetRoleMembersV3BadRequest:
+		return nil, v
+	case *AdminGetRoleMembersV3Unauthorized:
+		return nil, v
+	case *AdminGetRoleMembersV3Forbidden:
+		return nil, v
+	case *AdminGetRoleMembersV3NotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   AdminGetRoleV3 gets role
 
-  Required permission 'ADMIN:ROLE [READ]'<br> <p>action code: 10419</p>
+  Required permission &#39;ADMIN:ROLE [READ]&#39;&lt;br&gt; &lt;p&gt;action code: 10419&lt;/p&gt;
 */
 func (a *Client) AdminGetRoleV3(params *AdminGetRoleV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRoleV3OK, *AdminGetRoleV3BadRequest, *AdminGetRoleV3Unauthorized, *AdminGetRoleV3Forbidden, *AdminGetRoleV3NotFound, error) {
 	// TODO: Validate the params before sending
@@ -1158,7 +2068,7 @@ func (a *Client) AdminGetRoleV3(params *AdminGetRoleV3Params, authInfo runtime.C
 		PathPattern:        "/iam/v3/admin/roles/{roleId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminGetRoleV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1173,16 +2083,66 @@ func (a *Client) AdminGetRoleV3(params *AdminGetRoleV3Params, authInfo runtime.C
 
 	case *AdminGetRoleV3OK:
 		return v, nil, nil, nil, nil, nil
+
 	case *AdminGetRoleV3BadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *AdminGetRoleV3Unauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *AdminGetRoleV3Forbidden:
 		return nil, nil, nil, v, nil, nil
+
 	case *AdminGetRoleV3NotFound:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminGetRoleV3Short(params *AdminGetRoleV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRoleV3OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGetRoleV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminGetRoleV3",
+		Method:             "GET",
+		PathPattern:        "/iam/v3/admin/roles/{roleId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGetRoleV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGetRoleV3OK:
+		return v, nil
+	case *AdminGetRoleV3BadRequest:
+		return nil, v
+	case *AdminGetRoleV3Unauthorized:
+		return nil, v
+	case *AdminGetRoleV3Forbidden:
+		return nil, v
+	case *AdminGetRoleV3NotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -1209,7 +2169,7 @@ func (a *Client) AdminGetRoleV4(params *AdminGetRoleV4Params, authInfo runtime.C
 		PathPattern:        "/iam/v4/admin/roles/{roleId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminGetRoleV4Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1224,23 +2184,73 @@ func (a *Client) AdminGetRoleV4(params *AdminGetRoleV4Params, authInfo runtime.C
 
 	case *AdminGetRoleV4OK:
 		return v, nil, nil, nil, nil, nil
+
 	case *AdminGetRoleV4BadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *AdminGetRoleV4Unauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *AdminGetRoleV4Forbidden:
 		return nil, nil, nil, v, nil, nil
+
 	case *AdminGetRoleV4NotFound:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminGetRoleV4Short(params *AdminGetRoleV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRoleV4OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGetRoleV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminGetRoleV4",
+		Method:             "GET",
+		PathPattern:        "/iam/v4/admin/roles/{roleId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGetRoleV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGetRoleV4OK:
+		return v, nil
+	case *AdminGetRoleV4BadRequest:
+		return nil, v
+	case *AdminGetRoleV4Unauthorized:
+		return nil, v
+	case *AdminGetRoleV4Forbidden:
+		return nil, v
+	case *AdminGetRoleV4NotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   AdminGetRolesV3 gets roles
 
-  Required permission 'ADMIN:ROLE [READ]'<br> <p>action code: 10414</p>
+  Required permission &#39;ADMIN:ROLE [READ]&#39;&lt;br&gt; &lt;p&gt;action code: 10414&lt;/p&gt;
 */
 func (a *Client) AdminGetRolesV3(params *AdminGetRolesV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRolesV3OK, *AdminGetRolesV3BadRequest, *AdminGetRolesV3Unauthorized, *AdminGetRolesV3Forbidden, error) {
 	// TODO: Validate the params before sending
@@ -1258,7 +2268,7 @@ func (a *Client) AdminGetRolesV3(params *AdminGetRolesV3Params, authInfo runtime
 		PathPattern:        "/iam/v3/admin/roles",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminGetRolesV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1273,14 +2283,61 @@ func (a *Client) AdminGetRolesV3(params *AdminGetRolesV3Params, authInfo runtime
 
 	case *AdminGetRolesV3OK:
 		return v, nil, nil, nil, nil
+
 	case *AdminGetRolesV3BadRequest:
 		return nil, v, nil, nil, nil
+
 	case *AdminGetRolesV3Unauthorized:
 		return nil, nil, v, nil, nil
+
 	case *AdminGetRolesV3Forbidden:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminGetRolesV3Short(params *AdminGetRolesV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRolesV3OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGetRolesV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminGetRolesV3",
+		Method:             "GET",
+		PathPattern:        "/iam/v3/admin/roles",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGetRolesV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGetRolesV3OK:
+		return v, nil
+	case *AdminGetRolesV3BadRequest:
+		return nil, v
+	case *AdminGetRolesV3Unauthorized:
+		return nil, v
+	case *AdminGetRolesV3Forbidden:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -1307,7 +2364,7 @@ func (a *Client) AdminGetRolesV4(params *AdminGetRolesV4Params, authInfo runtime
 		PathPattern:        "/iam/v4/admin/roles",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminGetRolesV4Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1322,14 +2379,61 @@ func (a *Client) AdminGetRolesV4(params *AdminGetRolesV4Params, authInfo runtime
 
 	case *AdminGetRolesV4OK:
 		return v, nil, nil, nil, nil
+
 	case *AdminGetRolesV4BadRequest:
 		return nil, v, nil, nil, nil
+
 	case *AdminGetRolesV4Unauthorized:
 		return nil, nil, v, nil, nil
+
 	case *AdminGetRolesV4Forbidden:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminGetRolesV4Short(params *AdminGetRolesV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRolesV4OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGetRolesV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminGetRolesV4",
+		Method:             "GET",
+		PathPattern:        "/iam/v4/admin/roles",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGetRolesV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGetRolesV4OK:
+		return v, nil
+	case *AdminGetRolesV4BadRequest:
+		return nil, v
+	case *AdminGetRolesV4Unauthorized:
+		return nil, v
+	case *AdminGetRolesV4Forbidden:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -1357,7 +2461,7 @@ func (a *Client) AdminListAssignedUsersV4(params *AdminListAssignedUsersV4Params
 		PathPattern:        "/iam/v4/admin/roles/{roleId}/users",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminListAssignedUsersV4Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1372,23 +2476,73 @@ func (a *Client) AdminListAssignedUsersV4(params *AdminListAssignedUsersV4Params
 
 	case *AdminListAssignedUsersV4OK:
 		return v, nil, nil, nil, nil, nil
+
 	case *AdminListAssignedUsersV4BadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *AdminListAssignedUsersV4Unauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *AdminListAssignedUsersV4Forbidden:
 		return nil, nil, nil, v, nil, nil
+
 	case *AdminListAssignedUsersV4NotFound:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminListAssignedUsersV4Short(params *AdminListAssignedUsersV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminListAssignedUsersV4OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminListAssignedUsersV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminListAssignedUsersV4",
+		Method:             "GET",
+		PathPattern:        "/iam/v4/admin/roles/{roleId}/users",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminListAssignedUsersV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminListAssignedUsersV4OK:
+		return v, nil
+	case *AdminListAssignedUsersV4BadRequest:
+		return nil, v
+	case *AdminListAssignedUsersV4Unauthorized:
+		return nil, v
+	case *AdminListAssignedUsersV4Forbidden:
+		return nil, v
+	case *AdminListAssignedUsersV4NotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   AdminRemoveRoleAdminV3 removes role admin status
 
-  <p>Required permission 'ADMIN:ROLE [UPDATE]'</p> code: 10413
+  &lt;p&gt;Required permission &#39;ADMIN:ROLE [UPDATE]&#39;&lt;/p&gt; code: 10413
 */
 func (a *Client) AdminRemoveRoleAdminV3(params *AdminRemoveRoleAdminV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminRemoveRoleAdminV3NoContent, *AdminRemoveRoleAdminV3BadRequest, *AdminRemoveRoleAdminV3Unauthorized, *AdminRemoveRoleAdminV3Forbidden, *AdminRemoveRoleAdminV3NotFound, *AdminRemoveRoleAdminV3InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1406,7 +2560,7 @@ func (a *Client) AdminRemoveRoleAdminV3(params *AdminRemoveRoleAdminV3Params, au
 		PathPattern:        "/iam/v3/admin/roles/{roleId}/admin",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminRemoveRoleAdminV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1421,26 +2575,79 @@ func (a *Client) AdminRemoveRoleAdminV3(params *AdminRemoveRoleAdminV3Params, au
 
 	case *AdminRemoveRoleAdminV3NoContent:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *AdminRemoveRoleAdminV3BadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *AdminRemoveRoleAdminV3Unauthorized:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *AdminRemoveRoleAdminV3Forbidden:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *AdminRemoveRoleAdminV3NotFound:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *AdminRemoveRoleAdminV3InternalServerError:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminRemoveRoleAdminV3Short(params *AdminRemoveRoleAdminV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminRemoveRoleAdminV3NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminRemoveRoleAdminV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminRemoveRoleAdminV3",
+		Method:             "DELETE",
+		PathPattern:        "/iam/v3/admin/roles/{roleId}/admin",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminRemoveRoleAdminV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminRemoveRoleAdminV3NoContent:
+		return v, nil
+	case *AdminRemoveRoleAdminV3BadRequest:
+		return nil, v
+	case *AdminRemoveRoleAdminV3Unauthorized:
+		return nil, v
+	case *AdminRemoveRoleAdminV3Forbidden:
+		return nil, v
+	case *AdminRemoveRoleAdminV3NotFound:
+		return nil, v
+	case *AdminRemoveRoleAdminV3InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   AdminRemoveRoleManagersV3 removes role managers
 
-  <p>Required permission 'ADMIN:ROLE [UPDATE]'</p>
-			<p>Role can only be assigned to other users by the role's manager.</p> <br> action code: 10409
+  &lt;p&gt;Required permission &#39;ADMIN:ROLE [UPDATE]&#39;&lt;/p&gt;
+			&lt;p&gt;Role can only be assigned to other users by the role&#39;s manager.&lt;/p&gt; &lt;br&gt; action code: 10409
 */
 func (a *Client) AdminRemoveRoleManagersV3(params *AdminRemoveRoleManagersV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminRemoveRoleManagersV3NoContent, *AdminRemoveRoleManagersV3BadRequest, *AdminRemoveRoleManagersV3Unauthorized, *AdminRemoveRoleManagersV3Forbidden, *AdminRemoveRoleManagersV3NotFound, error) {
 	// TODO: Validate the params before sending
@@ -1458,7 +2665,7 @@ func (a *Client) AdminRemoveRoleManagersV3(params *AdminRemoveRoleManagersV3Para
 		PathPattern:        "/iam/v3/admin/roles/{roleId}/managers",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminRemoveRoleManagersV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1473,25 +2680,75 @@ func (a *Client) AdminRemoveRoleManagersV3(params *AdminRemoveRoleManagersV3Para
 
 	case *AdminRemoveRoleManagersV3NoContent:
 		return v, nil, nil, nil, nil, nil
+
 	case *AdminRemoveRoleManagersV3BadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *AdminRemoveRoleManagersV3Unauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *AdminRemoveRoleManagersV3Forbidden:
 		return nil, nil, nil, v, nil, nil
+
 	case *AdminRemoveRoleManagersV3NotFound:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminRemoveRoleManagersV3Short(params *AdminRemoveRoleManagersV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminRemoveRoleManagersV3NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminRemoveRoleManagersV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminRemoveRoleManagersV3",
+		Method:             "DELETE",
+		PathPattern:        "/iam/v3/admin/roles/{roleId}/managers",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminRemoveRoleManagersV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminRemoveRoleManagersV3NoContent:
+		return v, nil
+	case *AdminRemoveRoleManagersV3BadRequest:
+		return nil, v
+	case *AdminRemoveRoleManagersV3Unauthorized:
+		return nil, v
+	case *AdminRemoveRoleManagersV3Forbidden:
+		return nil, v
+	case *AdminRemoveRoleManagersV3NotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   AdminRemoveRoleMembersV3 removes role members
 
-  <p>Required permission 'ADMIN:ROLE [UPDATE]'</p>
-			<p>Admin roles has its members listed in the role.</p>
-			<p>Role can only be assigned to other users by the role's manager.</p> <br> action code: 10411
+  &lt;p&gt;Required permission &#39;ADMIN:ROLE [UPDATE]&#39;&lt;/p&gt;
+			&lt;p&gt;Admin roles has its members listed in the role.&lt;/p&gt;
+			&lt;p&gt;Role can only be assigned to other users by the role&#39;s manager.&lt;/p&gt; &lt;br&gt; action code: 10411
 */
 func (a *Client) AdminRemoveRoleMembersV3(params *AdminRemoveRoleMembersV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminRemoveRoleMembersV3NoContent, *AdminRemoveRoleMembersV3BadRequest, *AdminRemoveRoleMembersV3Unauthorized, *AdminRemoveRoleMembersV3Forbidden, *AdminRemoveRoleMembersV3NotFound, error) {
 	// TODO: Validate the params before sending
@@ -1509,7 +2766,7 @@ func (a *Client) AdminRemoveRoleMembersV3(params *AdminRemoveRoleMembersV3Params
 		PathPattern:        "/iam/v3/admin/roles/{roleId}/members",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminRemoveRoleMembersV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1524,16 +2781,66 @@ func (a *Client) AdminRemoveRoleMembersV3(params *AdminRemoveRoleMembersV3Params
 
 	case *AdminRemoveRoleMembersV3NoContent:
 		return v, nil, nil, nil, nil, nil
+
 	case *AdminRemoveRoleMembersV3BadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *AdminRemoveRoleMembersV3Unauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *AdminRemoveRoleMembersV3Forbidden:
 		return nil, nil, nil, v, nil, nil
+
 	case *AdminRemoveRoleMembersV3NotFound:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminRemoveRoleMembersV3Short(params *AdminRemoveRoleMembersV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminRemoveRoleMembersV3NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminRemoveRoleMembersV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminRemoveRoleMembersV3",
+		Method:             "DELETE",
+		PathPattern:        "/iam/v3/admin/roles/{roleId}/members",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminRemoveRoleMembersV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminRemoveRoleMembersV3NoContent:
+		return v, nil
+	case *AdminRemoveRoleMembersV3BadRequest:
+		return nil, v
+	case *AdminRemoveRoleMembersV3Unauthorized:
+		return nil, v
+	case *AdminRemoveRoleMembersV3Forbidden:
+		return nil, v
+	case *AdminRemoveRoleMembersV3NotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -1566,7 +2873,7 @@ func (a *Client) AdminRevokeUserFromRoleV4(params *AdminRevokeUserFromRoleV4Para
 		PathPattern:        "/iam/v4/admin/roles/{roleId}/users",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminRevokeUserFromRoleV4Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1581,26 +2888,76 @@ func (a *Client) AdminRevokeUserFromRoleV4(params *AdminRevokeUserFromRoleV4Para
 
 	case *AdminRevokeUserFromRoleV4NoContent:
 		return v, nil, nil, nil, nil, nil
+
 	case *AdminRevokeUserFromRoleV4BadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *AdminRevokeUserFromRoleV4Unauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *AdminRevokeUserFromRoleV4Forbidden:
 		return nil, nil, nil, v, nil, nil
+
 	case *AdminRevokeUserFromRoleV4NotFound:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminRevokeUserFromRoleV4Short(params *AdminRevokeUserFromRoleV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminRevokeUserFromRoleV4NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminRevokeUserFromRoleV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminRevokeUserFromRoleV4",
+		Method:             "DELETE",
+		PathPattern:        "/iam/v4/admin/roles/{roleId}/users",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminRevokeUserFromRoleV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminRevokeUserFromRoleV4NoContent:
+		return v, nil
+	case *AdminRevokeUserFromRoleV4BadRequest:
+		return nil, v
+	case *AdminRevokeUserFromRoleV4Unauthorized:
+		return nil, v
+	case *AdminRevokeUserFromRoleV4Forbidden:
+		return nil, v
+	case *AdminRevokeUserFromRoleV4NotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   AdminUpdateAdminRoleStatusV3 sets role as admin role
 
-  <p>Required permission 'ADMIN:ROLE [UPDATE]'</p>
-			<p>Admin roles has its members listed in the role.</p>
-			<p>Role can be set as admin role only when it has at least 1 manager.</p>
-			<br>action code: 10412
+  &lt;p&gt;Required permission &#39;ADMIN:ROLE [UPDATE]&#39;&lt;/p&gt;
+			&lt;p&gt;Admin roles has its members listed in the role.&lt;/p&gt;
+			&lt;p&gt;Role can be set as admin role only when it has at least 1 manager.&lt;/p&gt;
+			&lt;br&gt;action code: 10412
 */
 func (a *Client) AdminUpdateAdminRoleStatusV3(params *AdminUpdateAdminRoleStatusV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateAdminRoleStatusV3NoContent, *AdminUpdateAdminRoleStatusV3BadRequest, *AdminUpdateAdminRoleStatusV3Unauthorized, *AdminUpdateAdminRoleStatusV3Forbidden, *AdminUpdateAdminRoleStatusV3NotFound, *AdminUpdateAdminRoleStatusV3InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1618,7 +2975,7 @@ func (a *Client) AdminUpdateAdminRoleStatusV3(params *AdminUpdateAdminRoleStatus
 		PathPattern:        "/iam/v3/admin/roles/{roleId}/admin",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminUpdateAdminRoleStatusV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1633,52 +2990,105 @@ func (a *Client) AdminUpdateAdminRoleStatusV3(params *AdminUpdateAdminRoleStatus
 
 	case *AdminUpdateAdminRoleStatusV3NoContent:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *AdminUpdateAdminRoleStatusV3BadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *AdminUpdateAdminRoleStatusV3Unauthorized:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *AdminUpdateAdminRoleStatusV3Forbidden:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *AdminUpdateAdminRoleStatusV3NotFound:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *AdminUpdateAdminRoleStatusV3InternalServerError:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminUpdateAdminRoleStatusV3Short(params *AdminUpdateAdminRoleStatusV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateAdminRoleStatusV3NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminUpdateAdminRoleStatusV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminUpdateAdminRoleStatusV3",
+		Method:             "POST",
+		PathPattern:        "/iam/v3/admin/roles/{roleId}/admin",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminUpdateAdminRoleStatusV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminUpdateAdminRoleStatusV3NoContent:
+		return v, nil
+	case *AdminUpdateAdminRoleStatusV3BadRequest:
+		return nil, v
+	case *AdminUpdateAdminRoleStatusV3Unauthorized:
+		return nil, v
+	case *AdminUpdateAdminRoleStatusV3Forbidden:
+		return nil, v
+	case *AdminUpdateAdminRoleStatusV3NotFound:
+		return nil, v
+	case *AdminUpdateAdminRoleStatusV3InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   AdminUpdateRolePermissionsV3 updates role permissions
 
-  <p>Required permission 'ADMIN:ROLE [UPDATE]'</p>
-			<p>This endpoint will REPLACE role's permissions with the ones defined in body</p>
-			<br>action code: 10405<br>
-			<p>Schedule contains cron string or date range (both are UTC, also in cron syntax) to indicate when a permission and action are in effect.</p>
-			<p>Both schedule types accepts quartz compatible cron syntax e.g. * * * * * * *.</p>
-			<p>In ranged schedule, first element will be start date, and second one will be end date</p>
-			<p>If schedule is set, the scheduled action must be valid too, that is between 1 to 15, inclusive</p>
-			<p>Syntax reference</p>
-			<p>Fields:</p>
-			<ol>
-			<li>Seconds: 0-59 * / , -</li>
-			<li>Minutes: 0-59 * / , -</li>
-			<li>Hours: 0-23 * / , -</li>
-			<li>Day of month: 1-31 * / , - L W</li>
-			<li>Month: 1-12 JAN-DEC * / , -</li>
-			<li>Day of week: 0-6 SUN-SAT * / , - L #</li>
-			<li>Year: 1970-2099 * / , -</li>
-			</ol>
-			<p>Special characters:</p>
-			<ol>
-			<li>*: all values in the fields, e.g. * in seconds fields indicates every second</li>
-			<li>/: increments of ranges, e.g. 3-59/15 in the minute field indicate the third minute of the hour and every 15 minutes thereafter</li>
-			<li>,: separate items of a list, e.g. MON,WED,FRI in day of week</li>
-			<li>-: range, e.g. 2010-2018 indicates every year between 2010 and 2018, inclusive</li>
-			<li>L: last, e.g. When used in the day-of-week field, it allows you to specify constructs such as "the last Friday" (5L) of a given month. In the day-of-month field, it specifies the last day of the month.</li>
-			<li>W: business day, e.g. if you were to specify 15W as the value for the day-of-month field, the meaning is: "the nearest business day to the 15th of the month."</li>
-			<li>#: must be followed by a number between one and five. It allows you to specify constructs such as "the second Friday" of a given month.</li>
-			</ol>
+  &lt;p&gt;Required permission &#39;ADMIN:ROLE [UPDATE]&#39;&lt;/p&gt;
+			&lt;p&gt;This endpoint will REPLACE role&#39;s permissions with the ones defined in body&lt;/p&gt;
+			&lt;br&gt;action code: 10405&lt;br&gt;
+			&lt;p&gt;Schedule contains cron string or date range (both are UTC, also in cron syntax) to indicate when a permission and action are in effect.&lt;/p&gt;
+			&lt;p&gt;Both schedule types accepts quartz compatible cron syntax e.g. * * * * * * *.&lt;/p&gt;
+			&lt;p&gt;In ranged schedule, first element will be start date, and second one will be end date&lt;/p&gt;
+			&lt;p&gt;If schedule is set, the scheduled action must be valid too, that is between 1 to 15, inclusive&lt;/p&gt;
+			&lt;p&gt;Syntax reference&lt;/p&gt;
+			&lt;p&gt;Fields:&lt;/p&gt;
+			&lt;ol&gt;
+			&lt;li&gt;Seconds: 0-59 * / , -&lt;/li&gt;
+			&lt;li&gt;Minutes: 0-59 * / , -&lt;/li&gt;
+			&lt;li&gt;Hours: 0-23 * / , -&lt;/li&gt;
+			&lt;li&gt;Day of month: 1-31 * / , - L W&lt;/li&gt;
+			&lt;li&gt;Month: 1-12 JAN-DEC * / , -&lt;/li&gt;
+			&lt;li&gt;Day of week: 0-6 SUN-SAT * / , - L #&lt;/li&gt;
+			&lt;li&gt;Year: 1970-2099 * / , -&lt;/li&gt;
+			&lt;/ol&gt;
+			&lt;p&gt;Special characters:&lt;/p&gt;
+			&lt;ol&gt;
+			&lt;li&gt;*: all values in the fields, e.g. * in seconds fields indicates every second&lt;/li&gt;
+			&lt;li&gt;/: increments of ranges, e.g. 3-59/15 in the minute field indicate the third minute of the hour and every 15 minutes thereafter&lt;/li&gt;
+			&lt;li&gt;,: separate items of a list, e.g. MON,WED,FRI in day of week&lt;/li&gt;
+			&lt;li&gt;-: range, e.g. 2010-2018 indicates every year between 2010 and 2018, inclusive&lt;/li&gt;
+			&lt;li&gt;L: last, e.g. When used in the day-of-week field, it allows you to specify constructs such as &#34;the last Friday&#34; (5L) of a given month. In the day-of-month field, it specifies the last day of the month.&lt;/li&gt;
+			&lt;li&gt;W: business day, e.g. if you were to specify 15W as the value for the day-of-month field, the meaning is: &#34;the nearest business day to the 15th of the month.&#34;&lt;/li&gt;
+			&lt;li&gt;#: must be followed by a number between one and five. It allows you to specify constructs such as &#34;the second Friday&#34; of a given month.&lt;/li&gt;
+			&lt;/ol&gt;
 
 */
 func (a *Client) AdminUpdateRolePermissionsV3(params *AdminUpdateRolePermissionsV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateRolePermissionsV3NoContent, *AdminUpdateRolePermissionsV3BadRequest, *AdminUpdateRolePermissionsV3Unauthorized, *AdminUpdateRolePermissionsV3Forbidden, *AdminUpdateRolePermissionsV3NotFound, error) {
@@ -1697,7 +3107,7 @@ func (a *Client) AdminUpdateRolePermissionsV3(params *AdminUpdateRolePermissions
 		PathPattern:        "/iam/v3/admin/roles/{roleId}/permissions",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminUpdateRolePermissionsV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1712,50 +3122,100 @@ func (a *Client) AdminUpdateRolePermissionsV3(params *AdminUpdateRolePermissions
 
 	case *AdminUpdateRolePermissionsV3NoContent:
 		return v, nil, nil, nil, nil, nil
+
 	case *AdminUpdateRolePermissionsV3BadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *AdminUpdateRolePermissionsV3Unauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *AdminUpdateRolePermissionsV3Forbidden:
 		return nil, nil, nil, v, nil, nil
+
 	case *AdminUpdateRolePermissionsV3NotFound:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminUpdateRolePermissionsV3Short(params *AdminUpdateRolePermissionsV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateRolePermissionsV3NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminUpdateRolePermissionsV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminUpdateRolePermissionsV3",
+		Method:             "PUT",
+		PathPattern:        "/iam/v3/admin/roles/{roleId}/permissions",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminUpdateRolePermissionsV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminUpdateRolePermissionsV3NoContent:
+		return v, nil
+	case *AdminUpdateRolePermissionsV3BadRequest:
+		return nil, v
+	case *AdminUpdateRolePermissionsV3Unauthorized:
+		return nil, v
+	case *AdminUpdateRolePermissionsV3Forbidden:
+		return nil, v
+	case *AdminUpdateRolePermissionsV3NotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   AdminUpdateRolePermissionsV4 updates role permissions
 
-  <p>Required permission 'ADMIN:ROLE [UPDATE]'</p>
-<p>This endpoint will REPLACE role's permissions with the ones defined in body</p>
-<br>action code: 10405<br>
-<p>Schedule contains cron string or date range (both are UTC, also in cron syntax) to indicate when a permission and action are in effect.</p>
-<p>Both schedule types accepts quartz compatible cron syntax e.g. * * * * * * *.</p>
-<p>In ranged schedule, first element will be start date, and second one will be end date</p>
-<p>If schedule is set, the scheduled action must be valid too, that is between 1 to 15, inclusive</p>
-<p>Syntax reference</p>
-<p>Fields:</p>
-<ol>
-<li>Seconds: 0-59 * / , -</li>
-<li>Minutes: 0-59 * / , -</li>
-<li>Hours: 0-23 * / , -</li>
-<li>Day of month: 1-31 * / , - L W</li>
-<li>Month: 1-12 JAN-DEC * / , -</li>
-<li>Day of week: 0-6 SUN-SAT * / , - L #</li>
-<li>Year: 1970-2099 * / , -</li>
-</ol>
-<p>Special characters:</p>
-<ol>
-<li>*: all values in the fields, e.g. * in seconds fields indicates every second</li>
-<li>/: increments of ranges, e.g. 3-59/15 in the minute field indicate the third minute of the hour and every 15 minutes thereafter</li>
-<li>,: separate items of a list, e.g. MON,WED,FRI in day of week</li>
-<li>-: range, e.g. 2010-2018 indicates every year between 2010 and 2018, inclusive</li>
-<li>L: last, e.g. When used in the day-of-week field, it allows you to specify constructs such as "the last Friday" (5L) of a given month. In the day-of-month field, it specifies the last day of the month.</li>
-<li>W: business day, e.g. if you were to specify 15W as the value for the day-of-month field, the meaning is: "the nearest business day to the 15th of the month."</li>
-<li>#: must be followed by a number between one and five. It allows you to specify constructs such as "the second Friday" of a given month.</li>
-</ol>
+  &lt;p&gt;Required permission &#39;ADMIN:ROLE [UPDATE]&#39;&lt;/p&gt;
+&lt;p&gt;This endpoint will REPLACE role&#39;s permissions with the ones defined in body&lt;/p&gt;
+&lt;br&gt;action code: 10405&lt;br&gt;
+&lt;p&gt;Schedule contains cron string or date range (both are UTC, also in cron syntax) to indicate when a permission and action are in effect.&lt;/p&gt;
+&lt;p&gt;Both schedule types accepts quartz compatible cron syntax e.g. * * * * * * *.&lt;/p&gt;
+&lt;p&gt;In ranged schedule, first element will be start date, and second one will be end date&lt;/p&gt;
+&lt;p&gt;If schedule is set, the scheduled action must be valid too, that is between 1 to 15, inclusive&lt;/p&gt;
+&lt;p&gt;Syntax reference&lt;/p&gt;
+&lt;p&gt;Fields:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Seconds: 0-59 * / , -&lt;/li&gt;
+&lt;li&gt;Minutes: 0-59 * / , -&lt;/li&gt;
+&lt;li&gt;Hours: 0-23 * / , -&lt;/li&gt;
+&lt;li&gt;Day of month: 1-31 * / , - L W&lt;/li&gt;
+&lt;li&gt;Month: 1-12 JAN-DEC * / , -&lt;/li&gt;
+&lt;li&gt;Day of week: 0-6 SUN-SAT * / , - L #&lt;/li&gt;
+&lt;li&gt;Year: 1970-2099 * / , -&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Special characters:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;*: all values in the fields, e.g. * in seconds fields indicates every second&lt;/li&gt;
+&lt;li&gt;/: increments of ranges, e.g. 3-59/15 in the minute field indicate the third minute of the hour and every 15 minutes thereafter&lt;/li&gt;
+&lt;li&gt;,: separate items of a list, e.g. MON,WED,FRI in day of week&lt;/li&gt;
+&lt;li&gt;-: range, e.g. 2010-2018 indicates every year between 2010 and 2018, inclusive&lt;/li&gt;
+&lt;li&gt;L: last, e.g. When used in the day-of-week field, it allows you to specify constructs such as &#34;the last Friday&#34; (5L) of a given month. In the day-of-month field, it specifies the last day of the month.&lt;/li&gt;
+&lt;li&gt;W: business day, e.g. if you were to specify 15W as the value for the day-of-month field, the meaning is: &#34;the nearest business day to the 15th of the month.&#34;&lt;/li&gt;
+&lt;li&gt;#: must be followed by a number between one and five. It allows you to specify constructs such as &#34;the second Friday&#34; of a given month.&lt;/li&gt;
+&lt;/ol&gt;
 
 */
 func (a *Client) AdminUpdateRolePermissionsV4(params *AdminUpdateRolePermissionsV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateRolePermissionsV4OK, *AdminUpdateRolePermissionsV4BadRequest, *AdminUpdateRolePermissionsV4Unauthorized, *AdminUpdateRolePermissionsV4Forbidden, *AdminUpdateRolePermissionsV4NotFound, error) {
@@ -1774,7 +3234,7 @@ func (a *Client) AdminUpdateRolePermissionsV4(params *AdminUpdateRolePermissions
 		PathPattern:        "/iam/v4/admin/roles/{roleId}/permissions",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminUpdateRolePermissionsV4Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1789,23 +3249,73 @@ func (a *Client) AdminUpdateRolePermissionsV4(params *AdminUpdateRolePermissions
 
 	case *AdminUpdateRolePermissionsV4OK:
 		return v, nil, nil, nil, nil, nil
+
 	case *AdminUpdateRolePermissionsV4BadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *AdminUpdateRolePermissionsV4Unauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *AdminUpdateRolePermissionsV4Forbidden:
 		return nil, nil, nil, v, nil, nil
+
 	case *AdminUpdateRolePermissionsV4NotFound:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminUpdateRolePermissionsV4Short(params *AdminUpdateRolePermissionsV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateRolePermissionsV4OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminUpdateRolePermissionsV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminUpdateRolePermissionsV4",
+		Method:             "PUT",
+		PathPattern:        "/iam/v4/admin/roles/{roleId}/permissions",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminUpdateRolePermissionsV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminUpdateRolePermissionsV4OK:
+		return v, nil
+	case *AdminUpdateRolePermissionsV4BadRequest:
+		return nil, v
+	case *AdminUpdateRolePermissionsV4Unauthorized:
+		return nil, v
+	case *AdminUpdateRolePermissionsV4Forbidden:
+		return nil, v
+	case *AdminUpdateRolePermissionsV4NotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   AdminUpdateRoleV3 updates role
 
-  Required permission 'ADMIN:ROLE [UPDATE]' <br>action code: 10402
+  Required permission &#39;ADMIN:ROLE [UPDATE]&#39; &lt;br&gt;action code: 10402
 */
 func (a *Client) AdminUpdateRoleV3(params *AdminUpdateRoleV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateRoleV3OK, *AdminUpdateRoleV3BadRequest, *AdminUpdateRoleV3Unauthorized, *AdminUpdateRoleV3Forbidden, *AdminUpdateRoleV3NotFound, error) {
 	// TODO: Validate the params before sending
@@ -1823,7 +3333,7 @@ func (a *Client) AdminUpdateRoleV3(params *AdminUpdateRoleV3Params, authInfo run
 		PathPattern:        "/iam/v3/admin/roles/{roleId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminUpdateRoleV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1838,16 +3348,66 @@ func (a *Client) AdminUpdateRoleV3(params *AdminUpdateRoleV3Params, authInfo run
 
 	case *AdminUpdateRoleV3OK:
 		return v, nil, nil, nil, nil, nil
+
 	case *AdminUpdateRoleV3BadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *AdminUpdateRoleV3Unauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *AdminUpdateRoleV3Forbidden:
 		return nil, nil, nil, v, nil, nil
+
 	case *AdminUpdateRoleV3NotFound:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminUpdateRoleV3Short(params *AdminUpdateRoleV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateRoleV3OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminUpdateRoleV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminUpdateRoleV3",
+		Method:             "PATCH",
+		PathPattern:        "/iam/v3/admin/roles/{roleId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminUpdateRoleV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminUpdateRoleV3OK:
+		return v, nil
+	case *AdminUpdateRoleV3BadRequest:
+		return nil, v
+	case *AdminUpdateRoleV3Unauthorized:
+		return nil, v
+	case *AdminUpdateRoleV3Forbidden:
+		return nil, v
+	case *AdminUpdateRoleV3NotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -1879,7 +3439,7 @@ func (a *Client) AdminUpdateRoleV4(params *AdminUpdateRoleV4Params, authInfo run
 		PathPattern:        "/iam/v4/admin/roles/{roleId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminUpdateRoleV4Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1894,28 +3454,78 @@ func (a *Client) AdminUpdateRoleV4(params *AdminUpdateRoleV4Params, authInfo run
 
 	case *AdminUpdateRoleV4OK:
 		return v, nil, nil, nil, nil, nil
+
 	case *AdminUpdateRoleV4BadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *AdminUpdateRoleV4Unauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *AdminUpdateRoleV4Forbidden:
 		return nil, nil, nil, v, nil, nil
+
 	case *AdminUpdateRoleV4NotFound:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminUpdateRoleV4Short(params *AdminUpdateRoleV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateRoleV4OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminUpdateRoleV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminUpdateRoleV4",
+		Method:             "PATCH",
+		PathPattern:        "/iam/v4/admin/roles/{roleId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminUpdateRoleV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminUpdateRoleV4OK:
+		return v, nil
+	case *AdminUpdateRoleV4BadRequest:
+		return nil, v
+	case *AdminUpdateRoleV4Unauthorized:
+		return nil, v
+	case *AdminUpdateRoleV4Forbidden:
+		return nil, v
+	case *AdminUpdateRoleV4NotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   CreateRole creates role
 
-  <p>Required permission 'ROLE:ADMIN [CREATE]' or 'ADMIN:ROLE [CREATE]' </p>
-			<p>Required Permission 'ROLE:ADMIN [CREATE]' is going to be <strong>DEPRECATED</strong> for security purpose.
-			It is going to be deprecated on <strong>31 JANUARY 2019</strong>, please use permission 'ADMIN:ROLE [CREATE]' instead.</p>
-			<p>Role can only be assigned to other users by the role's manager.</p>
-			<p>If role is an administrator role (i.e. AdminRole == true), it will list out the role's members.</p>
-			<p>Administrator role can be created only when at least 1 manager is specified.</p>
+  &lt;p&gt;Required permission &#39;ROLE:ADMIN [CREATE]&#39; or &#39;ADMIN:ROLE [CREATE]&#39; &lt;/p&gt;
+			&lt;p&gt;Required Permission &#39;ROLE:ADMIN [CREATE]&#39; is going to be &lt;strong&gt;DEPRECATED&lt;/strong&gt; for security purpose.
+			It is going to be deprecated on &lt;strong&gt;31 JANUARY 2019&lt;/strong&gt;, please use permission &#39;ADMIN:ROLE [CREATE]&#39; instead.&lt;/p&gt;
+			&lt;p&gt;Role can only be assigned to other users by the role&#39;s manager.&lt;/p&gt;
+			&lt;p&gt;If role is an administrator role (i.e. AdminRole == true), it will list out the role&#39;s members.&lt;/p&gt;
+			&lt;p&gt;Administrator role can be created only when at least 1 manager is specified.&lt;/p&gt;
 
 */
 func (a *Client) CreateRole(params *CreateRoleParams, authInfo runtime.ClientAuthInfoWriter) (*CreateRoleCreated, *CreateRoleBadRequest, *CreateRoleUnauthorized, *CreateRoleForbidden, error) {
@@ -1934,7 +3544,7 @@ func (a *Client) CreateRole(params *CreateRoleParams, authInfo runtime.ClientAut
 		PathPattern:        "/iam/roles",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &CreateRoleReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1949,23 +3559,70 @@ func (a *Client) CreateRole(params *CreateRoleParams, authInfo runtime.ClientAut
 
 	case *CreateRoleCreated:
 		return v, nil, nil, nil, nil
+
 	case *CreateRoleBadRequest:
 		return nil, v, nil, nil, nil
+
 	case *CreateRoleUnauthorized:
 		return nil, nil, v, nil, nil
+
 	case *CreateRoleForbidden:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) CreateRoleShort(params *CreateRoleParams, authInfo runtime.ClientAuthInfoWriter) (*CreateRoleCreated, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreateRoleParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "CreateRole",
+		Method:             "POST",
+		PathPattern:        "/iam/roles",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CreateRoleReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *CreateRoleCreated:
+		return v, nil
+	case *CreateRoleBadRequest:
+		return nil, v
+	case *CreateRoleUnauthorized:
+		return nil, v
+	case *CreateRoleForbidden:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   DeleteRole deletes role
 
-  Required permission 'ROLE:ADMIN [DELETE]' or 'ADMIN:ROLE [DELETE]'
-			<p>Required Permission 'ROLE:ADMIN [DELETE]' is going to be <strong>DEPRECATED</strong> for security purpose.
-			It is going to be deprecated on <strong>31 JANUARY 2019</strong>, please use permission 'ADMIN:ROLE [DELETE]' instead.</p>
+  Required permission &#39;ROLE:ADMIN [DELETE]&#39; or &#39;ADMIN:ROLE [DELETE]&#39;
+			&lt;p&gt;Required Permission &#39;ROLE:ADMIN [DELETE]&#39; is going to be &lt;strong&gt;DEPRECATED&lt;/strong&gt; for security purpose.
+			It is going to be deprecated on &lt;strong&gt;31 JANUARY 2019&lt;/strong&gt;, please use permission &#39;ADMIN:ROLE [DELETE]&#39; instead.&lt;/p&gt;
 */
 func (a *Client) DeleteRole(params *DeleteRoleParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteRoleNoContent, *DeleteRoleUnauthorized, *DeleteRoleForbidden, *DeleteRoleNotFound, error) {
 	// TODO: Validate the params before sending
@@ -1983,7 +3640,7 @@ func (a *Client) DeleteRole(params *DeleteRoleParams, authInfo runtime.ClientAut
 		PathPattern:        "/iam/roles/{roleId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteRoleReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1998,23 +3655,70 @@ func (a *Client) DeleteRole(params *DeleteRoleParams, authInfo runtime.ClientAut
 
 	case *DeleteRoleNoContent:
 		return v, nil, nil, nil, nil
+
 	case *DeleteRoleUnauthorized:
 		return nil, v, nil, nil, nil
+
 	case *DeleteRoleForbidden:
 		return nil, nil, v, nil, nil
+
 	case *DeleteRoleNotFound:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) DeleteRoleShort(params *DeleteRoleParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteRoleNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteRoleParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "DeleteRole",
+		Method:             "DELETE",
+		PathPattern:        "/iam/roles/{roleId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteRoleReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeleteRoleNoContent:
+		return v, nil
+	case *DeleteRoleUnauthorized:
+		return nil, v
+	case *DeleteRoleForbidden:
+		return nil, v
+	case *DeleteRoleNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   DeleteRolePermission deletes role permission
 
-  Required permission 'ROLE:ADMIN [UPDATE]' or 'ADMIN:ROLE [UPDATE]'
-			<p>Required Permission 'ROLE:ADMIN [UPDATE]' is going to be <strong>DEPRECATED</strong> for security purpose.
-			It is going to be deprecated on <strong>31 JANUARY 2019</strong>, please use permission 'ADMIN:ROLE [UPDATE]' instead.</p>
+  Required permission &#39;ROLE:ADMIN [UPDATE]&#39; or &#39;ADMIN:ROLE [UPDATE]&#39;
+			&lt;p&gt;Required Permission &#39;ROLE:ADMIN [UPDATE]&#39; is going to be &lt;strong&gt;DEPRECATED&lt;/strong&gt; for security purpose.
+			It is going to be deprecated on &lt;strong&gt;31 JANUARY 2019&lt;/strong&gt;, please use permission &#39;ADMIN:ROLE [UPDATE]&#39; instead.&lt;/p&gt;
 */
 func (a *Client) DeleteRolePermission(params *DeleteRolePermissionParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteRolePermissionNoContent, *DeleteRolePermissionBadRequest, *DeleteRolePermissionUnauthorized, *DeleteRolePermissionForbidden, *DeleteRolePermissionNotFound, error) {
 	// TODO: Validate the params before sending
@@ -2032,7 +3736,7 @@ func (a *Client) DeleteRolePermission(params *DeleteRolePermissionParams, authIn
 		PathPattern:        "/iam/roles/{roleId}/permissions/{resource}/{action}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteRolePermissionReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -2047,23 +3751,73 @@ func (a *Client) DeleteRolePermission(params *DeleteRolePermissionParams, authIn
 
 	case *DeleteRolePermissionNoContent:
 		return v, nil, nil, nil, nil, nil
+
 	case *DeleteRolePermissionBadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *DeleteRolePermissionUnauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *DeleteRolePermissionForbidden:
 		return nil, nil, nil, v, nil, nil
+
 	case *DeleteRolePermissionNotFound:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) DeleteRolePermissionShort(params *DeleteRolePermissionParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteRolePermissionNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteRolePermissionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "DeleteRolePermission",
+		Method:             "DELETE",
+		PathPattern:        "/iam/roles/{roleId}/permissions/{resource}/{action}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteRolePermissionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeleteRolePermissionNoContent:
+		return v, nil
+	case *DeleteRolePermissionBadRequest:
+		return nil, v
+	case *DeleteRolePermissionUnauthorized:
+		return nil, v
+	case *DeleteRolePermissionForbidden:
+		return nil, v
+	case *DeleteRolePermissionNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   GetRole gets role
 
-  Required permission 'ROLE [READ]'
+  Required permission &#39;ROLE [READ]&#39;
 */
 func (a *Client) GetRole(params *GetRoleParams, authInfo runtime.ClientAuthInfoWriter) (*GetRoleOK, *GetRoleUnauthorized, *GetRoleForbidden, *GetRoleNotFound, error) {
 	// TODO: Validate the params before sending
@@ -2081,7 +3835,7 @@ func (a *Client) GetRole(params *GetRoleParams, authInfo runtime.ClientAuthInfoW
 		PathPattern:        "/iam/roles/{roleId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetRoleReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -2096,22 +3850,69 @@ func (a *Client) GetRole(params *GetRoleParams, authInfo runtime.ClientAuthInfoW
 
 	case *GetRoleOK:
 		return v, nil, nil, nil, nil
+
 	case *GetRoleUnauthorized:
 		return nil, v, nil, nil, nil
+
 	case *GetRoleForbidden:
 		return nil, nil, v, nil, nil
+
 	case *GetRoleNotFound:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetRoleShort(params *GetRoleParams, authInfo runtime.ClientAuthInfoWriter) (*GetRoleOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetRoleParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetRole",
+		Method:             "GET",
+		PathPattern:        "/iam/roles/{roleId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetRoleReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetRoleOK:
+		return v, nil
+	case *GetRoleUnauthorized:
+		return nil, v
+	case *GetRoleForbidden:
+		return nil, v
+	case *GetRoleNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   GetRoleAdminStatus gets role admin status
 
-  <p>Required permission 'ROLE [READ]'</p>
-			<p>Admin roles has its members listed in the role.</p>
+  &lt;p&gt;Required permission &#39;ROLE [READ]&#39;&lt;/p&gt;
+			&lt;p&gt;Admin roles has its members listed in the role.&lt;/p&gt;
 */
 func (a *Client) GetRoleAdminStatus(params *GetRoleAdminStatusParams, authInfo runtime.ClientAuthInfoWriter) (*GetRoleAdminStatusOK, *GetRoleAdminStatusBadRequest, *GetRoleAdminStatusUnauthorized, *GetRoleAdminStatusForbidden, *GetRoleAdminStatusNotFound, error) {
 	// TODO: Validate the params before sending
@@ -2129,7 +3930,7 @@ func (a *Client) GetRoleAdminStatus(params *GetRoleAdminStatusParams, authInfo r
 		PathPattern:        "/iam/roles/{roleId}/admin",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetRoleAdminStatusReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -2144,24 +3945,74 @@ func (a *Client) GetRoleAdminStatus(params *GetRoleAdminStatusParams, authInfo r
 
 	case *GetRoleAdminStatusOK:
 		return v, nil, nil, nil, nil, nil
+
 	case *GetRoleAdminStatusBadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *GetRoleAdminStatusUnauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *GetRoleAdminStatusForbidden:
 		return nil, nil, nil, v, nil, nil
+
 	case *GetRoleAdminStatusNotFound:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetRoleAdminStatusShort(params *GetRoleAdminStatusParams, authInfo runtime.ClientAuthInfoWriter) (*GetRoleAdminStatusOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetRoleAdminStatusParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetRoleAdminStatus",
+		Method:             "GET",
+		PathPattern:        "/iam/roles/{roleId}/admin",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetRoleAdminStatusReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetRoleAdminStatusOK:
+		return v, nil
+	case *GetRoleAdminStatusBadRequest:
+		return nil, v
+	case *GetRoleAdminStatusUnauthorized:
+		return nil, v
+	case *GetRoleAdminStatusForbidden:
+		return nil, v
+	case *GetRoleAdminStatusNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   GetRoleManagers gets role managers
 
-  <p>Required permission 'ROLE [READ]'</p>
-			<p>Role can only be assigned to other users by the role's manager.</p>
+  &lt;p&gt;Required permission &#39;ROLE [READ]&#39;&lt;/p&gt;
+			&lt;p&gt;Role can only be assigned to other users by the role&#39;s manager.&lt;/p&gt;
 */
 func (a *Client) GetRoleManagers(params *GetRoleManagersParams, authInfo runtime.ClientAuthInfoWriter) (*GetRoleManagersOK, *GetRoleManagersBadRequest, *GetRoleManagersUnauthorized, *GetRoleManagersForbidden, *GetRoleManagersNotFound, error) {
 	// TODO: Validate the params before sending
@@ -2179,7 +4030,7 @@ func (a *Client) GetRoleManagers(params *GetRoleManagersParams, authInfo runtime
 		PathPattern:        "/iam/roles/{roleId}/managers",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetRoleManagersReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -2194,24 +4045,74 @@ func (a *Client) GetRoleManagers(params *GetRoleManagersParams, authInfo runtime
 
 	case *GetRoleManagersOK:
 		return v, nil, nil, nil, nil, nil
+
 	case *GetRoleManagersBadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *GetRoleManagersUnauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *GetRoleManagersForbidden:
 		return nil, nil, nil, v, nil, nil
+
 	case *GetRoleManagersNotFound:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetRoleManagersShort(params *GetRoleManagersParams, authInfo runtime.ClientAuthInfoWriter) (*GetRoleManagersOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetRoleManagersParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetRoleManagers",
+		Method:             "GET",
+		PathPattern:        "/iam/roles/{roleId}/managers",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetRoleManagersReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetRoleManagersOK:
+		return v, nil
+	case *GetRoleManagersBadRequest:
+		return nil, v
+	case *GetRoleManagersUnauthorized:
+		return nil, v
+	case *GetRoleManagersForbidden:
+		return nil, v
+	case *GetRoleManagersNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   GetRoleMembers gets role members
 
-  <p>Required permission 'ROLE [READ]'</p>
-			<p>Admin roles has its members listed in the role.</p>
+  &lt;p&gt;Required permission &#39;ROLE [READ]&#39;&lt;/p&gt;
+			&lt;p&gt;Admin roles has its members listed in the role.&lt;/p&gt;
 */
 func (a *Client) GetRoleMembers(params *GetRoleMembersParams, authInfo runtime.ClientAuthInfoWriter) (*GetRoleMembersOK, *GetRoleMembersBadRequest, *GetRoleMembersUnauthorized, *GetRoleMembersForbidden, *GetRoleMembersNotFound, error) {
 	// TODO: Validate the params before sending
@@ -2229,7 +4130,7 @@ func (a *Client) GetRoleMembers(params *GetRoleMembersParams, authInfo runtime.C
 		PathPattern:        "/iam/roles/{roleId}/members",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetRoleMembersReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -2244,23 +4145,73 @@ func (a *Client) GetRoleMembers(params *GetRoleMembersParams, authInfo runtime.C
 
 	case *GetRoleMembersOK:
 		return v, nil, nil, nil, nil, nil
+
 	case *GetRoleMembersBadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *GetRoleMembersUnauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *GetRoleMembersForbidden:
 		return nil, nil, nil, v, nil, nil
+
 	case *GetRoleMembersNotFound:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetRoleMembersShort(params *GetRoleMembersParams, authInfo runtime.ClientAuthInfoWriter) (*GetRoleMembersOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetRoleMembersParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetRoleMembers",
+		Method:             "GET",
+		PathPattern:        "/iam/roles/{roleId}/members",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetRoleMembersReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetRoleMembersOK:
+		return v, nil
+	case *GetRoleMembersBadRequest:
+		return nil, v
+	case *GetRoleMembersUnauthorized:
+		return nil, v
+	case *GetRoleMembersForbidden:
+		return nil, v
+	case *GetRoleMembersNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   GetRoles gets roles
 
-  Required permission 'ROLE [READ]'
+  Required permission &#39;ROLE [READ]&#39;
 */
 func (a *Client) GetRoles(params *GetRolesParams, authInfo runtime.ClientAuthInfoWriter) (*GetRolesOK, *GetRolesUnauthorized, *GetRolesForbidden, error) {
 	// TODO: Validate the params before sending
@@ -2278,7 +4229,7 @@ func (a *Client) GetRoles(params *GetRolesParams, authInfo runtime.ClientAuthInf
 		PathPattern:        "/iam/roles",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetRolesReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -2293,19 +4244,63 @@ func (a *Client) GetRoles(params *GetRolesParams, authInfo runtime.ClientAuthInf
 
 	case *GetRolesOK:
 		return v, nil, nil, nil
+
 	case *GetRolesUnauthorized:
 		return nil, v, nil, nil
+
 	case *GetRolesForbidden:
 		return nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetRolesShort(params *GetRolesParams, authInfo runtime.ClientAuthInfoWriter) (*GetRolesOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetRolesParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetRoles",
+		Method:             "GET",
+		PathPattern:        "/iam/roles",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetRolesReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetRolesOK:
+		return v, nil
+	case *GetRolesUnauthorized:
+		return nil, v
+	case *GetRolesForbidden:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   PublicGetRoleV3 gets public role
 
-   <br>This endpoint is used to get non-admin role based on specify roleId.  <br>action code : 10417
+   &lt;br&gt;This endpoint is used to get non-admin role based on specify roleId.  &lt;br&gt;action code : 10417
 */
 func (a *Client) PublicGetRoleV3(params *PublicGetRoleV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetRoleV3OK, *PublicGetRoleV3BadRequest, *PublicGetRoleV3NotFound, error) {
 	// TODO: Validate the params before sending
@@ -2323,7 +4318,7 @@ func (a *Client) PublicGetRoleV3(params *PublicGetRoleV3Params, authInfo runtime
 		PathPattern:        "/iam/v3/public/roles/{roleId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicGetRoleV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -2338,19 +4333,63 @@ func (a *Client) PublicGetRoleV3(params *PublicGetRoleV3Params, authInfo runtime
 
 	case *PublicGetRoleV3OK:
 		return v, nil, nil, nil
+
 	case *PublicGetRoleV3BadRequest:
 		return nil, v, nil, nil
+
 	case *PublicGetRoleV3NotFound:
 		return nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicGetRoleV3Short(params *PublicGetRoleV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetRoleV3OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetRoleV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicGetRoleV3",
+		Method:             "GET",
+		PathPattern:        "/iam/v3/public/roles/{roleId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicGetRoleV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetRoleV3OK:
+		return v, nil
+	case *PublicGetRoleV3BadRequest:
+		return nil, v
+	case *PublicGetRoleV3NotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   PublicGetRolesV3 gets roles
 
-   <br>This endpoint is used to get all non-admin role.  <br> <p>action code: 10418</p>
+   &lt;br&gt;This endpoint is used to get all non-admin role.  &lt;br&gt; &lt;p&gt;action code: 10418&lt;/p&gt;
 */
 func (a *Client) PublicGetRolesV3(params *PublicGetRolesV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetRolesV3OK, *PublicGetRolesV3BadRequest, error) {
 	// TODO: Validate the params before sending
@@ -2368,7 +4407,7 @@ func (a *Client) PublicGetRolesV3(params *PublicGetRolesV3Params, authInfo runti
 		PathPattern:        "/iam/v3/public/roles",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicGetRolesV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -2383,19 +4422,60 @@ func (a *Client) PublicGetRolesV3(params *PublicGetRolesV3Params, authInfo runti
 
 	case *PublicGetRolesV3OK:
 		return v, nil, nil
+
 	case *PublicGetRolesV3BadRequest:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicGetRolesV3Short(params *PublicGetRolesV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetRolesV3OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetRolesV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicGetRolesV3",
+		Method:             "GET",
+		PathPattern:        "/iam/v3/public/roles",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicGetRolesV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetRolesV3OK:
+		return v, nil
+	case *PublicGetRolesV3BadRequest:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   RemoveRoleAdmin removes role admin status
 
-  <p>Required permission 'ROLE:ADMIN [UPDATE]' or 'ADMIN:ROLE [UPDATE]'</p>
-			<p>Required Permission 'ROLE:ADMIN [UPDATE]' is going to be <strong>DEPRECATED</strong> for security purpose.
-			It is going to be deprecated on <strong>31 JANUARY 2019</strong>, please use permission 'ADMIN:ROLE [UPDATE]' instead.</p>
+  &lt;p&gt;Required permission &#39;ROLE:ADMIN [UPDATE]&#39; or &#39;ADMIN:ROLE [UPDATE]&#39;&lt;/p&gt;
+			&lt;p&gt;Required Permission &#39;ROLE:ADMIN [UPDATE]&#39; is going to be &lt;strong&gt;DEPRECATED&lt;/strong&gt; for security purpose.
+			It is going to be deprecated on &lt;strong&gt;31 JANUARY 2019&lt;/strong&gt;, please use permission &#39;ADMIN:ROLE [UPDATE]&#39; instead.&lt;/p&gt;
 */
 func (a *Client) RemoveRoleAdmin(params *RemoveRoleAdminParams, authInfo runtime.ClientAuthInfoWriter) (*RemoveRoleAdminNoContent, *RemoveRoleAdminBadRequest, *RemoveRoleAdminUnauthorized, *RemoveRoleAdminForbidden, *RemoveRoleAdminNotFound, error) {
 	// TODO: Validate the params before sending
@@ -2413,7 +4493,7 @@ func (a *Client) RemoveRoleAdmin(params *RemoveRoleAdminParams, authInfo runtime
 		PathPattern:        "/iam/roles/{roleId}/admin",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &RemoveRoleAdminReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -2428,26 +4508,76 @@ func (a *Client) RemoveRoleAdmin(params *RemoveRoleAdminParams, authInfo runtime
 
 	case *RemoveRoleAdminNoContent:
 		return v, nil, nil, nil, nil, nil
+
 	case *RemoveRoleAdminBadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *RemoveRoleAdminUnauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *RemoveRoleAdminForbidden:
 		return nil, nil, nil, v, nil, nil
+
 	case *RemoveRoleAdminNotFound:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) RemoveRoleAdminShort(params *RemoveRoleAdminParams, authInfo runtime.ClientAuthInfoWriter) (*RemoveRoleAdminNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRemoveRoleAdminParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "RemoveRoleAdmin",
+		Method:             "DELETE",
+		PathPattern:        "/iam/roles/{roleId}/admin",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &RemoveRoleAdminReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *RemoveRoleAdminNoContent:
+		return v, nil
+	case *RemoveRoleAdminBadRequest:
+		return nil, v
+	case *RemoveRoleAdminUnauthorized:
+		return nil, v
+	case *RemoveRoleAdminForbidden:
+		return nil, v
+	case *RemoveRoleAdminNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   RemoveRoleManagers removes role managers
 
-  <p>Required permission 'ROLE:ADMIN [UPDATE]' or 'ADMIN:ROLE [UPDATE]'</p>
-			<p>Required Permission 'ROLE:ADMIN [UPDATE]' is going to be <strong>DEPRECATED</strong> for security purpose.
-			It is going to be deprecated on <strong>31 JANUARY 2019</strong>, please use permission 'ADMIN:ROLE [UPDATE]' instead.</p>
-			<p>Role can only be assigned to other users by the role's manager.</p>
+  &lt;p&gt;Required permission &#39;ROLE:ADMIN [UPDATE]&#39; or &#39;ADMIN:ROLE [UPDATE]&#39;&lt;/p&gt;
+			&lt;p&gt;Required Permission &#39;ROLE:ADMIN [UPDATE]&#39; is going to be &lt;strong&gt;DEPRECATED&lt;/strong&gt; for security purpose.
+			It is going to be deprecated on &lt;strong&gt;31 JANUARY 2019&lt;/strong&gt;, please use permission &#39;ADMIN:ROLE [UPDATE]&#39; instead.&lt;/p&gt;
+			&lt;p&gt;Role can only be assigned to other users by the role&#39;s manager.&lt;/p&gt;
 */
 func (a *Client) RemoveRoleManagers(params *RemoveRoleManagersParams, authInfo runtime.ClientAuthInfoWriter) (*RemoveRoleManagersNoContent, *RemoveRoleManagersBadRequest, *RemoveRoleManagersUnauthorized, *RemoveRoleManagersForbidden, *RemoveRoleManagersNotFound, error) {
 	// TODO: Validate the params before sending
@@ -2465,7 +4595,7 @@ func (a *Client) RemoveRoleManagers(params *RemoveRoleManagersParams, authInfo r
 		PathPattern:        "/iam/roles/{roleId}/managers",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &RemoveRoleManagersReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -2480,27 +4610,77 @@ func (a *Client) RemoveRoleManagers(params *RemoveRoleManagersParams, authInfo r
 
 	case *RemoveRoleManagersNoContent:
 		return v, nil, nil, nil, nil, nil
+
 	case *RemoveRoleManagersBadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *RemoveRoleManagersUnauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *RemoveRoleManagersForbidden:
 		return nil, nil, nil, v, nil, nil
+
 	case *RemoveRoleManagersNotFound:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) RemoveRoleManagersShort(params *RemoveRoleManagersParams, authInfo runtime.ClientAuthInfoWriter) (*RemoveRoleManagersNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRemoveRoleManagersParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "RemoveRoleManagers",
+		Method:             "DELETE",
+		PathPattern:        "/iam/roles/{roleId}/managers",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &RemoveRoleManagersReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *RemoveRoleManagersNoContent:
+		return v, nil
+	case *RemoveRoleManagersBadRequest:
+		return nil, v
+	case *RemoveRoleManagersUnauthorized:
+		return nil, v
+	case *RemoveRoleManagersForbidden:
+		return nil, v
+	case *RemoveRoleManagersNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   RemoveRoleMembers removes role members
 
-  <p>Required permission 'ROLE:ADMIN [UPDATE]' or 'ADMIN:ROLE [UPDATE]'</p>
-			<p>Required Permission 'ROLE:ADMIN [UPDATE]' is going to be <strong>DEPRECATED</strong> for security purpose.
-			It is going to be deprecated on <strong>31 JANUARY 2019</strong>, please use permission 'ADMIN:ROLE [UPDATE]' instead.</p>
-			<p>Admin roles has its members listed in the role.</p>
-			<p>Role can only be assigned to other users by the role's manager.</p>
+  &lt;p&gt;Required permission &#39;ROLE:ADMIN [UPDATE]&#39; or &#39;ADMIN:ROLE [UPDATE]&#39;&lt;/p&gt;
+			&lt;p&gt;Required Permission &#39;ROLE:ADMIN [UPDATE]&#39; is going to be &lt;strong&gt;DEPRECATED&lt;/strong&gt; for security purpose.
+			It is going to be deprecated on &lt;strong&gt;31 JANUARY 2019&lt;/strong&gt;, please use permission &#39;ADMIN:ROLE [UPDATE]&#39; instead.&lt;/p&gt;
+			&lt;p&gt;Admin roles has its members listed in the role.&lt;/p&gt;
+			&lt;p&gt;Role can only be assigned to other users by the role&#39;s manager.&lt;/p&gt;
 */
 func (a *Client) RemoveRoleMembers(params *RemoveRoleMembersParams, authInfo runtime.ClientAuthInfoWriter) (*RemoveRoleMembersNoContent, *RemoveRoleMembersBadRequest, *RemoveRoleMembersUnauthorized, *RemoveRoleMembersForbidden, *RemoveRoleMembersNotFound, error) {
 	// TODO: Validate the params before sending
@@ -2518,7 +4698,7 @@ func (a *Client) RemoveRoleMembers(params *RemoveRoleMembersParams, authInfo run
 		PathPattern:        "/iam/roles/{roleId}/members",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &RemoveRoleMembersReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -2533,27 +4713,77 @@ func (a *Client) RemoveRoleMembers(params *RemoveRoleMembersParams, authInfo run
 
 	case *RemoveRoleMembersNoContent:
 		return v, nil, nil, nil, nil, nil
+
 	case *RemoveRoleMembersBadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *RemoveRoleMembersUnauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *RemoveRoleMembersForbidden:
 		return nil, nil, nil, v, nil, nil
+
 	case *RemoveRoleMembersNotFound:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) RemoveRoleMembersShort(params *RemoveRoleMembersParams, authInfo runtime.ClientAuthInfoWriter) (*RemoveRoleMembersNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRemoveRoleMembersParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "RemoveRoleMembers",
+		Method:             "DELETE",
+		PathPattern:        "/iam/roles/{roleId}/members",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &RemoveRoleMembersReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *RemoveRoleMembersNoContent:
+		return v, nil
+	case *RemoveRoleMembersBadRequest:
+		return nil, v
+	case *RemoveRoleMembersUnauthorized:
+		return nil, v
+	case *RemoveRoleMembersForbidden:
+		return nil, v
+	case *RemoveRoleMembersNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   SetRoleAsAdmin sets role as admin role
 
-  <p>Required permission 'ROLE:ADMIN [UPDATE]' or 'ADMIN:ROLE [UPDATE]'</p>
-			<p>Required Permission 'ROLE:ADMIN [UPDATE]' is going to be <strong>DEPRECATED</strong> for security purpose.
-			It is going to be deprecated on <strong>31 JANUARY 2019</strong>, please use permission 'ADMIN:ROLE [UPDATE]' instead.</p>
-			<p>Admin roles has its members listed in the role.</p>
-			<p>Role can be set as admin role only when it has at least 1 manager.</p>
+  &lt;p&gt;Required permission &#39;ROLE:ADMIN [UPDATE]&#39; or &#39;ADMIN:ROLE [UPDATE]&#39;&lt;/p&gt;
+			&lt;p&gt;Required Permission &#39;ROLE:ADMIN [UPDATE]&#39; is going to be &lt;strong&gt;DEPRECATED&lt;/strong&gt; for security purpose.
+			It is going to be deprecated on &lt;strong&gt;31 JANUARY 2019&lt;/strong&gt;, please use permission &#39;ADMIN:ROLE [UPDATE]&#39; instead.&lt;/p&gt;
+			&lt;p&gt;Admin roles has its members listed in the role.&lt;/p&gt;
+			&lt;p&gt;Role can be set as admin role only when it has at least 1 manager.&lt;/p&gt;
 */
 func (a *Client) SetRoleAsAdmin(params *SetRoleAsAdminParams, authInfo runtime.ClientAuthInfoWriter) (*SetRoleAsAdminNoContent, *SetRoleAsAdminBadRequest, *SetRoleAsAdminUnauthorized, *SetRoleAsAdminForbidden, *SetRoleAsAdminNotFound, error) {
 	// TODO: Validate the params before sending
@@ -2571,7 +4801,7 @@ func (a *Client) SetRoleAsAdmin(params *SetRoleAsAdminParams, authInfo runtime.C
 		PathPattern:        "/iam/roles/{roleId}/admin",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &SetRoleAsAdminReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -2586,25 +4816,75 @@ func (a *Client) SetRoleAsAdmin(params *SetRoleAsAdminParams, authInfo runtime.C
 
 	case *SetRoleAsAdminNoContent:
 		return v, nil, nil, nil, nil, nil
+
 	case *SetRoleAsAdminBadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *SetRoleAsAdminUnauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *SetRoleAsAdminForbidden:
 		return nil, nil, nil, v, nil, nil
+
 	case *SetRoleAsAdminNotFound:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) SetRoleAsAdminShort(params *SetRoleAsAdminParams, authInfo runtime.ClientAuthInfoWriter) (*SetRoleAsAdminNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewSetRoleAsAdminParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "SetRoleAsAdmin",
+		Method:             "POST",
+		PathPattern:        "/iam/roles/{roleId}/admin",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &SetRoleAsAdminReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *SetRoleAsAdminNoContent:
+		return v, nil
+	case *SetRoleAsAdminBadRequest:
+		return nil, v
+	case *SetRoleAsAdminUnauthorized:
+		return nil, v
+	case *SetRoleAsAdminForbidden:
+		return nil, v
+	case *SetRoleAsAdminNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   UpdateRole updates role
 
-  <p>Required permission 'ROLE:ADMIN [UPDATE]' or 'ADMIN:ROLE [UPDATE]'</p>
-			<p>Required Permission 'ROLE:ADMIN [UPDATE]' is going to be <strong>DEPRECATED</strong> for security purpose.
-			It is going to be deprecated on <strong>31 JANUARY 2019</strong>, please use permission 'ADMIN:ROLE [UPDATE]' instead.</p>
+  &lt;p&gt;Required permission &#39;ROLE:ADMIN [UPDATE]&#39; or &#39;ADMIN:ROLE [UPDATE]&#39;&lt;/p&gt;
+			&lt;p&gt;Required Permission &#39;ROLE:ADMIN [UPDATE]&#39; is going to be &lt;strong&gt;DEPRECATED&lt;/strong&gt; for security purpose.
+			It is going to be deprecated on &lt;strong&gt;31 JANUARY 2019&lt;/strong&gt;, please use permission &#39;ADMIN:ROLE [UPDATE]&#39; instead.&lt;/p&gt;
 */
 func (a *Client) UpdateRole(params *UpdateRoleParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateRoleOK, *UpdateRoleBadRequest, *UpdateRoleUnauthorized, *UpdateRoleForbidden, *UpdateRoleNotFound, error) {
 	// TODO: Validate the params before sending
@@ -2622,7 +4902,7 @@ func (a *Client) UpdateRole(params *UpdateRoleParams, authInfo runtime.ClientAut
 		PathPattern:        "/iam/roles/{roleId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &UpdateRoleReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -2637,51 +4917,101 @@ func (a *Client) UpdateRole(params *UpdateRoleParams, authInfo runtime.ClientAut
 
 	case *UpdateRoleOK:
 		return v, nil, nil, nil, nil, nil
+
 	case *UpdateRoleBadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *UpdateRoleUnauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *UpdateRoleForbidden:
 		return nil, nil, nil, v, nil, nil
+
 	case *UpdateRoleNotFound:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) UpdateRoleShort(params *UpdateRoleParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateRoleOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateRoleParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "UpdateRole",
+		Method:             "PUT",
+		PathPattern:        "/iam/roles/{roleId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateRoleReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateRoleOK:
+		return v, nil
+	case *UpdateRoleBadRequest:
+		return nil, v
+	case *UpdateRoleUnauthorized:
+		return nil, v
+	case *UpdateRoleForbidden:
+		return nil, v
+	case *UpdateRoleNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   UpdateRolePermissions updates role permissions
 
-  <p>Required permission 'ROLE:ADMIN [UPDATE]' or 'ADMIN:ROLE [UPDATE]'</p>
-			<p>Required Permission 'ROLE:ADMIN [UPDATE]' is going to be <strong>DEPRECATED</strong> for security purpose.
-			It is going to be deprecated on <strong>31 JANUARY 2019</strong>, please use permission 'ADMIN:ROLE [UPDATE]' instead.</p>
-			<p>This endpoint will REPLACE role's permissions with the ones defined in body</p>
-			<p>Schedule contains cron string or date range (both are UTC, also in cron syntax) to indicate when a permission and action are in effect.</p>
-			<p>Both schedule types accepts quartz compatible cron syntax e.g. * * * * * * *.</p>
-			<p>In ranged schedule, first element will be start date, and second one will be end date</p>
-			<p>If schedule is set, the scheduled action must be valid too, that is between 1 to 15, inclusive</p>
-			<p>Syntax reference</p>
-			<p>Fields:</p>
-			<ol>
-			<li>Seconds: 0-59 * / , -</li>
-			<li>Minutes: 0-59 * / , -</li>
-			<li>Hours: 0-23 * / , -</li>
-			<li>Day of month: 1-31 * / , - L W</li>
-			<li>Month: 1-12 JAN-DEC * / , -</li>
-			<li>Day of week: 0-6 SUN-SAT * / , - L #</li>
-			<li>Year: 1970-2099 * / , -</li>
-			</ol>
-			<p>Special characters:</p>
-			<ol>
-			<li>*: all values in the fields, e.g. * in seconds fields indicates every second</li>
-			<li>/: increments of ranges, e.g. 3-59/15 in the minute field indicate the third minute of the hour and every 15 minutes thereafter</li>
-			<li>,: separate items of a list, e.g. MON,WED,FRI in day of week</li>
-			<li>-: range, e.g. 2010-2018 indicates every year between 2010 and 2018, inclusive</li>
-			<li>L: last, e.g. When used in the day-of-week field, it allows you to specify constructs such as "the last Friday" (5L) of a given month. In the day-of-month field, it specifies the last day of the month.</li>
-			<li>W: business day, e.g. if you were to specify 15W as the value for the day-of-month field, the meaning is: "the nearest business day to the 15th of the month."</li>
-			<li>#: must be followed by a number between one and five. It allows you to specify constructs such as "the second Friday" of a given month.</li>
-			</ol>
+  &lt;p&gt;Required permission &#39;ROLE:ADMIN [UPDATE]&#39; or &#39;ADMIN:ROLE [UPDATE]&#39;&lt;/p&gt;
+			&lt;p&gt;Required Permission &#39;ROLE:ADMIN [UPDATE]&#39; is going to be &lt;strong&gt;DEPRECATED&lt;/strong&gt; for security purpose.
+			It is going to be deprecated on &lt;strong&gt;31 JANUARY 2019&lt;/strong&gt;, please use permission &#39;ADMIN:ROLE [UPDATE]&#39; instead.&lt;/p&gt;
+			&lt;p&gt;This endpoint will REPLACE role&#39;s permissions with the ones defined in body&lt;/p&gt;
+			&lt;p&gt;Schedule contains cron string or date range (both are UTC, also in cron syntax) to indicate when a permission and action are in effect.&lt;/p&gt;
+			&lt;p&gt;Both schedule types accepts quartz compatible cron syntax e.g. * * * * * * *.&lt;/p&gt;
+			&lt;p&gt;In ranged schedule, first element will be start date, and second one will be end date&lt;/p&gt;
+			&lt;p&gt;If schedule is set, the scheduled action must be valid too, that is between 1 to 15, inclusive&lt;/p&gt;
+			&lt;p&gt;Syntax reference&lt;/p&gt;
+			&lt;p&gt;Fields:&lt;/p&gt;
+			&lt;ol&gt;
+			&lt;li&gt;Seconds: 0-59 * / , -&lt;/li&gt;
+			&lt;li&gt;Minutes: 0-59 * / , -&lt;/li&gt;
+			&lt;li&gt;Hours: 0-23 * / , -&lt;/li&gt;
+			&lt;li&gt;Day of month: 1-31 * / , - L W&lt;/li&gt;
+			&lt;li&gt;Month: 1-12 JAN-DEC * / , -&lt;/li&gt;
+			&lt;li&gt;Day of week: 0-6 SUN-SAT * / , - L #&lt;/li&gt;
+			&lt;li&gt;Year: 1970-2099 * / , -&lt;/li&gt;
+			&lt;/ol&gt;
+			&lt;p&gt;Special characters:&lt;/p&gt;
+			&lt;ol&gt;
+			&lt;li&gt;*: all values in the fields, e.g. * in seconds fields indicates every second&lt;/li&gt;
+			&lt;li&gt;/: increments of ranges, e.g. 3-59/15 in the minute field indicate the third minute of the hour and every 15 minutes thereafter&lt;/li&gt;
+			&lt;li&gt;,: separate items of a list, e.g. MON,WED,FRI in day of week&lt;/li&gt;
+			&lt;li&gt;-: range, e.g. 2010-2018 indicates every year between 2010 and 2018, inclusive&lt;/li&gt;
+			&lt;li&gt;L: last, e.g. When used in the day-of-week field, it allows you to specify constructs such as &#34;the last Friday&#34; (5L) of a given month. In the day-of-month field, it specifies the last day of the month.&lt;/li&gt;
+			&lt;li&gt;W: business day, e.g. if you were to specify 15W as the value for the day-of-month field, the meaning is: &#34;the nearest business day to the 15th of the month.&#34;&lt;/li&gt;
+			&lt;li&gt;#: must be followed by a number between one and five. It allows you to specify constructs such as &#34;the second Friday&#34; of a given month.&lt;/li&gt;
+			&lt;/ol&gt;
 
 */
 func (a *Client) UpdateRolePermissions(params *UpdateRolePermissionsParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateRolePermissionsNoContent, *UpdateRolePermissionsBadRequest, *UpdateRolePermissionsUnauthorized, *UpdateRolePermissionsForbidden, *UpdateRolePermissionsNotFound, error) {
@@ -2700,7 +5030,7 @@ func (a *Client) UpdateRolePermissions(params *UpdateRolePermissionsParams, auth
 		PathPattern:        "/iam/roles/{roleId}/permissions",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &UpdateRolePermissionsReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -2715,16 +5045,66 @@ func (a *Client) UpdateRolePermissions(params *UpdateRolePermissionsParams, auth
 
 	case *UpdateRolePermissionsNoContent:
 		return v, nil, nil, nil, nil, nil
+
 	case *UpdateRolePermissionsBadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *UpdateRolePermissionsUnauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *UpdateRolePermissionsForbidden:
 		return nil, nil, nil, v, nil, nil
+
 	case *UpdateRolePermissionsNotFound:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) UpdateRolePermissionsShort(params *UpdateRolePermissionsParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateRolePermissionsNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateRolePermissionsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "UpdateRolePermissions",
+		Method:             "POST",
+		PathPattern:        "/iam/roles/{roleId}/permissions",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateRolePermissionsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateRolePermissionsNoContent:
+		return v, nil
+	case *UpdateRolePermissionsBadRequest:
+		return nil, v
+	case *UpdateRolePermissionsUnauthorized:
+		return nil, v
+	case *UpdateRolePermissionsForbidden:
+		return nil, v
+	case *UpdateRolePermissionsNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 

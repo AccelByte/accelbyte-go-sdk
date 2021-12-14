@@ -30,6 +30,7 @@ type Client struct {
 // ClientService is the interface for Client methods
 type ClientService interface {
 	CheckReadiness(params *CheckReadinessParams, authInfo runtime.ClientAuthInfoWriter) (*CheckReadinessOK, error)
+	CheckReadinessShort(params *CheckReadinessParams, authInfo runtime.ClientAuthInfoWriter) (*CheckReadinessOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -37,7 +38,7 @@ type ClientService interface {
 /*
   CheckReadiness checks legal data readiness
 
-  Readiness status defined as at least one legal basePolicy is present and having active basePolicy.<br>Other detail info: <ul><li><i>Required permission</i>: resource="NAMESPACE:{namespace}:LEGAL", action=2 (READ)</li></ul>
+  Readiness status defined as at least one legal basePolicy is present and having active basePolicy.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:LEGAL&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) CheckReadiness(params *CheckReadinessParams, authInfo runtime.ClientAuthInfoWriter) (*CheckReadinessOK, error) {
 	// TODO: Validate the params before sending
@@ -55,7 +56,7 @@ func (a *Client) CheckReadiness(params *CheckReadinessParams, authInfo runtime.C
 		PathPattern:        "/public/readiness",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &CheckReadinessReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -70,6 +71,44 @@ func (a *Client) CheckReadiness(params *CheckReadinessParams, authInfo runtime.C
 
 	case *CheckReadinessOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) CheckReadinessShort(params *CheckReadinessParams, authInfo runtime.ClientAuthInfoWriter) (*CheckReadinessOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCheckReadinessParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "checkReadiness",
+		Method:             "GET",
+		PathPattern:        "/public/readiness",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CheckReadinessReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *CheckReadinessOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}

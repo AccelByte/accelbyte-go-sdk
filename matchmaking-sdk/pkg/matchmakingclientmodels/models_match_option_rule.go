@@ -22,10 +22,6 @@ type ModelsMatchOptionRule struct {
 	// options
 	// Required: true
 	Options []*ModelsMatchOption `json:"options"`
-
-	// type
-	// Required: true
-	Type *string `json:"type"`
 }
 
 // Validate validates this models match option rule
@@ -33,10 +29,6 @@ func (m *ModelsMatchOptionRule) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateOptions(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateType(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -66,15 +58,6 @@ func (m *ModelsMatchOptionRule) validateOptions(formats strfmt.Registry) error {
 			}
 		}
 
-	}
-
-	return nil
-}
-
-func (m *ModelsMatchOptionRule) validateType(formats strfmt.Registry) error {
-
-	if err := validate.Required("type", "body", m.Type); err != nil {
-		return err
 	}
 
 	return nil

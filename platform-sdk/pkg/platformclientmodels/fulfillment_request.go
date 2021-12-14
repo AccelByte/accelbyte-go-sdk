@@ -19,6 +19,9 @@ import (
 // swagger:model FulfillmentRequest
 type FulfillmentRequest struct {
 
+	// duration in seconds, ignored if the endDate is present
+	Duration int32 `json:"duration,omitempty"`
+
 	// end date time
 	// Format: date-time
 	EndDate strfmt.DateTime `json:"endDate,omitempty"`

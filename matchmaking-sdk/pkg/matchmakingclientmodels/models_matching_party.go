@@ -19,6 +19,10 @@ import (
 // swagger:model models.MatchingParty
 type ModelsMatchingParty struct {
 
+	// first ticket created at
+	// Required: true
+	FirstTicketCreatedAt *int64 `json:"first_ticket_created_at"`
+
 	// party attributes
 	// Required: true
 	PartyAttributes interface{} `json:"party_attributes"`
@@ -36,6 +40,10 @@ type ModelsMatchingParty struct {
 func (m *ModelsMatchingParty) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateFirstTicketCreatedAt(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validatePartyAttributes(formats); err != nil {
 		res = append(res, err)
 	}
@@ -51,6 +59,15 @@ func (m *ModelsMatchingParty) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *ModelsMatchingParty) validateFirstTicketCreatedAt(formats strfmt.Registry) error {
+
+	if err := validate.Required("first_ticket_created_at", "body", m.FirstTicketCreatedAt); err != nil {
+		return err
+	}
+
 	return nil
 }
 

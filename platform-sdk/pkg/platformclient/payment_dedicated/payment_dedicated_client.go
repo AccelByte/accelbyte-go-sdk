@@ -30,10 +30,11 @@ type Client struct {
 // ClientService is the interface for Client methods
 type ClientService interface {
 	CreatePaymentOrderByDedicated(params *CreatePaymentOrderByDedicatedParams, authInfo runtime.ClientAuthInfoWriter) (*CreatePaymentOrderByDedicatedCreated, *CreatePaymentOrderByDedicatedBadRequest, *CreatePaymentOrderByDedicatedForbidden, *CreatePaymentOrderByDedicatedNotFound, *CreatePaymentOrderByDedicatedConflict, *CreatePaymentOrderByDedicatedUnprocessableEntity, error)
-
+	CreatePaymentOrderByDedicatedShort(params *CreatePaymentOrderByDedicatedParams, authInfo runtime.ClientAuthInfoWriter) (*CreatePaymentOrderByDedicatedCreated, error)
 	RefundPaymentOrderByDedicated(params *RefundPaymentOrderByDedicatedParams, authInfo runtime.ClientAuthInfoWriter) (*RefundPaymentOrderByDedicatedOK, *RefundPaymentOrderByDedicatedNoContent, *RefundPaymentOrderByDedicatedNotFound, *RefundPaymentOrderByDedicatedConflict, *RefundPaymentOrderByDedicatedUnprocessableEntity, error)
-
+	RefundPaymentOrderByDedicatedShort(params *RefundPaymentOrderByDedicatedParams, authInfo runtime.ClientAuthInfoWriter) (*RefundPaymentOrderByDedicatedOK, error)
 	SyncPaymentOrders(params *SyncPaymentOrdersParams, authInfo runtime.ClientAuthInfoWriter) (*SyncPaymentOrdersOK, error)
+	SyncPaymentOrdersShort(params *SyncPaymentOrdersParams, authInfo runtime.ClientAuthInfoWriter) (*SyncPaymentOrdersOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -41,49 +42,49 @@ type ClientService interface {
 /*
   CreatePaymentOrderByDedicated creates payment order by dedicated server
 
-  <p>This API is used to create payment order from non justice service. e.g. from dedicated server, the result contains the payment station url.</p><p><strong>Path Parameter:</strong></p><pre><table><tr><td>Parameter</td><td>Type</td><td>Required</td><td>Description</td></tr><tr><td>namespace</td><td>String</td><td>Yes</td><td>Namespace that payment order resides in, should be publisher namespace if it's a Steam like platform that share <br>payment config cross namespaces, otherwise it's the game namespace</td></tr></table><p><strong>Request Body Parameters:</strong></p><pre><table><tr><td>Parameter</td><td>Type</td><td>Required</td><td>Description</td></tr><tr><td>extOrderNo</td><td>String</td><td>Yes</td><td>External order number, it should be unique in invoker order system</td></tr><tr><td>sku</td><td>String</td><td>No</td><td>Item identity</td></tr><tr><td>targetNamespace</td><td>String</td><td>Yes</td><td>The game namespace</td></tr><tr><td>targetUserId</td><td>String</td><td>Yes</td><td>User id for the order owner in game namespace</td></tr><tr><td>extUserId</td><td>String</td><td>No</td><td>External user id, can be user character id </td></tr><tr><td>price</td><td>int</td><td>Yes</td><td>price which should be greater than 0</td></tr><tr><td>title</td><td>String</td><td>Yes</td><td>Item title</td></tr><tr><td>description</td><td>String</td><td>Yes</td><td>Item description</td></tr><tr><td>currencyCode</td><td>String</td><td>No</td><td>Currency code, default is USD</td></tr><tr><td>currencyNamespace</td><td>String</td><td>No</td><td>Currency namespace, default is publisher namespace</td></tr><tr><td>region</td><td>String</td><td>No</td><td>Country of the user, will get from user info if not present</td></tr><tr><td>language</td><td>String</td><td>No</td><td>Language of the user</td></tr><tr><td>sandbox</td><td>Boolean</td><td>No</td><td>set to true will create sandbox order that not real paid for xsolla/alipay and will not validate <br>price for wxpay.</td></tr><tr><td>returnUrl</td><td>String</td><td>No</td><td>customized return url for redirect once payment finished, leave unset to use configuration in <br>namespace</td></tr><tr><td>notifyUrl</td><td>String</td><td>No</td><td>customized notify url for payment web hook, leave unset to use configuration in namespace</td></tr><tr><td>customParameters</td><td>String</td><td>No</td><td>Custom parameters</td></tr></table></pre><p><strong>Request Body Example:</strong></p><pre><code style='overflow: auto'>{
-           "extOrderNo": "123456789",
-           "sku": "sku",
-           "targetNamespace": "game1",
-           "targetUserId": "94451623768940d58416ca33ca767ec3",
-           "extUserId": "678",
-           "title": "Frostmourne",
-           "description\": "Here was power. Here was despair",
-           "price": 100,
-           "region": "CN",
-           "language": "zh-CN",
-           "currencyCode": "USD",
-           "currencyNamespace": "accelbyte"
-}</pre></code><h4>Payment Notification:</h4><p>After user complete the payment, it will send notification to configured web hook, http status code should return 200 or 204 once you resolve notification successfully, otherwise payment system will retry notification in interval</p><p><strong>Payment notification parameter:</strong></p><pre><table><tr><td>Parameter</td><td>Type</td><td>Required</td><td>Description</td></tr><tr><td>payload</td><td>String</td><td>Yes</td><td>Payment notification payload in json string </td></tr><tr><td>sign</td><td>String</td><td>Yes</td><td>sha1 hex signature for payload and private key</td></tr></table></pre><p><strong>Payment notification parameter Example:</strong></p><pre><code style='overflow: auto'>{
-       "payload": "{
-           \"type\": \"payment\",
-           \"nonceStr\": \"34c1dcf3eb58455eb161465bbfc0b590\",
-           \"paymentOrderNo\": \"18081239088\",
-           \"namespace\": \"accelbyte\",
-           \"targetNamespace\": \"game1\",
-           \"targetUserId\": \"94451623768940d58416ca33ca767ec3\",
-           \"extOrderNo\": \"123456789\",
-           \"sku\": \"sku\",
-           \"extUserId\": \"678\",
-           \"price\": 100,
-           \"paymentProvider\": \"XSOLLA\",
-           \"vat\": 0,
-           \"salesTax\": 0,
-           \"paymentProviderFee\": 0,
-           \"paymentMethodFee\": 0,
-           \"currency\": {
-                   \"currencyCode\": \"USD\",
-                   \"currencySymbol\": \"$\",
-                   \"currencyType\": \"REAL\",
-                   \"namespace\": \"accelbyte\",
-                   \"decimals\": 2
+  &lt;p&gt;This API is used to create payment order from non justice service. e.g. from dedicated server, the result contains the payment station url.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Path Parameter:&lt;/strong&gt;&lt;/p&gt;&lt;pre&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Parameter&lt;/td&gt;&lt;td&gt;Type&lt;/td&gt;&lt;td&gt;Required&lt;/td&gt;&lt;td&gt;Description&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;namespace&lt;/td&gt;&lt;td&gt;String&lt;/td&gt;&lt;td&gt;Yes&lt;/td&gt;&lt;td&gt;Namespace that payment order resides in, should be publisher namespace if it&#39;s a Steam like platform that share &lt;br&gt;payment config cross namespaces, otherwise it&#39;s the game namespace&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;p&gt;&lt;strong&gt;Request Body Parameters:&lt;/strong&gt;&lt;/p&gt;&lt;pre&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Parameter&lt;/td&gt;&lt;td&gt;Type&lt;/td&gt;&lt;td&gt;Required&lt;/td&gt;&lt;td&gt;Description&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;extOrderNo&lt;/td&gt;&lt;td&gt;String&lt;/td&gt;&lt;td&gt;Yes&lt;/td&gt;&lt;td&gt;External order number, it should be unique in invoker order system&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;sku&lt;/td&gt;&lt;td&gt;String&lt;/td&gt;&lt;td&gt;No&lt;/td&gt;&lt;td&gt;Item identity&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;targetNamespace&lt;/td&gt;&lt;td&gt;String&lt;/td&gt;&lt;td&gt;Yes&lt;/td&gt;&lt;td&gt;The game namespace&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;targetUserId&lt;/td&gt;&lt;td&gt;String&lt;/td&gt;&lt;td&gt;Yes&lt;/td&gt;&lt;td&gt;User id for the order owner in game namespace&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;extUserId&lt;/td&gt;&lt;td&gt;String&lt;/td&gt;&lt;td&gt;No&lt;/td&gt;&lt;td&gt;External user id, can be user character id &lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;price&lt;/td&gt;&lt;td&gt;int&lt;/td&gt;&lt;td&gt;Yes&lt;/td&gt;&lt;td&gt;price which should be greater than 0&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;title&lt;/td&gt;&lt;td&gt;String&lt;/td&gt;&lt;td&gt;Yes&lt;/td&gt;&lt;td&gt;Item title&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;description&lt;/td&gt;&lt;td&gt;String&lt;/td&gt;&lt;td&gt;Yes&lt;/td&gt;&lt;td&gt;Item description&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;currencyCode&lt;/td&gt;&lt;td&gt;String&lt;/td&gt;&lt;td&gt;No&lt;/td&gt;&lt;td&gt;Currency code, default is USD&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;currencyNamespace&lt;/td&gt;&lt;td&gt;String&lt;/td&gt;&lt;td&gt;No&lt;/td&gt;&lt;td&gt;Currency namespace, default is publisher namespace&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;region&lt;/td&gt;&lt;td&gt;String&lt;/td&gt;&lt;td&gt;No&lt;/td&gt;&lt;td&gt;Country of the user, will get from user info if not present&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;language&lt;/td&gt;&lt;td&gt;String&lt;/td&gt;&lt;td&gt;No&lt;/td&gt;&lt;td&gt;Language of the user&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;sandbox&lt;/td&gt;&lt;td&gt;Boolean&lt;/td&gt;&lt;td&gt;No&lt;/td&gt;&lt;td&gt;set to true will create sandbox order that not real paid for xsolla/alipay and will not validate &lt;br&gt;price for wxpay.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;returnUrl&lt;/td&gt;&lt;td&gt;String&lt;/td&gt;&lt;td&gt;No&lt;/td&gt;&lt;td&gt;customized return url for redirect once payment finished, leave unset to use configuration in &lt;br&gt;namespace&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;notifyUrl&lt;/td&gt;&lt;td&gt;String&lt;/td&gt;&lt;td&gt;No&lt;/td&gt;&lt;td&gt;customized notify url for payment web hook, leave unset to use configuration in namespace&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;customParameters&lt;/td&gt;&lt;td&gt;String&lt;/td&gt;&lt;td&gt;No&lt;/td&gt;&lt;td&gt;Custom parameters&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Request Body Example:&lt;/strong&gt;&lt;/p&gt;&lt;pre&gt;&lt;code style=&#39;overflow: auto&#39;&gt;{
+           &#34;extOrderNo&#34;: &#34;123456789&#34;,
+           &#34;sku&#34;: &#34;sku&#34;,
+           &#34;targetNamespace&#34;: &#34;game1&#34;,
+           &#34;targetUserId&#34;: &#34;94451623768940d58416ca33ca767ec3&#34;,
+           &#34;extUserId&#34;: &#34;678&#34;,
+           &#34;title&#34;: &#34;Frostmourne&#34;,
+           &#34;description\&#34;: &#34;Here was power. Here was despair&#34;,
+           &#34;price&#34;: 100,
+           &#34;region&#34;: &#34;CN&#34;,
+           &#34;language&#34;: &#34;zh-CN&#34;,
+           &#34;currencyCode&#34;: &#34;USD&#34;,
+           &#34;currencyNamespace&#34;: &#34;accelbyte&#34;
+}&lt;/pre&gt;&lt;/code&gt;&lt;h4&gt;Payment Notification:&lt;/h4&gt;&lt;p&gt;After user complete the payment, it will send notification to configured web hook, http status code should return 200 or 204 once you resolve notification successfully, otherwise payment system will retry notification in interval&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Payment notification parameter:&lt;/strong&gt;&lt;/p&gt;&lt;pre&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Parameter&lt;/td&gt;&lt;td&gt;Type&lt;/td&gt;&lt;td&gt;Required&lt;/td&gt;&lt;td&gt;Description&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;payload&lt;/td&gt;&lt;td&gt;String&lt;/td&gt;&lt;td&gt;Yes&lt;/td&gt;&lt;td&gt;Payment notification payload in json string &lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;sign&lt;/td&gt;&lt;td&gt;String&lt;/td&gt;&lt;td&gt;Yes&lt;/td&gt;&lt;td&gt;sha1 hex signature for payload and private key&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Payment notification parameter Example:&lt;/strong&gt;&lt;/p&gt;&lt;pre&gt;&lt;code style=&#39;overflow: auto&#39;&gt;{
+       &#34;payload&#34;: &#34;{
+           \&#34;type\&#34;: \&#34;payment\&#34;,
+           \&#34;nonceStr\&#34;: \&#34;34c1dcf3eb58455eb161465bbfc0b590\&#34;,
+           \&#34;paymentOrderNo\&#34;: \&#34;18081239088\&#34;,
+           \&#34;namespace\&#34;: \&#34;accelbyte\&#34;,
+           \&#34;targetNamespace\&#34;: \&#34;game1\&#34;,
+           \&#34;targetUserId\&#34;: \&#34;94451623768940d58416ca33ca767ec3\&#34;,
+           \&#34;extOrderNo\&#34;: \&#34;123456789\&#34;,
+           \&#34;sku\&#34;: \&#34;sku\&#34;,
+           \&#34;extUserId\&#34;: \&#34;678\&#34;,
+           \&#34;price\&#34;: 100,
+           \&#34;paymentProvider\&#34;: \&#34;XSOLLA\&#34;,
+           \&#34;vat\&#34;: 0,
+           \&#34;salesTax\&#34;: 0,
+           \&#34;paymentProviderFee\&#34;: 0,
+           \&#34;paymentMethodFee\&#34;: 0,
+           \&#34;currency\&#34;: {
+                   \&#34;currencyCode\&#34;: \&#34;USD\&#34;,
+                   \&#34;currencySymbol\&#34;: \&#34;$\&#34;,
+                   \&#34;currencyType\&#34;: \&#34;REAL\&#34;,
+                   \&#34;namespace\&#34;: \&#34;accelbyte\&#34;,
+                   \&#34;decimals\&#34;: 2
                },
-           \"status\": \"CHARGED\",
-           \"createdTime\": \"2018-07-28T00:39:16.274Z\",
-           \"chargedTime\": \"2018-07-28T00:39:16.274Z\"
-       }",
-       "sign":"e31fb92516cc9faaf50ad70343e1293acec6f3d5"
-}</pre></code><p><strong>Payment notification payload parameter list:</strong></p><pre><table><tr><td>Parameter</td><td>Type</td><td>Required</td><td>Description</td></tr><tr><td>type</td><td>String</td><td>Yes</td><td>Notification type: 'payment'</td></tr><tr><td>paymentOrderNo</td><td>String</td><td>Yes</td><td>Payment system generated order number</td></tr><tr><td>extOrderNo</td><td>String</td><td>No</td><td>External order number that passed by invoker</td></tr><tr><td>namespace</td><td>String</td><td>Yes</td><td>Namespace that related payment order resides in</td></tr><tr><td>targetNamespace</td><td>String</td><td>Yes</td><td>The game namespace</td></tr><tr><td>targetUserId</td><td>String</td><td>Yes</td><td>The user id in game namespace</td></tr><tr><td>sku</td><td>String</td><td>No</td><td>Item identify, it will return if pass it when create payment</td></tr><tr><td>extUserId</td><td>String</td><td>No</td><td>External user id, can be character id, it will return if pass it when create payment</td></tr><tr><td>price</td><td>int</td><td>Yes</td><td>Price of item</td></tr><tr><td>paymentProvider</td><td>String</td><td>Yes</td><td>Payment provider, allowed values: xsolla/alipay/wxpay/wallet</td></tr><tr><td>vat</td><td>int</td><td>Yes</td><td>Payment order VAT</td></tr><tr><td>salesTax</td><td>int</td><td>Yes</td><td>Payment order sales tax</td></tr><tr><td>paymentProviderFee</td><td>int</td><td>Yes</td><td>Payment provider fee</td></tr><tr><td>paymentMethodFee</td><td>int</td><td>Yes</td><td>Payment method fee</td></tr><tr><td>currency</td><td>Map</td><td>Yes</td><td>Payment order currency info</td></tr><tr><td>status</td><td>String</td><td>Yes</td><td>Payment order status</td></tr><tr><td>statusReason</td><td>String</td><td>No</td><td>Payment order status reason</td></tr><tr><td>createdTime</td><td>Datetime</td><td>No</td><td>The time of the order created</td></tr><tr><td>chargedTime</td><td>Datetime</td><td>No</td><td>The time of the order charged</td></tr><tr><td>customParameters</td><td>Map</td><td>No</td><td>custom parameters, will return if pass it when create payment</td></tr><tr><td>nonceStr</td><td>String</td><td>Yes</td><td>Random string, max length is 32, can be timestamp or uuid</td></tr></table></pre><p><strong>Currency info parameter list:</strong></p><pre><table><tr><td>Parameter</td><td>Type</td><td>Required</td><td>Description</td></tr><tr><td>currencyCode</td><td>String</td><td>Yes</td><td>Currency Code</td></tr><tr><td>currencySymbol</td><td>String</td><td>Yes</td><td>Currency Symbol</td></tr><tr><td>currencyType</td><td>String</td><td>Yes</td><td>Currency type(REAL/VIRTUAL)</td></tr><tr><td>namespace</td><td>String</td><td>Yes</td><td>Currency namespace</td></tr><tr><td>decimals</td><td>int</td><td>Yes</td><td>Currency decimals</td></tr></table></pre><h4>Encryption Rule:</h4><p>Concat payload json string and private key and then do sha1Hex.</p><h4>Other detail info:</h4> <ul><li><i>Token type</i>: client token</li><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:PAYMENT", action=1 (CREATE)</li><li><i>Optional permission(user with this permission will create sandbox order)</i>: resource="SANDBOX", action=1 (CREATE)</li><li>It will be forbidden while the target user is banned: PAYMENT_INITIATE or ORDER_AND_PAYMENT</li><li><b>cross namespace allowed</b></li><li><i>Returns</i>: created payment order info</li></ul>
+           \&#34;status\&#34;: \&#34;CHARGED\&#34;,
+           \&#34;createdTime\&#34;: \&#34;2018-07-28T00:39:16.274Z\&#34;,
+           \&#34;chargedTime\&#34;: \&#34;2018-07-28T00:39:16.274Z\&#34;
+       }&#34;,
+       &#34;sign&#34;:&#34;e31fb92516cc9faaf50ad70343e1293acec6f3d5&#34;
+}&lt;/pre&gt;&lt;/code&gt;&lt;p&gt;&lt;strong&gt;Payment notification payload parameter list:&lt;/strong&gt;&lt;/p&gt;&lt;pre&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Parameter&lt;/td&gt;&lt;td&gt;Type&lt;/td&gt;&lt;td&gt;Required&lt;/td&gt;&lt;td&gt;Description&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;type&lt;/td&gt;&lt;td&gt;String&lt;/td&gt;&lt;td&gt;Yes&lt;/td&gt;&lt;td&gt;Notification type: &#39;payment&#39;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;paymentOrderNo&lt;/td&gt;&lt;td&gt;String&lt;/td&gt;&lt;td&gt;Yes&lt;/td&gt;&lt;td&gt;Payment system generated order number&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;extOrderNo&lt;/td&gt;&lt;td&gt;String&lt;/td&gt;&lt;td&gt;No&lt;/td&gt;&lt;td&gt;External order number that passed by invoker&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;namespace&lt;/td&gt;&lt;td&gt;String&lt;/td&gt;&lt;td&gt;Yes&lt;/td&gt;&lt;td&gt;Namespace that related payment order resides in&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;targetNamespace&lt;/td&gt;&lt;td&gt;String&lt;/td&gt;&lt;td&gt;Yes&lt;/td&gt;&lt;td&gt;The game namespace&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;targetUserId&lt;/td&gt;&lt;td&gt;String&lt;/td&gt;&lt;td&gt;Yes&lt;/td&gt;&lt;td&gt;The user id in game namespace&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;sku&lt;/td&gt;&lt;td&gt;String&lt;/td&gt;&lt;td&gt;No&lt;/td&gt;&lt;td&gt;Item identify, it will return if pass it when create payment&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;extUserId&lt;/td&gt;&lt;td&gt;String&lt;/td&gt;&lt;td&gt;No&lt;/td&gt;&lt;td&gt;External user id, can be character id, it will return if pass it when create payment&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;price&lt;/td&gt;&lt;td&gt;int&lt;/td&gt;&lt;td&gt;Yes&lt;/td&gt;&lt;td&gt;Price of item&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;paymentProvider&lt;/td&gt;&lt;td&gt;String&lt;/td&gt;&lt;td&gt;Yes&lt;/td&gt;&lt;td&gt;Payment provider, allowed values: xsolla/alipay/wxpay/wallet&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;vat&lt;/td&gt;&lt;td&gt;int&lt;/td&gt;&lt;td&gt;Yes&lt;/td&gt;&lt;td&gt;Payment order VAT&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;salesTax&lt;/td&gt;&lt;td&gt;int&lt;/td&gt;&lt;td&gt;Yes&lt;/td&gt;&lt;td&gt;Payment order sales tax&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;paymentProviderFee&lt;/td&gt;&lt;td&gt;int&lt;/td&gt;&lt;td&gt;Yes&lt;/td&gt;&lt;td&gt;Payment provider fee&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;paymentMethodFee&lt;/td&gt;&lt;td&gt;int&lt;/td&gt;&lt;td&gt;Yes&lt;/td&gt;&lt;td&gt;Payment method fee&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;currency&lt;/td&gt;&lt;td&gt;Map&lt;/td&gt;&lt;td&gt;Yes&lt;/td&gt;&lt;td&gt;Payment order currency info&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;status&lt;/td&gt;&lt;td&gt;String&lt;/td&gt;&lt;td&gt;Yes&lt;/td&gt;&lt;td&gt;Payment order status&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;statusReason&lt;/td&gt;&lt;td&gt;String&lt;/td&gt;&lt;td&gt;No&lt;/td&gt;&lt;td&gt;Payment order status reason&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;createdTime&lt;/td&gt;&lt;td&gt;Datetime&lt;/td&gt;&lt;td&gt;No&lt;/td&gt;&lt;td&gt;The time of the order created&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;chargedTime&lt;/td&gt;&lt;td&gt;Datetime&lt;/td&gt;&lt;td&gt;No&lt;/td&gt;&lt;td&gt;The time of the order charged&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;customParameters&lt;/td&gt;&lt;td&gt;Map&lt;/td&gt;&lt;td&gt;No&lt;/td&gt;&lt;td&gt;custom parameters, will return if pass it when create payment&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;nonceStr&lt;/td&gt;&lt;td&gt;String&lt;/td&gt;&lt;td&gt;Yes&lt;/td&gt;&lt;td&gt;Random string, max length is 32, can be timestamp or uuid&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Currency info parameter list:&lt;/strong&gt;&lt;/p&gt;&lt;pre&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Parameter&lt;/td&gt;&lt;td&gt;Type&lt;/td&gt;&lt;td&gt;Required&lt;/td&gt;&lt;td&gt;Description&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;currencyCode&lt;/td&gt;&lt;td&gt;String&lt;/td&gt;&lt;td&gt;Yes&lt;/td&gt;&lt;td&gt;Currency Code&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;currencySymbol&lt;/td&gt;&lt;td&gt;String&lt;/td&gt;&lt;td&gt;Yes&lt;/td&gt;&lt;td&gt;Currency Symbol&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;currencyType&lt;/td&gt;&lt;td&gt;String&lt;/td&gt;&lt;td&gt;Yes&lt;/td&gt;&lt;td&gt;Currency type(REAL/VIRTUAL)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;namespace&lt;/td&gt;&lt;td&gt;String&lt;/td&gt;&lt;td&gt;Yes&lt;/td&gt;&lt;td&gt;Currency namespace&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;decimals&lt;/td&gt;&lt;td&gt;int&lt;/td&gt;&lt;td&gt;Yes&lt;/td&gt;&lt;td&gt;Currency decimals&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/pre&gt;&lt;h4&gt;Encryption Rule:&lt;/h4&gt;&lt;p&gt;Concat payload json string and private key and then do sha1Hex.&lt;/p&gt;&lt;h4&gt;Other detail info:&lt;/h4&gt; &lt;ul&gt;&lt;li&gt;&lt;i&gt;Token type&lt;/i&gt;: client token&lt;/li&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:PAYMENT&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Optional permission(user with this permission will create sandbox order)&lt;/i&gt;: resource=&#34;SANDBOX&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;It will be forbidden while the target user is banned: PAYMENT_INITIATE or ORDER_AND_PAYMENT&lt;/li&gt;&lt;li&gt;&lt;b&gt;cross namespace allowed&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: created payment order info&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) CreatePaymentOrderByDedicated(params *CreatePaymentOrderByDedicatedParams, authInfo runtime.ClientAuthInfoWriter) (*CreatePaymentOrderByDedicatedCreated, *CreatePaymentOrderByDedicatedBadRequest, *CreatePaymentOrderByDedicatedForbidden, *CreatePaymentOrderByDedicatedNotFound, *CreatePaymentOrderByDedicatedConflict, *CreatePaymentOrderByDedicatedUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -101,7 +102,7 @@ func (a *Client) CreatePaymentOrderByDedicated(params *CreatePaymentOrderByDedic
 		PathPattern:        "/admin/namespaces/{namespace}/payment/orders",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &CreatePaymentOrderByDedicatedReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -116,57 +117,110 @@ func (a *Client) CreatePaymentOrderByDedicated(params *CreatePaymentOrderByDedic
 
 	case *CreatePaymentOrderByDedicatedCreated:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *CreatePaymentOrderByDedicatedBadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *CreatePaymentOrderByDedicatedForbidden:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *CreatePaymentOrderByDedicatedNotFound:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *CreatePaymentOrderByDedicatedConflict:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *CreatePaymentOrderByDedicatedUnprocessableEntity:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) CreatePaymentOrderByDedicatedShort(params *CreatePaymentOrderByDedicatedParams, authInfo runtime.ClientAuthInfoWriter) (*CreatePaymentOrderByDedicatedCreated, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreatePaymentOrderByDedicatedParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "createPaymentOrderByDedicated",
+		Method:             "POST",
+		PathPattern:        "/admin/namespaces/{namespace}/payment/orders",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CreatePaymentOrderByDedicatedReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *CreatePaymentOrderByDedicatedCreated:
+		return v, nil
+	case *CreatePaymentOrderByDedicatedBadRequest:
+		return nil, v
+	case *CreatePaymentOrderByDedicatedForbidden:
+		return nil, v
+	case *CreatePaymentOrderByDedicatedNotFound:
+		return nil, v
+	case *CreatePaymentOrderByDedicatedConflict:
+		return nil, v
+	case *CreatePaymentOrderByDedicatedUnprocessableEntity:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   RefundPaymentOrderByDedicated refunds payment order by dedicated server
 
-  <p>This API is used to refund payment order by paymentOrderNo from non justice service. e.g. dedicated server. <ul><li>if the status field of response json is "REFUNDED", usually wallet paid, it indicates payment order already refunded</li><li>if the status field of response json is "REFUNDING", usually real money paid, platform will send notification to registered notify url once refund successfully</li> </ul></p><p><strong>Path Parameter:</strong></p><pre><table><tr><td>Parameter</td><td>Type</td><td>Required</td><td>Description</td></tr><tr><td>namespace</td><td>String</td><td>Yes</td><td>Namespace that payment order resides in</td></tr><tr><td>paymentOrderNo</td><td>String</td><td>Yes</td><td>Payment order number</td></tr></table></pre><p><strong>Request Body Parameters:</strong></p><pre><table><tr><td>Parameter</td><td>Type</td><td>Required</td><td>Description</td></tr><tr><td>description</td><td>String</td><td>Yes</td><td>Refund description</td></tr></table></pre><p><strong>Request Body Example:</strong></p><pre><code style='overflow: auto'>{
-           "description": "Repeated item."
-}</pre></code><h4>Refund Notification:</h4><p>It will send notification to configured web hook after refund successfully, http status code should return 200 or 204 once you resolve notification successfully, otherwise payment system will retry notification in interval</p><p><strong>Refund notification parameter:</strong></p><pre><table><tr><td>Parameter</td><td>Type</td><td>Required</td><td>Description</td></tr><tr><td>payload</td><td>String</td><td>Yes</td><td>Refund notification payload in json string </td></tr><tr><td>sign</td><td>String</td><td>Yes</td><td>sha1 hex signature for payload and private key</td></tr></table></pre><p><strong>Refund notification Example:</strong></p><pre><code style='overflow: auto'>{
-       "payload": "{
-           \"type\": \"payment\",
-           \"nonceStr\": \"34c1dcf3eb58455eb161465bbfc0b590\",
-           \"paymentOrderNo\": \"18081239088\",
-           \"namespace\": \"accelbyte\",
-           \"targetNamespace\": \"game1\",
-           \"targetUserId\": \"94451623768940d58416ca33ca767ec3\",
-           \"extOrderNo\": \"123456789\",
-           \"sku\": \"sku\",
-           \"extUserId\": \"678\",
-           \"price\": 100,
-           \"paymentProvider\": \"XSOLLA\",
-           \"vat\": 0,
-           \"salesTax\": 0,
-           \"paymentProviderFee\": 0,
-           \"paymentMethodFee\": 0,
-           \"currency\": {
-                   \"currencyCode\": \"USD\",
-                   \"currencySymbol\": \"$\",
-                   \"currencyType\": \"REAL\",
-                   \"namespace\": \"accelbyte\",
-                   \"decimals\": 2
+  &lt;p&gt;This API is used to refund payment order by paymentOrderNo from non justice service. e.g. dedicated server. &lt;ul&gt;&lt;li&gt;if the status field of response json is &#34;REFUNDED&#34;, usually wallet paid, it indicates payment order already refunded&lt;/li&gt;&lt;li&gt;if the status field of response json is &#34;REFUNDING&#34;, usually real money paid, platform will send notification to registered notify url once refund successfully&lt;/li&gt; &lt;/ul&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Path Parameter:&lt;/strong&gt;&lt;/p&gt;&lt;pre&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Parameter&lt;/td&gt;&lt;td&gt;Type&lt;/td&gt;&lt;td&gt;Required&lt;/td&gt;&lt;td&gt;Description&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;namespace&lt;/td&gt;&lt;td&gt;String&lt;/td&gt;&lt;td&gt;Yes&lt;/td&gt;&lt;td&gt;Namespace that payment order resides in&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;paymentOrderNo&lt;/td&gt;&lt;td&gt;String&lt;/td&gt;&lt;td&gt;Yes&lt;/td&gt;&lt;td&gt;Payment order number&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Request Body Parameters:&lt;/strong&gt;&lt;/p&gt;&lt;pre&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Parameter&lt;/td&gt;&lt;td&gt;Type&lt;/td&gt;&lt;td&gt;Required&lt;/td&gt;&lt;td&gt;Description&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;description&lt;/td&gt;&lt;td&gt;String&lt;/td&gt;&lt;td&gt;Yes&lt;/td&gt;&lt;td&gt;Refund description&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Request Body Example:&lt;/strong&gt;&lt;/p&gt;&lt;pre&gt;&lt;code style=&#39;overflow: auto&#39;&gt;{
+           &#34;description&#34;: &#34;Repeated item.&#34;
+}&lt;/pre&gt;&lt;/code&gt;&lt;h4&gt;Refund Notification:&lt;/h4&gt;&lt;p&gt;It will send notification to configured web hook after refund successfully, http status code should return 200 or 204 once you resolve notification successfully, otherwise payment system will retry notification in interval&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Refund notification parameter:&lt;/strong&gt;&lt;/p&gt;&lt;pre&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Parameter&lt;/td&gt;&lt;td&gt;Type&lt;/td&gt;&lt;td&gt;Required&lt;/td&gt;&lt;td&gt;Description&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;payload&lt;/td&gt;&lt;td&gt;String&lt;/td&gt;&lt;td&gt;Yes&lt;/td&gt;&lt;td&gt;Refund notification payload in json string &lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;sign&lt;/td&gt;&lt;td&gt;String&lt;/td&gt;&lt;td&gt;Yes&lt;/td&gt;&lt;td&gt;sha1 hex signature for payload and private key&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Refund notification Example:&lt;/strong&gt;&lt;/p&gt;&lt;pre&gt;&lt;code style=&#39;overflow: auto&#39;&gt;{
+       &#34;payload&#34;: &#34;{
+           \&#34;type\&#34;: \&#34;payment\&#34;,
+           \&#34;nonceStr\&#34;: \&#34;34c1dcf3eb58455eb161465bbfc0b590\&#34;,
+           \&#34;paymentOrderNo\&#34;: \&#34;18081239088\&#34;,
+           \&#34;namespace\&#34;: \&#34;accelbyte\&#34;,
+           \&#34;targetNamespace\&#34;: \&#34;game1\&#34;,
+           \&#34;targetUserId\&#34;: \&#34;94451623768940d58416ca33ca767ec3\&#34;,
+           \&#34;extOrderNo\&#34;: \&#34;123456789\&#34;,
+           \&#34;sku\&#34;: \&#34;sku\&#34;,
+           \&#34;extUserId\&#34;: \&#34;678\&#34;,
+           \&#34;price\&#34;: 100,
+           \&#34;paymentProvider\&#34;: \&#34;XSOLLA\&#34;,
+           \&#34;vat\&#34;: 0,
+           \&#34;salesTax\&#34;: 0,
+           \&#34;paymentProviderFee\&#34;: 0,
+           \&#34;paymentMethodFee\&#34;: 0,
+           \&#34;currency\&#34;: {
+                   \&#34;currencyCode\&#34;: \&#34;USD\&#34;,
+                   \&#34;currencySymbol\&#34;: \&#34;$\&#34;,
+                   \&#34;currencyType\&#34;: \&#34;REAL\&#34;,
+                   \&#34;namespace\&#34;: \&#34;accelbyte\&#34;,
+                   \&#34;decimals\&#34;: 2
                },
-           \"status\": \"REFUNDED\",
-           \"createdTime\": \"2018-07-28T00:39:16.274Z\",
-           \"chargedTime\": \"2018-07-28T00:39:16.274Z\",
-           \"refundedTime\": \"2018-07-28T00:39:16.274Z\"
-       }",
-       "sign":"e31fb92516cc9faaf50ad70343e1293acec6f3d5"
-}</pre></code><p><strong>Refund notification payload parameter list:</strong></p><pre><table><tr><td>Parameter</td><td>Type</td><td>Required</td><td>Description</td></tr><tr><td>type</td><td>String</td><td>Yes</td><td>Notification type: 'payment'</td></tr><tr><td>paymentOrderNo</td><td>String</td><td>Yes</td><td>Payment system generated order number</td></tr><tr><td>extOrderNo</td><td>String</td><td>No</td><td>External order number that passed by invoker</td></tr><tr><td>namespace</td><td>String</td><td>Yes</td><td>Namespace that related payment order resides in</td></tr><tr><td>targetNamespace</td><td>String</td><td>Yes</td><td>The game namespace</td></tr><tr><td>targetUserId</td><td>String</td><td>Yes</td><td>The user id in game namespace</td></tr><tr><td>sku</td><td>String</td><td>No</td><td>Item identify, it will return if pass it when create payment</td></tr><tr><td>extUserId</td><td>String</td><td>No</td><td>External user id, can be character id, it will return if pass it when create payment</td></tr><tr><td>price</td><td>int</td><td>Yes</td><td>Price of item</td></tr><tr><td>paymentProvider</td><td>String</td><td>Yes</td><td>Payment provider: xsolla/alipay/wxpay/wallet</td></tr><tr><td>vat</td><td>int</td><td>Yes</td><td>Payment order VAT</td></tr><tr><td>salesTax</td><td>int</td><td>Yes</td><td>Payment order sales tax</td></tr><tr><td>paymentProviderFee</td><td>int</td><td>Yes</td><td>Payment provider fee</td></tr><tr><td>paymentMethodFee</td><td>int</td><td>Yes</td><td>Payment method fee</td></tr><tr><td>currency</td><td>Map</td><td>Yes</td><td>Payment order currency info</td></tr><tr><td>status</td><td>String</td><td>Yes</td><td>Payment order status</td></tr><tr><td>statusReason</td><td>String</td><td>No</td><td>Payment order refund status reason</td></tr><tr><td>createdTime</td><td>Datetime</td><td>No</td><td>The time of the order created</td></tr><tr><td>chargedTime</td><td>Datetime</td><td>No</td><td>The time of the order charged</td></tr><tr><td>refundedTime</td><td>Datetime</td><td>No</td><td>The time of the order refunded</td></tr><tr><td>customParameters</td><td>Map</td><td>No</td><td>custom parameters, will return if pass it when create payment</td></tr><tr><td>nonceStr</td><td>String</td><td>Yes</td><td>Random string, max length is 32, </td></tr></table></pre><p><strong>Currency info parameter list:</strong></p><pre><table><tr><td>Parameter</td><td>Type</td><td>Required</td><td>Description</td></tr><tr><td>currencyCode</td><td>String</td><td>Yes</td><td>Currency Code</td></tr><tr><td>currencySymbol</td><td>String</td><td>Yes</td><td>Currency Symbol</td></tr><tr><td>currencyType</td><td>String</td><td>Yes</td><td>Currency type(REAL/VIRTUAL)</td></tr><tr><td>namespace</td><td>String</td><td>Yes</td><td>Currency namespace</td></tr><tr><td>decimals</td><td>int</td><td>Yes</td><td>Currency decimals</td></tr></table></pre><h4>Encryption Rule:</h4><p>Concat payload json string and private key and then do sha1Hex.</p><h4>Other detail info:</h4> <ul><li><i>Token type</i>: client token</li><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:PAYMENT", action=4 (UPDATE)</li><li><b>cross namespace allowed</b></li></ul>
+           \&#34;status\&#34;: \&#34;REFUNDED\&#34;,
+           \&#34;createdTime\&#34;: \&#34;2018-07-28T00:39:16.274Z\&#34;,
+           \&#34;chargedTime\&#34;: \&#34;2018-07-28T00:39:16.274Z\&#34;,
+           \&#34;refundedTime\&#34;: \&#34;2018-07-28T00:39:16.274Z\&#34;
+       }&#34;,
+       &#34;sign&#34;:&#34;e31fb92516cc9faaf50ad70343e1293acec6f3d5&#34;
+}&lt;/pre&gt;&lt;/code&gt;&lt;p&gt;&lt;strong&gt;Refund notification payload parameter list:&lt;/strong&gt;&lt;/p&gt;&lt;pre&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Parameter&lt;/td&gt;&lt;td&gt;Type&lt;/td&gt;&lt;td&gt;Required&lt;/td&gt;&lt;td&gt;Description&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;type&lt;/td&gt;&lt;td&gt;String&lt;/td&gt;&lt;td&gt;Yes&lt;/td&gt;&lt;td&gt;Notification type: &#39;payment&#39;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;paymentOrderNo&lt;/td&gt;&lt;td&gt;String&lt;/td&gt;&lt;td&gt;Yes&lt;/td&gt;&lt;td&gt;Payment system generated order number&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;extOrderNo&lt;/td&gt;&lt;td&gt;String&lt;/td&gt;&lt;td&gt;No&lt;/td&gt;&lt;td&gt;External order number that passed by invoker&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;namespace&lt;/td&gt;&lt;td&gt;String&lt;/td&gt;&lt;td&gt;Yes&lt;/td&gt;&lt;td&gt;Namespace that related payment order resides in&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;targetNamespace&lt;/td&gt;&lt;td&gt;String&lt;/td&gt;&lt;td&gt;Yes&lt;/td&gt;&lt;td&gt;The game namespace&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;targetUserId&lt;/td&gt;&lt;td&gt;String&lt;/td&gt;&lt;td&gt;Yes&lt;/td&gt;&lt;td&gt;The user id in game namespace&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;sku&lt;/td&gt;&lt;td&gt;String&lt;/td&gt;&lt;td&gt;No&lt;/td&gt;&lt;td&gt;Item identify, it will return if pass it when create payment&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;extUserId&lt;/td&gt;&lt;td&gt;String&lt;/td&gt;&lt;td&gt;No&lt;/td&gt;&lt;td&gt;External user id, can be character id, it will return if pass it when create payment&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;price&lt;/td&gt;&lt;td&gt;int&lt;/td&gt;&lt;td&gt;Yes&lt;/td&gt;&lt;td&gt;Price of item&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;paymentProvider&lt;/td&gt;&lt;td&gt;String&lt;/td&gt;&lt;td&gt;Yes&lt;/td&gt;&lt;td&gt;Payment provider: xsolla/alipay/wxpay/wallet&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;vat&lt;/td&gt;&lt;td&gt;int&lt;/td&gt;&lt;td&gt;Yes&lt;/td&gt;&lt;td&gt;Payment order VAT&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;salesTax&lt;/td&gt;&lt;td&gt;int&lt;/td&gt;&lt;td&gt;Yes&lt;/td&gt;&lt;td&gt;Payment order sales tax&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;paymentProviderFee&lt;/td&gt;&lt;td&gt;int&lt;/td&gt;&lt;td&gt;Yes&lt;/td&gt;&lt;td&gt;Payment provider fee&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;paymentMethodFee&lt;/td&gt;&lt;td&gt;int&lt;/td&gt;&lt;td&gt;Yes&lt;/td&gt;&lt;td&gt;Payment method fee&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;currency&lt;/td&gt;&lt;td&gt;Map&lt;/td&gt;&lt;td&gt;Yes&lt;/td&gt;&lt;td&gt;Payment order currency info&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;status&lt;/td&gt;&lt;td&gt;String&lt;/td&gt;&lt;td&gt;Yes&lt;/td&gt;&lt;td&gt;Payment order status&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;statusReason&lt;/td&gt;&lt;td&gt;String&lt;/td&gt;&lt;td&gt;No&lt;/td&gt;&lt;td&gt;Payment order refund status reason&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;createdTime&lt;/td&gt;&lt;td&gt;Datetime&lt;/td&gt;&lt;td&gt;No&lt;/td&gt;&lt;td&gt;The time of the order created&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;chargedTime&lt;/td&gt;&lt;td&gt;Datetime&lt;/td&gt;&lt;td&gt;No&lt;/td&gt;&lt;td&gt;The time of the order charged&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;refundedTime&lt;/td&gt;&lt;td&gt;Datetime&lt;/td&gt;&lt;td&gt;No&lt;/td&gt;&lt;td&gt;The time of the order refunded&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;customParameters&lt;/td&gt;&lt;td&gt;Map&lt;/td&gt;&lt;td&gt;No&lt;/td&gt;&lt;td&gt;custom parameters, will return if pass it when create payment&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;nonceStr&lt;/td&gt;&lt;td&gt;String&lt;/td&gt;&lt;td&gt;Yes&lt;/td&gt;&lt;td&gt;Random string, max length is 32, &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Currency info parameter list:&lt;/strong&gt;&lt;/p&gt;&lt;pre&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Parameter&lt;/td&gt;&lt;td&gt;Type&lt;/td&gt;&lt;td&gt;Required&lt;/td&gt;&lt;td&gt;Description&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;currencyCode&lt;/td&gt;&lt;td&gt;String&lt;/td&gt;&lt;td&gt;Yes&lt;/td&gt;&lt;td&gt;Currency Code&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;currencySymbol&lt;/td&gt;&lt;td&gt;String&lt;/td&gt;&lt;td&gt;Yes&lt;/td&gt;&lt;td&gt;Currency Symbol&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;currencyType&lt;/td&gt;&lt;td&gt;String&lt;/td&gt;&lt;td&gt;Yes&lt;/td&gt;&lt;td&gt;Currency type(REAL/VIRTUAL)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;namespace&lt;/td&gt;&lt;td&gt;String&lt;/td&gt;&lt;td&gt;Yes&lt;/td&gt;&lt;td&gt;Currency namespace&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;decimals&lt;/td&gt;&lt;td&gt;int&lt;/td&gt;&lt;td&gt;Yes&lt;/td&gt;&lt;td&gt;Currency decimals&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/pre&gt;&lt;h4&gt;Encryption Rule:&lt;/h4&gt;&lt;p&gt;Concat payload json string and private key and then do sha1Hex.&lt;/p&gt;&lt;h4&gt;Other detail info:&lt;/h4&gt; &lt;ul&gt;&lt;li&gt;&lt;i&gt;Token type&lt;/i&gt;: client token&lt;/li&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:PAYMENT&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;b&gt;cross namespace allowed&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) RefundPaymentOrderByDedicated(params *RefundPaymentOrderByDedicatedParams, authInfo runtime.ClientAuthInfoWriter) (*RefundPaymentOrderByDedicatedOK, *RefundPaymentOrderByDedicatedNoContent, *RefundPaymentOrderByDedicatedNotFound, *RefundPaymentOrderByDedicatedConflict, *RefundPaymentOrderByDedicatedUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -184,7 +238,7 @@ func (a *Client) RefundPaymentOrderByDedicated(params *RefundPaymentOrderByDedic
 		PathPattern:        "/admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}/refund",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &RefundPaymentOrderByDedicatedReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -199,23 +253,73 @@ func (a *Client) RefundPaymentOrderByDedicated(params *RefundPaymentOrderByDedic
 
 	case *RefundPaymentOrderByDedicatedOK:
 		return v, nil, nil, nil, nil, nil
+
 	case *RefundPaymentOrderByDedicatedNoContent:
 		return nil, v, nil, nil, nil, nil
+
 	case *RefundPaymentOrderByDedicatedNotFound:
 		return nil, nil, v, nil, nil, nil
+
 	case *RefundPaymentOrderByDedicatedConflict:
 		return nil, nil, nil, v, nil, nil
+
 	case *RefundPaymentOrderByDedicatedUnprocessableEntity:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) RefundPaymentOrderByDedicatedShort(params *RefundPaymentOrderByDedicatedParams, authInfo runtime.ClientAuthInfoWriter) (*RefundPaymentOrderByDedicatedOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRefundPaymentOrderByDedicatedParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "refundPaymentOrderByDedicated",
+		Method:             "PUT",
+		PathPattern:        "/admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}/refund",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &RefundPaymentOrderByDedicatedReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *RefundPaymentOrderByDedicatedOK:
+		return v, nil, nil
+	case *RefundPaymentOrderByDedicatedNoContent:
+		return nil, v, nil
+	case *RefundPaymentOrderByDedicatedNotFound:
+		return nil, nil, v
+	case *RefundPaymentOrderByDedicatedConflict:
+		return nil, nil, v
+	case *RefundPaymentOrderByDedicatedUnprocessableEntity:
+		return nil, nil, v
+
+	default:
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   SyncPaymentOrders syncs payment orders
 
-  Sync payment orders. If response contains nextEvaluatedKey, please use it as query param in the next call to fetch the next batch, a batch has 1000 elements or less.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:PAYMENT", action=2 (READ)</li><li><i>Returns</i>: sync payment orders</li></ul>
+  Sync payment orders. If response contains nextEvaluatedKey, please use it as query param in the next call to fetch the next batch, a batch has 1000 elements or less.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:PAYMENT&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: sync payment orders&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) SyncPaymentOrders(params *SyncPaymentOrdersParams, authInfo runtime.ClientAuthInfoWriter) (*SyncPaymentOrdersOK, error) {
 	// TODO: Validate the params before sending
@@ -233,7 +337,7 @@ func (a *Client) SyncPaymentOrders(params *SyncPaymentOrdersParams, authInfo run
 		PathPattern:        "/admin/payment/orders",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &SyncPaymentOrdersReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -248,6 +352,44 @@ func (a *Client) SyncPaymentOrders(params *SyncPaymentOrdersParams, authInfo run
 
 	case *SyncPaymentOrdersOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) SyncPaymentOrdersShort(params *SyncPaymentOrdersParams, authInfo runtime.ClientAuthInfoWriter) (*SyncPaymentOrdersOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewSyncPaymentOrdersParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "syncPaymentOrders",
+		Method:             "GET",
+		PathPattern:        "/admin/payment/orders",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &SyncPaymentOrdersReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *SyncPaymentOrdersOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}

@@ -20,6 +20,11 @@ import (
 // swagger:model IAPOrderInfo
 type IAPOrderInfo struct {
 
+	// created at
+	// Required: true
+	// Format: date-time
+	CreatedAt *strfmt.DateTime `json:"createdAt"`
+
 	// credit summary
 	Credits []*CreditSummary `json:"credits"`
 
@@ -53,6 +58,9 @@ type IAPOrderInfo struct {
 	// region
 	Region string `json:"region,omitempty"`
 
+	// retry count
+	RetryCount int32 `json:"retryCount,omitempty"`
+
 	// sandbox
 	Sandbox bool `json:"sandbox,omitempty"`
 
@@ -72,6 +80,11 @@ type IAPOrderInfo struct {
 	// Enum: [APPLE GOOGLE PLAYSTATION STEAM XBOX STADIA EPICGAMES]
 	Type *string `json:"type"`
 
+	// updated at
+	// Required: true
+	// Format: date-time
+	UpdatedAt *strfmt.DateTime `json:"updatedAt"`
+
 	// user id
 	// Required: true
 	UserID *string `json:"userId"`
@@ -80,6 +93,10 @@ type IAPOrderInfo struct {
 // Validate validates this i a p order info
 func (m *IAPOrderInfo) Validate(formats strfmt.Registry) error {
 	var res []error
+
+	if err := m.validateCreatedAt(formats); err != nil {
+		res = append(res, err)
+	}
 
 	if err := m.validateCredits(formats); err != nil {
 		res = append(res, err)
@@ -109,6 +126,10 @@ func (m *IAPOrderInfo) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateUpdatedAt(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateUserID(formats); err != nil {
 		res = append(res, err)
 	}
@@ -116,6 +137,19 @@ func (m *IAPOrderInfo) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *IAPOrderInfo) validateCreatedAt(formats strfmt.Registry) error {
+
+	if err := validate.Required("createdAt", "body", m.CreatedAt); err != nil {
+		return err
+	}
+
+	if err := validate.FormatOf("createdAt", "body", "date-time", m.CreatedAt.String(), formats); err != nil {
+		return err
+	}
+
 	return nil
 }
 
@@ -298,6 +332,19 @@ func (m *IAPOrderInfo) validateType(formats strfmt.Registry) error {
 
 	// value enum
 	if err := m.validateTypeEnum("type", "body", *m.Type); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *IAPOrderInfo) validateUpdatedAt(formats strfmt.Registry) error {
+
+	if err := validate.Required("updatedAt", "body", m.UpdatedAt); err != nil {
+		return err
+	}
+
+	if err := validate.FormatOf("updatedAt", "body", "date-time", m.UpdatedAt.String(), formats); err != nil {
 		return err
 	}
 

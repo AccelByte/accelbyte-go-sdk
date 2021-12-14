@@ -30,68 +30,69 @@ type Client struct {
 // ClientService is the interface for Client methods
 type ClientService interface {
 	AcquireItem(params *AcquireItemParams, authInfo runtime.ClientAuthInfoWriter) (*AcquireItemOK, *AcquireItemNotFound, error)
-
+	AcquireItemShort(params *AcquireItemParams, authInfo runtime.ClientAuthInfoWriter) (*AcquireItemOK, error)
 	BulkGetLocaleItems(params *BulkGetLocaleItemsParams, authInfo runtime.ClientAuthInfoWriter) (*BulkGetLocaleItemsOK, *BulkGetLocaleItemsNotFound, error)
-
+	BulkGetLocaleItemsShort(params *BulkGetLocaleItemsParams, authInfo runtime.ClientAuthInfoWriter) (*BulkGetLocaleItemsOK, error)
 	CreateItem(params *CreateItemParams, authInfo runtime.ClientAuthInfoWriter) (*CreateItemCreated, *CreateItemBadRequest, *CreateItemNotFound, *CreateItemConflict, *CreateItemUnprocessableEntity, error)
-
+	CreateItemShort(params *CreateItemParams, authInfo runtime.ClientAuthInfoWriter) (*CreateItemCreated, error)
 	DefeatureItem(params *DefeatureItemParams, authInfo runtime.ClientAuthInfoWriter) (*DefeatureItemOK, *DefeatureItemNotFound, *DefeatureItemConflict, error)
-
+	DefeatureItemShort(params *DefeatureItemParams, authInfo runtime.ClientAuthInfoWriter) (*DefeatureItemOK, error)
 	DeleteItem(params *DeleteItemParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteItemNoContent, *DeleteItemNotFound, error)
-
+	DeleteItemShort(params *DeleteItemParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteItemNoContent, error)
 	DisableItem(params *DisableItemParams, authInfo runtime.ClientAuthInfoWriter) (*DisableItemOK, *DisableItemNotFound, *DisableItemConflict, error)
-
+	DisableItemShort(params *DisableItemParams, authInfo runtime.ClientAuthInfoWriter) (*DisableItemOK, error)
 	EnableItem(params *EnableItemParams, authInfo runtime.ClientAuthInfoWriter) (*EnableItemOK, *EnableItemNotFound, *EnableItemConflict, error)
-
+	EnableItemShort(params *EnableItemParams, authInfo runtime.ClientAuthInfoWriter) (*EnableItemOK, error)
 	FeatureItem(params *FeatureItemParams, authInfo runtime.ClientAuthInfoWriter) (*FeatureItemOK, *FeatureItemNotFound, *FeatureItemConflict, error)
-
+	FeatureItemShort(params *FeatureItemParams, authInfo runtime.ClientAuthInfoWriter) (*FeatureItemOK, error)
 	GetApp(params *GetAppParams, authInfo runtime.ClientAuthInfoWriter) (*GetAppOK, error)
-
+	GetAppShort(params *GetAppParams, authInfo runtime.ClientAuthInfoWriter) (*GetAppOK, error)
 	GetItem(params *GetItemParams, authInfo runtime.ClientAuthInfoWriter) (*GetItemOK, *GetItemNotFound, error)
-
+	GetItemShort(params *GetItemParams, authInfo runtime.ClientAuthInfoWriter) (*GetItemOK, error)
 	GetItemByAppID(params *GetItemByAppIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetItemByAppIDOK, *GetItemByAppIDNotFound, error)
-
+	GetItemByAppIDShort(params *GetItemByAppIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetItemByAppIDOK, error)
 	GetItemBySku(params *GetItemBySkuParams, authInfo runtime.ClientAuthInfoWriter) (*GetItemBySkuOK, *GetItemBySkuNotFound, error)
-
+	GetItemBySkuShort(params *GetItemBySkuParams, authInfo runtime.ClientAuthInfoWriter) (*GetItemBySkuOK, error)
 	GetItemDynamicData(params *GetItemDynamicDataParams, authInfo runtime.ClientAuthInfoWriter) (*GetItemDynamicDataOK, *GetItemDynamicDataNotFound, error)
-
+	GetItemDynamicDataShort(params *GetItemDynamicDataParams, authInfo runtime.ClientAuthInfoWriter) (*GetItemDynamicDataOK, error)
 	GetItemIDBySku(params *GetItemIDBySkuParams, authInfo runtime.ClientAuthInfoWriter) (*GetItemIDBySkuOK, *GetItemIDBySkuNotFound, error)
-
+	GetItemIDBySkuShort(params *GetItemIDBySkuParams, authInfo runtime.ClientAuthInfoWriter) (*GetItemIDBySkuOK, error)
 	GetLocaleItem(params *GetLocaleItemParams, authInfo runtime.ClientAuthInfoWriter) (*GetLocaleItemOK, *GetLocaleItemNotFound, error)
-
+	GetLocaleItemShort(params *GetLocaleItemParams, authInfo runtime.ClientAuthInfoWriter) (*GetLocaleItemOK, error)
 	GetLocaleItemBySku(params *GetLocaleItemBySkuParams, authInfo runtime.ClientAuthInfoWriter) (*GetLocaleItemBySkuOK, *GetLocaleItemBySkuNotFound, error)
-
+	GetLocaleItemBySkuShort(params *GetLocaleItemBySkuParams, authInfo runtime.ClientAuthInfoWriter) (*GetLocaleItemBySkuOK, error)
 	ListBasicItemsByFeatures(params *ListBasicItemsByFeaturesParams, authInfo runtime.ClientAuthInfoWriter) (*ListBasicItemsByFeaturesOK, error)
-
+	ListBasicItemsByFeaturesShort(params *ListBasicItemsByFeaturesParams, authInfo runtime.ClientAuthInfoWriter) (*ListBasicItemsByFeaturesOK, error)
 	PublicBulkGetItems(params *PublicBulkGetItemsParams) (*PublicBulkGetItemsOK, *PublicBulkGetItemsNotFound, error)
-
+	PublicBulkGetItemsShort(params *PublicBulkGetItemsParams) (*PublicBulkGetItemsOK, error)
 	PublicGetApp(params *PublicGetAppParams) (*PublicGetAppOK, *PublicGetAppNotFound, error)
-
+	PublicGetAppShort(params *PublicGetAppParams) (*PublicGetAppOK, error)
 	PublicGetItem(params *PublicGetItemParams) (*PublicGetItemOK, *PublicGetItemNotFound, error)
-
+	PublicGetItemShort(params *PublicGetItemParams) (*PublicGetItemOK, error)
 	PublicGetItemByAppID(params *PublicGetItemByAppIDParams) (*PublicGetItemByAppIDOK, *PublicGetItemByAppIDNotFound, error)
-
+	PublicGetItemByAppIDShort(params *PublicGetItemByAppIDParams) (*PublicGetItemByAppIDOK, error)
 	PublicGetItemBySku(params *PublicGetItemBySkuParams) (*PublicGetItemBySkuOK, *PublicGetItemBySkuNotFound, error)
-
+	PublicGetItemBySkuShort(params *PublicGetItemBySkuParams) (*PublicGetItemBySkuOK, error)
 	PublicGetItemDynamicData(params *PublicGetItemDynamicDataParams) (*PublicGetItemDynamicDataOK, *PublicGetItemDynamicDataNotFound, error)
-
+	PublicGetItemDynamicDataShort(params *PublicGetItemDynamicDataParams) (*PublicGetItemDynamicDataOK, error)
 	PublicQueryItems(params *PublicQueryItemsParams) (*PublicQueryItemsOK, *PublicQueryItemsNotFound, *PublicQueryItemsUnprocessableEntity, error)
-
+	PublicQueryItemsShort(params *PublicQueryItemsParams) (*PublicQueryItemsOK, error)
 	PublicSearchItems(params *PublicSearchItemsParams) (*PublicSearchItemsOK, *PublicSearchItemsNotFound, error)
-
+	PublicSearchItemsShort(params *PublicSearchItemsParams) (*PublicSearchItemsOK, error)
 	QueryItems(params *QueryItemsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryItemsOK, *QueryItemsNotFound, *QueryItemsUnprocessableEntity, error)
-
+	QueryItemsShort(params *QueryItemsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryItemsOK, error)
 	QueryUncategorizedItems(params *QueryUncategorizedItemsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryUncategorizedItemsOK, *QueryUncategorizedItemsNotFound, *QueryUncategorizedItemsUnprocessableEntity, error)
-
+	QueryUncategorizedItemsShort(params *QueryUncategorizedItemsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryUncategorizedItemsOK, error)
 	ReturnItem(params *ReturnItemParams, authInfo runtime.ClientAuthInfoWriter) (*ReturnItemNoContent, *ReturnItemNotFound, *ReturnItemUnprocessableEntity, error)
-
+	ReturnItemShort(params *ReturnItemParams, authInfo runtime.ClientAuthInfoWriter) (*ReturnItemNoContent, error)
 	SearchItems(params *SearchItemsParams, authInfo runtime.ClientAuthInfoWriter) (*SearchItemsOK, *SearchItemsNotFound, error)
-
+	SearchItemsShort(params *SearchItemsParams, authInfo runtime.ClientAuthInfoWriter) (*SearchItemsOK, error)
 	SyncInGameItem(params *SyncInGameItemParams, authInfo runtime.ClientAuthInfoWriter) (*SyncInGameItemOK, *SyncInGameItemBadRequest, *SyncInGameItemNotFound, *SyncInGameItemConflict, *SyncInGameItemUnprocessableEntity, error)
-
+	SyncInGameItemShort(params *SyncInGameItemParams, authInfo runtime.ClientAuthInfoWriter) (*SyncInGameItemOK, error)
 	UpdateApp(params *UpdateAppParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateAppOK, *UpdateAppNotFound, *UpdateAppConflict, *UpdateAppUnprocessableEntity, error)
-
+	UpdateAppShort(params *UpdateAppParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateAppOK, error)
 	UpdateItem(params *UpdateItemParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateItemOK, *UpdateItemBadRequest, *UpdateItemNotFound, *UpdateItemConflict, *UpdateItemUnprocessableEntity, error)
+	UpdateItemShort(params *UpdateItemParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateItemOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -99,7 +100,7 @@ type ClientService interface {
 /*
   AcquireItem acquires item
 
-  <b>[SERVICE COMMUNICATION ONLY]</b> This api is used for acquiring a published item while the item is maxCount limited, it will decrease the sale available count.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:ITEM", action=4 (UPDATE)</li><li><i>Returns</i>: acquire result</li></ul>
+  &lt;b&gt;[SERVICE COMMUNICATION ONLY]&lt;/b&gt; This api is used for acquiring a published item while the item is maxCount limited, it will decrease the sale available count.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:ITEM&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: acquire result&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) AcquireItem(params *AcquireItemParams, authInfo runtime.ClientAuthInfoWriter) (*AcquireItemOK, *AcquireItemNotFound, error) {
 	// TODO: Validate the params before sending
@@ -117,7 +118,7 @@ func (a *Client) AcquireItem(params *AcquireItemParams, authInfo runtime.ClientA
 		PathPattern:        "/admin/namespaces/{namespace}/items/{itemId}/acquire",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AcquireItemReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -132,17 +133,58 @@ func (a *Client) AcquireItem(params *AcquireItemParams, authInfo runtime.ClientA
 
 	case *AcquireItemOK:
 		return v, nil, nil
+
 	case *AcquireItemNotFound:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AcquireItemShort(params *AcquireItemParams, authInfo runtime.ClientAuthInfoWriter) (*AcquireItemOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAcquireItemParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "acquireItem",
+		Method:             "PUT",
+		PathPattern:        "/admin/namespaces/{namespace}/items/{itemId}/acquire",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AcquireItemReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AcquireItemOK:
+		return v, nil
+	case *AcquireItemNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   BulkGetLocaleItems bulks get locale items
 
-  This API is used to bulk get locale items. If item not exist in specific region, default region item will return.<p>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:ITEM", action=2 (READ)</li><li><i>Returns</i>: the list of items info</li></ul>
+  This API is used to bulk get locale items. If item not exist in specific region, default region item will return.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:ITEM&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: the list of items info&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) BulkGetLocaleItems(params *BulkGetLocaleItemsParams, authInfo runtime.ClientAuthInfoWriter) (*BulkGetLocaleItemsOK, *BulkGetLocaleItemsNotFound, error) {
 	// TODO: Validate the params before sending
@@ -160,7 +202,7 @@ func (a *Client) BulkGetLocaleItems(params *BulkGetLocaleItemsParams, authInfo r
 		PathPattern:        "/admin/namespaces/{namespace}/items/locale/byIds",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &BulkGetLocaleItemsReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -175,118 +217,159 @@ func (a *Client) BulkGetLocaleItems(params *BulkGetLocaleItemsParams, authInfo r
 
 	case *BulkGetLocaleItemsOK:
 		return v, nil, nil
+
 	case *BulkGetLocaleItemsNotFound:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) BulkGetLocaleItemsShort(params *BulkGetLocaleItemsParams, authInfo runtime.ClientAuthInfoWriter) (*BulkGetLocaleItemsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewBulkGetLocaleItemsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "bulkGetLocaleItems",
+		Method:             "GET",
+		PathPattern:        "/admin/namespaces/{namespace}/items/locale/byIds",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &BulkGetLocaleItemsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *BulkGetLocaleItemsOK:
+		return v, nil
+	case *BulkGetLocaleItemsNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   CreateItem creates an item
 
-  This API is used to create an item. APP item only can created in publisher namespace.<p>An item create example:<p><pre><code>{
-   "categoryPath": "/games",
-   "localizations": \{
-       "en": \{
-           "title":"required",
-           "description":"optional",
-           "longDescription":"optional",
-           "localExt": \{
-                  "properties":\[
+  This API is used to create an item. APP item only can created in publisher namespace.&lt;p&gt;An item create example:&lt;p&gt;&lt;pre&gt;&lt;code&gt;{
+   &#34;categoryPath&#34;: &#34;/games&#34;,
+   &#34;localizations&#34;: \{
+       &#34;en&#34;: \{
+           &#34;title&#34;:&#34;required&#34;,
+           &#34;description&#34;:&#34;optional&#34;,
+           &#34;longDescription&#34;:&#34;optional&#34;,
+           &#34;localExt&#34;: \{
+                  &#34;properties&#34;:\[
                                    \{
-                                       "key1":"value1",
-                                       "key2":"value2"
+                                       &#34;key1&#34;:&#34;value1&#34;,
+                                       &#34;key2&#34;:&#34;value2&#34;
                                    \}
                   \],
-                  "functions":\[
+                  &#34;functions&#34;:\[
                                    \{
-                                       "key1":"value1",
-                                       "key2":"value2"
+                                       &#34;key1&#34;:&#34;value1&#34;,
+                                       &#34;key2&#34;:&#34;value2&#34;
                                    \}
                  \]
            \}
         \}
    \},
-   "images": \[
+   &#34;images&#34;: \[
      \{
-           "as":"optional, image for",
-           "caption":"optional",
-           "height":10,
-           "width":10,
-           "imageUrl":"http://img-url-required",
-           "smallImageUrl":"http://small-img-url-required"
+           &#34;as&#34;:&#34;optional, image for&#34;,
+           &#34;caption&#34;:&#34;optional&#34;,
+           &#34;height&#34;:10,
+           &#34;width&#34;:10,
+           &#34;imageUrl&#34;:&#34;http://img-url-required&#34;,
+           &#34;smallImageUrl&#34;:&#34;http://small-img-url-required&#34;
      \}
    \],
-   "thumbnailUrl": "optional, thumbnail url",
-   "status": "ACTIVE",
-   "listable": true,
-   "purchasable": true,
-   "itemType": "APP(allowed: [APP,COINS,INGAMEITEM,CODE,BUNDLE])",
-   "name": "required, also will be used as entitlement name",
-   "entitlementType": "DURABLE(allowed:[DURABLE,CONSUMABLE], should be CONSUMABLE when item type is COINS)",
-   "useCount": 1(optional, required if the entitlement type is consumable),
-   "stackable": false,
-   "appId": "optional, required if itemType is APP",
-   "appType": "GAME(optional, required if itemType is APP)",
-   "seasonType": "PASS(optional, required if itemType is SEASON)",
-   "baseAppId": "optional, set value of game app id if you want to link to a game",
-   "targetCurrencyCode": "optional, required if itemType is COINS",
-   "targetNamespace": "optional, required when itemType is INGAMEITEM, the targetNamespace will only take effect when the item
-   created belongs to the publisher namespace",
-   "sku": "optional, commonly unique item code",
-   "regionData": \{
-       "US(store's default region is required)": \[
+   &#34;thumbnailUrl&#34;: &#34;optional, thumbnail url&#34;,
+   &#34;status&#34;: &#34;ACTIVE&#34;,
+   &#34;listable&#34;: true,
+   &#34;purchasable&#34;: true,
+   &#34;itemType&#34;: &#34;APP(allowed: [APP,COINS,INGAMEITEM,CODE,BUNDLE])&#34;,
+   &#34;name&#34;: &#34;required, also will be used as entitlement name&#34;,
+   &#34;entitlementType&#34;: &#34;DURABLE(allowed:[DURABLE,CONSUMABLE], should be CONSUMABLE when item type is COINS)&#34;,
+   &#34;useCount&#34;: 1(optional, required if the entitlement type is consumable),
+   &#34;stackable&#34;: false,
+   &#34;appId&#34;: &#34;optional, required if itemType is APP&#34;,
+   &#34;appType&#34;: &#34;GAME(optional, required if itemType is APP)&#34;,
+   &#34;seasonType&#34;: &#34;PASS(optional, required if itemType is SEASON)&#34;,
+   &#34;baseAppId&#34;: &#34;optional, set value of game app id if you want to link to a game&#34;,
+   &#34;targetCurrencyCode&#34;: &#34;optional, required if itemType is COINS&#34;,
+   &#34;targetNamespace&#34;: &#34;optional, required when itemType is INGAMEITEM, the targetNamespace will only take effect when the item
+   created belongs to the publisher namespace&#34;,
+   &#34;sku&#34;: &#34;optional, commonly unique item code&#34;,
+   &#34;regionData&#34;: \{
+       &#34;US(store&#39;s default region is required)&#34;: \[
          \{
-            "price":10,
-            "discountPercentage": 0(integer, optional, range[0,100], discountedPrice = price  \* ((100 - discountPercentage) \* 0.01),
+            &#34;price&#34;:10,
+            &#34;discountPercentage&#34;: 0(integer, optional, range[0,100], discountedPrice = price  \* ((100 - discountPercentage) \* 0.01),
               will use it to calculate discounted price if it is not 0),
-            "discountAmount":0(integer, optional, range[0,itemPrice], will use it to calculate discounted price if discountPercentage is 0),
-            "currencyCode":"code(required, example: USD)",
-            "currencyNamespace":"test-ns-required",
-            "trialPrice":5(required while fixedTrialCycles set, should >=0 and <= price, will same as price if not present),
-            "purchaseAt":"optional yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
-            "expireAt":"optional yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
-            "discountPurchaseAt":"optional yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
-            "discountExpireAt":"optional yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+            &#34;discountAmount&#34;:0(integer, optional, range[0,itemPrice], will use it to calculate discounted price if discountPercentage is 0),
+            &#34;currencyCode&#34;:&#34;code(required, example: USD)&#34;,
+            &#34;currencyNamespace&#34;:&#34;test-ns-required&#34;,
+            &#34;trialPrice&#34;:5(required while fixedTrialCycles set, should &gt;=0 and &lt;= price, will same as price if not present),
+            &#34;purchaseAt&#34;:&#34;optional yyyy-MM-dd&#39;T&#39;HH:mm:ss.SSS&#39;Z&#39;&#34;,
+            &#34;expireAt&#34;:&#34;optional yyyy-MM-dd&#39;T&#39;HH:mm:ss.SSS&#39;Z&#39;&#34;,
+            &#34;discountPurchaseAt&#34;:&#34;optional yyyy-MM-dd&#39;T&#39;HH:mm:ss.SSS&#39;Z&#39;&#34;,
+            &#34;discountExpireAt&#34;:&#34;optional yyyy-MM-dd&#39;T&#39;HH:mm:ss.SSS&#39;Z&#39;&#34;
          \}
        \]
    \},
-   "itemIds": \[
-       "itemId"
+   &#34;itemIds&#34;: \[
+       &#34;itemId&#34;
    \],
-   "recurring": \{
-       "cycle":"MONTHLY(allowed: [WEEKLY,MONTHLY,QUARTERLY,YEARLY])",
-       "fixedFreeDays":0(integer, fixed free days, 0 means not set),
-       "fixedTrialCycles":0(integer, fixed trial cycles, 0 means not set, will not take effect if fixedFreeDays set),
-       "graceDays":7(integer, recurring grace days, retry recurring charge within configured days if charge fail, default 7)
+   &#34;recurring&#34;: \{
+       &#34;cycle&#34;:&#34;MONTHLY(allowed: [WEEKLY,MONTHLY,QUARTERLY,YEARLY])&#34;,
+       &#34;fixedFreeDays&#34;:0(integer, fixed free days, 0 means not set),
+       &#34;fixedTrialCycles&#34;:0(integer, fixed trial cycles, 0 means not set, will not take effect if fixedFreeDays set),
+       &#34;graceDays&#34;:7(integer, recurring grace days, retry recurring charge within configured days if charge fail, default 7)
    \},
-   "tags": \[
-       "tag"
+   &#34;tags&#34;: \[
+       &#34;tag&#34;
    \],
-   "features": \[
-       "feature"
+   &#34;features&#34;: \[
+       &#34;feature&#34;
    \],
-   "clazz": "weapon",
-   "boothName": "C_campaign1",
-   "displayOrder": 1000,
-   "ext": \{
-       "properties":\[
+   &#34;clazz&#34;: &#34;weapon&#34;,
+   &#34;boothName&#34;: &#34;C_campaign1&#34;,
+   &#34;displayOrder&#34;: 1000,
+   &#34;ext&#34;: \{
+       &#34;properties&#34;:\[
            \{
-               "key1":"value1",
-               "key2":"value2"
+               &#34;key1&#34;:&#34;value1&#34;,
+               &#34;key2&#34;:&#34;value2&#34;
            \}
        \],
-       "functions":\[
+       &#34;functions&#34;:\[
            \{
-               "key1":"value1",
-               "key2":"value2"
+               &#34;key1&#34;:&#34;value1&#34;,
+               &#34;key2&#34;:&#34;value2&#34;
            \}
        \]
    \},
-   "maxCountPerUser": 1(integer, optional, -1 means UNLIMITED),
-   "maxCount": 1(integer, optional, -1 means UNLIMITED, unset when itemType is CODE)
-}</code></pre>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:ITEM", action=1 (CREATE)</li><li><i>Returns</i>: created item data</li></ul>
+   &#34;maxCountPerUser&#34;: 1(integer, optional, -1 means UNLIMITED),
+   &#34;maxCount&#34;: 1(integer, optional, -1 means UNLIMITED, unset when itemType is CODE)
+}&lt;/code&gt;&lt;/pre&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:ITEM&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: created item data&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) CreateItem(params *CreateItemParams, authInfo runtime.ClientAuthInfoWriter) (*CreateItemCreated, *CreateItemBadRequest, *CreateItemNotFound, *CreateItemConflict, *CreateItemUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -304,7 +387,7 @@ func (a *Client) CreateItem(params *CreateItemParams, authInfo runtime.ClientAut
 		PathPattern:        "/admin/namespaces/{namespace}/items",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &CreateItemReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -319,23 +402,73 @@ func (a *Client) CreateItem(params *CreateItemParams, authInfo runtime.ClientAut
 
 	case *CreateItemCreated:
 		return v, nil, nil, nil, nil, nil
+
 	case *CreateItemBadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *CreateItemNotFound:
 		return nil, nil, v, nil, nil, nil
+
 	case *CreateItemConflict:
 		return nil, nil, nil, v, nil, nil
+
 	case *CreateItemUnprocessableEntity:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) CreateItemShort(params *CreateItemParams, authInfo runtime.ClientAuthInfoWriter) (*CreateItemCreated, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreateItemParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "createItem",
+		Method:             "POST",
+		PathPattern:        "/admin/namespaces/{namespace}/items",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CreateItemReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *CreateItemCreated:
+		return v, nil
+	case *CreateItemBadRequest:
+		return nil, v
+	case *CreateItemNotFound:
+		return nil, v
+	case *CreateItemConflict:
+		return nil, v
+	case *CreateItemUnprocessableEntity:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   DefeatureItem defeatures an item
 
-  Remove a feature from an item.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:ITEM", action=4 (UPDATE)</li><li><i>Returns</i>: updated item</li></ul>
+  Remove a feature from an item.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:ITEM&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated item&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) DefeatureItem(params *DefeatureItemParams, authInfo runtime.ClientAuthInfoWriter) (*DefeatureItemOK, *DefeatureItemNotFound, *DefeatureItemConflict, error) {
 	// TODO: Validate the params before sending
@@ -353,7 +486,7 @@ func (a *Client) DefeatureItem(params *DefeatureItemParams, authInfo runtime.Cli
 		PathPattern:        "/admin/namespaces/{namespace}/items/{itemId}/features/{feature}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DefeatureItemReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -368,19 +501,63 @@ func (a *Client) DefeatureItem(params *DefeatureItemParams, authInfo runtime.Cli
 
 	case *DefeatureItemOK:
 		return v, nil, nil, nil
+
 	case *DefeatureItemNotFound:
 		return nil, v, nil, nil
+
 	case *DefeatureItemConflict:
 		return nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) DefeatureItemShort(params *DefeatureItemParams, authInfo runtime.ClientAuthInfoWriter) (*DefeatureItemOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDefeatureItemParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "defeatureItem",
+		Method:             "DELETE",
+		PathPattern:        "/admin/namespaces/{namespace}/items/{itemId}/features/{feature}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DefeatureItemReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DefeatureItemOK:
+		return v, nil
+	case *DefeatureItemNotFound:
+		return nil, v
+	case *DefeatureItemConflict:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   DeleteItem deletes an item
 
-  This API is used to delete an item permanently, usually for test purpose.<b>DO NOT delete already published item.</b><p>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:ITEM", action=8 (DELETE)</li></ul>
+  This API is used to delete an item permanently, usually for test purpose.&lt;b&gt;DO NOT delete already published item.&lt;/b&gt;&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:ITEM&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) DeleteItem(params *DeleteItemParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteItemNoContent, *DeleteItemNotFound, error) {
 	// TODO: Validate the params before sending
@@ -398,7 +575,7 @@ func (a *Client) DeleteItem(params *DeleteItemParams, authInfo runtime.ClientAut
 		PathPattern:        "/admin/namespaces/{namespace}/items/{itemId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteItemReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -413,17 +590,58 @@ func (a *Client) DeleteItem(params *DeleteItemParams, authInfo runtime.ClientAut
 
 	case *DeleteItemNoContent:
 		return v, nil, nil
+
 	case *DeleteItemNotFound:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) DeleteItemShort(params *DeleteItemParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteItemNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteItemParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "deleteItem",
+		Method:             "DELETE",
+		PathPattern:        "/admin/namespaces/{namespace}/items/{itemId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteItemReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeleteItemNoContent:
+		return v, nil
+	case *DeleteItemNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   DisableItem disables an item
 
-  Disable an item.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:ITEM", action=4 (UPDATE)</li><li><i>Returns</i>: updated item</li></ul>
+  Disable an item.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:ITEM&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated item&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) DisableItem(params *DisableItemParams, authInfo runtime.ClientAuthInfoWriter) (*DisableItemOK, *DisableItemNotFound, *DisableItemConflict, error) {
 	// TODO: Validate the params before sending
@@ -441,7 +659,7 @@ func (a *Client) DisableItem(params *DisableItemParams, authInfo runtime.ClientA
 		PathPattern:        "/admin/namespaces/{namespace}/items/{itemId}/disable",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DisableItemReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -456,19 +674,63 @@ func (a *Client) DisableItem(params *DisableItemParams, authInfo runtime.ClientA
 
 	case *DisableItemOK:
 		return v, nil, nil, nil
+
 	case *DisableItemNotFound:
 		return nil, v, nil, nil
+
 	case *DisableItemConflict:
 		return nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) DisableItemShort(params *DisableItemParams, authInfo runtime.ClientAuthInfoWriter) (*DisableItemOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDisableItemParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "disableItem",
+		Method:             "PUT",
+		PathPattern:        "/admin/namespaces/{namespace}/items/{itemId}/disable",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DisableItemReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DisableItemOK:
+		return v, nil
+	case *DisableItemNotFound:
+		return nil, v
+	case *DisableItemConflict:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   EnableItem enables an item
 
-  Enable an item.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:ITEM", action=4 (UPDATE)</li><li><i>Returns</i>: updated item</li></ul>
+  Enable an item.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:ITEM&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated item&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) EnableItem(params *EnableItemParams, authInfo runtime.ClientAuthInfoWriter) (*EnableItemOK, *EnableItemNotFound, *EnableItemConflict, error) {
 	// TODO: Validate the params before sending
@@ -486,7 +748,7 @@ func (a *Client) EnableItem(params *EnableItemParams, authInfo runtime.ClientAut
 		PathPattern:        "/admin/namespaces/{namespace}/items/{itemId}/enable",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &EnableItemReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -501,19 +763,63 @@ func (a *Client) EnableItem(params *EnableItemParams, authInfo runtime.ClientAut
 
 	case *EnableItemOK:
 		return v, nil, nil, nil
+
 	case *EnableItemNotFound:
 		return nil, v, nil, nil
+
 	case *EnableItemConflict:
 		return nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) EnableItemShort(params *EnableItemParams, authInfo runtime.ClientAuthInfoWriter) (*EnableItemOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewEnableItemParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "enableItem",
+		Method:             "PUT",
+		PathPattern:        "/admin/namespaces/{namespace}/items/{itemId}/enable",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &EnableItemReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *EnableItemOK:
+		return v, nil
+	case *EnableItemNotFound:
+		return nil, v
+	case *EnableItemConflict:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   FeatureItem features an item
 
-  Add a feature to an item.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:ITEM", action=4 (UPDATE)</li><li><i>Returns</i>: updated item</li></ul>
+  Add a feature to an item.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:ITEM&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated item&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) FeatureItem(params *FeatureItemParams, authInfo runtime.ClientAuthInfoWriter) (*FeatureItemOK, *FeatureItemNotFound, *FeatureItemConflict, error) {
 	// TODO: Validate the params before sending
@@ -531,7 +837,7 @@ func (a *Client) FeatureItem(params *FeatureItemParams, authInfo runtime.ClientA
 		PathPattern:        "/admin/namespaces/{namespace}/items/{itemId}/features/{feature}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &FeatureItemReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -546,19 +852,63 @@ func (a *Client) FeatureItem(params *FeatureItemParams, authInfo runtime.ClientA
 
 	case *FeatureItemOK:
 		return v, nil, nil, nil
+
 	case *FeatureItemNotFound:
 		return nil, v, nil, nil
+
 	case *FeatureItemConflict:
 		return nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) FeatureItemShort(params *FeatureItemParams, authInfo runtime.ClientAuthInfoWriter) (*FeatureItemOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewFeatureItemParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "featureItem",
+		Method:             "PUT",
+		PathPattern:        "/admin/namespaces/{namespace}/items/{itemId}/features/{feature}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &FeatureItemReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *FeatureItemOK:
+		return v, nil
+	case *FeatureItemNotFound:
+		return nil, v
+	case *FeatureItemConflict:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   GetApp gets an app info
 
-  This API is used to get an app info.<p>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:ITEM", action=2 (READ)</li><li><i>Returns</i>: app data</li></ul>
+  This API is used to get an app info.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:ITEM&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: app data&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) GetApp(params *GetAppParams, authInfo runtime.ClientAuthInfoWriter) (*GetAppOK, error) {
 	// TODO: Validate the params before sending
@@ -576,7 +926,7 @@ func (a *Client) GetApp(params *GetAppParams, authInfo runtime.ClientAuthInfoWri
 		PathPattern:        "/admin/namespaces/{namespace}/items/{itemId}/app",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetAppReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -591,6 +941,44 @@ func (a *Client) GetApp(params *GetAppParams, authInfo runtime.ClientAuthInfoWri
 
 	case *GetAppOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetAppShort(params *GetAppParams, authInfo runtime.ClientAuthInfoWriter) (*GetAppOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetAppParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getApp",
+		Method:             "GET",
+		PathPattern:        "/admin/namespaces/{namespace}/items/{itemId}/app",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetAppReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetAppOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -599,7 +987,7 @@ func (a *Client) GetApp(params *GetAppParams, authInfo runtime.ClientAuthInfoWri
 /*
   GetItem gets an item
 
-  This API is used to get an item.<p>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:ITEM", action=2 (READ)</li><li><i>Returns</i>: item data</li></ul>
+  This API is used to get an item.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:ITEM&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: item data&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) GetItem(params *GetItemParams, authInfo runtime.ClientAuthInfoWriter) (*GetItemOK, *GetItemNotFound, error) {
 	// TODO: Validate the params before sending
@@ -617,7 +1005,7 @@ func (a *Client) GetItem(params *GetItemParams, authInfo runtime.ClientAuthInfoW
 		PathPattern:        "/admin/namespaces/{namespace}/items/{itemId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetItemReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -632,17 +1020,58 @@ func (a *Client) GetItem(params *GetItemParams, authInfo runtime.ClientAuthInfoW
 
 	case *GetItemOK:
 		return v, nil, nil
+
 	case *GetItemNotFound:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetItemShort(params *GetItemParams, authInfo runtime.ClientAuthInfoWriter) (*GetItemOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetItemParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getItem",
+		Method:             "GET",
+		PathPattern:        "/admin/namespaces/{namespace}/items/{itemId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetItemReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetItemOK:
+		return v, nil
+	case *GetItemNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   GetItemByAppID gets item by app Id
 
-  This API is used to get the item by appId.<p>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:ITEM", action=2 (READ)<li><i>Returns</i>: the item with that appId</li></ul>
+  This API is used to get the item by appId.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:ITEM&#34;, action=2 (READ)&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: the item with that appId&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) GetItemByAppID(params *GetItemByAppIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetItemByAppIDOK, *GetItemByAppIDNotFound, error) {
 	// TODO: Validate the params before sending
@@ -660,7 +1089,7 @@ func (a *Client) GetItemByAppID(params *GetItemByAppIDParams, authInfo runtime.C
 		PathPattern:        "/admin/namespaces/{namespace}/items/byAppId",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetItemByAppIDReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -675,17 +1104,58 @@ func (a *Client) GetItemByAppID(params *GetItemByAppIDParams, authInfo runtime.C
 
 	case *GetItemByAppIDOK:
 		return v, nil, nil
+
 	case *GetItemByAppIDNotFound:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetItemByAppIDShort(params *GetItemByAppIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetItemByAppIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetItemByAppIDParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getItemByAppId",
+		Method:             "GET",
+		PathPattern:        "/admin/namespaces/{namespace}/items/byAppId",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetItemByAppIDReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetItemByAppIDOK:
+		return v, nil
+	case *GetItemByAppIDNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   GetItemBySku gets item by sku
 
-  This API is used to get the item by sku.<p>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:ITEM", action=2 (READ)<li><i>Returns</i>: the item with sku</li></ul>
+  This API is used to get the item by sku.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:ITEM&#34;, action=2 (READ)&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: the item with sku&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) GetItemBySku(params *GetItemBySkuParams, authInfo runtime.ClientAuthInfoWriter) (*GetItemBySkuOK, *GetItemBySkuNotFound, error) {
 	// TODO: Validate the params before sending
@@ -703,7 +1173,7 @@ func (a *Client) GetItemBySku(params *GetItemBySkuParams, authInfo runtime.Clien
 		PathPattern:        "/admin/namespaces/{namespace}/items/bySku",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetItemBySkuReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -718,17 +1188,58 @@ func (a *Client) GetItemBySku(params *GetItemBySkuParams, authInfo runtime.Clien
 
 	case *GetItemBySkuOK:
 		return v, nil, nil
+
 	case *GetItemBySkuNotFound:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetItemBySkuShort(params *GetItemBySkuParams, authInfo runtime.ClientAuthInfoWriter) (*GetItemBySkuOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetItemBySkuParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getItemBySku",
+		Method:             "GET",
+		PathPattern:        "/admin/namespaces/{namespace}/items/bySku",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetItemBySkuReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetItemBySkuOK:
+		return v, nil
+	case *GetItemBySkuNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   GetItemDynamicData gets item dynamic data
 
-  Get item dynamic data for published item.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:ITEM", action=2 (READ)</li><li><i>Returns</i>: item dynamic data</li></ul>
+  Get item dynamic data for published item.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:ITEM&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: item dynamic data&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) GetItemDynamicData(params *GetItemDynamicDataParams, authInfo runtime.ClientAuthInfoWriter) (*GetItemDynamicDataOK, *GetItemDynamicDataNotFound, error) {
 	// TODO: Validate the params before sending
@@ -746,7 +1257,7 @@ func (a *Client) GetItemDynamicData(params *GetItemDynamicDataParams, authInfo r
 		PathPattern:        "/admin/namespaces/{namespace}/items/{itemId}/dynamic",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetItemDynamicDataReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -761,17 +1272,58 @@ func (a *Client) GetItemDynamicData(params *GetItemDynamicDataParams, authInfo r
 
 	case *GetItemDynamicDataOK:
 		return v, nil, nil
+
 	case *GetItemDynamicDataNotFound:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetItemDynamicDataShort(params *GetItemDynamicDataParams, authInfo runtime.ClientAuthInfoWriter) (*GetItemDynamicDataOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetItemDynamicDataParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getItemDynamicData",
+		Method:             "GET",
+		PathPattern:        "/admin/namespaces/{namespace}/items/{itemId}/dynamic",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetItemDynamicDataReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetItemDynamicDataOK:
+		return v, nil
+	case *GetItemDynamicDataNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   GetItemIDBySku gets item Id by sku
 
-  <b>[SERVICE COMMUNICATION ONLY]</b> This API is used to get the itemId by sku.<p>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:ITEM", action=2 (READ)<li><i>Returns</i>: the itemId with sku</li></ul>
+  &lt;b&gt;[SERVICE COMMUNICATION ONLY]&lt;/b&gt; This API is used to get the itemId by sku.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:ITEM&#34;, action=2 (READ)&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: the itemId with sku&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) GetItemIDBySku(params *GetItemIDBySkuParams, authInfo runtime.ClientAuthInfoWriter) (*GetItemIDBySkuOK, *GetItemIDBySkuNotFound, error) {
 	// TODO: Validate the params before sending
@@ -789,7 +1341,7 @@ func (a *Client) GetItemIDBySku(params *GetItemIDBySkuParams, authInfo runtime.C
 		PathPattern:        "/admin/namespaces/{namespace}/items/itemId/bySku",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetItemIDBySkuReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -804,17 +1356,58 @@ func (a *Client) GetItemIDBySku(params *GetItemIDBySkuParams, authInfo runtime.C
 
 	case *GetItemIDBySkuOK:
 		return v, nil, nil
+
 	case *GetItemIDBySkuNotFound:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetItemIDBySkuShort(params *GetItemIDBySkuParams, authInfo runtime.ClientAuthInfoWriter) (*GetItemIDBySkuOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetItemIDBySkuParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getItemIdBySku",
+		Method:             "GET",
+		PathPattern:        "/admin/namespaces/{namespace}/items/itemId/bySku",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetItemIDBySkuReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetItemIDBySkuOK:
+		return v, nil
+	case *GetItemIDBySkuNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   GetLocaleItem gets an item in locale
 
-  This API is used to get an item in specific locale. If item not exist in specific region, default region item will return.<p>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:ITEM", action=2 (READ)</li><li><i>Returns</i>: item data</li></ul>
+  This API is used to get an item in specific locale. If item not exist in specific region, default region item will return.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:ITEM&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: item data&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) GetLocaleItem(params *GetLocaleItemParams, authInfo runtime.ClientAuthInfoWriter) (*GetLocaleItemOK, *GetLocaleItemNotFound, error) {
 	// TODO: Validate the params before sending
@@ -832,7 +1425,7 @@ func (a *Client) GetLocaleItem(params *GetLocaleItemParams, authInfo runtime.Cli
 		PathPattern:        "/admin/namespaces/{namespace}/items/{itemId}/locale",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetLocaleItemReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -847,17 +1440,58 @@ func (a *Client) GetLocaleItem(params *GetLocaleItemParams, authInfo runtime.Cli
 
 	case *GetLocaleItemOK:
 		return v, nil, nil
+
 	case *GetLocaleItemNotFound:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetLocaleItemShort(params *GetLocaleItemParams, authInfo runtime.ClientAuthInfoWriter) (*GetLocaleItemOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetLocaleItemParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getLocaleItem",
+		Method:             "GET",
+		PathPattern:        "/admin/namespaces/{namespace}/items/{itemId}/locale",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetLocaleItemReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetLocaleItemOK:
+		return v, nil
+	case *GetLocaleItemNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   GetLocaleItemBySku gets an item by sku in locale
 
-  This API is used to get an item by sku in specific locale. If item not exist in specific region, default region item will return.<p>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:ITEM", action=2 (READ)</li><li><i>Returns</i>: item data</li></ul>
+  This API is used to get an item by sku in specific locale. If item not exist in specific region, default region item will return.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:ITEM&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: item data&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) GetLocaleItemBySku(params *GetLocaleItemBySkuParams, authInfo runtime.ClientAuthInfoWriter) (*GetLocaleItemBySkuOK, *GetLocaleItemBySkuNotFound, error) {
 	// TODO: Validate the params before sending
@@ -875,7 +1509,7 @@ func (a *Client) GetLocaleItemBySku(params *GetLocaleItemBySkuParams, authInfo r
 		PathPattern:        "/admin/namespaces/{namespace}/items/bySku/locale",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetLocaleItemBySkuReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -890,17 +1524,58 @@ func (a *Client) GetLocaleItemBySku(params *GetLocaleItemBySkuParams, authInfo r
 
 	case *GetLocaleItemBySkuOK:
 		return v, nil, nil
+
 	case *GetLocaleItemBySkuNotFound:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetLocaleItemBySkuShort(params *GetLocaleItemBySkuParams, authInfo runtime.ClientAuthInfoWriter) (*GetLocaleItemBySkuOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetLocaleItemBySkuParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getLocaleItemBySku",
+		Method:             "GET",
+		PathPattern:        "/admin/namespaces/{namespace}/items/bySku/locale",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetLocaleItemBySkuReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetLocaleItemBySkuOK:
+		return v, nil
+	case *GetLocaleItemBySkuNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   ListBasicItemsByFeatures lists basic items by features
 
-  <b>[SERVICE COMMUNICATION ONLY]</b> This API is used to list basic items by features.<p>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:ITEM", action=2 (READ)</li><li><i>Returns</i>: the list of basic items</li></ul>
+  &lt;b&gt;[SERVICE COMMUNICATION ONLY]&lt;/b&gt; This API is used to list basic items by features.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:ITEM&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: the list of basic items&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) ListBasicItemsByFeatures(params *ListBasicItemsByFeaturesParams, authInfo runtime.ClientAuthInfoWriter) (*ListBasicItemsByFeaturesOK, error) {
 	// TODO: Validate the params before sending
@@ -918,7 +1593,7 @@ func (a *Client) ListBasicItemsByFeatures(params *ListBasicItemsByFeaturesParams
 		PathPattern:        "/admin/namespaces/{namespace}/items/byFeatures/basic",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &ListBasicItemsByFeaturesReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -933,6 +1608,44 @@ func (a *Client) ListBasicItemsByFeatures(params *ListBasicItemsByFeaturesParams
 
 	case *ListBasicItemsByFeaturesOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) ListBasicItemsByFeaturesShort(params *ListBasicItemsByFeaturesParams, authInfo runtime.ClientAuthInfoWriter) (*ListBasicItemsByFeaturesOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewListBasicItemsByFeaturesParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "listBasicItemsByFeatures",
+		Method:             "GET",
+		PathPattern:        "/admin/namespaces/{namespace}/items/byFeatures/basic",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ListBasicItemsByFeaturesReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *ListBasicItemsByFeaturesOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -941,7 +1654,7 @@ func (a *Client) ListBasicItemsByFeatures(params *ListBasicItemsByFeaturesParams
 /*
   PublicBulkGetItems bulks get locale items
 
-  This API is used to bulk get locale items. If item not exist in specific region, default region item will return.<p>Other detail info: <ul><li><i>Optional permission</i>: resource="PREVIEW", action=1(CREATE) (user with this permission can view draft store items)</li><li><i>Optional permission</i>: resource="SANDBOX", action=1(CREATE) (user with this permission can view draft store items)</li><li><i>Returns</i>: the list of items info</li></ul>
+  This API is used to bulk get locale items. If item not exist in specific region, default region item will return.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Optional permission&lt;/i&gt;: resource=&#34;PREVIEW&#34;, action=1(CREATE) (user with this permission can view draft store items)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Optional permission&lt;/i&gt;: resource=&#34;SANDBOX&#34;, action=1(CREATE) (user with this permission can view draft store items)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: the list of items info&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) PublicBulkGetItems(params *PublicBulkGetItemsParams) (*PublicBulkGetItemsOK, *PublicBulkGetItemsNotFound, error) {
 	// TODO: Validate the params before sending
@@ -959,7 +1672,7 @@ func (a *Client) PublicBulkGetItems(params *PublicBulkGetItemsParams) (*PublicBu
 		PathPattern:        "/public/namespaces/{namespace}/items/locale/byIds",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicBulkGetItemsReader{formats: a.formats},
 		Context:            params.Context,
@@ -973,17 +1686,57 @@ func (a *Client) PublicBulkGetItems(params *PublicBulkGetItemsParams) (*PublicBu
 
 	case *PublicBulkGetItemsOK:
 		return v, nil, nil
+
 	case *PublicBulkGetItemsNotFound:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicBulkGetItemsShort(params *PublicBulkGetItemsParams) (*PublicBulkGetItemsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicBulkGetItemsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicBulkGetItems",
+		Method:             "GET",
+		PathPattern:        "/public/namespaces/{namespace}/items/locale/byIds",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicBulkGetItemsReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicBulkGetItemsOK:
+		return v, nil
+	case *PublicBulkGetItemsNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   PublicGetApp gets an app in locale
 
-  This API is used to get an app in locale. If app not exist in specific region, default region app will return.<p>Other detail info: <ul><li><i>Optional permission</i>: resource="PREVIEW", action=1(CREATE) (user with this permission can view draft store app)</li><li><i>Optional permission</i>: resource="SANDBOX", action=1(CREATE) (user with this permission can view draft store app)</li><li><i>Returns</i>: app data</li></ul>
+  This API is used to get an app in locale. If app not exist in specific region, default region app will return.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Optional permission&lt;/i&gt;: resource=&#34;PREVIEW&#34;, action=1(CREATE) (user with this permission can view draft store app)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Optional permission&lt;/i&gt;: resource=&#34;SANDBOX&#34;, action=1(CREATE) (user with this permission can view draft store app)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: app data&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) PublicGetApp(params *PublicGetAppParams) (*PublicGetAppOK, *PublicGetAppNotFound, error) {
 	// TODO: Validate the params before sending
@@ -1001,7 +1754,7 @@ func (a *Client) PublicGetApp(params *PublicGetAppParams) (*PublicGetAppOK, *Pub
 		PathPattern:        "/public/namespaces/{namespace}/items/{itemId}/app/locale",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicGetAppReader{formats: a.formats},
 		Context:            params.Context,
@@ -1015,17 +1768,57 @@ func (a *Client) PublicGetApp(params *PublicGetAppParams) (*PublicGetAppOK, *Pub
 
 	case *PublicGetAppOK:
 		return v, nil, nil
+
 	case *PublicGetAppNotFound:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicGetAppShort(params *PublicGetAppParams) (*PublicGetAppOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetAppParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicGetApp",
+		Method:             "GET",
+		PathPattern:        "/public/namespaces/{namespace}/items/{itemId}/app/locale",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicGetAppReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetAppOK:
+		return v, nil
+	case *PublicGetAppNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   PublicGetItem gets an item in locale
 
-  This API is used to get an item in locale. If item not exist in specific region, default region item will return.<p>Other detail info: <ul><li><i>Optional permission</i>: resource="PREVIEW", action=1(CREATE) (user with this permission can view draft store item)</li><li><i>Optional permission</i>: resource="SANDBOX", action=1(CREATE) (user with this permission can view draft store item)</li><li><i>Returns</i>: item data</li></ul>
+  This API is used to get an item in locale. If item not exist in specific region, default region item will return.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Optional permission&lt;/i&gt;: resource=&#34;PREVIEW&#34;, action=1(CREATE) (user with this permission can view draft store item)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Optional permission&lt;/i&gt;: resource=&#34;SANDBOX&#34;, action=1(CREATE) (user with this permission can view draft store item)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: item data&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) PublicGetItem(params *PublicGetItemParams) (*PublicGetItemOK, *PublicGetItemNotFound, error) {
 	// TODO: Validate the params before sending
@@ -1043,7 +1836,7 @@ func (a *Client) PublicGetItem(params *PublicGetItemParams) (*PublicGetItemOK, *
 		PathPattern:        "/public/namespaces/{namespace}/items/{itemId}/locale",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicGetItemReader{formats: a.formats},
 		Context:            params.Context,
@@ -1057,17 +1850,57 @@ func (a *Client) PublicGetItem(params *PublicGetItemParams) (*PublicGetItemOK, *
 
 	case *PublicGetItemOK:
 		return v, nil, nil
+
 	case *PublicGetItemNotFound:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicGetItemShort(params *PublicGetItemParams) (*PublicGetItemOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetItemParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicGetItem",
+		Method:             "GET",
+		PathPattern:        "/public/namespaces/{namespace}/items/{itemId}/locale",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicGetItemReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetItemOK:
+		return v, nil
+	case *PublicGetItemNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   PublicGetItemByAppID gets item by app Id
 
-  This API is used to get item by appId.<p>Other detail info: <ul><li><i>Optional permission</i>: resource="PREVIEW", action=1(CREATE) (user with this permission can view draft store item)</li><li><i>Optional permission</i>: resource="SANDBOX", action=1(CREATE) (user with this permission can view draft store item)</li><li><i>Returns</i>: the item with that appId</li></ul>
+  This API is used to get item by appId.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Optional permission&lt;/i&gt;: resource=&#34;PREVIEW&#34;, action=1(CREATE) (user with this permission can view draft store item)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Optional permission&lt;/i&gt;: resource=&#34;SANDBOX&#34;, action=1(CREATE) (user with this permission can view draft store item)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: the item with that appId&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) PublicGetItemByAppID(params *PublicGetItemByAppIDParams) (*PublicGetItemByAppIDOK, *PublicGetItemByAppIDNotFound, error) {
 	// TODO: Validate the params before sending
@@ -1085,7 +1918,7 @@ func (a *Client) PublicGetItemByAppID(params *PublicGetItemByAppIDParams) (*Publ
 		PathPattern:        "/public/namespaces/{namespace}/items/byAppId",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicGetItemByAppIDReader{formats: a.formats},
 		Context:            params.Context,
@@ -1099,17 +1932,57 @@ func (a *Client) PublicGetItemByAppID(params *PublicGetItemByAppIDParams) (*Publ
 
 	case *PublicGetItemByAppIDOK:
 		return v, nil, nil
+
 	case *PublicGetItemByAppIDNotFound:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicGetItemByAppIDShort(params *PublicGetItemByAppIDParams) (*PublicGetItemByAppIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetItemByAppIDParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicGetItemByAppId",
+		Method:             "GET",
+		PathPattern:        "/public/namespaces/{namespace}/items/byAppId",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicGetItemByAppIDReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetItemByAppIDOK:
+		return v, nil
+	case *PublicGetItemByAppIDNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   PublicGetItemBySku gets item by sku
 
-  This API is used to get the item by sku.<p>Other detail info: <ul><li><i>Optional permission</i>: resource="PREVIEW", action=1(CREATE) (user with this permission can view draft store item)</li><li><i>Optional permission</i>: resource="SANDBOX", action=1(CREATE) (user with this permission can view draft store item)</li><li><i>Returns</i>: the item with sku</li></ul>
+  This API is used to get the item by sku.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Optional permission&lt;/i&gt;: resource=&#34;PREVIEW&#34;, action=1(CREATE) (user with this permission can view draft store item)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Optional permission&lt;/i&gt;: resource=&#34;SANDBOX&#34;, action=1(CREATE) (user with this permission can view draft store item)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: the item with sku&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) PublicGetItemBySku(params *PublicGetItemBySkuParams) (*PublicGetItemBySkuOK, *PublicGetItemBySkuNotFound, error) {
 	// TODO: Validate the params before sending
@@ -1127,7 +2000,7 @@ func (a *Client) PublicGetItemBySku(params *PublicGetItemBySkuParams) (*PublicGe
 		PathPattern:        "/public/namespaces/{namespace}/items/bySku",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicGetItemBySkuReader{formats: a.formats},
 		Context:            params.Context,
@@ -1141,17 +2014,57 @@ func (a *Client) PublicGetItemBySku(params *PublicGetItemBySkuParams) (*PublicGe
 
 	case *PublicGetItemBySkuOK:
 		return v, nil, nil
+
 	case *PublicGetItemBySkuNotFound:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicGetItemBySkuShort(params *PublicGetItemBySkuParams) (*PublicGetItemBySkuOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetItemBySkuParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicGetItemBySku",
+		Method:             "GET",
+		PathPattern:        "/public/namespaces/{namespace}/items/bySku",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicGetItemBySkuReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetItemBySkuOK:
+		return v, nil
+	case *PublicGetItemBySkuNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   PublicGetItemDynamicData gets item dynamic data
 
-  Get item dynamic data for a published item.<br>Other detail info: <ul><li><i>Returns</i>: item dynamic data</li></ul>
+  Get item dynamic data for a published item.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: item dynamic data&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) PublicGetItemDynamicData(params *PublicGetItemDynamicDataParams) (*PublicGetItemDynamicDataOK, *PublicGetItemDynamicDataNotFound, error) {
 	// TODO: Validate the params before sending
@@ -1169,7 +2082,7 @@ func (a *Client) PublicGetItemDynamicData(params *PublicGetItemDynamicDataParams
 		PathPattern:        "/public/namespaces/{namespace}/items/{itemId}/dynamic",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicGetItemDynamicDataReader{formats: a.formats},
 		Context:            params.Context,
@@ -1183,17 +2096,57 @@ func (a *Client) PublicGetItemDynamicData(params *PublicGetItemDynamicDataParams
 
 	case *PublicGetItemDynamicDataOK:
 		return v, nil, nil
+
 	case *PublicGetItemDynamicDataNotFound:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicGetItemDynamicDataShort(params *PublicGetItemDynamicDataParams) (*PublicGetItemDynamicDataOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetItemDynamicDataParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicGetItemDynamicData",
+		Method:             "GET",
+		PathPattern:        "/public/namespaces/{namespace}/items/{itemId}/dynamic",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicGetItemDynamicDataReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetItemDynamicDataOK:
+		return v, nil
+	case *PublicGetItemDynamicDataNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   PublicQueryItems queries items by criteria
 
-  This API is used to query items by criteria within a store. If item not exist in specific region, default region item will return.<p>Other detail info: <ul><li><i>Optional permission</i>: resource="PREVIEW", action=1(CREATE) (user with this permission can view draft store item)</li><li><i>Optional permission</i>: resource="SANDBOX", action=1(CREATE) (user with this permission can view draft store item)</li><li><i>Returns</i>: the list of items</li></ul>
+  This API is used to query items by criteria within a store. If item not exist in specific region, default region item will return.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Optional permission&lt;/i&gt;: resource=&#34;PREVIEW&#34;, action=1(CREATE) (user with this permission can view draft store item)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Optional permission&lt;/i&gt;: resource=&#34;SANDBOX&#34;, action=1(CREATE) (user with this permission can view draft store item)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: the list of items&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) PublicQueryItems(params *PublicQueryItemsParams) (*PublicQueryItemsOK, *PublicQueryItemsNotFound, *PublicQueryItemsUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -1211,7 +2164,7 @@ func (a *Client) PublicQueryItems(params *PublicQueryItemsParams) (*PublicQueryI
 		PathPattern:        "/public/namespaces/{namespace}/items/byCriteria",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicQueryItemsReader{formats: a.formats},
 		Context:            params.Context,
@@ -1225,19 +2178,62 @@ func (a *Client) PublicQueryItems(params *PublicQueryItemsParams) (*PublicQueryI
 
 	case *PublicQueryItemsOK:
 		return v, nil, nil, nil
+
 	case *PublicQueryItemsNotFound:
 		return nil, v, nil, nil
+
 	case *PublicQueryItemsUnprocessableEntity:
 		return nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicQueryItemsShort(params *PublicQueryItemsParams) (*PublicQueryItemsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicQueryItemsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicQueryItems",
+		Method:             "GET",
+		PathPattern:        "/public/namespaces/{namespace}/items/byCriteria",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicQueryItemsReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicQueryItemsOK:
+		return v, nil
+	case *PublicQueryItemsNotFound:
+		return nil, v
+	case *PublicQueryItemsUnprocessableEntity:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   PublicSearchItems searches items by keyword
 
-  This API is used to search items by keyword in title, description and long description, It's language constrained, also if item not exist in specific region, default region item will return.<p>Other detail info: <ul><li><i>Optional permission</i>: resource="PREVIEW", action=1(CREATE) (user with this permission can view draft store item)</li><li><i>Optional permission</i>: resource="SANDBOX", action=1(CREATE) (user with this permission can view draft store item)</li><li><i>Returns</i>: the list of items</li></ul>
+  This API is used to search items by keyword in title, description and long description, It&#39;s language constrained, also if item not exist in specific region, default region item will return.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Optional permission&lt;/i&gt;: resource=&#34;PREVIEW&#34;, action=1(CREATE) (user with this permission can view draft store item)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Optional permission&lt;/i&gt;: resource=&#34;SANDBOX&#34;, action=1(CREATE) (user with this permission can view draft store item)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: the list of items&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) PublicSearchItems(params *PublicSearchItemsParams) (*PublicSearchItemsOK, *PublicSearchItemsNotFound, error) {
 	// TODO: Validate the params before sending
@@ -1255,7 +2251,7 @@ func (a *Client) PublicSearchItems(params *PublicSearchItemsParams) (*PublicSear
 		PathPattern:        "/public/namespaces/{namespace}/items/search",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicSearchItemsReader{formats: a.formats},
 		Context:            params.Context,
@@ -1269,17 +2265,57 @@ func (a *Client) PublicSearchItems(params *PublicSearchItemsParams) (*PublicSear
 
 	case *PublicSearchItemsOK:
 		return v, nil, nil
+
 	case *PublicSearchItemsNotFound:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicSearchItemsShort(params *PublicSearchItemsParams) (*PublicSearchItemsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicSearchItemsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicSearchItems",
+		Method:             "GET",
+		PathPattern:        "/public/namespaces/{namespace}/items/search",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicSearchItemsReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicSearchItemsOK:
+		return v, nil
+	case *PublicSearchItemsNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   QueryItems queries items by criteria
 
-  This API is used to query items by criteria within a store.<p>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:ITEM", action=2 (READ)</li><li><i>Returns</i>: the list of items</li></ul>
+  This API is used to query items by criteria within a store.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:ITEM&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: the list of items&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) QueryItems(params *QueryItemsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryItemsOK, *QueryItemsNotFound, *QueryItemsUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -1297,7 +2333,7 @@ func (a *Client) QueryItems(params *QueryItemsParams, authInfo runtime.ClientAut
 		PathPattern:        "/admin/namespaces/{namespace}/items/byCriteria",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &QueryItemsReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1312,19 +2348,63 @@ func (a *Client) QueryItems(params *QueryItemsParams, authInfo runtime.ClientAut
 
 	case *QueryItemsOK:
 		return v, nil, nil, nil
+
 	case *QueryItemsNotFound:
 		return nil, v, nil, nil
+
 	case *QueryItemsUnprocessableEntity:
 		return nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) QueryItemsShort(params *QueryItemsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryItemsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewQueryItemsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "queryItems",
+		Method:             "GET",
+		PathPattern:        "/admin/namespaces/{namespace}/items/byCriteria",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &QueryItemsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *QueryItemsOK:
+		return v, nil
+	case *QueryItemsNotFound:
+		return nil, v
+	case *QueryItemsUnprocessableEntity:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   QueryUncategorizedItems queries uncategorized items
 
-  This API is used to query uncategorized items within a store.<p>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:ITEM", action=2 (READ)</li><li><i>Returns</i>: the list of uncategorized items</li></ul>
+  This API is used to query uncategorized items within a store.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:ITEM&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: the list of uncategorized items&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) QueryUncategorizedItems(params *QueryUncategorizedItemsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryUncategorizedItemsOK, *QueryUncategorizedItemsNotFound, *QueryUncategorizedItemsUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -1342,7 +2422,7 @@ func (a *Client) QueryUncategorizedItems(params *QueryUncategorizedItemsParams, 
 		PathPattern:        "/admin/namespaces/{namespace}/items/uncategorized",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &QueryUncategorizedItemsReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1357,19 +2437,63 @@ func (a *Client) QueryUncategorizedItems(params *QueryUncategorizedItemsParams, 
 
 	case *QueryUncategorizedItemsOK:
 		return v, nil, nil, nil
+
 	case *QueryUncategorizedItemsNotFound:
 		return nil, v, nil, nil
+
 	case *QueryUncategorizedItemsUnprocessableEntity:
 		return nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) QueryUncategorizedItemsShort(params *QueryUncategorizedItemsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryUncategorizedItemsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewQueryUncategorizedItemsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "queryUncategorizedItems",
+		Method:             "GET",
+		PathPattern:        "/admin/namespaces/{namespace}/items/uncategorized",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &QueryUncategorizedItemsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *QueryUncategorizedItemsOK:
+		return v, nil
+	case *QueryUncategorizedItemsNotFound:
+		return nil, v
+	case *QueryUncategorizedItemsUnprocessableEntity:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   ReturnItem returns item
 
-  <b>[SERVICE COMMUNICATION ONLY]</b> This api is used for returning a published item while the item is maxCount limited, it will increase the sale available count if orderNo already acquired.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:ITEM", action=4 (UPDATE)</li></ul>
+  &lt;b&gt;[SERVICE COMMUNICATION ONLY]&lt;/b&gt; This api is used for returning a published item while the item is maxCount limited, it will increase the sale available count if orderNo already acquired.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:ITEM&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) ReturnItem(params *ReturnItemParams, authInfo runtime.ClientAuthInfoWriter) (*ReturnItemNoContent, *ReturnItemNotFound, *ReturnItemUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -1387,7 +2511,7 @@ func (a *Client) ReturnItem(params *ReturnItemParams, authInfo runtime.ClientAut
 		PathPattern:        "/admin/namespaces/{namespace}/items/{itemId}/return",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &ReturnItemReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1402,19 +2526,63 @@ func (a *Client) ReturnItem(params *ReturnItemParams, authInfo runtime.ClientAut
 
 	case *ReturnItemNoContent:
 		return v, nil, nil, nil
+
 	case *ReturnItemNotFound:
 		return nil, v, nil, nil
+
 	case *ReturnItemUnprocessableEntity:
 		return nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) ReturnItemShort(params *ReturnItemParams, authInfo runtime.ClientAuthInfoWriter) (*ReturnItemNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewReturnItemParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "returnItem",
+		Method:             "PUT",
+		PathPattern:        "/admin/namespaces/{namespace}/items/{itemId}/return",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ReturnItemReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *ReturnItemNoContent:
+		return v, nil
+	case *ReturnItemNotFound:
+		return nil, v
+	case *ReturnItemUnprocessableEntity:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   SearchItems searches items by keyword
 
-  This API is used to search items by keyword in title, description and long description within a store.<p>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:ITEM", action=2 (READ)<li><i>Returns</i>: the list of items</li></ul>
+  This API is used to search items by keyword in title, description and long description within a store.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:ITEM&#34;, action=2 (READ)&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: the list of items&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) SearchItems(params *SearchItemsParams, authInfo runtime.ClientAuthInfoWriter) (*SearchItemsOK, *SearchItemsNotFound, error) {
 	// TODO: Validate the params before sending
@@ -1432,7 +2600,7 @@ func (a *Client) SearchItems(params *SearchItemsParams, authInfo runtime.ClientA
 		PathPattern:        "/admin/namespaces/{namespace}/items/search",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &SearchItemsReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1447,17 +2615,58 @@ func (a *Client) SearchItems(params *SearchItemsParams, authInfo runtime.ClientA
 
 	case *SearchItemsOK:
 		return v, nil, nil
+
 	case *SearchItemsNotFound:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) SearchItemsShort(params *SearchItemsParams, authInfo runtime.ClientAuthInfoWriter) (*SearchItemsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewSearchItemsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "searchItems",
+		Method:             "GET",
+		PathPattern:        "/admin/namespaces/{namespace}/items/search",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &SearchItemsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *SearchItemsOK:
+		return v, nil
+	case *SearchItemsNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   SyncInGameItem syncs an in game item
 
-  This API is used to sync an in game item in game namespace to publisher namespace, at current BUNDLE can't be synced.<p>The synced item has an additional field targetItemId besides targetNamespace, mostly this item should not modified manually again. <p>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:ITEM", action=4 (UPDATE)</li><li><i>Returns</i>: item data</li></ul>
+  This API is used to sync an in game item in game namespace to publisher namespace, at current BUNDLE can&#39;t be synced.&lt;p&gt;The synced item has an additional field targetItemId besides targetNamespace, mostly this item should not modified manually again. &lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:ITEM&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: item data&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) SyncInGameItem(params *SyncInGameItemParams, authInfo runtime.ClientAuthInfoWriter) (*SyncInGameItemOK, *SyncInGameItemBadRequest, *SyncInGameItemNotFound, *SyncInGameItemConflict, *SyncInGameItemUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -1475,7 +2684,7 @@ func (a *Client) SyncInGameItem(params *SyncInGameItemParams, authInfo runtime.C
 		PathPattern:        "/admin/namespaces/{namespace}/items",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &SyncInGameItemReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1490,64 +2699,114 @@ func (a *Client) SyncInGameItem(params *SyncInGameItemParams, authInfo runtime.C
 
 	case *SyncInGameItemOK:
 		return v, nil, nil, nil, nil, nil
+
 	case *SyncInGameItemBadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *SyncInGameItemNotFound:
 		return nil, nil, v, nil, nil, nil
+
 	case *SyncInGameItemConflict:
 		return nil, nil, nil, v, nil, nil
+
 	case *SyncInGameItemUnprocessableEntity:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) SyncInGameItemShort(params *SyncInGameItemParams, authInfo runtime.ClientAuthInfoWriter) (*SyncInGameItemOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewSyncInGameItemParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "syncInGameItem",
+		Method:             "PUT",
+		PathPattern:        "/admin/namespaces/{namespace}/items",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &SyncInGameItemReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *SyncInGameItemOK:
+		return v, nil
+	case *SyncInGameItemBadRequest:
+		return nil, v
+	case *SyncInGameItemNotFound:
+		return nil, v
+	case *SyncInGameItemConflict:
+		return nil, v
+	case *SyncInGameItemUnprocessableEntity:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   UpdateApp updates an app
 
-  This API is used to update an app.<p>An app update example:<p><pre><code>{
-  "developer": "accelbyte",
-  "publisher": "accelbyte",
-  "websiteUrl": "http://accelbyte.io",
-  "forumUrl": "http://accelbyte.io",
-  "platforms": \["Windows(allowed values: Windows, MacOS, Linux, IOS, Android)"\],
-  "platformRequirements": \{
-    "Windows": \[
+  This API is used to update an app.&lt;p&gt;An app update example:&lt;p&gt;&lt;pre&gt;&lt;code&gt;{
+  &#34;developer&#34;: &#34;accelbyte&#34;,
+  &#34;publisher&#34;: &#34;accelbyte&#34;,
+  &#34;websiteUrl&#34;: &#34;http://accelbyte.io&#34;,
+  &#34;forumUrl&#34;: &#34;http://accelbyte.io&#34;,
+  &#34;platforms&#34;: \[&#34;Windows(allowed values: Windows, MacOS, Linux, IOS, Android)&#34;\],
+  &#34;platformRequirements&#34;: \{
+    &#34;Windows&#34;: \[
       \{
-        "label":"minimum(can be minimum or recommended)",
-        "osVersion":"os version",
-        "processor":"processor",
-        "ram":"RAM",
-        "graphics":"graphics",
-        "directXVersion":"directXVersion",
-        "diskSpace":"diskSpace",
-        "soundCard":"soundCard",
-        "additionals":"additionals"
+        &#34;label&#34;:&#34;minimum(can be minimum or recommended)&#34;,
+        &#34;osVersion&#34;:&#34;os version&#34;,
+        &#34;processor&#34;:&#34;processor&#34;,
+        &#34;ram&#34;:&#34;RAM&#34;,
+        &#34;graphics&#34;:&#34;graphics&#34;,
+        &#34;directXVersion&#34;:&#34;directXVersion&#34;,
+        &#34;diskSpace&#34;:&#34;diskSpace&#34;,
+        &#34;soundCard&#34;:&#34;soundCard&#34;,
+        &#34;additionals&#34;:&#34;additionals&#34;
       \}
      \]
   \},
-  "carousel": \[
+  &#34;carousel&#34;: \[
     \{
-      "type":"image(allowed values: image, video)",
-      "videoSource":"generic(allowed values:generic, youtube, viemo)",
-      "url":"url",
-      "alt":"alternative url or text",
-      "thumbnailUrl":"thumbnail url",
-      "previewUrl":"preview url",
+      &#34;type&#34;:&#34;image(allowed values: image, video)&#34;,
+      &#34;videoSource&#34;:&#34;generic(allowed values:generic, youtube, viemo)&#34;,
+      &#34;url&#34;:&#34;url&#34;,
+      &#34;alt&#34;:&#34;alternative url or text&#34;,
+      &#34;thumbnailUrl&#34;:&#34;thumbnail url&#34;,
+      &#34;previewUrl&#34;:&#34;preview url&#34;,
     \}
   \],
-  "localizations": \{
-    "en": \{
-      "slogan":"slogan",
-      "announcement":"announcement",
+  &#34;localizations&#34;: \{
+    &#34;en&#34;: \{
+      &#34;slogan&#34;:&#34;slogan&#34;,
+      &#34;announcement&#34;:&#34;announcement&#34;,
     \}
   \},
-  "primaryGenre": "Action",
-  "genres": \["Action", "Adventure"\],
-  "players": \["Single"\],
-  "releaseDate": "optional yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
-}</code></pre>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:ITEM", action=4 (UPDATE)</li><li><i>Returns</i>: updated app data</li></ul>
+  &#34;primaryGenre&#34;: &#34;Action&#34;,
+  &#34;genres&#34;: \[&#34;Action&#34;, &#34;Adventure&#34;\],
+  &#34;players&#34;: \[&#34;Single&#34;\],
+  &#34;releaseDate&#34;: &#34;optional yyyy-MM-dd&#39;T&#39;HH:mm:ss.SSS&#39;Z&#39;&#34;
+}&lt;/code&gt;&lt;/pre&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:ITEM&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated app data&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) UpdateApp(params *UpdateAppParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateAppOK, *UpdateAppNotFound, *UpdateAppConflict, *UpdateAppUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -1565,7 +2824,7 @@ func (a *Client) UpdateApp(params *UpdateAppParams, authInfo runtime.ClientAuthI
 		PathPattern:        "/admin/namespaces/{namespace}/items/{itemId}/app",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &UpdateAppReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1580,123 +2839,170 @@ func (a *Client) UpdateApp(params *UpdateAppParams, authInfo runtime.ClientAuthI
 
 	case *UpdateAppOK:
 		return v, nil, nil, nil, nil
+
 	case *UpdateAppNotFound:
 		return nil, v, nil, nil, nil
+
 	case *UpdateAppConflict:
 		return nil, nil, v, nil, nil
+
 	case *UpdateAppUnprocessableEntity:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) UpdateAppShort(params *UpdateAppParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateAppOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateAppParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updateApp",
+		Method:             "PUT",
+		PathPattern:        "/admin/namespaces/{namespace}/items/{itemId}/app",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateAppReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateAppOK:
+		return v, nil
+	case *UpdateAppNotFound:
+		return nil, v
+	case *UpdateAppConflict:
+		return nil, v
+	case *UpdateAppUnprocessableEntity:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   UpdateItem updates an item
 
-  This API is used to update an item.<p>An item update example:<p><pre><code>{
-	"categoryPath": "/games",
-	"localizations": \{
-       "en": \{
-           "title":"required",
-           "description":"optional",
-           "longDescription":"optional",
-           "localExt": \{
-                  "properties":\[
+  This API is used to update an item.&lt;p&gt;An item update example:&lt;p&gt;&lt;pre&gt;&lt;code&gt;{
+	&#34;categoryPath&#34;: &#34;/games&#34;,
+	&#34;localizations&#34;: \{
+       &#34;en&#34;: \{
+           &#34;title&#34;:&#34;required&#34;,
+           &#34;description&#34;:&#34;optional&#34;,
+           &#34;longDescription&#34;:&#34;optional&#34;,
+           &#34;localExt&#34;: \{
+                  &#34;properties&#34;:\[
                                    \{
-                                       "key1":"value1",
-                                       "key2":"value2"
+                                       &#34;key1&#34;:&#34;value1&#34;,
+                                       &#34;key2&#34;:&#34;value2&#34;
                                    \}
                   \],
-                  "functions":\[
+                  &#34;functions&#34;:\[
                                    \{
-                                       "key1":"value1",
-                                       "key2":"value2"
+                                       &#34;key1&#34;:&#34;value1&#34;,
+                                       &#34;key2&#34;:&#34;value2&#34;
                                    \}
                  \]
            \}
        \}
    \},
-   "images": \[
+   &#34;images&#34;: \[
      \{
-           "as":"optional, image for",
-           "caption":"optional",
-           "height":10,
-           "width":10,
-           "imageUrl":"http://img-url-required",
-           "smallImageUrl":"http://small-img-url-required"
+           &#34;as&#34;:&#34;optional, image for&#34;,
+           &#34;caption&#34;:&#34;optional&#34;,
+           &#34;height&#34;:10,
+           &#34;width&#34;:10,
+           &#34;imageUrl&#34;:&#34;http://img-url-required&#34;,
+           &#34;smallImageUrl&#34;:&#34;http://small-img-url-required&#34;
      \}
    \],
-   "thumbnailUrl": "optional, thumbnail url",
-   "status": "ACTIVE",
-   "listable": true,
-   "purchasable": true,
-   "itemType": "APP(allowed: [APP,COINS,INGAMEITEM,CODE,BUNDLE])",
-   "name": "optional",
-   "entitlementType": "DURABLE(allowed:[DURABLE,CONSUMABLE], should be CONSUMABLE when item type is COINS)",
-   "useCount": 1(optional, required if the entitlement type is consumable),
-   "stackable": false,
-   "appId": "optional, required if itemType is APP",
-   "baseAppId": "optional, set value of game app id if you want to link to a game",
-   "appType": "GAME(optional, required if itemType is APP)",
-   "seasonType": "PASS(optional, required if itemType is SEASON)",
-   "sku": "optional, commonly unique item code",
-   "targetCurrencyCode": "optional, required if itemType is COINS",
-   "targetNamespace": "optional, required when itemType is INGAMEITEM, the targetNamespace will only take effect when the item
-   created belongs to the publisher namespace",
-   "regionData": \{
-       "US(store's default region is required)": \[
+   &#34;thumbnailUrl&#34;: &#34;optional, thumbnail url&#34;,
+   &#34;status&#34;: &#34;ACTIVE&#34;,
+   &#34;listable&#34;: true,
+   &#34;purchasable&#34;: true,
+   &#34;itemType&#34;: &#34;APP(allowed: [APP,COINS,INGAMEITEM,CODE,BUNDLE])&#34;,
+   &#34;name&#34;: &#34;optional&#34;,
+   &#34;entitlementType&#34;: &#34;DURABLE(allowed:[DURABLE,CONSUMABLE], should be CONSUMABLE when item type is COINS)&#34;,
+   &#34;useCount&#34;: 1(optional, required if the entitlement type is consumable),
+   &#34;stackable&#34;: false,
+   &#34;appId&#34;: &#34;optional, required if itemType is APP&#34;,
+   &#34;baseAppId&#34;: &#34;optional, set value of game app id if you want to link to a game&#34;,
+   &#34;appType&#34;: &#34;GAME(optional, required if itemType is APP)&#34;,
+   &#34;seasonType&#34;: &#34;PASS(optional, required if itemType is SEASON)&#34;,
+   &#34;sku&#34;: &#34;optional, commonly unique item code&#34;,
+   &#34;targetCurrencyCode&#34;: &#34;optional, required if itemType is COINS&#34;,
+   &#34;targetNamespace&#34;: &#34;optional, required when itemType is INGAMEITEM, the targetNamespace will only take effect when the item
+   created belongs to the publisher namespace&#34;,
+   &#34;regionData&#34;: \{
+       &#34;US(store&#39;s default region is required)&#34;: \[
          \{
-            "price":10,
-            "discountPercentage":0(integer, optional, range[0,100], discountedPrice = price\*((100 - discountPercentage) \* 0.01),
+            &#34;price&#34;:10,
+            &#34;discountPercentage&#34;:0(integer, optional, range[0,100], discountedPrice = price\*((100 - discountPercentage) \* 0.01),
               if it is not 0, will use it to calculate discounted price),
-            "discountAmount":0(integer, optional, range[0,itemPrice], will use it to calculate discounted price if discountPercentage is 0),
-            "currencyCode":"code(required, example: USD)",
-            "currencyNamespace":"test-ns-required",
-            "trialPrice":5(required while fixedTrialCycles set, should >=0 and <= price, will same as price if not present),
-            "purchaseAt":"optional yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
-            "expireAt":"optional yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
-            "discountPurchaseAt":"optional yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
-            "discountExpireAt":"optional yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+            &#34;discountAmount&#34;:0(integer, optional, range[0,itemPrice], will use it to calculate discounted price if discountPercentage is 0),
+            &#34;currencyCode&#34;:&#34;code(required, example: USD)&#34;,
+            &#34;currencyNamespace&#34;:&#34;test-ns-required&#34;,
+            &#34;trialPrice&#34;:5(required while fixedTrialCycles set, should &gt;=0 and &lt;= price, will same as price if not present),
+            &#34;purchaseAt&#34;:&#34;optional yyyy-MM-dd&#39;T&#39;HH:mm:ss.SSS&#39;Z&#39;&#34;,
+            &#34;expireAt&#34;:&#34;optional yyyy-MM-dd&#39;T&#39;HH:mm:ss.SSS&#39;Z&#39;&#34;,
+            &#34;discountPurchaseAt&#34;:&#34;optional yyyy-MM-dd&#39;T&#39;HH:mm:ss.SSS&#39;Z&#39;&#34;,
+            &#34;discountExpireAt&#34;:&#34;optional yyyy-MM-dd&#39;T&#39;HH:mm:ss.SSS&#39;Z&#39;&#34;
          \}
        \]
    \},
-   "itemIds": \[
-       "itemId"
+   &#34;itemIds&#34;: \[
+       &#34;itemId&#34;
    \],
-   "recurring": \{
-       "cycle":"MONTHLY(allowed: [WEEKLY,MONTHLY,QUARTERLY,YEARLY])",
-       "fixedFreeDays":0(integer, fixed free days, 0 means not set),
-       "fixedTrialCycles":0(integer, fixed trial cycles, 0 means not set, will not take effect if fixedFreeDays set),
-       "graceDays":7(integer, recurring grace days, retry recurring charge within configured days if charge fail, default 7)
+   &#34;recurring&#34;: \{
+       &#34;cycle&#34;:&#34;MONTHLY(allowed: [WEEKLY,MONTHLY,QUARTERLY,YEARLY])&#34;,
+       &#34;fixedFreeDays&#34;:0(integer, fixed free days, 0 means not set),
+       &#34;fixedTrialCycles&#34;:0(integer, fixed trial cycles, 0 means not set, will not take effect if fixedFreeDays set),
+       &#34;graceDays&#34;:7(integer, recurring grace days, retry recurring charge within configured days if charge fail, default 7)
    \},
-   "tags": \[
-       "tag"
+   &#34;tags&#34;: \[
+       &#34;tag&#34;
    \],
-   "features": \[
-       "feature"
+   &#34;features&#34;: \[
+       &#34;feature&#34;
    \],
-   "clazz": "weapon",
-   "boothName": "C_campaign1",
-   "displayOrder": 1000,
-   "ext": \{
-       "properties":\[
+   &#34;clazz&#34;: &#34;weapon&#34;,
+   &#34;boothName&#34;: &#34;C_campaign1&#34;,
+   &#34;displayOrder&#34;: 1000,
+   &#34;ext&#34;: \{
+       &#34;properties&#34;:\[
            \{
-               "key1":"value1",
-               "key2":"value2"
+               &#34;key1&#34;:&#34;value1&#34;,
+               &#34;key2&#34;:&#34;value2&#34;
            \}
        \],
-       "functions":\[
+       &#34;functions&#34;:\[
            \{
-               "key1":"value1",
-               "key2":"value2"
+               &#34;key1&#34;:&#34;value1&#34;,
+               &#34;key2&#34;:&#34;value2&#34;
            \}
        \]
    \},
-   "maxCountPerUser": 1(integer, optional, -1 means UNLIMITED),
-   "maxCount": 1(integer, optional, -1 means UNLIMITED, new value should >= old value if both old value and new value is
+   &#34;maxCountPerUser&#34;: 1(integer, optional, -1 means UNLIMITED),
+   &#34;maxCount&#34;: 1(integer, optional, -1 means UNLIMITED, new value should &gt;= old value if both old value and new value is
    limited, unset when item type is CODE)
-}</code></pre>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:ITEM", action=4 (UPDATE)</li><li><i>Returns</i>: updated item data</li></ul>
+}&lt;/code&gt;&lt;/pre&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:ITEM&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated item data&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) UpdateItem(params *UpdateItemParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateItemOK, *UpdateItemBadRequest, *UpdateItemNotFound, *UpdateItemConflict, *UpdateItemUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -1714,7 +3020,7 @@ func (a *Client) UpdateItem(params *UpdateItemParams, authInfo runtime.ClientAut
 		PathPattern:        "/admin/namespaces/{namespace}/items/{itemId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &UpdateItemReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1729,16 +3035,66 @@ func (a *Client) UpdateItem(params *UpdateItemParams, authInfo runtime.ClientAut
 
 	case *UpdateItemOK:
 		return v, nil, nil, nil, nil, nil
+
 	case *UpdateItemBadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *UpdateItemNotFound:
 		return nil, nil, v, nil, nil, nil
+
 	case *UpdateItemConflict:
 		return nil, nil, nil, v, nil, nil
+
 	case *UpdateItemUnprocessableEntity:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) UpdateItemShort(params *UpdateItemParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateItemOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateItemParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updateItem",
+		Method:             "PUT",
+		PathPattern:        "/admin/namespaces/{namespace}/items/{itemId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateItemReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateItemOK:
+		return v, nil
+	case *UpdateItemBadRequest:
+		return nil, v
+	case *UpdateItemNotFound:
+		return nil, v
+	case *UpdateItemConflict:
+		return nil, v
+	case *UpdateItemUnprocessableEntity:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 

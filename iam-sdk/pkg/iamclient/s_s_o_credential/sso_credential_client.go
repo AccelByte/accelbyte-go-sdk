@@ -30,14 +30,15 @@ type Client struct {
 // ClientService is the interface for Client methods
 type ClientService interface {
 	AddSSOLoginPlatformCredential(params *AddSSOLoginPlatformCredentialParams, authInfo runtime.ClientAuthInfoWriter) (*AddSSOLoginPlatformCredentialCreated, *AddSSOLoginPlatformCredentialBadRequest, *AddSSOLoginPlatformCredentialUnauthorized, *AddSSOLoginPlatformCredentialForbidden, *AddSSOLoginPlatformCredentialInternalServerError, error)
-
+	AddSSOLoginPlatformCredentialShort(params *AddSSOLoginPlatformCredentialParams, authInfo runtime.ClientAuthInfoWriter) (*AddSSOLoginPlatformCredentialCreated, error)
 	DeleteSSOLoginPlatformCredentialV3(params *DeleteSSOLoginPlatformCredentialV3Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteSSOLoginPlatformCredentialV3NoContent, *DeleteSSOLoginPlatformCredentialV3Unauthorized, *DeleteSSOLoginPlatformCredentialV3Forbidden, *DeleteSSOLoginPlatformCredentialV3NotFound, *DeleteSSOLoginPlatformCredentialV3InternalServerError, error)
-
+	DeleteSSOLoginPlatformCredentialV3Short(params *DeleteSSOLoginPlatformCredentialV3Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteSSOLoginPlatformCredentialV3NoContent, error)
 	RetrieveAllSSOLoginPlatformCredentialV3(params *RetrieveAllSSOLoginPlatformCredentialV3Params, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAllSSOLoginPlatformCredentialV3OK, *RetrieveAllSSOLoginPlatformCredentialV3Unauthorized, *RetrieveAllSSOLoginPlatformCredentialV3Forbidden, *RetrieveAllSSOLoginPlatformCredentialV3NotFound, *RetrieveAllSSOLoginPlatformCredentialV3InternalServerError, error)
-
+	RetrieveAllSSOLoginPlatformCredentialV3Short(params *RetrieveAllSSOLoginPlatformCredentialV3Params, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAllSSOLoginPlatformCredentialV3OK, error)
 	RetrieveSSOLoginPlatformCredential(params *RetrieveSSOLoginPlatformCredentialParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveSSOLoginPlatformCredentialOK, *RetrieveSSOLoginPlatformCredentialUnauthorized, *RetrieveSSOLoginPlatformCredentialForbidden, *RetrieveSSOLoginPlatformCredentialNotFound, *RetrieveSSOLoginPlatformCredentialInternalServerError, error)
-
+	RetrieveSSOLoginPlatformCredentialShort(params *RetrieveSSOLoginPlatformCredentialParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveSSOLoginPlatformCredentialOK, error)
 	UpdateSSOPlatformCredential(params *UpdateSSOPlatformCredentialParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateSSOPlatformCredentialOK, *UpdateSSOPlatformCredentialBadRequest, *UpdateSSOPlatformCredentialUnauthorized, *UpdateSSOPlatformCredentialForbidden, *UpdateSSOPlatformCredentialNotFound, *UpdateSSOPlatformCredentialInternalServerError, error)
+	UpdateSSOPlatformCredentialShort(params *UpdateSSOPlatformCredentialParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateSSOPlatformCredentialOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -45,12 +46,12 @@ type ClientService interface {
 /*
   AddSSOLoginPlatformCredential adds s s o platform credential
 
-  This is the API to Add SSO Platform Credential. It needs ADMIN:NAMESPACE:{namespace}:PLATFORM:{platformId}:SSO [CREATE] resource.<h2>Supported platforms:</h2><ul>
-			<li><strong>discourse</strong></li>the ssoUrl of the discourse is the discourse forum url. example: https://forum.example.com
-			<li><strong>azure with SAML</strong></li><b>appId</b> is an application identifier in IdP, in azure it's called EntityID
-			<b>acsUrl</b> is an endpoint on the service provider where the identity provider will redirect to with its authentication response. example: /iam/v3/sso/saml/azuresaml/authenticate
-			<b>federationMetadataUrl</b> is an endpoint on the Identity Provider(IdP) to get IdP federation metadata for service provider to build trust relationship
-			</ul>
+  This is the API to Add SSO Platform Credential. It needs ADMIN:NAMESPACE:{namespace}:PLATFORM:{platformId}:SSO [CREATE] resource.&lt;h2&gt;Supported platforms:&lt;/h2&gt;&lt;ul&gt;
+			&lt;li&gt;&lt;strong&gt;discourse&lt;/strong&gt;&lt;/li&gt;the ssoUrl of the discourse is the discourse forum url. example: https://forum.example.com
+			&lt;li&gt;&lt;strong&gt;azure with SAML&lt;/strong&gt;&lt;/li&gt;&lt;b&gt;appId&lt;/b&gt; is an application identifier in IdP, in azure it&#39;s called EntityID
+			&lt;b&gt;acsUrl&lt;/b&gt; is an endpoint on the service provider where the identity provider will redirect to with its authentication response. example: /iam/v3/sso/saml/azuresaml/authenticate
+			&lt;b&gt;federationMetadataUrl&lt;/b&gt; is an endpoint on the Identity Provider(IdP) to get IdP federation metadata for service provider to build trust relationship
+			&lt;/ul&gt;
 */
 func (a *Client) AddSSOLoginPlatformCredential(params *AddSSOLoginPlatformCredentialParams, authInfo runtime.ClientAuthInfoWriter) (*AddSSOLoginPlatformCredentialCreated, *AddSSOLoginPlatformCredentialBadRequest, *AddSSOLoginPlatformCredentialUnauthorized, *AddSSOLoginPlatformCredentialForbidden, *AddSSOLoginPlatformCredentialInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -68,7 +69,7 @@ func (a *Client) AddSSOLoginPlatformCredential(params *AddSSOLoginPlatformCreden
 		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/sso",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AddSSOLoginPlatformCredentialReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -83,16 +84,66 @@ func (a *Client) AddSSOLoginPlatformCredential(params *AddSSOLoginPlatformCreden
 
 	case *AddSSOLoginPlatformCredentialCreated:
 		return v, nil, nil, nil, nil, nil
+
 	case *AddSSOLoginPlatformCredentialBadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *AddSSOLoginPlatformCredentialUnauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *AddSSOLoginPlatformCredentialForbidden:
 		return nil, nil, nil, v, nil, nil
+
 	case *AddSSOLoginPlatformCredentialInternalServerError:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AddSSOLoginPlatformCredentialShort(params *AddSSOLoginPlatformCredentialParams, authInfo runtime.ClientAuthInfoWriter) (*AddSSOLoginPlatformCredentialCreated, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAddSSOLoginPlatformCredentialParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AddSSOLoginPlatformCredential",
+		Method:             "POST",
+		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/sso",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AddSSOLoginPlatformCredentialReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AddSSOLoginPlatformCredentialCreated:
+		return v, nil
+	case *AddSSOLoginPlatformCredentialBadRequest:
+		return nil, v
+	case *AddSSOLoginPlatformCredentialUnauthorized:
+		return nil, v
+	case *AddSSOLoginPlatformCredentialForbidden:
+		return nil, v
+	case *AddSSOLoginPlatformCredentialInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -117,7 +168,7 @@ func (a *Client) DeleteSSOLoginPlatformCredentialV3(params *DeleteSSOLoginPlatfo
 		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/sso",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteSSOLoginPlatformCredentialV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -132,16 +183,66 @@ func (a *Client) DeleteSSOLoginPlatformCredentialV3(params *DeleteSSOLoginPlatfo
 
 	case *DeleteSSOLoginPlatformCredentialV3NoContent:
 		return v, nil, nil, nil, nil, nil
+
 	case *DeleteSSOLoginPlatformCredentialV3Unauthorized:
 		return nil, v, nil, nil, nil, nil
+
 	case *DeleteSSOLoginPlatformCredentialV3Forbidden:
 		return nil, nil, v, nil, nil, nil
+
 	case *DeleteSSOLoginPlatformCredentialV3NotFound:
 		return nil, nil, nil, v, nil, nil
+
 	case *DeleteSSOLoginPlatformCredentialV3InternalServerError:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) DeleteSSOLoginPlatformCredentialV3Short(params *DeleteSSOLoginPlatformCredentialV3Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteSSOLoginPlatformCredentialV3NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteSSOLoginPlatformCredentialV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "DeleteSSOLoginPlatformCredentialV3",
+		Method:             "DELETE",
+		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/sso",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteSSOLoginPlatformCredentialV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeleteSSOLoginPlatformCredentialV3NoContent:
+		return v, nil
+	case *DeleteSSOLoginPlatformCredentialV3Unauthorized:
+		return nil, v
+	case *DeleteSSOLoginPlatformCredentialV3Forbidden:
+		return nil, v
+	case *DeleteSSOLoginPlatformCredentialV3NotFound:
+		return nil, v
+	case *DeleteSSOLoginPlatformCredentialV3InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -166,7 +267,7 @@ func (a *Client) RetrieveAllSSOLoginPlatformCredentialV3(params *RetrieveAllSSOL
 		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/platforms/sso",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &RetrieveAllSSOLoginPlatformCredentialV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -181,16 +282,66 @@ func (a *Client) RetrieveAllSSOLoginPlatformCredentialV3(params *RetrieveAllSSOL
 
 	case *RetrieveAllSSOLoginPlatformCredentialV3OK:
 		return v, nil, nil, nil, nil, nil
+
 	case *RetrieveAllSSOLoginPlatformCredentialV3Unauthorized:
 		return nil, v, nil, nil, nil, nil
+
 	case *RetrieveAllSSOLoginPlatformCredentialV3Forbidden:
 		return nil, nil, v, nil, nil, nil
+
 	case *RetrieveAllSSOLoginPlatformCredentialV3NotFound:
 		return nil, nil, nil, v, nil, nil
+
 	case *RetrieveAllSSOLoginPlatformCredentialV3InternalServerError:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) RetrieveAllSSOLoginPlatformCredentialV3Short(params *RetrieveAllSSOLoginPlatformCredentialV3Params, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAllSSOLoginPlatformCredentialV3OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRetrieveAllSSOLoginPlatformCredentialV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "RetrieveAllSSOLoginPlatformCredentialV3",
+		Method:             "GET",
+		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/platforms/sso",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &RetrieveAllSSOLoginPlatformCredentialV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *RetrieveAllSSOLoginPlatformCredentialV3OK:
+		return v, nil
+	case *RetrieveAllSSOLoginPlatformCredentialV3Unauthorized:
+		return nil, v
+	case *RetrieveAllSSOLoginPlatformCredentialV3Forbidden:
+		return nil, v
+	case *RetrieveAllSSOLoginPlatformCredentialV3NotFound:
+		return nil, v
+	case *RetrieveAllSSOLoginPlatformCredentialV3InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -215,7 +366,7 @@ func (a *Client) RetrieveSSOLoginPlatformCredential(params *RetrieveSSOLoginPlat
 		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/sso",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &RetrieveSSOLoginPlatformCredentialReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -230,16 +381,66 @@ func (a *Client) RetrieveSSOLoginPlatformCredential(params *RetrieveSSOLoginPlat
 
 	case *RetrieveSSOLoginPlatformCredentialOK:
 		return v, nil, nil, nil, nil, nil
+
 	case *RetrieveSSOLoginPlatformCredentialUnauthorized:
 		return nil, v, nil, nil, nil, nil
+
 	case *RetrieveSSOLoginPlatformCredentialForbidden:
 		return nil, nil, v, nil, nil, nil
+
 	case *RetrieveSSOLoginPlatformCredentialNotFound:
 		return nil, nil, nil, v, nil, nil
+
 	case *RetrieveSSOLoginPlatformCredentialInternalServerError:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) RetrieveSSOLoginPlatformCredentialShort(params *RetrieveSSOLoginPlatformCredentialParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveSSOLoginPlatformCredentialOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRetrieveSSOLoginPlatformCredentialParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "RetrieveSSOLoginPlatformCredential",
+		Method:             "GET",
+		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/sso",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &RetrieveSSOLoginPlatformCredentialReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *RetrieveSSOLoginPlatformCredentialOK:
+		return v, nil
+	case *RetrieveSSOLoginPlatformCredentialUnauthorized:
+		return nil, v
+	case *RetrieveSSOLoginPlatformCredentialForbidden:
+		return nil, v
+	case *RetrieveSSOLoginPlatformCredentialNotFound:
+		return nil, v
+	case *RetrieveSSOLoginPlatformCredentialInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -264,7 +465,7 @@ func (a *Client) UpdateSSOPlatformCredential(params *UpdateSSOPlatformCredential
 		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/sso",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &UpdateSSOPlatformCredentialReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -279,18 +480,71 @@ func (a *Client) UpdateSSOPlatformCredential(params *UpdateSSOPlatformCredential
 
 	case *UpdateSSOPlatformCredentialOK:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *UpdateSSOPlatformCredentialBadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *UpdateSSOPlatformCredentialUnauthorized:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *UpdateSSOPlatformCredentialForbidden:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *UpdateSSOPlatformCredentialNotFound:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *UpdateSSOPlatformCredentialInternalServerError:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) UpdateSSOPlatformCredentialShort(params *UpdateSSOPlatformCredentialParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateSSOPlatformCredentialOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateSSOPlatformCredentialParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "UpdateSSOPlatformCredential",
+		Method:             "PATCH",
+		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/sso",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateSSOPlatformCredentialReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateSSOPlatformCredentialOK:
+		return v, nil
+	case *UpdateSSOPlatformCredentialBadRequest:
+		return nil, v
+	case *UpdateSSOPlatformCredentialUnauthorized:
+		return nil, v
+	case *UpdateSSOPlatformCredentialForbidden:
+		return nil, v
+	case *UpdateSSOPlatformCredentialNotFound:
+		return nil, v
+	case *UpdateSSOPlatformCredentialInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 

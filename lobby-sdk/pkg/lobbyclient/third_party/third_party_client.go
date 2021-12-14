@@ -30,12 +30,13 @@ type Client struct {
 // ClientService is the interface for Client methods
 type ClientService interface {
 	AdminCreateThirdPartyConfig(params *AdminCreateThirdPartyConfigParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateThirdPartyConfigCreated, *AdminCreateThirdPartyConfigBadRequest, *AdminCreateThirdPartyConfigUnauthorized, *AdminCreateThirdPartyConfigForbidden, *AdminCreateThirdPartyConfigInternalServerError, error)
-
+	AdminCreateThirdPartyConfigShort(params *AdminCreateThirdPartyConfigParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateThirdPartyConfigCreated, error)
 	AdminDeleteThirdPartyConfig(params *AdminDeleteThirdPartyConfigParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteThirdPartyConfigNoContent, *AdminDeleteThirdPartyConfigBadRequest, *AdminDeleteThirdPartyConfigUnauthorized, *AdminDeleteThirdPartyConfigForbidden, *AdminDeleteThirdPartyConfigInternalServerError, error)
-
+	AdminDeleteThirdPartyConfigShort(params *AdminDeleteThirdPartyConfigParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteThirdPartyConfigNoContent, error)
 	AdminGetThirdPartyConfig(params *AdminGetThirdPartyConfigParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetThirdPartyConfigOK, *AdminGetThirdPartyConfigBadRequest, *AdminGetThirdPartyConfigUnauthorized, *AdminGetThirdPartyConfigForbidden, *AdminGetThirdPartyConfigInternalServerError, error)
-
+	AdminGetThirdPartyConfigShort(params *AdminGetThirdPartyConfigParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetThirdPartyConfigOK, error)
 	AdminUpdateThirdPartyConfig(params *AdminUpdateThirdPartyConfigParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateThirdPartyConfigOK, *AdminUpdateThirdPartyConfigBadRequest, *AdminUpdateThirdPartyConfigUnauthorized, *AdminUpdateThirdPartyConfigForbidden, *AdminUpdateThirdPartyConfigInternalServerError, error)
+	AdminUpdateThirdPartyConfigShort(params *AdminUpdateThirdPartyConfigParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateThirdPartyConfigOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -43,8 +44,8 @@ type ClientService interface {
 /*
   AdminCreateThirdPartyConfig creates third party steam config
 
-  Required permission : <code>ADMIN:NAMESPACE:{namespace}:THIRDPARTY:CONFIG [CREATE]</code> with scope <code>social</code>
-			<br>create third party config in a namespace.
+  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:THIRDPARTY:CONFIG [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+			&lt;br&gt;create third party config in a namespace.
 */
 func (a *Client) AdminCreateThirdPartyConfig(params *AdminCreateThirdPartyConfigParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateThirdPartyConfigCreated, *AdminCreateThirdPartyConfigBadRequest, *AdminCreateThirdPartyConfigUnauthorized, *AdminCreateThirdPartyConfigForbidden, *AdminCreateThirdPartyConfigInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -62,7 +63,7 @@ func (a *Client) AdminCreateThirdPartyConfig(params *AdminCreateThirdPartyConfig
 		PathPattern:        "/lobby/v1/admin/thirdparty/namespaces/{namespace}/config/steam",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminCreateThirdPartyConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -77,24 +78,74 @@ func (a *Client) AdminCreateThirdPartyConfig(params *AdminCreateThirdPartyConfig
 
 	case *AdminCreateThirdPartyConfigCreated:
 		return v, nil, nil, nil, nil, nil
+
 	case *AdminCreateThirdPartyConfigBadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *AdminCreateThirdPartyConfigUnauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *AdminCreateThirdPartyConfigForbidden:
 		return nil, nil, nil, v, nil, nil
+
 	case *AdminCreateThirdPartyConfigInternalServerError:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminCreateThirdPartyConfigShort(params *AdminCreateThirdPartyConfigParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateThirdPartyConfigCreated, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminCreateThirdPartyConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminCreateThirdPartyConfig",
+		Method:             "POST",
+		PathPattern:        "/lobby/v1/admin/thirdparty/namespaces/{namespace}/config/steam",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminCreateThirdPartyConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminCreateThirdPartyConfigCreated:
+		return v, nil
+	case *AdminCreateThirdPartyConfigBadRequest:
+		return nil, v
+	case *AdminCreateThirdPartyConfigUnauthorized:
+		return nil, v
+	case *AdminCreateThirdPartyConfigForbidden:
+		return nil, v
+	case *AdminCreateThirdPartyConfigInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   AdminDeleteThirdPartyConfig deletes third party steam config
 
-  Required permission : <code>ADMIN:NAMESPACE:{namespace}:THIRDPARTY:CONFIG [DELETE]</code> with scope <code>social</code>
-			<br>delete third party config in a namespace.
+  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:THIRDPARTY:CONFIG [DELETE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+			&lt;br&gt;delete third party config in a namespace.
 */
 func (a *Client) AdminDeleteThirdPartyConfig(params *AdminDeleteThirdPartyConfigParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteThirdPartyConfigNoContent, *AdminDeleteThirdPartyConfigBadRequest, *AdminDeleteThirdPartyConfigUnauthorized, *AdminDeleteThirdPartyConfigForbidden, *AdminDeleteThirdPartyConfigInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -112,7 +163,7 @@ func (a *Client) AdminDeleteThirdPartyConfig(params *AdminDeleteThirdPartyConfig
 		PathPattern:        "/lobby/v1/admin/thirdparty/namespaces/{namespace}/config/steam",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminDeleteThirdPartyConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -127,24 +178,74 @@ func (a *Client) AdminDeleteThirdPartyConfig(params *AdminDeleteThirdPartyConfig
 
 	case *AdminDeleteThirdPartyConfigNoContent:
 		return v, nil, nil, nil, nil, nil
+
 	case *AdminDeleteThirdPartyConfigBadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *AdminDeleteThirdPartyConfigUnauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *AdminDeleteThirdPartyConfigForbidden:
 		return nil, nil, nil, v, nil, nil
+
 	case *AdminDeleteThirdPartyConfigInternalServerError:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminDeleteThirdPartyConfigShort(params *AdminDeleteThirdPartyConfigParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteThirdPartyConfigNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminDeleteThirdPartyConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminDeleteThirdPartyConfig",
+		Method:             "DELETE",
+		PathPattern:        "/lobby/v1/admin/thirdparty/namespaces/{namespace}/config/steam",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminDeleteThirdPartyConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminDeleteThirdPartyConfigNoContent:
+		return v, nil
+	case *AdminDeleteThirdPartyConfigBadRequest:
+		return nil, v
+	case *AdminDeleteThirdPartyConfigUnauthorized:
+		return nil, v
+	case *AdminDeleteThirdPartyConfigForbidden:
+		return nil, v
+	case *AdminDeleteThirdPartyConfigInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   AdminGetThirdPartyConfig gets third party steam config
 
-  Required permission : <code>ADMIN:NAMESPACE:{namespace}:THIRDPARTY:CONFIG [READ]</code> with scope <code>social</code>
-			<br>get third party config for specified namespace.
+  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:THIRDPARTY:CONFIG [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+			&lt;br&gt;get third party config for specified namespace.
 */
 func (a *Client) AdminGetThirdPartyConfig(params *AdminGetThirdPartyConfigParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetThirdPartyConfigOK, *AdminGetThirdPartyConfigBadRequest, *AdminGetThirdPartyConfigUnauthorized, *AdminGetThirdPartyConfigForbidden, *AdminGetThirdPartyConfigInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -162,7 +263,7 @@ func (a *Client) AdminGetThirdPartyConfig(params *AdminGetThirdPartyConfigParams
 		PathPattern:        "/lobby/v1/admin/thirdparty/namespaces/{namespace}/config/steam",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminGetThirdPartyConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -177,24 +278,74 @@ func (a *Client) AdminGetThirdPartyConfig(params *AdminGetThirdPartyConfigParams
 
 	case *AdminGetThirdPartyConfigOK:
 		return v, nil, nil, nil, nil, nil
+
 	case *AdminGetThirdPartyConfigBadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *AdminGetThirdPartyConfigUnauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *AdminGetThirdPartyConfigForbidden:
 		return nil, nil, nil, v, nil, nil
+
 	case *AdminGetThirdPartyConfigInternalServerError:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminGetThirdPartyConfigShort(params *AdminGetThirdPartyConfigParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetThirdPartyConfigOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGetThirdPartyConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminGetThirdPartyConfig",
+		Method:             "GET",
+		PathPattern:        "/lobby/v1/admin/thirdparty/namespaces/{namespace}/config/steam",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGetThirdPartyConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGetThirdPartyConfigOK:
+		return v, nil
+	case *AdminGetThirdPartyConfigBadRequest:
+		return nil, v
+	case *AdminGetThirdPartyConfigUnauthorized:
+		return nil, v
+	case *AdminGetThirdPartyConfigForbidden:
+		return nil, v
+	case *AdminGetThirdPartyConfigInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   AdminUpdateThirdPartyConfig updates third party steam config
 
-  Required permission : <code>ADMIN:NAMESPACE:{namespace}:THIRDPARTY:CONFIG [UPDATE]</code> with scope <code>social</code>
-			<br>Update third party config in a namespace.
+  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:THIRDPARTY:CONFIG [UPDATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+			&lt;br&gt;Update third party config in a namespace.
 */
 func (a *Client) AdminUpdateThirdPartyConfig(params *AdminUpdateThirdPartyConfigParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateThirdPartyConfigOK, *AdminUpdateThirdPartyConfigBadRequest, *AdminUpdateThirdPartyConfigUnauthorized, *AdminUpdateThirdPartyConfigForbidden, *AdminUpdateThirdPartyConfigInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -212,7 +363,7 @@ func (a *Client) AdminUpdateThirdPartyConfig(params *AdminUpdateThirdPartyConfig
 		PathPattern:        "/lobby/v1/admin/thirdparty/namespaces/{namespace}/config/steam",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminUpdateThirdPartyConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -227,16 +378,66 @@ func (a *Client) AdminUpdateThirdPartyConfig(params *AdminUpdateThirdPartyConfig
 
 	case *AdminUpdateThirdPartyConfigOK:
 		return v, nil, nil, nil, nil, nil
+
 	case *AdminUpdateThirdPartyConfigBadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *AdminUpdateThirdPartyConfigUnauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *AdminUpdateThirdPartyConfigForbidden:
 		return nil, nil, nil, v, nil, nil
+
 	case *AdminUpdateThirdPartyConfigInternalServerError:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminUpdateThirdPartyConfigShort(params *AdminUpdateThirdPartyConfigParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateThirdPartyConfigOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminUpdateThirdPartyConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminUpdateThirdPartyConfig",
+		Method:             "PUT",
+		PathPattern:        "/lobby/v1/admin/thirdparty/namespaces/{namespace}/config/steam",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminUpdateThirdPartyConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminUpdateThirdPartyConfigOK:
+		return v, nil
+	case *AdminUpdateThirdPartyConfigBadRequest:
+		return nil, v
+	case *AdminUpdateThirdPartyConfigUnauthorized:
+		return nil, v
+	case *AdminUpdateThirdPartyConfigForbidden:
+		return nil, v
+	case *AdminUpdateThirdPartyConfigInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 

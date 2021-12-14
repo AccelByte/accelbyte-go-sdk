@@ -30,12 +30,13 @@ type Client struct {
 // ClientService is the interface for Client methods
 type ClientService interface {
 	AdminCreateTag(params *AdminCreateTagParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateTagCreated, *AdminCreateTagBadRequest, *AdminCreateTagUnauthorized, *AdminCreateTagConflict, *AdminCreateTagInternalServerError, error)
-
+	AdminCreateTagShort(params *AdminCreateTagParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateTagCreated, error)
 	AdminDeleteTag(params *AdminDeleteTagParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteTagNoContent, *AdminDeleteTagUnauthorized, *AdminDeleteTagNotFound, *AdminDeleteTagInternalServerError, error)
-
+	AdminDeleteTagShort(params *AdminDeleteTagParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteTagNoContent, error)
 	AdminGetTag(params *AdminGetTagParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetTagOK, *AdminGetTagUnauthorized, *AdminGetTagNotFound, *AdminGetTagInternalServerError, error)
-
+	AdminGetTagShort(params *AdminGetTagParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetTagOK, error)
 	AdminUpdateTag(params *AdminUpdateTagParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateTagOK, *AdminUpdateTagBadRequest, *AdminUpdateTagUnauthorized, *AdminUpdateTagNotFound, *AdminUpdateTagConflict, *AdminUpdateTagInternalServerError, error)
+	AdminUpdateTagShort(params *AdminUpdateTagParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateTagOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -62,7 +63,7 @@ func (a *Client) AdminCreateTag(params *AdminCreateTagParams, authInfo runtime.C
 		PathPattern:        "/ugc/v1/admin/namespaces/{namespace}/tags",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminCreateTagReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -77,16 +78,66 @@ func (a *Client) AdminCreateTag(params *AdminCreateTagParams, authInfo runtime.C
 
 	case *AdminCreateTagCreated:
 		return v, nil, nil, nil, nil, nil
+
 	case *AdminCreateTagBadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *AdminCreateTagUnauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *AdminCreateTagConflict:
 		return nil, nil, nil, v, nil, nil
+
 	case *AdminCreateTagInternalServerError:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminCreateTagShort(params *AdminCreateTagParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateTagCreated, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminCreateTagParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminCreateTag",
+		Method:             "POST",
+		PathPattern:        "/ugc/v1/admin/namespaces/{namespace}/tags",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminCreateTagReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminCreateTagCreated:
+		return v, nil
+	case *AdminCreateTagBadRequest:
+		return nil, v
+	case *AdminCreateTagUnauthorized:
+		return nil, v
+	case *AdminCreateTagConflict:
+		return nil, v
+	case *AdminCreateTagInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -111,7 +162,7 @@ func (a *Client) AdminDeleteTag(params *AdminDeleteTagParams, authInfo runtime.C
 		PathPattern:        "/ugc/v1/admin/namespaces/{namespace}/tags/{tagId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminDeleteTagReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -126,14 +177,61 @@ func (a *Client) AdminDeleteTag(params *AdminDeleteTagParams, authInfo runtime.C
 
 	case *AdminDeleteTagNoContent:
 		return v, nil, nil, nil, nil
+
 	case *AdminDeleteTagUnauthorized:
 		return nil, v, nil, nil, nil
+
 	case *AdminDeleteTagNotFound:
 		return nil, nil, v, nil, nil
+
 	case *AdminDeleteTagInternalServerError:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminDeleteTagShort(params *AdminDeleteTagParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteTagNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminDeleteTagParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminDeleteTag",
+		Method:             "DELETE",
+		PathPattern:        "/ugc/v1/admin/namespaces/{namespace}/tags/{tagId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminDeleteTagReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminDeleteTagNoContent:
+		return v, nil
+	case *AdminDeleteTagUnauthorized:
+		return nil, v
+	case *AdminDeleteTagNotFound:
+		return nil, v
+	case *AdminDeleteTagInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -158,7 +256,7 @@ func (a *Client) AdminGetTag(params *AdminGetTagParams, authInfo runtime.ClientA
 		PathPattern:        "/ugc/v1/admin/namespaces/{namespace}/tags",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminGetTagReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -173,14 +271,61 @@ func (a *Client) AdminGetTag(params *AdminGetTagParams, authInfo runtime.ClientA
 
 	case *AdminGetTagOK:
 		return v, nil, nil, nil, nil
+
 	case *AdminGetTagUnauthorized:
 		return nil, v, nil, nil, nil
+
 	case *AdminGetTagNotFound:
 		return nil, nil, v, nil, nil
+
 	case *AdminGetTagInternalServerError:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminGetTagShort(params *AdminGetTagParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetTagOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGetTagParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminGetTag",
+		Method:             "GET",
+		PathPattern:        "/ugc/v1/admin/namespaces/{namespace}/tags",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGetTagReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGetTagOK:
+		return v, nil
+	case *AdminGetTagUnauthorized:
+		return nil, v
+	case *AdminGetTagNotFound:
+		return nil, v
+	case *AdminGetTagInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -206,7 +351,7 @@ func (a *Client) AdminUpdateTag(params *AdminUpdateTagParams, authInfo runtime.C
 		PathPattern:        "/ugc/v1/admin/namespaces/{namespace}/tags/{tagId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminUpdateTagReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -221,18 +366,71 @@ func (a *Client) AdminUpdateTag(params *AdminUpdateTagParams, authInfo runtime.C
 
 	case *AdminUpdateTagOK:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *AdminUpdateTagBadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *AdminUpdateTagUnauthorized:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *AdminUpdateTagNotFound:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *AdminUpdateTagConflict:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *AdminUpdateTagInternalServerError:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminUpdateTagShort(params *AdminUpdateTagParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateTagOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminUpdateTagParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminUpdateTag",
+		Method:             "PUT",
+		PathPattern:        "/ugc/v1/admin/namespaces/{namespace}/tags/{tagId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminUpdateTagReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminUpdateTagOK:
+		return v, nil
+	case *AdminUpdateTagBadRequest:
+		return nil, v
+	case *AdminUpdateTagUnauthorized:
+		return nil, v
+	case *AdminUpdateTagNotFound:
+		return nil, v
+	case *AdminUpdateTagConflict:
+		return nil, v
+	case *AdminUpdateTagInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 

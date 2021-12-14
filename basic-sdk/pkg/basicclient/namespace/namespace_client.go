@@ -30,22 +30,23 @@ type Client struct {
 // ClientService is the interface for Client methods
 type ClientService interface {
 	ChangeNamespaceStatus(params *ChangeNamespaceStatusParams, authInfo runtime.ClientAuthInfoWriter) (*ChangeNamespaceStatusOK, *ChangeNamespaceStatusBadRequest, *ChangeNamespaceStatusUnauthorized, *ChangeNamespaceStatusForbidden, *ChangeNamespaceStatusNotFound, *ChangeNamespaceStatusConflict, error)
-
+	ChangeNamespaceStatusShort(params *ChangeNamespaceStatusParams, authInfo runtime.ClientAuthInfoWriter) (*ChangeNamespaceStatusOK, error)
 	CreateNamespace(params *CreateNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*CreateNamespaceCreated, *CreateNamespaceBadRequest, *CreateNamespaceUnauthorized, *CreateNamespaceForbidden, *CreateNamespaceConflict, error)
-
+	CreateNamespaceShort(params *CreateNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*CreateNamespaceCreated, error)
 	DeleteNamespace(params *DeleteNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteNamespaceOK, *DeleteNamespaceBadRequest, *DeleteNamespaceUnauthorized, *DeleteNamespaceForbidden, *DeleteNamespaceNotFound, *DeleteNamespaceConflict, error)
-
+	DeleteNamespaceShort(params *DeleteNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteNamespaceOK, error)
 	GetNamespace(params *GetNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*GetNamespaceOK, *GetNamespaceBadRequest, *GetNamespaceUnauthorized, *GetNamespaceForbidden, *GetNamespaceNotFound, error)
-
+	GetNamespaceShort(params *GetNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*GetNamespaceOK, error)
 	GetNamespacePublisher(params *GetNamespacePublisherParams, authInfo runtime.ClientAuthInfoWriter) (*GetNamespacePublisherOK, *GetNamespacePublisherBadRequest, *GetNamespacePublisherUnauthorized, *GetNamespacePublisherForbidden, *GetNamespacePublisherNotFound, error)
-
+	GetNamespacePublisherShort(params *GetNamespacePublisherParams, authInfo runtime.ClientAuthInfoWriter) (*GetNamespacePublisherOK, error)
 	GetNamespaces(params *GetNamespacesParams, authInfo runtime.ClientAuthInfoWriter) (*GetNamespacesOK, *GetNamespacesUnauthorized, *GetNamespacesForbidden, error)
-
+	GetNamespacesShort(params *GetNamespacesParams, authInfo runtime.ClientAuthInfoWriter) (*GetNamespacesOK, error)
 	PublicGetNamespacePublisher(params *PublicGetNamespacePublisherParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetNamespacePublisherOK, *PublicGetNamespacePublisherBadRequest, *PublicGetNamespacePublisherUnauthorized, *PublicGetNamespacePublisherForbidden, *PublicGetNamespacePublisherNotFound, error)
-
+	PublicGetNamespacePublisherShort(params *PublicGetNamespacePublisherParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetNamespacePublisherOK, error)
 	PublicGetNamespaces(params *PublicGetNamespacesParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetNamespacesOK, *PublicGetNamespacesUnauthorized, error)
-
+	PublicGetNamespacesShort(params *PublicGetNamespacesParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetNamespacesOK, error)
 	UpdateNamespace(params *UpdateNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateNamespaceOK, *UpdateNamespaceBadRequest, *UpdateNamespaceUnauthorized, *UpdateNamespaceForbidden, *UpdateNamespaceNotFound, *UpdateNamespaceConflict, error)
+	UpdateNamespaceShort(params *UpdateNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateNamespaceOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -53,7 +54,7 @@ type ClientService interface {
 /*
   ChangeNamespaceStatus changes namespace status
 
-  Change a namespace status.<br>Other detail info: <ul><li><i>Required permission</i>: resource=<b>"ADMIN:NAMESPACE:{namespace}:NAMESPACE"</b>, action=4 <b>(UPDATE)</b></li><li>Action code<i></i>: 11306</li><li><i>Returns</i>: updated namespace</li></ul>
+  Change a namespace status.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:NAMESPACE&#34;&lt;/b&gt;, action=4 &lt;b&gt;(UPDATE)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;Action code&lt;i&gt;&lt;/i&gt;: 11306&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated namespace&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) ChangeNamespaceStatus(params *ChangeNamespaceStatusParams, authInfo runtime.ClientAuthInfoWriter) (*ChangeNamespaceStatusOK, *ChangeNamespaceStatusBadRequest, *ChangeNamespaceStatusUnauthorized, *ChangeNamespaceStatusForbidden, *ChangeNamespaceStatusNotFound, *ChangeNamespaceStatusConflict, error) {
 	// TODO: Validate the params before sending
@@ -71,7 +72,7 @@ func (a *Client) ChangeNamespaceStatus(params *ChangeNamespaceStatusParams, auth
 		PathPattern:        "/v1/admin/namespaces/{namespace}/status",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &ChangeNamespaceStatusReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -86,25 +87,78 @@ func (a *Client) ChangeNamespaceStatus(params *ChangeNamespaceStatusParams, auth
 
 	case *ChangeNamespaceStatusOK:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *ChangeNamespaceStatusBadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *ChangeNamespaceStatusUnauthorized:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *ChangeNamespaceStatusForbidden:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *ChangeNamespaceStatusNotFound:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *ChangeNamespaceStatusConflict:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) ChangeNamespaceStatusShort(params *ChangeNamespaceStatusParams, authInfo runtime.ClientAuthInfoWriter) (*ChangeNamespaceStatusOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewChangeNamespaceStatusParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "changeNamespaceStatus",
+		Method:             "PATCH",
+		PathPattern:        "/v1/admin/namespaces/{namespace}/status",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ChangeNamespaceStatusReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *ChangeNamespaceStatusOK:
+		return v, nil
+	case *ChangeNamespaceStatusBadRequest:
+		return nil, v
+	case *ChangeNamespaceStatusUnauthorized:
+		return nil, v
+	case *ChangeNamespaceStatusForbidden:
+		return nil, v
+	case *ChangeNamespaceStatusNotFound:
+		return nil, v
+	case *ChangeNamespaceStatusConflict:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   CreateNamespace creates a namespace
 
-  Create a namespace.<br>By default the namespace is enabled.<br>Other detail info: <ul><li><i>Required permission</i>: resource=<b>"ADMIN:NAMESPACE"</b>, action=1 <b>(CREATE)</b></li><li><i>Action code</i>: 11301</li><li><i>Returns</i>: created namespace</li></ul>
+  Create a namespace.&lt;br&gt;By default the namespace is enabled.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE&#34;&lt;/b&gt;, action=1 &lt;b&gt;(CREATE)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11301&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: created namespace&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) CreateNamespace(params *CreateNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*CreateNamespaceCreated, *CreateNamespaceBadRequest, *CreateNamespaceUnauthorized, *CreateNamespaceForbidden, *CreateNamespaceConflict, error) {
 	// TODO: Validate the params before sending
@@ -122,7 +176,7 @@ func (a *Client) CreateNamespace(params *CreateNamespaceParams, authInfo runtime
 		PathPattern:        "/v1/admin/namespaces",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &CreateNamespaceReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -137,23 +191,73 @@ func (a *Client) CreateNamespace(params *CreateNamespaceParams, authInfo runtime
 
 	case *CreateNamespaceCreated:
 		return v, nil, nil, nil, nil, nil
+
 	case *CreateNamespaceBadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *CreateNamespaceUnauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *CreateNamespaceForbidden:
 		return nil, nil, nil, v, nil, nil
+
 	case *CreateNamespaceConflict:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) CreateNamespaceShort(params *CreateNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*CreateNamespaceCreated, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreateNamespaceParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "createNamespace",
+		Method:             "POST",
+		PathPattern:        "/v1/admin/namespaces",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CreateNamespaceReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *CreateNamespaceCreated:
+		return v, nil
+	case *CreateNamespaceBadRequest:
+		return nil, v
+	case *CreateNamespaceUnauthorized:
+		return nil, v
+	case *CreateNamespaceForbidden:
+		return nil, v
+	case *CreateNamespaceConflict:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   DeleteNamespace deletes a namespace
 
-  Delete a namespace.<br>Other detail info: <ul><li><i>Required permission</i>: resource=<b>"ADMIN:NAMESPACE:{namespace}:NAMESPACE"</b>, action=8 <b>(DELETE)</b></li><li><i>Action code</i>: 11307</li><li><i>Returns</i>: deleted namespace</li></ul>
+  Delete a namespace.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:NAMESPACE&#34;&lt;/b&gt;, action=8 &lt;b&gt;(DELETE)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11307&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: deleted namespace&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) DeleteNamespace(params *DeleteNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteNamespaceOK, *DeleteNamespaceBadRequest, *DeleteNamespaceUnauthorized, *DeleteNamespaceForbidden, *DeleteNamespaceNotFound, *DeleteNamespaceConflict, error) {
 	// TODO: Validate the params before sending
@@ -171,7 +275,7 @@ func (a *Client) DeleteNamespace(params *DeleteNamespaceParams, authInfo runtime
 		PathPattern:        "/v1/admin/namespaces/{namespace}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteNamespaceReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -186,25 +290,78 @@ func (a *Client) DeleteNamespace(params *DeleteNamespaceParams, authInfo runtime
 
 	case *DeleteNamespaceOK:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *DeleteNamespaceBadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *DeleteNamespaceUnauthorized:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *DeleteNamespaceForbidden:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *DeleteNamespaceNotFound:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *DeleteNamespaceConflict:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) DeleteNamespaceShort(params *DeleteNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteNamespaceOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteNamespaceParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "deleteNamespace",
+		Method:             "DELETE",
+		PathPattern:        "/v1/admin/namespaces/{namespace}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteNamespaceReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeleteNamespaceOK:
+		return v, nil
+	case *DeleteNamespaceBadRequest:
+		return nil, v
+	case *DeleteNamespaceUnauthorized:
+		return nil, v
+	case *DeleteNamespaceForbidden:
+		return nil, v
+	case *DeleteNamespaceNotFound:
+		return nil, v
+	case *DeleteNamespaceConflict:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   GetNamespace gets a namespace
 
-  Get a namespace.<br>Other detail info: <ul><li><i>Required permission</i>: resource=<b>"ADMIN:NAMESPACE:{namespace}:NAMESPACE"</b>, action=2 <b>(READ)</b></li><li><i>Action code</i>: 11304</li><li><i>Returns</i>: namespace</li></ul>
+  Get a namespace.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:NAMESPACE&#34;&lt;/b&gt;, action=2 &lt;b&gt;(READ)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11304&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: namespace&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) GetNamespace(params *GetNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*GetNamespaceOK, *GetNamespaceBadRequest, *GetNamespaceUnauthorized, *GetNamespaceForbidden, *GetNamespaceNotFound, error) {
 	// TODO: Validate the params before sending
@@ -222,7 +379,7 @@ func (a *Client) GetNamespace(params *GetNamespaceParams, authInfo runtime.Clien
 		PathPattern:        "/v1/admin/namespaces/{namespace}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetNamespaceReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -237,23 +394,73 @@ func (a *Client) GetNamespace(params *GetNamespaceParams, authInfo runtime.Clien
 
 	case *GetNamespaceOK:
 		return v, nil, nil, nil, nil, nil
+
 	case *GetNamespaceBadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *GetNamespaceUnauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *GetNamespaceForbidden:
 		return nil, nil, nil, v, nil, nil
+
 	case *GetNamespaceNotFound:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetNamespaceShort(params *GetNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*GetNamespaceOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetNamespaceParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getNamespace",
+		Method:             "GET",
+		PathPattern:        "/v1/admin/namespaces/{namespace}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetNamespaceReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetNamespaceOK:
+		return v, nil
+	case *GetNamespaceBadRequest:
+		return nil, v
+	case *GetNamespaceUnauthorized:
+		return nil, v
+	case *GetNamespaceForbidden:
+		return nil, v
+	case *GetNamespaceNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   GetNamespacePublisher gets namespace info related publisher namespace
 
-  Get namespace info related publisher namespace.<br>Other detail info: <ul><li><i>Required permission</i>: resource=<b>"ADMIN:NAMESPACE:{namespace}:NAMESPACE"</b>, action=2 <b>(READ)</b></li><li><i>Action code</i>: 11305</li><li><i>Returns</i>: Namespace info related publisher namespace</li></ul>
+  Get namespace info related publisher namespace.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:NAMESPACE&#34;&lt;/b&gt;, action=2 &lt;b&gt;(READ)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11305&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: Namespace info related publisher namespace&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) GetNamespacePublisher(params *GetNamespacePublisherParams, authInfo runtime.ClientAuthInfoWriter) (*GetNamespacePublisherOK, *GetNamespacePublisherBadRequest, *GetNamespacePublisherUnauthorized, *GetNamespacePublisherForbidden, *GetNamespacePublisherNotFound, error) {
 	// TODO: Validate the params before sending
@@ -271,7 +478,7 @@ func (a *Client) GetNamespacePublisher(params *GetNamespacePublisherParams, auth
 		PathPattern:        "/v1/admin/namespaces/{namespace}/publisher",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetNamespacePublisherReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -286,23 +493,73 @@ func (a *Client) GetNamespacePublisher(params *GetNamespacePublisherParams, auth
 
 	case *GetNamespacePublisherOK:
 		return v, nil, nil, nil, nil, nil
+
 	case *GetNamespacePublisherBadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *GetNamespacePublisherUnauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *GetNamespacePublisherForbidden:
 		return nil, nil, nil, v, nil, nil
+
 	case *GetNamespacePublisherNotFound:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetNamespacePublisherShort(params *GetNamespacePublisherParams, authInfo runtime.ClientAuthInfoWriter) (*GetNamespacePublisherOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetNamespacePublisherParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getNamespacePublisher",
+		Method:             "GET",
+		PathPattern:        "/v1/admin/namespaces/{namespace}/publisher",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetNamespacePublisherReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetNamespacePublisherOK:
+		return v, nil
+	case *GetNamespacePublisherBadRequest:
+		return nil, v
+	case *GetNamespacePublisherUnauthorized:
+		return nil, v
+	case *GetNamespacePublisherForbidden:
+		return nil, v
+	case *GetNamespacePublisherNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   GetNamespaces gets all namespaces
 
-  Get all namespaces.<br>Other detail info: <ul><li><i>Required permission</i>: resource=<b>"ADMIN:NAMESPACE"</b>, action=2 <b>(READ)</b></li><li><i>Action code</i>: 11303</li><li><i>Returns</i>: list of namespaces</li></ul>
+  Get all namespaces.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE&#34;&lt;/b&gt;, action=2 &lt;b&gt;(READ)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11303&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: list of namespaces&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) GetNamespaces(params *GetNamespacesParams, authInfo runtime.ClientAuthInfoWriter) (*GetNamespacesOK, *GetNamespacesUnauthorized, *GetNamespacesForbidden, error) {
 	// TODO: Validate the params before sending
@@ -320,7 +577,7 @@ func (a *Client) GetNamespaces(params *GetNamespacesParams, authInfo runtime.Cli
 		PathPattern:        "/v1/admin/namespaces",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetNamespacesReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -335,19 +592,63 @@ func (a *Client) GetNamespaces(params *GetNamespacesParams, authInfo runtime.Cli
 
 	case *GetNamespacesOK:
 		return v, nil, nil, nil
+
 	case *GetNamespacesUnauthorized:
 		return nil, v, nil, nil
+
 	case *GetNamespacesForbidden:
 		return nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetNamespacesShort(params *GetNamespacesParams, authInfo runtime.ClientAuthInfoWriter) (*GetNamespacesOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetNamespacesParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getNamespaces",
+		Method:             "GET",
+		PathPattern:        "/v1/admin/namespaces",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetNamespacesReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetNamespacesOK:
+		return v, nil
+	case *GetNamespacesUnauthorized:
+		return nil, v
+	case *GetNamespacesForbidden:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   PublicGetNamespacePublisher gets namespace info related publisher namespace
 
-  Get namespace info related publisher namespace.<br>Other detail info: <ul><li><i>Required permission</i>: resource=<b>"NAMESPACE:{namespace}:NAMESPACE"</b>, action=2 <b>(READ)</b></li><li><i>Action code</i>: 11305</li><li><i>Returns</i>: Namespace info related publisher namespace</li></ul>
+  Get namespace info related publisher namespace.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;NAMESPACE:{namespace}:NAMESPACE&#34;&lt;/b&gt;, action=2 &lt;b&gt;(READ)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11305&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: Namespace info related publisher namespace&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) PublicGetNamespacePublisher(params *PublicGetNamespacePublisherParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetNamespacePublisherOK, *PublicGetNamespacePublisherBadRequest, *PublicGetNamespacePublisherUnauthorized, *PublicGetNamespacePublisherForbidden, *PublicGetNamespacePublisherNotFound, error) {
 	// TODO: Validate the params before sending
@@ -365,7 +666,7 @@ func (a *Client) PublicGetNamespacePublisher(params *PublicGetNamespacePublisher
 		PathPattern:        "/v1/public/namespaces/{namespace}/publisher",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicGetNamespacePublisherReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -380,23 +681,73 @@ func (a *Client) PublicGetNamespacePublisher(params *PublicGetNamespacePublisher
 
 	case *PublicGetNamespacePublisherOK:
 		return v, nil, nil, nil, nil, nil
+
 	case *PublicGetNamespacePublisherBadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *PublicGetNamespacePublisherUnauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *PublicGetNamespacePublisherForbidden:
 		return nil, nil, nil, v, nil, nil
+
 	case *PublicGetNamespacePublisherNotFound:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicGetNamespacePublisherShort(params *PublicGetNamespacePublisherParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetNamespacePublisherOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetNamespacePublisherParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicGetNamespacePublisher",
+		Method:             "GET",
+		PathPattern:        "/v1/public/namespaces/{namespace}/publisher",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicGetNamespacePublisherReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetNamespacePublisherOK:
+		return v, nil
+	case *PublicGetNamespacePublisherBadRequest:
+		return nil, v
+	case *PublicGetNamespacePublisherUnauthorized:
+		return nil, v
+	case *PublicGetNamespacePublisherForbidden:
+		return nil, v
+	case *PublicGetNamespacePublisherNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   PublicGetNamespaces gets all namespaces
 
-  Get all namespaces.<br>Other detail info: <ul><li><i>Required permission</i>: login user</li><li><i>Action code</i>: 11303</li><li><i>Returns</i>: list of namespaces</li></ul>
+  Get all namespaces.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: login user&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11303&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: list of namespaces&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) PublicGetNamespaces(params *PublicGetNamespacesParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetNamespacesOK, *PublicGetNamespacesUnauthorized, error) {
 	// TODO: Validate the params before sending
@@ -414,7 +765,7 @@ func (a *Client) PublicGetNamespaces(params *PublicGetNamespacesParams, authInfo
 		PathPattern:        "/v1/public/namespaces",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicGetNamespacesReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -429,17 +780,58 @@ func (a *Client) PublicGetNamespaces(params *PublicGetNamespacesParams, authInfo
 
 	case *PublicGetNamespacesOK:
 		return v, nil, nil
+
 	case *PublicGetNamespacesUnauthorized:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicGetNamespacesShort(params *PublicGetNamespacesParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetNamespacesOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetNamespacesParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicGetNamespaces",
+		Method:             "GET",
+		PathPattern:        "/v1/public/namespaces",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicGetNamespacesReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetNamespacesOK:
+		return v, nil
+	case *PublicGetNamespacesUnauthorized:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   UpdateNamespace updates namespace basic info
 
-  Update namespace basic info.<br>Other detail info: <ul><li><i>Required permission</i>: resource=<b>"ADMIN:NAMESPACE:{namespace}:NAMESPACE"</b>, action=4 <b>(UPDATE)</b></li><li><i>Action code</i>: 11302</li><li><i>Returns</i>: updated namespace</li></ul>
+  Update namespace basic info.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:NAMESPACE&#34;&lt;/b&gt;, action=4 &lt;b&gt;(UPDATE)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11302&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated namespace&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) UpdateNamespace(params *UpdateNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateNamespaceOK, *UpdateNamespaceBadRequest, *UpdateNamespaceUnauthorized, *UpdateNamespaceForbidden, *UpdateNamespaceNotFound, *UpdateNamespaceConflict, error) {
 	// TODO: Validate the params before sending
@@ -457,7 +849,7 @@ func (a *Client) UpdateNamespace(params *UpdateNamespaceParams, authInfo runtime
 		PathPattern:        "/v1/admin/namespaces/{namespace}/basic",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &UpdateNamespaceReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -472,18 +864,71 @@ func (a *Client) UpdateNamespace(params *UpdateNamespaceParams, authInfo runtime
 
 	case *UpdateNamespaceOK:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *UpdateNamespaceBadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *UpdateNamespaceUnauthorized:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *UpdateNamespaceForbidden:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *UpdateNamespaceNotFound:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *UpdateNamespaceConflict:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) UpdateNamespaceShort(params *UpdateNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateNamespaceOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateNamespaceParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updateNamespace",
+		Method:             "PATCH",
+		PathPattern:        "/v1/admin/namespaces/{namespace}/basic",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateNamespaceReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateNamespaceOK:
+		return v, nil
+	case *UpdateNamespaceBadRequest:
+		return nil, v
+	case *UpdateNamespaceUnauthorized:
+		return nil, v
+	case *UpdateNamespaceForbidden:
+		return nil, v
+	case *UpdateNamespaceNotFound:
+		return nil, v
+	case *UpdateNamespaceConflict:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 

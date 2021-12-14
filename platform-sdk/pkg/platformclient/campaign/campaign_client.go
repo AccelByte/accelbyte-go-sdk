@@ -30,34 +30,35 @@ type Client struct {
 // ClientService is the interface for Client methods
 type ClientService interface {
 	ApplyUserRedemption(params *ApplyUserRedemptionParams, authInfo runtime.ClientAuthInfoWriter) (*ApplyUserRedemptionOK, *ApplyUserRedemptionNotFound, *ApplyUserRedemptionConflict, *ApplyUserRedemptionUnprocessableEntity, error)
-
+	ApplyUserRedemptionShort(params *ApplyUserRedemptionParams, authInfo runtime.ClientAuthInfoWriter) (*ApplyUserRedemptionOK, error)
 	BulkDisableCodes(params *BulkDisableCodesParams, authInfo runtime.ClientAuthInfoWriter) (*BulkDisableCodesOK, error)
-
+	BulkDisableCodesShort(params *BulkDisableCodesParams, authInfo runtime.ClientAuthInfoWriter) (*BulkDisableCodesOK, error)
 	BulkEnableCodes(params *BulkEnableCodesParams, authInfo runtime.ClientAuthInfoWriter) (*BulkEnableCodesOK, error)
-
+	BulkEnableCodesShort(params *BulkEnableCodesParams, authInfo runtime.ClientAuthInfoWriter) (*BulkEnableCodesOK, error)
 	CreateCampaign(params *CreateCampaignParams, authInfo runtime.ClientAuthInfoWriter) (*CreateCampaignCreated, *CreateCampaignConflict, *CreateCampaignUnprocessableEntity, error)
-
+	CreateCampaignShort(params *CreateCampaignParams, authInfo runtime.ClientAuthInfoWriter) (*CreateCampaignCreated, error)
 	CreateCodes(params *CreateCodesParams, authInfo runtime.ClientAuthInfoWriter) (*CreateCodesCreated, *CreateCodesNotFound, *CreateCodesUnprocessableEntity, error)
-
+	CreateCodesShort(params *CreateCodesParams, authInfo runtime.ClientAuthInfoWriter) (*CreateCodesCreated, error)
 	DisableCode(params *DisableCodeParams, authInfo runtime.ClientAuthInfoWriter) (*DisableCodeOK, *DisableCodeNotFound, error)
-
+	DisableCodeShort(params *DisableCodeParams, authInfo runtime.ClientAuthInfoWriter) (*DisableCodeOK, error)
 	Download(params *DownloadParams, authInfo runtime.ClientAuthInfoWriter) (*DownloadOK, error)
-
+	DownloadShort(params *DownloadParams, authInfo runtime.ClientAuthInfoWriter) (*DownloadOK, error)
 	EnableCode(params *EnableCodeParams, authInfo runtime.ClientAuthInfoWriter) (*EnableCodeOK, *EnableCodeNotFound, error)
-
+	EnableCodeShort(params *EnableCodeParams, authInfo runtime.ClientAuthInfoWriter) (*EnableCodeOK, error)
 	GetCampaign(params *GetCampaignParams, authInfo runtime.ClientAuthInfoWriter) (*GetCampaignOK, *GetCampaignNotFound, error)
-
+	GetCampaignShort(params *GetCampaignParams, authInfo runtime.ClientAuthInfoWriter) (*GetCampaignOK, error)
 	GetCampaignDynamic(params *GetCampaignDynamicParams, authInfo runtime.ClientAuthInfoWriter) (*GetCampaignDynamicOK, *GetCampaignDynamicNotFound, error)
-
+	GetCampaignDynamicShort(params *GetCampaignDynamicParams, authInfo runtime.ClientAuthInfoWriter) (*GetCampaignDynamicOK, error)
 	GetCode(params *GetCodeParams, authInfo runtime.ClientAuthInfoWriter) (*GetCodeOK, *GetCodeNotFound, *GetCodeConflict, error)
-
+	GetCodeShort(params *GetCodeParams, authInfo runtime.ClientAuthInfoWriter) (*GetCodeOK, error)
 	QueryCampaigns(params *QueryCampaignsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryCampaignsOK, error)
-
+	QueryCampaignsShort(params *QueryCampaignsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryCampaignsOK, error)
 	QueryCodes(params *QueryCodesParams, authInfo runtime.ClientAuthInfoWriter) (*QueryCodesOK, error)
-
+	QueryCodesShort(params *QueryCodesParams, authInfo runtime.ClientAuthInfoWriter) (*QueryCodesOK, error)
 	QueryRedeemHistory(params *QueryRedeemHistoryParams, authInfo runtime.ClientAuthInfoWriter) (*QueryRedeemHistoryOK, error)
-
+	QueryRedeemHistoryShort(params *QueryRedeemHistoryParams, authInfo runtime.ClientAuthInfoWriter) (*QueryRedeemHistoryOK, error)
 	UpdateCampaign(params *UpdateCampaignParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateCampaignOK, *UpdateCampaignNotFound, *UpdateCampaignConflict, *UpdateCampaignUnprocessableEntity, error)
+	UpdateCampaignShort(params *UpdateCampaignParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateCampaignOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -65,7 +66,7 @@ type ClientService interface {
 /*
   ApplyUserRedemption redeems code
 
-  <b>[SERVICE COMMUNICATION ONLY]</b> Redeem code. If the campaign which the code belongs to is INACTIVE, the code couldn't be redeemed even if its status is ACTIVE.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:REDEMPTION", action=1 (CREATE)</li><li><i>Returns</i>: Redeem result</li></ul>
+  &lt;b&gt;[SERVICE COMMUNICATION ONLY]&lt;/b&gt; Redeem code. If the campaign which the code belongs to is INACTIVE, the code couldn&#39;t be redeemed even if its status is ACTIVE.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:REDEMPTION&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: Redeem result&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) ApplyUserRedemption(params *ApplyUserRedemptionParams, authInfo runtime.ClientAuthInfoWriter) (*ApplyUserRedemptionOK, *ApplyUserRedemptionNotFound, *ApplyUserRedemptionConflict, *ApplyUserRedemptionUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -83,7 +84,7 @@ func (a *Client) ApplyUserRedemption(params *ApplyUserRedemptionParams, authInfo
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/redemption",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &ApplyUserRedemptionReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -98,21 +99,68 @@ func (a *Client) ApplyUserRedemption(params *ApplyUserRedemptionParams, authInfo
 
 	case *ApplyUserRedemptionOK:
 		return v, nil, nil, nil, nil
+
 	case *ApplyUserRedemptionNotFound:
 		return nil, v, nil, nil, nil
+
 	case *ApplyUserRedemptionConflict:
 		return nil, nil, v, nil, nil
+
 	case *ApplyUserRedemptionUnprocessableEntity:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) ApplyUserRedemptionShort(params *ApplyUserRedemptionParams, authInfo runtime.ClientAuthInfoWriter) (*ApplyUserRedemptionOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewApplyUserRedemptionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "applyUserRedemption",
+		Method:             "POST",
+		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/redemption",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ApplyUserRedemptionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *ApplyUserRedemptionOK:
+		return v, nil
+	case *ApplyUserRedemptionNotFound:
+		return nil, v
+	case *ApplyUserRedemptionConflict:
+		return nil, v
+	case *ApplyUserRedemptionUnprocessableEntity:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   BulkDisableCodes bulks disable codes
 
-  Bulk disable codes.<p>Bulk disable campaign codes, all matched codes will be disabled except those have already been redeemed.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:CAMPAIGN", action=4 (UPDATE)</li><li><i>Returns</i>: the number of code actually disabled</li></ul>
+  Bulk disable codes.&lt;p&gt;Bulk disable campaign codes, all matched codes will be disabled except those have already been redeemed.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:CAMPAIGN&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: the number of code actually disabled&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) BulkDisableCodes(params *BulkDisableCodesParams, authInfo runtime.ClientAuthInfoWriter) (*BulkDisableCodesOK, error) {
 	// TODO: Validate the params before sending
@@ -130,7 +178,7 @@ func (a *Client) BulkDisableCodes(params *BulkDisableCodesParams, authInfo runti
 		PathPattern:        "/admin/namespaces/{namespace}/codes/campaigns/{campaignId}/disable/bulk",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &BulkDisableCodesReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -145,6 +193,44 @@ func (a *Client) BulkDisableCodes(params *BulkDisableCodesParams, authInfo runti
 
 	case *BulkDisableCodesOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) BulkDisableCodesShort(params *BulkDisableCodesParams, authInfo runtime.ClientAuthInfoWriter) (*BulkDisableCodesOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewBulkDisableCodesParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "bulkDisableCodes",
+		Method:             "PUT",
+		PathPattern:        "/admin/namespaces/{namespace}/codes/campaigns/{campaignId}/disable/bulk",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &BulkDisableCodesReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *BulkDisableCodesOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -153,7 +239,7 @@ func (a *Client) BulkDisableCodes(params *BulkDisableCodesParams, authInfo runti
 /*
   BulkEnableCodes bulks enable codes
 
-  Bulk enable campaign codes.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:CAMPAIGN", action=4 (UPDATE)</li><li><i>Returns</i>: the number of code actually enabled</li></ul>
+  Bulk enable campaign codes.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:CAMPAIGN&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: the number of code actually enabled&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) BulkEnableCodes(params *BulkEnableCodesParams, authInfo runtime.ClientAuthInfoWriter) (*BulkEnableCodesOK, error) {
 	// TODO: Validate the params before sending
@@ -171,7 +257,7 @@ func (a *Client) BulkEnableCodes(params *BulkEnableCodesParams, authInfo runtime
 		PathPattern:        "/admin/namespaces/{namespace}/codes/campaigns/{campaignId}/enable/bulk",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &BulkEnableCodesReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -186,6 +272,44 @@ func (a *Client) BulkEnableCodes(params *BulkEnableCodesParams, authInfo runtime
 
 	case *BulkEnableCodesOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) BulkEnableCodesShort(params *BulkEnableCodesParams, authInfo runtime.ClientAuthInfoWriter) (*BulkEnableCodesOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewBulkEnableCodesParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "bulkEnableCodes",
+		Method:             "PUT",
+		PathPattern:        "/admin/namespaces/{namespace}/codes/campaigns/{campaignId}/enable/bulk",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &BulkEnableCodesReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *BulkEnableCodesOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -194,7 +318,7 @@ func (a *Client) BulkEnableCodes(params *BulkEnableCodesParams, authInfo runtime
 /*
   CreateCampaign creates campaign
 
-  Create campaign.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:CAMPAIGN", action=1 (CREATE)</li><li><i>Returns</i>: created campaign</li></ul>
+  Create campaign.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:CAMPAIGN&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: created campaign&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) CreateCampaign(params *CreateCampaignParams, authInfo runtime.ClientAuthInfoWriter) (*CreateCampaignCreated, *CreateCampaignConflict, *CreateCampaignUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -212,7 +336,7 @@ func (a *Client) CreateCampaign(params *CreateCampaignParams, authInfo runtime.C
 		PathPattern:        "/admin/namespaces/{namespace}/campaigns",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &CreateCampaignReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -227,19 +351,63 @@ func (a *Client) CreateCampaign(params *CreateCampaignParams, authInfo runtime.C
 
 	case *CreateCampaignCreated:
 		return v, nil, nil, nil
+
 	case *CreateCampaignConflict:
 		return nil, v, nil, nil
+
 	case *CreateCampaignUnprocessableEntity:
 		return nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) CreateCampaignShort(params *CreateCampaignParams, authInfo runtime.ClientAuthInfoWriter) (*CreateCampaignCreated, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreateCampaignParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "createCampaign",
+		Method:             "POST",
+		PathPattern:        "/admin/namespaces/{namespace}/campaigns",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CreateCampaignReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *CreateCampaignCreated:
+		return v, nil
+	case *CreateCampaignConflict:
+		return nil, v
+	case *CreateCampaignUnprocessableEntity:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   CreateCodes creates campaign codes
 
-  This API is used to create campaign codes, it will increase the batch No. based on last creation.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:CAMPAIGN", action=1 (CREATE)<li><i>Returns</i>: number of codes created</li></ul>
+  This API is used to create campaign codes, it will increase the batch No. based on last creation.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:CAMPAIGN&#34;, action=1 (CREATE)&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: number of codes created&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) CreateCodes(params *CreateCodesParams, authInfo runtime.ClientAuthInfoWriter) (*CreateCodesCreated, *CreateCodesNotFound, *CreateCodesUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -257,7 +425,7 @@ func (a *Client) CreateCodes(params *CreateCodesParams, authInfo runtime.ClientA
 		PathPattern:        "/admin/namespaces/{namespace}/codes/campaigns/{campaignId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &CreateCodesReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -272,19 +440,63 @@ func (a *Client) CreateCodes(params *CreateCodesParams, authInfo runtime.ClientA
 
 	case *CreateCodesCreated:
 		return v, nil, nil, nil
+
 	case *CreateCodesNotFound:
 		return nil, v, nil, nil
+
 	case *CreateCodesUnprocessableEntity:
 		return nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) CreateCodesShort(params *CreateCodesParams, authInfo runtime.ClientAuthInfoWriter) (*CreateCodesCreated, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreateCodesParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "createCodes",
+		Method:             "POST",
+		PathPattern:        "/admin/namespaces/{namespace}/codes/campaigns/{campaignId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CreateCodesReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *CreateCodesCreated:
+		return v, nil
+	case *CreateCodesNotFound:
+		return nil, v
+	case *CreateCodesUnprocessableEntity:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   DisableCode disables code
 
-  Disable code.<p>Disable an active code, the code can't be disabled if it has already been redeemed.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:CAMPAIGN", action=4 (UPDATE)</li><li><i>Returns</i>: disabled code</li></ul>
+  Disable code.&lt;p&gt;Disable an active code, the code can&#39;t be disabled if it has already been redeemed.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:CAMPAIGN&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: disabled code&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) DisableCode(params *DisableCodeParams, authInfo runtime.ClientAuthInfoWriter) (*DisableCodeOK, *DisableCodeNotFound, error) {
 	// TODO: Validate the params before sending
@@ -302,7 +514,7 @@ func (a *Client) DisableCode(params *DisableCodeParams, authInfo runtime.ClientA
 		PathPattern:        "/admin/namespaces/{namespace}/codes/{code}/disable",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DisableCodeReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -317,17 +529,58 @@ func (a *Client) DisableCode(params *DisableCodeParams, authInfo runtime.ClientA
 
 	case *DisableCodeOK:
 		return v, nil, nil
+
 	case *DisableCodeNotFound:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) DisableCodeShort(params *DisableCodeParams, authInfo runtime.ClientAuthInfoWriter) (*DisableCodeOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDisableCodeParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "disableCode",
+		Method:             "PUT",
+		PathPattern:        "/admin/namespaces/{namespace}/codes/{code}/disable",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DisableCodeReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DisableCodeOK:
+		return v, nil
+	case *DisableCodeNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   Download downloads codes
 
-  Download all or a batch of campaign's codes as a csv file.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:CAMPAIGN", action=2 (READ)</li><li><i>Returns</i>: codes csv file</li></ul>
+  Download all or a batch of campaign&#39;s codes as a csv file.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:CAMPAIGN&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: codes csv file&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) Download(params *DownloadParams, authInfo runtime.ClientAuthInfoWriter) (*DownloadOK, error) {
 	// TODO: Validate the params before sending
@@ -345,7 +598,7 @@ func (a *Client) Download(params *DownloadParams, authInfo runtime.ClientAuthInf
 		PathPattern:        "/admin/namespaces/{namespace}/codes/campaigns/{campaignId}/codes.csv",
 		ProducesMediaTypes: []string{"text/csv"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DownloadReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -360,6 +613,44 @@ func (a *Client) Download(params *DownloadParams, authInfo runtime.ClientAuthInf
 
 	case *DownloadOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) DownloadShort(params *DownloadParams, authInfo runtime.ClientAuthInfoWriter) (*DownloadOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDownloadParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "download",
+		Method:             "GET",
+		PathPattern:        "/admin/namespaces/{namespace}/codes/campaigns/{campaignId}/codes.csv",
+		ProducesMediaTypes: []string{"text/csv"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DownloadReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DownloadOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -368,7 +659,7 @@ func (a *Client) Download(params *DownloadParams, authInfo runtime.ClientAuthInf
 /*
   EnableCode enables code
 
-  Enable code.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:CAMPAIGN", action=4 (UPDATE)</li><li><i>Returns</i>: enabled code</li></ul>
+  Enable code.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:CAMPAIGN&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: enabled code&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) EnableCode(params *EnableCodeParams, authInfo runtime.ClientAuthInfoWriter) (*EnableCodeOK, *EnableCodeNotFound, error) {
 	// TODO: Validate the params before sending
@@ -386,7 +677,7 @@ func (a *Client) EnableCode(params *EnableCodeParams, authInfo runtime.ClientAut
 		PathPattern:        "/admin/namespaces/{namespace}/codes/{code}/enable",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &EnableCodeReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -401,17 +692,58 @@ func (a *Client) EnableCode(params *EnableCodeParams, authInfo runtime.ClientAut
 
 	case *EnableCodeOK:
 		return v, nil, nil
+
 	case *EnableCodeNotFound:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) EnableCodeShort(params *EnableCodeParams, authInfo runtime.ClientAuthInfoWriter) (*EnableCodeOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewEnableCodeParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "enableCode",
+		Method:             "PUT",
+		PathPattern:        "/admin/namespaces/{namespace}/codes/{code}/enable",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &EnableCodeReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *EnableCodeOK:
+		return v, nil
+	case *EnableCodeNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   GetCampaign gets campaign
 
-  Get campaign info.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:CAMPAIGN", action=2 (READ)</li><li><i>Returns</i>: campaign info</li></ul>
+  Get campaign info.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:CAMPAIGN&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: campaign info&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) GetCampaign(params *GetCampaignParams, authInfo runtime.ClientAuthInfoWriter) (*GetCampaignOK, *GetCampaignNotFound, error) {
 	// TODO: Validate the params before sending
@@ -429,7 +761,7 @@ func (a *Client) GetCampaign(params *GetCampaignParams, authInfo runtime.ClientA
 		PathPattern:        "/admin/namespaces/{namespace}/campaigns/{campaignId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetCampaignReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -444,17 +776,58 @@ func (a *Client) GetCampaign(params *GetCampaignParams, authInfo runtime.ClientA
 
 	case *GetCampaignOK:
 		return v, nil, nil
+
 	case *GetCampaignNotFound:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetCampaignShort(params *GetCampaignParams, authInfo runtime.ClientAuthInfoWriter) (*GetCampaignOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetCampaignParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getCampaign",
+		Method:             "GET",
+		PathPattern:        "/admin/namespaces/{namespace}/campaigns/{campaignId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetCampaignReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetCampaignOK:
+		return v, nil
+	case *GetCampaignNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   GetCampaignDynamic gets campaign dynamic
 
-  Get campaign dynamic.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:CAMPAIGN", action=2 (READ)</li><li><i>Returns</i>: campaign dynamic</li></ul>
+  Get campaign dynamic.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:CAMPAIGN&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: campaign dynamic&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) GetCampaignDynamic(params *GetCampaignDynamicParams, authInfo runtime.ClientAuthInfoWriter) (*GetCampaignDynamicOK, *GetCampaignDynamicNotFound, error) {
 	// TODO: Validate the params before sending
@@ -472,7 +845,7 @@ func (a *Client) GetCampaignDynamic(params *GetCampaignDynamicParams, authInfo r
 		PathPattern:        "/admin/namespaces/{namespace}/campaigns/{campaignId}/dynamic",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetCampaignDynamicReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -487,17 +860,58 @@ func (a *Client) GetCampaignDynamic(params *GetCampaignDynamicParams, authInfo r
 
 	case *GetCampaignDynamicOK:
 		return v, nil, nil
+
 	case *GetCampaignDynamicNotFound:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetCampaignDynamicShort(params *GetCampaignDynamicParams, authInfo runtime.ClientAuthInfoWriter) (*GetCampaignDynamicOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetCampaignDynamicParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getCampaignDynamic",
+		Method:             "GET",
+		PathPattern:        "/admin/namespaces/{namespace}/campaigns/{campaignId}/dynamic",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetCampaignDynamicReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetCampaignDynamicOK:
+		return v, nil
+	case *GetCampaignDynamicNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   GetCode gets code info
 
-  Get campaign code, it will check code whether available to redeem if redeemable true.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:CAMPAIGN", action=2 (READ) (READ)</li><li><i>Returns</i>: code info</li></ul>
+  Get campaign code, it will check code whether available to redeem if redeemable true.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:CAMPAIGN&#34;, action=2 (READ) (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: code info&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) GetCode(params *GetCodeParams, authInfo runtime.ClientAuthInfoWriter) (*GetCodeOK, *GetCodeNotFound, *GetCodeConflict, error) {
 	// TODO: Validate the params before sending
@@ -515,7 +929,7 @@ func (a *Client) GetCode(params *GetCodeParams, authInfo runtime.ClientAuthInfoW
 		PathPattern:        "/admin/namespaces/{namespace}/codes/{code}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetCodeReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -530,19 +944,63 @@ func (a *Client) GetCode(params *GetCodeParams, authInfo runtime.ClientAuthInfoW
 
 	case *GetCodeOK:
 		return v, nil, nil, nil
+
 	case *GetCodeNotFound:
 		return nil, v, nil, nil
+
 	case *GetCodeConflict:
 		return nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetCodeShort(params *GetCodeParams, authInfo runtime.ClientAuthInfoWriter) (*GetCodeOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetCodeParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getCode",
+		Method:             "GET",
+		PathPattern:        "/admin/namespaces/{namespace}/codes/{code}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetCodeReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetCodeOK:
+		return v, nil
+	case *GetCodeNotFound:
+		return nil, v
+	case *GetCodeConflict:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   QueryCampaigns queries campaigns
 
-  Query campaigns, if name is presented, it's fuzzy match.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:CAMPAIGN", action=2 (READ) (READ)</li><li><i>Returns</i>: slice of campaigns</li></ul>
+  Query campaigns, if name is presented, it&#39;s fuzzy match.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:CAMPAIGN&#34;, action=2 (READ) (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: slice of campaigns&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) QueryCampaigns(params *QueryCampaignsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryCampaignsOK, error) {
 	// TODO: Validate the params before sending
@@ -560,7 +1018,7 @@ func (a *Client) QueryCampaigns(params *QueryCampaignsParams, authInfo runtime.C
 		PathPattern:        "/admin/namespaces/{namespace}/campaigns",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &QueryCampaignsReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -575,6 +1033,44 @@ func (a *Client) QueryCampaigns(params *QueryCampaignsParams, authInfo runtime.C
 
 	case *QueryCampaignsOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) QueryCampaignsShort(params *QueryCampaignsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryCampaignsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewQueryCampaignsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "queryCampaigns",
+		Method:             "GET",
+		PathPattern:        "/admin/namespaces/{namespace}/campaigns",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &QueryCampaignsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *QueryCampaignsOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -583,7 +1079,7 @@ func (a *Client) QueryCampaigns(params *QueryCampaignsParams, authInfo runtime.C
 /*
   QueryCodes queries codes
 
-  Query campaign codes.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:CAMPAIGN", action=2 (READ) (READ)</li><li><i>Returns</i>: list of codes</li></ul>
+  Query campaign codes.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:CAMPAIGN&#34;, action=2 (READ) (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: list of codes&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) QueryCodes(params *QueryCodesParams, authInfo runtime.ClientAuthInfoWriter) (*QueryCodesOK, error) {
 	// TODO: Validate the params before sending
@@ -601,7 +1097,7 @@ func (a *Client) QueryCodes(params *QueryCodesParams, authInfo runtime.ClientAut
 		PathPattern:        "/admin/namespaces/{namespace}/codes/campaigns/{campaignId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &QueryCodesReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -616,6 +1112,44 @@ func (a *Client) QueryCodes(params *QueryCodesParams, authInfo runtime.ClientAut
 
 	case *QueryCodesOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) QueryCodesShort(params *QueryCodesParams, authInfo runtime.ClientAuthInfoWriter) (*QueryCodesOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewQueryCodesParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "queryCodes",
+		Method:             "GET",
+		PathPattern:        "/admin/namespaces/{namespace}/codes/campaigns/{campaignId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &QueryCodesReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *QueryCodesOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -624,7 +1158,7 @@ func (a *Client) QueryCodes(params *QueryCodesParams, authInfo runtime.ClientAut
 /*
   QueryRedeemHistory queries redeem history
 
-  Query redeem history.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:CAMPAIGN", action=2 (READ)</li><li><i>Returns</i>: slice of redeem history</li></ul>
+  Query redeem history.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:CAMPAIGN&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: slice of redeem history&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) QueryRedeemHistory(params *QueryRedeemHistoryParams, authInfo runtime.ClientAuthInfoWriter) (*QueryRedeemHistoryOK, error) {
 	// TODO: Validate the params before sending
@@ -642,7 +1176,7 @@ func (a *Client) QueryRedeemHistory(params *QueryRedeemHistoryParams, authInfo r
 		PathPattern:        "/admin/namespaces/{namespace}/codes/campaigns/{campaignId}/history",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &QueryRedeemHistoryReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -657,6 +1191,44 @@ func (a *Client) QueryRedeemHistory(params *QueryRedeemHistoryParams, authInfo r
 
 	case *QueryRedeemHistoryOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) QueryRedeemHistoryShort(params *QueryRedeemHistoryParams, authInfo runtime.ClientAuthInfoWriter) (*QueryRedeemHistoryOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewQueryRedeemHistoryParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "queryRedeemHistory",
+		Method:             "GET",
+		PathPattern:        "/admin/namespaces/{namespace}/codes/campaigns/{campaignId}/history",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &QueryRedeemHistoryReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *QueryRedeemHistoryOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -665,7 +1237,7 @@ func (a *Client) QueryRedeemHistory(params *QueryRedeemHistoryParams, authInfo r
 /*
   UpdateCampaign updates campaign
 
-  Update campaign.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:CAMPAIGN", action=4 (UPDATE)</li><li><i>Returns</i>: updated campaign</li></ul>
+  Update campaign.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:CAMPAIGN&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated campaign&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) UpdateCampaign(params *UpdateCampaignParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateCampaignOK, *UpdateCampaignNotFound, *UpdateCampaignConflict, *UpdateCampaignUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -683,7 +1255,7 @@ func (a *Client) UpdateCampaign(params *UpdateCampaignParams, authInfo runtime.C
 		PathPattern:        "/admin/namespaces/{namespace}/campaigns/{campaignId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &UpdateCampaignReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -698,14 +1270,61 @@ func (a *Client) UpdateCampaign(params *UpdateCampaignParams, authInfo runtime.C
 
 	case *UpdateCampaignOK:
 		return v, nil, nil, nil, nil
+
 	case *UpdateCampaignNotFound:
 		return nil, v, nil, nil, nil
+
 	case *UpdateCampaignConflict:
 		return nil, nil, v, nil, nil
+
 	case *UpdateCampaignUnprocessableEntity:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) UpdateCampaignShort(params *UpdateCampaignParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateCampaignOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateCampaignParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updateCampaign",
+		Method:             "PUT",
+		PathPattern:        "/admin/namespaces/{namespace}/campaigns/{campaignId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateCampaignReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateCampaignOK:
+		return v, nil
+	case *UpdateCampaignNotFound:
+		return nil, v
+	case *UpdateCampaignConflict:
+		return nil, v
+	case *UpdateCampaignUnprocessableEntity:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 

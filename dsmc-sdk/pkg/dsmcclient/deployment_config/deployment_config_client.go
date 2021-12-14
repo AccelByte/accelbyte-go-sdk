@@ -30,32 +30,33 @@ type Client struct {
 // ClientService is the interface for Client methods
 type ClientService interface {
 	CreateDeployment(params *CreateDeploymentParams, authInfo runtime.ClientAuthInfoWriter) (*CreateDeploymentCreated, *CreateDeploymentBadRequest, *CreateDeploymentUnauthorized, *CreateDeploymentConflict, *CreateDeploymentInternalServerError, error)
-
+	CreateDeploymentShort(params *CreateDeploymentParams, authInfo runtime.ClientAuthInfoWriter) (*CreateDeploymentCreated, error)
 	CreateDeploymentOverride(params *CreateDeploymentOverrideParams, authInfo runtime.ClientAuthInfoWriter) (*CreateDeploymentOverrideCreated, *CreateDeploymentOverrideBadRequest, *CreateDeploymentOverrideUnauthorized, *CreateDeploymentOverrideNotFound, *CreateDeploymentOverrideConflict, *CreateDeploymentOverrideInternalServerError, error)
-
+	CreateDeploymentOverrideShort(params *CreateDeploymentOverrideParams, authInfo runtime.ClientAuthInfoWriter) (*CreateDeploymentOverrideCreated, error)
 	CreateOverrideRegionOverride(params *CreateOverrideRegionOverrideParams, authInfo runtime.ClientAuthInfoWriter) (*CreateOverrideRegionOverrideCreated, *CreateOverrideRegionOverrideBadRequest, *CreateOverrideRegionOverrideUnauthorized, *CreateOverrideRegionOverrideNotFound, *CreateOverrideRegionOverrideConflict, *CreateOverrideRegionOverrideInternalServerError, error)
-
+	CreateOverrideRegionOverrideShort(params *CreateOverrideRegionOverrideParams, authInfo runtime.ClientAuthInfoWriter) (*CreateOverrideRegionOverrideCreated, error)
 	CreateRootRegionOverride(params *CreateRootRegionOverrideParams, authInfo runtime.ClientAuthInfoWriter) (*CreateRootRegionOverrideCreated, *CreateRootRegionOverrideBadRequest, *CreateRootRegionOverrideUnauthorized, *CreateRootRegionOverrideNotFound, *CreateRootRegionOverrideConflict, *CreateRootRegionOverrideInternalServerError, error)
-
+	CreateRootRegionOverrideShort(params *CreateRootRegionOverrideParams, authInfo runtime.ClientAuthInfoWriter) (*CreateRootRegionOverrideCreated, error)
 	DeleteDeployment(params *DeleteDeploymentParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteDeploymentNoContent, *DeleteDeploymentBadRequest, *DeleteDeploymentUnauthorized, *DeleteDeploymentNotFound, *DeleteDeploymentInternalServerError, error)
-
+	DeleteDeploymentShort(params *DeleteDeploymentParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteDeploymentNoContent, error)
 	DeleteDeploymentOverride(params *DeleteDeploymentOverrideParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteDeploymentOverrideOK, *DeleteDeploymentOverrideBadRequest, *DeleteDeploymentOverrideUnauthorized, *DeleteDeploymentOverrideNotFound, *DeleteDeploymentOverrideInternalServerError, error)
-
+	DeleteDeploymentOverrideShort(params *DeleteDeploymentOverrideParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteDeploymentOverrideOK, error)
 	DeleteOverrideRegionOverride(params *DeleteOverrideRegionOverrideParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteOverrideRegionOverrideOK, *DeleteOverrideRegionOverrideBadRequest, *DeleteOverrideRegionOverrideUnauthorized, *DeleteOverrideRegionOverrideNotFound, *DeleteOverrideRegionOverrideInternalServerError, error)
-
+	DeleteOverrideRegionOverrideShort(params *DeleteOverrideRegionOverrideParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteOverrideRegionOverrideOK, error)
 	DeleteRootRegionOverride(params *DeleteRootRegionOverrideParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteRootRegionOverrideOK, *DeleteRootRegionOverrideBadRequest, *DeleteRootRegionOverrideUnauthorized, *DeleteRootRegionOverrideNotFound, *DeleteRootRegionOverrideInternalServerError, error)
-
+	DeleteRootRegionOverrideShort(params *DeleteRootRegionOverrideParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteRootRegionOverrideOK, error)
 	GetAllDeployment(params *GetAllDeploymentParams, authInfo runtime.ClientAuthInfoWriter) (*GetAllDeploymentOK, *GetAllDeploymentBadRequest, *GetAllDeploymentUnauthorized, *GetAllDeploymentInternalServerError, error)
-
+	GetAllDeploymentShort(params *GetAllDeploymentParams, authInfo runtime.ClientAuthInfoWriter) (*GetAllDeploymentOK, error)
 	GetDeployment(params *GetDeploymentParams, authInfo runtime.ClientAuthInfoWriter) (*GetDeploymentOK, *GetDeploymentBadRequest, *GetDeploymentUnauthorized, *GetDeploymentNotFound, *GetDeploymentInternalServerError, error)
-
+	GetDeploymentShort(params *GetDeploymentParams, authInfo runtime.ClientAuthInfoWriter) (*GetDeploymentOK, error)
 	UpdateDeployment(params *UpdateDeploymentParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateDeploymentOK, *UpdateDeploymentBadRequest, *UpdateDeploymentUnauthorized, *UpdateDeploymentNotFound, *UpdateDeploymentInternalServerError, error)
-
+	UpdateDeploymentShort(params *UpdateDeploymentParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateDeploymentOK, error)
 	UpdateDeploymentOverride(params *UpdateDeploymentOverrideParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateDeploymentOverrideOK, *UpdateDeploymentOverrideBadRequest, *UpdateDeploymentOverrideUnauthorized, *UpdateDeploymentOverrideNotFound, *UpdateDeploymentOverrideInternalServerError, error)
-
+	UpdateDeploymentOverrideShort(params *UpdateDeploymentOverrideParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateDeploymentOverrideOK, error)
 	UpdateOverrideRegionOverride(params *UpdateOverrideRegionOverrideParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateOverrideRegionOverrideOK, *UpdateOverrideRegionOverrideBadRequest, *UpdateOverrideRegionOverrideUnauthorized, *UpdateOverrideRegionOverrideNotFound, *UpdateOverrideRegionOverrideInternalServerError, error)
-
+	UpdateOverrideRegionOverrideShort(params *UpdateOverrideRegionOverrideParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateOverrideRegionOverrideOK, error)
 	UpdateRootRegionOverride(params *UpdateRootRegionOverrideParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateRootRegionOverrideOK, *UpdateRootRegionOverrideBadRequest, *UpdateRootRegionOverrideUnauthorized, *UpdateRootRegionOverrideNotFound, *UpdateRootRegionOverrideInternalServerError, error)
+	UpdateRootRegionOverrideShort(params *UpdateRootRegionOverrideParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateRootRegionOverrideOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -85,7 +86,7 @@ func (a *Client) CreateDeployment(params *CreateDeploymentParams, authInfo runti
 		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &CreateDeploymentReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -100,16 +101,66 @@ func (a *Client) CreateDeployment(params *CreateDeploymentParams, authInfo runti
 
 	case *CreateDeploymentCreated:
 		return v, nil, nil, nil, nil, nil
+
 	case *CreateDeploymentBadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *CreateDeploymentUnauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *CreateDeploymentConflict:
 		return nil, nil, nil, v, nil, nil
+
 	case *CreateDeploymentInternalServerError:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) CreateDeploymentShort(params *CreateDeploymentParams, authInfo runtime.ClientAuthInfoWriter) (*CreateDeploymentCreated, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreateDeploymentParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "CreateDeployment",
+		Method:             "POST",
+		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CreateDeploymentReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *CreateDeploymentCreated:
+		return v, nil
+	case *CreateDeploymentBadRequest:
+		return nil, v
+	case *CreateDeploymentUnauthorized:
+		return nil, v
+	case *CreateDeploymentConflict:
+		return nil, v
+	case *CreateDeploymentInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -138,7 +189,7 @@ func (a *Client) CreateDeploymentOverride(params *CreateDeploymentOverrideParams
 		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}/overrides/version/{version}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &CreateDeploymentOverrideReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -153,18 +204,71 @@ func (a *Client) CreateDeploymentOverride(params *CreateDeploymentOverrideParams
 
 	case *CreateDeploymentOverrideCreated:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *CreateDeploymentOverrideBadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *CreateDeploymentOverrideUnauthorized:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *CreateDeploymentOverrideNotFound:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *CreateDeploymentOverrideConflict:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *CreateDeploymentOverrideInternalServerError:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) CreateDeploymentOverrideShort(params *CreateDeploymentOverrideParams, authInfo runtime.ClientAuthInfoWriter) (*CreateDeploymentOverrideCreated, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreateDeploymentOverrideParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "CreateDeploymentOverride",
+		Method:             "POST",
+		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}/overrides/version/{version}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CreateDeploymentOverrideReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *CreateDeploymentOverrideCreated:
+		return v, nil
+	case *CreateDeploymentOverrideBadRequest:
+		return nil, v
+	case *CreateDeploymentOverrideUnauthorized:
+		return nil, v
+	case *CreateDeploymentOverrideNotFound:
+		return nil, v
+	case *CreateDeploymentOverrideConflict:
+		return nil, v
+	case *CreateDeploymentOverrideInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -193,7 +297,7 @@ func (a *Client) CreateOverrideRegionOverride(params *CreateOverrideRegionOverri
 		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}/overrides/versions/{version}/regions/{region}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &CreateOverrideRegionOverrideReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -208,18 +312,71 @@ func (a *Client) CreateOverrideRegionOverride(params *CreateOverrideRegionOverri
 
 	case *CreateOverrideRegionOverrideCreated:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *CreateOverrideRegionOverrideBadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *CreateOverrideRegionOverrideUnauthorized:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *CreateOverrideRegionOverrideNotFound:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *CreateOverrideRegionOverrideConflict:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *CreateOverrideRegionOverrideInternalServerError:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) CreateOverrideRegionOverrideShort(params *CreateOverrideRegionOverrideParams, authInfo runtime.ClientAuthInfoWriter) (*CreateOverrideRegionOverrideCreated, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreateOverrideRegionOverrideParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "CreateOverrideRegionOverride",
+		Method:             "POST",
+		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}/overrides/versions/{version}/regions/{region}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CreateOverrideRegionOverrideReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *CreateOverrideRegionOverrideCreated:
+		return v, nil
+	case *CreateOverrideRegionOverrideBadRequest:
+		return nil, v
+	case *CreateOverrideRegionOverrideUnauthorized:
+		return nil, v
+	case *CreateOverrideRegionOverrideNotFound:
+		return nil, v
+	case *CreateOverrideRegionOverrideConflict:
+		return nil, v
+	case *CreateOverrideRegionOverrideInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -248,7 +405,7 @@ func (a *Client) CreateRootRegionOverride(params *CreateRootRegionOverrideParams
 		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}/overrides/regions/{region}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &CreateRootRegionOverrideReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -263,18 +420,71 @@ func (a *Client) CreateRootRegionOverride(params *CreateRootRegionOverrideParams
 
 	case *CreateRootRegionOverrideCreated:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *CreateRootRegionOverrideBadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *CreateRootRegionOverrideUnauthorized:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *CreateRootRegionOverrideNotFound:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *CreateRootRegionOverrideConflict:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *CreateRootRegionOverrideInternalServerError:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) CreateRootRegionOverrideShort(params *CreateRootRegionOverrideParams, authInfo runtime.ClientAuthInfoWriter) (*CreateRootRegionOverrideCreated, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreateRootRegionOverrideParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "CreateRootRegionOverride",
+		Method:             "POST",
+		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}/overrides/regions/{region}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CreateRootRegionOverrideReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *CreateRootRegionOverrideCreated:
+		return v, nil
+	case *CreateRootRegionOverrideBadRequest:
+		return nil, v
+	case *CreateRootRegionOverrideUnauthorized:
+		return nil, v
+	case *CreateRootRegionOverrideNotFound:
+		return nil, v
+	case *CreateRootRegionOverrideConflict:
+		return nil, v
+	case *CreateRootRegionOverrideInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -303,7 +513,7 @@ func (a *Client) DeleteDeployment(params *DeleteDeploymentParams, authInfo runti
 		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteDeploymentReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -318,16 +528,66 @@ func (a *Client) DeleteDeployment(params *DeleteDeploymentParams, authInfo runti
 
 	case *DeleteDeploymentNoContent:
 		return v, nil, nil, nil, nil, nil
+
 	case *DeleteDeploymentBadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *DeleteDeploymentUnauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *DeleteDeploymentNotFound:
 		return nil, nil, nil, v, nil, nil
+
 	case *DeleteDeploymentInternalServerError:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) DeleteDeploymentShort(params *DeleteDeploymentParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteDeploymentNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteDeploymentParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "DeleteDeployment",
+		Method:             "DELETE",
+		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteDeploymentReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeleteDeploymentNoContent:
+		return v, nil
+	case *DeleteDeploymentBadRequest:
+		return nil, v
+	case *DeleteDeploymentUnauthorized:
+		return nil, v
+	case *DeleteDeploymentNotFound:
+		return nil, v
+	case *DeleteDeploymentInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -356,7 +616,7 @@ func (a *Client) DeleteDeploymentOverride(params *DeleteDeploymentOverrideParams
 		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}/overrides/versions/{version}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteDeploymentOverrideReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -371,16 +631,66 @@ func (a *Client) DeleteDeploymentOverride(params *DeleteDeploymentOverrideParams
 
 	case *DeleteDeploymentOverrideOK:
 		return v, nil, nil, nil, nil, nil
+
 	case *DeleteDeploymentOverrideBadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *DeleteDeploymentOverrideUnauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *DeleteDeploymentOverrideNotFound:
 		return nil, nil, nil, v, nil, nil
+
 	case *DeleteDeploymentOverrideInternalServerError:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) DeleteDeploymentOverrideShort(params *DeleteDeploymentOverrideParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteDeploymentOverrideOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteDeploymentOverrideParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "DeleteDeploymentOverride",
+		Method:             "DELETE",
+		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}/overrides/versions/{version}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteDeploymentOverrideReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeleteDeploymentOverrideOK:
+		return v, nil
+	case *DeleteDeploymentOverrideBadRequest:
+		return nil, v
+	case *DeleteDeploymentOverrideUnauthorized:
+		return nil, v
+	case *DeleteDeploymentOverrideNotFound:
+		return nil, v
+	case *DeleteDeploymentOverrideInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -409,7 +719,7 @@ func (a *Client) DeleteOverrideRegionOverride(params *DeleteOverrideRegionOverri
 		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}/overrides/versions/{version}/regions/{region}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteOverrideRegionOverrideReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -424,16 +734,66 @@ func (a *Client) DeleteOverrideRegionOverride(params *DeleteOverrideRegionOverri
 
 	case *DeleteOverrideRegionOverrideOK:
 		return v, nil, nil, nil, nil, nil
+
 	case *DeleteOverrideRegionOverrideBadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *DeleteOverrideRegionOverrideUnauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *DeleteOverrideRegionOverrideNotFound:
 		return nil, nil, nil, v, nil, nil
+
 	case *DeleteOverrideRegionOverrideInternalServerError:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) DeleteOverrideRegionOverrideShort(params *DeleteOverrideRegionOverrideParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteOverrideRegionOverrideOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteOverrideRegionOverrideParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "DeleteOverrideRegionOverride",
+		Method:             "DELETE",
+		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}/overrides/versions/{version}/regions/{region}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteOverrideRegionOverrideReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeleteOverrideRegionOverrideOK:
+		return v, nil
+	case *DeleteOverrideRegionOverrideBadRequest:
+		return nil, v
+	case *DeleteOverrideRegionOverrideUnauthorized:
+		return nil, v
+	case *DeleteOverrideRegionOverrideNotFound:
+		return nil, v
+	case *DeleteOverrideRegionOverrideInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -462,7 +822,7 @@ func (a *Client) DeleteRootRegionOverride(params *DeleteRootRegionOverrideParams
 		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}/overrides/regions/{region}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteRootRegionOverrideReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -477,16 +837,66 @@ func (a *Client) DeleteRootRegionOverride(params *DeleteRootRegionOverrideParams
 
 	case *DeleteRootRegionOverrideOK:
 		return v, nil, nil, nil, nil, nil
+
 	case *DeleteRootRegionOverrideBadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *DeleteRootRegionOverrideUnauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *DeleteRootRegionOverrideNotFound:
 		return nil, nil, nil, v, nil, nil
+
 	case *DeleteRootRegionOverrideInternalServerError:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) DeleteRootRegionOverrideShort(params *DeleteRootRegionOverrideParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteRootRegionOverrideOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteRootRegionOverrideParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "DeleteRootRegionOverride",
+		Method:             "DELETE",
+		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}/overrides/regions/{region}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteRootRegionOverrideReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeleteRootRegionOverrideOK:
+		return v, nil
+	case *DeleteRootRegionOverrideBadRequest:
+		return nil, v
+	case *DeleteRootRegionOverrideUnauthorized:
+		return nil, v
+	case *DeleteRootRegionOverrideNotFound:
+		return nil, v
+	case *DeleteRootRegionOverrideInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -515,7 +925,7 @@ func (a *Client) GetAllDeployment(params *GetAllDeploymentParams, authInfo runti
 		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/configs/deployments",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetAllDeploymentReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -530,14 +940,61 @@ func (a *Client) GetAllDeployment(params *GetAllDeploymentParams, authInfo runti
 
 	case *GetAllDeploymentOK:
 		return v, nil, nil, nil, nil
+
 	case *GetAllDeploymentBadRequest:
 		return nil, v, nil, nil, nil
+
 	case *GetAllDeploymentUnauthorized:
 		return nil, nil, v, nil, nil
+
 	case *GetAllDeploymentInternalServerError:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetAllDeploymentShort(params *GetAllDeploymentParams, authInfo runtime.ClientAuthInfoWriter) (*GetAllDeploymentOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetAllDeploymentParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetAllDeployment",
+		Method:             "GET",
+		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/configs/deployments",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetAllDeploymentReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetAllDeploymentOK:
+		return v, nil
+	case *GetAllDeploymentBadRequest:
+		return nil, v
+	case *GetAllDeploymentUnauthorized:
+		return nil, v
+	case *GetAllDeploymentInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -566,7 +1023,7 @@ func (a *Client) GetDeployment(params *GetDeploymentParams, authInfo runtime.Cli
 		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetDeploymentReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -581,16 +1038,66 @@ func (a *Client) GetDeployment(params *GetDeploymentParams, authInfo runtime.Cli
 
 	case *GetDeploymentOK:
 		return v, nil, nil, nil, nil, nil
+
 	case *GetDeploymentBadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *GetDeploymentUnauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *GetDeploymentNotFound:
 		return nil, nil, nil, v, nil, nil
+
 	case *GetDeploymentInternalServerError:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetDeploymentShort(params *GetDeploymentParams, authInfo runtime.ClientAuthInfoWriter) (*GetDeploymentOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetDeploymentParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetDeployment",
+		Method:             "GET",
+		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetDeploymentReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetDeploymentOK:
+		return v, nil
+	case *GetDeploymentBadRequest:
+		return nil, v
+	case *GetDeploymentUnauthorized:
+		return nil, v
+	case *GetDeploymentNotFound:
+		return nil, v
+	case *GetDeploymentInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -619,7 +1126,7 @@ func (a *Client) UpdateDeployment(params *UpdateDeploymentParams, authInfo runti
 		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &UpdateDeploymentReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -634,16 +1141,66 @@ func (a *Client) UpdateDeployment(params *UpdateDeploymentParams, authInfo runti
 
 	case *UpdateDeploymentOK:
 		return v, nil, nil, nil, nil, nil
+
 	case *UpdateDeploymentBadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *UpdateDeploymentUnauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *UpdateDeploymentNotFound:
 		return nil, nil, nil, v, nil, nil
+
 	case *UpdateDeploymentInternalServerError:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) UpdateDeploymentShort(params *UpdateDeploymentParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateDeploymentOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateDeploymentParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "UpdateDeployment",
+		Method:             "PATCH",
+		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateDeploymentReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateDeploymentOK:
+		return v, nil
+	case *UpdateDeploymentBadRequest:
+		return nil, v
+	case *UpdateDeploymentUnauthorized:
+		return nil, v
+	case *UpdateDeploymentNotFound:
+		return nil, v
+	case *UpdateDeploymentInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -672,7 +1229,7 @@ func (a *Client) UpdateDeploymentOverride(params *UpdateDeploymentOverrideParams
 		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}/overrides/versions/{version}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &UpdateDeploymentOverrideReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -687,16 +1244,66 @@ func (a *Client) UpdateDeploymentOverride(params *UpdateDeploymentOverrideParams
 
 	case *UpdateDeploymentOverrideOK:
 		return v, nil, nil, nil, nil, nil
+
 	case *UpdateDeploymentOverrideBadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *UpdateDeploymentOverrideUnauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *UpdateDeploymentOverrideNotFound:
 		return nil, nil, nil, v, nil, nil
+
 	case *UpdateDeploymentOverrideInternalServerError:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) UpdateDeploymentOverrideShort(params *UpdateDeploymentOverrideParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateDeploymentOverrideOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateDeploymentOverrideParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "UpdateDeploymentOverride",
+		Method:             "PATCH",
+		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}/overrides/versions/{version}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateDeploymentOverrideReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateDeploymentOverrideOK:
+		return v, nil
+	case *UpdateDeploymentOverrideBadRequest:
+		return nil, v
+	case *UpdateDeploymentOverrideUnauthorized:
+		return nil, v
+	case *UpdateDeploymentOverrideNotFound:
+		return nil, v
+	case *UpdateDeploymentOverrideInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -725,7 +1332,7 @@ func (a *Client) UpdateOverrideRegionOverride(params *UpdateOverrideRegionOverri
 		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}/overrides/versions/{version}/regions/{region}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &UpdateOverrideRegionOverrideReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -740,16 +1347,66 @@ func (a *Client) UpdateOverrideRegionOverride(params *UpdateOverrideRegionOverri
 
 	case *UpdateOverrideRegionOverrideOK:
 		return v, nil, nil, nil, nil, nil
+
 	case *UpdateOverrideRegionOverrideBadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *UpdateOverrideRegionOverrideUnauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *UpdateOverrideRegionOverrideNotFound:
 		return nil, nil, nil, v, nil, nil
+
 	case *UpdateOverrideRegionOverrideInternalServerError:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) UpdateOverrideRegionOverrideShort(params *UpdateOverrideRegionOverrideParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateOverrideRegionOverrideOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateOverrideRegionOverrideParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "UpdateOverrideRegionOverride",
+		Method:             "PATCH",
+		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}/overrides/versions/{version}/regions/{region}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateOverrideRegionOverrideReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateOverrideRegionOverrideOK:
+		return v, nil
+	case *UpdateOverrideRegionOverrideBadRequest:
+		return nil, v
+	case *UpdateOverrideRegionOverrideUnauthorized:
+		return nil, v
+	case *UpdateOverrideRegionOverrideNotFound:
+		return nil, v
+	case *UpdateOverrideRegionOverrideInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -778,7 +1435,7 @@ func (a *Client) UpdateRootRegionOverride(params *UpdateRootRegionOverrideParams
 		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}/overrides/regions/{region}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &UpdateRootRegionOverrideReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -793,16 +1450,66 @@ func (a *Client) UpdateRootRegionOverride(params *UpdateRootRegionOverrideParams
 
 	case *UpdateRootRegionOverrideOK:
 		return v, nil, nil, nil, nil, nil
+
 	case *UpdateRootRegionOverrideBadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *UpdateRootRegionOverrideUnauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *UpdateRootRegionOverrideNotFound:
 		return nil, nil, nil, v, nil, nil
+
 	case *UpdateRootRegionOverrideInternalServerError:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) UpdateRootRegionOverrideShort(params *UpdateRootRegionOverrideParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateRootRegionOverrideOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateRootRegionOverrideParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "UpdateRootRegionOverride",
+		Method:             "PATCH",
+		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/configs/deployments/{deployment}/overrides/regions/{region}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateRootRegionOverrideReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateRootRegionOverrideOK:
+		return v, nil
+	case *UpdateRootRegionOverrideBadRequest:
+		return nil, v
+	case *UpdateRootRegionOverrideUnauthorized:
+		return nil, v
+	case *UpdateRootRegionOverrideNotFound:
+		return nil, v
+	case *UpdateRootRegionOverrideInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 

@@ -30,26 +30,27 @@ type Client struct {
 // ClientService is the interface for Client methods
 type ClientService interface {
 	CountServer(params *CountServerParams, authInfo runtime.ClientAuthInfoWriter) (*CountServerOK, *CountServerUnauthorized, *CountServerInternalServerError, error)
-
+	CountServerShort(params *CountServerParams, authInfo runtime.ClientAuthInfoWriter) (*CountServerOK, error)
 	CountServerDetailed(params *CountServerDetailedParams, authInfo runtime.ClientAuthInfoWriter) (*CountServerDetailedOK, *CountServerDetailedUnauthorized, *CountServerDetailedInternalServerError, error)
-
+	CountServerDetailedShort(params *CountServerDetailedParams, authInfo runtime.ClientAuthInfoWriter) (*CountServerDetailedOK, error)
 	CountSession(params *CountSessionParams, authInfo runtime.ClientAuthInfoWriter) (*CountSessionOK, *CountSessionUnauthorized, *CountSessionInternalServerError, error)
-
+	CountSessionShort(params *CountSessionParams, authInfo runtime.ClientAuthInfoWriter) (*CountSessionOK, error)
 	DeleteLocalServer(params *DeleteLocalServerParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteLocalServerNoContent, *DeleteLocalServerUnauthorized, *DeleteLocalServerInternalServerError, error)
-
+	DeleteLocalServerShort(params *DeleteLocalServerParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteLocalServerNoContent, error)
 	DeleteServer(params *DeleteServerParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteServerNoContent, *DeleteServerUnauthorized, *DeleteServerNotFound, *DeleteServerInternalServerError, error)
-
+	DeleteServerShort(params *DeleteServerParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteServerNoContent, error)
 	DeleteSession(params *DeleteSessionParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteSessionNoContent, *DeleteSessionUnauthorized, *DeleteSessionInternalServerError, error)
-
+	DeleteSessionShort(params *DeleteSessionParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteSessionNoContent, error)
 	GetServer(params *GetServerParams, authInfo runtime.ClientAuthInfoWriter) (*GetServerOK, *GetServerUnauthorized, *GetServerNotFound, *GetServerInternalServerError, error)
-
+	GetServerShort(params *GetServerParams, authInfo runtime.ClientAuthInfoWriter) (*GetServerOK, error)
 	ListLocalServer(params *ListLocalServerParams, authInfo runtime.ClientAuthInfoWriter) (*ListLocalServerOK, *ListLocalServerUnauthorized, *ListLocalServerInternalServerError, error)
-
+	ListLocalServerShort(params *ListLocalServerParams, authInfo runtime.ClientAuthInfoWriter) (*ListLocalServerOK, error)
 	ListServer(params *ListServerParams, authInfo runtime.ClientAuthInfoWriter) (*ListServerOK, *ListServerUnauthorized, *ListServerInternalServerError, error)
-
+	ListServerShort(params *ListServerParams, authInfo runtime.ClientAuthInfoWriter) (*ListServerOK, error)
 	ListSession(params *ListSessionParams, authInfo runtime.ClientAuthInfoWriter) (*ListSessionOK, *ListSessionUnauthorized, *ListSessionInternalServerError, error)
-
+	ListSessionShort(params *ListSessionParams, authInfo runtime.ClientAuthInfoWriter) (*ListSessionOK, error)
 	GetServerLogs(params *GetServerLogsParams, authInfo runtime.ClientAuthInfoWriter) (*GetServerLogsOK, *GetServerLogsBadRequest, *GetServerLogsUnauthorized, *GetServerLogsNotFound, *GetServerLogsInternalServerError, error)
+	GetServerLogsShort(params *GetServerLogsParams, authInfo runtime.ClientAuthInfoWriter) (*GetServerLogsOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -79,7 +80,7 @@ func (a *Client) CountServer(params *CountServerParams, authInfo runtime.ClientA
 		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/servers/count",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &CountServerReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -94,12 +95,56 @@ func (a *Client) CountServer(params *CountServerParams, authInfo runtime.ClientA
 
 	case *CountServerOK:
 		return v, nil, nil, nil
+
 	case *CountServerUnauthorized:
 		return nil, v, nil, nil
+
 	case *CountServerInternalServerError:
 		return nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) CountServerShort(params *CountServerParams, authInfo runtime.ClientAuthInfoWriter) (*CountServerOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCountServerParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "CountServer",
+		Method:             "GET",
+		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/servers/count",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CountServerReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *CountServerOK:
+		return v, nil
+	case *CountServerUnauthorized:
+		return nil, v
+	case *CountServerInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -128,7 +173,7 @@ func (a *Client) CountServerDetailed(params *CountServerDetailedParams, authInfo
 		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/servers/count/detailed",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &CountServerDetailedReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -143,12 +188,56 @@ func (a *Client) CountServerDetailed(params *CountServerDetailedParams, authInfo
 
 	case *CountServerDetailedOK:
 		return v, nil, nil, nil
+
 	case *CountServerDetailedUnauthorized:
 		return nil, v, nil, nil
+
 	case *CountServerDetailedInternalServerError:
 		return nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) CountServerDetailedShort(params *CountServerDetailedParams, authInfo runtime.ClientAuthInfoWriter) (*CountServerDetailedOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCountServerDetailedParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "CountServerDetailed",
+		Method:             "GET",
+		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/servers/count/detailed",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CountServerDetailedReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *CountServerDetailedOK:
+		return v, nil
+	case *CountServerDetailedUnauthorized:
+		return nil, v
+	case *CountServerDetailedInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -177,7 +266,7 @@ func (a *Client) CountSession(params *CountSessionParams, authInfo runtime.Clien
 		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/sessions/count",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &CountSessionReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -192,12 +281,56 @@ func (a *Client) CountSession(params *CountSessionParams, authInfo runtime.Clien
 
 	case *CountSessionOK:
 		return v, nil, nil, nil
+
 	case *CountSessionUnauthorized:
 		return nil, v, nil, nil
+
 	case *CountSessionInternalServerError:
 		return nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) CountSessionShort(params *CountSessionParams, authInfo runtime.ClientAuthInfoWriter) (*CountSessionOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCountSessionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "CountSession",
+		Method:             "GET",
+		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/sessions/count",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CountSessionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *CountSessionOK:
+		return v, nil
+	case *CountSessionUnauthorized:
+		return nil, v
+	case *CountSessionInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -227,7 +360,7 @@ func (a *Client) DeleteLocalServer(params *DeleteLocalServerParams, authInfo run
 		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/servers/local/{name}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteLocalServerReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -242,12 +375,56 @@ func (a *Client) DeleteLocalServer(params *DeleteLocalServerParams, authInfo run
 
 	case *DeleteLocalServerNoContent:
 		return v, nil, nil, nil
+
 	case *DeleteLocalServerUnauthorized:
 		return nil, v, nil, nil
+
 	case *DeleteLocalServerInternalServerError:
 		return nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) DeleteLocalServerShort(params *DeleteLocalServerParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteLocalServerNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteLocalServerParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "DeleteLocalServer",
+		Method:             "DELETE",
+		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/servers/local/{name}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteLocalServerReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeleteLocalServerNoContent:
+		return v, nil
+	case *DeleteLocalServerUnauthorized:
+		return nil, v
+	case *DeleteLocalServerInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -276,7 +453,7 @@ func (a *Client) DeleteServer(params *DeleteServerParams, authInfo runtime.Clien
 		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/servers/{podName}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteServerReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -291,14 +468,61 @@ func (a *Client) DeleteServer(params *DeleteServerParams, authInfo runtime.Clien
 
 	case *DeleteServerNoContent:
 		return v, nil, nil, nil, nil
+
 	case *DeleteServerUnauthorized:
 		return nil, v, nil, nil, nil
+
 	case *DeleteServerNotFound:
 		return nil, nil, v, nil, nil
+
 	case *DeleteServerInternalServerError:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) DeleteServerShort(params *DeleteServerParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteServerNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteServerParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "DeleteServer",
+		Method:             "DELETE",
+		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/servers/{podName}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteServerReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeleteServerNoContent:
+		return v, nil
+	case *DeleteServerUnauthorized:
+		return nil, v
+	case *DeleteServerNotFound:
+		return nil, v
+	case *DeleteServerInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -327,7 +551,7 @@ func (a *Client) DeleteSession(params *DeleteSessionParams, authInfo runtime.Cli
 		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/sessions/{sessionID}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteSessionReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -342,12 +566,56 @@ func (a *Client) DeleteSession(params *DeleteSessionParams, authInfo runtime.Cli
 
 	case *DeleteSessionNoContent:
 		return v, nil, nil, nil
+
 	case *DeleteSessionUnauthorized:
 		return nil, v, nil, nil
+
 	case *DeleteSessionInternalServerError:
 		return nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) DeleteSessionShort(params *DeleteSessionParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteSessionNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteSessionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "DeleteSession",
+		Method:             "DELETE",
+		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/sessions/{sessionID}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteSessionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeleteSessionNoContent:
+		return v, nil
+	case *DeleteSessionUnauthorized:
+		return nil, v
+	case *DeleteSessionInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -376,7 +644,7 @@ func (a *Client) GetServer(params *GetServerParams, authInfo runtime.ClientAuthI
 		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/servers/{podName}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetServerReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -391,14 +659,61 @@ func (a *Client) GetServer(params *GetServerParams, authInfo runtime.ClientAuthI
 
 	case *GetServerOK:
 		return v, nil, nil, nil, nil
+
 	case *GetServerUnauthorized:
 		return nil, v, nil, nil, nil
+
 	case *GetServerNotFound:
 		return nil, nil, v, nil, nil
+
 	case *GetServerInternalServerError:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetServerShort(params *GetServerParams, authInfo runtime.ClientAuthInfoWriter) (*GetServerOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetServerParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetServer",
+		Method:             "GET",
+		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/servers/{podName}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetServerReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetServerOK:
+		return v, nil
+	case *GetServerUnauthorized:
+		return nil, v
+	case *GetServerNotFound:
+		return nil, v
+	case *GetServerInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -427,7 +742,7 @@ func (a *Client) ListLocalServer(params *ListLocalServerParams, authInfo runtime
 		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/servers/local",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &ListLocalServerReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -442,12 +757,56 @@ func (a *Client) ListLocalServer(params *ListLocalServerParams, authInfo runtime
 
 	case *ListLocalServerOK:
 		return v, nil, nil, nil
+
 	case *ListLocalServerUnauthorized:
 		return nil, v, nil, nil
+
 	case *ListLocalServerInternalServerError:
 		return nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) ListLocalServerShort(params *ListLocalServerParams, authInfo runtime.ClientAuthInfoWriter) (*ListLocalServerOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewListLocalServerParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "ListLocalServer",
+		Method:             "GET",
+		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/servers/local",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ListLocalServerReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *ListLocalServerOK:
+		return v, nil
+	case *ListLocalServerUnauthorized:
+		return nil, v
+	case *ListLocalServerInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -476,7 +835,7 @@ func (a *Client) ListServer(params *ListServerParams, authInfo runtime.ClientAut
 		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/servers",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &ListServerReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -491,12 +850,56 @@ func (a *Client) ListServer(params *ListServerParams, authInfo runtime.ClientAut
 
 	case *ListServerOK:
 		return v, nil, nil, nil
+
 	case *ListServerUnauthorized:
 		return nil, v, nil, nil
+
 	case *ListServerInternalServerError:
 		return nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) ListServerShort(params *ListServerParams, authInfo runtime.ClientAuthInfoWriter) (*ListServerOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewListServerParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "ListServer",
+		Method:             "GET",
+		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/servers",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ListServerReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *ListServerOK:
+		return v, nil
+	case *ListServerUnauthorized:
+		return nil, v
+	case *ListServerInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -525,7 +928,7 @@ func (a *Client) ListSession(params *ListSessionParams, authInfo runtime.ClientA
 		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/sessions",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &ListSessionReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -540,12 +943,56 @@ func (a *Client) ListSession(params *ListSessionParams, authInfo runtime.ClientA
 
 	case *ListSessionOK:
 		return v, nil, nil, nil
+
 	case *ListSessionUnauthorized:
 		return nil, v, nil, nil
+
 	case *ListSessionInternalServerError:
 		return nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) ListSessionShort(params *ListSessionParams, authInfo runtime.ClientAuthInfoWriter) (*ListSessionOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewListSessionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "ListSession",
+		Method:             "GET",
+		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/sessions",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ListSessionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *ListSessionOK:
+		return v, nil
+	case *ListSessionUnauthorized:
+		return nil, v
+	case *ListSessionInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -556,7 +1003,7 @@ func (a *Client) ListSession(params *ListSessionParams, authInfo runtime.ClientA
 
 Required scope: social
 
-This endpoint queries a specified dedicated server's logs.
+This endpoint queries a specified dedicated server&#39;s logs.
 */
 func (a *Client) GetServerLogs(params *GetServerLogsParams, authInfo runtime.ClientAuthInfoWriter) (*GetServerLogsOK, *GetServerLogsBadRequest, *GetServerLogsUnauthorized, *GetServerLogsNotFound, *GetServerLogsInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -574,7 +1021,7 @@ func (a *Client) GetServerLogs(params *GetServerLogsParams, authInfo runtime.Cli
 		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/servers/{podName}/logs",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetServerLogsReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -589,16 +1036,66 @@ func (a *Client) GetServerLogs(params *GetServerLogsParams, authInfo runtime.Cli
 
 	case *GetServerLogsOK:
 		return v, nil, nil, nil, nil, nil
+
 	case *GetServerLogsBadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *GetServerLogsUnauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *GetServerLogsNotFound:
 		return nil, nil, nil, v, nil, nil
+
 	case *GetServerLogsInternalServerError:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetServerLogsShort(params *GetServerLogsParams, authInfo runtime.ClientAuthInfoWriter) (*GetServerLogsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetServerLogsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getServerLogs",
+		Method:             "GET",
+		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/servers/{podName}/logs",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetServerLogsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetServerLogsOK:
+		return v, nil
+	case *GetServerLogsBadRequest:
+		return nil, v
+	case *GetServerLogsUnauthorized:
+		return nil, v
+	case *GetServerLogsNotFound:
+		return nil, v
+	case *GetServerLogsInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 

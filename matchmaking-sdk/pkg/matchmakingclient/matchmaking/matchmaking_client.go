@@ -30,48 +30,49 @@ type Client struct {
 // ClientService is the interface for Client methods
 type ClientService interface {
 	AddUserIntoSessionInChannel(params *AddUserIntoSessionInChannelParams, authInfo runtime.ClientAuthInfoWriter) (*AddUserIntoSessionInChannelOK, *AddUserIntoSessionInChannelBadRequest, *AddUserIntoSessionInChannelUnauthorized, *AddUserIntoSessionInChannelForbidden, *AddUserIntoSessionInChannelNotFound, *AddUserIntoSessionInChannelInternalServerError, error)
-
+	AddUserIntoSessionInChannelShort(params *AddUserIntoSessionInChannelParams, authInfo runtime.ClientAuthInfoWriter) (*AddUserIntoSessionInChannelOK, error)
 	BulkGetSessions(params *BulkGetSessionsParams, authInfo runtime.ClientAuthInfoWriter) (*BulkGetSessionsOK, *BulkGetSessionsBadRequest, *BulkGetSessionsUnauthorized, *BulkGetSessionsForbidden, *BulkGetSessionsNotFound, *BulkGetSessionsInternalServerError, error)
-
+	BulkGetSessionsShort(params *BulkGetSessionsParams, authInfo runtime.ClientAuthInfoWriter) (*BulkGetSessionsOK, error)
 	CreateChannelHandler(params *CreateChannelHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*CreateChannelHandlerCreated, *CreateChannelHandlerBadRequest, *CreateChannelHandlerUnauthorized, *CreateChannelHandlerForbidden, *CreateChannelHandlerConflict, *CreateChannelHandlerInternalServerError, error)
-
+	CreateChannelHandlerShort(params *CreateChannelHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*CreateChannelHandlerCreated, error)
 	DeleteChannelHandler(params *DeleteChannelHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteChannelHandlerNoContent, *DeleteChannelHandlerUnauthorized, *DeleteChannelHandlerForbidden, *DeleteChannelHandlerInternalServerError, error)
-
+	DeleteChannelHandlerShort(params *DeleteChannelHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteChannelHandlerNoContent, error)
 	DeleteSessionInChannel(params *DeleteSessionInChannelParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteSessionInChannelNoContent, *DeleteSessionInChannelBadRequest, *DeleteSessionInChannelUnauthorized, *DeleteSessionInChannelForbidden, *DeleteSessionInChannelNotFound, *DeleteSessionInChannelInternalServerError, error)
-
+	DeleteSessionInChannelShort(params *DeleteSessionInChannelParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteSessionInChannelNoContent, error)
 	DeleteUserFromSessionInChannel(params *DeleteUserFromSessionInChannelParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserFromSessionInChannelOK, *DeleteUserFromSessionInChannelNoContent, *DeleteUserFromSessionInChannelBadRequest, *DeleteUserFromSessionInChannelUnauthorized, *DeleteUserFromSessionInChannelForbidden, *DeleteUserFromSessionInChannelNotFound, *DeleteUserFromSessionInChannelInternalServerError, error)
-
+	DeleteUserFromSessionInChannelShort(params *DeleteUserFromSessionInChannelParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserFromSessionInChannelOK, error)
 	DequeueSessionHandler(params *DequeueSessionHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*DequeueSessionHandlerNoContent, *DequeueSessionHandlerBadRequest, *DequeueSessionHandlerUnauthorized, *DequeueSessionHandlerForbidden, *DequeueSessionHandlerNotFound, *DequeueSessionHandlerInternalServerError, error)
-
+	DequeueSessionHandlerShort(params *DequeueSessionHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*DequeueSessionHandlerNoContent, error)
 	ExportChannels(params *ExportChannelsParams, authInfo runtime.ClientAuthInfoWriter) (*ExportChannelsOK, *ExportChannelsUnauthorized, *ExportChannelsForbidden, *ExportChannelsInternalServerError, error)
-
+	ExportChannelsShort(params *ExportChannelsParams, authInfo runtime.ClientAuthInfoWriter) (*ExportChannelsOK, error)
 	GetAllChannelsHandler(params *GetAllChannelsHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*GetAllChannelsHandlerOK, *GetAllChannelsHandlerBadRequest, *GetAllChannelsHandlerUnauthorized, *GetAllChannelsHandlerForbidden, *GetAllChannelsHandlerConflict, *GetAllChannelsHandlerInternalServerError, error)
-
+	GetAllChannelsHandlerShort(params *GetAllChannelsHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*GetAllChannelsHandlerOK, error)
 	GetAllPartyInAllChannel(params *GetAllPartyInAllChannelParams, authInfo runtime.ClientAuthInfoWriter) (*GetAllPartyInAllChannelOK, *GetAllPartyInAllChannelBadRequest, *GetAllPartyInAllChannelUnauthorized, *GetAllPartyInAllChannelForbidden, *GetAllPartyInAllChannelNotFound, *GetAllPartyInAllChannelInternalServerError, error)
-
+	GetAllPartyInAllChannelShort(params *GetAllPartyInAllChannelParams, authInfo runtime.ClientAuthInfoWriter) (*GetAllPartyInAllChannelOK, error)
 	GetAllPartyInChannel(params *GetAllPartyInChannelParams, authInfo runtime.ClientAuthInfoWriter) (*GetAllPartyInChannelOK, *GetAllPartyInChannelBadRequest, *GetAllPartyInChannelUnauthorized, *GetAllPartyInChannelForbidden, *GetAllPartyInChannelNotFound, *GetAllPartyInChannelInternalServerError, error)
-
+	GetAllPartyInChannelShort(params *GetAllPartyInChannelParams, authInfo runtime.ClientAuthInfoWriter) (*GetAllPartyInChannelOK, error)
 	GetAllSessionsInChannel(params *GetAllSessionsInChannelParams, authInfo runtime.ClientAuthInfoWriter) (*GetAllSessionsInChannelOK, *GetAllSessionsInChannelBadRequest, *GetAllSessionsInChannelUnauthorized, *GetAllSessionsInChannelForbidden, *GetAllSessionsInChannelNotFound, *GetAllSessionsInChannelInternalServerError, error)
-
+	GetAllSessionsInChannelShort(params *GetAllSessionsInChannelParams, authInfo runtime.ClientAuthInfoWriter) (*GetAllSessionsInChannelOK, error)
 	GetSessionHistoryDetailed(params *GetSessionHistoryDetailedParams, authInfo runtime.ClientAuthInfoWriter) (*GetSessionHistoryDetailedOK, *GetSessionHistoryDetailedBadRequest, *GetSessionHistoryDetailedUnauthorized, *GetSessionHistoryDetailedForbidden, *GetSessionHistoryDetailedNotFound, *GetSessionHistoryDetailedInternalServerError, error)
-
+	GetSessionHistoryDetailedShort(params *GetSessionHistoryDetailedParams, authInfo runtime.ClientAuthInfoWriter) (*GetSessionHistoryDetailedOK, error)
 	GetSingleMatchmakingChannel(params *GetSingleMatchmakingChannelParams, authInfo runtime.ClientAuthInfoWriter) (*GetSingleMatchmakingChannelOK, *GetSingleMatchmakingChannelBadRequest, *GetSingleMatchmakingChannelUnauthorized, *GetSingleMatchmakingChannelForbidden, *GetSingleMatchmakingChannelNotFound, *GetSingleMatchmakingChannelInternalServerError, error)
-
+	GetSingleMatchmakingChannelShort(params *GetSingleMatchmakingChannelParams, authInfo runtime.ClientAuthInfoWriter) (*GetSingleMatchmakingChannelOK, error)
 	ImportChannels(params *ImportChannelsParams, authInfo runtime.ClientAuthInfoWriter) (*ImportChannelsOK, *ImportChannelsBadRequest, *ImportChannelsUnauthorized, *ImportChannelsForbidden, *ImportChannelsInternalServerError, error)
-
+	ImportChannelsShort(params *ImportChannelsParams, authInfo runtime.ClientAuthInfoWriter) (*ImportChannelsOK, error)
 	PublicGetAllMatchmakingChannel(params *PublicGetAllMatchmakingChannelParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetAllMatchmakingChannelOK, *PublicGetAllMatchmakingChannelBadRequest, *PublicGetAllMatchmakingChannelUnauthorized, *PublicGetAllMatchmakingChannelForbidden, *PublicGetAllMatchmakingChannelConflict, *PublicGetAllMatchmakingChannelInternalServerError, error)
-
+	PublicGetAllMatchmakingChannelShort(params *PublicGetAllMatchmakingChannelParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetAllMatchmakingChannelOK, error)
 	PublicGetSingleMatchmakingChannel(params *PublicGetSingleMatchmakingChannelParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetSingleMatchmakingChannelOK, *PublicGetSingleMatchmakingChannelBadRequest, *PublicGetSingleMatchmakingChannelUnauthorized, *PublicGetSingleMatchmakingChannelForbidden, *PublicGetSingleMatchmakingChannelNotFound, *PublicGetSingleMatchmakingChannelInternalServerError, error)
-
+	PublicGetSingleMatchmakingChannelShort(params *PublicGetSingleMatchmakingChannelParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetSingleMatchmakingChannelOK, error)
 	QuerySessionHandler(params *QuerySessionHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*QuerySessionHandlerOK, *QuerySessionHandlerBadRequest, *QuerySessionHandlerUnauthorized, *QuerySessionHandlerForbidden, *QuerySessionHandlerNotFound, *QuerySessionHandlerInternalServerError, error)
-
+	QuerySessionHandlerShort(params *QuerySessionHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*QuerySessionHandlerOK, error)
 	QueueSessionHandler(params *QueueSessionHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*QueueSessionHandlerNoContent, *QueueSessionHandlerBadRequest, *QueueSessionHandlerUnauthorized, *QueueSessionHandlerForbidden, *QueueSessionHandlerInternalServerError, error)
-
+	QueueSessionHandlerShort(params *QueueSessionHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*QueueSessionHandlerNoContent, error)
 	SearchSessions(params *SearchSessionsParams, authInfo runtime.ClientAuthInfoWriter) (*SearchSessionsOK, *SearchSessionsBadRequest, *SearchSessionsUnauthorized, *SearchSessionsForbidden, *SearchSessionsNotFound, *SearchSessionsInternalServerError, error)
-
+	SearchSessionsShort(params *SearchSessionsParams, authInfo runtime.ClientAuthInfoWriter) (*SearchSessionsOK, error)
 	StoreMatchResults(params *StoreMatchResultsParams, authInfo runtime.ClientAuthInfoWriter) (*StoreMatchResultsOK, *StoreMatchResultsBadRequest, *StoreMatchResultsUnauthorized, *StoreMatchResultsForbidden, *StoreMatchResultsInternalServerError, error)
-
+	StoreMatchResultsShort(params *StoreMatchResultsParams, authInfo runtime.ClientAuthInfoWriter) (*StoreMatchResultsOK, error)
 	UpdateMatchmakingChannel(params *UpdateMatchmakingChannelParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateMatchmakingChannelNoContent, *UpdateMatchmakingChannelBadRequest, *UpdateMatchmakingChannelUnauthorized, *UpdateMatchmakingChannelForbidden, *UpdateMatchmakingChannelNotFound, *UpdateMatchmakingChannelInternalServerError, error)
+	UpdateMatchmakingChannelShort(params *UpdateMatchmakingChannelParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateMatchmakingChannelNoContent, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -101,7 +102,7 @@ func (a *Client) AddUserIntoSessionInChannel(params *AddUserIntoSessionInChannel
 		PathPattern:        "/matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/sessions/{matchID}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AddUserIntoSessionInChannelReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -116,18 +117,71 @@ func (a *Client) AddUserIntoSessionInChannel(params *AddUserIntoSessionInChannel
 
 	case *AddUserIntoSessionInChannelOK:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *AddUserIntoSessionInChannelBadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *AddUserIntoSessionInChannelUnauthorized:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *AddUserIntoSessionInChannelForbidden:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *AddUserIntoSessionInChannelNotFound:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *AddUserIntoSessionInChannelInternalServerError:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AddUserIntoSessionInChannelShort(params *AddUserIntoSessionInChannelParams, authInfo runtime.ClientAuthInfoWriter) (*AddUserIntoSessionInChannelOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAddUserIntoSessionInChannelParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AddUserIntoSessionInChannel",
+		Method:             "POST",
+		PathPattern:        "/matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/sessions/{matchID}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AddUserIntoSessionInChannelReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AddUserIntoSessionInChannelOK:
+		return v, nil
+	case *AddUserIntoSessionInChannelBadRequest:
+		return nil, v
+	case *AddUserIntoSessionInChannelUnauthorized:
+		return nil, v
+	case *AddUserIntoSessionInChannelForbidden:
+		return nil, v
+	case *AddUserIntoSessionInChannelNotFound:
+		return nil, v
+	case *AddUserIntoSessionInChannelInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -156,7 +210,7 @@ func (a *Client) BulkGetSessions(params *BulkGetSessionsParams, authInfo runtime
 		PathPattern:        "/matchmaking/v1/admin/namespaces/{namespace}/channels/all/sessions/bulk",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &BulkGetSessionsReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -171,18 +225,71 @@ func (a *Client) BulkGetSessions(params *BulkGetSessionsParams, authInfo runtime
 
 	case *BulkGetSessionsOK:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *BulkGetSessionsBadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *BulkGetSessionsUnauthorized:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *BulkGetSessionsForbidden:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *BulkGetSessionsNotFound:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *BulkGetSessionsInternalServerError:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) BulkGetSessionsShort(params *BulkGetSessionsParams, authInfo runtime.ClientAuthInfoWriter) (*BulkGetSessionsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewBulkGetSessionsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "BulkGetSessions",
+		Method:             "GET",
+		PathPattern:        "/matchmaking/v1/admin/namespaces/{namespace}/channels/all/sessions/bulk",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &BulkGetSessionsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *BulkGetSessionsOK:
+		return v, nil
+	case *BulkGetSessionsBadRequest:
+		return nil, v
+	case *BulkGetSessionsUnauthorized:
+		return nil, v
+	case *BulkGetSessionsForbidden:
+		return nil, v
+	case *BulkGetSessionsNotFound:
+		return nil, v
+	case *BulkGetSessionsInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -206,7 +313,7 @@ Rule Set
 
 Matching Rule used to classify the player. Player that has matched criteria will be grouped together within an ally.
 
-Valid value for criteria is "distance"
+Valid value for criteria is &#34;distance&#34;
 
 */
 func (a *Client) CreateChannelHandler(params *CreateChannelHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*CreateChannelHandlerCreated, *CreateChannelHandlerBadRequest, *CreateChannelHandlerUnauthorized, *CreateChannelHandlerForbidden, *CreateChannelHandlerConflict, *CreateChannelHandlerInternalServerError, error) {
@@ -225,7 +332,7 @@ func (a *Client) CreateChannelHandler(params *CreateChannelHandlerParams, authIn
 		PathPattern:        "/matchmaking/namespaces/{namespace}/channels",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &CreateChannelHandlerReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -240,18 +347,71 @@ func (a *Client) CreateChannelHandler(params *CreateChannelHandlerParams, authIn
 
 	case *CreateChannelHandlerCreated:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *CreateChannelHandlerBadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *CreateChannelHandlerUnauthorized:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *CreateChannelHandlerForbidden:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *CreateChannelHandlerConflict:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *CreateChannelHandlerInternalServerError:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) CreateChannelHandlerShort(params *CreateChannelHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*CreateChannelHandlerCreated, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreateChannelHandlerParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "CreateChannelHandler",
+		Method:             "POST",
+		PathPattern:        "/matchmaking/namespaces/{namespace}/channels",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CreateChannelHandlerReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *CreateChannelHandlerCreated:
+		return v, nil
+	case *CreateChannelHandlerBadRequest:
+		return nil, v
+	case *CreateChannelHandlerUnauthorized:
+		return nil, v
+	case *CreateChannelHandlerForbidden:
+		return nil, v
+	case *CreateChannelHandlerConflict:
+		return nil, v
+	case *CreateChannelHandlerInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -284,7 +444,7 @@ func (a *Client) DeleteChannelHandler(params *DeleteChannelHandlerParams, authIn
 		PathPattern:        "/matchmaking/namespaces/{namespace}/channels/{channel}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteChannelHandlerReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -299,14 +459,61 @@ func (a *Client) DeleteChannelHandler(params *DeleteChannelHandlerParams, authIn
 
 	case *DeleteChannelHandlerNoContent:
 		return v, nil, nil, nil, nil
+
 	case *DeleteChannelHandlerUnauthorized:
 		return nil, v, nil, nil, nil
+
 	case *DeleteChannelHandlerForbidden:
 		return nil, nil, v, nil, nil
+
 	case *DeleteChannelHandlerInternalServerError:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) DeleteChannelHandlerShort(params *DeleteChannelHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteChannelHandlerNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteChannelHandlerParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "DeleteChannelHandler",
+		Method:             "DELETE",
+		PathPattern:        "/matchmaking/namespaces/{namespace}/channels/{channel}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteChannelHandlerReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeleteChannelHandlerNoContent:
+		return v, nil
+	case *DeleteChannelHandlerUnauthorized:
+		return nil, v
+	case *DeleteChannelHandlerForbidden:
+		return nil, v
+	case *DeleteChannelHandlerInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -335,7 +542,7 @@ func (a *Client) DeleteSessionInChannel(params *DeleteSessionInChannelParams, au
 		PathPattern:        "/matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/sessions/{matchID}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteSessionInChannelReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -350,18 +557,71 @@ func (a *Client) DeleteSessionInChannel(params *DeleteSessionInChannelParams, au
 
 	case *DeleteSessionInChannelNoContent:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *DeleteSessionInChannelBadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *DeleteSessionInChannelUnauthorized:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *DeleteSessionInChannelForbidden:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *DeleteSessionInChannelNotFound:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *DeleteSessionInChannelInternalServerError:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) DeleteSessionInChannelShort(params *DeleteSessionInChannelParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteSessionInChannelNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteSessionInChannelParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "DeleteSessionInChannel",
+		Method:             "DELETE",
+		PathPattern:        "/matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/sessions/{matchID}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteSessionInChannelReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeleteSessionInChannelNoContent:
+		return v, nil
+	case *DeleteSessionInChannelBadRequest:
+		return nil, v
+	case *DeleteSessionInChannelUnauthorized:
+		return nil, v
+	case *DeleteSessionInChannelForbidden:
+		return nil, v
+	case *DeleteSessionInChannelNotFound:
+		return nil, v
+	case *DeleteSessionInChannelInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -390,7 +650,7 @@ func (a *Client) DeleteUserFromSessionInChannel(params *DeleteUserFromSessionInC
 		PathPattern:        "/matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/sessions/{matchID}/users/{userID}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteUserFromSessionInChannelReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -405,20 +665,76 @@ func (a *Client) DeleteUserFromSessionInChannel(params *DeleteUserFromSessionInC
 
 	case *DeleteUserFromSessionInChannelOK:
 		return v, nil, nil, nil, nil, nil, nil, nil
+
 	case *DeleteUserFromSessionInChannelNoContent:
 		return nil, v, nil, nil, nil, nil, nil, nil
+
 	case *DeleteUserFromSessionInChannelBadRequest:
 		return nil, nil, v, nil, nil, nil, nil, nil
+
 	case *DeleteUserFromSessionInChannelUnauthorized:
 		return nil, nil, nil, v, nil, nil, nil, nil
+
 	case *DeleteUserFromSessionInChannelForbidden:
 		return nil, nil, nil, nil, v, nil, nil, nil
+
 	case *DeleteUserFromSessionInChannelNotFound:
 		return nil, nil, nil, nil, nil, v, nil, nil
+
 	case *DeleteUserFromSessionInChannelInternalServerError:
 		return nil, nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) DeleteUserFromSessionInChannelShort(params *DeleteUserFromSessionInChannelParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserFromSessionInChannelOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteUserFromSessionInChannelParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "DeleteUserFromSessionInChannel",
+		Method:             "DELETE",
+		PathPattern:        "/matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/sessions/{matchID}/users/{userID}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteUserFromSessionInChannelReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeleteUserFromSessionInChannelOK:
+		return v, nil, nil
+	case *DeleteUserFromSessionInChannelNoContent:
+		return nil, v, nil
+	case *DeleteUserFromSessionInChannelBadRequest:
+		return nil, nil, v
+	case *DeleteUserFromSessionInChannelUnauthorized:
+		return nil, nil, v
+	case *DeleteUserFromSessionInChannelForbidden:
+		return nil, nil, v
+	case *DeleteUserFromSessionInChannelNotFound:
+		return nil, nil, v
+	case *DeleteUserFromSessionInChannelInternalServerError:
+		return nil, nil, v
+
+	default:
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -429,7 +745,7 @@ func (a *Client) DeleteUserFromSessionInChannel(params *DeleteUserFromSessionInC
 
 Required Scope: social
 
-Dequeues joinable session so that it will not be matched with player's match request tickets.
+Dequeues joinable session so that it will not be matched with player&#39;s match request tickets.
 
 This endpoint is intended to be called by game server to let matchmaker know that
 the game server does not want more players to its session, even though it is not full.
@@ -451,7 +767,7 @@ func (a *Client) DequeueSessionHandler(params *DequeueSessionHandlerParams, auth
 		PathPattern:        "/matchmaking/namespaces/{namespace}/sessions/dequeue",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DequeueSessionHandlerReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -466,18 +782,71 @@ func (a *Client) DequeueSessionHandler(params *DequeueSessionHandlerParams, auth
 
 	case *DequeueSessionHandlerNoContent:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *DequeueSessionHandlerBadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *DequeueSessionHandlerUnauthorized:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *DequeueSessionHandlerForbidden:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *DequeueSessionHandlerNotFound:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *DequeueSessionHandlerInternalServerError:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) DequeueSessionHandlerShort(params *DequeueSessionHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*DequeueSessionHandlerNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDequeueSessionHandlerParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "DequeueSessionHandler",
+		Method:             "POST",
+		PathPattern:        "/matchmaking/namespaces/{namespace}/sessions/dequeue",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DequeueSessionHandlerReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DequeueSessionHandlerNoContent:
+		return v, nil
+	case *DequeueSessionHandlerBadRequest:
+		return nil, v
+	case *DequeueSessionHandlerUnauthorized:
+		return nil, v
+	case *DequeueSessionHandlerForbidden:
+		return nil, v
+	case *DequeueSessionHandlerNotFound:
+		return nil, v
+	case *DequeueSessionHandlerInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -508,7 +877,7 @@ func (a *Client) ExportChannels(params *ExportChannelsParams, authInfo runtime.C
 		PathPattern:        "/matchmaking/v1/admin/namespaces/{namespace}/channels/export",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &ExportChannelsReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -523,14 +892,61 @@ func (a *Client) ExportChannels(params *ExportChannelsParams, authInfo runtime.C
 
 	case *ExportChannelsOK:
 		return v, nil, nil, nil, nil
+
 	case *ExportChannelsUnauthorized:
 		return nil, v, nil, nil, nil
+
 	case *ExportChannelsForbidden:
 		return nil, nil, v, nil, nil
+
 	case *ExportChannelsInternalServerError:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) ExportChannelsShort(params *ExportChannelsParams, authInfo runtime.ClientAuthInfoWriter) (*ExportChannelsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewExportChannelsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "ExportChannels",
+		Method:             "GET",
+		PathPattern:        "/matchmaking/v1/admin/namespaces/{namespace}/channels/export",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ExportChannelsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *ExportChannelsOK:
+		return v, nil
+	case *ExportChannelsUnauthorized:
+		return nil, v
+	case *ExportChannelsForbidden:
+		return nil, v
+	case *ExportChannelsInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -560,7 +976,7 @@ func (a *Client) GetAllChannelsHandler(params *GetAllChannelsHandlerParams, auth
 		PathPattern:        "/matchmaking/namespaces/{namespace}/channels",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetAllChannelsHandlerReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -575,18 +991,71 @@ func (a *Client) GetAllChannelsHandler(params *GetAllChannelsHandlerParams, auth
 
 	case *GetAllChannelsHandlerOK:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *GetAllChannelsHandlerBadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *GetAllChannelsHandlerUnauthorized:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *GetAllChannelsHandlerForbidden:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *GetAllChannelsHandlerConflict:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *GetAllChannelsHandlerInternalServerError:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetAllChannelsHandlerShort(params *GetAllChannelsHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*GetAllChannelsHandlerOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetAllChannelsHandlerParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetAllChannelsHandler",
+		Method:             "GET",
+		PathPattern:        "/matchmaking/namespaces/{namespace}/channels",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetAllChannelsHandlerReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetAllChannelsHandlerOK:
+		return v, nil
+	case *GetAllChannelsHandlerBadRequest:
+		return nil, v
+	case *GetAllChannelsHandlerUnauthorized:
+		return nil, v
+	case *GetAllChannelsHandlerForbidden:
+		return nil, v
+	case *GetAllChannelsHandlerConflict:
+		return nil, v
+	case *GetAllChannelsHandlerInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -615,7 +1084,7 @@ func (a *Client) GetAllPartyInAllChannel(params *GetAllPartyInAllChannelParams, 
 		PathPattern:        "/matchmaking/v1/admin/namespaces/{namespace}/channels/all/parties",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetAllPartyInAllChannelReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -630,18 +1099,71 @@ func (a *Client) GetAllPartyInAllChannel(params *GetAllPartyInAllChannelParams, 
 
 	case *GetAllPartyInAllChannelOK:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *GetAllPartyInAllChannelBadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *GetAllPartyInAllChannelUnauthorized:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *GetAllPartyInAllChannelForbidden:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *GetAllPartyInAllChannelNotFound:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *GetAllPartyInAllChannelInternalServerError:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetAllPartyInAllChannelShort(params *GetAllPartyInAllChannelParams, authInfo runtime.ClientAuthInfoWriter) (*GetAllPartyInAllChannelOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetAllPartyInAllChannelParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetAllPartyInAllChannel",
+		Method:             "GET",
+		PathPattern:        "/matchmaking/v1/admin/namespaces/{namespace}/channels/all/parties",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetAllPartyInAllChannelReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetAllPartyInAllChannelOK:
+		return v, nil
+	case *GetAllPartyInAllChannelBadRequest:
+		return nil, v
+	case *GetAllPartyInAllChannelUnauthorized:
+		return nil, v
+	case *GetAllPartyInAllChannelForbidden:
+		return nil, v
+	case *GetAllPartyInAllChannelNotFound:
+		return nil, v
+	case *GetAllPartyInAllChannelInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -670,7 +1192,7 @@ func (a *Client) GetAllPartyInChannel(params *GetAllPartyInChannelParams, authIn
 		PathPattern:        "/matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/parties",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetAllPartyInChannelReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -685,18 +1207,71 @@ func (a *Client) GetAllPartyInChannel(params *GetAllPartyInChannelParams, authIn
 
 	case *GetAllPartyInChannelOK:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *GetAllPartyInChannelBadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *GetAllPartyInChannelUnauthorized:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *GetAllPartyInChannelForbidden:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *GetAllPartyInChannelNotFound:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *GetAllPartyInChannelInternalServerError:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetAllPartyInChannelShort(params *GetAllPartyInChannelParams, authInfo runtime.ClientAuthInfoWriter) (*GetAllPartyInChannelOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetAllPartyInChannelParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetAllPartyInChannel",
+		Method:             "GET",
+		PathPattern:        "/matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/parties",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetAllPartyInChannelReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetAllPartyInChannelOK:
+		return v, nil
+	case *GetAllPartyInChannelBadRequest:
+		return nil, v
+	case *GetAllPartyInChannelUnauthorized:
+		return nil, v
+	case *GetAllPartyInChannelForbidden:
+		return nil, v
+	case *GetAllPartyInChannelNotFound:
+		return nil, v
+	case *GetAllPartyInChannelInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -725,7 +1300,7 @@ func (a *Client) GetAllSessionsInChannel(params *GetAllSessionsInChannelParams, 
 		PathPattern:        "/matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/sessions",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetAllSessionsInChannelReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -740,18 +1315,71 @@ func (a *Client) GetAllSessionsInChannel(params *GetAllSessionsInChannelParams, 
 
 	case *GetAllSessionsInChannelOK:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *GetAllSessionsInChannelBadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *GetAllSessionsInChannelUnauthorized:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *GetAllSessionsInChannelForbidden:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *GetAllSessionsInChannelNotFound:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *GetAllSessionsInChannelInternalServerError:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetAllSessionsInChannelShort(params *GetAllSessionsInChannelParams, authInfo runtime.ClientAuthInfoWriter) (*GetAllSessionsInChannelOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetAllSessionsInChannelParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetAllSessionsInChannel",
+		Method:             "GET",
+		PathPattern:        "/matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/sessions",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetAllSessionsInChannelReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetAllSessionsInChannelOK:
+		return v, nil
+	case *GetAllSessionsInChannelBadRequest:
+		return nil, v
+	case *GetAllSessionsInChannelUnauthorized:
+		return nil, v
+	case *GetAllSessionsInChannelForbidden:
+		return nil, v
+	case *GetAllSessionsInChannelNotFound:
+		return nil, v
+	case *GetAllSessionsInChannelInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -780,7 +1408,7 @@ func (a *Client) GetSessionHistoryDetailed(params *GetSessionHistoryDetailedPara
 		PathPattern:        "/matchmaking/v1/admin/namespaces/{namespace}/sessions/{matchID}/history/detailed",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetSessionHistoryDetailedReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -795,18 +1423,71 @@ func (a *Client) GetSessionHistoryDetailed(params *GetSessionHistoryDetailedPara
 
 	case *GetSessionHistoryDetailedOK:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *GetSessionHistoryDetailedBadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *GetSessionHistoryDetailedUnauthorized:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *GetSessionHistoryDetailedForbidden:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *GetSessionHistoryDetailedNotFound:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *GetSessionHistoryDetailedInternalServerError:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetSessionHistoryDetailedShort(params *GetSessionHistoryDetailedParams, authInfo runtime.ClientAuthInfoWriter) (*GetSessionHistoryDetailedOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetSessionHistoryDetailedParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetSessionHistoryDetailed",
+		Method:             "GET",
+		PathPattern:        "/matchmaking/v1/admin/namespaces/{namespace}/sessions/{matchID}/history/detailed",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetSessionHistoryDetailedReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetSessionHistoryDetailedOK:
+		return v, nil
+	case *GetSessionHistoryDetailedBadRequest:
+		return nil, v
+	case *GetSessionHistoryDetailedUnauthorized:
+		return nil, v
+	case *GetSessionHistoryDetailedForbidden:
+		return nil, v
+	case *GetSessionHistoryDetailedNotFound:
+		return nil, v
+	case *GetSessionHistoryDetailedInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -837,7 +1518,7 @@ func (a *Client) GetSingleMatchmakingChannel(params *GetSingleMatchmakingChannel
 		PathPattern:        "/matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetSingleMatchmakingChannelReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -852,18 +1533,71 @@ func (a *Client) GetSingleMatchmakingChannel(params *GetSingleMatchmakingChannel
 
 	case *GetSingleMatchmakingChannelOK:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *GetSingleMatchmakingChannelBadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *GetSingleMatchmakingChannelUnauthorized:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *GetSingleMatchmakingChannelForbidden:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *GetSingleMatchmakingChannelNotFound:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *GetSingleMatchmakingChannelInternalServerError:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetSingleMatchmakingChannelShort(params *GetSingleMatchmakingChannelParams, authInfo runtime.ClientAuthInfoWriter) (*GetSingleMatchmakingChannelOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetSingleMatchmakingChannelParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetSingleMatchmakingChannel",
+		Method:             "GET",
+		PathPattern:        "/matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetSingleMatchmakingChannelReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetSingleMatchmakingChannelOK:
+		return v, nil
+	case *GetSingleMatchmakingChannelBadRequest:
+		return nil, v
+	case *GetSingleMatchmakingChannelUnauthorized:
+		return nil, v
+	case *GetSingleMatchmakingChannelForbidden:
+		return nil, v
+	case *GetSingleMatchmakingChannelNotFound:
+		return nil, v
+	case *GetSingleMatchmakingChannelInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -897,7 +1631,7 @@ func (a *Client) ImportChannels(params *ImportChannelsParams, authInfo runtime.C
 		PathPattern:        "/matchmaking/v1/admin/namespaces/{namespace}/channels/import",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"multipart/form-data"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &ImportChannelsReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -912,16 +1646,66 @@ func (a *Client) ImportChannels(params *ImportChannelsParams, authInfo runtime.C
 
 	case *ImportChannelsOK:
 		return v, nil, nil, nil, nil, nil
+
 	case *ImportChannelsBadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *ImportChannelsUnauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *ImportChannelsForbidden:
 		return nil, nil, nil, v, nil, nil
+
 	case *ImportChannelsInternalServerError:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) ImportChannelsShort(params *ImportChannelsParams, authInfo runtime.ClientAuthInfoWriter) (*ImportChannelsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewImportChannelsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "ImportChannels",
+		Method:             "POST",
+		PathPattern:        "/matchmaking/v1/admin/namespaces/{namespace}/channels/import",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"multipart/form-data"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ImportChannelsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *ImportChannelsOK:
+		return v, nil
+	case *ImportChannelsBadRequest:
+		return nil, v
+	case *ImportChannelsUnauthorized:
+		return nil, v
+	case *ImportChannelsForbidden:
+		return nil, v
+	case *ImportChannelsInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -947,7 +1731,7 @@ func (a *Client) PublicGetAllMatchmakingChannel(params *PublicGetAllMatchmakingC
 		PathPattern:        "/matchmaking/v1/public/namespaces/{namespace}/channels",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicGetAllMatchmakingChannelReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -962,18 +1746,71 @@ func (a *Client) PublicGetAllMatchmakingChannel(params *PublicGetAllMatchmakingC
 
 	case *PublicGetAllMatchmakingChannelOK:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *PublicGetAllMatchmakingChannelBadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *PublicGetAllMatchmakingChannelUnauthorized:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *PublicGetAllMatchmakingChannelForbidden:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *PublicGetAllMatchmakingChannelConflict:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *PublicGetAllMatchmakingChannelInternalServerError:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicGetAllMatchmakingChannelShort(params *PublicGetAllMatchmakingChannelParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetAllMatchmakingChannelOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetAllMatchmakingChannelParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicGetAllMatchmakingChannel",
+		Method:             "GET",
+		PathPattern:        "/matchmaking/v1/public/namespaces/{namespace}/channels",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicGetAllMatchmakingChannelReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetAllMatchmakingChannelOK:
+		return v, nil
+	case *PublicGetAllMatchmakingChannelBadRequest:
+		return nil, v
+	case *PublicGetAllMatchmakingChannelUnauthorized:
+		return nil, v
+	case *PublicGetAllMatchmakingChannelForbidden:
+		return nil, v
+	case *PublicGetAllMatchmakingChannelConflict:
+		return nil, v
+	case *PublicGetAllMatchmakingChannelInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -999,7 +1836,7 @@ func (a *Client) PublicGetSingleMatchmakingChannel(params *PublicGetSingleMatchm
 		PathPattern:        "/matchmaking/v1/public/namespaces/{namespace}/channels/{channelName}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicGetSingleMatchmakingChannelReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1014,18 +1851,71 @@ func (a *Client) PublicGetSingleMatchmakingChannel(params *PublicGetSingleMatchm
 
 	case *PublicGetSingleMatchmakingChannelOK:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *PublicGetSingleMatchmakingChannelBadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *PublicGetSingleMatchmakingChannelUnauthorized:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *PublicGetSingleMatchmakingChannelForbidden:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *PublicGetSingleMatchmakingChannelNotFound:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *PublicGetSingleMatchmakingChannelInternalServerError:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicGetSingleMatchmakingChannelShort(params *PublicGetSingleMatchmakingChannelParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetSingleMatchmakingChannelOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetSingleMatchmakingChannelParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicGetSingleMatchmakingChannel",
+		Method:             "GET",
+		PathPattern:        "/matchmaking/v1/public/namespaces/{namespace}/channels/{channelName}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicGetSingleMatchmakingChannelReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetSingleMatchmakingChannelOK:
+		return v, nil
+	case *PublicGetSingleMatchmakingChannelBadRequest:
+		return nil, v
+	case *PublicGetSingleMatchmakingChannelUnauthorized:
+		return nil, v
+	case *PublicGetSingleMatchmakingChannelForbidden:
+		return nil, v
+	case *PublicGetSingleMatchmakingChannelNotFound:
+		return nil, v
+	case *PublicGetSingleMatchmakingChannelInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -1036,11 +1926,11 @@ func (a *Client) PublicGetSingleMatchmakingChannel(params *PublicGetSingleMatchm
 
 Required Scope: social
 
-Queries the specified session's status. Game servers are expected to
+Queries the specified session&#39;s status. Game servers are expected to
 call this periodically as long as it has a session in queue to see
 if there are new players being matched to the session.
 
-Possible session statuses are "sessionInQueue", "sessionFull", and "sessionTimeout".
+Possible session statuses are &#34;sessionInQueue&#34;, &#34;sessionFull&#34;, and &#34;sessionTimeout&#34;.
 
 */
 func (a *Client) QuerySessionHandler(params *QuerySessionHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*QuerySessionHandlerOK, *QuerySessionHandlerBadRequest, *QuerySessionHandlerUnauthorized, *QuerySessionHandlerForbidden, *QuerySessionHandlerNotFound, *QuerySessionHandlerInternalServerError, error) {
@@ -1059,7 +1949,7 @@ func (a *Client) QuerySessionHandler(params *QuerySessionHandlerParams, authInfo
 		PathPattern:        "/matchmaking/namespaces/{namespace}/sessions/{matchID}/status",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &QuerySessionHandlerReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1074,18 +1964,71 @@ func (a *Client) QuerySessionHandler(params *QuerySessionHandlerParams, authInfo
 
 	case *QuerySessionHandlerOK:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *QuerySessionHandlerBadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *QuerySessionHandlerUnauthorized:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *QuerySessionHandlerForbidden:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *QuerySessionHandlerNotFound:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *QuerySessionHandlerInternalServerError:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) QuerySessionHandlerShort(params *QuerySessionHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*QuerySessionHandlerOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewQuerySessionHandlerParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "QuerySessionHandler",
+		Method:             "GET",
+		PathPattern:        "/matchmaking/namespaces/{namespace}/sessions/{matchID}/status",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &QuerySessionHandlerReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *QuerySessionHandlerOK:
+		return v, nil
+	case *QuerySessionHandlerBadRequest:
+		return nil, v
+	case *QuerySessionHandlerUnauthorized:
+		return nil, v
+	case *QuerySessionHandlerForbidden:
+		return nil, v
+	case *QuerySessionHandlerNotFound:
+		return nil, v
+	case *QuerySessionHandlerInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -1096,10 +2039,10 @@ func (a *Client) QuerySessionHandler(params *QuerySessionHandlerParams, authInfo
 
 Required Scope: social
 
-Queues joinable session so that it will be matched with player's match request tickets.
+Queues joinable session so that it will be matched with player&#39;s match request tickets.
 The session queued must be in a channel/game mode that is set to have joinable flag.
 The session will be in queue until it is full or expired.
-Both the number of players and session queue timeout can be set in the channel's config.
+Both the number of players and session queue timeout can be set in the channel&#39;s config.
 
 This endpoint is intended to be called by game server to let matchmaker know that
 the game server is ready for receiving more players through matchmaking tickets to its session.
@@ -1125,7 +2068,7 @@ func (a *Client) QueueSessionHandler(params *QueueSessionHandlerParams, authInfo
 		PathPattern:        "/matchmaking/namespaces/{namespace}/sessions",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &QueueSessionHandlerReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1140,16 +2083,66 @@ func (a *Client) QueueSessionHandler(params *QueueSessionHandlerParams, authInfo
 
 	case *QueueSessionHandlerNoContent:
 		return v, nil, nil, nil, nil, nil
+
 	case *QueueSessionHandlerBadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *QueueSessionHandlerUnauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *QueueSessionHandlerForbidden:
 		return nil, nil, nil, v, nil, nil
+
 	case *QueueSessionHandlerInternalServerError:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) QueueSessionHandlerShort(params *QueueSessionHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*QueueSessionHandlerNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewQueueSessionHandlerParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "QueueSessionHandler",
+		Method:             "POST",
+		PathPattern:        "/matchmaking/namespaces/{namespace}/sessions",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &QueueSessionHandlerReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *QueueSessionHandlerNoContent:
+		return v, nil
+	case *QueueSessionHandlerBadRequest:
+		return nil, v
+	case *QueueSessionHandlerUnauthorized:
+		return nil, v
+	case *QueueSessionHandlerForbidden:
+		return nil, v
+	case *QueueSessionHandlerInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -1178,7 +2171,7 @@ func (a *Client) SearchSessions(params *SearchSessionsParams, authInfo runtime.C
 		PathPattern:        "/matchmaking/v1/admin/namespaces/{namespace}/sessions/history/search",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &SearchSessionsReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1193,18 +2186,71 @@ func (a *Client) SearchSessions(params *SearchSessionsParams, authInfo runtime.C
 
 	case *SearchSessionsOK:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *SearchSessionsBadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *SearchSessionsUnauthorized:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *SearchSessionsForbidden:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *SearchSessionsNotFound:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *SearchSessionsInternalServerError:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) SearchSessionsShort(params *SearchSessionsParams, authInfo runtime.ClientAuthInfoWriter) (*SearchSessionsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewSearchSessionsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "SearchSessions",
+		Method:             "GET",
+		PathPattern:        "/matchmaking/v1/admin/namespaces/{namespace}/sessions/history/search",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &SearchSessionsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *SearchSessionsOK:
+		return v, nil
+	case *SearchSessionsBadRequest:
+		return nil, v
+	case *SearchSessionsUnauthorized:
+		return nil, v
+	case *SearchSessionsForbidden:
+		return nil, v
+	case *SearchSessionsNotFound:
+		return nil, v
+	case *SearchSessionsInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -1236,7 +2282,7 @@ func (a *Client) StoreMatchResults(params *StoreMatchResultsParams, authInfo run
 		PathPattern:        "/matchmaking/namespaces/{namespace}/matchresult",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &StoreMatchResultsReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1251,16 +2297,66 @@ func (a *Client) StoreMatchResults(params *StoreMatchResultsParams, authInfo run
 
 	case *StoreMatchResultsOK:
 		return v, nil, nil, nil, nil, nil
+
 	case *StoreMatchResultsBadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *StoreMatchResultsUnauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *StoreMatchResultsForbidden:
 		return nil, nil, nil, v, nil, nil
+
 	case *StoreMatchResultsInternalServerError:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) StoreMatchResultsShort(params *StoreMatchResultsParams, authInfo runtime.ClientAuthInfoWriter) (*StoreMatchResultsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewStoreMatchResultsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "StoreMatchResults",
+		Method:             "POST",
+		PathPattern:        "/matchmaking/namespaces/{namespace}/matchresult",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &StoreMatchResultsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *StoreMatchResultsOK:
+		return v, nil
+	case *StoreMatchResultsBadRequest:
+		return nil, v
+	case *StoreMatchResultsUnauthorized:
+		return nil, v
+	case *StoreMatchResultsForbidden:
+		return nil, v
+	case *StoreMatchResultsInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -1291,7 +2387,7 @@ func (a *Client) UpdateMatchmakingChannel(params *UpdateMatchmakingChannelParams
 		PathPattern:        "/matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &UpdateMatchmakingChannelReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1306,18 +2402,71 @@ func (a *Client) UpdateMatchmakingChannel(params *UpdateMatchmakingChannelParams
 
 	case *UpdateMatchmakingChannelNoContent:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *UpdateMatchmakingChannelBadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *UpdateMatchmakingChannelUnauthorized:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *UpdateMatchmakingChannelForbidden:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *UpdateMatchmakingChannelNotFound:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *UpdateMatchmakingChannelInternalServerError:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) UpdateMatchmakingChannelShort(params *UpdateMatchmakingChannelParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateMatchmakingChannelNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateMatchmakingChannelParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "UpdateMatchmakingChannel",
+		Method:             "PATCH",
+		PathPattern:        "/matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateMatchmakingChannelReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateMatchmakingChannelNoContent:
+		return v, nil
+	case *UpdateMatchmakingChannelBadRequest:
+		return nil, v
+	case *UpdateMatchmakingChannelUnauthorized:
+		return nil, v
+	case *UpdateMatchmakingChannelForbidden:
+		return nil, v
+	case *UpdateMatchmakingChannelNotFound:
+		return nil, v
+	case *UpdateMatchmakingChannelInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 

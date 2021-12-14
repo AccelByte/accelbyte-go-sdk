@@ -17,6 +17,10 @@ import (
 // swagger:model models.CreateContentRequestS3
 type ModelsCreateContentRequestS3 struct {
 
+	// content type
+	// Required: true
+	ContentType *string `json:"contentType"`
+
 	// file extension
 	// Required: true
 	FileExtension *string `json:"fileExtension"`
@@ -46,6 +50,10 @@ type ModelsCreateContentRequestS3 struct {
 func (m *ModelsCreateContentRequestS3) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateContentType(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateFileExtension(formats); err != nil {
 		res = append(res, err)
 	}
@@ -73,6 +81,15 @@ func (m *ModelsCreateContentRequestS3) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *ModelsCreateContentRequestS3) validateContentType(formats strfmt.Registry) error {
+
+	if err := validate.Required("contentType", "body", m.ContentType); err != nil {
+		return err
+	}
+
 	return nil
 }
 

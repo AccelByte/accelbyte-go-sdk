@@ -30,72 +30,73 @@ type Client struct {
 // ClientService is the interface for Client methods
 type ClientService interface {
 	CreatePaymentProviderConfig(params *CreatePaymentProviderConfigParams, authInfo runtime.ClientAuthInfoWriter) (*CreatePaymentProviderConfigOK, *CreatePaymentProviderConfigBadRequest, *CreatePaymentProviderConfigConflict, *CreatePaymentProviderConfigUnprocessableEntity, error)
-
+	CreatePaymentProviderConfigShort(params *CreatePaymentProviderConfigParams, authInfo runtime.ClientAuthInfoWriter) (*CreatePaymentProviderConfigOK, error)
 	DebugMatchedPaymentMerchantConfig(params *DebugMatchedPaymentMerchantConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DebugMatchedPaymentMerchantConfigOK, *DebugMatchedPaymentMerchantConfigNotFound, error)
-
+	DebugMatchedPaymentMerchantConfigShort(params *DebugMatchedPaymentMerchantConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DebugMatchedPaymentMerchantConfigOK, error)
 	DebugMatchedPaymentProviderConfig(params *DebugMatchedPaymentProviderConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DebugMatchedPaymentProviderConfigOK, *DebugMatchedPaymentProviderConfigNotFound, error)
-
+	DebugMatchedPaymentProviderConfigShort(params *DebugMatchedPaymentProviderConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DebugMatchedPaymentProviderConfigOK, error)
 	DeletePaymentProviderConfig(params *DeletePaymentProviderConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeletePaymentProviderConfigNoContent, *DeletePaymentProviderConfigNotFound, error)
-
+	DeletePaymentProviderConfigShort(params *DeletePaymentProviderConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeletePaymentProviderConfigNoContent, error)
 	GetAggregatePaymentProviders(params *GetAggregatePaymentProvidersParams, authInfo runtime.ClientAuthInfoWriter) (*GetAggregatePaymentProvidersOK, error)
-
+	GetAggregatePaymentProvidersShort(params *GetAggregatePaymentProvidersParams, authInfo runtime.ClientAuthInfoWriter) (*GetAggregatePaymentProvidersOK, error)
 	GetPaymentMerchantConfig(params *GetPaymentMerchantConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetPaymentMerchantConfigOK, *GetPaymentMerchantConfigNotFound, error)
-
+	GetPaymentMerchantConfigShort(params *GetPaymentMerchantConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetPaymentMerchantConfigOK, error)
 	GetPaymentTaxConfig(params *GetPaymentTaxConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetPaymentTaxConfigOK, error)
-
+	GetPaymentTaxConfigShort(params *GetPaymentTaxConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetPaymentTaxConfigOK, error)
 	GetSpecialPaymentProviders(params *GetSpecialPaymentProvidersParams, authInfo runtime.ClientAuthInfoWriter) (*GetSpecialPaymentProvidersOK, error)
-
+	GetSpecialPaymentProvidersShort(params *GetSpecialPaymentProvidersParams, authInfo runtime.ClientAuthInfoWriter) (*GetSpecialPaymentProvidersOK, error)
 	QueryPaymentProviderConfig(params *QueryPaymentProviderConfigParams, authInfo runtime.ClientAuthInfoWriter) (*QueryPaymentProviderConfigOK, error)
-
+	QueryPaymentProviderConfigShort(params *QueryPaymentProviderConfigParams, authInfo runtime.ClientAuthInfoWriter) (*QueryPaymentProviderConfigOK, error)
 	TestAdyenConfig(params *TestAdyenConfigParams, authInfo runtime.ClientAuthInfoWriter) (*TestAdyenConfigOK, error)
-
+	TestAdyenConfigShort(params *TestAdyenConfigParams, authInfo runtime.ClientAuthInfoWriter) (*TestAdyenConfigOK, error)
 	TestAdyenConfigByID(params *TestAdyenConfigByIDParams, authInfo runtime.ClientAuthInfoWriter) (*TestAdyenConfigByIDOK, *TestAdyenConfigByIDNotFound, error)
-
+	TestAdyenConfigByIDShort(params *TestAdyenConfigByIDParams, authInfo runtime.ClientAuthInfoWriter) (*TestAdyenConfigByIDOK, error)
 	TestAliPayConfig(params *TestAliPayConfigParams, authInfo runtime.ClientAuthInfoWriter) (*TestAliPayConfigOK, error)
-
+	TestAliPayConfigShort(params *TestAliPayConfigParams, authInfo runtime.ClientAuthInfoWriter) (*TestAliPayConfigOK, error)
 	TestAliPayConfigByID(params *TestAliPayConfigByIDParams, authInfo runtime.ClientAuthInfoWriter) (*TestAliPayConfigByIDOK, *TestAliPayConfigByIDNotFound, error)
-
+	TestAliPayConfigByIDShort(params *TestAliPayConfigByIDParams, authInfo runtime.ClientAuthInfoWriter) (*TestAliPayConfigByIDOK, error)
 	TestCheckoutConfig(params *TestCheckoutConfigParams, authInfo runtime.ClientAuthInfoWriter) (*TestCheckoutConfigOK, error)
-
+	TestCheckoutConfigShort(params *TestCheckoutConfigParams, authInfo runtime.ClientAuthInfoWriter) (*TestCheckoutConfigOK, error)
 	TestCheckoutConfigByID(params *TestCheckoutConfigByIDParams, authInfo runtime.ClientAuthInfoWriter) (*TestCheckoutConfigByIDOK, *TestCheckoutConfigByIDNotFound, error)
-
+	TestCheckoutConfigByIDShort(params *TestCheckoutConfigByIDParams, authInfo runtime.ClientAuthInfoWriter) (*TestCheckoutConfigByIDOK, error)
 	TestPayPalConfig(params *TestPayPalConfigParams, authInfo runtime.ClientAuthInfoWriter) (*TestPayPalConfigOK, error)
-
+	TestPayPalConfigShort(params *TestPayPalConfigParams, authInfo runtime.ClientAuthInfoWriter) (*TestPayPalConfigOK, error)
 	TestPayPalConfigByID(params *TestPayPalConfigByIDParams, authInfo runtime.ClientAuthInfoWriter) (*TestPayPalConfigByIDOK, *TestPayPalConfigByIDNotFound, error)
-
+	TestPayPalConfigByIDShort(params *TestPayPalConfigByIDParams, authInfo runtime.ClientAuthInfoWriter) (*TestPayPalConfigByIDOK, error)
 	TestStripeConfig(params *TestStripeConfigParams, authInfo runtime.ClientAuthInfoWriter) (*TestStripeConfigOK, error)
-
+	TestStripeConfigShort(params *TestStripeConfigParams, authInfo runtime.ClientAuthInfoWriter) (*TestStripeConfigOK, error)
 	TestStripeConfigByID(params *TestStripeConfigByIDParams, authInfo runtime.ClientAuthInfoWriter) (*TestStripeConfigByIDOK, *TestStripeConfigByIDNotFound, error)
-
+	TestStripeConfigByIDShort(params *TestStripeConfigByIDParams, authInfo runtime.ClientAuthInfoWriter) (*TestStripeConfigByIDOK, error)
 	TestWxPayConfig(params *TestWxPayConfigParams, authInfo runtime.ClientAuthInfoWriter) (*TestWxPayConfigOK, error)
-
+	TestWxPayConfigShort(params *TestWxPayConfigParams, authInfo runtime.ClientAuthInfoWriter) (*TestWxPayConfigOK, error)
 	TestWxPayConfigByID(params *TestWxPayConfigByIDParams, authInfo runtime.ClientAuthInfoWriter) (*TestWxPayConfigByIDOK, *TestWxPayConfigByIDNotFound, error)
-
+	TestWxPayConfigByIDShort(params *TestWxPayConfigByIDParams, authInfo runtime.ClientAuthInfoWriter) (*TestWxPayConfigByIDOK, error)
 	TestXsollaConfig(params *TestXsollaConfigParams, authInfo runtime.ClientAuthInfoWriter) (*TestXsollaConfigOK, error)
-
+	TestXsollaConfigShort(params *TestXsollaConfigParams, authInfo runtime.ClientAuthInfoWriter) (*TestXsollaConfigOK, error)
 	TestXsollaConfigByID(params *TestXsollaConfigByIDParams, authInfo runtime.ClientAuthInfoWriter) (*TestXsollaConfigByIDOK, *TestXsollaConfigByIDNotFound, error)
-
+	TestXsollaConfigByIDShort(params *TestXsollaConfigByIDParams, authInfo runtime.ClientAuthInfoWriter) (*TestXsollaConfigByIDOK, error)
 	UpdateAdyenConfig(params *UpdateAdyenConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateAdyenConfigOK, *UpdateAdyenConfigNotFound, error)
-
+	UpdateAdyenConfigShort(params *UpdateAdyenConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateAdyenConfigOK, error)
 	UpdateAliPayConfig(params *UpdateAliPayConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateAliPayConfigOK, *UpdateAliPayConfigNotFound, error)
-
+	UpdateAliPayConfigShort(params *UpdateAliPayConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateAliPayConfigOK, error)
 	UpdateCheckoutConfig(params *UpdateCheckoutConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateCheckoutConfigOK, *UpdateCheckoutConfigNotFound, error)
-
+	UpdateCheckoutConfigShort(params *UpdateCheckoutConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateCheckoutConfigOK, error)
 	UpdatePayPalConfig(params *UpdatePayPalConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePayPalConfigOK, *UpdatePayPalConfigNotFound, error)
-
+	UpdatePayPalConfigShort(params *UpdatePayPalConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePayPalConfigOK, error)
 	UpdatePaymentProviderConfig(params *UpdatePaymentProviderConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePaymentProviderConfigOK, *UpdatePaymentProviderConfigBadRequest, *UpdatePaymentProviderConfigNotFound, *UpdatePaymentProviderConfigConflict, *UpdatePaymentProviderConfigUnprocessableEntity, error)
-
+	UpdatePaymentProviderConfigShort(params *UpdatePaymentProviderConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePaymentProviderConfigOK, error)
 	UpdatePaymentTaxConfig(params *UpdatePaymentTaxConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePaymentTaxConfigOK, *UpdatePaymentTaxConfigBadRequest, *UpdatePaymentTaxConfigUnprocessableEntity, error)
-
+	UpdatePaymentTaxConfigShort(params *UpdatePaymentTaxConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePaymentTaxConfigOK, error)
 	UpdateStripeConfig(params *UpdateStripeConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateStripeConfigOK, *UpdateStripeConfigNotFound, error)
-
+	UpdateStripeConfigShort(params *UpdateStripeConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateStripeConfigOK, error)
 	UpdateWxPayConfig(params *UpdateWxPayConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateWxPayConfigOK, *UpdateWxPayConfigNotFound, error)
-
+	UpdateWxPayConfigShort(params *UpdateWxPayConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateWxPayConfigOK, error)
 	UpdateWxPayConfigCert(params *UpdateWxPayConfigCertParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateWxPayConfigCertOK, *UpdateWxPayConfigCertNotFound, error)
-
+	UpdateWxPayConfigCertShort(params *UpdateWxPayConfigCertParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateWxPayConfigCertOK, error)
 	UpdateXsollaConfig(params *UpdateXsollaConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateXsollaConfigOK, *UpdateXsollaConfigNotFound, error)
-
+	UpdateXsollaConfigShort(params *UpdateXsollaConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateXsollaConfigOK, error)
 	UpdateXsollaUIConfig(params *UpdateXsollaUIConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateXsollaUIConfigOK, *UpdateXsollaUIConfigNotFound, error)
+	UpdateXsollaUIConfigShort(params *UpdateXsollaUIConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateXsollaUIConfigOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -103,7 +104,7 @@ type ClientService interface {
 /*
   CreatePaymentProviderConfig creates payment provider config
 
-  Create payment provider config.<br><pre><p><strong>Request Body Parameters:</strong></p><pre><table><tr><td>Parameter</td><td>Type</td><td>Required</td><td>Description</td></tr><tr><td>namespace</td><td>String</td><td>Yes</td><td>namespace, * indicates all namespace</td></tr><tr><td>region</td><td>String</td><td>Yes</td><td>region, * indicates all regions</td></tr><tr><td>aggregate</td><td>String</td><td>No</td><td>aggregate payment provider, such as XSOLLA, ADYEN, STRIPE</td></tr><tr><td>specials</td><td>List</td><td>No</td><td>special payment provider, such as ALIPAY, WXPAY</td></tr></table></pre>payment provider applied has priority: <ol><li>namespace and region match</li><li>namespace matches and region is *</li><li>region matches and namespace is *</li><li>namespace and region are *</li></ol>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:PAYMENT:CONFIG", action=1 (CREATE)</li><li><i>Returns</i>: payment provider config</li></ul>
+  Create payment provider config.&lt;br&gt;&lt;pre&gt;&lt;p&gt;&lt;strong&gt;Request Body Parameters:&lt;/strong&gt;&lt;/p&gt;&lt;pre&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Parameter&lt;/td&gt;&lt;td&gt;Type&lt;/td&gt;&lt;td&gt;Required&lt;/td&gt;&lt;td&gt;Description&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;namespace&lt;/td&gt;&lt;td&gt;String&lt;/td&gt;&lt;td&gt;Yes&lt;/td&gt;&lt;td&gt;namespace, * indicates all namespace&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;region&lt;/td&gt;&lt;td&gt;String&lt;/td&gt;&lt;td&gt;Yes&lt;/td&gt;&lt;td&gt;region, * indicates all regions&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;aggregate&lt;/td&gt;&lt;td&gt;String&lt;/td&gt;&lt;td&gt;No&lt;/td&gt;&lt;td&gt;aggregate payment provider, such as XSOLLA, ADYEN, STRIPE&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;specials&lt;/td&gt;&lt;td&gt;List&lt;/td&gt;&lt;td&gt;No&lt;/td&gt;&lt;td&gt;special payment provider, such as ALIPAY, WXPAY&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/pre&gt;payment provider applied has priority: &lt;ol&gt;&lt;li&gt;namespace and region match&lt;/li&gt;&lt;li&gt;namespace matches and region is *&lt;/li&gt;&lt;li&gt;region matches and namespace is *&lt;/li&gt;&lt;li&gt;namespace and region are *&lt;/li&gt;&lt;/ol&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:PAYMENT:CONFIG&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: payment provider config&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) CreatePaymentProviderConfig(params *CreatePaymentProviderConfigParams, authInfo runtime.ClientAuthInfoWriter) (*CreatePaymentProviderConfigOK, *CreatePaymentProviderConfigBadRequest, *CreatePaymentProviderConfigConflict, *CreatePaymentProviderConfigUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -121,7 +122,7 @@ func (a *Client) CreatePaymentProviderConfig(params *CreatePaymentProviderConfig
 		PathPattern:        "/admin/payment/config/provider",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &CreatePaymentProviderConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -136,21 +137,68 @@ func (a *Client) CreatePaymentProviderConfig(params *CreatePaymentProviderConfig
 
 	case *CreatePaymentProviderConfigOK:
 		return v, nil, nil, nil, nil
+
 	case *CreatePaymentProviderConfigBadRequest:
 		return nil, v, nil, nil, nil
+
 	case *CreatePaymentProviderConfigConflict:
 		return nil, nil, v, nil, nil
+
 	case *CreatePaymentProviderConfigUnprocessableEntity:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) CreatePaymentProviderConfigShort(params *CreatePaymentProviderConfigParams, authInfo runtime.ClientAuthInfoWriter) (*CreatePaymentProviderConfigOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreatePaymentProviderConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "createPaymentProviderConfig",
+		Method:             "POST",
+		PathPattern:        "/admin/payment/config/provider",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CreatePaymentProviderConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *CreatePaymentProviderConfigOK:
+		return v, nil
+	case *CreatePaymentProviderConfigBadRequest:
+		return nil, v
+	case *CreatePaymentProviderConfigConflict:
+		return nil, v
+	case *CreatePaymentProviderConfigUnprocessableEntity:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   DebugMatchedPaymentMerchantConfig debugs matched payment merchant config internal
 
-  Debug matched payment merchant config.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:PAYMENT:CONFIG", action=2 (READ)</li><li><i>Returns</i>: payment merchant config info</li></ul>
+  Debug matched payment merchant config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:PAYMENT:CONFIG&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: payment merchant config info&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) DebugMatchedPaymentMerchantConfig(params *DebugMatchedPaymentMerchantConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DebugMatchedPaymentMerchantConfigOK, *DebugMatchedPaymentMerchantConfigNotFound, error) {
 	// TODO: Validate the params before sending
@@ -168,7 +216,7 @@ func (a *Client) DebugMatchedPaymentMerchantConfig(params *DebugMatchedPaymentMe
 		PathPattern:        "/admin/payment/config/merchant/matched",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DebugMatchedPaymentMerchantConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -183,17 +231,58 @@ func (a *Client) DebugMatchedPaymentMerchantConfig(params *DebugMatchedPaymentMe
 
 	case *DebugMatchedPaymentMerchantConfigOK:
 		return v, nil, nil
+
 	case *DebugMatchedPaymentMerchantConfigNotFound:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) DebugMatchedPaymentMerchantConfigShort(params *DebugMatchedPaymentMerchantConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DebugMatchedPaymentMerchantConfigOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDebugMatchedPaymentMerchantConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "debugMatchedPaymentMerchantConfig",
+		Method:             "GET",
+		PathPattern:        "/admin/payment/config/merchant/matched",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DebugMatchedPaymentMerchantConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DebugMatchedPaymentMerchantConfigOK:
+		return v, nil
+	case *DebugMatchedPaymentMerchantConfigNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   DebugMatchedPaymentProviderConfig debugs matched payment provider config internal
 
-  Debug matched payment provider config.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:PAYMENT:CONFIG", action=2 (READ)</li><li><i>Returns</i>: payment provider config</li></ul>
+  Debug matched payment provider config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:PAYMENT:CONFIG&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: payment provider config&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) DebugMatchedPaymentProviderConfig(params *DebugMatchedPaymentProviderConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DebugMatchedPaymentProviderConfigOK, *DebugMatchedPaymentProviderConfigNotFound, error) {
 	// TODO: Validate the params before sending
@@ -211,7 +300,7 @@ func (a *Client) DebugMatchedPaymentProviderConfig(params *DebugMatchedPaymentPr
 		PathPattern:        "/admin/payment/config/provider/matched",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DebugMatchedPaymentProviderConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -226,17 +315,58 @@ func (a *Client) DebugMatchedPaymentProviderConfig(params *DebugMatchedPaymentPr
 
 	case *DebugMatchedPaymentProviderConfigOK:
 		return v, nil, nil
+
 	case *DebugMatchedPaymentProviderConfigNotFound:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) DebugMatchedPaymentProviderConfigShort(params *DebugMatchedPaymentProviderConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DebugMatchedPaymentProviderConfigOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDebugMatchedPaymentProviderConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "debugMatchedPaymentProviderConfig",
+		Method:             "GET",
+		PathPattern:        "/admin/payment/config/provider/matched",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DebugMatchedPaymentProviderConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DebugMatchedPaymentProviderConfigOK:
+		return v, nil
+	case *DebugMatchedPaymentProviderConfigNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   DeletePaymentProviderConfig deletes payment provider config
 
-  Delete payment provider config.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:PAYMENT:CONFIG", action=8 (DELETE)</li><li><i>Returns</i>: payment provider config</li></ul>
+  Delete payment provider config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:PAYMENT:CONFIG&#34;, action=8 (DELETE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: payment provider config&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) DeletePaymentProviderConfig(params *DeletePaymentProviderConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeletePaymentProviderConfigNoContent, *DeletePaymentProviderConfigNotFound, error) {
 	// TODO: Validate the params before sending
@@ -254,7 +384,7 @@ func (a *Client) DeletePaymentProviderConfig(params *DeletePaymentProviderConfig
 		PathPattern:        "/admin/payment/config/provider/{id}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeletePaymentProviderConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -269,17 +399,58 @@ func (a *Client) DeletePaymentProviderConfig(params *DeletePaymentProviderConfig
 
 	case *DeletePaymentProviderConfigNoContent:
 		return v, nil, nil
+
 	case *DeletePaymentProviderConfigNotFound:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) DeletePaymentProviderConfigShort(params *DeletePaymentProviderConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeletePaymentProviderConfigNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeletePaymentProviderConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "deletePaymentProviderConfig",
+		Method:             "DELETE",
+		PathPattern:        "/admin/payment/config/provider/{id}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeletePaymentProviderConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeletePaymentProviderConfigNoContent:
+		return v, nil
+	case *DeletePaymentProviderConfigNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   GetAggregatePaymentProviders gets aggregate payment providers
 
-  Get aggregate payment providers, such as XSOLLA, ADYEN.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:PAYMENT:CONFIG", action=2 (READ)</li><li><i>Returns</i>: payment provider list</li></ul>
+  Get aggregate payment providers, such as XSOLLA, ADYEN.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:PAYMENT:CONFIG&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: payment provider list&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) GetAggregatePaymentProviders(params *GetAggregatePaymentProvidersParams, authInfo runtime.ClientAuthInfoWriter) (*GetAggregatePaymentProvidersOK, error) {
 	// TODO: Validate the params before sending
@@ -297,7 +468,7 @@ func (a *Client) GetAggregatePaymentProviders(params *GetAggregatePaymentProvide
 		PathPattern:        "/admin/payment/config/provider/aggregate",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetAggregatePaymentProvidersReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -312,6 +483,44 @@ func (a *Client) GetAggregatePaymentProviders(params *GetAggregatePaymentProvide
 
 	case *GetAggregatePaymentProvidersOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetAggregatePaymentProvidersShort(params *GetAggregatePaymentProvidersParams, authInfo runtime.ClientAuthInfoWriter) (*GetAggregatePaymentProvidersOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetAggregatePaymentProvidersParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getAggregatePaymentProviders",
+		Method:             "GET",
+		PathPattern:        "/admin/payment/config/provider/aggregate",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetAggregatePaymentProvidersReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetAggregatePaymentProvidersOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -320,7 +529,7 @@ func (a *Client) GetAggregatePaymentProviders(params *GetAggregatePaymentProvide
 /*
   GetPaymentMerchantConfig gets payment merchant config
 
-  Get payment merchant config by id.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:PAYMENT:CONFIG", action=2 (READ)</li><li><i>Returns</i>: payment merchant config info</li></ul>
+  Get payment merchant config by id.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:PAYMENT:CONFIG&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: payment merchant config info&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) GetPaymentMerchantConfig(params *GetPaymentMerchantConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetPaymentMerchantConfigOK, *GetPaymentMerchantConfigNotFound, error) {
 	// TODO: Validate the params before sending
@@ -338,7 +547,7 @@ func (a *Client) GetPaymentMerchantConfig(params *GetPaymentMerchantConfigParams
 		PathPattern:        "/admin/payment/config/merchant/{id}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetPaymentMerchantConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -353,17 +562,58 @@ func (a *Client) GetPaymentMerchantConfig(params *GetPaymentMerchantConfigParams
 
 	case *GetPaymentMerchantConfigOK:
 		return v, nil, nil
+
 	case *GetPaymentMerchantConfigNotFound:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetPaymentMerchantConfigShort(params *GetPaymentMerchantConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetPaymentMerchantConfigOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetPaymentMerchantConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getPaymentMerchantConfig",
+		Method:             "GET",
+		PathPattern:        "/admin/payment/config/merchant/{id}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetPaymentMerchantConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetPaymentMerchantConfigOK:
+		return v, nil
+	case *GetPaymentMerchantConfigNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   GetPaymentTaxConfig gets payment global tax config
 
-  Get payment global tax config.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:PAYMENT:CONFIG", action=2 (READ)</li><li><i>Returns</i>: payment provider list</li></ul>
+  Get payment global tax config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:PAYMENT:CONFIG&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: payment provider list&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) GetPaymentTaxConfig(params *GetPaymentTaxConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetPaymentTaxConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -381,7 +631,7 @@ func (a *Client) GetPaymentTaxConfig(params *GetPaymentTaxConfigParams, authInfo
 		PathPattern:        "/admin/payment/config/tax",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetPaymentTaxConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -396,6 +646,44 @@ func (a *Client) GetPaymentTaxConfig(params *GetPaymentTaxConfigParams, authInfo
 
 	case *GetPaymentTaxConfigOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetPaymentTaxConfigShort(params *GetPaymentTaxConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetPaymentTaxConfigOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetPaymentTaxConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getPaymentTaxConfig",
+		Method:             "GET",
+		PathPattern:        "/admin/payment/config/tax",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetPaymentTaxConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetPaymentTaxConfigOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -404,7 +692,7 @@ func (a *Client) GetPaymentTaxConfig(params *GetPaymentTaxConfigParams, authInfo
 /*
   GetSpecialPaymentProviders gets special payment providers
 
-  Get special payment providers, such as ALIPAY, WXPAY.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:PAYMENT:CONFIG", action=2 (READ)</li><li><i>Returns</i>: payment provider list</li></ul>
+  Get special payment providers, such as ALIPAY, WXPAY.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:PAYMENT:CONFIG&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: payment provider list&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) GetSpecialPaymentProviders(params *GetSpecialPaymentProvidersParams, authInfo runtime.ClientAuthInfoWriter) (*GetSpecialPaymentProvidersOK, error) {
 	// TODO: Validate the params before sending
@@ -422,7 +710,7 @@ func (a *Client) GetSpecialPaymentProviders(params *GetSpecialPaymentProvidersPa
 		PathPattern:        "/admin/payment/config/provider/special",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetSpecialPaymentProvidersReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -437,6 +725,44 @@ func (a *Client) GetSpecialPaymentProviders(params *GetSpecialPaymentProvidersPa
 
 	case *GetSpecialPaymentProvidersOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetSpecialPaymentProvidersShort(params *GetSpecialPaymentProvidersParams, authInfo runtime.ClientAuthInfoWriter) (*GetSpecialPaymentProvidersOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetSpecialPaymentProvidersParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getSpecialPaymentProviders",
+		Method:             "GET",
+		PathPattern:        "/admin/payment/config/provider/special",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetSpecialPaymentProvidersReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetSpecialPaymentProvidersOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -445,7 +771,7 @@ func (a *Client) GetSpecialPaymentProviders(params *GetSpecialPaymentProvidersPa
 /*
   QueryPaymentProviderConfig queries payment provider config
 
-  Query payment provider config.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:PAYMENT:CONFIG", action=2 (READ)</li><li><i>Returns</i>: payment provider config list</li></ul>
+  Query payment provider config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:PAYMENT:CONFIG&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: payment provider config list&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) QueryPaymentProviderConfig(params *QueryPaymentProviderConfigParams, authInfo runtime.ClientAuthInfoWriter) (*QueryPaymentProviderConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -463,7 +789,7 @@ func (a *Client) QueryPaymentProviderConfig(params *QueryPaymentProviderConfigPa
 		PathPattern:        "/admin/payment/config/provider",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &QueryPaymentProviderConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -478,6 +804,44 @@ func (a *Client) QueryPaymentProviderConfig(params *QueryPaymentProviderConfigPa
 
 	case *QueryPaymentProviderConfigOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) QueryPaymentProviderConfigShort(params *QueryPaymentProviderConfigParams, authInfo runtime.ClientAuthInfoWriter) (*QueryPaymentProviderConfigOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewQueryPaymentProviderConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "queryPaymentProviderConfig",
+		Method:             "GET",
+		PathPattern:        "/admin/payment/config/provider",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &QueryPaymentProviderConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *QueryPaymentProviderConfigOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -486,7 +850,7 @@ func (a *Client) QueryPaymentProviderConfig(params *QueryPaymentProviderConfigPa
 /*
   TestAdyenConfig tests adyen configuration
 
-  Test adyen configuration. <h4>Check List:</h4> <ul><li>apiKey</li><li>merchantAccount</li></ul><h4>Non-check list:</h4><ul><li>notificationHmacKey</li><li>notificationUsername</li><li>notificationPassword</li><li>liveEndpointUrlPrefix</li><li>allowedPaymentMethods</li><li>blockedPaymentMethods</li><li>settings</li></ul>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:PAYMENT:CONFIG", action=4 (UPDATE)</li><li><i>Returns</i>: test adyen config</li></ul>
+  Test adyen configuration. &lt;h4&gt;Check List:&lt;/h4&gt; &lt;ul&gt;&lt;li&gt;apiKey&lt;/li&gt;&lt;li&gt;merchantAccount&lt;/li&gt;&lt;/ul&gt;&lt;h4&gt;Non-check list:&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;notificationHmacKey&lt;/li&gt;&lt;li&gt;notificationUsername&lt;/li&gt;&lt;li&gt;notificationPassword&lt;/li&gt;&lt;li&gt;liveEndpointUrlPrefix&lt;/li&gt;&lt;li&gt;allowedPaymentMethods&lt;/li&gt;&lt;li&gt;blockedPaymentMethods&lt;/li&gt;&lt;li&gt;settings&lt;/li&gt;&lt;/ul&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:PAYMENT:CONFIG&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: test adyen config&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) TestAdyenConfig(params *TestAdyenConfigParams, authInfo runtime.ClientAuthInfoWriter) (*TestAdyenConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -504,7 +868,7 @@ func (a *Client) TestAdyenConfig(params *TestAdyenConfigParams, authInfo runtime
 		PathPattern:        "/admin/payment/config/merchant/adyenconfig/test",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &TestAdyenConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -519,6 +883,44 @@ func (a *Client) TestAdyenConfig(params *TestAdyenConfigParams, authInfo runtime
 
 	case *TestAdyenConfigOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) TestAdyenConfigShort(params *TestAdyenConfigParams, authInfo runtime.ClientAuthInfoWriter) (*TestAdyenConfigOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewTestAdyenConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "testAdyenConfig",
+		Method:             "POST",
+		PathPattern:        "/admin/payment/config/merchant/adyenconfig/test",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &TestAdyenConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *TestAdyenConfigOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -527,7 +929,7 @@ func (a *Client) TestAdyenConfig(params *TestAdyenConfigParams, authInfo runtime
 /*
   TestAdyenConfigByID tests adyen configuration by id
 
-  Test adyen configuration in payment merchant config. Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:PAYMENT:CONFIG", action=2 (READ)</li><li><i>Returns</i>: test adyen config</li></ul>
+  Test adyen configuration in payment merchant config. Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:PAYMENT:CONFIG&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: test adyen config&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) TestAdyenConfigByID(params *TestAdyenConfigByIDParams, authInfo runtime.ClientAuthInfoWriter) (*TestAdyenConfigByIDOK, *TestAdyenConfigByIDNotFound, error) {
 	// TODO: Validate the params before sending
@@ -545,7 +947,7 @@ func (a *Client) TestAdyenConfigByID(params *TestAdyenConfigByIDParams, authInfo
 		PathPattern:        "/admin/payment/config/merchant/{id}/adyenconfig/test",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &TestAdyenConfigByIDReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -560,17 +962,58 @@ func (a *Client) TestAdyenConfigByID(params *TestAdyenConfigByIDParams, authInfo
 
 	case *TestAdyenConfigByIDOK:
 		return v, nil, nil
+
 	case *TestAdyenConfigByIDNotFound:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) TestAdyenConfigByIDShort(params *TestAdyenConfigByIDParams, authInfo runtime.ClientAuthInfoWriter) (*TestAdyenConfigByIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewTestAdyenConfigByIDParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "testAdyenConfigById",
+		Method:             "GET",
+		PathPattern:        "/admin/payment/config/merchant/{id}/adyenconfig/test",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &TestAdyenConfigByIDReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *TestAdyenConfigByIDOK:
+		return v, nil
+	case *TestAdyenConfigByIDNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   TestAliPayConfig tests alipay configuration
 
-  Test AliPay configuration.Reference: <a href="https://docs.open.alipay.com/270/alipay.trade.page.pay">Alipay Document</a>.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:PAYMENT:CONFIG", action=4 (UPDATE)</li><li><i>Returns</i>: test result</li></ul>
+  Test AliPay configuration.Reference: &lt;a href=&#34;https://docs.open.alipay.com/270/alipay.trade.page.pay&#34;&gt;Alipay Document&lt;/a&gt;.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:PAYMENT:CONFIG&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: test result&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) TestAliPayConfig(params *TestAliPayConfigParams, authInfo runtime.ClientAuthInfoWriter) (*TestAliPayConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -588,7 +1031,7 @@ func (a *Client) TestAliPayConfig(params *TestAliPayConfigParams, authInfo runti
 		PathPattern:        "/admin/payment/config/merchant/alipayconfig/test",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &TestAliPayConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -603,6 +1046,44 @@ func (a *Client) TestAliPayConfig(params *TestAliPayConfigParams, authInfo runti
 
 	case *TestAliPayConfigOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) TestAliPayConfigShort(params *TestAliPayConfigParams, authInfo runtime.ClientAuthInfoWriter) (*TestAliPayConfigOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewTestAliPayConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "testAliPayConfig",
+		Method:             "POST",
+		PathPattern:        "/admin/payment/config/merchant/alipayconfig/test",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &TestAliPayConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *TestAliPayConfigOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -611,7 +1092,7 @@ func (a *Client) TestAliPayConfig(params *TestAliPayConfigParams, authInfo runti
 /*
   TestAliPayConfigByID tests alipay configuration by id
 
-  Test AliPay configuration in payment merchant config. Reference: <a href="https://docs.open.alipay.com/270/alipay.trade.page.pay">Alipay Document</a>.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:PAYMENT:CONFIG", action=2 (READ)</li><li><i>Returns</i>: test alipay config</li></ul>
+  Test AliPay configuration in payment merchant config. Reference: &lt;a href=&#34;https://docs.open.alipay.com/270/alipay.trade.page.pay&#34;&gt;Alipay Document&lt;/a&gt;.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:PAYMENT:CONFIG&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: test alipay config&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) TestAliPayConfigByID(params *TestAliPayConfigByIDParams, authInfo runtime.ClientAuthInfoWriter) (*TestAliPayConfigByIDOK, *TestAliPayConfigByIDNotFound, error) {
 	// TODO: Validate the params before sending
@@ -629,7 +1110,7 @@ func (a *Client) TestAliPayConfigByID(params *TestAliPayConfigByIDParams, authIn
 		PathPattern:        "/admin/payment/config/merchant/{id}/alipayconfig/test",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &TestAliPayConfigByIDReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -644,17 +1125,58 @@ func (a *Client) TestAliPayConfigByID(params *TestAliPayConfigByIDParams, authIn
 
 	case *TestAliPayConfigByIDOK:
 		return v, nil, nil
+
 	case *TestAliPayConfigByIDNotFound:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) TestAliPayConfigByIDShort(params *TestAliPayConfigByIDParams, authInfo runtime.ClientAuthInfoWriter) (*TestAliPayConfigByIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewTestAliPayConfigByIDParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "testAliPayConfigById",
+		Method:             "GET",
+		PathPattern:        "/admin/payment/config/merchant/{id}/alipayconfig/test",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &TestAliPayConfigByIDReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *TestAliPayConfigByIDOK:
+		return v, nil
+	case *TestAliPayConfigByIDNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   TestCheckoutConfig tests checkout com configuration
 
-  Test checkout.com configuration. <h4>Check List:</h4> <ul><li>publicKey</li><li>secretKey</li></ul>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:PAYMENT:CONFIG", action=4 (UPDATE)</li><li><i>Returns</i>: test result</li></ul>
+  Test checkout.com configuration. &lt;h4&gt;Check List:&lt;/h4&gt; &lt;ul&gt;&lt;li&gt;publicKey&lt;/li&gt;&lt;li&gt;secretKey&lt;/li&gt;&lt;/ul&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:PAYMENT:CONFIG&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: test result&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) TestCheckoutConfig(params *TestCheckoutConfigParams, authInfo runtime.ClientAuthInfoWriter) (*TestCheckoutConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -672,7 +1194,7 @@ func (a *Client) TestCheckoutConfig(params *TestCheckoutConfigParams, authInfo r
 		PathPattern:        "/admin/payment/config/merchant/checkoutconfig/test",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &TestCheckoutConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -687,6 +1209,44 @@ func (a *Client) TestCheckoutConfig(params *TestCheckoutConfigParams, authInfo r
 
 	case *TestCheckoutConfigOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) TestCheckoutConfigShort(params *TestCheckoutConfigParams, authInfo runtime.ClientAuthInfoWriter) (*TestCheckoutConfigOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewTestCheckoutConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "testCheckoutConfig",
+		Method:             "POST",
+		PathPattern:        "/admin/payment/config/merchant/checkoutconfig/test",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &TestCheckoutConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *TestCheckoutConfigOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -695,7 +1255,7 @@ func (a *Client) TestCheckoutConfig(params *TestCheckoutConfigParams, authInfo r
 /*
   TestCheckoutConfigByID tests checkout com configuration by id
 
-  Test checkout.com configuration in payment merchant config. Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:PAYMENT:CONFIG", action=2 (READ)</li><li><i>Returns</i>: test result</li></ul>
+  Test checkout.com configuration in payment merchant config. Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:PAYMENT:CONFIG&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: test result&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) TestCheckoutConfigByID(params *TestCheckoutConfigByIDParams, authInfo runtime.ClientAuthInfoWriter) (*TestCheckoutConfigByIDOK, *TestCheckoutConfigByIDNotFound, error) {
 	// TODO: Validate the params before sending
@@ -713,7 +1273,7 @@ func (a *Client) TestCheckoutConfigByID(params *TestCheckoutConfigByIDParams, au
 		PathPattern:        "/admin/payment/config/merchant/{id}/checkoutconfig/test",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &TestCheckoutConfigByIDReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -728,17 +1288,58 @@ func (a *Client) TestCheckoutConfigByID(params *TestCheckoutConfigByIDParams, au
 
 	case *TestCheckoutConfigByIDOK:
 		return v, nil, nil
+
 	case *TestCheckoutConfigByIDNotFound:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) TestCheckoutConfigByIDShort(params *TestCheckoutConfigByIDParams, authInfo runtime.ClientAuthInfoWriter) (*TestCheckoutConfigByIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewTestCheckoutConfigByIDParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "testCheckoutConfigById",
+		Method:             "GET",
+		PathPattern:        "/admin/payment/config/merchant/{id}/checkoutconfig/test",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &TestCheckoutConfigByIDReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *TestCheckoutConfigByIDOK:
+		return v, nil
+	case *TestCheckoutConfigByIDNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   TestPayPalConfig tests pay pal configuration
 
-  Test PayPal configuration. <h4>Check List:</h4> <ul><li>clientID</li><li>clientSecret</li></ul><h4>Non-check list:</h4><ul><li>webHookId</li></ul>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:PAYMENT:CONFIG", action=4 (UPDATE)</li><li><i>Returns</i>: test result</li></ul>
+  Test PayPal configuration. &lt;h4&gt;Check List:&lt;/h4&gt; &lt;ul&gt;&lt;li&gt;clientID&lt;/li&gt;&lt;li&gt;clientSecret&lt;/li&gt;&lt;/ul&gt;&lt;h4&gt;Non-check list:&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;webHookId&lt;/li&gt;&lt;/ul&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:PAYMENT:CONFIG&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: test result&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) TestPayPalConfig(params *TestPayPalConfigParams, authInfo runtime.ClientAuthInfoWriter) (*TestPayPalConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -756,7 +1357,7 @@ func (a *Client) TestPayPalConfig(params *TestPayPalConfigParams, authInfo runti
 		PathPattern:        "/admin/payment/config/merchant/paypalconfig/test",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &TestPayPalConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -771,6 +1372,44 @@ func (a *Client) TestPayPalConfig(params *TestPayPalConfigParams, authInfo runti
 
 	case *TestPayPalConfigOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) TestPayPalConfigShort(params *TestPayPalConfigParams, authInfo runtime.ClientAuthInfoWriter) (*TestPayPalConfigOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewTestPayPalConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "testPayPalConfig",
+		Method:             "POST",
+		PathPattern:        "/admin/payment/config/merchant/paypalconfig/test",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &TestPayPalConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *TestPayPalConfigOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -779,7 +1418,7 @@ func (a *Client) TestPayPalConfig(params *TestPayPalConfigParams, authInfo runti
 /*
   TestPayPalConfigByID tests pay pal configuration by id
 
-  Test PayPal configuration in payment merchant config. Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:PAYMENT:CONFIG", action=2 (READ)</li><li><i>Returns</i>: test result</li></ul>
+  Test PayPal configuration in payment merchant config. Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:PAYMENT:CONFIG&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: test result&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) TestPayPalConfigByID(params *TestPayPalConfigByIDParams, authInfo runtime.ClientAuthInfoWriter) (*TestPayPalConfigByIDOK, *TestPayPalConfigByIDNotFound, error) {
 	// TODO: Validate the params before sending
@@ -797,7 +1436,7 @@ func (a *Client) TestPayPalConfigByID(params *TestPayPalConfigByIDParams, authIn
 		PathPattern:        "/admin/payment/config/merchant/{id}/paypalconfig/test",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &TestPayPalConfigByIDReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -812,17 +1451,58 @@ func (a *Client) TestPayPalConfigByID(params *TestPayPalConfigByIDParams, authIn
 
 	case *TestPayPalConfigByIDOK:
 		return v, nil, nil
+
 	case *TestPayPalConfigByIDNotFound:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) TestPayPalConfigByIDShort(params *TestPayPalConfigByIDParams, authInfo runtime.ClientAuthInfoWriter) (*TestPayPalConfigByIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewTestPayPalConfigByIDParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "testPayPalConfigById",
+		Method:             "GET",
+		PathPattern:        "/admin/payment/config/merchant/{id}/paypalconfig/test",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &TestPayPalConfigByIDReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *TestPayPalConfigByIDOK:
+		return v, nil
+	case *TestPayPalConfigByIDNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   TestStripeConfig tests stripe configuration
 
-  Test stripe configuration. <h4>Check List:</h4> <ul><li>secretKey</li><li>allowedPaymentMethodTypes</li></ul><h4>Non-check list:</h4><ul><li>publishableKey</li><li>webhookSecret</li></ul>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:PAYMENT:CONFIG", action=4 (UPDATE)</li><li><i>Returns</i>: test adyen config</li></ul>
+  Test stripe configuration. &lt;h4&gt;Check List:&lt;/h4&gt; &lt;ul&gt;&lt;li&gt;secretKey&lt;/li&gt;&lt;li&gt;allowedPaymentMethodTypes&lt;/li&gt;&lt;/ul&gt;&lt;h4&gt;Non-check list:&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;publishableKey&lt;/li&gt;&lt;li&gt;webhookSecret&lt;/li&gt;&lt;/ul&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:PAYMENT:CONFIG&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: test adyen config&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) TestStripeConfig(params *TestStripeConfigParams, authInfo runtime.ClientAuthInfoWriter) (*TestStripeConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -840,7 +1520,7 @@ func (a *Client) TestStripeConfig(params *TestStripeConfigParams, authInfo runti
 		PathPattern:        "/admin/payment/config/merchant/stripeconfig/test",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &TestStripeConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -855,6 +1535,44 @@ func (a *Client) TestStripeConfig(params *TestStripeConfigParams, authInfo runti
 
 	case *TestStripeConfigOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) TestStripeConfigShort(params *TestStripeConfigParams, authInfo runtime.ClientAuthInfoWriter) (*TestStripeConfigOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewTestStripeConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "testStripeConfig",
+		Method:             "POST",
+		PathPattern:        "/admin/payment/config/merchant/stripeconfig/test",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &TestStripeConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *TestStripeConfigOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -863,7 +1581,7 @@ func (a *Client) TestStripeConfig(params *TestStripeConfigParams, authInfo runti
 /*
   TestStripeConfigByID tests stripe configuration by id
 
-  Test stripe configuration in payment merchant config. Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:PAYMENT:CONFIG", action=2 (READ)</li><li><i>Returns</i>: test adyen config</li></ul>
+  Test stripe configuration in payment merchant config. Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:PAYMENT:CONFIG&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: test adyen config&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) TestStripeConfigByID(params *TestStripeConfigByIDParams, authInfo runtime.ClientAuthInfoWriter) (*TestStripeConfigByIDOK, *TestStripeConfigByIDNotFound, error) {
 	// TODO: Validate the params before sending
@@ -881,7 +1599,7 @@ func (a *Client) TestStripeConfigByID(params *TestStripeConfigByIDParams, authIn
 		PathPattern:        "/admin/payment/config/merchant/{id}/stripeconfig/test",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &TestStripeConfigByIDReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -896,17 +1614,58 @@ func (a *Client) TestStripeConfigByID(params *TestStripeConfigByIDParams, authIn
 
 	case *TestStripeConfigByIDOK:
 		return v, nil, nil
+
 	case *TestStripeConfigByIDNotFound:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) TestStripeConfigByIDShort(params *TestStripeConfigByIDParams, authInfo runtime.ClientAuthInfoWriter) (*TestStripeConfigByIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewTestStripeConfigByIDParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "testStripeConfigById",
+		Method:             "GET",
+		PathPattern:        "/admin/payment/config/merchant/{id}/stripeconfig/test",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &TestStripeConfigByIDReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *TestStripeConfigByIDOK:
+		return v, nil
+	case *TestStripeConfigByIDNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   TestWxPayConfig tests wx pay configuration
 
-  Test WxPay configuration. Reference: <a href="https://pay.weixin.qq.com/wiki/doc/api/native.php?chapter=9_1">WxPay Document</a>.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:PAYMENT:CONFIG", action=4 (UPDATE)</li><li><i>Returns</i>: test WxPay config</li></ul>
+  Test WxPay configuration. Reference: &lt;a href=&#34;https://pay.weixin.qq.com/wiki/doc/api/native.php?chapter=9_1&#34;&gt;WxPay Document&lt;/a&gt;.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:PAYMENT:CONFIG&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: test WxPay config&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) TestWxPayConfig(params *TestWxPayConfigParams, authInfo runtime.ClientAuthInfoWriter) (*TestWxPayConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -924,7 +1683,7 @@ func (a *Client) TestWxPayConfig(params *TestWxPayConfigParams, authInfo runtime
 		PathPattern:        "/admin/payment/config/merchant/wxpayconfig/test",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &TestWxPayConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -939,6 +1698,44 @@ func (a *Client) TestWxPayConfig(params *TestWxPayConfigParams, authInfo runtime
 
 	case *TestWxPayConfigOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) TestWxPayConfigShort(params *TestWxPayConfigParams, authInfo runtime.ClientAuthInfoWriter) (*TestWxPayConfigOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewTestWxPayConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "testWxPayConfig",
+		Method:             "POST",
+		PathPattern:        "/admin/payment/config/merchant/wxpayconfig/test",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &TestWxPayConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *TestWxPayConfigOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -947,7 +1744,7 @@ func (a *Client) TestWxPayConfig(params *TestWxPayConfigParams, authInfo runtime
 /*
   TestWxPayConfigByID tests wx pay configuration by id
 
-  Test WxPay configuration in payment merchant config. Reference: <a href="https://pay.weixin.qq.com/wiki/doc/api/native.php?chapter=9_1">WxPay Document</a>.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:PAYMENT:CONFIG", action=2 (READ)</li><li><i>Returns</i>: test WxPay config</li></ul>
+  Test WxPay configuration in payment merchant config. Reference: &lt;a href=&#34;https://pay.weixin.qq.com/wiki/doc/api/native.php?chapter=9_1&#34;&gt;WxPay Document&lt;/a&gt;.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:PAYMENT:CONFIG&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: test WxPay config&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) TestWxPayConfigByID(params *TestWxPayConfigByIDParams, authInfo runtime.ClientAuthInfoWriter) (*TestWxPayConfigByIDOK, *TestWxPayConfigByIDNotFound, error) {
 	// TODO: Validate the params before sending
@@ -965,7 +1762,7 @@ func (a *Client) TestWxPayConfigByID(params *TestWxPayConfigByIDParams, authInfo
 		PathPattern:        "/admin/payment/config/merchant/{id}/wxpayconfig/test",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &TestWxPayConfigByIDReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -980,17 +1777,58 @@ func (a *Client) TestWxPayConfigByID(params *TestWxPayConfigByIDParams, authInfo
 
 	case *TestWxPayConfigByIDOK:
 		return v, nil, nil
+
 	case *TestWxPayConfigByIDNotFound:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) TestWxPayConfigByIDShort(params *TestWxPayConfigByIDParams, authInfo runtime.ClientAuthInfoWriter) (*TestWxPayConfigByIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewTestWxPayConfigByIDParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "testWxPayConfigById",
+		Method:             "GET",
+		PathPattern:        "/admin/payment/config/merchant/{id}/wxpayconfig/test",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &TestWxPayConfigByIDReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *TestWxPayConfigByIDOK:
+		return v, nil
+	case *TestWxPayConfigByIDNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   TestXsollaConfig tests xsolla configuration
 
-  Check xsolla configuration, Reference: <a href="https://developers.xsolla.com/?#simple-checkout">Xsolla Document</a>.<h4>Check List:</h4> <ul><li>merchantId</li><li>projectId</li><li>apiKey</li></ul><h4>Non-check list:</h4><ul><li>projectSecretKey</li></ul>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:PAYMENT:CONFIG", action=4 (UPDATE)</li><li><i>Returns</i>: test result</li></ul>
+  Check xsolla configuration, Reference: &lt;a href=&#34;https://developers.xsolla.com/?#simple-checkout&#34;&gt;Xsolla Document&lt;/a&gt;.&lt;h4&gt;Check List:&lt;/h4&gt; &lt;ul&gt;&lt;li&gt;merchantId&lt;/li&gt;&lt;li&gt;projectId&lt;/li&gt;&lt;li&gt;apiKey&lt;/li&gt;&lt;/ul&gt;&lt;h4&gt;Non-check list:&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;projectSecretKey&lt;/li&gt;&lt;/ul&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:PAYMENT:CONFIG&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: test result&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) TestXsollaConfig(params *TestXsollaConfigParams, authInfo runtime.ClientAuthInfoWriter) (*TestXsollaConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -1008,7 +1846,7 @@ func (a *Client) TestXsollaConfig(params *TestXsollaConfigParams, authInfo runti
 		PathPattern:        "/admin/payment/config/merchant/xsollaconfig/test",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &TestXsollaConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1023,6 +1861,44 @@ func (a *Client) TestXsollaConfig(params *TestXsollaConfigParams, authInfo runti
 
 	case *TestXsollaConfigOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) TestXsollaConfigShort(params *TestXsollaConfigParams, authInfo runtime.ClientAuthInfoWriter) (*TestXsollaConfigOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewTestXsollaConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "testXsollaConfig",
+		Method:             "POST",
+		PathPattern:        "/admin/payment/config/merchant/xsollaconfig/test",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &TestXsollaConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *TestXsollaConfigOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -1031,7 +1907,7 @@ func (a *Client) TestXsollaConfig(params *TestXsollaConfigParams, authInfo runti
 /*
   TestXsollaConfigByID tests xsolla configuration by id
 
-  Test xsolla configuration in payment merchant config. Reference: <a href="https://developers.xsolla.com/?#simple-checkout">Xsolla Document</a>.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:PAYMENT:CONFIG", action=2 (READ)</li><li><i>Returns</i>: test xsolla config</li></ul>
+  Test xsolla configuration in payment merchant config. Reference: &lt;a href=&#34;https://developers.xsolla.com/?#simple-checkout&#34;&gt;Xsolla Document&lt;/a&gt;.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:PAYMENT:CONFIG&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: test xsolla config&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) TestXsollaConfigByID(params *TestXsollaConfigByIDParams, authInfo runtime.ClientAuthInfoWriter) (*TestXsollaConfigByIDOK, *TestXsollaConfigByIDNotFound, error) {
 	// TODO: Validate the params before sending
@@ -1049,7 +1925,7 @@ func (a *Client) TestXsollaConfigByID(params *TestXsollaConfigByIDParams, authIn
 		PathPattern:        "/admin/payment/config/merchant/{id}/xsollaconfig/test",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &TestXsollaConfigByIDReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1064,17 +1940,58 @@ func (a *Client) TestXsollaConfigByID(params *TestXsollaConfigByIDParams, authIn
 
 	case *TestXsollaConfigByIDOK:
 		return v, nil, nil
+
 	case *TestXsollaConfigByIDNotFound:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) TestXsollaConfigByIDShort(params *TestXsollaConfigByIDParams, authInfo runtime.ClientAuthInfoWriter) (*TestXsollaConfigByIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewTestXsollaConfigByIDParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "testXsollaConfigById",
+		Method:             "GET",
+		PathPattern:        "/admin/payment/config/merchant/{id}/xsollaconfig/test",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &TestXsollaConfigByIDReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *TestXsollaConfigByIDOK:
+		return v, nil
+	case *TestXsollaConfigByIDNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   UpdateAdyenConfig updates adyen config
 
-  Update adyen config.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:PAYMENT:CONFIG", action=4 (UPDATE)</li><li><i>Returns</i>: updated payment merchant config</li></ul>
+  Update adyen config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:PAYMENT:CONFIG&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated payment merchant config&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) UpdateAdyenConfig(params *UpdateAdyenConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateAdyenConfigOK, *UpdateAdyenConfigNotFound, error) {
 	// TODO: Validate the params before sending
@@ -1092,7 +2009,7 @@ func (a *Client) UpdateAdyenConfig(params *UpdateAdyenConfigParams, authInfo run
 		PathPattern:        "/admin/payment/config/merchant/{id}/adyenconfig",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &UpdateAdyenConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1107,17 +2024,58 @@ func (a *Client) UpdateAdyenConfig(params *UpdateAdyenConfigParams, authInfo run
 
 	case *UpdateAdyenConfigOK:
 		return v, nil, nil
+
 	case *UpdateAdyenConfigNotFound:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) UpdateAdyenConfigShort(params *UpdateAdyenConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateAdyenConfigOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateAdyenConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updateAdyenConfig",
+		Method:             "PUT",
+		PathPattern:        "/admin/payment/config/merchant/{id}/adyenconfig",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateAdyenConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateAdyenConfigOK:
+		return v, nil
+	case *UpdateAdyenConfigNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   UpdateAliPayConfig updates alipay configuration
 
-  Update alipay configuration.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:PAYMENT:CONFIG", action=4 (UPDATE)</li><li><i>Returns</i>: updated payment merchant config</li></ul>
+  Update alipay configuration.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:PAYMENT:CONFIG&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated payment merchant config&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) UpdateAliPayConfig(params *UpdateAliPayConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateAliPayConfigOK, *UpdateAliPayConfigNotFound, error) {
 	// TODO: Validate the params before sending
@@ -1135,7 +2093,7 @@ func (a *Client) UpdateAliPayConfig(params *UpdateAliPayConfigParams, authInfo r
 		PathPattern:        "/admin/payment/config/merchant/{id}/alipayconfig",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &UpdateAliPayConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1150,17 +2108,58 @@ func (a *Client) UpdateAliPayConfig(params *UpdateAliPayConfigParams, authInfo r
 
 	case *UpdateAliPayConfigOK:
 		return v, nil, nil
+
 	case *UpdateAliPayConfigNotFound:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) UpdateAliPayConfigShort(params *UpdateAliPayConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateAliPayConfigOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateAliPayConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updateAliPayConfig",
+		Method:             "PUT",
+		PathPattern:        "/admin/payment/config/merchant/{id}/alipayconfig",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateAliPayConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateAliPayConfigOK:
+		return v, nil
+	case *UpdateAliPayConfigNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   UpdateCheckoutConfig updates checkout com config
 
-  Update checkout.com config.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:PAYMENT:CONFIG", action=4 (UPDATE)</li><li><i>Returns</i>: updated payment merchant config</li></ul>
+  Update checkout.com config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:PAYMENT:CONFIG&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated payment merchant config&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) UpdateCheckoutConfig(params *UpdateCheckoutConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateCheckoutConfigOK, *UpdateCheckoutConfigNotFound, error) {
 	// TODO: Validate the params before sending
@@ -1178,7 +2177,7 @@ func (a *Client) UpdateCheckoutConfig(params *UpdateCheckoutConfigParams, authIn
 		PathPattern:        "/admin/payment/config/merchant/{id}/checkoutconfig",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &UpdateCheckoutConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1193,17 +2192,58 @@ func (a *Client) UpdateCheckoutConfig(params *UpdateCheckoutConfigParams, authIn
 
 	case *UpdateCheckoutConfigOK:
 		return v, nil, nil
+
 	case *UpdateCheckoutConfigNotFound:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) UpdateCheckoutConfigShort(params *UpdateCheckoutConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateCheckoutConfigOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateCheckoutConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updateCheckoutConfig",
+		Method:             "PUT",
+		PathPattern:        "/admin/payment/config/merchant/{id}/checkoutconfig",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateCheckoutConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateCheckoutConfigOK:
+		return v, nil
+	case *UpdateCheckoutConfigNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   UpdatePayPalConfig updates pay pal config
 
-  Update PayPal config.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:PAYMENT:CONFIG", action=4 (UPDATE)</li><li><i>Returns</i>: updated payment merchant config</li></ul>
+  Update PayPal config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:PAYMENT:CONFIG&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated payment merchant config&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) UpdatePayPalConfig(params *UpdatePayPalConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePayPalConfigOK, *UpdatePayPalConfigNotFound, error) {
 	// TODO: Validate the params before sending
@@ -1221,7 +2261,7 @@ func (a *Client) UpdatePayPalConfig(params *UpdatePayPalConfigParams, authInfo r
 		PathPattern:        "/admin/payment/config/merchant/{id}/paypalconfig",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &UpdatePayPalConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1236,17 +2276,58 @@ func (a *Client) UpdatePayPalConfig(params *UpdatePayPalConfigParams, authInfo r
 
 	case *UpdatePayPalConfigOK:
 		return v, nil, nil
+
 	case *UpdatePayPalConfigNotFound:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) UpdatePayPalConfigShort(params *UpdatePayPalConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePayPalConfigOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdatePayPalConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updatePayPalConfig",
+		Method:             "PUT",
+		PathPattern:        "/admin/payment/config/merchant/{id}/paypalconfig",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdatePayPalConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdatePayPalConfigOK:
+		return v, nil
+	case *UpdatePayPalConfigNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   UpdatePaymentProviderConfig updates payment provider config
 
-  Update payment provider config.<br><pre><p><strong>Request Body Parameters:</strong></p><pre><table><tr><td>Parameter</td><td>Type</td><td>Required</td><td>Description</td></tr><tr><td>namespace</td><td>String</td><td>Yes</td><td>namespace, * indicates all namespace</td></tr><tr><td>region</td><td>String</td><td>Yes</td><td>region, * indicates all regions</td></tr><tr><td>aggregate</td><td>String</td><td>No</td><td>aggregate payment provider, such as XSOLLA, ADYEN, STRIPE</td></tr><tr><td>specials</td><td>List</td><td>No</td><td>special payment provider, such as ALIPAY, WXPAY</td></tr></table></pre>payment provider applied has priority: <ol><li>namespace and region match</li><li>namespace matches and region is *</li><li>region matches and namespace is *</li><li>namespace and region are *</li></ol>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:PAYMENT:CONFIG", action=4 (UPDATE)</li><li><i>Returns</i>: payment provider config</li></ul>
+  Update payment provider config.&lt;br&gt;&lt;pre&gt;&lt;p&gt;&lt;strong&gt;Request Body Parameters:&lt;/strong&gt;&lt;/p&gt;&lt;pre&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Parameter&lt;/td&gt;&lt;td&gt;Type&lt;/td&gt;&lt;td&gt;Required&lt;/td&gt;&lt;td&gt;Description&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;namespace&lt;/td&gt;&lt;td&gt;String&lt;/td&gt;&lt;td&gt;Yes&lt;/td&gt;&lt;td&gt;namespace, * indicates all namespace&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;region&lt;/td&gt;&lt;td&gt;String&lt;/td&gt;&lt;td&gt;Yes&lt;/td&gt;&lt;td&gt;region, * indicates all regions&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;aggregate&lt;/td&gt;&lt;td&gt;String&lt;/td&gt;&lt;td&gt;No&lt;/td&gt;&lt;td&gt;aggregate payment provider, such as XSOLLA, ADYEN, STRIPE&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;specials&lt;/td&gt;&lt;td&gt;List&lt;/td&gt;&lt;td&gt;No&lt;/td&gt;&lt;td&gt;special payment provider, such as ALIPAY, WXPAY&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/pre&gt;payment provider applied has priority: &lt;ol&gt;&lt;li&gt;namespace and region match&lt;/li&gt;&lt;li&gt;namespace matches and region is *&lt;/li&gt;&lt;li&gt;region matches and namespace is *&lt;/li&gt;&lt;li&gt;namespace and region are *&lt;/li&gt;&lt;/ol&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:PAYMENT:CONFIG&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: payment provider config&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) UpdatePaymentProviderConfig(params *UpdatePaymentProviderConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePaymentProviderConfigOK, *UpdatePaymentProviderConfigBadRequest, *UpdatePaymentProviderConfigNotFound, *UpdatePaymentProviderConfigConflict, *UpdatePaymentProviderConfigUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -1264,7 +2345,7 @@ func (a *Client) UpdatePaymentProviderConfig(params *UpdatePaymentProviderConfig
 		PathPattern:        "/admin/payment/config/provider/{id}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &UpdatePaymentProviderConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1279,23 +2360,73 @@ func (a *Client) UpdatePaymentProviderConfig(params *UpdatePaymentProviderConfig
 
 	case *UpdatePaymentProviderConfigOK:
 		return v, nil, nil, nil, nil, nil
+
 	case *UpdatePaymentProviderConfigBadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *UpdatePaymentProviderConfigNotFound:
 		return nil, nil, v, nil, nil, nil
+
 	case *UpdatePaymentProviderConfigConflict:
 		return nil, nil, nil, v, nil, nil
+
 	case *UpdatePaymentProviderConfigUnprocessableEntity:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) UpdatePaymentProviderConfigShort(params *UpdatePaymentProviderConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePaymentProviderConfigOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdatePaymentProviderConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updatePaymentProviderConfig",
+		Method:             "PUT",
+		PathPattern:        "/admin/payment/config/provider/{id}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdatePaymentProviderConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdatePaymentProviderConfigOK:
+		return v, nil
+	case *UpdatePaymentProviderConfigBadRequest:
+		return nil, v
+	case *UpdatePaymentProviderConfigNotFound:
+		return nil, v
+	case *UpdatePaymentProviderConfigConflict:
+		return nil, v
+	case *UpdatePaymentProviderConfigUnprocessableEntity:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   UpdatePaymentTaxConfig updates payment global tax config
 
-  Update payment tax config.<br><pre><p><strong>Request Body Parameters:</strong></p><pre><table><tr><td>Parameter</td><td>Type</td><td>Required</td><td>Description</td></tr><tr><td>taxJarEnabled</td><td>Boolean</td><td>false</td></tr><tr><td>taxJarApiToken</td><td>String</td><td>false</td><td>required, when taxJarEnabled is true and there is no existing token</td></tr><tr><td>sandboxTaxJarApiToken</td><td>String</td><td>false</td><td>optional</td></tr><tr><td>taxJarProductCodesMapping</td><td>Map</td><td>No</td><td>key is item type(APP|COINS|INGAMEITEM|BUNDLE|CODE|SUBSCRIPTION) and value is product tax code: https://developers.taxjar.com/api/reference/?ruby#get-list-tax-categories</td></tr></table></pre></ol>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:PAYMENT:CONFIG", action=4 (UPDATE)</li><li><i>Returns</i>: payment global tax config</li></ul>
+  Update payment tax config.&lt;br&gt;&lt;pre&gt;&lt;p&gt;&lt;strong&gt;Request Body Parameters:&lt;/strong&gt;&lt;/p&gt;&lt;pre&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Parameter&lt;/td&gt;&lt;td&gt;Type&lt;/td&gt;&lt;td&gt;Required&lt;/td&gt;&lt;td&gt;Description&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;taxJarEnabled&lt;/td&gt;&lt;td&gt;Boolean&lt;/td&gt;&lt;td&gt;false&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;taxJarApiToken&lt;/td&gt;&lt;td&gt;String&lt;/td&gt;&lt;td&gt;false&lt;/td&gt;&lt;td&gt;required, when taxJarEnabled is true and there is no existing token&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;sandboxTaxJarApiToken&lt;/td&gt;&lt;td&gt;String&lt;/td&gt;&lt;td&gt;false&lt;/td&gt;&lt;td&gt;optional&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;taxJarProductCodesMapping&lt;/td&gt;&lt;td&gt;Map&lt;/td&gt;&lt;td&gt;No&lt;/td&gt;&lt;td&gt;key is item type(APP|COINS|INGAMEITEM|BUNDLE|CODE|SUBSCRIPTION) and value is product tax code: https://developers.taxjar.com/api/reference/?ruby#get-list-tax-categories&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/pre&gt;&lt;/ol&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:PAYMENT:CONFIG&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: payment global tax config&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) UpdatePaymentTaxConfig(params *UpdatePaymentTaxConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePaymentTaxConfigOK, *UpdatePaymentTaxConfigBadRequest, *UpdatePaymentTaxConfigUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -1313,7 +2444,7 @@ func (a *Client) UpdatePaymentTaxConfig(params *UpdatePaymentTaxConfigParams, au
 		PathPattern:        "/admin/payment/config/tax",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &UpdatePaymentTaxConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1328,19 +2459,63 @@ func (a *Client) UpdatePaymentTaxConfig(params *UpdatePaymentTaxConfigParams, au
 
 	case *UpdatePaymentTaxConfigOK:
 		return v, nil, nil, nil
+
 	case *UpdatePaymentTaxConfigBadRequest:
 		return nil, v, nil, nil
+
 	case *UpdatePaymentTaxConfigUnprocessableEntity:
 		return nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) UpdatePaymentTaxConfigShort(params *UpdatePaymentTaxConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePaymentTaxConfigOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdatePaymentTaxConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updatePaymentTaxConfig",
+		Method:             "PUT",
+		PathPattern:        "/admin/payment/config/tax",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdatePaymentTaxConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdatePaymentTaxConfigOK:
+		return v, nil
+	case *UpdatePaymentTaxConfigBadRequest:
+		return nil, v
+	case *UpdatePaymentTaxConfigUnprocessableEntity:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   UpdateStripeConfig updates stripe config
 
-  Update stripe config.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:PAYMENT:CONFIG", action=4 (UPDATE)</li><li><i>Returns</i>: updated payment merchant config</li></ul>
+  Update stripe config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:PAYMENT:CONFIG&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated payment merchant config&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) UpdateStripeConfig(params *UpdateStripeConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateStripeConfigOK, *UpdateStripeConfigNotFound, error) {
 	// TODO: Validate the params before sending
@@ -1358,7 +2533,7 @@ func (a *Client) UpdateStripeConfig(params *UpdateStripeConfigParams, authInfo r
 		PathPattern:        "/admin/payment/config/merchant/{id}/stripeconfig",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &UpdateStripeConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1373,17 +2548,58 @@ func (a *Client) UpdateStripeConfig(params *UpdateStripeConfigParams, authInfo r
 
 	case *UpdateStripeConfigOK:
 		return v, nil, nil
+
 	case *UpdateStripeConfigNotFound:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) UpdateStripeConfigShort(params *UpdateStripeConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateStripeConfigOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateStripeConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updateStripeConfig",
+		Method:             "PUT",
+		PathPattern:        "/admin/payment/config/merchant/{id}/stripeconfig",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateStripeConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateStripeConfigOK:
+		return v, nil
+	case *UpdateStripeConfigNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   UpdateWxPayConfig updates wxpay configuration
 
-  Update wxpay configuration.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:PAYMENT:CONFIG", action=4 (UPDATE)</li><li><i>Returns</i>: updated payment merchant config</li></ul>
+  Update wxpay configuration.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:PAYMENT:CONFIG&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated payment merchant config&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) UpdateWxPayConfig(params *UpdateWxPayConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateWxPayConfigOK, *UpdateWxPayConfigNotFound, error) {
 	// TODO: Validate the params before sending
@@ -1401,7 +2617,7 @@ func (a *Client) UpdateWxPayConfig(params *UpdateWxPayConfigParams, authInfo run
 		PathPattern:        "/admin/payment/config/merchant/{id}/wxpayconfig",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &UpdateWxPayConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1416,17 +2632,58 @@ func (a *Client) UpdateWxPayConfig(params *UpdateWxPayConfigParams, authInfo run
 
 	case *UpdateWxPayConfigOK:
 		return v, nil, nil
+
 	case *UpdateWxPayConfigNotFound:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) UpdateWxPayConfigShort(params *UpdateWxPayConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateWxPayConfigOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateWxPayConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updateWxPayConfig",
+		Method:             "PUT",
+		PathPattern:        "/admin/payment/config/merchant/{id}/wxpayconfig",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateWxPayConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateWxPayConfigOK:
+		return v, nil
+	case *UpdateWxPayConfigNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   UpdateWxPayConfigCert uploads wxpay cert file
 
-  Upload wxpay cert file.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:PAYMENT:CONFIG", action=4 (UPDATE)</li><li><i>Returns</i>: updated payment merchant config</li></ul>
+  Upload wxpay cert file.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:PAYMENT:CONFIG&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated payment merchant config&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) UpdateWxPayConfigCert(params *UpdateWxPayConfigCertParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateWxPayConfigCertOK, *UpdateWxPayConfigCertNotFound, error) {
 	// TODO: Validate the params before sending
@@ -1444,7 +2701,7 @@ func (a *Client) UpdateWxPayConfigCert(params *UpdateWxPayConfigCertParams, auth
 		PathPattern:        "/admin/payment/config/merchant/{id}/wxpayconfig/cert",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"multipart/form-data"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &UpdateWxPayConfigCertReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1459,17 +2716,58 @@ func (a *Client) UpdateWxPayConfigCert(params *UpdateWxPayConfigCertParams, auth
 
 	case *UpdateWxPayConfigCertOK:
 		return v, nil, nil
+
 	case *UpdateWxPayConfigCertNotFound:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) UpdateWxPayConfigCertShort(params *UpdateWxPayConfigCertParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateWxPayConfigCertOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateWxPayConfigCertParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updateWxPayConfigCert",
+		Method:             "PUT",
+		PathPattern:        "/admin/payment/config/merchant/{id}/wxpayconfig/cert",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"multipart/form-data"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateWxPayConfigCertReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateWxPayConfigCertOK:
+		return v, nil
+	case *UpdateWxPayConfigCertNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   UpdateXsollaConfig updates xsolla configuration
 
-  Update xsolla configuration. Reference: <a href="https://developers.xsolla.com/?#simple-checkout">Xsolla Document</a>.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:PAYMENT:CONFIG", action=4 (UPDATE)</li><li><i>Returns</i>: updated payment merchant config</li></ul>
+  Update xsolla configuration. Reference: &lt;a href=&#34;https://developers.xsolla.com/?#simple-checkout&#34;&gt;Xsolla Document&lt;/a&gt;.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:PAYMENT:CONFIG&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated payment merchant config&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) UpdateXsollaConfig(params *UpdateXsollaConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateXsollaConfigOK, *UpdateXsollaConfigNotFound, error) {
 	// TODO: Validate the params before sending
@@ -1487,7 +2785,7 @@ func (a *Client) UpdateXsollaConfig(params *UpdateXsollaConfigParams, authInfo r
 		PathPattern:        "/admin/payment/config/merchant/{id}/xsollaconfig",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &UpdateXsollaConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1502,17 +2800,58 @@ func (a *Client) UpdateXsollaConfig(params *UpdateXsollaConfigParams, authInfo r
 
 	case *UpdateXsollaConfigOK:
 		return v, nil, nil
+
 	case *UpdateXsollaConfigNotFound:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) UpdateXsollaConfigShort(params *UpdateXsollaConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateXsollaConfigOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateXsollaConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updateXsollaConfig",
+		Method:             "PUT",
+		PathPattern:        "/admin/payment/config/merchant/{id}/xsollaconfig",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateXsollaConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateXsollaConfigOK:
+		return v, nil
+	case *UpdateXsollaConfigNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   UpdateXsollaUIConfig updates xsolla UI configuration
 
-  Update xsolla UI configuration.Reference: <a href="https://developers.xsolla.com/api.html#ui-integrations">Xsolla Document</a>.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:PAYMENT:CONFIG", action=4 (UPDATE)</li><li><i>Returns</i>: updated payment merchant config</li></ul>
+  Update xsolla UI configuration.Reference: &lt;a href=&#34;https://developers.xsolla.com/api.html#ui-integrations&#34;&gt;Xsolla Document&lt;/a&gt;.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:PAYMENT:CONFIG&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated payment merchant config&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) UpdateXsollaUIConfig(params *UpdateXsollaUIConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateXsollaUIConfigOK, *UpdateXsollaUIConfigNotFound, error) {
 	// TODO: Validate the params before sending
@@ -1530,7 +2869,7 @@ func (a *Client) UpdateXsollaUIConfig(params *UpdateXsollaUIConfigParams, authIn
 		PathPattern:        "/admin/payment/config/merchant/{id}/xsollauiconfig",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &UpdateXsollaUIConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1545,10 +2884,51 @@ func (a *Client) UpdateXsollaUIConfig(params *UpdateXsollaUIConfigParams, authIn
 
 	case *UpdateXsollaUIConfigOK:
 		return v, nil, nil
+
 	case *UpdateXsollaUIConfigNotFound:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) UpdateXsollaUIConfigShort(params *UpdateXsollaUIConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateXsollaUIConfigOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateXsollaUIConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updateXsollaUIConfig",
+		Method:             "PUT",
+		PathPattern:        "/admin/payment/config/merchant/{id}/xsollauiconfig",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateXsollaUIConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateXsollaUIConfigOK:
+		return v, nil
+	case *UpdateXsollaUIConfigNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 

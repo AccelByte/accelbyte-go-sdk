@@ -63,7 +63,7 @@ for the admin invite user v3 operation typically these are written to a http.Req
 type AdminInviteUserV3Params struct {
 
 	/*Body*/
-	Body *iamclientmodels.ModelInviteAdminRequestV3
+	Body *iamclientmodels.ModelInviteUserRequestV3
 	/*Namespace
 	  Namespace, only accept alphabet and numeric
 
@@ -109,13 +109,13 @@ func (o *AdminInviteUserV3Params) SetHTTPClient(client *http.Client) {
 }
 
 // WithBody adds the body to the admin invite user v3 params
-func (o *AdminInviteUserV3Params) WithBody(body *iamclientmodels.ModelInviteAdminRequestV3) *AdminInviteUserV3Params {
+func (o *AdminInviteUserV3Params) WithBody(body *iamclientmodels.ModelInviteUserRequestV3) *AdminInviteUserV3Params {
 	o.SetBody(body)
 	return o
 }
 
 // SetBody adds the body to the admin invite user v3 params
-func (o *AdminInviteUserV3Params) SetBody(body *iamclientmodels.ModelInviteAdminRequestV3) {
+func (o *AdminInviteUserV3Params) SetBody(body *iamclientmodels.ModelInviteUserRequestV3) {
 	o.Body = body
 }
 

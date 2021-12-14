@@ -30,16 +30,17 @@ type Client struct {
 // ClientService is the interface for Client methods
 type ClientService interface {
 	CreatePolicy(params *CreatePolicyParams, authInfo runtime.ClientAuthInfoWriter) (*CreatePolicyCreated, *CreatePolicyConflict, *CreatePolicyUnprocessableEntity, error)
-
+	CreatePolicyShort(params *CreatePolicyParams, authInfo runtime.ClientAuthInfoWriter) (*CreatePolicyCreated, error)
 	PartialUpdatePolicy(params *PartialUpdatePolicyParams, authInfo runtime.ClientAuthInfoWriter) (*PartialUpdatePolicyOK, *PartialUpdatePolicyBadRequest, error)
-
+	PartialUpdatePolicyShort(params *PartialUpdatePolicyParams, authInfo runtime.ClientAuthInfoWriter) (*PartialUpdatePolicyOK, error)
 	RetrieveAllLegalPolicies(params *RetrieveAllLegalPoliciesParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAllLegalPoliciesOK, error)
-
+	RetrieveAllLegalPoliciesShort(params *RetrieveAllLegalPoliciesParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAllLegalPoliciesOK, error)
 	RetrieveAllPolicyTypes(params *RetrieveAllPolicyTypesParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAllPolicyTypesOK, error)
-
+	RetrieveAllPolicyTypesShort(params *RetrieveAllPolicyTypesParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAllPolicyTypesOK, error)
 	RetrievePolicyCountry(params *RetrievePolicyCountryParams, authInfo runtime.ClientAuthInfoWriter) (*RetrievePolicyCountryOK, *RetrievePolicyCountryNotFound, error)
-
+	RetrievePolicyCountryShort(params *RetrievePolicyCountryParams, authInfo runtime.ClientAuthInfoWriter) (*RetrievePolicyCountryOK, error)
 	RetrieveSinglePolicy(params *RetrieveSinglePolicyParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveSinglePolicyOK, *RetrieveSinglePolicyNotFound, error)
+	RetrieveSinglePolicyShort(params *RetrieveSinglePolicyParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveSinglePolicyOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -47,7 +48,7 @@ type ClientService interface {
 /*
   CreatePolicy creates a base legal policy
 
-  Create a legal policy.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:*:LEGAL", action=1 (CREATE)</li></ul>
+  Create a legal policy.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=1 (CREATE)&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) CreatePolicy(params *CreatePolicyParams, authInfo runtime.ClientAuthInfoWriter) (*CreatePolicyCreated, *CreatePolicyConflict, *CreatePolicyUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -65,7 +66,7 @@ func (a *Client) CreatePolicy(params *CreatePolicyParams, authInfo runtime.Clien
 		PathPattern:        "/admin/base-policies",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &CreatePolicyReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -80,19 +81,63 @@ func (a *Client) CreatePolicy(params *CreatePolicyParams, authInfo runtime.Clien
 
 	case *CreatePolicyCreated:
 		return v, nil, nil, nil
+
 	case *CreatePolicyConflict:
 		return nil, v, nil, nil
+
 	case *CreatePolicyUnprocessableEntity:
 		return nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) CreatePolicyShort(params *CreatePolicyParams, authInfo runtime.ClientAuthInfoWriter) (*CreatePolicyCreated, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreatePolicyParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "createPolicy",
+		Method:             "POST",
+		PathPattern:        "/admin/base-policies",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CreatePolicyReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *CreatePolicyCreated:
+		return v, nil
+	case *CreatePolicyConflict:
+		return nil, v
+	case *CreatePolicyUnprocessableEntity:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   PartialUpdatePolicy updates base legal policy
 
-  Update an existing base policy.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:*:LEGAL", action=4 (UPDATE)</li></ul>
+  Update an existing base policy.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) PartialUpdatePolicy(params *PartialUpdatePolicyParams, authInfo runtime.ClientAuthInfoWriter) (*PartialUpdatePolicyOK, *PartialUpdatePolicyBadRequest, error) {
 	// TODO: Validate the params before sending
@@ -110,7 +155,7 @@ func (a *Client) PartialUpdatePolicy(params *PartialUpdatePolicyParams, authInfo
 		PathPattern:        "/admin/base-policies/{basePolicyId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PartialUpdatePolicyReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -125,17 +170,58 @@ func (a *Client) PartialUpdatePolicy(params *PartialUpdatePolicyParams, authInfo
 
 	case *PartialUpdatePolicyOK:
 		return v, nil, nil
+
 	case *PartialUpdatePolicyBadRequest:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PartialUpdatePolicyShort(params *PartialUpdatePolicyParams, authInfo runtime.ClientAuthInfoWriter) (*PartialUpdatePolicyOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPartialUpdatePolicyParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "partialUpdatePolicy",
+		Method:             "PATCH",
+		PathPattern:        "/admin/base-policies/{basePolicyId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PartialUpdatePolicyReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PartialUpdatePolicyOK:
+		return v, nil
+	case *PartialUpdatePolicyBadRequest:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   RetrieveAllLegalPolicies retrieves all base legal policy
 
-  Retrieve all base policies.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:*:LEGAL", action=2 (READ)</li></ul>
+  Retrieve all base policies.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) RetrieveAllLegalPolicies(params *RetrieveAllLegalPoliciesParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAllLegalPoliciesOK, error) {
 	// TODO: Validate the params before sending
@@ -153,7 +239,7 @@ func (a *Client) RetrieveAllLegalPolicies(params *RetrieveAllLegalPoliciesParams
 		PathPattern:        "/admin/base-policies",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &RetrieveAllLegalPoliciesReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -168,6 +254,44 @@ func (a *Client) RetrieveAllLegalPolicies(params *RetrieveAllLegalPoliciesParams
 
 	case *RetrieveAllLegalPoliciesOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) RetrieveAllLegalPoliciesShort(params *RetrieveAllLegalPoliciesParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAllLegalPoliciesOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRetrieveAllLegalPoliciesParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "retrieveAllLegalPolicies",
+		Method:             "GET",
+		PathPattern:        "/admin/base-policies",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &RetrieveAllLegalPoliciesReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *RetrieveAllLegalPoliciesOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -176,7 +300,7 @@ func (a *Client) RetrieveAllLegalPolicies(params *RetrieveAllLegalPoliciesParams
 /*
   RetrieveAllPolicyTypes retrieves all policy type
 
-  Retrieve all supported policy types.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:*:LEGAL", action=2 (READ)</li></ul>
+  Retrieve all supported policy types.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) RetrieveAllPolicyTypes(params *RetrieveAllPolicyTypesParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAllPolicyTypesOK, error) {
 	// TODO: Validate the params before sending
@@ -194,7 +318,7 @@ func (a *Client) RetrieveAllPolicyTypes(params *RetrieveAllPolicyTypesParams, au
 		PathPattern:        "/admin/policy-types",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &RetrieveAllPolicyTypesReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -209,6 +333,44 @@ func (a *Client) RetrieveAllPolicyTypes(params *RetrieveAllPolicyTypesParams, au
 
 	case *RetrieveAllPolicyTypesOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) RetrieveAllPolicyTypesShort(params *RetrieveAllPolicyTypesParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAllPolicyTypesOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRetrieveAllPolicyTypesParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "retrieveAllPolicyTypes",
+		Method:             "GET",
+		PathPattern:        "/admin/policy-types",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &RetrieveAllPolicyTypesReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *RetrieveAllPolicyTypesOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -217,7 +379,7 @@ func (a *Client) RetrieveAllPolicyTypes(params *RetrieveAllPolicyTypesParams, au
 /*
   RetrievePolicyCountry retrieves a base legal policy based on a particular country
 
-  Retrieve a Base Legal Policy based on a Particular Country.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:*:LEGAL", action=2 (READ)</li></ul>
+  Retrieve a Base Legal Policy based on a Particular Country.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) RetrievePolicyCountry(params *RetrievePolicyCountryParams, authInfo runtime.ClientAuthInfoWriter) (*RetrievePolicyCountryOK, *RetrievePolicyCountryNotFound, error) {
 	// TODO: Validate the params before sending
@@ -235,7 +397,7 @@ func (a *Client) RetrievePolicyCountry(params *RetrievePolicyCountryParams, auth
 		PathPattern:        "/admin/base-policies/{basePolicyId}/countries/{countryCode}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &RetrievePolicyCountryReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -250,17 +412,58 @@ func (a *Client) RetrievePolicyCountry(params *RetrievePolicyCountryParams, auth
 
 	case *RetrievePolicyCountryOK:
 		return v, nil, nil
+
 	case *RetrievePolicyCountryNotFound:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) RetrievePolicyCountryShort(params *RetrievePolicyCountryParams, authInfo runtime.ClientAuthInfoWriter) (*RetrievePolicyCountryOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRetrievePolicyCountryParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "retrievePolicyCountry",
+		Method:             "GET",
+		PathPattern:        "/admin/base-policies/{basePolicyId}/countries/{countryCode}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &RetrievePolicyCountryReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *RetrievePolicyCountryOK:
+		return v, nil
+	case *RetrievePolicyCountryNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   RetrieveSinglePolicy retrieves a base legal policy
 
-  Retrieve a base policy.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:*:LEGAL", action=2 (READ)</li></ul>
+  Retrieve a base policy.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) RetrieveSinglePolicy(params *RetrieveSinglePolicyParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveSinglePolicyOK, *RetrieveSinglePolicyNotFound, error) {
 	// TODO: Validate the params before sending
@@ -278,7 +481,7 @@ func (a *Client) RetrieveSinglePolicy(params *RetrieveSinglePolicyParams, authIn
 		PathPattern:        "/admin/base-policies/{basePolicyId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &RetrieveSinglePolicyReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -293,10 +496,51 @@ func (a *Client) RetrieveSinglePolicy(params *RetrieveSinglePolicyParams, authIn
 
 	case *RetrieveSinglePolicyOK:
 		return v, nil, nil
+
 	case *RetrieveSinglePolicyNotFound:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) RetrieveSinglePolicyShort(params *RetrieveSinglePolicyParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveSinglePolicyOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRetrieveSinglePolicyParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "retrieveSinglePolicy",
+		Method:             "GET",
+		PathPattern:        "/admin/base-policies/{basePolicyId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &RetrieveSinglePolicyReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *RetrieveSinglePolicyOK:
+		return v, nil
+	case *RetrieveSinglePolicyNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 

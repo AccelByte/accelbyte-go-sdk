@@ -30,12 +30,13 @@ type Client struct {
 // ClientService is the interface for Client methods
 type ClientService interface {
 	FulfillItem(params *FulfillItemParams, authInfo runtime.ClientAuthInfoWriter) (*FulfillItemOK, *FulfillItemBadRequest, *FulfillItemNotFound, *FulfillItemConflict, error)
-
+	FulfillItemShort(params *FulfillItemParams, authInfo runtime.ClientAuthInfoWriter) (*FulfillItemOK, error)
 	PublicRedeemCode(params *PublicRedeemCodeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicRedeemCodeOK, *PublicRedeemCodeBadRequest, *PublicRedeemCodeNotFound, *PublicRedeemCodeConflict, error)
-
+	PublicRedeemCodeShort(params *PublicRedeemCodeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicRedeemCodeOK, error)
 	QueryFulfillmentHistories(params *QueryFulfillmentHistoriesParams, authInfo runtime.ClientAuthInfoWriter) (*QueryFulfillmentHistoriesOK, error)
-
+	QueryFulfillmentHistoriesShort(params *QueryFulfillmentHistoriesParams, authInfo runtime.ClientAuthInfoWriter) (*QueryFulfillmentHistoriesOK, error)
 	RedeemCode(params *RedeemCodeParams, authInfo runtime.ClientAuthInfoWriter) (*RedeemCodeOK, *RedeemCodeBadRequest, *RedeemCodeNotFound, *RedeemCodeConflict, error)
+	RedeemCodeShort(params *RedeemCodeParams, authInfo runtime.ClientAuthInfoWriter) (*RedeemCodeOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -43,7 +44,7 @@ type ClientService interface {
 /*
   FulfillItem fulfills item
 
-  Fulfill item.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:FULFILLMENT", action=1 (CREATED)</li><li><i>Returns</i>: fulfillment result</li></ul>
+  Fulfill item.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:FULFILLMENT&#34;, action=1 (CREATED)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: fulfillment result&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) FulfillItem(params *FulfillItemParams, authInfo runtime.ClientAuthInfoWriter) (*FulfillItemOK, *FulfillItemBadRequest, *FulfillItemNotFound, *FulfillItemConflict, error) {
 	// TODO: Validate the params before sending
@@ -61,7 +62,7 @@ func (a *Client) FulfillItem(params *FulfillItemParams, authInfo runtime.ClientA
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/fulfillment",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &FulfillItemReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -76,21 +77,68 @@ func (a *Client) FulfillItem(params *FulfillItemParams, authInfo runtime.ClientA
 
 	case *FulfillItemOK:
 		return v, nil, nil, nil, nil
+
 	case *FulfillItemBadRequest:
 		return nil, v, nil, nil, nil
+
 	case *FulfillItemNotFound:
 		return nil, nil, v, nil, nil
+
 	case *FulfillItemConflict:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) FulfillItemShort(params *FulfillItemParams, authInfo runtime.ClientAuthInfoWriter) (*FulfillItemOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewFulfillItemParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "fulfillItem",
+		Method:             "POST",
+		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/fulfillment",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &FulfillItemReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *FulfillItemOK:
+		return v, nil
+	case *FulfillItemBadRequest:
+		return nil, v
+	case *FulfillItemNotFound:
+		return nil, v
+	case *FulfillItemConflict:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   PublicRedeemCode redeems campaign code
 
-  Redeem campaign code.<br>Other detail info: <ul><li><i>Required permission</i>: resource="NAMESPACE:{namespace}:USER:{userId}:FULFILLMENT", action=1 (CREATED)</li><li><i>Returns</i>: fulfillment result</li></ul>
+  Redeem campaign code.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:FULFILLMENT&#34;, action=1 (CREATED)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: fulfillment result&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) PublicRedeemCode(params *PublicRedeemCodeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicRedeemCodeOK, *PublicRedeemCodeBadRequest, *PublicRedeemCodeNotFound, *PublicRedeemCodeConflict, error) {
 	// TODO: Validate the params before sending
@@ -108,7 +156,7 @@ func (a *Client) PublicRedeemCode(params *PublicRedeemCodeParams, authInfo runti
 		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/fulfillment/code",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicRedeemCodeReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -123,21 +171,68 @@ func (a *Client) PublicRedeemCode(params *PublicRedeemCodeParams, authInfo runti
 
 	case *PublicRedeemCodeOK:
 		return v, nil, nil, nil, nil
+
 	case *PublicRedeemCodeBadRequest:
 		return nil, v, nil, nil, nil
+
 	case *PublicRedeemCodeNotFound:
 		return nil, nil, v, nil, nil
+
 	case *PublicRedeemCodeConflict:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicRedeemCodeShort(params *PublicRedeemCodeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicRedeemCodeOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicRedeemCodeParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicRedeemCode",
+		Method:             "POST",
+		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/fulfillment/code",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicRedeemCodeReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicRedeemCodeOK:
+		return v, nil
+	case *PublicRedeemCodeBadRequest:
+		return nil, v
+	case *PublicRedeemCodeNotFound:
+		return nil, v
+	case *PublicRedeemCodeConflict:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   QueryFulfillmentHistories queries fulfillment histories
 
-  Query fulfillment histories in a namespace.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:FULFILLMENT", action=2 (READ)</li><li><i>Returns</i>: query fulfillment history</li></ul>
+  Query fulfillment histories in a namespace.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:FULFILLMENT&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: query fulfillment history&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) QueryFulfillmentHistories(params *QueryFulfillmentHistoriesParams, authInfo runtime.ClientAuthInfoWriter) (*QueryFulfillmentHistoriesOK, error) {
 	// TODO: Validate the params before sending
@@ -155,7 +250,7 @@ func (a *Client) QueryFulfillmentHistories(params *QueryFulfillmentHistoriesPara
 		PathPattern:        "/admin/namespaces/{namespace}/fulfillment/history",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &QueryFulfillmentHistoriesReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -170,6 +265,44 @@ func (a *Client) QueryFulfillmentHistories(params *QueryFulfillmentHistoriesPara
 
 	case *QueryFulfillmentHistoriesOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) QueryFulfillmentHistoriesShort(params *QueryFulfillmentHistoriesParams, authInfo runtime.ClientAuthInfoWriter) (*QueryFulfillmentHistoriesOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewQueryFulfillmentHistoriesParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "queryFulfillmentHistories",
+		Method:             "GET",
+		PathPattern:        "/admin/namespaces/{namespace}/fulfillment/history",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &QueryFulfillmentHistoriesReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *QueryFulfillmentHistoriesOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -178,7 +311,7 @@ func (a *Client) QueryFulfillmentHistories(params *QueryFulfillmentHistoriesPara
 /*
   RedeemCode redeems campaign code
 
-  Redeem campaign code.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:FULFILLMENT", action=1 (CREATED)</li><li><i>Returns</i>: fulfillment result</li></ul>
+  Redeem campaign code.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:FULFILLMENT&#34;, action=1 (CREATED)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: fulfillment result&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) RedeemCode(params *RedeemCodeParams, authInfo runtime.ClientAuthInfoWriter) (*RedeemCodeOK, *RedeemCodeBadRequest, *RedeemCodeNotFound, *RedeemCodeConflict, error) {
 	// TODO: Validate the params before sending
@@ -196,7 +329,7 @@ func (a *Client) RedeemCode(params *RedeemCodeParams, authInfo runtime.ClientAut
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/fulfillment/code",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &RedeemCodeReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -211,14 +344,61 @@ func (a *Client) RedeemCode(params *RedeemCodeParams, authInfo runtime.ClientAut
 
 	case *RedeemCodeOK:
 		return v, nil, nil, nil, nil
+
 	case *RedeemCodeBadRequest:
 		return nil, v, nil, nil, nil
+
 	case *RedeemCodeNotFound:
 		return nil, nil, v, nil, nil
+
 	case *RedeemCodeConflict:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) RedeemCodeShort(params *RedeemCodeParams, authInfo runtime.ClientAuthInfoWriter) (*RedeemCodeOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRedeemCodeParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "redeemCode",
+		Method:             "POST",
+		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/fulfillment/code",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &RedeemCodeReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *RedeemCodeOK:
+		return v, nil
+	case *RedeemCodeBadRequest:
+		return nil, v
+	case *RedeemCodeNotFound:
+		return nil, v
+	case *RedeemCodeConflict:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 

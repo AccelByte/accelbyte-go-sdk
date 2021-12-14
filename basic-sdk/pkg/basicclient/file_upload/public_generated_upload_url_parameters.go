@@ -61,7 +61,7 @@ for the public generated upload Url operation typically these are written to a h
 type PublicGeneratedUploadURLParams struct {
 
 	/*FileType
-	  one of the these types: jpeg, jpg, png, bmp, gif, mp3, bin
+	  one of the these types: jpeg, jpg, png, bmp, gif, mp3, bin, webp
 
 	*/
 	FileType string

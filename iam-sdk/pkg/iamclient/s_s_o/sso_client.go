@@ -30,8 +30,9 @@ type Client struct {
 // ClientService is the interface for Client methods
 type ClientService interface {
 	LoginSSOClient(params *LoginSSOClientParams, authInfo runtime.ClientAuthInfoWriter) (*LoginSSOClientOK, error)
-
+	LoginSSOClientShort(params *LoginSSOClientParams, authInfo runtime.ClientAuthInfoWriter) (*LoginSSOClientOK, error)
 	LogoutSSOClient(params *LogoutSSOClientParams, authInfo runtime.ClientAuthInfoWriter) (*LogoutSSOClientNoContent, *LogoutSSOClientNotFound, *LogoutSSOClientUnprocessableEntity, *LogoutSSOClientInternalServerError, error)
+	LogoutSSOClientShort(params *LogoutSSOClientParams, authInfo runtime.ClientAuthInfoWriter) (*LogoutSSOClientNoContent, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -55,7 +56,7 @@ func (a *Client) LoginSSOClient(params *LoginSSOClientParams, authInfo runtime.C
 		PathPattern:        "/iam/v3/sso/{platformId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &LoginSSOClientReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -70,6 +71,44 @@ func (a *Client) LoginSSOClient(params *LoginSSOClientParams, authInfo runtime.C
 
 	case *LoginSSOClientOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) LoginSSOClientShort(params *LoginSSOClientParams, authInfo runtime.ClientAuthInfoWriter) (*LoginSSOClientOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewLoginSSOClientParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "LoginSSOClient",
+		Method:             "GET",
+		PathPattern:        "/iam/v3/sso/{platformId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &LoginSSOClientReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *LoginSSOClientOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -78,7 +117,7 @@ func (a *Client) LoginSSOClient(params *LoginSSOClientParams, authInfo runtime.C
 /*
   LogoutSSOClient logouts
 
-  Logout user's session on platform that logged in using SSO.
+  Logout user&#39;s session on platform that logged in using SSO.
 
 Supported platforms:
 - discourse
@@ -100,7 +139,7 @@ func (a *Client) LogoutSSOClient(params *LogoutSSOClientParams, authInfo runtime
 		PathPattern:        "/iam/v3/sso/{platformId}/logout",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &LogoutSSOClientReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -115,14 +154,61 @@ func (a *Client) LogoutSSOClient(params *LogoutSSOClientParams, authInfo runtime
 
 	case *LogoutSSOClientNoContent:
 		return v, nil, nil, nil, nil
+
 	case *LogoutSSOClientNotFound:
 		return nil, v, nil, nil, nil
+
 	case *LogoutSSOClientUnprocessableEntity:
 		return nil, nil, v, nil, nil
+
 	case *LogoutSSOClientInternalServerError:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) LogoutSSOClientShort(params *LogoutSSOClientParams, authInfo runtime.ClientAuthInfoWriter) (*LogoutSSOClientNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewLogoutSSOClientParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "LogoutSSOClient",
+		Method:             "POST",
+		PathPattern:        "/iam/v3/sso/{platformId}/logout",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &LogoutSSOClientReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *LogoutSSOClientNoContent:
+		return v, nil
+	case *LogoutSSOClientNotFound:
+		return nil, v
+	case *LogoutSSOClientUnprocessableEntity:
+		return nil, v
+	case *LogoutSSOClientInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 

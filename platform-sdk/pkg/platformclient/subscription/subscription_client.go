@@ -30,42 +30,43 @@ type Client struct {
 // ClientService is the interface for Client methods
 type ClientService interface {
 	CancelSubscription(params *CancelSubscriptionParams, authInfo runtime.ClientAuthInfoWriter) (*CancelSubscriptionOK, *CancelSubscriptionNotFound, *CancelSubscriptionConflict, error)
-
+	CancelSubscriptionShort(params *CancelSubscriptionParams, authInfo runtime.ClientAuthInfoWriter) (*CancelSubscriptionOK, error)
 	CheckUserSubscriptionSubscribableByItemID(params *CheckUserSubscriptionSubscribableByItemIDParams, authInfo runtime.ClientAuthInfoWriter) (*CheckUserSubscriptionSubscribableByItemIDOK, error)
-
+	CheckUserSubscriptionSubscribableByItemIDShort(params *CheckUserSubscriptionSubscribableByItemIDParams, authInfo runtime.ClientAuthInfoWriter) (*CheckUserSubscriptionSubscribableByItemIDOK, error)
 	DeleteUserSubscription(params *DeleteUserSubscriptionParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserSubscriptionNoContent, error)
-
+	DeleteUserSubscriptionShort(params *DeleteUserSubscriptionParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserSubscriptionNoContent, error)
 	GetUserSubscription(params *GetUserSubscriptionParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserSubscriptionOK, *GetUserSubscriptionNotFound, error)
-
+	GetUserSubscriptionShort(params *GetUserSubscriptionParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserSubscriptionOK, error)
 	GetUserSubscriptionActivities(params *GetUserSubscriptionActivitiesParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserSubscriptionActivitiesOK, error)
-
+	GetUserSubscriptionActivitiesShort(params *GetUserSubscriptionActivitiesParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserSubscriptionActivitiesOK, error)
 	GetUserSubscriptionBillingHistories(params *GetUserSubscriptionBillingHistoriesParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserSubscriptionBillingHistoriesOK, error)
-
+	GetUserSubscriptionBillingHistoriesShort(params *GetUserSubscriptionBillingHistoriesParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserSubscriptionBillingHistoriesOK, error)
 	GrantDaysToSubscription(params *GrantDaysToSubscriptionParams, authInfo runtime.ClientAuthInfoWriter) (*GrantDaysToSubscriptionOK, *GrantDaysToSubscriptionNotFound, error)
-
+	GrantDaysToSubscriptionShort(params *GrantDaysToSubscriptionParams, authInfo runtime.ClientAuthInfoWriter) (*GrantDaysToSubscriptionOK, error)
 	PlatformSubscribeSubscription(params *PlatformSubscribeSubscriptionParams, authInfo runtime.ClientAuthInfoWriter) (*PlatformSubscribeSubscriptionOK, *PlatformSubscribeSubscriptionCreated, *PlatformSubscribeSubscriptionBadRequest, *PlatformSubscribeSubscriptionNotFound, *PlatformSubscribeSubscriptionUnprocessableEntity, error)
-
+	PlatformSubscribeSubscriptionShort(params *PlatformSubscribeSubscriptionParams, authInfo runtime.ClientAuthInfoWriter) (*PlatformSubscribeSubscriptionOK, error)
 	ProcessUserSubscriptionNotification(params *ProcessUserSubscriptionNotificationParams, authInfo runtime.ClientAuthInfoWriter) (*ProcessUserSubscriptionNotificationNoContent, *ProcessUserSubscriptionNotificationBadRequest, error)
-
+	ProcessUserSubscriptionNotificationShort(params *ProcessUserSubscriptionNotificationParams, authInfo runtime.ClientAuthInfoWriter) (*ProcessUserSubscriptionNotificationNoContent, error)
 	PublicCancelSubscription(params *PublicCancelSubscriptionParams, authInfo runtime.ClientAuthInfoWriter) (*PublicCancelSubscriptionOK, *PublicCancelSubscriptionNotFound, *PublicCancelSubscriptionConflict, error)
-
+	PublicCancelSubscriptionShort(params *PublicCancelSubscriptionParams, authInfo runtime.ClientAuthInfoWriter) (*PublicCancelSubscriptionOK, error)
 	PublicChangeSubscriptionBillingAccount(params *PublicChangeSubscriptionBillingAccountParams, authInfo runtime.ClientAuthInfoWriter) (*PublicChangeSubscriptionBillingAccountOK, *PublicChangeSubscriptionBillingAccountBadRequest, *PublicChangeSubscriptionBillingAccountNotFound, *PublicChangeSubscriptionBillingAccountConflict, error)
-
+	PublicChangeSubscriptionBillingAccountShort(params *PublicChangeSubscriptionBillingAccountParams, authInfo runtime.ClientAuthInfoWriter) (*PublicChangeSubscriptionBillingAccountOK, error)
 	PublicCheckUserSubscriptionSubscribableByItemID(params *PublicCheckUserSubscriptionSubscribableByItemIDParams, authInfo runtime.ClientAuthInfoWriter) (*PublicCheckUserSubscriptionSubscribableByItemIDOK, error)
-
+	PublicCheckUserSubscriptionSubscribableByItemIDShort(params *PublicCheckUserSubscriptionSubscribableByItemIDParams, authInfo runtime.ClientAuthInfoWriter) (*PublicCheckUserSubscriptionSubscribableByItemIDOK, error)
 	PublicGetUserSubscription(params *PublicGetUserSubscriptionParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserSubscriptionOK, *PublicGetUserSubscriptionNotFound, error)
-
+	PublicGetUserSubscriptionShort(params *PublicGetUserSubscriptionParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserSubscriptionOK, error)
 	PublicGetUserSubscriptionBillingHistories(params *PublicGetUserSubscriptionBillingHistoriesParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserSubscriptionBillingHistoriesOK, error)
-
+	PublicGetUserSubscriptionBillingHistoriesShort(params *PublicGetUserSubscriptionBillingHistoriesParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserSubscriptionBillingHistoriesOK, error)
 	PublicQueryUserSubscriptions(params *PublicQueryUserSubscriptionsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryUserSubscriptionsOK, error)
-
+	PublicQueryUserSubscriptionsShort(params *PublicQueryUserSubscriptionsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryUserSubscriptionsOK, error)
 	PublicSubscribeSubscription(params *PublicSubscribeSubscriptionParams, authInfo runtime.ClientAuthInfoWriter) (*PublicSubscribeSubscriptionCreated, *PublicSubscribeSubscriptionBadRequest, *PublicSubscribeSubscriptionForbidden, *PublicSubscribeSubscriptionNotFound, *PublicSubscribeSubscriptionConflict, *PublicSubscribeSubscriptionUnprocessableEntity, error)
-
+	PublicSubscribeSubscriptionShort(params *PublicSubscribeSubscriptionParams, authInfo runtime.ClientAuthInfoWriter) (*PublicSubscribeSubscriptionCreated, error)
 	QuerySubscriptions(params *QuerySubscriptionsParams, authInfo runtime.ClientAuthInfoWriter) (*QuerySubscriptionsOK, error)
-
+	QuerySubscriptionsShort(params *QuerySubscriptionsParams, authInfo runtime.ClientAuthInfoWriter) (*QuerySubscriptionsOK, error)
 	QueryUserSubscriptions(params *QueryUserSubscriptionsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryUserSubscriptionsOK, error)
-
+	QueryUserSubscriptionsShort(params *QueryUserSubscriptionsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryUserSubscriptionsOK, error)
 	RecurringChargeSubscription(params *RecurringChargeSubscriptionParams, authInfo runtime.ClientAuthInfoWriter) (*RecurringChargeSubscriptionOK, error)
+	RecurringChargeSubscriptionShort(params *RecurringChargeSubscriptionParams, authInfo runtime.ClientAuthInfoWriter) (*RecurringChargeSubscriptionOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -73,7 +74,7 @@ type ClientService interface {
 /*
   CancelSubscription cancels a subscription
 
-  Cancel a subscription, only ACTIVE subscription can be cancelled. <b>Ensure successfully cancel, recommend at least 1 day before current period ends, otherwise it may be charging or charged.</b><br>Set immediate true, the subscription will be terminated immediately, otherwise till the end of current billing cycle.<br>Set force true, will ignore the error if subscription is during recurring charging.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION", action=4 (UPDATE)</li><li><i>Returns</i>: cancelled subscription</li></ul>
+  Cancel a subscription, only ACTIVE subscription can be cancelled. &lt;b&gt;Ensure successfully cancel, recommend at least 1 day before current period ends, otherwise it may be charging or charged.&lt;/b&gt;&lt;br&gt;Set immediate true, the subscription will be terminated immediately, otherwise till the end of current billing cycle.&lt;br&gt;Set force true, will ignore the error if subscription is during recurring charging.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: cancelled subscription&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) CancelSubscription(params *CancelSubscriptionParams, authInfo runtime.ClientAuthInfoWriter) (*CancelSubscriptionOK, *CancelSubscriptionNotFound, *CancelSubscriptionConflict, error) {
 	// TODO: Validate the params before sending
@@ -91,7 +92,7 @@ func (a *Client) CancelSubscription(params *CancelSubscriptionParams, authInfo r
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/cancel",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &CancelSubscriptionReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -106,19 +107,63 @@ func (a *Client) CancelSubscription(params *CancelSubscriptionParams, authInfo r
 
 	case *CancelSubscriptionOK:
 		return v, nil, nil, nil
+
 	case *CancelSubscriptionNotFound:
 		return nil, v, nil, nil
+
 	case *CancelSubscriptionConflict:
 		return nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) CancelSubscriptionShort(params *CancelSubscriptionParams, authInfo runtime.ClientAuthInfoWriter) (*CancelSubscriptionOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCancelSubscriptionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "cancelSubscription",
+		Method:             "PUT",
+		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/cancel",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CancelSubscriptionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *CancelSubscriptionOK:
+		return v, nil
+	case *CancelSubscriptionNotFound:
+		return nil, v
+	case *CancelSubscriptionConflict:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   CheckUserSubscriptionSubscribableByItemID checks user subscription subscribable
 
-  Check user subscription subscribable by itemId, ACTIVE USER subscription can't do subscribe again.<p>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION", action=2 (READ)</li><li><i>Returns</i>: subscribable info</li></ul>
+  Check user subscription subscribable by itemId, ACTIVE USER subscription can&#39;t do subscribe again.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: subscribable info&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) CheckUserSubscriptionSubscribableByItemID(params *CheckUserSubscriptionSubscribableByItemIDParams, authInfo runtime.ClientAuthInfoWriter) (*CheckUserSubscriptionSubscribableByItemIDOK, error) {
 	// TODO: Validate the params before sending
@@ -136,7 +181,7 @@ func (a *Client) CheckUserSubscriptionSubscribableByItemID(params *CheckUserSubs
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/subscriptions/subscribable/byItemId",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &CheckUserSubscriptionSubscribableByItemIDReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -151,6 +196,44 @@ func (a *Client) CheckUserSubscriptionSubscribableByItemID(params *CheckUserSubs
 
 	case *CheckUserSubscriptionSubscribableByItemIDOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) CheckUserSubscriptionSubscribableByItemIDShort(params *CheckUserSubscriptionSubscribableByItemIDParams, authInfo runtime.ClientAuthInfoWriter) (*CheckUserSubscriptionSubscribableByItemIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCheckUserSubscriptionSubscribableByItemIDParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "checkUserSubscriptionSubscribableByItemId",
+		Method:             "GET",
+		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/subscriptions/subscribable/byItemId",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CheckUserSubscriptionSubscribableByItemIDReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *CheckUserSubscriptionSubscribableByItemIDOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -159,7 +242,7 @@ func (a *Client) CheckUserSubscriptionSubscribableByItemID(params *CheckUserSubs
 /*
   DeleteUserSubscription deletes user subscription
 
-  <b>[TEST FACILITY ONLY] Forbidden in live environment. </b> Delete user subscription.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION", action=8 (DELETE)</li></ul>
+  &lt;b&gt;[TEST FACILITY ONLY] Forbidden in live environment. &lt;/b&gt; Delete user subscription.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) DeleteUserSubscription(params *DeleteUserSubscriptionParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserSubscriptionNoContent, error) {
 	// TODO: Validate the params before sending
@@ -177,7 +260,7 @@ func (a *Client) DeleteUserSubscription(params *DeleteUserSubscriptionParams, au
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteUserSubscriptionReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -192,6 +275,44 @@ func (a *Client) DeleteUserSubscription(params *DeleteUserSubscriptionParams, au
 
 	case *DeleteUserSubscriptionNoContent:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) DeleteUserSubscriptionShort(params *DeleteUserSubscriptionParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserSubscriptionNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteUserSubscriptionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "deleteUserSubscription",
+		Method:             "DELETE",
+		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteUserSubscriptionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeleteUserSubscriptionNoContent:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -200,7 +321,7 @@ func (a *Client) DeleteUserSubscription(params *DeleteUserSubscriptionParams, au
 /*
   GetUserSubscription gets user subscription
 
-  Get user subscription.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION", action=2 (READ)</li><li><i>Returns</i>: subscription</li></ul>
+  Get user subscription.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: subscription&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) GetUserSubscription(params *GetUserSubscriptionParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserSubscriptionOK, *GetUserSubscriptionNotFound, error) {
 	// TODO: Validate the params before sending
@@ -218,7 +339,7 @@ func (a *Client) GetUserSubscription(params *GetUserSubscriptionParams, authInfo
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetUserSubscriptionReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -233,17 +354,58 @@ func (a *Client) GetUserSubscription(params *GetUserSubscriptionParams, authInfo
 
 	case *GetUserSubscriptionOK:
 		return v, nil, nil
+
 	case *GetUserSubscriptionNotFound:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetUserSubscriptionShort(params *GetUserSubscriptionParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserSubscriptionOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetUserSubscriptionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getUserSubscription",
+		Method:             "GET",
+		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetUserSubscriptionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetUserSubscriptionOK:
+		return v, nil
+	case *GetUserSubscriptionNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   GetUserSubscriptionActivities gets user subscription activity
 
-  Get user subscription activity.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION", action=2 (READ)</li><li><i>Returns</i>: paginated subscription activity</li></ul>
+  Get user subscription activity.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: paginated subscription activity&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) GetUserSubscriptionActivities(params *GetUserSubscriptionActivitiesParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserSubscriptionActivitiesOK, error) {
 	// TODO: Validate the params before sending
@@ -261,7 +423,7 @@ func (a *Client) GetUserSubscriptionActivities(params *GetUserSubscriptionActivi
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/subscriptions/activities",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetUserSubscriptionActivitiesReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -276,6 +438,44 @@ func (a *Client) GetUserSubscriptionActivities(params *GetUserSubscriptionActivi
 
 	case *GetUserSubscriptionActivitiesOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetUserSubscriptionActivitiesShort(params *GetUserSubscriptionActivitiesParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserSubscriptionActivitiesOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetUserSubscriptionActivitiesParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getUserSubscriptionActivities",
+		Method:             "GET",
+		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/subscriptions/activities",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetUserSubscriptionActivitiesReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetUserSubscriptionActivitiesOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -284,7 +484,7 @@ func (a *Client) GetUserSubscriptionActivities(params *GetUserSubscriptionActivi
 /*
   GetUserSubscriptionBillingHistories gets user subscription billing histories
 
-  Get user subscription billing histories.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION", action=2 (READ)</li><li><i>Returns</i>: paginated subscription billing history</li></ul>
+  Get user subscription billing histories.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: paginated subscription billing history&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) GetUserSubscriptionBillingHistories(params *GetUserSubscriptionBillingHistoriesParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserSubscriptionBillingHistoriesOK, error) {
 	// TODO: Validate the params before sending
@@ -302,7 +502,7 @@ func (a *Client) GetUserSubscriptionBillingHistories(params *GetUserSubscription
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/history",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetUserSubscriptionBillingHistoriesReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -317,6 +517,44 @@ func (a *Client) GetUserSubscriptionBillingHistories(params *GetUserSubscription
 
 	case *GetUserSubscriptionBillingHistoriesOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetUserSubscriptionBillingHistoriesShort(params *GetUserSubscriptionBillingHistoriesParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserSubscriptionBillingHistoriesOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetUserSubscriptionBillingHistoriesParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getUserSubscriptionBillingHistories",
+		Method:             "GET",
+		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/history",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetUserSubscriptionBillingHistoriesReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetUserSubscriptionBillingHistoriesOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -325,7 +563,7 @@ func (a *Client) GetUserSubscriptionBillingHistories(params *GetUserSubscription
 /*
   GrantDaysToSubscription grants days to a subscription
 
-  Grant days to a subscription, if grantDays is positive, it will add free days and push the next billing date by the amount of day.<br>if the grantDays is negative or zero, it only apply to active/cancelled subscription, remove days will decrease current period end, and move the next billing date closer.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION", action=4 (UPDATE)</li><li><i>Returns</i>: updated subscription</li></ul>
+  Grant days to a subscription, if grantDays is positive, it will add free days and push the next billing date by the amount of day.&lt;br&gt;if the grantDays is negative or zero, it only apply to active/cancelled subscription, remove days will decrease current period end, and move the next billing date closer.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated subscription&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) GrantDaysToSubscription(params *GrantDaysToSubscriptionParams, authInfo runtime.ClientAuthInfoWriter) (*GrantDaysToSubscriptionOK, *GrantDaysToSubscriptionNotFound, error) {
 	// TODO: Validate the params before sending
@@ -343,7 +581,7 @@ func (a *Client) GrantDaysToSubscription(params *GrantDaysToSubscriptionParams, 
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/grant",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GrantDaysToSubscriptionReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -358,17 +596,58 @@ func (a *Client) GrantDaysToSubscription(params *GrantDaysToSubscriptionParams, 
 
 	case *GrantDaysToSubscriptionOK:
 		return v, nil, nil
+
 	case *GrantDaysToSubscriptionNotFound:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GrantDaysToSubscriptionShort(params *GrantDaysToSubscriptionParams, authInfo runtime.ClientAuthInfoWriter) (*GrantDaysToSubscriptionOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGrantDaysToSubscriptionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "grantDaysToSubscription",
+		Method:             "PUT",
+		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/grant",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GrantDaysToSubscriptionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GrantDaysToSubscriptionOK:
+		return v, nil
+	case *GrantDaysToSubscriptionNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   PlatformSubscribeSubscription frees subscribe by platform
 
-  Free subscribe by platform, can used by other justice service to redeem/reward the subscription.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION", action=1 (CREATE)</li><li><i>Returns</i>: result subscription</li></ul>
+  Free subscribe by platform, can used by other justice service to redeem/reward the subscription.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: result subscription&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) PlatformSubscribeSubscription(params *PlatformSubscribeSubscriptionParams, authInfo runtime.ClientAuthInfoWriter) (*PlatformSubscribeSubscriptionOK, *PlatformSubscribeSubscriptionCreated, *PlatformSubscribeSubscriptionBadRequest, *PlatformSubscribeSubscriptionNotFound, *PlatformSubscribeSubscriptionUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -386,7 +665,7 @@ func (a *Client) PlatformSubscribeSubscription(params *PlatformSubscribeSubscrip
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/subscriptions/platformSubscribe",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PlatformSubscribeSubscriptionReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -401,23 +680,73 @@ func (a *Client) PlatformSubscribeSubscription(params *PlatformSubscribeSubscrip
 
 	case *PlatformSubscribeSubscriptionOK:
 		return v, nil, nil, nil, nil, nil
+
 	case *PlatformSubscribeSubscriptionCreated:
 		return nil, v, nil, nil, nil, nil
+
 	case *PlatformSubscribeSubscriptionBadRequest:
 		return nil, nil, v, nil, nil, nil
+
 	case *PlatformSubscribeSubscriptionNotFound:
 		return nil, nil, nil, v, nil, nil
+
 	case *PlatformSubscribeSubscriptionUnprocessableEntity:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PlatformSubscribeSubscriptionShort(params *PlatformSubscribeSubscriptionParams, authInfo runtime.ClientAuthInfoWriter) (*PlatformSubscribeSubscriptionOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPlatformSubscribeSubscriptionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "platformSubscribeSubscription",
+		Method:             "POST",
+		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/subscriptions/platformSubscribe",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PlatformSubscribeSubscriptionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PlatformSubscribeSubscriptionOK:
+		return v, nil, nil
+	case *PlatformSubscribeSubscriptionCreated:
+		return nil, v, nil
+	case *PlatformSubscribeSubscriptionBadRequest:
+		return nil, nil, v
+	case *PlatformSubscribeSubscriptionNotFound:
+		return nil, nil, v
+	case *PlatformSubscribeSubscriptionUnprocessableEntity:
+		return nil, nil, v
+
+	default:
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   ProcessUserSubscriptionNotification webs hook for payment notification
 
-  <b>[SERVICE COMMUNICATION ONLY]</b> This API is used as a web hook for payment notification from justice payment service.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION", action=4 (UPDATE)</li><li><i>Returns</i>: Process result</li></ul>
+  &lt;b&gt;[SERVICE COMMUNICATION ONLY]&lt;/b&gt; This API is used as a web hook for payment notification from justice payment service.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: Process result&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) ProcessUserSubscriptionNotification(params *ProcessUserSubscriptionNotificationParams, authInfo runtime.ClientAuthInfoWriter) (*ProcessUserSubscriptionNotificationNoContent, *ProcessUserSubscriptionNotificationBadRequest, error) {
 	// TODO: Validate the params before sending
@@ -435,7 +764,7 @@ func (a *Client) ProcessUserSubscriptionNotification(params *ProcessUserSubscrip
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/notifications",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &ProcessUserSubscriptionNotificationReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -450,17 +779,58 @@ func (a *Client) ProcessUserSubscriptionNotification(params *ProcessUserSubscrip
 
 	case *ProcessUserSubscriptionNotificationNoContent:
 		return v, nil, nil
+
 	case *ProcessUserSubscriptionNotificationBadRequest:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) ProcessUserSubscriptionNotificationShort(params *ProcessUserSubscriptionNotificationParams, authInfo runtime.ClientAuthInfoWriter) (*ProcessUserSubscriptionNotificationNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewProcessUserSubscriptionNotificationParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "processUserSubscriptionNotification",
+		Method:             "POST",
+		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/notifications",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ProcessUserSubscriptionNotificationReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *ProcessUserSubscriptionNotificationNoContent:
+		return v, nil
+	case *ProcessUserSubscriptionNotificationBadRequest:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   PublicCancelSubscription cancels a subscription
 
-  Cancel a subscription, only ACTIVE subscription can be cancelled. <b>Ensure successfully cancel, recommend at least 1 day before current period ends, otherwise it may be charging or charged.</b><br>Set immediate true, the subscription will be terminated immediately, otherwise till the end of current billing cycle.<br>Other detail info: <ul><li><i>Required permission</i>: resource="NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION", action=4 (UPDATE)</li><li><i>Returns</i>: cancelled subscription</li></ul>
+  Cancel a subscription, only ACTIVE subscription can be cancelled. &lt;b&gt;Ensure successfully cancel, recommend at least 1 day before current period ends, otherwise it may be charging or charged.&lt;/b&gt;&lt;br&gt;Set immediate true, the subscription will be terminated immediately, otherwise till the end of current billing cycle.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: cancelled subscription&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) PublicCancelSubscription(params *PublicCancelSubscriptionParams, authInfo runtime.ClientAuthInfoWriter) (*PublicCancelSubscriptionOK, *PublicCancelSubscriptionNotFound, *PublicCancelSubscriptionConflict, error) {
 	// TODO: Validate the params before sending
@@ -478,7 +848,7 @@ func (a *Client) PublicCancelSubscription(params *PublicCancelSubscriptionParams
 		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/cancel",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicCancelSubscriptionReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -493,19 +863,63 @@ func (a *Client) PublicCancelSubscription(params *PublicCancelSubscriptionParams
 
 	case *PublicCancelSubscriptionOK:
 		return v, nil, nil, nil
+
 	case *PublicCancelSubscriptionNotFound:
 		return nil, v, nil, nil
+
 	case *PublicCancelSubscriptionConflict:
 		return nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicCancelSubscriptionShort(params *PublicCancelSubscriptionParams, authInfo runtime.ClientAuthInfoWriter) (*PublicCancelSubscriptionOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicCancelSubscriptionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicCancelSubscription",
+		Method:             "PUT",
+		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/cancel",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicCancelSubscriptionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicCancelSubscriptionOK:
+		return v, nil
+	case *PublicCancelSubscriptionNotFound:
+		return nil, v
+	case *PublicCancelSubscriptionConflict:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   PublicChangeSubscriptionBillingAccount requests to change a subscription billing account
 
-  Request to change a subscription billing account, this will guide user to payment station. The actual change will happen at the 0 payment notification successfully handled.<br>Only ACTIVE USER subscription with real currency billing account can be changed.<br>Other detail info: <ul><li><i>Required permission</i>: resource="NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION", action=4 (UPDATE)</li><li><i>Returns</i>: updated subscription</li></ul>
+  Request to change a subscription billing account, this will guide user to payment station. The actual change will happen at the 0 payment notification successfully handled.&lt;br&gt;Only ACTIVE USER subscription with real currency billing account can be changed.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated subscription&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) PublicChangeSubscriptionBillingAccount(params *PublicChangeSubscriptionBillingAccountParams, authInfo runtime.ClientAuthInfoWriter) (*PublicChangeSubscriptionBillingAccountOK, *PublicChangeSubscriptionBillingAccountBadRequest, *PublicChangeSubscriptionBillingAccountNotFound, *PublicChangeSubscriptionBillingAccountConflict, error) {
 	// TODO: Validate the params before sending
@@ -523,7 +937,7 @@ func (a *Client) PublicChangeSubscriptionBillingAccount(params *PublicChangeSubs
 		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/billingAccount",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicChangeSubscriptionBillingAccountReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -538,21 +952,68 @@ func (a *Client) PublicChangeSubscriptionBillingAccount(params *PublicChangeSubs
 
 	case *PublicChangeSubscriptionBillingAccountOK:
 		return v, nil, nil, nil, nil
+
 	case *PublicChangeSubscriptionBillingAccountBadRequest:
 		return nil, v, nil, nil, nil
+
 	case *PublicChangeSubscriptionBillingAccountNotFound:
 		return nil, nil, v, nil, nil
+
 	case *PublicChangeSubscriptionBillingAccountConflict:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicChangeSubscriptionBillingAccountShort(params *PublicChangeSubscriptionBillingAccountParams, authInfo runtime.ClientAuthInfoWriter) (*PublicChangeSubscriptionBillingAccountOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicChangeSubscriptionBillingAccountParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicChangeSubscriptionBillingAccount",
+		Method:             "PUT",
+		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/billingAccount",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicChangeSubscriptionBillingAccountReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicChangeSubscriptionBillingAccountOK:
+		return v, nil
+	case *PublicChangeSubscriptionBillingAccountBadRequest:
+		return nil, v
+	case *PublicChangeSubscriptionBillingAccountNotFound:
+		return nil, v
+	case *PublicChangeSubscriptionBillingAccountConflict:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   PublicCheckUserSubscriptionSubscribableByItemID checks user subscription subscribable
 
-  Check user subscription subscribable by itemId, ACTIVE USER subscription can't do subscribe again.<p>Other detail info: <ul><li><i>Required permission</i>: resource="NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION", action=2 (READ)</li><li><i>Returns</i>: subscribable info</li></ul>
+  Check user subscription subscribable by itemId, ACTIVE USER subscription can&#39;t do subscribe again.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: subscribable info&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) PublicCheckUserSubscriptionSubscribableByItemID(params *PublicCheckUserSubscriptionSubscribableByItemIDParams, authInfo runtime.ClientAuthInfoWriter) (*PublicCheckUserSubscriptionSubscribableByItemIDOK, error) {
 	// TODO: Validate the params before sending
@@ -570,7 +1031,7 @@ func (a *Client) PublicCheckUserSubscriptionSubscribableByItemID(params *PublicC
 		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/subscriptions/subscribable/byItemId",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicCheckUserSubscriptionSubscribableByItemIDReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -585,6 +1046,44 @@ func (a *Client) PublicCheckUserSubscriptionSubscribableByItemID(params *PublicC
 
 	case *PublicCheckUserSubscriptionSubscribableByItemIDOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicCheckUserSubscriptionSubscribableByItemIDShort(params *PublicCheckUserSubscriptionSubscribableByItemIDParams, authInfo runtime.ClientAuthInfoWriter) (*PublicCheckUserSubscriptionSubscribableByItemIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicCheckUserSubscriptionSubscribableByItemIDParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicCheckUserSubscriptionSubscribableByItemId",
+		Method:             "GET",
+		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/subscriptions/subscribable/byItemId",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicCheckUserSubscriptionSubscribableByItemIDReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicCheckUserSubscriptionSubscribableByItemIDOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -593,7 +1092,7 @@ func (a *Client) PublicCheckUserSubscriptionSubscribableByItemID(params *PublicC
 /*
   PublicGetUserSubscription gets user subscription
 
-  Get user subscription.<br>Other detail info: <ul><li><i>Required permission</i>: resource="NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION", action=2 (READ)</li><li><i>Returns</i>: subscription</li></ul>
+  Get user subscription.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: subscription&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) PublicGetUserSubscription(params *PublicGetUserSubscriptionParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserSubscriptionOK, *PublicGetUserSubscriptionNotFound, error) {
 	// TODO: Validate the params before sending
@@ -611,7 +1110,7 @@ func (a *Client) PublicGetUserSubscription(params *PublicGetUserSubscriptionPara
 		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicGetUserSubscriptionReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -626,17 +1125,58 @@ func (a *Client) PublicGetUserSubscription(params *PublicGetUserSubscriptionPara
 
 	case *PublicGetUserSubscriptionOK:
 		return v, nil, nil
+
 	case *PublicGetUserSubscriptionNotFound:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicGetUserSubscriptionShort(params *PublicGetUserSubscriptionParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserSubscriptionOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetUserSubscriptionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicGetUserSubscription",
+		Method:             "GET",
+		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicGetUserSubscriptionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetUserSubscriptionOK:
+		return v, nil
+	case *PublicGetUserSubscriptionNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   PublicGetUserSubscriptionBillingHistories gets user subscription billing histories
 
-  Get user subscription billing histories.<br>Other detail info: <ul><li><i>Required permission</i>: resource="NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION", action=2 (READ)</li><li><i>Returns</i>: paginated subscription history</li></ul>
+  Get user subscription billing histories.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: paginated subscription history&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) PublicGetUserSubscriptionBillingHistories(params *PublicGetUserSubscriptionBillingHistoriesParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserSubscriptionBillingHistoriesOK, error) {
 	// TODO: Validate the params before sending
@@ -654,7 +1194,7 @@ func (a *Client) PublicGetUserSubscriptionBillingHistories(params *PublicGetUser
 		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/history",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicGetUserSubscriptionBillingHistoriesReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -669,6 +1209,44 @@ func (a *Client) PublicGetUserSubscriptionBillingHistories(params *PublicGetUser
 
 	case *PublicGetUserSubscriptionBillingHistoriesOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicGetUserSubscriptionBillingHistoriesShort(params *PublicGetUserSubscriptionBillingHistoriesParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserSubscriptionBillingHistoriesOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetUserSubscriptionBillingHistoriesParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicGetUserSubscriptionBillingHistories",
+		Method:             "GET",
+		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/history",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicGetUserSubscriptionBillingHistoriesReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetUserSubscriptionBillingHistoriesOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -677,7 +1255,7 @@ func (a *Client) PublicGetUserSubscriptionBillingHistories(params *PublicGetUser
 /*
   PublicQueryUserSubscriptions queries user subscriptions
 
-  Query user subscriptions.<br>Other detail info: <ul><li><i>Required permission</i>: resource="NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION", action=2 (READ)</li><li><i>Returns</i>: paginated subscription</li></ul>
+  Query user subscriptions.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: paginated subscription&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) PublicQueryUserSubscriptions(params *PublicQueryUserSubscriptionsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryUserSubscriptionsOK, error) {
 	// TODO: Validate the params before sending
@@ -695,7 +1273,7 @@ func (a *Client) PublicQueryUserSubscriptions(params *PublicQueryUserSubscriptio
 		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/subscriptions",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicQueryUserSubscriptionsReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -710,6 +1288,44 @@ func (a *Client) PublicQueryUserSubscriptions(params *PublicQueryUserSubscriptio
 
 	case *PublicQueryUserSubscriptionsOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicQueryUserSubscriptionsShort(params *PublicQueryUserSubscriptionsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryUserSubscriptionsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicQueryUserSubscriptionsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicQueryUserSubscriptions",
+		Method:             "GET",
+		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/subscriptions",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicQueryUserSubscriptionsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicQueryUserSubscriptionsOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -718,7 +1334,7 @@ func (a *Client) PublicQueryUserSubscriptions(params *PublicQueryUserSubscriptio
 /*
   PublicSubscribeSubscription subscribes a subscription
 
-  Subscribe a subscription. Support both real and virtual payment. Need go through payment flow using the paymentOrderNo if paymentFlowRequired true.<br><b>ACTIVE USER subscription can't do subscribe again.</b><br><b>The next billing date will be X(default 4) hours before the current period ends if correctly subscribed.</b><br>User with permission SANDBOX will create sandbox subscription that not real paid.<br>Other detail info: <ul><li><i>Required permission</i>: resource="NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION", action=1 (CREATE)</li><li><i>Optional permission(user with this permission will create sandbox subscription)</i>: resource="SANDBOX", action=1 (CREATE)</li><li>It will be forbidden while the user is banned: ORDER_INITIATE or ORDER_AND_PAYMENT</li><li><i>Returns</i>: created subscription</li></ul>
+  Subscribe a subscription. Support both real and virtual payment. Need go through payment flow using the paymentOrderNo if paymentFlowRequired true.&lt;br&gt;&lt;b&gt;ACTIVE USER subscription can&#39;t do subscribe again.&lt;/b&gt;&lt;br&gt;&lt;b&gt;The next billing date will be X(default 4) hours before the current period ends if correctly subscribed.&lt;/b&gt;&lt;br&gt;User with permission SANDBOX will create sandbox subscription that not real paid.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Optional permission(user with this permission will create sandbox subscription)&lt;/i&gt;: resource=&#34;SANDBOX&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;It will be forbidden while the user is banned: ORDER_INITIATE or ORDER_AND_PAYMENT&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: created subscription&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) PublicSubscribeSubscription(params *PublicSubscribeSubscriptionParams, authInfo runtime.ClientAuthInfoWriter) (*PublicSubscribeSubscriptionCreated, *PublicSubscribeSubscriptionBadRequest, *PublicSubscribeSubscriptionForbidden, *PublicSubscribeSubscriptionNotFound, *PublicSubscribeSubscriptionConflict, *PublicSubscribeSubscriptionUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -736,7 +1352,7 @@ func (a *Client) PublicSubscribeSubscription(params *PublicSubscribeSubscription
 		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/subscriptions",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicSubscribeSubscriptionReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -751,25 +1367,78 @@ func (a *Client) PublicSubscribeSubscription(params *PublicSubscribeSubscription
 
 	case *PublicSubscribeSubscriptionCreated:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *PublicSubscribeSubscriptionBadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *PublicSubscribeSubscriptionForbidden:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *PublicSubscribeSubscriptionNotFound:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *PublicSubscribeSubscriptionConflict:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *PublicSubscribeSubscriptionUnprocessableEntity:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicSubscribeSubscriptionShort(params *PublicSubscribeSubscriptionParams, authInfo runtime.ClientAuthInfoWriter) (*PublicSubscribeSubscriptionCreated, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicSubscribeSubscriptionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicSubscribeSubscription",
+		Method:             "POST",
+		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/subscriptions",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicSubscribeSubscriptionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicSubscribeSubscriptionCreated:
+		return v, nil
+	case *PublicSubscribeSubscriptionBadRequest:
+		return nil, v
+	case *PublicSubscribeSubscriptionForbidden:
+		return nil, v
+	case *PublicSubscribeSubscriptionNotFound:
+		return nil, v
+	case *PublicSubscribeSubscriptionConflict:
+		return nil, v
+	case *PublicSubscribeSubscriptionUnprocessableEntity:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   QuerySubscriptions queries subscriptions
 
-  Query subscriptions.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:SUBSCRIPTION", action=2 (READ)</li><li><i>Returns</i>: paginated subscriptions</li></ul>
+  Query subscriptions.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:SUBSCRIPTION&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: paginated subscriptions&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) QuerySubscriptions(params *QuerySubscriptionsParams, authInfo runtime.ClientAuthInfoWriter) (*QuerySubscriptionsOK, error) {
 	// TODO: Validate the params before sending
@@ -787,7 +1456,7 @@ func (a *Client) QuerySubscriptions(params *QuerySubscriptionsParams, authInfo r
 		PathPattern:        "/admin/namespaces/{namespace}/subscriptions",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &QuerySubscriptionsReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -802,6 +1471,44 @@ func (a *Client) QuerySubscriptions(params *QuerySubscriptionsParams, authInfo r
 
 	case *QuerySubscriptionsOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) QuerySubscriptionsShort(params *QuerySubscriptionsParams, authInfo runtime.ClientAuthInfoWriter) (*QuerySubscriptionsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewQuerySubscriptionsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "querySubscriptions",
+		Method:             "GET",
+		PathPattern:        "/admin/namespaces/{namespace}/subscriptions",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &QuerySubscriptionsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *QuerySubscriptionsOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -810,7 +1517,7 @@ func (a *Client) QuerySubscriptions(params *QuerySubscriptionsParams, authInfo r
 /*
   QueryUserSubscriptions queries user subscriptions
 
-  Query user subscriptions.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION", action=2 (READ)</li><li><i>Returns</i>: paginated subscription</li></ul>
+  Query user subscriptions.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: paginated subscription&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) QueryUserSubscriptions(params *QueryUserSubscriptionsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryUserSubscriptionsOK, error) {
 	// TODO: Validate the params before sending
@@ -828,7 +1535,7 @@ func (a *Client) QueryUserSubscriptions(params *QueryUserSubscriptionsParams, au
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/subscriptions",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &QueryUserSubscriptionsReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -843,6 +1550,44 @@ func (a *Client) QueryUserSubscriptions(params *QueryUserSubscriptionsParams, au
 
 	case *QueryUserSubscriptionsOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) QueryUserSubscriptionsShort(params *QueryUserSubscriptionsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryUserSubscriptionsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewQueryUserSubscriptionsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "queryUserSubscriptions",
+		Method:             "GET",
+		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/subscriptions",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &QueryUserSubscriptionsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *QueryUserSubscriptionsOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -851,7 +1596,7 @@ func (a *Client) QueryUserSubscriptions(params *QueryUserSubscriptionsParams, au
 /*
   RecurringChargeSubscription recurrings charge subscription
 
-  <b>[TEST FACILITY ONLY] Forbidden in live environment. </b> Recurring charge subscription, it will trigger recurring charge if the USER subscription status is ACTIVE, nextBillingDate is before now and no fail recurring charge within X(default 12) hours.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:SUBSCRIPTION", action=4 (UPDATE)</li><li><i>Returns</i>: recurring charge result</li></ul>
+  &lt;b&gt;[TEST FACILITY ONLY] Forbidden in live environment. &lt;/b&gt; Recurring charge subscription, it will trigger recurring charge if the USER subscription status is ACTIVE, nextBillingDate is before now and no fail recurring charge within X(default 12) hours.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:SUBSCRIPTION&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: recurring charge result&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) RecurringChargeSubscription(params *RecurringChargeSubscriptionParams, authInfo runtime.ClientAuthInfoWriter) (*RecurringChargeSubscriptionOK, error) {
 	// TODO: Validate the params before sending
@@ -869,7 +1614,7 @@ func (a *Client) RecurringChargeSubscription(params *RecurringChargeSubscription
 		PathPattern:        "/admin/namespaces/{namespace}/subscriptions/{subscriptionId}/recurring",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &RecurringChargeSubscriptionReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -884,6 +1629,44 @@ func (a *Client) RecurringChargeSubscription(params *RecurringChargeSubscription
 
 	case *RecurringChargeSubscriptionOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) RecurringChargeSubscriptionShort(params *RecurringChargeSubscriptionParams, authInfo runtime.ClientAuthInfoWriter) (*RecurringChargeSubscriptionOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRecurringChargeSubscriptionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "recurringChargeSubscription",
+		Method:             "PUT",
+		PathPattern:        "/admin/namespaces/{namespace}/subscriptions/{subscriptionId}/recurring",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &RecurringChargeSubscriptionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *RecurringChargeSubscriptionOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}

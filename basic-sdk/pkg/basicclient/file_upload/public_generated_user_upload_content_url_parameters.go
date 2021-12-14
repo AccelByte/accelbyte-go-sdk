@@ -61,7 +61,7 @@ for the public generated user upload content Url operation typically these are w
 type PublicGeneratedUserUploadContentURLParams struct {
 
 	/*FileType
-	  one of the these types: jpeg, jpg, png, bmp, gif, mp3, bin
+	  one of the these types: jpeg, jpg, png, bmp, gif, mp3, bin, webp
 
 	*/
 	FileType string

@@ -23,6 +23,9 @@ type ModelsCreateContentResponse struct {
 	// Required: true
 	ChannelID *string `json:"channelId"`
 
+	// content type
+	ContentType string `json:"contentType,omitempty"`
+
 	// created time
 	// Required: true
 	CreatedTime *string `json:"createdTime"`

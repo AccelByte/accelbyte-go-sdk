@@ -30,68 +30,69 @@ type Client struct {
 // ClientService is the interface for Client methods
 type ClientService interface {
 	DeleteAppleIAPConfig(params *DeleteAppleIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteAppleIAPConfigNoContent, error)
-
+	DeleteAppleIAPConfigShort(params *DeleteAppleIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteAppleIAPConfigNoContent, error)
 	DeleteEpicGamesIAPConfig(params *DeleteEpicGamesIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteEpicGamesIAPConfigNoContent, error)
-
+	DeleteEpicGamesIAPConfigShort(params *DeleteEpicGamesIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteEpicGamesIAPConfigNoContent, error)
 	DeleteGoogleIAPConfig(params *DeleteGoogleIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteGoogleIAPConfigNoContent, error)
-
+	DeleteGoogleIAPConfigShort(params *DeleteGoogleIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteGoogleIAPConfigNoContent, error)
 	DeletePlaystationIAPConfig(params *DeletePlaystationIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeletePlaystationIAPConfigNoContent, error)
-
+	DeletePlaystationIAPConfigShort(params *DeletePlaystationIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeletePlaystationIAPConfigNoContent, error)
 	DeleteStadiaIAPConfig(params *DeleteStadiaIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteStadiaIAPConfigNoContent, error)
-
+	DeleteStadiaIAPConfigShort(params *DeleteStadiaIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteStadiaIAPConfigNoContent, error)
 	DeleteSteamIAPConfig(params *DeleteSteamIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteSteamIAPConfigNoContent, error)
-
+	DeleteSteamIAPConfigShort(params *DeleteSteamIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteSteamIAPConfigNoContent, error)
 	DeleteXblAPConfig(params *DeleteXblAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteXblAPConfigNoContent, error)
-
+	DeleteXblAPConfigShort(params *DeleteXblAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteXblAPConfigNoContent, error)
 	GetAppleIAPConfig(params *GetAppleIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetAppleIAPConfigOK, error)
-
+	GetAppleIAPConfigShort(params *GetAppleIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetAppleIAPConfigOK, error)
 	GetEpicGamesIAPConfig(params *GetEpicGamesIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetEpicGamesIAPConfigOK, *GetEpicGamesIAPConfigNotFound, error)
-
+	GetEpicGamesIAPConfigShort(params *GetEpicGamesIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetEpicGamesIAPConfigOK, error)
 	GetGoogleIAPConfig(params *GetGoogleIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetGoogleIAPConfigOK, error)
-
+	GetGoogleIAPConfigShort(params *GetGoogleIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetGoogleIAPConfigOK, error)
 	GetPlayStationIAPConfig(params *GetPlayStationIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetPlayStationIAPConfigOK, error)
-
+	GetPlayStationIAPConfigShort(params *GetPlayStationIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetPlayStationIAPConfigOK, error)
 	GetStadiaIAPConfig(params *GetStadiaIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetStadiaIAPConfigOK, error)
-
+	GetStadiaIAPConfigShort(params *GetStadiaIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetStadiaIAPConfigOK, error)
 	GetSteamIAPConfig(params *GetSteamIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetSteamIAPConfigOK, error)
-
+	GetSteamIAPConfigShort(params *GetSteamIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetSteamIAPConfigOK, error)
 	GetXblIAPConfig(params *GetXblIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetXblIAPConfigOK, *GetXblIAPConfigNotFound, error)
-
+	GetXblIAPConfigShort(params *GetXblIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetXblIAPConfigOK, error)
 	MockFulfillIAPItem(params *MockFulfillIAPItemParams, authInfo runtime.ClientAuthInfoWriter) (*MockFulfillIAPItemNoContent, *MockFulfillIAPItemBadRequest, *MockFulfillIAPItemNotFound, *MockFulfillIAPItemConflict, error)
-
+	MockFulfillIAPItemShort(params *MockFulfillIAPItemParams, authInfo runtime.ClientAuthInfoWriter) (*MockFulfillIAPItemNoContent, error)
 	PublicFulfillAppleIAPItem(params *PublicFulfillAppleIAPItemParams, authInfo runtime.ClientAuthInfoWriter) (*PublicFulfillAppleIAPItemNoContent, *PublicFulfillAppleIAPItemBadRequest, *PublicFulfillAppleIAPItemNotFound, *PublicFulfillAppleIAPItemConflict, error)
-
+	PublicFulfillAppleIAPItemShort(params *PublicFulfillAppleIAPItemParams, authInfo runtime.ClientAuthInfoWriter) (*PublicFulfillAppleIAPItemNoContent, error)
 	PublicFulfillGoogleIAPItem(params *PublicFulfillGoogleIAPItemParams, authInfo runtime.ClientAuthInfoWriter) (*PublicFulfillGoogleIAPItemNoContent, *PublicFulfillGoogleIAPItemBadRequest, *PublicFulfillGoogleIAPItemNotFound, *PublicFulfillGoogleIAPItemConflict, error)
-
+	PublicFulfillGoogleIAPItemShort(params *PublicFulfillGoogleIAPItemParams, authInfo runtime.ClientAuthInfoWriter) (*PublicFulfillGoogleIAPItemNoContent, error)
 	PublicReconcilePlayStationStore(params *PublicReconcilePlayStationStoreParams, authInfo runtime.ClientAuthInfoWriter) (*PublicReconcilePlayStationStoreOK, *PublicReconcilePlayStationStoreBadRequest, error)
-
+	PublicReconcilePlayStationStoreShort(params *PublicReconcilePlayStationStoreParams, authInfo runtime.ClientAuthInfoWriter) (*PublicReconcilePlayStationStoreOK, error)
 	QueryUserIAPOrders(params *QueryUserIAPOrdersParams, authInfo runtime.ClientAuthInfoWriter) (*QueryUserIAPOrdersOK, error)
-
+	QueryUserIAPOrdersShort(params *QueryUserIAPOrdersParams, authInfo runtime.ClientAuthInfoWriter) (*QueryUserIAPOrdersOK, error)
 	SyncEpicGamesInventory(params *SyncEpicGamesInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*SyncEpicGamesInventoryOK, error)
-
+	SyncEpicGamesInventoryShort(params *SyncEpicGamesInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*SyncEpicGamesInventoryOK, error)
 	SyncStadiaEntitlement(params *SyncStadiaEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*SyncStadiaEntitlementNoContent, error)
-
+	SyncStadiaEntitlementShort(params *SyncStadiaEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*SyncStadiaEntitlementNoContent, error)
 	SyncSteamInventory(params *SyncSteamInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*SyncSteamInventoryNoContent, error)
-
+	SyncSteamInventoryShort(params *SyncSteamInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*SyncSteamInventoryNoContent, error)
 	SyncXboxInventory(params *SyncXboxInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*SyncXboxInventoryOK, error)
-
+	SyncXboxInventoryShort(params *SyncXboxInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*SyncXboxInventoryOK, error)
 	UpdateAppleIAPConfig(params *UpdateAppleIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateAppleIAPConfigOK, error)
-
+	UpdateAppleIAPConfigShort(params *UpdateAppleIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateAppleIAPConfigOK, error)
 	UpdateEpicGamesIAPConfig(params *UpdateEpicGamesIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateEpicGamesIAPConfigOK, error)
-
+	UpdateEpicGamesIAPConfigShort(params *UpdateEpicGamesIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateEpicGamesIAPConfigOK, error)
 	UpdateGoogleIAPConfig(params *UpdateGoogleIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateGoogleIAPConfigOK, error)
-
+	UpdateGoogleIAPConfigShort(params *UpdateGoogleIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateGoogleIAPConfigOK, error)
 	UpdateGoogleP12File(params *UpdateGoogleP12FileParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateGoogleP12FileOK, error)
-
+	UpdateGoogleP12FileShort(params *UpdateGoogleP12FileParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateGoogleP12FileOK, error)
 	UpdatePlaystationIAPConfig(params *UpdatePlaystationIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePlaystationIAPConfigOK, error)
-
+	UpdatePlaystationIAPConfigShort(params *UpdatePlaystationIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePlaystationIAPConfigOK, error)
 	UpdateStadiaJSONConfigFile(params *UpdateStadiaJSONConfigFileParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateStadiaJSONConfigFileOK, error)
-
+	UpdateStadiaJSONConfigFileShort(params *UpdateStadiaJSONConfigFileParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateStadiaJSONConfigFileOK, error)
 	UpdateSteamIAPConfig(params *UpdateSteamIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateSteamIAPConfigOK, error)
-
+	UpdateSteamIAPConfigShort(params *UpdateSteamIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateSteamIAPConfigOK, error)
 	UpdateXblBPCertFile(params *UpdateXblBPCertFileParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateXblBPCertFileOK, error)
-
+	UpdateXblBPCertFileShort(params *UpdateXblBPCertFileParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateXblBPCertFileOK, error)
 	UpdateXblIAPConfig(params *UpdateXblIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateXblIAPConfigOK, error)
+	UpdateXblIAPConfigShort(params *UpdateXblIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateXblIAPConfigOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -99,7 +100,7 @@ type ClientService interface {
 /*
   DeleteAppleIAPConfig deletes apple iap config
 
-  Delete apple iap config.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:IAP:CONFIG", action=8 (DELETE)</li></ul>
+  Delete apple iap config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) DeleteAppleIAPConfig(params *DeleteAppleIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteAppleIAPConfigNoContent, error) {
 	// TODO: Validate the params before sending
@@ -117,7 +118,7 @@ func (a *Client) DeleteAppleIAPConfig(params *DeleteAppleIAPConfigParams, authIn
 		PathPattern:        "/admin/namespaces/{namespace}/iap/config/apple",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteAppleIAPConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -132,6 +133,44 @@ func (a *Client) DeleteAppleIAPConfig(params *DeleteAppleIAPConfigParams, authIn
 
 	case *DeleteAppleIAPConfigNoContent:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) DeleteAppleIAPConfigShort(params *DeleteAppleIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteAppleIAPConfigNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteAppleIAPConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "deleteAppleIAPConfig",
+		Method:             "DELETE",
+		PathPattern:        "/admin/namespaces/{namespace}/iap/config/apple",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteAppleIAPConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeleteAppleIAPConfigNoContent:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -140,7 +179,7 @@ func (a *Client) DeleteAppleIAPConfig(params *DeleteAppleIAPConfigParams, authIn
 /*
   DeleteEpicGamesIAPConfig deletes epic games iap config
 
-  Delete epic games iap config.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:IAP:CONFIG", action=8 (DELETE)</li></ul>
+  Delete epic games iap config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) DeleteEpicGamesIAPConfig(params *DeleteEpicGamesIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteEpicGamesIAPConfigNoContent, error) {
 	// TODO: Validate the params before sending
@@ -158,7 +197,7 @@ func (a *Client) DeleteEpicGamesIAPConfig(params *DeleteEpicGamesIAPConfigParams
 		PathPattern:        "/admin/namespaces/{namespace}/iap/config/epicgames",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteEpicGamesIAPConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -173,6 +212,44 @@ func (a *Client) DeleteEpicGamesIAPConfig(params *DeleteEpicGamesIAPConfigParams
 
 	case *DeleteEpicGamesIAPConfigNoContent:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) DeleteEpicGamesIAPConfigShort(params *DeleteEpicGamesIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteEpicGamesIAPConfigNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteEpicGamesIAPConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "deleteEpicGamesIAPConfig",
+		Method:             "DELETE",
+		PathPattern:        "/admin/namespaces/{namespace}/iap/config/epicgames",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteEpicGamesIAPConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeleteEpicGamesIAPConfigNoContent:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -181,7 +258,7 @@ func (a *Client) DeleteEpicGamesIAPConfig(params *DeleteEpicGamesIAPConfigParams
 /*
   DeleteGoogleIAPConfig deletes google iap config
 
-  Delete google iap config.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:IAP:CONFIG", action=8 (DELETE)</li></ul>
+  Delete google iap config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) DeleteGoogleIAPConfig(params *DeleteGoogleIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteGoogleIAPConfigNoContent, error) {
 	// TODO: Validate the params before sending
@@ -199,7 +276,7 @@ func (a *Client) DeleteGoogleIAPConfig(params *DeleteGoogleIAPConfigParams, auth
 		PathPattern:        "/admin/namespaces/{namespace}/iap/config/google",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteGoogleIAPConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -214,6 +291,44 @@ func (a *Client) DeleteGoogleIAPConfig(params *DeleteGoogleIAPConfigParams, auth
 
 	case *DeleteGoogleIAPConfigNoContent:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) DeleteGoogleIAPConfigShort(params *DeleteGoogleIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteGoogleIAPConfigNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteGoogleIAPConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "deleteGoogleIAPConfig",
+		Method:             "DELETE",
+		PathPattern:        "/admin/namespaces/{namespace}/iap/config/google",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteGoogleIAPConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeleteGoogleIAPConfigNoContent:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -222,7 +337,7 @@ func (a *Client) DeleteGoogleIAPConfig(params *DeleteGoogleIAPConfigParams, auth
 /*
   DeletePlaystationIAPConfig deletes playstation iap config
 
-  Delete playstation iap config.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:IAP:CONFIG", action=8 (DELETE)</li></ul>
+  Delete playstation iap config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) DeletePlaystationIAPConfig(params *DeletePlaystationIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeletePlaystationIAPConfigNoContent, error) {
 	// TODO: Validate the params before sending
@@ -240,7 +355,7 @@ func (a *Client) DeletePlaystationIAPConfig(params *DeletePlaystationIAPConfigPa
 		PathPattern:        "/admin/namespaces/{namespace}/iap/config/playstation",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeletePlaystationIAPConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -255,6 +370,44 @@ func (a *Client) DeletePlaystationIAPConfig(params *DeletePlaystationIAPConfigPa
 
 	case *DeletePlaystationIAPConfigNoContent:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) DeletePlaystationIAPConfigShort(params *DeletePlaystationIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeletePlaystationIAPConfigNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeletePlaystationIAPConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "deletePlaystationIAPConfig",
+		Method:             "DELETE",
+		PathPattern:        "/admin/namespaces/{namespace}/iap/config/playstation",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeletePlaystationIAPConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeletePlaystationIAPConfigNoContent:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -263,7 +416,7 @@ func (a *Client) DeletePlaystationIAPConfig(params *DeletePlaystationIAPConfigPa
 /*
   DeleteStadiaIAPConfig deletes stadia iap config
 
-  Delete stadia iap config.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:IAP:CONFIG", action=8 (DELETE)</li></ul>
+  Delete stadia iap config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) DeleteStadiaIAPConfig(params *DeleteStadiaIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteStadiaIAPConfigNoContent, error) {
 	// TODO: Validate the params before sending
@@ -281,7 +434,7 @@ func (a *Client) DeleteStadiaIAPConfig(params *DeleteStadiaIAPConfigParams, auth
 		PathPattern:        "/admin/namespaces/{namespace}/iap/config/stadia",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteStadiaIAPConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -296,6 +449,44 @@ func (a *Client) DeleteStadiaIAPConfig(params *DeleteStadiaIAPConfigParams, auth
 
 	case *DeleteStadiaIAPConfigNoContent:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) DeleteStadiaIAPConfigShort(params *DeleteStadiaIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteStadiaIAPConfigNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteStadiaIAPConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "deleteStadiaIAPConfig",
+		Method:             "DELETE",
+		PathPattern:        "/admin/namespaces/{namespace}/iap/config/stadia",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteStadiaIAPConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeleteStadiaIAPConfigNoContent:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -304,7 +495,7 @@ func (a *Client) DeleteStadiaIAPConfig(params *DeleteStadiaIAPConfigParams, auth
 /*
   DeleteSteamIAPConfig deletes steam iap config
 
-  Delete steam iap config.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:IAP:CONFIG", action=8 (DELETE)</li></ul>
+  Delete steam iap config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) DeleteSteamIAPConfig(params *DeleteSteamIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteSteamIAPConfigNoContent, error) {
 	// TODO: Validate the params before sending
@@ -322,7 +513,7 @@ func (a *Client) DeleteSteamIAPConfig(params *DeleteSteamIAPConfigParams, authIn
 		PathPattern:        "/admin/namespaces/{namespace}/iap/config/steam",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteSteamIAPConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -337,6 +528,44 @@ func (a *Client) DeleteSteamIAPConfig(params *DeleteSteamIAPConfigParams, authIn
 
 	case *DeleteSteamIAPConfigNoContent:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) DeleteSteamIAPConfigShort(params *DeleteSteamIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteSteamIAPConfigNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteSteamIAPConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "deleteSteamIAPConfig",
+		Method:             "DELETE",
+		PathPattern:        "/admin/namespaces/{namespace}/iap/config/steam",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteSteamIAPConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeleteSteamIAPConfigNoContent:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -345,7 +574,7 @@ func (a *Client) DeleteSteamIAPConfig(params *DeleteSteamIAPConfigParams, authIn
 /*
   DeleteXblAPConfig deletes xbl iap config
 
-  Delete xbl iap config.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:IAP:CONFIG", action=8 (DELETE)</li></ul>
+  Delete xbl iap config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) DeleteXblAPConfig(params *DeleteXblAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteXblAPConfigNoContent, error) {
 	// TODO: Validate the params before sending
@@ -363,7 +592,7 @@ func (a *Client) DeleteXblAPConfig(params *DeleteXblAPConfigParams, authInfo run
 		PathPattern:        "/admin/namespaces/{namespace}/iap/config/xbl",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteXblAPConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -378,6 +607,44 @@ func (a *Client) DeleteXblAPConfig(params *DeleteXblAPConfigParams, authInfo run
 
 	case *DeleteXblAPConfigNoContent:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) DeleteXblAPConfigShort(params *DeleteXblAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteXblAPConfigNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteXblAPConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "deleteXblAPConfig",
+		Method:             "DELETE",
+		PathPattern:        "/admin/namespaces/{namespace}/iap/config/xbl",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteXblAPConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeleteXblAPConfigNoContent:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -386,7 +653,7 @@ func (a *Client) DeleteXblAPConfig(params *DeleteXblAPConfigParams, authInfo run
 /*
   GetAppleIAPConfig gets apple iap config
 
-  Get apple iap config.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:IAP:CONFIG", action=2 (READ)</li><li><i>Returns</i>: apple iap config</li></ul>
+  Get apple iap config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: apple iap config&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) GetAppleIAPConfig(params *GetAppleIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetAppleIAPConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -404,7 +671,7 @@ func (a *Client) GetAppleIAPConfig(params *GetAppleIAPConfigParams, authInfo run
 		PathPattern:        "/admin/namespaces/{namespace}/iap/config/apple",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetAppleIAPConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -419,6 +686,44 @@ func (a *Client) GetAppleIAPConfig(params *GetAppleIAPConfigParams, authInfo run
 
 	case *GetAppleIAPConfigOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetAppleIAPConfigShort(params *GetAppleIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetAppleIAPConfigOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetAppleIAPConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getAppleIAPConfig",
+		Method:             "GET",
+		PathPattern:        "/admin/namespaces/{namespace}/iap/config/apple",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetAppleIAPConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetAppleIAPConfigOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -427,7 +732,7 @@ func (a *Client) GetAppleIAPConfig(params *GetAppleIAPConfigParams, authInfo run
 /*
   GetEpicGamesIAPConfig gets epicgames iap config
 
-  Get epic games iap config.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:IAP:CONFIG", action=2 (READ)</li><li><i>Returns</i>: epic games iap config</li></ul>
+  Get epic games iap config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: epic games iap config&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) GetEpicGamesIAPConfig(params *GetEpicGamesIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetEpicGamesIAPConfigOK, *GetEpicGamesIAPConfigNotFound, error) {
 	// TODO: Validate the params before sending
@@ -445,7 +750,7 @@ func (a *Client) GetEpicGamesIAPConfig(params *GetEpicGamesIAPConfigParams, auth
 		PathPattern:        "/admin/namespaces/{namespace}/iap/config/epicgames",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetEpicGamesIAPConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -460,17 +765,58 @@ func (a *Client) GetEpicGamesIAPConfig(params *GetEpicGamesIAPConfigParams, auth
 
 	case *GetEpicGamesIAPConfigOK:
 		return v, nil, nil
+
 	case *GetEpicGamesIAPConfigNotFound:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetEpicGamesIAPConfigShort(params *GetEpicGamesIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetEpicGamesIAPConfigOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetEpicGamesIAPConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getEpicGamesIAPConfig",
+		Method:             "GET",
+		PathPattern:        "/admin/namespaces/{namespace}/iap/config/epicgames",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetEpicGamesIAPConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetEpicGamesIAPConfigOK:
+		return v, nil
+	case *GetEpicGamesIAPConfigNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   GetGoogleIAPConfig gets google iap config
 
-  Get google iap config.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:IAP:CONFIG", action=2 (READ)</li><li><i>Returns</i>: google iap config</li></ul>
+  Get google iap config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: google iap config&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) GetGoogleIAPConfig(params *GetGoogleIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetGoogleIAPConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -488,7 +834,7 @@ func (a *Client) GetGoogleIAPConfig(params *GetGoogleIAPConfigParams, authInfo r
 		PathPattern:        "/admin/namespaces/{namespace}/iap/config/google",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetGoogleIAPConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -503,6 +849,44 @@ func (a *Client) GetGoogleIAPConfig(params *GetGoogleIAPConfigParams, authInfo r
 
 	case *GetGoogleIAPConfigOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetGoogleIAPConfigShort(params *GetGoogleIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetGoogleIAPConfigOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetGoogleIAPConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getGoogleIAPConfig",
+		Method:             "GET",
+		PathPattern:        "/admin/namespaces/{namespace}/iap/config/google",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetGoogleIAPConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetGoogleIAPConfigOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -511,7 +895,7 @@ func (a *Client) GetGoogleIAPConfig(params *GetGoogleIAPConfigParams, authInfo r
 /*
   GetPlayStationIAPConfig gets playstation iap config
 
-  Get playstation iap config.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:IAP:CONFIG", action=2 (READ)</li><li><i>Returns</i>: playstation iap config</li></ul>
+  Get playstation iap config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: playstation iap config&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) GetPlayStationIAPConfig(params *GetPlayStationIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetPlayStationIAPConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -529,7 +913,7 @@ func (a *Client) GetPlayStationIAPConfig(params *GetPlayStationIAPConfigParams, 
 		PathPattern:        "/admin/namespaces/{namespace}/iap/config/playstation",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetPlayStationIAPConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -544,6 +928,44 @@ func (a *Client) GetPlayStationIAPConfig(params *GetPlayStationIAPConfigParams, 
 
 	case *GetPlayStationIAPConfigOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetPlayStationIAPConfigShort(params *GetPlayStationIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetPlayStationIAPConfigOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetPlayStationIAPConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getPlayStationIAPConfig",
+		Method:             "GET",
+		PathPattern:        "/admin/namespaces/{namespace}/iap/config/playstation",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetPlayStationIAPConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetPlayStationIAPConfigOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -552,7 +974,7 @@ func (a *Client) GetPlayStationIAPConfig(params *GetPlayStationIAPConfigParams, 
 /*
   GetStadiaIAPConfig gets stadia iap config
 
-  Get stadia iap config.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:IAP:CONFIG", action=2 (READ)</li><li><i>Returns</i>: stadia iap config</li></ul>
+  Get stadia iap config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: stadia iap config&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) GetStadiaIAPConfig(params *GetStadiaIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetStadiaIAPConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -570,7 +992,7 @@ func (a *Client) GetStadiaIAPConfig(params *GetStadiaIAPConfigParams, authInfo r
 		PathPattern:        "/admin/namespaces/{namespace}/iap/config/stadia",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetStadiaIAPConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -585,6 +1007,44 @@ func (a *Client) GetStadiaIAPConfig(params *GetStadiaIAPConfigParams, authInfo r
 
 	case *GetStadiaIAPConfigOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetStadiaIAPConfigShort(params *GetStadiaIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetStadiaIAPConfigOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetStadiaIAPConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getStadiaIAPConfig",
+		Method:             "GET",
+		PathPattern:        "/admin/namespaces/{namespace}/iap/config/stadia",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetStadiaIAPConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetStadiaIAPConfigOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -593,7 +1053,7 @@ func (a *Client) GetStadiaIAPConfig(params *GetStadiaIAPConfigParams, authInfo r
 /*
   GetSteamIAPConfig gets steam iap config
 
-  Get steam iap config.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:IAP:CONFIG", action=2 (READ)</li><li><i>Returns</i>: steam iap config</li></ul>
+  Get steam iap config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: steam iap config&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) GetSteamIAPConfig(params *GetSteamIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetSteamIAPConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -611,7 +1071,7 @@ func (a *Client) GetSteamIAPConfig(params *GetSteamIAPConfigParams, authInfo run
 		PathPattern:        "/admin/namespaces/{namespace}/iap/config/steam",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetSteamIAPConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -626,6 +1086,44 @@ func (a *Client) GetSteamIAPConfig(params *GetSteamIAPConfigParams, authInfo run
 
 	case *GetSteamIAPConfigOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetSteamIAPConfigShort(params *GetSteamIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetSteamIAPConfigOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetSteamIAPConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getSteamIAPConfig",
+		Method:             "GET",
+		PathPattern:        "/admin/namespaces/{namespace}/iap/config/steam",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetSteamIAPConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetSteamIAPConfigOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -634,7 +1132,7 @@ func (a *Client) GetSteamIAPConfig(params *GetSteamIAPConfigParams, authInfo run
 /*
   GetXblIAPConfig gets xbox iap config
 
-  Get xbox iap config.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:IAP:CONFIG", action=2 (READ)</li><li><i>Returns</i>: xbox iap config</li></ul>
+  Get xbox iap config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: xbox iap config&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) GetXblIAPConfig(params *GetXblIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetXblIAPConfigOK, *GetXblIAPConfigNotFound, error) {
 	// TODO: Validate the params before sending
@@ -652,7 +1150,7 @@ func (a *Client) GetXblIAPConfig(params *GetXblIAPConfigParams, authInfo runtime
 		PathPattern:        "/admin/namespaces/{namespace}/iap/config/xbl",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetXblIAPConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -667,17 +1165,58 @@ func (a *Client) GetXblIAPConfig(params *GetXblIAPConfigParams, authInfo runtime
 
 	case *GetXblIAPConfigOK:
 		return v, nil, nil
+
 	case *GetXblIAPConfigNotFound:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetXblIAPConfigShort(params *GetXblIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetXblIAPConfigOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetXblIAPConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getXblIAPConfig",
+		Method:             "GET",
+		PathPattern:        "/admin/namespaces/{namespace}/iap/config/xbl",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetXblIAPConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetXblIAPConfigOK:
+		return v, nil
+	case *GetXblIAPConfigNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   MockFulfillIAPItem mocks fulfill iap item
 
-  <b>[TEST FACILITY ONLY] Forbidden in live environment. </b> Mock fulfill iap item without validate receipt.<p>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:IAP", action=4 (UPDATE)</li><li><i>Returns</i>: </li></ul>
+  &lt;b&gt;[TEST FACILITY ONLY] Forbidden in live environment. &lt;/b&gt; Mock fulfill iap item without validate receipt.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:IAP&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: &lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) MockFulfillIAPItem(params *MockFulfillIAPItemParams, authInfo runtime.ClientAuthInfoWriter) (*MockFulfillIAPItemNoContent, *MockFulfillIAPItemBadRequest, *MockFulfillIAPItemNotFound, *MockFulfillIAPItemConflict, error) {
 	// TODO: Validate the params before sending
@@ -695,7 +1234,7 @@ func (a *Client) MockFulfillIAPItem(params *MockFulfillIAPItemParams, authInfo r
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/iap/mock/receipt",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &MockFulfillIAPItemReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -710,21 +1249,68 @@ func (a *Client) MockFulfillIAPItem(params *MockFulfillIAPItemParams, authInfo r
 
 	case *MockFulfillIAPItemNoContent:
 		return v, nil, nil, nil, nil
+
 	case *MockFulfillIAPItemBadRequest:
 		return nil, v, nil, nil, nil
+
 	case *MockFulfillIAPItemNotFound:
 		return nil, nil, v, nil, nil
+
 	case *MockFulfillIAPItemConflict:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) MockFulfillIAPItemShort(params *MockFulfillIAPItemParams, authInfo runtime.ClientAuthInfoWriter) (*MockFulfillIAPItemNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewMockFulfillIAPItemParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "mockFulfillIAPItem",
+		Method:             "PUT",
+		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/iap/mock/receipt",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &MockFulfillIAPItemReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *MockFulfillIAPItemNoContent:
+		return v, nil
+	case *MockFulfillIAPItemBadRequest:
+		return nil, v
+	case *MockFulfillIAPItemNotFound:
+		return nil, v
+	case *MockFulfillIAPItemConflict:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   PublicFulfillAppleIAPItem fulfills apple iap item
 
-  Verify apple iap receipt and fulfill item.<p>Other detail info: <ul><li><i>Required permission</i>: resource="NAMESPACE:{namespace}:USER:{userId}:IAP", action=4 (UPDATE)</li><li><i>Returns</i>: </li></ul>
+  Verify apple iap receipt and fulfill item.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:IAP&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: &lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) PublicFulfillAppleIAPItem(params *PublicFulfillAppleIAPItemParams, authInfo runtime.ClientAuthInfoWriter) (*PublicFulfillAppleIAPItemNoContent, *PublicFulfillAppleIAPItemBadRequest, *PublicFulfillAppleIAPItemNotFound, *PublicFulfillAppleIAPItemConflict, error) {
 	// TODO: Validate the params before sending
@@ -742,7 +1328,7 @@ func (a *Client) PublicFulfillAppleIAPItem(params *PublicFulfillAppleIAPItemPara
 		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/iap/apple/receipt",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicFulfillAppleIAPItemReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -757,21 +1343,68 @@ func (a *Client) PublicFulfillAppleIAPItem(params *PublicFulfillAppleIAPItemPara
 
 	case *PublicFulfillAppleIAPItemNoContent:
 		return v, nil, nil, nil, nil
+
 	case *PublicFulfillAppleIAPItemBadRequest:
 		return nil, v, nil, nil, nil
+
 	case *PublicFulfillAppleIAPItemNotFound:
 		return nil, nil, v, nil, nil
+
 	case *PublicFulfillAppleIAPItemConflict:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicFulfillAppleIAPItemShort(params *PublicFulfillAppleIAPItemParams, authInfo runtime.ClientAuthInfoWriter) (*PublicFulfillAppleIAPItemNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicFulfillAppleIAPItemParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicFulfillAppleIAPItem",
+		Method:             "PUT",
+		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/iap/apple/receipt",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicFulfillAppleIAPItemReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicFulfillAppleIAPItemNoContent:
+		return v, nil
+	case *PublicFulfillAppleIAPItemBadRequest:
+		return nil, v
+	case *PublicFulfillAppleIAPItemNotFound:
+		return nil, v
+	case *PublicFulfillAppleIAPItemConflict:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   PublicFulfillGoogleIAPItem fulfills google iap item
 
-  Verify google iap receipt and fulfill item.<p>Other detail info: <ul><li><i>Required permission</i>: resource="NAMESPACE:{namespace}:USER:{userId}:IAP", action=4 (UPDATE)</li><li><i>Returns</i>: </li></ul>
+  Verify google iap receipt and fulfill item.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:IAP&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: &lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) PublicFulfillGoogleIAPItem(params *PublicFulfillGoogleIAPItemParams, authInfo runtime.ClientAuthInfoWriter) (*PublicFulfillGoogleIAPItemNoContent, *PublicFulfillGoogleIAPItemBadRequest, *PublicFulfillGoogleIAPItemNotFound, *PublicFulfillGoogleIAPItemConflict, error) {
 	// TODO: Validate the params before sending
@@ -789,7 +1422,7 @@ func (a *Client) PublicFulfillGoogleIAPItem(params *PublicFulfillGoogleIAPItemPa
 		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/iap/google/receipt",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicFulfillGoogleIAPItemReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -804,21 +1437,68 @@ func (a *Client) PublicFulfillGoogleIAPItem(params *PublicFulfillGoogleIAPItemPa
 
 	case *PublicFulfillGoogleIAPItemNoContent:
 		return v, nil, nil, nil, nil
+
 	case *PublicFulfillGoogleIAPItemBadRequest:
 		return nil, v, nil, nil, nil
+
 	case *PublicFulfillGoogleIAPItemNotFound:
 		return nil, nil, v, nil, nil
+
 	case *PublicFulfillGoogleIAPItemConflict:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicFulfillGoogleIAPItemShort(params *PublicFulfillGoogleIAPItemParams, authInfo runtime.ClientAuthInfoWriter) (*PublicFulfillGoogleIAPItemNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicFulfillGoogleIAPItemParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicFulfillGoogleIAPItem",
+		Method:             "PUT",
+		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/iap/google/receipt",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicFulfillGoogleIAPItemReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicFulfillGoogleIAPItemNoContent:
+		return v, nil
+	case *PublicFulfillGoogleIAPItemBadRequest:
+		return nil, v
+	case *PublicFulfillGoogleIAPItemNotFound:
+		return nil, v
+	case *PublicFulfillGoogleIAPItemConflict:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   PublicReconcilePlayStationStore synchronizes with entitlements in p s n store
 
-  Synchronize with entitlements in PSN Store.<p>Other detail info: <ul><li><i>Required permission</i>: resource="NAMESPACE:{namespace}:USER:{userId}:IAP", action=4 (UPDATE)</li><li><i>Returns</i>: result of synchronization</li></ul>
+  Synchronize with entitlements in PSN Store.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:IAP&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: result of synchronization&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) PublicReconcilePlayStationStore(params *PublicReconcilePlayStationStoreParams, authInfo runtime.ClientAuthInfoWriter) (*PublicReconcilePlayStationStoreOK, *PublicReconcilePlayStationStoreBadRequest, error) {
 	// TODO: Validate the params before sending
@@ -836,7 +1516,7 @@ func (a *Client) PublicReconcilePlayStationStore(params *PublicReconcilePlayStat
 		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/iap/psn/sync",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicReconcilePlayStationStoreReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -851,17 +1531,58 @@ func (a *Client) PublicReconcilePlayStationStore(params *PublicReconcilePlayStat
 
 	case *PublicReconcilePlayStationStoreOK:
 		return v, nil, nil
+
 	case *PublicReconcilePlayStationStoreBadRequest:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicReconcilePlayStationStoreShort(params *PublicReconcilePlayStationStoreParams, authInfo runtime.ClientAuthInfoWriter) (*PublicReconcilePlayStationStoreOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicReconcilePlayStationStoreParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicReconcilePlayStationStore",
+		Method:             "PUT",
+		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/iap/psn/sync",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicReconcilePlayStationStoreReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicReconcilePlayStationStoreOK:
+		return v, nil
+	case *PublicReconcilePlayStationStoreBadRequest:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   QueryUserIAPOrders queries i a p orders
 
-  Query IAP orders.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:IAP", action=2 (READ)</li><li><i>Returns</i>: paginated iap orders</li></ul>
+  Query IAP orders.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:IAP&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: paginated iap orders&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) QueryUserIAPOrders(params *QueryUserIAPOrdersParams, authInfo runtime.ClientAuthInfoWriter) (*QueryUserIAPOrdersOK, error) {
 	// TODO: Validate the params before sending
@@ -879,7 +1600,7 @@ func (a *Client) QueryUserIAPOrders(params *QueryUserIAPOrdersParams, authInfo r
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/iap",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &QueryUserIAPOrdersReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -894,6 +1615,44 @@ func (a *Client) QueryUserIAPOrders(params *QueryUserIAPOrdersParams, authInfo r
 
 	case *QueryUserIAPOrdersOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) QueryUserIAPOrdersShort(params *QueryUserIAPOrdersParams, authInfo runtime.ClientAuthInfoWriter) (*QueryUserIAPOrdersOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewQueryUserIAPOrdersParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "queryUserIAPOrders",
+		Method:             "GET",
+		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/iap",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &QueryUserIAPOrdersReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *QueryUserIAPOrdersOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -902,7 +1661,7 @@ func (a *Client) QueryUserIAPOrders(params *QueryUserIAPOrdersParams, authInfo r
 /*
   SyncEpicGamesInventory syncs epic games inventory
 
-  Sync epic games inventory's items.<p>Other detail info: <ul><li><i>Required permission</i>: resource="NAMESPACE:{namespace}:USER:{userId}:IAP", action=4 (UPDATE)</li><li><i>Returns</i>: </li></ul>
+  Sync epic games inventory&#39;s items.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:IAP&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: &lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) SyncEpicGamesInventory(params *SyncEpicGamesInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*SyncEpicGamesInventoryOK, error) {
 	// TODO: Validate the params before sending
@@ -920,7 +1679,7 @@ func (a *Client) SyncEpicGamesInventory(params *SyncEpicGamesInventoryParams, au
 		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/iap/epicgames/sync",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &SyncEpicGamesInventoryReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -935,6 +1694,44 @@ func (a *Client) SyncEpicGamesInventory(params *SyncEpicGamesInventoryParams, au
 
 	case *SyncEpicGamesInventoryOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) SyncEpicGamesInventoryShort(params *SyncEpicGamesInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*SyncEpicGamesInventoryOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewSyncEpicGamesInventoryParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "syncEpicGamesInventory",
+		Method:             "PUT",
+		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/iap/epicgames/sync",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &SyncEpicGamesInventoryReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *SyncEpicGamesInventoryOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -943,7 +1740,7 @@ func (a *Client) SyncEpicGamesInventory(params *SyncEpicGamesInventoryParams, au
 /*
   SyncStadiaEntitlement syncs stadia inventory
 
-  Sync stadia entitlements.<p>Other detail info: <ul><li><i>Required permission</i>: resource="NAMESPACE:{namespace}:USER:{userId}:IAP", action=4 (UPDATE)</li><li><i>Returns</i>: </li></ul>
+  Sync stadia entitlements.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:IAP&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: &lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) SyncStadiaEntitlement(params *SyncStadiaEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*SyncStadiaEntitlementNoContent, error) {
 	// TODO: Validate the params before sending
@@ -961,7 +1758,7 @@ func (a *Client) SyncStadiaEntitlement(params *SyncStadiaEntitlementParams, auth
 		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/iap/stadia/sync",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &SyncStadiaEntitlementReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -976,6 +1773,44 @@ func (a *Client) SyncStadiaEntitlement(params *SyncStadiaEntitlementParams, auth
 
 	case *SyncStadiaEntitlementNoContent:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) SyncStadiaEntitlementShort(params *SyncStadiaEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*SyncStadiaEntitlementNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewSyncStadiaEntitlementParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "syncStadiaEntitlement",
+		Method:             "PUT",
+		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/iap/stadia/sync",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &SyncStadiaEntitlementReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *SyncStadiaEntitlementNoContent:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -984,7 +1819,7 @@ func (a *Client) SyncStadiaEntitlement(params *SyncStadiaEntitlementParams, auth
 /*
   SyncSteamInventory syncs steam inventory
 
-  Sync steam inventory's items.<p>Other detail info: <ul><li><i>Required permission</i>: resource="NAMESPACE:{namespace}:USER:{userId}:IAP", action=4 (UPDATE)</li><li><i>Returns</i>: </li></ul>
+  Sync steam inventory&#39;s items.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:IAP&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: &lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) SyncSteamInventory(params *SyncSteamInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*SyncSteamInventoryNoContent, error) {
 	// TODO: Validate the params before sending
@@ -1002,7 +1837,7 @@ func (a *Client) SyncSteamInventory(params *SyncSteamInventoryParams, authInfo r
 		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/iap/steam/sync",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &SyncSteamInventoryReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1017,6 +1852,44 @@ func (a *Client) SyncSteamInventory(params *SyncSteamInventoryParams, authInfo r
 
 	case *SyncSteamInventoryNoContent:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) SyncSteamInventoryShort(params *SyncSteamInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*SyncSteamInventoryNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewSyncSteamInventoryParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "syncSteamInventory",
+		Method:             "PUT",
+		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/iap/steam/sync",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &SyncSteamInventoryReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *SyncSteamInventoryNoContent:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -1025,7 +1898,7 @@ func (a *Client) SyncSteamInventory(params *SyncSteamInventoryParams, authInfo r
 /*
   SyncXboxInventory syncs xbox inventory
 
-  Sync Xbox inventory's items.<p>Other detail info: <ul><li><i>Required permission</i>: resource="NAMESPACE:{namespace}:USER:{userId}:IAP", action=4 (UPDATE)</li><li><i>Returns</i>: </li></ul>
+  Sync Xbox inventory&#39;s items.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:IAP&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: &lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) SyncXboxInventory(params *SyncXboxInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*SyncXboxInventoryOK, error) {
 	// TODO: Validate the params before sending
@@ -1043,7 +1916,7 @@ func (a *Client) SyncXboxInventory(params *SyncXboxInventoryParams, authInfo run
 		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/iap/xbl/sync",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &SyncXboxInventoryReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1058,6 +1931,44 @@ func (a *Client) SyncXboxInventory(params *SyncXboxInventoryParams, authInfo run
 
 	case *SyncXboxInventoryOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) SyncXboxInventoryShort(params *SyncXboxInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*SyncXboxInventoryOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewSyncXboxInventoryParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "syncXboxInventory",
+		Method:             "PUT",
+		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/iap/xbl/sync",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &SyncXboxInventoryReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *SyncXboxInventoryOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -1066,7 +1977,7 @@ func (a *Client) SyncXboxInventory(params *SyncXboxInventoryParams, authInfo run
 /*
   UpdateAppleIAPConfig updates apple iap config
 
-  Update apple iap config. Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:IAP:CONFIG", action=4 (UPDATE)</li><li><i>Returns</i>: updated apple iap config</li></ul>
+  Update apple iap config. Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated apple iap config&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) UpdateAppleIAPConfig(params *UpdateAppleIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateAppleIAPConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -1084,7 +1995,7 @@ func (a *Client) UpdateAppleIAPConfig(params *UpdateAppleIAPConfigParams, authIn
 		PathPattern:        "/admin/namespaces/{namespace}/iap/config/apple",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &UpdateAppleIAPConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1099,6 +2010,44 @@ func (a *Client) UpdateAppleIAPConfig(params *UpdateAppleIAPConfigParams, authIn
 
 	case *UpdateAppleIAPConfigOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) UpdateAppleIAPConfigShort(params *UpdateAppleIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateAppleIAPConfigOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateAppleIAPConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updateAppleIAPConfig",
+		Method:             "PUT",
+		PathPattern:        "/admin/namespaces/{namespace}/iap/config/apple",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateAppleIAPConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateAppleIAPConfigOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -1107,7 +2056,7 @@ func (a *Client) UpdateAppleIAPConfig(params *UpdateAppleIAPConfigParams, authIn
 /*
   UpdateEpicGamesIAPConfig updates epic games iap config
 
-  Update epic games iap config. Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:IAP:CONFIG", action=4 (UPDATE)</li><li><i>Returns</i>: updated epic games iap config</li></ul>
+  Update epic games iap config. Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated epic games iap config&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) UpdateEpicGamesIAPConfig(params *UpdateEpicGamesIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateEpicGamesIAPConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -1125,7 +2074,7 @@ func (a *Client) UpdateEpicGamesIAPConfig(params *UpdateEpicGamesIAPConfigParams
 		PathPattern:        "/admin/namespaces/{namespace}/iap/config/epicgames",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &UpdateEpicGamesIAPConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1140,6 +2089,44 @@ func (a *Client) UpdateEpicGamesIAPConfig(params *UpdateEpicGamesIAPConfigParams
 
 	case *UpdateEpicGamesIAPConfigOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) UpdateEpicGamesIAPConfigShort(params *UpdateEpicGamesIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateEpicGamesIAPConfigOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateEpicGamesIAPConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updateEpicGamesIAPConfig",
+		Method:             "PUT",
+		PathPattern:        "/admin/namespaces/{namespace}/iap/config/epicgames",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateEpicGamesIAPConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateEpicGamesIAPConfigOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -1148,7 +2135,7 @@ func (a *Client) UpdateEpicGamesIAPConfig(params *UpdateEpicGamesIAPConfigParams
 /*
   UpdateGoogleIAPConfig updates google iap config
 
-  Update google iap config. Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:IAP:CONFIG", action=4 (UPDATE)</li><li><i>Returns</i>: updated google iap config</li></ul>
+  Update google iap config. Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated google iap config&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) UpdateGoogleIAPConfig(params *UpdateGoogleIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateGoogleIAPConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -1166,7 +2153,7 @@ func (a *Client) UpdateGoogleIAPConfig(params *UpdateGoogleIAPConfigParams, auth
 		PathPattern:        "/admin/namespaces/{namespace}/iap/config/google",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &UpdateGoogleIAPConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1181,6 +2168,44 @@ func (a *Client) UpdateGoogleIAPConfig(params *UpdateGoogleIAPConfigParams, auth
 
 	case *UpdateGoogleIAPConfigOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) UpdateGoogleIAPConfigShort(params *UpdateGoogleIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateGoogleIAPConfigOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateGoogleIAPConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updateGoogleIAPConfig",
+		Method:             "PUT",
+		PathPattern:        "/admin/namespaces/{namespace}/iap/config/google",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateGoogleIAPConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateGoogleIAPConfigOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -1189,7 +2214,7 @@ func (a *Client) UpdateGoogleIAPConfig(params *UpdateGoogleIAPConfigParams, auth
 /*
   UpdateGoogleP12File uploads google play p12 file
 
-  Upload google play p12 file.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:IAP:CONFIG", action=4 (UPDATE)</li><li><i>Returns</i>: updated google iap config</li></ul>
+  Upload google play p12 file.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated google iap config&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) UpdateGoogleP12File(params *UpdateGoogleP12FileParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateGoogleP12FileOK, error) {
 	// TODO: Validate the params before sending
@@ -1207,7 +2232,7 @@ func (a *Client) UpdateGoogleP12File(params *UpdateGoogleP12FileParams, authInfo
 		PathPattern:        "/admin/namespaces/{namespace}/iap/config/google/cert",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"multipart/form-data"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &UpdateGoogleP12FileReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1222,6 +2247,44 @@ func (a *Client) UpdateGoogleP12File(params *UpdateGoogleP12FileParams, authInfo
 
 	case *UpdateGoogleP12FileOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) UpdateGoogleP12FileShort(params *UpdateGoogleP12FileParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateGoogleP12FileOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateGoogleP12FileParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updateGoogleP12File",
+		Method:             "PUT",
+		PathPattern:        "/admin/namespaces/{namespace}/iap/config/google/cert",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"multipart/form-data"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateGoogleP12FileReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateGoogleP12FileOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -1230,7 +2293,7 @@ func (a *Client) UpdateGoogleP12File(params *UpdateGoogleP12FileParams, authInfo
 /*
   UpdatePlaystationIAPConfig updates playstation iap config
 
-  Update playstation iap config. Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:IAP:CONFIG", action=4 (UPDATE)</li><li><i>Returns</i>: updated playstation iap config</li></ul>
+  Update playstation iap config. Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated playstation iap config&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) UpdatePlaystationIAPConfig(params *UpdatePlaystationIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePlaystationIAPConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -1248,7 +2311,7 @@ func (a *Client) UpdatePlaystationIAPConfig(params *UpdatePlaystationIAPConfigPa
 		PathPattern:        "/admin/namespaces/{namespace}/iap/config/playstation",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &UpdatePlaystationIAPConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1263,6 +2326,44 @@ func (a *Client) UpdatePlaystationIAPConfig(params *UpdatePlaystationIAPConfigPa
 
 	case *UpdatePlaystationIAPConfigOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) UpdatePlaystationIAPConfigShort(params *UpdatePlaystationIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePlaystationIAPConfigOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdatePlaystationIAPConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updatePlaystationIAPConfig",
+		Method:             "PUT",
+		PathPattern:        "/admin/namespaces/{namespace}/iap/config/playstation",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdatePlaystationIAPConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdatePlaystationIAPConfigOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -1271,7 +2372,7 @@ func (a *Client) UpdatePlaystationIAPConfig(params *UpdatePlaystationIAPConfigPa
 /*
   UpdateStadiaJSONConfigFile uploads stadia json config file
 
-  Upload stadia json config file.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:IAP:CONFIG", action=4 (UPDATE)</li><li><i>Returns</i>: updated stadia iap config</li></ul>
+  Upload stadia json config file.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated stadia iap config&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) UpdateStadiaJSONConfigFile(params *UpdateStadiaJSONConfigFileParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateStadiaJSONConfigFileOK, error) {
 	// TODO: Validate the params before sending
@@ -1289,7 +2390,7 @@ func (a *Client) UpdateStadiaJSONConfigFile(params *UpdateStadiaJSONConfigFilePa
 		PathPattern:        "/admin/namespaces/{namespace}/iap/config/stadia/cert",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"multipart/form-data"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &UpdateStadiaJSONConfigFileReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1304,6 +2405,44 @@ func (a *Client) UpdateStadiaJSONConfigFile(params *UpdateStadiaJSONConfigFilePa
 
 	case *UpdateStadiaJSONConfigFileOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) UpdateStadiaJSONConfigFileShort(params *UpdateStadiaJSONConfigFileParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateStadiaJSONConfigFileOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateStadiaJSONConfigFileParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updateStadiaJsonConfigFile",
+		Method:             "PUT",
+		PathPattern:        "/admin/namespaces/{namespace}/iap/config/stadia/cert",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"multipart/form-data"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateStadiaJSONConfigFileReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateStadiaJSONConfigFileOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -1312,7 +2451,7 @@ func (a *Client) UpdateStadiaJSONConfigFile(params *UpdateStadiaJSONConfigFilePa
 /*
   UpdateSteamIAPConfig updates steam iap config
 
-  Update steam iap config. Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:IAP:CONFIG", action=4 (UPDATE)</li><li><i>Returns</i>: updated steam iap config</li></ul>
+  Update steam iap config. Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated steam iap config&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) UpdateSteamIAPConfig(params *UpdateSteamIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateSteamIAPConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -1330,7 +2469,7 @@ func (a *Client) UpdateSteamIAPConfig(params *UpdateSteamIAPConfigParams, authIn
 		PathPattern:        "/admin/namespaces/{namespace}/iap/config/steam",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &UpdateSteamIAPConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1345,6 +2484,44 @@ func (a *Client) UpdateSteamIAPConfig(params *UpdateSteamIAPConfigParams, authIn
 
 	case *UpdateSteamIAPConfigOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) UpdateSteamIAPConfigShort(params *UpdateSteamIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateSteamIAPConfigOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateSteamIAPConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updateSteamIAPConfig",
+		Method:             "PUT",
+		PathPattern:        "/admin/namespaces/{namespace}/iap/config/steam",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateSteamIAPConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateSteamIAPConfigOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -1353,7 +2530,7 @@ func (a *Client) UpdateSteamIAPConfig(params *UpdateSteamIAPConfigParams, authIn
 /*
   UpdateXblBPCertFile uploads xbl business partner cert file
 
-  Upload xbl business partner cert file.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:IAP:CONFIG", action=4 (UPDATE)</li><li><i>Returns</i>: updated xbl iap config</li></ul>
+  Upload xbl business partner cert file.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated xbl iap config&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) UpdateXblBPCertFile(params *UpdateXblBPCertFileParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateXblBPCertFileOK, error) {
 	// TODO: Validate the params before sending
@@ -1371,7 +2548,7 @@ func (a *Client) UpdateXblBPCertFile(params *UpdateXblBPCertFileParams, authInfo
 		PathPattern:        "/admin/namespaces/{namespace}/iap/config/xbl/cert",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"multipart/form-data"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &UpdateXblBPCertFileReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1386,6 +2563,44 @@ func (a *Client) UpdateXblBPCertFile(params *UpdateXblBPCertFileParams, authInfo
 
 	case *UpdateXblBPCertFileOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) UpdateXblBPCertFileShort(params *UpdateXblBPCertFileParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateXblBPCertFileOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateXblBPCertFileParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updateXblBPCertFile",
+		Method:             "PUT",
+		PathPattern:        "/admin/namespaces/{namespace}/iap/config/xbl/cert",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"multipart/form-data"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateXblBPCertFileReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateXblBPCertFileOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -1394,7 +2609,7 @@ func (a *Client) UpdateXblBPCertFile(params *UpdateXblBPCertFileParams, authInfo
 /*
   UpdateXblIAPConfig updates xbl iap config
 
-  Update xbl iap config. Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:IAP:CONFIG", action=4 (UPDATE)</li><li><i>Returns</i>: updated xbl iap config</li></ul>
+  Update xbl iap config. Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated xbl iap config&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) UpdateXblIAPConfig(params *UpdateXblIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateXblIAPConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -1412,7 +2627,7 @@ func (a *Client) UpdateXblIAPConfig(params *UpdateXblIAPConfigParams, authInfo r
 		PathPattern:        "/admin/namespaces/{namespace}/iap/config/xbl",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &UpdateXblIAPConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1427,6 +2642,44 @@ func (a *Client) UpdateXblIAPConfig(params *UpdateXblIAPConfigParams, authInfo r
 
 	case *UpdateXblIAPConfigOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) UpdateXblIAPConfigShort(params *UpdateXblIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateXblIAPConfigOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateXblIAPConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updateXblIAPConfig",
+		Method:             "PUT",
+		PathPattern:        "/admin/namespaces/{namespace}/iap/config/xbl",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateXblIAPConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateXblIAPConfigOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}

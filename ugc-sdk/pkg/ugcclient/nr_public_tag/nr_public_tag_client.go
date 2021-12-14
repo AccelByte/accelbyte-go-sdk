@@ -30,6 +30,7 @@ type Client struct {
 // ClientService is the interface for Client methods
 type ClientService interface {
 	GetTag(params *GetTagParams, authInfo runtime.ClientAuthInfoWriter) (*GetTagOK, *GetTagUnauthorized, *GetTagNotFound, *GetTagInternalServerError, error)
+	GetTagShort(params *GetTagParams, authInfo runtime.ClientAuthInfoWriter) (*GetTagOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -55,7 +56,7 @@ func (a *Client) GetTag(params *GetTagParams, authInfo runtime.ClientAuthInfoWri
 		PathPattern:        "/ugc/v1/public/namespaces/{namespace}/tags",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json", "application/octet-stream"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetTagReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -70,14 +71,61 @@ func (a *Client) GetTag(params *GetTagParams, authInfo runtime.ClientAuthInfoWri
 
 	case *GetTagOK:
 		return v, nil, nil, nil, nil
+
 	case *GetTagUnauthorized:
 		return nil, v, nil, nil, nil
+
 	case *GetTagNotFound:
 		return nil, nil, v, nil, nil
+
 	case *GetTagInternalServerError:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetTagShort(params *GetTagParams, authInfo runtime.ClientAuthInfoWriter) (*GetTagOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetTagParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetTag",
+		Method:             "GET",
+		PathPattern:        "/ugc/v1/public/namespaces/{namespace}/tags",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json", "application/octet-stream"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetTagReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetTagOK:
+		return v, nil
+	case *GetTagUnauthorized:
+		return nil, v
+	case *GetTagNotFound:
+		return nil, v
+	case *GetTagInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 

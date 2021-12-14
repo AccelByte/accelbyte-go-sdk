@@ -30,18 +30,19 @@ type Client struct {
 // ClientService is the interface for Client methods
 type ClientService interface {
 	AddThirdPartyLoginPlatformCredentialV3(params *AddThirdPartyLoginPlatformCredentialV3Params, authInfo runtime.ClientAuthInfoWriter) (*AddThirdPartyLoginPlatformCredentialV3Created, *AddThirdPartyLoginPlatformCredentialV3BadRequest, *AddThirdPartyLoginPlatformCredentialV3Unauthorized, *AddThirdPartyLoginPlatformCredentialV3Forbidden, *AddThirdPartyLoginPlatformCredentialV3InternalServerError, error)
-
+	AddThirdPartyLoginPlatformCredentialV3Short(params *AddThirdPartyLoginPlatformCredentialV3Params, authInfo runtime.ClientAuthInfoWriter) (*AddThirdPartyLoginPlatformCredentialV3Created, error)
 	DeleteThirdPartyLoginPlatformCredentialV3(params *DeleteThirdPartyLoginPlatformCredentialV3Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteThirdPartyLoginPlatformCredentialV3NoContent, *DeleteThirdPartyLoginPlatformCredentialV3Unauthorized, *DeleteThirdPartyLoginPlatformCredentialV3Forbidden, *DeleteThirdPartyLoginPlatformCredentialV3NotFound, *DeleteThirdPartyLoginPlatformCredentialV3InternalServerError, error)
-
+	DeleteThirdPartyLoginPlatformCredentialV3Short(params *DeleteThirdPartyLoginPlatformCredentialV3Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteThirdPartyLoginPlatformCredentialV3NoContent, error)
 	RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3(params *RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Params, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3OK, *RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Unauthorized, *RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Forbidden, *RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3NotFound, *RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3InternalServerError, error)
-
+	RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Short(params *RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Params, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3OK, error)
 	RetrieveAllActiveThirdPartyLoginPlatformCredentialV3(params *RetrieveAllActiveThirdPartyLoginPlatformCredentialV3Params, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAllActiveThirdPartyLoginPlatformCredentialV3OK, *RetrieveAllActiveThirdPartyLoginPlatformCredentialV3Unauthorized, *RetrieveAllActiveThirdPartyLoginPlatformCredentialV3Forbidden, *RetrieveAllActiveThirdPartyLoginPlatformCredentialV3NotFound, *RetrieveAllActiveThirdPartyLoginPlatformCredentialV3InternalServerError, error)
-
+	RetrieveAllActiveThirdPartyLoginPlatformCredentialV3Short(params *RetrieveAllActiveThirdPartyLoginPlatformCredentialV3Params, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAllActiveThirdPartyLoginPlatformCredentialV3OK, error)
 	RetrieveAllThirdPartyLoginPlatformCredentialV3(params *RetrieveAllThirdPartyLoginPlatformCredentialV3Params, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAllThirdPartyLoginPlatformCredentialV3OK, *RetrieveAllThirdPartyLoginPlatformCredentialV3Unauthorized, *RetrieveAllThirdPartyLoginPlatformCredentialV3Forbidden, *RetrieveAllThirdPartyLoginPlatformCredentialV3NotFound, *RetrieveAllThirdPartyLoginPlatformCredentialV3InternalServerError, error)
-
+	RetrieveAllThirdPartyLoginPlatformCredentialV3Short(params *RetrieveAllThirdPartyLoginPlatformCredentialV3Params, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAllThirdPartyLoginPlatformCredentialV3OK, error)
 	RetrieveThirdPartyLoginPlatformCredentialV3(params *RetrieveThirdPartyLoginPlatformCredentialV3Params, authInfo runtime.ClientAuthInfoWriter) (*RetrieveThirdPartyLoginPlatformCredentialV3OK, *RetrieveThirdPartyLoginPlatformCredentialV3Unauthorized, *RetrieveThirdPartyLoginPlatformCredentialV3Forbidden, *RetrieveThirdPartyLoginPlatformCredentialV3NotFound, *RetrieveThirdPartyLoginPlatformCredentialV3InternalServerError, error)
-
+	RetrieveThirdPartyLoginPlatformCredentialV3Short(params *RetrieveThirdPartyLoginPlatformCredentialV3Params, authInfo runtime.ClientAuthInfoWriter) (*RetrieveThirdPartyLoginPlatformCredentialV3OK, error)
 	UpdateThirdPartyLoginPlatformCredentialV3(params *UpdateThirdPartyLoginPlatformCredentialV3Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateThirdPartyLoginPlatformCredentialV3OK, *UpdateThirdPartyLoginPlatformCredentialV3BadRequest, *UpdateThirdPartyLoginPlatformCredentialV3Unauthorized, *UpdateThirdPartyLoginPlatformCredentialV3Forbidden, *UpdateThirdPartyLoginPlatformCredentialV3NotFound, *UpdateThirdPartyLoginPlatformCredentialV3InternalServerError, error)
+	UpdateThirdPartyLoginPlatformCredentialV3Short(params *UpdateThirdPartyLoginPlatformCredentialV3Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateThirdPartyLoginPlatformCredentialV3OK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -49,7 +50,10 @@ type ClientService interface {
 /*
   AddThirdPartyLoginPlatformCredentialV3 adds third party platform credential
 
-  This is the API to Add 3rd Platform Credential. It needs ADMIN:NAMESPACE:{namespace}:PLATFORM:{platformId}:CLIENT [CREATE] resource
+  &lt;p&gt;This is the API to Add 3rd Platform Credential.&lt;/p&gt;
+					 &lt;p&gt;It needs ADMIN:NAMESPACE:{namespace}:PLATFORM:{platformId}:CLIENT [CREATE] resource.&lt;/p&gt;
+					 &lt;p&gt;The secret for &lt;strong&gt;apple&lt;/strong&gt; is base64 encoded private key.&lt;/p&gt;
+
 */
 func (a *Client) AddThirdPartyLoginPlatformCredentialV3(params *AddThirdPartyLoginPlatformCredentialV3Params, authInfo runtime.ClientAuthInfoWriter) (*AddThirdPartyLoginPlatformCredentialV3Created, *AddThirdPartyLoginPlatformCredentialV3BadRequest, *AddThirdPartyLoginPlatformCredentialV3Unauthorized, *AddThirdPartyLoginPlatformCredentialV3Forbidden, *AddThirdPartyLoginPlatformCredentialV3InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -67,7 +71,7 @@ func (a *Client) AddThirdPartyLoginPlatformCredentialV3(params *AddThirdPartyLog
 		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/clients",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AddThirdPartyLoginPlatformCredentialV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -82,16 +86,66 @@ func (a *Client) AddThirdPartyLoginPlatformCredentialV3(params *AddThirdPartyLog
 
 	case *AddThirdPartyLoginPlatformCredentialV3Created:
 		return v, nil, nil, nil, nil, nil
+
 	case *AddThirdPartyLoginPlatformCredentialV3BadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *AddThirdPartyLoginPlatformCredentialV3Unauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *AddThirdPartyLoginPlatformCredentialV3Forbidden:
 		return nil, nil, nil, v, nil, nil
+
 	case *AddThirdPartyLoginPlatformCredentialV3InternalServerError:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AddThirdPartyLoginPlatformCredentialV3Short(params *AddThirdPartyLoginPlatformCredentialV3Params, authInfo runtime.ClientAuthInfoWriter) (*AddThirdPartyLoginPlatformCredentialV3Created, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAddThirdPartyLoginPlatformCredentialV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AddThirdPartyLoginPlatformCredentialV3",
+		Method:             "POST",
+		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/clients",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AddThirdPartyLoginPlatformCredentialV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AddThirdPartyLoginPlatformCredentialV3Created:
+		return v, nil
+	case *AddThirdPartyLoginPlatformCredentialV3BadRequest:
+		return nil, v
+	case *AddThirdPartyLoginPlatformCredentialV3Unauthorized:
+		return nil, v
+	case *AddThirdPartyLoginPlatformCredentialV3Forbidden:
+		return nil, v
+	case *AddThirdPartyLoginPlatformCredentialV3InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -116,7 +170,7 @@ func (a *Client) DeleteThirdPartyLoginPlatformCredentialV3(params *DeleteThirdPa
 		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/clients",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteThirdPartyLoginPlatformCredentialV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -131,16 +185,66 @@ func (a *Client) DeleteThirdPartyLoginPlatformCredentialV3(params *DeleteThirdPa
 
 	case *DeleteThirdPartyLoginPlatformCredentialV3NoContent:
 		return v, nil, nil, nil, nil, nil
+
 	case *DeleteThirdPartyLoginPlatformCredentialV3Unauthorized:
 		return nil, v, nil, nil, nil, nil
+
 	case *DeleteThirdPartyLoginPlatformCredentialV3Forbidden:
 		return nil, nil, v, nil, nil, nil
+
 	case *DeleteThirdPartyLoginPlatformCredentialV3NotFound:
 		return nil, nil, nil, v, nil, nil
+
 	case *DeleteThirdPartyLoginPlatformCredentialV3InternalServerError:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) DeleteThirdPartyLoginPlatformCredentialV3Short(params *DeleteThirdPartyLoginPlatformCredentialV3Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteThirdPartyLoginPlatformCredentialV3NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteThirdPartyLoginPlatformCredentialV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "DeleteThirdPartyLoginPlatformCredentialV3",
+		Method:             "DELETE",
+		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/clients",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteThirdPartyLoginPlatformCredentialV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeleteThirdPartyLoginPlatformCredentialV3NoContent:
+		return v, nil
+	case *DeleteThirdPartyLoginPlatformCredentialV3Unauthorized:
+		return nil, v
+	case *DeleteThirdPartyLoginPlatformCredentialV3Forbidden:
+		return nil, v
+	case *DeleteThirdPartyLoginPlatformCredentialV3NotFound:
+		return nil, v
+	case *DeleteThirdPartyLoginPlatformCredentialV3InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -165,7 +269,7 @@ func (a *Client) RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3(para
 		PathPattern:        "/iam/v3/public/namespaces/{namespace}/platforms/clients/active",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -180,16 +284,66 @@ func (a *Client) RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3(para
 
 	case *RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3OK:
 		return v, nil, nil, nil, nil, nil
+
 	case *RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Unauthorized:
 		return nil, v, nil, nil, nil, nil
+
 	case *RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Forbidden:
 		return nil, nil, v, nil, nil, nil
+
 	case *RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3NotFound:
 		return nil, nil, nil, v, nil, nil
+
 	case *RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3InternalServerError:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Short(params *RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Params, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3",
+		Method:             "GET",
+		PathPattern:        "/iam/v3/public/namespaces/{namespace}/platforms/clients/active",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3OK:
+		return v, nil
+	case *RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Unauthorized:
+		return nil, v
+	case *RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Forbidden:
+		return nil, v
+	case *RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3NotFound:
+		return nil, v
+	case *RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -214,7 +368,7 @@ func (a *Client) RetrieveAllActiveThirdPartyLoginPlatformCredentialV3(params *Re
 		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/platforms/all/clients/active",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &RetrieveAllActiveThirdPartyLoginPlatformCredentialV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -229,16 +383,66 @@ func (a *Client) RetrieveAllActiveThirdPartyLoginPlatformCredentialV3(params *Re
 
 	case *RetrieveAllActiveThirdPartyLoginPlatformCredentialV3OK:
 		return v, nil, nil, nil, nil, nil
+
 	case *RetrieveAllActiveThirdPartyLoginPlatformCredentialV3Unauthorized:
 		return nil, v, nil, nil, nil, nil
+
 	case *RetrieveAllActiveThirdPartyLoginPlatformCredentialV3Forbidden:
 		return nil, nil, v, nil, nil, nil
+
 	case *RetrieveAllActiveThirdPartyLoginPlatformCredentialV3NotFound:
 		return nil, nil, nil, v, nil, nil
+
 	case *RetrieveAllActiveThirdPartyLoginPlatformCredentialV3InternalServerError:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) RetrieveAllActiveThirdPartyLoginPlatformCredentialV3Short(params *RetrieveAllActiveThirdPartyLoginPlatformCredentialV3Params, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAllActiveThirdPartyLoginPlatformCredentialV3OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRetrieveAllActiveThirdPartyLoginPlatformCredentialV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "RetrieveAllActiveThirdPartyLoginPlatformCredentialV3",
+		Method:             "GET",
+		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/platforms/all/clients/active",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &RetrieveAllActiveThirdPartyLoginPlatformCredentialV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *RetrieveAllActiveThirdPartyLoginPlatformCredentialV3OK:
+		return v, nil
+	case *RetrieveAllActiveThirdPartyLoginPlatformCredentialV3Unauthorized:
+		return nil, v
+	case *RetrieveAllActiveThirdPartyLoginPlatformCredentialV3Forbidden:
+		return nil, v
+	case *RetrieveAllActiveThirdPartyLoginPlatformCredentialV3NotFound:
+		return nil, v
+	case *RetrieveAllActiveThirdPartyLoginPlatformCredentialV3InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -263,7 +467,7 @@ func (a *Client) RetrieveAllThirdPartyLoginPlatformCredentialV3(params *Retrieve
 		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/platforms/all/clients",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &RetrieveAllThirdPartyLoginPlatformCredentialV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -278,16 +482,66 @@ func (a *Client) RetrieveAllThirdPartyLoginPlatformCredentialV3(params *Retrieve
 
 	case *RetrieveAllThirdPartyLoginPlatformCredentialV3OK:
 		return v, nil, nil, nil, nil, nil
+
 	case *RetrieveAllThirdPartyLoginPlatformCredentialV3Unauthorized:
 		return nil, v, nil, nil, nil, nil
+
 	case *RetrieveAllThirdPartyLoginPlatformCredentialV3Forbidden:
 		return nil, nil, v, nil, nil, nil
+
 	case *RetrieveAllThirdPartyLoginPlatformCredentialV3NotFound:
 		return nil, nil, nil, v, nil, nil
+
 	case *RetrieveAllThirdPartyLoginPlatformCredentialV3InternalServerError:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) RetrieveAllThirdPartyLoginPlatformCredentialV3Short(params *RetrieveAllThirdPartyLoginPlatformCredentialV3Params, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAllThirdPartyLoginPlatformCredentialV3OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRetrieveAllThirdPartyLoginPlatformCredentialV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "RetrieveAllThirdPartyLoginPlatformCredentialV3",
+		Method:             "GET",
+		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/platforms/all/clients",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &RetrieveAllThirdPartyLoginPlatformCredentialV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *RetrieveAllThirdPartyLoginPlatformCredentialV3OK:
+		return v, nil
+	case *RetrieveAllThirdPartyLoginPlatformCredentialV3Unauthorized:
+		return nil, v
+	case *RetrieveAllThirdPartyLoginPlatformCredentialV3Forbidden:
+		return nil, v
+	case *RetrieveAllThirdPartyLoginPlatformCredentialV3NotFound:
+		return nil, v
+	case *RetrieveAllThirdPartyLoginPlatformCredentialV3InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -312,7 +566,7 @@ func (a *Client) RetrieveThirdPartyLoginPlatformCredentialV3(params *RetrieveThi
 		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/clients",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &RetrieveThirdPartyLoginPlatformCredentialV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -327,23 +581,76 @@ func (a *Client) RetrieveThirdPartyLoginPlatformCredentialV3(params *RetrieveThi
 
 	case *RetrieveThirdPartyLoginPlatformCredentialV3OK:
 		return v, nil, nil, nil, nil, nil
+
 	case *RetrieveThirdPartyLoginPlatformCredentialV3Unauthorized:
 		return nil, v, nil, nil, nil, nil
+
 	case *RetrieveThirdPartyLoginPlatformCredentialV3Forbidden:
 		return nil, nil, v, nil, nil, nil
+
 	case *RetrieveThirdPartyLoginPlatformCredentialV3NotFound:
 		return nil, nil, nil, v, nil, nil
+
 	case *RetrieveThirdPartyLoginPlatformCredentialV3InternalServerError:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) RetrieveThirdPartyLoginPlatformCredentialV3Short(params *RetrieveThirdPartyLoginPlatformCredentialV3Params, authInfo runtime.ClientAuthInfoWriter) (*RetrieveThirdPartyLoginPlatformCredentialV3OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRetrieveThirdPartyLoginPlatformCredentialV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "RetrieveThirdPartyLoginPlatformCredentialV3",
+		Method:             "GET",
+		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/clients",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &RetrieveThirdPartyLoginPlatformCredentialV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *RetrieveThirdPartyLoginPlatformCredentialV3OK:
+		return v, nil
+	case *RetrieveThirdPartyLoginPlatformCredentialV3Unauthorized:
+		return nil, v
+	case *RetrieveThirdPartyLoginPlatformCredentialV3Forbidden:
+		return nil, v
+	case *RetrieveThirdPartyLoginPlatformCredentialV3NotFound:
+		return nil, v
+	case *RetrieveThirdPartyLoginPlatformCredentialV3InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   UpdateThirdPartyLoginPlatformCredentialV3 updates third party platform credential
 
-  This is the API to Delete 3rd Platform Credential. It needs ADMIN:NAMESPACE:{namespace}:PLATFORM:{platformId}:CLIENT [UPDATE] resource
+  &lt;p&gt;This is the API to Add 3rd Platform Credential.&lt;/p&gt;
+					 &lt;p&gt;It needs ADMIN:NAMESPACE:{namespace}:PLATFORM:{platformId}:CLIENT [CREATE] resource.&lt;/p&gt;
+					 &lt;p&gt;The secret for &lt;strong&gt;apple&lt;/strong&gt; is base64 encoded private key.&lt;/p&gt;
+
 */
 func (a *Client) UpdateThirdPartyLoginPlatformCredentialV3(params *UpdateThirdPartyLoginPlatformCredentialV3Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateThirdPartyLoginPlatformCredentialV3OK, *UpdateThirdPartyLoginPlatformCredentialV3BadRequest, *UpdateThirdPartyLoginPlatformCredentialV3Unauthorized, *UpdateThirdPartyLoginPlatformCredentialV3Forbidden, *UpdateThirdPartyLoginPlatformCredentialV3NotFound, *UpdateThirdPartyLoginPlatformCredentialV3InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -361,7 +668,7 @@ func (a *Client) UpdateThirdPartyLoginPlatformCredentialV3(params *UpdateThirdPa
 		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/clients",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &UpdateThirdPartyLoginPlatformCredentialV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -376,18 +683,71 @@ func (a *Client) UpdateThirdPartyLoginPlatformCredentialV3(params *UpdateThirdPa
 
 	case *UpdateThirdPartyLoginPlatformCredentialV3OK:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *UpdateThirdPartyLoginPlatformCredentialV3BadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *UpdateThirdPartyLoginPlatformCredentialV3Unauthorized:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *UpdateThirdPartyLoginPlatformCredentialV3Forbidden:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *UpdateThirdPartyLoginPlatformCredentialV3NotFound:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *UpdateThirdPartyLoginPlatformCredentialV3InternalServerError:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) UpdateThirdPartyLoginPlatformCredentialV3Short(params *UpdateThirdPartyLoginPlatformCredentialV3Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateThirdPartyLoginPlatformCredentialV3OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateThirdPartyLoginPlatformCredentialV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "UpdateThirdPartyLoginPlatformCredentialV3",
+		Method:             "PATCH",
+		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/clients",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateThirdPartyLoginPlatformCredentialV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateThirdPartyLoginPlatformCredentialV3OK:
+		return v, nil
+	case *UpdateThirdPartyLoginPlatformCredentialV3BadRequest:
+		return nil, v
+	case *UpdateThirdPartyLoginPlatformCredentialV3Unauthorized:
+		return nil, v
+	case *UpdateThirdPartyLoginPlatformCredentialV3Forbidden:
+		return nil, v
+	case *UpdateThirdPartyLoginPlatformCredentialV3NotFound:
+		return nil, v
+	case *UpdateThirdPartyLoginPlatformCredentialV3InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 

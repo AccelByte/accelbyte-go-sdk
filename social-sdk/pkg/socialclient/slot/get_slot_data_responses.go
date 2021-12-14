@@ -57,7 +57,7 @@ func NewGetSlotDataOK(writer io.Writer) *GetSlotDataOK {
 
 /*GetSlotDataOK handles this case with default header values.
 
-  Slot data
+  Successful operation
 */
 type GetSlotDataOK struct {
 	Payload io.Writer

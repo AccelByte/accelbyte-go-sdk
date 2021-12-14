@@ -30,6 +30,7 @@ type Client struct {
 // ClientService is the interface for Client methods
 type ClientService interface {
 	SyncOrders(params *SyncOrdersParams, authInfo runtime.ClientAuthInfoWriter) (*SyncOrdersOK, error)
+	SyncOrdersShort(params *SyncOrdersParams, authInfo runtime.ClientAuthInfoWriter) (*SyncOrdersOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -37,7 +38,7 @@ type ClientService interface {
 /*
   SyncOrders syncs orders
 
-  Sync orders. If response contains nextEvaluatedKey, please use it as query param in the next call to fetch the next batch, a batch has 1000 elements or less.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:ORDER", action=2 (READ)</li><li><i>Returns</i>: sync orders</li></ul>
+  Sync orders. If response contains nextEvaluatedKey, please use it as query param in the next call to fetch the next batch, a batch has 1000 elements or less.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:ORDER&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: sync orders&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) SyncOrders(params *SyncOrdersParams, authInfo runtime.ClientAuthInfoWriter) (*SyncOrdersOK, error) {
 	// TODO: Validate the params before sending
@@ -55,7 +56,7 @@ func (a *Client) SyncOrders(params *SyncOrdersParams, authInfo runtime.ClientAut
 		PathPattern:        "/admin/orders",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &SyncOrdersReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -70,6 +71,44 @@ func (a *Client) SyncOrders(params *SyncOrdersParams, authInfo runtime.ClientAut
 
 	case *SyncOrdersOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) SyncOrdersShort(params *SyncOrdersParams, authInfo runtime.ClientAuthInfoWriter) (*SyncOrdersOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewSyncOrdersParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "syncOrders",
+		Method:             "GET",
+		PathPattern:        "/admin/orders",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &SyncOrdersReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *SyncOrdersOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}

@@ -30,20 +30,23 @@ type Client struct {
 // ClientService is the interface for Client methods
 type ClientService interface {
 	CreateImage(params *CreateImageParams, authInfo runtime.ClientAuthInfoWriter) (*CreateImageNoContent, *CreateImageBadRequest, *CreateImageUnauthorized, *CreateImageConflict, *CreateImageInternalServerError, error)
-
+	CreateImageShort(params *CreateImageParams, authInfo runtime.ClientAuthInfoWriter) (*CreateImageNoContent, error)
 	DeleteImage(params *DeleteImageParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteImageNoContent, *DeleteImageBadRequest, *DeleteImageUnauthorized, *DeleteImageNotFound, *DeleteImageUnprocessableEntity, *DeleteImageInternalServerError, error)
-
+	DeleteImageShort(params *DeleteImageParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteImageNoContent, error)
 	ExportImages(params *ExportImagesParams, authInfo runtime.ClientAuthInfoWriter) (*ExportImagesOK, *ExportImagesUnauthorized, *ExportImagesForbidden, *ExportImagesNotFound, *ExportImagesInternalServerError, error)
-
+	ExportImagesShort(params *ExportImagesParams, authInfo runtime.ClientAuthInfoWriter) (*ExportImagesOK, error)
 	GetImageDetail(params *GetImageDetailParams, authInfo runtime.ClientAuthInfoWriter) (*GetImageDetailOK, *GetImageDetailUnauthorized, *GetImageDetailNotFound, *GetImageDetailInternalServerError, error)
-
+	GetImageDetailShort(params *GetImageDetailParams, authInfo runtime.ClientAuthInfoWriter) (*GetImageDetailOK, error)
 	GetImageLimit(params *GetImageLimitParams, authInfo runtime.ClientAuthInfoWriter) (*GetImageLimitOK, *GetImageLimitBadRequest, *GetImageLimitUnauthorized, *GetImageLimitInternalServerError, error)
-
+	GetImageLimitShort(params *GetImageLimitParams, authInfo runtime.ClientAuthInfoWriter) (*GetImageLimitOK, error)
+	ImageDetailClient(params *ImageDetailClientParams, authInfo runtime.ClientAuthInfoWriter) (*ImageDetailClientOK, *ImageDetailClientUnauthorized, *ImageDetailClientNotFound, *ImageDetailClientInternalServerError, error)
+	ImageDetailClientShort(params *ImageDetailClientParams, authInfo runtime.ClientAuthInfoWriter) (*ImageDetailClientOK, error)
 	ImportImages(params *ImportImagesParams, authInfo runtime.ClientAuthInfoWriter) (*ImportImagesOK, *ImportImagesBadRequest, *ImportImagesUnauthorized, *ImportImagesForbidden, *ImportImagesInternalServerError, error)
-
+	ImportImagesShort(params *ImportImagesParams, authInfo runtime.ClientAuthInfoWriter) (*ImportImagesOK, error)
 	ListImages(params *ListImagesParams, authInfo runtime.ClientAuthInfoWriter) (*ListImagesOK, *ListImagesBadRequest, *ListImagesUnauthorized, *ListImagesInternalServerError, error)
-
+	ListImagesShort(params *ListImagesParams, authInfo runtime.ClientAuthInfoWriter) (*ListImagesOK, error)
 	UpdateImage(params *UpdateImageParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateImageNoContent, *UpdateImageBadRequest, *UpdateImageUnauthorized, *UpdateImageInternalServerError, error)
+	UpdateImageShort(params *UpdateImageParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateImageNoContent, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -59,10 +62,10 @@ This endpoint will create image.
 
 Sample image:
 {
-	"namespace":"dewa",
-	"version":"1.0.0",
-	"image":"144436415367.dkr.ecr.us-west-2.amazonaws.com/dewa:1.0.0",
-	"persistent":false
+	&#34;namespace&#34;:&#34;dewa&#34;,
+	&#34;version&#34;:&#34;1.0.0&#34;,
+	&#34;image&#34;:&#34;144436415367.dkr.ecr.us-west-2.amazonaws.com/dewa:1.0.0&#34;,
+	&#34;persistent&#34;:false
 }
 ```
 */
@@ -82,7 +85,7 @@ func (a *Client) CreateImage(params *CreateImageParams, authInfo runtime.ClientA
 		PathPattern:        "/dsmcontroller/admin/images",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &CreateImageReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -97,16 +100,66 @@ func (a *Client) CreateImage(params *CreateImageParams, authInfo runtime.ClientA
 
 	case *CreateImageNoContent:
 		return v, nil, nil, nil, nil, nil
+
 	case *CreateImageBadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *CreateImageUnauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *CreateImageConflict:
 		return nil, nil, nil, v, nil, nil
+
 	case *CreateImageInternalServerError:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) CreateImageShort(params *CreateImageParams, authInfo runtime.ClientAuthInfoWriter) (*CreateImageNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreateImageParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "CreateImage",
+		Method:             "POST",
+		PathPattern:        "/dsmcontroller/admin/images",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CreateImageReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *CreateImageNoContent:
+		return v, nil
+	case *CreateImageBadRequest:
+		return nil, v
+	case *CreateImageUnauthorized:
+		return nil, v
+	case *CreateImageConflict:
+		return nil, v
+	case *CreateImageInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -135,7 +188,7 @@ func (a *Client) DeleteImage(params *DeleteImageParams, authInfo runtime.ClientA
 		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/images",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteImageReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -150,18 +203,71 @@ func (a *Client) DeleteImage(params *DeleteImageParams, authInfo runtime.ClientA
 
 	case *DeleteImageNoContent:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *DeleteImageBadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *DeleteImageUnauthorized:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *DeleteImageNotFound:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *DeleteImageUnprocessableEntity:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *DeleteImageInternalServerError:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) DeleteImageShort(params *DeleteImageParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteImageNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteImageParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "DeleteImage",
+		Method:             "DELETE",
+		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/images",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteImageReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeleteImageNoContent:
+		return v, nil
+	case *DeleteImageBadRequest:
+		return nil, v
+	case *DeleteImageUnauthorized:
+		return nil, v
+	case *DeleteImageNotFound:
+		return nil, v
+	case *DeleteImageUnprocessableEntity:
+		return nil, v
+	case *DeleteImageInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -191,7 +297,7 @@ func (a *Client) ExportImages(params *ExportImagesParams, authInfo runtime.Clien
 		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/images/export",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &ExportImagesReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -206,16 +312,66 @@ func (a *Client) ExportImages(params *ExportImagesParams, authInfo runtime.Clien
 
 	case *ExportImagesOK:
 		return v, nil, nil, nil, nil, nil
+
 	case *ExportImagesUnauthorized:
 		return nil, v, nil, nil, nil, nil
+
 	case *ExportImagesForbidden:
 		return nil, nil, v, nil, nil, nil
+
 	case *ExportImagesNotFound:
 		return nil, nil, nil, v, nil, nil
+
 	case *ExportImagesInternalServerError:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) ExportImagesShort(params *ExportImagesParams, authInfo runtime.ClientAuthInfoWriter) (*ExportImagesOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewExportImagesParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "ExportImages",
+		Method:             "GET",
+		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/images/export",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ExportImagesReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *ExportImagesOK:
+		return v, nil
+	case *ExportImagesUnauthorized:
+		return nil, v
+	case *ExportImagesForbidden:
+		return nil, v
+	case *ExportImagesNotFound:
+		return nil, v
+	case *ExportImagesInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -244,7 +400,7 @@ func (a *Client) GetImageDetail(params *GetImageDetailParams, authInfo runtime.C
 		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/images/versions/{version}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetImageDetailReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -259,14 +415,61 @@ func (a *Client) GetImageDetail(params *GetImageDetailParams, authInfo runtime.C
 
 	case *GetImageDetailOK:
 		return v, nil, nil, nil, nil
+
 	case *GetImageDetailUnauthorized:
 		return nil, v, nil, nil, nil
+
 	case *GetImageDetailNotFound:
 		return nil, nil, v, nil, nil
+
 	case *GetImageDetailInternalServerError:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetImageDetailShort(params *GetImageDetailParams, authInfo runtime.ClientAuthInfoWriter) (*GetImageDetailOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetImageDetailParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetImageDetail",
+		Method:             "GET",
+		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/images/versions/{version}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetImageDetailReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetImageDetailOK:
+		return v, nil
+	case *GetImageDetailUnauthorized:
+		return nil, v
+	case *GetImageDetailNotFound:
+		return nil, v
+	case *GetImageDetailInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -295,7 +498,7 @@ func (a *Client) GetImageLimit(params *GetImageLimitParams, authInfo runtime.Cli
 		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/images/limit",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetImageLimitReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -310,14 +513,159 @@ func (a *Client) GetImageLimit(params *GetImageLimitParams, authInfo runtime.Cli
 
 	case *GetImageLimitOK:
 		return v, nil, nil, nil, nil
+
 	case *GetImageLimitBadRequest:
 		return nil, v, nil, nil, nil
+
 	case *GetImageLimitUnauthorized:
 		return nil, nil, v, nil, nil
+
 	case *GetImageLimitInternalServerError:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetImageLimitShort(params *GetImageLimitParams, authInfo runtime.ClientAuthInfoWriter) (*GetImageLimitOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetImageLimitParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetImageLimit",
+		Method:             "GET",
+		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/images/limit",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetImageLimitReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetImageLimitOK:
+		return v, nil
+	case *GetImageLimitBadRequest:
+		return nil, v
+	case *GetImageLimitUnauthorized:
+		return nil, v
+	case *GetImageLimitInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  ImageDetailClient ds s image detail client
+
+  Required permission: NAMESPACE:{namespace}:DSM:CONFIG [READ]
+
+Required scope: social
+
+This endpoint get specific version of dedicated servers images.
+*/
+func (a *Client) ImageDetailClient(params *ImageDetailClientParams, authInfo runtime.ClientAuthInfoWriter) (*ImageDetailClientOK, *ImageDetailClientUnauthorized, *ImageDetailClientNotFound, *ImageDetailClientInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewImageDetailClientParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "ImageDetailClient",
+		Method:             "GET",
+		PathPattern:        "/dsmcontroller/namespaces/{namespace}/images/versions/{version}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ImageDetailClientReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *ImageDetailClientOK:
+		return v, nil, nil, nil, nil
+
+	case *ImageDetailClientUnauthorized:
+		return nil, v, nil, nil, nil
+
+	case *ImageDetailClientNotFound:
+		return nil, nil, v, nil, nil
+
+	case *ImageDetailClientInternalServerError:
+		return nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) ImageDetailClientShort(params *ImageDetailClientParams, authInfo runtime.ClientAuthInfoWriter) (*ImageDetailClientOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewImageDetailClientParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "ImageDetailClient",
+		Method:             "GET",
+		PathPattern:        "/dsmcontroller/namespaces/{namespace}/images/versions/{version}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ImageDetailClientReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *ImageDetailClientOK:
+		return v, nil
+	case *ImageDetailClientUnauthorized:
+		return nil, v
+	case *ImageDetailClientNotFound:
+		return nil, v
+	case *ImageDetailClientInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -335,10 +683,10 @@ The image will be upsert. Existing version will be replaced with imported image,
 Example data inside imported file
 [
   {
-	"namespace": "dewa",
-	"image": "123456789.dkr.ecr.us-west-2.amazonaws.com/ds-dewa:0.0.1-alpha",
-	"version": "0.0.1",
-	"persistent": true
+	&#34;namespace&#34;: &#34;dewa&#34;,
+	&#34;image&#34;: &#34;123456789.dkr.ecr.us-west-2.amazonaws.com/ds-dewa:0.0.1-alpha&#34;,
+	&#34;version&#34;: &#34;0.0.1&#34;,
+	&#34;persistent&#34;: true
   }
 ]
 
@@ -359,7 +707,7 @@ func (a *Client) ImportImages(params *ImportImagesParams, authInfo runtime.Clien
 		PathPattern:        "/dsmcontroller/admin/images/import",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"multipart/form-data"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &ImportImagesReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -374,16 +722,66 @@ func (a *Client) ImportImages(params *ImportImagesParams, authInfo runtime.Clien
 
 	case *ImportImagesOK:
 		return v, nil, nil, nil, nil, nil
+
 	case *ImportImagesBadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *ImportImagesUnauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *ImportImagesForbidden:
 		return nil, nil, nil, v, nil, nil
+
 	case *ImportImagesInternalServerError:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) ImportImagesShort(params *ImportImagesParams, authInfo runtime.ClientAuthInfoWriter) (*ImportImagesOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewImportImagesParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "ImportImages",
+		Method:             "POST",
+		PathPattern:        "/dsmcontroller/admin/images/import",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"multipart/form-data"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ImportImagesReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *ImportImagesOK:
+		return v, nil
+	case *ImportImagesBadRequest:
+		return nil, v
+	case *ImportImagesUnauthorized:
+		return nil, v
+	case *ImportImagesForbidden:
+		return nil, v
+	case *ImportImagesInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -412,7 +810,7 @@ func (a *Client) ListImages(params *ListImagesParams, authInfo runtime.ClientAut
 		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/images",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &ListImagesReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -427,14 +825,61 @@ func (a *Client) ListImages(params *ListImagesParams, authInfo runtime.ClientAut
 
 	case *ListImagesOK:
 		return v, nil, nil, nil, nil
+
 	case *ListImagesBadRequest:
 		return nil, v, nil, nil, nil
+
 	case *ListImagesUnauthorized:
 		return nil, nil, v, nil, nil
+
 	case *ListImagesInternalServerError:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) ListImagesShort(params *ListImagesParams, authInfo runtime.ClientAuthInfoWriter) (*ListImagesOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewListImagesParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "ListImages",
+		Method:             "GET",
+		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/images",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ListImagesReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *ListImagesOK:
+		return v, nil
+	case *ListImagesBadRequest:
+		return nil, v
+	case *ListImagesUnauthorized:
+		return nil, v
+	case *ListImagesInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -449,10 +894,10 @@ This endpoint will update an image name and/or image persistent flag.
 
 Sample image:
 {
-	"namespace":"dewa",
-	"version":"1.0.0",
-	"image":"144436415367.dkr.ecr.us-west-2.amazonaws.com/dewa:1.0.0",
-	"persistent":false
+	&#34;namespace&#34;:&#34;dewa&#34;,
+	&#34;version&#34;:&#34;1.0.0&#34;,
+	&#34;image&#34;:&#34;144436415367.dkr.ecr.us-west-2.amazonaws.com/dewa:1.0.0&#34;,
+	&#34;persistent&#34;:false
 }
 ```
 */
@@ -472,7 +917,7 @@ func (a *Client) UpdateImage(params *UpdateImageParams, authInfo runtime.ClientA
 		PathPattern:        "/dsmcontroller/admin/images",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &UpdateImageReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -487,14 +932,61 @@ func (a *Client) UpdateImage(params *UpdateImageParams, authInfo runtime.ClientA
 
 	case *UpdateImageNoContent:
 		return v, nil, nil, nil, nil
+
 	case *UpdateImageBadRequest:
 		return nil, v, nil, nil, nil
+
 	case *UpdateImageUnauthorized:
 		return nil, nil, v, nil, nil
+
 	case *UpdateImageInternalServerError:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) UpdateImageShort(params *UpdateImageParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateImageNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateImageParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "UpdateImage",
+		Method:             "PUT",
+		PathPattern:        "/dsmcontroller/admin/images",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateImageReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateImageNoContent:
+		return v, nil
+	case *UpdateImageBadRequest:
+		return nil, v
+	case *UpdateImageUnauthorized:
+		return nil, v
+	case *UpdateImageInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 

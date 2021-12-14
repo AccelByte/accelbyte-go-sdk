@@ -30,6 +30,7 @@ type Client struct {
 // ClientService is the interface for Client methods
 type ClientService interface {
 	PlatformAuthenticateSAMLV3Handler(params *PlatformAuthenticateSAMLV3HandlerParams, authInfo runtime.ClientAuthInfoWriter) (*PlatformAuthenticateSAMLV3HandlerFound, error)
+	PlatformAuthenticateSAMLV3HandlerShort(params *PlatformAuthenticateSAMLV3HandlerParams, authInfo runtime.ClientAuthInfoWriter) (*PlatformAuthenticateSAMLV3HandlerFound, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -38,11 +39,11 @@ type ClientService interface {
   PlatformAuthenticateSAMLV3Handler s a m l platform authentication API
 
   This endpoint authenticates user platform for SAML protocol. It validates user to its
-          respective platforms. Deactivated or login-banned users are unable to login. <br>
-          <h2>Supported platforms:</h2><ul>
-          <li><strong>azure</strong></li>Microsoft login page will redirects to this endpoint after login success
+          respective platforms. Deactivated or login-banned users are unable to login. &lt;br&gt;
+          &lt;h2&gt;Supported platforms:&lt;/h2&gt;&lt;ul&gt;
+          &lt;li&gt;&lt;strong&gt;azure&lt;/strong&gt;&lt;/li&gt;Microsoft login page will redirects to this endpoint after login success
           as previously defined on authentication request SAML
-          </ul>
+          &lt;/ul&gt;
 */
 func (a *Client) PlatformAuthenticateSAMLV3Handler(params *PlatformAuthenticateSAMLV3HandlerParams, authInfo runtime.ClientAuthInfoWriter) (*PlatformAuthenticateSAMLV3HandlerFound, error) {
 	// TODO: Validate the params before sending
@@ -60,7 +61,7 @@ func (a *Client) PlatformAuthenticateSAMLV3Handler(params *PlatformAuthenticateS
 		PathPattern:        "/iam/v3/sso/saml/platforms/{platformId}/authenticate",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PlatformAuthenticateSAMLV3HandlerReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -75,6 +76,44 @@ func (a *Client) PlatformAuthenticateSAMLV3Handler(params *PlatformAuthenticateS
 
 	case *PlatformAuthenticateSAMLV3HandlerFound:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PlatformAuthenticateSAMLV3HandlerShort(params *PlatformAuthenticateSAMLV3HandlerParams, authInfo runtime.ClientAuthInfoWriter) (*PlatformAuthenticateSAMLV3HandlerFound, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPlatformAuthenticateSAMLV3HandlerParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "platformAuthenticateSAMLV3Handler",
+		Method:             "POST",
+		PathPattern:        "/iam/v3/sso/saml/platforms/{platformId}/authenticate",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PlatformAuthenticateSAMLV3HandlerReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PlatformAuthenticateSAMLV3HandlerFound:
+		return nil, v
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}

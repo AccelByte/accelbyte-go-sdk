@@ -30,8 +30,9 @@ type Client struct {
 // ClientService is the interface for Client methods
 type ClientService interface {
 	GetLikedContent(params *GetLikedContentParams, authInfo runtime.ClientAuthInfoWriter) (*GetLikedContentOK, *GetLikedContentUnauthorized, *GetLikedContentNotFound, *GetLikedContentInternalServerError, error)
-
+	GetLikedContentShort(params *GetLikedContentParams, authInfo runtime.ClientAuthInfoWriter) (*GetLikedContentOK, error)
 	UpdateContentLikeStatus(params *UpdateContentLikeStatusParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateContentLikeStatusOK, *UpdateContentLikeStatusBadRequest, *UpdateContentLikeStatusUnauthorized, *UpdateContentLikeStatusInternalServerError, error)
+	UpdateContentLikeStatusShort(params *UpdateContentLikeStatusParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateContentLikeStatusOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -57,7 +58,7 @@ func (a *Client) GetLikedContent(params *GetLikedContentParams, authInfo runtime
 		PathPattern:        "/ugc/v1/public/namespaces/{namespace}/contents/liked",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json", "application/octet-stream"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetLikedContentReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -72,14 +73,61 @@ func (a *Client) GetLikedContent(params *GetLikedContentParams, authInfo runtime
 
 	case *GetLikedContentOK:
 		return v, nil, nil, nil, nil
+
 	case *GetLikedContentUnauthorized:
 		return nil, v, nil, nil, nil
+
 	case *GetLikedContentNotFound:
 		return nil, nil, v, nil, nil
+
 	case *GetLikedContentInternalServerError:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetLikedContentShort(params *GetLikedContentParams, authInfo runtime.ClientAuthInfoWriter) (*GetLikedContentOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetLikedContentParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetLikedContent",
+		Method:             "GET",
+		PathPattern:        "/ugc/v1/public/namespaces/{namespace}/contents/liked",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json", "application/octet-stream"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetLikedContentReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetLikedContentOK:
+		return v, nil
+	case *GetLikedContentUnauthorized:
+		return nil, v
+	case *GetLikedContentNotFound:
+		return nil, v
+	case *GetLikedContentInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -104,7 +152,7 @@ func (a *Client) UpdateContentLikeStatus(params *UpdateContentLikeStatusParams, 
 		PathPattern:        "/ugc/v1/public/namespaces/{namespace}/contents/{contentId}/like",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json", "application/octet-stream"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &UpdateContentLikeStatusReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -119,14 +167,61 @@ func (a *Client) UpdateContentLikeStatus(params *UpdateContentLikeStatusParams, 
 
 	case *UpdateContentLikeStatusOK:
 		return v, nil, nil, nil, nil
+
 	case *UpdateContentLikeStatusBadRequest:
 		return nil, v, nil, nil, nil
+
 	case *UpdateContentLikeStatusUnauthorized:
 		return nil, nil, v, nil, nil
+
 	case *UpdateContentLikeStatusInternalServerError:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) UpdateContentLikeStatusShort(params *UpdateContentLikeStatusParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateContentLikeStatusOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateContentLikeStatusParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "UpdateContentLikeStatus",
+		Method:             "PUT",
+		PathPattern:        "/ugc/v1/public/namespaces/{namespace}/contents/{contentId}/like",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json", "application/octet-stream"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateContentLikeStatusReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateContentLikeStatusOK:
+		return v, nil
+	case *UpdateContentLikeStatusBadRequest:
+		return nil, v
+	case *UpdateContentLikeStatusUnauthorized:
+		return nil, v
+	case *UpdateContentLikeStatusInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 

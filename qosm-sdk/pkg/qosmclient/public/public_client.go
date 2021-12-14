@@ -30,6 +30,7 @@ type Client struct {
 // ClientService is the interface for Client methods
 type ClientService interface {
 	ListServer(params *ListServerParams, authInfo runtime.ClientAuthInfoWriter) (*ListServerOK, *ListServerInternalServerError, error)
+	ListServerShort(params *ListServerParams, authInfo runtime.ClientAuthInfoWriter) (*ListServerOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -44,9 +45,9 @@ This endpoint is intended to be called by game client to find out all available 
 After getting a list of QoS on each region, game client is expected to ping each one with UDP
 connection as described below:
 
-1. Make UDP connection to each QoS's IP:Port
-2. Send string "PING" after connection established
-3. Wait for string "PONG" response
+1. Make UDP connection to each QoS&#39;s IP:Port
+2. Send string &#34;PING&#34; after connection established
+3. Wait for string &#34;PONG&#34; response
 4. Note the request-response latency for each QoS in each region
 
 The game then can use ping latency information to either:
@@ -71,7 +72,7 @@ func (a *Client) ListServer(params *ListServerParams, authInfo runtime.ClientAut
 		PathPattern:        "/qosm/public/qos",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &ListServerReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -86,10 +87,51 @@ func (a *Client) ListServer(params *ListServerParams, authInfo runtime.ClientAut
 
 	case *ListServerOK:
 		return v, nil, nil
+
 	case *ListServerInternalServerError:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) ListServerShort(params *ListServerParams, authInfo runtime.ClientAuthInfoWriter) (*ListServerOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewListServerParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "ListServer",
+		Method:             "GET",
+		PathPattern:        "/qosm/public/qos",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ListServerReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *ListServerOK:
+		return v, nil
+	case *ListServerInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 

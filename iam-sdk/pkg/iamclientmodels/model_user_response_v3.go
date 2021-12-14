@@ -97,6 +97,12 @@ type ModelUserResponseV3 struct {
 	// Required: true
 	PhoneVerified *bool `json:"phoneVerified"`
 
+	// platform avatar Url
+	PlatformAvatarURL string `json:"platformAvatarUrl,omitempty"`
+
+	// platform display name
+	PlatformDisplayName string `json:"platformDisplayName,omitempty"`
+
 	// platform Id
 	PlatformID string `json:"platformId,omitempty"`
 

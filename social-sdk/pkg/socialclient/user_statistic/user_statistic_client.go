@@ -30,72 +30,73 @@ type Client struct {
 // ClientService is the interface for Client methods
 type ClientService interface {
 	BulkCreateUserStatItems(params *BulkCreateUserStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*BulkCreateUserStatItemsOK, *BulkCreateUserStatItemsUnprocessableEntity, error)
-
+	BulkCreateUserStatItemsShort(params *BulkCreateUserStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*BulkCreateUserStatItemsOK, error)
 	BulkFetchStatItems(params *BulkFetchStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*BulkFetchStatItemsOK, *BulkFetchStatItemsUnprocessableEntity, error)
-
+	BulkFetchStatItemsShort(params *BulkFetchStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*BulkFetchStatItemsOK, error)
 	BulkFetchStatItems1(params *BulkFetchStatItems1Params, authInfo runtime.ClientAuthInfoWriter) (*BulkFetchStatItems1OK, *BulkFetchStatItems1UnprocessableEntity, error)
-
+	BulkFetchStatItems1Short(params *BulkFetchStatItems1Params, authInfo runtime.ClientAuthInfoWriter) (*BulkFetchStatItems1OK, error)
 	BulkIncUserStatItem(params *BulkIncUserStatItemParams, authInfo runtime.ClientAuthInfoWriter) (*BulkIncUserStatItemOK, *BulkIncUserStatItemUnprocessableEntity, error)
-
+	BulkIncUserStatItemShort(params *BulkIncUserStatItemParams, authInfo runtime.ClientAuthInfoWriter) (*BulkIncUserStatItemOK, error)
 	BulkIncUserStatItemValue(params *BulkIncUserStatItemValueParams, authInfo runtime.ClientAuthInfoWriter) (*BulkIncUserStatItemValueOK, *BulkIncUserStatItemValueUnprocessableEntity, error)
-
+	BulkIncUserStatItemValueShort(params *BulkIncUserStatItemValueParams, authInfo runtime.ClientAuthInfoWriter) (*BulkIncUserStatItemValueOK, error)
 	BulkIncUserStatItemValue1(params *BulkIncUserStatItemValue1Params, authInfo runtime.ClientAuthInfoWriter) (*BulkIncUserStatItemValue1OK, *BulkIncUserStatItemValue1UnprocessableEntity, error)
-
+	BulkIncUserStatItemValue1Short(params *BulkIncUserStatItemValue1Params, authInfo runtime.ClientAuthInfoWriter) (*BulkIncUserStatItemValue1OK, error)
 	BulkIncUserStatItemValue2(params *BulkIncUserStatItemValue2Params, authInfo runtime.ClientAuthInfoWriter) (*BulkIncUserStatItemValue2OK, *BulkIncUserStatItemValue2UnprocessableEntity, error)
-
+	BulkIncUserStatItemValue2Short(params *BulkIncUserStatItemValue2Params, authInfo runtime.ClientAuthInfoWriter) (*BulkIncUserStatItemValue2OK, error)
 	BulkIncUserStatItem1(params *BulkIncUserStatItem1Params, authInfo runtime.ClientAuthInfoWriter) (*BulkIncUserStatItem1OK, *BulkIncUserStatItem1UnprocessableEntity, error)
-
+	BulkIncUserStatItem1Short(params *BulkIncUserStatItem1Params, authInfo runtime.ClientAuthInfoWriter) (*BulkIncUserStatItem1OK, error)
 	BulkResetUserStatItem(params *BulkResetUserStatItemParams, authInfo runtime.ClientAuthInfoWriter) (*BulkResetUserStatItemOK, *BulkResetUserStatItemUnprocessableEntity, error)
-
+	BulkResetUserStatItemShort(params *BulkResetUserStatItemParams, authInfo runtime.ClientAuthInfoWriter) (*BulkResetUserStatItemOK, error)
 	BulkResetUserStatItem1(params *BulkResetUserStatItem1Params, authInfo runtime.ClientAuthInfoWriter) (*BulkResetUserStatItem1OK, *BulkResetUserStatItem1UnprocessableEntity, error)
-
+	BulkResetUserStatItem1Short(params *BulkResetUserStatItem1Params, authInfo runtime.ClientAuthInfoWriter) (*BulkResetUserStatItem1OK, error)
 	BulkResetUserStatItem2(params *BulkResetUserStatItem2Params, authInfo runtime.ClientAuthInfoWriter) (*BulkResetUserStatItem2OK, *BulkResetUserStatItem2UnprocessableEntity, error)
-
+	BulkResetUserStatItem2Short(params *BulkResetUserStatItem2Params, authInfo runtime.ClientAuthInfoWriter) (*BulkResetUserStatItem2OK, error)
 	BulkResetUserStatItem3(params *BulkResetUserStatItem3Params, authInfo runtime.ClientAuthInfoWriter) (*BulkResetUserStatItem3OK, *BulkResetUserStatItem3UnprocessableEntity, error)
-
+	BulkResetUserStatItem3Short(params *BulkResetUserStatItem3Params, authInfo runtime.ClientAuthInfoWriter) (*BulkResetUserStatItem3OK, error)
 	BulkUpdateUserStatItem(params *BulkUpdateUserStatItemParams, authInfo runtime.ClientAuthInfoWriter) (*BulkUpdateUserStatItemOK, *BulkUpdateUserStatItemUnprocessableEntity, error)
-
+	BulkUpdateUserStatItemShort(params *BulkUpdateUserStatItemParams, authInfo runtime.ClientAuthInfoWriter) (*BulkUpdateUserStatItemOK, error)
 	BulkUpdateUserStatItemV2(params *BulkUpdateUserStatItemV2Params, authInfo runtime.ClientAuthInfoWriter) (*BulkUpdateUserStatItemV2OK, *BulkUpdateUserStatItemV2UnprocessableEntity, error)
-
+	BulkUpdateUserStatItemV2Short(params *BulkUpdateUserStatItemV2Params, authInfo runtime.ClientAuthInfoWriter) (*BulkUpdateUserStatItemV2OK, error)
 	BulkUpdateUserStatItem1(params *BulkUpdateUserStatItem1Params, authInfo runtime.ClientAuthInfoWriter) (*BulkUpdateUserStatItem1OK, *BulkUpdateUserStatItem1UnprocessableEntity, error)
-
+	BulkUpdateUserStatItem1Short(params *BulkUpdateUserStatItem1Params, authInfo runtime.ClientAuthInfoWriter) (*BulkUpdateUserStatItem1OK, error)
 	BulkUpdateUserStatItem2(params *BulkUpdateUserStatItem2Params, authInfo runtime.ClientAuthInfoWriter) (*BulkUpdateUserStatItem2OK, *BulkUpdateUserStatItem2UnprocessableEntity, error)
-
+	BulkUpdateUserStatItem2Short(params *BulkUpdateUserStatItem2Params, authInfo runtime.ClientAuthInfoWriter) (*BulkUpdateUserStatItem2OK, error)
 	CreateUserStatItem(params *CreateUserStatItemParams, authInfo runtime.ClientAuthInfoWriter) (*CreateUserStatItemCreated, *CreateUserStatItemNotFound, *CreateUserStatItemConflict, error)
-
+	CreateUserStatItemShort(params *CreateUserStatItemParams, authInfo runtime.ClientAuthInfoWriter) (*CreateUserStatItemCreated, error)
 	DeleteUserStatItems(params *DeleteUserStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserStatItemsNoContent, *DeleteUserStatItemsUnauthorized, *DeleteUserStatItemsForbidden, *DeleteUserStatItemsNotFound, error)
-
+	DeleteUserStatItemsShort(params *DeleteUserStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserStatItemsNoContent, error)
 	DeleteUserStatItems1(params *DeleteUserStatItems1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserStatItems1NoContent, *DeleteUserStatItems1Unauthorized, *DeleteUserStatItems1Forbidden, *DeleteUserStatItems1NotFound, error)
-
+	DeleteUserStatItems1Short(params *DeleteUserStatItems1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserStatItems1NoContent, error)
 	DeleteUserStatItems2(params *DeleteUserStatItems2Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserStatItems2NoContent, *DeleteUserStatItems2Unauthorized, *DeleteUserStatItems2Forbidden, *DeleteUserStatItems2NotFound, error)
-
+	DeleteUserStatItems2Short(params *DeleteUserStatItems2Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserStatItems2NoContent, error)
 	GetUserStatItems(params *GetUserStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserStatItemsOK, error)
-
+	GetUserStatItemsShort(params *GetUserStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserStatItemsOK, error)
 	IncUserStatItemValue(params *IncUserStatItemValueParams, authInfo runtime.ClientAuthInfoWriter) (*IncUserStatItemValueOK, *IncUserStatItemValueBadRequest, *IncUserStatItemValueNotFound, *IncUserStatItemValueConflict, error)
-
+	IncUserStatItemValueShort(params *IncUserStatItemValueParams, authInfo runtime.ClientAuthInfoWriter) (*IncUserStatItemValueOK, error)
 	PublicBulkCreateUserStatItems(params *PublicBulkCreateUserStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicBulkCreateUserStatItemsOK, *PublicBulkCreateUserStatItemsUnprocessableEntity, error)
-
+	PublicBulkCreateUserStatItemsShort(params *PublicBulkCreateUserStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicBulkCreateUserStatItemsOK, error)
 	PublicBulkIncUserStatItem(params *PublicBulkIncUserStatItemParams, authInfo runtime.ClientAuthInfoWriter) (*PublicBulkIncUserStatItemOK, *PublicBulkIncUserStatItemUnprocessableEntity, error)
-
+	PublicBulkIncUserStatItemShort(params *PublicBulkIncUserStatItemParams, authInfo runtime.ClientAuthInfoWriter) (*PublicBulkIncUserStatItemOK, error)
 	PublicBulkIncUserStatItemValue(params *PublicBulkIncUserStatItemValueParams, authInfo runtime.ClientAuthInfoWriter) (*PublicBulkIncUserStatItemValueOK, *PublicBulkIncUserStatItemValueUnprocessableEntity, error)
-
+	PublicBulkIncUserStatItemValueShort(params *PublicBulkIncUserStatItemValueParams, authInfo runtime.ClientAuthInfoWriter) (*PublicBulkIncUserStatItemValueOK, error)
 	PublicBulkIncUserStatItem1(params *PublicBulkIncUserStatItem1Params, authInfo runtime.ClientAuthInfoWriter) (*PublicBulkIncUserStatItem1OK, *PublicBulkIncUserStatItem1UnprocessableEntity, error)
-
+	PublicBulkIncUserStatItem1Short(params *PublicBulkIncUserStatItem1Params, authInfo runtime.ClientAuthInfoWriter) (*PublicBulkIncUserStatItem1OK, error)
 	PublicCreateUserStatItem(params *PublicCreateUserStatItemParams, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateUserStatItemCreated, *PublicCreateUserStatItemNotFound, *PublicCreateUserStatItemConflict, error)
-
+	PublicCreateUserStatItemShort(params *PublicCreateUserStatItemParams, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateUserStatItemCreated, error)
 	PublicIncUserStatItem(params *PublicIncUserStatItemParams, authInfo runtime.ClientAuthInfoWriter) (*PublicIncUserStatItemOK, *PublicIncUserStatItemBadRequest, *PublicIncUserStatItemNotFound, *PublicIncUserStatItemConflict, error)
-
+	PublicIncUserStatItemShort(params *PublicIncUserStatItemParams, authInfo runtime.ClientAuthInfoWriter) (*PublicIncUserStatItemOK, error)
 	PublicIncUserStatItemValue(params *PublicIncUserStatItemValueParams, authInfo runtime.ClientAuthInfoWriter) (*PublicIncUserStatItemValueOK, *PublicIncUserStatItemValueBadRequest, *PublicIncUserStatItemValueNotFound, *PublicIncUserStatItemValueConflict, error)
-
+	PublicIncUserStatItemValueShort(params *PublicIncUserStatItemValueParams, authInfo runtime.ClientAuthInfoWriter) (*PublicIncUserStatItemValueOK, error)
 	PublicQueryUserStatItems(params *PublicQueryUserStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryUserStatItemsOK, error)
-
+	PublicQueryUserStatItemsShort(params *PublicQueryUserStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryUserStatItemsOK, error)
 	ResetUserStatItemValue(params *ResetUserStatItemValueParams, authInfo runtime.ClientAuthInfoWriter) (*ResetUserStatItemValueOK, *ResetUserStatItemValueBadRequest, *ResetUserStatItemValueNotFound, error)
-
+	ResetUserStatItemValueShort(params *ResetUserStatItemValueParams, authInfo runtime.ClientAuthInfoWriter) (*ResetUserStatItemValueOK, error)
 	ResetUserStatItemValue1(params *ResetUserStatItemValue1Params, authInfo runtime.ClientAuthInfoWriter) (*ResetUserStatItemValue1OK, *ResetUserStatItemValue1BadRequest, *ResetUserStatItemValue1NotFound, error)
-
+	ResetUserStatItemValue1Short(params *ResetUserStatItemValue1Params, authInfo runtime.ClientAuthInfoWriter) (*ResetUserStatItemValue1OK, error)
 	UpdateUserStatItemValue(params *UpdateUserStatItemValueParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateUserStatItemValueOK, *UpdateUserStatItemValueBadRequest, *UpdateUserStatItemValueNotFound, *UpdateUserStatItemValueConflict, *UpdateUserStatItemValueUnprocessableEntity, error)
-
+	UpdateUserStatItemValueShort(params *UpdateUserStatItemValueParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateUserStatItemValueOK, error)
 	UpdateUserStatItemValue1(params *UpdateUserStatItemValue1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateUserStatItemValue1OK, *UpdateUserStatItemValue1BadRequest, *UpdateUserStatItemValue1NotFound, *UpdateUserStatItemValue1Conflict, *UpdateUserStatItemValue1UnprocessableEntity, error)
+	UpdateUserStatItemValue1Short(params *UpdateUserStatItemValue1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateUserStatItemValue1OK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -103,7 +104,7 @@ type ClientService interface {
 /*
   BulkCreateUserStatItems bulks create user s stat items
 
-  Bulk create user's statItems.<br>Other detail info:<ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=1 (CREATE)</li><li><i>Returns</i>: bulk created result</li>
+  Bulk create user&#39;s statItems.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: bulk created result&lt;/li&gt;
 */
 func (a *Client) BulkCreateUserStatItems(params *BulkCreateUserStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*BulkCreateUserStatItemsOK, *BulkCreateUserStatItemsUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -121,7 +122,7 @@ func (a *Client) BulkCreateUserStatItems(params *BulkCreateUserStatItemsParams, 
 		PathPattern:        "/v1/admin/namespaces/{namespace}/users/{userId}/statitems/bulk",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &BulkCreateUserStatItemsReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -136,20 +137,61 @@ func (a *Client) BulkCreateUserStatItems(params *BulkCreateUserStatItemsParams, 
 
 	case *BulkCreateUserStatItemsOK:
 		return v, nil, nil
+
 	case *BulkCreateUserStatItemsUnprocessableEntity:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) BulkCreateUserStatItemsShort(params *BulkCreateUserStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*BulkCreateUserStatItemsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewBulkCreateUserStatItemsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "bulkCreateUserStatItems",
+		Method:             "POST",
+		PathPattern:        "/v1/admin/namespaces/{namespace}/users/{userId}/statitems/bulk",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &BulkCreateUserStatItemsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *BulkCreateUserStatItemsOK:
+		return v, nil
+	case *BulkCreateUserStatItemsUnprocessableEntity:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   BulkFetchStatItems bulks fetch statitems value
 
-  Bulk fetch multiple user's statitem value for a given namespace and statCode.
+  Bulk fetch multiple user&#39;s statitem value for a given namespace and statCode.
 Other detail info:
-+ *Required permission*: resource="ADMIN:NAMESPACE:{namespace}:STATITEM", action=2 (READ)
-+ *Returns*: list of user's statItem
++ *Required permission*: resource=&#34;ADMIN:NAMESPACE:{namespace}:STATITEM&#34;, action=2 (READ)
++ *Returns*: list of user&#39;s statItem
 */
 func (a *Client) BulkFetchStatItems(params *BulkFetchStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*BulkFetchStatItemsOK, *BulkFetchStatItemsUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -167,7 +209,7 @@ func (a *Client) BulkFetchStatItems(params *BulkFetchStatItemsParams, authInfo r
 		PathPattern:        "/v1/admin/namespaces/{namespace}/statitems/bulk",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &BulkFetchStatItemsReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -182,20 +224,61 @@ func (a *Client) BulkFetchStatItems(params *BulkFetchStatItemsParams, authInfo r
 
 	case *BulkFetchStatItemsOK:
 		return v, nil, nil
+
 	case *BulkFetchStatItemsUnprocessableEntity:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) BulkFetchStatItemsShort(params *BulkFetchStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*BulkFetchStatItemsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewBulkFetchStatItemsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "bulkFetchStatItems",
+		Method:             "GET",
+		PathPattern:        "/v1/admin/namespaces/{namespace}/statitems/bulk",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &BulkFetchStatItemsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *BulkFetchStatItemsOK:
+		return v, nil
+	case *BulkFetchStatItemsUnprocessableEntity:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   BulkFetchStatItems1 publics bulk fetch statitems value
 
-  Public bulk fetch multiple user's statitem value for a given namespace and statCode.
+  Public bulk fetch multiple user&#39;s statitem value for a given namespace and statCode.
 Other detail info:
-+ *Required permission*: resource="NAMESPACE:{namespace}:STATITEM", action=2 (READ)
-+ *Returns*: list of user's statItem
++ *Required permission*: resource=&#34;NAMESPACE:{namespace}:STATITEM&#34;, action=2 (READ)
++ *Returns*: list of user&#39;s statItem
 */
 func (a *Client) BulkFetchStatItems1(params *BulkFetchStatItems1Params, authInfo runtime.ClientAuthInfoWriter) (*BulkFetchStatItems1OK, *BulkFetchStatItems1UnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -213,7 +296,7 @@ func (a *Client) BulkFetchStatItems1(params *BulkFetchStatItems1Params, authInfo
 		PathPattern:        "/v1/public/namespaces/{namespace}/statitems/bulk",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &BulkFetchStatItems1Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -228,17 +311,58 @@ func (a *Client) BulkFetchStatItems1(params *BulkFetchStatItems1Params, authInfo
 
 	case *BulkFetchStatItems1OK:
 		return v, nil, nil
+
 	case *BulkFetchStatItems1UnprocessableEntity:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) BulkFetchStatItems1Short(params *BulkFetchStatItems1Params, authInfo runtime.ClientAuthInfoWriter) (*BulkFetchStatItems1OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewBulkFetchStatItems1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "bulkFetchStatItems_1",
+		Method:             "GET",
+		PathPattern:        "/v1/public/namespaces/{namespace}/statitems/bulk",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &BulkFetchStatItems1Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *BulkFetchStatItems1OK:
+		return v, nil
+	case *BulkFetchStatItems1UnprocessableEntity:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   BulkIncUserStatItem bulks update multiple user s statitems value
 
-  Bulk update multiple user's statitems value.<br>Other detail info:<ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:STATITEM", action=4 (UPDATE)</li><li><i>Returns</i>: bulk updated result</li></ul>
+  Bulk update multiple user&#39;s statitems value.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STATITEM&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: bulk updated result&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) BulkIncUserStatItem(params *BulkIncUserStatItemParams, authInfo runtime.ClientAuthInfoWriter) (*BulkIncUserStatItemOK, *BulkIncUserStatItemUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -256,7 +380,7 @@ func (a *Client) BulkIncUserStatItem(params *BulkIncUserStatItemParams, authInfo
 		PathPattern:        "/v1/admin/namespaces/{namespace}/statitems/value/bulk",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &BulkIncUserStatItemReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -271,17 +395,58 @@ func (a *Client) BulkIncUserStatItem(params *BulkIncUserStatItemParams, authInfo
 
 	case *BulkIncUserStatItemOK:
 		return v, nil, nil
+
 	case *BulkIncUserStatItemUnprocessableEntity:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) BulkIncUserStatItemShort(params *BulkIncUserStatItemParams, authInfo runtime.ClientAuthInfoWriter) (*BulkIncUserStatItemOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewBulkIncUserStatItemParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "bulkIncUserStatItem",
+		Method:             "PUT",
+		PathPattern:        "/v1/admin/namespaces/{namespace}/statitems/value/bulk",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &BulkIncUserStatItemReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *BulkIncUserStatItemOK:
+		return v, nil
+	case *BulkIncUserStatItemUnprocessableEntity:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   BulkIncUserStatItemValue bulks update multiple user s statitems value
 
-  Bulk update multiple user's statitems value.<br>Other detail info:<ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:STATITEM", action=4 (UPDATE)</li><li><i>Returns</i>: bulk updated result</li></ul>
+  Bulk update multiple user&#39;s statitems value.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STATITEM&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: bulk updated result&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) BulkIncUserStatItemValue(params *BulkIncUserStatItemValueParams, authInfo runtime.ClientAuthInfoWriter) (*BulkIncUserStatItemValueOK, *BulkIncUserStatItemValueUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -299,7 +464,7 @@ func (a *Client) BulkIncUserStatItemValue(params *BulkIncUserStatItemValueParams
 		PathPattern:        "/v1/admin/namespaces/{namespace}/statitems/value/bulk",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &BulkIncUserStatItemValueReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -314,17 +479,58 @@ func (a *Client) BulkIncUserStatItemValue(params *BulkIncUserStatItemValueParams
 
 	case *BulkIncUserStatItemValueOK:
 		return v, nil, nil
+
 	case *BulkIncUserStatItemValueUnprocessableEntity:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) BulkIncUserStatItemValueShort(params *BulkIncUserStatItemValueParams, authInfo runtime.ClientAuthInfoWriter) (*BulkIncUserStatItemValueOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewBulkIncUserStatItemValueParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "bulkIncUserStatItemValue",
+		Method:             "PATCH",
+		PathPattern:        "/v1/admin/namespaces/{namespace}/statitems/value/bulk",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &BulkIncUserStatItemValueReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *BulkIncUserStatItemValueOK:
+		return v, nil
+	case *BulkIncUserStatItemValueUnprocessableEntity:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   BulkIncUserStatItemValue1 bulks update user s statitems value
 
-  Bulk update user's statitems value.<br>Other detail info:<ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=4 (UPDATE)</li><li><i>Returns</i>: bulk updated result</li></ul>
+  Bulk update user&#39;s statitems value.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: bulk updated result&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) BulkIncUserStatItemValue1(params *BulkIncUserStatItemValue1Params, authInfo runtime.ClientAuthInfoWriter) (*BulkIncUserStatItemValue1OK, *BulkIncUserStatItemValue1UnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -342,7 +548,7 @@ func (a *Client) BulkIncUserStatItemValue1(params *BulkIncUserStatItemValue1Para
 		PathPattern:        "/v1/admin/namespaces/{namespace}/users/{userId}/statitems/value/bulk",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &BulkIncUserStatItemValue1Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -357,17 +563,58 @@ func (a *Client) BulkIncUserStatItemValue1(params *BulkIncUserStatItemValue1Para
 
 	case *BulkIncUserStatItemValue1OK:
 		return v, nil, nil
+
 	case *BulkIncUserStatItemValue1UnprocessableEntity:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) BulkIncUserStatItemValue1Short(params *BulkIncUserStatItemValue1Params, authInfo runtime.ClientAuthInfoWriter) (*BulkIncUserStatItemValue1OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewBulkIncUserStatItemValue1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "bulkIncUserStatItemValue_1",
+		Method:             "PATCH",
+		PathPattern:        "/v1/admin/namespaces/{namespace}/users/{userId}/statitems/value/bulk",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &BulkIncUserStatItemValue1Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *BulkIncUserStatItemValue1OK:
+		return v, nil
+	case *BulkIncUserStatItemValue1UnprocessableEntity:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   BulkIncUserStatItemValue2 publics bulk update user s statitems value
 
-  Public bulk update user's statitems value.<br>Other detail info:<ul><li><i>Required permission</i>: resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=4 (UPDATE)</li><li><i>Returns</i>: bulk updated result</li>
+  Public bulk update user&#39;s statitems value.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: bulk updated result&lt;/li&gt;
 */
 func (a *Client) BulkIncUserStatItemValue2(params *BulkIncUserStatItemValue2Params, authInfo runtime.ClientAuthInfoWriter) (*BulkIncUserStatItemValue2OK, *BulkIncUserStatItemValue2UnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -385,7 +632,7 @@ func (a *Client) BulkIncUserStatItemValue2(params *BulkIncUserStatItemValue2Para
 		PathPattern:        "/v1/public/namespaces/{namespace}/users/{userId}/statitems/value/bulk",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &BulkIncUserStatItemValue2Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -400,17 +647,58 @@ func (a *Client) BulkIncUserStatItemValue2(params *BulkIncUserStatItemValue2Para
 
 	case *BulkIncUserStatItemValue2OK:
 		return v, nil, nil
+
 	case *BulkIncUserStatItemValue2UnprocessableEntity:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) BulkIncUserStatItemValue2Short(params *BulkIncUserStatItemValue2Params, authInfo runtime.ClientAuthInfoWriter) (*BulkIncUserStatItemValue2OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewBulkIncUserStatItemValue2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "bulkIncUserStatItemValue_2",
+		Method:             "PATCH",
+		PathPattern:        "/v1/public/namespaces/{namespace}/users/{userId}/statitems/value/bulk",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &BulkIncUserStatItemValue2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *BulkIncUserStatItemValue2OK:
+		return v, nil
+	case *BulkIncUserStatItemValue2UnprocessableEntity:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   BulkIncUserStatItem1 bulks update user s statitems value
 
-  Bulk update user's statitems value.<br>Other detail info:<ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=4 (UPDATE)</li><li><i>Returns</i>: bulk updated result</li></ul>
+  Bulk update user&#39;s statitems value.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: bulk updated result&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) BulkIncUserStatItem1(params *BulkIncUserStatItem1Params, authInfo runtime.ClientAuthInfoWriter) (*BulkIncUserStatItem1OK, *BulkIncUserStatItem1UnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -428,7 +716,7 @@ func (a *Client) BulkIncUserStatItem1(params *BulkIncUserStatItem1Params, authIn
 		PathPattern:        "/v1/admin/namespaces/{namespace}/users/{userId}/statitems/value/bulk",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &BulkIncUserStatItem1Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -443,21 +731,62 @@ func (a *Client) BulkIncUserStatItem1(params *BulkIncUserStatItem1Params, authIn
 
 	case *BulkIncUserStatItem1OK:
 		return v, nil, nil
+
 	case *BulkIncUserStatItem1UnprocessableEntity:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) BulkIncUserStatItem1Short(params *BulkIncUserStatItem1Params, authInfo runtime.ClientAuthInfoWriter) (*BulkIncUserStatItem1OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewBulkIncUserStatItem1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "bulkIncUserStatItem_1",
+		Method:             "PUT",
+		PathPattern:        "/v1/admin/namespaces/{namespace}/users/{userId}/statitems/value/bulk",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &BulkIncUserStatItem1Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *BulkIncUserStatItem1OK:
+		return v, nil
+	case *BulkIncUserStatItem1UnprocessableEntity:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   BulkResetUserStatItem bulks reset multiple user s statitems value
 
-  Bulk reset multiple user's statitems value.
-User's statitem value will be reset to the default value defined in the statistic configuration.
+  Bulk reset multiple user&#39;s statitems value.
+User&#39;s statitem value will be reset to the default value defined in the statistic configuration.
 
 Other detail info:
-+ *Required permission*: resource="ADMIN:NAMESPACE:{namespace}:STATITEM", action=4 (UPDATE)
++ *Required permission*: resource=&#34;ADMIN:NAMESPACE:{namespace}:STATITEM&#34;, action=4 (UPDATE)
 + *Returns*: bulk updated result
 */
 func (a *Client) BulkResetUserStatItem(params *BulkResetUserStatItemParams, authInfo runtime.ClientAuthInfoWriter) (*BulkResetUserStatItemOK, *BulkResetUserStatItemUnprocessableEntity, error) {
@@ -476,7 +805,7 @@ func (a *Client) BulkResetUserStatItem(params *BulkResetUserStatItemParams, auth
 		PathPattern:        "/v1/admin/namespaces/{namespace}/statitems/value/reset/bulk",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &BulkResetUserStatItemReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -491,19 +820,60 @@ func (a *Client) BulkResetUserStatItem(params *BulkResetUserStatItemParams, auth
 
 	case *BulkResetUserStatItemOK:
 		return v, nil, nil
+
 	case *BulkResetUserStatItemUnprocessableEntity:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) BulkResetUserStatItemShort(params *BulkResetUserStatItemParams, authInfo runtime.ClientAuthInfoWriter) (*BulkResetUserStatItemOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewBulkResetUserStatItemParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "bulkResetUserStatItem",
+		Method:             "PUT",
+		PathPattern:        "/v1/admin/namespaces/{namespace}/statitems/value/reset/bulk",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &BulkResetUserStatItemReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *BulkResetUserStatItemOK:
+		return v, nil
+	case *BulkResetUserStatItemUnprocessableEntity:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   BulkResetUserStatItem1 bulks reset user s statitems value
 
-  Bulk reset user's statitems value for given namespace and user.
+  Bulk reset user&#39;s statitems value for given namespace and user.
 Other detail info:
-+ *Required permission*: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=4 (UPDATE)
++ *Required permission*: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=4 (UPDATE)
 + *Returns*: bulk updated result
 */
 func (a *Client) BulkResetUserStatItem1(params *BulkResetUserStatItem1Params, authInfo runtime.ClientAuthInfoWriter) (*BulkResetUserStatItem1OK, *BulkResetUserStatItem1UnprocessableEntity, error) {
@@ -522,7 +892,7 @@ func (a *Client) BulkResetUserStatItem1(params *BulkResetUserStatItem1Params, au
 		PathPattern:        "/v1/admin/namespaces/{namespace}/users/{userId}/statitems/value/reset/bulk",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &BulkResetUserStatItem1Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -537,21 +907,62 @@ func (a *Client) BulkResetUserStatItem1(params *BulkResetUserStatItem1Params, au
 
 	case *BulkResetUserStatItem1OK:
 		return v, nil, nil
+
 	case *BulkResetUserStatItem1UnprocessableEntity:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) BulkResetUserStatItem1Short(params *BulkResetUserStatItem1Params, authInfo runtime.ClientAuthInfoWriter) (*BulkResetUserStatItem1OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewBulkResetUserStatItem1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "bulkResetUserStatItem_1",
+		Method:             "PUT",
+		PathPattern:        "/v1/admin/namespaces/{namespace}/users/{userId}/statitems/value/reset/bulk",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &BulkResetUserStatItem1Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *BulkResetUserStatItem1OK:
+		return v, nil
+	case *BulkResetUserStatItem1UnprocessableEntity:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   BulkResetUserStatItem2 publics bulk reset multiple user s statitems value
 
-  Bulk reset multiple user's statitems value.
-User's statitem value will be reset to the default value defined in the statistic configuration.
+  Bulk reset multiple user&#39;s statitems value.
+User&#39;s statitem value will be reset to the default value defined in the statistic configuration.
 
 Other detail info:
-+ *Required permission*: resource="NAMESPACE:{namespace}:STATITEM", action=4 (UPDATE)
++ *Required permission*: resource=&#34;NAMESPACE:{namespace}:STATITEM&#34;, action=4 (UPDATE)
 + *Returns*: bulk updated result
 */
 func (a *Client) BulkResetUserStatItem2(params *BulkResetUserStatItem2Params, authInfo runtime.ClientAuthInfoWriter) (*BulkResetUserStatItem2OK, *BulkResetUserStatItem2UnprocessableEntity, error) {
@@ -570,7 +981,7 @@ func (a *Client) BulkResetUserStatItem2(params *BulkResetUserStatItem2Params, au
 		PathPattern:        "/v1/public/namespaces/{namespace}/statitems/value/reset/bulk",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &BulkResetUserStatItem2Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -585,19 +996,60 @@ func (a *Client) BulkResetUserStatItem2(params *BulkResetUserStatItem2Params, au
 
 	case *BulkResetUserStatItem2OK:
 		return v, nil, nil
+
 	case *BulkResetUserStatItem2UnprocessableEntity:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) BulkResetUserStatItem2Short(params *BulkResetUserStatItem2Params, authInfo runtime.ClientAuthInfoWriter) (*BulkResetUserStatItem2OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewBulkResetUserStatItem2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "bulkResetUserStatItem_2",
+		Method:             "PUT",
+		PathPattern:        "/v1/public/namespaces/{namespace}/statitems/value/reset/bulk",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &BulkResetUserStatItem2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *BulkResetUserStatItem2OK:
+		return v, nil
+	case *BulkResetUserStatItem2UnprocessableEntity:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   BulkResetUserStatItem3 publics bulk reset user s statitems value
 
-  Public bulk reset user's statitems value for given namespace and user.
+  Public bulk reset user&#39;s statitems value for given namespace and user.
 Other detail info:
-+ *Required permission*: resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=4 (UPDATE)
++ *Required permission*: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=4 (UPDATE)
 + *Returns*: bulk updated result
 */
 func (a *Client) BulkResetUserStatItem3(params *BulkResetUserStatItem3Params, authInfo runtime.ClientAuthInfoWriter) (*BulkResetUserStatItem3OK, *BulkResetUserStatItem3UnprocessableEntity, error) {
@@ -616,7 +1068,7 @@ func (a *Client) BulkResetUserStatItem3(params *BulkResetUserStatItem3Params, au
 		PathPattern:        "/v1/public/namespaces/{namespace}/users/{userId}/statitems/value/reset/bulk",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &BulkResetUserStatItem3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -631,28 +1083,69 @@ func (a *Client) BulkResetUserStatItem3(params *BulkResetUserStatItem3Params, au
 
 	case *BulkResetUserStatItem3OK:
 		return v, nil, nil
+
 	case *BulkResetUserStatItem3UnprocessableEntity:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) BulkResetUserStatItem3Short(params *BulkResetUserStatItem3Params, authInfo runtime.ClientAuthInfoWriter) (*BulkResetUserStatItem3OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewBulkResetUserStatItem3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "bulkResetUserStatItem_3",
+		Method:             "PUT",
+		PathPattern:        "/v1/public/namespaces/{namespace}/users/{userId}/statitems/value/reset/bulk",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &BulkResetUserStatItem3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *BulkResetUserStatItem3OK:
+		return v, nil
+	case *BulkResetUserStatItem3UnprocessableEntity:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   BulkUpdateUserStatItem bulks update user s statitems value
 
-  Bulk update user's statitems value for given namespace and user with specific update strategy.
+  Bulk update user&#39;s statitems value for given namespace and user with specific update strategy.
 There are four supported update strategies:
 + *OVERRIDE*: update user statitem with the new value
 + *INCREMENT*: increment user statitem with the specified value
-+ *MAX*: update user statitem with the specified value if it's larger than the existing value
-+ *MIN*: update user statitem with the specified value if it's lower than the existing value
++ *MAX*: update user statitem with the specified value if it&#39;s larger than the existing value
++ *MIN*: update user statitem with the specified value if it&#39;s lower than the existing value
 
-The *additionalKey* parameter will be suffixed to *userId* and is used to support multi level user's statitems, such as character's statitems.
-If provided, user's statitems will be saved with key: *userId_additionalKey*
+The *additionalKey* parameter will be suffixed to *userId* and is used to support multi level user&#39;s statitems, such as character&#39;s statitems.
+If provided, user&#39;s statitems will be saved with key: *userId_additionalKey*
 
 Other detail info:
-+ *Required permission*: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=4 (UPDATE)
++ *Required permission*: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=4 (UPDATE)
 + *Returns*: bulk updated result
 */
 func (a *Client) BulkUpdateUserStatItem(params *BulkUpdateUserStatItemParams, authInfo runtime.ClientAuthInfoWriter) (*BulkUpdateUserStatItemOK, *BulkUpdateUserStatItemUnprocessableEntity, error) {
@@ -671,7 +1164,7 @@ func (a *Client) BulkUpdateUserStatItem(params *BulkUpdateUserStatItemParams, au
 		PathPattern:        "/v2/admin/namespaces/{namespace}/users/{userId}/statitems/value/bulk",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &BulkUpdateUserStatItemReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -686,25 +1179,66 @@ func (a *Client) BulkUpdateUserStatItem(params *BulkUpdateUserStatItemParams, au
 
 	case *BulkUpdateUserStatItemOK:
 		return v, nil, nil
+
 	case *BulkUpdateUserStatItemUnprocessableEntity:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) BulkUpdateUserStatItemShort(params *BulkUpdateUserStatItemParams, authInfo runtime.ClientAuthInfoWriter) (*BulkUpdateUserStatItemOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewBulkUpdateUserStatItemParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "bulkUpdateUserStatItem",
+		Method:             "PUT",
+		PathPattern:        "/v2/admin/namespaces/{namespace}/users/{userId}/statitems/value/bulk",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &BulkUpdateUserStatItemReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *BulkUpdateUserStatItemOK:
+		return v, nil
+	case *BulkUpdateUserStatItemUnprocessableEntity:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   BulkUpdateUserStatItemV2 bulks update multiple user s statitems value
 
-  Bulk update multiple user's statitems value with specific update strategy.
+  Bulk update multiple user&#39;s statitems value with specific update strategy.
 There are four supported update strategies:
 + *OVERRIDE*: update user statitem with the new value
 + *INCREMENT*: increment user statitem with the specified value
-+ *MAX*: update user statitem with the specified value if it's larger than the existing value
-+ *MIN*: update user statitem with the specified value if it's lower than the existing value
++ *MAX*: update user statitem with the specified value if it&#39;s larger than the existing value
++ *MIN*: update user statitem with the specified value if it&#39;s lower than the existing value
 
 Other detail info:
-+ *Required permission*: resource="ADMIN:NAMESPACE:{namespace}:STATITEM", action=4 (UPDATE)
++ *Required permission*: resource=&#34;ADMIN:NAMESPACE:{namespace}:STATITEM&#34;, action=4 (UPDATE)
 + *Returns*: bulk updated result
 */
 func (a *Client) BulkUpdateUserStatItemV2(params *BulkUpdateUserStatItemV2Params, authInfo runtime.ClientAuthInfoWriter) (*BulkUpdateUserStatItemV2OK, *BulkUpdateUserStatItemV2UnprocessableEntity, error) {
@@ -723,7 +1257,7 @@ func (a *Client) BulkUpdateUserStatItemV2(params *BulkUpdateUserStatItemV2Params
 		PathPattern:        "/v2/admin/namespaces/{namespace}/statitems/value/bulk",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &BulkUpdateUserStatItemV2Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -738,25 +1272,66 @@ func (a *Client) BulkUpdateUserStatItemV2(params *BulkUpdateUserStatItemV2Params
 
 	case *BulkUpdateUserStatItemV2OK:
 		return v, nil, nil
+
 	case *BulkUpdateUserStatItemV2UnprocessableEntity:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) BulkUpdateUserStatItemV2Short(params *BulkUpdateUserStatItemV2Params, authInfo runtime.ClientAuthInfoWriter) (*BulkUpdateUserStatItemV2OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewBulkUpdateUserStatItemV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "bulkUpdateUserStatItemV2",
+		Method:             "PUT",
+		PathPattern:        "/v2/admin/namespaces/{namespace}/statitems/value/bulk",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &BulkUpdateUserStatItemV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *BulkUpdateUserStatItemV2OK:
+		return v, nil
+	case *BulkUpdateUserStatItemV2UnprocessableEntity:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   BulkUpdateUserStatItem1 publics bulk update multiple user s statitems value
 
-  Public bulk update multiple user's statitems value with specific update strategy.
+  Public bulk update multiple user&#39;s statitems value with specific update strategy.
 There are four supported update strategies:
 + *OVERRIDE*: update user statitem with the new value
 + *INCREMENT*: increment user statitem with the specified value
-+ *MAX*: update user statitem with the specified value if it's larger than the existing value
-+ *MIN*: update user statitem with the specified value if it's lower than the existing value
++ *MAX*: update user statitem with the specified value if it&#39;s larger than the existing value
++ *MIN*: update user statitem with the specified value if it&#39;s lower than the existing value
 
 Other detail info:
-+ *Required permission*: resource="NAMESPACE:{namespace}:STATITEM", action=4 (UPDATE)
++ *Required permission*: resource=&#34;NAMESPACE:{namespace}:STATITEM&#34;, action=4 (UPDATE)
 + *Returns*: bulk updated result
 */
 func (a *Client) BulkUpdateUserStatItem1(params *BulkUpdateUserStatItem1Params, authInfo runtime.ClientAuthInfoWriter) (*BulkUpdateUserStatItem1OK, *BulkUpdateUserStatItem1UnprocessableEntity, error) {
@@ -775,7 +1350,7 @@ func (a *Client) BulkUpdateUserStatItem1(params *BulkUpdateUserStatItem1Params, 
 		PathPattern:        "/v2/public/namespaces/{namespace}/statitems/value/bulk",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &BulkUpdateUserStatItem1Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -790,28 +1365,69 @@ func (a *Client) BulkUpdateUserStatItem1(params *BulkUpdateUserStatItem1Params, 
 
 	case *BulkUpdateUserStatItem1OK:
 		return v, nil, nil
+
 	case *BulkUpdateUserStatItem1UnprocessableEntity:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) BulkUpdateUserStatItem1Short(params *BulkUpdateUserStatItem1Params, authInfo runtime.ClientAuthInfoWriter) (*BulkUpdateUserStatItem1OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewBulkUpdateUserStatItem1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "bulkUpdateUserStatItem_1",
+		Method:             "PUT",
+		PathPattern:        "/v2/public/namespaces/{namespace}/statitems/value/bulk",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &BulkUpdateUserStatItem1Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *BulkUpdateUserStatItem1OK:
+		return v, nil
+	case *BulkUpdateUserStatItem1UnprocessableEntity:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   BulkUpdateUserStatItem2 publics bulk update user s statitems value
 
-  Public bulk update user's statitems value for given namespace and user with specific update strategy.
+  Public bulk update user&#39;s statitems value for given namespace and user with specific update strategy.
 There are four supported update strategies:
 + *OVERRIDE*: update user statitem with the new value
 + *INCREMENT*: increment user statitem with the specified value
-+ *MAX*: update user statitem with the specified value if it's larger than the existing value
-+ *MIN*: update user statitem with the specified value if it's lower than the existing value
++ *MAX*: update user statitem with the specified value if it&#39;s larger than the existing value
++ *MIN*: update user statitem with the specified value if it&#39;s lower than the existing value
 
-The *additionalKey* parameter will be suffixed to *userId* and is used to support multi level user's statitems, such as character's statitems.
-If provided, user's statitems will be saved with key: *userId_additionalKey*
+The *additionalKey* parameter will be suffixed to *userId* and is used to support multi level user&#39;s statitems, such as character&#39;s statitems.
+If provided, user&#39;s statitems will be saved with key: *userId_additionalKey*
 
 Other detail info:
-+ *Required permission*: resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=4 (UPDATE)
++ *Required permission*: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=4 (UPDATE)
 + *Returns*: bulk updated result
 */
 func (a *Client) BulkUpdateUserStatItem2(params *BulkUpdateUserStatItem2Params, authInfo runtime.ClientAuthInfoWriter) (*BulkUpdateUserStatItem2OK, *BulkUpdateUserStatItem2UnprocessableEntity, error) {
@@ -830,7 +1446,7 @@ func (a *Client) BulkUpdateUserStatItem2(params *BulkUpdateUserStatItem2Params, 
 		PathPattern:        "/v2/public/namespaces/{namespace}/users/{userId}/statitems/value/bulk",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &BulkUpdateUserStatItem2Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -845,17 +1461,58 @@ func (a *Client) BulkUpdateUserStatItem2(params *BulkUpdateUserStatItem2Params, 
 
 	case *BulkUpdateUserStatItem2OK:
 		return v, nil, nil
+
 	case *BulkUpdateUserStatItem2UnprocessableEntity:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) BulkUpdateUserStatItem2Short(params *BulkUpdateUserStatItem2Params, authInfo runtime.ClientAuthInfoWriter) (*BulkUpdateUserStatItem2OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewBulkUpdateUserStatItem2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "bulkUpdateUserStatItem_2",
+		Method:             "PUT",
+		PathPattern:        "/v2/public/namespaces/{namespace}/users/{userId}/statitems/value/bulk",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &BulkUpdateUserStatItem2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *BulkUpdateUserStatItem2OK:
+		return v, nil
+	case *BulkUpdateUserStatItem2UnprocessableEntity:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   CreateUserStatItem creates user s stat item
 
-  Create statItem for a user.<br>Other detail info:<ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=1 (CREATE)</li><li><i>Returns</i>: created user's statItem</li></ul>
+  Create statItem for a user.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: created user&#39;s statItem&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) CreateUserStatItem(params *CreateUserStatItemParams, authInfo runtime.ClientAuthInfoWriter) (*CreateUserStatItemCreated, *CreateUserStatItemNotFound, *CreateUserStatItemConflict, error) {
 	// TODO: Validate the params before sending
@@ -873,7 +1530,7 @@ func (a *Client) CreateUserStatItem(params *CreateUserStatItemParams, authInfo r
 		PathPattern:        "/v1/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &CreateUserStatItemReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -888,19 +1545,63 @@ func (a *Client) CreateUserStatItem(params *CreateUserStatItemParams, authInfo r
 
 	case *CreateUserStatItemCreated:
 		return v, nil, nil, nil
+
 	case *CreateUserStatItemNotFound:
 		return nil, v, nil, nil
+
 	case *CreateUserStatItemConflict:
 		return nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) CreateUserStatItemShort(params *CreateUserStatItemParams, authInfo runtime.ClientAuthInfoWriter) (*CreateUserStatItemCreated, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreateUserStatItemParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "createUserStatItem",
+		Method:             "POST",
+		PathPattern:        "/v1/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CreateUserStatItemReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *CreateUserStatItemCreated:
+		return v, nil
+	case *CreateUserStatItemNotFound:
+		return nil, v
+	case *CreateUserStatItemConflict:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   DeleteUserStatItems deletes user s stat items
 
-  This endpoint is for testing purpose. Use this endpoint for cleaning up after testing.<br>Delete user's statItems given stat code.<br>Other detail info:<ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=8 (DELETE)</li><li><i>Returns</i>: no content</li></li>
+  This endpoint is for testing purpose. Use this endpoint for cleaning up after testing.&lt;br&gt;Delete user&#39;s statItems given stat code.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=8 (DELETE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: no content&lt;/li&gt;&lt;/li&gt;
 */
 func (a *Client) DeleteUserStatItems(params *DeleteUserStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserStatItemsNoContent, *DeleteUserStatItemsUnauthorized, *DeleteUserStatItemsForbidden, *DeleteUserStatItemsNotFound, error) {
 	// TODO: Validate the params before sending
@@ -918,7 +1619,7 @@ func (a *Client) DeleteUserStatItems(params *DeleteUserStatItemsParams, authInfo
 		PathPattern:        "/v1/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteUserStatItemsReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -933,21 +1634,68 @@ func (a *Client) DeleteUserStatItems(params *DeleteUserStatItemsParams, authInfo
 
 	case *DeleteUserStatItemsNoContent:
 		return v, nil, nil, nil, nil
+
 	case *DeleteUserStatItemsUnauthorized:
 		return nil, v, nil, nil, nil
+
 	case *DeleteUserStatItemsForbidden:
 		return nil, nil, v, nil, nil
+
 	case *DeleteUserStatItemsNotFound:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) DeleteUserStatItemsShort(params *DeleteUserStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserStatItemsNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteUserStatItemsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "deleteUserStatItems",
+		Method:             "DELETE",
+		PathPattern:        "/v1/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteUserStatItemsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeleteUserStatItemsNoContent:
+		return v, nil
+	case *DeleteUserStatItemsUnauthorized:
+		return nil, v
+	case *DeleteUserStatItemsForbidden:
+		return nil, v
+	case *DeleteUserStatItemsNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   DeleteUserStatItems1 deletes user s stat items
 
-  Delete user's statItems given stat code.<br>Other detail info:<ul><li><i>Required permission</i>: resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=8 (DELETE)</li><li><i>Returns</i>: no content</li></li>
+  Delete user&#39;s statItems given stat code.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=8 (DELETE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: no content&lt;/li&gt;&lt;/li&gt;
 */
 func (a *Client) DeleteUserStatItems1(params *DeleteUserStatItems1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserStatItems1NoContent, *DeleteUserStatItems1Unauthorized, *DeleteUserStatItems1Forbidden, *DeleteUserStatItems1NotFound, error) {
 	// TODO: Validate the params before sending
@@ -965,7 +1713,7 @@ func (a *Client) DeleteUserStatItems1(params *DeleteUserStatItems1Params, authIn
 		PathPattern:        "/v1/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteUserStatItems1Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -980,24 +1728,71 @@ func (a *Client) DeleteUserStatItems1(params *DeleteUserStatItems1Params, authIn
 
 	case *DeleteUserStatItems1NoContent:
 		return v, nil, nil, nil, nil
+
 	case *DeleteUserStatItems1Unauthorized:
 		return nil, v, nil, nil, nil
+
 	case *DeleteUserStatItems1Forbidden:
 		return nil, nil, v, nil, nil
+
 	case *DeleteUserStatItems1NotFound:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) DeleteUserStatItems1Short(params *DeleteUserStatItems1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserStatItems1NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteUserStatItems1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "deleteUserStatItems_1",
+		Method:             "DELETE",
+		PathPattern:        "/v1/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteUserStatItems1Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeleteUserStatItems1NoContent:
+		return v, nil
+	case *DeleteUserStatItems1Unauthorized:
+		return nil, v
+	case *DeleteUserStatItems1Forbidden:
+		return nil, v
+	case *DeleteUserStatItems1NotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   DeleteUserStatItems2 deletes user s stat items
 
-  Delete user's stat items for given namespace, statCode, and user Id.
+  Delete user&#39;s stat items for given namespace, statCode, and user Id.
 If query param *additionalKey* is provided, it will delete user stat items of specific key (i.e. characterName).
 Otherwise, it will delete all stat items related to the user Id.
-<br>Delete user's statItems given stat code.<br>Other detail info:<ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=8 (DELETE)</li><li><i>Returns</i>: no content</li></li>
+&lt;br&gt;Delete user&#39;s statItems given stat code.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=8 (DELETE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: no content&lt;/li&gt;&lt;/li&gt;
 */
 func (a *Client) DeleteUserStatItems2(params *DeleteUserStatItems2Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserStatItems2NoContent, *DeleteUserStatItems2Unauthorized, *DeleteUserStatItems2Forbidden, *DeleteUserStatItems2NotFound, error) {
 	// TODO: Validate the params before sending
@@ -1015,7 +1810,7 @@ func (a *Client) DeleteUserStatItems2(params *DeleteUserStatItems2Params, authIn
 		PathPattern:        "/v2/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteUserStatItems2Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1030,21 +1825,68 @@ func (a *Client) DeleteUserStatItems2(params *DeleteUserStatItems2Params, authIn
 
 	case *DeleteUserStatItems2NoContent:
 		return v, nil, nil, nil, nil
+
 	case *DeleteUserStatItems2Unauthorized:
 		return nil, v, nil, nil, nil
+
 	case *DeleteUserStatItems2Forbidden:
 		return nil, nil, v, nil, nil
+
 	case *DeleteUserStatItems2NotFound:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) DeleteUserStatItems2Short(params *DeleteUserStatItems2Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserStatItems2NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteUserStatItems2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "deleteUserStatItems_2",
+		Method:             "DELETE",
+		PathPattern:        "/v2/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteUserStatItems2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeleteUserStatItems2NoContent:
+		return v, nil
+	case *DeleteUserStatItems2Unauthorized:
+		return nil, v
+	case *DeleteUserStatItems2Forbidden:
+		return nil, v
+	case *DeleteUserStatItems2NotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   GetUserStatItems lists user s stat items
 
-  List user's statItems.<br>Other detail info:<ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=2 (READ)</li><li><i>Returns</i>: stat items</li></ul>
+  List user&#39;s statItems.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: stat items&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) GetUserStatItems(params *GetUserStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserStatItemsOK, error) {
 	// TODO: Validate the params before sending
@@ -1062,7 +1904,7 @@ func (a *Client) GetUserStatItems(params *GetUserStatItemsParams, authInfo runti
 		PathPattern:        "/v1/admin/namespaces/{namespace}/users/{userId}/statitems",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetUserStatItemsReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1077,6 +1919,44 @@ func (a *Client) GetUserStatItems(params *GetUserStatItemsParams, authInfo runti
 
 	case *GetUserStatItemsOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetUserStatItemsShort(params *GetUserStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserStatItemsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetUserStatItemsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getUserStatItems",
+		Method:             "GET",
+		PathPattern:        "/v1/admin/namespaces/{namespace}/users/{userId}/statitems",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetUserStatItemsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetUserStatItemsOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -1085,7 +1965,7 @@ func (a *Client) GetUserStatItems(params *GetUserStatItemsParams, authInfo runti
 /*
   IncUserStatItemValue updates user s statitem value
 
-  Update user's statitem value.<br>Other detail info:<ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=4 (UPDATE)</li><li><i>Returns</i>: updated user's statItem</li></ul>
+  Update user&#39;s statitem value.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated user&#39;s statItem&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) IncUserStatItemValue(params *IncUserStatItemValueParams, authInfo runtime.ClientAuthInfoWriter) (*IncUserStatItemValueOK, *IncUserStatItemValueBadRequest, *IncUserStatItemValueNotFound, *IncUserStatItemValueConflict, error) {
 	// TODO: Validate the params before sending
@@ -1103,7 +1983,7 @@ func (a *Client) IncUserStatItemValue(params *IncUserStatItemValueParams, authIn
 		PathPattern:        "/v1/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &IncUserStatItemValueReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1118,21 +1998,68 @@ func (a *Client) IncUserStatItemValue(params *IncUserStatItemValueParams, authIn
 
 	case *IncUserStatItemValueOK:
 		return v, nil, nil, nil, nil
+
 	case *IncUserStatItemValueBadRequest:
 		return nil, v, nil, nil, nil
+
 	case *IncUserStatItemValueNotFound:
 		return nil, nil, v, nil, nil
+
 	case *IncUserStatItemValueConflict:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) IncUserStatItemValueShort(params *IncUserStatItemValueParams, authInfo runtime.ClientAuthInfoWriter) (*IncUserStatItemValueOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewIncUserStatItemValueParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "incUserStatItemValue",
+		Method:             "PATCH",
+		PathPattern:        "/v1/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &IncUserStatItemValueReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *IncUserStatItemValueOK:
+		return v, nil
+	case *IncUserStatItemValueBadRequest:
+		return nil, v
+	case *IncUserStatItemValueNotFound:
+		return nil, v
+	case *IncUserStatItemValueConflict:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   PublicBulkCreateUserStatItems bulks create user s stat items
 
-  Bulk create statItems.<br>Other detail info:<ul><li><i>Required permission</i>: resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=1 (CREATE)</li><li><i>Returns</i>: bulk created result</li></ul>
+  Bulk create statItems.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: bulk created result&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) PublicBulkCreateUserStatItems(params *PublicBulkCreateUserStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicBulkCreateUserStatItemsOK, *PublicBulkCreateUserStatItemsUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -1150,7 +2077,7 @@ func (a *Client) PublicBulkCreateUserStatItems(params *PublicBulkCreateUserStatI
 		PathPattern:        "/v1/public/namespaces/{namespace}/users/{userId}/statitems/bulk",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicBulkCreateUserStatItemsReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1165,17 +2092,58 @@ func (a *Client) PublicBulkCreateUserStatItems(params *PublicBulkCreateUserStatI
 
 	case *PublicBulkCreateUserStatItemsOK:
 		return v, nil, nil
+
 	case *PublicBulkCreateUserStatItemsUnprocessableEntity:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicBulkCreateUserStatItemsShort(params *PublicBulkCreateUserStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicBulkCreateUserStatItemsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicBulkCreateUserStatItemsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicBulkCreateUserStatItems",
+		Method:             "POST",
+		PathPattern:        "/v1/public/namespaces/{namespace}/users/{userId}/statitems/bulk",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicBulkCreateUserStatItemsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicBulkCreateUserStatItemsOK:
+		return v, nil
+	case *PublicBulkCreateUserStatItemsUnprocessableEntity:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   PublicBulkIncUserStatItem publics bulk update multiple user s statitems value
 
-  Public bulk update multiple user's statitems value.<br>Other detail info:<ul><li><i>Required permission</i>: resource="NAMESPACE:{namespace}:STATITEM", action=4 (UPDATE)</li><li><i>Returns</i>: bulk updated result</li></ul>
+  Public bulk update multiple user&#39;s statitems value.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:STATITEM&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: bulk updated result&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) PublicBulkIncUserStatItem(params *PublicBulkIncUserStatItemParams, authInfo runtime.ClientAuthInfoWriter) (*PublicBulkIncUserStatItemOK, *PublicBulkIncUserStatItemUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -1193,7 +2161,7 @@ func (a *Client) PublicBulkIncUserStatItem(params *PublicBulkIncUserStatItemPara
 		PathPattern:        "/v1/public/namespaces/{namespace}/statitems/value/bulk",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicBulkIncUserStatItemReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1208,17 +2176,58 @@ func (a *Client) PublicBulkIncUserStatItem(params *PublicBulkIncUserStatItemPara
 
 	case *PublicBulkIncUserStatItemOK:
 		return v, nil, nil
+
 	case *PublicBulkIncUserStatItemUnprocessableEntity:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicBulkIncUserStatItemShort(params *PublicBulkIncUserStatItemParams, authInfo runtime.ClientAuthInfoWriter) (*PublicBulkIncUserStatItemOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicBulkIncUserStatItemParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicBulkIncUserStatItem",
+		Method:             "PUT",
+		PathPattern:        "/v1/public/namespaces/{namespace}/statitems/value/bulk",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicBulkIncUserStatItemReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicBulkIncUserStatItemOK:
+		return v, nil
+	case *PublicBulkIncUserStatItemUnprocessableEntity:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   PublicBulkIncUserStatItemValue publics bulk update multiple user s statitems value
 
-  Public bulk update multiple user's statitems value.<br>Other detail info:<ul><li><i>Required permission</i>: resource="NAMESPACE:{namespace}:STATITEM", action=4 (UPDATE)</li><li><i>Returns</i>: bulk updated result</li></ul>
+  Public bulk update multiple user&#39;s statitems value.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:STATITEM&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: bulk updated result&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) PublicBulkIncUserStatItemValue(params *PublicBulkIncUserStatItemValueParams, authInfo runtime.ClientAuthInfoWriter) (*PublicBulkIncUserStatItemValueOK, *PublicBulkIncUserStatItemValueUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -1236,7 +2245,7 @@ func (a *Client) PublicBulkIncUserStatItemValue(params *PublicBulkIncUserStatIte
 		PathPattern:        "/v1/public/namespaces/{namespace}/statitems/value/bulk",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicBulkIncUserStatItemValueReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1251,17 +2260,58 @@ func (a *Client) PublicBulkIncUserStatItemValue(params *PublicBulkIncUserStatIte
 
 	case *PublicBulkIncUserStatItemValueOK:
 		return v, nil, nil
+
 	case *PublicBulkIncUserStatItemValueUnprocessableEntity:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicBulkIncUserStatItemValueShort(params *PublicBulkIncUserStatItemValueParams, authInfo runtime.ClientAuthInfoWriter) (*PublicBulkIncUserStatItemValueOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicBulkIncUserStatItemValueParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicBulkIncUserStatItemValue",
+		Method:             "PATCH",
+		PathPattern:        "/v1/public/namespaces/{namespace}/statitems/value/bulk",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicBulkIncUserStatItemValueReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicBulkIncUserStatItemValueOK:
+		return v, nil
+	case *PublicBulkIncUserStatItemValueUnprocessableEntity:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   PublicBulkIncUserStatItem1 publics bulk update user s statitems value
 
-  Public bulk update user's statitems value.<br>Other detail info:<ul><li><i>Required permission</i>: resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=4 (UPDATE)</li><li><i>Returns</i>: bulk updated result</li></ul>
+  Public bulk update user&#39;s statitems value.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: bulk updated result&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) PublicBulkIncUserStatItem1(params *PublicBulkIncUserStatItem1Params, authInfo runtime.ClientAuthInfoWriter) (*PublicBulkIncUserStatItem1OK, *PublicBulkIncUserStatItem1UnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -1279,7 +2329,7 @@ func (a *Client) PublicBulkIncUserStatItem1(params *PublicBulkIncUserStatItem1Pa
 		PathPattern:        "/v1/public/namespaces/{namespace}/users/{userId}/statitems/value/bulk",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicBulkIncUserStatItem1Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1294,17 +2344,58 @@ func (a *Client) PublicBulkIncUserStatItem1(params *PublicBulkIncUserStatItem1Pa
 
 	case *PublicBulkIncUserStatItem1OK:
 		return v, nil, nil
+
 	case *PublicBulkIncUserStatItem1UnprocessableEntity:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicBulkIncUserStatItem1Short(params *PublicBulkIncUserStatItem1Params, authInfo runtime.ClientAuthInfoWriter) (*PublicBulkIncUserStatItem1OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicBulkIncUserStatItem1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicBulkIncUserStatItem_1",
+		Method:             "PUT",
+		PathPattern:        "/v1/public/namespaces/{namespace}/users/{userId}/statitems/value/bulk",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicBulkIncUserStatItem1Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicBulkIncUserStatItem1OK:
+		return v, nil
+	case *PublicBulkIncUserStatItem1UnprocessableEntity:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   PublicCreateUserStatItem creates user s stat item
 
-  Create user's statItem.<br>Other detail info:<ul><li><i>Required permission</i>: resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=1 (CREATE)</li><li><i>Returns</i>: created user's statItem</li></ul>
+  Create user&#39;s statItem.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: created user&#39;s statItem&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) PublicCreateUserStatItem(params *PublicCreateUserStatItemParams, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateUserStatItemCreated, *PublicCreateUserStatItemNotFound, *PublicCreateUserStatItemConflict, error) {
 	// TODO: Validate the params before sending
@@ -1322,7 +2413,7 @@ func (a *Client) PublicCreateUserStatItem(params *PublicCreateUserStatItemParams
 		PathPattern:        "/v1/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicCreateUserStatItemReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1337,19 +2428,63 @@ func (a *Client) PublicCreateUserStatItem(params *PublicCreateUserStatItemParams
 
 	case *PublicCreateUserStatItemCreated:
 		return v, nil, nil, nil
+
 	case *PublicCreateUserStatItemNotFound:
 		return nil, v, nil, nil
+
 	case *PublicCreateUserStatItemConflict:
 		return nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicCreateUserStatItemShort(params *PublicCreateUserStatItemParams, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateUserStatItemCreated, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicCreateUserStatItemParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicCreateUserStatItem",
+		Method:             "POST",
+		PathPattern:        "/v1/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicCreateUserStatItemReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicCreateUserStatItemCreated:
+		return v, nil
+	case *PublicCreateUserStatItemNotFound:
+		return nil, v
+	case *PublicCreateUserStatItemConflict:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   PublicIncUserStatItem publics update user s statitem value
 
-  Public update user's statitem value.<br>Other detail info:<ul><li><i>Required permission</i>: resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=4 (UPDATE)</li><li><i>Returns</i>: updated user's statItem</li></ul>
+  Public update user&#39;s statitem value.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated user&#39;s statItem&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) PublicIncUserStatItem(params *PublicIncUserStatItemParams, authInfo runtime.ClientAuthInfoWriter) (*PublicIncUserStatItemOK, *PublicIncUserStatItemBadRequest, *PublicIncUserStatItemNotFound, *PublicIncUserStatItemConflict, error) {
 	// TODO: Validate the params before sending
@@ -1367,7 +2502,7 @@ func (a *Client) PublicIncUserStatItem(params *PublicIncUserStatItemParams, auth
 		PathPattern:        "/v1/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicIncUserStatItemReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1382,21 +2517,68 @@ func (a *Client) PublicIncUserStatItem(params *PublicIncUserStatItemParams, auth
 
 	case *PublicIncUserStatItemOK:
 		return v, nil, nil, nil, nil
+
 	case *PublicIncUserStatItemBadRequest:
 		return nil, v, nil, nil, nil
+
 	case *PublicIncUserStatItemNotFound:
 		return nil, nil, v, nil, nil
+
 	case *PublicIncUserStatItemConflict:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicIncUserStatItemShort(params *PublicIncUserStatItemParams, authInfo runtime.ClientAuthInfoWriter) (*PublicIncUserStatItemOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicIncUserStatItemParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicIncUserStatItem",
+		Method:             "PUT",
+		PathPattern:        "/v1/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicIncUserStatItemReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicIncUserStatItemOK:
+		return v, nil
+	case *PublicIncUserStatItemBadRequest:
+		return nil, v
+	case *PublicIncUserStatItemNotFound:
+		return nil, v
+	case *PublicIncUserStatItemConflict:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   PublicIncUserStatItemValue publics update user s statitem value
 
-  Public update user's statitem value.<br>Other detail info:<ul><li><i>Required permission</i>: resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=4 (UPDATE)</li><li><i>Returns</i>: updated user's statItem</li></ul>
+  Public update user&#39;s statitem value.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated user&#39;s statItem&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) PublicIncUserStatItemValue(params *PublicIncUserStatItemValueParams, authInfo runtime.ClientAuthInfoWriter) (*PublicIncUserStatItemValueOK, *PublicIncUserStatItemValueBadRequest, *PublicIncUserStatItemValueNotFound, *PublicIncUserStatItemValueConflict, error) {
 	// TODO: Validate the params before sending
@@ -1414,7 +2596,7 @@ func (a *Client) PublicIncUserStatItemValue(params *PublicIncUserStatItemValuePa
 		PathPattern:        "/v1/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicIncUserStatItemValueReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1429,21 +2611,68 @@ func (a *Client) PublicIncUserStatItemValue(params *PublicIncUserStatItemValuePa
 
 	case *PublicIncUserStatItemValueOK:
 		return v, nil, nil, nil, nil
+
 	case *PublicIncUserStatItemValueBadRequest:
 		return nil, v, nil, nil, nil
+
 	case *PublicIncUserStatItemValueNotFound:
 		return nil, nil, v, nil, nil
+
 	case *PublicIncUserStatItemValueConflict:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicIncUserStatItemValueShort(params *PublicIncUserStatItemValueParams, authInfo runtime.ClientAuthInfoWriter) (*PublicIncUserStatItemValueOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicIncUserStatItemValueParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicIncUserStatItemValue",
+		Method:             "PATCH",
+		PathPattern:        "/v1/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicIncUserStatItemValueReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicIncUserStatItemValueOK:
+		return v, nil
+	case *PublicIncUserStatItemValueBadRequest:
+		return nil, v
+	case *PublicIncUserStatItemValueNotFound:
+		return nil, v
+	case *PublicIncUserStatItemValueConflict:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   PublicQueryUserStatItems publics list user s stat items
 
-  Public list all statItems by pagination.<br>Other detail info:<ul><li><i>Required permission</i>: resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=2 (READ)</li><li><i>Returns</i>: stat items</li></ul>
+  Public list all statItems by pagination.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: stat items&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) PublicQueryUserStatItems(params *PublicQueryUserStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryUserStatItemsOK, error) {
 	// TODO: Validate the params before sending
@@ -1461,7 +2690,7 @@ func (a *Client) PublicQueryUserStatItems(params *PublicQueryUserStatItemsParams
 		PathPattern:        "/v1/public/namespaces/{namespace}/users/{userId}/statitems",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicQueryUserStatItemsReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1476,6 +2705,44 @@ func (a *Client) PublicQueryUserStatItems(params *PublicQueryUserStatItemsParams
 
 	case *PublicQueryUserStatItemsOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicQueryUserStatItemsShort(params *PublicQueryUserStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryUserStatItemsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicQueryUserStatItemsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicQueryUserStatItems",
+		Method:             "GET",
+		PathPattern:        "/v1/public/namespaces/{namespace}/users/{userId}/statitems",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicQueryUserStatItemsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicQueryUserStatItemsOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -1484,12 +2751,12 @@ func (a *Client) PublicQueryUserStatItems(params *PublicQueryUserStatItemsParams
 /*
   ResetUserStatItemValue resets user s statitem value
 
-  Reset user's statitem value for a given namespace and user.
-User's statitem value will be reset to the default value defined in the statistic configuration.
+  Reset user&#39;s statitem value for a given namespace and user.
+User&#39;s statitem value will be reset to the default value defined in the statistic configuration.
 
 Other detail info:
-+ *Required permission*: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=4 (UPDATE)
-+ *Returns*: updated user's statItem
++ *Required permission*: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=4 (UPDATE)
++ *Returns*: updated user&#39;s statItem
 */
 func (a *Client) ResetUserStatItemValue(params *ResetUserStatItemValueParams, authInfo runtime.ClientAuthInfoWriter) (*ResetUserStatItemValueOK, *ResetUserStatItemValueBadRequest, *ResetUserStatItemValueNotFound, error) {
 	// TODO: Validate the params before sending
@@ -1507,7 +2774,7 @@ func (a *Client) ResetUserStatItemValue(params *ResetUserStatItemValueParams, au
 		PathPattern:        "/v1/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value/reset",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &ResetUserStatItemValueReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1522,24 +2789,68 @@ func (a *Client) ResetUserStatItemValue(params *ResetUserStatItemValueParams, au
 
 	case *ResetUserStatItemValueOK:
 		return v, nil, nil, nil
+
 	case *ResetUserStatItemValueBadRequest:
 		return nil, v, nil, nil
+
 	case *ResetUserStatItemValueNotFound:
 		return nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) ResetUserStatItemValueShort(params *ResetUserStatItemValueParams, authInfo runtime.ClientAuthInfoWriter) (*ResetUserStatItemValueOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewResetUserStatItemValueParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "resetUserStatItemValue",
+		Method:             "PUT",
+		PathPattern:        "/v1/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value/reset",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ResetUserStatItemValueReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *ResetUserStatItemValueOK:
+		return v, nil
+	case *ResetUserStatItemValueBadRequest:
+		return nil, v
+	case *ResetUserStatItemValueNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   ResetUserStatItemValue1 publics reset user s statitem value
 
-  Reset user's statitem value for a given namespace and user.
-User's statitem value will be reset to the default value defined in the statistic configuration.
+  Reset user&#39;s statitem value for a given namespace and user.
+User&#39;s statitem value will be reset to the default value defined in the statistic configuration.
 
 Other detail info:
-+ *Required permission*: resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=4 (UPDATE)
-+ *Returns*: updated user's statItem
++ *Required permission*: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=4 (UPDATE)
++ *Returns*: updated user&#39;s statItem
 */
 func (a *Client) ResetUserStatItemValue1(params *ResetUserStatItemValue1Params, authInfo runtime.ClientAuthInfoWriter) (*ResetUserStatItemValue1OK, *ResetUserStatItemValue1BadRequest, *ResetUserStatItemValue1NotFound, error) {
 	// TODO: Validate the params before sending
@@ -1557,7 +2868,7 @@ func (a *Client) ResetUserStatItemValue1(params *ResetUserStatItemValue1Params, 
 		PathPattern:        "/v1/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value/reset",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &ResetUserStatItemValue1Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1572,31 +2883,75 @@ func (a *Client) ResetUserStatItemValue1(params *ResetUserStatItemValue1Params, 
 
 	case *ResetUserStatItemValue1OK:
 		return v, nil, nil, nil
+
 	case *ResetUserStatItemValue1BadRequest:
 		return nil, v, nil, nil
+
 	case *ResetUserStatItemValue1NotFound:
 		return nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) ResetUserStatItemValue1Short(params *ResetUserStatItemValue1Params, authInfo runtime.ClientAuthInfoWriter) (*ResetUserStatItemValue1OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewResetUserStatItemValue1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "resetUserStatItemValue_1",
+		Method:             "PUT",
+		PathPattern:        "/v1/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value/reset",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ResetUserStatItemValue1Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *ResetUserStatItemValue1OK:
+		return v, nil
+	case *ResetUserStatItemValue1BadRequest:
+		return nil, v
+	case *ResetUserStatItemValue1NotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   UpdateUserStatItemValue updates user s statitem value
 
-  Update user's statitem value for a given namespace and user with a certain update strategy.
+  Update user&#39;s statitem value for a given namespace and user with a certain update strategy.
 There are four supported update strategies:
 + *OVERRIDE*: update user statitem with the new value
 + *INCREMENT*: increment user statitem with the specified value
-+ *MAX*: update user statitem with the specified value if it's larger than the existing value
-+ *MIN*: update user statitem with the specified value if it's lower than the existing value
++ *MAX*: update user statitem with the specified value if it&#39;s larger than the existing value
++ *MIN*: update user statitem with the specified value if it&#39;s lower than the existing value
 
-The *additionalKey* parameter will be suffixed to *userId* and is used to support multi level user's statitems, such as character's statitems.
-If provided, user's statitems will be saved with key: *userId_additionalKey*
+The *additionalKey* parameter will be suffixed to *userId* and is used to support multi level user&#39;s statitems, such as character&#39;s statitems.
+If provided, user&#39;s statitems will be saved with key: *userId_additionalKey*
 
 Other detail info:
-+ *Required permission*: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=4 (UPDATE)
-+ *Returns*: updated user's statItem
++ *Required permission*: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=4 (UPDATE)
++ *Returns*: updated user&#39;s statItem
 */
 func (a *Client) UpdateUserStatItemValue(params *UpdateUserStatItemValueParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateUserStatItemValueOK, *UpdateUserStatItemValueBadRequest, *UpdateUserStatItemValueNotFound, *UpdateUserStatItemValueConflict, *UpdateUserStatItemValueUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -1614,7 +2969,7 @@ func (a *Client) UpdateUserStatItemValue(params *UpdateUserStatItemValueParams, 
 		PathPattern:        "/v2/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &UpdateUserStatItemValueReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1629,35 +2984,85 @@ func (a *Client) UpdateUserStatItemValue(params *UpdateUserStatItemValueParams, 
 
 	case *UpdateUserStatItemValueOK:
 		return v, nil, nil, nil, nil, nil
+
 	case *UpdateUserStatItemValueBadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *UpdateUserStatItemValueNotFound:
 		return nil, nil, v, nil, nil, nil
+
 	case *UpdateUserStatItemValueConflict:
 		return nil, nil, nil, v, nil, nil
+
 	case *UpdateUserStatItemValueUnprocessableEntity:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) UpdateUserStatItemValueShort(params *UpdateUserStatItemValueParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateUserStatItemValueOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateUserStatItemValueParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updateUserStatItemValue",
+		Method:             "PUT",
+		PathPattern:        "/v2/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateUserStatItemValueReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateUserStatItemValueOK:
+		return v, nil
+	case *UpdateUserStatItemValueBadRequest:
+		return nil, v
+	case *UpdateUserStatItemValueNotFound:
+		return nil, v
+	case *UpdateUserStatItemValueConflict:
+		return nil, v
+	case *UpdateUserStatItemValueUnprocessableEntity:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   UpdateUserStatItemValue1 publics update user s statitem value
 
-  Public update user's statitem value for a given namespace and user with a certain update strategy.
+  Public update user&#39;s statitem value for a given namespace and user with a certain update strategy.
 There are four supported update strategies:
 + *OVERRIDE*: update user statitem with the new value
 + *INCREMENT*: increment user statitem with the specified value
-+ *MAX*: update user statitem with the specified value if it's larger than the existing value
-+ *MIN*: update user statitem with the specified value if it's lower than the existing value
++ *MAX*: update user statitem with the specified value if it&#39;s larger than the existing value
++ *MIN*: update user statitem with the specified value if it&#39;s lower than the existing value
 
-The *additionalKey* parameter will be suffixed to *userId* and is used to support multi level user's statitems, such as character's statitems.
-If provided, user's statitems will be saved with key: *userId_additionalKey*
+The *additionalKey* parameter will be suffixed to *userId* and is used to support multi level user&#39;s statitems, such as character&#39;s statitems.
+If provided, user&#39;s statitems will be saved with key: *userId_additionalKey*
 
 Other detail info:
-+ *Required permission*: resource="NAMESPACE:{namespace}:USER:{userId}:STATITEM", action=4 (UPDATE)
-+ *Returns*: updated user's statItem
++ *Required permission*: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=4 (UPDATE)
++ *Returns*: updated user&#39;s statItem
 */
 func (a *Client) UpdateUserStatItemValue1(params *UpdateUserStatItemValue1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateUserStatItemValue1OK, *UpdateUserStatItemValue1BadRequest, *UpdateUserStatItemValue1NotFound, *UpdateUserStatItemValue1Conflict, *UpdateUserStatItemValue1UnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -1675,7 +3080,7 @@ func (a *Client) UpdateUserStatItemValue1(params *UpdateUserStatItemValue1Params
 		PathPattern:        "/v2/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &UpdateUserStatItemValue1Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1690,16 +3095,66 @@ func (a *Client) UpdateUserStatItemValue1(params *UpdateUserStatItemValue1Params
 
 	case *UpdateUserStatItemValue1OK:
 		return v, nil, nil, nil, nil, nil
+
 	case *UpdateUserStatItemValue1BadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *UpdateUserStatItemValue1NotFound:
 		return nil, nil, v, nil, nil, nil
+
 	case *UpdateUserStatItemValue1Conflict:
 		return nil, nil, nil, v, nil, nil
+
 	case *UpdateUserStatItemValue1UnprocessableEntity:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) UpdateUserStatItemValue1Short(params *UpdateUserStatItemValue1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateUserStatItemValue1OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateUserStatItemValue1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updateUserStatItemValue_1",
+		Method:             "PUT",
+		PathPattern:        "/v2/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateUserStatItemValue1Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateUserStatItemValue1OK:
+		return v, nil
+	case *UpdateUserStatItemValue1BadRequest:
+		return nil, v
+	case *UpdateUserStatItemValue1NotFound:
+		return nil, v
+	case *UpdateUserStatItemValue1Conflict:
+		return nil, v
+	case *UpdateUserStatItemValue1UnprocessableEntity:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 

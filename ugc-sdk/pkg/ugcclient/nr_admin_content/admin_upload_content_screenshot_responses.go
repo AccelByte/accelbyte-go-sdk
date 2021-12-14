@@ -42,6 +42,12 @@ func (o *AdminUploadContentScreenshotReader) ReadResponse(response runtime.Clien
 			return nil, err
 		}
 		return result, nil
+	case 404:
+		result := NewAdminUploadContentScreenshotNotFound()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 500:
 		result := NewAdminUploadContentScreenshotInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -147,6 +153,39 @@ func (o *AdminUploadContentScreenshotUnauthorized) GetPayload() *ugcclientmodels
 }
 
 func (o *AdminUploadContentScreenshotUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(ugcclientmodels.ResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewAdminUploadContentScreenshotNotFound creates a AdminUploadContentScreenshotNotFound with default headers values
+func NewAdminUploadContentScreenshotNotFound() *AdminUploadContentScreenshotNotFound {
+	return &AdminUploadContentScreenshotNotFound{}
+}
+
+/*AdminUploadContentScreenshotNotFound handles this case with default header values.
+
+  Not Found
+*/
+type AdminUploadContentScreenshotNotFound struct {
+	Payload *ugcclientmodels.ResponseError
+}
+
+func (o *AdminUploadContentScreenshotNotFound) Error() string {
+	return fmt.Sprintf("[POST /ugc/v1/admin/namespaces/{namespace}/contents/{contentId}/screenshots][%d] adminUploadContentScreenshotNotFound  %+v", 404, o.Payload)
+}
+
+func (o *AdminUploadContentScreenshotNotFound) GetPayload() *ugcclientmodels.ResponseError {
+	return o.Payload
+}
+
+func (o *AdminUploadContentScreenshotNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(ugcclientmodels.ResponseError)
 

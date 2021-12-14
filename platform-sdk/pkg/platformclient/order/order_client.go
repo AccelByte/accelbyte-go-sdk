@@ -30,42 +30,43 @@ type Client struct {
 // ClientService is the interface for Client methods
 type ClientService interface {
 	CountOfPurchasedItem(params *CountOfPurchasedItemParams, authInfo runtime.ClientAuthInfoWriter) (*CountOfPurchasedItemOK, error)
-
+	CountOfPurchasedItemShort(params *CountOfPurchasedItemParams, authInfo runtime.ClientAuthInfoWriter) (*CountOfPurchasedItemOK, error)
 	DownloadUserOrderReceipt(params *DownloadUserOrderReceiptParams, authInfo runtime.ClientAuthInfoWriter) (*DownloadUserOrderReceiptOK, *DownloadUserOrderReceiptNotFound, *DownloadUserOrderReceiptConflict, error)
-
+	DownloadUserOrderReceiptShort(params *DownloadUserOrderReceiptParams, authInfo runtime.ClientAuthInfoWriter) (*DownloadUserOrderReceiptOK, error)
 	FulfillUserOrder(params *FulfillUserOrderParams, authInfo runtime.ClientAuthInfoWriter) (*FulfillUserOrderOK, *FulfillUserOrderBadRequest, *FulfillUserOrderNotFound, *FulfillUserOrderConflict, error)
-
+	FulfillUserOrderShort(params *FulfillUserOrderParams, authInfo runtime.ClientAuthInfoWriter) (*FulfillUserOrderOK, error)
 	GetOrder(params *GetOrderParams, authInfo runtime.ClientAuthInfoWriter) (*GetOrderOK, *GetOrderNotFound, error)
-
+	GetOrderShort(params *GetOrderParams, authInfo runtime.ClientAuthInfoWriter) (*GetOrderOK, error)
 	GetOrderStatistics(params *GetOrderStatisticsParams, authInfo runtime.ClientAuthInfoWriter) (*GetOrderStatisticsOK, error)
-
+	GetOrderStatisticsShort(params *GetOrderStatisticsParams, authInfo runtime.ClientAuthInfoWriter) (*GetOrderStatisticsOK, error)
 	GetUserOrder(params *GetUserOrderParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserOrderOK, *GetUserOrderNotFound, error)
-
+	GetUserOrderShort(params *GetUserOrderParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserOrderOK, error)
 	GetUserOrderGrant(params *GetUserOrderGrantParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserOrderGrantOK, error)
-
+	GetUserOrderGrantShort(params *GetUserOrderGrantParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserOrderGrantOK, error)
 	GetUserOrderHistories(params *GetUserOrderHistoriesParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserOrderHistoriesOK, error)
-
+	GetUserOrderHistoriesShort(params *GetUserOrderHistoriesParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserOrderHistoriesOK, error)
 	ProcessUserOrderNotification(params *ProcessUserOrderNotificationParams, authInfo runtime.ClientAuthInfoWriter) (*ProcessUserOrderNotificationNoContent, *ProcessUserOrderNotificationBadRequest, error)
-
+	ProcessUserOrderNotificationShort(params *ProcessUserOrderNotificationParams, authInfo runtime.ClientAuthInfoWriter) (*ProcessUserOrderNotificationNoContent, error)
 	PublicCancelUserOrder(params *PublicCancelUserOrderParams, authInfo runtime.ClientAuthInfoWriter) (*PublicCancelUserOrderOK, *PublicCancelUserOrderNotFound, *PublicCancelUserOrderConflict, error)
-
+	PublicCancelUserOrderShort(params *PublicCancelUserOrderParams, authInfo runtime.ClientAuthInfoWriter) (*PublicCancelUserOrderOK, error)
 	PublicCreateUserOrder(params *PublicCreateUserOrderParams, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateUserOrderCreated, *PublicCreateUserOrderBadRequest, *PublicCreateUserOrderForbidden, *PublicCreateUserOrderNotFound, *PublicCreateUserOrderConflict, *PublicCreateUserOrderUnprocessableEntity, error)
-
+	PublicCreateUserOrderShort(params *PublicCreateUserOrderParams, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateUserOrderCreated, error)
 	PublicDownloadUserOrderReceipt(params *PublicDownloadUserOrderReceiptParams, authInfo runtime.ClientAuthInfoWriter) (*PublicDownloadUserOrderReceiptOK, *PublicDownloadUserOrderReceiptNotFound, *PublicDownloadUserOrderReceiptConflict, error)
-
+	PublicDownloadUserOrderReceiptShort(params *PublicDownloadUserOrderReceiptParams, authInfo runtime.ClientAuthInfoWriter) (*PublicDownloadUserOrderReceiptOK, error)
 	PublicGetUserOrder(params *PublicGetUserOrderParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserOrderOK, *PublicGetUserOrderNotFound, error)
-
+	PublicGetUserOrderShort(params *PublicGetUserOrderParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserOrderOK, error)
 	PublicGetUserOrderHistories(params *PublicGetUserOrderHistoriesParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserOrderHistoriesOK, error)
-
+	PublicGetUserOrderHistoriesShort(params *PublicGetUserOrderHistoriesParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserOrderHistoriesOK, error)
 	PublicQueryUserOrders(params *PublicQueryUserOrdersParams, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryUserOrdersOK, error)
-
+	PublicQueryUserOrdersShort(params *PublicQueryUserOrdersParams, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryUserOrdersOK, error)
 	QueryOrders(params *QueryOrdersParams, authInfo runtime.ClientAuthInfoWriter) (*QueryOrdersOK, *QueryOrdersUnprocessableEntity, error)
-
+	QueryOrdersShort(params *QueryOrdersParams, authInfo runtime.ClientAuthInfoWriter) (*QueryOrdersOK, error)
 	QueryUserOrders(params *QueryUserOrdersParams, authInfo runtime.ClientAuthInfoWriter) (*QueryUserOrdersOK, error)
-
+	QueryUserOrdersShort(params *QueryUserOrdersParams, authInfo runtime.ClientAuthInfoWriter) (*QueryUserOrdersOK, error)
 	RefundOrder(params *RefundOrderParams, authInfo runtime.ClientAuthInfoWriter) (*RefundOrderOK, *RefundOrderNotFound, *RefundOrderConflict, *RefundOrderUnprocessableEntity, error)
-
+	RefundOrderShort(params *RefundOrderParams, authInfo runtime.ClientAuthInfoWriter) (*RefundOrderOK, error)
 	UpdateUserOrderStatus(params *UpdateUserOrderStatusParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateUserOrderStatusOK, *UpdateUserOrderStatusNotFound, *UpdateUserOrderStatusConflict, *UpdateUserOrderStatusUnprocessableEntity, error)
+	UpdateUserOrderStatusShort(params *UpdateUserOrderStatusParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateUserOrderStatusOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -73,7 +74,7 @@ type ClientService interface {
 /*
   CountOfPurchasedItem gets the count of purchased item
 
-  This API is used to get the count of purchased item which is the order target.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:ORDER", action=2 (READ)</li><li><i>Returns</i>: Item purchased count</li></ul>
+  This API is used to get the count of purchased item which is the order target.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ORDER&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: Item purchased count&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) CountOfPurchasedItem(params *CountOfPurchasedItemParams, authInfo runtime.ClientAuthInfoWriter) (*CountOfPurchasedItemOK, error) {
 	// TODO: Validate the params before sending
@@ -91,7 +92,7 @@ func (a *Client) CountOfPurchasedItem(params *CountOfPurchasedItemParams, authIn
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/orders/countOfItem",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &CountOfPurchasedItemReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -106,6 +107,44 @@ func (a *Client) CountOfPurchasedItem(params *CountOfPurchasedItemParams, authIn
 
 	case *CountOfPurchasedItemOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) CountOfPurchasedItemShort(params *CountOfPurchasedItemParams, authInfo runtime.ClientAuthInfoWriter) (*CountOfPurchasedItemOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCountOfPurchasedItemParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "countOfPurchasedItem",
+		Method:             "GET",
+		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/orders/countOfItem",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CountOfPurchasedItemReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *CountOfPurchasedItemOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -114,7 +153,7 @@ func (a *Client) CountOfPurchasedItem(params *CountOfPurchasedItemParams, authIn
 /*
   DownloadUserOrderReceipt downloads user order receipt
 
-  Download user order receipt by orderNo.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:ORDER", action=2 (READ)</li><li><i>Returns</i>: order receipt pdf</li></ul>
+  Download user order receipt by orderNo.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ORDER&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: order receipt pdf&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) DownloadUserOrderReceipt(params *DownloadUserOrderReceiptParams, authInfo runtime.ClientAuthInfoWriter) (*DownloadUserOrderReceiptOK, *DownloadUserOrderReceiptNotFound, *DownloadUserOrderReceiptConflict, error) {
 	// TODO: Validate the params before sending
@@ -132,7 +171,7 @@ func (a *Client) DownloadUserOrderReceipt(params *DownloadUserOrderReceiptParams
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}/receipt.pdf",
 		ProducesMediaTypes: []string{"application/pdf"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DownloadUserOrderReceiptReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -147,19 +186,63 @@ func (a *Client) DownloadUserOrderReceipt(params *DownloadUserOrderReceiptParams
 
 	case *DownloadUserOrderReceiptOK:
 		return v, nil, nil, nil
+
 	case *DownloadUserOrderReceiptNotFound:
 		return nil, v, nil, nil
+
 	case *DownloadUserOrderReceiptConflict:
 		return nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) DownloadUserOrderReceiptShort(params *DownloadUserOrderReceiptParams, authInfo runtime.ClientAuthInfoWriter) (*DownloadUserOrderReceiptOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDownloadUserOrderReceiptParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "downloadUserOrderReceipt",
+		Method:             "GET",
+		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}/receipt.pdf",
+		ProducesMediaTypes: []string{"application/pdf"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DownloadUserOrderReceiptReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DownloadUserOrderReceiptOK:
+		return v, nil
+	case *DownloadUserOrderReceiptNotFound:
+		return nil, v
+	case *DownloadUserOrderReceiptConflict:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   FulfillUserOrder fulfills an order
 
-  Fulfill an order if the order is charged but fulfill failed.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:ORDER", action=4 (UPDATE)</li><li><i>Returns</i>: fulfilled order</li></ul>
+  Fulfill an order if the order is charged but fulfill failed.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ORDER&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: fulfilled order&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) FulfillUserOrder(params *FulfillUserOrderParams, authInfo runtime.ClientAuthInfoWriter) (*FulfillUserOrderOK, *FulfillUserOrderBadRequest, *FulfillUserOrderNotFound, *FulfillUserOrderConflict, error) {
 	// TODO: Validate the params before sending
@@ -177,7 +260,7 @@ func (a *Client) FulfillUserOrder(params *FulfillUserOrderParams, authInfo runti
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}/fulfill",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &FulfillUserOrderReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -192,21 +275,68 @@ func (a *Client) FulfillUserOrder(params *FulfillUserOrderParams, authInfo runti
 
 	case *FulfillUserOrderOK:
 		return v, nil, nil, nil, nil
+
 	case *FulfillUserOrderBadRequest:
 		return nil, v, nil, nil, nil
+
 	case *FulfillUserOrderNotFound:
 		return nil, nil, v, nil, nil
+
 	case *FulfillUserOrderConflict:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) FulfillUserOrderShort(params *FulfillUserOrderParams, authInfo runtime.ClientAuthInfoWriter) (*FulfillUserOrderOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewFulfillUserOrderParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "fulfillUserOrder",
+		Method:             "PUT",
+		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}/fulfill",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &FulfillUserOrderReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *FulfillUserOrderOK:
+		return v, nil
+	case *FulfillUserOrderBadRequest:
+		return nil, v
+	case *FulfillUserOrderNotFound:
+		return nil, v
+	case *FulfillUserOrderConflict:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   GetOrder gets order
 
-  Get order by orderNo.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:ORDER", action=2 (READ)</li><li><i>Returns</i>: order instance</li></ul>
+  Get order by orderNo.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:ORDER&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: order instance&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) GetOrder(params *GetOrderParams, authInfo runtime.ClientAuthInfoWriter) (*GetOrderOK, *GetOrderNotFound, error) {
 	// TODO: Validate the params before sending
@@ -224,7 +354,7 @@ func (a *Client) GetOrder(params *GetOrderParams, authInfo runtime.ClientAuthInf
 		PathPattern:        "/admin/namespaces/{namespace}/orders/{orderNo}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetOrderReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -239,17 +369,58 @@ func (a *Client) GetOrder(params *GetOrderParams, authInfo runtime.ClientAuthInf
 
 	case *GetOrderOK:
 		return v, nil, nil
+
 	case *GetOrderNotFound:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetOrderShort(params *GetOrderParams, authInfo runtime.ClientAuthInfoWriter) (*GetOrderOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetOrderParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getOrder",
+		Method:             "GET",
+		PathPattern:        "/admin/namespaces/{namespace}/orders/{orderNo}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetOrderReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetOrderOK:
+		return v, nil
+	case *GetOrderNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   GetOrderStatistics gets order statistics
 
-  Get Order Statistics.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:ORDER", action=2 (READ)</li><li><i>Returns</i>: order statistics</li></ul>
+  Get Order Statistics.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:ORDER&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: order statistics&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) GetOrderStatistics(params *GetOrderStatisticsParams, authInfo runtime.ClientAuthInfoWriter) (*GetOrderStatisticsOK, error) {
 	// TODO: Validate the params before sending
@@ -267,7 +438,7 @@ func (a *Client) GetOrderStatistics(params *GetOrderStatisticsParams, authInfo r
 		PathPattern:        "/admin/namespaces/{namespace}/orders/stats",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetOrderStatisticsReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -282,6 +453,44 @@ func (a *Client) GetOrderStatistics(params *GetOrderStatisticsParams, authInfo r
 
 	case *GetOrderStatisticsOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetOrderStatisticsShort(params *GetOrderStatisticsParams, authInfo runtime.ClientAuthInfoWriter) (*GetOrderStatisticsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetOrderStatisticsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getOrderStatistics",
+		Method:             "GET",
+		PathPattern:        "/admin/namespaces/{namespace}/orders/stats",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetOrderStatisticsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetOrderStatisticsOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -290,7 +499,7 @@ func (a *Client) GetOrderStatistics(params *GetOrderStatisticsParams, authInfo r
 /*
   GetUserOrder gets an order
 
-  Get an order.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:ORDER", action=2 (READ)</li><li><i>Returns</i>: get order</li></ul>
+  Get an order.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ORDER&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: get order&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) GetUserOrder(params *GetUserOrderParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserOrderOK, *GetUserOrderNotFound, error) {
 	// TODO: Validate the params before sending
@@ -308,7 +517,7 @@ func (a *Client) GetUserOrder(params *GetUserOrderParams, authInfo runtime.Clien
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetUserOrderReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -323,17 +532,58 @@ func (a *Client) GetUserOrder(params *GetUserOrderParams, authInfo runtime.Clien
 
 	case *GetUserOrderOK:
 		return v, nil, nil
+
 	case *GetUserOrderNotFound:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetUserOrderShort(params *GetUserOrderParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserOrderOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetUserOrderParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getUserOrder",
+		Method:             "GET",
+		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetUserOrderReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetUserOrderOK:
+		return v, nil
+	case *GetUserOrderNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   GetUserOrderGrant gets user order grant
 
-  Get user order grant that fulfilled by this order.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:ORDER", action=2 (READ)</li><li><i>Returns</i>: get order grant</li></ul>
+  Get user order grant that fulfilled by this order.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ORDER&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: get order grant&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) GetUserOrderGrant(params *GetUserOrderGrantParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserOrderGrantOK, error) {
 	// TODO: Validate the params before sending
@@ -351,7 +601,7 @@ func (a *Client) GetUserOrderGrant(params *GetUserOrderGrantParams, authInfo run
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}/grant",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetUserOrderGrantReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -366,6 +616,44 @@ func (a *Client) GetUserOrderGrant(params *GetUserOrderGrantParams, authInfo run
 
 	case *GetUserOrderGrantOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetUserOrderGrantShort(params *GetUserOrderGrantParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserOrderGrantOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetUserOrderGrantParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getUserOrderGrant",
+		Method:             "GET",
+		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}/grant",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetUserOrderGrantReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetUserOrderGrantOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -374,7 +662,7 @@ func (a *Client) GetUserOrderGrant(params *GetUserOrderGrantParams, authInfo run
 /*
   GetUserOrderHistories gets user order histories
 
-  Get user order history.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:ORDER", action=2 (READ)</li><li><i>Returns</i>: get order history</li></ul>
+  Get user order history.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ORDER&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: get order history&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) GetUserOrderHistories(params *GetUserOrderHistoriesParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserOrderHistoriesOK, error) {
 	// TODO: Validate the params before sending
@@ -392,7 +680,7 @@ func (a *Client) GetUserOrderHistories(params *GetUserOrderHistoriesParams, auth
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}/history",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetUserOrderHistoriesReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -407,6 +695,44 @@ func (a *Client) GetUserOrderHistories(params *GetUserOrderHistoriesParams, auth
 
 	case *GetUserOrderHistoriesOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetUserOrderHistoriesShort(params *GetUserOrderHistoriesParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserOrderHistoriesOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetUserOrderHistoriesParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getUserOrderHistories",
+		Method:             "GET",
+		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}/history",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetUserOrderHistoriesReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetUserOrderHistoriesOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -415,7 +741,7 @@ func (a *Client) GetUserOrderHistories(params *GetUserOrderHistoriesParams, auth
 /*
   ProcessUserOrderNotification webs hook for payment notification
 
-  <b>[SERVICE COMMUNICATION ONLY]</b> This API is used as a web hook for payment notification from justice payment service.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:ORDER", action=4 (UPDATE)</li><li><i>Returns</i>: Process result</li></ul>
+  &lt;b&gt;[SERVICE COMMUNICATION ONLY]&lt;/b&gt; This API is used as a web hook for payment notification from justice payment service.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ORDER&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: Process result&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) ProcessUserOrderNotification(params *ProcessUserOrderNotificationParams, authInfo runtime.ClientAuthInfoWriter) (*ProcessUserOrderNotificationNoContent, *ProcessUserOrderNotificationBadRequest, error) {
 	// TODO: Validate the params before sending
@@ -433,7 +759,7 @@ func (a *Client) ProcessUserOrderNotification(params *ProcessUserOrderNotificati
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}/notifications",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &ProcessUserOrderNotificationReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -448,17 +774,58 @@ func (a *Client) ProcessUserOrderNotification(params *ProcessUserOrderNotificati
 
 	case *ProcessUserOrderNotificationNoContent:
 		return v, nil, nil
+
 	case *ProcessUserOrderNotificationBadRequest:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) ProcessUserOrderNotificationShort(params *ProcessUserOrderNotificationParams, authInfo runtime.ClientAuthInfoWriter) (*ProcessUserOrderNotificationNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewProcessUserOrderNotificationParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "processUserOrderNotification",
+		Method:             "POST",
+		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}/notifications",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ProcessUserOrderNotificationReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *ProcessUserOrderNotificationNoContent:
+		return v, nil
+	case *ProcessUserOrderNotificationBadRequest:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   PublicCancelUserOrder cancels user order
 
-  Cancel user order.<br>Other detail info: <ul><li><i>Required permission</i>: resource="NAMESPACE:{namespace}:USER:{userId}:ORDER", action=4 (UPDATE)</li><li><i>Returns</i>: cancelled order</li></ul>
+  Cancel user order.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:ORDER&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: cancelled order&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) PublicCancelUserOrder(params *PublicCancelUserOrderParams, authInfo runtime.ClientAuthInfoWriter) (*PublicCancelUserOrderOK, *PublicCancelUserOrderNotFound, *PublicCancelUserOrderConflict, error) {
 	// TODO: Validate the params before sending
@@ -476,7 +843,7 @@ func (a *Client) PublicCancelUserOrder(params *PublicCancelUserOrderParams, auth
 		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/orders/{orderNo}/cancel",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicCancelUserOrderReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -491,19 +858,63 @@ func (a *Client) PublicCancelUserOrder(params *PublicCancelUserOrderParams, auth
 
 	case *PublicCancelUserOrderOK:
 		return v, nil, nil, nil
+
 	case *PublicCancelUserOrderNotFound:
 		return nil, v, nil, nil
+
 	case *PublicCancelUserOrderConflict:
 		return nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicCancelUserOrderShort(params *PublicCancelUserOrderParams, authInfo runtime.ClientAuthInfoWriter) (*PublicCancelUserOrderOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicCancelUserOrderParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicCancelUserOrder",
+		Method:             "PUT",
+		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/orders/{orderNo}/cancel",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicCancelUserOrderReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicCancelUserOrderOK:
+		return v, nil
+	case *PublicCancelUserOrderNotFound:
+		return nil, v
+	case *PublicCancelUserOrderConflict:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   PublicCreateUserOrder creates an order
 
-  Create an order. The result contains the checkout link and payment token. User with permission SANDBOX will create sandbox order that not real paid for xsolla/alipay and not validate price for wxpay.<br>Other detail info: <ul><li><i>Required permission</i>: resource="NAMESPACE:{namespace}:USER:{userId}:ORDER", action=1 (CREATE)</li><li><i>Optional permission(user with this permission will create sandbox order)</i>: resource="SANDBOX", action=1 (CREATE)</li><li>It will be forbidden while the user is banned: ORDER_INITIATE or ORDER_AND_PAYMENT</li><li><i>Returns</i>: created order</li></ul>
+  Create an order. The result contains the checkout link and payment token. User with permission SANDBOX will create sandbox order that not real paid for xsolla/alipay and not validate price for wxpay.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:ORDER&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Optional permission(user with this permission will create sandbox order)&lt;/i&gt;: resource=&#34;SANDBOX&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;It will be forbidden while the user is banned: ORDER_INITIATE or ORDER_AND_PAYMENT&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: created order&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) PublicCreateUserOrder(params *PublicCreateUserOrderParams, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateUserOrderCreated, *PublicCreateUserOrderBadRequest, *PublicCreateUserOrderForbidden, *PublicCreateUserOrderNotFound, *PublicCreateUserOrderConflict, *PublicCreateUserOrderUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -521,7 +932,7 @@ func (a *Client) PublicCreateUserOrder(params *PublicCreateUserOrderParams, auth
 		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/orders",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicCreateUserOrderReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -536,25 +947,78 @@ func (a *Client) PublicCreateUserOrder(params *PublicCreateUserOrderParams, auth
 
 	case *PublicCreateUserOrderCreated:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *PublicCreateUserOrderBadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *PublicCreateUserOrderForbidden:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *PublicCreateUserOrderNotFound:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *PublicCreateUserOrderConflict:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *PublicCreateUserOrderUnprocessableEntity:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicCreateUserOrderShort(params *PublicCreateUserOrderParams, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateUserOrderCreated, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicCreateUserOrderParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicCreateUserOrder",
+		Method:             "POST",
+		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/orders",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicCreateUserOrderReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicCreateUserOrderCreated:
+		return v, nil
+	case *PublicCreateUserOrderBadRequest:
+		return nil, v
+	case *PublicCreateUserOrderForbidden:
+		return nil, v
+	case *PublicCreateUserOrderNotFound:
+		return nil, v
+	case *PublicCreateUserOrderConflict:
+		return nil, v
+	case *PublicCreateUserOrderUnprocessableEntity:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   PublicDownloadUserOrderReceipt downloads user order receipt
 
-  Download user order receipt by orderNo.<br>Other detail info: <ul><li><i>Required permission</i>: resource="NAMESPACE:{namespace}:USER:{userId}:ORDER", action=2 (READ)</li><li><i>Returns</i>: order receipt pdf</li></ul>
+  Download user order receipt by orderNo.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:ORDER&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: order receipt pdf&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) PublicDownloadUserOrderReceipt(params *PublicDownloadUserOrderReceiptParams, authInfo runtime.ClientAuthInfoWriter) (*PublicDownloadUserOrderReceiptOK, *PublicDownloadUserOrderReceiptNotFound, *PublicDownloadUserOrderReceiptConflict, error) {
 	// TODO: Validate the params before sending
@@ -572,7 +1036,7 @@ func (a *Client) PublicDownloadUserOrderReceipt(params *PublicDownloadUserOrderR
 		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/orders/{orderNo}/receipt.pdf",
 		ProducesMediaTypes: []string{"application/pdf"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicDownloadUserOrderReceiptReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -587,19 +1051,63 @@ func (a *Client) PublicDownloadUserOrderReceipt(params *PublicDownloadUserOrderR
 
 	case *PublicDownloadUserOrderReceiptOK:
 		return v, nil, nil, nil
+
 	case *PublicDownloadUserOrderReceiptNotFound:
 		return nil, v, nil, nil
+
 	case *PublicDownloadUserOrderReceiptConflict:
 		return nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicDownloadUserOrderReceiptShort(params *PublicDownloadUserOrderReceiptParams, authInfo runtime.ClientAuthInfoWriter) (*PublicDownloadUserOrderReceiptOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicDownloadUserOrderReceiptParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicDownloadUserOrderReceipt",
+		Method:             "GET",
+		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/orders/{orderNo}/receipt.pdf",
+		ProducesMediaTypes: []string{"application/pdf"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicDownloadUserOrderReceiptReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicDownloadUserOrderReceiptOK:
+		return v, nil
+	case *PublicDownloadUserOrderReceiptNotFound:
+		return nil, v
+	case *PublicDownloadUserOrderReceiptConflict:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   PublicGetUserOrder gets user order
 
-  Get user order.<br>Other detail info: <ul><li><i>Required permission</i>: resource="NAMESPACE:{namespace}:USER:{userId}:ORDER", action=2 (READ)</li><li><i>Returns</i>: get order</li></ul>
+  Get user order.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:ORDER&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: get order&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) PublicGetUserOrder(params *PublicGetUserOrderParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserOrderOK, *PublicGetUserOrderNotFound, error) {
 	// TODO: Validate the params before sending
@@ -617,7 +1125,7 @@ func (a *Client) PublicGetUserOrder(params *PublicGetUserOrderParams, authInfo r
 		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/orders/{orderNo}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicGetUserOrderReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -632,17 +1140,58 @@ func (a *Client) PublicGetUserOrder(params *PublicGetUserOrderParams, authInfo r
 
 	case *PublicGetUserOrderOK:
 		return v, nil, nil
+
 	case *PublicGetUserOrderNotFound:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicGetUserOrderShort(params *PublicGetUserOrderParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserOrderOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetUserOrderParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicGetUserOrder",
+		Method:             "GET",
+		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/orders/{orderNo}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicGetUserOrderReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetUserOrderOK:
+		return v, nil
+	case *PublicGetUserOrderNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   PublicGetUserOrderHistories gets user order histories
 
-  Get user order histories.<br>Other detail info: <ul><li><i>Required permission</i>: resource="NAMESPACE:{namespace}:USER:{userId}:ORDER", action=2 (READ)</li><li><i>Returns</i>: get order history</li></ul>
+  Get user order histories.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:ORDER&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: get order history&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) PublicGetUserOrderHistories(params *PublicGetUserOrderHistoriesParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserOrderHistoriesOK, error) {
 	// TODO: Validate the params before sending
@@ -660,7 +1209,7 @@ func (a *Client) PublicGetUserOrderHistories(params *PublicGetUserOrderHistories
 		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/orders/{orderNo}/history",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicGetUserOrderHistoriesReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -675,6 +1224,44 @@ func (a *Client) PublicGetUserOrderHistories(params *PublicGetUserOrderHistories
 
 	case *PublicGetUserOrderHistoriesOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicGetUserOrderHistoriesShort(params *PublicGetUserOrderHistoriesParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserOrderHistoriesOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetUserOrderHistoriesParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicGetUserOrderHistories",
+		Method:             "GET",
+		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/orders/{orderNo}/history",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicGetUserOrderHistoriesReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetUserOrderHistoriesOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -683,7 +1270,7 @@ func (a *Client) PublicGetUserOrderHistories(params *PublicGetUserOrderHistories
 /*
   PublicQueryUserOrders queries user orders
 
-  Query user orders.<br>Other detail info: <ul><li><i>Required permission</i>: resource="NAMESPACE:{namespace}:USER:{userId}:ORDER", action=2 (READ)</li><li><i>Returns</i>: get order</li></ul>
+  Query user orders.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:ORDER&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: get order&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) PublicQueryUserOrders(params *PublicQueryUserOrdersParams, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryUserOrdersOK, error) {
 	// TODO: Validate the params before sending
@@ -701,7 +1288,7 @@ func (a *Client) PublicQueryUserOrders(params *PublicQueryUserOrdersParams, auth
 		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/orders",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicQueryUserOrdersReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -716,6 +1303,44 @@ func (a *Client) PublicQueryUserOrders(params *PublicQueryUserOrdersParams, auth
 
 	case *PublicQueryUserOrdersOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicQueryUserOrdersShort(params *PublicQueryUserOrdersParams, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryUserOrdersOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicQueryUserOrdersParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicQueryUserOrders",
+		Method:             "GET",
+		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/orders",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicQueryUserOrdersReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicQueryUserOrdersOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -724,7 +1349,7 @@ func (a *Client) PublicQueryUserOrders(params *PublicQueryUserOrdersParams, auth
 /*
   QueryOrders queries orders
 
-  Query orders.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:ORDER", action=2 (READ)</li><li><i>Returns</i>: query orders</li></ul>
+  Query orders.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:ORDER&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: query orders&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) QueryOrders(params *QueryOrdersParams, authInfo runtime.ClientAuthInfoWriter) (*QueryOrdersOK, *QueryOrdersUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -742,7 +1367,7 @@ func (a *Client) QueryOrders(params *QueryOrdersParams, authInfo runtime.ClientA
 		PathPattern:        "/admin/namespaces/{namespace}/orders",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &QueryOrdersReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -757,17 +1382,58 @@ func (a *Client) QueryOrders(params *QueryOrdersParams, authInfo runtime.ClientA
 
 	case *QueryOrdersOK:
 		return v, nil, nil
+
 	case *QueryOrdersUnprocessableEntity:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) QueryOrdersShort(params *QueryOrdersParams, authInfo runtime.ClientAuthInfoWriter) (*QueryOrdersOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewQueryOrdersParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "queryOrders",
+		Method:             "GET",
+		PathPattern:        "/admin/namespaces/{namespace}/orders",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &QueryOrdersReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *QueryOrdersOK:
+		return v, nil
+	case *QueryOrdersUnprocessableEntity:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   QueryUserOrders queries user orders
 
-  Query user orders.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:ORDER", action=2 (READ)</li><li><i>Returns</i>: get order</li></ul>
+  Query user orders.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ORDER&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: get order&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) QueryUserOrders(params *QueryUserOrdersParams, authInfo runtime.ClientAuthInfoWriter) (*QueryUserOrdersOK, error) {
 	// TODO: Validate the params before sending
@@ -785,7 +1451,7 @@ func (a *Client) QueryUserOrders(params *QueryUserOrdersParams, authInfo runtime
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/orders",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &QueryUserOrdersReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -800,6 +1466,44 @@ func (a *Client) QueryUserOrders(params *QueryUserOrdersParams, authInfo runtime
 
 	case *QueryUserOrdersOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) QueryUserOrdersShort(params *QueryUserOrdersParams, authInfo runtime.ClientAuthInfoWriter) (*QueryUserOrdersOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewQueryUserOrdersParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "queryUserOrders",
+		Method:             "GET",
+		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/orders",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &QueryUserOrdersReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *QueryUserOrdersOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -808,7 +1512,7 @@ func (a *Client) QueryUserOrders(params *QueryUserOrdersParams, authInfo runtime
 /*
   RefundOrder refunds order
 
-  Refund order by orderNo.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:ORDER", action=4 (UPDATE)</li></ul>
+  Refund order by orderNo.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:ORDER&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) RefundOrder(params *RefundOrderParams, authInfo runtime.ClientAuthInfoWriter) (*RefundOrderOK, *RefundOrderNotFound, *RefundOrderConflict, *RefundOrderUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -826,7 +1530,7 @@ func (a *Client) RefundOrder(params *RefundOrderParams, authInfo runtime.ClientA
 		PathPattern:        "/admin/namespaces/{namespace}/orders/{orderNo}/refund",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &RefundOrderReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -841,21 +1545,68 @@ func (a *Client) RefundOrder(params *RefundOrderParams, authInfo runtime.ClientA
 
 	case *RefundOrderOK:
 		return v, nil, nil, nil, nil
+
 	case *RefundOrderNotFound:
 		return nil, v, nil, nil, nil
+
 	case *RefundOrderConflict:
 		return nil, nil, v, nil, nil
+
 	case *RefundOrderUnprocessableEntity:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) RefundOrderShort(params *RefundOrderParams, authInfo runtime.ClientAuthInfoWriter) (*RefundOrderOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRefundOrderParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "refundOrder",
+		Method:             "PUT",
+		PathPattern:        "/admin/namespaces/{namespace}/orders/{orderNo}/refund",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &RefundOrderReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *RefundOrderOK:
+		return v, nil
+	case *RefundOrderNotFound:
+		return nil, v
+	case *RefundOrderConflict:
+		return nil, v
+	case *RefundOrderUnprocessableEntity:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   UpdateUserOrderStatus updates order status
 
-  Update order status.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:ORDER", action=4 (UPDATE)</li><li><i>Returns</i>: updated order</li></ul>
+  Update order status.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ORDER&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated order&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) UpdateUserOrderStatus(params *UpdateUserOrderStatusParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateUserOrderStatusOK, *UpdateUserOrderStatusNotFound, *UpdateUserOrderStatusConflict, *UpdateUserOrderStatusUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -873,7 +1624,7 @@ func (a *Client) UpdateUserOrderStatus(params *UpdateUserOrderStatusParams, auth
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &UpdateUserOrderStatusReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -888,14 +1639,61 @@ func (a *Client) UpdateUserOrderStatus(params *UpdateUserOrderStatusParams, auth
 
 	case *UpdateUserOrderStatusOK:
 		return v, nil, nil, nil, nil
+
 	case *UpdateUserOrderStatusNotFound:
 		return nil, v, nil, nil, nil
+
 	case *UpdateUserOrderStatusConflict:
 		return nil, nil, v, nil, nil
+
 	case *UpdateUserOrderStatusUnprocessableEntity:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) UpdateUserOrderStatusShort(params *UpdateUserOrderStatusParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateUserOrderStatusOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateUserOrderStatusParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updateUserOrderStatus",
+		Method:             "PUT",
+		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateUserOrderStatusReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateUserOrderStatusOK:
+		return v, nil
+	case *UpdateUserOrderStatusNotFound:
+		return nil, v
+	case *UpdateUserOrderStatusConflict:
+		return nil, v
+	case *UpdateUserOrderStatusUnprocessableEntity:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 

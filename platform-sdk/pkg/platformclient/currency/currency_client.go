@@ -30,18 +30,19 @@ type Client struct {
 // ClientService is the interface for Client methods
 type ClientService interface {
 	CreateCurrency(params *CreateCurrencyParams, authInfo runtime.ClientAuthInfoWriter) (*CreateCurrencyOK, *CreateCurrencyConflict, *CreateCurrencyUnprocessableEntity, error)
-
+	CreateCurrencyShort(params *CreateCurrencyParams, authInfo runtime.ClientAuthInfoWriter) (*CreateCurrencyOK, error)
 	DeleteCurrency(params *DeleteCurrencyParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteCurrencyOK, *DeleteCurrencyNotFound, error)
-
+	DeleteCurrencyShort(params *DeleteCurrencyParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteCurrencyOK, error)
 	GetCurrencyConfig(params *GetCurrencyConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetCurrencyConfigOK, *GetCurrencyConfigNotFound, error)
-
+	GetCurrencyConfigShort(params *GetCurrencyConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetCurrencyConfigOK, error)
 	GetCurrencySummary(params *GetCurrencySummaryParams, authInfo runtime.ClientAuthInfoWriter) (*GetCurrencySummaryOK, *GetCurrencySummaryNotFound, error)
-
+	GetCurrencySummaryShort(params *GetCurrencySummaryParams, authInfo runtime.ClientAuthInfoWriter) (*GetCurrencySummaryOK, error)
 	ListCurrencies(params *ListCurrenciesParams, authInfo runtime.ClientAuthInfoWriter) (*ListCurrenciesOK, error)
-
+	ListCurrenciesShort(params *ListCurrenciesParams, authInfo runtime.ClientAuthInfoWriter) (*ListCurrenciesOK, error)
 	PublicListCurrencies(params *PublicListCurrenciesParams) (*PublicListCurrenciesOK, error)
-
+	PublicListCurrenciesShort(params *PublicListCurrenciesParams) (*PublicListCurrenciesOK, error)
 	UpdateCurrency(params *UpdateCurrencyParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateCurrencyOK, *UpdateCurrencyNotFound, *UpdateCurrencyUnprocessableEntity, error)
+	UpdateCurrencyShort(params *UpdateCurrencyParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateCurrencyOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -49,7 +50,7 @@ type ClientService interface {
 /*
   CreateCurrency creates a currency
 
-  Create a currency.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:CURRENCY", action=1 (CREATE)</li><li><i>Returns</i>: created currency</li></ul>
+  Create a currency.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:CURRENCY&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: created currency&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) CreateCurrency(params *CreateCurrencyParams, authInfo runtime.ClientAuthInfoWriter) (*CreateCurrencyOK, *CreateCurrencyConflict, *CreateCurrencyUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -67,7 +68,7 @@ func (a *Client) CreateCurrency(params *CreateCurrencyParams, authInfo runtime.C
 		PathPattern:        "/admin/namespaces/{namespace}/currencies",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &CreateCurrencyReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -82,19 +83,63 @@ func (a *Client) CreateCurrency(params *CreateCurrencyParams, authInfo runtime.C
 
 	case *CreateCurrencyOK:
 		return v, nil, nil, nil
+
 	case *CreateCurrencyConflict:
 		return nil, v, nil, nil
+
 	case *CreateCurrencyUnprocessableEntity:
 		return nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) CreateCurrencyShort(params *CreateCurrencyParams, authInfo runtime.ClientAuthInfoWriter) (*CreateCurrencyOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreateCurrencyParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "createCurrency",
+		Method:             "POST",
+		PathPattern:        "/admin/namespaces/{namespace}/currencies",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CreateCurrencyReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *CreateCurrencyOK:
+		return v, nil
+	case *CreateCurrencyConflict:
+		return nil, v
+	case *CreateCurrencyUnprocessableEntity:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   DeleteCurrency deletes a currency
 
-  Delete a currency by currency code.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:CURRENCY", action=8 (DELETE)</li><li><i>Returns</i>: </li></ul>
+  Delete a currency by currency code.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:CURRENCY&#34;, action=8 (DELETE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: &lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) DeleteCurrency(params *DeleteCurrencyParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteCurrencyOK, *DeleteCurrencyNotFound, error) {
 	// TODO: Validate the params before sending
@@ -112,7 +157,7 @@ func (a *Client) DeleteCurrency(params *DeleteCurrencyParams, authInfo runtime.C
 		PathPattern:        "/admin/namespaces/{namespace}/currencies/{currencyCode}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteCurrencyReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -127,17 +172,58 @@ func (a *Client) DeleteCurrency(params *DeleteCurrencyParams, authInfo runtime.C
 
 	case *DeleteCurrencyOK:
 		return v, nil, nil
+
 	case *DeleteCurrencyNotFound:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) DeleteCurrencyShort(params *DeleteCurrencyParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteCurrencyOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteCurrencyParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "deleteCurrency",
+		Method:             "DELETE",
+		PathPattern:        "/admin/namespaces/{namespace}/currencies/{currencyCode}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteCurrencyReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeleteCurrencyOK:
+		return v, nil
+	case *DeleteCurrencyNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   GetCurrencyConfig gets currency config
 
-  <b>[SERVICE COMMUNICATION ONLY]</b> Get currency config by code.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:CURRENCY", action=2 (READ)</li><li><i>Returns</i>: simplified Currency</li></ul>
+  &lt;b&gt;[SERVICE COMMUNICATION ONLY]&lt;/b&gt; Get currency config by code.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:CURRENCY&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: simplified Currency&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) GetCurrencyConfig(params *GetCurrencyConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetCurrencyConfigOK, *GetCurrencyConfigNotFound, error) {
 	// TODO: Validate the params before sending
@@ -155,7 +241,7 @@ func (a *Client) GetCurrencyConfig(params *GetCurrencyConfigParams, authInfo run
 		PathPattern:        "/admin/namespaces/{namespace}/currencies/{currencyCode}/config",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetCurrencyConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -170,17 +256,58 @@ func (a *Client) GetCurrencyConfig(params *GetCurrencyConfigParams, authInfo run
 
 	case *GetCurrencyConfigOK:
 		return v, nil, nil
+
 	case *GetCurrencyConfigNotFound:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetCurrencyConfigShort(params *GetCurrencyConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetCurrencyConfigOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetCurrencyConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getCurrencyConfig",
+		Method:             "GET",
+		PathPattern:        "/admin/namespaces/{namespace}/currencies/{currencyCode}/config",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetCurrencyConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetCurrencyConfigOK:
+		return v, nil
+	case *GetCurrencyConfigNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   GetCurrencySummary gets currency summary
 
-  Get currency summary by code.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:CURRENCY", action=2 (READ)</li><li><i>Returns</i>: simplified Currency</li></ul>
+  Get currency summary by code.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:CURRENCY&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: simplified Currency&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) GetCurrencySummary(params *GetCurrencySummaryParams, authInfo runtime.ClientAuthInfoWriter) (*GetCurrencySummaryOK, *GetCurrencySummaryNotFound, error) {
 	// TODO: Validate the params before sending
@@ -198,7 +325,7 @@ func (a *Client) GetCurrencySummary(params *GetCurrencySummaryParams, authInfo r
 		PathPattern:        "/admin/namespaces/{namespace}/currencies/{currencyCode}/summary",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetCurrencySummaryReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -213,17 +340,58 @@ func (a *Client) GetCurrencySummary(params *GetCurrencySummaryParams, authInfo r
 
 	case *GetCurrencySummaryOK:
 		return v, nil, nil
+
 	case *GetCurrencySummaryNotFound:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetCurrencySummaryShort(params *GetCurrencySummaryParams, authInfo runtime.ClientAuthInfoWriter) (*GetCurrencySummaryOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetCurrencySummaryParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getCurrencySummary",
+		Method:             "GET",
+		PathPattern:        "/admin/namespaces/{namespace}/currencies/{currencyCode}/summary",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetCurrencySummaryReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetCurrencySummaryOK:
+		return v, nil
+	case *GetCurrencySummaryNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   ListCurrencies lists currencies
 
-  List currencies of a namespace.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:CURRENCY", action=2 (READ)</li><li><i>Returns</i>: Currency List</li></ul>
+  List currencies of a namespace.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:CURRENCY&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: Currency List&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) ListCurrencies(params *ListCurrenciesParams, authInfo runtime.ClientAuthInfoWriter) (*ListCurrenciesOK, error) {
 	// TODO: Validate the params before sending
@@ -241,7 +409,7 @@ func (a *Client) ListCurrencies(params *ListCurrenciesParams, authInfo runtime.C
 		PathPattern:        "/admin/namespaces/{namespace}/currencies",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &ListCurrenciesReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -256,6 +424,44 @@ func (a *Client) ListCurrencies(params *ListCurrenciesParams, authInfo runtime.C
 
 	case *ListCurrenciesOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) ListCurrenciesShort(params *ListCurrenciesParams, authInfo runtime.ClientAuthInfoWriter) (*ListCurrenciesOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewListCurrenciesParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "listCurrencies",
+		Method:             "GET",
+		PathPattern:        "/admin/namespaces/{namespace}/currencies",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ListCurrenciesReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *ListCurrenciesOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -264,7 +470,7 @@ func (a *Client) ListCurrencies(params *ListCurrenciesParams, authInfo runtime.C
 /*
   PublicListCurrencies lists currencies
 
-  List currencies of a namespace.<br>Other detail info: <ul><li><i>Returns</i>: Currency List</li></ul>
+  List currencies of a namespace.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: Currency List&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) PublicListCurrencies(params *PublicListCurrenciesParams) (*PublicListCurrenciesOK, error) {
 	// TODO: Validate the params before sending
@@ -282,7 +488,7 @@ func (a *Client) PublicListCurrencies(params *PublicListCurrenciesParams) (*Publ
 		PathPattern:        "/public/namespaces/{namespace}/currencies",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicListCurrenciesReader{formats: a.formats},
 		Context:            params.Context,
@@ -296,6 +502,43 @@ func (a *Client) PublicListCurrencies(params *PublicListCurrenciesParams) (*Publ
 
 	case *PublicListCurrenciesOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicListCurrenciesShort(params *PublicListCurrenciesParams) (*PublicListCurrenciesOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicListCurrenciesParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicListCurrencies",
+		Method:             "GET",
+		PathPattern:        "/public/namespaces/{namespace}/currencies",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicListCurrenciesReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicListCurrenciesOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -304,7 +547,7 @@ func (a *Client) PublicListCurrencies(params *PublicListCurrenciesParams) (*Publ
 /*
   UpdateCurrency updates a currency
 
-  Update a currency by currency code.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:CURRENCY", action=4 (UPDATE)</li><li><i>Returns</i>: updated currency</li></ul>
+  Update a currency by currency code.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:CURRENCY&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated currency&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) UpdateCurrency(params *UpdateCurrencyParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateCurrencyOK, *UpdateCurrencyNotFound, *UpdateCurrencyUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -322,7 +565,7 @@ func (a *Client) UpdateCurrency(params *UpdateCurrencyParams, authInfo runtime.C
 		PathPattern:        "/admin/namespaces/{namespace}/currencies/{currencyCode}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &UpdateCurrencyReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -337,12 +580,56 @@ func (a *Client) UpdateCurrency(params *UpdateCurrencyParams, authInfo runtime.C
 
 	case *UpdateCurrencyOK:
 		return v, nil, nil, nil
+
 	case *UpdateCurrencyNotFound:
 		return nil, v, nil, nil
+
 	case *UpdateCurrencyUnprocessableEntity:
 		return nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) UpdateCurrencyShort(params *UpdateCurrencyParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateCurrencyOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateCurrencyParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updateCurrency",
+		Method:             "PUT",
+		PathPattern:        "/admin/namespaces/{namespace}/currencies/{currencyCode}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateCurrencyReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateCurrencyOK:
+		return v, nil
+	case *UpdateCurrencyNotFound:
+		return nil, v
+	case *UpdateCurrencyUnprocessableEntity:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 

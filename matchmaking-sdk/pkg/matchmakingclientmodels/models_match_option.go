@@ -17,24 +17,24 @@ import (
 // swagger:model models.MatchOption
 type ModelsMatchOption struct {
 
-	// multi value
-	// Required: true
-	MultiValue *bool `json:"multi_value"`
-
 	// name
 	// Required: true
 	Name string `json:"name"`
+
+	// type
+	// Required: true
+	Type *string `json:"type"`
 }
 
 // Validate validates this models match option
 func (m *ModelsMatchOption) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateMultiValue(formats); err != nil {
+	if err := m.validateName(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateName(formats); err != nil {
+	if err := m.validateType(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -44,18 +44,18 @@ func (m *ModelsMatchOption) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *ModelsMatchOption) validateMultiValue(formats strfmt.Registry) error {
+func (m *ModelsMatchOption) validateName(formats strfmt.Registry) error {
 
-	if err := validate.Required("multi_value", "body", m.MultiValue); err != nil {
+	if err := validate.RequiredString("name", "body", string(m.Name)); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func (m *ModelsMatchOption) validateName(formats strfmt.Registry) error {
+func (m *ModelsMatchOption) validateType(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("name", "body", string(m.Name)); err != nil {
+	if err := validate.Required("type", "body", m.Type); err != nil {
 		return err
 	}
 

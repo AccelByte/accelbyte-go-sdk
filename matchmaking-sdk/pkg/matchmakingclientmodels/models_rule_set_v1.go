@@ -23,6 +23,10 @@ type ModelsRuleSetV1 struct {
 	// Required: true
 	Alliance *ModelsAllianceRuleV1 `json:"alliance"`
 
+	// alliance flexing rule
+	// Required: true
+	AllianceFlexingRule []*ModelsAllianceFlexingRule `json:"alliance_flexing_rule"`
+
 	// flexing rules
 	// Required: true
 	FlexingRules []*ModelsFlexingRule `json:"flexingRules"`
@@ -45,6 +49,10 @@ func (m *ModelsRuleSetV1) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateAlliance(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateAllianceFlexingRule(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -83,6 +91,31 @@ func (m *ModelsRuleSetV1) validateAlliance(formats strfmt.Registry) error {
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *ModelsRuleSetV1) validateAllianceFlexingRule(formats strfmt.Registry) error {
+
+	if err := validate.Required("alliance_flexing_rule", "body", m.AllianceFlexingRule); err != nil {
+		return err
+	}
+
+	for i := 0; i < len(m.AllianceFlexingRule); i++ {
+		if swag.IsZero(m.AllianceFlexingRule[i]) { // not required
+			continue
+		}
+
+		if m.AllianceFlexingRule[i] != nil {
+			if err := m.AllianceFlexingRule[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("alliance_flexing_rule" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
 	}
 
 	return nil

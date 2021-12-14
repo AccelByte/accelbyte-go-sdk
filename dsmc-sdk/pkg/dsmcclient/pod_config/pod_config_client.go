@@ -30,14 +30,15 @@ type Client struct {
 // ClientService is the interface for Client methods
 type ClientService interface {
 	CreatePodConfig(params *CreatePodConfigParams, authInfo runtime.ClientAuthInfoWriter) (*CreatePodConfigCreated, *CreatePodConfigBadRequest, *CreatePodConfigUnauthorized, *CreatePodConfigConflict, *CreatePodConfigInternalServerError, error)
-
+	CreatePodConfigShort(params *CreatePodConfigParams, authInfo runtime.ClientAuthInfoWriter) (*CreatePodConfigCreated, error)
 	DeletePodConfig(params *DeletePodConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeletePodConfigNoContent, *DeletePodConfigBadRequest, *DeletePodConfigUnauthorized, *DeletePodConfigNotFound, *DeletePodConfigConflict, *DeletePodConfigInternalServerError, error)
-
+	DeletePodConfigShort(params *DeletePodConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeletePodConfigNoContent, error)
 	GetAllPodConfig(params *GetAllPodConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetAllPodConfigOK, *GetAllPodConfigBadRequest, *GetAllPodConfigUnauthorized, *GetAllPodConfigInternalServerError, error)
-
+	GetAllPodConfigShort(params *GetAllPodConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetAllPodConfigOK, error)
 	GetPodConfig(params *GetPodConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetPodConfigOK, *GetPodConfigBadRequest, *GetPodConfigUnauthorized, *GetPodConfigNotFound, *GetPodConfigInternalServerError, error)
-
+	GetPodConfigShort(params *GetPodConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetPodConfigOK, error)
 	UpdatePodConfig(params *UpdatePodConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePodConfigOK, *UpdatePodConfigBadRequest, *UpdatePodConfigUnauthorized, *UpdatePodConfigNotFound, *UpdatePodConfigConflict, *UpdatePodConfigInternalServerError, error)
+	UpdatePodConfigShort(params *UpdatePodConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePodConfigOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -67,7 +68,7 @@ func (a *Client) CreatePodConfig(params *CreatePodConfigParams, authInfo runtime
 		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/configs/pods/{name}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &CreatePodConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -82,16 +83,66 @@ func (a *Client) CreatePodConfig(params *CreatePodConfigParams, authInfo runtime
 
 	case *CreatePodConfigCreated:
 		return v, nil, nil, nil, nil, nil
+
 	case *CreatePodConfigBadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *CreatePodConfigUnauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *CreatePodConfigConflict:
 		return nil, nil, nil, v, nil, nil
+
 	case *CreatePodConfigInternalServerError:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) CreatePodConfigShort(params *CreatePodConfigParams, authInfo runtime.ClientAuthInfoWriter) (*CreatePodConfigCreated, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreatePodConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "CreatePodConfig",
+		Method:             "POST",
+		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/configs/pods/{name}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CreatePodConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *CreatePodConfigCreated:
+		return v, nil
+	case *CreatePodConfigBadRequest:
+		return nil, v
+	case *CreatePodConfigUnauthorized:
+		return nil, v
+	case *CreatePodConfigConflict:
+		return nil, v
+	case *CreatePodConfigInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -120,7 +171,7 @@ func (a *Client) DeletePodConfig(params *DeletePodConfigParams, authInfo runtime
 		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/configs/pods/{name}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeletePodConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -135,18 +186,71 @@ func (a *Client) DeletePodConfig(params *DeletePodConfigParams, authInfo runtime
 
 	case *DeletePodConfigNoContent:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *DeletePodConfigBadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *DeletePodConfigUnauthorized:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *DeletePodConfigNotFound:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *DeletePodConfigConflict:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *DeletePodConfigInternalServerError:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) DeletePodConfigShort(params *DeletePodConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeletePodConfigNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeletePodConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "DeletePodConfig",
+		Method:             "DELETE",
+		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/configs/pods/{name}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeletePodConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeletePodConfigNoContent:
+		return v, nil
+	case *DeletePodConfigBadRequest:
+		return nil, v
+	case *DeletePodConfigUnauthorized:
+		return nil, v
+	case *DeletePodConfigNotFound:
+		return nil, v
+	case *DeletePodConfigConflict:
+		return nil, v
+	case *DeletePodConfigInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -175,7 +279,7 @@ func (a *Client) GetAllPodConfig(params *GetAllPodConfigParams, authInfo runtime
 		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/configs/pods",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetAllPodConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -190,14 +294,61 @@ func (a *Client) GetAllPodConfig(params *GetAllPodConfigParams, authInfo runtime
 
 	case *GetAllPodConfigOK:
 		return v, nil, nil, nil, nil
+
 	case *GetAllPodConfigBadRequest:
 		return nil, v, nil, nil, nil
+
 	case *GetAllPodConfigUnauthorized:
 		return nil, nil, v, nil, nil
+
 	case *GetAllPodConfigInternalServerError:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetAllPodConfigShort(params *GetAllPodConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetAllPodConfigOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetAllPodConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetAllPodConfig",
+		Method:             "GET",
+		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/configs/pods",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetAllPodConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetAllPodConfigOK:
+		return v, nil
+	case *GetAllPodConfigBadRequest:
+		return nil, v
+	case *GetAllPodConfigUnauthorized:
+		return nil, v
+	case *GetAllPodConfigInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -226,7 +377,7 @@ func (a *Client) GetPodConfig(params *GetPodConfigParams, authInfo runtime.Clien
 		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/configs/pods/{name}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetPodConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -241,16 +392,66 @@ func (a *Client) GetPodConfig(params *GetPodConfigParams, authInfo runtime.Clien
 
 	case *GetPodConfigOK:
 		return v, nil, nil, nil, nil, nil
+
 	case *GetPodConfigBadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *GetPodConfigUnauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *GetPodConfigNotFound:
 		return nil, nil, nil, v, nil, nil
+
 	case *GetPodConfigInternalServerError:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetPodConfigShort(params *GetPodConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetPodConfigOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetPodConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetPodConfig",
+		Method:             "GET",
+		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/configs/pods/{name}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetPodConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetPodConfigOK:
+		return v, nil
+	case *GetPodConfigBadRequest:
+		return nil, v
+	case *GetPodConfigUnauthorized:
+		return nil, v
+	case *GetPodConfigNotFound:
+		return nil, v
+	case *GetPodConfigInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -279,7 +480,7 @@ func (a *Client) UpdatePodConfig(params *UpdatePodConfigParams, authInfo runtime
 		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/configs/pods/{name}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &UpdatePodConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -294,18 +495,71 @@ func (a *Client) UpdatePodConfig(params *UpdatePodConfigParams, authInfo runtime
 
 	case *UpdatePodConfigOK:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *UpdatePodConfigBadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *UpdatePodConfigUnauthorized:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *UpdatePodConfigNotFound:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *UpdatePodConfigConflict:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *UpdatePodConfigInternalServerError:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) UpdatePodConfigShort(params *UpdatePodConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePodConfigOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdatePodConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "UpdatePodConfig",
+		Method:             "PATCH",
+		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/configs/pods/{name}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdatePodConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdatePodConfigOK:
+		return v, nil
+	case *UpdatePodConfigBadRequest:
+		return nil, v
+	case *UpdatePodConfigUnauthorized:
+		return nil, v
+	case *UpdatePodConfigNotFound:
+		return nil, v
+	case *UpdatePodConfigConflict:
+		return nil, v
+	case *UpdatePodConfigInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 

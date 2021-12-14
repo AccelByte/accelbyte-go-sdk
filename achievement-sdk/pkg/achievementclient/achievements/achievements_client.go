@@ -30,32 +30,33 @@ type Client struct {
 // ClientService is the interface for Client methods
 type ClientService interface {
 	AdminCreateNewAchievement(params *AdminCreateNewAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateNewAchievementCreated, *AdminCreateNewAchievementBadRequest, *AdminCreateNewAchievementUnauthorized, *AdminCreateNewAchievementInternalServerError, error)
-
+	AdminCreateNewAchievementShort(params *AdminCreateNewAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateNewAchievementCreated, error)
 	AdminDeleteAchievement(params *AdminDeleteAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteAchievementNoContent, *AdminDeleteAchievementBadRequest, *AdminDeleteAchievementUnauthorized, *AdminDeleteAchievementNotFound, *AdminDeleteAchievementInternalServerError, error)
-
+	AdminDeleteAchievementShort(params *AdminDeleteAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteAchievementNoContent, error)
 	AdminGetAchievement(params *AdminGetAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetAchievementOK, *AdminGetAchievementBadRequest, *AdminGetAchievementUnauthorized, *AdminGetAchievementNotFound, *AdminGetAchievementInternalServerError, error)
-
+	AdminGetAchievementShort(params *AdminGetAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetAchievementOK, error)
 	AdminListAchievements(params *AdminListAchievementsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminListAchievementsOK, *AdminListAchievementsBadRequest, *AdminListAchievementsUnauthorized, *AdminListAchievementsNotFound, *AdminListAchievementsInternalServerError, error)
-
+	AdminListAchievementsShort(params *AdminListAchievementsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminListAchievementsOK, error)
 	AdminListUserAchievements(params *AdminListUserAchievementsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminListUserAchievementsOK, *AdminListUserAchievementsBadRequest, *AdminListUserAchievementsUnauthorized, *AdminListUserAchievementsNotFound, *AdminListUserAchievementsInternalServerError, error)
-
+	AdminListUserAchievementsShort(params *AdminListUserAchievementsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminListUserAchievementsOK, error)
 	AdminUnlockAchievement(params *AdminUnlockAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUnlockAchievementNoContent, *AdminUnlockAchievementBadRequest, *AdminUnlockAchievementUnauthorized, *AdminUnlockAchievementInternalServerError, error)
-
+	AdminUnlockAchievementShort(params *AdminUnlockAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUnlockAchievementNoContent, error)
 	AdminUpdateAchievement(params *AdminUpdateAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateAchievementOK, *AdminUpdateAchievementBadRequest, *AdminUpdateAchievementUnauthorized, *AdminUpdateAchievementNotFound, *AdminUpdateAchievementInternalServerError, error)
-
+	AdminUpdateAchievementShort(params *AdminUpdateAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateAchievementOK, error)
 	AdminUpdateAchievementListOrder(params *AdminUpdateAchievementListOrderParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateAchievementListOrderNoContent, *AdminUpdateAchievementListOrderBadRequest, *AdminUpdateAchievementListOrderUnauthorized, *AdminUpdateAchievementListOrderNotFound, *AdminUpdateAchievementListOrderInternalServerError, error)
-
+	AdminUpdateAchievementListOrderShort(params *AdminUpdateAchievementListOrderParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateAchievementListOrderNoContent, error)
 	ExportAchievements(params *ExportAchievementsParams, authInfo runtime.ClientAuthInfoWriter) (*ExportAchievementsOK, *ExportAchievementsUnauthorized, *ExportAchievementsForbidden, *ExportAchievementsInternalServerError, error)
-
+	ExportAchievementsShort(params *ExportAchievementsParams, authInfo runtime.ClientAuthInfoWriter) (*ExportAchievementsOK, error)
 	ImportAchievements(params *ImportAchievementsParams, authInfo runtime.ClientAuthInfoWriter) (*ImportAchievementsOK, *ImportAchievementsUnauthorized, *ImportAchievementsForbidden, *ImportAchievementsInternalServerError, error)
-
+	ImportAchievementsShort(params *ImportAchievementsParams, authInfo runtime.ClientAuthInfoWriter) (*ImportAchievementsOK, error)
 	PublicGetAchievement(params *PublicGetAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetAchievementOK, *PublicGetAchievementBadRequest, *PublicGetAchievementUnauthorized, *PublicGetAchievementNotFound, *PublicGetAchievementInternalServerError, error)
-
+	PublicGetAchievementShort(params *PublicGetAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetAchievementOK, error)
 	PublicListAchievements(params *PublicListAchievementsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicListAchievementsOK, *PublicListAchievementsBadRequest, *PublicListAchievementsUnauthorized, *PublicListAchievementsNotFound, *PublicListAchievementsInternalServerError, error)
-
+	PublicListAchievementsShort(params *PublicListAchievementsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicListAchievementsOK, error)
 	PublicListUserAchievements(params *PublicListUserAchievementsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicListUserAchievementsOK, *PublicListUserAchievementsBadRequest, *PublicListUserAchievementsUnauthorized, *PublicListUserAchievementsNotFound, *PublicListUserAchievementsInternalServerError, error)
-
+	PublicListUserAchievementsShort(params *PublicListUserAchievementsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicListUserAchievementsOK, error)
 	PublicUnlockAchievement(params *PublicUnlockAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUnlockAchievementNoContent, *PublicUnlockAchievementBadRequest, *PublicUnlockAchievementUnauthorized, *PublicUnlockAchievementInternalServerError, error)
+	PublicUnlockAchievementShort(params *PublicUnlockAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUnlockAchievementNoContent, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -63,8 +64,8 @@ type ClientService interface {
 /*
   AdminCreateNewAchievement creates new achievement
 
-  <p>Required permission
-			<code>ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [CREATE]</code> and scope <code>social</code></p>
+  &lt;p&gt;Required permission
+			&lt;code&gt;ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [CREATE]&lt;/code&gt; and scope &lt;code&gt;social&lt;/code&gt;&lt;/p&gt;
         	Other detail info:
           - achievementCode: Human readable unique code to indentify the achievement. Must be lowercase
 			and maximum length is 32
@@ -94,7 +95,7 @@ func (a *Client) AdminCreateNewAchievement(params *AdminCreateNewAchievementPara
 		PathPattern:        "/achievement/v1/admin/namespaces/{namespace}/achievements",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminCreateNewAchievementReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -109,22 +110,69 @@ func (a *Client) AdminCreateNewAchievement(params *AdminCreateNewAchievementPara
 
 	case *AdminCreateNewAchievementCreated:
 		return v, nil, nil, nil, nil
+
 	case *AdminCreateNewAchievementBadRequest:
 		return nil, v, nil, nil, nil
+
 	case *AdminCreateNewAchievementUnauthorized:
 		return nil, nil, v, nil, nil
+
 	case *AdminCreateNewAchievementInternalServerError:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminCreateNewAchievementShort(params *AdminCreateNewAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateNewAchievementCreated, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminCreateNewAchievementParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminCreateNewAchievement",
+		Method:             "POST",
+		PathPattern:        "/achievement/v1/admin/namespaces/{namespace}/achievements",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminCreateNewAchievementReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminCreateNewAchievementCreated:
+		return v, nil
+	case *AdminCreateNewAchievementBadRequest:
+		return nil, v
+	case *AdminCreateNewAchievementUnauthorized:
+		return nil, v
+	case *AdminCreateNewAchievementInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   AdminDeleteAchievement deletes an achievement
 
-  <p>Required permission
-<code>ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [DELETE]</code> and scope <code>social</code></p>
+  &lt;p&gt;Required permission
+&lt;code&gt;ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [DELETE]&lt;/code&gt; and scope &lt;code&gt;social&lt;/code&gt;&lt;/p&gt;
 */
 func (a *Client) AdminDeleteAchievement(params *AdminDeleteAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteAchievementNoContent, *AdminDeleteAchievementBadRequest, *AdminDeleteAchievementUnauthorized, *AdminDeleteAchievementNotFound, *AdminDeleteAchievementInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -142,7 +190,7 @@ func (a *Client) AdminDeleteAchievement(params *AdminDeleteAchievementParams, au
 		PathPattern:        "/achievement/v1/admin/namespaces/{namespace}/achievements/{achievementCode}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminDeleteAchievementReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -157,24 +205,74 @@ func (a *Client) AdminDeleteAchievement(params *AdminDeleteAchievementParams, au
 
 	case *AdminDeleteAchievementNoContent:
 		return v, nil, nil, nil, nil, nil
+
 	case *AdminDeleteAchievementBadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *AdminDeleteAchievementUnauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *AdminDeleteAchievementNotFound:
 		return nil, nil, nil, v, nil, nil
+
 	case *AdminDeleteAchievementInternalServerError:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminDeleteAchievementShort(params *AdminDeleteAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteAchievementNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminDeleteAchievementParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminDeleteAchievement",
+		Method:             "DELETE",
+		PathPattern:        "/achievement/v1/admin/namespaces/{namespace}/achievements/{achievementCode}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminDeleteAchievementReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminDeleteAchievementNoContent:
+		return v, nil
+	case *AdminDeleteAchievementBadRequest:
+		return nil, v
+	case *AdminDeleteAchievementUnauthorized:
+		return nil, v
+	case *AdminDeleteAchievementNotFound:
+		return nil, v
+	case *AdminDeleteAchievementInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   AdminGetAchievement gets an achievement
 
-  <p>Required permission
-<code>ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [READ]</code> and scope <code>social</code></p>
+  &lt;p&gt;Required permission
+&lt;code&gt;ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [READ]&lt;/code&gt; and scope &lt;code&gt;social&lt;/code&gt;&lt;/p&gt;
 */
 func (a *Client) AdminGetAchievement(params *AdminGetAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetAchievementOK, *AdminGetAchievementBadRequest, *AdminGetAchievementUnauthorized, *AdminGetAchievementNotFound, *AdminGetAchievementInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -192,7 +290,7 @@ func (a *Client) AdminGetAchievement(params *AdminGetAchievementParams, authInfo
 		PathPattern:        "/achievement/v1/admin/namespaces/{namespace}/achievements/{achievementCode}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminGetAchievementReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -207,24 +305,74 @@ func (a *Client) AdminGetAchievement(params *AdminGetAchievementParams, authInfo
 
 	case *AdminGetAchievementOK:
 		return v, nil, nil, nil, nil, nil
+
 	case *AdminGetAchievementBadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *AdminGetAchievementUnauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *AdminGetAchievementNotFound:
 		return nil, nil, nil, v, nil, nil
+
 	case *AdminGetAchievementInternalServerError:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminGetAchievementShort(params *AdminGetAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetAchievementOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGetAchievementParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminGetAchievement",
+		Method:             "GET",
+		PathPattern:        "/achievement/v1/admin/namespaces/{namespace}/achievements/{achievementCode}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGetAchievementReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGetAchievementOK:
+		return v, nil
+	case *AdminGetAchievementBadRequest:
+		return nil, v
+	case *AdminGetAchievementUnauthorized:
+		return nil, v
+	case *AdminGetAchievementNotFound:
+		return nil, v
+	case *AdminGetAchievementInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   AdminListAchievements queries achievements
 
-  <p>Required permission
-<code>ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [READ]</code> and scope <code>social</code></p>
+  &lt;p&gt;Required permission
+&lt;code&gt;ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [READ]&lt;/code&gt; and scope &lt;code&gt;social&lt;/code&gt;&lt;/p&gt;
 */
 func (a *Client) AdminListAchievements(params *AdminListAchievementsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminListAchievementsOK, *AdminListAchievementsBadRequest, *AdminListAchievementsUnauthorized, *AdminListAchievementsNotFound, *AdminListAchievementsInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -242,7 +390,7 @@ func (a *Client) AdminListAchievements(params *AdminListAchievementsParams, auth
 		PathPattern:        "/achievement/v1/admin/namespaces/{namespace}/achievements",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminListAchievementsReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -257,24 +405,74 @@ func (a *Client) AdminListAchievements(params *AdminListAchievementsParams, auth
 
 	case *AdminListAchievementsOK:
 		return v, nil, nil, nil, nil, nil
+
 	case *AdminListAchievementsBadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *AdminListAchievementsUnauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *AdminListAchievementsNotFound:
 		return nil, nil, nil, v, nil, nil
+
 	case *AdminListAchievementsInternalServerError:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminListAchievementsShort(params *AdminListAchievementsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminListAchievementsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminListAchievementsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminListAchievements",
+		Method:             "GET",
+		PathPattern:        "/achievement/v1/admin/namespaces/{namespace}/achievements",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminListAchievementsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminListAchievementsOK:
+		return v, nil
+	case *AdminListAchievementsBadRequest:
+		return nil, v
+	case *AdminListAchievementsUnauthorized:
+		return nil, v
+	case *AdminListAchievementsNotFound:
+		return nil, v
+	case *AdminListAchievementsInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   AdminListUserAchievements queries user achievements include achieved and in progress
 
-  <p>Required permission
-<code>ADMIN:NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [READ]</code> and scope <code>social</code></p>
+  &lt;p&gt;Required permission
+&lt;code&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [READ]&lt;/code&gt; and scope &lt;code&gt;social&lt;/code&gt;&lt;/p&gt;
 */
 func (a *Client) AdminListUserAchievements(params *AdminListUserAchievementsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminListUserAchievementsOK, *AdminListUserAchievementsBadRequest, *AdminListUserAchievementsUnauthorized, *AdminListUserAchievementsNotFound, *AdminListUserAchievementsInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -292,7 +490,7 @@ func (a *Client) AdminListUserAchievements(params *AdminListUserAchievementsPara
 		PathPattern:        "/achievement/v1/admin/namespaces/{namespace}/users/{userId}/achievements",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminListUserAchievementsReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -307,24 +505,74 @@ func (a *Client) AdminListUserAchievements(params *AdminListUserAchievementsPara
 
 	case *AdminListUserAchievementsOK:
 		return v, nil, nil, nil, nil, nil
+
 	case *AdminListUserAchievementsBadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *AdminListUserAchievementsUnauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *AdminListUserAchievementsNotFound:
 		return nil, nil, nil, v, nil, nil
+
 	case *AdminListUserAchievementsInternalServerError:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminListUserAchievementsShort(params *AdminListUserAchievementsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminListUserAchievementsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminListUserAchievementsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminListUserAchievements",
+		Method:             "GET",
+		PathPattern:        "/achievement/v1/admin/namespaces/{namespace}/users/{userId}/achievements",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminListUserAchievementsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminListUserAchievementsOK:
+		return v, nil
+	case *AdminListUserAchievementsBadRequest:
+		return nil, v
+	case *AdminListUserAchievementsUnauthorized:
+		return nil, v
+	case *AdminListUserAchievementsNotFound:
+		return nil, v
+	case *AdminListUserAchievementsInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   AdminUnlockAchievement unlocks an achievement
 
-  <p>Required permission
-<code>ADMIN:NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [UPDATE]</code> and scope <code>social</code></p>
+  &lt;p&gt;Required permission
+&lt;code&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [UPDATE]&lt;/code&gt; and scope &lt;code&gt;social&lt;/code&gt;&lt;/p&gt;
 */
 func (a *Client) AdminUnlockAchievement(params *AdminUnlockAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUnlockAchievementNoContent, *AdminUnlockAchievementBadRequest, *AdminUnlockAchievementUnauthorized, *AdminUnlockAchievementInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -342,7 +590,7 @@ func (a *Client) AdminUnlockAchievement(params *AdminUnlockAchievementParams, au
 		PathPattern:        "/achievement/v1/admin/namespaces/{namespace}/users/{userId}/achievements/{achievementCode}/unlock",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminUnlockAchievementReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -357,22 +605,69 @@ func (a *Client) AdminUnlockAchievement(params *AdminUnlockAchievementParams, au
 
 	case *AdminUnlockAchievementNoContent:
 		return v, nil, nil, nil, nil
+
 	case *AdminUnlockAchievementBadRequest:
 		return nil, v, nil, nil, nil
+
 	case *AdminUnlockAchievementUnauthorized:
 		return nil, nil, v, nil, nil
+
 	case *AdminUnlockAchievementInternalServerError:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminUnlockAchievementShort(params *AdminUnlockAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUnlockAchievementNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminUnlockAchievementParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminUnlockAchievement",
+		Method:             "PUT",
+		PathPattern:        "/achievement/v1/admin/namespaces/{namespace}/users/{userId}/achievements/{achievementCode}/unlock",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminUnlockAchievementReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminUnlockAchievementNoContent:
+		return v, nil
+	case *AdminUnlockAchievementBadRequest:
+		return nil, v
+	case *AdminUnlockAchievementUnauthorized:
+		return nil, v
+	case *AdminUnlockAchievementInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   AdminUpdateAchievement updates an achievement
 
-  <p>Required permission
-<code>ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [UPDATE]</code> and scope <code>social</code></p>
+  &lt;p&gt;Required permission
+&lt;code&gt;ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [UPDATE]&lt;/code&gt; and scope &lt;code&gt;social&lt;/code&gt;&lt;/p&gt;
 */
 func (a *Client) AdminUpdateAchievement(params *AdminUpdateAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateAchievementOK, *AdminUpdateAchievementBadRequest, *AdminUpdateAchievementUnauthorized, *AdminUpdateAchievementNotFound, *AdminUpdateAchievementInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -390,7 +685,7 @@ func (a *Client) AdminUpdateAchievement(params *AdminUpdateAchievementParams, au
 		PathPattern:        "/achievement/v1/admin/namespaces/{namespace}/achievements/{achievementCode}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminUpdateAchievementReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -405,24 +700,74 @@ func (a *Client) AdminUpdateAchievement(params *AdminUpdateAchievementParams, au
 
 	case *AdminUpdateAchievementOK:
 		return v, nil, nil, nil, nil, nil
+
 	case *AdminUpdateAchievementBadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *AdminUpdateAchievementUnauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *AdminUpdateAchievementNotFound:
 		return nil, nil, nil, v, nil, nil
+
 	case *AdminUpdateAchievementInternalServerError:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminUpdateAchievementShort(params *AdminUpdateAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateAchievementOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminUpdateAchievementParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminUpdateAchievement",
+		Method:             "PUT",
+		PathPattern:        "/achievement/v1/admin/namespaces/{namespace}/achievements/{achievementCode}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminUpdateAchievementReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminUpdateAchievementOK:
+		return v, nil
+	case *AdminUpdateAchievementBadRequest:
+		return nil, v
+	case *AdminUpdateAchievementUnauthorized:
+		return nil, v
+	case *AdminUpdateAchievementNotFound:
+		return nil, v
+	case *AdminUpdateAchievementInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   AdminUpdateAchievementListOrder updates achievements list order
 
-  <p>Required permission
-<code>ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [UPDATE]</code> and scope <code>social</code></p>
+  &lt;p&gt;Required permission
+&lt;code&gt;ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [UPDATE]&lt;/code&gt; and scope &lt;code&gt;social&lt;/code&gt;&lt;/p&gt;
 */
 func (a *Client) AdminUpdateAchievementListOrder(params *AdminUpdateAchievementListOrderParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateAchievementListOrderNoContent, *AdminUpdateAchievementListOrderBadRequest, *AdminUpdateAchievementListOrderUnauthorized, *AdminUpdateAchievementListOrderNotFound, *AdminUpdateAchievementListOrderInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -440,7 +785,7 @@ func (a *Client) AdminUpdateAchievementListOrder(params *AdminUpdateAchievementL
 		PathPattern:        "/achievement/v1/admin/namespaces/{namespace}/achievements/{achievementCode}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminUpdateAchievementListOrderReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -455,16 +800,66 @@ func (a *Client) AdminUpdateAchievementListOrder(params *AdminUpdateAchievementL
 
 	case *AdminUpdateAchievementListOrderNoContent:
 		return v, nil, nil, nil, nil, nil
+
 	case *AdminUpdateAchievementListOrderBadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *AdminUpdateAchievementListOrderUnauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *AdminUpdateAchievementListOrderNotFound:
 		return nil, nil, nil, v, nil, nil
+
 	case *AdminUpdateAchievementListOrderInternalServerError:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminUpdateAchievementListOrderShort(params *AdminUpdateAchievementListOrderParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateAchievementListOrderNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminUpdateAchievementListOrderParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminUpdateAchievementListOrder",
+		Method:             "PATCH",
+		PathPattern:        "/achievement/v1/admin/namespaces/{namespace}/achievements/{achievementCode}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminUpdateAchievementListOrderReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminUpdateAchievementListOrderNoContent:
+		return v, nil
+	case *AdminUpdateAchievementListOrderBadRequest:
+		return nil, v
+	case *AdminUpdateAchievementListOrderUnauthorized:
+		return nil, v
+	case *AdminUpdateAchievementListOrderNotFound:
+		return nil, v
+	case *AdminUpdateAchievementListOrderInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -493,7 +888,7 @@ func (a *Client) ExportAchievements(params *ExportAchievementsParams, authInfo r
 		PathPattern:        "/achievement/v1/admin/namespaces/{namespace}/achievements/export",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &ExportAchievementsReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -508,14 +903,61 @@ func (a *Client) ExportAchievements(params *ExportAchievementsParams, authInfo r
 
 	case *ExportAchievementsOK:
 		return v, nil, nil, nil, nil
+
 	case *ExportAchievementsUnauthorized:
 		return nil, v, nil, nil, nil
+
 	case *ExportAchievementsForbidden:
 		return nil, nil, v, nil, nil
+
 	case *ExportAchievementsInternalServerError:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) ExportAchievementsShort(params *ExportAchievementsParams, authInfo runtime.ClientAuthInfoWriter) (*ExportAchievementsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewExportAchievementsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "ExportAchievements",
+		Method:             "GET",
+		PathPattern:        "/achievement/v1/admin/namespaces/{namespace}/achievements/export",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ExportAchievementsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *ExportAchievementsOK:
+		return v, nil
+	case *ExportAchievementsUnauthorized:
+		return nil, v
+	case *ExportAchievementsForbidden:
+		return nil, v
+	case *ExportAchievementsInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -549,7 +991,7 @@ func (a *Client) ImportAchievements(params *ImportAchievementsParams, authInfo r
 		PathPattern:        "/achievement/v1/admin/namespaces/{namespace}/achievements/import",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"multipart/form-data"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &ImportAchievementsReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -564,22 +1006,69 @@ func (a *Client) ImportAchievements(params *ImportAchievementsParams, authInfo r
 
 	case *ImportAchievementsOK:
 		return v, nil, nil, nil, nil
+
 	case *ImportAchievementsUnauthorized:
 		return nil, v, nil, nil, nil
+
 	case *ImportAchievementsForbidden:
 		return nil, nil, v, nil, nil
+
 	case *ImportAchievementsInternalServerError:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) ImportAchievementsShort(params *ImportAchievementsParams, authInfo runtime.ClientAuthInfoWriter) (*ImportAchievementsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewImportAchievementsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "ImportAchievements",
+		Method:             "POST",
+		PathPattern:        "/achievement/v1/admin/namespaces/{namespace}/achievements/import",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"multipart/form-data"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ImportAchievementsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *ImportAchievementsOK:
+		return v, nil
+	case *ImportAchievementsUnauthorized:
+		return nil, v
+	case *ImportAchievementsForbidden:
+		return nil, v
+	case *ImportAchievementsInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   PublicGetAchievement gets an achievement
 
-  <p>Required permission
-<code>NAMESPACE:{namespace}:ACHIEVEMENT [READ]</code> and scope <code>social</code></p>
+  &lt;p&gt;Required permission
+&lt;code&gt;NAMESPACE:{namespace}:ACHIEVEMENT [READ]&lt;/code&gt; and scope &lt;code&gt;social&lt;/code&gt;&lt;/p&gt;
 */
 func (a *Client) PublicGetAchievement(params *PublicGetAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetAchievementOK, *PublicGetAchievementBadRequest, *PublicGetAchievementUnauthorized, *PublicGetAchievementNotFound, *PublicGetAchievementInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -597,7 +1086,7 @@ func (a *Client) PublicGetAchievement(params *PublicGetAchievementParams, authIn
 		PathPattern:        "/achievement/v1/public/namespaces/{namespace}/achievements/{achievementCode}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicGetAchievementReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -612,24 +1101,74 @@ func (a *Client) PublicGetAchievement(params *PublicGetAchievementParams, authIn
 
 	case *PublicGetAchievementOK:
 		return v, nil, nil, nil, nil, nil
+
 	case *PublicGetAchievementBadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *PublicGetAchievementUnauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *PublicGetAchievementNotFound:
 		return nil, nil, nil, v, nil, nil
+
 	case *PublicGetAchievementInternalServerError:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicGetAchievementShort(params *PublicGetAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetAchievementOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetAchievementParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicGetAchievement",
+		Method:             "GET",
+		PathPattern:        "/achievement/v1/public/namespaces/{namespace}/achievements/{achievementCode}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicGetAchievementReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetAchievementOK:
+		return v, nil
+	case *PublicGetAchievementBadRequest:
+		return nil, v
+	case *PublicGetAchievementUnauthorized:
+		return nil, v
+	case *PublicGetAchievementNotFound:
+		return nil, v
+	case *PublicGetAchievementInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   PublicListAchievements queries achievements
 
-  <p>Required permission
-<code>NAMESPACE:{namespace}:ACHIEVEMENT [READ]</code> and scope <code>social</code></p>
+  &lt;p&gt;Required permission
+&lt;code&gt;NAMESPACE:{namespace}:ACHIEVEMENT [READ]&lt;/code&gt; and scope &lt;code&gt;social&lt;/code&gt;&lt;/p&gt;
 */
 func (a *Client) PublicListAchievements(params *PublicListAchievementsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicListAchievementsOK, *PublicListAchievementsBadRequest, *PublicListAchievementsUnauthorized, *PublicListAchievementsNotFound, *PublicListAchievementsInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -647,7 +1186,7 @@ func (a *Client) PublicListAchievements(params *PublicListAchievementsParams, au
 		PathPattern:        "/achievement/v1/public/namespaces/{namespace}/achievements",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicListAchievementsReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -662,24 +1201,74 @@ func (a *Client) PublicListAchievements(params *PublicListAchievementsParams, au
 
 	case *PublicListAchievementsOK:
 		return v, nil, nil, nil, nil, nil
+
 	case *PublicListAchievementsBadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *PublicListAchievementsUnauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *PublicListAchievementsNotFound:
 		return nil, nil, nil, v, nil, nil
+
 	case *PublicListAchievementsInternalServerError:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicListAchievementsShort(params *PublicListAchievementsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicListAchievementsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicListAchievementsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicListAchievements",
+		Method:             "GET",
+		PathPattern:        "/achievement/v1/public/namespaces/{namespace}/achievements",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicListAchievementsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicListAchievementsOK:
+		return v, nil
+	case *PublicListAchievementsBadRequest:
+		return nil, v
+	case *PublicListAchievementsUnauthorized:
+		return nil, v
+	case *PublicListAchievementsNotFound:
+		return nil, v
+	case *PublicListAchievementsInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   PublicListUserAchievements queries user achievements include achieved and in progress
 
-  <p>Required permission
-<code>NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [READ]</code> and scope <code>social</code></p>
+  &lt;p&gt;Required permission
+&lt;code&gt;NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [READ]&lt;/code&gt; and scope &lt;code&gt;social&lt;/code&gt;&lt;/p&gt;
 */
 func (a *Client) PublicListUserAchievements(params *PublicListUserAchievementsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicListUserAchievementsOK, *PublicListUserAchievementsBadRequest, *PublicListUserAchievementsUnauthorized, *PublicListUserAchievementsNotFound, *PublicListUserAchievementsInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -697,7 +1286,7 @@ func (a *Client) PublicListUserAchievements(params *PublicListUserAchievementsPa
 		PathPattern:        "/achievement/v1/public/namespaces/{namespace}/users/{userId}/achievements",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicListUserAchievementsReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -712,24 +1301,74 @@ func (a *Client) PublicListUserAchievements(params *PublicListUserAchievementsPa
 
 	case *PublicListUserAchievementsOK:
 		return v, nil, nil, nil, nil, nil
+
 	case *PublicListUserAchievementsBadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *PublicListUserAchievementsUnauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *PublicListUserAchievementsNotFound:
 		return nil, nil, nil, v, nil, nil
+
 	case *PublicListUserAchievementsInternalServerError:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicListUserAchievementsShort(params *PublicListUserAchievementsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicListUserAchievementsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicListUserAchievementsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicListUserAchievements",
+		Method:             "GET",
+		PathPattern:        "/achievement/v1/public/namespaces/{namespace}/users/{userId}/achievements",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicListUserAchievementsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicListUserAchievementsOK:
+		return v, nil
+	case *PublicListUserAchievementsBadRequest:
+		return nil, v
+	case *PublicListUserAchievementsUnauthorized:
+		return nil, v
+	case *PublicListUserAchievementsNotFound:
+		return nil, v
+	case *PublicListUserAchievementsInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   PublicUnlockAchievement unlocks an achievement
 
-  <p>Required permission
-<code>NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [UPDATE]</code> and scope <code>social</code></p>
+  &lt;p&gt;Required permission
+&lt;code&gt;NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [UPDATE]&lt;/code&gt; and scope &lt;code&gt;social&lt;/code&gt;&lt;/p&gt;
 */
 func (a *Client) PublicUnlockAchievement(params *PublicUnlockAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUnlockAchievementNoContent, *PublicUnlockAchievementBadRequest, *PublicUnlockAchievementUnauthorized, *PublicUnlockAchievementInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -747,7 +1386,7 @@ func (a *Client) PublicUnlockAchievement(params *PublicUnlockAchievementParams, 
 		PathPattern:        "/achievement/v1/public/namespaces/{namespace}/users/{userId}/achievements/{achievementCode}/unlock",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicUnlockAchievementReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -762,14 +1401,61 @@ func (a *Client) PublicUnlockAchievement(params *PublicUnlockAchievementParams, 
 
 	case *PublicUnlockAchievementNoContent:
 		return v, nil, nil, nil, nil
+
 	case *PublicUnlockAchievementBadRequest:
 		return nil, v, nil, nil, nil
+
 	case *PublicUnlockAchievementUnauthorized:
 		return nil, nil, v, nil, nil
+
 	case *PublicUnlockAchievementInternalServerError:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicUnlockAchievementShort(params *PublicUnlockAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUnlockAchievementNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicUnlockAchievementParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicUnlockAchievement",
+		Method:             "PUT",
+		PathPattern:        "/achievement/v1/public/namespaces/{namespace}/users/{userId}/achievements/{achievementCode}/unlock",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicUnlockAchievementReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicUnlockAchievementNoContent:
+		return v, nil
+	case *PublicUnlockAchievementBadRequest:
+		return nil, v
+	case *PublicUnlockAchievementUnauthorized:
+		return nil, v
+	case *PublicUnlockAchievementInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 

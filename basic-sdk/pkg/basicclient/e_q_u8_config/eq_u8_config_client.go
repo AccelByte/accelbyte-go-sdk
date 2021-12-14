@@ -30,10 +30,11 @@ type Client struct {
 // ClientService is the interface for Client methods
 type ClientService interface {
 	DeleteConfig(params *DeleteConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteConfigNoContent, error)
-
+	DeleteConfigShort(params *DeleteConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteConfigNoContent, error)
 	GetConfig(params *GetConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetConfigOK, *GetConfigNotFound, *GetConfigInternalServerError, error)
-
+	GetConfigShort(params *GetConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetConfigOK, error)
 	UpdateConfig(params *UpdateConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateConfigOK, *UpdateConfigBadRequest, *UpdateConfigInternalServerError, error)
+	UpdateConfigShort(params *UpdateConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateConfigOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -41,7 +42,7 @@ type ClientService interface {
 /*
   DeleteConfig deletes equ8 config
 
-  Delete equ8 config.<br>Other detail info: <ul><li><i>Required permission</i>: resource=<b>"ADMIN:NAMESPACE:{namespace}:EQU8CONFIG"</b>, action=8 <b>(DELETE)</b></li></ul>
+  Delete equ8 config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:EQU8CONFIG&#34;&lt;/b&gt;, action=8 &lt;b&gt;(DELETE)&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) DeleteConfig(params *DeleteConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteConfigNoContent, error) {
 	// TODO: Validate the params before sending
@@ -59,7 +60,7 @@ func (a *Client) DeleteConfig(params *DeleteConfigParams, authInfo runtime.Clien
 		PathPattern:        "/v1/admin/namespaces/{namespace}/equ8/config",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -74,6 +75,44 @@ func (a *Client) DeleteConfig(params *DeleteConfigParams, authInfo runtime.Clien
 
 	case *DeleteConfigNoContent:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) DeleteConfigShort(params *DeleteConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteConfigNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "deleteConfig",
+		Method:             "DELETE",
+		PathPattern:        "/v1/admin/namespaces/{namespace}/equ8/config",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeleteConfigNoContent:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -82,7 +121,7 @@ func (a *Client) DeleteConfig(params *DeleteConfigParams, authInfo runtime.Clien
 /*
   GetConfig gets equ8 config
 
-  Get equ8 config.<br>Other detail info: <ul><li><i>Required permission</i>: resource=<b>"ADMIN:NAMESPACE:{namespace}:EQU8CONFIG"</b>, action=2 <b>(READ)</b></li></ul>
+  Get equ8 config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:EQU8CONFIG&#34;&lt;/b&gt;, action=2 &lt;b&gt;(READ)&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) GetConfig(params *GetConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetConfigOK, *GetConfigNotFound, *GetConfigInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -100,7 +139,7 @@ func (a *Client) GetConfig(params *GetConfigParams, authInfo runtime.ClientAuthI
 		PathPattern:        "/v1/admin/namespaces/{namespace}/equ8/config",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -115,19 +154,63 @@ func (a *Client) GetConfig(params *GetConfigParams, authInfo runtime.ClientAuthI
 
 	case *GetConfigOK:
 		return v, nil, nil, nil
+
 	case *GetConfigNotFound:
 		return nil, v, nil, nil
+
 	case *GetConfigInternalServerError:
 		return nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetConfigShort(params *GetConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetConfigOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getConfig",
+		Method:             "GET",
+		PathPattern:        "/v1/admin/namespaces/{namespace}/equ8/config",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetConfigOK:
+		return v, nil
+	case *GetConfigNotFound:
+		return nil, v
+	case *GetConfigInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   UpdateConfig creates or update equ8 config
 
-  Update equ8 config, create if not exists.<br>Other detail info: <ul><li><i>Required permission</i>: resource=<b>"ADMIN:NAMESPACE:{namespace}:EQU8CONFIG"</b>, action=4 <b>(UPDATE)</b></li></ul>
+  Update equ8 config, create if not exists.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:EQU8CONFIG&#34;&lt;/b&gt;, action=4 &lt;b&gt;(UPDATE)&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) UpdateConfig(params *UpdateConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateConfigOK, *UpdateConfigBadRequest, *UpdateConfigInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -145,7 +228,7 @@ func (a *Client) UpdateConfig(params *UpdateConfigParams, authInfo runtime.Clien
 		PathPattern:        "/v1/admin/namespaces/{namespace}/equ8/config",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &UpdateConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -160,12 +243,56 @@ func (a *Client) UpdateConfig(params *UpdateConfigParams, authInfo runtime.Clien
 
 	case *UpdateConfigOK:
 		return v, nil, nil, nil
+
 	case *UpdateConfigBadRequest:
 		return nil, v, nil, nil
+
 	case *UpdateConfigInternalServerError:
 		return nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) UpdateConfigShort(params *UpdateConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateConfigOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updateConfig",
+		Method:             "PATCH",
+		PathPattern:        "/v1/admin/namespaces/{namespace}/equ8/config",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateConfigOK:
+		return v, nil
+	case *UpdateConfigBadRequest:
+		return nil, v
+	case *UpdateConfigInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 

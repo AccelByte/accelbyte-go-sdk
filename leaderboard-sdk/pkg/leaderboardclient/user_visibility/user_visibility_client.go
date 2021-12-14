@@ -30,12 +30,13 @@ type Client struct {
 // ClientService is the interface for Client methods
 type ClientService interface {
 	GetHiddenUsersV2(params *GetHiddenUsersV2Params, authInfo runtime.ClientAuthInfoWriter) (*GetHiddenUsersV2OK, *GetHiddenUsersV2BadRequest, *GetHiddenUsersV2Unauthorized, *GetHiddenUsersV2Forbidden, *GetHiddenUsersV2NotFound, *GetHiddenUsersV2InternalServerError, error)
-
+	GetHiddenUsersV2Short(params *GetHiddenUsersV2Params, authInfo runtime.ClientAuthInfoWriter) (*GetHiddenUsersV2OK, error)
 	GetUserVisibilityStatusV2(params *GetUserVisibilityStatusV2Params, authInfo runtime.ClientAuthInfoWriter) (*GetUserVisibilityStatusV2OK, *GetUserVisibilityStatusV2BadRequest, *GetUserVisibilityStatusV2Unauthorized, *GetUserVisibilityStatusV2Forbidden, *GetUserVisibilityStatusV2NotFound, *GetUserVisibilityStatusV2InternalServerError, error)
-
+	GetUserVisibilityStatusV2Short(params *GetUserVisibilityStatusV2Params, authInfo runtime.ClientAuthInfoWriter) (*GetUserVisibilityStatusV2OK, error)
 	SetUserLeaderboardVisibilityStatusV2(params *SetUserLeaderboardVisibilityStatusV2Params, authInfo runtime.ClientAuthInfoWriter) (*SetUserLeaderboardVisibilityStatusV2OK, *SetUserLeaderboardVisibilityStatusV2BadRequest, *SetUserLeaderboardVisibilityStatusV2Unauthorized, *SetUserLeaderboardVisibilityStatusV2Forbidden, *SetUserLeaderboardVisibilityStatusV2NotFound, *SetUserLeaderboardVisibilityStatusV2InternalServerError, error)
-
+	SetUserLeaderboardVisibilityStatusV2Short(params *SetUserLeaderboardVisibilityStatusV2Params, authInfo runtime.ClientAuthInfoWriter) (*SetUserLeaderboardVisibilityStatusV2OK, error)
 	SetUserVisibilityStatusV2(params *SetUserVisibilityStatusV2Params, authInfo runtime.ClientAuthInfoWriter) (*SetUserVisibilityStatusV2OK, *SetUserVisibilityStatusV2BadRequest, *SetUserVisibilityStatusV2Unauthorized, *SetUserVisibilityStatusV2Forbidden, *SetUserVisibilityStatusV2NotFound, *SetUserVisibilityStatusV2InternalServerError, error)
+	SetUserVisibilityStatusV2Short(params *SetUserVisibilityStatusV2Params, authInfo runtime.ClientAuthInfoWriter) (*SetUserVisibilityStatusV2OK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -61,7 +62,7 @@ func (a *Client) GetHiddenUsersV2(params *GetHiddenUsersV2Params, authInfo runti
 		PathPattern:        "/leaderboard/v2/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/hidden",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetHiddenUsersV2Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -76,25 +77,78 @@ func (a *Client) GetHiddenUsersV2(params *GetHiddenUsersV2Params, authInfo runti
 
 	case *GetHiddenUsersV2OK:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *GetHiddenUsersV2BadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *GetHiddenUsersV2Unauthorized:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *GetHiddenUsersV2Forbidden:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *GetHiddenUsersV2NotFound:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *GetHiddenUsersV2InternalServerError:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetHiddenUsersV2Short(params *GetHiddenUsersV2Params, authInfo runtime.ClientAuthInfoWriter) (*GetHiddenUsersV2OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetHiddenUsersV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetHiddenUsersV2",
+		Method:             "GET",
+		PathPattern:        "/leaderboard/v2/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/hidden",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetHiddenUsersV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetHiddenUsersV2OK:
+		return v, nil
+	case *GetHiddenUsersV2BadRequest:
+		return nil, v
+	case *GetHiddenUsersV2Unauthorized:
+		return nil, v
+	case *GetHiddenUsersV2Forbidden:
+		return nil, v
+	case *GetHiddenUsersV2NotFound:
+		return nil, v
+	case *GetHiddenUsersV2InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   GetUserVisibilityStatusV2 gets user visibility status
 
-  User with false visibility status will have <b>hidden</b> attribute set to true on it's leaderboard entry
+  User with false visibility status will have &lt;b&gt;hidden&lt;/b&gt; attribute set to true on it&#39;s leaderboard entry
 */
 func (a *Client) GetUserVisibilityStatusV2(params *GetUserVisibilityStatusV2Params, authInfo runtime.ClientAuthInfoWriter) (*GetUserVisibilityStatusV2OK, *GetUserVisibilityStatusV2BadRequest, *GetUserVisibilityStatusV2Unauthorized, *GetUserVisibilityStatusV2Forbidden, *GetUserVisibilityStatusV2NotFound, *GetUserVisibilityStatusV2InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -112,7 +166,7 @@ func (a *Client) GetUserVisibilityStatusV2(params *GetUserVisibilityStatusV2Para
 		PathPattern:        "/leaderboard/v2/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/{userId}/visibility",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetUserVisibilityStatusV2Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -127,25 +181,78 @@ func (a *Client) GetUserVisibilityStatusV2(params *GetUserVisibilityStatusV2Para
 
 	case *GetUserVisibilityStatusV2OK:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *GetUserVisibilityStatusV2BadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *GetUserVisibilityStatusV2Unauthorized:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *GetUserVisibilityStatusV2Forbidden:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *GetUserVisibilityStatusV2NotFound:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *GetUserVisibilityStatusV2InternalServerError:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetUserVisibilityStatusV2Short(params *GetUserVisibilityStatusV2Params, authInfo runtime.ClientAuthInfoWriter) (*GetUserVisibilityStatusV2OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetUserVisibilityStatusV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetUserVisibilityStatusV2",
+		Method:             "GET",
+		PathPattern:        "/leaderboard/v2/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/{userId}/visibility",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetUserVisibilityStatusV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetUserVisibilityStatusV2OK:
+		return v, nil
+	case *GetUserVisibilityStatusV2BadRequest:
+		return nil, v
+	case *GetUserVisibilityStatusV2Unauthorized:
+		return nil, v
+	case *GetUserVisibilityStatusV2Forbidden:
+		return nil, v
+	case *GetUserVisibilityStatusV2NotFound:
+		return nil, v
+	case *GetUserVisibilityStatusV2InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   SetUserLeaderboardVisibilityStatusV2 sets user visibility status on a specific leaderboard code
 
-  User with false visibility status will have <b>hidden</b> attribute  set to true on it's leaderboard entry
+  User with false visibility status will have &lt;b&gt;hidden&lt;/b&gt; attribute  set to true on it&#39;s leaderboard entry
 */
 func (a *Client) SetUserLeaderboardVisibilityStatusV2(params *SetUserLeaderboardVisibilityStatusV2Params, authInfo runtime.ClientAuthInfoWriter) (*SetUserLeaderboardVisibilityStatusV2OK, *SetUserLeaderboardVisibilityStatusV2BadRequest, *SetUserLeaderboardVisibilityStatusV2Unauthorized, *SetUserLeaderboardVisibilityStatusV2Forbidden, *SetUserLeaderboardVisibilityStatusV2NotFound, *SetUserLeaderboardVisibilityStatusV2InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -163,7 +270,7 @@ func (a *Client) SetUserLeaderboardVisibilityStatusV2(params *SetUserLeaderboard
 		PathPattern:        "/leaderboard/v2/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/{userId}/visibility",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &SetUserLeaderboardVisibilityStatusV2Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -178,25 +285,78 @@ func (a *Client) SetUserLeaderboardVisibilityStatusV2(params *SetUserLeaderboard
 
 	case *SetUserLeaderboardVisibilityStatusV2OK:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *SetUserLeaderboardVisibilityStatusV2BadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *SetUserLeaderboardVisibilityStatusV2Unauthorized:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *SetUserLeaderboardVisibilityStatusV2Forbidden:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *SetUserLeaderboardVisibilityStatusV2NotFound:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *SetUserLeaderboardVisibilityStatusV2InternalServerError:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) SetUserLeaderboardVisibilityStatusV2Short(params *SetUserLeaderboardVisibilityStatusV2Params, authInfo runtime.ClientAuthInfoWriter) (*SetUserLeaderboardVisibilityStatusV2OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewSetUserLeaderboardVisibilityStatusV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "SetUserLeaderboardVisibilityStatusV2",
+		Method:             "PUT",
+		PathPattern:        "/leaderboard/v2/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/{userId}/visibility",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &SetUserLeaderboardVisibilityStatusV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *SetUserLeaderboardVisibilityStatusV2OK:
+		return v, nil
+	case *SetUserLeaderboardVisibilityStatusV2BadRequest:
+		return nil, v
+	case *SetUserLeaderboardVisibilityStatusV2Unauthorized:
+		return nil, v
+	case *SetUserLeaderboardVisibilityStatusV2Forbidden:
+		return nil, v
+	case *SetUserLeaderboardVisibilityStatusV2NotFound:
+		return nil, v
+	case *SetUserLeaderboardVisibilityStatusV2InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   SetUserVisibilityStatusV2 sets user visibility status on a all current leaderboard
 
-  User with false visibility status will have <b>hidden</b> attribute  set to true on it's leaderboard entry
+  User with false visibility status will have &lt;b&gt;hidden&lt;/b&gt; attribute  set to true on it&#39;s leaderboard entry
 */
 func (a *Client) SetUserVisibilityStatusV2(params *SetUserVisibilityStatusV2Params, authInfo runtime.ClientAuthInfoWriter) (*SetUserVisibilityStatusV2OK, *SetUserVisibilityStatusV2BadRequest, *SetUserVisibilityStatusV2Unauthorized, *SetUserVisibilityStatusV2Forbidden, *SetUserVisibilityStatusV2NotFound, *SetUserVisibilityStatusV2InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -214,7 +374,7 @@ func (a *Client) SetUserVisibilityStatusV2(params *SetUserVisibilityStatusV2Para
 		PathPattern:        "/leaderboard/v2/admin/namespaces/{namespace}/users/{userId}/visibility",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &SetUserVisibilityStatusV2Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -229,18 +389,71 @@ func (a *Client) SetUserVisibilityStatusV2(params *SetUserVisibilityStatusV2Para
 
 	case *SetUserVisibilityStatusV2OK:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *SetUserVisibilityStatusV2BadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *SetUserVisibilityStatusV2Unauthorized:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *SetUserVisibilityStatusV2Forbidden:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *SetUserVisibilityStatusV2NotFound:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *SetUserVisibilityStatusV2InternalServerError:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) SetUserVisibilityStatusV2Short(params *SetUserVisibilityStatusV2Params, authInfo runtime.ClientAuthInfoWriter) (*SetUserVisibilityStatusV2OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewSetUserVisibilityStatusV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "SetUserVisibilityStatusV2",
+		Method:             "PUT",
+		PathPattern:        "/leaderboard/v2/admin/namespaces/{namespace}/users/{userId}/visibility",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &SetUserVisibilityStatusV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *SetUserVisibilityStatusV2OK:
+		return v, nil
+	case *SetUserVisibilityStatusV2BadRequest:
+		return nil, v
+	case *SetUserVisibilityStatusV2Unauthorized:
+		return nil, v
+	case *SetUserVisibilityStatusV2Forbidden:
+		return nil, v
+	case *SetUserVisibilityStatusV2NotFound:
+		return nil, v
+	case *SetUserVisibilityStatusV2InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 

@@ -30,8 +30,9 @@ type Client struct {
 // ClientService is the interface for Client methods
 type ClientService interface {
 	GetGameServerConfig(params *GetGameServerConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetGameServerConfigOK, *GetGameServerConfigNotFound, error)
-
+	GetGameServerConfigShort(params *GetGameServerConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetGameServerConfigOK, error)
 	UpdateGameServerConfig(params *UpdateGameServerConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateGameServerConfigOK, error)
+	UpdateGameServerConfigShort(params *UpdateGameServerConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateGameServerConfigOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -39,7 +40,7 @@ type ClientService interface {
 /*
   GetGameServerConfig gets game server configuration
 
-  Get game server configuration.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:INTEGRATION", action=2 (READ)</li><li><i>Returns</i>: Game server config</li></ul>
+  Get game server configuration.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:INTEGRATION&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: Game server config&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) GetGameServerConfig(params *GetGameServerConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetGameServerConfigOK, *GetGameServerConfigNotFound, error) {
 	// TODO: Validate the params before sending
@@ -57,7 +58,7 @@ func (a *Client) GetGameServerConfig(params *GetGameServerConfigParams, authInfo
 		PathPattern:        "/admin/namespaces/{namespace}/integrations/gameserverconfig",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetGameServerConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -72,17 +73,58 @@ func (a *Client) GetGameServerConfig(params *GetGameServerConfigParams, authInfo
 
 	case *GetGameServerConfigOK:
 		return v, nil, nil
+
 	case *GetGameServerConfigNotFound:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetGameServerConfigShort(params *GetGameServerConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetGameServerConfigOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetGameServerConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getGameServerConfig",
+		Method:             "GET",
+		PathPattern:        "/admin/namespaces/{namespace}/integrations/gameserverconfig",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetGameServerConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetGameServerConfigOK:
+		return v, nil
+	case *GetGameServerConfigNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   UpdateGameServerConfig updates game server configuration
 
-  Update game server configuration.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:INTEGRATION", action=4 (UPDATE)</li><li><i>Returns</i>: Game server config</li></ul>
+  Update game server configuration.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:INTEGRATION&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: Game server config&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) UpdateGameServerConfig(params *UpdateGameServerConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateGameServerConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -100,7 +142,7 @@ func (a *Client) UpdateGameServerConfig(params *UpdateGameServerConfigParams, au
 		PathPattern:        "/admin/namespaces/{namespace}/integrations/gameserverconfig",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &UpdateGameServerConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -115,6 +157,44 @@ func (a *Client) UpdateGameServerConfig(params *UpdateGameServerConfigParams, au
 
 	case *UpdateGameServerConfigOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) UpdateGameServerConfigShort(params *UpdateGameServerConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateGameServerConfigOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateGameServerConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updateGameServerConfig",
+		Method:             "PUT",
+		PathPattern:        "/admin/namespaces/{namespace}/integrations/gameserverconfig",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateGameServerConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateGameServerConfigOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}

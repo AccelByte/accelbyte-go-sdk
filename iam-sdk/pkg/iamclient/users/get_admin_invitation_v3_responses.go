@@ -63,20 +63,20 @@ func NewGetAdminInvitationV3OK() *GetAdminInvitationV3OK {
   OK
 */
 type GetAdminInvitationV3OK struct {
-	Payload *iamclientmodels.ModelAdminInvitationV3
+	Payload *iamclientmodels.ModelUserInvitationV3
 }
 
 func (o *GetAdminInvitationV3OK) Error() string {
 	return fmt.Sprintf("[GET /iam/v3/public/namespaces/{namespace}/users/invite/{invitationId}][%d] getAdminInvitationV3OK  %+v", 200, o.Payload)
 }
 
-func (o *GetAdminInvitationV3OK) GetPayload() *iamclientmodels.ModelAdminInvitationV3 {
+func (o *GetAdminInvitationV3OK) GetPayload() *iamclientmodels.ModelUserInvitationV3 {
 	return o.Payload
 }
 
 func (o *GetAdminInvitationV3OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(iamclientmodels.ModelAdminInvitationV3)
+	o.Payload = new(iamclientmodels.ModelUserInvitationV3)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

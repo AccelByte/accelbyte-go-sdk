@@ -30,6 +30,7 @@ type Client struct {
 // ClientService is the interface for Client methods
 type ClientService interface {
 	PublicGetMessages(params *PublicGetMessagesParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetMessagesOK, *PublicGetMessagesInternalServerError, error)
+	PublicGetMessagesShort(params *PublicGetMessagesParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetMessagesOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -55,7 +56,7 @@ func (a *Client) PublicGetMessages(params *PublicGetMessagesParams, authInfo run
 		PathPattern:        "/dslogmanager/v1/messages",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicGetMessagesReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -70,10 +71,51 @@ func (a *Client) PublicGetMessages(params *PublicGetMessagesParams, authInfo run
 
 	case *PublicGetMessagesOK:
 		return v, nil, nil
+
 	case *PublicGetMessagesInternalServerError:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicGetMessagesShort(params *PublicGetMessagesParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetMessagesOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetMessagesParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicGetMessages",
+		Method:             "GET",
+		PathPattern:        "/dslogmanager/v1/messages",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicGetMessagesReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetMessagesOK:
+		return v, nil
+	case *PublicGetMessagesInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 

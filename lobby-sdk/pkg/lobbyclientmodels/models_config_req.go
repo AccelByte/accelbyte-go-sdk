@@ -18,6 +18,12 @@ type ModelsConfigReq struct {
 	// auto kick on disconnect
 	AutoKickOnDisconnect bool `json:"autoKickOnDisconnect,omitempty"`
 
+	// auto kick on disconnect delay
+	AutoKickOnDisconnectDelay int64 `json:"autoKickOnDisconnectDelay,omitempty"`
+
+	// cancel ticket on disconnect
+	CancelTicketOnDisconnect bool `json:"cancelTicketOnDisconnect,omitempty"`
+
 	// chat rate limit burst
 	ChatRateLimitBurst int32 `json:"chatRateLimitBurst,omitempty"`
 
@@ -47,6 +53,9 @@ type ModelsConfigReq struct {
 
 	// profanity filter
 	ProfanityFilter bool `json:"profanityFilter,omitempty"`
+
+	// ready consent timeout
+	ReadyConsentTimeout int64 `json:"readyConsentTimeout,omitempty"`
 }
 
 // Validate validates this models config req

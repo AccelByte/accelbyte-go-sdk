@@ -62,7 +62,7 @@ for the admin search user v3 operation typically these are written to a http.Req
 type AdminSearchUserV3Params struct {
 
 	/*By
-	  Search by given attribute, possible values are emailAddress, displayName, and username
+	  Search by given attribute, possible values are emailAddress, displayName, username, and thirdPartyPlatform
 
 	*/
 	By *string
@@ -86,6 +86,16 @@ type AdminSearchUserV3Params struct {
 
 	*/
 	Offset *string
+	/*PlatformBy
+	  Search platformBy given attribute, possible values are platformDisplayName
+
+	*/
+	PlatformBy *string
+	/*PlatformID
+	  Platform Id that want to be searched, supported values: steam, steamopenid, psn, xbox, epicgames, stadia, nintendo, oculus, aws cognito, facebook, google, discord or twitch
+
+	*/
+	PlatformID *string
 	/*Query
 	  Query, can be either email address or display name
 
@@ -190,6 +200,28 @@ func (o *AdminSearchUserV3Params) SetOffset(offset *string) {
 	o.Offset = offset
 }
 
+// WithPlatformBy adds the platformBy to the admin search user v3 params
+func (o *AdminSearchUserV3Params) WithPlatformBy(platformBy *string) *AdminSearchUserV3Params {
+	o.SetPlatformBy(platformBy)
+	return o
+}
+
+// SetPlatformBy adds the platformBy to the admin search user v3 params
+func (o *AdminSearchUserV3Params) SetPlatformBy(platformBy *string) {
+	o.PlatformBy = platformBy
+}
+
+// WithPlatformID adds the platformID to the admin search user v3 params
+func (o *AdminSearchUserV3Params) WithPlatformID(platformID *string) *AdminSearchUserV3Params {
+	o.SetPlatformID(platformID)
+	return o
+}
+
+// SetPlatformID adds the platformId to the admin search user v3 params
+func (o *AdminSearchUserV3Params) SetPlatformID(platformID *string) {
+	o.PlatformID = platformID
+}
+
 // WithQuery adds the query to the admin search user v3 params
 func (o *AdminSearchUserV3Params) WithQuery(query *string) *AdminSearchUserV3Params {
 	o.SetQuery(query)
@@ -283,6 +315,38 @@ func (o *AdminSearchUserV3Params) WriteToRequest(r runtime.ClientRequest, reg st
 		qOffset := qrOffset
 		if qOffset != "" {
 			if err := r.SetQueryParam("offset", qOffset); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.PlatformBy != nil {
+
+		// query param platformBy
+		var qrPlatformBy string
+		if o.PlatformBy != nil {
+			qrPlatformBy = *o.PlatformBy
+		}
+		qPlatformBy := qrPlatformBy
+		if qPlatformBy != "" {
+			if err := r.SetQueryParam("platformBy", qPlatformBy); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.PlatformID != nil {
+
+		// query param platformId
+		var qrPlatformID string
+		if o.PlatformID != nil {
+			qrPlatformID = *o.PlatformID
+		}
+		qPlatformID := qrPlatformID
+		if qPlatformID != "" {
+			if err := r.SetQueryParam("platformId", qPlatformID); err != nil {
 				return err
 			}
 		}

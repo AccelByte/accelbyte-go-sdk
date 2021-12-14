@@ -17,6 +17,9 @@ import (
 // swagger:model models.ScreenshotResponse
 type ModelsScreenshotResponse struct {
 
+	// content type
+	ContentType string `json:"contentType,omitempty"`
+
 	// description
 	// Required: true
 	Description *string `json:"description"`

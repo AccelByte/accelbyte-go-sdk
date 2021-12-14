@@ -30,34 +30,35 @@ type Client struct {
 // ClientService is the interface for Client methods
 type ClientService interface {
 	AddPlayerToSession(params *AddPlayerToSessionParams, authInfo runtime.ClientAuthInfoWriter) (*AddPlayerToSessionOK, *AddPlayerToSessionBadRequest, *AddPlayerToSessionNotFound, *AddPlayerToSessionInternalServerError, error)
-
+	AddPlayerToSessionShort(params *AddPlayerToSessionParams, authInfo runtime.ClientAuthInfoWriter) (*AddPlayerToSessionOK, error)
 	AdminGetSession(params *AdminGetSessionParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetSessionOK, *AdminGetSessionNotFound, *AdminGetSessionInternalServerError, error)
-
+	AdminGetSessionShort(params *AdminGetSessionParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetSessionOK, error)
 	CreateSession(params *CreateSessionParams, authInfo runtime.ClientAuthInfoWriter) (*CreateSessionOK, *CreateSessionBadRequest, *CreateSessionForbidden, *CreateSessionConflict, *CreateSessionInternalServerError, error)
-
+	CreateSessionShort(params *CreateSessionParams, authInfo runtime.ClientAuthInfoWriter) (*CreateSessionOK, error)
 	DeleteSession(params *DeleteSessionParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteSessionOK, *DeleteSessionBadRequest, *DeleteSessionNotFound, *DeleteSessionInternalServerError, error)
-
+	DeleteSessionShort(params *DeleteSessionParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteSessionOK, error)
 	DeleteSessionLocalDS(params *DeleteSessionLocalDSParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteSessionLocalDSOK, *DeleteSessionLocalDSBadRequest, *DeleteSessionLocalDSNotFound, *DeleteSessionLocalDSInternalServerError, error)
-
+	DeleteSessionLocalDSShort(params *DeleteSessionLocalDSParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteSessionLocalDSOK, error)
 	GetActiveCustomGameSessions(params *GetActiveCustomGameSessionsParams, authInfo runtime.ClientAuthInfoWriter) (*GetActiveCustomGameSessionsOK, *GetActiveCustomGameSessionsBadRequest, *GetActiveCustomGameSessionsInternalServerError, error)
-
+	GetActiveCustomGameSessionsShort(params *GetActiveCustomGameSessionsParams, authInfo runtime.ClientAuthInfoWriter) (*GetActiveCustomGameSessionsOK, error)
 	GetActiveMatchmakingGameSessions(params *GetActiveMatchmakingGameSessionsParams, authInfo runtime.ClientAuthInfoWriter) (*GetActiveMatchmakingGameSessionsOK, *GetActiveMatchmakingGameSessionsBadRequest, *GetActiveMatchmakingGameSessionsInternalServerError, error)
-
+	GetActiveMatchmakingGameSessionsShort(params *GetActiveMatchmakingGameSessionsParams, authInfo runtime.ClientAuthInfoWriter) (*GetActiveMatchmakingGameSessionsOK, error)
 	GetRecentPlayer(params *GetRecentPlayerParams, authInfo runtime.ClientAuthInfoWriter) (*GetRecentPlayerOK, *GetRecentPlayerBadRequest, *GetRecentPlayerInternalServerError, error)
-
+	GetRecentPlayerShort(params *GetRecentPlayerParams, authInfo runtime.ClientAuthInfoWriter) (*GetRecentPlayerOK, error)
 	GetSession(params *GetSessionParams, authInfo runtime.ClientAuthInfoWriter) (*GetSessionOK, *GetSessionNotFound, *GetSessionInternalServerError, error)
-
+	GetSessionShort(params *GetSessionParams, authInfo runtime.ClientAuthInfoWriter) (*GetSessionOK, error)
 	GetSessionByUserIDs(params *GetSessionByUserIDsParams, authInfo runtime.ClientAuthInfoWriter) (*GetSessionByUserIDsOK, *GetSessionByUserIDsBadRequest, *GetSessionByUserIDsInternalServerError, error)
-
+	GetSessionByUserIDsShort(params *GetSessionByUserIDsParams, authInfo runtime.ClientAuthInfoWriter) (*GetSessionByUserIDsOK, error)
 	GetTotalActiveSession(params *GetTotalActiveSessionParams, authInfo runtime.ClientAuthInfoWriter) (*GetTotalActiveSessionOK, *GetTotalActiveSessionBadRequest, *GetTotalActiveSessionInternalServerError, error)
-
+	GetTotalActiveSessionShort(params *GetTotalActiveSessionParams, authInfo runtime.ClientAuthInfoWriter) (*GetTotalActiveSessionOK, error)
 	JoinSession(params *JoinSessionParams, authInfo runtime.ClientAuthInfoWriter) (*JoinSessionOK, *JoinSessionBadRequest, *JoinSessionForbidden, *JoinSessionNotFound, *JoinSessionInternalServerError, error)
-
+	JoinSessionShort(params *JoinSessionParams, authInfo runtime.ClientAuthInfoWriter) (*JoinSessionOK, error)
 	QuerySession(params *QuerySessionParams, authInfo runtime.ClientAuthInfoWriter) (*QuerySessionOK, *QuerySessionBadRequest, *QuerySessionInternalServerError, error)
-
+	QuerySessionShort(params *QuerySessionParams, authInfo runtime.ClientAuthInfoWriter) (*QuerySessionOK, error)
 	RemovePlayerFromSession(params *RemovePlayerFromSessionParams, authInfo runtime.ClientAuthInfoWriter) (*RemovePlayerFromSessionOK, *RemovePlayerFromSessionBadRequest, *RemovePlayerFromSessionNotFound, *RemovePlayerFromSessionInternalServerError, error)
-
+	RemovePlayerFromSessionShort(params *RemovePlayerFromSessionParams, authInfo runtime.ClientAuthInfoWriter) (*RemovePlayerFromSessionOK, error)
 	UpdateSession(params *UpdateSessionParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateSessionOK, *UpdateSessionBadRequest, *UpdateSessionNotFound, *UpdateSessionInternalServerError, error)
+	UpdateSessionShort(params *UpdateSessionParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateSessionOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -87,7 +88,7 @@ func (a *Client) AddPlayerToSession(params *AddPlayerToSessionParams, authInfo r
 		PathPattern:        "/sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/player",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AddPlayerToSessionReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -102,14 +103,61 @@ func (a *Client) AddPlayerToSession(params *AddPlayerToSessionParams, authInfo r
 
 	case *AddPlayerToSessionOK:
 		return v, nil, nil, nil, nil
+
 	case *AddPlayerToSessionBadRequest:
 		return nil, v, nil, nil, nil
+
 	case *AddPlayerToSessionNotFound:
 		return nil, nil, v, nil, nil
+
 	case *AddPlayerToSessionInternalServerError:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AddPlayerToSessionShort(params *AddPlayerToSessionParams, authInfo runtime.ClientAuthInfoWriter) (*AddPlayerToSessionOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAddPlayerToSessionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AddPlayerToSession",
+		Method:             "POST",
+		PathPattern:        "/sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/player",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AddPlayerToSessionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AddPlayerToSessionOK:
+		return v, nil
+	case *AddPlayerToSessionBadRequest:
+		return nil, v
+	case *AddPlayerToSessionNotFound:
+		return nil, v
+	case *AddPlayerToSessionInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -138,7 +186,7 @@ func (a *Client) AdminGetSession(params *AdminGetSessionParams, authInfo runtime
 		PathPattern:        "/sessionbrowser/admin/namespaces/{namespace}/gamesession/{sessionID}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminGetSessionReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -153,12 +201,56 @@ func (a *Client) AdminGetSession(params *AdminGetSessionParams, authInfo runtime
 
 	case *AdminGetSessionOK:
 		return v, nil, nil, nil
+
 	case *AdminGetSessionNotFound:
 		return nil, v, nil, nil
+
 	case *AdminGetSessionInternalServerError:
 		return nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminGetSessionShort(params *AdminGetSessionParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetSessionOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGetSessionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminGetSession",
+		Method:             "GET",
+		PathPattern:        "/sessionbrowser/admin/namespaces/{namespace}/gamesession/{sessionID}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGetSessionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGetSessionOK:
+		return v, nil
+	case *AdminGetSessionNotFound:
+		return nil, v
+	case *AdminGetSessionInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -187,7 +279,7 @@ func (a *Client) CreateSession(params *CreateSessionParams, authInfo runtime.Cli
 		PathPattern:        "/sessionbrowser/namespaces/{namespace}/gamesession",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &CreateSessionReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -202,16 +294,66 @@ func (a *Client) CreateSession(params *CreateSessionParams, authInfo runtime.Cli
 
 	case *CreateSessionOK:
 		return v, nil, nil, nil, nil, nil
+
 	case *CreateSessionBadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *CreateSessionForbidden:
 		return nil, nil, v, nil, nil, nil
+
 	case *CreateSessionConflict:
 		return nil, nil, nil, v, nil, nil
+
 	case *CreateSessionInternalServerError:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) CreateSessionShort(params *CreateSessionParams, authInfo runtime.ClientAuthInfoWriter) (*CreateSessionOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreateSessionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "CreateSession",
+		Method:             "POST",
+		PathPattern:        "/sessionbrowser/namespaces/{namespace}/gamesession",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CreateSessionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *CreateSessionOK:
+		return v, nil
+	case *CreateSessionBadRequest:
+		return nil, v
+	case *CreateSessionForbidden:
+		return nil, v
+	case *CreateSessionConflict:
+		return nil, v
+	case *CreateSessionInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -240,7 +382,7 @@ func (a *Client) DeleteSession(params *DeleteSessionParams, authInfo runtime.Cli
 		PathPattern:        "/sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteSessionReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -255,14 +397,61 @@ func (a *Client) DeleteSession(params *DeleteSessionParams, authInfo runtime.Cli
 
 	case *DeleteSessionOK:
 		return v, nil, nil, nil, nil
+
 	case *DeleteSessionBadRequest:
 		return nil, v, nil, nil, nil
+
 	case *DeleteSessionNotFound:
 		return nil, nil, v, nil, nil
+
 	case *DeleteSessionInternalServerError:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) DeleteSessionShort(params *DeleteSessionParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteSessionOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteSessionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "DeleteSession",
+		Method:             "DELETE",
+		PathPattern:        "/sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteSessionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeleteSessionOK:
+		return v, nil
+	case *DeleteSessionBadRequest:
+		return nil, v
+	case *DeleteSessionNotFound:
+		return nil, v
+	case *DeleteSessionInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -291,7 +480,7 @@ func (a *Client) DeleteSessionLocalDS(params *DeleteSessionLocalDSParams, authIn
 		PathPattern:        "/sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/localds",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteSessionLocalDSReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -306,14 +495,61 @@ func (a *Client) DeleteSessionLocalDS(params *DeleteSessionLocalDSParams, authIn
 
 	case *DeleteSessionLocalDSOK:
 		return v, nil, nil, nil, nil
+
 	case *DeleteSessionLocalDSBadRequest:
 		return nil, v, nil, nil, nil
+
 	case *DeleteSessionLocalDSNotFound:
 		return nil, nil, v, nil, nil
+
 	case *DeleteSessionLocalDSInternalServerError:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) DeleteSessionLocalDSShort(params *DeleteSessionLocalDSParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteSessionLocalDSOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteSessionLocalDSParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "DeleteSessionLocalDS",
+		Method:             "DELETE",
+		PathPattern:        "/sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/localds",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteSessionLocalDSReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeleteSessionLocalDSOK:
+		return v, nil
+	case *DeleteSessionLocalDSBadRequest:
+		return nil, v
+	case *DeleteSessionLocalDSNotFound:
+		return nil, v
+	case *DeleteSessionLocalDSInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -340,7 +576,7 @@ func (a *Client) GetActiveCustomGameSessions(params *GetActiveCustomGameSessions
 		PathPattern:        "/sessionbrowser/admin/namespaces/{namespace}/gamesession/active/custom-game",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetActiveCustomGameSessionsReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -355,12 +591,56 @@ func (a *Client) GetActiveCustomGameSessions(params *GetActiveCustomGameSessions
 
 	case *GetActiveCustomGameSessionsOK:
 		return v, nil, nil, nil
+
 	case *GetActiveCustomGameSessionsBadRequest:
 		return nil, v, nil, nil
+
 	case *GetActiveCustomGameSessionsInternalServerError:
 		return nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetActiveCustomGameSessionsShort(params *GetActiveCustomGameSessionsParams, authInfo runtime.ClientAuthInfoWriter) (*GetActiveCustomGameSessionsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetActiveCustomGameSessionsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetActiveCustomGameSessions",
+		Method:             "GET",
+		PathPattern:        "/sessionbrowser/admin/namespaces/{namespace}/gamesession/active/custom-game",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetActiveCustomGameSessionsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetActiveCustomGameSessionsOK:
+		return v, nil
+	case *GetActiveCustomGameSessionsBadRequest:
+		return nil, v
+	case *GetActiveCustomGameSessionsInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -387,7 +667,7 @@ func (a *Client) GetActiveMatchmakingGameSessions(params *GetActiveMatchmakingGa
 		PathPattern:        "/sessionbrowser/admin/namespaces/{namespace}/gamesession/active/matchmaking-game",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetActiveMatchmakingGameSessionsReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -402,12 +682,56 @@ func (a *Client) GetActiveMatchmakingGameSessions(params *GetActiveMatchmakingGa
 
 	case *GetActiveMatchmakingGameSessionsOK:
 		return v, nil, nil, nil
+
 	case *GetActiveMatchmakingGameSessionsBadRequest:
 		return nil, v, nil, nil
+
 	case *GetActiveMatchmakingGameSessionsInternalServerError:
 		return nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetActiveMatchmakingGameSessionsShort(params *GetActiveMatchmakingGameSessionsParams, authInfo runtime.ClientAuthInfoWriter) (*GetActiveMatchmakingGameSessionsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetActiveMatchmakingGameSessionsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetActiveMatchmakingGameSessions",
+		Method:             "GET",
+		PathPattern:        "/sessionbrowser/admin/namespaces/{namespace}/gamesession/active/matchmaking-game",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetActiveMatchmakingGameSessionsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetActiveMatchmakingGameSessionsOK:
+		return v, nil
+	case *GetActiveMatchmakingGameSessionsBadRequest:
+		return nil, v
+	case *GetActiveMatchmakingGameSessionsInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -436,7 +760,7 @@ func (a *Client) GetRecentPlayer(params *GetRecentPlayerParams, authInfo runtime
 		PathPattern:        "/sessionbrowser/namespaces/{namespace}/recentplayer/{userID}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetRecentPlayerReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -451,12 +775,56 @@ func (a *Client) GetRecentPlayer(params *GetRecentPlayerParams, authInfo runtime
 
 	case *GetRecentPlayerOK:
 		return v, nil, nil, nil
+
 	case *GetRecentPlayerBadRequest:
 		return nil, v, nil, nil
+
 	case *GetRecentPlayerInternalServerError:
 		return nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetRecentPlayerShort(params *GetRecentPlayerParams, authInfo runtime.ClientAuthInfoWriter) (*GetRecentPlayerOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetRecentPlayerParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetRecentPlayer",
+		Method:             "GET",
+		PathPattern:        "/sessionbrowser/namespaces/{namespace}/recentplayer/{userID}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetRecentPlayerReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetRecentPlayerOK:
+		return v, nil
+	case *GetRecentPlayerBadRequest:
+		return nil, v
+	case *GetRecentPlayerInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -485,7 +853,7 @@ func (a *Client) GetSession(params *GetSessionParams, authInfo runtime.ClientAut
 		PathPattern:        "/sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetSessionReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -500,12 +868,56 @@ func (a *Client) GetSession(params *GetSessionParams, authInfo runtime.ClientAut
 
 	case *GetSessionOK:
 		return v, nil, nil, nil
+
 	case *GetSessionNotFound:
 		return nil, v, nil, nil
+
 	case *GetSessionInternalServerError:
 		return nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetSessionShort(params *GetSessionParams, authInfo runtime.ClientAuthInfoWriter) (*GetSessionOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetSessionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetSession",
+		Method:             "GET",
+		PathPattern:        "/sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetSessionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetSessionOK:
+		return v, nil
+	case *GetSessionNotFound:
+		return nil, v
+	case *GetSessionInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -534,7 +946,7 @@ func (a *Client) GetSessionByUserIDs(params *GetSessionByUserIDsParams, authInfo
 		PathPattern:        "/sessionbrowser/namespaces/{namespace}/gamesession/bulk",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetSessionByUserIDsReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -549,12 +961,56 @@ func (a *Client) GetSessionByUserIDs(params *GetSessionByUserIDsParams, authInfo
 
 	case *GetSessionByUserIDsOK:
 		return v, nil, nil, nil
+
 	case *GetSessionByUserIDsBadRequest:
 		return nil, v, nil, nil
+
 	case *GetSessionByUserIDsInternalServerError:
 		return nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetSessionByUserIDsShort(params *GetSessionByUserIDsParams, authInfo runtime.ClientAuthInfoWriter) (*GetSessionByUserIDsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetSessionByUserIDsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetSessionByUserIDs",
+		Method:             "GET",
+		PathPattern:        "/sessionbrowser/namespaces/{namespace}/gamesession/bulk",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetSessionByUserIDsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetSessionByUserIDsOK:
+		return v, nil
+	case *GetSessionByUserIDsBadRequest:
+		return nil, v
+	case *GetSessionByUserIDsInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -581,7 +1037,7 @@ func (a *Client) GetTotalActiveSession(params *GetTotalActiveSessionParams, auth
 		PathPattern:        "/sessionbrowser/admin/namespaces/{namespace}/gamesession/active/count",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetTotalActiveSessionReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -596,12 +1052,56 @@ func (a *Client) GetTotalActiveSession(params *GetTotalActiveSessionParams, auth
 
 	case *GetTotalActiveSessionOK:
 		return v, nil, nil, nil
+
 	case *GetTotalActiveSessionBadRequest:
 		return nil, v, nil, nil
+
 	case *GetTotalActiveSessionInternalServerError:
 		return nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetTotalActiveSessionShort(params *GetTotalActiveSessionParams, authInfo runtime.ClientAuthInfoWriter) (*GetTotalActiveSessionOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetTotalActiveSessionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetTotalActiveSession",
+		Method:             "GET",
+		PathPattern:        "/sessionbrowser/admin/namespaces/{namespace}/gamesession/active/count",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetTotalActiveSessionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetTotalActiveSessionOK:
+		return v, nil
+	case *GetTotalActiveSessionBadRequest:
+		return nil, v
+	case *GetTotalActiveSessionInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -630,7 +1130,7 @@ func (a *Client) JoinSession(params *JoinSessionParams, authInfo runtime.ClientA
 		PathPattern:        "/sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/join",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &JoinSessionReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -645,16 +1145,66 @@ func (a *Client) JoinSession(params *JoinSessionParams, authInfo runtime.ClientA
 
 	case *JoinSessionOK:
 		return v, nil, nil, nil, nil, nil
+
 	case *JoinSessionBadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *JoinSessionForbidden:
 		return nil, nil, v, nil, nil, nil
+
 	case *JoinSessionNotFound:
 		return nil, nil, nil, v, nil, nil
+
 	case *JoinSessionInternalServerError:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) JoinSessionShort(params *JoinSessionParams, authInfo runtime.ClientAuthInfoWriter) (*JoinSessionOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewJoinSessionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "JoinSession",
+		Method:             "POST",
+		PathPattern:        "/sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/join",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &JoinSessionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *JoinSessionOK:
+		return v, nil
+	case *JoinSessionBadRequest:
+		return nil, v
+	case *JoinSessionForbidden:
+		return nil, v
+	case *JoinSessionNotFound:
+		return nil, v
+	case *JoinSessionInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -683,7 +1233,7 @@ func (a *Client) QuerySession(params *QuerySessionParams, authInfo runtime.Clien
 		PathPattern:        "/sessionbrowser/namespaces/{namespace}/gamesession",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &QuerySessionReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -698,12 +1248,56 @@ func (a *Client) QuerySession(params *QuerySessionParams, authInfo runtime.Clien
 
 	case *QuerySessionOK:
 		return v, nil, nil, nil
+
 	case *QuerySessionBadRequest:
 		return nil, v, nil, nil
+
 	case *QuerySessionInternalServerError:
 		return nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) QuerySessionShort(params *QuerySessionParams, authInfo runtime.ClientAuthInfoWriter) (*QuerySessionOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewQuerySessionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "QuerySession",
+		Method:             "GET",
+		PathPattern:        "/sessionbrowser/namespaces/{namespace}/gamesession",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &QuerySessionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *QuerySessionOK:
+		return v, nil
+	case *QuerySessionBadRequest:
+		return nil, v
+	case *QuerySessionInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -732,7 +1326,7 @@ func (a *Client) RemovePlayerFromSession(params *RemovePlayerFromSessionParams, 
 		PathPattern:        "/sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/player/{userID}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &RemovePlayerFromSessionReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -747,14 +1341,61 @@ func (a *Client) RemovePlayerFromSession(params *RemovePlayerFromSessionParams, 
 
 	case *RemovePlayerFromSessionOK:
 		return v, nil, nil, nil, nil
+
 	case *RemovePlayerFromSessionBadRequest:
 		return nil, v, nil, nil, nil
+
 	case *RemovePlayerFromSessionNotFound:
 		return nil, nil, v, nil, nil
+
 	case *RemovePlayerFromSessionInternalServerError:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) RemovePlayerFromSessionShort(params *RemovePlayerFromSessionParams, authInfo runtime.ClientAuthInfoWriter) (*RemovePlayerFromSessionOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRemovePlayerFromSessionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "RemovePlayerFromSession",
+		Method:             "DELETE",
+		PathPattern:        "/sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/player/{userID}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &RemovePlayerFromSessionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *RemovePlayerFromSessionOK:
+		return v, nil
+	case *RemovePlayerFromSessionBadRequest:
+		return nil, v
+	case *RemovePlayerFromSessionNotFound:
+		return nil, v
+	case *RemovePlayerFromSessionInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -783,7 +1424,7 @@ func (a *Client) UpdateSession(params *UpdateSessionParams, authInfo runtime.Cli
 		PathPattern:        "/sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &UpdateSessionReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -798,14 +1439,61 @@ func (a *Client) UpdateSession(params *UpdateSessionParams, authInfo runtime.Cli
 
 	case *UpdateSessionOK:
 		return v, nil, nil, nil, nil
+
 	case *UpdateSessionBadRequest:
 		return nil, v, nil, nil, nil
+
 	case *UpdateSessionNotFound:
 		return nil, nil, v, nil, nil
+
 	case *UpdateSessionInternalServerError:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) UpdateSessionShort(params *UpdateSessionParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateSessionOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateSessionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "UpdateSession",
+		Method:             "PUT",
+		PathPattern:        "/sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateSessionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateSessionOK:
+		return v, nil
+	case *UpdateSessionBadRequest:
+		return nil, v
+	case *UpdateSessionNotFound:
+		return nil, v
+	case *UpdateSessionInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 

@@ -30,22 +30,23 @@ type Client struct {
 // ClientService is the interface for Client methods
 type ClientService interface {
 	AdminDeletePlayerPublicRecordHandlerV1(params *AdminDeletePlayerPublicRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeletePlayerPublicRecordHandlerV1NoContent, *AdminDeletePlayerPublicRecordHandlerV1Unauthorized, *AdminDeletePlayerPublicRecordHandlerV1NotFound, *AdminDeletePlayerPublicRecordHandlerV1InternalServerError, error)
-
+	AdminDeletePlayerPublicRecordHandlerV1Short(params *AdminDeletePlayerPublicRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeletePlayerPublicRecordHandlerV1NoContent, error)
 	AdminDeletePlayerRecordHandlerV1(params *AdminDeletePlayerRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeletePlayerRecordHandlerV1NoContent, *AdminDeletePlayerRecordHandlerV1Unauthorized, *AdminDeletePlayerRecordHandlerV1InternalServerError, error)
-
+	AdminDeletePlayerRecordHandlerV1Short(params *AdminDeletePlayerRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeletePlayerRecordHandlerV1NoContent, error)
 	AdminGetPlayerPublicRecordHandlerV1(params *AdminGetPlayerPublicRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetPlayerPublicRecordHandlerV1OK, *AdminGetPlayerPublicRecordHandlerV1Unauthorized, *AdminGetPlayerPublicRecordHandlerV1NotFound, *AdminGetPlayerPublicRecordHandlerV1InternalServerError, error)
-
+	AdminGetPlayerPublicRecordHandlerV1Short(params *AdminGetPlayerPublicRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetPlayerPublicRecordHandlerV1OK, error)
 	AdminGetPlayerRecordHandlerV1(params *AdminGetPlayerRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetPlayerRecordHandlerV1OK, *AdminGetPlayerRecordHandlerV1Unauthorized, *AdminGetPlayerRecordHandlerV1NotFound, *AdminGetPlayerRecordHandlerV1InternalServerError, error)
-
+	AdminGetPlayerRecordHandlerV1Short(params *AdminGetPlayerRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetPlayerRecordHandlerV1OK, error)
 	AdminPostPlayerPublicRecordHandlerV1(params *AdminPostPlayerPublicRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPostPlayerPublicRecordHandlerV1Created, *AdminPostPlayerPublicRecordHandlerV1BadRequest, *AdminPostPlayerPublicRecordHandlerV1Unauthorized, *AdminPostPlayerPublicRecordHandlerV1InternalServerError, error)
-
+	AdminPostPlayerPublicRecordHandlerV1Short(params *AdminPostPlayerPublicRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPostPlayerPublicRecordHandlerV1Created, error)
 	AdminPostPlayerRecordHandlerV1(params *AdminPostPlayerRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPostPlayerRecordHandlerV1Created, *AdminPostPlayerRecordHandlerV1Unauthorized, *AdminPostPlayerRecordHandlerV1InternalServerError, error)
-
+	AdminPostPlayerRecordHandlerV1Short(params *AdminPostPlayerRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPostPlayerRecordHandlerV1Created, error)
 	AdminPutPlayerPublicRecordHandlerV1(params *AdminPutPlayerPublicRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutPlayerPublicRecordHandlerV1OK, *AdminPutPlayerPublicRecordHandlerV1BadRequest, *AdminPutPlayerPublicRecordHandlerV1Unauthorized, *AdminPutPlayerPublicRecordHandlerV1InternalServerError, error)
-
+	AdminPutPlayerPublicRecordHandlerV1Short(params *AdminPutPlayerPublicRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutPlayerPublicRecordHandlerV1OK, error)
 	AdminPutPlayerRecordHandlerV1(params *AdminPutPlayerRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutPlayerRecordHandlerV1OK, *AdminPutPlayerRecordHandlerV1Unauthorized, *AdminPutPlayerRecordHandlerV1InternalServerError, error)
-
+	AdminPutPlayerRecordHandlerV1Short(params *AdminPutPlayerRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutPlayerRecordHandlerV1OK, error)
 	ListPlayerRecordHandlerV1(params *ListPlayerRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*ListPlayerRecordHandlerV1OK, *ListPlayerRecordHandlerV1BadRequest, *ListPlayerRecordHandlerV1Unauthorized, *ListPlayerRecordHandlerV1InternalServerError, error)
+	ListPlayerRecordHandlerV1Short(params *ListPlayerRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*ListPlayerRecordHandlerV1OK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -75,7 +76,7 @@ func (a *Client) AdminDeletePlayerPublicRecordHandlerV1(params *AdminDeletePlaye
 		PathPattern:        "/cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records/{key}/public",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminDeletePlayerPublicRecordHandlerV1Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -90,14 +91,61 @@ func (a *Client) AdminDeletePlayerPublicRecordHandlerV1(params *AdminDeletePlaye
 
 	case *AdminDeletePlayerPublicRecordHandlerV1NoContent:
 		return v, nil, nil, nil, nil
+
 	case *AdminDeletePlayerPublicRecordHandlerV1Unauthorized:
 		return nil, v, nil, nil, nil
+
 	case *AdminDeletePlayerPublicRecordHandlerV1NotFound:
 		return nil, nil, v, nil, nil
+
 	case *AdminDeletePlayerPublicRecordHandlerV1InternalServerError:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminDeletePlayerPublicRecordHandlerV1Short(params *AdminDeletePlayerPublicRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeletePlayerPublicRecordHandlerV1NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminDeletePlayerPublicRecordHandlerV1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminDeletePlayerPublicRecordHandlerV1",
+		Method:             "DELETE",
+		PathPattern:        "/cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records/{key}/public",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminDeletePlayerPublicRecordHandlerV1Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminDeletePlayerPublicRecordHandlerV1NoContent:
+		return v, nil
+	case *AdminDeletePlayerPublicRecordHandlerV1Unauthorized:
+		return nil, v
+	case *AdminDeletePlayerPublicRecordHandlerV1NotFound:
+		return nil, v
+	case *AdminDeletePlayerPublicRecordHandlerV1InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -108,7 +156,7 @@ func (a *Client) AdminDeletePlayerPublicRecordHandlerV1(params *AdminDeletePlaye
 
 Required scope: social
 
-Delete a record (arbitrary JSON data) in user-level with given key. It will delete the record whether it's private or public record.
+Delete a record (arbitrary JSON data) in user-level with given key. It will delete the record whether it&#39;s private or public record.
 */
 func (a *Client) AdminDeletePlayerRecordHandlerV1(params *AdminDeletePlayerRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeletePlayerRecordHandlerV1NoContent, *AdminDeletePlayerRecordHandlerV1Unauthorized, *AdminDeletePlayerRecordHandlerV1InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -126,7 +174,7 @@ func (a *Client) AdminDeletePlayerRecordHandlerV1(params *AdminDeletePlayerRecor
 		PathPattern:        "/cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records/{key}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminDeletePlayerRecordHandlerV1Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -141,12 +189,56 @@ func (a *Client) AdminDeletePlayerRecordHandlerV1(params *AdminDeletePlayerRecor
 
 	case *AdminDeletePlayerRecordHandlerV1NoContent:
 		return v, nil, nil, nil
+
 	case *AdminDeletePlayerRecordHandlerV1Unauthorized:
 		return nil, v, nil, nil
+
 	case *AdminDeletePlayerRecordHandlerV1InternalServerError:
 		return nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminDeletePlayerRecordHandlerV1Short(params *AdminDeletePlayerRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeletePlayerRecordHandlerV1NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminDeletePlayerRecordHandlerV1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminDeletePlayerRecordHandlerV1",
+		Method:             "DELETE",
+		PathPattern:        "/cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records/{key}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminDeletePlayerRecordHandlerV1Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminDeletePlayerRecordHandlerV1NoContent:
+		return v, nil
+	case *AdminDeletePlayerRecordHandlerV1Unauthorized:
+		return nil, v
+	case *AdminDeletePlayerRecordHandlerV1InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -175,7 +267,7 @@ func (a *Client) AdminGetPlayerPublicRecordHandlerV1(params *AdminGetPlayerPubli
 		PathPattern:        "/cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records/{key}/public",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminGetPlayerPublicRecordHandlerV1Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -190,14 +282,61 @@ func (a *Client) AdminGetPlayerPublicRecordHandlerV1(params *AdminGetPlayerPubli
 
 	case *AdminGetPlayerPublicRecordHandlerV1OK:
 		return v, nil, nil, nil, nil
+
 	case *AdminGetPlayerPublicRecordHandlerV1Unauthorized:
 		return nil, v, nil, nil, nil
+
 	case *AdminGetPlayerPublicRecordHandlerV1NotFound:
 		return nil, nil, v, nil, nil
+
 	case *AdminGetPlayerPublicRecordHandlerV1InternalServerError:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminGetPlayerPublicRecordHandlerV1Short(params *AdminGetPlayerPublicRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetPlayerPublicRecordHandlerV1OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGetPlayerPublicRecordHandlerV1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminGetPlayerPublicRecordHandlerV1",
+		Method:             "GET",
+		PathPattern:        "/cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records/{key}/public",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGetPlayerPublicRecordHandlerV1Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGetPlayerPublicRecordHandlerV1OK:
+		return v, nil
+	case *AdminGetPlayerPublicRecordHandlerV1Unauthorized:
+		return nil, v
+	case *AdminGetPlayerPublicRecordHandlerV1NotFound:
+		return nil, v
+	case *AdminGetPlayerPublicRecordHandlerV1InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -226,7 +365,7 @@ func (a *Client) AdminGetPlayerRecordHandlerV1(params *AdminGetPlayerRecordHandl
 		PathPattern:        "/cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records/{key}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminGetPlayerRecordHandlerV1Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -241,14 +380,61 @@ func (a *Client) AdminGetPlayerRecordHandlerV1(params *AdminGetPlayerRecordHandl
 
 	case *AdminGetPlayerRecordHandlerV1OK:
 		return v, nil, nil, nil, nil
+
 	case *AdminGetPlayerRecordHandlerV1Unauthorized:
 		return nil, v, nil, nil, nil
+
 	case *AdminGetPlayerRecordHandlerV1NotFound:
 		return nil, nil, v, nil, nil
+
 	case *AdminGetPlayerRecordHandlerV1InternalServerError:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminGetPlayerRecordHandlerV1Short(params *AdminGetPlayerRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetPlayerRecordHandlerV1OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGetPlayerRecordHandlerV1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminGetPlayerRecordHandlerV1",
+		Method:             "GET",
+		PathPattern:        "/cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records/{key}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGetPlayerRecordHandlerV1Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGetPlayerRecordHandlerV1OK:
+		return v, nil
+	case *AdminGetPlayerRecordHandlerV1Unauthorized:
+		return nil, v
+	case *AdminGetPlayerRecordHandlerV1NotFound:
+		return nil, v
+	case *AdminGetPlayerRecordHandlerV1InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -263,7 +449,7 @@ Save a record (arbitrary JSON data) in user-level.
 If a record already exist with given record key, this endpoint will try to merge.
 Same top level key inside body will be replaced, different top level key will be appended.
 Record saved will be a public record.
-If existing record is not public (is_public false) then this endpoint won't make it public.
+If existing record is not public (is_public false) then this endpoint won&#39;t make it public.
 */
 func (a *Client) AdminPostPlayerPublicRecordHandlerV1(params *AdminPostPlayerPublicRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPostPlayerPublicRecordHandlerV1Created, *AdminPostPlayerPublicRecordHandlerV1BadRequest, *AdminPostPlayerPublicRecordHandlerV1Unauthorized, *AdminPostPlayerPublicRecordHandlerV1InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -281,7 +467,7 @@ func (a *Client) AdminPostPlayerPublicRecordHandlerV1(params *AdminPostPlayerPub
 		PathPattern:        "/cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records/{key}/public",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminPostPlayerPublicRecordHandlerV1Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -296,14 +482,61 @@ func (a *Client) AdminPostPlayerPublicRecordHandlerV1(params *AdminPostPlayerPub
 
 	case *AdminPostPlayerPublicRecordHandlerV1Created:
 		return v, nil, nil, nil, nil
+
 	case *AdminPostPlayerPublicRecordHandlerV1BadRequest:
 		return nil, v, nil, nil, nil
+
 	case *AdminPostPlayerPublicRecordHandlerV1Unauthorized:
 		return nil, nil, v, nil, nil
+
 	case *AdminPostPlayerPublicRecordHandlerV1InternalServerError:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminPostPlayerPublicRecordHandlerV1Short(params *AdminPostPlayerPublicRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPostPlayerPublicRecordHandlerV1Created, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminPostPlayerPublicRecordHandlerV1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminPostPlayerPublicRecordHandlerV1",
+		Method:             "POST",
+		PathPattern:        "/cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records/{key}/public",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminPostPlayerPublicRecordHandlerV1Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminPostPlayerPublicRecordHandlerV1Created:
+		return v, nil
+	case *AdminPostPlayerPublicRecordHandlerV1BadRequest:
+		return nil, v
+	case *AdminPostPlayerPublicRecordHandlerV1Unauthorized:
+		return nil, v
+	case *AdminPostPlayerPublicRecordHandlerV1InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -335,7 +568,7 @@ func (a *Client) AdminPostPlayerRecordHandlerV1(params *AdminPostPlayerRecordHan
 		PathPattern:        "/cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records/{key}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminPostPlayerRecordHandlerV1Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -350,12 +583,56 @@ func (a *Client) AdminPostPlayerRecordHandlerV1(params *AdminPostPlayerRecordHan
 
 	case *AdminPostPlayerRecordHandlerV1Created:
 		return v, nil, nil, nil
+
 	case *AdminPostPlayerRecordHandlerV1Unauthorized:
 		return nil, v, nil, nil
+
 	case *AdminPostPlayerRecordHandlerV1InternalServerError:
 		return nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminPostPlayerRecordHandlerV1Short(params *AdminPostPlayerRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPostPlayerRecordHandlerV1Created, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminPostPlayerRecordHandlerV1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminPostPlayerRecordHandlerV1",
+		Method:             "POST",
+		PathPattern:        "/cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records/{key}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminPostPlayerRecordHandlerV1Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminPostPlayerRecordHandlerV1Created:
+		return v, nil
+	case *AdminPostPlayerRecordHandlerV1Unauthorized:
+		return nil, v
+	case *AdminPostPlayerRecordHandlerV1InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -386,7 +663,7 @@ func (a *Client) AdminPutPlayerPublicRecordHandlerV1(params *AdminPutPlayerPubli
 		PathPattern:        "/cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records/{key}/public",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminPutPlayerPublicRecordHandlerV1Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -401,14 +678,61 @@ func (a *Client) AdminPutPlayerPublicRecordHandlerV1(params *AdminPutPlayerPubli
 
 	case *AdminPutPlayerPublicRecordHandlerV1OK:
 		return v, nil, nil, nil, nil
+
 	case *AdminPutPlayerPublicRecordHandlerV1BadRequest:
 		return nil, v, nil, nil, nil
+
 	case *AdminPutPlayerPublicRecordHandlerV1Unauthorized:
 		return nil, nil, v, nil, nil
+
 	case *AdminPutPlayerPublicRecordHandlerV1InternalServerError:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminPutPlayerPublicRecordHandlerV1Short(params *AdminPutPlayerPublicRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutPlayerPublicRecordHandlerV1OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminPutPlayerPublicRecordHandlerV1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminPutPlayerPublicRecordHandlerV1",
+		Method:             "PUT",
+		PathPattern:        "/cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records/{key}/public",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminPutPlayerPublicRecordHandlerV1Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminPutPlayerPublicRecordHandlerV1OK:
+		return v, nil
+	case *AdminPutPlayerPublicRecordHandlerV1BadRequest:
+		return nil, v
+	case *AdminPutPlayerPublicRecordHandlerV1Unauthorized:
+		return nil, v
+	case *AdminPutPlayerPublicRecordHandlerV1InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -439,7 +763,7 @@ func (a *Client) AdminPutPlayerRecordHandlerV1(params *AdminPutPlayerRecordHandl
 		PathPattern:        "/cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records/{key}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminPutPlayerRecordHandlerV1Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -454,12 +778,56 @@ func (a *Client) AdminPutPlayerRecordHandlerV1(params *AdminPutPlayerRecordHandl
 
 	case *AdminPutPlayerRecordHandlerV1OK:
 		return v, nil, nil, nil
+
 	case *AdminPutPlayerRecordHandlerV1Unauthorized:
 		return nil, v, nil, nil
+
 	case *AdminPutPlayerRecordHandlerV1InternalServerError:
 		return nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminPutPlayerRecordHandlerV1Short(params *AdminPutPlayerRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutPlayerRecordHandlerV1OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminPutPlayerRecordHandlerV1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminPutPlayerRecordHandlerV1",
+		Method:             "PUT",
+		PathPattern:        "/cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records/{key}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminPutPlayerRecordHandlerV1Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminPutPlayerRecordHandlerV1OK:
+		return v, nil
+	case *AdminPutPlayerRecordHandlerV1Unauthorized:
+		return nil, v
+	case *AdminPutPlayerRecordHandlerV1InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -488,7 +856,7 @@ func (a *Client) ListPlayerRecordHandlerV1(params *ListPlayerRecordHandlerV1Para
 		PathPattern:        "/cloudsave/v1/admin/namespaces/{namespace}/users/records",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &ListPlayerRecordHandlerV1Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -503,14 +871,61 @@ func (a *Client) ListPlayerRecordHandlerV1(params *ListPlayerRecordHandlerV1Para
 
 	case *ListPlayerRecordHandlerV1OK:
 		return v, nil, nil, nil, nil
+
 	case *ListPlayerRecordHandlerV1BadRequest:
 		return nil, v, nil, nil, nil
+
 	case *ListPlayerRecordHandlerV1Unauthorized:
 		return nil, nil, v, nil, nil
+
 	case *ListPlayerRecordHandlerV1InternalServerError:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) ListPlayerRecordHandlerV1Short(params *ListPlayerRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*ListPlayerRecordHandlerV1OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewListPlayerRecordHandlerV1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "listPlayerRecordHandlerV1",
+		Method:             "GET",
+		PathPattern:        "/cloudsave/v1/admin/namespaces/{namespace}/users/records",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ListPlayerRecordHandlerV1Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *ListPlayerRecordHandlerV1OK:
+		return v, nil
+	case *ListPlayerRecordHandlerV1BadRequest:
+		return nil, v
+	case *ListPlayerRecordHandlerV1Unauthorized:
+		return nil, v
+	case *ListPlayerRecordHandlerV1InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 

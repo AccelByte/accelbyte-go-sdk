@@ -30,20 +30,23 @@ type Client struct {
 // ClientService is the interface for Client methods
 type ClientService interface {
 	AdminBulkBlockPlayersV1(params *AdminBulkBlockPlayersV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBulkBlockPlayersV1NoContent, *AdminBulkBlockPlayersV1BadRequest, *AdminBulkBlockPlayersV1Unauthorized, *AdminBulkBlockPlayersV1Forbidden, *AdminBulkBlockPlayersV1InternalServerError, error)
-
+	AdminBulkBlockPlayersV1Short(params *AdminBulkBlockPlayersV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBulkBlockPlayersV1NoContent, error)
 	AdminGetAllPlayerSessionAttribute(params *AdminGetAllPlayerSessionAttributeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetAllPlayerSessionAttributeOK, *AdminGetAllPlayerSessionAttributeBadRequest, *AdminGetAllPlayerSessionAttributeUnauthorized, *AdminGetAllPlayerSessionAttributeForbidden, *AdminGetAllPlayerSessionAttributeNotFound, *AdminGetAllPlayerSessionAttributeInternalServerError, error)
-
+	AdminGetAllPlayerSessionAttributeShort(params *AdminGetAllPlayerSessionAttributeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetAllPlayerSessionAttributeOK, error)
+	AdminGetLobbyCCU(params *AdminGetLobbyCCUParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetLobbyCCUOK, *AdminGetLobbyCCUBadRequest, *AdminGetLobbyCCUUnauthorized, *AdminGetLobbyCCUForbidden, *AdminGetLobbyCCUNotFound, *AdminGetLobbyCCUInternalServerError, error)
+	AdminGetLobbyCCUShort(params *AdminGetLobbyCCUParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetLobbyCCUOK, error)
 	AdminGetPlayerBlockedByPlayersV1(params *AdminGetPlayerBlockedByPlayersV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetPlayerBlockedByPlayersV1OK, *AdminGetPlayerBlockedByPlayersV1BadRequest, *AdminGetPlayerBlockedByPlayersV1Unauthorized, *AdminGetPlayerBlockedByPlayersV1Forbidden, *AdminGetPlayerBlockedByPlayersV1NotFound, *AdminGetPlayerBlockedByPlayersV1InternalServerError, error)
-
+	AdminGetPlayerBlockedByPlayersV1Short(params *AdminGetPlayerBlockedByPlayersV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetPlayerBlockedByPlayersV1OK, error)
 	AdminGetPlayerBlockedPlayersV1(params *AdminGetPlayerBlockedPlayersV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetPlayerBlockedPlayersV1OK, *AdminGetPlayerBlockedPlayersV1BadRequest, *AdminGetPlayerBlockedPlayersV1Unauthorized, *AdminGetPlayerBlockedPlayersV1Forbidden, *AdminGetPlayerBlockedPlayersV1NotFound, *AdminGetPlayerBlockedPlayersV1InternalServerError, error)
-
+	AdminGetPlayerBlockedPlayersV1Short(params *AdminGetPlayerBlockedPlayersV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetPlayerBlockedPlayersV1OK, error)
 	AdminGetPlayerSessionAttribute(params *AdminGetPlayerSessionAttributeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetPlayerSessionAttributeOK, *AdminGetPlayerSessionAttributeBadRequest, *AdminGetPlayerSessionAttributeUnauthorized, *AdminGetPlayerSessionAttributeForbidden, *AdminGetPlayerSessionAttributeNotFound, *AdminGetPlayerSessionAttributeInternalServerError, error)
-
+	AdminGetPlayerSessionAttributeShort(params *AdminGetPlayerSessionAttributeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetPlayerSessionAttributeOK, error)
 	AdminSetPlayerSessionAttribute(params *AdminSetPlayerSessionAttributeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSetPlayerSessionAttributeNoContent, *AdminSetPlayerSessionAttributeBadRequest, *AdminSetPlayerSessionAttributeUnauthorized, *AdminSetPlayerSessionAttributeForbidden, *AdminSetPlayerSessionAttributeNotFound, *AdminSetPlayerSessionAttributeInternalServerError, error)
-
+	AdminSetPlayerSessionAttributeShort(params *AdminSetPlayerSessionAttributeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSetPlayerSessionAttributeNoContent, error)
 	PublicGetPlayerBlockedByPlayersV1(params *PublicGetPlayerBlockedByPlayersV1Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetPlayerBlockedByPlayersV1OK, *PublicGetPlayerBlockedByPlayersV1BadRequest, *PublicGetPlayerBlockedByPlayersV1Unauthorized, *PublicGetPlayerBlockedByPlayersV1Forbidden, *PublicGetPlayerBlockedByPlayersV1NotFound, *PublicGetPlayerBlockedByPlayersV1InternalServerError, error)
-
+	PublicGetPlayerBlockedByPlayersV1Short(params *PublicGetPlayerBlockedByPlayersV1Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetPlayerBlockedByPlayersV1OK, error)
 	PublicGetPlayerBlockedPlayersV1(params *PublicGetPlayerBlockedPlayersV1Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetPlayerBlockedPlayersV1OK, *PublicGetPlayerBlockedPlayersV1BadRequest, *PublicGetPlayerBlockedPlayersV1Unauthorized, *PublicGetPlayerBlockedPlayersV1Forbidden, *PublicGetPlayerBlockedPlayersV1NotFound, *PublicGetPlayerBlockedPlayersV1InternalServerError, error)
+	PublicGetPlayerBlockedPlayersV1Short(params *PublicGetPlayerBlockedPlayersV1Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetPlayerBlockedPlayersV1OK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -51,8 +54,8 @@ type ClientService interface {
 /*
   AdminBulkBlockPlayersV1 admins bulk blocks player by list user id
 
-  Required permission : <code>ADMIN:NAMESPACE:{namespace}:USER:{userId}:PLAYER:BLOCK [CREATE]</code> with scope <code>social</code>
-			<br>Bulk block player in a namespace by list of user id
+  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:PLAYER:BLOCK [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+			&lt;br&gt;Bulk block player in a namespace by list of user id
 */
 func (a *Client) AdminBulkBlockPlayersV1(params *AdminBulkBlockPlayersV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBulkBlockPlayersV1NoContent, *AdminBulkBlockPlayersV1BadRequest, *AdminBulkBlockPlayersV1Unauthorized, *AdminBulkBlockPlayersV1Forbidden, *AdminBulkBlockPlayersV1InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -70,7 +73,7 @@ func (a *Client) AdminBulkBlockPlayersV1(params *AdminBulkBlockPlayersV1Params, 
 		PathPattern:        "/lobby/v1/admin/player/namespaces/{namespace}/users/{userId}/bulk/block",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminBulkBlockPlayersV1Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -85,24 +88,74 @@ func (a *Client) AdminBulkBlockPlayersV1(params *AdminBulkBlockPlayersV1Params, 
 
 	case *AdminBulkBlockPlayersV1NoContent:
 		return v, nil, nil, nil, nil, nil
+
 	case *AdminBulkBlockPlayersV1BadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *AdminBulkBlockPlayersV1Unauthorized:
 		return nil, nil, v, nil, nil, nil
+
 	case *AdminBulkBlockPlayersV1Forbidden:
 		return nil, nil, nil, v, nil, nil
+
 	case *AdminBulkBlockPlayersV1InternalServerError:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminBulkBlockPlayersV1Short(params *AdminBulkBlockPlayersV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBulkBlockPlayersV1NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminBulkBlockPlayersV1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminBulkBlockPlayersV1",
+		Method:             "POST",
+		PathPattern:        "/lobby/v1/admin/player/namespaces/{namespace}/users/{userId}/bulk/block",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminBulkBlockPlayersV1Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminBulkBlockPlayersV1NoContent:
+		return v, nil
+	case *AdminBulkBlockPlayersV1BadRequest:
+		return nil, v
+	case *AdminBulkBlockPlayersV1Unauthorized:
+		return nil, v
+	case *AdminBulkBlockPlayersV1Forbidden:
+		return nil, v
+	case *AdminBulkBlockPlayersV1InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   AdminGetAllPlayerSessionAttribute admins get all player s session attribute
 
-  Required permission : <code>ADMIN:NAMESPACE:{namespace}:USER:{userId}:PLAYER:ATTRIBUTES [READ]</code> with scope <code>social</code>
-			<br>get all player's session attribute by user id in a namespace.
+  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:PLAYER:ATTRIBUTES [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+			&lt;br&gt;get all player&#39;s session attribute by user id in a namespace.
 */
 func (a *Client) AdminGetAllPlayerSessionAttribute(params *AdminGetAllPlayerSessionAttributeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetAllPlayerSessionAttributeOK, *AdminGetAllPlayerSessionAttributeBadRequest, *AdminGetAllPlayerSessionAttributeUnauthorized, *AdminGetAllPlayerSessionAttributeForbidden, *AdminGetAllPlayerSessionAttributeNotFound, *AdminGetAllPlayerSessionAttributeInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -120,7 +173,7 @@ func (a *Client) AdminGetAllPlayerSessionAttribute(params *AdminGetAllPlayerSess
 		PathPattern:        "/lobby/v1/admin/player/namespaces/{namespace}/users/{userId}/attributes",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminGetAllPlayerSessionAttributeReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -135,26 +188,184 @@ func (a *Client) AdminGetAllPlayerSessionAttribute(params *AdminGetAllPlayerSess
 
 	case *AdminGetAllPlayerSessionAttributeOK:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *AdminGetAllPlayerSessionAttributeBadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *AdminGetAllPlayerSessionAttributeUnauthorized:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *AdminGetAllPlayerSessionAttributeForbidden:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *AdminGetAllPlayerSessionAttributeNotFound:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *AdminGetAllPlayerSessionAttributeInternalServerError:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminGetAllPlayerSessionAttributeShort(params *AdminGetAllPlayerSessionAttributeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetAllPlayerSessionAttributeOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGetAllPlayerSessionAttributeParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminGetAllPlayerSessionAttribute",
+		Method:             "GET",
+		PathPattern:        "/lobby/v1/admin/player/namespaces/{namespace}/users/{userId}/attributes",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGetAllPlayerSessionAttributeReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGetAllPlayerSessionAttributeOK:
+		return v, nil
+	case *AdminGetAllPlayerSessionAttributeBadRequest:
+		return nil, v
+	case *AdminGetAllPlayerSessionAttributeUnauthorized:
+		return nil, v
+	case *AdminGetAllPlayerSessionAttributeForbidden:
+		return nil, v
+	case *AdminGetAllPlayerSessionAttributeNotFound:
+		return nil, v
+	case *AdminGetAllPlayerSessionAttributeInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  AdminGetLobbyCCU admins get number of players currently connected to the lobby
+
+  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:LOBBY:CCU [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+			&lt;br&gt;Get the number of players connected to the Lobby in the given namespace.
+*/
+func (a *Client) AdminGetLobbyCCU(params *AdminGetLobbyCCUParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetLobbyCCUOK, *AdminGetLobbyCCUBadRequest, *AdminGetLobbyCCUUnauthorized, *AdminGetLobbyCCUForbidden, *AdminGetLobbyCCUNotFound, *AdminGetLobbyCCUInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGetLobbyCCUParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminGetLobbyCCU",
+		Method:             "GET",
+		PathPattern:        "/lobby/v1/admin/player/namespaces/{namespace}/ccu",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGetLobbyCCUReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGetLobbyCCUOK:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *AdminGetLobbyCCUBadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *AdminGetLobbyCCUUnauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *AdminGetLobbyCCUForbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *AdminGetLobbyCCUNotFound:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *AdminGetLobbyCCUInternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminGetLobbyCCUShort(params *AdminGetLobbyCCUParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetLobbyCCUOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGetLobbyCCUParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminGetLobbyCCU",
+		Method:             "GET",
+		PathPattern:        "/lobby/v1/admin/player/namespaces/{namespace}/ccu",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGetLobbyCCUReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGetLobbyCCUOK:
+		return v, nil
+	case *AdminGetLobbyCCUBadRequest:
+		return nil, v
+	case *AdminGetLobbyCCUUnauthorized:
+		return nil, v
+	case *AdminGetLobbyCCUForbidden:
+		return nil, v
+	case *AdminGetLobbyCCUNotFound:
+		return nil, v
+	case *AdminGetLobbyCCUInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   AdminGetPlayerBlockedByPlayersV1 gets players who blocked this player by user id
 
-  Required permission : <code>ADMIN:NAMESPACE:{namespace}:USER:{userId}:PLAYER:BLOCK [READ]</code> with scope <code>social</code>
-			<br>load get players who blocked this player in a namespace based on user id
+  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:PLAYER:BLOCK [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+			&lt;br&gt;load get players who blocked this player in a namespace based on user id
 */
 func (a *Client) AdminGetPlayerBlockedByPlayersV1(params *AdminGetPlayerBlockedByPlayersV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetPlayerBlockedByPlayersV1OK, *AdminGetPlayerBlockedByPlayersV1BadRequest, *AdminGetPlayerBlockedByPlayersV1Unauthorized, *AdminGetPlayerBlockedByPlayersV1Forbidden, *AdminGetPlayerBlockedByPlayersV1NotFound, *AdminGetPlayerBlockedByPlayersV1InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -172,7 +383,7 @@ func (a *Client) AdminGetPlayerBlockedByPlayersV1(params *AdminGetPlayerBlockedB
 		PathPattern:        "/lobby/v1/admin/player/namespaces/{namespace}/users/{userId}/blocked-by",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminGetPlayerBlockedByPlayersV1Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -187,26 +398,79 @@ func (a *Client) AdminGetPlayerBlockedByPlayersV1(params *AdminGetPlayerBlockedB
 
 	case *AdminGetPlayerBlockedByPlayersV1OK:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *AdminGetPlayerBlockedByPlayersV1BadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *AdminGetPlayerBlockedByPlayersV1Unauthorized:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *AdminGetPlayerBlockedByPlayersV1Forbidden:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *AdminGetPlayerBlockedByPlayersV1NotFound:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *AdminGetPlayerBlockedByPlayersV1InternalServerError:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminGetPlayerBlockedByPlayersV1Short(params *AdminGetPlayerBlockedByPlayersV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetPlayerBlockedByPlayersV1OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGetPlayerBlockedByPlayersV1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminGetPlayerBlockedByPlayersV1",
+		Method:             "GET",
+		PathPattern:        "/lobby/v1/admin/player/namespaces/{namespace}/users/{userId}/blocked-by",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGetPlayerBlockedByPlayersV1Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGetPlayerBlockedByPlayersV1OK:
+		return v, nil
+	case *AdminGetPlayerBlockedByPlayersV1BadRequest:
+		return nil, v
+	case *AdminGetPlayerBlockedByPlayersV1Unauthorized:
+		return nil, v
+	case *AdminGetPlayerBlockedByPlayersV1Forbidden:
+		return nil, v
+	case *AdminGetPlayerBlockedByPlayersV1NotFound:
+		return nil, v
+	case *AdminGetPlayerBlockedByPlayersV1InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   AdminGetPlayerBlockedPlayersV1 admins get blocked players by user id
 
-  Required permission : <code>ADMIN:NAMESPACE:{namespace}:USER:{userId}:PLAYER:BLOCK [READ]</code> with scope <code>social</code>
-			<br>get blocked players data by user id in a namespace.
+  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:PLAYER:BLOCK [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+			&lt;br&gt;get blocked players data by user id in a namespace.
 */
 func (a *Client) AdminGetPlayerBlockedPlayersV1(params *AdminGetPlayerBlockedPlayersV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetPlayerBlockedPlayersV1OK, *AdminGetPlayerBlockedPlayersV1BadRequest, *AdminGetPlayerBlockedPlayersV1Unauthorized, *AdminGetPlayerBlockedPlayersV1Forbidden, *AdminGetPlayerBlockedPlayersV1NotFound, *AdminGetPlayerBlockedPlayersV1InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -224,7 +488,7 @@ func (a *Client) AdminGetPlayerBlockedPlayersV1(params *AdminGetPlayerBlockedPla
 		PathPattern:        "/lobby/v1/admin/player/namespaces/{namespace}/users/{userId}/blocked",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminGetPlayerBlockedPlayersV1Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -239,26 +503,79 @@ func (a *Client) AdminGetPlayerBlockedPlayersV1(params *AdminGetPlayerBlockedPla
 
 	case *AdminGetPlayerBlockedPlayersV1OK:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *AdminGetPlayerBlockedPlayersV1BadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *AdminGetPlayerBlockedPlayersV1Unauthorized:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *AdminGetPlayerBlockedPlayersV1Forbidden:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *AdminGetPlayerBlockedPlayersV1NotFound:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *AdminGetPlayerBlockedPlayersV1InternalServerError:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminGetPlayerBlockedPlayersV1Short(params *AdminGetPlayerBlockedPlayersV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetPlayerBlockedPlayersV1OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGetPlayerBlockedPlayersV1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminGetPlayerBlockedPlayersV1",
+		Method:             "GET",
+		PathPattern:        "/lobby/v1/admin/player/namespaces/{namespace}/users/{userId}/blocked",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGetPlayerBlockedPlayersV1Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGetPlayerBlockedPlayersV1OK:
+		return v, nil
+	case *AdminGetPlayerBlockedPlayersV1BadRequest:
+		return nil, v
+	case *AdminGetPlayerBlockedPlayersV1Unauthorized:
+		return nil, v
+	case *AdminGetPlayerBlockedPlayersV1Forbidden:
+		return nil, v
+	case *AdminGetPlayerBlockedPlayersV1NotFound:
+		return nil, v
+	case *AdminGetPlayerBlockedPlayersV1InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   AdminGetPlayerSessionAttribute admins get player s session attribute
 
-  Required permission : <code>ADMIN:NAMESPACE:{namespace}:USER:{userId}:PLAYER:ATTRIBUTES [READ]</code> with scope <code>social</code>
-			<br>get player's specific session attribute by user id in a namespace.
+  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:PLAYER:ATTRIBUTES [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+			&lt;br&gt;get player&#39;s specific session attribute by user id in a namespace.
 */
 func (a *Client) AdminGetPlayerSessionAttribute(params *AdminGetPlayerSessionAttributeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetPlayerSessionAttributeOK, *AdminGetPlayerSessionAttributeBadRequest, *AdminGetPlayerSessionAttributeUnauthorized, *AdminGetPlayerSessionAttributeForbidden, *AdminGetPlayerSessionAttributeNotFound, *AdminGetPlayerSessionAttributeInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -276,7 +593,7 @@ func (a *Client) AdminGetPlayerSessionAttribute(params *AdminGetPlayerSessionAtt
 		PathPattern:        "/lobby/v1/admin/player/namespaces/{namespace}/users/{userId}/attributes/{attribute}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminGetPlayerSessionAttributeReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -291,26 +608,79 @@ func (a *Client) AdminGetPlayerSessionAttribute(params *AdminGetPlayerSessionAtt
 
 	case *AdminGetPlayerSessionAttributeOK:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *AdminGetPlayerSessionAttributeBadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *AdminGetPlayerSessionAttributeUnauthorized:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *AdminGetPlayerSessionAttributeForbidden:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *AdminGetPlayerSessionAttributeNotFound:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *AdminGetPlayerSessionAttributeInternalServerError:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminGetPlayerSessionAttributeShort(params *AdminGetPlayerSessionAttributeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetPlayerSessionAttributeOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGetPlayerSessionAttributeParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminGetPlayerSessionAttribute",
+		Method:             "GET",
+		PathPattern:        "/lobby/v1/admin/player/namespaces/{namespace}/users/{userId}/attributes/{attribute}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGetPlayerSessionAttributeReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGetPlayerSessionAttributeOK:
+		return v, nil
+	case *AdminGetPlayerSessionAttributeBadRequest:
+		return nil, v
+	case *AdminGetPlayerSessionAttributeUnauthorized:
+		return nil, v
+	case *AdminGetPlayerSessionAttributeForbidden:
+		return nil, v
+	case *AdminGetPlayerSessionAttributeNotFound:
+		return nil, v
+	case *AdminGetPlayerSessionAttributeInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   AdminSetPlayerSessionAttribute admins set player s session attribute
 
-  Required permission : <code>ADMIN:NAMESPACE:{namespace}:USER:{userId}:PLAYER:ATTRIBUTES [UPDATE]</code> with scope <code>social</code>
-			<br>set player's session attribute by user id in a namespace.
+  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:PLAYER:ATTRIBUTES [UPDATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+			&lt;br&gt;set player&#39;s session attribute by user id in a namespace.
 */
 func (a *Client) AdminSetPlayerSessionAttribute(params *AdminSetPlayerSessionAttributeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSetPlayerSessionAttributeNoContent, *AdminSetPlayerSessionAttributeBadRequest, *AdminSetPlayerSessionAttributeUnauthorized, *AdminSetPlayerSessionAttributeForbidden, *AdminSetPlayerSessionAttributeNotFound, *AdminSetPlayerSessionAttributeInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -328,7 +698,7 @@ func (a *Client) AdminSetPlayerSessionAttribute(params *AdminSetPlayerSessionAtt
 		PathPattern:        "/lobby/v1/admin/player/namespaces/{namespace}/users/{userId}/attributes",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdminSetPlayerSessionAttributeReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -343,26 +713,79 @@ func (a *Client) AdminSetPlayerSessionAttribute(params *AdminSetPlayerSessionAtt
 
 	case *AdminSetPlayerSessionAttributeNoContent:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *AdminSetPlayerSessionAttributeBadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *AdminSetPlayerSessionAttributeUnauthorized:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *AdminSetPlayerSessionAttributeForbidden:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *AdminSetPlayerSessionAttributeNotFound:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *AdminSetPlayerSessionAttributeInternalServerError:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminSetPlayerSessionAttributeShort(params *AdminSetPlayerSessionAttributeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSetPlayerSessionAttributeNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminSetPlayerSessionAttributeParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminSetPlayerSessionAttribute",
+		Method:             "PUT",
+		PathPattern:        "/lobby/v1/admin/player/namespaces/{namespace}/users/{userId}/attributes",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminSetPlayerSessionAttributeReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminSetPlayerSessionAttributeNoContent:
+		return v, nil
+	case *AdminSetPlayerSessionAttributeBadRequest:
+		return nil, v
+	case *AdminSetPlayerSessionAttributeUnauthorized:
+		return nil, v
+	case *AdminSetPlayerSessionAttributeForbidden:
+		return nil, v
+	case *AdminSetPlayerSessionAttributeNotFound:
+		return nil, v
+	case *AdminSetPlayerSessionAttributeInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   PublicGetPlayerBlockedByPlayersV1 gets players who blocked this player by user id
 
-  Required valid user authorization <br/>
-			<br>load get players who blocked this player in a namespace based on user id <br/>
+  Required valid user authorization &lt;br/&gt;
+			&lt;br&gt;load get players who blocked this player in a namespace based on user id &lt;br/&gt;
 			Action Code: 50101
 */
 func (a *Client) PublicGetPlayerBlockedByPlayersV1(params *PublicGetPlayerBlockedByPlayersV1Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetPlayerBlockedByPlayersV1OK, *PublicGetPlayerBlockedByPlayersV1BadRequest, *PublicGetPlayerBlockedByPlayersV1Unauthorized, *PublicGetPlayerBlockedByPlayersV1Forbidden, *PublicGetPlayerBlockedByPlayersV1NotFound, *PublicGetPlayerBlockedByPlayersV1InternalServerError, error) {
@@ -381,7 +804,7 @@ func (a *Client) PublicGetPlayerBlockedByPlayersV1(params *PublicGetPlayerBlocke
 		PathPattern:        "/lobby/v1/public/player/namespaces/{namespace}/users/me/blocked-by",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicGetPlayerBlockedByPlayersV1Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -396,26 +819,79 @@ func (a *Client) PublicGetPlayerBlockedByPlayersV1(params *PublicGetPlayerBlocke
 
 	case *PublicGetPlayerBlockedByPlayersV1OK:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *PublicGetPlayerBlockedByPlayersV1BadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *PublicGetPlayerBlockedByPlayersV1Unauthorized:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *PublicGetPlayerBlockedByPlayersV1Forbidden:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *PublicGetPlayerBlockedByPlayersV1NotFound:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *PublicGetPlayerBlockedByPlayersV1InternalServerError:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicGetPlayerBlockedByPlayersV1Short(params *PublicGetPlayerBlockedByPlayersV1Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetPlayerBlockedByPlayersV1OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetPlayerBlockedByPlayersV1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicGetPlayerBlockedByPlayersV1",
+		Method:             "GET",
+		PathPattern:        "/lobby/v1/public/player/namespaces/{namespace}/users/me/blocked-by",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicGetPlayerBlockedByPlayersV1Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetPlayerBlockedByPlayersV1OK:
+		return v, nil
+	case *PublicGetPlayerBlockedByPlayersV1BadRequest:
+		return nil, v
+	case *PublicGetPlayerBlockedByPlayersV1Unauthorized:
+		return nil, v
+	case *PublicGetPlayerBlockedByPlayersV1Forbidden:
+		return nil, v
+	case *PublicGetPlayerBlockedByPlayersV1NotFound:
+		return nil, v
+	case *PublicGetPlayerBlockedByPlayersV1InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   PublicGetPlayerBlockedPlayersV1 gets blocked players by user id
 
-  Required valid user authorization <br/>
-			<br>load blocked players in a namespace based on user id <br/>
+  Required valid user authorization &lt;br/&gt;
+			&lt;br&gt;load blocked players in a namespace based on user id &lt;br/&gt;
 			Action Code: 50101
 */
 func (a *Client) PublicGetPlayerBlockedPlayersV1(params *PublicGetPlayerBlockedPlayersV1Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetPlayerBlockedPlayersV1OK, *PublicGetPlayerBlockedPlayersV1BadRequest, *PublicGetPlayerBlockedPlayersV1Unauthorized, *PublicGetPlayerBlockedPlayersV1Forbidden, *PublicGetPlayerBlockedPlayersV1NotFound, *PublicGetPlayerBlockedPlayersV1InternalServerError, error) {
@@ -434,7 +910,7 @@ func (a *Client) PublicGetPlayerBlockedPlayersV1(params *PublicGetPlayerBlockedP
 		PathPattern:        "/lobby/v1/public/player/namespaces/{namespace}/users/me/blocked",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicGetPlayerBlockedPlayersV1Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -449,18 +925,71 @@ func (a *Client) PublicGetPlayerBlockedPlayersV1(params *PublicGetPlayerBlockedP
 
 	case *PublicGetPlayerBlockedPlayersV1OK:
 		return v, nil, nil, nil, nil, nil, nil
+
 	case *PublicGetPlayerBlockedPlayersV1BadRequest:
 		return nil, v, nil, nil, nil, nil, nil
+
 	case *PublicGetPlayerBlockedPlayersV1Unauthorized:
 		return nil, nil, v, nil, nil, nil, nil
+
 	case *PublicGetPlayerBlockedPlayersV1Forbidden:
 		return nil, nil, nil, v, nil, nil, nil
+
 	case *PublicGetPlayerBlockedPlayersV1NotFound:
 		return nil, nil, nil, nil, v, nil, nil
+
 	case *PublicGetPlayerBlockedPlayersV1InternalServerError:
 		return nil, nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicGetPlayerBlockedPlayersV1Short(params *PublicGetPlayerBlockedPlayersV1Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetPlayerBlockedPlayersV1OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetPlayerBlockedPlayersV1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicGetPlayerBlockedPlayersV1",
+		Method:             "GET",
+		PathPattern:        "/lobby/v1/public/player/namespaces/{namespace}/users/me/blocked",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicGetPlayerBlockedPlayersV1Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetPlayerBlockedPlayersV1OK:
+		return v, nil
+	case *PublicGetPlayerBlockedPlayersV1BadRequest:
+		return nil, v
+	case *PublicGetPlayerBlockedPlayersV1Unauthorized:
+		return nil, v
+	case *PublicGetPlayerBlockedPlayersV1Forbidden:
+		return nil, v
+	case *PublicGetPlayerBlockedPlayersV1NotFound:
+		return nil, v
+	case *PublicGetPlayerBlockedPlayersV1InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 

@@ -30,22 +30,23 @@ type Client struct {
 // ClientService is the interface for Client methods
 type ClientService interface {
 	Authorization(params *AuthorizationParams, authInfo runtime.ClientAuthInfoWriter) (*AuthorizationFound, error)
-
+	AuthorizationShort(params *AuthorizationParams, authInfo runtime.ClientAuthInfoWriter) (*AuthorizationFound, error)
 	GetJWKS(params *GetJWKSParams, authInfo runtime.ClientAuthInfoWriter) (*GetJWKSOK, error)
-
+	GetJWKSShort(params *GetJWKSParams, authInfo runtime.ClientAuthInfoWriter) (*GetJWKSOK, error)
 	GetRevocationList(params *GetRevocationListParams, authInfo runtime.ClientAuthInfoWriter) (*GetRevocationListOK, *GetRevocationListUnauthorized, error)
-
+	GetRevocationListShort(params *GetRevocationListParams, authInfo runtime.ClientAuthInfoWriter) (*GetRevocationListOK, error)
 	PlatformTokenRequestHandler(params *PlatformTokenRequestHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*PlatformTokenRequestHandlerOK, *PlatformTokenRequestHandlerBadRequest, *PlatformTokenRequestHandlerUnauthorized, error)
-
+	PlatformTokenRequestHandlerShort(params *PlatformTokenRequestHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*PlatformTokenRequestHandlerOK, error)
 	RevokeAUser(params *RevokeAUserParams, authInfo runtime.ClientAuthInfoWriter) (*RevokeAUserOK, *RevokeAUserBadRequest, *RevokeAUserUnauthorized, error)
-
+	RevokeAUserShort(params *RevokeAUserParams, authInfo runtime.ClientAuthInfoWriter) (*RevokeAUserOK, error)
 	RevokeToken(params *RevokeTokenParams, authInfo runtime.ClientAuthInfoWriter) (*RevokeTokenOK, *RevokeTokenBadRequest, *RevokeTokenUnauthorized, error)
-
+	RevokeTokenShort(params *RevokeTokenParams, authInfo runtime.ClientAuthInfoWriter) (*RevokeTokenOK, error)
 	RevokeUser(params *RevokeUserParams, authInfo runtime.ClientAuthInfoWriter) (*RevokeUserOK, *RevokeUserUnauthorized, error)
-
+	RevokeUserShort(params *RevokeUserParams, authInfo runtime.ClientAuthInfoWriter) (*RevokeUserOK, error)
 	TokenGrant(params *TokenGrantParams, authInfo runtime.ClientAuthInfoWriter) (*TokenGrantOK, *TokenGrantBadRequest, *TokenGrantUnauthorized, error)
-
+	TokenGrantShort(params *TokenGrantParams, authInfo runtime.ClientAuthInfoWriter) (*TokenGrantOK, error)
 	VerifyToken(params *VerifyTokenParams, authInfo runtime.ClientAuthInfoWriter) (*VerifyTokenOK, *VerifyTokenBadRequest, error)
+	VerifyTokenShort(params *VerifyTokenParams, authInfo runtime.ClientAuthInfoWriter) (*VerifyTokenOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -53,35 +54,35 @@ type ClientService interface {
 /*
   Authorization os auth2 authorize API
 
-  The endpoint supports two response types:<br/>
-	<p><strong>1. Response Type == "code":</strong></p>
-	<p>The endpoint returns an authorization code that will be used by the IAM client to exchange for an access token. It supports two different headers, the basic and the bearer header. Each behaves differently.</p>
-<ul>
-<li>
-	<p><strong>The basic header</strong></p>
-	<p>The basic header’s value is the base64 of the client ID and client secret. It is used by the developer whenever the developer authorizes a user on a same namespace.</p>
-</li>
-<li>
-	<p><strong>The bearer header</strong></p>
-	<p>The bearer header’s value is an access token. It is used by the developer whenever the developer authorizes a user on a different namespace. The endpoint validates user’s entitlement on the designated namespace for making sure the user is authorized for a designated namespace.</p>
-</li>
-</ul>
-<p>Following are the responses returned by the endpoint:</p>
-<ul>
-<li><p><strong>Authorize success</strong>: redirects to the given URL with the following information: ?code={authorization code}&state={state}</p></li>
-<li><p><strong>Authorize failure</strong>: redirects to the given URL with the following information:?error=access_denied&error_description=...</p></li>
-</ul>
-	 <p><strong>2. Response Type == "token":</strong></p>
-<ul>
-<li>
-	<p><strong>Authorize success</strong>: redirects to the given URL with the following information:</p>
-	<p>#access_token={accesstoken}&expires_in={expiration duration in seconds}&token_type=Bearer</p>
-</li>
-<li>
-	<p><strong>Authorize failure</strong>: redirects to the given URL with the following information:</p>
-	<p>?error=access_denied&error_description=...</p>
-</li>
-</ul>
+  The endpoint supports two response types:&lt;br/&gt;
+	&lt;p&gt;&lt;strong&gt;1. Response Type == &#34;code&#34;:&lt;/strong&gt;&lt;/p&gt;
+	&lt;p&gt;The endpoint returns an authorization code that will be used by the IAM client to exchange for an access token. It supports two different headers, the basic and the bearer header. Each behaves differently.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+	&lt;p&gt;&lt;strong&gt;The basic header&lt;/strong&gt;&lt;/p&gt;
+	&lt;p&gt;The basic header’s value is the base64 of the client ID and client secret. It is used by the developer whenever the developer authorizes a user on a same namespace.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+	&lt;p&gt;&lt;strong&gt;The bearer header&lt;/strong&gt;&lt;/p&gt;
+	&lt;p&gt;The bearer header’s value is an access token. It is used by the developer whenever the developer authorizes a user on a different namespace. The endpoint validates user’s entitlement on the designated namespace for making sure the user is authorized for a designated namespace.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Following are the responses returned by the endpoint:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Authorize success&lt;/strong&gt;: redirects to the given URL with the following information: ?code={authorization code}&amp;state={state}&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Authorize failure&lt;/strong&gt;: redirects to the given URL with the following information:?error=access_denied&amp;error_description=...&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+	 &lt;p&gt;&lt;strong&gt;2. Response Type == &#34;token&#34;:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+	&lt;p&gt;&lt;strong&gt;Authorize success&lt;/strong&gt;: redirects to the given URL with the following information:&lt;/p&gt;
+	&lt;p&gt;#access_token={accesstoken}&amp;expires_in={expiration duration in seconds}&amp;token_type=Bearer&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+	&lt;p&gt;&lt;strong&gt;Authorize failure&lt;/strong&gt;: redirects to the given URL with the following information:&lt;/p&gt;
+	&lt;p&gt;?error=access_denied&amp;error_description=...&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
 
 */
 func (a *Client) Authorization(params *AuthorizationParams, authInfo runtime.ClientAuthInfoWriter) (*AuthorizationFound, error) {
@@ -100,7 +101,7 @@ func (a *Client) Authorization(params *AuthorizationParams, authInfo runtime.Cli
 		PathPattern:        "/iam/oauth/authorize",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AuthorizationReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -115,6 +116,44 @@ func (a *Client) Authorization(params *AuthorizationParams, authInfo runtime.Cli
 
 	case *AuthorizationFound:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AuthorizationShort(params *AuthorizationParams, authInfo runtime.ClientAuthInfoWriter) (*AuthorizationFound, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAuthorizationParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "Authorization",
+		Method:             "POST",
+		PathPattern:        "/iam/oauth/authorize",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AuthorizationReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AuthorizationFound:
+		return nil, v
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -123,13 +162,13 @@ func (a *Client) Authorization(params *AuthorizationParams, authInfo runtime.Cli
 /*
   GetJWKS JSONs web key set for verifying j w t
 
-  <p>This endpoint serves public keys for verifying JWT access tokens generated by this service.</p>
-			<p>When a client application wants to verify a JWT token, it needs to get the 'kid' value found in the JWT token header and use it
-			to look up the corresponding public key from a set returned by this endpoint. The client application can then use that public key to verify the JWT.</p>
-			<p>A client application might cache the keys so it doesn't need to do request every time it needs to verify a JWT token. If a client application
-			caches the keys and a key with the same 'kid' cannot be found in the cache, it should then try to refresh the keys by making a request to this
-			endpoint again.</p>
-			<p>Please refer to the RFC for more information about JWK (JSON Web Key): https://tools.ietf.org/html/rfc7517</p>
+  &lt;p&gt;This endpoint serves public keys for verifying JWT access tokens generated by this service.&lt;/p&gt;
+			&lt;p&gt;When a client application wants to verify a JWT token, it needs to get the &#39;kid&#39; value found in the JWT token header and use it
+			to look up the corresponding public key from a set returned by this endpoint. The client application can then use that public key to verify the JWT.&lt;/p&gt;
+			&lt;p&gt;A client application might cache the keys so it doesn&#39;t need to do request every time it needs to verify a JWT token. If a client application
+			caches the keys and a key with the same &#39;kid&#39; cannot be found in the cache, it should then try to refresh the keys by making a request to this
+			endpoint again.&lt;/p&gt;
+			&lt;p&gt;Please refer to the RFC for more information about JWK (JSON Web Key): https://tools.ietf.org/html/rfc7517&lt;/p&gt;
 */
 func (a *Client) GetJWKS(params *GetJWKSParams, authInfo runtime.ClientAuthInfoWriter) (*GetJWKSOK, error) {
 	// TODO: Validate the params before sending
@@ -147,7 +186,7 @@ func (a *Client) GetJWKS(params *GetJWKSParams, authInfo runtime.ClientAuthInfoW
 		PathPattern:        "/iam/oauth/jwks",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{""},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetJWKSReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -162,6 +201,44 @@ func (a *Client) GetJWKS(params *GetJWKSParams, authInfo runtime.ClientAuthInfoW
 
 	case *GetJWKSOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetJWKSShort(params *GetJWKSParams, authInfo runtime.ClientAuthInfoWriter) (*GetJWKSOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetJWKSParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetJWKS",
+		Method:             "GET",
+		PathPattern:        "/iam/oauth/jwks",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{""},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetJWKSReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetJWKSOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -170,8 +247,8 @@ func (a *Client) GetJWKS(params *GetJWKSParams, authInfo runtime.ClientAuthInfoW
 /*
   GetRevocationList os auth2 revocation list API
 
-  <p>This endpoint will return a list of revoked users and revoked tokens. List of revoked tokens in bloom filter format. This endpoint requires all requests to have Authorization header set with Basic access authentication constructed from client id and client secret.</p>
-			<p>The bloom filter uses MurmurHash3 algorithm for hashing the values</p>
+  &lt;p&gt;This endpoint will return a list of revoked users and revoked tokens. List of revoked tokens in bloom filter format. This endpoint requires all requests to have Authorization header set with Basic access authentication constructed from client id and client secret.&lt;/p&gt;
+			&lt;p&gt;The bloom filter uses MurmurHash3 algorithm for hashing the values&lt;/p&gt;
 */
 func (a *Client) GetRevocationList(params *GetRevocationListParams, authInfo runtime.ClientAuthInfoWriter) (*GetRevocationListOK, *GetRevocationListUnauthorized, error) {
 	// TODO: Validate the params before sending
@@ -189,7 +266,7 @@ func (a *Client) GetRevocationList(params *GetRevocationListParams, authInfo run
 		PathPattern:        "/iam/oauth/revocationlist",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{""},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetRevocationListReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -204,28 +281,69 @@ func (a *Client) GetRevocationList(params *GetRevocationListParams, authInfo run
 
 	case *GetRevocationListOK:
 		return v, nil, nil
+
 	case *GetRevocationListUnauthorized:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetRevocationListShort(params *GetRevocationListParams, authInfo runtime.ClientAuthInfoWriter) (*GetRevocationListOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetRevocationListParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetRevocationList",
+		Method:             "GET",
+		PathPattern:        "/iam/oauth/revocationlist",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{""},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetRevocationListReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetRevocationListOK:
+		return v, nil
+	case *GetRevocationListUnauthorized:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   PlatformTokenRequestHandler os auth2 access token generation specific to platform
 
-  <h2>The endpoint is going to be deprecated at 2 July, 2018. Please use this instead: oauth/platforms/{platformId}/token</h2>
-			<p>
+  &lt;h2&gt;The endpoint is going to be deprecated at 2 July, 2018. Please use this instead: oauth/platforms/{platformId}/token&lt;/h2&gt;
+			&lt;p&gt;
 				This endpoint requires all requests to have Authorization header set with Basic access authentication
 				constructed from client id and client secret. For publisher-game namespace schema : Specify only either platform_token or device_id. Device token grant
 				should be requested along with device_id parameter against game namespace. Another 3rd party platform token grant should be requested
 				along with platform_token parameter against publisher namespace.
-			</p>
-			<p>
+			&lt;/p&gt;
+			&lt;p&gt;
 				Supported platforms:
-			</p>
-			<ol><li><strong>steamopenid</strong>: Steam's user authentication method using OpenID 2.0. The expected value of the platform token is the URL generated by Steam on web authentication</li></ol>
-			<p>The JWT contains user's active bans with its expiry date. List of ban types can be obtained from /iam/bans.</p>
+			&lt;/p&gt;
+			&lt;ol&gt;&lt;li&gt;&lt;strong&gt;steamopenid&lt;/strong&gt;: Steam&#39;s user authentication method using OpenID 2.0. The expected value of the platform token is the URL generated by Steam on web authentication&lt;/li&gt;&lt;/ol&gt;
+			&lt;p&gt;The JWT contains user&#39;s active bans with its expiry date. List of ban types can be obtained from /iam/bans.&lt;/p&gt;
 */
 func (a *Client) PlatformTokenRequestHandler(params *PlatformTokenRequestHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*PlatformTokenRequestHandlerOK, *PlatformTokenRequestHandlerBadRequest, *PlatformTokenRequestHandlerUnauthorized, error) {
 	// TODO: Validate the params before sending
@@ -243,7 +361,7 @@ func (a *Client) PlatformTokenRequestHandler(params *PlatformTokenRequestHandler
 		PathPattern:        "/iam/oauth/namespaces/{namespace}/platforms/{platformId}/token",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PlatformTokenRequestHandlerReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -258,23 +376,67 @@ func (a *Client) PlatformTokenRequestHandler(params *PlatformTokenRequestHandler
 
 	case *PlatformTokenRequestHandlerOK:
 		return v, nil, nil, nil
+
 	case *PlatformTokenRequestHandlerBadRequest:
 		return nil, v, nil, nil
+
 	case *PlatformTokenRequestHandlerUnauthorized:
 		return nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PlatformTokenRequestHandlerShort(params *PlatformTokenRequestHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*PlatformTokenRequestHandlerOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPlatformTokenRequestHandlerParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PlatformTokenRequestHandler",
+		Method:             "POST",
+		PathPattern:        "/iam/oauth/namespaces/{namespace}/platforms/{platformId}/token",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PlatformTokenRequestHandlerReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PlatformTokenRequestHandlerOK:
+		return v, nil
+	case *PlatformTokenRequestHandlerBadRequest:
+		return nil, v
+	case *PlatformTokenRequestHandlerUnauthorized:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   RevokeAUser os auth2 user revocation API
 
-  <h2>The endpoint is going to be deprecated at 21 August, 2018. Please use this instead: oauth/namespaces/{namespace}/users/{userId}/revoke</h2>
-			<p>This endpoint revokes a user. </p>
-			<p>This endpoint requires all requests to have Authorization header set with Bearer access authentication with valid access token.</p>
-			<p>Required permission 'NAMESPACE:{namespace}:USER:{userID}:ADMIN [UPDATE]'</p>
-			<p>When other clients know that the userID has been revoked and the token is issued before the revocation, forcing a new token will contain banned permissions. </p>
+  &lt;h2&gt;The endpoint is going to be deprecated at 21 August, 2018. Please use this instead: oauth/namespaces/{namespace}/users/{userId}/revoke&lt;/h2&gt;
+			&lt;p&gt;This endpoint revokes a user. &lt;/p&gt;
+			&lt;p&gt;This endpoint requires all requests to have Authorization header set with Bearer access authentication with valid access token.&lt;/p&gt;
+			&lt;p&gt;Required permission &#39;NAMESPACE:{namespace}:USER:{userID}:ADMIN [UPDATE]&#39;&lt;/p&gt;
+			&lt;p&gt;When other clients know that the userID has been revoked and the token is issued before the revocation, forcing a new token will contain banned permissions. &lt;/p&gt;
 */
 func (a *Client) RevokeAUser(params *RevokeAUserParams, authInfo runtime.ClientAuthInfoWriter) (*RevokeAUserOK, *RevokeAUserBadRequest, *RevokeAUserUnauthorized, error) {
 	// TODO: Validate the params before sending
@@ -292,7 +454,7 @@ func (a *Client) RevokeAUser(params *RevokeAUserParams, authInfo runtime.ClientA
 		PathPattern:        "/iam/oauth/revoke/user",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &RevokeAUserReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -307,21 +469,65 @@ func (a *Client) RevokeAUser(params *RevokeAUserParams, authInfo runtime.ClientA
 
 	case *RevokeAUserOK:
 		return v, nil, nil, nil
+
 	case *RevokeAUserBadRequest:
 		return nil, v, nil, nil
+
 	case *RevokeAUserUnauthorized:
 		return nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) RevokeAUserShort(params *RevokeAUserParams, authInfo runtime.ClientAuthInfoWriter) (*RevokeAUserOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRevokeAUserParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "RevokeAUser",
+		Method:             "POST",
+		PathPattern:        "/iam/oauth/revoke/user",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &RevokeAUserReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *RevokeAUserOK:
+		return v, nil
+	case *RevokeAUserBadRequest:
+		return nil, v
+	case *RevokeAUserUnauthorized:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   RevokeToken os auth2 token revocation API
 
-  <h1>Deprecated at August 30, 2019. Please use the /v3/oauth/revoke endpoint instead</h1>
-					 <p>Revokes a token.</p>
-					 <p>This endpoint requires all requests to have Authorization header set with Basic access authentication constructed from client id and client secret or Bearer access authentication with valid access token.</p>
+  &lt;h1&gt;Deprecated at August 30, 2019. Please use the /v3/oauth/revoke endpoint instead&lt;/h1&gt;
+					 &lt;p&gt;Revokes a token.&lt;/p&gt;
+					 &lt;p&gt;This endpoint requires all requests to have Authorization header set with Basic access authentication constructed from client id and client secret or Bearer access authentication with valid access token.&lt;/p&gt;
 */
 func (a *Client) RevokeToken(params *RevokeTokenParams, authInfo runtime.ClientAuthInfoWriter) (*RevokeTokenOK, *RevokeTokenBadRequest, *RevokeTokenUnauthorized, error) {
 	// TODO: Validate the params before sending
@@ -339,7 +545,7 @@ func (a *Client) RevokeToken(params *RevokeTokenParams, authInfo runtime.ClientA
 		PathPattern:        "/iam/oauth/revoke/token",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &RevokeTokenReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -354,21 +560,65 @@ func (a *Client) RevokeToken(params *RevokeTokenParams, authInfo runtime.ClientA
 
 	case *RevokeTokenOK:
 		return v, nil, nil, nil
+
 	case *RevokeTokenBadRequest:
 		return nil, v, nil, nil
+
 	case *RevokeTokenUnauthorized:
 		return nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) RevokeTokenShort(params *RevokeTokenParams, authInfo runtime.ClientAuthInfoWriter) (*RevokeTokenOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRevokeTokenParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "RevokeToken",
+		Method:             "POST",
+		PathPattern:        "/iam/oauth/revoke/token",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &RevokeTokenReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *RevokeTokenOK:
+		return v, nil
+	case *RevokeTokenBadRequest:
+		return nil, v
+	case *RevokeTokenUnauthorized:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   RevokeUser revokes user s tokens
 
-  <p>This endpoint requires all requests to have authorization header set with bearer token.</p>
-			<p>Required permission 'ADMIN:NAMESPACE:{namespace}:USER:{userId} [UPDATE]'</p>
-			<p>The endpoint revokes all access tokens and refresh tokens a user has prior the revocation time. It is a convenient feature for the developer (or admin) who wanted to revokes all user's access tokens and refresh tokens generated before some period of time.</p>
+  &lt;p&gt;This endpoint requires all requests to have authorization header set with bearer token.&lt;/p&gt;
+			&lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:USER:{userId} [UPDATE]&#39;&lt;/p&gt;
+			&lt;p&gt;The endpoint revokes all access tokens and refresh tokens a user has prior the revocation time. It is a convenient feature for the developer (or admin) who wanted to revokes all user&#39;s access tokens and refresh tokens generated before some period of time.&lt;/p&gt;
 */
 func (a *Client) RevokeUser(params *RevokeUserParams, authInfo runtime.ClientAuthInfoWriter) (*RevokeUserOK, *RevokeUserUnauthorized, error) {
 	// TODO: Validate the params before sending
@@ -386,7 +636,7 @@ func (a *Client) RevokeUser(params *RevokeUserParams, authInfo runtime.ClientAut
 		PathPattern:        "/iam/oauth/namespaces/{namespace}/users/{userId}/revoke",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &RevokeUserReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -401,96 +651,137 @@ func (a *Client) RevokeUser(params *RevokeUserParams, authInfo runtime.ClientAut
 
 	case *RevokeUserOK:
 		return v, nil, nil
+
 	case *RevokeUserUnauthorized:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) RevokeUserShort(params *RevokeUserParams, authInfo runtime.ClientAuthInfoWriter) (*RevokeUserOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRevokeUserParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "RevokeUser",
+		Method:             "POST",
+		PathPattern:        "/iam/oauth/namespaces/{namespace}/users/{userId}/revoke",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &RevokeUserReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *RevokeUserOK:
+		return v, nil
+	case *RevokeUserUnauthorized:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   TokenGrant os auth2 access token generation endpoint
 
-  <p>This endpoint requires all requests to have <code>Authorization</code> header set with <code>Basic</code> access authentication
-			constructed from client id and client secret.</p>
-			<p>This endpoint supports different <strong>grant types</strong>:</p><ol>
-	 		<li>Grant Type == <code>client_credentials</code>:<br />
-	 		&nbsp;&nbsp;&nbsp; This endpoint will check the client credentials provided through Authorization header.</li>
-	 		<li>Grant Type == <code>password</code>:<br />
-	 		&nbsp;&nbsp;&nbsp; The grant type to use for authenticating a user, whether it's by email / username and password combination
-			or through platform.</li>
-	 		<li>Grant Type == <code>refresh_token</code>:<br />
-	 		&nbsp;&nbsp;&nbsp; Used to get a new access token for a valid refresh token.</li>
-	 		<li>Grant Type == <code>authorization_code<code>:<br />
-	 		&nbsp;&nbsp;&nbsp; It generates the user token by given the authorization
-	 		code which generated in "/authorize" API response. It should also pass
+  &lt;p&gt;This endpoint requires all requests to have &lt;code&gt;Authorization&lt;/code&gt; header set with &lt;code&gt;Basic&lt;/code&gt; access authentication
+			constructed from client id and client secret.&lt;/p&gt;
+			&lt;p&gt;This endpoint supports different &lt;strong&gt;grant types&lt;/strong&gt;:&lt;/p&gt;&lt;ol&gt;
+	 		&lt;li&gt;Grant Type == &lt;code&gt;client_credentials&lt;/code&gt;:&lt;br /&gt;
+	 		&amp;nbsp;&amp;nbsp;&amp;nbsp; This endpoint will check the client credentials provided through Authorization header.&lt;/li&gt;
+	 		&lt;li&gt;Grant Type == &lt;code&gt;password&lt;/code&gt;:&lt;br /&gt;
+	 		&amp;nbsp;&amp;nbsp;&amp;nbsp; The grant type to use for authenticating a user, whether it&#39;s by email / username and password combination
+			or through platform.&lt;/li&gt;
+	 		&lt;li&gt;Grant Type == &lt;code&gt;refresh_token&lt;/code&gt;:&lt;br /&gt;
+	 		&amp;nbsp;&amp;nbsp;&amp;nbsp; Used to get a new access token for a valid refresh token.&lt;/li&gt;
+	 		&lt;li&gt;Grant Type == &lt;code&gt;authorization_code&lt;code&gt;:&lt;br /&gt;
+	 		&amp;nbsp;&amp;nbsp;&amp;nbsp; It generates the user token by given the authorization
+	 		code which generated in &#34;/authorize&#34; API response. It should also pass
 	 		in the redirect_uri, which should be the same as generating the
-	 		authorization code request.</li></ol>
-	 		<p>For platform authentication, use grant type <code>password</code>.
-	 		The <code>username</code> field would be in form of
-	 		<code>platform:&lt;platform type&gt;</code>, for example
-	 		<code>platform:steam</code> for Steam. For the <code>password</code>
+	 		authorization code request.&lt;/li&gt;&lt;/ol&gt;
+	 		&lt;p&gt;For platform authentication, use grant type &lt;code&gt;password&lt;/code&gt;.
+	 		The &lt;code&gt;username&lt;/code&gt; field would be in form of
+	 		&lt;code&gt;platform:&amp;lt;platform type&amp;gt;&lt;/code&gt;, for example
+	 		&lt;code&gt;platform:steam&lt;/code&gt; for Steam. For the &lt;code&gt;password&lt;/code&gt;
 	 		field, set it to the authentication/authorization ticket or token obtainable through the
-	 		respective platform SDK after authenticated the user to the platform. Supported platforms:</p><ul>
-			<li><strong>steam</strong> - use <code>platform:steam</code> as the username and use the authentication ticket obtained
-			from Steam through the Steam SDK as the password.</li>
-			<li><strong>ps4</strong> - use <code>platform:ps4</code> as the username and use the authorization code
-			obtained from the PlayStation Network through a player PS4 unit as the password.</li>
-			<li><strong>live</strong> - use <code>platform:live</code> as the username and use token obtained from
-			Xbox Secure Token Service (XSTS) as the password.</li>
-			<li><strong>oculus</strong> - use <code>platform:oculus</code> as the username and use the <code>user_id:nonce</code>
-			as password obtained from Oculus through the Oculus SDK.</li></ul></p>
-			<p>The access token and refresh token are in form of JWT token.
+	 		respective platform SDK after authenticated the user to the platform. Supported platforms:&lt;/p&gt;&lt;ul&gt;
+			&lt;li&gt;&lt;strong&gt;steam&lt;/strong&gt; - use &lt;code&gt;platform:steam&lt;/code&gt; as the username and use the authentication ticket obtained
+			from Steam through the Steam SDK as the password.&lt;/li&gt;
+			&lt;li&gt;&lt;strong&gt;ps4&lt;/strong&gt; - use &lt;code&gt;platform:ps4&lt;/code&gt; as the username and use the authorization code
+			obtained from the PlayStation Network through a player PS4 unit as the password.&lt;/li&gt;
+			&lt;li&gt;&lt;strong&gt;live&lt;/strong&gt; - use &lt;code&gt;platform:live&lt;/code&gt; as the username and use token obtained from
+			Xbox Secure Token Service (XSTS) as the password.&lt;/li&gt;
+			&lt;li&gt;&lt;strong&gt;oculus&lt;/strong&gt; - use &lt;code&gt;platform:oculus&lt;/code&gt; as the username and use the &lt;code&gt;user_id:nonce&lt;/code&gt;
+			as password obtained from Oculus through the Oculus SDK.&lt;/li&gt;&lt;/ul&gt;&lt;/p&gt;
+			&lt;p&gt;The access token and refresh token are in form of JWT token.
 	 		An access token JWT contains data which structure is similar to the
 	 		Response Class below, but without OAuth-related data. To verify a token, use the public keys
-			obtained from the <code>/jwks</code> endpoint below.</p>
-<h2>Access Token Content</h2>
-<p>Following is the access token’s content:</p>
-<ul>
-<li>
-	<p><strong>namespace</strong>. It is the namespace the token was generated from.</p>
-</li>
-<li>
-	<p><strong>display_name</strong>. The display name of the sub. It is empty if the token is generated from the client credential</p>
-</li>
-<li>
-	<p><strong>roles</strong>. The sub’s roles. It is empty if the token is generated from the client credential</p>
-</li>
-<li>
-	<p><strong>namespace_roles</strong>. The sub’s roles scoped to namespace. Improvement from roles, which make the role scoped to specific namespace instead of global to publisher namespace</p>
-</li>
-<li>
-	<p><strong>permissions</strong>. The sub or aud’ permissions</p>
-</li>
-<li>
-	<p><strong>bans</strong>. The sub’s list of bans. It is used by the IAM client for validating the token.</p>
-</li>
-<li>
-	<p><strong>jflgs</strong>. It stands for Justice Flags. It is a special flag used for storing additional status information regarding the sub. It is implemented as a bit mask. Following explains what each bit represents:</p>
-<ul>
-	<li><p>1: Email Address Verified</p></li>
-	<li><p>2: Phone Number Verified</p></li>
-	<li><p>4: Anonymous</p></li>
-</ul>
-</li>
-<li>
-	<p><strong>aud</strong>. The aud is the client ID.</p>
-</li>
-<li>
-	<p><strong>iat</strong>. The time the token issues at. It is in Epoch time format</p>
-</li>
-<li>
-	<p><strong>exp</strong>. The time the token expires. It is in Epoch time format</p>
-</li>
-<li>
-	<p><strong>sub</strong>. The UserID. The sub is omitted if the token is generated from client credential</p>
-</li>
-</ul>
-<h2>Bans</h2>
-<p>The JWT contains user's active bans with its expiry date. List of ban types can be obtained from /bans.</p>
-<h2>Track Login History</h2>
-<p>This endpoint will track login history to detect suspicious login activity, please provide "device_id" (alphanumeric) in request header parameter otherwise we will set to "unknown".</p>
-<p>Align with General Data Protection Regulation in Europe, user login history will be kept within 28 days by default"</p>
+			obtained from the &lt;code&gt;/jwks&lt;/code&gt; endpoint below.&lt;/p&gt;
+&lt;h2&gt;Access Token Content&lt;/h2&gt;
+&lt;p&gt;Following is the access token’s content:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+	&lt;p&gt;&lt;strong&gt;namespace&lt;/strong&gt;. It is the namespace the token was generated from.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+	&lt;p&gt;&lt;strong&gt;display_name&lt;/strong&gt;. The display name of the sub. It is empty if the token is generated from the client credential&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+	&lt;p&gt;&lt;strong&gt;roles&lt;/strong&gt;. The sub’s roles. It is empty if the token is generated from the client credential&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+	&lt;p&gt;&lt;strong&gt;namespace_roles&lt;/strong&gt;. The sub’s roles scoped to namespace. Improvement from roles, which make the role scoped to specific namespace instead of global to publisher namespace&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+	&lt;p&gt;&lt;strong&gt;permissions&lt;/strong&gt;. The sub or aud’ permissions&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+	&lt;p&gt;&lt;strong&gt;bans&lt;/strong&gt;. The sub’s list of bans. It is used by the IAM client for validating the token.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+	&lt;p&gt;&lt;strong&gt;jflgs&lt;/strong&gt;. It stands for Justice Flags. It is a special flag used for storing additional status information regarding the sub. It is implemented as a bit mask. Following explains what each bit represents:&lt;/p&gt;
+&lt;ul&gt;
+	&lt;li&gt;&lt;p&gt;1: Email Address Verified&lt;/p&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;p&gt;2: Phone Number Verified&lt;/p&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;p&gt;4: Anonymous&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+	&lt;p&gt;&lt;strong&gt;aud&lt;/strong&gt;. The aud is the client ID.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+	&lt;p&gt;&lt;strong&gt;iat&lt;/strong&gt;. The time the token issues at. It is in Epoch time format&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+	&lt;p&gt;&lt;strong&gt;exp&lt;/strong&gt;. The time the token expires. It is in Epoch time format&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+	&lt;p&gt;&lt;strong&gt;sub&lt;/strong&gt;. The UserID. The sub is omitted if the token is generated from client credential&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Bans&lt;/h2&gt;
+&lt;p&gt;The JWT contains user&#39;s active bans with its expiry date. List of ban types can be obtained from /bans.&lt;/p&gt;
+&lt;h2&gt;Track Login History&lt;/h2&gt;
+&lt;p&gt;This endpoint will track login history to detect suspicious login activity, please provide &#34;device_id&#34; (alphanumeric) in request header parameter otherwise we will set to &#34;unknown&#34;.&lt;/p&gt;
+&lt;p&gt;Align with General Data Protection Regulation in Europe, user login history will be kept within 28 days by default&#34;&lt;/p&gt;
 */
 func (a *Client) TokenGrant(params *TokenGrantParams, authInfo runtime.ClientAuthInfoWriter) (*TokenGrantOK, *TokenGrantBadRequest, *TokenGrantUnauthorized, error) {
 	// TODO: Validate the params before sending
@@ -508,7 +799,7 @@ func (a *Client) TokenGrant(params *TokenGrantParams, authInfo runtime.ClientAut
 		PathPattern:        "/iam/oauth/token",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &TokenGrantReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -523,12 +814,56 @@ func (a *Client) TokenGrant(params *TokenGrantParams, authInfo runtime.ClientAut
 
 	case *TokenGrantOK:
 		return v, nil, nil, nil
+
 	case *TokenGrantBadRequest:
 		return nil, v, nil, nil
+
 	case *TokenGrantUnauthorized:
 		return nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) TokenGrantShort(params *TokenGrantParams, authInfo runtime.ClientAuthInfoWriter) (*TokenGrantOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewTokenGrantParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "TokenGrant",
+		Method:             "POST",
+		PathPattern:        "/iam/oauth/token",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &TokenGrantReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *TokenGrantOK:
+		return v, nil
+	case *TokenGrantBadRequest:
+		return nil, v
+	case *TokenGrantUnauthorized:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -553,7 +888,7 @@ func (a *Client) VerifyToken(params *VerifyTokenParams, authInfo runtime.ClientA
 		PathPattern:        "/iam/oauth/verify",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &VerifyTokenReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -568,10 +903,51 @@ func (a *Client) VerifyToken(params *VerifyTokenParams, authInfo runtime.ClientA
 
 	case *VerifyTokenOK:
 		return v, nil, nil
+
 	case *VerifyTokenBadRequest:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) VerifyTokenShort(params *VerifyTokenParams, authInfo runtime.ClientAuthInfoWriter) (*VerifyTokenOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewVerifyTokenParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "VerifyToken",
+		Method:             "POST",
+		PathPattern:        "/iam/oauth/verify",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &VerifyTokenReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *VerifyTokenOK:
+		return v, nil
+	case *VerifyTokenBadRequest:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 

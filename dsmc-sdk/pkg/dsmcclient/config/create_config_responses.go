@@ -42,6 +42,12 @@ func (o *CreateConfigReader) ReadResponse(response runtime.ClientResponse, consu
 			return nil, err
 		}
 		return result, nil
+	case 409:
+		result := NewCreateConfigConflict()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 500:
 		result := NewCreateConfigInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -147,6 +153,39 @@ func (o *CreateConfigUnauthorized) GetPayload() *dsmcclientmodels.ResponseError 
 }
 
 func (o *CreateConfigUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(dsmcclientmodels.ResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewCreateConfigConflict creates a CreateConfigConflict with default headers values
+func NewCreateConfigConflict() *CreateConfigConflict {
+	return &CreateConfigConflict{}
+}
+
+/*CreateConfigConflict handles this case with default header values.
+
+  Conflict
+*/
+type CreateConfigConflict struct {
+	Payload *dsmcclientmodels.ResponseError
+}
+
+func (o *CreateConfigConflict) Error() string {
+	return fmt.Sprintf("[POST /dsmcontroller/admin/namespaces/{namespace}/configs][%d] createConfigConflict  %+v", 409, o.Payload)
+}
+
+func (o *CreateConfigConflict) GetPayload() *dsmcclientmodels.ResponseError {
+	return o.Payload
+}
+
+func (o *CreateConfigConflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(dsmcclientmodels.ResponseError)
 

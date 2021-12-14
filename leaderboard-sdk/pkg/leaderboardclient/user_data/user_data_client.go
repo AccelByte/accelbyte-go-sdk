@@ -30,6 +30,7 @@ type Client struct {
 // ClientService is the interface for Client methods
 type ClientService interface {
 	GetUserLeaderboardRankingsAdminV1(params *GetUserLeaderboardRankingsAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetUserLeaderboardRankingsAdminV1OK, *GetUserLeaderboardRankingsAdminV1Unauthorized, *GetUserLeaderboardRankingsAdminV1Forbidden, *GetUserLeaderboardRankingsAdminV1NotFound, *GetUserLeaderboardRankingsAdminV1InternalServerError, error)
+	GetUserLeaderboardRankingsAdminV1Short(params *GetUserLeaderboardRankingsAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetUserLeaderboardRankingsAdminV1OK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -37,8 +38,8 @@ type ClientService interface {
 /*
   GetUserLeaderboardRankingsAdminV1 gets user rankings
 
-  <p>Required permission 'ADMIN:NAMESPACE:{namespace}:LEADERBOARD [READ]'</p>
-			<p>Get user leaderboard rankings</p>
+  &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:LEADERBOARD [READ]&#39;&lt;/p&gt;
+			&lt;p&gt;Get user leaderboard rankings&lt;/p&gt;
 
 */
 func (a *Client) GetUserLeaderboardRankingsAdminV1(params *GetUserLeaderboardRankingsAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetUserLeaderboardRankingsAdminV1OK, *GetUserLeaderboardRankingsAdminV1Unauthorized, *GetUserLeaderboardRankingsAdminV1Forbidden, *GetUserLeaderboardRankingsAdminV1NotFound, *GetUserLeaderboardRankingsAdminV1InternalServerError, error) {
@@ -57,7 +58,7 @@ func (a *Client) GetUserLeaderboardRankingsAdminV1(params *GetUserLeaderboardRan
 		PathPattern:        "/leaderboard/v1/admin/namespaces/{namespace}/users/{userId}/leaderboards",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetUserLeaderboardRankingsAdminV1Reader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -72,16 +73,66 @@ func (a *Client) GetUserLeaderboardRankingsAdminV1(params *GetUserLeaderboardRan
 
 	case *GetUserLeaderboardRankingsAdminV1OK:
 		return v, nil, nil, nil, nil, nil
+
 	case *GetUserLeaderboardRankingsAdminV1Unauthorized:
 		return nil, v, nil, nil, nil, nil
+
 	case *GetUserLeaderboardRankingsAdminV1Forbidden:
 		return nil, nil, v, nil, nil, nil
+
 	case *GetUserLeaderboardRankingsAdminV1NotFound:
 		return nil, nil, nil, v, nil, nil
+
 	case *GetUserLeaderboardRankingsAdminV1InternalServerError:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetUserLeaderboardRankingsAdminV1Short(params *GetUserLeaderboardRankingsAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetUserLeaderboardRankingsAdminV1OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetUserLeaderboardRankingsAdminV1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getUserLeaderboardRankingsAdminV1",
+		Method:             "GET",
+		PathPattern:        "/leaderboard/v1/admin/namespaces/{namespace}/users/{userId}/leaderboards",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetUserLeaderboardRankingsAdminV1Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetUserLeaderboardRankingsAdminV1OK:
+		return v, nil
+	case *GetUserLeaderboardRankingsAdminV1Unauthorized:
+		return nil, v
+	case *GetUserLeaderboardRankingsAdminV1Forbidden:
+		return nil, v
+	case *GetUserLeaderboardRankingsAdminV1NotFound:
+		return nil, v
+	case *GetUserLeaderboardRankingsAdminV1InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 

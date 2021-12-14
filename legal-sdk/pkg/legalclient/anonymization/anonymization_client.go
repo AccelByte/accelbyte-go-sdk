@@ -30,6 +30,7 @@ type Client struct {
 // ClientService is the interface for Client methods
 type ClientService interface {
 	AnonymizeUserAgreement(params *AnonymizeUserAgreementParams, authInfo runtime.ClientAuthInfoWriter) (*AnonymizeUserAgreementNoContent, *AnonymizeUserAgreementNotFound, error)
+	AnonymizeUserAgreementShort(params *AnonymizeUserAgreementParams, authInfo runtime.ClientAuthInfoWriter) (*AnonymizeUserAgreementNoContent, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -37,7 +38,7 @@ type ClientService interface {
 /*
   AnonymizeUserAgreement anonymizes user s agreement record
 
-  This API will anonymize agreement record for specified user. Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:*:LEGAL", action=8 (DELETE)</li></ul>
+  This API will anonymize agreement record for specified user. Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) AnonymizeUserAgreement(params *AnonymizeUserAgreementParams, authInfo runtime.ClientAuthInfoWriter) (*AnonymizeUserAgreementNoContent, *AnonymizeUserAgreementNotFound, error) {
 	// TODO: Validate the params before sending
@@ -55,7 +56,7 @@ func (a *Client) AnonymizeUserAgreement(params *AnonymizeUserAgreementParams, au
 		PathPattern:        "/admin/users/{userId}/anonymization/agreements",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AnonymizeUserAgreementReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -70,10 +71,51 @@ func (a *Client) AnonymizeUserAgreement(params *AnonymizeUserAgreementParams, au
 
 	case *AnonymizeUserAgreementNoContent:
 		return v, nil, nil
+
 	case *AnonymizeUserAgreementNotFound:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AnonymizeUserAgreementShort(params *AnonymizeUserAgreementParams, authInfo runtime.ClientAuthInfoWriter) (*AnonymizeUserAgreementNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAnonymizeUserAgreementParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "anonymizeUserAgreement",
+		Method:             "DELETE",
+		PathPattern:        "/admin/users/{userId}/anonymization/agreements",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AnonymizeUserAgreementReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AnonymizeUserAgreementNoContent:
+		return v, nil
+	case *AnonymizeUserAgreementNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 

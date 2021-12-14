@@ -49,7 +49,7 @@ func NewPublicGetQRCodeOK(writer io.Writer) *PublicGetQRCodeOK {
 
 /*PublicGetQRCodeOK handles this case with default header values.
 
-  successful operation
+  Successful operation
 */
 type PublicGetQRCodeOK struct {
 	Payload io.Writer

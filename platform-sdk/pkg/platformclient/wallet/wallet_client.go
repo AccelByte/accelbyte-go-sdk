@@ -30,30 +30,31 @@ type Client struct {
 // ClientService is the interface for Client methods
 type ClientService interface {
 	CheckWallet(params *CheckWalletParams, authInfo runtime.ClientAuthInfoWriter) (*CheckWalletNoContent, *CheckWalletBadRequest, *CheckWalletConflict, *CheckWalletUnprocessableEntity, error)
-
+	CheckWalletShort(params *CheckWalletParams, authInfo runtime.ClientAuthInfoWriter) (*CheckWalletNoContent, error)
 	CreditUserWallet(params *CreditUserWalletParams, authInfo runtime.ClientAuthInfoWriter) (*CreditUserWalletOK, *CreditUserWalletBadRequest, *CreditUserWalletConflict, *CreditUserWalletUnprocessableEntity, error)
-
+	CreditUserWalletShort(params *CreditUserWalletParams, authInfo runtime.ClientAuthInfoWriter) (*CreditUserWalletOK, error)
 	DebitUserWallet(params *DebitUserWalletParams, authInfo runtime.ClientAuthInfoWriter) (*DebitUserWalletOK, *DebitUserWalletBadRequest, *DebitUserWalletNotFound, *DebitUserWalletConflict, *DebitUserWalletUnprocessableEntity, error)
-
+	DebitUserWalletShort(params *DebitUserWalletParams, authInfo runtime.ClientAuthInfoWriter) (*DebitUserWalletOK, error)
 	DisableUserWallet(params *DisableUserWalletParams, authInfo runtime.ClientAuthInfoWriter) (*DisableUserWalletNoContent, *DisableUserWalletNotFound, *DisableUserWalletConflict, error)
-
+	DisableUserWalletShort(params *DisableUserWalletParams, authInfo runtime.ClientAuthInfoWriter) (*DisableUserWalletNoContent, error)
 	EnableUserWallet(params *EnableUserWalletParams, authInfo runtime.ClientAuthInfoWriter) (*EnableUserWalletNoContent, *EnableUserWalletNotFound, *EnableUserWalletConflict, error)
-
+	EnableUserWalletShort(params *EnableUserWalletParams, authInfo runtime.ClientAuthInfoWriter) (*EnableUserWalletNoContent, error)
 	GetUserWallet(params *GetUserWalletParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserWalletOK, *GetUserWalletNotFound, error)
-
+	GetUserWalletShort(params *GetUserWalletParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserWalletOK, error)
 	GetWallet(params *GetWalletParams, authInfo runtime.ClientAuthInfoWriter) (*GetWalletOK, *GetWalletNotFound, error)
-
+	GetWalletShort(params *GetWalletParams, authInfo runtime.ClientAuthInfoWriter) (*GetWalletOK, error)
 	ListUserWalletTransactions(params *ListUserWalletTransactionsParams, authInfo runtime.ClientAuthInfoWriter) (*ListUserWalletTransactionsOK, *ListUserWalletTransactionsNotFound, error)
-
+	ListUserWalletTransactionsShort(params *ListUserWalletTransactionsParams, authInfo runtime.ClientAuthInfoWriter) (*ListUserWalletTransactionsOK, error)
 	PayWithUserWallet(params *PayWithUserWalletParams, authInfo runtime.ClientAuthInfoWriter) (*PayWithUserWalletOK, *PayWithUserWalletBadRequest, *PayWithUserWalletConflict, *PayWithUserWalletUnprocessableEntity, error)
-
+	PayWithUserWalletShort(params *PayWithUserWalletParams, authInfo runtime.ClientAuthInfoWriter) (*PayWithUserWalletOK, error)
 	PublicGetMyWallet(params *PublicGetMyWalletParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetMyWalletOK, error)
-
+	PublicGetMyWalletShort(params *PublicGetMyWalletParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetMyWalletOK, error)
 	PublicGetWallet(params *PublicGetWalletParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetWalletOK, error)
-
+	PublicGetWalletShort(params *PublicGetWalletParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetWalletOK, error)
 	PublicListUserWalletTransactions(params *PublicListUserWalletTransactionsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicListUserWalletTransactionsOK, error)
-
+	PublicListUserWalletTransactionsShort(params *PublicListUserWalletTransactionsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicListUserWalletTransactionsOK, error)
 	QueryWallets(params *QueryWalletsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryWalletsOK, error)
+	QueryWalletsShort(params *QueryWalletsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryWalletsOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -61,7 +62,7 @@ type ClientService interface {
 /*
   CheckWallet checks wallet
 
-  <b>[SERVICE COMMUNICATION ONLY]</b> Check wallet whether it's inactive.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET", action=2 (READ)</li></ul>
+  &lt;b&gt;[SERVICE COMMUNICATION ONLY]&lt;/b&gt; Check wallet whether it&#39;s inactive.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) CheckWallet(params *CheckWalletParams, authInfo runtime.ClientAuthInfoWriter) (*CheckWalletNoContent, *CheckWalletBadRequest, *CheckWalletConflict, *CheckWalletUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -79,7 +80,7 @@ func (a *Client) CheckWallet(params *CheckWalletParams, authInfo runtime.ClientA
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/check",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &CheckWalletReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -94,21 +95,68 @@ func (a *Client) CheckWallet(params *CheckWalletParams, authInfo runtime.ClientA
 
 	case *CheckWalletNoContent:
 		return v, nil, nil, nil, nil
+
 	case *CheckWalletBadRequest:
 		return nil, v, nil, nil, nil
+
 	case *CheckWalletConflict:
 		return nil, nil, v, nil, nil
+
 	case *CheckWalletUnprocessableEntity:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) CheckWalletShort(params *CheckWalletParams, authInfo runtime.ClientAuthInfoWriter) (*CheckWalletNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCheckWalletParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "checkWallet",
+		Method:             "GET",
+		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/check",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CheckWalletReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *CheckWalletNoContent:
+		return v, nil
+	case *CheckWalletBadRequest:
+		return nil, v
+	case *CheckWalletConflict:
+		return nil, v
+	case *CheckWalletUnprocessableEntity:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   CreditUserWallet credits a user wallet by currency code
 
-  Credit a user wallet by currency code, if wallet not exists, it will create a new wallet.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET", action=4 (UPDATE)</li></ul>
+  Credit a user wallet by currency code, if wallet not exists, it will create a new wallet.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) CreditUserWallet(params *CreditUserWalletParams, authInfo runtime.ClientAuthInfoWriter) (*CreditUserWalletOK, *CreditUserWalletBadRequest, *CreditUserWalletConflict, *CreditUserWalletUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -126,7 +174,7 @@ func (a *Client) CreditUserWallet(params *CreditUserWalletParams, authInfo runti
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/credit",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &CreditUserWalletReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -141,21 +189,68 @@ func (a *Client) CreditUserWallet(params *CreditUserWalletParams, authInfo runti
 
 	case *CreditUserWalletOK:
 		return v, nil, nil, nil, nil
+
 	case *CreditUserWalletBadRequest:
 		return nil, v, nil, nil, nil
+
 	case *CreditUserWalletConflict:
 		return nil, nil, v, nil, nil
+
 	case *CreditUserWalletUnprocessableEntity:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) CreditUserWalletShort(params *CreditUserWalletParams, authInfo runtime.ClientAuthInfoWriter) (*CreditUserWalletOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreditUserWalletParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "creditUserWallet",
+		Method:             "PUT",
+		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/credit",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CreditUserWalletReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *CreditUserWalletOK:
+		return v, nil
+	case *CreditUserWalletBadRequest:
+		return nil, v
+	case *CreditUserWalletConflict:
+		return nil, v
+	case *CreditUserWalletUnprocessableEntity:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   DebitUserWallet debits a user wallet
 
-  Debit a user wallet.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET", action=4 (UPDATE)</li></ul>
+  Debit a user wallet.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) DebitUserWallet(params *DebitUserWalletParams, authInfo runtime.ClientAuthInfoWriter) (*DebitUserWalletOK, *DebitUserWalletBadRequest, *DebitUserWalletNotFound, *DebitUserWalletConflict, *DebitUserWalletUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -173,7 +268,7 @@ func (a *Client) DebitUserWallet(params *DebitUserWalletParams, authInfo runtime
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/debit",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DebitUserWalletReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -188,23 +283,73 @@ func (a *Client) DebitUserWallet(params *DebitUserWalletParams, authInfo runtime
 
 	case *DebitUserWalletOK:
 		return v, nil, nil, nil, nil, nil
+
 	case *DebitUserWalletBadRequest:
 		return nil, v, nil, nil, nil, nil
+
 	case *DebitUserWalletNotFound:
 		return nil, nil, v, nil, nil, nil
+
 	case *DebitUserWalletConflict:
 		return nil, nil, nil, v, nil, nil
+
 	case *DebitUserWalletUnprocessableEntity:
 		return nil, nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) DebitUserWalletShort(params *DebitUserWalletParams, authInfo runtime.ClientAuthInfoWriter) (*DebitUserWalletOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDebitUserWalletParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "debitUserWallet",
+		Method:             "PUT",
+		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/debit",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DebitUserWalletReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DebitUserWalletOK:
+		return v, nil
+	case *DebitUserWalletBadRequest:
+		return nil, v
+	case *DebitUserWalletNotFound:
+		return nil, v
+	case *DebitUserWalletConflict:
+		return nil, v
+	case *DebitUserWalletUnprocessableEntity:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   DisableUserWallet disables a user wallet
 
-  disable a user wallet.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET", action=4 (UPDATE)</li></ul>
+  disable a user wallet.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) DisableUserWallet(params *DisableUserWalletParams, authInfo runtime.ClientAuthInfoWriter) (*DisableUserWalletNoContent, *DisableUserWalletNotFound, *DisableUserWalletConflict, error) {
 	// TODO: Validate the params before sending
@@ -222,7 +367,7 @@ func (a *Client) DisableUserWallet(params *DisableUserWalletParams, authInfo run
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/disable",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DisableUserWalletReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -237,19 +382,63 @@ func (a *Client) DisableUserWallet(params *DisableUserWalletParams, authInfo run
 
 	case *DisableUserWalletNoContent:
 		return v, nil, nil, nil
+
 	case *DisableUserWalletNotFound:
 		return nil, v, nil, nil
+
 	case *DisableUserWalletConflict:
 		return nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) DisableUserWalletShort(params *DisableUserWalletParams, authInfo runtime.ClientAuthInfoWriter) (*DisableUserWalletNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDisableUserWalletParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "disableUserWallet",
+		Method:             "PUT",
+		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/disable",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DisableUserWalletReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DisableUserWalletNoContent:
+		return v, nil
+	case *DisableUserWalletNotFound:
+		return nil, v
+	case *DisableUserWalletConflict:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   EnableUserWallet enables a user wallet
 
-  enable a user wallet.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET", action=4 (UPDATE)</li></ul>
+  enable a user wallet.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) EnableUserWallet(params *EnableUserWalletParams, authInfo runtime.ClientAuthInfoWriter) (*EnableUserWalletNoContent, *EnableUserWalletNotFound, *EnableUserWalletConflict, error) {
 	// TODO: Validate the params before sending
@@ -267,7 +456,7 @@ func (a *Client) EnableUserWallet(params *EnableUserWalletParams, authInfo runti
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/enable",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &EnableUserWalletReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -282,19 +471,63 @@ func (a *Client) EnableUserWallet(params *EnableUserWalletParams, authInfo runti
 
 	case *EnableUserWalletNoContent:
 		return v, nil, nil, nil
+
 	case *EnableUserWalletNotFound:
 		return nil, v, nil, nil
+
 	case *EnableUserWalletConflict:
 		return nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) EnableUserWalletShort(params *EnableUserWalletParams, authInfo runtime.ClientAuthInfoWriter) (*EnableUserWalletNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewEnableUserWalletParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "enableUserWallet",
+		Method:             "PUT",
+		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/enable",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &EnableUserWalletReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *EnableUserWalletNoContent:
+		return v, nil
+	case *EnableUserWalletNotFound:
+		return nil, v
+	case *EnableUserWalletConflict:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   GetUserWallet gets a user wallet
 
-  get a user wallet.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET", action=2 (READ)</li><li><i>Returns</i>: wallet info</li></ul>
+  get a user wallet.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: wallet info&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) GetUserWallet(params *GetUserWalletParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserWalletOK, *GetUserWalletNotFound, error) {
 	// TODO: Validate the params before sending
@@ -312,7 +545,7 @@ func (a *Client) GetUserWallet(params *GetUserWalletParams, authInfo runtime.Cli
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetUserWalletReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -327,17 +560,58 @@ func (a *Client) GetUserWallet(params *GetUserWalletParams, authInfo runtime.Cli
 
 	case *GetUserWalletOK:
 		return v, nil, nil
+
 	case *GetUserWalletNotFound:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetUserWalletShort(params *GetUserWalletParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserWalletOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetUserWalletParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getUserWallet",
+		Method:             "GET",
+		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetUserWalletReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetUserWalletOK:
+		return v, nil
+	case *GetUserWalletNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   GetWallet gets a wallet by wallet id
 
-  get a wallet by wallet id.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:WALLET", action=2 (READ)</li><li><i>Returns</i>: wallet info</li></ul>
+  get a wallet by wallet id.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:WALLET&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: wallet info&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) GetWallet(params *GetWalletParams, authInfo runtime.ClientAuthInfoWriter) (*GetWalletOK, *GetWalletNotFound, error) {
 	// TODO: Validate the params before sending
@@ -355,7 +629,7 @@ func (a *Client) GetWallet(params *GetWalletParams, authInfo runtime.ClientAuthI
 		PathPattern:        "/admin/namespaces/{namespace}/wallets/{walletId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetWalletReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -370,17 +644,58 @@ func (a *Client) GetWallet(params *GetWalletParams, authInfo runtime.ClientAuthI
 
 	case *GetWalletOK:
 		return v, nil, nil
+
 	case *GetWalletNotFound:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetWalletShort(params *GetWalletParams, authInfo runtime.ClientAuthInfoWriter) (*GetWalletOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetWalletParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getWallet",
+		Method:             "GET",
+		PathPattern:        "/admin/namespaces/{namespace}/wallets/{walletId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetWalletReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetWalletOK:
+		return v, nil
+	case *GetWalletNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   ListUserWalletTransactions lists user wallet transactions
 
-  List user wallet transactions ordered by create time desc.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET", action=2 (READ)</li><li><i>Returns</i>: wallet transaction info</li></ul>
+  List user wallet transactions ordered by create time desc.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: wallet transaction info&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) ListUserWalletTransactions(params *ListUserWalletTransactionsParams, authInfo runtime.ClientAuthInfoWriter) (*ListUserWalletTransactionsOK, *ListUserWalletTransactionsNotFound, error) {
 	// TODO: Validate the params before sending
@@ -398,7 +713,7 @@ func (a *Client) ListUserWalletTransactions(params *ListUserWalletTransactionsPa
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/transactions",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &ListUserWalletTransactionsReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -413,17 +728,58 @@ func (a *Client) ListUserWalletTransactions(params *ListUserWalletTransactionsPa
 
 	case *ListUserWalletTransactionsOK:
 		return v, nil, nil
+
 	case *ListUserWalletTransactionsNotFound:
 		return nil, v, nil
+
 	default:
 		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) ListUserWalletTransactionsShort(params *ListUserWalletTransactionsParams, authInfo runtime.ClientAuthInfoWriter) (*ListUserWalletTransactionsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewListUserWalletTransactionsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "listUserWalletTransactions",
+		Method:             "GET",
+		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/transactions",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ListUserWalletTransactionsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *ListUserWalletTransactionsOK:
+		return v, nil
+	case *ListUserWalletTransactionsNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   PayWithUserWallet pays with user wallet by currency code
 
-  Pay with user wallet by currency code.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET", action=4 (UPDATE)</li></ul>
+  Pay with user wallet by currency code.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) PayWithUserWallet(params *PayWithUserWalletParams, authInfo runtime.ClientAuthInfoWriter) (*PayWithUserWalletOK, *PayWithUserWalletBadRequest, *PayWithUserWalletConflict, *PayWithUserWalletUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -441,7 +797,7 @@ func (a *Client) PayWithUserWallet(params *PayWithUserWalletParams, authInfo run
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/payment",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PayWithUserWalletReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -456,21 +812,68 @@ func (a *Client) PayWithUserWallet(params *PayWithUserWalletParams, authInfo run
 
 	case *PayWithUserWalletOK:
 		return v, nil, nil, nil, nil
+
 	case *PayWithUserWalletBadRequest:
 		return nil, v, nil, nil, nil
+
 	case *PayWithUserWalletConflict:
 		return nil, nil, v, nil, nil
+
 	case *PayWithUserWalletUnprocessableEntity:
 		return nil, nil, nil, v, nil
+
 	default:
 		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PayWithUserWalletShort(params *PayWithUserWalletParams, authInfo runtime.ClientAuthInfoWriter) (*PayWithUserWalletOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPayWithUserWalletParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "payWithUserWallet",
+		Method:             "PUT",
+		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/payment",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PayWithUserWalletReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PayWithUserWalletOK:
+		return v, nil
+	case *PayWithUserWalletBadRequest:
+		return nil, v
+	case *PayWithUserWalletConflict:
+		return nil, v
+	case *PayWithUserWalletUnprocessableEntity:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
   PublicGetMyWallet gets my wallet by currency code and namespace
 
-  get my wallet by currency code and namespace.<br>Other detail info: <ul><li><i>Required permission</i>: resource="NAMESPACE:{namespace}:WALLET", action=2 (READ)</li><li><i>Returns</i>: wallet info</li><li><i>Path's namespace</i> : <ul>   <li>can be filled with <b>publisher namespace</b> in order to get <b>publisher user wallet</b></li>   <li>can be filled with <b>game namespace</b> in order to get <b>game user wallet</b></li>   </ul></li></ul>
+  get my wallet by currency code and namespace.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:WALLET&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: wallet info&lt;/li&gt;&lt;li&gt;&lt;i&gt;Path&#39;s namespace&lt;/i&gt; : &lt;ul&gt;   &lt;li&gt;can be filled with &lt;b&gt;publisher namespace&lt;/b&gt; in order to get &lt;b&gt;publisher user wallet&lt;/b&gt;&lt;/li&gt;   &lt;li&gt;can be filled with &lt;b&gt;game namespace&lt;/b&gt; in order to get &lt;b&gt;game user wallet&lt;/b&gt;&lt;/li&gt;   &lt;/ul&gt;&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) PublicGetMyWallet(params *PublicGetMyWalletParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetMyWalletOK, error) {
 	// TODO: Validate the params before sending
@@ -488,7 +891,7 @@ func (a *Client) PublicGetMyWallet(params *PublicGetMyWalletParams, authInfo run
 		PathPattern:        "/public/namespaces/{namespace}/users/me/wallets/{currencyCode}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicGetMyWalletReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -503,6 +906,44 @@ func (a *Client) PublicGetMyWallet(params *PublicGetMyWalletParams, authInfo run
 
 	case *PublicGetMyWalletOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicGetMyWalletShort(params *PublicGetMyWalletParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetMyWalletOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetMyWalletParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicGetMyWallet",
+		Method:             "GET",
+		PathPattern:        "/public/namespaces/{namespace}/users/me/wallets/{currencyCode}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicGetMyWalletReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetMyWalletOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -511,7 +952,7 @@ func (a *Client) PublicGetMyWallet(params *PublicGetMyWalletParams, authInfo run
 /*
   PublicGetWallet gets a wallet by currency code
 
-  get a wallet by currency code.<br>Other detail info: <ul><li><i>Required permission</i>: resource="NAMESPACE:{namespace}:USER:{userId}:WALLET", action=2 (READ)</li><li><i>Returns</i>: wallet info</li></ul>
+  get a wallet by currency code.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:WALLET&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: wallet info&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) PublicGetWallet(params *PublicGetWalletParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetWalletOK, error) {
 	// TODO: Validate the params before sending
@@ -529,7 +970,7 @@ func (a *Client) PublicGetWallet(params *PublicGetWalletParams, authInfo runtime
 		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicGetWalletReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -544,6 +985,44 @@ func (a *Client) PublicGetWallet(params *PublicGetWalletParams, authInfo runtime
 
 	case *PublicGetWalletOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicGetWalletShort(params *PublicGetWalletParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetWalletOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetWalletParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicGetWallet",
+		Method:             "GET",
+		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicGetWalletReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetWalletOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -552,7 +1031,7 @@ func (a *Client) PublicGetWallet(params *PublicGetWalletParams, authInfo runtime
 /*
   PublicListUserWalletTransactions lists wallet transactions by currency code
 
-  List wallet transactions by currency code ordered by create time desc.<br>Other detail info: <ul><li><i>Required permission</i>: resource="NAMESPACE:{namespace}:USER:{userId}:WALLET", action=2 (READ)</li><li><i>Returns</i>: wallet transaction info</li></ul>
+  List wallet transactions by currency code ordered by create time desc.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:WALLET&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: wallet transaction info&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) PublicListUserWalletTransactions(params *PublicListUserWalletTransactionsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicListUserWalletTransactionsOK, error) {
 	// TODO: Validate the params before sending
@@ -570,7 +1049,7 @@ func (a *Client) PublicListUserWalletTransactions(params *PublicListUserWalletTr
 		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/transactions",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicListUserWalletTransactionsReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -585,6 +1064,44 @@ func (a *Client) PublicListUserWalletTransactions(params *PublicListUserWalletTr
 
 	case *PublicListUserWalletTransactionsOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicListUserWalletTransactionsShort(params *PublicListUserWalletTransactionsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicListUserWalletTransactionsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicListUserWalletTransactionsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicListUserWalletTransactions",
+		Method:             "GET",
+		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/transactions",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicListUserWalletTransactionsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicListUserWalletTransactionsOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -593,7 +1110,7 @@ func (a *Client) PublicListUserWalletTransactions(params *PublicListUserWalletTr
 /*
   QueryWallets queries wallets
 
-  Query wallets.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:WALLET", action=2 (READ)</li><li><i>Returns</i>: paginated wallets info</li></ul>
+  Query wallets.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:WALLET&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: paginated wallets info&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) QueryWallets(params *QueryWalletsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryWalletsOK, error) {
 	// TODO: Validate the params before sending
@@ -611,7 +1128,7 @@ func (a *Client) QueryWallets(params *QueryWalletsParams, authInfo runtime.Clien
 		PathPattern:        "/admin/namespaces/{namespace}/wallets",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &QueryWalletsReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -626,6 +1143,44 @@ func (a *Client) QueryWallets(params *QueryWalletsParams, authInfo runtime.Clien
 
 	case *QueryWalletsOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) QueryWalletsShort(params *QueryWalletsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryWalletsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewQueryWalletsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "queryWallets",
+		Method:             "GET",
+		PathPattern:        "/admin/namespaces/{namespace}/wallets",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &QueryWalletsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *QueryWalletsOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}

@@ -30,6 +30,7 @@ type Client struct {
 // ClientService is the interface for Client methods
 type ClientService interface {
 	GetGlobalStatItems(params *GetGlobalStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*GetGlobalStatItemsOK, error)
+	GetGlobalStatItemsShort(params *GetGlobalStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*GetGlobalStatItemsOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -37,7 +38,7 @@ type ClientService interface {
 /*
   GetGlobalStatItems lists global stat items
 
-  List global statItems by pagination.<br>Other detail info:<ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:STATITEM", action=2 (READ)</li><li><i>Returns</i>: stat items</li>ul
+  List global statItems by pagination.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STATITEM&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: stat items&lt;/li&gt;ul
 */
 func (a *Client) GetGlobalStatItems(params *GetGlobalStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*GetGlobalStatItemsOK, error) {
 	// TODO: Validate the params before sending
@@ -55,7 +56,7 @@ func (a *Client) GetGlobalStatItems(params *GetGlobalStatItemsParams, authInfo r
 		PathPattern:        "/v1/admin/namespaces/{namespace}/globalstatitems",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetGlobalStatItemsReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -70,6 +71,44 @@ func (a *Client) GetGlobalStatItems(params *GetGlobalStatItemsParams, authInfo r
 
 	case *GetGlobalStatItemsOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetGlobalStatItemsShort(params *GetGlobalStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*GetGlobalStatItemsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetGlobalStatItemsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getGlobalStatItems",
+		Method:             "GET",
+		PathPattern:        "/v1/admin/namespaces/{namespace}/globalstatitems",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetGlobalStatItemsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetGlobalStatItemsOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}

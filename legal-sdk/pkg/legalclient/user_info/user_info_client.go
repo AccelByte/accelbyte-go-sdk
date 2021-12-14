@@ -30,10 +30,11 @@ type Client struct {
 // ClientService is the interface for Client methods
 type ClientService interface {
 	GetUserInfoStatus(params *GetUserInfoStatusParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserInfoStatusOK, error)
-
+	GetUserInfoStatusShort(params *GetUserInfoStatusParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserInfoStatusOK, error)
 	InvalidateUserInfoCache(params *InvalidateUserInfoCacheParams, authInfo runtime.ClientAuthInfoWriter) (*InvalidateUserInfoCacheNoContent, error)
-
+	InvalidateUserInfoCacheShort(params *InvalidateUserInfoCacheParams, authInfo runtime.ClientAuthInfoWriter) (*InvalidateUserInfoCacheNoContent, error)
 	SyncUserInfo(params *SyncUserInfoParams, authInfo runtime.ClientAuthInfoWriter) (*SyncUserInfoOK, error)
+	SyncUserInfoShort(params *SyncUserInfoParams, authInfo runtime.ClientAuthInfoWriter) (*SyncUserInfoOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -41,7 +42,7 @@ type ClientService interface {
 /*
   GetUserInfoStatus gets user info cache status
 
-  Get user info cache last updated time per namespace.<br>The query parameter namespaces can be a list of namespace separated by comma.<br>If query parameter namespaces is empty, user info cache status for all available namespaces will be returned. <br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:*:LEGAL", action=2 (READ)</li></ul>
+  Get user info cache last updated time per namespace.&lt;br&gt;The query parameter namespaces can be a list of namespace separated by comma.&lt;br&gt;If query parameter namespaces is empty, user info cache status for all available namespaces will be returned. &lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) GetUserInfoStatus(params *GetUserInfoStatusParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserInfoStatusOK, error) {
 	// TODO: Validate the params before sending
@@ -59,7 +60,7 @@ func (a *Client) GetUserInfoStatus(params *GetUserInfoStatusParams, authInfo run
 		PathPattern:        "/admin/userInfo",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetUserInfoStatusReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -74,6 +75,44 @@ func (a *Client) GetUserInfoStatus(params *GetUserInfoStatusParams, authInfo run
 
 	case *GetUserInfoStatusOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetUserInfoStatusShort(params *GetUserInfoStatusParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserInfoStatusOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetUserInfoStatusParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getUserInfoStatus",
+		Method:             "GET",
+		PathPattern:        "/admin/userInfo",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetUserInfoStatusReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetUserInfoStatusOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -82,7 +121,7 @@ func (a *Client) GetUserInfoStatus(params *GetUserInfoStatusParams, authInfo run
 /*
   InvalidateUserInfoCache invalidates user info cache
 
-  <b>Important: GOING TO DEPRECATE</b><br/><br/>Invalidate user info cache in agreement service.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:*:LEGAL", action=8 (DELETE)</li></ul>
+  &lt;b&gt;Important: GOING TO DEPRECATE&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;Invalidate user info cache in agreement service.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) InvalidateUserInfoCache(params *InvalidateUserInfoCacheParams, authInfo runtime.ClientAuthInfoWriter) (*InvalidateUserInfoCacheNoContent, error) {
 	// TODO: Validate the params before sending
@@ -100,7 +139,7 @@ func (a *Client) InvalidateUserInfoCache(params *InvalidateUserInfoCacheParams, 
 		PathPattern:        "/admin/userInfo",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &InvalidateUserInfoCacheReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -115,6 +154,44 @@ func (a *Client) InvalidateUserInfoCache(params *InvalidateUserInfoCacheParams, 
 
 	case *InvalidateUserInfoCacheNoContent:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) InvalidateUserInfoCacheShort(params *InvalidateUserInfoCacheParams, authInfo runtime.ClientAuthInfoWriter) (*InvalidateUserInfoCacheNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewInvalidateUserInfoCacheParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "invalidateUserInfoCache",
+		Method:             "DELETE",
+		PathPattern:        "/admin/userInfo",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &InvalidateUserInfoCacheReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *InvalidateUserInfoCacheNoContent:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -123,7 +200,7 @@ func (a *Client) InvalidateUserInfoCache(params *InvalidateUserInfoCacheParams, 
 /*
   SyncUserInfo syncs user info with iam service
 
-  <b>Important: GOING TO DEPRECATE</b><br/><br/>Sync user info cache in agreement service with iam service.<br>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:*:LEGAL", action=4 (UPDATE)</li></ul>
+  &lt;b&gt;Important: GOING TO DEPRECATE&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;Sync user info cache in agreement service with iam service.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) SyncUserInfo(params *SyncUserInfoParams, authInfo runtime.ClientAuthInfoWriter) (*SyncUserInfoOK, error) {
 	// TODO: Validate the params before sending
@@ -141,7 +218,7 @@ func (a *Client) SyncUserInfo(params *SyncUserInfoParams, authInfo runtime.Clien
 		PathPattern:        "/admin/userInfo",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &SyncUserInfoReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -156,6 +233,44 @@ func (a *Client) SyncUserInfo(params *SyncUserInfoParams, authInfo runtime.Clien
 
 	case *SyncUserInfoOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) SyncUserInfoShort(params *SyncUserInfoParams, authInfo runtime.ClientAuthInfoWriter) (*SyncUserInfoOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewSyncUserInfoParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "syncUserInfo",
+		Method:             "PUT",
+		PathPattern:        "/admin/userInfo",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &SyncUserInfoReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *SyncUserInfoOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}

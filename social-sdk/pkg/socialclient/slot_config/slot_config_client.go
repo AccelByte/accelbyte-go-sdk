@@ -30,16 +30,17 @@ type Client struct {
 // ClientService is the interface for Client methods
 type ClientService interface {
 	DeleteNamespaceSlotConfig(params *DeleteNamespaceSlotConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteNamespaceSlotConfigNoContent, error)
-
+	DeleteNamespaceSlotConfigShort(params *DeleteNamespaceSlotConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteNamespaceSlotConfigNoContent, error)
 	DeleteUserSlotConfig(params *DeleteUserSlotConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserSlotConfigNoContent, error)
-
+	DeleteUserSlotConfigShort(params *DeleteUserSlotConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserSlotConfigNoContent, error)
 	GetNamespaceSlotConfig(params *GetNamespaceSlotConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetNamespaceSlotConfigOK, error)
-
+	GetNamespaceSlotConfigShort(params *GetNamespaceSlotConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetNamespaceSlotConfigOK, error)
 	GetUserSlotConfig(params *GetUserSlotConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserSlotConfigOK, error)
-
+	GetUserSlotConfigShort(params *GetUserSlotConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserSlotConfigOK, error)
 	UpdateNamespaceSlotConfig(params *UpdateNamespaceSlotConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateNamespaceSlotConfigOK, error)
-
+	UpdateNamespaceSlotConfigShort(params *UpdateNamespaceSlotConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateNamespaceSlotConfigOK, error)
 	UpdateUserSlotConfig(params *UpdateUserSlotConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateUserSlotConfigOK, error)
+	UpdateUserSlotConfigShort(params *UpdateUserSlotConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateUserSlotConfigOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -47,7 +48,7 @@ type ClientService interface {
 /*
   DeleteNamespaceSlotConfig deletes a namespace slot configuration
 
-  Deletes a namespace slot configuration, the configuration will be default after delete.<br>Other detail info:<ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:SLOTCONFIG", action=8 (DELETE)</li></ul>
+  Deletes a namespace slot configuration, the configuration will be default after delete.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:SLOTCONFIG&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) DeleteNamespaceSlotConfig(params *DeleteNamespaceSlotConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteNamespaceSlotConfigNoContent, error) {
 	// TODO: Validate the params before sending
@@ -65,7 +66,7 @@ func (a *Client) DeleteNamespaceSlotConfig(params *DeleteNamespaceSlotConfigPara
 		PathPattern:        "/admin/namespaces/{namespace}/config",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteNamespaceSlotConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -80,6 +81,44 @@ func (a *Client) DeleteNamespaceSlotConfig(params *DeleteNamespaceSlotConfigPara
 
 	case *DeleteNamespaceSlotConfigNoContent:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) DeleteNamespaceSlotConfigShort(params *DeleteNamespaceSlotConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteNamespaceSlotConfigNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteNamespaceSlotConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "deleteNamespaceSlotConfig",
+		Method:             "DELETE",
+		PathPattern:        "/admin/namespaces/{namespace}/config",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteNamespaceSlotConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeleteNamespaceSlotConfigNoContent:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -88,7 +127,7 @@ func (a *Client) DeleteNamespaceSlotConfig(params *DeleteNamespaceSlotConfigPara
 /*
   DeleteUserSlotConfig deletes a user slot configuration
 
-  Deletes a user slot configuration in given namespace, the namespace slot configuration will be returned after delete.<br>Other detail info:<ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTCONFIG", action=8 (DELETE)</li></li>
+  Deletes a user slot configuration in given namespace, the namespace slot configuration will be returned after delete.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTCONFIG&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/li&gt;
 */
 func (a *Client) DeleteUserSlotConfig(params *DeleteUserSlotConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserSlotConfigNoContent, error) {
 	// TODO: Validate the params before sending
@@ -106,7 +145,7 @@ func (a *Client) DeleteUserSlotConfig(params *DeleteUserSlotConfigParams, authIn
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/config",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteUserSlotConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -121,6 +160,44 @@ func (a *Client) DeleteUserSlotConfig(params *DeleteUserSlotConfigParams, authIn
 
 	case *DeleteUserSlotConfigNoContent:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) DeleteUserSlotConfigShort(params *DeleteUserSlotConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserSlotConfigNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteUserSlotConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "deleteUserSlotConfig",
+		Method:             "DELETE",
+		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/config",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteUserSlotConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeleteUserSlotConfigNoContent:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -129,7 +206,7 @@ func (a *Client) DeleteUserSlotConfig(params *DeleteUserSlotConfigParams, authIn
 /*
   GetNamespaceSlotConfig returns a namespace slot configuration
 
-  Get slot configuration for a given namespace. In case slot configuration is not set, the default will be returned.<br>Other detail info:<ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:SLOTCONFIG", action=2 (READ)</li><li><i>Returns</i>: namespace slot config info</li></ul>
+  Get slot configuration for a given namespace. In case slot configuration is not set, the default will be returned.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:SLOTCONFIG&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: namespace slot config info&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) GetNamespaceSlotConfig(params *GetNamespaceSlotConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetNamespaceSlotConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -147,7 +224,7 @@ func (a *Client) GetNamespaceSlotConfig(params *GetNamespaceSlotConfigParams, au
 		PathPattern:        "/admin/namespaces/{namespace}/config",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetNamespaceSlotConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -162,6 +239,44 @@ func (a *Client) GetNamespaceSlotConfig(params *GetNamespaceSlotConfigParams, au
 
 	case *GetNamespaceSlotConfigOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetNamespaceSlotConfigShort(params *GetNamespaceSlotConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetNamespaceSlotConfigOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetNamespaceSlotConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getNamespaceSlotConfig",
+		Method:             "GET",
+		PathPattern:        "/admin/namespaces/{namespace}/config",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetNamespaceSlotConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetNamespaceSlotConfigOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -170,7 +285,7 @@ func (a *Client) GetNamespaceSlotConfig(params *GetNamespaceSlotConfigParams, au
 /*
   GetUserSlotConfig returns a user slot configuration
 
-  Get a user slot configuration in given namespace. In case the user slot configuration is not set, the namespace configuration will be returned.<br>Other detail info:<ul><li>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTCONFIG", action=2 (READ)</li><li>Returns</i>: slot config info</li>
+  Get a user slot configuration in given namespace. In case the user slot configuration is not set, the namespace configuration will be returned.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTCONFIG&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;Returns&lt;/i&gt;: slot config info&lt;/li&gt;
 */
 func (a *Client) GetUserSlotConfig(params *GetUserSlotConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserSlotConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -188,7 +303,7 @@ func (a *Client) GetUserSlotConfig(params *GetUserSlotConfigParams, authInfo run
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/config",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetUserSlotConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -203,6 +318,44 @@ func (a *Client) GetUserSlotConfig(params *GetUserSlotConfigParams, authInfo run
 
 	case *GetUserSlotConfigOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetUserSlotConfigShort(params *GetUserSlotConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserSlotConfigOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetUserSlotConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getUserSlotConfig",
+		Method:             "GET",
+		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/config",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetUserSlotConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetUserSlotConfigOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -211,7 +364,7 @@ func (a *Client) GetUserSlotConfig(params *GetUserSlotConfigParams, authInfo run
 /*
   UpdateNamespaceSlotConfig updates a namespace slot configuration
 
-  Update a slot namespace configuration.<br>Other detail info:<ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:SLOTCONFIG", action=4 (UPDATE)</li><li><i>Returns</i>: updated namespace slot config</li></ul>
+  Update a slot namespace configuration.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:SLOTCONFIG&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated namespace slot config&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) UpdateNamespaceSlotConfig(params *UpdateNamespaceSlotConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateNamespaceSlotConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -229,7 +382,7 @@ func (a *Client) UpdateNamespaceSlotConfig(params *UpdateNamespaceSlotConfigPara
 		PathPattern:        "/admin/namespaces/{namespace}/config",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &UpdateNamespaceSlotConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -244,6 +397,44 @@ func (a *Client) UpdateNamespaceSlotConfig(params *UpdateNamespaceSlotConfigPara
 
 	case *UpdateNamespaceSlotConfigOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) UpdateNamespaceSlotConfigShort(params *UpdateNamespaceSlotConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateNamespaceSlotConfigOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateNamespaceSlotConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updateNamespaceSlotConfig",
+		Method:             "PUT",
+		PathPattern:        "/admin/namespaces/{namespace}/config",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateNamespaceSlotConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateNamespaceSlotConfigOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -252,7 +443,7 @@ func (a *Client) UpdateNamespaceSlotConfig(params *UpdateNamespaceSlotConfigPara
 /*
   UpdateUserSlotConfig updates a user slot configuration
 
-  Update a user slot configuration in given namespace.<br>Other detail info:<ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTCONFIG", action=4 (UPDATE)</li><li><i>Returns</i>: updated slot config</li>
+  Update a user slot configuration in given namespace.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTCONFIG&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated slot config&lt;/li&gt;
 */
 func (a *Client) UpdateUserSlotConfig(params *UpdateUserSlotConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateUserSlotConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -270,7 +461,7 @@ func (a *Client) UpdateUserSlotConfig(params *UpdateUserSlotConfigParams, authIn
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/config",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &UpdateUserSlotConfigReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -285,6 +476,44 @@ func (a *Client) UpdateUserSlotConfig(params *UpdateUserSlotConfigParams, authIn
 
 	case *UpdateUserSlotConfigOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) UpdateUserSlotConfigShort(params *UpdateUserSlotConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateUserSlotConfigOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateUserSlotConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updateUserSlotConfig",
+		Method:             "PUT",
+		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/config",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateUserSlotConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateUserSlotConfigOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}

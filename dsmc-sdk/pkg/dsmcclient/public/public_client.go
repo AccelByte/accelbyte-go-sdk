@@ -30,10 +30,11 @@ type Client struct {
 // ClientService is the interface for Client methods
 type ClientService interface {
 	GetDefaultProvider(params *GetDefaultProviderParams, authInfo runtime.ClientAuthInfoWriter) (*GetDefaultProviderOK, error)
-
+	GetDefaultProviderShort(params *GetDefaultProviderParams, authInfo runtime.ClientAuthInfoWriter) (*GetDefaultProviderOK, error)
 	ListProviders(params *ListProvidersParams, authInfo runtime.ClientAuthInfoWriter) (*ListProvidersOK, error)
-
+	ListProvidersShort(params *ListProvidersParams, authInfo runtime.ClientAuthInfoWriter) (*ListProvidersOK, error)
 	ListProvidersByRegion(params *ListProvidersByRegionParams, authInfo runtime.ClientAuthInfoWriter) (*ListProvidersByRegionOK, error)
+	ListProvidersByRegionShort(params *ListProvidersByRegionParams, authInfo runtime.ClientAuthInfoWriter) (*ListProvidersByRegionOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -59,7 +60,7 @@ func (a *Client) GetDefaultProvider(params *GetDefaultProviderParams, authInfo r
 		PathPattern:        "/dsmcontroller/public/provider/default",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetDefaultProviderReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -74,6 +75,44 @@ func (a *Client) GetDefaultProvider(params *GetDefaultProviderParams, authInfo r
 
 	case *GetDefaultProviderOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetDefaultProviderShort(params *GetDefaultProviderParams, authInfo runtime.ClientAuthInfoWriter) (*GetDefaultProviderOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetDefaultProviderParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetDefaultProvider",
+		Method:             "GET",
+		PathPattern:        "/dsmcontroller/public/provider/default",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetDefaultProviderReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetDefaultProviderOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -100,7 +139,7 @@ func (a *Client) ListProviders(params *ListProvidersParams, authInfo runtime.Cli
 		PathPattern:        "/dsmcontroller/public/providers",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &ListProvidersReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -115,6 +154,44 @@ func (a *Client) ListProviders(params *ListProvidersParams, authInfo runtime.Cli
 
 	case *ListProvidersOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) ListProvidersShort(params *ListProvidersParams, authInfo runtime.ClientAuthInfoWriter) (*ListProvidersOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewListProvidersParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "ListProviders",
+		Method:             "GET",
+		PathPattern:        "/dsmcontroller/public/providers",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ListProvidersReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *ListProvidersOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
@@ -141,7 +218,7 @@ func (a *Client) ListProvidersByRegion(params *ListProvidersByRegionParams, auth
 		PathPattern:        "/dsmcontroller/public/providers/regions/{region}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &ListProvidersByRegionReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -156,6 +233,44 @@ func (a *Client) ListProvidersByRegion(params *ListProvidersByRegionParams, auth
 
 	case *ListProvidersByRegionOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) ListProvidersByRegionShort(params *ListProvidersByRegionParams, authInfo runtime.ClientAuthInfoWriter) (*ListProvidersByRegionOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewListProvidersByRegionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "ListProvidersByRegion",
+		Method:             "GET",
+		PathPattern:        "/dsmcontroller/public/providers/regions/{region}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ListProvidersByRegionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *ListProvidersByRegionOK:
+		return v, nil
+
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}

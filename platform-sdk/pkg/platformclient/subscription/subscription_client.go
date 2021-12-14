@@ -722,24 +722,24 @@ func (a *Client) PlatformSubscribeSubscriptionShort(params *PlatformSubscribeSub
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, err
+		return nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *PlatformSubscribeSubscriptionOK:
-		return v, nil, nil
+		return v, nil
 	case *PlatformSubscribeSubscriptionCreated:
-		return nil, v, nil
+		return nil, v
 	case *PlatformSubscribeSubscriptionBadRequest:
-		return nil, nil, v
+		return nil, v
 	case *PlatformSubscribeSubscriptionNotFound:
-		return nil, nil, v
+		return nil, v
 	case *PlatformSubscribeSubscriptionUnprocessableEntity:
-		return nil, nil, v
+		return nil, v
 
 	default:
-		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 

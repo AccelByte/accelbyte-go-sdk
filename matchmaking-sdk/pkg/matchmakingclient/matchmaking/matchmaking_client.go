@@ -713,28 +713,28 @@ func (a *Client) DeleteUserFromSessionInChannelShort(params *DeleteUserFromSessi
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, err
+		return nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *DeleteUserFromSessionInChannelOK:
-		return v, nil, nil
+		return v, nil
 	case *DeleteUserFromSessionInChannelNoContent:
-		return nil, v, nil
+		return nil, v
 	case *DeleteUserFromSessionInChannelBadRequest:
-		return nil, nil, v
+		return nil, v
 	case *DeleteUserFromSessionInChannelUnauthorized:
-		return nil, nil, v
+		return nil, v
 	case *DeleteUserFromSessionInChannelForbidden:
-		return nil, nil, v
+		return nil, v
 	case *DeleteUserFromSessionInChannelNotFound:
-		return nil, nil, v
+		return nil, v
 	case *DeleteUserFromSessionInChannelInternalServerError:
-		return nil, nil, v
+		return nil, v
 
 	default:
-		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 

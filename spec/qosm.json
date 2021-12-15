@@ -1,33 +1,59 @@
 {
-  "swagger": "2.0",
+  "host": "demo.accelbyte.io",
   "info": {
     "description": "Justice QoS Manager Service",
     "title": "Justice QoS Manager Service",
     "version": ""
   },
+  "schemes": [
+    "https"
+  ],
+  "securityDefinitions": {
+    "HasPermission": {
+      "authorizationUrl": "https://dummy.oauth.net/auth",
+      "flow": "accessCode",
+      "scopes": {
+        "ADMIN:QOS:SERVER [DELETE]": "ADMIN:QOS:SERVER [DELETE]",
+        "ADMIN:QOS:SERVER []": "ADMIN:QOS:SERVER []"
+      },
+      "tokenUrl": "https://dumy.oauth.net/token",
+      "type": "oauth2"
+    },
+    "HasScope": {
+      "authorizationUrl": "https://dummy.oauth.net/auth",
+      "flow": "accessCode",
+      "scopes": {
+        "social": "social"
+      },
+      "tokenUrl": "https://dumy.oauth.net/token",
+      "type": "oauth2"
+    },
+    "authorization": {
+      "in": "header",
+      "name": "Authorization",
+      "type": "apiKey"
+    }
+  },
+  "swagger": "2.0",
   "paths": {
     "/qosm/admin/servers/{region}": {
       "delete": {
-        "description": "```\nRequired permission: ADMIN:QOS:SERVER [DELETE]\nRequired scope: social\n\nThis endpoint delete a registered QoS service record.\n```",
         "consumes": [
           "application/json"
         ],
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "Admin"
-        ],
-        "summary": "Delete a QoS service record",
+        "description": "```\nRequired permission: ADMIN:QOS:SERVER [DELETE]\nRequired scope: social\n\nThis endpoint delete a registered QoS service record.\n```",
         "operationId": "DeleteServer",
         "parameters": [
           {
-            "type": "string",
             "description": "region of the QoS",
-            "name": "region",
             "in": "path",
-            "required": true
+            "name": "region",
+            "required": true,
+            "type": "string"
           }
+        ],
+        "produces": [
+          "application/json"
         ],
         "responses": {
           "204": {
@@ -39,39 +65,50 @@
               "$ref": "#/definitions/response.Error"
             }
           }
-        }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:QOS:SERVER [DELETE]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Delete a QoS service record",
+        "tags": [
+          "Admin"
+        ]
       }
     },
     "/qosm/admin/servers/{region}/alias": {
       "post": {
-        "description": "```\nRequired permission: ADMIN:QOS:SERVER [UDPATE]\nRequired scope: social\n\nThis endpoint modifies a registered QoS service's region alias.\n```",
         "consumes": [
           "application/json"
         ],
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "Admin"
-        ],
-        "summary": "Modify a QoS service's region alias",
+        "description": "```\nRequired permission: ADMIN:QOS:SERVER [UDPATE]\nRequired scope: social\n\nThis endpoint modifies a registered QoS service\u0026#39;s region alias.\n```",
         "operationId": "SetServerAlias",
         "parameters": [
           {
-            "type": "string",
             "description": "original region of the QoS",
-            "name": "region",
             "in": "path",
-            "required": true
+            "name": "region",
+            "required": true,
+            "type": "string"
           },
           {
-            "name": "body",
             "in": "body",
+            "name": "body",
             "required": true,
             "schema": {
               "$ref": "#/definitions/models.SetAliasRequest"
             }
           }
+        ],
+        "produces": [
+          "application/json"
         ],
         "responses": {
           "204": {
@@ -95,23 +132,34 @@
               "$ref": "#/definitions/response.Error"
             }
           }
-        }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:QOS:SERVER []"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Modify a QoS service's region alias",
+        "tags": [
+          "Admin"
+        ]
       }
     },
     "/qosm/public/qos": {
       "get": {
-        "description": "```\nThis endpoint lists all QoS services available in all regions.\n\nThis endpoint is intended to be called by game client to find out all available regions.\nAfter getting a list of QoS on each region, game client is expected to ping each one with UDP\nconnection as described below:\n\n1. Make UDP connection to each QoS's IP:Port\n2. Send string \"PING\" after connection established\n3. Wait for string \"PONG\" response\n4. Note the request-response latency for each QoS in each region\n\nThe game then can use ping latency information to either:\n1. Inform the player on these latencies and let player choose preferred region\n2. Send the latency list to Matchmaking Service so that player can be matched with other players\n   in nearby regions\n```",
         "consumes": [
           "application/json"
         ],
+        "description": "```\nThis endpoint lists all QoS services available in all regions.\n\nThis endpoint is intended to be called by game client to find out all available regions.\nAfter getting a list of QoS on each region, game client is expected to ping each one with UDP\nconnection as described below:\n\n1. Make UDP connection to each QoS\u0026#39;s IP:Port\n2. Send string \u0026#34;PING\u0026#34; after connection established\n3. Wait for string \u0026#34;PONG\u0026#34; response\n4. Note the request-response latency for each QoS in each region\n\nThe game then can use ping latency information to either:\n1. Inform the player on these latencies and let player choose preferred region\n2. Send the latency list to Matchmaking Service so that player can be matched with other players\n   in nearby regions\n```",
+        "operationId": "ListServer",
         "produces": [
           "application/json"
         ],
-        "tags": [
-          "Public"
-        ],
-        "summary": "Get list of QoS services",
-        "operationId": "ListServer",
         "responses": {
           "200": {
             "description": "list of QoS services returned",
@@ -125,32 +173,37 @@
               "$ref": "#/definitions/response.Error"
             }
           }
-        }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get list of QoS services",
+        "tags": [
+          "Public"
+        ]
       }
     },
     "/qosm/servers/heartbeat": {
       "post": {
-        "description": "```\nRequired permission: QOS:SERVER [CREATE][UPDATE]\nRequired scope: social\n\nThis endpoint is intended to be called by QoS service \nto register and periodically let QoS Manager know that it is still alive.\n```",
         "consumes": [
           "application/json"
         ],
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "Server"
-        ],
-        "summary": "Send heartbeat",
+        "description": "```\nRequired permission: QOS:SERVER [CREATE][UPDATE]\nRequired scope: social\n\nThis endpoint is intended to be called by QoS service \nto register and periodically let QoS Manager know that it is still alive.\n```",
         "operationId": "Heartbeat",
         "parameters": [
           {
-            "name": "body",
             "in": "body",
+            "name": "body",
             "required": true,
             "schema": {
               "$ref": "#/definitions/models.HeartbeatRequest"
             }
           }
+        ],
+        "produces": [
+          "application/json"
         ],
         "responses": {
           "204": {
@@ -168,52 +221,57 @@
               "$ref": "#/definitions/response.Error"
             }
           }
-        }
+        },
+        "security": [
+          {
+            "HasPermission": [],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Send heartbeat",
+        "tags": [
+          "Server"
+        ]
       }
     }
   },
   "definitions": {
     "models.HeartbeatRequest": {
-      "required": [
-        "region",
-        "ip",
-        "port"
-      ],
       "properties": {
         "ip": {
           "type": "string"
         },
         "port": {
-          "type": "integer",
-          "format": "int32"
+          "format": "int32",
+          "type": "integer"
         },
         "region": {
           "type": "string"
         }
-      }
-    },
-    "models.ListServerResponse": {
+      },
       "required": [
-        "servers"
-      ],
-      "properties": {
-        "servers": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/models.Server"
-          }
-        }
-      }
-    },
-    "models.Server": {
-      "required": [
-        "alias",
-        "region",
         "ip",
         "port",
-        "last_update",
-        "status"
-      ],
+        "region"
+      ]
+    },
+    "models.ListServerResponse": {
+      "properties": {
+        "servers": {
+          "items": {
+            "$ref": "#/definitions/models.Server"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "servers"
+      ]
+    },
+    "models.Server": {
       "properties": {
         "alias": {
           "type": "string"
@@ -222,12 +280,12 @@
           "type": "string"
         },
         "last_update": {
-          "type": "string",
-          "format": "date-time"
+          "format": "date-time",
+          "type": "string"
         },
         "port": {
-          "type": "integer",
-          "format": "int32"
+          "format": "int32",
+          "type": "integer"
         },
         "region": {
           "type": "string"
@@ -235,44 +293,40 @@
         "status": {
           "type": "string"
         }
-      }
+      },
+      "required": [
+        "alias",
+        "ip",
+        "last_update",
+        "port",
+        "region",
+        "status"
+      ]
     },
     "models.SetAliasRequest": {
-      "required": [
-        "alias"
-      ],
       "properties": {
         "alias": {
           "type": "string"
         }
-      }
+      },
+      "required": [
+        "alias"
+      ]
     },
     "response.Error": {
-      "required": [
-        "code",
-        "message"
-      ],
       "properties": {
         "code": {
-          "type": "integer",
-          "format": "int32"
+          "format": "int32",
+          "type": "integer"
         },
         "message": {
           "type": "string"
         }
-      }
+      },
+      "required": [
+        "code",
+        "message"
+      ]
     }
-  },
-  "securityDefinitions": {
-    "authorization": {
-      "type": "apiKey",
-      "name": "Authorization",
-      "in": "header"
-    }
-  },
-  "security": [
-    {
-      "authorization": []
-    }
-  ]
+  }
 }

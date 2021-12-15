@@ -1,19 +1,43 @@
 {
-  "swagger": "2.0",
+  "host": "demo.accelbyte.io",
   "info": {
     "description": "This is analytics game telemetry to standardize avengers and justice telemetry",
     "title": "Analytics Game Telemetry",
     "version": "0.0.1"
   },
+  "schemes": [
+    "https"
+  ],
+  "securityDefinitions": {
+    "EncodedBearer": {
+      "in": "header",
+      "name": "Authorization",
+      "type": "apiKey"
+    },
+    "HasPermission": {
+      "authorizationUrl": "https://dummy.oauth.net/auth",
+      "flow": "accessCode",
+      "scopes": {},
+      "tokenUrl": "https://dumy.oauth.net/token",
+      "type": "oauth2"
+    },
+    "HasScope": {
+      "authorizationUrl": "https://dummy.oauth.net/auth",
+      "flow": "accessCode",
+      "scopes": {},
+      "tokenUrl": "https://dumy.oauth.net/token",
+      "type": "oauth2"
+    }
+  },
+  "swagger": "2.0",
   "paths": {
     "/game-telemetry/v1/protected/events": {
       "post": {
         "consumes": [
           "application/json"
         ],
-        "produces": [
-          "application/json"
-        ],
+        "description": "This endpoint require valid JWT token.\n\nThis endpoint send events into designated streaming pipeline and each request can contain single or multiple events.\n\u0026lt;p\u0026gt; Format of the event:\n\n- **EventNamespace (required)**: namespace of the relevant game with domain name format.\n                \u0026lt;p\u0026gt; Only accept input with valid characters. Allowed characters: \u0026lt;b\u0026gt;Aa-Zz0-9_.-\u0026lt;/b\u0026gt; \u0026lt;p\u0026gt;\n                \u0026lt;p\u0026gt; Example: io.accelbyte.justice.dev.samplegame \u0026lt;/p\u0026gt;\n\n- **EventName (required)**: name of the event.\n                \u0026lt;p\u0026gt; Only accept input with valid characters. Allowed characters: \u0026lt;b\u0026gt;Aa-Zz0-9_.-\u0026lt;/b\u0026gt; \u0026lt;p\u0026gt;\n                \u0026lt;p\u0026gt; Example: player_killed, mission_accomplished \u0026lt;/p\u0026gt;\n\n- **Payload (required)**: an arbitrary json with the payload of the said event",
+        "operationId": "protected_save_events_game_telemetry_v1_protected_events_post",
         "parameters": [
           {
             "in": "body",
@@ -26,6 +50,9 @@
               "type": "array"
             }
           }
+        ],
+        "produces": [
+          "application/json"
         ],
         "responses": {
           "204": {
@@ -43,16 +70,13 @@
             "EncodedBearer": []
           }
         ],
-        "description": "This endpoint require valid JWT token.\n\nThis endpoint send events into designated streaming pipeline and each request can contain single or multiple events.\n<p> Format of the event:\n\n- **EventNamespace (required)**: namespace of the relevant game with domain name format.\n                <p> Only accept input with valid characters. Allowed characters: <b>Aa-Zz0-9_.-</b> <p>\n                <p> Example: io.accelbyte.justice.dev.samplegame </p>\n\n- **EventName (required)**: name of the event.\n                <p> Only accept input with valid characters. Allowed characters: <b>Aa-Zz0-9_.-</b> <p>\n                <p> Example: player_killed, mission_accomplished </p>\n\n- **Payload (required)**: an arbitrary json with the payload of the said event",
-        "operationId": "protected_save_events_game_telemetry_v1_protected_events_post",
         "summary": "Protected Save Events"
       }
     },
     "/game-telemetry/v1/protected/steamIds/{steamId}/playtime": {
       "get": {
-        "produces": [
-          "application/json"
-        ],
+        "description": "This endpoint retrieves player\u0026#39;s total playtime in Steam for a specific game (AppId) and store them in service\u0026#39;s cache.\n\nPlayers\u0026#39; Steam account must be set into public to enable the service fetch their total playtime data.",
+        "operationId": "protected_get_playtime_game_telemetry_v1_protected_steamIds__steamId__playtime_get",
         "parameters": [
           {
             "in": "path",
@@ -60,6 +84,9 @@
             "required": true,
             "type": "string"
           }
+        ],
+        "produces": [
+          "application/json"
         ],
         "responses": {
           "200": {
@@ -81,16 +108,13 @@
             "EncodedBearer": []
           }
         ],
-        "description": "This endpoint retrieves player's total playtime in Steam for a specific game (AppId) and store them in service's cache.\n\nPlayers' Steam account must be set into public to enable the service fetch their total playtime data.",
-        "operationId": "protected_get_playtime_game_telemetry_v1_protected_steamIds__steamId__playtime_get",
         "summary": "Protected Get Playtime"
       }
     },
     "/game-telemetry/v1/protected/steamIds/{steamId}/playtime/{playtime}": {
       "put": {
-        "produces": [
-          "application/json"
-        ],
+        "description": "This endpoint update player\u0026#39;s total playtime in a specific game (AppId) from service\u0026#39;s cache.",
+        "operationId": "protected_update_playtime_game_telemetry_v1_protected_steamIds__steamId__playtime__playtime__put",
         "parameters": [
           {
             "in": "path",
@@ -104,6 +128,9 @@
             "required": true,
             "type": "string"
           }
+        ],
+        "produces": [
+          "application/json"
         ],
         "responses": {
           "200": {
@@ -122,8 +149,6 @@
             "EncodedBearer": []
           }
         ],
-        "description": "This endpoint update player's total playtime in a specific game (AppId) from service's cache.",
-        "operationId": "protected_update_playtime_game_telemetry_v1_protected_steamIds__steamId__playtime__playtime__put",
         "summary": "Protected Update Playtime"
       }
     }
@@ -200,13 +225,5 @@
       "title": "ValidationError",
       "type": "object"
     }
-  },
-  "securityDefinitions": {
-    "EncodedBearer": {
-      "in": "header",
-      "name": "Authorization",
-      "type": "apiKey"
-    }
-  },
-  "x-components": {}
+  }
 }

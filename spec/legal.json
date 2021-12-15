@@ -1,15 +1,18 @@
 {
-  "swagger": "2.0",
+  "host": "demo.accelbyte.io",
   "info": {
-    "description": "Justice Legal Service",
-    "version": "1.14.0",
-    "title": "justice-legal-service",
     "contact": {
+      "email": "engineering@accelbyte.io",
       "name": "Engineering Team at AccelByte",
-      "url": "https://accelbyte.io",
-      "email": "engineering@accelbyte.io"
-    }
+      "url": "https://accelbyte.io"
+    },
+    "description": "Justice Legal Service",
+    "title": "justice-legal-service",
+    "version": "1.15.0"
   },
+  "schemes": [
+    "https"
+  ],
   "basePath": "/agreement",
   "tags": [
     {
@@ -40,142 +43,132 @@
       "name": "Utility"
     }
   ],
-  "paths": {
-    "/admin/users/{userId}/anonymization/agreements": {
-      "delete": {
-        "tags": [
-          "Anonymization"
-        ],
-        "summary": "Anonymize user's agreement record",
-        "description": "This API will anonymize agreement record for specified user. Other detail info: <ul><li><i>Required permission</i>: resource=\"ADMIN:NAMESPACE:*:LEGAL\", action=8 (DELETE)</li></ul>",
-        "operationId": "anonymizeUserAgreement",
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "userId",
-            "in": "path",
-            "description": "User Id",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "Anonymize successfully"
-          },
-          "404": {
-            "description": "<table><tr><td>NumericErrorCode</td><td>ErrorCode</td></tr><tr><td>40047</td><td>errors.net.accelbyte.platform.legal.user_agreement_not_found</td></tr></table>",
-            "schema": {
-              "$ref": "#/definitions/ErrorEntity"
-            }
-          }
-        },
-        "security": [
-          {
-            "authorization": []
-          }
-        ]
-      }
+  "securityDefinitions": {
+    "HasPermission": {
+      "authorizationUrl": "https://dummy.oauth.net/auth",
+      "flow": "accessCode",
+      "scopes": {
+        "ADMIN:NAMESPACE:*:LEGAL [CREATE]": "ADMIN:NAMESPACE:*:LEGAL [CREATE]",
+        "ADMIN:NAMESPACE:*:LEGAL [DELETE]": "ADMIN:NAMESPACE:*:LEGAL [DELETE]",
+        "ADMIN:NAMESPACE:*:LEGAL [READ]": "ADMIN:NAMESPACE:*:LEGAL [READ]",
+        "ADMIN:NAMESPACE:*:LEGAL [UPDATE]": "ADMIN:NAMESPACE:*:LEGAL [UPDATE]",
+        "NAMESPACE:{namespace}:LEGAL [CREATE]": "NAMESPACE:{namespace}:LEGAL [CREATE]",
+        "NAMESPACE:{namespace}:LEGAL [READ]": "NAMESPACE:{namespace}:LEGAL [READ]"
+      },
+      "tokenUrl": "https://dumy.oauth.net/token",
+      "type": "oauth2"
     },
+    "HasScope": {
+      "authorizationUrl": "https://dummy.oauth.net/auth",
+      "flow": "accessCode",
+      "scopes": {},
+      "tokenUrl": "https://dumy.oauth.net/token",
+      "type": "oauth2"
+    },
+    "authorization": {
+      "in": "header",
+      "name": "Authorization",
+      "type": "apiKey"
+    }
+  },
+  "swagger": "2.0",
+  "paths": {
     "/admin/agreements/policies/users/{userId}": {
       "get": {
-        "tags": [
-          "Agreement"
-        ],
-        "summary": "Retrieve Accepted Legal Agreements",
-        "description": "This API will return all accepted Legal Agreements for specified user. Other detail info: <ul><li><i>Required permission</i>: resource=\"ADMIN:NAMESPACE:*:LEGAL\", action=2 (READ)</li></ul>",
+        "description": "This API will return all accepted Legal Agreements for specified user. Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:*:LEGAL\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "retrieveAcceptedAgreements",
-        "produces": [
-          "application/json"
-        ],
         "parameters": [
           {
-            "name": "userId",
-            "in": "path",
             "description": "User Id",
+            "in": "path",
+            "name": "userId",
             "required": true,
             "type": "string"
           }
+        ],
+        "produces": [
+          "application/json"
         ],
         "responses": {
           "200": {
             "description": "successful operation",
             "schema": {
-              "type": "array",
               "items": {
                 "$ref": "#/definitions/RetrieveAcceptedAgreementResponse"
-              }
+              },
+              "type": "array"
             }
           }
         },
         "security": [
           {
             "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:*:LEGAL [READ]"
+            ],
+            "authorization": []
           }
+        ],
+        "summary": "Retrieve Accepted Legal Agreements",
+        "tags": [
+          "Agreement"
         ]
       }
     },
     "/admin/agreements/policy-versions/users": {
       "get": {
-        "tags": [
-          "Agreement"
-        ],
-        "summary": "Retrieve All Users Accepting Legal Agreements",
-        "description": "This API will return all users who has accepted a specific policy version.Other detail info: <ul><li><i>Required permission</i>: resource=\"ADMIN:NAMESPACE:*:LEGAL\", action=2 (READ)</li></ul>",
+        "description": "This API will return all users who has accepted a specific policy version.Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:*:LEGAL\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "retrieveAllUsersByPolicyVersion",
-        "produces": [
-          "application/json"
-        ],
         "parameters": [
           {
-            "name": "policyVersionId",
             "in": "query",
+            "name": "policyVersionId",
             "required": true,
             "type": "string"
           },
           {
-            "name": "keyword",
-            "in": "query",
             "description": "display name or email or username",
+            "in": "query",
+            "name": "keyword",
             "required": false,
             "type": "string"
           },
           {
-            "name": "offset",
-            "in": "query",
-            "description": "offset",
-            "required": false,
-            "type": "integer",
             "default": 0,
-            "format": "int32"
+            "description": "offset",
+            "format": "int32",
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "type": "integer"
           },
           {
-            "name": "limit",
-            "in": "query",
-            "description": "limit",
-            "required": false,
-            "type": "integer",
             "default": 20,
-            "format": "int32"
+            "description": "limit",
+            "format": "int32",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "integer"
           }
+        ],
+        "produces": [
+          "application/json"
         ],
         "responses": {
           "200": {
             "description": "successful operation",
             "schema": {
-              "type": "array",
               "items": {
                 "$ref": "#/definitions/PagedRetrieveUserAcceptedAgreementResponse"
-              }
+              },
+              "type": "array"
             }
           },
           "404": {
-            "description": "<table><tr><td>NumericErrorCode</td><td>ErrorCode</td></tr><tr><td>40035</td><td>errors.net.accelbyte.platform.legal.policy_version_not_found</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eNumericErrorCode\u003c/td\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40035\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.policy_version_not_found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -184,52 +177,61 @@
         "security": [
           {
             "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:*:LEGAL [READ]"
+            ],
+            "authorization": []
           }
+        ],
+        "summary": "Retrieve All Users Accepting Legal Agreements",
+        "tags": [
+          "Agreement"
         ]
       }
     },
     "/admin/base-policies": {
       "get": {
-        "tags": [
-          "Base Legal Policies"
-        ],
-        "summary": "Retrieve All Base Legal Policy",
-        "description": "Retrieve all base policies.<br>Other detail info: <ul><li><i>Required permission</i>: resource=\"ADMIN:NAMESPACE:*:LEGAL\", action=2 (READ)</li></ul>",
+        "description": "Retrieve all base policies.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:*:LEGAL\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "retrieveAllLegalPolicies",
+        "parameters": [],
         "produces": [
           "application/json"
         ],
-        "parameters": [],
         "responses": {
           "200": {
             "description": "successful operation",
             "schema": {
-              "type": "array",
               "items": {
                 "$ref": "#/definitions/RetrieveBasePolicyResponse"
-              }
+              },
+              "type": "array"
             }
           }
         },
         "security": [
           {
             "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:*:LEGAL [READ]"
+            ],
+            "authorization": []
           }
+        ],
+        "summary": "Retrieve All Base Legal Policy",
+        "tags": [
+          "Base Legal Policies"
         ]
       },
       "post": {
-        "tags": [
-          "Base Legal Policies"
-        ],
-        "summary": "Create a Base Legal Policy",
-        "description": "Create a legal policy.<br>Other detail info: <ul><li><i>Required permission</i>: resource=\"ADMIN:NAMESPACE:*:LEGAL\", action=1 (CREATE)</li></ul>",
-        "operationId": "createPolicy",
         "consumes": [
           "application/json"
         ],
-        "produces": [
-          "application/json"
-        ],
+        "description": "Create a legal policy.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:*:LEGAL\u0026#34;, action=1 (CREATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "createPolicy",
         "parameters": [
           {
             "in": "body",
@@ -240,6 +242,9 @@
             }
           }
         ],
+        "produces": [
+          "application/json"
+        ],
         "responses": {
           "201": {
             "description": "successful operation",
@@ -248,13 +253,13 @@
             }
           },
           "409": {
-            "description": "<table><tr><td>NumericErrorCode</td><td>ErrorCode</td></tr><tr><td>40030</td><td>errors.net.accelbyte.platform.legal.invalid_policy_type</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eNumericErrorCode\u003c/td\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40030\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.invalid_policy_type\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
           },
           "422": {
-            "description": "<table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/ValidationErrorEntity"
             }
@@ -263,29 +268,35 @@
         "security": [
           {
             "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:*:LEGAL [CREATE]"
+            ],
+            "authorization": []
           }
+        ],
+        "summary": "Create a Base Legal Policy",
+        "tags": [
+          "Base Legal Policies"
         ]
       }
     },
     "/admin/base-policies/{basePolicyId}": {
       "get": {
-        "tags": [
-          "Base Legal Policies"
-        ],
-        "summary": "Retrieve a Base Legal Policy",
-        "description": "Retrieve a base policy.<br>Other detail info: <ul><li><i>Required permission</i>: resource=\"ADMIN:NAMESPACE:*:LEGAL\", action=2 (READ)</li></ul>",
+        "description": "Retrieve a base policy.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:*:LEGAL\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "retrieveSinglePolicy",
-        "produces": [
-          "application/json"
-        ],
         "parameters": [
           {
-            "name": "basePolicyId",
-            "in": "path",
             "description": "BasePolicy Id",
+            "in": "path",
+            "name": "basePolicyId",
             "required": true,
             "type": "string"
           }
+        ],
+        "produces": [
+          "application/json"
         ],
         "responses": {
           "200": {
@@ -295,7 +306,7 @@
             }
           },
           "404": {
-            "description": "<table><tr><td>NumericErrorCode</td><td>ErrorCode</td></tr><tr><td>40031</td><td>errors.net.accelbyte.platform.legal.base_policy_not_found</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eNumericErrorCode\u003c/td\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40031\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.base_policy_not_found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -304,24 +315,27 @@
         "security": [
           {
             "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:*:LEGAL [READ]"
+            ],
+            "authorization": []
           }
+        ],
+        "summary": "Retrieve a Base Legal Policy",
+        "tags": [
+          "Base Legal Policies"
         ]
       },
       "patch": {
-        "tags": [
-          "Base Legal Policies"
-        ],
-        "summary": "Update Base Legal Policy",
-        "description": "Update an existing base policy.<br>Other detail info: <ul><li><i>Required permission</i>: resource=\"ADMIN:NAMESPACE:*:LEGAL\", action=4 (UPDATE)</li></ul>",
+        "description": "Update an existing base policy.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:*:LEGAL\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "partialUpdatePolicy",
-        "produces": [
-          "application/json"
-        ],
         "parameters": [
           {
-            "name": "basePolicyId",
-            "in": "path",
             "description": "BasePolicy Id",
+            "in": "path",
+            "name": "basePolicyId",
             "required": true,
             "type": "string"
           },
@@ -334,6 +348,9 @@
             }
           }
         ],
+        "produces": [
+          "application/json"
+        ],
         "responses": {
           "200": {
             "description": "successful operation",
@@ -342,7 +359,7 @@
             }
           },
           "400": {
-            "description": "<table><tr><td>NumericErrorCode</td><td>ErrorCode</td></tr><tr><td>40032</td><td>errors.net.accelbyte.platform.legal.invalid_base_policy</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eNumericErrorCode\u003c/td\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40032\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.invalid_base_policy\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -351,36 +368,42 @@
         "security": [
           {
             "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:*:LEGAL [UPDATE]"
+            ],
+            "authorization": []
           }
+        ],
+        "summary": "Update Base Legal Policy",
+        "tags": [
+          "Base Legal Policies"
         ]
       }
     },
     "/admin/base-policies/{basePolicyId}/countries/{countryCode}": {
       "get": {
-        "tags": [
-          "Base Legal Policies"
-        ],
-        "summary": "Retrieve a Base Legal Policy based on a Particular Country",
-        "description": "Retrieve a Base Legal Policy based on a Particular Country.<br>Other detail info: <ul><li><i>Required permission</i>: resource=\"ADMIN:NAMESPACE:*:LEGAL\", action=2 (READ)</li></ul>",
+        "description": "Retrieve a Base Legal Policy based on a Particular Country.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:*:LEGAL\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "retrievePolicyCountry",
-        "produces": [
-          "application/json"
-        ],
         "parameters": [
           {
-            "name": "basePolicyId",
-            "in": "path",
             "description": "BasePolicy Id",
+            "in": "path",
+            "name": "basePolicyId",
             "required": true,
             "type": "string"
           },
           {
-            "name": "countryCode",
-            "in": "path",
             "description": "Country Code",
+            "in": "path",
+            "name": "countryCode",
             "required": true,
             "type": "string"
           }
+        ],
+        "produces": [
+          "application/json"
         ],
         "responses": {
           "200": {
@@ -390,7 +413,7 @@
             }
           },
           "404": {
-            "description": "<table><tr><td>NumericErrorCode</td><td>ErrorCode</td></tr><tr><td>40031</td><td>errors.net.accelbyte.platform.legal.base_policy_not_found</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eNumericErrorCode\u003c/td\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40031\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.base_policy_not_found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -399,197 +422,71 @@
         "security": [
           {
             "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:*:LEGAL [READ]"
+            ],
+            "authorization": []
           }
-        ]
-      }
-    },
-    "/admin/policy-types": {
-      "get": {
+        ],
+        "summary": "Retrieve a Base Legal Policy based on a Particular Country",
         "tags": [
           "Base Legal Policies"
-        ],
-        "summary": "Retrieve All Policy Type",
-        "description": "Retrieve all supported policy types.<br>Other detail info: <ul><li><i>Required permission</i>: resource=\"ADMIN:NAMESPACE:*:LEGAL\", action=2 (READ)</li></ul>",
-        "operationId": "retrieveAllPolicyTypes",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "offset",
-            "in": "query",
-            "description": "Offset",
-            "required": false,
-            "type": "integer",
-            "format": "int32"
-          },
-          {
-            "name": "limit",
-            "in": "query",
-            "description": "Limit",
-            "required": true,
-            "type": "integer",
-            "format": "int32"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/RetrievePolicyTypeResponse"
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "authorization": []
-          }
-        ]
-      }
-    },
-    "/admin/localized-policy-versions/{localizedPolicyVersionId}": {
-      "get": {
-        "tags": [
-          "Localized Policy Versions"
-        ],
-        "summary": "Retrieve a Localized Version from Country-Specific Policy",
-        "description": "Retrieve a version of a particular country-specific policy.<br>Other detail info: <ul><li><i>Required permission</i>: resource=\"ADMIN:NAMESPACE:*:LEGAL\", action=2 (READ)</li></ul>",
-        "operationId": "retrieveSingleLocalizedPolicyVersion",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "localizedPolicyVersionId",
-            "in": "path",
-            "description": "Localized Policy Version Id",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "$ref": "#/definitions/UpdateLocalizedPolicyVersionResponse"
-            }
-          },
-          "400": {
-            "description": "<table><tr><td>NumericErrorCode</td><td>ErrorCode</td></tr><tr><td>2912</td><td>errors.net.accelbyte.platform.legal.invalid_policy_version</td></tr></table>",
-            "schema": {
-              "$ref": "#/definitions/ErrorEntity"
-            }
-          }
-        },
-        "security": [
-          {
-            "authorization": []
-          }
-        ]
-      },
-      "put": {
-        "tags": [
-          "Localized Policy Versions"
-        ],
-        "summary": "Update a Localized Version from Country-Specific Policy",
-        "description": "Update a version of a particular country-specific policy.<br>Other detail info: <ul><li><i>Required permission</i>: resource=\"ADMIN:NAMESPACE:*:LEGAL\", action=4 (UPDATE)</li></ul>",
-        "operationId": "updateLocalizedPolicyVersion",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "localizedPolicyVersionId",
-            "in": "path",
-            "description": "Localized Policy Version Id",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "required": false,
-            "schema": {
-              "$ref": "#/definitions/UpdateLocalizedPolicyVersionRequest"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "$ref": "#/definitions/UpdateLocalizedPolicyVersionResponse"
-            }
-          },
-          "400": {
-            "description": "<table><tr><td>NumericErrorCode</td><td>ErrorCode</td></tr><tr><td>40035</td><td>errors.net.accelbyte.platform.legal.invalid_policy_version</td></tr></table>",
-            "schema": {
-              "$ref": "#/definitions/ErrorEntity"
-            }
-          }
-        },
-        "security": [
-          {
-            "authorization": []
-          }
         ]
       }
     },
     "/admin/localized-policy-versions/versions/{policyVersionId}": {
       "get": {
-        "tags": [
-          "Localized Policy Versions"
-        ],
-        "summary": "Retrieve Versions from Country-Specific Policy",
-        "description": "Retrieve versions of a particular country-specific policy.<br>Other detail info: <ul><li><i>Required permission</i>: resource=\"ADMIN:NAMESPACE:*:LEGAL\", action=2 (READ)</li></ul>",
+        "description": "Retrieve versions of a particular country-specific policy.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:*:LEGAL\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "retrieveLocalizedPolicyVersions",
-        "produces": [
-          "application/json"
-        ],
         "parameters": [
           {
-            "name": "policyVersionId",
-            "in": "path",
             "description": "Policy Version Id",
+            "in": "path",
+            "name": "policyVersionId",
             "required": true,
             "type": "string"
           }
+        ],
+        "produces": [
+          "application/json"
         ],
         "responses": {
           "200": {
             "description": "successful operation",
             "schema": {
-              "type": "array",
               "items": {
                 "$ref": "#/definitions/RetrieveLocalizedPolicyVersionResponse"
-              }
+              },
+              "type": "array"
             }
           }
         },
         "security": [
           {
             "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:*:LEGAL [READ]"
+            ],
+            "authorization": []
           }
+        ],
+        "summary": "Retrieve Versions from Country-Specific Policy",
+        "tags": [
+          "Localized Policy Versions"
         ]
       },
       "post": {
-        "tags": [
-          "Localized Policy Versions"
-        ],
-        "summary": "Create a Localized Version from Country-Specific Policy",
-        "description": "Create a version of a particular country-specific policy.<br>Other detail info: <ul><li><i>Required permission</i>: resource=\"ADMIN:NAMESPACE:*:LEGAL\", action=1 (CREATE)</li></ul>",
+        "description": "Create a version of a particular country-specific policy.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:*:LEGAL\u0026#34;, action=1 (CREATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "createLocalizedPolicyVersion",
-        "produces": [
-          "application/json"
-        ],
         "parameters": [
           {
-            "name": "policyVersionId",
-            "in": "path",
             "description": "Policy Version Id",
+            "in": "path",
+            "name": "policyVersionId",
             "required": true,
             "type": "string"
           },
@@ -602,6 +499,9 @@
             }
           }
         ],
+        "produces": [
+          "application/json"
+        ],
         "responses": {
           "201": {
             "description": "successful operation",
@@ -610,13 +510,13 @@
             }
           },
           "400": {
-            "description": "<table><tr><td>NumericErrorCode</td><td>ErrorCode</td></tr><tr><td>40033</td><td>errors.net.accelbyte.platform.legal.invalid_policy_version</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eNumericErrorCode\u003c/td\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40033\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.invalid_policy_version\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
           },
           "409": {
-            "description": "<table><tr><td>NumericErrorCode</td><td>ErrorCode</td></tr><tr><td>40044</td><td>errors.net.accelbyte.platform.legal.localized_policy_version_already_exist</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eNumericErrorCode\u003c/td\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40044\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.localized_policy_version_already_exist\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -625,58 +525,129 @@
         "security": [
           {
             "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:*:LEGAL [CREATE]"
+            ],
+            "authorization": []
           }
+        ],
+        "summary": "Create a Localized Version from Country-Specific Policy",
+        "tags": [
+          "Localized Policy Versions"
         ]
       }
     },
-    "/admin/localized-policy-versions/{localizedPolicyVersionId}/default": {
-      "patch": {
-        "tags": [
-          "Localized Policy Versions"
-        ],
-        "summary": "Set Default Localized Policy",
-        "description": "Update a localized version policy to be the default.<br>Other detail info: <ul><li><i>Required permission</i>: resource=\"ADMIN:NAMESPACE:*:LEGAL\", action=4 (UPDATE)</li></ul>",
-        "operationId": "setDefaultPolicy",
-        "produces": [
-          "application/json"
-        ],
+    "/admin/localized-policy-versions/{localizedPolicyVersionId}": {
+      "get": {
+        "description": "Retrieve a version of a particular country-specific policy.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:*:LEGAL\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "retrieveSingleLocalizedPolicyVersion",
         "parameters": [
           {
-            "name": "localizedPolicyVersionId",
-            "in": "path",
             "description": "Localized Policy Version Id",
+            "in": "path",
+            "name": "localizedPolicyVersionId",
             "required": true,
             "type": "string"
           }
         ],
+        "produces": [
+          "application/json"
+        ],
         "responses": {
           "200": {
-            "description": "successful operation"
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/UpdateLocalizedPolicyVersionResponse"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eNumericErrorCode\u003c/td\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e2912\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.invalid_policy_version\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
           }
         },
         "security": [
           {
             "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:*:LEGAL [READ]"
+            ],
+            "authorization": []
           }
+        ],
+        "summary": "Retrieve a Localized Version from Country-Specific Policy",
+        "tags": [
+          "Localized Policy Versions"
+        ]
+      },
+      "put": {
+        "description": "Update a version of a particular country-specific policy.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:*:LEGAL\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "updateLocalizedPolicyVersion",
+        "parameters": [
+          {
+            "description": "Localized Policy Version Id",
+            "in": "path",
+            "name": "localizedPolicyVersionId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/UpdateLocalizedPolicyVersionRequest"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/UpdateLocalizedPolicyVersionResponse"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eNumericErrorCode\u003c/td\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40035\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.invalid_policy_version\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:*:LEGAL [UPDATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Update a Localized Version from Country-Specific Policy",
+        "tags": [
+          "Localized Policy Versions"
         ]
       }
     },
     "/admin/localized-policy-versions/{localizedPolicyVersionId}/attachments": {
       "post": {
-        "tags": [
-          "Localized Policy Versions"
-        ],
-        "summary": "Request Presigned URL for Upload Document",
-        "description": "Request presigned URL for  upload attachment for a particular localized version of base policy.<br>Other detail info: <ul><li><i>Required permission</i>: resource=\"ADMIN:NAMESPACE:*:LEGAL\", action=1 (CREATE)</li></ul>",
+        "description": "Request presigned URL for  upload attachment for a particular localized version of base policy.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:*:LEGAL\u0026#34;, action=1 (CREATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "requestPresignedURL",
-        "produces": [
-          "application/json"
-        ],
         "parameters": [
           {
-            "name": "localizedPolicyVersionId",
-            "in": "path",
             "description": "Localized Policy Version Id",
+            "in": "path",
+            "name": "localizedPolicyVersionId",
             "required": true,
             "type": "string"
           },
@@ -689,6 +660,9 @@
             }
           }
         ],
+        "produces": [
+          "application/json"
+        ],
         "responses": {
           "201": {
             "description": "successful operation",
@@ -697,7 +671,7 @@
             }
           },
           "400": {
-            "description": "<table><tr><td>NumericErrorCode</td><td>ErrorCode</td></tr><tr><td>40034</td><td>errors.net.accelbyte.platform.legal.invalid_file_type</td></tr><tr><td>40037</td><td>errors.net.accelbyte.platform.legal.invalid_localized_policy_version</td></tr><tr><td>40042</td><td>errors.net.accelbyte.platform.legal.policy_version_freezed</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eNumericErrorCode\u003c/td\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40034\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.invalid_file_type\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40037\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.invalid_localized_policy_version\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40042\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.policy_version_freezed\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -706,70 +680,36 @@
         "security": [
           {
             "authorization": []
-          }
-        ]
-      }
-    },
-    "/admin/policies/{policyId}": {
-      "patch": {
-        "tags": [
-          "Policies"
-        ],
-        "summary": "Update Country-Specific Policy",
-        "description": "Update country-specific policy.<br>Other detail info: <ul><li><i>Required permission</i>: resource=\"ADMIN:NAMESPACE:*:LEGAL\", action=4 (UPDATE)</li></ul>",
-        "operationId": "updatePolicy",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "policyId",
-            "in": "path",
-            "description": "Policy Id",
-            "required": true,
-            "type": "string"
           },
           {
-            "in": "body",
-            "name": "body",
-            "required": false,
-            "schema": {
-              "$ref": "#/definitions/UpdatePolicyRequest"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation"
-          }
-        },
-        "security": [
-          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:*:LEGAL [CREATE]"
+            ],
             "authorization": []
           }
+        ],
+        "summary": "Request Presigned URL for Upload Document",
+        "tags": [
+          "Localized Policy Versions"
         ]
       }
     },
-    "/admin/policies/{policyId}/default": {
+    "/admin/localized-policy-versions/{localizedPolicyVersionId}/default": {
       "patch": {
-        "tags": [
-          "Policies"
-        ],
-        "summary": "Set Default Policy",
-        "description": "Update a policy to be the default.<br>Other detail info: <ul><li><i>Required permission</i>: resource=\"ADMIN:NAMESPACE:*:LEGAL\", action=4 (UPDATE)</li></ul>",
-        "operationId": "setDefaultPolicy_1",
-        "produces": [
-          "application/json"
-        ],
+        "description": "Update a localized version policy to be the default.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:*:LEGAL\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "setDefaultPolicy",
         "parameters": [
           {
-            "name": "policyId",
+            "description": "Localized Policy Version Id",
             "in": "path",
-            "description": "Policy Id",
+            "name": "localizedPolicyVersionId",
             "required": true,
             "type": "string"
           }
         ],
+        "produces": [
+          "application/json"
+        ],
         "responses": {
           "200": {
             "description": "successful operation"
@@ -778,110 +718,73 @@
         "security": [
           {
             "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:*:LEGAL [UPDATE]"
+            ],
+            "authorization": []
           }
+        ],
+        "summary": "Set Default Localized Policy",
+        "tags": [
+          "Localized Policy Versions"
         ]
       }
     },
     "/admin/policies/countries/{countryCode}": {
       "get": {
-        "tags": [
-          "Policies"
-        ],
-        "summary": "Retrieve Policies by Country",
-        "description": "Retrieve all active policies based on a country.<br>Other detail info: <ul><li><i>Required permission</i>: resource=\"ADMIN:NAMESPACE:*:LEGAL\", action=2 (READ)</li></ul>",
+        "description": "Retrieve all active policies based on a country.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:*:LEGAL\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "retrievePolicies",
-        "produces": [
-          "application/json"
-        ],
         "parameters": [
           {
-            "name": "countryCode",
-            "in": "path",
             "description": "Country Code",
+            "in": "path",
+            "name": "countryCode",
             "required": true,
             "type": "string"
           }
+        ],
+        "produces": [
+          "application/json"
         ],
         "responses": {
           "200": {
             "description": "successful operation",
             "schema": {
-              "type": "array",
               "items": {
                 "$ref": "#/definitions/RetrievePolicyResponse"
-              }
+              },
+              "type": "array"
             }
           }
         },
         "security": [
           {
             "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:*:LEGAL [READ]"
+            ],
+            "authorization": []
           }
-        ]
-      }
-    },
-    "/admin/policies/versions/{policyVersionId}/latest": {
-      "patch": {
+        ],
+        "summary": "Retrieve Policies by Country",
         "tags": [
-          "Policy Versions"
-        ],
-        "summary": "Manually Publish a Version from Country-Specific Policy",
-        "description": "Manually publish a version of a particular country-specific policy.<br>Other detail info: <ul><li><i>Required permission</i>: resource=\"ADMIN:NAMESPACE:*:LEGAL\", action=4 (UPDATE)</li></ul>",
-        "operationId": "publishPolicyVersion",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "policyVersionId",
-            "in": "path",
-            "description": "Policy Version Id",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "shouldNotify",
-            "in": "query",
-            "description": "Should Notify",
-            "required": false,
-            "type": "boolean",
-            "default": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation"
-          },
-          "400": {
-            "description": "<table><tr><td>NumericErrorCode</td><td>ErrorCode</td></tr><tr><td>40033</td><td>errors.net.accelbyte.platform.legal.invalid_policy_version</td></tr></table>",
-            "schema": {
-              "$ref": "#/definitions/ErrorEntity"
-            }
-          }
-        },
-        "security": [
-          {
-            "authorization": []
-          }
+          "Policies"
         ]
       }
     },
     "/admin/policies/versions/{policyVersionId}": {
       "patch": {
-        "tags": [
-          "Policy Versions"
-        ],
-        "summary": "Update a Version of Policy",
-        "description": "Update a particular policy version.<br>Other detail info: <ul><li><i>Required permission</i>: resource=\"ADMIN:NAMESPACE:*:LEGAL\", action=4 (UPDATE)</li></ul>",
+        "description": "Update a particular policy version.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:*:LEGAL\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "updatePolicyVersion",
-        "produces": [
-          "application/json"
-        ],
         "parameters": [
           {
-            "name": "policyVersionId",
-            "in": "path",
             "description": "Policy Version Id",
+            "in": "path",
+            "name": "policyVersionId",
             "required": true,
             "type": "string"
           },
@@ -894,6 +797,9 @@
             }
           }
         ],
+        "produces": [
+          "application/json"
+        ],
         "responses": {
           "200": {
             "description": "successful operation",
@@ -902,7 +808,7 @@
             }
           },
           "400": {
-            "description": "<table><tr><td>NumericErrorCode</td><td>ErrorCode</td></tr><tr><td>40035</td><td>errors.net.accelbyte.platform.legal.invalid_policy_version</td></tr><tr><td>40042</td><td>errors.net.accelbyte.platform.legal.policy_version_freezed</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eNumericErrorCode\u003c/td\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40035\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.invalid_policy_version\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40042\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.policy_version_freezed\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -911,49 +817,191 @@
         "security": [
           {
             "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:*:LEGAL [UPDATE]"
+            ],
+            "authorization": []
           }
+        ],
+        "summary": "Update a Version of Policy",
+        "tags": [
+          "Policy Versions"
+        ]
+      }
+    },
+    "/admin/policies/versions/{policyVersionId}/latest": {
+      "patch": {
+        "description": "Manually publish a version of a particular country-specific policy.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:*:LEGAL\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "publishPolicyVersion",
+        "parameters": [
+          {
+            "description": "Policy Version Id",
+            "in": "path",
+            "name": "policyVersionId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": true,
+            "description": "Should Notify",
+            "in": "query",
+            "name": "shouldNotify",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eNumericErrorCode\u003c/td\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40033\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.invalid_policy_version\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:*:LEGAL [UPDATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Manually Publish a Version from Country-Specific Policy",
+        "tags": [
+          "Policy Versions"
+        ]
+      }
+    },
+    "/admin/policies/{policyId}": {
+      "patch": {
+        "description": "Update country-specific policy.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:*:LEGAL\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "updatePolicy",
+        "parameters": [
+          {
+            "description": "Policy Id",
+            "in": "path",
+            "name": "policyId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/UpdatePolicyRequest"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:*:LEGAL [UPDATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Update Country-Specific Policy",
+        "tags": [
+          "Policies"
+        ]
+      }
+    },
+    "/admin/policies/{policyId}/default": {
+      "patch": {
+        "description": "Update a policy to be the default.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:*:LEGAL\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "setDefaultPolicy_1",
+        "parameters": [
+          {
+            "description": "Policy Id",
+            "in": "path",
+            "name": "policyId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:*:LEGAL [UPDATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Set Default Policy",
+        "tags": [
+          "Policies"
         ]
       }
     },
     "/admin/policies/{policyId}/versions": {
       "get": {
-        "tags": [
-          "Policy Versions"
-        ],
-        "summary": "Retrieve a Version from Country-Specific Policy",
-        "description": "Retrieve a version of a particular country specific policy. If version is not provided, the Legal Service will assume caller requesting all versions from country-specific policy.<br>Other detail info: <ul><li><i>Required permission</i>: resource=\"ADMIN:NAMESPACE:*:LEGAL\", action=2 (READ)</li></ul>",
+        "description": "Retrieve a version of a particular country specific policy. If version is not provided, the Legal Service will assume caller requesting all versions from country-specific policy.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:*:LEGAL\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "retrieveSinglePolicyVersion",
-        "produces": [
-          "application/json"
-        ],
         "parameters": [
           {
-            "name": "policyId",
-            "in": "path",
             "description": "Policy Id",
+            "in": "path",
+            "name": "policyId",
             "required": true,
             "type": "string"
           },
           {
-            "name": "versionId",
-            "in": "query",
             "description": "Version Id",
+            "in": "query",
+            "name": "versionId",
             "required": false,
             "type": "string"
           }
+        ],
+        "produces": [
+          "application/json"
         ],
         "responses": {
           "200": {
             "description": "successful operation",
             "schema": {
-              "type": "array",
               "items": {
                 "$ref": "#/definitions/RetrievePolicyVersionResponse"
-              }
+              },
+              "type": "array"
             }
           },
           "404": {
-            "description": "<table><tr><td>NumericErrorCode</td><td>ErrorCode</td></tr><tr><td>40035</td><td>errors.net.accelbyte.platform.legal.policy_version_not_found</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eNumericErrorCode\u003c/td\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40035\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.policy_version_not_found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -962,24 +1010,27 @@
         "security": [
           {
             "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:*:LEGAL [READ]"
+            ],
+            "authorization": []
           }
+        ],
+        "summary": "Retrieve a Version from Country-Specific Policy",
+        "tags": [
+          "Policy Versions"
         ]
       },
       "post": {
-        "tags": [
-          "Policy Versions"
-        ],
-        "summary": "Create a Version from Country-Specific Policy",
-        "description": "Create a version of a particular country-specific policy.<br>Other detail info: <ul><li><i>Required permission</i>: resource=\"ADMIN:NAMESPACE:*:LEGAL\", action=1 (CREATE)</li></ul>",
+        "description": "Create a version of a particular country-specific policy.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:*:LEGAL\u0026#34;, action=1 (CREATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "createPolicyVersion",
-        "produces": [
-          "application/json"
-        ],
         "parameters": [
           {
-            "name": "policyId",
-            "in": "path",
             "description": "Policy Id",
+            "in": "path",
+            "name": "policyId",
             "required": true,
             "type": "string"
           },
@@ -992,6 +1043,9 @@
             }
           }
         ],
+        "produces": [
+          "application/json"
+        ],
         "responses": {
           "201": {
             "description": "successful operation",
@@ -1000,7 +1054,7 @@
             }
           },
           "400": {
-            "description": "<table><tr><td>NumericErrorCode</td><td>ErrorCode</td></tr><tr><td>40033</td><td>errors.net.accelbyte.platform.legal.invalid_policy</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eNumericErrorCode\u003c/td\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40033\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.invalid_policy\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -1009,93 +1063,88 @@
         "security": [
           {
             "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:*:LEGAL [CREATE]"
+            ],
+            "authorization": []
           }
+        ],
+        "summary": "Create a Version from Country-Specific Policy",
+        "tags": [
+          "Policy Versions"
         ]
       }
     },
-    "/admin/userInfo": {
+    "/admin/policy-types": {
       "get": {
-        "tags": [
-          "UserInfo"
-        ],
-        "summary": "Get user info cache status",
-        "description": "Get user info cache last updated time per namespace.<br>The query parameter namespaces can be a list of namespace separated by comma.<br>If query parameter namespaces is empty, user info cache status for all available namespaces will be returned. <br>Other detail info: <ul><li><i>Required permission</i>: resource=\"ADMIN:NAMESPACE:*:LEGAL\", action=2 (READ)</li></ul>",
-        "operationId": "getUserInfoStatus",
-        "produces": [
-          "application/json"
-        ],
+        "description": "Retrieve all supported policy types.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:*:LEGAL\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "retrieveAllPolicyTypes",
         "parameters": [
           {
-            "name": "namespaces",
+            "description": "Offset",
+            "format": "int32",
             "in": "query",
+            "name": "offset",
             "required": false,
-            "type": "string"
+            "type": "integer"
+          },
+          {
+            "description": "Limit",
+            "format": "int32",
+            "in": "query",
+            "name": "limit",
+            "required": true,
+            "type": "integer"
           }
+        ],
+        "produces": [
+          "application/json"
         ],
         "responses": {
           "200": {
             "description": "successful operation",
             "schema": {
-              "type": "array",
               "items": {
-                "$ref": "#/definitions/RetrieveUserInfoCacheStatusResponse"
-              }
+                "$ref": "#/definitions/RetrievePolicyTypeResponse"
+              },
+              "type": "array"
             }
           }
         },
         "security": [
           {
             "authorization": []
-          }
-        ]
-      },
-      "put": {
-        "tags": [
-          "UserInfo"
-        ],
-        "summary": "Sync user info with iam service ",
-        "description": "<b>Important: GOING TO DEPRECATE</b><br/><br/>Sync user info cache in agreement service with iam service.<br>Other detail info: <ul><li><i>Required permission</i>: resource=\"ADMIN:NAMESPACE:*:LEGAL\", action=4 (UPDATE)</li></ul>",
-        "operationId": "syncUserInfo",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
+          },
           {
-            "name": "namespace",
-            "in": "query",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation"
-          }
-        },
-        "security": [
-          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:*:LEGAL [READ]"
+            ],
             "authorization": []
           }
-        ]
-      },
-      "delete": {
+        ],
+        "summary": "Retrieve All Policy Type",
         "tags": [
-          "UserInfo"
-        ],
-        "summary": "Invalidate user info cache",
-        "description": "<b>Important: GOING TO DEPRECATE</b><br/><br/>Invalidate user info cache in agreement service.<br>Other detail info: <ul><li><i>Required permission</i>: resource=\"ADMIN:NAMESPACE:*:LEGAL\", action=8 (DELETE)</li></ul>",
+          "Base Legal Policies"
+        ]
+      }
+    },
+    "/admin/userInfo": {
+      "delete": {
+        "description": "\u0026lt;b\u0026gt;Important: GOING TO DEPRECATE\u0026lt;/b\u0026gt;\u0026lt;br/\u0026gt;\u0026lt;br/\u0026gt;Invalidate user info cache in agreement service.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:*:LEGAL\u0026#34;, action=8 (DELETE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "invalidateUserInfoCache",
-        "produces": [
-          "application/json"
-        ],
         "parameters": [
           {
-            "name": "namespace",
-            "in": "query",
             "description": "If null or empty, will invalidate all namespaces",
+            "in": "query",
+            "name": "namespace",
             "required": false,
             "type": "string"
           }
+        ],
+        "produces": [
+          "application/json"
         ],
         "responses": {
           "204": {
@@ -1105,174 +1154,169 @@
         "security": [
           {
             "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:*:LEGAL [DELETE]"
+            ],
+            "authorization": []
           }
-        ]
-      }
-    },
-    "/public/agreements/policies": {
-      "get": {
-        "tags": [
-          "Agreement"
         ],
-        "summary": "Retrieve the accepted Legal Agreements",
-        "description": "Retrieve accepted Legal Agreements.<br>Other detail info: <ul><li><i>Required permission</i>: login user</li></ul>",
-        "operationId": "retrieveAgreementsPublic",
+        "summary": "Invalidate user info cache",
+        "tags": [
+          "UserInfo"
+        ]
+      },
+      "get": {
+        "description": "Get user info cache last updated time per namespace.\u0026lt;br\u0026gt;The query parameter namespaces can be a list of namespace separated by comma.\u0026lt;br\u0026gt;If query parameter namespaces is empty, user info cache status for all available namespaces will be returned. \u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:*:LEGAL\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "getUserInfoStatus",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "namespaces",
+            "required": false,
+            "type": "string"
+          }
+        ],
         "produces": [
           "application/json"
         ],
-        "parameters": [],
         "responses": {
           "200": {
             "description": "successful operation",
             "schema": {
-              "type": "array",
               "items": {
-                "$ref": "#/definitions/RetrieveAcceptedAgreementResponse"
-              }
+                "$ref": "#/definitions/RetrieveUserInfoCacheStatusResponse"
+              },
+              "type": "array"
             }
           }
         },
         "security": [
           {
             "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:*:LEGAL [READ]"
+            ],
+            "authorization": []
           }
+        ],
+        "summary": "Get user info cache status",
+        "tags": [
+          "UserInfo"
         ]
       },
-      "post": {
-        "tags": [
-          "Agreement"
+      "put": {
+        "description": "\u0026lt;b\u0026gt;Important: GOING TO DEPRECATE\u0026lt;/b\u0026gt;\u0026lt;br/\u0026gt;\u0026lt;br/\u0026gt;Sync user info cache in agreement service with iam service.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:*:LEGAL\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "syncUserInfo",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
         ],
-        "summary": "Bulk Accept Policy Versions",
-        "description": "Accepts many legal policy versions all at once. Supply with localized version policy id to accept an agreement.<br>Other detail info: <ul><li><i>Required permission</i>: login user</li></ul>",
-        "operationId": "bulkAcceptVersionedPolicy",
         "produces": [
           "application/json"
         ],
-        "parameters": [
-          {
-            "in": "body",
-            "name": "body",
-            "required": false,
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/AcceptAgreementRequest"
-              }
-            }
-          }
-        ],
         "responses": {
-          "201": {
-            "description": "successful operation",
-            "schema": {
-              "$ref": "#/definitions/AcceptAgreementResponse"
-            }
+          "200": {
+            "description": "successful operation"
           }
         },
         "security": [
           {
             "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:*:LEGAL [UPDATE]"
+            ],
+            "authorization": []
           }
+        ],
+        "summary": "Sync user info with iam service ",
+        "tags": [
+          "UserInfo"
         ]
       }
     },
-    "/public/agreements/policies/namespaces/{namespace}/countries/{countryCode}/clients/{clientId}/users/{userId}": {
-      "post": {
-        "tags": [
-          "Agreement"
+    "/admin/users/{userId}/anonymization/agreements": {
+      "delete": {
+        "consumes": [
+          "application/json"
         ],
-        "summary": "Bulk Accept Policy Versions (Indirect)",
-        "description": "<b>IMPORTANT: GOING TO DEPRECATE</b><br/><br/>Accepts many legal policy versions all at once. Supply with localized version policy id, version policy id, policy id, userId, namespace, country code and client id to accept an agreement. This endpoint used by APIGateway during new user registration.<br>Other detail info: <ul><li><i>Required permission</i>: resource=\"NAMESPACE:{namespace}:LEGAL\", action=1 (CREATE)</li></ul>",
-        "operationId": "indirectBulkAcceptVersionedPolicyV2",
+        "description": "This API will anonymize agreement record for specified user. Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:*:LEGAL\u0026#34;, action=8 (DELETE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "anonymizeUserAgreement",
+        "parameters": [
+          {
+            "description": "User Id",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
         "produces": [
           "application/json"
         ],
-        "parameters": [
-          {
-            "name": "userId",
-            "in": "path",
-            "description": "User Id",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "namespace",
-            "in": "path",
-            "description": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "countryCode",
-            "in": "path",
-            "description": "Country Code",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "clientId",
-            "in": "path",
-            "description": "Client ID",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "required": false,
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/AcceptAgreementRequest"
-              }
-            }
-          }
-        ],
         "responses": {
-          "201": {
-            "description": "successful operation",
+          "204": {
+            "description": "Anonymize successfully"
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eNumericErrorCode\u003c/td\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40047\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.user_agreement_not_found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
-              "$ref": "#/definitions/AcceptAgreementResponse"
+              "$ref": "#/definitions/ErrorEntity"
             }
           }
         },
         "security": [
           {
             "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:*:LEGAL [DELETE]"
+            ],
+            "authorization": []
           }
+        ],
+        "summary": "Anonymize user's agreement record",
+        "tags": [
+          "Anonymization"
         ]
       }
     },
     "/public/agreements/localized-policy-versions/preferences": {
       "patch": {
-        "tags": [
-          "Agreement"
-        ],
-        "summary": "Accept/Revoke Marketing Preference Consent",
-        "description": "Change marketing preference consent.<br>Other detail info: <ul><li><i>Required permission</i>: login user</li></ul>",
+        "description": "Change marketing preference consent.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: login user\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "changePreferenceConsent",
-        "produces": [
-          "application/json"
-        ],
         "parameters": [
           {
             "in": "body",
             "name": "body",
             "required": false,
             "schema": {
-              "type": "array",
               "items": {
                 "$ref": "#/definitions/AcceptAgreementRequest"
-              }
+              },
+              "type": "array"
             }
           }
+        ],
+        "produces": [
+          "application/json"
         ],
         "responses": {
           "200": {
             "description": "successful operation"
           },
           "400": {
-            "description": "<table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>40017</td><td>Policy with id : [{policyId}] is not marketing preference</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40017\u003c/td\u003e\u003ctd\u003ePolicy with id : [{policyId}] is not marketing preference\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -1282,28 +1326,28 @@
           {
             "authorization": []
           }
+        ],
+        "summary": "Accept/Revoke Marketing Preference Consent",
+        "tags": [
+          "Agreement"
         ]
       }
     },
     "/public/agreements/localized-policy-versions/{localizedPolicyVersionId}": {
       "post": {
-        "tags": [
-          "Agreement"
-        ],
-        "summary": "Accept a Policy Version",
-        "description": "Accepts a legal policy version. Supply with localized version policy id to accept an agreement.<br>Other detail info: <ul><li><i>Required permission</i>: login user</li></ul>",
+        "description": "Accepts a legal policy version. Supply with localized version policy id to accept an agreement.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: login user\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "acceptVersionedPolicy",
-        "produces": [
-          "application/json"
-        ],
         "parameters": [
           {
-            "name": "localizedPolicyVersionId",
-            "in": "path",
             "description": "Localized Policy Version Id",
+            "in": "path",
+            "name": "localizedPolicyVersionId",
             "required": true,
             "type": "string"
           }
+        ],
+        "produces": [
+          "application/json"
         ],
         "responses": {
           "201": {
@@ -1314,39 +1358,60 @@
           {
             "authorization": []
           }
+        ],
+        "summary": "Accept a Policy Version",
+        "tags": [
+          "Agreement"
         ]
       }
     },
-    "/public/agreements/policies/users/{userId}": {
-      "post": {
-        "tags": [
-          "Agreement"
-        ],
-        "summary": "Bulk Accept Policy Versions (Indirect)",
-        "description": "Accepts many legal policy versions all at once. Supply with localized version policy id and userId to accept an agreement. This endpoint used by Authentication Service during new user registration.<br><br/>Available Extra Information to return: <br/><ul><li><b>userIds</b> : List of userId mapping (<b>IMPORTANT: GOING TO DEPRECATE</b>)</li></ul>Other detail info: <ul><li><i>Required permission</i>: login user</li></ul>",
-        "operationId": "indirectBulkAcceptVersionedPolicy",
+    "/public/agreements/policies": {
+      "get": {
+        "description": "Retrieve accepted Legal Agreements.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: login user\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "retrieveAgreementsPublic",
+        "parameters": [],
         "produces": [
           "application/json"
         ],
-        "parameters": [
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/RetrieveAcceptedAgreementResponse"
+              },
+              "type": "array"
+            }
+          }
+        },
+        "security": [
           {
-            "name": "userId",
-            "in": "path",
-            "description": "User Id",
-            "required": true,
-            "type": "string"
-          },
+            "authorization": []
+          }
+        ],
+        "summary": "Retrieve the accepted Legal Agreements",
+        "tags": [
+          "Agreement"
+        ]
+      },
+      "post": {
+        "description": "Accepts many legal policy versions all at once. Supply with localized version policy id to accept an agreement.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: login user\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "bulkAcceptVersionedPolicy",
+        "parameters": [
           {
             "in": "body",
             "name": "body",
             "required": false,
             "schema": {
-              "type": "array",
               "items": {
                 "$ref": "#/definitions/AcceptAgreementRequest"
-              }
+              },
+              "type": "array"
             }
           }
+        ],
+        "produces": [
+          "application/json"
         ],
         "responses": {
           "201": {
@@ -1360,49 +1425,206 @@
           {
             "authorization": []
           }
+        ],
+        "summary": "Bulk Accept Policy Versions",
+        "tags": [
+          "Agreement"
+        ]
+      }
+    },
+    "/public/agreements/policies/namespaces/{namespace}/countries/{countryCode}/clients/{clientId}/users/{userId}": {
+      "post": {
+        "description": "\u0026lt;b\u0026gt;IMPORTANT: GOING TO DEPRECATE\u0026lt;/b\u0026gt;\u0026lt;br/\u0026gt;\u0026lt;br/\u0026gt;Accepts many legal policy versions all at once. Supply with localized version policy id, version policy id, policy id, userId, namespace, country code and client id to accept an agreement. This endpoint used by APIGateway during new user registration.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:LEGAL\u0026#34;, action=1 (CREATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "indirectBulkAcceptVersionedPolicyV2",
+        "parameters": [
+          {
+            "description": "User Id",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Country Code",
+            "in": "path",
+            "name": "countryCode",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Client ID",
+            "in": "path",
+            "name": "clientId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/AcceptAgreementRequest"
+              },
+              "type": "array"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/AcceptAgreementResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:LEGAL [CREATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Bulk Accept Policy Versions (Indirect)",
+        "tags": [
+          "Agreement"
+        ]
+      }
+    },
+    "/public/agreements/policies/users/{userId}": {
+      "post": {
+        "description": "Accepts many legal policy versions all at once. Supply with localized version policy id and userId to accept an agreement. This endpoint used by Authentication Service during new user registration.\u0026lt;br\u0026gt;\u0026lt;br/\u0026gt;Available Extra Information to return: \u0026lt;br/\u0026gt;\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;userIds\u0026lt;/b\u0026gt; : List of userId mapping (\u0026lt;b\u0026gt;IMPORTANT: GOING TO DEPRECATE\u0026lt;/b\u0026gt;)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: login user\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "indirectBulkAcceptVersionedPolicy",
+        "parameters": [
+          {
+            "description": "User Id",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/AcceptAgreementRequest"
+              },
+              "type": "array"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/AcceptAgreementResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Bulk Accept Policy Versions (Indirect)",
+        "tags": [
+          "Agreement"
+        ]
+      }
+    },
+    "/public/eligibilities/namespaces/{namespace}": {
+      "get": {
+        "description": "Retrieve the active policies and its conformance status by user.\u0026lt;br\u0026gt;This process supports cross-namespace checking, that means if the active policy already accepted by the same user in other namespace, then it will be considered as eligible.\u0026lt;br/\u0026gt;\u0026lt;br/\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: login user\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "retrieveEligibilitiesPublic",
+        "parameters": [
+          {
+            "description": "Namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/RetrieveUserEligibilitiesResponse"
+              },
+              "type": "array"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Check User Legal Eligibility",
+        "tags": [
+          "Eligibilities"
         ]
       }
     },
     "/public/eligibilities/namespaces/{namespace}/countries/{countryCode}/clients/{clientId}/users/{userId}": {
       "get": {
-        "tags": [
-          "Eligibilities"
-        ],
-        "summary": "Check User Legal Eligibility",
-        "description": "Retrieve the active policies and its conformance status by user. This endpoint used by Authentication Service during user login.<br>This process supports cross-namespace checking, that means if the active policy already accepted by the same user in other namespace, then it will be considered as eligible.<br/><br/>Other detail info: <ul><li><i>Required permission</i>: login user</li></ul>",
+        "description": "Retrieve the active policies and its conformance status by user. This endpoint used by Authentication Service during user login.\u0026lt;br\u0026gt;This process supports cross-namespace checking, that means if the active policy already accepted by the same user in other namespace, then it will be considered as eligible.\u0026lt;br/\u0026gt;\u0026lt;br/\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: login user\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "retrieveEligibilitiesPublicIndirect",
-        "produces": [
-          "application/json"
-        ],
         "parameters": [
           {
-            "name": "namespace",
-            "in": "path",
             "description": "Namespace",
+            "in": "path",
+            "name": "namespace",
             "required": true,
             "type": "string"
           },
           {
-            "name": "countryCode",
-            "in": "path",
             "description": "Country Code",
+            "in": "path",
+            "name": "countryCode",
             "required": true,
             "type": "string"
           },
           {
-            "name": "clientId",
-            "in": "path",
             "description": "Client Id",
+            "in": "path",
+            "name": "clientId",
             "required": true,
             "type": "string"
           },
           {
-            "name": "userId",
-            "in": "path",
             "description": "User Id",
+            "in": "path",
+            "name": "userId",
             "required": true,
             "type": "string"
           }
+        ],
+        "produces": [
+          "application/json"
         ],
         "responses": {
           "200": {
@@ -1416,66 +1638,28 @@
           {
             "authorization": []
           }
-        ]
-      }
-    },
-    "/public/eligibilities/namespaces/{namespace}": {
-      "get": {
-        "tags": [
-          "Eligibilities"
         ],
         "summary": "Check User Legal Eligibility",
-        "description": "Retrieve the active policies and its conformance status by user.<br>This process supports cross-namespace checking, that means if the active policy already accepted by the same user in other namespace, then it will be considered as eligible.<br/><br/>Other detail info: <ul><li><i>Required permission</i>: login user</li></ul>",
-        "operationId": "retrieveEligibilitiesPublic",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "namespace",
-            "in": "path",
-            "description": "Namespace",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/RetrieveUserEligibilitiesResponse"
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "authorization": []
-          }
+        "tags": [
+          "Eligibilities"
         ]
       }
     },
     "/public/localized-policy-versions/{localizedPolicyVersionId}": {
       "get": {
-        "tags": [
-          "Localized Policy Versions"
-        ],
-        "summary": "Retrieve a Localized Version",
-        "description": "Retrieve specific localized policy version including the policy version and base policy version where the localized policy version located.<br>Other detail info: <ul></ul>",
+        "description": "Retrieve specific localized policy version including the policy version and base policy version where the localized policy version located.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "retrieveSingleLocalizedPolicyVersion_1",
-        "produces": [
-          "application/json"
-        ],
         "parameters": [
           {
-            "name": "localizedPolicyVersionId",
-            "in": "path",
             "description": "Localized Policy Version Id",
+            "in": "path",
+            "name": "localizedPolicyVersionId",
             "required": true,
             "type": "string"
           }
+        ],
+        "produces": [
+          "application/json"
         ],
         "responses": {
           "200": {
@@ -1485,150 +1669,60 @@
             }
           },
           "404": {
-            "description": "<table><tr><td>NumericErrorCode</td><td>ErrorCode</td></tr><tr><td>40038</td><td>errors.net.accelbyte.platform.legal.localized_policy_version_not_found</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eNumericErrorCode\u003c/td\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40038\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.localized_policy_version_not_found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
           }
-        }
+        },
+        "summary": "Retrieve a Localized Version",
+        "tags": [
+          "Localized Policy Versions"
+        ]
       }
     },
-    "/public/policies/namespaces/{namespace}/countries/{countryCode}": {
+    "/public/policies": {
       "get": {
-        "tags": [
-          "Policies"
-        ],
-        "summary": "Retrieve Latest Policies by Namespace and Country",
-        "description": "Retrieve all active latest policies based on a namespace and country.<br>Other detail info: <ul><li><i>Leave the policyType empty if you want to be responded with all policy type</i></li><li><i>Fill the tags if you want to filter the responded policy by tags</i></li><li><i>Fill the defaultOnEmpty with true if you want to be responded with default country-specific policy if your requested country is not exist</i></li><li><i>Fill the alwaysIncludeDefault with true if you want to be responded with always include default policy. If there are duplicate policies (default policies and country specific policies with same base policy) it'll include policy with same country code, for example:<ul><li>Document 1 (default): Region US (default), UA</li><li>Document 2 (default): Region US (default)</li><li>Document 3 (default): Region US (default)</li><li>User: Region UA</li><li>Query: alwaysIncludeDefault: true</li><li>Response: Document 1 (UA), Document 2 (US), Document 3 (US)</li></ul>",
-        "operationId": "retrieveLatestPoliciesByNamespaceAndCountryPublic",
-        "produces": [
-          "application/json"
-        ],
+        "description": "[TODO] Retrieve one or more legal policies with its versions.\u0026lt;br\u0026gt;If the basePolicyId not supplied, then retrieve only all latest policies version with localeId matched.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:*:LEGAL\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "retrievePolicyVersions",
         "parameters": [
           {
-            "name": "namespace",
-            "in": "path",
             "description": "Namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "countryCode",
-            "in": "path",
-            "description": "Country Code",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "policyType",
             "in": "query",
-            "description": "Policy Type",
-            "required": false,
-            "type": "string",
-            "enum": [
-              "LEGAL_DOCUMENT_TYPE",
-              "MARKETING_PREFERENCE_TYPE"
-            ]
-          },
-          {
-            "name": "tags",
-            "in": "query",
-            "description": "tags, separate multiple value by commas parameter",
+            "name": "namespace",
             "required": false,
             "type": "string"
           },
           {
-            "name": "defaultOnEmpty",
+            "description": "BasePolicy Id",
             "in": "query",
-            "description": "Default On Empty",
+            "name": "basePolicyId",
             "required": false,
-            "type": "boolean"
+            "type": "string"
           },
           {
-            "name": "alwaysIncludeDefault",
+            "description": "Locale Id",
             "in": "query",
-            "description": "Always include default",
+            "name": "localeId",
             "required": false,
-            "type": "boolean"
+            "type": "string"
           }
+        ],
+        "produces": [
+          "application/json"
         ],
         "responses": {
           "200": {
             "description": "successful operation",
             "schema": {
-              "type": "array",
               "items": {
-                "$ref": "#/definitions/RetrievePolicyPublicResponse"
-              }
-            }
-          }
-        }
-      }
-    },
-    "/public/policies/namespaces/{namespace}": {
-      "get": {
-        "tags": [
-          "Policies"
-        ],
-        "summary": "Retrieve Latest Policies by Namespace and Country",
-        "description": "Retrieve all active latest policies based on a namespace and country. The country will be read from user token.<br>Other detail info: <ul><li><i>Leave the policyType empty if you want to be responded with all policy type</i></li><li><i>Fill the tags if you want to filter the responded policy by tags</i></li><li><i>Fill the defaultOnEmpty with true if you want to be responded with default country-specific policy if your requested country is not exist</i></li><li><i>Fill the alwaysIncludeDefault with true if you want to be responded with always include default policy. If there are duplicate policies (default policies and country specific policies with same base policy) it'll include policy with same country code, for example:<ul><li>Document 1 (default): Region US (default), UA</li><li>Document 2 (default): Region US (default)</li><li>Document 3 (default): Region US (default)</li><li>User: Region UA</li><li>Query: alwaysIncludeDefault: true</li><li>Response: Document 1 (UA), Document 2 (US), Document 3 (US)</li></ul></i></li><li><i>Required permission: login user </i></li></ul>",
-        "operationId": "retrieveLatestPoliciesPublic",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "namespace",
-            "in": "path",
-            "description": "Namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "policyType",
-            "in": "query",
-            "description": "Policy Type",
-            "required": false,
-            "type": "string",
-            "enum": [
-              "LEGAL_DOCUMENT_TYPE",
-              "MARKETING_PREFERENCE_TYPE"
-            ]
-          },
-          {
-            "name": "tags",
-            "in": "query",
-            "description": "tags, separate multiple value by commas parameter",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "defaultOnEmpty",
-            "in": "query",
-            "description": "Default On Empty",
-            "required": false,
-            "type": "boolean"
-          },
-          {
-            "name": "alwaysIncludeDefault",
-            "in": "query",
-            "description": "Always include default",
-            "required": false,
-            "type": "boolean"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/RetrievePolicyPublicResponse"
-              }
+                "$ref": "#/definitions/RetrievePolicyVersionResponse"
+              },
+              "type": "array"
             }
           },
           "404": {
-            "description": "<table><tr><td>NumericErrorCode</td><td>ErrorCode</td></tr><tr><td>40040</td><td>errors.net.accelbyte.platform.legal.user_has_no_country</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eNumericErrorCode\u003c/td\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e2920\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.policy_not_found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -1637,114 +1731,138 @@
         "security": [
           {
             "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:*:LEGAL [READ]"
+            ],
+            "authorization": []
           }
+        ],
+        "summary": "Bulk Retrieve Version of Base Policy",
+        "tags": [
+          "Policy Versions"
         ]
       }
     },
     "/public/policies/countries/{countryCode}": {
       "get": {
-        "tags": [
-          "Policies"
-        ],
-        "summary": "Retrieve Latest Policies by Country",
-        "description": "Retrieve all active latest policies based on a country.<br>Other detail info: <ul><li><i>Leave the policyType empty if you want to be responded with all policy type</i></li><li><i>Fill the tags if you want to filter the responded policy by tags</i></li><li><i>Fill the defaultOnEmpty with true if you want to be responded with default country-specific policy if your requested country is not exist</i></li></ul>",
+        "description": "Retrieve all active latest policies based on a country.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Leave the policyType empty if you want to be responded with all policy type\u0026lt;/i\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Fill the tags if you want to filter the responded policy by tags\u0026lt;/i\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Fill the defaultOnEmpty with true if you want to be responded with default country-specific policy if your requested country is not exist\u0026lt;/i\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "retrieveLatestPolicies",
-        "produces": [
-          "application/json"
-        ],
         "parameters": [
           {
-            "name": "countryCode",
-            "in": "path",
             "description": "Country Code",
+            "in": "path",
+            "name": "countryCode",
             "required": true,
             "type": "string"
           },
           {
-            "name": "policyType",
-            "in": "query",
             "description": "Policy Type",
-            "required": false,
-            "type": "string",
             "enum": [
               "LEGAL_DOCUMENT_TYPE",
               "MARKETING_PREFERENCE_TYPE"
-            ]
-          },
-          {
-            "name": "tags",
+            ],
             "in": "query",
-            "description": "tags, separate multiple value by commas parameter",
+            "name": "policyType",
             "required": false,
             "type": "string"
           },
           {
-            "name": "defaultOnEmpty",
+            "description": "tags, separate multiple value by commas parameter",
             "in": "query",
+            "name": "tags",
+            "required": false,
+            "type": "string"
+          },
+          {
             "description": "Default On Empty",
+            "in": "query",
+            "name": "defaultOnEmpty",
             "required": false,
             "type": "boolean"
           }
         ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/RetrievePolicyPublicResponse"
-              }
-            }
-          }
-        }
-      }
-    },
-    "/public/policies": {
-      "get": {
-        "tags": [
-          "Policy Versions"
-        ],
-        "summary": "Bulk Retrieve Version of Base Policy",
-        "description": "[TODO] Retrieve one or more legal policies with its versions.<br>If the basePolicyId not supplied, then retrieve only all latest policies version with localeId matched.<br>Other detail info: <ul><li><i>Required permission</i>: resource=\"ADMIN:NAMESPACE:*:LEGAL\", action=2 (READ)</li></ul>",
-        "operationId": "retrievePolicyVersions",
         "produces": [
           "application/json"
         ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/RetrievePolicyPublicResponse"
+              },
+              "type": "array"
+            }
+          }
+        },
+        "summary": "Retrieve Latest Policies by Country",
+        "tags": [
+          "Policies"
+        ]
+      }
+    },
+    "/public/policies/namespaces/{namespace}": {
+      "get": {
+        "description": "Retrieve all active latest policies based on a namespace and country. The country will be read from user token.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Leave the policyType empty if you want to be responded with all policy type\u0026lt;/i\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Fill the tags if you want to filter the responded policy by tags\u0026lt;/i\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Fill the defaultOnEmpty with true if you want to be responded with default country-specific policy if your requested country is not exist\u0026lt;/i\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Fill the alwaysIncludeDefault with true if you want to be responded with always include default policy. If there are duplicate policies (default policies and country specific policies with same base policy) it\u0026#39;ll include policy with same country code, for example:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;Document 1 (default): Region US (default), UA\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;Document 2 (default): Region US (default)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;Document 3 (default): Region US (default)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;User: Region UA\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;Query: alwaysIncludeDefault: true\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;Response: Document 1 (UA), Document 2 (US), Document 3 (US)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;/i\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission: login user \u0026lt;/i\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "retrieveLatestPoliciesPublic",
         "parameters": [
           {
-            "name": "namespace",
-            "in": "query",
             "description": "Namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Policy Type",
+            "enum": [
+              "LEGAL_DOCUMENT_TYPE",
+              "MARKETING_PREFERENCE_TYPE"
+            ],
+            "in": "query",
+            "name": "policyType",
             "required": false,
             "type": "string"
           },
           {
-            "name": "basePolicyId",
+            "description": "tags, separate multiple value by commas parameter",
             "in": "query",
-            "description": "BasePolicy Id",
+            "name": "tags",
             "required": false,
             "type": "string"
           },
           {
-            "name": "localeId",
+            "description": "Default On Empty",
             "in": "query",
-            "description": "Locale Id",
+            "name": "defaultOnEmpty",
             "required": false,
-            "type": "string"
+            "type": "boolean"
+          },
+          {
+            "description": "Always include default",
+            "in": "query",
+            "name": "alwaysIncludeDefault",
+            "required": false,
+            "type": "boolean"
           }
+        ],
+        "produces": [
+          "application/json"
         ],
         "responses": {
           "200": {
             "description": "successful operation",
             "schema": {
-              "type": "array",
               "items": {
-                "$ref": "#/definitions/RetrievePolicyVersionResponse"
-              }
+                "$ref": "#/definitions/RetrievePolicyPublicResponse"
+              },
+              "type": "array"
             }
           },
           "404": {
-            "description": "<table><tr><td>NumericErrorCode</td><td>ErrorCode</td></tr><tr><td>2920</td><td>errors.net.accelbyte.platform.legal.policy_not_found</td></tr></table>",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eNumericErrorCode\u003c/td\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40040\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.user_has_no_country\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -1754,21 +1872,93 @@
           {
             "authorization": []
           }
+        ],
+        "summary": "Retrieve Latest Policies by Namespace and Country",
+        "tags": [
+          "Policies"
+        ]
+      }
+    },
+    "/public/policies/namespaces/{namespace}/countries/{countryCode}": {
+      "get": {
+        "description": "Retrieve all active latest policies based on a namespace and country.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Leave the policyType empty if you want to be responded with all policy type\u0026lt;/i\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Fill the tags if you want to filter the responded policy by tags\u0026lt;/i\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Fill the defaultOnEmpty with true if you want to be responded with default country-specific policy if your requested country is not exist\u0026lt;/i\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Fill the alwaysIncludeDefault with true if you want to be responded with always include default policy. If there are duplicate policies (default policies and country specific policies with same base policy) it\u0026#39;ll include policy with same country code, for example:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;Document 1 (default): Region US (default), UA\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;Document 2 (default): Region US (default)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;Document 3 (default): Region US (default)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;User: Region UA\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;Query: alwaysIncludeDefault: true\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;Response: Document 1 (UA), Document 2 (US), Document 3 (US)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "retrieveLatestPoliciesByNamespaceAndCountryPublic",
+        "parameters": [
+          {
+            "description": "Namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Country Code",
+            "in": "path",
+            "name": "countryCode",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Policy Type",
+            "enum": [
+              "LEGAL_DOCUMENT_TYPE",
+              "MARKETING_PREFERENCE_TYPE"
+            ],
+            "in": "query",
+            "name": "policyType",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "tags, separate multiple value by commas parameter",
+            "in": "query",
+            "name": "tags",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Default On Empty",
+            "in": "query",
+            "name": "defaultOnEmpty",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "description": "Always include default",
+            "in": "query",
+            "name": "alwaysIncludeDefault",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/RetrievePolicyPublicResponse"
+              },
+              "type": "array"
+            }
+          }
+        },
+        "summary": "Retrieve Latest Policies by Namespace and Country",
+        "tags": [
+          "Policies"
         ]
       }
     },
     "/public/readiness": {
       "get": {
-        "tags": [
-          "Utility"
-        ],
-        "summary": "Check Legal Data Readiness",
-        "description": "Readiness status defined as at least one legal basePolicy is present and having active basePolicy.<br>Other detail info: <ul><li><i>Required permission</i>: resource=\"NAMESPACE:{namespace}:LEGAL\", action=2 (READ)</li></ul>",
+        "description": "Readiness status defined as at least one legal basePolicy is present and having active basePolicy.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:LEGAL\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "checkReadiness",
+        "parameters": [],
         "produces": [
           "application/json"
         ],
-        "parameters": [],
         "responses": {
           "200": {
             "description": "successful operation",
@@ -1780,482 +1970,275 @@
         "security": [
           {
             "authorization": []
+          },
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:LEGAL [READ]"
+            ],
+            "authorization": []
           }
+        ],
+        "summary": "Check Legal Data Readiness",
+        "tags": [
+          "Utility"
         ]
       }
     }
   },
-  "securityDefinitions": {
-    "authorization": {
-      "type": "apiKey",
-      "name": "Authorization",
-      "in": "header"
-    }
-  },
   "definitions": {
-    "ErrorEntity": {
-      "type": "object",
-      "required": [
-        "errorCode",
-        "errorMessage"
-      ],
+    "AcceptAgreementRequest": {
       "properties": {
-        "errorCode": {
-          "type": "integer",
-          "format": "int32",
-          "description": "numeric error code"
-        },
-        "errorMessage": {
-          "type": "string",
-          "description": "error message"
-        },
-        "messageVariables": {
-          "type": "object",
-          "description": "message variables",
-          "additionalProperties": {
-            "type": "string"
-          }
-        },
-        "devStackTrace": {
-          "type": "string",
-          "description": "internal server error stack trace in configured environment"
-        }
-      }
-    },
-    "LocalizedPolicyVersionObject": {
-      "type": "object",
-      "required": [
-        "id",
-        "isDefaultSelection",
-        "localeCode"
-      ],
-      "properties": {
-        "id": {
-          "type": "string"
-        },
-        "createdAt": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "updatedAt": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "localeCode": {
-          "type": "string"
-        },
-        "contentType": {
-          "type": "string"
-        },
-        "attachmentLocation": {
-          "type": "string"
-        },
-        "attachmentChecksum": {
-          "type": "string"
-        },
-        "attachmentVersionIdentifier": {
-          "type": "string"
-        },
-        "description": {
-          "type": "string"
-        },
-        "status": {
-          "type": "string"
-        },
-        "publishedDate": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "isDefaultSelection": {
+        "isAccepted": {
           "type": "boolean"
-        }
-      }
-    },
-    "RetrieveAcceptedAgreementResponse": {
-      "type": "object",
-      "required": [
-        "id"
-      ],
-      "properties": {
-        "id": {
-          "type": "string"
         },
-        "createdAt": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "updatedAt": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "userId": {
+        "localizedPolicyVersionId": {
           "type": "string"
         },
         "policyId": {
           "type": "string"
         },
-        "policyType": {
+        "policyVersionId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "isAccepted",
+        "localizedPolicyVersionId",
+        "policyId",
+        "policyVersionId"
+      ],
+      "type": "object"
+    },
+    "AcceptAgreementResponse": {
+      "properties": {
+        "comply": {
+          "description": "Eligibility Status after Accept Agreement",
+          "type": "boolean"
+        },
+        "ext": {
+          "additionalProperties": {
+            "type": "object"
+          },
+          "description": "extra information",
+          "type": "object"
+        },
+        "proceed": {
+          "description": "DEPRECATED the name is not clear, changed with comply",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "comply",
+        "proceed"
+      ],
+      "type": "object"
+    },
+    "CreateBasePolicyRequest": {
+      "properties": {
+        "affectedClientIds": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "affectedCountries": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "basePolicyName": {
           "type": "string"
         },
-        "policyName": {
+        "description": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "tags": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "typeId": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CreateBasePolicyResponse": {
+      "properties": {
+        "affectedClientIds": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "affectedCountries": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "createdAt": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "globalPolicyName": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "policyId": {
+          "type": "string"
+        },
+        "tags": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "typeId": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "format": "date-time",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "type": "object"
+    },
+    "CreateLocalizedPolicyVersionRequest": {
+      "properties": {
+        "contentType": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "localeCode": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CreateLocalizedPolicyVersionResponse": {
+      "properties": {
+        "createdAt": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "localeCode": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "format": "date-time",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "type": "object"
+    },
+    "CreatePolicyVersionRequest": {
+      "properties": {
+        "description": {
           "type": "string"
         },
         "displayVersion": {
           "type": "string"
         },
-        "namespace": {
+        "isCommitted": {
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "CreatePolicyVersionResponse": {
+      "properties": {
+        "basePolicyId": {
+          "readOnly": true,
           "type": "string"
         },
-        "countryCode": {
+        "createdAt": {
+          "format": "date-time",
           "type": "string"
         },
         "description": {
           "type": "string"
         },
-        "localizedPolicyVersion": {
-          "$ref": "#/definitions/LocalizedPolicyVersionObject"
+        "displayVersion": {
+          "type": "string"
         },
-        "signingDate": {
-          "type": "string",
-          "format": "date-time"
+        "id": {
+          "type": "string"
         },
-        "isAccepted": {
+        "isCommitted": {
           "type": "boolean"
-        }
-      }
-    },
-    "PagedRetrieveUserAcceptedAgreementResponse": {
-      "type": "object",
-      "properties": {
-        "data": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/RetrieveUserAcceptedAgreementResponse"
-          }
         },
-        "paging": {
-          "$ref": "#/definitions/Paging"
-        }
-      }
-    },
-    "Paging": {
-      "type": "object",
-      "properties": {
-        "previous": {
-          "type": "string"
-        },
-        "next": {
+        "updatedAt": {
+          "format": "date-time",
           "type": "string"
         }
-      }
-    },
-    "RetrieveUserAcceptedAgreementResponse": {
-      "type": "object",
+      },
       "required": [
         "id"
       ],
-      "properties": {
-        "id": {
-          "type": "string"
-        },
-        "createdAt": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "updatedAt": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "userId": {
-          "type": "string"
-        },
-        "publisherUserId": {
-          "type": "string"
-        },
-        "policyName": {
-          "type": "string"
-        },
-        "policyType": {
-          "type": "string"
-        },
-        "namespace": {
-          "type": "string"
-        },
-        "localizedPolicyVersion": {
-          "$ref": "#/definitions/LocalizedPolicyVersionObject"
-        },
-        "signingDate": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "username": {
-          "type": "string"
-        },
-        "displayName": {
-          "type": "string"
-        },
-        "email": {
-          "type": "string"
-        },
-        "isAccepted": {
-          "type": "boolean"
-        }
-      }
+      "type": "object"
     },
-    "PolicyObject": {
-      "type": "object",
+    "ErrorEntity": {
+      "properties": {
+        "devStackTrace": {
+          "description": "internal server error stack trace in configured environment",
+          "type": "string"
+        },
+        "errorCode": {
+          "description": "numeric error code",
+          "format": "int32",
+          "type": "integer"
+        },
+        "errorMessage": {
+          "description": "error message",
+          "type": "string"
+        },
+        "messageVariables": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "message variables",
+          "type": "object"
+        }
+      },
       "required": [
-        "countryCode",
-        "id",
-        "isDefaultOpted",
-        "isDefaultSelection",
-        "isMandatory",
-        "policyName",
-        "shouldNotifyOnUpdate"
+        "errorCode",
+        "errorMessage"
       ],
-      "properties": {
-        "id": {
-          "type": "string"
-        },
-        "createdAt": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "updatedAt": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "readableId": {
-          "type": "string"
-        },
-        "policyName": {
-          "type": "string"
-        },
-        "countryCode": {
-          "type": "string"
-        },
-        "countryGroupCode": {
-          "type": "string"
-        },
-        "shouldNotifyOnUpdate": {
-          "type": "boolean"
-        },
-        "description": {
-          "type": "string"
-        },
-        "isMandatory": {
-          "type": "boolean"
-        },
-        "isDefaultOpted": {
-          "type": "boolean"
-        },
-        "isDefaultSelection": {
-          "type": "boolean"
-        }
-      }
-    },
-    "RetrieveBasePolicyResponse": {
-      "type": "object",
-      "required": [
-        "basePolicyName",
-        "id",
-        "namespace"
-      ],
-      "properties": {
-        "id": {
-          "type": "string"
-        },
-        "createdAt": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "updatedAt": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "namespace": {
-          "type": "string"
-        },
-        "policies": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/PolicyObject"
-          }
-        },
-        "basePolicyName": {
-          "type": "string"
-        },
-        "description": {
-          "type": "string"
-        },
-        "affectedClientIds": {
-          "type": "array",
-          "uniqueItems": true,
-          "items": {
-            "type": "string"
-          }
-        },
-        "tags": {
-          "type": "array",
-          "uniqueItems": true,
-          "items": {
-            "type": "string"
-          }
-        },
-        "policyTypeName": {
-          "type": "string",
-          "readOnly": true
-        },
-        "policyTypeId": {
-          "type": "string",
-          "readOnly": true
-        }
-      }
-    },
-    "UpdateBasePolicyResponse": {
-      "type": "object",
-      "required": [
-        "id"
-      ],
-      "properties": {
-        "id": {
-          "type": "string"
-        },
-        "createdAt": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "updatedAt": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "namespace": {
-          "type": "string"
-        },
-        "policyId": {
-          "type": "string"
-        },
-        "typeId": {
-          "type": "string"
-        },
-        "globalPolicyName": {
-          "type": "string"
-        },
-        "description": {
-          "type": "string"
-        },
-        "affectedCountries": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "affectedClientIds": {
-          "type": "array",
-          "uniqueItems": true,
-          "items": {
-            "type": "string"
-          }
-        },
-        "tags": {
-          "type": "array",
-          "uniqueItems": true,
-          "items": {
-            "type": "string"
-          }
-        }
-      }
-    },
-    "UpdateBasePolicyRequest": {
-      "type": "object",
-      "properties": {
-        "namespace": {
-          "type": "string"
-        },
-        "basePolicyName": {
-          "type": "string"
-        },
-        "description": {
-          "type": "string"
-        },
-        "affectedCountries": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "affectedClientIds": {
-          "type": "array",
-          "uniqueItems": true,
-          "items": {
-            "type": "string"
-          }
-        },
-        "tags": {
-          "type": "array",
-          "uniqueItems": true,
-          "items": {
-            "type": "string"
-          }
-        }
-      }
-    },
-    "CreateBasePolicyResponse": {
-      "type": "object",
-      "required": [
-        "id"
-      ],
-      "properties": {
-        "id": {
-          "type": "string"
-        },
-        "createdAt": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "updatedAt": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "namespace": {
-          "type": "string"
-        },
-        "policyId": {
-          "type": "string"
-        },
-        "typeId": {
-          "type": "string"
-        },
-        "globalPolicyName": {
-          "type": "string"
-        },
-        "description": {
-          "type": "string"
-        },
-        "affectedCountries": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "affectedClientIds": {
-          "type": "array",
-          "uniqueItems": true,
-          "items": {
-            "type": "string"
-          }
-        },
-        "tags": {
-          "type": "array",
-          "uniqueItems": true,
-          "items": {
-            "type": "string"
-          }
-        }
-      }
+      "type": "object"
     },
     "FieldValidationError": {
-      "type": "object",
       "properties": {
         "errorCode": {
           "type": "string"
@@ -2263,124 +2246,144 @@
         "errorField": {
           "type": "string"
         },
+        "errorMessage": {
+          "type": "string"
+        },
         "errorValue": {
           "type": "string"
         },
-        "errorMessage": {
-          "type": "string"
-        },
         "messageVariables": {
-          "type": "object",
           "additionalProperties": {
             "type": "string"
-          }
+          },
+          "type": "object"
         }
-      }
+      },
+      "type": "object"
     },
-    "ValidationErrorEntity": {
-      "type": "object",
-      "required": [
-        "errorCode",
-        "errorMessage"
-      ],
+    "LegalReadinessStatusResponse": {
       "properties": {
-        "errorCode": {
-          "type": "integer",
-          "format": "int32",
-          "description": "numeric error code"
-        },
-        "errorMessage": {
-          "type": "string",
-          "description": "error message"
-        },
-        "errors": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/FieldValidationError"
-          }
+        "isReady": {
+          "type": "boolean"
         }
-      }
+      },
+      "type": "object"
     },
-    "CreateBasePolicyRequest": {
-      "type": "object",
+    "LocalizedPolicyVersionObject": {
       "properties": {
-        "namespace": {
+        "attachmentChecksum": {
           "type": "string"
         },
-        "typeId": {
+        "attachmentLocation": {
           "type": "string"
         },
-        "basePolicyName": {
+        "attachmentVersionIdentifier": {
           "type": "string"
         },
-        "description": {
-          "type": "string"
-        },
-        "affectedCountries": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "affectedClientIds": {
-          "type": "array",
-          "uniqueItems": true,
-          "items": {
-            "type": "string"
-          }
-        },
-        "tags": {
-          "type": "array",
-          "uniqueItems": true,
-          "items": {
-            "type": "string"
-          }
-        }
-      }
-    },
-    "PolicyVersionObject": {
-      "type": "object",
-      "required": [
-        "displayVersion",
-        "id",
-        "isCommitted",
-        "isInEffect"
-      ],
-      "properties": {
-        "id": {
+        "contentType": {
           "type": "string"
         },
         "createdAt": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "updatedAt": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "displayVersion": {
+          "format": "date-time",
           "type": "string"
         },
         "description": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "isDefaultSelection": {
+          "type": "boolean"
+        },
+        "localeCode": {
+          "type": "string"
+        },
+        "publishedDate": {
+          "format": "date-time",
           "type": "string"
         },
         "status": {
           "type": "string"
         },
-        "publishedDate": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "isCommitted": {
-          "type": "boolean"
-        },
-        "isInEffect": {
-          "type": "boolean"
+        "updatedAt": {
+          "format": "date-time",
+          "type": "string"
         }
-      }
+      },
+      "required": [
+        "id",
+        "isDefaultSelection",
+        "localeCode"
+      ],
+      "type": "object"
     },
-    "RetrievePolicyResponse": {
-      "type": "object",
+    "PagedRetrieveUserAcceptedAgreementResponse": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/RetrieveUserAcceptedAgreementResponse"
+          },
+          "type": "array"
+        },
+        "paging": {
+          "$ref": "#/definitions/Paging"
+        }
+      },
+      "type": "object"
+    },
+    "Paging": {
+      "properties": {
+        "next": {
+          "type": "string"
+        },
+        "previous": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PolicyObject": {
+      "properties": {
+        "countryCode": {
+          "type": "string"
+        },
+        "countryGroupCode": {
+          "type": "string"
+        },
+        "createdAt": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "isDefaultOpted": {
+          "type": "boolean"
+        },
+        "isDefaultSelection": {
+          "type": "boolean"
+        },
+        "isMandatory": {
+          "type": "boolean"
+        },
+        "policyName": {
+          "type": "string"
+        },
+        "readableId": {
+          "type": "string"
+        },
+        "shouldNotifyOnUpdate": {
+          "type": "boolean"
+        },
+        "updatedAt": {
+          "format": "date-time",
+          "type": "string"
+        }
+      },
       "required": [
         "countryCode",
         "id",
@@ -2390,385 +2393,22 @@
         "policyName",
         "shouldNotifyOnUpdate"
       ],
+      "type": "object"
+    },
+    "PolicyVersionObject": {
       "properties": {
-        "id": {
-          "type": "string"
-        },
         "createdAt": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "updatedAt": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "readableId": {
-          "type": "string"
-        },
-        "policyName": {
-          "type": "string"
-        },
-        "countryCode": {
-          "type": "string"
-        },
-        "countryGroupCode": {
-          "type": "string"
-        },
-        "shouldNotifyOnUpdate": {
-          "type": "boolean"
-        },
-        "policyVersions": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/PolicyVersionObject"
-          }
-        },
-        "description": {
-          "type": "string"
-        },
-        "isMandatory": {
-          "type": "boolean"
-        },
-        "isDefaultOpted": {
-          "type": "boolean"
-        },
-        "isDefaultSelection": {
-          "type": "boolean"
-        }
-      }
-    },
-    "RetrievePolicyTypeResponse": {
-      "type": "object",
-      "required": [
-        "id",
-        "isNeedDocument",
-        "policyTypeName"
-      ],
-      "properties": {
-        "id": {
-          "type": "string"
-        },
-        "createdAt": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "updatedAt": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "policyTypeName": {
+          "format": "date-time",
           "type": "string"
         },
         "description": {
           "type": "string"
-        },
-        "isNeedDocument": {
-          "type": "boolean"
-        }
-      }
-    },
-    "UpdateLocalizedPolicyVersionResponse": {
-      "type": "object",
-      "required": [
-        "id"
-      ],
-      "properties": {
-        "id": {
-          "type": "string"
-        },
-        "createdAt": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "updatedAt": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "localeCode": {
-          "type": "string"
-        },
-        "contentType": {
-          "type": "string"
-        },
-        "attachmentLocation": {
-          "type": "string"
-        },
-        "attachmentChecksum": {
-          "type": "string"
-        },
-        "attachmentVersionIdentifier": {
-          "type": "string"
-        },
-        "description": {
-          "type": "string"
-        }
-      }
-    },
-    "UpdateLocalizedPolicyVersionRequest": {
-      "type": "object",
-      "properties": {
-        "contentType": {
-          "type": "string"
-        },
-        "attachmentLocation": {
-          "type": "string"
-        },
-        "attachmentChecksum": {
-          "type": "string"
-        },
-        "attachmentVersionIdentifier": {
-          "type": "string"
-        },
-        "description": {
-          "type": "string"
-        }
-      }
-    },
-    "CreateLocalizedPolicyVersionResponse": {
-      "type": "object",
-      "required": [
-        "id"
-      ],
-      "properties": {
-        "id": {
-          "type": "string"
-        },
-        "createdAt": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "updatedAt": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "localeCode": {
-          "type": "string"
-        },
-        "description": {
-          "type": "string"
-        }
-      }
-    },
-    "CreateLocalizedPolicyVersionRequest": {
-      "type": "object",
-      "properties": {
-        "localeCode": {
-          "type": "string"
-        },
-        "contentType": {
-          "type": "string"
-        },
-        "description": {
-          "type": "string"
-        }
-      }
-    },
-    "UploadLocalizedPolicyVersionAttachmentResponse": {
-      "type": "object",
-      "properties": {
-        "attachmentLocation": {
-          "type": "string"
-        },
-        "attachmentChecksum": {
-          "type": "string"
-        },
-        "attachmentUploadUrl": {
-          "type": "string"
-        }
-      }
-    },
-    "UploadPolicyVersionAttachmentRequest": {
-      "type": "object",
-      "properties": {
-        "contentType": {
-          "type": "string"
-        },
-        "contentMD5": {
-          "type": "string"
-        }
-      }
-    },
-    "RetrieveLocalizedPolicyVersionResponse": {
-      "type": "object",
-      "required": [
-        "id",
-        "localeCode",
-        "policy",
-        "policyVersion"
-      ],
-      "properties": {
-        "id": {
-          "type": "string"
-        },
-        "createdAt": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "updatedAt": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "localeCode": {
-          "type": "string"
-        },
-        "contentType": {
-          "type": "string"
-        },
-        "baseUrls": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "attachmentLocation": {
-          "type": "string"
-        },
-        "attachmentChecksum": {
-          "type": "string"
-        },
-        "attachmentVersionIdentifier": {
-          "type": "string"
-        },
-        "description": {
-          "type": "string"
-        },
-        "policyVersion": {
-          "$ref": "#/definitions/PolicyVersionObject"
-        },
-        "policy": {
-          "$ref": "#/definitions/PolicyObject"
-        }
-      }
-    },
-    "UpdatePolicyRequest": {
-      "type": "object",
-      "required": [
-        "isDefaultOpted",
-        "isMandatory",
-        "policyName",
-        "shouldNotifyOnUpdate"
-      ],
-      "properties": {
-        "readableId": {
-          "type": "string"
-        },
-        "policyName": {
-          "type": "string"
-        },
-        "shouldNotifyOnUpdate": {
-          "type": "boolean"
-        },
-        "description": {
-          "type": "string"
-        },
-        "isMandatory": {
-          "type": "boolean"
-        },
-        "isDefaultOpted": {
-          "type": "boolean"
-        }
-      }
-    },
-    "UpdatePolicyVersionResponse": {
-      "type": "object",
-      "required": [
-        "id"
-      ],
-      "properties": {
-        "id": {
-          "type": "string"
-        },
-        "createdAt": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "updatedAt": {
-          "type": "string",
-          "format": "date-time"
         },
         "displayVersion": {
           "type": "string"
         },
-        "description": {
-          "type": "string"
-        },
-        "status": {
-          "type": "string"
-        },
-        "publishedDate": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "isCommitted": {
-          "type": "boolean"
-        },
-        "basePolicyId": {
-          "type": "string",
-          "readOnly": true
-        }
-      }
-    },
-    "UpdatePolicyVersionRequest": {
-      "type": "object",
-      "required": [
-        "description",
-        "displayVersion",
-        "isCommitted"
-      ],
-      "properties": {
-        "displayVersion": {
-          "type": "string"
-        },
-        "description": {
-          "type": "string"
-        },
-        "isCommitted": {
-          "type": "boolean"
-        }
-      }
-    },
-    "RetrievePolicyVersionResponse": {
-      "type": "object",
-      "required": [
-        "displayVersion",
-        "id",
-        "isCommitted",
-        "isInEffect",
-        "policyId"
-      ],
-      "properties": {
         "id": {
           "type": "string"
-        },
-        "createdAt": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "updatedAt": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "displayVersion": {
-          "type": "string"
-        },
-        "policyId": {
-          "type": "string"
-        },
-        "description": {
-          "type": "string"
-        },
-        "status": {
-          "type": "string"
-        },
-        "publishedDate": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "localizedPolicyVersions": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/LocalizedPolicyVersionObject"
-          }
         },
         "isCommitted": {
           "type": "boolean"
@@ -2776,192 +2416,101 @@
         "isInEffect": {
           "type": "boolean"
         },
-        "basePolicyId": {
-          "type": "string",
-          "readOnly": true
-        }
-      }
-    },
-    "CreatePolicyVersionResponse": {
-      "type": "object",
-      "required": [
-        "id"
-      ],
-      "properties": {
-        "id": {
+        "publishedDate": {
+          "format": "date-time",
           "type": "string"
         },
-        "createdAt": {
-          "type": "string",
-          "format": "date-time"
+        "status": {
+          "type": "string"
         },
         "updatedAt": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "displayVersion": {
+          "format": "date-time",
           "type": "string"
-        },
-        "description": {
-          "type": "string"
-        },
-        "isCommitted": {
-          "type": "boolean"
-        },
-        "basePolicyId": {
-          "type": "string",
-          "readOnly": true
         }
-      }
-    },
-    "CreatePolicyVersionRequest": {
-      "type": "object",
-      "properties": {
-        "displayVersion": {
-          "type": "string"
-        },
-        "description": {
-          "type": "string"
-        },
-        "isCommitted": {
-          "type": "boolean"
-        }
-      }
-    },
-    "RetrieveUserInfoCacheStatusResponse": {
-      "type": "object",
-      "required": [
-        "lastUpdatedAt",
-        "namespace"
-      ],
-      "properties": {
-        "namespace": {
-          "type": "string"
-        },
-        "lastUpdatedAt": {
-          "type": "string",
-          "format": "date-time"
-        }
-      }
-    },
-    "AcceptAgreementResponse": {
-      "type": "object",
-      "required": [
-        "comply",
-        "proceed"
-      ],
-      "properties": {
-        "proceed": {
-          "type": "boolean",
-          "description": "DEPRECATED the name is not clear, changed with comply"
-        },
-        "ext": {
-          "type": "object",
-          "description": "extra information",
-          "additionalProperties": {
-            "type": "object"
-          }
-        },
-        "comply": {
-          "type": "boolean",
-          "description": "Eligibility Status after Accept Agreement"
-        }
-      }
-    },
-    "AcceptAgreementRequest": {
-      "type": "object",
-      "required": [
-        "isAccepted",
-        "localizedPolicyVersionId",
-        "policyId",
-        "policyVersionId"
-      ],
-      "properties": {
-        "localizedPolicyVersionId": {
-          "type": "string"
-        },
-        "policyVersionId": {
-          "type": "string"
-        },
-        "policyId": {
-          "type": "string"
-        },
-        "isAccepted": {
-          "type": "boolean"
-        }
-      }
-    },
-    "RetrieveUserEligibilitiesIndirectResponse": {
-      "type": "object",
-      "required": [
-        "isComply"
-      ],
-      "properties": {
-        "isComply": {
-          "type": "boolean"
-        }
-      }
-    },
-    "PolicyVersionWithLocalizedVersionObject": {
-      "type": "object",
+      },
       "required": [
         "displayVersion",
         "id",
         "isCommitted",
         "isInEffect"
       ],
+      "type": "object"
+    },
+    "PolicyVersionWithLocalizedVersionObject": {
       "properties": {
-        "id": {
-          "type": "string"
-        },
         "createdAt": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "updatedAt": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "displayVersion": {
+          "format": "date-time",
           "type": "string"
         },
         "description": {
           "type": "string"
         },
-        "status": {
+        "displayVersion": {
           "type": "string"
         },
-        "publishedDate": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "localizedPolicyVersions": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/LocalizedPolicyVersionObject"
-          }
+        "id": {
+          "type": "string"
         },
         "isCommitted": {
           "type": "boolean"
         },
         "isInEffect": {
           "type": "boolean"
+        },
+        "localizedPolicyVersions": {
+          "items": {
+            "$ref": "#/definitions/LocalizedPolicyVersionObject"
+          },
+          "type": "array"
+        },
+        "publishedDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "format": "date-time",
+          "type": "string"
         }
-      }
-    },
-    "RetrieveUserEligibilitiesResponse": {
-      "type": "object",
+      },
       "required": [
-        "countryCode",
-        "isAccepted",
-        "isMandatory",
-        "namespace",
-        "policyId",
-        "policyName",
-        "policyType"
+        "displayVersion",
+        "id",
+        "isCommitted",
+        "isInEffect"
       ],
+      "type": "object"
+    },
+    "RetrieveAcceptedAgreementResponse": {
       "properties": {
-        "readableId": {
+        "countryCode": {
+          "type": "string"
+        },
+        "createdAt": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "displayVersion": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "isAccepted": {
+          "type": "boolean"
+        },
+        "localizedPolicyVersion": {
+          "$ref": "#/definitions/LocalizedPolicyVersionObject"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "policyId": {
           "type": "string"
         },
         "policyName": {
@@ -2970,61 +2519,113 @@
         "policyType": {
           "type": "string"
         },
-        "namespace": {
+        "signingDate": {
+          "format": "date-time",
           "type": "string"
         },
-        "countryCode": {
+        "updatedAt": {
+          "format": "date-time",
           "type": "string"
         },
-        "countryGroupCode": {
+        "userId": {
           "type": "string"
-        },
-        "baseUrls": {
-          "type": "array",
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "type": "object"
+    },
+    "RetrieveBasePolicyResponse": {
+      "properties": {
+        "affectedClientIds": {
           "items": {
             "type": "string"
-          }
-        },
-        "policyVersions": {
+          },
           "type": "array",
-          "items": {
-            "$ref": "#/definitions/PolicyVersionWithLocalizedVersionObject"
-          }
+          "uniqueItems": true
+        },
+        "basePolicyName": {
+          "type": "string"
+        },
+        "createdAt": {
+          "format": "date-time",
+          "type": "string"
         },
         "description": {
           "type": "string"
         },
-        "policyId": {
-          "type": "string"
-        },
-        "isMandatory": {
-          "type": "boolean"
-        },
-        "isAccepted": {
-          "type": "boolean"
-        }
-      }
-    },
-    "RetrieveLocalizedPolicyVersionPublicResponse": {
-      "type": "object",
-      "required": [
-        "id",
-        "localeCode",
-        "namespace",
-        "policy",
-        "policyVersion"
-      ],
-      "properties": {
         "id": {
           "type": "string"
         },
-        "createdAt": {
-          "type": "string",
-          "format": "date-time"
+        "namespace": {
+          "type": "string"
+        },
+        "policies": {
+          "items": {
+            "$ref": "#/definitions/PolicyObject"
+          },
+          "type": "array"
+        },
+        "policyTypeId": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "policyTypeName": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "tags": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
         },
         "updatedAt": {
-          "type": "string",
-          "format": "date-time"
+          "format": "date-time",
+          "type": "string"
+        }
+      },
+      "required": [
+        "basePolicyName",
+        "id",
+        "namespace"
+      ],
+      "type": "object"
+    },
+    "RetrieveLocalizedPolicyVersionPublicResponse": {
+      "properties": {
+        "attachmentChecksum": {
+          "type": "string"
+        },
+        "attachmentLocation": {
+          "type": "string"
+        },
+        "attachmentVersionIdentifier": {
+          "type": "string"
+        },
+        "basePolicyId": {
+          "type": "string"
+        },
+        "baseUrls": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "contentType": {
+          "type": "string"
+        },
+        "createdAt": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
         },
         "localeCode": {
           "type": "string"
@@ -3032,47 +2633,154 @@
         "namespace": {
           "type": "string"
         },
-        "contentType": {
-          "type": "string"
+        "policy": {
+          "$ref": "#/definitions/PolicyObject"
         },
-        "baseUrls": {
-          "type": "array",
+        "policyVersion": {
+          "$ref": "#/definitions/PolicyVersionObject"
+        },
+        "tags": {
           "items": {
             "type": "string"
-          }
+          },
+          "type": "array",
+          "uniqueItems": true
         },
-        "basePolicyId": {
+        "updatedAt": {
+          "format": "date-time",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "localeCode",
+        "namespace",
+        "policy",
+        "policyVersion"
+      ],
+      "type": "object"
+    },
+    "RetrieveLocalizedPolicyVersionResponse": {
+      "properties": {
+        "attachmentChecksum": {
           "type": "string"
         },
         "attachmentLocation": {
           "type": "string"
         },
-        "attachmentChecksum": {
+        "attachmentVersionIdentifier": {
           "type": "string"
         },
-        "attachmentVersionIdentifier": {
+        "baseUrls": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "contentType": {
+          "type": "string"
+        },
+        "createdAt": {
+          "format": "date-time",
           "type": "string"
         },
         "description": {
           "type": "string"
         },
-        "tags": {
-          "type": "array",
-          "uniqueItems": true,
-          "items": {
-            "type": "string"
-          }
+        "id": {
+          "type": "string"
+        },
+        "localeCode": {
+          "type": "string"
+        },
+        "policy": {
+          "$ref": "#/definitions/PolicyObject"
         },
         "policyVersion": {
           "$ref": "#/definitions/PolicyVersionObject"
         },
-        "policy": {
-          "$ref": "#/definitions/PolicyObject"
+        "updatedAt": {
+          "format": "date-time",
+          "type": "string"
         }
-      }
+      },
+      "required": [
+        "id",
+        "localeCode",
+        "policy",
+        "policyVersion"
+      ],
+      "type": "object"
     },
     "RetrievePolicyPublicResponse": {
-      "type": "object",
+      "properties": {
+        "basePolicyId": {
+          "type": "string"
+        },
+        "baseUrls": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "countryCode": {
+          "type": "string"
+        },
+        "countryGroupCode": {
+          "type": "string"
+        },
+        "createdAt": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "isDefaultOpted": {
+          "type": "boolean"
+        },
+        "isDefaultSelection": {
+          "type": "boolean"
+        },
+        "isMandatory": {
+          "type": "boolean"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "policyName": {
+          "type": "string"
+        },
+        "policyType": {
+          "type": "string"
+        },
+        "policyVersions": {
+          "items": {
+            "$ref": "#/definitions/PolicyVersionWithLocalizedVersionObject"
+          },
+          "type": "array"
+        },
+        "readableId": {
+          "type": "string"
+        },
+        "shouldNotifyOnUpdate": {
+          "type": "boolean"
+        },
+        "tags": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "updatedAt": {
+          "format": "date-time",
+          "type": "string"
+        }
+      },
       "required": [
         "basePolicyId",
         "countryCode",
@@ -3085,22 +2793,173 @@
         "policyType",
         "shouldNotifyOnUpdate"
       ],
+      "type": "object"
+    },
+    "RetrievePolicyResponse": {
       "properties": {
-        "id": {
+        "countryCode": {
+          "type": "string"
+        },
+        "countryGroupCode": {
           "type": "string"
         },
         "createdAt": {
-          "type": "string",
-          "format": "date-time"
+          "format": "date-time",
+          "type": "string"
         },
-        "updatedAt": {
-          "type": "string",
-          "format": "date-time"
+        "description": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "isDefaultOpted": {
+          "type": "boolean"
+        },
+        "isDefaultSelection": {
+          "type": "boolean"
+        },
+        "isMandatory": {
+          "type": "boolean"
+        },
+        "policyName": {
+          "type": "string"
+        },
+        "policyVersions": {
+          "items": {
+            "$ref": "#/definitions/PolicyVersionObject"
+          },
+          "type": "array"
         },
         "readableId": {
           "type": "string"
         },
+        "shouldNotifyOnUpdate": {
+          "type": "boolean"
+        },
+        "updatedAt": {
+          "format": "date-time",
+          "type": "string"
+        }
+      },
+      "required": [
+        "countryCode",
+        "id",
+        "isDefaultOpted",
+        "isDefaultSelection",
+        "isMandatory",
+        "policyName",
+        "shouldNotifyOnUpdate"
+      ],
+      "type": "object"
+    },
+    "RetrievePolicyTypeResponse": {
+      "properties": {
+        "createdAt": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "isNeedDocument": {
+          "type": "boolean"
+        },
+        "policyTypeName": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "format": "date-time",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "isNeedDocument",
+        "policyTypeName"
+      ],
+      "type": "object"
+    },
+    "RetrievePolicyVersionResponse": {
+      "properties": {
         "basePolicyId": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "createdAt": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "displayVersion": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "isCommitted": {
+          "type": "boolean"
+        },
+        "isInEffect": {
+          "type": "boolean"
+        },
+        "localizedPolicyVersions": {
+          "items": {
+            "$ref": "#/definitions/LocalizedPolicyVersionObject"
+          },
+          "type": "array"
+        },
+        "policyId": {
+          "type": "string"
+        },
+        "publishedDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "format": "date-time",
+          "type": "string"
+        }
+      },
+      "required": [
+        "displayVersion",
+        "id",
+        "isCommitted",
+        "isInEffect",
+        "policyId"
+      ],
+      "type": "object"
+    },
+    "RetrieveUserAcceptedAgreementResponse": {
+      "properties": {
+        "createdAt": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "displayName": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "isAccepted": {
+          "type": "boolean"
+        },
+        "localizedPolicyVersion": {
+          "$ref": "#/definitions/LocalizedPolicyVersionObject"
+        },
+        "namespace": {
           "type": "string"
         },
         "policyName": {
@@ -3109,8 +2968,47 @@
         "policyType": {
           "type": "string"
         },
-        "namespace": {
+        "publisherUserId": {
           "type": "string"
+        },
+        "signingDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "updatedAt": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "type": "object"
+    },
+    "RetrieveUserEligibilitiesIndirectResponse": {
+      "properties": {
+        "isComply": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "isComply"
+      ],
+      "type": "object"
+    },
+    "RetrieveUserEligibilitiesResponse": {
+      "properties": {
+        "baseUrls": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "countryCode": {
           "type": "string"
@@ -3118,49 +3016,344 @@
         "countryGroupCode": {
           "type": "string"
         },
-        "baseUrls": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "shouldNotifyOnUpdate": {
-          "type": "boolean"
-        },
-        "policyVersions": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/PolicyVersionWithLocalizedVersionObject"
-          }
-        },
         "description": {
           "type": "string"
         },
-        "tags": {
-          "type": "array",
-          "uniqueItems": true,
-          "items": {
-            "type": "string"
-          }
+        "isAccepted": {
+          "type": "boolean"
         },
         "isMandatory": {
           "type": "boolean"
         },
+        "namespace": {
+          "type": "string"
+        },
+        "policyId": {
+          "type": "string"
+        },
+        "policyName": {
+          "type": "string"
+        },
+        "policyType": {
+          "type": "string"
+        },
+        "policyVersions": {
+          "items": {
+            "$ref": "#/definitions/PolicyVersionWithLocalizedVersionObject"
+          },
+          "type": "array"
+        },
+        "readableId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "countryCode",
+        "isAccepted",
+        "isMandatory",
+        "namespace",
+        "policyId",
+        "policyName",
+        "policyType"
+      ],
+      "type": "object"
+    },
+    "RetrieveUserInfoCacheStatusResponse": {
+      "properties": {
+        "lastUpdatedAt": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "lastUpdatedAt",
+        "namespace"
+      ],
+      "type": "object"
+    },
+    "UpdateBasePolicyRequest": {
+      "properties": {
+        "affectedClientIds": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "affectedCountries": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "basePolicyName": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "tags": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "type": "object"
+    },
+    "UpdateBasePolicyResponse": {
+      "properties": {
+        "affectedClientIds": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "affectedCountries": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "createdAt": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "globalPolicyName": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "policyId": {
+          "type": "string"
+        },
+        "tags": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "typeId": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "format": "date-time",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "type": "object"
+    },
+    "UpdateLocalizedPolicyVersionRequest": {
+      "properties": {
+        "attachmentChecksum": {
+          "type": "string"
+        },
+        "attachmentLocation": {
+          "type": "string"
+        },
+        "attachmentVersionIdentifier": {
+          "type": "string"
+        },
+        "contentType": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "UpdateLocalizedPolicyVersionResponse": {
+      "properties": {
+        "attachmentChecksum": {
+          "type": "string"
+        },
+        "attachmentLocation": {
+          "type": "string"
+        },
+        "attachmentVersionIdentifier": {
+          "type": "string"
+        },
+        "contentType": {
+          "type": "string"
+        },
+        "createdAt": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "localeCode": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "format": "date-time",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "type": "object"
+    },
+    "UpdatePolicyRequest": {
+      "properties": {
+        "description": {
+          "type": "string"
+        },
         "isDefaultOpted": {
           "type": "boolean"
         },
-        "isDefaultSelection": {
+        "isMandatory": {
+          "type": "boolean"
+        },
+        "policyName": {
+          "type": "string"
+        },
+        "readableId": {
+          "type": "string"
+        },
+        "shouldNotifyOnUpdate": {
           "type": "boolean"
         }
-      }
+      },
+      "required": [
+        "isDefaultOpted",
+        "isMandatory",
+        "policyName",
+        "shouldNotifyOnUpdate"
+      ],
+      "type": "object"
     },
-    "LegalReadinessStatusResponse": {
-      "type": "object",
+    "UpdatePolicyVersionRequest": {
       "properties": {
-        "isReady": {
+        "description": {
+          "type": "string"
+        },
+        "displayVersion": {
+          "type": "string"
+        },
+        "isCommitted": {
           "type": "boolean"
         }
-      }
+      },
+      "required": [
+        "description",
+        "displayVersion",
+        "isCommitted"
+      ],
+      "type": "object"
+    },
+    "UpdatePolicyVersionResponse": {
+      "properties": {
+        "basePolicyId": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "createdAt": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "displayVersion": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "isCommitted": {
+          "type": "boolean"
+        },
+        "publishedDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "format": "date-time",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "type": "object"
+    },
+    "UploadLocalizedPolicyVersionAttachmentResponse": {
+      "properties": {
+        "attachmentChecksum": {
+          "type": "string"
+        },
+        "attachmentLocation": {
+          "type": "string"
+        },
+        "attachmentUploadUrl": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "UploadPolicyVersionAttachmentRequest": {
+      "properties": {
+        "contentMD5": {
+          "type": "string"
+        },
+        "contentType": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ValidationErrorEntity": {
+      "properties": {
+        "errorCode": {
+          "description": "numeric error code",
+          "format": "int32",
+          "type": "integer"
+        },
+        "errorMessage": {
+          "description": "error message",
+          "type": "string"
+        },
+        "errors": {
+          "items": {
+            "$ref": "#/definitions/FieldValidationError"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "errorCode",
+        "errorMessage"
+      ],
+      "type": "object"
     }
   }
 }

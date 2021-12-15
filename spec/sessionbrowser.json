@@ -1,36 +1,66 @@
 {
-  "swagger": "2.0",
+  "host": "demo.accelbyte.io",
   "info": {
     "description": "Justice Session Browser Service",
     "title": "justice-session-browser-service",
     "version": ""
   },
+  "schemes": [
+    "https"
+  ],
+  "securityDefinitions": {
+    "HasPermission": {
+      "authorizationUrl": "https://dummy.oauth.net/auth",
+      "flow": "accessCode",
+      "scopes": {
+        "ADMIN:NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [READ]": "ADMIN:NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [READ]",
+        "NAMESPACE:{namespace}:SESSIONBROWSER:RECENTPLAYER [READ]": "NAMESPACE:{namespace}:SESSIONBROWSER:RECENTPLAYER [READ]",
+        "NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [CREATE]": "NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [CREATE]",
+        "NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [DELETE]": "NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [DELETE]",
+        "NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [READ]": "NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [READ]",
+        "NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [UPDATE]": "NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [UPDATE]"
+      },
+      "tokenUrl": "https://dumy.oauth.net/token",
+      "type": "oauth2"
+    },
+    "HasScope": {
+      "authorizationUrl": "https://dummy.oauth.net/auth",
+      "flow": "accessCode",
+      "scopes": {
+        "social": "social"
+      },
+      "tokenUrl": "https://dumy.oauth.net/token",
+      "type": "oauth2"
+    },
+    "authorization": {
+      "in": "header",
+      "name": "Authorization",
+      "type": "apiKey"
+    }
+  },
+  "swagger": "2.0",
   "paths": {
     "/sessionbrowser/admin/namespaces/{namespace}/gamesession/active/count": {
       "get": {
         "description": "Required permission: ADMIN:NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [READ]\n\nRequired scope: social",
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "Session"
-        ],
-        "summary": "Get all active session",
         "operationId": "GetTotalActiveSession",
         "parameters": [
           {
-            "type": "string",
             "description": "namespace",
-            "name": "namespace",
             "in": "path",
-            "required": true
+            "name": "namespace",
+            "required": true,
+            "type": "string"
           },
           {
-            "type": "string",
             "description": "session type to query, accept 'dedicated' or 'p2p'",
+            "in": "query",
             "name": "session_type",
-            "in": "query"
+            "type": "string"
           }
+        ],
+        "produces": [
+          "application/json"
         ],
         "responses": {
           "200": {
@@ -51,40 +81,51 @@
               "$ref": "#/definitions/restapi.ErrorResponseV2"
             }
           }
-        }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [READ]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get all active session",
+        "tags": [
+          "Session"
+        ]
       }
     },
     "/sessionbrowser/admin/namespaces/{namespace}/gamesession/active/custom-game": {
       "get": {
         "description": "Required permission: ADMIN:NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [READ]\n\nRequired scope: social",
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "Session"
-        ],
-        "summary": "Get all active session for custom game, this return only dedicated session type",
         "operationId": "GetActiveCustomGameSessions",
         "parameters": [
           {
-            "type": "string",
             "description": "namespace",
-            "name": "namespace",
             "in": "path",
-            "required": true
+            "name": "namespace",
+            "required": true,
+            "type": "string"
           },
           {
-            "type": "string",
             "description": "game session ID",
+            "in": "query",
             "name": "session_id",
-            "in": "query"
+            "type": "string"
           },
           {
-            "type": "string",
             "description": "server region",
+            "in": "query",
             "name": "server_region",
-            "in": "query"
+            "type": "string"
           }
+        ],
+        "produces": [
+          "application/json"
         ],
         "responses": {
           "200": {
@@ -105,46 +146,57 @@
               "$ref": "#/definitions/restapi.ErrorResponseV2"
             }
           }
-        }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [READ]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get all active session for custom game, this return only dedicated session type",
+        "tags": [
+          "Session"
+        ]
       }
     },
     "/sessionbrowser/admin/namespaces/{namespace}/gamesession/active/matchmaking-game": {
       "get": {
         "description": "Required permission: ADMIN:NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [READ]\n\nRequired scope: social",
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "Session"
-        ],
-        "summary": "Get all active session for matchmaking game, this return only dedicated session type",
         "operationId": "GetActiveMatchmakingGameSessions",
         "parameters": [
           {
-            "type": "string",
             "description": "namespace",
-            "name": "namespace",
             "in": "path",
-            "required": true
+            "name": "namespace",
+            "required": true,
+            "type": "string"
           },
           {
-            "type": "string",
             "description": "game session ID",
+            "in": "query",
             "name": "session_id",
-            "in": "query"
+            "type": "string"
           },
           {
-            "type": "string",
             "description": "matchmaking ID",
+            "in": "query",
             "name": "match_id",
-            "in": "query"
+            "type": "string"
           },
           {
-            "type": "string",
             "description": "server region",
+            "in": "query",
             "name": "server_region",
-            "in": "query"
+            "type": "string"
           }
+        ],
+        "produces": [
+          "application/json"
         ],
         "responses": {
           "200": {
@@ -165,31 +217,42 @@
               "$ref": "#/definitions/restapi.ErrorResponseV2"
             }
           }
-        }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [READ]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get all active session for matchmaking game, this return only dedicated session type",
+        "tags": [
+          "Session"
+        ]
       }
     },
     "/sessionbrowser/admin/namespaces/{namespace}/gamesession/{sessionID}": {
       "get": {
         "description": "Required permission: ADMIN:NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [READ]\n\nRequired scope: social\n\nGet the session by session ID for admin user",
-        "tags": [
-          "Session"
-        ],
-        "summary": "Admin get specified session by session ID",
         "operationId": "AdminGetSession",
         "parameters": [
           {
-            "type": "string",
             "description": "namespace",
-            "name": "namespace",
             "in": "path",
-            "required": true
+            "name": "namespace",
+            "required": true,
+            "type": "string"
           },
           {
-            "type": "string",
             "description": "session ID",
-            "name": "sessionID",
             "in": "path",
-            "required": true
+            "name": "sessionID",
+            "required": true,
+            "type": "string"
           }
         ],
         "responses": {
@@ -211,92 +274,103 @@
               "$ref": "#/definitions/restapi.ErrorResponseV2"
             }
           }
-        }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [READ]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Admin get specified session by session ID",
+        "tags": [
+          "Session"
+        ]
       }
     },
     "/sessionbrowser/namespaces/{namespace}/gamesession": {
       "get": {
-        "description": "Required permission: NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [READ]\n\nRequired scope: social\n\nQuery available game session",
         "consumes": [
           "application/json"
         ],
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "Session"
-        ],
-        "summary": "Query to available game session",
+        "description": "Required permission: NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [READ]\n\nRequired scope: social\n\nQuery available game session",
         "operationId": "QuerySession",
         "parameters": [
           {
-            "type": "string",
             "description": "namespace of the game",
-            "name": "namespace",
             "in": "path",
-            "required": true
+            "name": "namespace",
+            "required": true,
+            "type": "string"
           },
           {
-            "type": "string",
             "description": "Session type to query, value is 'p2p' or 'dedicated'",
-            "name": "session_type",
             "in": "query",
-            "required": true
+            "name": "session_type",
+            "required": true,
+            "type": "string"
           },
           {
-            "type": "string",
             "description": "Owner of the P2P session. Dedicated server does not have user_id",
+            "in": "query",
             "name": "user_id",
-            "in": "query"
+            "type": "string"
           },
           {
-            "type": "string",
             "description": "Game mode of the session to query",
+            "in": "query",
             "name": "game_mode",
-            "in": "query"
+            "type": "string"
           },
           {
-            "type": "string",
             "description": "Game version of the session to query",
+            "in": "query",
             "name": "game_version",
-            "in": "query"
+            "type": "string"
           },
           {
-            "type": "string",
             "description": "filter session if joinable or not, accept 'true' or 'false'",
+            "in": "query",
             "name": "joinable",
-            "in": "query"
+            "type": "string"
           },
           {
-            "type": "string",
             "description": "filter session by matchmaking ID",
+            "in": "query",
             "name": "match_id",
-            "in": "query"
+            "type": "string"
           },
           {
-            "type": "string",
             "description": "filter session by match existence, accept 'true' or 'false'",
+            "in": "query",
             "name": "match_exist",
-            "in": "query"
+            "type": "string"
           },
           {
-            "type": "string",
             "description": "filter session by server status, accept CREATING,READY,BUSY,REMOVING,UNREACHABLE",
+            "in": "query",
             "name": "server_status",
-            "in": "query"
+            "type": "string"
           },
           {
-            "type": "string",
             "description": "skip some item(s), offset=3, will skip 3 first items",
+            "in": "query",
             "name": "offset",
-            "in": "query"
+            "type": "string"
           },
           {
-            "type": "string",
             "description": "max item to be returned",
+            "in": "query",
             "name": "limit",
-            "in": "query"
+            "type": "string"
           }
+        ],
+        "produces": [
+          "application/json"
         ],
         "responses": {
           "200": {
@@ -317,37 +391,48 @@
               "$ref": "#/definitions/response.Error"
             }
           }
-        }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [READ]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Query to available game session",
+        "tags": [
+          "Session"
+        ]
       },
       "post": {
-        "description": "Required permission: NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [CREATE]\n\nRequired scope: social\n\nThis end point intended to be called directly by P2P game client host or by DSMC",
         "consumes": [
           "application/json"
         ],
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "Session"
-        ],
-        "summary": "Register a new game session",
+        "description": "Required permission: NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [CREATE]\n\nRequired scope: social\n\nThis end point intended to be called directly by P2P game client host or by DSMC",
         "operationId": "CreateSession",
         "parameters": [
           {
-            "type": "string",
             "description": "namespace of the game",
-            "name": "namespace",
             "in": "path",
-            "required": true
+            "name": "namespace",
+            "required": true,
+            "type": "string"
           },
           {
-            "name": "body",
             "in": "body",
+            "name": "body",
             "required": true,
             "schema": {
               "$ref": "#/definitions/models.CreateSessionRequest"
             }
           }
+        ],
+        "produces": [
+          "application/json"
         ],
         "responses": {
           "200": {
@@ -380,38 +465,49 @@
               "$ref": "#/definitions/response.Error"
             }
           }
-        }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [CREATE]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Register a new game session",
+        "tags": [
+          "Session"
+        ]
       }
     },
     "/sessionbrowser/namespaces/{namespace}/gamesession/bulk": {
       "get": {
-        "description": "Required permission: NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [READ]\n\nRequired scope: social\n\nQuery game sessions by comma separated user ids",
         "consumes": [
           "application/json"
         ],
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "Session"
-        ],
-        "summary": "Query game sessions by comma separated user ids",
+        "description": "Required permission: NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [READ]\n\nRequired scope: social\n\nQuery game sessions by comma separated user ids",
         "operationId": "GetSessionByUserIDs",
         "parameters": [
           {
-            "type": "string",
             "description": "namespace of the game",
-            "name": "namespace",
             "in": "path",
-            "required": true
+            "name": "namespace",
+            "required": true,
+            "type": "string"
           },
           {
-            "type": "string",
             "description": "comma separated user ids",
-            "name": "user_ids",
             "in": "query",
-            "required": true
+            "name": "user_ids",
+            "required": true,
+            "type": "string"
           }
+        ],
+        "produces": [
+          "application/json"
         ],
         "responses": {
           "200": {
@@ -432,38 +528,116 @@
               "$ref": "#/definitions/response.Error"
             }
           }
-        }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [READ]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Query game sessions by comma separated user ids",
+        "tags": [
+          "Session"
+        ]
       }
     },
     "/sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}": {
-      "get": {
-        "description": "Required permission: NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [READ]\n\nRequired scope: social\n\nGet the session by session ID",
+      "delete": {
         "consumes": [
           "application/json"
+        ],
+        "description": "Required permission: NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [DELETE]\n\nRequired scope: social\n\nDelete the session by session ID",
+        "operationId": "DeleteSession",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "session ID",
+            "in": "path",
+            "name": "sessionID",
+            "required": true,
+            "type": "string"
+          }
         ],
         "produces": [
           "application/json"
         ],
+        "responses": {
+          "200": {
+            "description": "session get",
+            "schema": {
+              "$ref": "#/definitions/models.SessionResponse"
+            }
+          },
+          "400": {
+            "description": "malformed request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "session not found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [DELETE]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Delete specified session by session ID",
         "tags": [
           "Session"
+        ]
+      },
+      "get": {
+        "consumes": [
+          "application/json"
         ],
-        "summary": "Get specified session by session ID",
+        "description": "Required permission: NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [READ]\n\nRequired scope: social\n\nGet the session by session ID",
         "operationId": "GetSession",
         "parameters": [
           {
-            "type": "string",
             "description": "namespace of the game",
-            "name": "namespace",
             "in": "path",
-            "required": true
+            "name": "namespace",
+            "required": true,
+            "type": "string"
           },
           {
-            "type": "string",
             "description": "session ID",
-            "name": "sessionID",
             "in": "path",
-            "required": true
+            "name": "sessionID",
+            "required": true,
+            "type": "string"
           }
+        ],
+        "produces": [
+          "application/json"
         ],
         "responses": {
           "200": {
@@ -484,44 +658,55 @@
               "$ref": "#/definitions/response.Error"
             }
           }
-        }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [READ]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get specified session by session ID",
+        "tags": [
+          "Session"
+        ]
       },
       "put": {
-        "description": "Required permission: NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [UPDATE]\n\nRequired scope: social\n\nUpdate game session, used to update the current player",
         "consumes": [
           "application/json"
         ],
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "Session"
-        ],
-        "summary": "Update session",
+        "description": "Required permission: NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [UPDATE]\n\nRequired scope: social\n\nUpdate game session, used to update the current player",
         "operationId": "UpdateSession",
         "parameters": [
           {
-            "type": "string",
             "description": "namespace of the game",
+            "in": "path",
             "name": "namespace",
-            "in": "path",
-            "required": true
+            "required": true,
+            "type": "string"
           },
           {
-            "type": "string",
             "description": "session ID",
-            "name": "sessionID",
             "in": "path",
-            "required": true
+            "name": "sessionID",
+            "required": true,
+            "type": "string"
           },
           {
-            "name": "body",
             "in": "body",
+            "name": "body",
             "required": true,
             "schema": {
               "$ref": "#/definitions/models.UpdateSessionRequest"
             }
           }
+        ],
+        "produces": [
+          "application/json"
         ],
         "responses": {
           "200": {
@@ -548,102 +733,57 @@
               "$ref": "#/definitions/restapi.ErrorResponseV2"
             }
           }
-        }
-      },
-      "delete": {
-        "description": "Required permission: NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [DELETE]\n\nRequired scope: social\n\nDelete the session by session ID",
-        "consumes": [
-          "application/json"
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [UPDATE]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
         ],
-        "produces": [
-          "application/json"
-        ],
+        "summary": "Update session",
         "tags": [
           "Session"
-        ],
-        "summary": "Delete specified session by session ID",
-        "operationId": "DeleteSession",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "namespace of the game",
-            "name": "namespace",
-            "in": "path",
-            "required": true
-          },
-          {
-            "type": "string",
-            "description": "session ID",
-            "name": "sessionID",
-            "in": "path",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "session get",
-            "schema": {
-              "$ref": "#/definitions/models.SessionResponse"
-            }
-          },
-          "400": {
-            "description": "malformed request",
-            "schema": {
-              "$ref": "#/definitions/response.Error"
-            }
-          },
-          "404": {
-            "description": "session not found",
-            "schema": {
-              "$ref": "#/definitions/response.Error"
-            }
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "schema": {
-              "$ref": "#/definitions/response.Error"
-            }
-          }
-        }
+        ]
       }
     },
     "/sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/join": {
       "post": {
-        "description": "Required permission: NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [READ]\n\nRequired scope: social\n\nJoin the specified session by session ID. Possible the game required a password to join",
         "consumes": [
           "application/json"
         ],
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "Session"
-        ],
-        "summary": "Join specified session by session ID",
+        "description": "Required permission: NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [READ]\n\nRequired scope: social\n\nJoin the specified session by session ID. Possible the game required a password to join",
         "operationId": "JoinSession",
         "parameters": [
           {
-            "type": "string",
             "description": "namespace of the game",
-            "name": "namespace",
             "in": "path",
-            "required": true
+            "name": "namespace",
+            "required": true,
+            "type": "string"
           },
           {
-            "name": "body",
             "in": "body",
+            "name": "body",
             "required": true,
             "schema": {
               "$ref": "#/definitions/models.JoinGameSessionRequest"
             }
           },
           {
-            "type": "string",
             "description": "session ID",
-            "name": "sessionID",
             "in": "path",
-            "required": true
+            "name": "sessionID",
+            "required": true,
+            "type": "string"
           }
+        ],
+        "produces": [
+          "application/json"
         ],
         "responses": {
           "200": {
@@ -676,38 +816,49 @@
               "$ref": "#/definitions/restapi.ErrorResponseV2"
             }
           }
-        }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [READ]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Join specified session by session ID",
+        "tags": [
+          "Session"
+        ]
       }
     },
     "/sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/localds": {
       "delete": {
-        "description": "Required permission: NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [DELETE]\n\nRequired scope: social\n\nOnly use for local DS entry, will error when calling non local DS entry",
         "consumes": [
           "application/json"
         ],
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "Session"
-        ],
-        "summary": "Only use for local DS entry, will error when calling non local DS entry",
+        "description": "Required permission: NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [DELETE]\n\nRequired scope: social\n\nOnly use for local DS entry, will error when calling non local DS entry",
         "operationId": "DeleteSessionLocalDS",
         "parameters": [
           {
-            "type": "string",
             "description": "namespace of the game",
-            "name": "namespace",
             "in": "path",
-            "required": true
+            "name": "namespace",
+            "required": true,
+            "type": "string"
           },
           {
-            "type": "string",
             "description": "session ID",
-            "name": "sessionID",
             "in": "path",
-            "required": true
+            "name": "sessionID",
+            "required": true,
+            "type": "string"
           }
+        ],
+        "produces": [
+          "application/json"
         ],
         "responses": {
           "200": {
@@ -734,46 +885,57 @@
               "$ref": "#/definitions/response.Error"
             }
           }
-        }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [DELETE]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Only use for local DS entry, will error when calling non local DS entry",
+        "tags": [
+          "Session"
+        ]
       }
     },
     "/sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/player": {
       "post": {
-        "description": "Required permission: NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [UPDATE]\n\nRequired scope: social\n\nAdd player to game session",
         "consumes": [
           "application/json"
         ],
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "Session"
-        ],
-        "summary": "Add player to game session",
+        "description": "Required permission: NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [UPDATE]\n\nRequired scope: social\n\nAdd player to game session",
         "operationId": "AddPlayerToSession",
         "parameters": [
           {
-            "type": "string",
             "description": "namespace of the game",
+            "in": "path",
             "name": "namespace",
-            "in": "path",
-            "required": true
+            "required": true,
+            "type": "string"
           },
           {
-            "type": "string",
             "description": "session ID",
-            "name": "sessionID",
             "in": "path",
-            "required": true
+            "name": "sessionID",
+            "required": true,
+            "type": "string"
           },
           {
-            "name": "body",
             "in": "body",
+            "name": "body",
             "required": true,
             "schema": {
               "$ref": "#/definitions/models.AddPlayerRequest"
             }
           }
+        ],
+        "produces": [
+          "application/json"
         ],
         "responses": {
           "200": {
@@ -800,45 +962,56 @@
               "$ref": "#/definitions/restapi.ErrorResponseV2"
             }
           }
-        }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [UPDATE]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Add player to game session",
+        "tags": [
+          "Session"
+        ]
       }
     },
     "/sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/player/{userID}": {
       "delete": {
-        "description": "Required permission: NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [UPDATE]\n\nRequired scope: social\n\nRemove player from game session",
         "consumes": [
           "application/json"
         ],
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "Session"
-        ],
-        "summary": "remove player from game session",
+        "description": "Required permission: NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [UPDATE]\n\nRequired scope: social\n\nRemove player from game session",
         "operationId": "RemovePlayerFromSession",
         "parameters": [
           {
-            "type": "string",
             "description": "namespace of the game",
+            "in": "path",
             "name": "namespace",
-            "in": "path",
-            "required": true
+            "required": true,
+            "type": "string"
           },
           {
-            "type": "string",
             "description": "session ID",
-            "name": "sessionID",
             "in": "path",
-            "required": true
+            "name": "sessionID",
+            "required": true,
+            "type": "string"
           },
           {
-            "type": "string",
             "description": "user ID",
-            "name": "userID",
             "in": "path",
-            "required": true
+            "name": "userID",
+            "required": true,
+            "type": "string"
           }
+        ],
+        "produces": [
+          "application/json"
         ],
         "responses": {
           "200": {
@@ -865,38 +1038,49 @@
               "$ref": "#/definitions/restapi.ErrorResponseV2"
             }
           }
-        }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [UPDATE]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "remove player from game session",
+        "tags": [
+          "Session"
+        ]
       }
     },
     "/sessionbrowser/namespaces/{namespace}/recentplayer/{userID}": {
       "get": {
-        "description": "Required permission: NAMESPACE:{namespace}:SESSIONBROWSER:RECENTPLAYER [READ]\n\nRequired scope: social\n\nQuery recent player by user ID",
         "consumes": [
           "application/json"
         ],
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "Session"
-        ],
-        "summary": "Query recent players with given user id",
+        "description": "Required permission: NAMESPACE:{namespace}:SESSIONBROWSER:RECENTPLAYER [READ]\n\nRequired scope: social\n\nQuery recent player by user ID",
         "operationId": "GetRecentPlayer",
         "parameters": [
           {
-            "type": "string",
             "description": "namespace of the game",
-            "name": "namespace",
             "in": "path",
-            "required": true
+            "name": "namespace",
+            "required": true,
+            "type": "string"
           },
           {
-            "type": "string",
             "description": "user ID",
-            "name": "userID",
             "in": "path",
-            "required": true
+            "name": "userID",
+            "required": true,
+            "type": "string"
           }
+        ],
+        "produces": [
+          "application/json"
         ],
         "responses": {
           "200": {
@@ -917,50 +1101,61 @@
               "$ref": "#/definitions/response.Error"
             }
           }
-        }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:SESSIONBROWSER:RECENTPLAYER [READ]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Query recent players with given user id",
+        "tags": [
+          "Session"
+        ]
       }
     }
   },
   "definitions": {
     "models.ActiveCustomGameResponse": {
-      "required": [
-        "sessions",
-        "pagination"
-      ],
       "properties": {
         "pagination": {
           "$ref": "#/definitions/models.PagingCursor"
         },
         "sessions": {
-          "type": "array",
           "items": {
             "$ref": "#/definitions/models.CustomGameResponse"
-          }
+          },
+          "type": "array"
         }
-      }
+      },
+      "required": [
+        "pagination",
+        "sessions"
+      ]
     },
     "models.ActiveMatchmakingGameResponse": {
-      "required": [
-        "sessions",
-        "pagination"
-      ],
       "properties": {
         "pagination": {
           "$ref": "#/definitions/models.PagingCursor"
         },
         "sessions": {
-          "type": "array",
           "items": {
             "$ref": "#/definitions/models.GameSession"
-          }
+          },
+          "type": "array"
         }
-      }
+      },
+      "required": [
+        "pagination",
+        "sessions"
+      ]
     },
     "models.AddPlayerRequest": {
-      "required": [
-        "user_id",
-        "as_spectator"
-      ],
       "properties": {
         "as_spectator": {
           "type": "boolean"
@@ -968,119 +1163,116 @@
         "user_id": {
           "type": "string"
         }
-      }
+      },
+      "required": [
+        "as_spectator",
+        "user_id"
+      ]
     },
     "models.AddPlayerResponse": {
-      "required": [
-        "status"
-      ],
       "properties": {
         "status": {
           "type": "boolean"
         }
-      }
+      },
+      "required": [
+        "status"
+      ]
     },
     "models.AdminSessionResponse": {
+      "properties": {
+        "all_players": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "created_at": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "game_session_setting": {
+          "$ref": "#/definitions/models.GameSessionSetting"
+        },
+        "game_version": {
+          "type": "string"
+        },
+        "joinable": {
+          "type": "boolean"
+        },
+        "match": {
+          "$ref": "#/definitions/models.MatchMaking"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "players": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "server": {
+          "$ref": "#/definitions/models.Server"
+        },
+        "session_id": {
+          "type": "string"
+        },
+        "session_type": {
+          "type": "string"
+        },
+        "spectators": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "user_id": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        }
+      },
       "required": [
-        "created_at",
-        "players",
         "all_players",
-        "joinable",
-        "game_version",
-        "username",
+        "created_at",
         "game_session_setting",
+        "game_version",
+        "joinable",
+        "match",
+        "namespace",
+        "players",
         "server",
         "session_id",
-        "match",
+        "session_type",
         "spectators",
         "user_id",
-        "session_type",
-        "namespace"
-      ],
-      "properties": {
-        "all_players": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "created_at": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "game_session_setting": {
-          "$ref": "#/definitions/models.GameSessionSetting"
-        },
-        "game_version": {
-          "type": "string"
-        },
-        "joinable": {
-          "type": "boolean"
-        },
-        "match": {
-          "$ref": "#/definitions/models.MatchMaking"
-        },
-        "namespace": {
-          "type": "string"
-        },
-        "players": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "server": {
-          "$ref": "#/definitions/models.Server"
-        },
-        "session_id": {
-          "type": "string"
-        },
-        "session_type": {
-          "type": "string"
-        },
-        "spectators": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "user_id": {
-          "type": "string"
-        },
-        "username": {
-          "type": "string"
-        }
-      }
+        "username"
+      ]
     },
     "models.CountActiveSessionResponse": {
-      "required": [
-        "total",
-        "matchmaking_game",
-        "custom_game"
-      ],
       "properties": {
         "custom_game": {
-          "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "type": "integer"
         },
         "matchmaking_game": {
-          "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "type": "integer"
         },
         "total": {
-          "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "type": "integer"
         }
-      }
+      },
+      "required": [
+        "custom_game",
+        "matchmaking_game",
+        "total"
+      ]
     },
     "models.CreateSessionRequest": {
-      "required": [
-        "namespace",
-        "username",
-        "game_version",
-        "session_type",
-        "game_session_setting"
-      ],
       "properties": {
         "game_session_setting": {
           "$ref": "#/definitions/models.GameSessionSetting"
@@ -1097,31 +1289,26 @@
         "username": {
           "type": "string"
         }
-      }
-    },
-    "models.CustomGameResponse": {
+      },
       "required": [
-        "session_id",
+        "game_session_setting",
+        "game_version",
         "namespace",
         "session_type",
-        "game_session_setting",
-        "created_at",
-        "players",
-        "all_players",
-        "spectators",
-        "joinable",
-        "server"
-      ],
+        "username"
+      ]
+    },
+    "models.CustomGameResponse": {
       "properties": {
         "all_players": {
-          "type": "array",
           "items": {
             "type": "string"
-          }
+          },
+          "type": "array"
         },
         "created_at": {
-          "type": "string",
-          "format": "date-time"
+          "format": "date-time",
+          "type": "string"
         },
         "game_session_setting": {
           "$ref": "#/definitions/models.GameSessionSetting"
@@ -1133,10 +1320,10 @@
           "type": "string"
         },
         "players": {
-          "type": "array",
           "items": {
             "type": "string"
-          }
+          },
+          "type": "array"
         },
         "server": {
           "$ref": "#/definitions/models.Server"
@@ -1148,40 +1335,36 @@
           "type": "string"
         },
         "spectators": {
-          "type": "array",
           "items": {
             "type": "string"
-          }
+          },
+          "type": "array"
         }
-      }
+      },
+      "required": [
+        "all_players",
+        "created_at",
+        "game_session_setting",
+        "joinable",
+        "namespace",
+        "players",
+        "server",
+        "session_id",
+        "session_type",
+        "spectators"
+      ]
     },
     "models.GameSession": {
-      "required": [
-        "session_id",
-        "namespace",
-        "user_id",
-        "username",
-        "game_version",
-        "session_type",
-        "game_session_setting",
-        "created_at",
-        "players",
-        "all_players",
-        "spectators",
-        "joinable",
-        "match",
-        "server"
-      ],
       "properties": {
         "all_players": {
-          "type": "array",
           "items": {
             "type": "string"
-          }
+          },
+          "type": "array"
         },
         "created_at": {
-          "type": "string",
-          "format": "date-time"
+          "format": "date-time",
+          "type": "string"
         },
         "game_session_setting": {
           "$ref": "#/definitions/models.GameSessionSetting"
@@ -1199,10 +1382,10 @@
           "type": "string"
         },
         "players": {
-          "type": "array",
           "items": {
             "type": "string"
-          }
+          },
+          "type": "array"
         },
         "server": {
           "$ref": "#/definitions/models.Server"
@@ -1214,10 +1397,10 @@
           "type": "string"
         },
         "spectators": {
-          "type": "array",
           "items": {
             "type": "string"
-          }
+          },
+          "type": "array"
         },
         "user_id": {
           "type": "string"
@@ -1225,50 +1408,54 @@
         "username": {
           "type": "string"
         }
-      }
+      },
+      "required": [
+        "all_players",
+        "created_at",
+        "game_session_setting",
+        "game_version",
+        "joinable",
+        "match",
+        "namespace",
+        "players",
+        "server",
+        "session_id",
+        "session_type",
+        "spectators",
+        "user_id",
+        "username"
+      ]
     },
     "models.GameSessionSetting": {
-      "required": [
-        "mode",
-        "map_name",
-        "num_bot",
-        "max_player",
-        "current_player",
-        "max_internal_player",
-        "current_internal_player",
-        "allow_join_in_progress",
-        "password",
-        "settings"
-      ],
       "properties": {
         "allow_join_in_progress": {
           "type": "boolean"
         },
         "current_internal_player": {
-          "type": "integer",
-          "format": "int32"
+          "format": "int32",
+          "type": "integer"
         },
         "current_player": {
-          "type": "integer",
-          "format": "int32"
+          "format": "int32",
+          "type": "integer"
         },
         "map_name": {
           "type": "string"
         },
         "max_internal_player": {
-          "type": "integer",
-          "format": "int32"
+          "format": "int32",
+          "type": "integer"
         },
         "max_player": {
-          "type": "integer",
-          "format": "int32"
+          "format": "int32",
+          "type": "integer"
         },
         "mode": {
           "type": "string"
         },
         "num_bot": {
-          "type": "integer",
-          "format": "int32"
+          "format": "int32",
+          "type": "integer"
         },
         "password": {
           "type": "string"
@@ -1276,35 +1463,31 @@
         "settings": {
           "type": "object"
         }
-      }
+      },
+      "required": [
+        "allow_join_in_progress",
+        "current_internal_player",
+        "current_player",
+        "map_name",
+        "max_internal_player",
+        "max_player",
+        "mode",
+        "num_bot",
+        "password",
+        "settings"
+      ]
     },
     "models.JoinGameSessionRequest": {
-      "required": [
-        "password"
-      ],
       "properties": {
         "password": {
           "type": "string"
         }
-      }
+      },
+      "required": [
+        "password"
+      ]
     },
     "models.MatchMaking": {
-      "required": [
-        "status",
-        "match_id",
-        "channel",
-        "namespace",
-        "game_mode",
-        "server_name",
-        "client_version",
-        "region",
-        "matching_allies",
-        "deployment",
-        "event",
-        "created_at",
-        "queued_at",
-        "party_attributes"
-      ],
       "properties": {
         "channel": {
           "type": "string",
@@ -1315,8 +1498,8 @@
           "x-nullable": false
         },
         "created_at": {
-          "type": "string",
-          "format": "date-time"
+          "format": "date-time",
+          "type": "string"
         },
         "deployment": {
           "type": "string",
@@ -1338,10 +1521,10 @@
           "x-nullable": false
         },
         "matching_allies": {
-          "type": "array",
           "items": {
             "$ref": "#/definitions/models.MatchingAlly"
-          }
+          },
+          "type": "array"
         },
         "namespace": {
           "type": "string",
@@ -1355,8 +1538,8 @@
           "x-nullable": true
         },
         "queued_at": {
-          "type": "integer",
           "format": "int64",
+          "type": "integer",
           "x-nullable": false
         },
         "region": {
@@ -1371,27 +1554,38 @@
           "type": "string",
           "x-nullable": false
         }
-      }
+      },
+      "required": [
+        "channel",
+        "client_version",
+        "created_at",
+        "deployment",
+        "event",
+        "game_mode",
+        "match_id",
+        "matching_allies",
+        "namespace",
+        "party_attributes",
+        "queued_at",
+        "region",
+        "server_name",
+        "status"
+      ]
     },
     "models.MatchingAlly": {
-      "required": [
-        "matching_parties"
-      ],
       "properties": {
         "matching_parties": {
-          "type": "array",
           "items": {
             "$ref": "#/definitions/models.MatchingParty"
-          }
+          },
+          "type": "array"
         }
-      }
+      },
+      "required": [
+        "matching_parties"
+      ]
     },
     "models.MatchingParty": {
-      "required": [
-        "party_id",
-        "party_attributes",
-        "party_members"
-      ],
       "properties": {
         "party_attributes": {
           "type": "object"
@@ -1401,18 +1595,19 @@
           "x-nullable": false
         },
         "party_members": {
-          "type": "array",
           "items": {
             "$ref": "#/definitions/models.PartyMember"
-          }
+          },
+          "type": "array"
         }
-      }
+      },
+      "required": [
+        "party_attributes",
+        "party_id",
+        "party_members"
+      ]
     },
     "models.PagingCursor": {
-      "required": [
-        "next",
-        "previous"
-      ],
       "properties": {
         "next": {
           "type": "string"
@@ -1420,13 +1615,13 @@
         "previous": {
           "type": "string"
         }
-      }
+      },
+      "required": [
+        "next",
+        "previous"
+      ]
     },
     "models.PartyMember": {
-      "required": [
-        "user_id",
-        "extra_attributes"
-      ],
       "properties": {
         "extra_attributes": {
           "type": "object"
@@ -1435,49 +1630,17 @@
           "type": "string",
           "x-nullable": false
         }
-      }
-    },
-    "models.PodConfig": {
+      },
       "required": [
-        "cpu_request",
-        "mem_request",
-        "cpu_limit",
-        "mem_limit",
-        "params"
-      ],
-      "properties": {
-        "cpu_limit": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "cpu_request": {
-          "type": "string"
-        },
-        "mem_limit": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "mem_request": {
-          "type": "string"
-        },
-        "params": {
-          "type": "string"
-        }
-      }
+        "extra_attributes",
+        "user_id"
+      ]
     },
     "models.RecentPlayerHistory": {
-      "required": [
-        "created_at",
-        "updated_at",
-        "namespace",
-        "user_id",
-        "other_id",
-        "other_display_name"
-      ],
       "properties": {
         "created_at": {
-          "type": "string",
-          "format": "date-time"
+          "format": "date-time",
+          "type": "string"
         },
         "namespace": {
           "type": "string"
@@ -1489,65 +1652,49 @@
           "type": "string"
         },
         "updated_at": {
-          "type": "string",
-          "format": "date-time"
+          "format": "date-time",
+          "type": "string"
         },
         "user_id": {
           "type": "string"
         }
-      }
+      },
+      "required": [
+        "created_at",
+        "namespace",
+        "other_display_name",
+        "other_id",
+        "updated_at",
+        "user_id"
+      ]
     },
     "models.RecentPlayerQueryResponse": {
-      "required": [
-        "data"
-      ],
       "properties": {
         "data": {
-          "type": "array",
           "items": {
             "$ref": "#/definitions/models.RecentPlayerHistory"
-          }
+          },
+          "type": "array"
         }
-      }
+      },
+      "required": [
+        "data"
+      ]
     },
     "models.Server": {
-      "required": [
-        "pod_name",
-        "allocation_id",
-        "image_version",
-        "namespace",
-        "ip",
-        "alternate_ips",
-        "port",
-        "ports",
-        "provider",
-        "game_version",
-        "status",
-        "last_update",
-        "session_id",
-        "deployment",
-        "region",
-        "status_history",
-        "is_override_game_version",
-        "mem_limit",
-        "params",
-        "cpu_request",
-        "mem_request",
-        "cpu_limit"
-      ],
       "properties": {
         "allocation_id": {
           "type": "string"
         },
         "alternate_ips": {
-          "type": "array",
           "items": {
             "type": "string"
-          }
+          },
+          "type": "array"
         },
         "cpu_limit": {
-          "type": "integer",
-          "format": "int32"
+          "format": "int32",
+          "type": "integer"
         },
         "cpu_request": {
           "type": "string"
@@ -1568,12 +1715,12 @@
           "type": "boolean"
         },
         "last_update": {
-          "type": "string",
-          "format": "date-time"
+          "format": "date-time",
+          "type": "string"
         },
         "mem_limit": {
-          "type": "integer",
-          "format": "int32"
+          "format": "int32",
+          "type": "integer"
         },
         "mem_request": {
           "type": "string"
@@ -1588,14 +1735,14 @@
           "type": "string"
         },
         "port": {
-          "type": "integer",
-          "format": "int32"
+          "format": "int32",
+          "type": "integer"
         },
         "ports": {
-          "type": "object",
           "additionalProperties": {
             "type": "integer"
-          }
+          },
+          "type": "object"
         },
         "provider": {
           "type": "string"
@@ -1610,70 +1757,78 @@
           "type": "string"
         },
         "status_history": {
-          "type": "array",
           "items": {
             "$ref": "#/definitions/models.StatusHistory"
-          }
+          },
+          "type": "array"
         }
-      }
+      },
+      "required": [
+        "allocation_id",
+        "alternate_ips",
+        "cpu_limit",
+        "cpu_request",
+        "deployment",
+        "game_version",
+        "image_version",
+        "ip",
+        "is_override_game_version",
+        "last_update",
+        "mem_limit",
+        "mem_request",
+        "namespace",
+        "params",
+        "pod_name",
+        "port",
+        "ports",
+        "provider",
+        "region",
+        "session_id",
+        "status",
+        "status_history"
+      ]
     },
     "models.SessionByUserIDsResponse": {
-      "required": [
-        "data"
-      ],
       "properties": {
         "data": {
-          "type": "array",
           "items": {
             "$ref": "#/definitions/models.GameSession"
-          }
+          },
+          "type": "array"
         }
-      }
+      },
+      "required": [
+        "data"
+      ]
     },
     "models.SessionQueryResponse": {
-      "required": [
-        "sessions",
-        "pagination"
-      ],
       "properties": {
         "pagination": {
           "$ref": "#/definitions/models.PagingCursor"
         },
         "sessions": {
-          "type": "array",
           "items": {
             "$ref": "#/definitions/models.GameSession"
-          }
+          },
+          "type": "array"
         }
-      }
+      },
+      "required": [
+        "pagination",
+        "sessions"
+      ]
     },
     "models.SessionResponse": {
-      "required": [
-        "game_version",
-        "players",
-        "spectators",
-        "namespace",
-        "match",
-        "session_id",
-        "user_id",
-        "session_type",
-        "game_session_setting",
-        "all_players",
-        "joinable",
-        "username",
-        "created_at",
-        "server"
-      ],
       "properties": {
         "all_players": {
-          "type": "array",
           "items": {
             "type": "string"
-          }
+          },
+          "type": "array"
         },
         "created_at": {
-          "type": "string",
-          "format": "date-time"
+          "format": "date-time",
+          "type": "string"
         },
         "game_session_setting": {
           "$ref": "#/definitions/models.GameSessionSetting"
@@ -1691,10 +1846,10 @@
           "type": "string"
         },
         "players": {
-          "type": "array",
           "items": {
             "type": "string"
-          }
+          },
+          "type": "array"
         },
         "server": {
           "$ref": "#/definitions/models.Server"
@@ -1706,10 +1861,10 @@
           "type": "string"
         },
         "spectators": {
-          "type": "array",
           "items": {
             "type": "string"
-          }
+          },
+          "type": "array"
         },
         "user_id": {
           "type": "string"
@@ -1717,72 +1872,81 @@
         "username": {
           "type": "string"
         }
-      }
+      },
+      "required": [
+        "all_players",
+        "created_at",
+        "game_session_setting",
+        "game_version",
+        "joinable",
+        "match",
+        "namespace",
+        "players",
+        "server",
+        "session_id",
+        "session_type",
+        "spectators",
+        "user_id",
+        "username"
+      ]
     },
     "models.StatusHistory": {
-      "required": [
-        "time_stamp",
-        "status"
-      ],
       "properties": {
         "status": {
           "type": "string"
         },
         "time_stamp": {
-          "type": "string",
-          "format": "date-time"
+          "format": "date-time",
+          "type": "string"
         }
-      }
+      },
+      "required": [
+        "status",
+        "time_stamp"
+      ]
     },
     "models.UpdateSessionRequest": {
+      "properties": {
+        "game_current_player": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "game_max_player": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
       "required": [
         "game_current_player",
         "game_max_player"
-      ],
-      "properties": {
-        "game_current_player": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "game_max_player": {
-          "type": "integer",
-          "format": "int32"
-        }
-      }
+      ]
     },
     "response.Error": {
-      "required": [
-        "errorCode",
-        "errorMessage"
-      ],
       "properties": {
         "errorCode": {
-          "type": "integer",
-          "format": "int32"
+          "format": "int32",
+          "type": "integer"
         },
         "errorMessage": {
           "type": "string"
         }
-      }
-    },
-    "restapi.ErrorResponseV2": {
+      },
       "required": [
         "errorCode",
-        "errorMessage",
-        "name",
-        "message",
-        "attributes"
-      ],
+        "errorMessage"
+      ]
+    },
+    "restapi.ErrorResponseV2": {
       "properties": {
         "attributes": {
-          "type": "object",
           "additionalProperties": {
             "type": "string"
-          }
+          },
+          "type": "object"
         },
         "errorCode": {
-          "type": "integer",
-          "format": "int32"
+          "format": "int32",
+          "type": "integer"
         },
         "errorMessage": {
           "type": "string"
@@ -1793,19 +1957,14 @@
         "name": {
           "type": "string"
         }
-      }
+      },
+      "required": [
+        "attributes",
+        "errorCode",
+        "errorMessage",
+        "message",
+        "name"
+      ]
     }
-  },
-  "securityDefinitions": {
-    "authorization": {
-      "type": "apiKey",
-      "name": "Authorization",
-      "in": "header"
-    }
-  },
-  "security": [
-    {
-      "authorization": []
-    }
-  ]
+  }
 }

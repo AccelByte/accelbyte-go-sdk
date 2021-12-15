@@ -1,22 +1,52 @@
 {
-  "swagger": "2.0",
+  "host": "demo.accelbyte.io",
   "info": {
     "description": "Justice Event Log Service",
     "title": "justice-event-log-service",
-    "version": "1.18.3"
+    "version": ""
   },
+  "schemes": [
+    "https"
+  ],
+  "securityDefinitions": {
+    "HasPermission": {
+      "authorizationUrl": "https://dummy.oauth.net/auth",
+      "flow": "accessCode",
+      "scopes": {
+        "ADMIN:NAMESPACE:{namespace}:EVENT [CREATE]": "ADMIN:NAMESPACE:{namespace}:EVENT [CREATE]",
+        "ADMIN:NAMESPACE:{namespace}:EVENT [DELETE]": "ADMIN:NAMESPACE:{namespace}:EVENT [DELETE]",
+        "ADMIN:NAMESPACE:{namespace}:EVENT [READ]": "ADMIN:NAMESPACE:{namespace}:EVENT [READ]",
+        "ADMIN:NAMESPACE:{namespace}:EVENT [UPDATE]": "ADMIN:NAMESPACE:{namespace}:EVENT [UPDATE]",
+        "NAMESPACE:{namespace}:EVENT [CREATE]": "NAMESPACE:{namespace}:EVENT [CREATE]",
+        "NAMESPACE:{namespace}:EVENT [UPDATE]": "NAMESPACE:{namespace}:EVENT [UPDATE]"
+      },
+      "tokenUrl": "https://dumy.oauth.net/token",
+      "type": "oauth2"
+    },
+    "HasScope": {
+      "authorizationUrl": "https://dummy.oauth.net/auth",
+      "flow": "accessCode",
+      "scopes": {
+        "analytics": "analytics"
+      },
+      "tokenUrl": "https://dumy.oauth.net/token",
+      "type": "oauth2"
+    },
+    "authorization": {
+      "in": "header",
+      "name": "Authorization",
+      "type": "apiKey"
+    }
+  },
+  "swagger": "2.0",
   "paths": {
     "/event/descriptions/agentType": {
       "get": {
+        "deprecated": true,
+        "operationId": "AgentTypeDescriptionHandler",
         "produces": [
           "application/json"
         ],
-        "tags": [
-          "Event Descriptions"
-        ],
-        "summary": "Get list of agent type and the descriptions",
-        "operationId": "AgentTypeDescriptionHandler",
-        "deprecated": true,
         "responses": {
           "200": {
             "description": "OK",
@@ -24,27 +54,32 @@
               "$ref": "#/definitions/models.MultipleAgentType"
             }
           }
-        }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get list of agent type and the descriptions",
+        "tags": [
+          "Event Descriptions"
+        ]
       }
     },
     "/event/descriptions/agentType/listByAgentTypes": {
       "get": {
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "Event Descriptions"
-        ],
-        "summary": "Get specific list of agent type and the descriptions by comma separated value of agent types",
-        "operationId": "SpecificAgentTypeDescriptionHandler",
         "deprecated": true,
+        "operationId": "SpecificAgentTypeDescriptionHandler",
         "parameters": [
           {
-            "type": "string",
             "description": "Comma separated value of agent types",
+            "in": "query",
             "name": "agentTypes",
-            "in": "query"
+            "type": "string"
           }
+        ],
+        "produces": [
+          "application/json"
         ],
         "responses": {
           "200": {
@@ -59,20 +94,25 @@
           "404": {
             "description": "Not Found"
           }
-        }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get specific list of agent type and the descriptions by comma separated value of agent types",
+        "tags": [
+          "Event Descriptions"
+        ]
       }
     },
     "/event/descriptions/eventId": {
       "get": {
+        "deprecated": true,
+        "operationId": "EventIDDescriptionHandler",
         "produces": [
           "application/json"
         ],
-        "tags": [
-          "Event Descriptions"
-        ],
-        "summary": "Get list of eventID and the descriptions",
-        "operationId": "EventIDDescriptionHandler",
-        "deprecated": true,
         "responses": {
           "200": {
             "description": "OK",
@@ -80,27 +120,32 @@
               "$ref": "#/definitions/models.MultipleEventID"
             }
           }
-        }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get list of eventID and the descriptions",
+        "tags": [
+          "Event Descriptions"
+        ]
       }
     },
     "/event/descriptions/eventId/listByEventIds": {
       "get": {
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "Event Descriptions"
-        ],
-        "summary": "Get specific list of eventID and the descriptions by comma separated value of eventIDs",
-        "operationId": "SpecificEventIDDescriptionHandler",
         "deprecated": true,
+        "operationId": "SpecificEventIDDescriptionHandler",
         "parameters": [
           {
-            "type": "string",
             "description": "Comma separated value of eventIDs",
+            "in": "query",
             "name": "eventIds",
-            "in": "query"
+            "type": "string"
           }
+        ],
+        "produces": [
+          "application/json"
         ],
         "responses": {
           "200": {
@@ -115,20 +160,25 @@
           "404": {
             "description": "Not Found"
           }
-        }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get specific list of eventID and the descriptions by comma separated value of eventIDs",
+        "tags": [
+          "Event Descriptions"
+        ]
       }
     },
     "/event/descriptions/eventLevel": {
       "get": {
+        "deprecated": true,
+        "operationId": "EventLevelDescriptionHandler",
         "produces": [
           "application/json"
         ],
-        "tags": [
-          "Event Descriptions"
-        ],
-        "summary": "Get list of event level and the descriptions",
-        "operationId": "EventLevelDescriptionHandler",
-        "deprecated": true,
         "responses": {
           "200": {
             "description": "OK",
@@ -136,27 +186,32 @@
               "$ref": "#/definitions/models.MultipleEventLevel"
             }
           }
-        }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get list of event level and the descriptions",
+        "tags": [
+          "Event Descriptions"
+        ]
       }
     },
     "/event/descriptions/eventLevel/listByEventLevels": {
       "get": {
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "Event Descriptions"
-        ],
-        "summary": "Get specific list of event level and the descriptions by comma separated value of event levels",
-        "operationId": "SpecificEventLevelDescriptionHandler",
         "deprecated": true,
+        "operationId": "SpecificEventLevelDescriptionHandler",
         "parameters": [
           {
-            "type": "string",
             "description": "Comma separated value of event levels",
+            "in": "query",
             "name": "eventLevels",
-            "in": "query"
+            "type": "string"
           }
+        ],
+        "produces": [
+          "application/json"
         ],
         "responses": {
           "200": {
@@ -171,20 +226,25 @@
           "404": {
             "description": "Not Found"
           }
-        }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get specific list of event level and the descriptions by comma separated value of event levels",
+        "tags": [
+          "Event Descriptions"
+        ]
       }
     },
     "/event/descriptions/eventType": {
       "get": {
+        "deprecated": true,
+        "operationId": "EventTypeDescriptionHandler",
         "produces": [
           "application/json"
         ],
-        "tags": [
-          "Event Descriptions"
-        ],
-        "summary": "Get list of event type and the descriptions",
-        "operationId": "EventTypeDescriptionHandler",
-        "deprecated": true,
         "responses": {
           "200": {
             "description": "OK",
@@ -192,27 +252,32 @@
               "$ref": "#/definitions/models.MultipleEventType"
             }
           }
-        }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get list of event type and the descriptions",
+        "tags": [
+          "Event Descriptions"
+        ]
       }
     },
     "/event/descriptions/eventType/listByEventTypes": {
       "get": {
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "Event Descriptions"
-        ],
-        "summary": "Get specific list of event type and the descriptions by comma separated value of event types",
-        "operationId": "SpecificEventTypeDescriptionHandler",
         "deprecated": true,
+        "operationId": "SpecificEventTypeDescriptionHandler",
         "parameters": [
           {
-            "type": "string",
             "description": "Comma separated value of eventIDs",
+            "in": "query",
             "name": "eventTypes",
-            "in": "query"
+            "type": "string"
           }
+        ],
+        "produces": [
+          "application/json"
         ],
         "responses": {
           "200": {
@@ -227,20 +292,25 @@
           "404": {
             "description": "Not Found"
           }
-        }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get specific list of event type and the descriptions by comma separated value of event types",
+        "tags": [
+          "Event Descriptions"
+        ]
       }
     },
     "/event/descriptions/ux": {
       "get": {
+        "deprecated": true,
+        "operationId": "UXNameDescriptionHandler",
         "produces": [
           "application/json"
         ],
-        "tags": [
-          "Event Descriptions"
-        ],
-        "summary": "Get list of ux name and the descriptions",
-        "operationId": "UXNameDescriptionHandler",
-        "deprecated": true,
         "responses": {
           "200": {
             "description": "OK",
@@ -248,27 +318,32 @@
               "$ref": "#/definitions/models.MultipleUX"
             }
           }
-        }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get list of ux name and the descriptions",
+        "tags": [
+          "Event Descriptions"
+        ]
       }
     },
     "/event/descriptions/ux/listByUx": {
       "get": {
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "Event Descriptions"
-        ],
-        "summary": "Get specific list of UX and the descriptions by comma separated value of UX",
-        "operationId": "SpecificUXDescriptionHandler",
         "deprecated": true,
+        "operationId": "SpecificUXDescriptionHandler",
         "parameters": [
           {
-            "type": "string",
             "description": "Comma separated value of UX",
+            "in": "query",
             "name": "ux",
-            "in": "query"
+            "type": "string"
           }
+        ],
+        "produces": [
+          "application/json"
         ],
         "responses": {
           "200": {
@@ -283,56 +358,61 @@
           "404": {
             "description": "Not Found"
           }
-        }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get specific list of UX and the descriptions by comma separated value of UX",
+        "tags": [
+          "Event Descriptions"
+        ]
       }
     },
     "/event/namespaces/{namespace}": {
       "get": {
-        "description": "Required permission <code>NAMESPACE:{namespace}:EVENT [UPDATE]</code> and scope <code>analytics</code>",
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "Event"
-        ],
-        "summary": "Get events from all users in a namespace",
-        "operationId": "GetEventByNamespaceHandler",
         "deprecated": true,
+        "description": "Required permission \u0026lt;code\u0026gt;NAMESPACE:{namespace}:EVENT [UPDATE]\u0026lt;/code\u0026gt; and scope \u0026lt;code\u0026gt;analytics\u0026lt;/code\u0026gt;",
+        "operationId": "GetEventByNamespaceHandler",
         "parameters": [
           {
-            "type": "string",
             "description": "Namespace",
-            "name": "namespace",
             "in": "path",
-            "required": true
+            "name": "namespace",
+            "required": true,
+            "type": "string"
           },
           {
-            "type": "string",
             "description": "Starting date. e.g. 2015-03-20T12:27:06Z",
+            "in": "query",
             "name": "startDate",
-            "in": "query",
-            "required": true
+            "required": true,
+            "type": "string"
           },
           {
-            "type": "string",
             "description": "Ending date. e.g. 2015-03-20T12:27:06Z",
+            "in": "query",
             "name": "endDate",
-            "in": "query",
-            "required": true
+            "required": true,
+            "type": "string"
           },
           {
-            "type": "number",
             "description": "Number of result in a page",
-            "name": "pageSize",
             "in": "query",
-            "required": true
+            "name": "pageSize",
+            "required": true,
+            "type": "number"
           },
           {
-            "type": "number",
             "description": "Offset to query",
+            "in": "query",
             "name": "offset",
-            "in": "query"
+            "type": "number"
           }
+        ],
+        "produces": [
+          "application/json"
         ],
         "responses": {
           "200": {
@@ -356,36 +436,47 @@
           "500": {
             "description": "Internal Server Error"
           }
-        }
-      },
-      "post": {
-        "description": "Required permission <code>NAMESPACE:{namespace}:EVENT [CREATE]</code>and scope <code>analytics</code>",
-        "produces": [
-          "application/json"
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:EVENT [UPDATE]"
+            ],
+            "HasScope": [
+              "analytics"
+            ],
+            "authorization": []
+          }
         ],
+        "summary": "Get events from all users in a namespace",
         "tags": [
           "Event"
-        ],
-        "summary": "Post an activity log",
-        "operationId": "PostEventHandler",
+        ]
+      },
+      "post": {
         "deprecated": true,
+        "description": "Required permission \u0026lt;code\u0026gt;NAMESPACE:{namespace}:EVENT [CREATE]\u0026lt;/code\u0026gt;and scope \u0026lt;code\u0026gt;analytics\u0026lt;/code\u0026gt;",
+        "operationId": "PostEventHandler",
         "parameters": [
           {
-            "type": "string",
             "description": "Namespace",
-            "name": "namespace",
             "in": "path",
-            "required": true
+            "name": "namespace",
+            "required": true,
+            "type": "string"
           },
           {
-            "name": "body",
             "in": "body",
+            "name": "body",
             "required": true,
             "schema": {
               "$ref": "#/definitions/models.Event"
             }
           }
         ],
+        "produces": [
+          "application/json"
+        ],
         "responses": {
           "204": {
             "description": "No Content"
@@ -402,63 +493,74 @@
           "500": {
             "description": "Internal Server Error"
           }
-        }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:EVENT [CREATE]"
+            ],
+            "HasScope": [
+              "analytics"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Post an activity log",
+        "tags": [
+          "Event"
+        ]
       }
     },
     "/event/namespaces/{namespace}/eventId/{eventId}": {
       "get": {
-        "description": "Required permission <code>NAMESPACE:{namespace}:EVENT [UPDATE]</code> and scope <code>analytics</code>",
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "Event"
-        ],
-        "summary": "Get events from all users in a namespace with specific eventID",
-        "operationId": "GetEventByEventIDHandler",
         "deprecated": true,
+        "description": "Required permission \u0026lt;code\u0026gt;NAMESPACE:{namespace}:EVENT [UPDATE]\u0026lt;/code\u0026gt; and scope \u0026lt;code\u0026gt;analytics\u0026lt;/code\u0026gt;",
+        "operationId": "GetEventByEventIDHandler",
         "parameters": [
           {
-            "type": "string",
             "description": "Namespace",
+            "in": "path",
             "name": "namespace",
-            "in": "path",
-            "required": true
+            "required": true,
+            "type": "string"
           },
           {
-            "type": "number",
             "description": "Event's ID",
-            "name": "eventId",
             "in": "path",
-            "required": true
+            "name": "eventId",
+            "required": true,
+            "type": "number"
           },
           {
-            "type": "string",
             "description": "Starting date. e.g. 2015-03-20T12:27:06.351Z",
+            "in": "query",
             "name": "startDate",
-            "in": "query",
-            "required": true
+            "required": true,
+            "type": "string"
           },
           {
-            "type": "string",
             "description": "Ending date. e.g. 2015-03-20T12:27:06.351Z",
+            "in": "query",
             "name": "endDate",
-            "in": "query",
-            "required": true
+            "required": true,
+            "type": "string"
           },
           {
-            "type": "number",
             "description": "Number of result in a page",
-            "name": "pageSize",
             "in": "query",
-            "required": true
+            "name": "pageSize",
+            "required": true,
+            "type": "number"
           },
           {
-            "type": "number",
             "description": "Offset to query",
+            "in": "query",
             "name": "offset",
-            "in": "query"
+            "type": "number"
           }
+        ],
+        "produces": [
+          "application/json"
         ],
         "responses": {
           "200": {
@@ -482,63 +584,74 @@
           "500": {
             "description": "Internal Server Error"
           }
-        }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:EVENT [UPDATE]"
+            ],
+            "HasScope": [
+              "analytics"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get events from all users in a namespace with specific eventID",
+        "tags": [
+          "Event"
+        ]
       }
     },
     "/event/namespaces/{namespace}/eventType/{eventType}": {
       "get": {
-        "description": "Required permission <code>NAMESPACE:{namespace}:EVENT [UPDATE]</code>and scope <code>analytics</code>",
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "Event"
-        ],
-        "summary": "Get events from all users in a namespace with specific eventType",
-        "operationId": "GetEventByEventTypeHandler",
         "deprecated": true,
+        "description": "Required permission \u0026lt;code\u0026gt;NAMESPACE:{namespace}:EVENT [UPDATE]\u0026lt;/code\u0026gt;and scope \u0026lt;code\u0026gt;analytics\u0026lt;/code\u0026gt;",
+        "operationId": "GetEventByEventTypeHandler",
         "parameters": [
           {
-            "type": "string",
             "description": "Namespace",
+            "in": "path",
             "name": "namespace",
-            "in": "path",
-            "required": true
+            "required": true,
+            "type": "string"
           },
           {
-            "type": "number",
             "description": "Event's type",
-            "name": "eventType",
             "in": "path",
-            "required": true
+            "name": "eventType",
+            "required": true,
+            "type": "number"
           },
           {
-            "type": "string",
             "description": "Starting date. e.g. 2015-03-20T12:27:06.351Z",
+            "in": "query",
             "name": "startDate",
-            "in": "query",
-            "required": true
+            "required": true,
+            "type": "string"
           },
           {
-            "type": "string",
             "description": "Ending date. e.g. 2015-03-20T12:27:06.351Z",
+            "in": "query",
             "name": "endDate",
-            "in": "query",
-            "required": true
+            "required": true,
+            "type": "string"
           },
           {
-            "type": "number",
             "description": "Number of result in a page",
-            "name": "pageSize",
             "in": "query",
-            "required": true
+            "name": "pageSize",
+            "required": true,
+            "type": "number"
           },
           {
-            "type": "number",
             "description": "Offset to query",
+            "in": "query",
             "name": "offset",
-            "in": "query"
+            "type": "number"
           }
+        ],
+        "produces": [
+          "application/json"
         ],
         "responses": {
           "200": {
@@ -562,70 +675,81 @@
           "500": {
             "description": "Internal Server Error"
           }
-        }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:EVENT [UPDATE]"
+            ],
+            "HasScope": [
+              "analytics"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get events from all users in a namespace with specific eventType",
+        "tags": [
+          "Event"
+        ]
       }
     },
     "/event/namespaces/{namespace}/eventType/{eventType}/eventId/{eventId}": {
       "get": {
-        "description": "Required permission <code>NAMESPACE:{namespace}:EVENT [UPDATE]</code>and scope <code>analytics</code>",
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "Event"
-        ],
-        "summary": "Get events from all users in a namespace with specific eventID and eventType",
-        "operationId": "GetEventByEventTypeAndEventIDHandler",
         "deprecated": true,
+        "description": "Required permission \u0026lt;code\u0026gt;NAMESPACE:{namespace}:EVENT [UPDATE]\u0026lt;/code\u0026gt;and scope \u0026lt;code\u0026gt;analytics\u0026lt;/code\u0026gt;",
+        "operationId": "GetEventByEventTypeAndEventIDHandler",
         "parameters": [
           {
-            "type": "string",
             "description": "Namespace",
+            "in": "path",
             "name": "namespace",
-            "in": "path",
-            "required": true
+            "required": true,
+            "type": "string"
           },
           {
-            "type": "number",
             "description": "Event's type",
+            "in": "path",
             "name": "eventType",
-            "in": "path",
-            "required": true
+            "required": true,
+            "type": "number"
           },
           {
-            "type": "number",
             "description": "Event's ID",
-            "name": "eventId",
             "in": "path",
-            "required": true
+            "name": "eventId",
+            "required": true,
+            "type": "number"
           },
           {
-            "type": "string",
             "description": "Starting date. e.g. 2015-03-20T12:27:06.351Z",
+            "in": "query",
             "name": "startDate",
-            "in": "query",
-            "required": true
+            "required": true,
+            "type": "string"
           },
           {
-            "type": "string",
             "description": "Ending date. e.g. 2015-03-20T12:27:06.351Z",
+            "in": "query",
             "name": "endDate",
-            "in": "query",
-            "required": true
+            "required": true,
+            "type": "string"
           },
           {
-            "type": "number",
             "description": "Number of result in a page",
-            "name": "pageSize",
             "in": "query",
-            "required": true
+            "name": "pageSize",
+            "required": true,
+            "type": "number"
           },
           {
-            "type": "number",
             "description": "Offset to query",
+            "in": "query",
             "name": "offset",
-            "in": "query"
+            "type": "number"
           }
+        ],
+        "produces": [
+          "application/json"
         ],
         "responses": {
           "200": {
@@ -649,63 +773,74 @@
           "500": {
             "description": "Internal Server Error"
           }
-        }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:EVENT [UPDATE]"
+            ],
+            "HasScope": [
+              "analytics"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get events from all users in a namespace with specific eventID and eventType",
+        "tags": [
+          "Event"
+        ]
       }
     },
     "/event/namespaces/{namespace}/users/{userId}": {
       "get": {
-        "description": "Required permission <code>NAMESPACE:{namespace}:EVENT [UPDATE]</code> and scope <code>analytics</code>",
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "Event"
-        ],
-        "summary": "Get events from specific user",
-        "operationId": "GetEventByUserIDHandler",
         "deprecated": true,
+        "description": "Required permission \u0026lt;code\u0026gt;NAMESPACE:{namespace}:EVENT [UPDATE]\u0026lt;/code\u0026gt; and scope \u0026lt;code\u0026gt;analytics\u0026lt;/code\u0026gt;",
+        "operationId": "GetEventByUserIDHandler",
         "parameters": [
           {
-            "type": "string",
             "description": "Namespace",
+            "in": "path",
             "name": "namespace",
-            "in": "path",
-            "required": true
+            "required": true,
+            "type": "string"
           },
           {
-            "type": "string",
             "description": "User ID",
-            "name": "userId",
             "in": "path",
-            "required": true
+            "name": "userId",
+            "required": true,
+            "type": "string"
           },
           {
-            "type": "string",
             "description": "Starting date. e.g. 2015-03-20T12:27:06.351Z",
+            "in": "query",
             "name": "startDate",
-            "in": "query",
-            "required": true
+            "required": true,
+            "type": "string"
           },
           {
-            "type": "string",
             "description": "Ending date. e.g. 2015-03-20T12:27:06.351Z",
+            "in": "query",
             "name": "endDate",
-            "in": "query",
-            "required": true
+            "required": true,
+            "type": "string"
           },
           {
-            "type": "number",
             "description": "Number of result in a page",
-            "name": "pageSize",
             "in": "query",
-            "required": true
+            "name": "pageSize",
+            "required": true,
+            "type": "number"
           },
           {
-            "type": "number",
             "description": "Offset to query",
+            "in": "query",
             "name": "offset",
-            "in": "query"
+            "type": "number"
           }
+        ],
+        "produces": [
+          "application/json"
         ],
         "responses": {
           "200": {
@@ -729,100 +864,47 @@
           "500": {
             "description": "Internal Server Error"
           }
-        }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:EVENT [UPDATE]"
+            ],
+            "HasScope": [
+              "analytics"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get events from specific user",
+        "tags": [
+          "Event"
+        ]
       }
     },
     "/event/namespaces/{namespace}/users/{userId}/activities": {
-      "get": {
-        "description": "Required permission <code>NAMESPACE:{namespace}:EVENT [UPDATE]</code>and scope <code>analytics</code>",
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "User Information"
-        ],
-        "summary": "Get all user's activities",
-        "operationId": "GetUserActivitiesHandler",
-        "deprecated": true,
-        "parameters": [
-          {
-            "type": "string",
-            "description": "Namespace",
-            "name": "namespace",
-            "in": "path",
-            "required": true
-          },
-          {
-            "type": "string",
-            "description": "User ID",
-            "name": "userId",
-            "in": "path",
-            "required": true
-          },
-          {
-            "type": "number",
-            "description": "Number of result in a page",
-            "name": "pageSize",
-            "in": "query",
-            "required": true
-          },
-          {
-            "type": "number",
-            "description": "Offset to query",
-            "name": "offset",
-            "in": "query"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/models.EventResponse"
-            }
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      },
       "delete": {
-        "description": "Required permission <code>NAMESPACE:{namespace}:EVENT [UPDATE]</code>and scope <code>analytics</code>",
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "User Information"
-        ],
-        "summary": "Delete all user's activities",
-        "operationId": "DeleteUserActivitiesHandler",
         "deprecated": true,
+        "description": "Required permission \u0026lt;code\u0026gt;NAMESPACE:{namespace}:EVENT [UPDATE]\u0026lt;/code\u0026gt;and scope \u0026lt;code\u0026gt;analytics\u0026lt;/code\u0026gt;",
+        "operationId": "DeleteUserActivitiesHandler",
         "parameters": [
           {
-            "type": "string",
             "description": "Namespace",
-            "name": "namespace",
             "in": "path",
-            "required": true
+            "name": "namespace",
+            "required": true,
+            "type": "string"
           },
           {
-            "type": "string",
             "description": "User ID",
-            "name": "userId",
             "in": "path",
-            "required": true
+            "name": "userId",
+            "required": true,
+            "type": "string"
           }
+        ],
+        "produces": [
+          "application/json"
         ],
         "responses": {
           "204": {
@@ -840,70 +922,156 @@
           "500": {
             "description": "Internal Server Error"
           }
-        }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:EVENT [UPDATE]"
+            ],
+            "HasScope": [
+              "analytics"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Delete all user's activities",
+        "tags": [
+          "User Information"
+        ]
+      },
+      "get": {
+        "deprecated": true,
+        "description": "Required permission \u0026lt;code\u0026gt;NAMESPACE:{namespace}:EVENT [UPDATE]\u0026lt;/code\u0026gt;and scope \u0026lt;code\u0026gt;analytics\u0026lt;/code\u0026gt;",
+        "operationId": "GetUserActivitiesHandler",
+        "parameters": [
+          {
+            "description": "Namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "User ID",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Number of result in a page",
+            "in": "query",
+            "name": "pageSize",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "description": "Offset to query",
+            "in": "query",
+            "name": "offset",
+            "type": "number"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.EventResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:EVENT [UPDATE]"
+            ],
+            "HasScope": [
+              "analytics"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get all user's activities",
+        "tags": [
+          "User Information"
+        ]
       }
     },
     "/event/namespaces/{namespace}/users/{userId}/eventId/{eventId}": {
       "get": {
-        "description": "Required permission <code>NAMESPACE:{namespace}:EVENT [UPDATE]</code> and scope <code>analytics</code>",
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "Event"
-        ],
-        "summary": "Get events from specific user with specific eventID",
-        "operationId": "GetEventByUserIDAndEventIDHandler",
         "deprecated": true,
+        "description": "Required permission \u0026lt;code\u0026gt;NAMESPACE:{namespace}:EVENT [UPDATE]\u0026lt;/code\u0026gt; and scope \u0026lt;code\u0026gt;analytics\u0026lt;/code\u0026gt;",
+        "operationId": "GetEventByUserIDAndEventIDHandler",
         "parameters": [
           {
-            "type": "string",
             "description": "Namespace",
+            "in": "path",
             "name": "namespace",
-            "in": "path",
-            "required": true
+            "required": true,
+            "type": "string"
           },
           {
-            "type": "string",
             "description": "User ID",
+            "in": "path",
             "name": "userId",
-            "in": "path",
-            "required": true
+            "required": true,
+            "type": "string"
           },
           {
-            "type": "number",
             "description": "Event's ID",
-            "name": "eventId",
             "in": "path",
-            "required": true
+            "name": "eventId",
+            "required": true,
+            "type": "number"
           },
           {
-            "type": "string",
             "description": "Starting date. e.g. 2015-03-20T12:27:06.351Z",
+            "in": "query",
             "name": "startDate",
-            "in": "query",
-            "required": true
+            "required": true,
+            "type": "string"
           },
           {
-            "type": "string",
             "description": "Ending date. e.g. 2015-03-20T12:27:06.351Z",
+            "in": "query",
             "name": "endDate",
-            "in": "query",
-            "required": true
+            "required": true,
+            "type": "string"
           },
           {
-            "type": "number",
             "description": "Number of result in a page",
-            "name": "pageSize",
             "in": "query",
-            "required": true
+            "name": "pageSize",
+            "required": true,
+            "type": "number"
           },
           {
-            "type": "number",
             "description": "Offset to query",
+            "in": "query",
             "name": "offset",
-            "in": "query"
+            "type": "number"
           }
+        ],
+        "produces": [
+          "application/json"
         ],
         "responses": {
           "200": {
@@ -927,70 +1095,81 @@
           "500": {
             "description": "Internal Server Error"
           }
-        }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:EVENT [UPDATE]"
+            ],
+            "HasScope": [
+              "analytics"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get events from specific user with specific eventID",
+        "tags": [
+          "Event"
+        ]
       }
     },
     "/event/namespaces/{namespace}/users/{userId}/eventType/{eventType}": {
       "get": {
-        "description": "Required permission <code>NAMESPACE:{namespace}:EVENT [UPDATE]and scope <code>analytics</code>",
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "Event"
-        ],
-        "summary": "Get events from specific user with specific eventType",
-        "operationId": "GetEventByUserIDAndEventTypeHandler",
         "deprecated": true,
+        "description": "Required permission \u0026lt;code\u0026gt;NAMESPACE:{namespace}:EVENT [UPDATE]and scope \u0026lt;code\u0026gt;analytics\u0026lt;/code\u0026gt;",
+        "operationId": "GetEventByUserIDAndEventTypeHandler",
         "parameters": [
           {
-            "type": "string",
             "description": "Namespace",
+            "in": "path",
             "name": "namespace",
-            "in": "path",
-            "required": true
+            "required": true,
+            "type": "string"
           },
           {
-            "type": "string",
             "description": "User ID",
+            "in": "path",
             "name": "userId",
-            "in": "path",
-            "required": true
+            "required": true,
+            "type": "string"
           },
           {
-            "type": "number",
             "description": "Event's type",
-            "name": "eventType",
             "in": "path",
-            "required": true
+            "name": "eventType",
+            "required": true,
+            "type": "number"
           },
           {
-            "type": "string",
             "description": "Starting date. e.g. 2015-03-20T12:27:06.351Z",
+            "in": "query",
             "name": "startDate",
-            "in": "query",
-            "required": true
+            "required": true,
+            "type": "string"
           },
           {
-            "type": "string",
             "description": "Ending date. e.g. 2015-03-20T12:27:06.351Z",
+            "in": "query",
             "name": "endDate",
-            "in": "query",
-            "required": true
+            "required": true,
+            "type": "string"
           },
           {
-            "type": "number",
             "description": "Number of result in a page",
-            "name": "pageSize",
             "in": "query",
-            "required": true
+            "name": "pageSize",
+            "required": true,
+            "type": "number"
           },
           {
-            "type": "number",
             "description": "Offset to query",
+            "in": "query",
             "name": "offset",
-            "in": "query"
+            "type": "number"
           }
+        ],
+        "produces": [
+          "application/json"
         ],
         "responses": {
           "200": {
@@ -1014,77 +1193,88 @@
           "500": {
             "description": "Internal Server Error"
           }
-        }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:EVENT [UPDATE]"
+            ],
+            "HasScope": [
+              "analytics"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get events from specific user with specific eventType",
+        "tags": [
+          "Event"
+        ]
       }
     },
     "/event/namespaces/{namespace}/users/{userId}/eventType/{eventType}/eventId/{eventId}": {
       "get": {
-        "description": "Required permission <code>NAMESPACE:{namespace}:EVENT [UPDATE]</code>and scope <code>analytics</code>",
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "Event"
-        ],
-        "summary": "Get events from specific user with specific eventID and eventType",
-        "operationId": "GetEventByUserEventIDAndEventTypeHandler",
         "deprecated": true,
+        "description": "Required permission \u0026lt;code\u0026gt;NAMESPACE:{namespace}:EVENT [UPDATE]\u0026lt;/code\u0026gt;and scope \u0026lt;code\u0026gt;analytics\u0026lt;/code\u0026gt;",
+        "operationId": "GetEventByUserEventIDAndEventTypeHandler",
         "parameters": [
           {
-            "type": "string",
             "description": "Namespace",
+            "in": "path",
             "name": "namespace",
-            "in": "path",
-            "required": true
+            "required": true,
+            "type": "string"
           },
           {
-            "type": "string",
             "description": "User ID",
+            "in": "path",
             "name": "userId",
-            "in": "path",
-            "required": true
+            "required": true,
+            "type": "string"
           },
           {
-            "type": "number",
             "description": "Event's type",
+            "in": "path",
             "name": "eventType",
-            "in": "path",
-            "required": true
+            "required": true,
+            "type": "number"
           },
           {
-            "type": "number",
             "description": "Event's ID",
-            "name": "eventId",
             "in": "path",
-            "required": true
+            "name": "eventId",
+            "required": true,
+            "type": "number"
           },
           {
-            "type": "string",
             "description": "Starting date. e.g. 2015-03-20T12:27:06.351Z",
+            "in": "query",
             "name": "startDate",
-            "in": "query",
-            "required": true
+            "required": true,
+            "type": "string"
           },
           {
-            "type": "string",
             "description": "Ending date. e.g. 2015-03-20T12:27:06.351Z",
+            "in": "query",
             "name": "endDate",
-            "in": "query",
-            "required": true
+            "required": true,
+            "type": "string"
           },
           {
-            "type": "number",
             "description": "Number of result in a page",
-            "name": "pageSize",
             "in": "query",
-            "required": true
+            "name": "pageSize",
+            "required": true,
+            "type": "number"
           },
           {
-            "type": "number",
             "description": "Offset to query",
+            "in": "query",
             "name": "offset",
-            "in": "query"
+            "type": "number"
           }
+        ],
+        "produces": [
+          "application/json"
         ],
         "responses": {
           "200": {
@@ -1108,36 +1298,47 @@
           "500": {
             "description": "Internal Server Error"
           }
-        }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:EVENT [UPDATE]"
+            ],
+            "HasScope": [
+              "analytics"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get events from specific user with specific eventID and eventType",
+        "tags": [
+          "Event"
+        ]
       }
     },
     "/event/namespaces/{namespace}/users/{userId}/lastActivityTime": {
       "get": {
-        "description": "Required permission <code>NAMESPACE:{namespace}:EVENT [UPDATE]</code>and scope <code>analytics</code>",
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "User Information"
-        ],
-        "summary": "Get last activity time of a user in a namespace",
-        "operationId": "LastUserActivityTimeHandler",
         "deprecated": true,
+        "description": "Required permission \u0026lt;code\u0026gt;NAMESPACE:{namespace}:EVENT [UPDATE]\u0026lt;/code\u0026gt;and scope \u0026lt;code\u0026gt;analytics\u0026lt;/code\u0026gt;",
+        "operationId": "LastUserActivityTimeHandler",
         "parameters": [
           {
-            "type": "string",
             "description": "Namespace",
-            "name": "namespace",
             "in": "path",
-            "required": true
+            "name": "namespace",
+            "required": true,
+            "type": "string"
           },
           {
-            "type": "string",
             "description": "User ID",
-            "name": "userId",
             "in": "path",
-            "required": true
+            "name": "userId",
+            "required": true,
+            "type": "string"
           }
+        ],
+        "produces": [
+          "application/json"
         ],
         "responses": {
           "200": {
@@ -1158,21 +1359,32 @@
           "500": {
             "description": "Internal Server Error"
           }
-        }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:EVENT [UPDATE]"
+            ],
+            "HasScope": [
+              "analytics"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get last activity time of a user in a namespace",
+        "tags": [
+          "User Information"
+        ]
       }
     },
     "/event/registry/eventIds": {
       "get": {
-        "description": "Required permission <code>ADMIN:NAMESPACE:{namespace}:EVENT [READ]</code>and scope <code>analytics</code>",
+        "deprecated": true,
+        "description": "Required permission \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:EVENT [READ]\u0026lt;/code\u0026gt;and scope \u0026lt;code\u0026gt;analytics\u0026lt;/code\u0026gt;",
+        "operationId": "GetRegisteredEventsHandler",
         "produces": [
           "application/json"
         ],
-        "tags": [
-          "Event Registry"
-        ],
-        "summary": "Get registered events in the Event Registry",
-        "operationId": "GetRegisteredEventsHandler",
-        "deprecated": true,
         "responses": {
           "200": {
             "description": "OK",
@@ -1189,28 +1401,39 @@
           "500": {
             "description": "Internal Server Error"
           }
-        }
-      },
-      "post": {
-        "description": "Required permission <code>ADMIN:NAMESPACE:{namespace}:EVENT [CREATE]</code>and scope <code>analytics</code>",
-        "produces": [
-          "application/json"
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:EVENT [READ]"
+            ],
+            "HasScope": [
+              "analytics"
+            ],
+            "authorization": []
+          }
         ],
+        "summary": "Get registered events in the Event Registry",
         "tags": [
           "Event Registry"
-        ],
-        "summary": "Register an eventID to the Event Registry",
-        "operationId": "RegisterEventHandler",
+        ]
+      },
+      "post": {
         "deprecated": true,
+        "description": "Required permission \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:EVENT [CREATE]\u0026lt;/code\u0026gt;and scope \u0026lt;code\u0026gt;analytics\u0026lt;/code\u0026gt;",
+        "operationId": "RegisterEventHandler",
         "parameters": [
           {
-            "name": "body",
             "in": "body",
+            "name": "body",
             "required": true,
             "schema": {
               "$ref": "#/definitions/models.EventRegistry"
             }
           }
+        ],
+        "produces": [
+          "application/json"
         ],
         "responses": {
           "201": {
@@ -1231,29 +1454,89 @@
           "500": {
             "description": "Internal Server Error"
           }
-        }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:EVENT [CREATE]"
+            ],
+            "HasScope": [
+              "analytics"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Register an eventID to the Event Registry",
+        "tags": [
+          "Event Registry"
+        ]
       }
     },
     "/event/registry/eventIds/{eventId}": {
-      "get": {
-        "description": "Required permission <code>ADMIN:NAMESPACE:{namespace}:EVENT [READ]</code>and scope <code>analytics</code>",
+      "delete": {
+        "deprecated": true,
+        "description": "Required permission \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:EVENT [DELETE]\u0026lt;/code\u0026gt;and scope \u0026lt;code\u0026gt;analytics\u0026lt;/code\u0026gt;",
+        "operationId": "UnregisterEventIDHandler",
+        "parameters": [
+          {
+            "description": "Event's ID",
+            "in": "path",
+            "name": "eventId",
+            "required": true,
+            "type": "string"
+          }
+        ],
         "produces": [
           "application/json"
         ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:EVENT [DELETE]"
+            ],
+            "HasScope": [
+              "analytics"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Unregister eventID from the Event Registry",
         "tags": [
           "Event Registry"
-        ],
-        "summary": "Get registered eventID data from the Event Registry",
-        "operationId": "GetRegisteredEventIDHandler",
+        ]
+      },
+      "get": {
         "deprecated": true,
+        "description": "Required permission \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:EVENT [READ]\u0026lt;/code\u0026gt;and scope \u0026lt;code\u0026gt;analytics\u0026lt;/code\u0026gt;",
+        "operationId": "GetRegisteredEventIDHandler",
         "parameters": [
           {
-            "type": "string",
             "description": "Event's ID",
-            "name": "eventId",
             "in": "path",
-            "required": true
+            "name": "eventId",
+            "required": true,
+            "type": "string"
           }
+        ],
+        "produces": [
+          "application/json"
         ],
         "responses": {
           "200": {
@@ -1277,36 +1560,47 @@
           "500": {
             "description": "Internal Server Error"
           }
-        }
-      },
-      "post": {
-        "description": "Required permission <code>ADMIN:NAMESPACE:{namespace}:EVENT [UPDATE]</code>and scope <code>analytics</code>",
-        "produces": [
-          "application/json"
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:EVENT [READ]"
+            ],
+            "HasScope": [
+              "analytics"
+            ],
+            "authorization": []
+          }
         ],
+        "summary": "Get registered eventID data from the Event Registry",
         "tags": [
           "Event Registry"
-        ],
-        "summary": "Update an eventID data in the Event Registry",
-        "operationId": "UpdateEventRegistryHandler",
+        ]
+      },
+      "post": {
         "deprecated": true,
+        "description": "Required permission \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:EVENT [UPDATE]\u0026lt;/code\u0026gt;and scope \u0026lt;code\u0026gt;analytics\u0026lt;/code\u0026gt;",
+        "operationId": "UpdateEventRegistryHandler",
         "parameters": [
           {
-            "type": "string",
             "description": "Event's ID",
-            "name": "eventId",
             "in": "path",
-            "required": true
+            "name": "eventId",
+            "required": true,
+            "type": "string"
           },
           {
-            "name": "body",
             "in": "body",
+            "name": "body",
             "required": true,
             "schema": {
               "$ref": "#/definitions/models.EventRegistry"
             }
           }
         ],
+        "produces": [
+          "application/json"
+        ],
         "responses": {
           "204": {
             "description": "No Content"
@@ -1326,67 +1620,40 @@
           "500": {
             "description": "Internal Server Error"
           }
-        }
-      },
-      "delete": {
-        "description": "Required permission <code>ADMIN:NAMESPACE:{namespace}:EVENT [DELETE]</code>and scope <code>analytics</code>",
-        "produces": [
-          "application/json"
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:EVENT [UPDATE]"
+            ],
+            "HasScope": [
+              "analytics"
+            ],
+            "authorization": []
+          }
         ],
+        "summary": "Update an eventID data in the Event Registry",
         "tags": [
           "Event Registry"
-        ],
-        "summary": "Unregister eventID from the Event Registry",
-        "operationId": "UnregisterEventIDHandler",
-        "deprecated": true,
-        "parameters": [
-          {
-            "type": "string",
-            "description": "Event's ID",
-            "name": "eventId",
-            "in": "path",
-            "required": true
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "No Content"
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
+        ]
       }
     },
     "/event/registry/eventTypes/{eventType}": {
       "get": {
-        "description": "Required permission <code>ADMIN:NAMESPACE:{namespace}:EVENT [READ]</code>and scope <code>analytics</code>",
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "Event Registry"
-        ],
-        "summary": "Get registered eventID data from the Event Registry based on the event type",
-        "operationId": "GetRegisteredEventsByEventTypeHandler",
         "deprecated": true,
+        "description": "Required permission \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:EVENT [READ]\u0026lt;/code\u0026gt;and scope \u0026lt;code\u0026gt;analytics\u0026lt;/code\u0026gt;",
+        "operationId": "GetRegisteredEventsByEventTypeHandler",
         "parameters": [
           {
-            "type": "string",
             "description": "Event's Type",
-            "name": "eventType",
             "in": "path",
-            "required": true
+            "name": "eventType",
+            "required": true,
+            "type": "string"
           }
+        ],
+        "produces": [
+          "application/json"
         ],
         "responses": {
           "200": {
@@ -1410,61 +1677,72 @@
           "500": {
             "description": "Internal Server Error"
           }
-        }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:EVENT [READ]"
+            ],
+            "HasScope": [
+              "analytics"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get registered eventID data from the Event Registry based on the event type",
+        "tags": [
+          "Event Registry"
+        ]
       }
     },
     "/event/v2/admin/namespaces/{namespace}/query": {
       "post": {
-        "description": "<p>This endpoint is using POST which is somewhat unfamiliar, \n\t\t\tbut it's logical that we have to send/post a filter (search term) in order to get the data.</p>\n\t\t\t<p>This endpoint will not return anything if you give it an empty filters in the request body. </p>\n\t\t\t<p>Required permission <code>ADMIN:NAMESPACE:{namespace}:EVENT [READ]</code> and scope <code>\"+scope+\"</code></p>",
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "Event V2"
-        ],
-        "summary": "A generic query to get a set of events based on the provided filters",
+        "description": "\u0026lt;p\u0026gt;This endpoint is using POST which is somewhat unfamiliar, \n\t\t\tbut it\u0026#39;s logical that we have to send/post a filter (search term) in order to get the data.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint will not return anything if you give it an empty filters in the request body. \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Required permission \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:EVENT [READ]\u0026lt;/code\u0026gt; and scope \u0026lt;code\u0026gt;\u0026#34;+scope+\u0026#34;\u0026lt;/code\u0026gt;\u0026lt;/p\u0026gt;",
         "operationId": "QueryEventStreamHandler",
         "parameters": [
           {
-            "type": "string",
             "description": "Namespace",
-            "name": "namespace",
             "in": "path",
-            "required": true
+            "name": "namespace",
+            "required": true,
+            "type": "string"
           },
           {
-            "type": "number",
             "description": "Number of result in a page. Default : 100. Max : 500",
+            "in": "query",
             "name": "pageSize",
-            "in": "query"
+            "type": "number"
           },
           {
-            "type": "string",
             "description": "Starting date. e.g. 2015-03-20T12:27:06Z. Default : 1970-01-01T00:00:00Z",
+            "in": "query",
             "name": "startDate",
-            "in": "query"
+            "type": "string"
           },
           {
-            "type": "string",
             "description": "Ending date. e.g. 2015-03-20T12:27:06Z. Default : Current time in UTC",
+            "in": "query",
             "name": "endDate",
-            "in": "query"
+            "type": "string"
           },
           {
-            "type": "number",
             "description": "Offset to query. Default : 0",
+            "in": "query",
             "name": "offset",
-            "in": "query"
+            "type": "number"
           },
           {
-            "name": "body",
             "in": "body",
+            "name": "body",
             "required": true,
             "schema": {
               "$ref": "#/definitions/models.GenericQueryPayload"
             }
           }
         ],
+        "produces": [
+          "application/json"
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -1490,65 +1768,73 @@
           "501": {
             "description": "Internal Server Error"
           }
-        }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:EVENT [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "A generic query to get a set of events based on the provided filters",
+        "tags": [
+          "Event V2"
+        ]
       }
     },
     "/event/v2/admin/namespaces/{namespace}/users/{userId}/event": {
       "get": {
-        "description": "Required permission <code>ADMIN:NAMESPACE:{namespace}:EVENT [READ]</code>and scope <code>analytics</code>",
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "Event V2"
-        ],
-        "summary": "Get events from a specific user",
+        "description": "Required permission \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:EVENT [READ]\u0026lt;/code\u0026gt;and scope \u0026lt;code\u0026gt;analytics\u0026lt;/code\u0026gt;",
         "operationId": "GetEventSpecificUserV2Handler",
         "parameters": [
           {
-            "type": "string",
             "description": "Namespace",
+            "in": "path",
             "name": "namespace",
-            "in": "path",
-            "required": true
+            "required": true,
+            "type": "string"
           },
           {
-            "type": "string",
             "description": "User ID",
-            "name": "userId",
             "in": "path",
-            "required": true
+            "name": "userId",
+            "required": true,
+            "type": "string"
           },
           {
-            "type": "number",
             "description": "Number of result in a page. Default : 100. Max : 500",
+            "in": "query",
             "name": "pageSize",
-            "in": "query"
+            "type": "number"
           },
           {
-            "type": "string",
             "description": "Starting date. e.g. 2015-03-20T12:27:06Z. Default : 1970-01-01T00:00:00Z",
+            "in": "query",
             "name": "startDate",
-            "in": "query"
+            "type": "string"
           },
           {
-            "type": "string",
             "description": "Ending date. e.g. 2015-03-20T12:27:06Z. Default : Current time in UTC",
+            "in": "query",
             "name": "endDate",
-            "in": "query"
+            "type": "string"
           },
           {
-            "type": "number",
             "description": "Offset to query. Default : 0",
+            "in": "query",
             "name": "offset",
-            "in": "query"
+            "type": "number"
           },
           {
-            "type": "string",
             "description": "Event Name to filter",
+            "in": "query",
             "name": "eventName",
-            "in": "query"
+            "type": "string"
           }
+        ],
+        "produces": [
+          "application/json"
         ],
         "responses": {
           "200": {
@@ -1575,65 +1861,76 @@
           "501": {
             "description": "Internal Server Error"
           }
-        }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:EVENT [READ]"
+            ],
+            "HasScope": [
+              "analytics"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get events from a specific user",
+        "tags": [
+          "Event V2"
+        ]
       }
     },
     "/event/v2/public/namespaces/{namespace}/users/{userId}/edithistory": {
       "get": {
-        "description": "<p>Available Type: </p>\n\t\t\t<ul>\n\t\t\t\t<li>email</li>\n\t\t\t\t<li>password</li>\n\t\t\t\t<li>displayname</li>\n\t\t\t\t<li>dateofbirth</li>\n\t\t\t\t<li>country</li>\n\t\t\t\t<li>language</li>\n\t\t\t</ul>\n\t\t\t<p>Requires a valid user access token</p>",
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "Event V2"
-        ],
-        "summary": "Get a user edit history based on the provided type",
+        "description": "\u0026lt;p\u0026gt;Available Type: \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;ul\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;email\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;password\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;displayname\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;dateofbirth\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;country\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;language\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ul\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Requires a valid user access token\u0026lt;/p\u0026gt;",
         "operationId": "GetPublicEditHistory",
         "parameters": [
           {
-            "type": "string",
             "description": "Namespace",
+            "in": "path",
             "name": "namespace",
-            "in": "path",
-            "required": true
+            "required": true,
+            "type": "string"
           },
           {
-            "type": "string",
             "description": "User ID",
-            "name": "userId",
             "in": "path",
-            "required": true
+            "name": "userId",
+            "required": true,
+            "type": "string"
           },
           {
-            "type": "number",
             "description": "Number of result in a page. Default : 100. Max : 500",
+            "in": "query",
             "name": "pageSize",
-            "in": "query"
+            "type": "number"
           },
           {
-            "type": "string",
             "description": "Starting date. e.g. 2015-03-20T12:27:06Z. Default : 1970-01-01T00:00:00Z",
+            "in": "query",
             "name": "startDate",
-            "in": "query"
+            "type": "string"
           },
           {
-            "type": "string",
             "description": "Ending date. e.g. 2015-03-20T12:27:06Z. Default : Current time in UTC",
+            "in": "query",
             "name": "endDate",
-            "in": "query"
+            "type": "string"
           },
           {
-            "type": "number",
             "description": "Offset to query. Default : 0",
+            "in": "query",
             "name": "offset",
-            "in": "query"
+            "type": "number"
           },
           {
-            "type": "string",
             "description": "Edit History type to fetch",
+            "in": "query",
             "name": "type",
-            "in": "query"
+            "type": "string"
           }
+        ],
+        "produces": [
+          "application/json"
         ],
         "responses": {
           "200": {
@@ -1660,65 +1957,70 @@
           "501": {
             "description": "Not Implemented"
           }
-        }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get a user edit history based on the provided type",
+        "tags": [
+          "Event V2"
+        ]
       }
     },
     "/event/v2/public/namespaces/{namespace}/users/{userId}/event": {
       "get": {
-        "description": "<p>Requires valid user access token</p>",
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "Event V2"
-        ],
-        "summary": "Get events from a specific user",
+        "description": "\u0026lt;p\u0026gt;Requires valid user access token\u0026lt;/p\u0026gt;",
         "operationId": "GetUserEventsV2Public",
         "parameters": [
           {
-            "type": "string",
             "description": "Namespace",
+            "in": "path",
             "name": "namespace",
-            "in": "path",
-            "required": true
+            "required": true,
+            "type": "string"
           },
           {
-            "type": "string",
             "description": "User ID",
-            "name": "userId",
             "in": "path",
-            "required": true
+            "name": "userId",
+            "required": true,
+            "type": "string"
           },
           {
-            "type": "number",
             "description": "Number of result in a page. Default : 100. Max : 500",
+            "in": "query",
             "name": "pageSize",
-            "in": "query"
+            "type": "number"
           },
           {
-            "type": "string",
             "description": "Starting date. e.g. 2015-03-20T12:27:06Z. Default : 1970-01-01T00:00:00Z",
+            "in": "query",
             "name": "startDate",
-            "in": "query"
+            "type": "string"
           },
           {
-            "type": "string",
             "description": "Ending date. e.g. 2015-03-20T12:27:06Z. Default : Current time in UTC",
+            "in": "query",
             "name": "endDate",
-            "in": "query"
+            "type": "string"
           },
           {
-            "type": "number",
             "description": "Offset to query. Default : 0",
+            "in": "query",
             "name": "offset",
-            "in": "query"
+            "type": "number"
           },
           {
-            "type": "string",
             "description": "Event Name to filter",
+            "in": "query",
             "name": "eventName",
-            "in": "query"
+            "type": "string"
           }
+        ],
+        "produces": [
+          "application/json"
         ],
         "responses": {
           "200": {
@@ -1745,66 +2047,59 @@
           "501": {
             "description": "Internal Server Error"
           }
-        }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get events from a specific user",
+        "tags": [
+          "Event V2"
+        ]
       }
     }
   },
   "definitions": {
     "models.AgentType": {
-      "required": [
-        "AgentType",
-        "Description"
-      ],
       "properties": {
         "AgentType": {
-          "type": "integer",
-          "format": "int32"
+          "format": "int32",
+          "type": "integer"
         },
         "Description": {
           "type": "string"
         }
-      }
+      },
+      "required": [
+        "AgentType",
+        "Description"
+      ]
     },
     "models.Event": {
-      "required": [
-        "ClientID",
-        "UserID",
-        "TargetUserID",
-        "Namespace",
-        "IPAddress",
-        "Time",
-        "AgentType",
-        "ComponentID",
-        "EventID",
-        "EventType",
-        "EventLevel",
-        "UX",
-        "Realm",
-        "TargetNamespace"
-      ],
       "properties": {
         "AgentType": {
-          "type": "integer",
-          "format": "integer"
+          "format": "integer",
+          "type": "integer"
         },
         "ClientID": {
           "type": "string"
         },
         "ComponentID": {
-          "type": "integer",
-          "format": "integer"
+          "format": "integer",
+          "type": "integer"
         },
         "EventID": {
-          "type": "integer",
-          "format": "integer"
+          "format": "integer",
+          "type": "integer"
         },
         "EventLevel": {
-          "type": "integer",
-          "format": "integer"
+          "format": "integer",
+          "type": "integer"
         },
         "EventType": {
-          "type": "integer",
-          "format": "integer"
+          "format": "integer",
+          "type": "integer"
         },
         "IPAddress": {
           "type": "string"
@@ -1825,131 +2120,136 @@
           "type": "string"
         },
         "UX": {
-          "type": "integer",
-          "format": "byte"
+          "format": "byte",
+          "type": "integer"
         },
         "UserID": {
           "type": "string"
         }
-      }
+      },
+      "required": [
+        "AgentType",
+        "ClientID",
+        "ComponentID",
+        "EventID",
+        "EventLevel",
+        "EventType",
+        "IPAddress",
+        "Namespace",
+        "Realm",
+        "TargetNamespace",
+        "TargetUserID",
+        "Time",
+        "UX",
+        "UserID"
+      ]
     },
     "models.EventID": {
-      "required": [
-        "EventID",
-        "Description"
-      ],
       "properties": {
         "Description": {
           "type": "string"
         },
         "EventID": {
-          "type": "integer",
-          "format": "int32"
+          "format": "int32",
+          "type": "integer"
         }
-      }
+      },
+      "required": [
+        "Description",
+        "EventID"
+      ]
     },
     "models.EventLevel": {
-      "required": [
-        "EventLevel",
-        "Description"
-      ],
       "properties": {
         "Description": {
           "type": "string"
         },
         "EventLevel": {
-          "type": "integer",
-          "format": "int32"
+          "format": "int32",
+          "type": "integer"
         }
-      }
+      },
+      "required": [
+        "Description",
+        "EventLevel"
+      ]
     },
     "models.EventRegistry": {
-      "required": [
-        "EventID",
-        "EventType",
-        "EventLevel",
-        "UX"
-      ],
       "properties": {
         "EventID": {
-          "type": "integer",
-          "format": "int32"
+          "format": "int32",
+          "type": "integer"
         },
         "EventLevel": {
-          "type": "integer",
-          "format": "int32"
+          "format": "int32",
+          "type": "integer"
         },
         "EventType": {
-          "type": "integer",
-          "format": "int32"
+          "format": "int32",
+          "type": "integer"
         },
         "UX": {
-          "type": "integer",
-          "format": "int32"
+          "format": "int32",
+          "type": "integer"
         }
-      }
+      },
+      "required": [
+        "EventID",
+        "EventLevel",
+        "EventType",
+        "UX"
+      ]
     },
     "models.EventResponse": {
-      "required": [
-        "Data",
-        "Pagination"
-      ],
       "properties": {
         "Data": {
-          "type": "array",
           "items": {
             "$ref": "#/definitions/models.Event"
-          }
+          },
+          "type": "array"
         },
         "Pagination": {
           "$ref": "#/definitions/models.Pagination"
         }
-      }
+      },
+      "required": [
+        "Data",
+        "Pagination"
+      ]
     },
     "models.EventResponseV2": {
-      "required": [
-        "data",
-        "paging"
-      ],
       "properties": {
         "data": {
-          "type": "array",
           "items": {
             "$ref": "#/definitions/models.EventV2"
-          }
+          },
+          "type": "array"
         },
         "paging": {
           "$ref": "#/definitions/models.Paging"
         }
-      }
+      },
+      "required": [
+        "data",
+        "paging"
+      ]
     },
     "models.EventType": {
-      "required": [
-        "EventType",
-        "Description"
-      ],
       "properties": {
         "Description": {
           "type": "string"
         },
         "EventType": {
-          "type": "integer",
-          "format": "int32"
+          "format": "int32",
+          "type": "integer"
         }
-      }
+      },
+      "required": [
+        "Description",
+        "EventType"
+      ]
     },
     "models.EventV2": {
-      "required": [
-        "id",
-        "timestamp",
-        "namespace",
-        "version",
-        "name",
-        "clientId",
-        "userId",
-        "traceId",
-        "sessionId"
-      ],
       "properties": {
         "clientId": {
           "type": "string"
@@ -1970,8 +2270,8 @@
           "type": "string"
         },
         "timestamp": {
-          "type": "string",
-          "format": "date-time"
+          "format": "date-time",
+          "type": "string"
         },
         "traceId": {
           "type": "string"
@@ -1980,21 +2280,23 @@
           "type": "string"
         },
         "version": {
-          "type": "integer",
-          "format": "int32"
+          "format": "int32",
+          "type": "integer"
         }
-      }
+      },
+      "required": [
+        "clientId",
+        "id",
+        "name",
+        "namespace",
+        "sessionId",
+        "timestamp",
+        "traceId",
+        "userId",
+        "version"
+      ]
     },
     "models.GenericQueryPayload": {
-      "required": [
-        "userId",
-        "eventName",
-        "clientId",
-        "sessionId",
-        "version",
-        "traceId",
-        "payloadQuery"
-      ],
       "properties": {
         "clientId": {
           "type": "string"
@@ -2015,75 +2317,84 @@
           "type": "string"
         },
         "version": {
-          "type": "integer",
-          "format": "int32"
+          "format": "int32",
+          "type": "integer"
         }
-      }
+      },
+      "required": [
+        "clientId",
+        "eventName",
+        "payloadQuery",
+        "sessionId",
+        "traceId",
+        "userId",
+        "version"
+      ]
     },
     "models.MultipleAgentType": {
-      "required": [
-        "AgentTypes"
-      ],
       "properties": {
         "AgentTypes": {
-          "type": "array",
           "items": {
             "$ref": "#/definitions/models.AgentType"
-          }
+          },
+          "type": "array"
         }
-      }
+      },
+      "required": [
+        "AgentTypes"
+      ]
     },
     "models.MultipleEventID": {
-      "required": [
-        "EventIDs"
-      ],
       "properties": {
         "EventIDs": {
-          "type": "array",
           "items": {
             "$ref": "#/definitions/models.EventID"
-          }
+          },
+          "type": "array"
         }
-      }
+      },
+      "required": [
+        "EventIDs"
+      ]
     },
     "models.MultipleEventLevel": {
-      "required": [
-        "EventLevel"
-      ],
       "properties": {
         "EventLevel": {
-          "type": "array",
           "items": {
             "$ref": "#/definitions/models.EventLevel"
-          }
+          },
+          "type": "array"
         }
-      }
+      },
+      "required": [
+        "EventLevel"
+      ]
     },
     "models.MultipleEventType": {
-      "required": [
-        "EventType"
-      ],
       "properties": {
         "EventType": {
-          "type": "array",
           "items": {
             "$ref": "#/definitions/models.EventType"
-          }
+          },
+          "type": "array"
         }
-      }
+      },
+      "required": [
+        "EventType"
+      ]
     },
     "models.MultipleUX": {
-      "required": [
-        "UX"
-      ],
       "properties": {
         "UX": {
-          "type": "array",
           "items": {
             "$ref": "#/definitions/models.UX"
-          }
+          },
+          "type": "array"
         }
-      }
+      },
+      "required": [
+        "UX"
+      ]
     },
     "models.Pagination": {
       "properties": {
@@ -2112,30 +2423,25 @@
       }
     },
     "models.UX": {
-      "required": [
-        "UX",
-        "Description"
-      ],
       "properties": {
         "Description": {
           "type": "string"
         },
         "UX": {
-          "type": "integer",
-          "format": "int32"
+          "format": "int32",
+          "type": "integer"
         }
-      }
+      },
+      "required": [
+        "Description",
+        "UX"
+      ]
     },
     "models.UserLastActivity": {
-      "required": [
-        "UserID",
-        "Namespace",
-        "LastActivityTime"
-      ],
       "properties": {
         "LastActivityTime": {
-          "type": "string",
-          "format": "date-time"
+          "format": "date-time",
+          "type": "string"
         },
         "Namespace": {
           "type": "string"
@@ -2143,19 +2449,12 @@
         "UserID": {
           "type": "string"
         }
-      }
+      },
+      "required": [
+        "LastActivityTime",
+        "Namespace",
+        "UserID"
+      ]
     }
-  },
-  "securityDefinitions": {
-    "authorization": {
-      "type": "apiKey",
-      "name": "Authorization",
-      "in": "header"
-    }
-  },
-  "security": [
-    {
-      "authorization": []
-    }
-  ]
+  }
 }

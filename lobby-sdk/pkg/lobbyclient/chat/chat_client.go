@@ -269,7 +269,7 @@ func (a *Client) PersonalChatHistory(params *PersonalChatHistoryParams, authInfo
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "personalChatHistory",
 		Method:             "GET",
-		PathPattern:        "/lobby/chat/namespaces/{namespace}/users/{userId}/friend/{friendId}",
+		PathPattern:        "/chat/namespaces/{namespace}/users/{userId}/friend/{friendId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -321,7 +321,7 @@ func (a *Client) PersonalChatHistoryShort(params *PersonalChatHistoryParams, aut
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "personalChatHistory",
 		Method:             "GET",
-		PathPattern:        "/lobby/chat/namespaces/{namespace}/users/{userId}/friend/{friendId}",
+		PathPattern:        "/chat/namespaces/{namespace}/users/{userId}/friend/{friendId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},

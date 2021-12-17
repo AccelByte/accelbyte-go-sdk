@@ -1,3 +1,22 @@
+<a name="v0.8.0"></a>
+## [v0.8.0] - 2021-12-21
+### Chore
+- remove templates
+- restore the templates with the new one
+- update spec files
+
+### Docs
+- **samples:** revise aws-lambda-example
+
+### Feat
+- add client for lobby chat service
+- regenerate all services codegen 5
+
+### Fix
+- synchronize the generated client with the new goswagger template
+- synchronize wrapper with regenerated services
+
+
 <a name="v0.7.0"></a>
 ## [v0.7.0] - 2021-12-7
 
@@ -248,6 +267,7 @@ The wrapper have been refactored and has breaking change, these are the list:
 - delete go.mod ([#1](https://github.com/AccelByte/accelbyte-go-sdk/issues/1))
 
 
+[v0.8.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.7.0...v0.8.0
 [v0.7.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.6.1...v0.7.0
 [v0.6.1]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.6.0...v0.6.1
 [v0.6.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.5.0...v0.6.0

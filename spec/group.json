@@ -2648,7 +2648,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;p\u0026gt;Required valid user authentication \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Required Member Role Permission: \u0026#34;GROUP [UPDATE]\u0026#34;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Update predefined group rule. This endpoint will check the group ID of the user based on the access token \n\t\t\tand compare it with the group ID in path parameter. It will also check the member role of the user based on \n\t\t\tthe access token\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;If the rule action is not defined in the group, it wil be added immediately to the predefined group rule\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73310\u0026lt;/p\u0026gt;\n\t\t",
+        "description": "\u0026lt;p\u0026gt;Required valid user authentication \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Required Member Role Permission: \u0026#34;GROUP [UPDATE]\u0026#34;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Update predefined group rule. This endpoint will check the group ID of the user based on the access token \n\t\t\tand compare it with the group ID in path parameter. It will also check the member role of the user based on \n\t\t\tthe access token\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;If the rule action is not defined in the group, it will be added immediately to the predefined group rule\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73310\u0026lt;/p\u0026gt;\n\t\t",
         "operationId": "updateGroupPredefinedRulePublicV1",
         "parameters": [
           {

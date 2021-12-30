@@ -1,0 +1,55 @@
+[
+  {
+    "op": "remove",
+    "path": "/x-components"
+  },
+  {
+    "op": "add",
+    "path": "/host",
+    "value": "demo.accelbyte.io"
+  },
+  {
+    "op": "add",
+    "path": "/schemes",
+    "value": [
+      "https"
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1game-telemetry~1v1~1protected~1events/post/description",
+    "value": "This endpoint require valid JWT token.\n\nThis endpoint send events into designated streaming pipeline and each request can contain single or multiple events.\n&lt;p&gt; Format of the event:\n\n- **EventNamespace (required)**: namespace of the relevant game with domain name format.\n                &lt;p&gt; Only accept input with valid characters. Allowed characters: &lt;b&gt;Aa-Zz0-9_.-&lt;/b&gt; &lt;p&gt;\n                &lt;p&gt; Example: io.accelbyte.justice.dev.samplegame &lt;/p&gt;\n\n- **EventName (required)**: name of the event.\n                &lt;p&gt; Only accept input with valid characters. Allowed characters: &lt;b&gt;Aa-Zz0-9_.-&lt;/b&gt; &lt;p&gt;\n                &lt;p&gt; Example: player_killed, mission_accomplished &lt;/p&gt;\n\n- **Payload (required)**: an arbitrary json with the payload of the said event"
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1game-telemetry~1v1~1protected~1steamIds~1{steamId}~1playtime~1{playtime}/put/description",
+    "value": "This endpoint update player&#39;s total playtime in a specific game (AppId) from service&#39;s cache."
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1game-telemetry~1v1~1protected~1steamIds~1{steamId}~1playtime/get/description",
+    "value": "This endpoint retrieves player&#39;s total playtime in Steam for a specific game (AppId) and store them in service&#39;s cache.\n\nPlayers&#39; Steam account must be set into public to enable the service fetch their total playtime data."
+  },
+  {
+    "op": "add",
+    "path": "/securityDefinitions/HasPermission",
+    "value": {
+      "authorizationUrl": "https://dummy.oauth.net/auth",
+      "flow": "accessCode",
+      "scopes": {},
+      "tokenUrl": "https://dumy.oauth.net/token",
+      "type": "oauth2"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/securityDefinitions/HasScope",
+    "value": {
+      "authorizationUrl": "https://dummy.oauth.net/auth",
+      "flow": "accessCode",
+      "scopes": {},
+      "tokenUrl": "https://dumy.oauth.net/token",
+      "type": "oauth2"
+    }
+  }
+]

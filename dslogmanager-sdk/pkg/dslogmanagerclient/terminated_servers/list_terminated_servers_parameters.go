@@ -21,12 +21,10 @@ import (
 // with the default values initialized.
 func NewListTerminatedServersParams() *ListTerminatedServersParams {
 	var (
-		limitDefault  = int64(20)
-		offsetDefault = int64(0)
+		limitDefault = int64(20)
 	)
 	return &ListTerminatedServersParams{
-		Limit:  &limitDefault,
-		Offset: &offsetDefault,
+		Limit: &limitDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -36,12 +34,10 @@ func NewListTerminatedServersParams() *ListTerminatedServersParams {
 // with the default values initialized, and the ability to set a timeout on a request
 func NewListTerminatedServersParamsWithTimeout(timeout time.Duration) *ListTerminatedServersParams {
 	var (
-		limitDefault  = int64(20)
-		offsetDefault = int64(0)
+		limitDefault = int64(20)
 	)
 	return &ListTerminatedServersParams{
-		Limit:  &limitDefault,
-		Offset: &offsetDefault,
+		Limit: &limitDefault,
 
 		timeout: timeout,
 	}
@@ -51,12 +47,10 @@ func NewListTerminatedServersParamsWithTimeout(timeout time.Duration) *ListTermi
 // with the default values initialized, and the ability to set a context for a request
 func NewListTerminatedServersParamsWithContext(ctx context.Context) *ListTerminatedServersParams {
 	var (
-		limitDefault  = int64(20)
-		offsetDefault = int64(0)
+		limitDefault = int64(20)
 	)
 	return &ListTerminatedServersParams{
-		Limit:  &limitDefault,
-		Offset: &offsetDefault,
+		Limit: &limitDefault,
 
 		Context: ctx,
 	}
@@ -66,12 +60,10 @@ func NewListTerminatedServersParamsWithContext(ctx context.Context) *ListTermina
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewListTerminatedServersParamsWithHTTPClient(client *http.Client) *ListTerminatedServersParams {
 	var (
-		limitDefault  = int64(20)
-		offsetDefault = int64(0)
+		limitDefault = int64(20)
 	)
 	return &ListTerminatedServersParams{
 		Limit:      &limitDefault,
-		Offset:     &offsetDefault,
 		HTTPClient: client,
 	}
 }
@@ -86,6 +78,11 @@ type ListTerminatedServersParams struct {
 
 	*/
 	Deployment *string
+	/*EndDate
+	  end date on last update of the game RFC 3339
+
+	*/
+	EndDate *string
 	/*GameMode
 	  game mode of the game
 
@@ -101,11 +98,11 @@ type ListTerminatedServersParams struct {
 
 	*/
 	Namespace string
-	/*Offset
-	  offset
+	/*Next
+	  next
 
 	*/
-	Offset *int64
+	Next *string
 	/*PartyID
 	  ID of the party
 
@@ -116,6 +113,11 @@ type ListTerminatedServersParams struct {
 
 	*/
 	PodName *string
+	/*Previous
+	  previous
+
+	*/
+	Previous *string
 	/*Provider
 	  provider of the server
 
@@ -131,6 +133,11 @@ type ListTerminatedServersParams struct {
 
 	*/
 	SessionID *string
+	/*StartDate
+	  start date on last update of the game RFC 3339
+
+	*/
+	StartDate *string
 	/*UserID
 	  ID of the user
 
@@ -186,6 +193,17 @@ func (o *ListTerminatedServersParams) SetDeployment(deployment *string) {
 	o.Deployment = deployment
 }
 
+// WithEndDate adds the endDate to the list terminated servers params
+func (o *ListTerminatedServersParams) WithEndDate(endDate *string) *ListTerminatedServersParams {
+	o.SetEndDate(endDate)
+	return o
+}
+
+// SetEndDate adds the endDate to the list terminated servers params
+func (o *ListTerminatedServersParams) SetEndDate(endDate *string) {
+	o.EndDate = endDate
+}
+
 // WithGameMode adds the gameMode to the list terminated servers params
 func (o *ListTerminatedServersParams) WithGameMode(gameMode *string) *ListTerminatedServersParams {
 	o.SetGameMode(gameMode)
@@ -219,15 +237,15 @@ func (o *ListTerminatedServersParams) SetNamespace(namespace string) {
 	o.Namespace = namespace
 }
 
-// WithOffset adds the offset to the list terminated servers params
-func (o *ListTerminatedServersParams) WithOffset(offset *int64) *ListTerminatedServersParams {
-	o.SetOffset(offset)
+// WithNext adds the next to the list terminated servers params
+func (o *ListTerminatedServersParams) WithNext(next *string) *ListTerminatedServersParams {
+	o.SetNext(next)
 	return o
 }
 
-// SetOffset adds the offset to the list terminated servers params
-func (o *ListTerminatedServersParams) SetOffset(offset *int64) {
-	o.Offset = offset
+// SetNext adds the next to the list terminated servers params
+func (o *ListTerminatedServersParams) SetNext(next *string) {
+	o.Next = next
 }
 
 // WithPartyID adds the partyID to the list terminated servers params
@@ -250,6 +268,17 @@ func (o *ListTerminatedServersParams) WithPodName(podName *string) *ListTerminat
 // SetPodName adds the podName to the list terminated servers params
 func (o *ListTerminatedServersParams) SetPodName(podName *string) {
 	o.PodName = podName
+}
+
+// WithPrevious adds the previous to the list terminated servers params
+func (o *ListTerminatedServersParams) WithPrevious(previous *string) *ListTerminatedServersParams {
+	o.SetPrevious(previous)
+	return o
+}
+
+// SetPrevious adds the previous to the list terminated servers params
+func (o *ListTerminatedServersParams) SetPrevious(previous *string) {
+	o.Previous = previous
 }
 
 // WithProvider adds the provider to the list terminated servers params
@@ -285,6 +314,17 @@ func (o *ListTerminatedServersParams) SetSessionID(sessionID *string) {
 	o.SessionID = sessionID
 }
 
+// WithStartDate adds the startDate to the list terminated servers params
+func (o *ListTerminatedServersParams) WithStartDate(startDate *string) *ListTerminatedServersParams {
+	o.SetStartDate(startDate)
+	return o
+}
+
+// SetStartDate adds the startDate to the list terminated servers params
+func (o *ListTerminatedServersParams) SetStartDate(startDate *string) {
+	o.StartDate = startDate
+}
+
 // WithUserID adds the userID to the list terminated servers params
 func (o *ListTerminatedServersParams) WithUserID(userID *string) *ListTerminatedServersParams {
 	o.SetUserID(userID)
@@ -314,6 +354,22 @@ func (o *ListTerminatedServersParams) WriteToRequest(r runtime.ClientRequest, re
 		qDeployment := qrDeployment
 		if qDeployment != "" {
 			if err := r.SetQueryParam("deployment", qDeployment); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.EndDate != nil {
+
+		// query param end_date
+		var qrEndDate string
+		if o.EndDate != nil {
+			qrEndDate = *o.EndDate
+		}
+		qEndDate := qrEndDate
+		if qEndDate != "" {
+			if err := r.SetQueryParam("end_date", qEndDate); err != nil {
 				return err
 			}
 		}
@@ -357,16 +413,16 @@ func (o *ListTerminatedServersParams) WriteToRequest(r runtime.ClientRequest, re
 		return err
 	}
 
-	if o.Offset != nil {
+	if o.Next != nil {
 
-		// query param offset
-		var qrOffset int64
-		if o.Offset != nil {
-			qrOffset = *o.Offset
+		// query param next
+		var qrNext string
+		if o.Next != nil {
+			qrNext = *o.Next
 		}
-		qOffset := swag.FormatInt64(qrOffset)
-		if qOffset != "" {
-			if err := r.SetQueryParam("offset", qOffset); err != nil {
+		qNext := qrNext
+		if qNext != "" {
+			if err := r.SetQueryParam("next", qNext); err != nil {
 				return err
 			}
 		}
@@ -399,6 +455,22 @@ func (o *ListTerminatedServersParams) WriteToRequest(r runtime.ClientRequest, re
 		qPodName := qrPodName
 		if qPodName != "" {
 			if err := r.SetQueryParam("pod_name", qPodName); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Previous != nil {
+
+		// query param previous
+		var qrPrevious string
+		if o.Previous != nil {
+			qrPrevious = *o.Previous
+		}
+		qPrevious := qrPrevious
+		if qPrevious != "" {
+			if err := r.SetQueryParam("previous", qPrevious); err != nil {
 				return err
 			}
 		}
@@ -447,6 +519,22 @@ func (o *ListTerminatedServersParams) WriteToRequest(r runtime.ClientRequest, re
 		qSessionID := qrSessionID
 		if qSessionID != "" {
 			if err := r.SetQueryParam("session_id", qSessionID); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.StartDate != nil {
+
+		// query param start_date
+		var qrStartDate string
+		if o.StartDate != nil {
+			qrStartDate = *o.StartDate
+		}
+		qStartDate := qrStartDate
+		if qStartDate != "" {
+			if err := r.SetQueryParam("start_date", qStartDate); err != nil {
 				return err
 			}
 		}

@@ -29,6 +29,8 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
+	AdminRetrievePlayerRecords(params *AdminRetrievePlayerRecordsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminRetrievePlayerRecordsOK, *AdminRetrievePlayerRecordsBadRequest, *AdminRetrievePlayerRecordsUnauthorized, *AdminRetrievePlayerRecordsInternalServerError, error)
+	AdminRetrievePlayerRecordsShort(params *AdminRetrievePlayerRecordsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminRetrievePlayerRecordsOK, error)
 	AdminDeletePlayerPublicRecordHandlerV1(params *AdminDeletePlayerPublicRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeletePlayerPublicRecordHandlerV1NoContent, *AdminDeletePlayerPublicRecordHandlerV1Unauthorized, *AdminDeletePlayerPublicRecordHandlerV1NotFound, *AdminDeletePlayerPublicRecordHandlerV1InternalServerError, error)
 	AdminDeletePlayerPublicRecordHandlerV1Short(params *AdminDeletePlayerPublicRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeletePlayerPublicRecordHandlerV1NoContent, error)
 	AdminDeletePlayerRecordHandlerV1(params *AdminDeletePlayerRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeletePlayerRecordHandlerV1NoContent, *AdminDeletePlayerRecordHandlerV1Unauthorized, *AdminDeletePlayerRecordHandlerV1InternalServerError, error)
@@ -49,6 +51,104 @@ type ClientService interface {
 	ListPlayerRecordHandlerV1Short(params *ListPlayerRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*ListPlayerRecordHandlerV1OK, error)
 
 	SetTransport(transport runtime.ClientTransport)
+}
+
+/*
+  AdminRetrievePlayerRecords retrieves list of player records
+
+  Required permission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:RECORD [READ]
+
+Required scope: social
+
+Retrieve list of player records key and userID under given namespace.
+*/
+func (a *Client) AdminRetrievePlayerRecords(params *AdminRetrievePlayerRecordsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminRetrievePlayerRecordsOK, *AdminRetrievePlayerRecordsBadRequest, *AdminRetrievePlayerRecordsUnauthorized, *AdminRetrievePlayerRecordsInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminRetrievePlayerRecordsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminRetrievePlayerRecords",
+		Method:             "GET",
+		PathPattern:        "/cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminRetrievePlayerRecordsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminRetrievePlayerRecordsOK:
+		return v, nil, nil, nil, nil
+
+	case *AdminRetrievePlayerRecordsBadRequest:
+		return nil, v, nil, nil, nil
+
+	case *AdminRetrievePlayerRecordsUnauthorized:
+		return nil, nil, v, nil, nil
+
+	case *AdminRetrievePlayerRecordsInternalServerError:
+		return nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminRetrievePlayerRecordsShort(params *AdminRetrievePlayerRecordsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminRetrievePlayerRecordsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminRetrievePlayerRecordsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminRetrievePlayerRecords",
+		Method:             "GET",
+		PathPattern:        "/cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminRetrievePlayerRecordsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminRetrievePlayerRecordsOK:
+		return v, nil
+	case *AdminRetrievePlayerRecordsBadRequest:
+		return nil, v
+	case *AdminRetrievePlayerRecordsUnauthorized:
+		return nil, v
+	case *AdminRetrievePlayerRecordsInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
 }
 
 /*

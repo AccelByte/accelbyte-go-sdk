@@ -63,24 +63,6 @@ func (e *EntitlementService) GetUserEntitlementHistories(input *entitlement.GetU
 	return entitlementHistories.GetPayload(), err
 }
 
-func (e *EntitlementService) GetUserDistributionReceivers(input *entitlement.GetUserDistributionReceiversParams) ([]*platformclientmodels.DistributionReceiverInfo, error) {
-	accessToken, err := e.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	userDistributionReceivers, badRequest, err := e.Client.Entitlement.GetUserDistributionReceivers(input, client.BearerToken(*accessToken.AccessToken))
-	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, badRequest
-	}
-	if err != nil {
-		logrus.Error(err)
-		return nil, err
-	}
-	return userDistributionReceivers.GetPayload(), err
-}
-
 func (e *EntitlementService) GetUserEntitlementBySku(input *entitlement.GetUserEntitlementBySkuParams) (*platformclientmodels.EntitlementInfo, error) {
 	accessToken, err := e.TokenRepository.GetToken()
 	if err != nil {
@@ -207,58 +189,6 @@ func (e *EntitlementService) GetUserEntitlementOwnershipBySku(input *entitlement
 		return nil, err
 	}
 	return activeEntitlement.GetPayload(), nil
-}
-
-func (e *EntitlementService) CreateUserDistributionReceiver(input *entitlement.CreateUserDistributionReceiverParams) error {
-	accessToken, err := e.TokenRepository.GetToken()
-	if err != nil {
-		logrus.Error(err)
-		return err
-	}
-	_, conflict, err := e.Client.Entitlement.CreateUserDistributionReceiver(input, client.BearerToken(*accessToken.AccessToken))
-	if conflict != nil {
-		errorMsg, _ := json.Marshal(*conflict.GetPayload())
-		logrus.Error(string(errorMsg))
-		return conflict
-	}
-	if err != nil {
-		logrus.Error(err)
-		return err
-	}
-	return nil
-}
-
-func (e *EntitlementService) UpdateUserDistributionReceiver(input *entitlement.UpdateUserDistributionReceiverParams) error {
-	accessToken, err := e.TokenRepository.GetToken()
-	if err != nil {
-		logrus.Error(err)
-		return err
-	}
-	_, err = e.Client.Entitlement.UpdateUserDistributionReceiver(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		logrus.Error(err)
-		return err
-	}
-	return nil
-}
-
-func (e *EntitlementService) DeleteUserDistributionReceiver(input *entitlement.DeleteUserDistributionReceiverParams) error {
-	accessToken, err := e.TokenRepository.GetToken()
-	if err != nil {
-		logrus.Error(err)
-		return err
-	}
-	_, notFound, err := e.Client.Entitlement.DeleteUserDistributionReceiver(input, client.BearerToken(*accessToken.AccessToken))
-	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
-		return notFound
-	}
-	if err != nil {
-		logrus.Error(err)
-		return err
-	}
-	return nil
 }
 
 func (e *EntitlementService) GetUserAppEntitlementByAppID(input *entitlement.GetUserAppEntitlementByAppIDParams) (*platformclientmodels.AppEntitlementInfo, error) {
@@ -500,61 +430,6 @@ func (e *EntitlementService) PublicGetUserAppEntitlementByAppID(input *entitleme
 	return entitlementByAppID.GetPayload(), nil
 }
 
-func (e *EntitlementService) PublicCreateUserDistributionReceiver(input *entitlement.PublicCreateUserDistributionReceiverParams) error {
-	accessToken, err := e.TokenRepository.GetToken()
-	if err != nil {
-		logrus.Error(err)
-		return err
-	}
-	_, notFound, err := e.Client.Entitlement.PublicCreateUserDistributionReceiver(input, client.BearerToken(*accessToken.AccessToken))
-
-	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
-		return notFound
-	}
-
-	if err != nil {
-		logrus.Error(err)
-		return err
-	}
-	return nil
-}
-
-func (e *EntitlementService) PublicUpdateUserDistributionReceiver(input *entitlement.PublicUpdateUserDistributionReceiverParams) error {
-	accessToken, err := e.TokenRepository.GetToken()
-	if err != nil {
-		logrus.Error(err)
-		return err
-	}
-	_, err = e.Client.Entitlement.PublicUpdateUserDistributionReceiver(input, client.BearerToken(*accessToken.AccessToken))
-
-	if err != nil {
-		logrus.Error(err)
-		return err
-	}
-	return nil
-}
-
-func (e *EntitlementService) PublicDeleteUserDistributionReceiver(input *entitlement.PublicDeleteUserDistributionReceiverParams) error {
-	accessToken, err := e.TokenRepository.GetToken()
-	if err != nil {
-		logrus.Error(err)
-		return err
-	}
-	_, notFound, err := e.Client.Entitlement.PublicDeleteUserDistributionReceiver(input, client.BearerToken(*accessToken.AccessToken))
-	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
-		return notFound
-	}
-	if err != nil {
-		logrus.Error(err)
-		return err
-	}
-	return nil
-}
-
 func (e *EntitlementService) PublicGetUserEntitlementOwnershipBySku(input *entitlement.PublicGetUserEntitlementOwnershipBySkuParams) (*platformclientmodels.TimedOwnership, error) {
 	accessToken, err := e.TokenRepository.GetToken()
 	if err != nil {
@@ -633,54 +508,6 @@ func (e *EntitlementService) PublicGetUserEntitlementBySku(input *entitlement.Pu
 		return nil, err
 	}
 	return entitlementBySku.GetPayload(), nil
-}
-
-func (e *EntitlementService) PublicGetUserDistributionReceivers(input *entitlement.PublicGetUserDistributionReceiversParams) ([]*platformclientmodels.DistributionReceiverInfo, error) {
-	accessToken, err := e.TokenRepository.GetToken()
-	if err != nil {
-		logrus.Error(err)
-		return nil, err
-	}
-	distributionReceivers, badRequest, notFound, err := e.Client.Entitlement.PublicGetUserDistributionReceivers(input, client.BearerToken(*accessToken.AccessToken))
-	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, notFound
-	}
-	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, badRequest
-	}
-	if err != nil {
-		logrus.Error(err)
-		return nil, err
-	}
-	return distributionReceivers.GetPayload(), nil
-}
-
-func (e *EntitlementService) PublicDistributeUserDistribution(input *entitlement.PublicDistributeUserDistributionParams) (*platformclientmodels.EntitlementInfo, error) {
-	accessToken, err := e.TokenRepository.GetToken()
-	if err != nil {
-		logrus.Error(err)
-		return nil, err
-	}
-	distributionReceivers, badRequest, notFound, err := e.Client.Entitlement.PublicDistributeUserDistribution(input, client.BearerToken(*accessToken.AccessToken))
-	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, notFound
-	}
-	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, badRequest
-	}
-	if err != nil {
-		logrus.Error(err)
-		return nil, err
-	}
-	return distributionReceivers.GetPayload(), nil
 }
 
 func (e *EntitlementService) PublicQueryUserEntitlementsByAppType(input *entitlement.PublicQueryUserEntitlementsByAppTypeParams) (*platformclientmodels.AppEntitlementPagingSlicedResult, error) {

@@ -38,7 +38,7 @@ type AppEntitlementInfo struct {
 	// item id
 	ItemID string `json:"itemId,omitempty"`
 
-	// itemSnapshot for distribution
+	// itemSnapshot
 	ItemSnapshot *ItemSnapshot `json:"itemSnapshot,omitempty"`
 
 	// entitlement namespace
@@ -54,7 +54,7 @@ type AppEntitlementInfo struct {
 
 	// entitlement status
 	// Required: true
-	// Enum: [ACTIVE INACTIVE CONSUMED DISTRIBUTED REVOKED]
+	// Enum: [ACTIVE INACTIVE CONSUMED REVOKED]
 	Status *string `json:"status"`
 
 	// item store id, null if published store
@@ -226,7 +226,7 @@ var appEntitlementInfoTypeStatusPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["ACTIVE","INACTIVE","CONSUMED","DISTRIBUTED","REVOKED"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["ACTIVE","INACTIVE","CONSUMED","REVOKED"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -244,9 +244,6 @@ const (
 
 	// AppEntitlementInfoStatusCONSUMED captures enum value "CONSUMED"
 	AppEntitlementInfoStatusCONSUMED string = "CONSUMED"
-
-	// AppEntitlementInfoStatusDISTRIBUTED captures enum value "DISTRIBUTED"
-	AppEntitlementInfoStatusDISTRIBUTED string = "DISTRIBUTED"
 
 	// AppEntitlementInfoStatusREVOKED captures enum value "REVOKED"
 	AppEntitlementInfoStatusREVOKED string = "REVOKED"

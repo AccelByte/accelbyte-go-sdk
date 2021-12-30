@@ -14,6 +14,8 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+
+	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 )
 
 // NewPublicReconcilePlayStationStoreParams creates a new PublicReconcilePlayStationStoreParams object
@@ -60,6 +62,8 @@ for the public reconcile play station store operation typically these are writte
 */
 type PublicReconcilePlayStationStoreParams struct {
 
+	/*Body*/
+	Body *platformclientmodels.PlayStationReconcileRequest
 	/*Namespace*/
 	Namespace string
 	/*UserID*/
@@ -103,6 +107,17 @@ func (o *PublicReconcilePlayStationStoreParams) SetHTTPClient(client *http.Clien
 	o.HTTPClient = client
 }
 
+// WithBody adds the body to the public reconcile play station store params
+func (o *PublicReconcilePlayStationStoreParams) WithBody(body *platformclientmodels.PlayStationReconcileRequest) *PublicReconcilePlayStationStoreParams {
+	o.SetBody(body)
+	return o
+}
+
+// SetBody adds the body to the public reconcile play station store params
+func (o *PublicReconcilePlayStationStoreParams) SetBody(body *platformclientmodels.PlayStationReconcileRequest) {
+	o.Body = body
+}
+
 // WithNamespace adds the namespace to the public reconcile play station store params
 func (o *PublicReconcilePlayStationStoreParams) WithNamespace(namespace string) *PublicReconcilePlayStationStoreParams {
 	o.SetNamespace(namespace)
@@ -132,6 +147,12 @@ func (o *PublicReconcilePlayStationStoreParams) WriteToRequest(r runtime.ClientR
 		return err
 	}
 	var res []error
+
+	if o.Body != nil {
+		if err := r.SetBodyParam(o.Body); err != nil {
+			return err
+		}
+	}
 
 	// path param namespace
 	if err := r.SetPathParam("namespace", o.Namespace); err != nil {

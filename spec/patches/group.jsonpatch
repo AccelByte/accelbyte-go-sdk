@@ -1,0 +1,763 @@
+[
+  {
+    "op": "add",
+    "path": "/host",
+    "value": "demo.accelbyte.io"
+  },
+  {
+    "op": "add",
+    "path": "/schemes",
+    "value": [
+      "https"
+    ]
+  },
+  {
+    "op": "move",
+    "from": "/security",
+    "path": "/paths/~1group~1v1~1public~1namespaces~1{namespace}~1users~1{userId}~1join~1accept/post/security"
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1group~1v1~1public~1namespaces~1{namespace}~1users~1{userId}~1join~1accept/post/description",
+    "value": "&lt;p&gt;Required valid user authentication &lt;/p&gt;\n\t\t\t&lt;p&gt;Required Member Role Permission: &#34;GROUP:JOIN [CREATE]&#34;&lt;/p&gt;\n\t\t\t&lt;p&gt;This endpoint is used to accept group join request.&lt;/p&gt;\n\t\t\t&lt;p&gt;Accept group join request. If specific user is not asked to join the specific group ID, it will show the the error to show if the user is not asked to join yet.&lt;/p&gt;\n\t\t\t&lt;p&gt;This endpoint will also check if the specific user is already joined to specific group&lt;/p&gt;\n\t\t\t&lt;p&gt;Action Code: 73407&lt;/p&gt;\n\t\t"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1group~1v1~1admin~1namespaces~1{namespace}~1roles/post/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [CREATE]"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1group~1v1~1admin~1namespaces~1{namespace}~1roles/post/description",
+    "value": "&lt;p&gt;Required permission ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [CREATE]&lt;/p&gt;\n\t\t\t&lt;p&gt;This endpoint is used to create new member role&lt;/p&gt;\n\t\t\t&lt;p&gt;Action Code: 73202&lt;/p&gt;\n\t\t"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1group~1v1~1admin~1namespaces~1{namespace}~1roles/get/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [READ]"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1group~1v1~1admin~1namespaces~1{namespace}~1roles/get/description",
+    "value": "&lt;p&gt;Required permission ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [READ]&lt;/p&gt;\n\t\t\t&lt;p&gt;This endpoint is used to get list of member roles&lt;/p&gt;\n\t\t\t&lt;p&gt;Action Code: 73201&lt;/p&gt;\n\t\t"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1group~1v1~1admin~1namespaces~1{namespace}~1configuration~1{configurationCode}/patch/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [UPDATE]"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1group~1v1~1admin~1namespaces~1{namespace}~1configuration~1{configurationCode}/patch/description",
+    "value": "&lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [UPDATE]&#39;&lt;/p&gt;\n\t\t\t&lt;p&gt;This endpoint is used to update existing configuration. groupAdminRoleId and groupMemberRoleId won&#39;t be able to be updated. User can try to change the member role permission instead for each of those member role&lt;/p&gt;\n\t\t\t&lt;p&gt;Action Code: 73102&lt;/p&gt;\n\t\t"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1group~1v1~1admin~1namespaces~1{namespace}~1configuration~1{configurationCode}/delete/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [DELETE]"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1group~1v1~1admin~1namespaces~1{namespace}~1configuration~1{configurationCode}/delete/description",
+    "value": "&lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [DELETE]&#39;&lt;/p&gt;\n\t\t\t&lt;p&gt;This endpoint is used to delete group configuration. This Configuration is used to be the main rule of the service. Each namespace will have its own configuration&lt;/p&gt;\n\t\t\t&lt;p&gt;Action Code: 73101&lt;/p&gt;\n\t\t"
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1group~1v1~1admin~1namespaces~1{namespace}~1configuration~1{configurationCode}/delete/operationId",
+    "value": "deleteGroupConfigurationV1"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1group~1v1~1admin~1namespaces~1{namespace}~1configuration~1{configurationCode}/get/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [READ]"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1group~1v1~1admin~1namespaces~1{namespace}~1configuration~1{configurationCode}/get/description",
+    "value": "&lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [READ]&#39;&lt;/p&gt;\n\t\t\t&lt;p&gt;This endpoint is used to get existing configuration. This Configuration is used to be the main rule of the service. Each namespace will have its own configuration&lt;/p&gt;\n\t\t\t&lt;p&gt;Action Code: 73101&lt;/p&gt;\n\t\t"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1group~1v1~1public~1namespaces~1{namespace}~1groups/post/security",
+    "value": [
+      {
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1group~1v1~1public~1namespaces~1{namespace}~1groups/post/description",
+    "value": "&lt;p&gt;Required valid user authentication &lt;/p&gt;\n\t\t\t&lt;p&gt;This endpoint is used to create new group&lt;/p&gt;\n\t\t\t&lt;p&gt;There are some fields that needs to be fulfilled&lt;/p&gt;\n\t\t\t&lt;ul&gt;\n\t\t\t\t&lt;li&gt;&lt;b&gt;groupDescription&lt;/b&gt;: the description of the group (optional)&lt;/li&gt;\n\t\t\t\t&lt;li&gt;&lt;b&gt;groupIcon&lt;/b&gt;: group icon URL link (optional)&lt;/li&gt;\n\t\t\t\t&lt;li&gt;&lt;b&gt;groupName&lt;/b&gt;: name of the group&lt;/li&gt;\n\t\t\t\t&lt;li&gt;&lt;b&gt;groupRegion&lt;/b&gt;: region of the group&lt;/li&gt;\n\t\t\t\t&lt;li&gt;&lt;b&gt;groupRules&lt;/b&gt;: rules for specific group. It consists of groupCustomRule that can be used to save custom rule, and groupPredefinedRules that has similar usage with configuration, but this rule only works in specific group&lt;/li&gt;\n\t\t\t\t&lt;li&gt;&lt;b&gt;allowedAction&lt;/b&gt;: available action in group service. It consist of joinGroup and inviteGroup&lt;/li&gt;\n\t\t\t\t&lt;li&gt;&lt;b&gt;ruleAttribute&lt;/b&gt;: attribute of the player that needs to be checked&lt;/li&gt;\n\t\t\t\t&lt;li&gt;&lt;b&gt;ruleCriteria&lt;/b&gt;: criteria of the value. The value will be in enum of EQUAL, MINIMUM, MAXIMUM&lt;/li&gt;\n\t\t\t\t&lt;li&gt;&lt;b&gt;ruleValue&lt;/b&gt;: value that needs to be checked&lt;/li&gt;\n\t\t\t\t&lt;li&gt;&lt;b&gt;customAttributes&lt;/b&gt;: additional custom group attributes (optional)&lt;/li&gt;\n\t\t\t&lt;/ul&gt;\n\t\t\t&lt;p&gt;Action Code: 73304&lt;/p&gt;\n\t\t"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1group~1v1~1public~1namespaces~1{namespace}~1groups/get/security",
+    "value": [
+      {
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1group~1v1~1public~1namespaces~1{namespace}~1groups/get/description",
+    "value": "&lt;p&gt;Required valid user authentication &lt;/p&gt;\n\t\t\t&lt;p&gt;Get list of groups. This endpoint will only show OPEN and PUBLIC group type. This endpoint can search based on the group name by filling the &#34;groupName&#34; query parameter&lt;/p&gt;\n\t\t\t&lt;p&gt;Action Code: 73303&lt;/p&gt;\n\t\t"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1group~1v1~1public~1namespaces~1{namespace}~1groups~1{groupId}~1invite~1accept/post/security",
+    "value": [
+      {
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1group~1v1~1public~1namespaces~1{namespace}~1groups~1{groupId}~1invite~1accept/post/description",
+    "value": "&lt;p&gt;Required valid user authentication &lt;/p&gt;\n\t\t\t&lt;p&gt;This endpoint is used to accept group invitation.&lt;/p&gt;\n\t\t\t&lt;p&gt;Accept group invitation. If specific user is not invited in the specific group ID, it will show the the error to show if the user is not invited yet.&lt;/p&gt;\n\t\t\t&lt;p&gt;This endpoint will also check if the user who access this endpoint is already joined to specific group&lt;/p&gt;\n\t\t\t&lt;p&gt;Accessing this endpoint will make all requests (invite / join request) will be deleted for the user who access this endpoint&lt;/p&gt;\n\t\t\t&lt;p&gt;Existing members will receive notification of newly accepted member.&lt;/p&gt;\n\t\t\t&lt;p&gt;Action Code: 73401&lt;/p&gt;\n\t\t"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1group~1v1~1admin~1namespaces~1{namespace}~1roles~1{memberRoleId}~1permissions/put/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [UPDATE]"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1group~1v1~1admin~1namespaces~1{namespace}~1roles~1{memberRoleId}~1permissions/put/description",
+    "value": "&lt;p&gt;Required permission ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [UPDATE]&lt;/p&gt;\n\t\t\t&lt;p&gt;This endpoint is used to update member role permission. It will replace the existing permission based on the request from this endpoint&lt;/p&gt;\n\t\t\t&lt;p&gt;Action Code: 73205&lt;/p&gt;\n\t\t"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1group~1v1~1public~1namespaces~1{namespace}~1roles~1{memberRoleId}~1members/post/security",
+    "value": [
+      {
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1group~1v1~1public~1namespaces~1{namespace}~1roles~1{memberRoleId}~1members/post/description",
+    "value": "Required Member Role Permission: &#34;GROUP:ROLE [UPDATE]&lt;/p&gt;\n\t\t\t&lt;p&gt;This endpoint is used to assign role to group member&lt;/p&gt;\n\t\t\t&lt;p&gt;Action Code: 73204&lt;/p&gt;"
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1group~1v1~1public~1namespaces~1{namespace}~1roles~1{memberRoleId}~1members/post/operationId",
+    "value": "updateMemberRolePublicV1"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1group~1v1~1public~1namespaces~1{namespace}~1roles~1{memberRoleId}~1members/delete/security",
+    "value": [
+      {
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1group~1v1~1public~1namespaces~1{namespace}~1roles~1{memberRoleId}~1members/delete/description",
+    "value": "Required Member Role Permission: &#34;GROUP:ROLE [UPDATE]&#34;&lt;/p&gt;\n\t\t\t&lt;p&gt;This endpoint is used to remove role from group member&lt;/p&gt;\n\t\t\t&lt;p&gt;Action Code: 73204&lt;/p&gt;"
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1group~1v1~1public~1namespaces~1{namespace}~1roles~1{memberRoleId}~1members/delete/operationId",
+    "value": "deleteMemberRolePublicV1"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1group~1v1~1public~1namespaces~1{namespace}~1users~1{userId}~1invite/post/security",
+    "value": [
+      {
+        "HasPermission": [
+          "GROUP:INVITE [CREATE]"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1group~1v1~1public~1namespaces~1{namespace}~1users~1{userId}~1invite/post/description",
+    "value": "&lt;p&gt;Required valid user authentication &lt;/p&gt;\n\t\t\t&lt;p&gt;Required Member Role Permission: &#34;GROUP:INVITE [CREATE]&#34;&lt;/p&gt;\n\t\t\t&lt;p&gt;This endpoint is used to invite specific user to the group.&lt;/p&gt;\n\t\t\t&lt;p&gt;invite specific user to the group. If specific user is already have the join request to the group, this endpoint will notify if this user already have join request that needs to be accepted / rejected&lt;/p&gt;\n\t\t\t&lt;p&gt;Invited user will receive notification through lobby.&lt;/p&gt;\n\t\t\t&lt;p&gt;Action Code: 73406&lt;/p&gt;\n\t\t"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1group~1v1~1public~1namespaces~1{namespace}~1groups~1{groupId}~1join~1cancel/post/security",
+    "value": [
+      {
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1group~1v1~1public~1namespaces~1{namespace}~1groups~1{groupId}~1join~1cancel/post/description",
+    "value": "&lt;p&gt;Requires valid user authentication&lt;/p&gt;\n\t\t\t&lt;p&gt;This endpoint allows user to cancel request to join specific group.&lt;/p&gt;\n\t\t\t&lt;p&gt;Action Code: 73411&lt;/p&gt;\n\t\t"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1group~1v1~1public~1namespaces~1{namespace}~1groups~1{groupId}~1members/get/security",
+    "value": [
+      {
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1group~1v1~1public~1namespaces~1{namespace}~1groups~1{groupId}~1members/get/description",
+    "value": "&lt;p&gt;Required valid user authentication &lt;/p&gt;\n\t\t\t&lt;p&gt;This endpoint is used to get list of group members.&lt;/p&gt;\n\t\t\t&lt;p&gt;Action Code: 73410&lt;/p&gt;\n\t\t"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1group~1v1~1public~1namespaces~1{namespace}~1groups~1{groupId}~1rules~1defined~1{allowedAction}/put/security",
+    "value": [
+      {
+        "HasPermission": [
+          "GROUP [UPDATE]"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1group~1v1~1public~1namespaces~1{namespace}~1groups~1{groupId}~1rules~1defined~1{allowedAction}/put/description",
+    "value": "&lt;p&gt;Required valid user authentication &lt;/p&gt;\n\t\t\t&lt;p&gt;Required Member Role Permission: &#34;GROUP [UPDATE]&#34;&lt;/p&gt;\n\t\t\t&lt;p&gt;Update predefined group rule. This endpoint will check the group ID of the user based on the access token \n\t\t\tand compare it with the group ID in path parameter. It will also check the member role of the user based on \n\t\t\tthe access token&lt;/p&gt;\n\t\t\t&lt;p&gt;If the rule action is not defined in the group, it will be added immediately to the predefined group rule&lt;/p&gt;\n\t\t\t&lt;p&gt;Action Code: 73310&lt;/p&gt;\n\t\t"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1group~1v1~1public~1namespaces~1{namespace}~1groups~1{groupId}~1rules~1defined~1{allowedAction}/delete/security",
+    "value": [
+      {
+        "HasPermission": [
+          "GROUP [UPDATE]"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1group~1v1~1public~1namespaces~1{namespace}~1groups~1{groupId}~1rules~1defined~1{allowedAction}/delete/description",
+    "value": "&lt;p&gt;Required valid user authentication &lt;/p&gt;\n\t\t\t&lt;p&gt;Required Member Role Permission: &#34;GROUP [UPDATE]&#34;&lt;/p&gt;\n\t\t\t&lt;p&gt;Delete group predefined rule based on the allowed action. This endpoint will check the group ID of the user based on the access token\n\t\t\tand compare it with the group ID in path parameter. It will also check the member role of the user based on \n\t\t\tthe access token&lt;/p&gt;\n\t\t\t&lt;p&gt;Action Code: 73309&lt;/p&gt;\n\t\t"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1group~1v1~1admin~1namespaces~1{namespace}~1configuration/post/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [CREATE]"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1group~1v1~1admin~1namespaces~1{namespace}~1configuration/post/description",
+    "value": "&lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [CREATE]&#39;&lt;/p&gt;\n\t\t\t&lt;p&gt;This endpoint is used to create new configuration. Before creating the configuration, make sure that member role for admin and group member are already created before.&lt;/p&gt;\n\t\t\t&lt;p&gt;For each of the global rule, it will be the rule detail that consists of these fields: &lt;/p&gt;\n\t\t\t&lt;ul&gt;\n\t\t\t\t&lt;li&gt;&lt;b&gt;ruleAttribute&lt;/b&gt;: attribute of the player that needs to be checked&lt;/li&gt;\n\t\t\t\t&lt;li&gt;&lt;b&gt;ruleCriteria&lt;/b&gt;: criteria of the value. The value will be in enum of EQUAL, MINIMUM, MAXIMUM&lt;/li&gt;\n\t\t\t\t&lt;li&gt;&lt;b&gt;ruleValue&lt;/b&gt;: value that needs to be checked&lt;/li&gt;\n\t\t\t&lt;/ul&gt;\n\t\t\t&lt;p&gt;Allowed Action can only be filled with any available action in the Group Service. For the configuration, the only value is &lt;b&gt;&#34;createGroup&#34;&lt;/b&gt;&lt;/p&gt;\n\t\t\t&lt;p&gt;Action Code: 73103&lt;/p&gt;\n\t\t"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1group~1v1~1admin~1namespaces~1{namespace}~1configuration/get/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [READ]"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1group~1v1~1admin~1namespaces~1{namespace}~1configuration/get/description",
+    "value": "&lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [READ]&#39;&lt;/p&gt;\n\t\t\t&lt;p&gt;This endpoint is used to get existing configuration. This Configuration is used to be the main rule of the service. Each namespace will have its own configuration&lt;/p&gt;\n\t\t\t&lt;p&gt;Action Code: 73101&lt;/p&gt;\n\t\t"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1group~1v1~1admin~1namespaces~1{namespace}~1groups/get/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:GROUP [READ]"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1group~1v1~1admin~1namespaces~1{namespace}~1groups/get/description",
+    "value": "&lt;p&gt;Required Permission: &#34;ADMIN:NAMESPACE:{namespace}:GROUP [READ]&#34; &lt;/p&gt;\n\t\t\t&lt;p&gt;Get list of groups. This endpoint will show any types of group&lt;/p&gt;\n\t\t\t&lt;p&gt;Action Code: 73301&lt;/p&gt;\n\t\t"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1group~1v1~1public~1namespaces~1{namespace}~1roles/get/security",
+    "value": [
+      {
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1group~1v1~1public~1namespaces~1{namespace}~1roles/get/description",
+    "value": "&lt;p&gt;Required Member Role Permission: &#34;GROUP:ROLE [READ]&#34;&lt;/p&gt;\n\t\t\t&lt;p&gt;This endpoint is used to get list of member roles&lt;/p&gt;\n\t\t\t&lt;p&gt;Action Code: 73201&lt;/p&gt;\n\t\t"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1group~1v1~1admin~1namespaces~1{namespace}~1roles~1{memberRoleId}/patch/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [UPDATE]"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1group~1v1~1admin~1namespaces~1{namespace}~1roles~1{memberRoleId}/patch/description",
+    "value": "&lt;p&gt;Required permission ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [UPDATE]&lt;/p&gt;\n\t\t\t&lt;p&gt;This endpoint is used to get member role&lt;/p&gt;\n\t\t\t&lt;p&gt;Action Code: 73204&lt;/p&gt;\n\t\t"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1group~1v1~1admin~1namespaces~1{namespace}~1roles~1{memberRoleId}/delete/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [DELETE]"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1group~1v1~1admin~1namespaces~1{namespace}~1roles~1{memberRoleId}/delete/description",
+    "value": "&lt;p&gt;Required permission ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [DELETE]&lt;/p&gt;\n\t\t\t&lt;p&gt;This endpoint is used to delete member role. Any member role can&#39;t be deleted if the specific role is applied to the configuration (admin and member role)&lt;/p&gt;\n\t\t\t&lt;p&gt;Action Code: 73207&lt;/p&gt;\n\t\t"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1group~1v1~1admin~1namespaces~1{namespace}~1roles~1{memberRoleId}/get/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [READ]"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1group~1v1~1admin~1namespaces~1{namespace}~1roles~1{memberRoleId}/get/description",
+    "value": "&lt;p&gt;Required permission ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [READ]&lt;/p&gt;\n\t\t\t&lt;p&gt;This endpoint is used to get member role based on the role ID&lt;/p&gt;\n\t\t\t&lt;p&gt;Action Code: 73203&lt;/p&gt;\n\t\t"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1group~1v1~1public~1namespaces~1{namespace}~1groups~1{groupId}~1rules~1custom/put/security",
+    "value": [
+      {
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1group~1v1~1public~1namespaces~1{namespace}~1groups~1{groupId}~1rules~1custom/put/description",
+    "value": "&lt;p&gt;Required valid user authentication &lt;/p&gt;\n\t\t\t&lt;p&gt;Update group custom rule. This endpoint will check the group ID of the user based on the access token \n\t\t\tand compare it with the group ID in path parameter. It will also check the member role of the user based \n\t\t\ton the access token&lt;/p&gt;\n\t\t\t&lt;p&gt;Action Code: 73308&lt;/p&gt;\n\t\t"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1group~1v1~1public~1namespaces~1{namespace}~1groups~1{groupId}~1join/post/security",
+    "value": [
+      {
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1group~1v1~1public~1namespaces~1{namespace}~1groups~1{groupId}~1join/post/description",
+    "value": "&lt;p&gt;Required valid user authentication &lt;/p&gt;\n\t\t\t&lt;p&gt;This endpoint is used to join as group member&lt;/p&gt;\n\t\t\t&lt;p&gt;Join to the group. This endpoint will check the the the type of the group based on the groupID.&lt;/p&gt;\n\t\t\t&lt;p&gt;Additional Information:&lt;/p&gt;\n\t\t\t&lt;ul&gt;\n\t\t\t\t&lt;li&gt;User cannot join to the group with PRIVATE type&lt;/li&gt;\n\t\t\t\t&lt;li&gt;Joining PUBLIC group type will create join request and need approval from the privileged group member to accept the request to become the member&lt;/li&gt;\n\t\t\t\t&lt;li&gt;Joining OPEN group type will make this user become member of that group immediately&lt;/li&gt;\n\t\t\t&lt;/ul&gt;\n\t\t\t&lt;p&gt;This endpoint will return status field to give information whether the user is JOINED or REQUESTED to join to the specific group&lt;/p&gt;\n\t\t\t&lt;p&gt;Action Code: 73403&lt;/p&gt;\n\t\t"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1group~1v1~1public~1namespaces~1{namespace}~1groups~1{groupId}~1invite~1reject/post/security",
+    "value": [
+      {
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1group~1v1~1public~1namespaces~1{namespace}~1groups~1{groupId}~1invite~1reject/post/description",
+    "value": "&lt;p&gt;Required valid user authentication &lt;/p&gt;\n\t\t\t&lt;p&gt;This endpoint is used to reject group invitation.&lt;/p&gt;\n\t\t\t&lt;p&gt;Reject group invitation. If specific user is not invited in the specific group ID, it will show the the error to show if the user is not invited yet.&lt;/p&gt;\n\t\t\t&lt;p&gt;Action Code: 73402&lt;/p&gt;\n\t\t"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1group~1v1~1public~1namespaces~1{namespace}~1groups~1{groupId}~1join~1request/get/security",
+    "value": [
+      {
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1group~1v1~1public~1namespaces~1{namespace}~1groups~1{groupId}~1join~1request/get/description",
+    "value": "&lt;p&gt;Required valid user authentication &lt;/p&gt;\n\t\t\t&lt;p&gt;Required Member Role Permission: &#34;GROUP:JOIN [READ]&#34;&lt;/p&gt;\n\t\t\t&lt;p&gt;This endpoint is used to Get Group Join Request List&lt;/p&gt;\n\t\t\t&lt;p&gt;Get Group Join Request List for specific group. Group members needs to have permission and also belong to the group to access this endpoint&lt;/p&gt;\n\t\t\t&lt;p&gt;Action Code: 73501&lt;/p&gt;\n\t\t"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1group~1v1~1admin~1namespaces~1{namespace}~1groups~1{groupId}/delete/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:GROUP:{groupId} [DELETE]"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1group~1v1~1admin~1namespaces~1{namespace}~1groups~1{groupId}/delete/description",
+    "value": "&lt;p&gt;Required Permission: &#34;ADMIN:NAMESPACE:{namespace}:GROUP:{groupId} [DELETE]&#34;&lt;/p&gt;\n\t\t\t&lt;p&gt;Delete existing group. It will check whether the groupID is exist before doing the process to delete the group.&lt;/p&gt;\n\t\t\t&lt;p&gt;Action Code: 73302&lt;/p&gt;\n\t\t"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1group~1v1~1admin~1namespaces~1{namespace}~1groups~1{groupId}/get/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:GROUP [READ]"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1group~1v1~1admin~1namespaces~1{namespace}~1groups~1{groupId}/get/description",
+    "value": "&lt;p&gt;Required Permission: &#34;ADMIN:NAMESPACE:{namespace}:GROUP [READ]&#34;&lt;/p&gt;\n\t\t\t&lt;p&gt;Get single group information. This endpoint will show the group information by the groupId&lt;/p&gt;\n\t\t\t&lt;p&gt;Action Code: 73306&lt;/p&gt;\n\t\t"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1group~1v1~1public~1namespaces~1{namespace}~1users~1{userId}~1kick/post/security",
+    "value": [
+      {
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1group~1v1~1public~1namespaces~1{namespace}~1users~1{userId}~1kick/post/description",
+    "value": "&lt;p&gt;Required valid user authentication &lt;/p&gt;\n\t\t\t&lt;p&gt;Required Member Role Permission: &#34;GROUP:KICK [CREATE]&#34;&lt;/p&gt;\n\t\t\t&lt;p&gt;This endpoint is used to kick group member.&lt;/p&gt;\n\t\t\t&lt;p&gt;Kick group member. This endpoint will check the member and group information, and also the role permission of the the user who accesses this endpoint&lt;/p&gt;\n\t\t\t&lt;p&gt;Action Code: 73409&lt;/p&gt;\n\t\t"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1group~1v1~1public~1namespaces~1{namespace}~1users~1{userId}/get/security",
+    "value": [
+      {
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1group~1v1~1public~1namespaces~1{namespace}~1users~1{userId}/get/description",
+    "value": "&lt;p&gt;Required valid user authentication &lt;/p&gt;\n\t\t\t&lt;p&gt;This endpoint is used to get user group information.&lt;/p&gt;\n\t\t\t&lt;p&gt;Get user group information. If user is not belong to any group, it will return warning to give information about it&lt;/p&gt;\n\t\t\t&lt;p&gt;Group Member Status:&lt;/p&gt;\n\t\t\t&lt;ul&gt;\n\t\t\t\t&lt;li&gt;JOIN : status of user requested to join group &lt;/li&gt;\n\t\t\t\t&lt;li&gt;INVITE: status of user invited to a group &lt;/li&gt;\n\t\t\t\t&lt;li&gt;JOINED: status of user already joined to a group&lt;/li&gt;\n\t\t\t&lt;/ul&gt;\n\t\t\t&lt;p&gt;Action Code: 73405&lt;/p&gt;\n\t\t"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1group~1v1~1public~1namespaces~1{namespace}~1users~1me~1invite~1request/get/security",
+    "value": [
+      {
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1group~1v1~1public~1namespaces~1{namespace}~1users~1me~1invite~1request/get/description",
+    "value": "&lt;p&gt;Required valid user authentication &lt;/p&gt;\n\t\t\t&lt;p&gt;This endpoint is used to Get Group Invitation Request List&lt;/p&gt;\n\t\t\t&lt;p&gt;Get Group Invitation Request List for specific group. It will check any group invitation for this user&lt;/p&gt;\n\t\t\t&lt;p&gt;Action Code: 73502&lt;/p&gt;\n\t\t"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1group~1v1~1admin~1namespaces~1{namespace}~1configuration~1initiate/post/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [CREATE]"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1group~1v1~1admin~1namespaces~1{namespace}~1configuration~1initiate/post/description",
+    "value": "&lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [CREATE]&#39;&lt;/p&gt;\n\t\t\t&lt;p&gt;This endpoint is used to initiate configuration. This endpoint will automatically create default configuration and member roles with default permission&lt;/p&gt;\n\t\t\t&lt;p&gt;Default Permission for admin role will cover these permission: &lt;/p&gt;\n\t\t\t&lt;ul&gt;\n\t\t\t\t&lt;li&gt;Permission to invite user to group&lt;/li&gt;\n\t\t\t\t&lt;li&gt;Permission to accept or reject join request&lt;/li&gt;\n\t\t\t\t&lt;li&gt;Permission to kick group member&lt;/li&gt;\n\t\t\t&lt;/ul&gt;\n\t\t\t&lt;p&gt;Default max member value will be 50 and global rules will be empty&lt;/p&gt;\n\t\t\t&lt;p&gt;Action Code: 73104&lt;/p&gt;\n\t\t"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1group~1v1~1public~1namespaces~1{namespace}~1leave/post/security",
+    "value": [
+      {
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1group~1v1~1public~1namespaces~1{namespace}~1leave/post/description",
+    "value": "&lt;p&gt;Required valid user authentication &lt;/p&gt;\n\t\t\t&lt;p&gt;This endpoint is used to leave from group.&lt;/p&gt;\n\t\t\t&lt;p&gt;leave from group. Admin is not allowed to leave the group. This endpoint will also give response if the user is not belong to any group.&lt;/p&gt;\n\t\t\t&lt;p&gt;Action Code: 73404&lt;/p&gt;\n\t\t"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1group~1v1~1public~1namespaces~1{namespace}~1groups~1{groupId}~1attributes~1custom/put/security",
+    "value": [
+      {
+        "HasPermission": [
+          "GROUP [UPDATE]"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1group~1v1~1public~1namespaces~1{namespace}~1groups~1{groupId}~1attributes~1custom/put/description",
+    "value": "&lt;p&gt;Requires valid user authentication &lt;/p&gt;\n\t\t\t&lt;p&gt;Required Member Role Permission: &#34;GROUP [UPDATE]&#34;&lt;/p&gt;\n\t\t\t&lt;p&gt;This endpoint replaces current group custom attributes entirely.\n\t\t\tThis endpoint will check the group ID of the user based on the access token and compare it with the group ID in path parameter. \n\t\t\tIt will also check the member role of the user based on the access token&lt;/p&gt;\n\t\t\t&lt;p&gt;Action Code: 73311&lt;/p&gt;\n\t\t"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1group~1v1~1admin~1namespaces~1{namespace}~1groups~1{groupId}~1members/get/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:GROUP:MEMBER [READ]"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1group~1v1~1admin~1namespaces~1{namespace}~1groups~1{groupId}~1members/get/description",
+    "value": "&lt;p&gt;Required permission ADMIN:NAMESPACE:{namespace}:GROUP:MEMBER [READ] &lt;/p&gt;\n\t\t\t&lt;p&gt;This endpoint is used to get list of group members.&lt;/p&gt;\n\t\t\t&lt;p&gt;Action Code: 73410&lt;/p&gt;\n\t\t"
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1group~1v1~1admin~1namespaces~1{namespace}~1groups~1{groupId}~1members/get/operationId",
+    "value": "getGroupMembersListAdminV1"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1group~1v1~1public~1namespaces~1{namespace}~1groups~1{groupId}/patch/security",
+    "value": [
+      {
+        "HasPermission": [
+          "GROUP [UPDATE]"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1group~1v1~1public~1namespaces~1{namespace}~1groups~1{groupId}/patch/description",
+    "value": "&lt;p&gt;Required valid user authentication &lt;/p&gt;\n\t\t\t&lt;p&gt;Required Member Role Permission: &#34;GROUP [UPDATE]&#34;&lt;/p&gt;\n\t\t\t&lt;p&gt;Update existing group. This endpoint supports partial update. This endpoint will check the group ID of the user based on the access token and compare it with the group ID in path parameter. \n\t\t\tIt will also check the member role of the user based on the access token&lt;/p&gt;\n\t\t\t&lt;p&gt;Action Code: 73307&lt;/p&gt;\n\t\t"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1group~1v1~1public~1namespaces~1{namespace}~1groups~1{groupId}/put/security",
+    "value": [
+      {
+        "HasPermission": [
+          "GROUP [UPDATE]"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1group~1v1~1public~1namespaces~1{namespace}~1groups~1{groupId}/put/description",
+    "value": "&lt;p&gt;Required valid user authentication &lt;/p&gt;\n\t\t\t&lt;p&gt;Required Member Role Permission: &#34;GROUP [UPDATE]&#34;&lt;/p&gt;\n\t\t\t&lt;p&gt;Update existing group. This endpoint supports partial update. This endpoint will check the group ID of the user based on the access token and compare it with the group ID in path parameter. \n\t\t\tIt will also check the member role of the user based on the access token&lt;/p&gt;\n\t\t\t&lt;p&gt;Action Code: 73307&lt;/p&gt;\n\t\t"
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1group~1v1~1public~1namespaces~1{namespace}~1groups~1{groupId}/put/operationId",
+    "value": "updateSingleGroupV1"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1group~1v1~1public~1namespaces~1{namespace}~1groups~1{groupId}/delete/security",
+    "value": [
+      {
+        "HasPermission": [
+          "GROUP [DELETE]"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1group~1v1~1public~1namespaces~1{namespace}~1groups~1{groupId}/delete/description",
+    "value": "&lt;p&gt;Required valid user authentication &lt;/p&gt;\n\t\t\t&lt;p&gt;Required Member Role Permission: &#34;GROUP [DELETE]&#34;&lt;/p&gt;\n\t\t\t&lt;p&gt;Delete existing group. This endpoint will check the group ID of the user based on the access token\n\t\t\tand compare it with the group ID in path parameter. It will also check the member role of the user based on \n\t\t\tthe access token&lt;/p&gt;\n\t\t\t&lt;p&gt;Action Code: 73305&lt;/p&gt;\n\t\t"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1group~1v1~1public~1namespaces~1{namespace}~1groups~1{groupId}/get/security",
+    "value": [
+      {
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1group~1v1~1public~1namespaces~1{namespace}~1groups~1{groupId}/get/description",
+    "value": "&lt;p&gt;Required valid user authentication &lt;/p&gt;\n\t\t\t&lt;p&gt;Get single group information. This endpoint will show the group information by the groupId&lt;/p&gt;\n\t\t\t&lt;p&gt;Action Code: 73306&lt;/p&gt;\n\t\t"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1group~1v1~1public~1namespaces~1{namespace}~1users~1{userId}~1join~1reject/post/security",
+    "value": [
+      {
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1group~1v1~1public~1namespaces~1{namespace}~1users~1{userId}~1join~1reject/post/description",
+    "value": "&lt;p&gt;Required valid user authentication &lt;/p&gt;\n\t\t\t&lt;p&gt;Required Member Role Permission: &#34;GROUP:JOIN [CREATE]&#34;&lt;/p&gt;\n\t\t\t&lt;p&gt;This endpoint is used to reject group join request.&lt;/p&gt;\n\t\t\t&lt;p&gt;Reject group join request. If specific user is not asked to join the specific group ID, it will show the the error to show if the user is not asked to join yet.&lt;/p&gt;\n\t\t\t&lt;p&gt;This endpoint will also check if the specific user is already joined to specific group&lt;/p&gt;\n\t\t\t&lt;p&gt;Action Code: 73408&lt;/p&gt;\n\t\t"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1group~1v1~1admin~1namespaces~1{namespace}~1configuration~1{configurationCode}~1rules~1{allowedAction}/put/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [UPDATE]"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1group~1v1~1admin~1namespaces~1{namespace}~1configuration~1{configurationCode}~1rules~1{allowedAction}/put/description",
+    "value": "&lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [UPDATE]&#39;&lt;/p&gt;\n\t\t\t&lt;p&gt;This endpoint is used to update existing global rule configuration based on the allowed action. It will replace the permission with the request&lt;/p&gt;\n\t\t\t&lt;p&gt;Action Code: 73106&lt;/p&gt;\n\t\t"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1group~1v1~1admin~1namespaces~1{namespace}~1configuration~1{configurationCode}~1rules~1{allowedAction}/delete/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [UPDATE]"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1group~1v1~1admin~1namespaces~1{namespace}~1configuration~1{configurationCode}~1rules~1{allowedAction}/delete/description",
+    "value": "&lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [UPDATE]&#39;&lt;/p&gt;\n\t\t\t&lt;p&gt;This endpoint is used to delete existing global rule configuration based on the allowed action. It will not give any error if the allowed action is not existed in the global rule&lt;/p&gt;\n\t\t\t&lt;p&gt;Action Code: 73105&lt;/p&gt;\n\t\t"
+  },
+  {
+    "op": "add",
+    "path": "/securityDefinitions/HasPermission",
+    "value": {
+      "authorizationUrl": "https://dummy.oauth.net/auth",
+      "flow": "accessCode",
+      "scopes": {
+        "ADMIN:NAMESPACE:{namespace}:GROUP [READ]": "ADMIN:NAMESPACE:{namespace}:GROUP [READ]",
+        "ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [CREATE]": "ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [CREATE]",
+        "ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [DELETE]": "ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [DELETE]",
+        "ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [READ]": "ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [READ]",
+        "ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [UPDATE]": "ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [UPDATE]",
+        "ADMIN:NAMESPACE:{namespace}:GROUP:MEMBER [READ]": "ADMIN:NAMESPACE:{namespace}:GROUP:MEMBER [READ]",
+        "ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [CREATE]": "ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [CREATE]",
+        "ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [DELETE]": "ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [DELETE]",
+        "ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [READ]": "ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [READ]",
+        "ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [UPDATE]": "ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [UPDATE]",
+        "ADMIN:NAMESPACE:{namespace}:GROUP:{groupId} [DELETE]": "ADMIN:NAMESPACE:{namespace}:GROUP:{groupId} [DELETE]",
+        "GROUP [DELETE]": "GROUP [DELETE]",
+        "GROUP [UPDATE]": "GROUP [UPDATE]",
+        "GROUP:INVITE [CREATE]": "GROUP:INVITE [CREATE]"
+      },
+      "tokenUrl": "https://dumy.oauth.net/token",
+      "type": "oauth2"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/securityDefinitions/HasScope",
+    "value": {
+      "authorizationUrl": "https://dummy.oauth.net/auth",
+      "flow": "accessCode",
+      "scopes": {},
+      "tokenUrl": "https://dumy.oauth.net/token",
+      "type": "oauth2"
+    }
+  }
+]

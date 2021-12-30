@@ -29,10 +29,105 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
+	BatchDownloadServerLogs(params *BatchDownloadServerLogsParams, authInfo runtime.ClientAuthInfoWriter) (*BatchDownloadServerLogsOK, *BatchDownloadServerLogsBadRequest, *BatchDownloadServerLogsInternalServerError, error)
+	BatchDownloadServerLogsShort(params *BatchDownloadServerLogsParams, authInfo runtime.ClientAuthInfoWriter) (*BatchDownloadServerLogsOK, error)
 	ListAllTerminatedServers(params *ListAllTerminatedServersParams, authInfo runtime.ClientAuthInfoWriter) (*ListAllTerminatedServersOK, *ListAllTerminatedServersBadRequest, *ListAllTerminatedServersUnauthorized, *ListAllTerminatedServersInternalServerError, error)
 	ListAllTerminatedServersShort(params *ListAllTerminatedServersParams, authInfo runtime.ClientAuthInfoWriter) (*ListAllTerminatedServersOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
+}
+
+/*
+  BatchDownloadServerLogs batches download dedicated server log files
+
+  Required permission: ADMIN:NAMESPACE:{namespace}:DSLM:LOG [READ]
+
+Required scope: social
+
+This endpoint will download dedicated server&#39;s log file (.zip).
+*/
+func (a *Client) BatchDownloadServerLogs(params *BatchDownloadServerLogsParams, authInfo runtime.ClientAuthInfoWriter) (*BatchDownloadServerLogsOK, *BatchDownloadServerLogsBadRequest, *BatchDownloadServerLogsInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewBatchDownloadServerLogsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "batchDownloadServerLogs",
+		Method:             "POST",
+		PathPattern:        "/dslogmanager/servers/logs/download",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &BatchDownloadServerLogsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *BatchDownloadServerLogsOK:
+		return v, nil, nil, nil
+
+	case *BatchDownloadServerLogsBadRequest:
+		return nil, v, nil, nil
+
+	case *BatchDownloadServerLogsInternalServerError:
+		return nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) BatchDownloadServerLogsShort(params *BatchDownloadServerLogsParams, authInfo runtime.ClientAuthInfoWriter) (*BatchDownloadServerLogsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewBatchDownloadServerLogsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "batchDownloadServerLogs",
+		Method:             "POST",
+		PathPattern:        "/dslogmanager/servers/logs/download",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &BatchDownloadServerLogsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *BatchDownloadServerLogsOK:
+		return v, nil
+	case *BatchDownloadServerLogsBadRequest:
+		return nil, v
+	case *BatchDownloadServerLogsInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
 }
 
 /*

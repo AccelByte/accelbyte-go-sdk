@@ -8,7 +8,7 @@
     },
     "description": "Justice DS Log Manager Service",
     "title": "justice-ds-log-manager-service",
-    "version": "1.4.0"
+    "version": "1.4.1"
   },
   "schemes": [
     "https"
@@ -105,11 +105,28 @@
             "type": "string"
           },
           {
-            "default": 0,
-            "description": "offset",
+            "description": "start date on last update of the game RFC 3339",
             "in": "query",
-            "name": "offset",
-            "type": "integer"
+            "name": "start_date",
+            "type": "string"
+          },
+          {
+            "description": "end date on last update of the game RFC 3339",
+            "in": "query",
+            "name": "end_date",
+            "type": "string"
+          },
+          {
+            "description": "next",
+            "in": "query",
+            "name": "next",
+            "type": "string"
+          },
+          {
+            "description": "previous",
+            "in": "query",
+            "name": "previous",
+            "type": "string"
           },
           {
             "default": 20,
@@ -220,7 +237,7 @@
         ],
         "summary": "Download dedicated server log files",
         "tags": [
-          "Download Server Logs"
+          "Terminated Servers"
         ]
       }
     },
@@ -284,7 +301,61 @@
         ],
         "summary": "Check dedicated server log files existence",
         "tags": [
-          "Download Server Logs"
+          "Terminated Servers"
+        ]
+      }
+    },
+    "/dslogmanager/servers/logs/download": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:DSLM:LOG [READ]\n\nRequired scope: social\n\nThis endpoint will download dedicated server\u0026#39;s log file (.zip).",
+        "operationId": "batchDownloadServerLogs",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.BatchDownloadLogsRequest"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "server logs downloaded."
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:DSLM:LOG [READ]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Batch Download dedicated server log files",
+        "tags": [
+          "All Terminated Servers"
         ]
       }
     },
@@ -351,11 +422,28 @@
             "type": "string"
           },
           {
-            "default": 0,
-            "description": "offset",
+            "description": "next",
             "in": "query",
-            "name": "offset",
-            "type": "integer"
+            "name": "next",
+            "type": "string"
+          },
+          {
+            "description": "previous",
+            "in": "query",
+            "name": "previous",
+            "type": "string"
+          },
+          {
+            "description": "start date on last update of the game RFC 3339",
+            "in": "query",
+            "name": "start_date",
+            "type": "string"
+          },
+          {
+            "description": "end date on last update of the game RFC 3339",
+            "in": "query",
+            "name": "end_date",
+            "type": "string"
           },
           {
             "default": 20,
@@ -476,6 +564,37 @@
         "Section",
         "Service",
         "Text"
+      ]
+    },
+    "models.BatchDownloadLogsRequest": {
+      "properties": {
+        "Downloads": {
+          "items": {
+            "$ref": "#/definitions/models.DownloadLogsRequest"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "Downloads"
+      ]
+    },
+    "models.DownloadLogsRequest": {
+      "properties": {
+        "alloc_id": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "pod_name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "alloc_id",
+        "namespace",
+        "pod_name"
       ]
     },
     "models.ListTerminatedServersResponse": {

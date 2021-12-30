@@ -31,10 +31,6 @@ type Client struct {
 type ClientService interface {
 	ConsumeUserEntitlement(params *ConsumeUserEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*ConsumeUserEntitlementOK, *ConsumeUserEntitlementNotFound, *ConsumeUserEntitlementConflict, error)
 	ConsumeUserEntitlementShort(params *ConsumeUserEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*ConsumeUserEntitlementOK, error)
-	CreateUserDistributionReceiver(params *CreateUserDistributionReceiverParams, authInfo runtime.ClientAuthInfoWriter) (*CreateUserDistributionReceiverCreated, *CreateUserDistributionReceiverConflict, error)
-	CreateUserDistributionReceiverShort(params *CreateUserDistributionReceiverParams, authInfo runtime.ClientAuthInfoWriter) (*CreateUserDistributionReceiverCreated, error)
-	DeleteUserDistributionReceiver(params *DeleteUserDistributionReceiverParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserDistributionReceiverNoContent, *DeleteUserDistributionReceiverNotFound, error)
-	DeleteUserDistributionReceiverShort(params *DeleteUserDistributionReceiverParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserDistributionReceiverNoContent, error)
 	DisableUserEntitlement(params *DisableUserEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*DisableUserEntitlementOK, *DisableUserEntitlementNotFound, *DisableUserEntitlementConflict, error)
 	DisableUserEntitlementShort(params *DisableUserEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*DisableUserEntitlementOK, error)
 	EnableUserEntitlement(params *EnableUserEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*EnableUserEntitlementOK, *EnableUserEntitlementNotFound, *EnableUserEntitlementConflict, error)
@@ -49,8 +45,6 @@ type ClientService interface {
 	GetUserAppEntitlementByAppIDShort(params *GetUserAppEntitlementByAppIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserAppEntitlementByAppIDOK, error)
 	GetUserAppEntitlementOwnershipByAppID(params *GetUserAppEntitlementOwnershipByAppIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserAppEntitlementOwnershipByAppIDOK, error)
 	GetUserAppEntitlementOwnershipByAppIDShort(params *GetUserAppEntitlementOwnershipByAppIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserAppEntitlementOwnershipByAppIDOK, error)
-	GetUserDistributionReceivers(params *GetUserDistributionReceiversParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserDistributionReceiversOK, *GetUserDistributionReceiversBadRequest, error)
-	GetUserDistributionReceiversShort(params *GetUserDistributionReceiversParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserDistributionReceiversOK, error)
 	GetUserEntitlement(params *GetUserEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserEntitlementOK, *GetUserEntitlementNotFound, error)
 	GetUserEntitlementShort(params *GetUserEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserEntitlementOK, error)
 	GetUserEntitlementByItemID(params *GetUserEntitlementByItemIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserEntitlementByItemIDOK, *GetUserEntitlementByItemIDNotFound, error)
@@ -67,12 +61,6 @@ type ClientService interface {
 	GrantUserEntitlementShort(params *GrantUserEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*GrantUserEntitlementCreated, error)
 	PublicConsumeUserEntitlement(params *PublicConsumeUserEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*PublicConsumeUserEntitlementOK, *PublicConsumeUserEntitlementNotFound, *PublicConsumeUserEntitlementConflict, error)
 	PublicConsumeUserEntitlementShort(params *PublicConsumeUserEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*PublicConsumeUserEntitlementOK, error)
-	PublicCreateUserDistributionReceiver(params *PublicCreateUserDistributionReceiverParams, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateUserDistributionReceiverCreated, *PublicCreateUserDistributionReceiverConflict, error)
-	PublicCreateUserDistributionReceiverShort(params *PublicCreateUserDistributionReceiverParams, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateUserDistributionReceiverCreated, error)
-	PublicDeleteUserDistributionReceiver(params *PublicDeleteUserDistributionReceiverParams, authInfo runtime.ClientAuthInfoWriter) (*PublicDeleteUserDistributionReceiverNoContent, *PublicDeleteUserDistributionReceiverNotFound, error)
-	PublicDeleteUserDistributionReceiverShort(params *PublicDeleteUserDistributionReceiverParams, authInfo runtime.ClientAuthInfoWriter) (*PublicDeleteUserDistributionReceiverNoContent, error)
-	PublicDistributeUserDistribution(params *PublicDistributeUserDistributionParams, authInfo runtime.ClientAuthInfoWriter) (*PublicDistributeUserDistributionOK, *PublicDistributeUserDistributionBadRequest, *PublicDistributeUserDistributionNotFound, error)
-	PublicDistributeUserDistributionShort(params *PublicDistributeUserDistributionParams, authInfo runtime.ClientAuthInfoWriter) (*PublicDistributeUserDistributionOK, error)
 	PublicExistsAnyMyActiveEntitlement(params *PublicExistsAnyMyActiveEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*PublicExistsAnyMyActiveEntitlementOK, error)
 	PublicExistsAnyMyActiveEntitlementShort(params *PublicExistsAnyMyActiveEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*PublicExistsAnyMyActiveEntitlementOK, error)
 	PublicExistsAnyUserActiveEntitlement(params *PublicExistsAnyUserActiveEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*PublicExistsAnyUserActiveEntitlementOK, error)
@@ -89,8 +77,6 @@ type ClientService interface {
 	PublicGetUserAppEntitlementByAppIDShort(params *PublicGetUserAppEntitlementByAppIDParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserAppEntitlementByAppIDOK, error)
 	PublicGetUserAppEntitlementOwnershipByAppID(params *PublicGetUserAppEntitlementOwnershipByAppIDParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserAppEntitlementOwnershipByAppIDOK, error)
 	PublicGetUserAppEntitlementOwnershipByAppIDShort(params *PublicGetUserAppEntitlementOwnershipByAppIDParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserAppEntitlementOwnershipByAppIDOK, error)
-	PublicGetUserDistributionReceivers(params *PublicGetUserDistributionReceiversParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserDistributionReceiversOK, *PublicGetUserDistributionReceiversBadRequest, *PublicGetUserDistributionReceiversNotFound, error)
-	PublicGetUserDistributionReceiversShort(params *PublicGetUserDistributionReceiversParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserDistributionReceiversOK, error)
 	PublicGetUserEntitlement(params *PublicGetUserEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserEntitlementOK, *PublicGetUserEntitlementNotFound, error)
 	PublicGetUserEntitlementShort(params *PublicGetUserEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserEntitlementOK, error)
 	PublicGetUserEntitlementByItemID(params *PublicGetUserEntitlementByItemIDParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserEntitlementByItemIDOK, *PublicGetUserEntitlementByItemIDNotFound, error)
@@ -105,8 +91,6 @@ type ClientService interface {
 	PublicQueryUserEntitlementsShort(params *PublicQueryUserEntitlementsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryUserEntitlementsOK, error)
 	PublicQueryUserEntitlementsByAppType(params *PublicQueryUserEntitlementsByAppTypeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryUserEntitlementsByAppTypeOK, error)
 	PublicQueryUserEntitlementsByAppTypeShort(params *PublicQueryUserEntitlementsByAppTypeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryUserEntitlementsByAppTypeOK, error)
-	PublicUpdateUserDistributionReceiver(params *PublicUpdateUserDistributionReceiverParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateUserDistributionReceiverNoContent, error)
-	PublicUpdateUserDistributionReceiverShort(params *PublicUpdateUserDistributionReceiverParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateUserDistributionReceiverNoContent, error)
 	QueryEntitlements(params *QueryEntitlementsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryEntitlementsOK, error)
 	QueryEntitlementsShort(params *QueryEntitlementsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryEntitlementsOK, error)
 	QueryUserEntitlements(params *QueryUserEntitlementsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryUserEntitlementsOK, error)
@@ -117,8 +101,6 @@ type ClientService interface {
 	RevokeUserEntitlementShort(params *RevokeUserEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*RevokeUserEntitlementOK, error)
 	RevokeUserEntitlements(params *RevokeUserEntitlementsParams, authInfo runtime.ClientAuthInfoWriter) (*RevokeUserEntitlementsOK, error)
 	RevokeUserEntitlementsShort(params *RevokeUserEntitlementsParams, authInfo runtime.ClientAuthInfoWriter) (*RevokeUserEntitlementsOK, error)
-	UpdateUserDistributionReceiver(params *UpdateUserDistributionReceiverParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateUserDistributionReceiverNoContent, error)
-	UpdateUserDistributionReceiverShort(params *UpdateUserDistributionReceiverParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateUserDistributionReceiverNoContent, error)
 	UpdateUserEntitlement(params *UpdateUserEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateUserEntitlementOK, *UpdateUserEntitlementNotFound, *UpdateUserEntitlementConflict, *UpdateUserEntitlementUnprocessableEntity, error)
 	UpdateUserEntitlementShort(params *UpdateUserEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateUserEntitlementOK, error)
 
@@ -215,177 +197,9 @@ func (a *Client) ConsumeUserEntitlementShort(params *ConsumeUserEntitlementParam
 }
 
 /*
-  CreateUserDistributionReceiver creates distribution receiver
-
-  Create distribution receiver for a specific user by dedicated server. Once user distribution receiver created, user can distribute distribution to receiver.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:DISTRIBUTION&#34;, action=1 (CREATE)&lt;/li&gt;&lt;/ul&gt;
-*/
-func (a *Client) CreateUserDistributionReceiver(params *CreateUserDistributionReceiverParams, authInfo runtime.ClientAuthInfoWriter) (*CreateUserDistributionReceiverCreated, *CreateUserDistributionReceiverConflict, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewCreateUserDistributionReceiverParams()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "createUserDistributionReceiver",
-		Method:             "POST",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/entitlements/receivers/{extUserId}",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &CreateUserDistributionReceiverReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *CreateUserDistributionReceiverCreated:
-		return v, nil, nil
-
-	case *CreateUserDistributionReceiverConflict:
-		return nil, v, nil
-
-	default:
-		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-func (a *Client) CreateUserDistributionReceiverShort(params *CreateUserDistributionReceiverParams, authInfo runtime.ClientAuthInfoWriter) (*CreateUserDistributionReceiverCreated, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewCreateUserDistributionReceiverParams()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "createUserDistributionReceiver",
-		Method:             "POST",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/entitlements/receivers/{extUserId}",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &CreateUserDistributionReceiverReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *CreateUserDistributionReceiverCreated:
-		return v, nil
-	case *CreateUserDistributionReceiverConflict:
-		return nil, v
-
-	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-/*
-  DeleteUserDistributionReceiver deletes distribution receiver
-
-  Delete a distribution receiver for a specific user by dedicated server.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:DISTRIBUTION&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;
-*/
-func (a *Client) DeleteUserDistributionReceiver(params *DeleteUserDistributionReceiverParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserDistributionReceiverNoContent, *DeleteUserDistributionReceiverNotFound, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewDeleteUserDistributionReceiverParams()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "deleteUserDistributionReceiver",
-		Method:             "DELETE",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/entitlements/receivers/{extUserId}",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &DeleteUserDistributionReceiverReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *DeleteUserDistributionReceiverNoContent:
-		return v, nil, nil
-
-	case *DeleteUserDistributionReceiverNotFound:
-		return nil, v, nil
-
-	default:
-		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-func (a *Client) DeleteUserDistributionReceiverShort(params *DeleteUserDistributionReceiverParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserDistributionReceiverNoContent, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewDeleteUserDistributionReceiverParams()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "deleteUserDistributionReceiver",
-		Method:             "DELETE",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/entitlements/receivers/{extUserId}",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &DeleteUserDistributionReceiverReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *DeleteUserDistributionReceiverNoContent:
-		return v, nil
-	case *DeleteUserDistributionReceiverNotFound:
-		return nil, v
-
-	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-/*
   DisableUserEntitlement disables user entitlement
 
-  Disable user entitlement if entitlement, only active entitlement can be disable, disabled entitlement can&#39;t consume/distribute.&lt;br&gt;&lt;b&gt;Like revoke, it will lose the entitlement ownership, except disabled entitlement can enable.&lt;/b&gt;&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: disable entitlement&lt;/li&gt;&lt;/ul&gt;
+  Disable user entitlement if entitlement, only active entitlement can be disable, disabled entitlement can&#39;t consume.&lt;br&gt;&lt;b&gt;Like revoke, it will lose the entitlement ownership, except disabled entitlement can enable.&lt;/b&gt;&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: disable entitlement&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) DisableUserEntitlement(params *DisableUserEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*DisableUserEntitlementOK, *DisableUserEntitlementNotFound, *DisableUserEntitlementConflict, error) {
 	// TODO: Validate the params before sending
@@ -959,90 +773,6 @@ func (a *Client) GetUserAppEntitlementOwnershipByAppIDShort(params *GetUserAppEn
 
 	case *GetUserAppEntitlementOwnershipByAppIDOK:
 		return v, nil
-
-	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-/*
-  GetUserDistributionReceivers gets distribution receivers
-
-  Get distribution receivers for a specific game user by dedicated server.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:DISTRIBUTION&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: distribution receiver info list&lt;/li&gt;&lt;/ul&gt;
-*/
-func (a *Client) GetUserDistributionReceivers(params *GetUserDistributionReceiversParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserDistributionReceiversOK, *GetUserDistributionReceiversBadRequest, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewGetUserDistributionReceiversParams()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "getUserDistributionReceivers",
-		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/entitlements/receivers",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &GetUserDistributionReceiversReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *GetUserDistributionReceiversOK:
-		return v, nil, nil
-
-	case *GetUserDistributionReceiversBadRequest:
-		return nil, v, nil
-
-	default:
-		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-func (a *Client) GetUserDistributionReceiversShort(params *GetUserDistributionReceiversParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserDistributionReceiversOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewGetUserDistributionReceiversParams()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "getUserDistributionReceivers",
-		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/entitlements/receivers",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &GetUserDistributionReceiversReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *GetUserDistributionReceiversOK:
-		return v, nil
-	case *GetUserDistributionReceiversBadRequest:
-		return nil, v
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
@@ -1717,276 +1447,6 @@ func (a *Client) PublicConsumeUserEntitlementShort(params *PublicConsumeUserEnti
 }
 
 /*
-  PublicCreateUserDistributionReceiver creates user distribution receiver
-
-  Create distribution receiver for a specific user. Once user distribution receiver created, user can distribute distribution to receiver.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:DISTRIBUTION&#34;, action=1 (CREATE)&lt;/li&gt;&lt;/ul&gt;
-*/
-func (a *Client) PublicCreateUserDistributionReceiver(params *PublicCreateUserDistributionReceiverParams, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateUserDistributionReceiverCreated, *PublicCreateUserDistributionReceiverConflict, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewPublicCreateUserDistributionReceiverParams()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "publicCreateUserDistributionReceiver",
-		Method:             "POST",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/entitlements/receivers/{extUserId}",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &PublicCreateUserDistributionReceiverReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *PublicCreateUserDistributionReceiverCreated:
-		return v, nil, nil
-
-	case *PublicCreateUserDistributionReceiverConflict:
-		return nil, v, nil
-
-	default:
-		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-func (a *Client) PublicCreateUserDistributionReceiverShort(params *PublicCreateUserDistributionReceiverParams, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateUserDistributionReceiverCreated, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewPublicCreateUserDistributionReceiverParams()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "publicCreateUserDistributionReceiver",
-		Method:             "POST",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/entitlements/receivers/{extUserId}",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &PublicCreateUserDistributionReceiverReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *PublicCreateUserDistributionReceiverCreated:
-		return v, nil
-	case *PublicCreateUserDistributionReceiverConflict:
-		return nil, v
-
-	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-/*
-  PublicDeleteUserDistributionReceiver deletes a user distribution receiver
-
-  Delete a distribution receiver for a specific user.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:DISTRIBUTION&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;
-*/
-func (a *Client) PublicDeleteUserDistributionReceiver(params *PublicDeleteUserDistributionReceiverParams, authInfo runtime.ClientAuthInfoWriter) (*PublicDeleteUserDistributionReceiverNoContent, *PublicDeleteUserDistributionReceiverNotFound, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewPublicDeleteUserDistributionReceiverParams()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "publicDeleteUserDistributionReceiver",
-		Method:             "DELETE",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/entitlements/receivers/{extUserId}",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &PublicDeleteUserDistributionReceiverReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *PublicDeleteUserDistributionReceiverNoContent:
-		return v, nil, nil
-
-	case *PublicDeleteUserDistributionReceiverNotFound:
-		return nil, v, nil
-
-	default:
-		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-func (a *Client) PublicDeleteUserDistributionReceiverShort(params *PublicDeleteUserDistributionReceiverParams, authInfo runtime.ClientAuthInfoWriter) (*PublicDeleteUserDistributionReceiverNoContent, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewPublicDeleteUserDistributionReceiverParams()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "publicDeleteUserDistributionReceiver",
-		Method:             "DELETE",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/entitlements/receivers/{extUserId}",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &PublicDeleteUserDistributionReceiverReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *PublicDeleteUserDistributionReceiverNoContent:
-		return v, nil
-	case *PublicDeleteUserDistributionReceiverNotFound:
-		return nil, v
-
-	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-/*
-  PublicDistributeUserDistribution distributes my distribution
-
-  Distribute my distribution with my user credentials. After successfully distributed, a notification will be send to configured web hook&lt;br&gt;&lt;p&gt;&lt;strong&gt;Notification Body:&lt;/strong&gt;&lt;/p&gt;&lt;pre&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Parameter&lt;/td&gt;&lt;td&gt;Type&lt;/td&gt;&lt;td&gt;Description&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;payload&lt;/td&gt;&lt;td&gt;String&lt;/td&gt;&lt;td&gt;Business object in compact json string &lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;sign&lt;/td&gt;&lt;td&gt;String&lt;/td&gt;&lt;td&gt;Sha1 hex signature for payload and private key&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;p&gt;&lt;strong&gt;Notification Body Example:&lt;/strong&gt;&lt;/p&gt;&lt;pre&gt;&lt;code style=&#39;overflow: auto&#39;&gt;{
-       &#34;payload&#34;:&#34;{
-           \&#34;namespace\&#34;: \&#34;publisherNamespace\&#34;,
-           \&#34;targetNamespace\&#34;: \&#34;game1\&#34;,
-           \&#34;targetUserId\&#34;: \&#34;94451623768940d58416ca33ca767ec3\&#34;,
-           \&#34;issuedAt\&#34;: \&#34;2018-07-26T07:11:16.547Z\&#34;,
-           \&#34;type\&#34;: \&#34;distribution\&#34;,
-           \&#34;extUserId\&#34;: \&#34;1234abcd\&#34;,
-           \&#34;sku\&#34;: \&#34;1234asdf\&#34;,
-           \&#34;quantity\&#34;: 1,
-           \&#34;nonceStr\&#34;: \&#34;34c1dcf3eb58455eb161465bbfc0b590\&#34;
-       }&#34;,
-       &#34;sign&#34;:&#34;e31fb92516cc9faaf50ad70343e1293acec6f3d5&#34;
-}&lt;/pre&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/code&gt;&lt;p&gt;&lt;strong&gt;Payload Parameters:&lt;/strong&gt;&lt;/p&gt;&lt;pre&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Parameter&lt;/td&gt;&lt;td&gt;Type&lt;/td&gt;&lt;td&gt;Description&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;namespace&lt;/td&gt;&lt;td&gt;String&lt;/td&gt;&lt;td&gt;The publisher namespace&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;targetNamespace&lt;/td&gt;&lt;td&gt;String&lt;/td&gt;&lt;td&gt;The target game namespace&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;targetUserId&lt;/td&gt;&lt;td&gt;String&lt;/td&gt;&lt;td&gt;The user id in target game namespace&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;issuedAt&lt;/td&gt;&lt;td&gt;String&lt;/td&gt;&lt;td&gt;Issue time&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;type&lt;/td&gt;&lt;td&gt;String&lt;/td&gt;&lt;td&gt;Notification type, it is a fixed value &#39;distribution&#39;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;extUserId&lt;/td&gt;&lt;td&gt;String&lt;/td&gt;&lt;td&gt;Unique identity, e.g. character id&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;sku&lt;/td&gt;&lt;td&gt;String&lt;/td&gt;&lt;td&gt;Item unique identity&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;quantity&lt;/td&gt;&lt;td&gt;Integer&lt;/td&gt;&lt;td&gt;quantity&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;nonceStr&lt;/td&gt;&lt;td&gt;String&lt;/td&gt;&lt;td&gt;Random string, max length is 32, can be timestamp or uuid&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/pre&gt;&lt;h4&gt;Encryption Rule:&lt;/h4&gt;&lt;p&gt;Concat payload json string and private key and then do sha1Hex.&lt;/p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:DISTRIBUTION&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;/ul&gt;
-*/
-func (a *Client) PublicDistributeUserDistribution(params *PublicDistributeUserDistributionParams, authInfo runtime.ClientAuthInfoWriter) (*PublicDistributeUserDistributionOK, *PublicDistributeUserDistributionBadRequest, *PublicDistributeUserDistributionNotFound, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewPublicDistributeUserDistributionParams()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "publicDistributeUserDistribution",
-		Method:             "PUT",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/distribute",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &PublicDistributeUserDistributionReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, nil, nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *PublicDistributeUserDistributionOK:
-		return v, nil, nil, nil
-
-	case *PublicDistributeUserDistributionBadRequest:
-		return nil, v, nil, nil
-
-	case *PublicDistributeUserDistributionNotFound:
-		return nil, nil, v, nil
-
-	default:
-		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-func (a *Client) PublicDistributeUserDistributionShort(params *PublicDistributeUserDistributionParams, authInfo runtime.ClientAuthInfoWriter) (*PublicDistributeUserDistributionOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewPublicDistributeUserDistributionParams()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "publicDistributeUserDistribution",
-		Method:             "PUT",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/distribute",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &PublicDistributeUserDistributionReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *PublicDistributeUserDistributionOK:
-		return v, nil
-	case *PublicDistributeUserDistributionBadRequest:
-		return nil, v
-	case *PublicDistributeUserDistributionNotFound:
-		return nil, v
-
-	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-/*
   PublicExistsAnyMyActiveEntitlement exists any my active entitlement
 
   Exists any my active entitlement of specified itemIds, skus and appIds&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:ENTITLEMENT&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;
@@ -2653,95 +2113,6 @@ func (a *Client) PublicGetUserAppEntitlementOwnershipByAppIDShort(params *Public
 }
 
 /*
-  PublicGetUserDistributionReceivers gets distribution receivers
-
-  Get distribution receivers in a specific namespace.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:DISTRIBUTION&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: distribution receiver info list&lt;/li&gt;&lt;/ul&gt;
-*/
-func (a *Client) PublicGetUserDistributionReceivers(params *PublicGetUserDistributionReceiversParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserDistributionReceiversOK, *PublicGetUserDistributionReceiversBadRequest, *PublicGetUserDistributionReceiversNotFound, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewPublicGetUserDistributionReceiversParams()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "publicGetUserDistributionReceivers",
-		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/entitlements/receivers",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &PublicGetUserDistributionReceiversReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, nil, nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *PublicGetUserDistributionReceiversOK:
-		return v, nil, nil, nil
-
-	case *PublicGetUserDistributionReceiversBadRequest:
-		return nil, v, nil, nil
-
-	case *PublicGetUserDistributionReceiversNotFound:
-		return nil, nil, v, nil
-
-	default:
-		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-func (a *Client) PublicGetUserDistributionReceiversShort(params *PublicGetUserDistributionReceiversParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserDistributionReceiversOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewPublicGetUserDistributionReceiversParams()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "publicGetUserDistributionReceivers",
-		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/entitlements/receivers",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &PublicGetUserDistributionReceiversReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *PublicGetUserDistributionReceiversOK:
-		return v, nil
-	case *PublicGetUserDistributionReceiversBadRequest:
-		return nil, v
-	case *PublicGetUserDistributionReceiversNotFound:
-		return nil, v
-
-	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-/*
   PublicGetUserEntitlement gets user entitlement
 
   Get user entitlement.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: entitlement&lt;/li&gt;&lt;/ul&gt;
@@ -3310,85 +2681,6 @@ func (a *Client) PublicQueryUserEntitlementsByAppTypeShort(params *PublicQueryUs
 }
 
 /*
-  PublicUpdateUserDistributionReceiver updates user distribution receiver
-
-  Update distribution receiver for a specific user. It will create a new one if not exist.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:DISTRIBUTION&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;/ul&gt;
-*/
-func (a *Client) PublicUpdateUserDistributionReceiver(params *PublicUpdateUserDistributionReceiverParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateUserDistributionReceiverNoContent, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewPublicUpdateUserDistributionReceiverParams()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "publicUpdateUserDistributionReceiver",
-		Method:             "PUT",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/entitlements/receivers/{extUserId}",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &PublicUpdateUserDistributionReceiverReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *PublicUpdateUserDistributionReceiverNoContent:
-		return v, nil
-
-	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-func (a *Client) PublicUpdateUserDistributionReceiverShort(params *PublicUpdateUserDistributionReceiverParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateUserDistributionReceiverNoContent, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewPublicUpdateUserDistributionReceiverParams()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "publicUpdateUserDistributionReceiver",
-		Method:             "PUT",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/entitlements/receivers/{extUserId}",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &PublicUpdateUserDistributionReceiverReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *PublicUpdateUserDistributionReceiverNoContent:
-		return v, nil
-
-	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-/*
   QueryEntitlements queries entitlements
 
   Query entitlements.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:ENTITLEMENT&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: entitlement list&lt;/li&gt;&lt;/ul&gt;
@@ -3789,88 +3081,9 @@ func (a *Client) RevokeUserEntitlementsShort(params *RevokeUserEntitlementsParam
 }
 
 /*
-  UpdateUserDistributionReceiver updates distribution receiver
-
-  Update distribution receiver for a specific user by dedicated server. It will create a new one if not exists.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:DISTRIBUTION&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;/ul&gt;
-*/
-func (a *Client) UpdateUserDistributionReceiver(params *UpdateUserDistributionReceiverParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateUserDistributionReceiverNoContent, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewUpdateUserDistributionReceiverParams()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "updateUserDistributionReceiver",
-		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/entitlements/receivers/{extUserId}",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &UpdateUserDistributionReceiverReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *UpdateUserDistributionReceiverNoContent:
-		return v, nil
-
-	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-func (a *Client) UpdateUserDistributionReceiverShort(params *UpdateUserDistributionReceiverParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateUserDistributionReceiverNoContent, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewUpdateUserDistributionReceiverParams()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "updateUserDistributionReceiver",
-		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/entitlements/receivers/{extUserId}",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &UpdateUserDistributionReceiverReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *UpdateUserDistributionReceiverNoContent:
-		return v, nil
-
-	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-/*
   UpdateUserEntitlement updates user entitlement
 
-  Update user entitlement. If update CONSUMABLE entitlement useCount to 0, the status will be CONSUMED, if update quantity of DISTRIBUTION, the status will be DISTRIBUTED.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated entitlement&lt;/li&gt;&lt;/ul&gt;
+  Update user entitlement. If update CONSUMABLE entitlement useCount to 0, the status will be CONSUMED.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated entitlement&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) UpdateUserEntitlement(params *UpdateUserEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateUserEntitlementOK, *UpdateUserEntitlementNotFound, *UpdateUserEntitlementConflict, *UpdateUserEntitlementUnprocessableEntity, error) {
 	// TODO: Validate the params before sending

@@ -14,7 +14,6 @@ import (
 	"github.com/go-openapi/strfmt"
 
 	"github.com/AccelByte/accelbyte-go-sdk/dslogmanager-sdk/pkg/dslogmanagerclient/all_terminated_servers"
-	"github.com/AccelByte/accelbyte-go-sdk/dslogmanager-sdk/pkg/dslogmanagerclient/download_server_logs"
 	"github.com/AccelByte/accelbyte-go-sdk/dslogmanager-sdk/pkg/dslogmanagerclient/operations"
 	"github.com/AccelByte/accelbyte-go-sdk/dslogmanager-sdk/pkg/dslogmanagerclient/terminated_servers"
 )
@@ -62,7 +61,6 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry) *JusticeDsl
 	cli := new(JusticeDslogmanagerService)
 	cli.Transport = transport
 	cli.AllTerminatedServers = all_terminated_servers.New(transport, formats)
-	cli.DownloadServerLogs = download_server_logs.New(transport, formats)
 	cli.Operations = operations.New(transport, formats)
 	cli.TerminatedServers = terminated_servers.New(transport, formats)
 	return cli
@@ -125,8 +123,6 @@ func (cfg *TransportConfig) WithSchemes(schemes []string) *TransportConfig {
 type JusticeDslogmanagerService struct {
 	AllTerminatedServers all_terminated_servers.ClientService
 
-	DownloadServerLogs download_server_logs.ClientService
-
 	Operations operations.ClientService
 
 	TerminatedServers terminated_servers.ClientService
@@ -138,7 +134,6 @@ type JusticeDslogmanagerService struct {
 func (c *JusticeDslogmanagerService) SetTransport(transport runtime.ClientTransport) {
 	c.Transport = transport
 	c.AllTerminatedServers.SetTransport(transport)
-	c.DownloadServerLogs.SetTransport(transport)
 	c.Operations.SetTransport(transport)
 	c.TerminatedServers.SetTransport(transport)
 }

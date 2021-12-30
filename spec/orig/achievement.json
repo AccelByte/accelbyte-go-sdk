@@ -1,0 +1,1558 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Justice Achievement Service",
+    "title": "justice-achievement-service"
+  },
+  "paths": {
+    "/achievement/v1/admin/namespaces/{namespace}/achievements": {
+      "get": {
+        "description": "<p>Required permission \n<code>ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [READ]</code> and scope <code>social</code></p>",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "achievements"
+        ],
+        "summary": "Query achievements",
+        "operationId": "AdminListAchievements",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace of the game",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "default": 10,
+            "description": "the maximum number of data that may be returned (1...100)",
+            "name": "limit",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "default": "listOrder:asc",
+            "description": "sort by, default is 'listOrder:asc', allow values: [listOrder, listOrder:asc, listOrder:desc, createdAt, createdAt:asc, createdAt:desc, updatedAt, updatedAt:asc, updatedAt:desc]",
+            "name": "sortBy",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "default": 0,
+            "description": "offset default 0",
+            "name": "offset",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.PaginatedAchievementResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "<p>Required permission \n\t\t\t<code>ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [CREATE]</code> and scope <code>social</code></p>\n        \tOther detail info:\n          - achievementCode: Human readable unique code to indentify the achievement. Must be lowercase \n\t\t\tand maximum length is 32\n          - incremental:  If the achievement is not incremental, it does not need to store a goal value \n\t\t\t\t\t\t\tof a stat to be unlocked.\n                          If the achievement is incremental, it needs to set statCode and goalValue\n          - statCode: Selected statistic code, from the published statistic code event.Human readable unique \n\t\t\tcode to indentify the achievement. Must be lowercase and maximum length is 32\n          - goalValue: Statistics value required to unlock the achievement.\n          - defaultLanguage: localozation for achievement name and achievement description. Allowed format : en, en-US\n          - slug: specify the image they want to use, it can be file image name or something \n\t\t\tto define the achievement icon.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "achievements"
+        ],
+        "summary": "Create new achievement",
+        "operationId": "AdminCreateNewAchievement",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace of the game",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.AchievementRequest"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/models.AchievementResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        }
+      }
+    },
+    "/achievement/v1/admin/namespaces/{namespace}/achievements/export": {
+      "get": {
+        "description": "\n\t\t\t\tRequired permission ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [READ]\n\n\t\t\t\tRequired Scope: social\n\t\t\t",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "achievements"
+        ],
+        "summary": "Export achievements configuration into a json file",
+        "operationId": "ExportAchievements",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace of the game",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/models.Achievement"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        }
+      }
+    },
+    "/achievement/v1/admin/namespaces/{namespace}/achievements/import": {
+      "post": {
+        "description": "\n\t\t\t\tRequired permission ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [UPDATE]\n\n\t\t\t\tRequired Scope: social\n\n\t\t\t\tImport channels configuration from file. It will merge with existing channels.\n\t\t\t\tAvailable import strategy:\n\t\t\t\t- leaveOut: if channel with same key exist, the existing will be used and imported one will be ignored (default)\n\t\t\t\t- replace: if channel with same key exist, the imported channel will be used and existing one will be removed\n\t\t\t",
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "achievements"
+        ],
+        "summary": "Import achievements from file",
+        "operationId": "ImportAchievements",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace of the game",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "file",
+            "description": "file to be imported",
+            "name": "file",
+            "in": "formData"
+          },
+          {
+            "type": "string",
+            "description": "strategy for import",
+            "name": "strategy",
+            "in": "formData"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/service.ImportConfigResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        }
+      }
+    },
+    "/achievement/v1/admin/namespaces/{namespace}/achievements/{achievementCode}": {
+      "get": {
+        "description": "<p>Required permission \n<code>ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [READ]</code> and scope <code>social</code></p>",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "achievements"
+        ],
+        "summary": "Get an achievement",
+        "operationId": "AdminGetAchievement",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace of the game",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "achievement code",
+            "name": "achievementCode",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.AchievementResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        }
+      },
+      "put": {
+        "description": "<p>Required permission \n<code>ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [UPDATE]</code> and scope <code>social</code></p>",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "achievements"
+        ],
+        "summary": "Update an achievement",
+        "operationId": "AdminUpdateAchievement",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace of the game",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "achievement code",
+            "name": "achievementCode",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.AchievementUpdateRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.AchievementResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "<p>Required permission \n<code>ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [DELETE]</code> and scope <code>social</code></p>",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "achievements"
+        ],
+        "summary": "Delete an achievement",
+        "operationId": "AdminDeleteAchievement",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace of the game",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "achievement code",
+            "name": "achievementCode",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "description": "<p>Required permission \n<code>ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [UPDATE]</code> and scope <code>social</code></p>",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "achievements"
+        ],
+        "summary": "Update achievements listOrder",
+        "operationId": "AdminUpdateAchievementListOrder",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace of the game",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "achievement code",
+            "name": "achievementCode",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.AchievementOrderUpdateRequest"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        }
+      }
+    },
+    "/achievement/v1/admin/namespaces/{namespace}/users/{userId}/achievements": {
+      "get": {
+        "description": "<p>Required permission\n<code>ADMIN:NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [READ]</code> and scope <code>social</code></p>",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "achievements"
+        ],
+        "summary": "Query user achievements [include achieved and in-progress]",
+        "operationId": "AdminListUserAchievements",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace of the game",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "user id",
+            "name": "userId",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "default": 10,
+            "description": "the maximum number of data that may be returned (1...100)",
+            "name": "limit",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "default": 0,
+            "description": "offset default 0",
+            "name": "offset",
+            "in": "query"
+          },
+          {
+            "type": "boolean",
+            "default": true,
+            "description": "prefer to query achieved",
+            "name": "preferUnlocked",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.PaginatedUserAchievementResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        }
+      }
+    },
+    "/achievement/v1/admin/namespaces/{namespace}/users/{userId}/achievements/{achievementCode}/unlock": {
+      "put": {
+        "description": "<p>Required permission \n<code>ADMIN:NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [UPDATE]</code> and scope <code>social</code></p>",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "achievements"
+        ],
+        "summary": "Unlock an achievement",
+        "operationId": "AdminUnlockAchievement",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace of the game",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "user id",
+            "name": "userId",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "achievement code",
+            "name": "achievementCode",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        }
+      }
+    },
+    "/achievement/v1/public/namespaces/{namespace}/achievements": {
+      "get": {
+        "description": "<p>Required permission \n<code>NAMESPACE:{namespace}:ACHIEVEMENT [READ]</code> and scope <code>social</code></p>",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "achievements"
+        ],
+        "summary": "Query achievements",
+        "operationId": "PublicListAchievements",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace of the game",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "default": "listOrder:asc",
+            "description": "sort by, default is 'listOrder:asc', allow values: [listOrder, listOrder:asc, listOrder:desc, createdAt, createdAt:asc, createdAt:desc, updatedAt, updatedAt:asc, updatedAt:desc]",
+            "name": "sortBy",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "language, if the selected language not exist in achievement,it use default language",
+            "name": "language",
+            "in": "query",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "default": 10,
+            "description": "the maximum number of data that may be returned (1...100)",
+            "name": "limit",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "default": 0,
+            "description": "offset default 0",
+            "name": "offset",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.PublicAchievementsResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        }
+      }
+    },
+    "/achievement/v1/public/namespaces/{namespace}/achievements/{achievementCode}": {
+      "get": {
+        "description": "<p>Required permission \n<code>NAMESPACE:{namespace}:ACHIEVEMENT [READ]</code> and scope <code>social</code></p>",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "achievements"
+        ],
+        "summary": "Get an achievement",
+        "operationId": "PublicGetAchievement",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace of the game",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "achievement code",
+            "name": "achievementCode",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "language, if the selected language not exist in achievement,it use default language",
+            "name": "language",
+            "in": "query",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.PublicAchievementResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        }
+      }
+    },
+    "/achievement/v1/public/namespaces/{namespace}/users/{userId}/achievements": {
+      "get": {
+        "description": "<p>Required permission \n<code>NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [READ]</code> and scope <code>social</code></p>",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "achievements"
+        ],
+        "summary": "Query user achievements [include achieved and in-progress]",
+        "operationId": "PublicListUserAchievements",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace of the game",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "user id",
+            "name": "userId",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "default": 10,
+            "description": "the maximum number of data that may be returned (1...100)",
+            "name": "limit",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "default": 0,
+            "description": "offset default 0",
+            "name": "offset",
+            "in": "query"
+          },
+          {
+            "type": "boolean",
+            "default": false,
+            "description": "prefer to query achieved",
+            "name": "preferUnlocked",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.PaginatedUserAchievementResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        }
+      }
+    },
+    "/achievement/v1/public/namespaces/{namespace}/users/{userId}/achievements/{achievementCode}/unlock": {
+      "put": {
+        "description": "<p>Required permission \n<code>NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [UPDATE]</code> and scope <code>social</code></p>",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "achievements"
+        ],
+        "summary": "Unlock an achievement",
+        "operationId": "PublicUnlockAchievement",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace of the game",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "user id",
+            "name": "userId",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "achievement code",
+            "name": "achievementCode",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "models.Achievement": {
+      "required": [
+        "AchievementCode",
+        "CreatedAt",
+        "DefaultLanguage",
+        "Description",
+        "GoalValue",
+        "Hidden",
+        "ID",
+        "Incremental",
+        "ListOrder",
+        "LockedIcons",
+        "Name",
+        "Namespace",
+        "StatCode",
+        "Tags",
+        "UnlockedIcons",
+        "UpdatedAt"
+      ],
+      "properties": {
+        "AchievementCode": {
+          "type": "string"
+        },
+        "CreatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "DefaultLanguage": {
+          "type": "string"
+        },
+        "Description": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "GoalValue": {
+          "type": "number",
+          "format": "double"
+        },
+        "Hidden": {
+          "type": "boolean"
+        },
+        "ID": {
+          "type": "string"
+        },
+        "Incremental": {
+          "type": "boolean"
+        },
+        "ListOrder": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "LockedIcons": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/models.Icon"
+          }
+        },
+        "Name": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "Namespace": {
+          "type": "string"
+        },
+        "StatCode": {
+          "type": "string"
+        },
+        "Tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "UnlockedIcons": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/models.Icon"
+          }
+        },
+        "UpdatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "models.AchievementOrderUpdateRequest": {
+      "required": [
+        "targetOrder"
+      ],
+      "properties": {
+        "targetOrder": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "models.AchievementRequest": {
+      "required": [
+        "achievementCode",
+        "defaultLanguage",
+        "description",
+        "goalValue",
+        "hidden",
+        "incremental",
+        "lockedIcons",
+        "name",
+        "statCode",
+        "tags",
+        "unlockedIcons"
+      ],
+      "properties": {
+        "achievementCode": {
+          "type": "string"
+        },
+        "defaultLanguage": {
+          "type": "string"
+        },
+        "description": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "goalValue": {
+          "type": "number",
+          "format": "double"
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "incremental": {
+          "type": "boolean"
+        },
+        "lockedIcons": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/models.Icon"
+          }
+        },
+        "name": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "statCode": {
+          "type": "string"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "unlockedIcons": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/models.Icon"
+          }
+        }
+      }
+    },
+    "models.AchievementResponse": {
+      "required": [
+        "achievementCode",
+        "createdAt",
+        "defaultLanguage",
+        "description",
+        "hidden",
+        "incremental",
+        "listOrder",
+        "lockedIcons",
+        "name",
+        "namespace",
+        "tags",
+        "unlockedIcons",
+        "updatedAt"
+      ],
+      "properties": {
+        "achievementCode": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "defaultLanguage": {
+          "type": "string"
+        },
+        "description": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "goalValue": {
+          "type": "number",
+          "format": "double"
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "incremental": {
+          "type": "boolean"
+        },
+        "listOrder": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "lockedIcons": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/models.Icon"
+          }
+        },
+        "name": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "statCode": {
+          "type": "string"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "unlockedIcons": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/models.Icon"
+          }
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "models.AchievementUpdateRequest": {
+      "required": [
+        "defaultLanguage",
+        "description",
+        "goalValue",
+        "hidden",
+        "incremental",
+        "lockedIcons",
+        "name",
+        "statCode",
+        "tags",
+        "unlockedIcons"
+      ],
+      "properties": {
+        "defaultLanguage": {
+          "type": "string"
+        },
+        "description": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "goalValue": {
+          "type": "number",
+          "format": "double"
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "incremental": {
+          "type": "boolean"
+        },
+        "lockedIcons": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/models.Icon"
+          }
+        },
+        "name": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "statCode": {
+          "type": "string"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "unlockedIcons": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/models.Icon"
+          }
+        }
+      }
+    },
+    "models.AdditionalInfo": {
+      "required": [
+        "numberOfAchievements",
+        "numberOfHiddenAchievements",
+        "numberOfVisibleAchievements"
+      ],
+      "properties": {
+        "numberOfAchievements": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "numberOfHiddenAchievements": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "numberOfVisibleAchievements": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "models.Icon": {
+      "required": [
+        "slug",
+        "url"
+      ],
+      "properties": {
+        "slug": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      }
+    },
+    "models.PaginatedAchievementResponse": {
+      "required": [
+        "data",
+        "paging"
+      ],
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/models.AchievementResponse"
+          }
+        },
+        "paging": {
+          "$ref": "#/definitions/models.Pagination"
+        }
+      }
+    },
+    "models.PaginatedUserAchievementResponse": {
+      "required": [
+        "countInfo",
+        "data",
+        "paging"
+      ],
+      "properties": {
+        "countInfo": {
+          "$ref": "#/definitions/models.AdditionalInfo"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/models.UserAchievementResponse"
+          }
+        },
+        "paging": {
+          "$ref": "#/definitions/models.Pagination"
+        }
+      }
+    },
+    "models.Pagination": {
+      "required": [
+        "next",
+        "previous"
+      ],
+      "properties": {
+        "next": {
+          "type": "string"
+        },
+        "previous": {
+          "type": "string"
+        }
+      }
+    },
+    "models.PublicAchievementResponse": {
+      "required": [
+        "achievementCode",
+        "createdAt",
+        "description",
+        "hidden",
+        "incremental",
+        "listOrder",
+        "lockedIcons",
+        "name",
+        "namespace",
+        "tags",
+        "unlockedIcons",
+        "updatedAt"
+      ],
+      "properties": {
+        "achievementCode": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "description": {
+          "type": "string"
+        },
+        "goalValue": {
+          "type": "number",
+          "format": "double"
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "incremental": {
+          "type": "boolean"
+        },
+        "listOrder": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "lockedIcons": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/models.Icon"
+          }
+        },
+        "name": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "statCode": {
+          "type": "string"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "unlockedIcons": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/models.Icon"
+          }
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "models.PublicAchievementsResponse": {
+      "required": [
+        "data",
+        "paging"
+      ],
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/models.PublicAchievementResponse"
+          }
+        },
+        "paging": {
+          "$ref": "#/definitions/models.Pagination"
+        }
+      }
+    },
+    "models.UserAchievementResponse": {
+      "required": [
+        "achievedAt",
+        "achievementCode",
+        "id",
+        "latestValue",
+        "name",
+        "status"
+      ],
+      "properties": {
+        "achievedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "achievementCode": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "latestValue": {
+          "type": "number",
+          "format": "double"
+        },
+        "name": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "status": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "response.Error": {
+      "required": [
+        "errorCode",
+        "errorMessage"
+      ],
+      "properties": {
+        "errorCode": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "errorMessage": {
+          "type": "string"
+        }
+      }
+    },
+    "service.ImportConfigResponse": {
+      "required": [
+        "failedConfigs",
+        "ignoredConfigs",
+        "newConfigs",
+        "replacedConfigs"
+      ],
+      "properties": {
+        "failedConfigs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "ignoredConfigs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "newConfigs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "replacedConfigs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "authorization": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header"
+    }
+  },
+  "security": [
+    {
+      "authorization": []
+    }
+  ]
+}

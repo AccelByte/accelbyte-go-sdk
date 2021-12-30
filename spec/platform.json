@@ -8,7 +8,7 @@
     },
     "description": "Justice Platform Service",
     "title": "justice-platform-service",
-    "version": "3.39.0"
+    "version": "3.40.0"
   },
   "schemes": [
     "https"
@@ -52,13 +52,13 @@
       "name": "IAP"
     },
     {
-      "name": "Integration"
-    },
-    {
       "name": "Order"
     },
     {
       "name": "Order(Dedicated)"
+    },
+    {
+      "name": "PaymentCallbackConfig"
     },
     {
       "name": "PaymentConfig"
@@ -110,8 +110,6 @@
         "ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [DELETE]": "ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [DELETE]",
         "ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [READ]": "ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [READ]",
         "ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [UPDATE]": "ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [UPDATE]",
-        "ADMIN:NAMESPACE:{namespace}:INTEGRATION [READ]": "ADMIN:NAMESPACE:{namespace}:INTEGRATION [READ]",
-        "ADMIN:NAMESPACE:{namespace}:INTEGRATION [UPDATE]": "ADMIN:NAMESPACE:{namespace}:INTEGRATION [UPDATE]",
         "ADMIN:NAMESPACE:{namespace}:ITEM [CREATE]": "ADMIN:NAMESPACE:{namespace}:ITEM [CREATE]",
         "ADMIN:NAMESPACE:{namespace}:ITEM [DELETE]": "ADMIN:NAMESPACE:{namespace}:ITEM [DELETE]",
         "ADMIN:NAMESPACE:{namespace}:ITEM [READ]": "ADMIN:NAMESPACE:{namespace}:ITEM [READ]",
@@ -124,6 +122,8 @@
         "ADMIN:NAMESPACE:{namespace}:PAYMENT [CREATE]": "ADMIN:NAMESPACE:{namespace}:PAYMENT [CREATE]",
         "ADMIN:NAMESPACE:{namespace}:PAYMENT [READ]": "ADMIN:NAMESPACE:{namespace}:PAYMENT [READ]",
         "ADMIN:NAMESPACE:{namespace}:PAYMENT [UPDATE]": "ADMIN:NAMESPACE:{namespace}:PAYMENT [UPDATE]",
+        "ADMIN:NAMESPACE:{namespace}:PAYMENT:CONFIG [READ]": "ADMIN:NAMESPACE:{namespace}:PAYMENT:CONFIG [READ]",
+        "ADMIN:NAMESPACE:{namespace}:PAYMENT:CONFIG [UPDATE]": "ADMIN:NAMESPACE:{namespace}:PAYMENT:CONFIG [UPDATE]",
         "ADMIN:NAMESPACE:{namespace}:PAYMENT:NOTIFICATION [READ]": "ADMIN:NAMESPACE:{namespace}:PAYMENT:NOTIFICATION [READ]",
         "ADMIN:NAMESPACE:{namespace}:REWARD [CREATE]": "ADMIN:NAMESPACE:{namespace}:REWARD [CREATE]",
         "ADMIN:NAMESPACE:{namespace}:REWARD [DELETE]": "ADMIN:NAMESPACE:{namespace}:REWARD [DELETE]",
@@ -138,10 +138,6 @@
         "ADMIN:NAMESPACE:{namespace}:TICKET [READ]": "ADMIN:NAMESPACE:{namespace}:TICKET [READ]",
         "ADMIN:NAMESPACE:{namespace}:TICKET [UPDATE]": "ADMIN:NAMESPACE:{namespace}:TICKET [UPDATE]",
         "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION [DELETE]": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION [DELETE]",
-        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:DISTRIBUTION [CREATE]": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:DISTRIBUTION [CREATE]",
-        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:DISTRIBUTION [DELETE]": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:DISTRIBUTION [DELETE]",
-        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:DISTRIBUTION [READ]": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:DISTRIBUTION [READ]",
-        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:DISTRIBUTION [UPDATE]": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:DISTRIBUTION [UPDATE]",
         "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT [CREATE]": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT [CREATE]",
         "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT [READ]": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT [READ]",
         "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT [UPDATE]": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT [UPDATE]",
@@ -170,10 +166,6 @@
         "ADMIN:PAYMENT:CONFIG [UPDATE]": "ADMIN:PAYMENT:CONFIG [UPDATE]",
         "NAMESPACE:{namespace}:ENTITLEMENT [READ]": "NAMESPACE:{namespace}:ENTITLEMENT [READ]",
         "NAMESPACE:{namespace}:REWARD [READ]": "NAMESPACE:{namespace}:REWARD [READ]",
-        "NAMESPACE:{namespace}:USER:{userId}:DISTRIBUTION [CREATE]": "NAMESPACE:{namespace}:USER:{userId}:DISTRIBUTION [CREATE]",
-        "NAMESPACE:{namespace}:USER:{userId}:DISTRIBUTION [DELETE]": "NAMESPACE:{namespace}:USER:{userId}:DISTRIBUTION [DELETE]",
-        "NAMESPACE:{namespace}:USER:{userId}:DISTRIBUTION [READ]": "NAMESPACE:{namespace}:USER:{userId}:DISTRIBUTION [READ]",
-        "NAMESPACE:{namespace}:USER:{userId}:DISTRIBUTION [UPDATE]": "NAMESPACE:{namespace}:USER:{userId}:DISTRIBUTION [UPDATE]",
         "NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT [READ]": "NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT [READ]",
         "NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT [UPDATE]": "NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT [UPDATE]",
         "NAMESPACE:{namespace}:USER:{userId}:FULFILLMENT []": "NAMESPACE:{namespace}:USER:{userId}:FULFILLMENT []",
@@ -2327,7 +2319,6 @@
             "enum": [
               "APP",
               "CODE",
-              "DISTRIBUTION",
               "ENTITLEMENT",
               "MEDIA",
               "SUBSCRIPTION"
@@ -3626,109 +3617,6 @@
         "x-authorization": {
           "action": "4",
           "resource": "ADMIN:NAMESPACE:{namespace}:IAP:CONFIG"
-        }
-      }
-    },
-    "/admin/namespaces/{namespace}/integrations/gameserverconfig": {
-      "get": {
-        "description": "Get game server configuration.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:INTEGRATION\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: Game server config\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
-        "operationId": "getGameServerConfig",
-        "parameters": [
-          {
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "$ref": "#/definitions/GameServerConfig"
-            }
-          },
-          "404": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e39241\u003c/td\u003e\u003ctd\u003eGame server config for [{namespace}] does not exist\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
-            "schema": {
-              "$ref": "#/definitions/ErrorEntity"
-            }
-          }
-        },
-        "security": [
-          {
-            "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:INTEGRATION [READ]"
-            ],
-            "authorization": []
-          }
-        ],
-        "summary": "Get game server configuration",
-        "tags": [
-          "Integration"
-        ],
-        "x-authorization": {
-          "action": "2",
-          "resource": "ADMIN:NAMESPACE:{namespace}:INTEGRATION"
-        }
-      },
-      "put": {
-        "consumes": [
-          "application/json"
-        ],
-        "description": "Update game server configuration.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:INTEGRATION\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: Game server config\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
-        "operationId": "updateGameServerConfig",
-        "parameters": [
-          {
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "required": false,
-            "schema": {
-              "$ref": "#/definitions/GameServerConfig"
-            }
-          }
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "$ref": "#/definitions/GameServerConfig"
-            }
-          }
-        },
-        "security": [
-          {
-            "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:INTEGRATION [UPDATE]"
-            ],
-            "authorization": []
-          }
-        ],
-        "summary": "Update game server configuration",
-        "tags": [
-          "Integration"
-        ],
-        "x-authorization": {
-          "action": "4",
-          "resource": "ADMIN:NAMESPACE:{namespace}:INTEGRATION"
         }
       }
     },
@@ -6432,6 +6320,109 @@
         }
       }
     },
+    "/admin/namespaces/{namespace}/payment/config/callback": {
+      "get": {
+        "description": "Get payment callback configuration.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:PAYMENT:CONFIG\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: Payment callback config\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "getPaymentCallbackConfig",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/PaymentCallbackConfigInfo"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e33243\u003c/td\u003e\u003ctd\u003ePayment callback config for [{namespace}] does not exist\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:PAYMENT:CONFIG [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get payment callback configuration",
+        "tags": [
+          "PaymentCallbackConfig"
+        ],
+        "x-authorization": {
+          "action": "2",
+          "resource": "ADMIN:NAMESPACE:{namespace}:PAYMENT:CONFIG"
+        }
+      },
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Update payment callback configuration.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:PAYMENT:CONFIG\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: Payment callback config\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "updatePaymentCallbackConfig",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/PaymentCallbackConfigUpdate"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/PaymentCallbackConfigInfo"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:PAYMENT:CONFIG [UPDATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Update payment callback configuration",
+        "tags": [
+          "PaymentCallbackConfig"
+        ],
+        "x-authorization": {
+          "action": "4",
+          "resource": "ADMIN:NAMESPACE:{namespace}:PAYMENT:CONFIG"
+        }
+      }
+    },
     "/admin/namespaces/{namespace}/payment/notifications": {
       "get": {
         "description": "Query payment notifications.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:PAYMENT:NOTIFICATION\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: Payment notifications\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
@@ -8810,7 +8801,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Anonymize entitlement. At current it will only anonymize entitlement, entitlement history and distribution receiver.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION\u0026#34;, action=8 (DELETE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Anonymize entitlement. At current it will only anonymize entitlement, entitlement history.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION\u0026#34;, action=8 (DELETE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "anonymizeEntitlement",
         "parameters": [
           {
@@ -9176,7 +9167,6 @@
             "enum": [
               "APP",
               "CODE",
-              "DISTRIBUTION",
               "ENTITLEMENT",
               "MEDIA",
               "SUBSCRIPTION"
@@ -9528,7 +9518,6 @@
             "enum": [
               "APP",
               "CODE",
-              "DISTRIBUTION",
               "ENTITLEMENT",
               "MEDIA",
               "SUBSCRIPTION"
@@ -9611,7 +9600,6 @@
             "enum": [
               "APP",
               "CODE",
-              "DISTRIBUTION",
               "ENTITLEMENT",
               "MEDIA",
               "SUBSCRIPTION"
@@ -9890,7 +9878,6 @@
             "enum": [
               "APP",
               "CODE",
-              "DISTRIBUTION",
               "ENTITLEMENT",
               "MEDIA",
               "SUBSCRIPTION"
@@ -9960,7 +9947,6 @@
             "enum": [
               "APP",
               "CODE",
-              "DISTRIBUTION",
               "ENTITLEMENT",
               "MEDIA",
               "SUBSCRIPTION"
@@ -10000,265 +9986,6 @@
         "x-authorization": {
           "action": "2",
           "resource": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT"
-        }
-      }
-    },
-    "/admin/namespaces/{namespace}/users/{userId}/entitlements/receivers": {
-      "get": {
-        "description": "Get distribution receivers for a specific game user by dedicated server.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:DISTRIBUTION\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: distribution receiver info list\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
-        "operationId": "getUserDistributionReceivers",
-        "parameters": [
-          {
-            "description": "game namespace",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "description": "game user id",
-            "in": "path",
-            "name": "userId",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "items": {
-                "$ref": "#/definitions/DistributionReceiverInfo"
-              },
-              "type": "array"
-            }
-          },
-          "400": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31123\u003c/td\u003e\u003ctd\u003ePublisher namespace [{namespace}] is not distributable\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
-            "schema": {
-              "$ref": "#/definitions/ErrorEntity"
-            }
-          }
-        },
-        "security": [
-          {
-            "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:DISTRIBUTION [READ]"
-            ],
-            "authorization": []
-          }
-        ],
-        "summary": "Get distribution receivers",
-        "tags": [
-          "Entitlement"
-        ],
-        "x-authorization": {
-          "action": "2",
-          "resource": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:DISTRIBUTION"
-        }
-      }
-    },
-    "/admin/namespaces/{namespace}/users/{userId}/entitlements/receivers/{extUserId}": {
-      "delete": {
-        "consumes": [
-          "application/json"
-        ],
-        "description": "Delete a distribution receiver for a specific user by dedicated server.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:DISTRIBUTION\u0026#34;, action=8 (DELETE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
-        "operationId": "deleteUserDistributionReceiver",
-        "parameters": [
-          {
-            "description": "game namespace",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "description": "game user id",
-            "in": "path",
-            "name": "userId",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "in": "path",
-            "name": "extUserId",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "204": {
-            "description": "delete a distribution receiver successfully"
-          },
-          "404": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31241\u003c/td\u003e\u003ctd\u003eDistribution receiver of user [{userId}] and extUserId [{extUserId}] does not exist in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
-            "schema": {
-              "$ref": "#/definitions/ErrorEntity"
-            }
-          }
-        },
-        "security": [
-          {
-            "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:DISTRIBUTION [DELETE]"
-            ],
-            "authorization": []
-          }
-        ],
-        "summary": "Delete distribution receiver",
-        "tags": [
-          "Entitlement"
-        ],
-        "x-authorization": {
-          "action": "8",
-          "resource": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:DISTRIBUTION"
-        }
-      },
-      "post": {
-        "consumes": [
-          "application/json"
-        ],
-        "description": "Create distribution receiver for a specific user by dedicated server. Once user distribution receiver created, user can distribute distribution to receiver.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:DISTRIBUTION\u0026#34;, action=1 (CREATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
-        "operationId": "createUserDistributionReceiver",
-        "parameters": [
-          {
-            "description": "game namespace",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "description": "game user id",
-            "in": "path",
-            "name": "userId",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "in": "path",
-            "name": "extUserId",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "required": false,
-            "schema": {
-              "$ref": "#/definitions/DistributionReceiverCreate"
-            }
-          }
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "201": {
-            "description": "create distribution receiver successfully"
-          },
-          "409": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31271\u003c/td\u003e\u003ctd\u003eDistribution receiver of user [{userId}] and extUserId [{extUserId}] already exists in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
-            "schema": {
-              "$ref": "#/definitions/ErrorEntity"
-            }
-          }
-        },
-        "security": [
-          {
-            "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:DISTRIBUTION [CREATE]"
-            ],
-            "authorization": []
-          }
-        ],
-        "summary": "Create distribution receiver",
-        "tags": [
-          "Entitlement"
-        ],
-        "x-authorization": {
-          "action": "1",
-          "resource": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:DISTRIBUTION"
-        }
-      },
-      "put": {
-        "consumes": [
-          "application/json"
-        ],
-        "description": "Update distribution receiver for a specific user by dedicated server. It will create a new one if not exists.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:DISTRIBUTION\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
-        "operationId": "updateUserDistributionReceiver",
-        "parameters": [
-          {
-            "description": "game namespace",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "description": "game user id",
-            "in": "path",
-            "name": "userId",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "in": "path",
-            "name": "extUserId",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "required": false,
-            "schema": {
-              "$ref": "#/definitions/DistributionReceiverCreate"
-            }
-          }
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "204": {
-            "description": "create distribution receiver successfully"
-          }
-        },
-        "security": [
-          {
-            "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:DISTRIBUTION [UPDATE]"
-            ],
-            "authorization": []
-          }
-        ],
-        "summary": "Update distribution receiver",
-        "tags": [
-          "Entitlement"
-        ],
-        "x-authorization": {
-          "action": "4",
-          "resource": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:DISTRIBUTION"
         }
       }
     },
@@ -10384,7 +10111,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Update user entitlement. If update CONSUMABLE entitlement useCount to 0, the status will be CONSUMED, if update quantity of DISTRIBUTION, the status will be DISTRIBUTED.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: updated entitlement\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Update user entitlement. If update CONSUMABLE entitlement useCount to 0, the status will be CONSUMED.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: updated entitlement\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "updateUserEntitlement",
         "parameters": [
           {
@@ -10542,7 +10269,7 @@
     },
     "/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/disable": {
       "put": {
-        "description": "Disable user entitlement if entitlement, only active entitlement can be disable, disabled entitlement can\u0026#39;t consume/distribute.\u0026lt;br\u0026gt;\u0026lt;b\u0026gt;Like revoke, it will lose the entitlement ownership, except disabled entitlement can enable.\u0026lt;/b\u0026gt;\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: disable entitlement\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Disable user entitlement if entitlement, only active entitlement can be disable, disabled entitlement can\u0026#39;t consume.\u0026lt;br\u0026gt;\u0026lt;b\u0026gt;Like revoke, it will lose the entitlement ownership, except disabled entitlement can enable.\u0026lt;/b\u0026gt;\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: disable entitlement\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "disableUserEntitlement",
         "parameters": [
           {
@@ -10649,7 +10376,7 @@
             }
           },
           "409": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31171\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] already revoked\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31174\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] already consumed\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31175\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] already distributed\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31177\u003c/td\u003e\u003ctd\u003ePermanent item already owned\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31179\u003c/td\u003e\u003ctd\u003eDuplicate entitlement exists\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20006\u003c/td\u003e\u003ctd\u003eoptimistic lock\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31171\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] already revoked\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31174\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] already consumed\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31177\u003c/td\u003e\u003ctd\u003ePermanent item already owned\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31179\u003c/td\u003e\u003ctd\u003eDuplicate entitlement exists\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20006\u003c/td\u003e\u003ctd\u003eoptimistic lock\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -17675,7 +17402,6 @@
             "enum": [
               "APP",
               "CODE",
-              "DISTRIBUTION",
               "ENTITLEMENT",
               "MEDIA",
               "SUBSCRIPTION"
@@ -17739,7 +17465,6 @@
             "enum": [
               "APP",
               "CODE",
-              "DISTRIBUTION",
               "ENTITLEMENT",
               "MEDIA",
               "SUBSCRIPTION"
@@ -17931,7 +17656,6 @@
             "enum": [
               "APP",
               "CODE",
-              "DISTRIBUTION",
               "ENTITLEMENT",
               "MEDIA",
               "SUBSCRIPTION"
@@ -18185,7 +17909,6 @@
             "enum": [
               "APP",
               "CODE",
-              "DISTRIBUTION",
               "ENTITLEMENT",
               "MEDIA",
               "SUBSCRIPTION"
@@ -18261,7 +17984,6 @@
             "enum": [
               "APP",
               "CODE",
-              "DISTRIBUTION",
               "ENTITLEMENT",
               "MEDIA",
               "SUBSCRIPTION"
@@ -18473,7 +18195,6 @@
             "enum": [
               "APP",
               "CODE",
-              "DISTRIBUTION",
               "ENTITLEMENT",
               "MEDIA",
               "SUBSCRIPTION"
@@ -18543,7 +18264,6 @@
             "enum": [
               "APP",
               "CODE",
-              "DISTRIBUTION",
               "ENTITLEMENT",
               "MEDIA",
               "SUBSCRIPTION"
@@ -18583,278 +18303,6 @@
         "x-authorization": {
           "action": "2",
           "resource": "NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT"
-        }
-      }
-    },
-    "/public/namespaces/{namespace}/users/{userId}/entitlements/receivers": {
-      "get": {
-        "description": "Get distribution receivers in a specific namespace.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:DISTRIBUTION\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: distribution receiver info list\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
-        "operationId": "publicGetUserDistributionReceivers",
-        "parameters": [
-          {
-            "description": "publisher namespace",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "description": "publisher user id",
-            "in": "path",
-            "name": "userId",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "description": "target game namespace",
-            "in": "query",
-            "name": "targetNamespace",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "items": {
-                "$ref": "#/definitions/DistributionReceiverInfo"
-              },
-              "type": "array"
-            }
-          },
-          "400": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31123\u003c/td\u003e\u003ctd\u003ePublisher namespace [{namespace}] is not distributable\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
-            "schema": {
-              "$ref": "#/definitions/ErrorEntity"
-            }
-          },
-          "404": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20017\u003c/td\u003e\u003ctd\u003euser [{userId}] in namespace [{namespaceA}] does not linked in [{namespaceB}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
-            "schema": {
-              "$ref": "#/definitions/ErrorEntity"
-            }
-          }
-        },
-        "security": [
-          {
-            "authorization": []
-          },
-          {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:USER:{userId}:DISTRIBUTION [READ]"
-            ],
-            "authorization": []
-          }
-        ],
-        "summary": "Get distribution receivers",
-        "tags": [
-          "Entitlement"
-        ],
-        "x-authorization": {
-          "action": "2",
-          "resource": "NAMESPACE:{namespace}:USER:{userId}:DISTRIBUTION"
-        }
-      }
-    },
-    "/public/namespaces/{namespace}/users/{userId}/entitlements/receivers/{extUserId}": {
-      "delete": {
-        "consumes": [
-          "application/json"
-        ],
-        "description": "Delete a distribution receiver for a specific user.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:DISTRIBUTION\u0026#34;, action=8 (DELETE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
-        "operationId": "publicDeleteUserDistributionReceiver",
-        "parameters": [
-          {
-            "description": "game namespace",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "description": "game user id",
-            "in": "path",
-            "name": "userId",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "in": "path",
-            "name": "extUserId",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "204": {
-            "description": "delete a distribution receiver successfully"
-          },
-          "404": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31241\u003c/td\u003e\u003ctd\u003eDistribution receiver of user [{userId}] and extUserId [{extUserId}] does not exist in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
-            "schema": {
-              "$ref": "#/definitions/ErrorEntity"
-            }
-          }
-        },
-        "security": [
-          {
-            "authorization": []
-          },
-          {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:USER:{userId}:DISTRIBUTION [DELETE]"
-            ],
-            "authorization": []
-          }
-        ],
-        "summary": "Delete a user distribution receiver",
-        "tags": [
-          "Entitlement"
-        ],
-        "x-authorization": {
-          "action": "8",
-          "resource": "NAMESPACE:{namespace}:USER:{userId}:DISTRIBUTION"
-        }
-      },
-      "post": {
-        "consumes": [
-          "application/json"
-        ],
-        "description": "Create distribution receiver for a specific user. Once user distribution receiver created, user can distribute distribution to receiver.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:DISTRIBUTION\u0026#34;, action=1 (CREATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
-        "operationId": "publicCreateUserDistributionReceiver",
-        "parameters": [
-          {
-            "description": "game namespace",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "description": "game user id",
-            "in": "path",
-            "name": "userId",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "in": "path",
-            "name": "extUserId",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "required": false,
-            "schema": {
-              "$ref": "#/definitions/DistributionReceiverCreate"
-            }
-          }
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "201": {
-            "description": "create distribution receiver successfully"
-          },
-          "409": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31271\u003c/td\u003e\u003ctd\u003eDistribution receiver of user [{userId}] and extUserId [{extUserId}] already exists in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
-            "schema": {
-              "$ref": "#/definitions/ErrorEntity"
-            }
-          }
-        },
-        "security": [
-          {
-            "authorization": []
-          },
-          {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:USER:{userId}:DISTRIBUTION [CREATE]"
-            ],
-            "authorization": []
-          }
-        ],
-        "summary": "Create user distribution receiver",
-        "tags": [
-          "Entitlement"
-        ],
-        "x-authorization": {
-          "action": "1",
-          "resource": "NAMESPACE:{namespace}:USER:{userId}:DISTRIBUTION"
-        }
-      },
-      "put": {
-        "consumes": [
-          "application/json"
-        ],
-        "description": "Update distribution receiver for a specific user. It will create a new one if not exist.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:DISTRIBUTION\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
-        "operationId": "publicUpdateUserDistributionReceiver",
-        "parameters": [
-          {
-            "description": "game namespace",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "description": "game user id",
-            "in": "path",
-            "name": "userId",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "in": "path",
-            "name": "extUserId",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "required": false,
-            "schema": {
-              "$ref": "#/definitions/DistributionReceiverCreate"
-            }
-          }
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "204": {
-            "description": "update distribution receiver successfully"
-          }
-        },
-        "security": [
-          {
-            "authorization": []
-          },
-          {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:USER:{userId}:DISTRIBUTION [UPDATE]"
-            ],
-            "authorization": []
-          }
-        ],
-        "summary": "Update user distribution receiver",
-        "tags": [
-          "Entitlement"
-        ],
-        "x-authorization": {
-          "action": "4",
-          "resource": "NAMESPACE:{namespace}:USER:{userId}:DISTRIBUTION"
         }
       }
     },
@@ -18993,98 +18441,6 @@
         "x-authorization": {
           "action": "4",
           "resource": "NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT"
-        }
-      }
-    },
-    "/public/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/distribute": {
-      "put": {
-        "consumes": [
-          "application/json"
-        ],
-        "description": "Distribute my distribution with my user credentials. After successfully distributed, a notification will be send to configured web hook\u0026lt;br\u0026gt;\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;Notification Body:\u0026lt;/strong\u0026gt;\u0026lt;/p\u0026gt;\u0026lt;pre\u0026gt;\u0026lt;table\u0026gt;\u0026lt;tr\u0026gt;\u0026lt;td\u0026gt;Parameter\u0026lt;/td\u0026gt;\u0026lt;td\u0026gt;Type\u0026lt;/td\u0026gt;\u0026lt;td\u0026gt;Description\u0026lt;/td\u0026gt;\u0026lt;/tr\u0026gt;\u0026lt;tr\u0026gt;\u0026lt;td\u0026gt;payload\u0026lt;/td\u0026gt;\u0026lt;td\u0026gt;String\u0026lt;/td\u0026gt;\u0026lt;td\u0026gt;Business object in compact json string \u0026lt;/td\u0026gt;\u0026lt;/tr\u0026gt;\u0026lt;tr\u0026gt;\u0026lt;td\u0026gt;sign\u0026lt;/td\u0026gt;\u0026lt;td\u0026gt;String\u0026lt;/td\u0026gt;\u0026lt;td\u0026gt;Sha1 hex signature for payload and private key\u0026lt;/td\u0026gt;\u0026lt;/tr\u0026gt;\u0026lt;/table\u0026gt;\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;Notification Body Example:\u0026lt;/strong\u0026gt;\u0026lt;/p\u0026gt;\u0026lt;pre\u0026gt;\u0026lt;code style=\u0026#39;overflow: auto\u0026#39;\u0026gt;{\r\n       \u0026#34;payload\u0026#34;:\u0026#34;{\n           \\\u0026#34;namespace\\\u0026#34;: \\\u0026#34;publisherNamespace\\\u0026#34;,\n           \\\u0026#34;targetNamespace\\\u0026#34;: \\\u0026#34;game1\\\u0026#34;,\n           \\\u0026#34;targetUserId\\\u0026#34;: \\\u0026#34;94451623768940d58416ca33ca767ec3\\\u0026#34;,\n           \\\u0026#34;issuedAt\\\u0026#34;: \\\u0026#34;2018-07-26T07:11:16.547Z\\\u0026#34;,\n           \\\u0026#34;type\\\u0026#34;: \\\u0026#34;distribution\\\u0026#34;,\n           \\\u0026#34;extUserId\\\u0026#34;: \\\u0026#34;1234abcd\\\u0026#34;,\n           \\\u0026#34;sku\\\u0026#34;: \\\u0026#34;1234asdf\\\u0026#34;,\n           \\\u0026#34;quantity\\\u0026#34;: 1,\n           \\\u0026#34;nonceStr\\\u0026#34;: \\\u0026#34;34c1dcf3eb58455eb161465bbfc0b590\\\u0026#34;\n       }\u0026#34;,\r\n       \u0026#34;sign\u0026#34;:\u0026#34;e31fb92516cc9faaf50ad70343e1293acec6f3d5\u0026#34;\r\n}\u0026lt;/pre\u0026gt;\u0026lt;/code\u0026gt;\u0026lt;/pre\u0026gt;\u0026lt;/code\u0026gt;\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;Payload Parameters:\u0026lt;/strong\u0026gt;\u0026lt;/p\u0026gt;\u0026lt;pre\u0026gt;\u0026lt;table\u0026gt;\u0026lt;tr\u0026gt;\u0026lt;td\u0026gt;Parameter\u0026lt;/td\u0026gt;\u0026lt;td\u0026gt;Type\u0026lt;/td\u0026gt;\u0026lt;td\u0026gt;Description\u0026lt;/td\u0026gt;\u0026lt;/tr\u0026gt;\u0026lt;tr\u0026gt;\u0026lt;td\u0026gt;namespace\u0026lt;/td\u0026gt;\u0026lt;td\u0026gt;String\u0026lt;/td\u0026gt;\u0026lt;td\u0026gt;The publisher namespace\u0026lt;/td\u0026gt;\u0026lt;/tr\u0026gt;\u0026lt;tr\u0026gt;\u0026lt;td\u0026gt;targetNamespace\u0026lt;/td\u0026gt;\u0026lt;td\u0026gt;String\u0026lt;/td\u0026gt;\u0026lt;td\u0026gt;The target game namespace\u0026lt;/td\u0026gt;\u0026lt;/tr\u0026gt;\u0026lt;tr\u0026gt;\u0026lt;td\u0026gt;targetUserId\u0026lt;/td\u0026gt;\u0026lt;td\u0026gt;String\u0026lt;/td\u0026gt;\u0026lt;td\u0026gt;The user id in target game namespace\u0026lt;/td\u0026gt;\u0026lt;/tr\u0026gt;\u0026lt;tr\u0026gt;\u0026lt;td\u0026gt;issuedAt\u0026lt;/td\u0026gt;\u0026lt;td\u0026gt;String\u0026lt;/td\u0026gt;\u0026lt;td\u0026gt;Issue time\u0026lt;/td\u0026gt;\u0026lt;/tr\u0026gt;\u0026lt;tr\u0026gt;\u0026lt;td\u0026gt;type\u0026lt;/td\u0026gt;\u0026lt;td\u0026gt;String\u0026lt;/td\u0026gt;\u0026lt;td\u0026gt;Notification type, it is a fixed value \u0026#39;distribution\u0026#39;\u0026lt;/td\u0026gt;\u0026lt;/tr\u0026gt;\u0026lt;tr\u0026gt;\u0026lt;td\u0026gt;extUserId\u0026lt;/td\u0026gt;\u0026lt;td\u0026gt;String\u0026lt;/td\u0026gt;\u0026lt;td\u0026gt;Unique identity, e.g. character id\u0026lt;/td\u0026gt;\u0026lt;/tr\u0026gt;\u0026lt;tr\u0026gt;\u0026lt;td\u0026gt;sku\u0026lt;/td\u0026gt;\u0026lt;td\u0026gt;String\u0026lt;/td\u0026gt;\u0026lt;td\u0026gt;Item unique identity\u0026lt;/td\u0026gt;\u0026lt;/tr\u0026gt;\u0026lt;tr\u0026gt;\u0026lt;td\u0026gt;quantity\u0026lt;/td\u0026gt;\u0026lt;td\u0026gt;Integer\u0026lt;/td\u0026gt;\u0026lt;td\u0026gt;quantity\u0026lt;/td\u0026gt;\u0026lt;/tr\u0026gt;\u0026lt;tr\u0026gt;\u0026lt;td\u0026gt;nonceStr\u0026lt;/td\u0026gt;\u0026lt;td\u0026gt;String\u0026lt;/td\u0026gt;\u0026lt;td\u0026gt;Random string, max length is 32, can be timestamp or uuid\u0026lt;/td\u0026gt;\u0026lt;/tr\u0026gt;\u0026lt;/table\u0026gt;\u0026lt;/pre\u0026gt;\u0026lt;h4\u0026gt;Encryption Rule:\u0026lt;/h4\u0026gt;\u0026lt;p\u0026gt;Concat payload json string and private key and then do sha1Hex.\u0026lt;/p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:DISTRIBUTION\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
-        "operationId": "publicDistributeUserDistribution",
-        "parameters": [
-          {
-            "description": "publisher namespace",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "description": "publisher user id",
-            "in": "path",
-            "name": "userId",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "description": "distributable entitlement id",
-            "in": "path",
-            "name": "entitlementId",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "description": "target game namespace",
-            "in": "query",
-            "name": "targetNamespace",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "in": "query",
-            "name": "extUserId",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "default": 1,
-            "format": "int32",
-            "in": "query",
-            "name": "quantity",
-            "required": false,
-            "type": "integer"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "$ref": "#/definitions/EntitlementInfo"
-            }
-          },
-          "400": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31121\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] is not distributable\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31122\u003c/td\u003e\u003ctd\u003eExceed entitlement available distribute quantity\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31123\u003c/td\u003e\u003ctd\u003ePublisher namespace [{namespace}] is not distributable\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
-            "schema": {
-              "$ref": "#/definitions/ErrorEntity"
-            }
-          },
-          "404": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20017\u003c/td\u003e\u003ctd\u003euser [{userId}] in namespace [{namespaceA}] does not linked in [{namespaceB}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31141\u003c/td\u003e\u003ctd\u003eEntitlement [{entitlementId}] does not exist in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e31241\u003c/td\u003e\u003ctd\u003eDistribution receiver of user [{userId}] and extUserId [{extUserId}] does not exist in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
-            "schema": {
-              "$ref": "#/definitions/ErrorEntity"
-            }
-          }
-        },
-        "security": [
-          {
-            "authorization": []
-          },
-          {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:USER:{userId}:DISTRIBUTION [UPDATE]"
-            ],
-            "authorization": []
-          }
-        ],
-        "summary": "Distribute my distribution",
-        "tags": [
-          "Entitlement"
-        ],
-        "x-authorization": {
-          "action": "4",
-          "resource": "NAMESPACE:{namespace}:USER:{userId}:DISTRIBUTION"
         }
       }
     },
@@ -19393,6 +18749,14 @@
             "name": "userId",
             "required": true,
             "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/PlayStationReconcileRequest"
+            }
           }
         ],
         "produces": [
@@ -20992,7 +20356,7 @@
         },
         "itemSnapshot": {
           "$ref": "#/definitions/ItemSnapshot",
-          "description": "itemSnapshot for distribution"
+          "description": "itemSnapshot"
         },
         "namespace": {
           "description": "entitlement namespace",
@@ -21013,7 +20377,6 @@
             "ACTIVE",
             "INACTIVE",
             "CONSUMED",
-            "DISTRIBUTED",
             "REVOKED"
           ],
           "type": "string"
@@ -22596,48 +21959,6 @@
       ],
       "type": "object"
     },
-    "DistributionReceiverCreate": {
-      "description": "A DTO object for creating distribution receiver.",
-      "properties": {
-        "attributes": {
-          "additionalProperties": {
-            "type": "string"
-          },
-          "description": "receiver custom attributes",
-          "type": "object"
-        }
-      },
-      "type": "object"
-    },
-    "DistributionReceiverInfo": {
-      "properties": {
-        "attributes": {
-          "additionalProperties": {
-            "type": "string"
-          },
-          "description": "receiver custom attributes",
-          "type": "object"
-        },
-        "extUserId": {
-          "description": "external user id, commonly it's the character id",
-          "type": "string"
-        },
-        "namespace": {
-          "description": "name that this receiver located in",
-          "type": "string"
-        },
-        "userId": {
-          "description": "user that this receiver belong to",
-          "type": "string"
-        }
-      },
-      "required": [
-        "extUserId",
-        "namespace",
-        "userId"
-      ],
-      "type": "object"
-    },
     "EntitlementDecrement": {
       "description": "A DTO object for entitlement decrement.",
       "properties": {
@@ -22724,8 +22045,7 @@
             "DECREMENT",
             "REVOKE",
             "DISABLE",
-            "ENABLE",
-            "DISTRIBUTE"
+            "ENABLE"
           ],
           "type": "string"
         },
@@ -22745,11 +22065,6 @@
         "operator": {
           "description": "The operator",
           "type": "string"
-        },
-        "quantity": {
-          "description": "The quantity of a distribution entitlement after perform the action.",
-          "format": "int32",
-          "type": "integer"
         },
         "updatedAt": {
           "description": "History update time",
@@ -22798,7 +22113,6 @@
           "enum": [
             "APP",
             "ENTITLEMENT",
-            "DISTRIBUTION",
             "CODE",
             "SUBSCRIPTION",
             "MEDIA"
@@ -22809,11 +22123,6 @@
           "description": "entitlement created at",
           "format": "date-time",
           "type": "string"
-        },
-        "distributedQuantity": {
-          "description": "distributed quantity for distribution, required if DISTRIBUTION",
-          "format": "int32",
-          "type": "integer"
         },
         "endDate": {
           "description": "entitlement end date",
@@ -22851,7 +22160,7 @@
         },
         "itemSnapshot": {
           "$ref": "#/definitions/ItemSnapshot",
-          "description": "itemSnapshot for distribution"
+          "description": "itemSnapshot"
         },
         "name": {
           "description": "entitlement name",
@@ -22860,11 +22169,6 @@
         "namespace": {
           "description": "entitlement namespace",
           "type": "string"
-        },
-        "quantity": {
-          "description": "purchased quantity for distribution, required if DISTRIBUTION",
-          "format": "int32",
-          "type": "integer"
         },
         "sku": {
           "description": "sku for purchased item",
@@ -22900,17 +22204,12 @@
             "ACTIVE",
             "INACTIVE",
             "CONSUMED",
-            "DISTRIBUTED",
             "REVOKED"
           ],
           "type": "string"
         },
         "storeId": {
           "description": "storeId of the item, published store if omitted",
-          "type": "string"
-        },
-        "targetNamespace": {
-          "description": "targetNamespace for distribution",
           "type": "string"
         },
         "type": {
@@ -22974,7 +22273,6 @@
           "enum": [
             "APP",
             "ENTITLEMENT",
-            "DISTRIBUTION",
             "CODE",
             "SUBSCRIPTION",
             "MEDIA"
@@ -23010,11 +22308,6 @@
         "stackable": {
           "description": "Whether the CONSUMABLE entitlement is stackable",
           "type": "boolean"
-        },
-        "stackedQuantity": {
-          "description": "DISTRIBUTION entitlement stacked quantity",
-          "format": "int32",
-          "type": "integer"
         },
         "stackedUseCount": {
           "description": "CONSUMABLE entitlement stacked use count",
@@ -23074,11 +22367,6 @@
           },
           "type": "array"
         },
-        "quantity": {
-          "description": "purchased quantity of a distributable entitlement",
-          "format": "int32",
-          "type": "integer"
-        },
         "startDate": {
           "description": "start date of the entitlement. yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
           "format": "date-time",
@@ -23090,7 +22378,6 @@
             "ACTIVE",
             "INACTIVE",
             "CONSUMED",
-            "DISTRIBUTED",
             "REVOKED"
           ],
           "type": "string"
@@ -24160,24 +23447,6 @@
       "required": [
         "data"
       ],
-      "type": "object"
-    },
-    "GameServerConfig": {
-      "description": "A DTO object for ECommerce related game server config.",
-      "properties": {
-        "dryRun": {
-          "description": "mock distribute workflow while set true, default false",
-          "type": "boolean"
-        },
-        "notifyUrl": {
-          "description": "notify url for ECommerce notification",
-          "type": "string"
-        },
-        "privateKey": {
-          "description": "private key to encode/decode ECommerce payload",
-          "type": "string"
-        }
-      },
       "type": "object"
     },
     "GoogleIAPConfigInfo": {
@@ -26518,6 +25787,47 @@
       ],
       "type": "object"
     },
+    "PaymentCallbackConfigInfo": {
+      "properties": {
+        "dryRun": {
+          "description": "mock workflow while set true, default false",
+          "type": "boolean"
+        },
+        "namespace": {
+          "description": "namespace",
+          "type": "string"
+        },
+        "notifyUrl": {
+          "description": "notify url for ECommerce payment notification",
+          "type": "string"
+        },
+        "privateKey": {
+          "description": "private key to encode/decode ECommerce payload",
+          "type": "string"
+        }
+      },
+      "required": [
+        "namespace"
+      ],
+      "type": "object"
+    },
+    "PaymentCallbackConfigUpdate": {
+      "properties": {
+        "dryRun": {
+          "description": "mock workflow while set true, default false",
+          "type": "boolean"
+        },
+        "notifyUrl": {
+          "description": "notify url for ECommerce payment notification",
+          "type": "string"
+        },
+        "privateKey": {
+          "description": "private key to encode/decode ECommerce payload",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "PaymentMerchantConfigInfo": {
       "properties": {
         "adyenConfig": {
@@ -28017,6 +27327,16 @@
       ],
       "type": "object"
     },
+    "PlayStationReconcileRequest": {
+      "properties": {
+        "serviceLabel": {
+          "description": "service label",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "PlayStationReconcileResult": {
       "properties": {
         "itemId": {
@@ -28860,7 +28180,6 @@
           "enum": [
             "APP",
             "ENTITLEMENT",
-            "DISTRIBUTION",
             "CODE",
             "SUBSCRIPTION",
             "MEDIA"
@@ -28871,11 +28190,6 @@
           "description": "entitlement created at",
           "format": "date-time",
           "type": "string"
-        },
-        "distributedQuantity": {
-          "description": "distributed quantity for distribution, required if DISTRIBUTION",
-          "format": "int32",
-          "type": "integer"
         },
         "endDate": {
           "description": "entitlement end date",
@@ -28913,7 +28227,7 @@
         },
         "itemSnapshot": {
           "$ref": "#/definitions/ItemSnapshot",
-          "description": "itemSnapshot for distribution"
+          "description": "itemSnapshot"
         },
         "name": {
           "description": "entitlement name",
@@ -28922,11 +28236,6 @@
         "namespace": {
           "description": "entitlement namespace",
           "type": "string"
-        },
-        "quantity": {
-          "description": "purchased quantity for distribution, required if DISTRIBUTION",
-          "format": "int32",
-          "type": "integer"
         },
         "sku": {
           "description": "sku for purchased item",
@@ -28951,11 +28260,6 @@
           "description": "whether the CONSUMABLE entitlement is stackable",
           "type": "boolean"
         },
-        "stackedQuantity": {
-          "description": "DISTRIBUTION entitlement stacked quantity",
-          "format": "int32",
-          "type": "integer"
-        },
         "stackedUseCount": {
           "description": "CONSUMABLE entitlement stacked use count",
           "format": "int32",
@@ -28972,17 +28276,12 @@
             "ACTIVE",
             "INACTIVE",
             "CONSUMED",
-            "DISTRIBUTED",
             "REVOKED"
           ],
           "type": "string"
         },
         "storeId": {
           "description": "storeId of the item, published store if omitted",
-          "type": "string"
-        },
-        "targetNamespace": {
-          "description": "targetNamespace for distribution",
           "type": "string"
         },
         "type": {
@@ -30182,7 +29481,7 @@
           "type": "string"
         },
         "type": {
-          "description": "notification type: distribution, payment",
+          "description": "notification type: payment",
           "type": "string"
         },
         "userId": {

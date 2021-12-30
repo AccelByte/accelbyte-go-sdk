@@ -69,97 +69,6 @@
   },
   "swagger": "2.0",
   "paths": {
-    "/chat/namespaces/{namespace}/users/{userId}/friend/{friendId}": {
-      "get": {
-        "consumes": [
-          "application/json"
-        ],
-        "description": "Required permission : \u0026lt;code\u0026gt;NAMESPACE:{namespace}:USER:{userId}:CHAT [READ]\u0026lt;/code\u0026gt; with scope \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\t\t\t\u0026lt;br\u0026gt;load personal chat history in a namespace.",
-        "operationId": "personalChatHistory",
-        "parameters": [
-          {
-            "description": "namespace",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "description": "user ID",
-            "in": "path",
-            "name": "userId",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "description": "user ID that receive the chat",
-            "in": "path",
-            "name": "friendId",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "items": {
-                "$ref": "#/definitions/model.ChatMessageResponse"
-              },
-              "type": "array"
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "schema": {
-              "$ref": "#/definitions/restapi.ErrorResponseBody"
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "schema": {
-              "$ref": "#/definitions/restapi.ErrorResponseBody"
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "schema": {
-              "$ref": "#/definitions/restapi.ErrorResponseBody"
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "schema": {
-              "$ref": "#/definitions/restapi.ErrorResponseBody"
-            }
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "schema": {
-              "$ref": "#/definitions/restapi.ErrorResponseBody"
-            }
-          }
-        },
-        "security": [
-          {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:USER:{userId}:CHAT [READ]"
-            ],
-            "HasScope": [
-              "social"
-            ],
-            "authorization": []
-          }
-        ],
-        "summary": "load personal chat history",
-        "tags": [
-          "chat"
-        ]
-      }
-    },
     "/friends/namespaces/{namespace}/me": {
       "get": {
         "operationId": "getUserFriendsUpdated",
@@ -887,6 +796,97 @@
         "summary": "Add friends without confirmation",
         "tags": [
           "friends"
+        ]
+      }
+    },
+    "/lobby/chat/namespaces/{namespace}/users/{userId}/friend/{friendId}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission : \u0026lt;code\u0026gt;NAMESPACE:{namespace}:USER:{userId}:CHAT [READ]\u0026lt;/code\u0026gt; with scope \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\t\t\t\u0026lt;br\u0026gt;load personal chat history in a namespace.",
+        "operationId": "personalChatHistory",
+        "parameters": [
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "user ID",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "user ID that receive the chat",
+            "in": "path",
+            "name": "friendId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/model.ChatMessageResponse"
+              },
+              "type": "array"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:USER:{userId}:CHAT [READ]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "load personal chat history",
+        "tags": [
+          "chat"
         ]
       }
     },

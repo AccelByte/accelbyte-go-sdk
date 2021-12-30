@@ -21,7 +21,7 @@ type EntitlementSummary struct {
 
 	// entitlement class
 	// Required: true
-	// Enum: [APP ENTITLEMENT DISTRIBUTION CODE SUBSCRIPTION MEDIA]
+	// Enum: [APP ENTITLEMENT CODE SUBSCRIPTION MEDIA]
 	Clazz *string `json:"clazz"`
 
 	// created at
@@ -49,9 +49,6 @@ type EntitlementSummary struct {
 
 	// Whether the CONSUMABLE entitlement is stackable
 	Stackable bool `json:"stackable,omitempty"`
-
-	// DISTRIBUTION entitlement stacked quantity
-	StackedQuantity int32 `json:"stackedQuantity,omitempty"`
 
 	// CONSUMABLE entitlement stacked use count
 	StackedUseCount int32 `json:"stackedUseCount,omitempty"`
@@ -128,7 +125,7 @@ var entitlementSummaryTypeClazzPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["APP","ENTITLEMENT","DISTRIBUTION","CODE","SUBSCRIPTION","MEDIA"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["APP","ENTITLEMENT","CODE","SUBSCRIPTION","MEDIA"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -143,9 +140,6 @@ const (
 
 	// EntitlementSummaryClazzENTITLEMENT captures enum value "ENTITLEMENT"
 	EntitlementSummaryClazzENTITLEMENT string = "ENTITLEMENT"
-
-	// EntitlementSummaryClazzDISTRIBUTION captures enum value "DISTRIBUTION"
-	EntitlementSummaryClazzDISTRIBUTION string = "DISTRIBUTION"
 
 	// EntitlementSummaryClazzCODE captures enum value "CODE"
 	EntitlementSummaryClazzCODE string = "CODE"

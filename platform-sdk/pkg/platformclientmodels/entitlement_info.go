@@ -28,16 +28,13 @@ type EntitlementInfo struct {
 
 	// entitlement class
 	// Required: true
-	// Enum: [APP ENTITLEMENT DISTRIBUTION CODE SUBSCRIPTION MEDIA]
+	// Enum: [APP ENTITLEMENT CODE SUBSCRIPTION MEDIA]
 	Clazz *string `json:"clazz"`
 
 	// entitlement created at
 	// Required: true
 	// Format: date-time
 	CreatedAt *strfmt.DateTime `json:"createdAt"`
-
-	// distributed quantity for distribution, required if DISTRIBUTION
-	DistributedQuantity int32 `json:"distributedQuantity,omitempty"`
 
 	// entitlement end date
 	// Format: date-time
@@ -67,7 +64,7 @@ type EntitlementInfo struct {
 	// Required: true
 	ItemNamespace *string `json:"itemNamespace"`
 
-	// itemSnapshot for distribution
+	// itemSnapshot
 	ItemSnapshot *ItemSnapshot `json:"itemSnapshot,omitempty"`
 
 	// entitlement name
@@ -77,9 +74,6 @@ type EntitlementInfo struct {
 	// entitlement namespace
 	// Required: true
 	Namespace *string `json:"namespace"`
-
-	// purchased quantity for distribution, required if DISTRIBUTION
-	Quantity int32 `json:"quantity,omitempty"`
 
 	// sku for purchased item
 	Sku string `json:"sku,omitempty"`
@@ -98,14 +92,11 @@ type EntitlementInfo struct {
 
 	// entitlement status
 	// Required: true
-	// Enum: [ACTIVE INACTIVE CONSUMED DISTRIBUTED REVOKED]
+	// Enum: [ACTIVE INACTIVE CONSUMED REVOKED]
 	Status *string `json:"status"`
 
 	// storeId of the item, published store if omitted
 	StoreID string `json:"storeId,omitempty"`
-
-	// targetNamespace for distribution
-	TargetNamespace string `json:"targetNamespace,omitempty"`
 
 	// entitlement type
 	// Required: true
@@ -260,7 +251,7 @@ var entitlementInfoTypeClazzPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["APP","ENTITLEMENT","DISTRIBUTION","CODE","SUBSCRIPTION","MEDIA"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["APP","ENTITLEMENT","CODE","SUBSCRIPTION","MEDIA"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -275,9 +266,6 @@ const (
 
 	// EntitlementInfoClazzENTITLEMENT captures enum value "ENTITLEMENT"
 	EntitlementInfoClazzENTITLEMENT string = "ENTITLEMENT"
-
-	// EntitlementInfoClazzDISTRIBUTION captures enum value "DISTRIBUTION"
-	EntitlementInfoClazzDISTRIBUTION string = "DISTRIBUTION"
 
 	// EntitlementInfoClazzCODE captures enum value "CODE"
 	EntitlementInfoClazzCODE string = "CODE"
@@ -507,7 +495,7 @@ var entitlementInfoTypeStatusPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["ACTIVE","INACTIVE","CONSUMED","DISTRIBUTED","REVOKED"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["ACTIVE","INACTIVE","CONSUMED","REVOKED"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -525,9 +513,6 @@ const (
 
 	// EntitlementInfoStatusCONSUMED captures enum value "CONSUMED"
 	EntitlementInfoStatusCONSUMED string = "CONSUMED"
-
-	// EntitlementInfoStatusDISTRIBUTED captures enum value "DISTRIBUTED"
-	EntitlementInfoStatusDISTRIBUTED string = "DISTRIBUTED"
 
 	// EntitlementInfoStatusREVOKED captures enum value "REVOKED"
 	EntitlementInfoStatusREVOKED string = "REVOKED"

@@ -1,0 +1,394 @@
+[
+  {
+    "op": "add",
+    "path": "/host",
+    "value": "demo.accelbyte.io"
+  },
+  {
+    "op": "add",
+    "path": "/schemes",
+    "value": [
+      "https"
+    ]
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1gdpr~1admin~1namespaces~1{namespace}~1users~1{userId}~1requests~1{requestDate}/delete/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [DELETE]"
+        ],
+        "HasScope": [
+          "account"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1gdpr~1admin~1namespaces~1{namespace}~1users~1{userId}~1requests~1{requestDate}/delete/description",
+    "value": "&lt;p&gt;Required permission &lt;code&gt;ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [DELETE]&lt;/code&gt; and scope &lt;code&gt;account&lt;/code&gt;&lt;/p&gt;"
+  },
+  {
+    "op": "move",
+    "from": "/security",
+    "path": "/paths/~1gdpr~1public~1namespaces~1{namespace}~1users~1{userId}~1requests~1{requestDate}/delete/security"
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1gdpr~1public~1namespaces~1{namespace}~1users~1{userId}~1requests~1{requestDate}/delete/description",
+    "value": "&lt;p&gt;Requires valid user access token&lt;/p&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1gdpr~1admin~1namespaces~1{namespace}~1users~1{userId}~1requests/post/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [CREATE]"
+        ],
+        "HasScope": [
+          "account"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1gdpr~1admin~1namespaces~1{namespace}~1users~1{userId}~1requests/post/description",
+    "value": "&lt;p&gt;Required permission &lt;code&gt;ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [CREATE]&lt;/code&gt; and scope &lt;code&gt;account&lt;/code&gt;&lt;/p&gt;\n&lt;p&gt;If admin request data for themselves, password is need to be set&lt;/p&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1gdpr~1admin~1namespaces~1{namespace}~1users~1{userId}~1requests/get/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [READ]"
+        ],
+        "HasScope": [
+          "account"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1gdpr~1admin~1namespaces~1{namespace}~1users~1{userId}~1requests/get/description",
+    "value": "&lt;p&gt;Required permission &lt;code&gt;ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [READ]&lt;/code&gt; and scope &lt;code&gt;account&lt;/code&gt;&lt;/p&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1gdpr~1admin~1namespaces~1{namespace}~1emails~1configurations/delete/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:EMAIL:CONFIGURATION [DELETE]"
+        ],
+        "HasScope": [
+          "account"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1gdpr~1admin~1namespaces~1{namespace}~1emails~1configurations/delete/description",
+    "value": "Delete a list of admin email addresses to stop receiving personal data request notification. \n\t\t\t&lt;p&gt;Required permission &lt;code&gt;ADMIN:NAMESPACE:{namespace}:EMAIL:CONFIGURATION [DELETE]&lt;/code&gt; and scope &lt;code&gt;account&lt;/code&gt;&lt;/p&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1gdpr~1admin~1namespaces~1{namespace}~1emails~1configurations/post/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:EMAIL:CONFIGURATION [CREATE]"
+        ],
+        "HasScope": [
+          "account"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1gdpr~1admin~1namespaces~1{namespace}~1emails~1configurations/post/description",
+    "value": "Add admin email address for receiving personal data request notification. \n\t\t\t&lt;p&gt;Required permission &lt;code&gt;ADMIN:NAMESPACE:{namespace}:EMAIL:CONFIGURATION [CREATE]&lt;/code&gt; and scope &lt;code&gt;account&lt;/code&gt;&lt;/p&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1gdpr~1admin~1namespaces~1{namespace}~1emails~1configurations/get/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:EMAIL:CONFIGURATION [READ]"
+        ],
+        "HasScope": [
+          "account"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1gdpr~1admin~1namespaces~1{namespace}~1emails~1configurations/get/description",
+    "value": "Get list of admin email address configuration. \n\t\t\t&lt;p&gt;Required permission &lt;code&gt;ADMIN:NAMESPACE:{namespace}:EMAIL:CONFIGURATION [READ]&lt;/code&gt; and scope &lt;code&gt;account&lt;/code&gt;&lt;/p&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1gdpr~1admin~1namespaces~1{namespace}~1emails~1configurations/put/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:EMAIL:CONFIGURATION [UPDATE]"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1gdpr~1admin~1namespaces~1{namespace}~1emails~1configurations/put/description",
+    "value": "Update admin email address for receiving personal data request notification. &lt;p&gt;Required permission &lt;code&gt;ADMIN:NAMESPACE:{namespace}:EMAIL:CONFIGURATION [UPDATE]&lt;/code&gt;&lt;/p&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1gdpr~1public~1namespaces~1{namespace}~1users~1{userId}~1requests/post/security",
+    "value": [
+      {
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1gdpr~1public~1namespaces~1{namespace}~1users~1{userId}~1requests/post/description",
+    "value": "&lt;p&gt;Requires valid user access token&lt;/p&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1gdpr~1public~1namespaces~1{namespace}~1users~1{userId}~1requests/get/security",
+    "value": [
+      {
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1gdpr~1public~1namespaces~1{namespace}~1users~1{userId}~1requests/get/description",
+    "value": "&lt;p&gt;Requires valid user access token&lt;/p&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1gdpr~1public~1namespaces~1{namespace}~1users~1{userId}~1requests~1{requestDate}~1generate/post/security",
+    "value": [
+      {
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1gdpr~1public~1namespaces~1{namespace}~1users~1{userId}~1requests~1{requestDate}~1generate/post/description",
+    "value": "&lt;p&gt;Requires valid user access token&lt;/p&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1gdpr~1admin~1namespaces~1{namespace}~1users~1{userId}~1deletions/delete/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [DELETE]"
+        ],
+        "HasScope": [
+          "account"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1gdpr~1admin~1namespaces~1{namespace}~1users~1{userId}~1deletions/delete/description",
+    "value": "&lt;p&gt;Required permission &lt;code&gt;ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [DELETE]&lt;/code&gt; and scope &lt;code&gt;account&lt;/code&gt;&lt;/p&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1gdpr~1admin~1namespaces~1{namespace}~1users~1{userId}~1deletions/post/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [CREATE]"
+        ],
+        "HasScope": [
+          "account"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1gdpr~1admin~1namespaces~1{namespace}~1users~1{userId}~1deletions/post/description",
+    "value": "&lt;p&gt;Required permission &lt;code&gt;ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [CREATE]&lt;/code&gt; and scope &lt;code&gt;account&lt;/code&gt;&lt;/p&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1gdpr~1admin~1namespaces~1{namespace}~1users~1{userId}~1deletions/get/security",
+    "value": [
+      {
+        "HasPermission": [],
+        "HasScope": [
+          "account"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1gdpr~1admin~1namespaces~1{namespace}~1users~1{userId}~1deletions/get/description",
+    "value": "&lt;p&gt;Required permission &lt;code&gt;ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId}[READ]&lt;/code&gt; and scope &lt;code&gt;account&lt;/code&gt;&lt;/p&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1gdpr~1admin~1namespaces~1{namespace}~1users~1{userId}~1requests~1{requestDate}~1generate/post/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [READ]"
+        ],
+        "HasScope": [
+          "account"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1gdpr~1admin~1namespaces~1{namespace}~1users~1{userId}~1requests~1{requestDate}~1generate/post/description",
+    "value": "&lt;p&gt;Required permission &lt;code&gt;ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [READ]&lt;/code&gt; and scope &lt;code&gt;account&lt;/code&gt;&lt;/p&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1gdpr~1admin~1namespaces~1{namespace}~1deletions/get/security",
+    "value": [
+      {
+        "HasPermission": [],
+        "HasScope": [
+          "account"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1gdpr~1admin~1namespaces~1{namespace}~1deletions/get/description",
+    "value": "&lt;p&gt;Required permission &lt;code&gt;ADMIN:NAMESPACE:{namespace}:INFORMATION:USER[READ]&lt;/code&gt; and scope &lt;code&gt;account&lt;/code&gt;&lt;/p&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1gdpr~1public~1namespaces~1{namespace}~1users~1{userId}~1deletions/delete/security",
+    "value": [
+      {
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1gdpr~1public~1namespaces~1{namespace}~1users~1{userId}~1deletions/delete/description",
+    "value": "&lt;p&gt;Requires valid user access token&lt;/p&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1gdpr~1public~1namespaces~1{namespace}~1users~1{userId}~1deletions/post/security",
+    "value": [
+      {
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1gdpr~1public~1namespaces~1{namespace}~1users~1{userId}~1deletions/post/description",
+    "value": "&lt;p&gt;Requires valid user access token and password"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1gdpr~1public~1namespaces~1{namespace}~1users~1{userId}~1deletions~1status/get/security",
+    "value": [
+      {
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1gdpr~1public~1namespaces~1{namespace}~1users~1{userId}~1deletions~1status/get/description",
+    "value": "&lt;p&gt;Requires valid user access token&lt;/p&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1gdpr~1admin~1namespaces~1{namespace}~1requests/get/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:INFORMATION:USER [READ]"
+        ],
+        "HasScope": [
+          "account"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1gdpr~1admin~1namespaces~1{namespace}~1requests/get/description",
+    "value": "&lt;p&gt;Required permission &lt;code&gt;ADMIN:NAMESPACE:{namespace}:INFORMATION:USER [READ]&lt;/code&gt; and scope &lt;code&gt;account&lt;/code&gt;&lt;/p&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/securityDefinitions/HasPermission",
+    "value": {
+      "authorizationUrl": "https://dummy.oauth.net/auth",
+      "flow": "accessCode",
+      "scopes": {
+        "ADMIN:NAMESPACE:{namespace}:EMAIL:CONFIGURATION [CREATE]": "ADMIN:NAMESPACE:{namespace}:EMAIL:CONFIGURATION [CREATE]",
+        "ADMIN:NAMESPACE:{namespace}:EMAIL:CONFIGURATION [DELETE]": "ADMIN:NAMESPACE:{namespace}:EMAIL:CONFIGURATION [DELETE]",
+        "ADMIN:NAMESPACE:{namespace}:EMAIL:CONFIGURATION [READ]": "ADMIN:NAMESPACE:{namespace}:EMAIL:CONFIGURATION [READ]",
+        "ADMIN:NAMESPACE:{namespace}:EMAIL:CONFIGURATION [UPDATE]": "ADMIN:NAMESPACE:{namespace}:EMAIL:CONFIGURATION [UPDATE]",
+        "ADMIN:NAMESPACE:{namespace}:INFORMATION:USER [READ]": "ADMIN:NAMESPACE:{namespace}:INFORMATION:USER [READ]",
+        "ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [CREATE]": "ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [CREATE]",
+        "ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [DELETE]": "ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [DELETE]",
+        "ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [READ]": "ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [READ]"
+      },
+      "tokenUrl": "https://dumy.oauth.net/token",
+      "type": "oauth2"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/securityDefinitions/HasScope",
+    "value": {
+      "authorizationUrl": "https://dummy.oauth.net/auth",
+      "flow": "accessCode",
+      "scopes": {
+        "account": "account"
+      },
+      "tokenUrl": "https://dumy.oauth.net/token",
+      "type": "oauth2"
+    }
+  }
+]

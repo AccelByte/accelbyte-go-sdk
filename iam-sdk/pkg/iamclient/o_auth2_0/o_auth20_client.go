@@ -65,7 +65,7 @@ Passing platform group name or it&#39;s member will return same access token tha
 &lt;/p&gt;
          &lt;p&gt;Notes:&lt;/p&gt;
        &lt;ul&gt;
-                 &lt;li&gt;Required permission: ADMIN:NAMESPACE:{namespace}:USER:{userId}&lt;/li&gt;
+                 &lt;li&gt;Required permission: ADMIN:NAMESPACE:{namespace}:USER:{userId} [READ]&lt;/li&gt;
              &lt;/ul&gt;
 &lt;p&gt;The third party platform and platform group covered for this is:&lt;/p&gt;
 &lt;ul&gt;

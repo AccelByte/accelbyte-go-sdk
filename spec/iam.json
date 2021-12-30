@@ -8,7 +8,7 @@
     },
     "description": "Justice IAM Service",
     "title": "justice-iam-service",
-    "version": "4.9.0"
+    "version": "4.10.0"
   },
   "schemes": [
     "https"
@@ -61,13 +61,13 @@
         "ADMIN:NAMESPACE:{namespace}:USER:{userId} [DELETE]": "ADMIN:NAMESPACE:{namespace}:USER:{userId} [DELETE]",
         "ADMIN:NAMESPACE:{namespace}:USER:{userId} [READ]": "ADMIN:NAMESPACE:{namespace}:USER:{userId} [READ]",
         "ADMIN:NAMESPACE:{namespace}:USER:{userId} [UPDATE]": "ADMIN:NAMESPACE:{namespace}:USER:{userId} [UPDATE]",
-        "ADMIN:NAMESPACE:{namespace}:USER:{userId} []": "ADMIN:NAMESPACE:{namespace}:USER:{userId} []",
         "ADMIN:NAMESPACE:{namespace}:USER:{userId}:CODE [READ]": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:CODE [READ]",
         "ADMIN:NAMESPACE:{namespace}:USERSTATUS:USER:{userId} [UPDATE]": "ADMIN:NAMESPACE:{namespace}:USERSTATUS:USER:{userId} [UPDATE]",
         "ADMIN:ROLE [CREATE]": "ADMIN:ROLE [CREATE]",
         "ADMIN:ROLE [DELETE]": "ADMIN:ROLE [DELETE]",
         "ADMIN:ROLE [READ]": "ADMIN:ROLE [READ]",
         "ADMIN:ROLE [UPDATE]": "ADMIN:ROLE [UPDATE]",
+        "ADMIN:USER:INVITE [CREATE]": "ADMIN:USER:INVITE [CREATE]",
         "BAN:ADMIN [READ]": "BAN:ADMIN [READ]",
         "CLIENT [READ]": "CLIENT [READ]",
         "CLIENT:ADMIN [CREATE]": "CLIENT:ADMIN [CREATE]",
@@ -78,7 +78,7 @@
         "NAMESPACE:{namespace}:INFORMATION:USER:{userId} [READ]": "NAMESPACE:{namespace}:INFORMATION:USER:{userId} [READ]",
         "NAMESPACE:{namespace}:JUSTICE:USER:{userId} [UPDATE]": "NAMESPACE:{namespace}:JUSTICE:USER:{userId} [UPDATE]",
         "NAMESPACE:{namespace}:PASSWORD:USER:{userId} [UPDATE]": "NAMESPACE:{namespace}:PASSWORD:USER:{userId} [UPDATE]",
-        "NAMESPACE:{namespace}:PUBLISHER:USER:{userId} []": "NAMESPACE:{namespace}:PUBLISHER:USER:{userId} []",
+        "NAMESPACE:{namespace}:PUBLISHER:USER:{userId} [READ]": "NAMESPACE:{namespace}:PUBLISHER:USER:{userId} [READ]",
         "NAMESPACE:{namespace}:USER [CREATE]": "NAMESPACE:{namespace}:USER [CREATE]",
         "NAMESPACE:{namespace}:USER [READ]": "NAMESPACE:{namespace}:USER [READ]",
         "NAMESPACE:{namespace}:USER:{userID}:ADMIN [UPDATE]": "NAMESPACE:{namespace}:USER:{userID}:ADMIN [UPDATE]",
@@ -2795,7 +2795,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;p\u0026gt;Required permissions \u0026#39;NAMESPACE:{namespace}:PUBLISHER:USER:{userId} [GET].\u0026lt;/p\u0026gt;\n\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;Restriction:\u0026lt;/strong\u0026gt;\n\t\tPath Parameter \u0026lt;strong\u0026gt;namespace\u0026lt;/strong\u0026gt; can be provided only with game namespace\u0026lt;/p\u0026gt;",
+        "description": "\u0026lt;p\u0026gt;Required permissions \u0026#39;NAMESPACE:{namespace}:PUBLISHER:USER:{userId} [READ].\u0026lt;/p\u0026gt;\n\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;Restriction:\u0026lt;/strong\u0026gt;\n\t\tPath Parameter \u0026lt;strong\u0026gt;namespace\u0026lt;/strong\u0026gt; can be provided only with game namespace\u0026lt;/p\u0026gt;",
         "operationId": "GetPublisherUser",
         "parameters": [
           {
@@ -2842,7 +2842,7 @@
         "security": [
           {
             "HasPermission": [
-              "NAMESPACE:{namespace}:PUBLISHER:USER:{userId} []"
+              "NAMESPACE:{namespace}:PUBLISHER:USER:{userId} [READ]"
             ],
             "authorization": []
           }
@@ -12356,7 +12356,7 @@
         "consumes": [
           "application/x-www-form-urlencoded"
         ],
-        "description": "Admin Retrieve User Third Party Platform Token\u0026lt;br/\u0026gt;\n\u0026lt;p\u0026gt;\nThis endpoint used for retrieving third party platform token for user that login using third party.\nPassing platform group name or it\u0026#39;s member will return same access token that can be used across the platform members. \n\u0026lt;/p\u0026gt;\n         \u0026lt;p\u0026gt;Notes:\u0026lt;/p\u0026gt;\n       \u0026lt;ul\u0026gt;\n                 \u0026lt;li\u0026gt;Required permission: ADMIN:NAMESPACE:{namespace}:USER:{userId}\u0026lt;/li\u0026gt;\n             \u0026lt;/ul\u0026gt;\n\u0026lt;p\u0026gt;The third party platform and platform group covered for this is:\u0026lt;/p\u0026gt;\n\u0026lt;ul\u0026gt;\t\t\t\t\n\t\u0026lt;li\u0026gt;(psn) ps4web\u0026lt;/li\u0026gt;\n\t\u0026lt;li\u0026gt;(psn) ps4\u0026lt;/li\u0026gt;\n\t\u0026lt;li\u0026gt;(psn) ps5\u0026lt;/li\u0026gt;\n\t\u0026lt;li\u0026gt;xbox live\u0026lt;/li\u0026gt;\n\t\u0026lt;li\u0026gt;steam\u0026lt;/li\u0026gt;\n\u0026lt;/ul\u0026gt;",
+        "description": "Admin Retrieve User Third Party Platform Token\u0026lt;br/\u0026gt;\n\u0026lt;p\u0026gt;\nThis endpoint used for retrieving third party platform token for user that login using third party.\nPassing platform group name or it\u0026#39;s member will return same access token that can be used across the platform members. \n\u0026lt;/p\u0026gt;\n         \u0026lt;p\u0026gt;Notes:\u0026lt;/p\u0026gt;\n       \u0026lt;ul\u0026gt;\n                 \u0026lt;li\u0026gt;Required permission: ADMIN:NAMESPACE:{namespace}:USER:{userId} [READ]\u0026lt;/li\u0026gt;\n             \u0026lt;/ul\u0026gt;\n\u0026lt;p\u0026gt;The third party platform and platform group covered for this is:\u0026lt;/p\u0026gt;\n\u0026lt;ul\u0026gt;\t\t\t\t\n\t\u0026lt;li\u0026gt;(psn) ps4web\u0026lt;/li\u0026gt;\n\t\u0026lt;li\u0026gt;(psn) ps4\u0026lt;/li\u0026gt;\n\t\u0026lt;li\u0026gt;(psn) ps5\u0026lt;/li\u0026gt;\n\t\u0026lt;li\u0026gt;xbox live\u0026lt;/li\u0026gt;\n\t\u0026lt;li\u0026gt;steam\u0026lt;/li\u0026gt;\n\u0026lt;/ul\u0026gt;",
         "operationId": "AdminRetrieveUserThirdPartyPlatformTokenV3",
         "parameters": [
           {
@@ -12413,7 +12413,7 @@
         "security": [
           {
             "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId} []"
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId} [READ]"
             ],
             "authorization": []
           }
@@ -16715,6 +16715,75 @@
         ]
       }
     },
+    "/iam/v4/admin/users/users/invite": {
+      "post": {
+        "description": "Required permission \u0026#39;ADMIN:USER:INVITE [CREATE]\n\nUse this endpoint to invite admin or non-admin user and assign role to them. The role must be scoped to namespace. An admin user can only\nassign role with namespaces that the admin user has required permission which is same as the required permission of endpoint: [AdminAddUserRoleV4].\nRole is optional, if not specified then it will only assign User role\n\nThe invited admin will also assigned with \u0026#34;User\u0026#34; role by default.\n",
+        "operationId": "AdminInviteUserV4",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/model.InviteUserRequestV4"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/model.InviteUserResponseV3"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20019\u003c/td\u003e\u003ctd\u003eunable to parse request body\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10154\u003c/td\u003e\u003ctd\u003ecountry not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "409": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10133\u003c/td\u003e\u003ctd\u003eemail already used\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "422": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:USER:INVITE [CREATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Admin invite User v4",
+        "tags": [
+          "Users V4"
+        ]
+      }
+    },
     "/iam/v4/public/namespaces/{namespace}/test_users": {
       "post": {
         "consumes": [
@@ -19138,6 +19207,34 @@
         "emailAddresses",
         "isAdmin",
         "roles"
+      ]
+    },
+    "model.InviteUserRequestV4": {
+      "properties": {
+        "assignedNamespaces": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "emailAddresses": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "isAdmin": {
+          "type": "boolean"
+        },
+        "roleId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "assignedNamespaces",
+        "emailAddresses",
+        "isAdmin",
+        "roleId"
       ]
     },
     "model.InviteUserResponseV3": {

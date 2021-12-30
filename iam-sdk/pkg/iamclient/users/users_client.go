@@ -7705,7 +7705,7 @@ func (a *Client) GetListJusticePlatformAccountsShort(params *GetListJusticePlatf
 /*
   GetPublisherUser gets publisher user
 
-  &lt;p&gt;Required permissions &#39;NAMESPACE:{namespace}:PUBLISHER:USER:{userId} [GET].&lt;/p&gt;
+  &lt;p&gt;Required permissions &#39;NAMESPACE:{namespace}:PUBLISHER:USER:{userId} [READ].&lt;/p&gt;
 	&lt;p&gt;&lt;strong&gt;Restriction:&lt;/strong&gt;
 		Path Parameter &lt;strong&gt;namespace&lt;/strong&gt; can be provided only with game namespace&lt;/p&gt;
 */

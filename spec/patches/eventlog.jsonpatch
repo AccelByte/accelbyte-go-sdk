@@ -1,0 +1,561 @@
+[
+  {
+    "op": "add",
+    "path": "/schemes",
+    "value": [
+      "https"
+    ]
+  },
+  {
+    "op": "add",
+    "path": "/host",
+    "value": "demo.accelbyte.io"
+  },
+  {
+    "op": "add",
+    "path": "/securityDefinitions/HasPermission",
+    "value": {
+      "authorizationUrl": "https://dummy.oauth.net/auth",
+      "flow": "accessCode",
+      "scopes": {
+        "ADMIN:NAMESPACE:{namespace}:EVENT [CREATE]": "ADMIN:NAMESPACE:{namespace}:EVENT [CREATE]",
+        "ADMIN:NAMESPACE:{namespace}:EVENT [DELETE]": "ADMIN:NAMESPACE:{namespace}:EVENT [DELETE]",
+        "ADMIN:NAMESPACE:{namespace}:EVENT [READ]": "ADMIN:NAMESPACE:{namespace}:EVENT [READ]",
+        "ADMIN:NAMESPACE:{namespace}:EVENT [UPDATE]": "ADMIN:NAMESPACE:{namespace}:EVENT [UPDATE]",
+        "NAMESPACE:{namespace}:EVENT [CREATE]": "NAMESPACE:{namespace}:EVENT [CREATE]",
+        "NAMESPACE:{namespace}:EVENT [UPDATE]": "NAMESPACE:{namespace}:EVENT [UPDATE]"
+      },
+      "tokenUrl": "https://dumy.oauth.net/token",
+      "type": "oauth2"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/securityDefinitions/HasScope",
+    "value": {
+      "authorizationUrl": "https://dummy.oauth.net/auth",
+      "flow": "accessCode",
+      "scopes": {
+        "analytics": "analytics"
+      },
+      "tokenUrl": "https://dumy.oauth.net/token",
+      "type": "oauth2"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/info/version",
+    "value": ""
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1event~1v2~1admin~1namespaces~1{namespace}~1query/post/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:EVENT [READ]"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1event~1v2~1admin~1namespaces~1{namespace}~1query/post/description",
+    "value": "&lt;p&gt;This endpoint is using POST which is somewhat unfamiliar, \n\t\t\tbut it&#39;s logical that we have to send/post a filter (search term) in order to get the data.&lt;/p&gt;\n\t\t\t&lt;p&gt;This endpoint will not return anything if you give it an empty filters in the request body. &lt;/p&gt;\n\t\t\t&lt;p&gt;Required permission &lt;code&gt;ADMIN:NAMESPACE:{namespace}:EVENT [READ]&lt;/code&gt; and scope &lt;code&gt;&#34;+scope+&#34;&lt;/code&gt;&lt;/p&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1event~1v2~1admin~1namespaces~1{namespace}~1users~1{userId}~1event/get/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:EVENT [READ]"
+        ],
+        "HasScope": [
+          "analytics"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1event~1v2~1admin~1namespaces~1{namespace}~1users~1{userId}~1event/get/description",
+    "value": "Required permission &lt;code&gt;ADMIN:NAMESPACE:{namespace}:EVENT [READ]&lt;/code&gt;and scope &lt;code&gt;analytics&lt;/code&gt;"
+  },
+  {
+    "op": "move",
+    "from": "/security",
+    "path": "/paths/~1event~1v2~1public~1namespaces~1{namespace}~1users~1{userId}~1edithistory/get/security"
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1event~1v2~1public~1namespaces~1{namespace}~1users~1{userId}~1edithistory/get/description",
+    "value": "&lt;p&gt;Available Type: &lt;/p&gt;\n\t\t\t&lt;ul&gt;\n\t\t\t\t&lt;li&gt;email&lt;/li&gt;\n\t\t\t\t&lt;li&gt;password&lt;/li&gt;\n\t\t\t\t&lt;li&gt;displayname&lt;/li&gt;\n\t\t\t\t&lt;li&gt;dateofbirth&lt;/li&gt;\n\t\t\t\t&lt;li&gt;country&lt;/li&gt;\n\t\t\t\t&lt;li&gt;language&lt;/li&gt;\n\t\t\t&lt;/ul&gt;\n\t\t\t&lt;p&gt;Requires a valid user access token&lt;/p&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1event~1namespaces~1{namespace}~1users~1{userId}~1eventId~1{eventId}/get/security",
+    "value": [
+      {
+        "HasPermission": [
+          "NAMESPACE:{namespace}:EVENT [UPDATE]"
+        ],
+        "HasScope": [
+          "analytics"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1event~1namespaces~1{namespace}~1users~1{userId}~1eventId~1{eventId}/get/description",
+    "value": "Required permission &lt;code&gt;NAMESPACE:{namespace}:EVENT [UPDATE]&lt;/code&gt; and scope &lt;code&gt;analytics&lt;/code&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1event~1namespaces~1{namespace}~1eventType~1{eventType}/get/security",
+    "value": [
+      {
+        "HasPermission": [
+          "NAMESPACE:{namespace}:EVENT [UPDATE]"
+        ],
+        "HasScope": [
+          "analytics"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1event~1namespaces~1{namespace}~1eventType~1{eventType}/get/description",
+    "value": "Required permission &lt;code&gt;NAMESPACE:{namespace}:EVENT [UPDATE]&lt;/code&gt;and scope &lt;code&gt;analytics&lt;/code&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1event~1registry~1eventIds/post/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:EVENT [CREATE]"
+        ],
+        "HasScope": [
+          "analytics"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1event~1registry~1eventIds/post/description",
+    "value": "Required permission &lt;code&gt;ADMIN:NAMESPACE:{namespace}:EVENT [CREATE]&lt;/code&gt;and scope &lt;code&gt;analytics&lt;/code&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1event~1registry~1eventIds/get/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:EVENT [READ]"
+        ],
+        "HasScope": [
+          "analytics"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1event~1registry~1eventIds/get/description",
+    "value": "Required permission &lt;code&gt;ADMIN:NAMESPACE:{namespace}:EVENT [READ]&lt;/code&gt;and scope &lt;code&gt;analytics&lt;/code&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1event~1registry~1eventTypes~1{eventType}/get/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:EVENT [READ]"
+        ],
+        "HasScope": [
+          "analytics"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1event~1registry~1eventTypes~1{eventType}/get/description",
+    "value": "Required permission &lt;code&gt;ADMIN:NAMESPACE:{namespace}:EVENT [READ]&lt;/code&gt;and scope &lt;code&gt;analytics&lt;/code&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1event~1descriptions~1eventId/get/security",
+    "value": [
+      {
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1event~1descriptions~1agentType~1listByAgentTypes/get/security",
+    "value": [
+      {
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1event~1descriptions~1agentType/get/security",
+    "value": [
+      {
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1event~1namespaces~1{namespace}~1users~1{userId}/get/security",
+    "value": [
+      {
+        "HasPermission": [
+          "NAMESPACE:{namespace}:EVENT [UPDATE]"
+        ],
+        "HasScope": [
+          "analytics"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1event~1namespaces~1{namespace}~1users~1{userId}/get/description",
+    "value": "Required permission &lt;code&gt;NAMESPACE:{namespace}:EVENT [UPDATE]&lt;/code&gt; and scope &lt;code&gt;analytics&lt;/code&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1event~1descriptions~1eventType/get/security",
+    "value": [
+      {
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1event~1namespaces~1{namespace}~1eventId~1{eventId}/get/security",
+    "value": [
+      {
+        "HasPermission": [
+          "NAMESPACE:{namespace}:EVENT [UPDATE]"
+        ],
+        "HasScope": [
+          "analytics"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1event~1namespaces~1{namespace}~1eventId~1{eventId}/get/description",
+    "value": "Required permission &lt;code&gt;NAMESPACE:{namespace}:EVENT [UPDATE]&lt;/code&gt; and scope &lt;code&gt;analytics&lt;/code&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1event~1descriptions~1eventLevel~1listByEventLevels/get/security",
+    "value": [
+      {
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1event~1namespaces~1{namespace}~1users~1{userId}~1activities/delete/security",
+    "value": [
+      {
+        "HasPermission": [
+          "NAMESPACE:{namespace}:EVENT [UPDATE]"
+        ],
+        "HasScope": [
+          "analytics"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1event~1namespaces~1{namespace}~1users~1{userId}~1activities/delete/description",
+    "value": "Required permission &lt;code&gt;NAMESPACE:{namespace}:EVENT [UPDATE]&lt;/code&gt;and scope &lt;code&gt;analytics&lt;/code&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1event~1namespaces~1{namespace}~1users~1{userId}~1activities/get/security",
+    "value": [
+      {
+        "HasPermission": [
+          "NAMESPACE:{namespace}:EVENT [UPDATE]"
+        ],
+        "HasScope": [
+          "analytics"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1event~1namespaces~1{namespace}~1users~1{userId}~1activities/get/description",
+    "value": "Required permission &lt;code&gt;NAMESPACE:{namespace}:EVENT [UPDATE]&lt;/code&gt;and scope &lt;code&gt;analytics&lt;/code&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1event~1descriptions~1ux/get/security",
+    "value": [
+      {
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1event~1descriptions~1eventType~1listByEventTypes/get/security",
+    "value": [
+      {
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1event~1registry~1eventIds~1{eventId}/post/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:EVENT [UPDATE]"
+        ],
+        "HasScope": [
+          "analytics"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1event~1registry~1eventIds~1{eventId}/post/description",
+    "value": "Required permission &lt;code&gt;ADMIN:NAMESPACE:{namespace}:EVENT [UPDATE]&lt;/code&gt;and scope &lt;code&gt;analytics&lt;/code&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1event~1registry~1eventIds~1{eventId}/delete/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:EVENT [DELETE]"
+        ],
+        "HasScope": [
+          "analytics"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1event~1registry~1eventIds~1{eventId}/delete/description",
+    "value": "Required permission &lt;code&gt;ADMIN:NAMESPACE:{namespace}:EVENT [DELETE]&lt;/code&gt;and scope &lt;code&gt;analytics&lt;/code&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1event~1registry~1eventIds~1{eventId}/get/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:EVENT [READ]"
+        ],
+        "HasScope": [
+          "analytics"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1event~1registry~1eventIds~1{eventId}/get/description",
+    "value": "Required permission &lt;code&gt;ADMIN:NAMESPACE:{namespace}:EVENT [READ]&lt;/code&gt;and scope &lt;code&gt;analytics&lt;/code&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1event~1descriptions~1eventLevel/get/security",
+    "value": [
+      {
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1event~1namespaces~1{namespace}~1users~1{userId}~1eventType~1{eventType}/get/security",
+    "value": [
+      {
+        "HasPermission": [
+          "NAMESPACE:{namespace}:EVENT [UPDATE]"
+        ],
+        "HasScope": [
+          "analytics"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1event~1namespaces~1{namespace}~1users~1{userId}~1eventType~1{eventType}/get/description",
+    "value": "Required permission &lt;code&gt;NAMESPACE:{namespace}:EVENT [UPDATE]and scope &lt;code&gt;analytics&lt;/code&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1event~1v2~1public~1namespaces~1{namespace}~1users~1{userId}~1event/get/security",
+    "value": [
+      {
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1event~1v2~1public~1namespaces~1{namespace}~1users~1{userId}~1event/get/description",
+    "value": "&lt;p&gt;Requires valid user access token&lt;/p&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1event~1descriptions~1eventId~1listByEventIds/get/security",
+    "value": [
+      {
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1event~1namespaces~1{namespace}/post/security",
+    "value": [
+      {
+        "HasPermission": [
+          "NAMESPACE:{namespace}:EVENT [CREATE]"
+        ],
+        "HasScope": [
+          "analytics"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1event~1namespaces~1{namespace}/post/description",
+    "value": "Required permission &lt;code&gt;NAMESPACE:{namespace}:EVENT [CREATE]&lt;/code&gt;and scope &lt;code&gt;analytics&lt;/code&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1event~1namespaces~1{namespace}/get/security",
+    "value": [
+      {
+        "HasPermission": [
+          "NAMESPACE:{namespace}:EVENT [UPDATE]"
+        ],
+        "HasScope": [
+          "analytics"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1event~1namespaces~1{namespace}/get/description",
+    "value": "Required permission &lt;code&gt;NAMESPACE:{namespace}:EVENT [UPDATE]&lt;/code&gt; and scope &lt;code&gt;analytics&lt;/code&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1event~1descriptions~1ux~1listByUx/get/security",
+    "value": [
+      {
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1event~1namespaces~1{namespace}~1users~1{userId}~1eventType~1{eventType}~1eventId~1{eventId}/get/security",
+    "value": [
+      {
+        "HasPermission": [
+          "NAMESPACE:{namespace}:EVENT [UPDATE]"
+        ],
+        "HasScope": [
+          "analytics"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1event~1namespaces~1{namespace}~1users~1{userId}~1eventType~1{eventType}~1eventId~1{eventId}/get/description",
+    "value": "Required permission &lt;code&gt;NAMESPACE:{namespace}:EVENT [UPDATE]&lt;/code&gt;and scope &lt;code&gt;analytics&lt;/code&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1event~1namespaces~1{namespace}~1eventType~1{eventType}~1eventId~1{eventId}/get/security",
+    "value": [
+      {
+        "HasPermission": [
+          "NAMESPACE:{namespace}:EVENT [UPDATE]"
+        ],
+        "HasScope": [
+          "analytics"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1event~1namespaces~1{namespace}~1eventType~1{eventType}~1eventId~1{eventId}/get/description",
+    "value": "Required permission &lt;code&gt;NAMESPACE:{namespace}:EVENT [UPDATE]&lt;/code&gt;and scope &lt;code&gt;analytics&lt;/code&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1event~1namespaces~1{namespace}~1users~1{userId}~1lastActivityTime/get/security",
+    "value": [
+      {
+        "HasPermission": [
+          "NAMESPACE:{namespace}:EVENT [UPDATE]"
+        ],
+        "HasScope": [
+          "analytics"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1event~1namespaces~1{namespace}~1users~1{userId}~1lastActivityTime/get/description",
+    "value": "Required permission &lt;code&gt;NAMESPACE:{namespace}:EVENT [UPDATE]&lt;/code&gt;and scope &lt;code&gt;analytics&lt;/code&gt;"
+  }
+]

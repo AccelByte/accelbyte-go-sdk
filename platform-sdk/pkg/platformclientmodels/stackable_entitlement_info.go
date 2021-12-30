@@ -28,16 +28,13 @@ type StackableEntitlementInfo struct {
 
 	// entitlement class
 	// Required: true
-	// Enum: [APP ENTITLEMENT DISTRIBUTION CODE SUBSCRIPTION MEDIA]
+	// Enum: [APP ENTITLEMENT CODE SUBSCRIPTION MEDIA]
 	Clazz *string `json:"clazz"`
 
 	// entitlement created at
 	// Required: true
 	// Format: date-time
 	CreatedAt *strfmt.DateTime `json:"createdAt"`
-
-	// distributed quantity for distribution, required if DISTRIBUTION
-	DistributedQuantity int32 `json:"distributedQuantity,omitempty"`
 
 	// entitlement end date
 	// Format: date-time
@@ -67,7 +64,7 @@ type StackableEntitlementInfo struct {
 	// Required: true
 	ItemNamespace *string `json:"itemNamespace"`
 
-	// itemSnapshot for distribution
+	// itemSnapshot
 	ItemSnapshot *ItemSnapshot `json:"itemSnapshot,omitempty"`
 
 	// entitlement name
@@ -77,9 +74,6 @@ type StackableEntitlementInfo struct {
 	// entitlement namespace
 	// Required: true
 	Namespace *string `json:"namespace"`
-
-	// purchased quantity for distribution, required if DISTRIBUTION
-	Quantity int32 `json:"quantity,omitempty"`
 
 	// sku for purchased item
 	Sku string `json:"sku,omitempty"`
@@ -92,9 +86,6 @@ type StackableEntitlementInfo struct {
 	// whether the CONSUMABLE entitlement is stackable
 	Stackable bool `json:"stackable,omitempty"`
 
-	// DISTRIBUTION entitlement stacked quantity
-	StackedQuantity int32 `json:"stackedQuantity,omitempty"`
-
 	// CONSUMABLE entitlement stacked use count
 	StackedUseCount int32 `json:"stackedUseCount,omitempty"`
 
@@ -104,14 +95,11 @@ type StackableEntitlementInfo struct {
 
 	// entitlement status
 	// Required: true
-	// Enum: [ACTIVE INACTIVE CONSUMED DISTRIBUTED REVOKED]
+	// Enum: [ACTIVE INACTIVE CONSUMED REVOKED]
 	Status *string `json:"status"`
 
 	// storeId of the item, published store if omitted
 	StoreID string `json:"storeId,omitempty"`
-
-	// targetNamespace for distribution
-	TargetNamespace string `json:"targetNamespace,omitempty"`
 
 	// entitlement type
 	// Required: true
@@ -266,7 +254,7 @@ var stackableEntitlementInfoTypeClazzPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["APP","ENTITLEMENT","DISTRIBUTION","CODE","SUBSCRIPTION","MEDIA"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["APP","ENTITLEMENT","CODE","SUBSCRIPTION","MEDIA"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -281,9 +269,6 @@ const (
 
 	// StackableEntitlementInfoClazzENTITLEMENT captures enum value "ENTITLEMENT"
 	StackableEntitlementInfoClazzENTITLEMENT string = "ENTITLEMENT"
-
-	// StackableEntitlementInfoClazzDISTRIBUTION captures enum value "DISTRIBUTION"
-	StackableEntitlementInfoClazzDISTRIBUTION string = "DISTRIBUTION"
 
 	// StackableEntitlementInfoClazzCODE captures enum value "CODE"
 	StackableEntitlementInfoClazzCODE string = "CODE"
@@ -513,7 +498,7 @@ var stackableEntitlementInfoTypeStatusPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["ACTIVE","INACTIVE","CONSUMED","DISTRIBUTED","REVOKED"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["ACTIVE","INACTIVE","CONSUMED","REVOKED"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -531,9 +516,6 @@ const (
 
 	// StackableEntitlementInfoStatusCONSUMED captures enum value "CONSUMED"
 	StackableEntitlementInfoStatusCONSUMED string = "CONSUMED"
-
-	// StackableEntitlementInfoStatusDISTRIBUTED captures enum value "DISTRIBUTED"
-	StackableEntitlementInfoStatusDISTRIBUTED string = "DISTRIBUTED"
 
 	// StackableEntitlementInfoStatusREVOKED captures enum value "REVOKED"
 	StackableEntitlementInfoStatusREVOKED string = "REVOKED"

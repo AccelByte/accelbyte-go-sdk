@@ -21,13 +21,13 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/fulfillment"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/fulfillment_script"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/i_a_p"
-	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/integration"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/item"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/key_group"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/order"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/order_dedicated"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/payment"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/payment_account"
+	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/payment_callback_config"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/payment_config"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/payment_dedicated"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/payment_station"
@@ -88,13 +88,13 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry) *JusticePla
 	cli.Fulfillment = fulfillment.New(transport, formats)
 	cli.FulfillmentScript = fulfillment_script.New(transport, formats)
 	cli.Iap = i_a_p.New(transport, formats)
-	cli.Integration = integration.New(transport, formats)
 	cli.Item = item.New(transport, formats)
 	cli.KeyGroup = key_group.New(transport, formats)
 	cli.Order = order.New(transport, formats)
 	cli.OrderDedicated = order_dedicated.New(transport, formats)
 	cli.Payment = payment.New(transport, formats)
 	cli.PaymentAccount = payment_account.New(transport, formats)
+	cli.PaymentCallbackConfig = payment_callback_config.New(transport, formats)
 	cli.PaymentConfig = payment_config.New(transport, formats)
 	cli.PaymentDedicated = payment_dedicated.New(transport, formats)
 	cli.PaymentStation = payment_station.New(transport, formats)
@@ -177,8 +177,6 @@ type JusticePlatformService struct {
 
 	Iap i_a_p.ClientService
 
-	Integration integration.ClientService
-
 	Item item.ClientService
 
 	KeyGroup key_group.ClientService
@@ -190,6 +188,8 @@ type JusticePlatformService struct {
 	Payment payment.ClientService
 
 	PaymentAccount payment_account.ClientService
+
+	PaymentCallbackConfig payment_callback_config.ClientService
 
 	PaymentConfig payment_config.ClientService
 
@@ -221,13 +221,13 @@ func (c *JusticePlatformService) SetTransport(transport runtime.ClientTransport)
 	c.Fulfillment.SetTransport(transport)
 	c.FulfillmentScript.SetTransport(transport)
 	c.Iap.SetTransport(transport)
-	c.Integration.SetTransport(transport)
 	c.Item.SetTransport(transport)
 	c.KeyGroup.SetTransport(transport)
 	c.Order.SetTransport(transport)
 	c.OrderDedicated.SetTransport(transport)
 	c.Payment.SetTransport(transport)
 	c.PaymentAccount.SetTransport(transport)
+	c.PaymentCallbackConfig.SetTransport(transport)
 	c.PaymentConfig.SetTransport(transport)
 	c.PaymentDedicated.SetTransport(transport)
 	c.PaymentStation.SetTransport(transport)

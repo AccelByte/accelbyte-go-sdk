@@ -60,6 +60,10 @@ type ModelsServer struct {
 	// Required: true
 	IsOverrideGameVersion *bool `json:"is_override_game_version"`
 
+	// job id
+	// Required: true
+	JobID *string `json:"job_id"`
+
 	// last update
 	// Required: true
 	// Format: date-time
@@ -155,6 +159,10 @@ func (m *ModelsServer) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateIsOverrideGameVersion(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateJobID(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -304,6 +312,15 @@ func (m *ModelsServer) validateIP(formats strfmt.Registry) error {
 func (m *ModelsServer) validateIsOverrideGameVersion(formats strfmt.Registry) error {
 
 	if err := validate.Required("is_override_game_version", "body", m.IsOverrideGameVersion); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsServer) validateJobID(formats strfmt.Registry) error {
+
+	if err := validate.Required("job_id", "body", m.JobID); err != nil {
 		return err
 	}
 

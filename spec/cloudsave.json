@@ -8,7 +8,7 @@
     },
     "description": "Justice Cloudsave Service",
     "title": "justice-cloudsave-service",
-    "version": "1.9.1"
+    "version": "1.9.2"
   },
   "schemes": [
     "https"
@@ -30,6 +30,7 @@
         "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [DELETE]": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [DELETE]",
         "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [READ]": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [READ]",
         "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [UPDATE]": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [UPDATE]",
+        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:RECORD [READ]": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:RECORD [READ]",
         "NAMESPACE:{namespace}:CLOUDSAVE:RECORD [CREATE]": "NAMESPACE:{namespace}:CLOUDSAVE:RECORD [CREATE]",
         "NAMESPACE:{namespace}:CLOUDSAVE:RECORD [DELETE]": "NAMESPACE:{namespace}:CLOUDSAVE:RECORD [DELETE]",
         "NAMESPACE:{namespace}:CLOUDSAVE:RECORD [READ]": "NAMESPACE:{namespace}:CLOUDSAVE:RECORD [READ]",
@@ -396,6 +397,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "Required permission: ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [READ]\n\nRequired scope: social\n\nRetrieve list of player records key and userID under given namespace.",
         "operationId": "listPlayerRecordHandlerV1",
         "parameters": [
@@ -466,6 +468,87 @@
           }
         ],
         "summary": "Retrieve list of public player records",
+        "tags": [
+          "AdminPlayerRecord"
+        ]
+      }
+    },
+    "/cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:RECORD [READ]\n\nRequired scope: social\n\nRetrieve list of player records key and userID under given namespace.",
+        "operationId": "AdminRetrievePlayerRecords",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "offset",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          },
+          {
+            "description": "limit",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "description": "user ID who own the record",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "$ref": "#/definitions/models.ListPlayerRecordKeys"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:RECORD [READ]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Retrieve list of player records",
         "tags": [
           "AdminPlayerRecord"
         ]

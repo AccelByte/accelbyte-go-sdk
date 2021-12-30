@@ -147,7 +147,7 @@ type TradeNotification struct {
 	// Format: date-time
 	TxEndTime strfmt.DateTime `json:"txEndTime,omitempty"`
 
-	// notification type: distribution, payment
+	// notification type: payment
 	// Required: true
 	Type *string `json:"type"`
 

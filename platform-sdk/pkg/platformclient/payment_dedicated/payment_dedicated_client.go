@@ -295,24 +295,24 @@ func (a *Client) RefundPaymentOrderByDedicatedShort(params *RefundPaymentOrderBy
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *RefundPaymentOrderByDedicatedOK:
-		return v, nil
+		return v, nil, nil
 	case *RefundPaymentOrderByDedicatedNoContent:
-		return nil, v
+		return nil, v, nil
 	case *RefundPaymentOrderByDedicatedNotFound:
-		return nil, v
+		return nil, nil, v
 	case *RefundPaymentOrderByDedicatedConflict:
-		return nil, v
+		return nil, nil, v
 	case *RefundPaymentOrderByDedicatedUnprocessableEntity:
-		return nil, v
+		return nil, nil, v
 
 	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 

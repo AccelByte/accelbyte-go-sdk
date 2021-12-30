@@ -1151,7 +1151,7 @@ func (a *Client) UpdateGroupCustomRulePublicV1Short(params *UpdateGroupCustomRul
 			&lt;p&gt;Update predefined group rule. This endpoint will check the group ID of the user based on the access token
 			and compare it with the group ID in path parameter. It will also check the member role of the user based on
 			the access token&lt;/p&gt;
-			&lt;p&gt;If the rule action is not defined in the group, it wil be added immediately to the predefined group rule&lt;/p&gt;
+			&lt;p&gt;If the rule action is not defined in the group, it will be added immediately to the predefined group rule&lt;/p&gt;
 			&lt;p&gt;Action Code: 73310&lt;/p&gt;
 
 */

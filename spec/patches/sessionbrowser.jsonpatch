@@ -1,0 +1,283 @@
+[
+  {
+    "op": "remove",
+    "path": "/security"
+  },
+  {
+    "op": "add",
+    "path": "/host",
+    "value": "demo.accelbyte.io"
+  },
+  {
+    "op": "add",
+    "path": "/schemes",
+    "value": [
+      "https"
+    ]
+  },
+  {
+    "op": "add",
+    "path": "/securityDefinitions/HasPermission",
+    "value": {
+      "authorizationUrl": "https://dummy.oauth.net/auth",
+      "flow": "accessCode",
+      "scopes": {
+        "ADMIN:NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [READ]": "ADMIN:NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [READ]",
+        "NAMESPACE:{namespace}:SESSIONBROWSER:RECENTPLAYER [READ]": "NAMESPACE:{namespace}:SESSIONBROWSER:RECENTPLAYER [READ]",
+        "NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [CREATE]": "NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [CREATE]",
+        "NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [DELETE]": "NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [DELETE]",
+        "NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [READ]": "NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [READ]",
+        "NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [UPDATE]": "NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [UPDATE]"
+      },
+      "tokenUrl": "https://dumy.oauth.net/token",
+      "type": "oauth2"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/securityDefinitions/HasScope",
+    "value": {
+      "authorizationUrl": "https://dummy.oauth.net/auth",
+      "flow": "accessCode",
+      "scopes": {
+        "social": "social"
+      },
+      "tokenUrl": "https://dumy.oauth.net/token",
+      "type": "oauth2"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1sessionbrowser~1namespaces~1{namespace}~1gamesession~1{sessionID}~1player/post/security",
+    "value": [
+      {
+        "HasPermission": [
+          "NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [UPDATE]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1sessionbrowser~1admin~1namespaces~1{namespace}~1gamesession~1{sessionID}/get/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [READ]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1sessionbrowser~1admin~1namespaces~1{namespace}~1gamesession~1active~1count/get/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [READ]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1sessionbrowser~1namespaces~1{namespace}~1gamesession/post/security",
+    "value": [
+      {
+        "HasPermission": [
+          "NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [CREATE]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1sessionbrowser~1namespaces~1{namespace}~1gamesession/get/security",
+    "value": [
+      {
+        "HasPermission": [
+          "NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [READ]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1sessionbrowser~1namespaces~1{namespace}~1gamesession~1{sessionID}~1localds/delete/security",
+    "value": [
+      {
+        "HasPermission": [
+          "NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [DELETE]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1sessionbrowser~1namespaces~1{namespace}~1gamesession~1{sessionID}~1join/post/security",
+    "value": [
+      {
+        "HasPermission": [
+          "NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [READ]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1sessionbrowser~1namespaces~1{namespace}~1recentplayer~1{userID}/get/security",
+    "value": [
+      {
+        "HasPermission": [
+          "NAMESPACE:{namespace}:SESSIONBROWSER:RECENTPLAYER [READ]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1sessionbrowser~1namespaces~1{namespace}~1gamesession~1{sessionID}/delete/security",
+    "value": [
+      {
+        "HasPermission": [
+          "NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [DELETE]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1sessionbrowser~1namespaces~1{namespace}~1gamesession~1{sessionID}/put/security",
+    "value": [
+      {
+        "HasPermission": [
+          "NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [UPDATE]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1sessionbrowser~1namespaces~1{namespace}~1gamesession~1{sessionID}/get/security",
+    "value": [
+      {
+        "HasPermission": [
+          "NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [READ]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1sessionbrowser~1admin~1namespaces~1{namespace}~1gamesession~1active~1matchmaking-game/get/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [READ]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1sessionbrowser~1namespaces~1{namespace}~1gamesession~1{sessionID}~1player~1{userID}/delete/security",
+    "value": [
+      {
+        "HasPermission": [
+          "NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [UPDATE]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1sessionbrowser~1namespaces~1{namespace}~1gamesession~1bulk/get/security",
+    "value": [
+      {
+        "HasPermission": [
+          "NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [READ]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1sessionbrowser~1admin~1namespaces~1{namespace}~1gamesession~1active~1custom-game/get/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [READ]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "remove",
+    "path": "/definitions/models.PodConfig"
+  },
+  {
+    "op": "add",
+    "path": "/info/version",
+    "value": ""
+  }
+]

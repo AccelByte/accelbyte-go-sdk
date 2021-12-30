@@ -21,7 +21,7 @@ type EntitlementHistoryInfo struct {
 
 	// The action of entitlement, like GRANT, REVOKE
 	// Required: true
-	// Enum: [GRANT UPDATE DECREMENT REVOKE DISABLE ENABLE DISTRIBUTE]
+	// Enum: [GRANT UPDATE DECREMENT REVOKE DISABLE ENABLE]
 	Action *string `json:"action"`
 
 	// History create time
@@ -40,9 +40,6 @@ type EntitlementHistoryInfo struct {
 	// The operator
 	// Required: true
 	Operator *string `json:"operator"`
-
-	// The quantity of a distribution entitlement after perform the action.
-	Quantity int32 `json:"quantity,omitempty"`
 
 	// History update time
 	// Required: true
@@ -99,7 +96,7 @@ var entitlementHistoryInfoTypeActionPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["GRANT","UPDATE","DECREMENT","REVOKE","DISABLE","ENABLE","DISTRIBUTE"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["GRANT","UPDATE","DECREMENT","REVOKE","DISABLE","ENABLE"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -126,9 +123,6 @@ const (
 
 	// EntitlementHistoryInfoActionENABLE captures enum value "ENABLE"
 	EntitlementHistoryInfoActionENABLE string = "ENABLE"
-
-	// EntitlementHistoryInfoActionDISTRIBUTE captures enum value "DISTRIBUTE"
-	EntitlementHistoryInfoActionDISTRIBUTE string = "DISTRIBUTE"
 )
 
 // prop value enum

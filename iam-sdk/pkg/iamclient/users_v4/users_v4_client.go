@@ -31,6 +31,8 @@ type Client struct {
 type ClientService interface {
 	AdminAddUserRoleV4(params *AdminAddUserRoleV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminAddUserRoleV4OK, *AdminAddUserRoleV4BadRequest, *AdminAddUserRoleV4Forbidden, *AdminAddUserRoleV4NotFound, *AdminAddUserRoleV4UnprocessableEntity, *AdminAddUserRoleV4InternalServerError, error)
 	AdminAddUserRoleV4Short(params *AdminAddUserRoleV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminAddUserRoleV4OK, error)
+	AdminInviteUserV4(params *AdminInviteUserV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminInviteUserV4Created, *AdminInviteUserV4BadRequest, *AdminInviteUserV4NotFound, *AdminInviteUserV4Conflict, *AdminInviteUserV4UnprocessableEntity, *AdminInviteUserV4InternalServerError, error)
+	AdminInviteUserV4Short(params *AdminInviteUserV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminInviteUserV4Created, error)
 	AdminListUserRolesV4(params *AdminListUserRolesV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminListUserRolesV4OK, *AdminListUserRolesV4Forbidden, *AdminListUserRolesV4NotFound, *AdminListUserRolesV4InternalServerError, error)
 	AdminListUserRolesV4Short(params *AdminListUserRolesV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminListUserRolesV4OK, error)
 	AdminRemoveUserRoleV4(params *AdminRemoveUserRoleV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminRemoveUserRoleV4NoContent, *AdminRemoveUserRoleV4BadRequest, *AdminRemoveUserRoleV4Forbidden, *AdminRemoveUserRoleV4NotFound, *AdminRemoveUserRoleV4UnprocessableEntity, *AdminRemoveUserRoleV4InternalServerError, error)
@@ -162,6 +164,117 @@ func (a *Client) AdminAddUserRoleV4Short(params *AdminAddUserRoleV4Params, authI
 	case *AdminAddUserRoleV4UnprocessableEntity:
 		return nil, v
 	case *AdminAddUserRoleV4InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  AdminInviteUserV4 admins invite user v4
+
+  Required permission &#39;ADMIN:USER:INVITE [CREATE]
+
+Use this endpoint to invite admin or non-admin user and assign role to them. The role must be scoped to namespace. An admin user can only
+assign role with namespaces that the admin user has required permission which is same as the required permission of endpoint: [AdminAddUserRoleV4].
+Role is optional, if not specified then it will only assign User role
+
+The invited admin will also assigned with &#34;User&#34; role by default.
+
+*/
+func (a *Client) AdminInviteUserV4(params *AdminInviteUserV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminInviteUserV4Created, *AdminInviteUserV4BadRequest, *AdminInviteUserV4NotFound, *AdminInviteUserV4Conflict, *AdminInviteUserV4UnprocessableEntity, *AdminInviteUserV4InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminInviteUserV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminInviteUserV4",
+		Method:             "POST",
+		PathPattern:        "/iam/v4/admin/users/users/invite",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminInviteUserV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminInviteUserV4Created:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *AdminInviteUserV4BadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *AdminInviteUserV4NotFound:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *AdminInviteUserV4Conflict:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *AdminInviteUserV4UnprocessableEntity:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *AdminInviteUserV4InternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminInviteUserV4Short(params *AdminInviteUserV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminInviteUserV4Created, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminInviteUserV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminInviteUserV4",
+		Method:             "POST",
+		PathPattern:        "/iam/v4/admin/users/users/invite",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminInviteUserV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminInviteUserV4Created:
+		return v, nil
+	case *AdminInviteUserV4BadRequest:
+		return nil, v
+	case *AdminInviteUserV4NotFound:
+		return nil, v
+	case *AdminInviteUserV4Conflict:
+		return nil, v
+	case *AdminInviteUserV4UnprocessableEntity:
+		return nil, v
+	case *AdminInviteUserV4InternalServerError:
 		return nil, v
 
 	default:

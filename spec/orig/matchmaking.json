@@ -1,0 +1,3094 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Justice Matchmaking Service",
+    "title": "Justice Matchmaking Service",
+    "version": "2.12.1"
+  },
+  "paths": {
+    "/healthz": {
+      "get": {
+        "operationId": "GetHealthcheckInfo",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/matchmaking/healthz": {
+      "get": {
+        "operationId": "GetHealthcheckInfoV1",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/matchmaking/namespaces/{namespace}/channels": {
+      "get": {
+        "description": "Required Permission: NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [READ]\n\nRequired Scope: social\n\nReads all available channels in a namespace\n",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Matchmaking"
+        ],
+        "summary": "Get all channels",
+        "operationId": "GetAllChannelsHandler",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace of the game",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "description": "offset index",
+            "name": "offset",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "description": "number of object per page",
+            "name": "limit",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.GetChannelsResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "Required Permission: NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [CREATE]\n\nRequired Scope: social\n\nCreates a new matchmaking channel.\n\nMatchmaking channels is a list of pool name that is eligible for matchmaking processes. \nGameMode isolates each matchmaking pools.\n\nIf match timeout is set to 0, by default, incoming matchmaking requests will be timed out after 1 hour.\n\nIf max worker delay is set to 0, by default, it will wait for at max ~8 seconds during low volume.\n\nRule Set\n\nMatching Rule used to classify the player. Player that has matched criteria will be grouped together within an ally.\n\nValid value for criteria is \"distance\"\n",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Matchmaking"
+        ],
+        "summary": "Create a channel",
+        "operationId": "CreateChannelHandler",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace of the game",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.ChannelRequest"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/models.CreateChannelResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        }
+      }
+    },
+    "/matchmaking/namespaces/{namespace}/channels/{channel}": {
+      "delete": {
+        "description": "Required Permission: NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Delete]\n\nRequired Scope: social\n\nDeletes a matchmaking channel. Matchmaking channels is a list of \npool name that is eligible for matchmaking processes. GameMode isolates each matchmaking pools.\n\nTrying to delete non-existent channel will result deletion success\n",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Matchmaking"
+        ],
+        "summary": "Delete a channel",
+        "operationId": "DeleteChannelHandler",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace of the game",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "channel to be deleted",
+            "name": "channel",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        }
+      }
+    },
+    "/matchmaking/namespaces/{namespace}/matchresult": {
+      "post": {
+        "description": "Required Permission: NAMESPACE:{namespace}:MATCHRESULT [CREATE]\n\nRequired Scope: social\n\nProcess match result into final attribute value and stores it to player attribute\n\nWill return final attribute value\n",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Matchmaking"
+        ],
+        "summary": "Store match result",
+        "operationId": "StoreMatchResults",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace of the game",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.MatchResultRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.MatchResultResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        }
+      }
+    },
+    "/matchmaking/namespaces/{namespace}/sessions": {
+      "post": {
+        "description": "Required Permission: NAMESPACE:{namespace}:SESSION [CREATE]\n\nRequired Scope: social\n\nQueues joinable session so that it will be matched with player's match request tickets. \nThe session queued must be in a channel/game mode that is set to have joinable flag. \nThe session will be in queue until it is full or expired. \nBoth the number of players and session queue timeout can be set in the channel's config.\n\nThis endpoint is intended to be called by game server to let matchmaker know that \nthe game server is ready for receiving more players through matchmaking tickets to its session.\n\nIf a session is already queued, and game server wants to modify the data or \nrenew the queue timeout (e.g. some player left and more empty slot opened up), \nsimply call this endpoint with the updated session data. \n",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Matchmaking"
+        ],
+        "summary": "Queue joinable session",
+        "operationId": "QueueSessionHandler",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace of the game",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.MatchmakingResult"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        }
+      }
+    },
+    "/matchmaking/namespaces/{namespace}/sessions/dequeue": {
+      "post": {
+        "description": "Required Permission: NAMESPACE:{namespace}:SESSION [UPDATE]\n\nRequired Scope: social\n\nDequeues joinable session so that it will not be matched with player's match request tickets. \n\nThis endpoint is intended to be called by game server to let matchmaker know that \nthe game server does not want more players to its session, even though it is not full. \n",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Matchmaking"
+        ],
+        "summary": "Dequeue joinable session",
+        "operationId": "DequeueSessionHandler",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace of the game",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.DequeueRequest"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        }
+      }
+    },
+    "/matchmaking/namespaces/{namespace}/sessions/{matchID}/status": {
+      "get": {
+        "description": "Required Permission: NAMESPACE:{namespace}:SESSION [READ]\n\nRequired Scope: social\n\nQueries the specified session's status. Game servers are expected to \ncall this periodically as long as it has a session in queue to see \nif there are new players being matched to the session.\n\nPossible session statuses are \"sessionInQueue\", \"sessionFull\", and \"sessionTimeout\".\n",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Matchmaking"
+        ],
+        "summary": "Query joinable session status",
+        "operationId": "QuerySessionHandler",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace of the game",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "ID of the match session",
+            "name": "matchID",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.MatchmakingResult"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        }
+      }
+    },
+    "/matchmaking/social/playtime/namespaces/{namespace}/weight": {
+      "patch": {
+        "description": "Required Permission: NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [UPDATE]\n\nRequired Scope: social\n\nUpdate a connection weight between player and playtime.\n\nThis endpoint is intended to be called by admin for debugging purpose on social matchmaking rule.\n",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Social Matchmaking"
+        ],
+        "summary": "Update player -- playtime connection weight",
+        "operationId": "UpdatePlayTimeWeight",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace of the game",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.UpdatePlayTimeWeightRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operation succeeded",
+            "schema": {
+              "$ref": "#/definitions/models.UpdatePlayerPlaytimeWeightResponse"
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>20019</td><td>unable to parse request body</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr><tr><td>20014</td><td>invalid audience</td></tr><tr><td>20015</td><td>insufficient scope</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>510301</td><td>user playtime not found</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          },
+          "500": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        }
+      }
+    },
+    "/matchmaking/v1/admin/namespaces/{namespace}/channels/all/parties": {
+      "get": {
+        "description": "Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]\n\nRequired Scope: social\n\nGet all parties queueing in all channels.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Matchmaking"
+        ],
+        "summary": "Get all party in all channels",
+        "operationId": "GetAllPartyInAllChannel",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace of the game, only accept alphabet and numeric",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operation succeeded",
+            "schema": {
+              "$ref": "#/definitions/map[string]%7C%7Cmodels.MatchingParty"
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>20019</td><td>unable to parse request body</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr><tr><td>20014</td><td>invalid audience</td></tr><tr><td>20015</td><td>insufficient scope</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>510110</td><td>channel not found</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          },
+          "500": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          }
+        }
+      }
+    },
+    "/matchmaking/v1/admin/namespaces/{namespace}/channels/all/sessions/bulk": {
+      "get": {
+        "description": "Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]\n\nRequired Scope: social\n\nBulk get sessions.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Matchmaking"
+        ],
+        "summary": "Bulk get sessions",
+        "operationId": "BulkGetSessions",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace of the game, only accept alphabet and numeric",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "comma-delimited session IDs",
+            "name": "matchIDs",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operation succeeded",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/models.MatchmakingResult"
+              }
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>20019</td><td>unable to parse request body</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr><tr><td>20014</td><td>invalid audience</td></tr><tr><td>20015</td><td>insufficient scope</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>510110</td><td>channel not found</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          },
+          "500": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        }
+      }
+    },
+    "/matchmaking/v1/admin/namespaces/{namespace}/channels/export": {
+      "get": {
+        "description": "Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]\n\nRequired Scope: social\n\nExport channels configuration to file. \n\nAction Code: 510114",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Matchmaking"
+        ],
+        "summary": "Export channels",
+        "operationId": "ExportChannels",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace of the game, only accept alphabet and numeric",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/models.ChannelV1"
+              }
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr><tr><td>20014</td><td>invalid audience</td></tr><tr><td>20015</td><td>insufficient scope</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          },
+          "500": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          }
+        }
+      }
+    },
+    "/matchmaking/v1/admin/namespaces/{namespace}/channels/import": {
+      "post": {
+        "description": "Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Update]\n\nRequired Scope: social\n\nImport channels configuration from file. It will merge with existing channels.\nAvailable import strategy:\n- leaveOut: if channel with same key exist, the existing will be used and imported one will be ignored (default)\n- replace: if channel with same key exist, the imported channel will be used and existing one will be removed\n\nAction Code: 510113",
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Matchmaking"
+        ],
+        "summary": "Import channels",
+        "operationId": "ImportChannels",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace of the game, only accept alphabet and numeric",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "file",
+            "description": "file to be imported",
+            "name": "file",
+            "in": "formData"
+          },
+          {
+            "type": "string",
+            "description": "strategy for import",
+            "name": "strategy",
+            "in": "formData"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.ImportConfigResponse"
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>510109</td><td>failed to read file</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr><tr><td>20014</td><td>invalid audience</td></tr><tr><td>20015</td><td>insufficient scope</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          },
+          "500": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          }
+        }
+      }
+    },
+    "/matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}": {
+      "get": {
+        "description": "Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [READ]\n\nRequired Scope: social\n\nReads single channel based on namespace and channel name\n\nAction Code: 510112",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Matchmaking"
+        ],
+        "summary": "Get single channel",
+        "operationId": "GetSingleMatchmakingChannel",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace of the game, only accept alphabet and numeric",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "channel name, accept snake_case, lowercase, and numeric",
+            "name": "channelName",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.ChannelV1"
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr><tr><td>20014</td><td>invalid audience</td></tr><tr><td>20015</td><td>insufficient scope</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>510110</td><td>channel not found</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          },
+          "500": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          }
+        }
+      },
+      "patch": {
+        "description": "Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Update]\n\nRequired Scope: social\n\nUpdate channel based on namespace and channel name\n\nAction Code: 510111",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Matchmaking"
+        ],
+        "summary": "Update a channel",
+        "operationId": "UpdateMatchmakingChannel",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace of the game, only accept alphabet and numeric",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "channel name, accept snake_case, lowercase, and numeric",
+            "name": "channelName",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.UpdateChannelRequest"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Operation succeeded"
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>20019</td><td>unable to parse request body</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr><tr><td>20014</td><td>invalid audience</td></tr><tr><td>20015</td><td>insufficient scope</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>510110</td><td>channel not found</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          },
+          "500": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        }
+      }
+    },
+    "/matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/parties": {
+      "get": {
+        "description": "Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]\n\nRequired Scope: social\n\nGet all parties queueing in a channel.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Matchmaking"
+        ],
+        "summary": "Get all party in a channel",
+        "operationId": "GetAllPartyInChannel",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace of the game, only accept alphabet and numeric",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "channel name, accept snake_case, lowercase, and numeric",
+            "name": "channelName",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operation succeeded",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/models.MatchingParty"
+              }
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>20019</td><td>unable to parse request body</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr><tr><td>20014</td><td>invalid audience</td></tr><tr><td>20015</td><td>insufficient scope</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>510110</td><td>channel not found</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          },
+          "500": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        }
+      }
+    },
+    "/matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/sessions": {
+      "get": {
+        "description": "Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]\n\nRequired Scope: social\n\nGet all sessions in a channel.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Matchmaking"
+        ],
+        "summary": "Get all channel sessions",
+        "operationId": "GetAllSessionsInChannel",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace of the game, only accept alphabet and numeric",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "channel name, accept snake_case, lowercase, and numeric",
+            "name": "channelName",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operation succeeded",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/models.MatchmakingResult"
+              }
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>20019</td><td>unable to parse request body</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr><tr><td>20014</td><td>invalid audience</td></tr><tr><td>20015</td><td>insufficient scope</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>510110</td><td>channel not found</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          },
+          "500": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        }
+      }
+    },
+    "/matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/sessions/{matchID}": {
+      "post": {
+        "description": "Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Create]\n\t\nRequired Scope: social\n\t\nAdd user into the session in a channel.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Matchmaking"
+        ],
+        "summary": "Add user into the session in a channel",
+        "operationId": "AddUserIntoSessionInChannel",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace of the game, only accept alphabet and numeric",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "channel name, accept snake_case, lowercase, and numeric",
+            "name": "channelName",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "ID of the match session",
+            "name": "matchID",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.MatchAddUserIntoSessionRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operation succeeded"
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>20019</td><td>unable to parse request body</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr><tr><td>20014</td><td>invalid audience</td></tr><tr><td>20015</td><td>insufficient scope</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>510110</td><td>channel not found</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          },
+          "500": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Delete]\n\nRequired Scope: social\n\nDelete a session in a channel.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Matchmaking"
+        ],
+        "summary": "Delete session in a channel",
+        "operationId": "DeleteSessionInChannel",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace of the game, only accept alphabet and numeric",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "channel name, accept snake_case, lowercase, and numeric",
+            "name": "channelName",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "ID of the match session",
+            "name": "matchID",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Operation succeeded"
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>20019</td><td>unable to parse request body</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr><tr><td>20014</td><td>invalid audience</td></tr><tr><td>20015</td><td>insufficient scope</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>510110</td><td>channel not found</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          },
+          "500": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        }
+      }
+    },
+    "/matchmaking/v1/admin/namespaces/{namespace}/channels/{channelName}/sessions/{matchID}/users/{userID}": {
+      "delete": {
+        "description": "Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Delete]\n\t\nRequired Scope: social\n\t\nDelete a user from a session in the channel.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Matchmaking"
+        ],
+        "summary": "Delete user from the session in a channel",
+        "operationId": "DeleteUserFromSessionInChannel",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace of the game, only accept alphabet and numeric",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "channel name, accept snake_case, lowercase, and numeric",
+            "name": "channelName",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "ID of the match session",
+            "name": "matchID",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "ID of the user",
+            "name": "userID",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operation succeeded"
+          },
+          "204": {
+            "description": "Operation succeeded"
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>20019</td><td>unable to parse request body</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr><tr><td>20014</td><td>invalid audience</td></tr><tr><td>20015</td><td>insufficient scope</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>510110</td><td>channel not found</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          },
+          "500": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        }
+      }
+    },
+    "/matchmaking/v1/admin/namespaces/{namespace}/sessions/history/search": {
+      "get": {
+        "description": "Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]\n\t\nRequired Scope: social\n\t\nSearch sessions.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Matchmaking"
+        ],
+        "summary": "Search sessions",
+        "operationId": "SearchSessions",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace of the game, only accept alphabet and numeric",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "ID of the match session",
+            "name": "matchID",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "ID of the user",
+            "name": "userID",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "ID of the party",
+            "name": "partyID",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "ID of the channel",
+            "name": "channel",
+            "in": "query"
+          },
+          {
+            "type": "boolean",
+            "description": "only deleted session",
+            "name": "deleted",
+            "in": "query"
+          },
+          {
+            "type": "number",
+            "description": "limit",
+            "name": "limit",
+            "in": "query",
+            "required": true
+          },
+          {
+            "type": "number",
+            "description": "offset",
+            "name": "offset",
+            "in": "query",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operation succeeded",
+            "schema": {
+              "$ref": "#/definitions/service.GetSessionHistorySearchResponse"
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>20019</td><td>unable to parse request body</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr><tr><td>20014</td><td>invalid audience</td></tr><tr><td>20015</td><td>insufficient scope</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>510110</td><td>channel not found</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          },
+          "500": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        }
+      }
+    },
+    "/matchmaking/v1/admin/namespaces/{namespace}/sessions/{matchID}/history/detailed": {
+      "get": {
+        "description": "Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]\n\t\nRequired Scope: social\n\t\nGet session history detailed.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Matchmaking"
+        ],
+        "summary": "Get session history detailed",
+        "operationId": "GetSessionHistoryDetailed",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace of the game, only accept alphabet and numeric",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "ID of the match session",
+            "name": "matchID",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operation succeeded",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/service.GetSessionHistoryDetailedResponseItem"
+              }
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>20019</td><td>unable to parse request body</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr><tr><td>20014</td><td>invalid audience</td></tr><tr><td>20015</td><td>insufficient scope</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>510110</td><td>channel not found</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          },
+          "500": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        }
+      }
+    },
+    "/matchmaking/v1/messages": {
+      "get": {
+        "description": "get the list of messages.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "summary": "get service messages",
+        "operationId": "publicGetMessages",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/log.AppMessageDeclaration"
+              }
+            }
+          },
+          "500": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        }
+      }
+    },
+    "/matchmaking/v1/public/namespaces/{namespace}/channels": {
+      "get": {
+        "description": "Reads all available channels in a namespace\n",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Matchmaking"
+        ],
+        "summary": "Get all channels",
+        "operationId": "PublicGetAllMatchmakingChannel",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace of the game, only accept alphabet and numeric",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/models.ChannelV1"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        }
+      }
+    },
+    "/matchmaking/v1/public/namespaces/{namespace}/channels/{channelName}": {
+      "get": {
+        "description": "Reads single channel based on namespace and channel name\n",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Matchmaking"
+        ],
+        "summary": "Get single channel",
+        "operationId": "PublicGetSingleMatchmakingChannel",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace of the game, only accept alphabet and numeric",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "channel name, accept snake_case, lowercase, and numeric",
+            "name": "channelName",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.ChannelV1"
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr><tr><td>20014</td><td>invalid audience</td></tr><tr><td>20015</td><td>insufficient scope</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>510110</td><td>channel not found</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          },
+          "500": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          }
+        }
+      }
+    },
+    "/matchmaking/version": {
+      "get": {
+        "operationId": "versionCheckHandler",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "log.AppMessageDeclaration": {
+      "required": [
+        "Attributes",
+        "Code",
+        "CodeName",
+        "Section",
+        "Service",
+        "Text"
+      ],
+      "properties": {
+        "Attributes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "Code": {
+          "type": "string"
+        },
+        "CodeName": {
+          "type": "string"
+        },
+        "Section": {
+          "type": "string"
+        },
+        "Service": {
+          "type": "string"
+        },
+        "Text": {
+          "type": "string"
+        }
+      }
+    },
+    "map[string]||models.MatchingParty": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "$ref": "#/definitions/models.MatchingParty"
+        }
+      }
+    },
+    "models.AllianceFlexingRule": {
+      "required": [
+        "duration",
+        "max_number",
+        "min_number",
+        "player_max_number",
+        "player_min_number"
+      ],
+      "properties": {
+        "duration": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "max_number": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "min_number": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "player_max_number": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "player_min_number": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "models.AllianceRule": {
+      "required": [
+        "max_number",
+        "min_number",
+        "player_max_number",
+        "player_min_number"
+      ],
+      "properties": {
+        "max_number": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "min_number": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "player_max_number": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "player_min_number": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "models.AllianceRuleV1": {
+      "required": [
+        "maxNumber",
+        "minNumber",
+        "playerMaxNumber",
+        "playerMinNumber"
+      ],
+      "properties": {
+        "maxNumber": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "minNumber": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "playerMaxNumber": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "playerMinNumber": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "models.Channel": {
+      "required": [
+        "deployment",
+        "description",
+        "find_match_timeout_seconds",
+        "game_mode",
+        "joinable",
+        "max_delay_ms",
+        "namespace",
+        "ruleset",
+        "session_queue_timeout_seconds",
+        "slug",
+        "social_matchmaking",
+        "updated_at",
+        "use_sub_gamemode"
+      ],
+      "properties": {
+        "deployment": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "find_match_timeout_seconds": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "game_mode": {
+          "type": "string"
+        },
+        "joinable": {
+          "type": "boolean"
+        },
+        "max_delay_ms": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "ruleset": {
+          "$ref": "#/definitions/models.RuleSet"
+        },
+        "session_queue_timeout_seconds": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "social_matchmaking": {
+          "type": "boolean"
+        },
+        "updated_at": {
+          "type": "string"
+        },
+        "use_sub_gamemode": {
+          "type": "boolean"
+        }
+      }
+    },
+    "models.ChannelMetadata": {
+      "required": [
+        "deployment",
+        "description",
+        "find_match_timeout_seconds",
+        "game_mode",
+        "joinable",
+        "max_delay_ms",
+        "namespace",
+        "session_queue_timeout_seconds",
+        "social_matchmaking",
+        "updated_at",
+        "use_sub_gamemode"
+      ],
+      "properties": {
+        "deployment": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "find_match_timeout_seconds": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "game_mode": {
+          "type": "string"
+        },
+        "joinable": {
+          "type": "boolean"
+        },
+        "max_delay_ms": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "session_queue_timeout_seconds": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "social_matchmaking": {
+          "type": "boolean"
+        },
+        "updated_at": {
+          "type": "string"
+        },
+        "use_sub_gamemode": {
+          "type": "boolean"
+        }
+      }
+    },
+    "models.ChannelMetadataV1": {
+      "required": [
+        "deployment",
+        "description",
+        "findMatchTimeoutSeconds",
+        "gameMode",
+        "joinable",
+        "max_delay_ms",
+        "namespace",
+        "sessionQueueTimeoutSeconds",
+        "socialMatchmaking",
+        "updatedAt",
+        "use_sub_gamemode"
+      ],
+      "properties": {
+        "deployment": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "findMatchTimeoutSeconds": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "gameMode": {
+          "type": "string"
+        },
+        "joinable": {
+          "type": "boolean"
+        },
+        "max_delay_ms": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "sessionQueueTimeoutSeconds": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "socialMatchmaking": {
+          "type": "boolean"
+        },
+        "updatedAt": {
+          "type": "string"
+        },
+        "use_sub_gamemode": {
+          "type": "boolean"
+        }
+      }
+    },
+    "models.ChannelRequest": {
+      "required": [
+        "deployment",
+        "description",
+        "find_match_timeout_seconds",
+        "game_mode",
+        "max_delay_ms",
+        "rule_set",
+        "session_queue_timeout_seconds"
+      ],
+      "properties": {
+        "deployment": {
+          "type": "string",
+          "x-nullable": false
+        },
+        "description": {
+          "type": "string",
+          "x-nullable": false
+        },
+        "find_match_timeout_seconds": {
+          "type": "integer",
+          "format": "int32",
+          "x-nullable": false
+        },
+        "game_mode": {
+          "type": "string",
+          "x-nullable": false
+        },
+        "joinable": {
+          "type": "boolean",
+          "x-nullable": true
+        },
+        "max_delay_ms": {
+          "type": "integer",
+          "format": "int32",
+          "x-nullable": false
+        },
+        "rule_set": {
+          "x-nullable": false,
+          "$ref": "#/definitions/models.RuleSet"
+        },
+        "session_queue_timeout_seconds": {
+          "type": "integer",
+          "format": "int32",
+          "x-nullable": false
+        },
+        "social_matchmaking": {
+          "type": "boolean",
+          "x-nullable": true
+        },
+        "use_sub_gamemode": {
+          "type": "boolean",
+          "x-nullable": true
+        }
+      }
+    },
+    "models.ChannelV1": {
+      "required": [
+        "deployment",
+        "description",
+        "findMatchTimeoutSeconds",
+        "gameMode",
+        "joinable",
+        "max_delay_ms",
+        "namespace",
+        "ruleSet",
+        "sessionQueueTimeoutSeconds",
+        "slug",
+        "socialMatchmaking",
+        "updatedAt",
+        "use_sub_gamemode"
+      ],
+      "properties": {
+        "deployment": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "findMatchTimeoutSeconds": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "gameMode": {
+          "type": "string"
+        },
+        "joinable": {
+          "type": "boolean"
+        },
+        "max_delay_ms": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "ruleSet": {
+          "$ref": "#/definitions/models.RuleSetV1"
+        },
+        "sessionQueueTimeoutSeconds": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "socialMatchmaking": {
+          "type": "boolean"
+        },
+        "updatedAt": {
+          "type": "string"
+        },
+        "use_sub_gamemode": {
+          "type": "boolean"
+        }
+      }
+    },
+    "models.CreateChannelResponse": {
+      "required": [
+        "deployment",
+        "description",
+        "find_match_timeout_seconds",
+        "game_mode",
+        "joinable",
+        "max_delay_ms",
+        "namespace",
+        "ruleset",
+        "session_queue_timeout_seconds",
+        "slug",
+        "social_matchmaking",
+        "updated_at",
+        "use_sub_gamemode"
+      ],
+      "properties": {
+        "deployment": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "find_match_timeout_seconds": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "game_mode": {
+          "type": "string"
+        },
+        "joinable": {
+          "type": "boolean"
+        },
+        "max_delay_ms": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "ruleset": {
+          "$ref": "#/definitions/models.RuleSet"
+        },
+        "session_queue_timeout_seconds": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "social_matchmaking": {
+          "type": "boolean"
+        },
+        "updated_at": {
+          "type": "string"
+        },
+        "use_sub_gamemode": {
+          "type": "boolean"
+        }
+      }
+    },
+    "models.DequeueRequest": {
+      "required": [
+        "match_id"
+      ],
+      "properties": {
+        "match_id": {
+          "type": "string"
+        }
+      }
+    },
+    "models.FlexingRule": {
+      "required": [
+        "attribute",
+        "criteria",
+        "duration",
+        "reference"
+      ],
+      "properties": {
+        "attribute": {
+          "type": "string",
+          "x-nullable": false
+        },
+        "criteria": {
+          "type": "string",
+          "x-nullable": false
+        },
+        "duration": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "reference": {
+          "type": "number",
+          "format": "double",
+          "x-nullable": false
+        }
+      }
+    },
+    "models.GetChannelsResponse": {
+      "required": [
+        "data",
+        "pagination"
+      ],
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/models.Channel"
+          }
+        },
+        "pagination": {
+          "$ref": "#/definitions/models.Pagination"
+        }
+      }
+    },
+    "models.ImportConfigResponse": {
+      "required": [
+        "failedConfigs",
+        "ignoredConfigs",
+        "newConfigs",
+        "replacedConfigs"
+      ],
+      "properties": {
+        "failedConfigs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "ignoredConfigs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "newConfigs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "replacedConfigs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "models.MatchAddUserIntoSessionRequest": {
+      "required": [
+        "user_id"
+      ],
+      "properties": {
+        "blocked_players": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "x-nullable": true
+        },
+        "party_id": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "user_id": {
+          "type": "string",
+          "x-nullable": false
+        }
+      }
+    },
+    "models.MatchAttributes": {
+      "required": [
+        "first_ticket_created_at"
+      ],
+      "properties": {
+        "first_ticket_created_at": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "models.MatchOption": {
+      "required": [
+        "name",
+        "type"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "x-nullable": false
+        },
+        "type": {
+          "type": "string"
+        }
+      }
+    },
+    "models.MatchOptionRule": {
+      "required": [
+        "options"
+      ],
+      "properties": {
+        "options": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/models.MatchOption"
+          }
+        }
+      }
+    },
+    "models.MatchResultRequest": {
+      "required": [
+        "match_id",
+        "players"
+      ],
+      "properties": {
+        "match_id": {
+          "type": "string",
+          "x-nullable": false
+        },
+        "players": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/models.PlayerResultRequest"
+          },
+          "x-nullable": false
+        }
+      }
+    },
+    "models.MatchResultResponse": {
+      "required": [
+        "match_id",
+        "players"
+      ],
+      "properties": {
+        "match_id": {
+          "type": "string"
+        },
+        "players": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/models.PlayerResultResponse"
+          }
+        }
+      }
+    },
+    "models.MatchingAlly": {
+      "required": [
+        "matching_parties"
+      ],
+      "properties": {
+        "matching_parties": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/models.MatchingParty"
+          }
+        }
+      }
+    },
+    "models.MatchingParty": {
+      "required": [
+        "first_ticket_created_at",
+        "party_attributes",
+        "party_id",
+        "party_members"
+      ],
+      "properties": {
+        "first_ticket_created_at": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "party_attributes": {
+          "type": "object"
+        },
+        "party_id": {
+          "type": "string",
+          "x-nullable": false
+        },
+        "party_members": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/models.PartyMember"
+          }
+        }
+      }
+    },
+    "models.MatchingRule": {
+      "required": [
+        "attribute",
+        "criteria",
+        "reference"
+      ],
+      "properties": {
+        "attribute": {
+          "type": "string",
+          "x-nullable": false
+        },
+        "criteria": {
+          "type": "string",
+          "x-nullable": false
+        },
+        "reference": {
+          "type": "number",
+          "format": "double",
+          "x-nullable": false
+        }
+      }
+    },
+    "models.MatchmakingResult": {
+      "required": [
+        "channel",
+        "client_version",
+        "deployment",
+        "game_mode",
+        "match_id",
+        "matching_allies",
+        "namespace",
+        "party_attributes",
+        "queued_at",
+        "region",
+        "server_name",
+        "status",
+        "updated_at"
+      ],
+      "properties": {
+        "channel": {
+          "type": "string",
+          "x-nullable": false
+        },
+        "client_version": {
+          "type": "string",
+          "x-nullable": false
+        },
+        "deployment": {
+          "type": "string",
+          "x-nullable": false
+        },
+        "game_mode": {
+          "type": "string",
+          "x-nullable": false
+        },
+        "joinable": {
+          "type": "boolean",
+          "x-nullable": true
+        },
+        "match_id": {
+          "type": "string",
+          "x-nullable": false
+        },
+        "matching_allies": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/models.MatchingAlly"
+          }
+        },
+        "namespace": {
+          "type": "string",
+          "x-nullable": false
+        },
+        "party_attributes": {
+          "type": "object"
+        },
+        "party_id": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "queued_at": {
+          "type": "integer",
+          "format": "int64",
+          "x-nullable": false
+        },
+        "region": {
+          "type": "string",
+          "x-nullable": false
+        },
+        "server_name": {
+          "type": "string",
+          "x-nullable": false
+        },
+        "status": {
+          "type": "string",
+          "x-nullable": false
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "models.Pagination": {
+      "required": [
+        "first",
+        "last",
+        "next",
+        "previous"
+      ],
+      "properties": {
+        "first": {
+          "type": "string"
+        },
+        "last": {
+          "type": "string"
+        },
+        "next": {
+          "type": "string"
+        },
+        "previous": {
+          "type": "string"
+        }
+      }
+    },
+    "models.PartyMember": {
+      "required": [
+        "extra_attributes",
+        "user_id"
+      ],
+      "properties": {
+        "extra_attributes": {
+          "type": "object"
+        },
+        "user_id": {
+          "type": "string",
+          "x-nullable": false
+        }
+      }
+    },
+    "models.PlayerResultRequest": {
+      "required": [
+        "results",
+        "user_id"
+      ],
+      "properties": {
+        "results": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/models.ResultAttributeRequest"
+          },
+          "x-nullable": false
+        },
+        "user_id": {
+          "type": "string",
+          "x-nullable": false
+        }
+      }
+    },
+    "models.PlayerResultResponse": {
+      "required": [
+        "current_score",
+        "user_id"
+      ],
+      "properties": {
+        "current_score": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/models.ResultAttributeResponse"
+          }
+        },
+        "user_id": {
+          "type": "string"
+        }
+      }
+    },
+    "models.ResultAttributeRequest": {
+      "required": [
+        "attribute",
+        "value"
+      ],
+      "properties": {
+        "attribute": {
+          "type": "string",
+          "x-nullable": false
+        },
+        "value": {
+          "type": "number",
+          "format": "double",
+          "x-nullable": false
+        }
+      }
+    },
+    "models.ResultAttributeResponse": {
+      "required": [
+        "attribute",
+        "value"
+      ],
+      "properties": {
+        "attribute": {
+          "type": "string"
+        },
+        "value": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "models.RuleSet": {
+      "required": [
+        "alliance",
+        "alliance_flexing_rule",
+        "flexing_rule",
+        "match_options",
+        "matching_rule",
+        "sub_game_modes"
+      ],
+      "properties": {
+        "alliance": {
+          "$ref": "#/definitions/models.AllianceRule"
+        },
+        "alliance_flexing_rule": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/models.AllianceFlexingRule"
+          }
+        },
+        "flexing_rule": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/models.FlexingRule"
+          }
+        },
+        "match_options": {
+          "$ref": "#/definitions/models.MatchOptionRule"
+        },
+        "matching_rule": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/models.MatchingRule"
+          }
+        },
+        "sub_game_modes": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/models.SubGameMode"
+          }
+        }
+      }
+    },
+    "models.RuleSetV1": {
+      "required": [
+        "alliance",
+        "alliance_flexing_rule",
+        "flexingRules",
+        "match_options",
+        "matchingRules",
+        "sub_game_modes"
+      ],
+      "properties": {
+        "alliance": {
+          "$ref": "#/definitions/models.AllianceRuleV1"
+        },
+        "alliance_flexing_rule": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/models.AllianceFlexingRule"
+          }
+        },
+        "flexingRules": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/models.FlexingRule"
+          }
+        },
+        "match_options": {
+          "$ref": "#/definitions/models.MatchOptionRule"
+        },
+        "matchingRules": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/models.MatchingRule"
+          }
+        },
+        "sub_game_modes": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/models.SubGameMode"
+          }
+        }
+      }
+    },
+    "models.SubGameMode": {
+      "required": [
+        "alliance",
+        "alliance_flexing_rule",
+        "name"
+      ],
+      "properties": {
+        "alliance": {
+          "$ref": "#/definitions/models.AllianceRule"
+        },
+        "alliance_flexing_rule": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/models.AllianceFlexingRule"
+          }
+        },
+        "name": {
+          "type": "string",
+          "x-nullable": false
+        }
+      }
+    },
+    "models.UpdateAllianceRule": {
+      "properties": {
+        "maxNumber": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "minNumber": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "playerMaxNumber": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "playerMinNumber": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "models.UpdateChannelRequest": {
+      "required": [
+        "deployment",
+        "description",
+        "findMatchTimeoutSeconds",
+        "joinable",
+        "max_delay_ms",
+        "ruleSet",
+        "sessionQueueTimeoutSeconds",
+        "socialMatchmaking",
+        "use_sub_gamemode"
+      ],
+      "properties": {
+        "deployment": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "description": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "findMatchTimeoutSeconds": {
+          "type": "integer",
+          "format": "int32",
+          "x-nullable": true
+        },
+        "joinable": {
+          "type": "boolean",
+          "x-nullable": true
+        },
+        "max_delay_ms": {
+          "type": "integer",
+          "format": "int32",
+          "x-nullable": true
+        },
+        "ruleSet": {
+          "x-nullable": true,
+          "$ref": "#/definitions/models.UpdateRuleset"
+        },
+        "sessionQueueTimeoutSeconds": {
+          "type": "integer",
+          "format": "int32",
+          "x-nullable": true
+        },
+        "socialMatchmaking": {
+          "type": "boolean",
+          "x-nullable": true
+        },
+        "use_sub_gamemode": {
+          "type": "boolean",
+          "x-nullable": true
+        }
+      }
+    },
+    "models.UpdatePlayTimeWeightRequest": {
+      "required": [
+        "playtime",
+        "userID",
+        "weight"
+      ],
+      "properties": {
+        "playtime": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "userID": {
+          "type": "string"
+        },
+        "weight": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "models.UpdatePlayerPlaytimeWeightResponse": {
+      "required": [
+        "playtime",
+        "userID",
+        "weight"
+      ],
+      "properties": {
+        "playtime": {
+          "type": "string"
+        },
+        "userID": {
+          "type": "string"
+        },
+        "weight": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "models.UpdateRuleset": {
+      "required": [
+        "alliance",
+        "alliance_flexing_rule"
+      ],
+      "properties": {
+        "alliance": {
+          "$ref": "#/definitions/models.UpdateAllianceRule"
+        },
+        "alliance_flexing_rule": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/models.AllianceFlexingRule"
+          }
+        },
+        "flexingRules": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/models.FlexingRule"
+          }
+        },
+        "match_options": {
+          "$ref": "#/definitions/models.MatchOptionRule"
+        },
+        "matchingRules": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/models.MatchingRule"
+          }
+        },
+        "sub_game_modes": {
+          "$ref": "#/definitions/models.UpdateRuleset.sub_game_modes"
+        }
+      }
+    },
+    "models.UpdateRuleset.sub_game_modes": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/definitions/models.SubGameMode"
+      }
+    },
+    "response.Error": {
+      "required": [
+        "ErrorCode",
+        "ErrorMessage"
+      ],
+      "properties": {
+        "ErrorCode": {
+          "type": "integer",
+          "format": "int32",
+          "x-nullable": false
+        },
+        "ErrorMessage": {
+          "type": "string",
+          "x-nullable": false
+        }
+      }
+    },
+    "response.ErrorV1": {
+      "required": [
+        "errorCode",
+        "errorMessage"
+      ],
+      "properties": {
+        "errorCode": {
+          "type": "integer",
+          "format": "int32",
+          "x-nullable": false
+        },
+        "errorMessage": {
+          "type": "string",
+          "x-nullable": false
+        }
+      }
+    },
+    "service.GetSessionHistoryDetailedResponseItem": {
+      "required": [
+        "_id",
+        "channel",
+        "client_version",
+        "created_at",
+        "event_description",
+        "event_name",
+        "game_mode",
+        "joinable",
+        "match_id",
+        "matching_allies",
+        "namespace",
+        "region",
+        "server_name",
+        "status"
+      ],
+      "properties": {
+        "_id": {
+          "type": "string",
+          "x-nullable": false
+        },
+        "channel": {
+          "type": "string",
+          "x-nullable": false
+        },
+        "client_version": {
+          "type": "string",
+          "x-nullable": false
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "x-nullable": false
+        },
+        "event_description": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "event_name": {
+          "type": "string",
+          "x-nullable": false
+        },
+        "game_mode": {
+          "type": "string",
+          "x-nullable": false
+        },
+        "joinable": {
+          "type": "boolean",
+          "x-nullable": false
+        },
+        "match_id": {
+          "type": "string",
+          "x-nullable": false
+        },
+        "matching_allies": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/models.MatchingAlly"
+          },
+          "x-nullable": false
+        },
+        "namespace": {
+          "type": "string",
+          "x-nullable": false
+        },
+        "party_id": {
+          "type": "string",
+          "x-nullable": false
+        },
+        "region": {
+          "type": "string",
+          "x-nullable": false
+        },
+        "server_name": {
+          "type": "string",
+          "x-nullable": false
+        },
+        "status": {
+          "type": "string",
+          "x-nullable": false
+        }
+      }
+    },
+    "service.GetSessionHistorySearchResponse": {
+      "required": [
+        "data",
+        "pagination"
+      ],
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/service.GetSessionHistorySearchResponseItem"
+          }
+        },
+        "pagination": {
+          "$ref": "#/definitions/models.Pagination"
+        }
+      }
+    },
+    "service.GetSessionHistorySearchResponseItem": {
+      "required": [
+        "_id",
+        "channel",
+        "client_version",
+        "created_at",
+        "event_description",
+        "event_name",
+        "game_mode",
+        "joinable",
+        "match_id",
+        "namespace",
+        "region",
+        "server_name",
+        "status"
+      ],
+      "properties": {
+        "_id": {
+          "type": "string",
+          "x-nullable": false
+        },
+        "channel": {
+          "type": "string",
+          "x-nullable": false
+        },
+        "client_version": {
+          "type": "string",
+          "x-nullable": false
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "x-nullable": false
+        },
+        "event_description": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "event_name": {
+          "type": "string",
+          "x-nullable": false
+        },
+        "game_mode": {
+          "type": "string",
+          "x-nullable": false
+        },
+        "joinable": {
+          "type": "boolean",
+          "x-nullable": false
+        },
+        "match_id": {
+          "type": "string",
+          "x-nullable": false
+        },
+        "namespace": {
+          "type": "string",
+          "x-nullable": false
+        },
+        "party_id": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "region": {
+          "type": "string",
+          "x-nullable": false
+        },
+        "server_name": {
+          "type": "string",
+          "x-nullable": false
+        },
+        "status": {
+          "type": "string",
+          "x-nullable": false
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "authorization": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header"
+    }
+  },
+  "security": [
+    {
+      "authorization": []
+    }
+  ]
+}

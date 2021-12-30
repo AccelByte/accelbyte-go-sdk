@@ -131,7 +131,7 @@ func (a *Client) AnonymizeCampaignShort(params *AnonymizeCampaignParams, authInf
 /*
   AnonymizeEntitlement anonymizes entitlement
 
-  Anonymize entitlement. At current it will only anonymize entitlement, entitlement history and distribution receiver.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;
+  Anonymize entitlement. At current it will only anonymize entitlement, entitlement history.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) AnonymizeEntitlement(params *AnonymizeEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*AnonymizeEntitlementNoContent, error) {
 	// TODO: Validate the params before sending

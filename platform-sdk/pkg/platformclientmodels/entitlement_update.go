@@ -26,15 +26,12 @@ type EntitlementUpdate struct {
 	// nullFieldList
 	NullFieldList []string `json:"nullFieldList"`
 
-	// purchased quantity of a distributable entitlement
-	Quantity int32 `json:"quantity,omitempty"`
-
 	// start date of the entitlement. yyyy-MM-dd'T'HH:mm:ss.SSS'Z'
 	// Format: date-time
 	StartDate strfmt.DateTime `json:"startDate,omitempty"`
 
 	// status
-	// Enum: [ACTIVE INACTIVE CONSUMED DISTRIBUTED REVOKED]
+	// Enum: [ACTIVE INACTIVE CONSUMED REVOKED]
 	Status string `json:"status,omitempty"`
 
 	// useCount of a consumable entitlement
@@ -93,7 +90,7 @@ var entitlementUpdateTypeStatusPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["ACTIVE","INACTIVE","CONSUMED","DISTRIBUTED","REVOKED"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["ACTIVE","INACTIVE","CONSUMED","REVOKED"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -111,9 +108,6 @@ const (
 
 	// EntitlementUpdateStatusCONSUMED captures enum value "CONSUMED"
 	EntitlementUpdateStatusCONSUMED string = "CONSUMED"
-
-	// EntitlementUpdateStatusDISTRIBUTED captures enum value "DISTRIBUTED"
-	EntitlementUpdateStatusDISTRIBUTED string = "DISTRIBUTED"
 
 	// EntitlementUpdateStatusREVOKED captures enum value "REVOKED"
 	EntitlementUpdateStatusREVOKED string = "REVOKED"

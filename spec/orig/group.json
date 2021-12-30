@@ -1,0 +1,3976 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Justice Group Service",
+    "title": "justice-group-service",
+    "contact": {
+      "name": "Engineering Team at AccelByte",
+      "url": "https://accelbyte.io",
+      "email": "engineering@accelbyte.io"
+    },
+    "version": "2.9.0"
+  },
+  "paths": {
+    "/group/v1/admin/namespaces/{namespace}/configuration": {
+      "get": {
+        "description": "<p>Required permission 'ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [READ]'</p>\n\t\t\t<p>This endpoint is used to get existing configuration. This Configuration is used to be the main rule of the service. Each namespace will have its own configuration</p>\n\t\t\t<p>Action Code: 73101</p>\n\t\t",
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Configuration"
+        ],
+        "summary": "List Group Configuration",
+        "operationId": "listGroupConfigurationAdminV1",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "description": "size of displayed data",
+            "name": "limit",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "description": "The start position that points to query data",
+            "name": "offset",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.ListConfigurationResponseV1"
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr><tr><td>20022</td><td>token is not user token</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>73131</td><td>global configuration not found</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "<p>Required permission 'ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [CREATE]'</p>\n\t\t\t<p>This endpoint is used to create new configuration. Before creating the configuration, make sure that member role for admin and group member are already created before.</p>\n\t\t\t<p>For each of the global rule, it will be the rule detail that consists of these fields: </p>\n\t\t\t<ul>\n\t\t\t\t<li><b>ruleAttribute</b>: attribute of the player that needs to be checked</li>\n\t\t\t\t<li><b>ruleCriteria</b>: criteria of the value. The value will be in enum of EQUAL, MINIMUM, MAXIMUM</li>\n\t\t\t\t<li><b>ruleValue</b>: value that needs to be checked</li>\n\t\t\t</ul>\n\t\t\t<p>Allowed Action can only be filled with any available action in the Group Service. For the configuration, the only value is <b>\"createGroup\"</b></p>\n\t\t\t<p>Action Code: 73103</p>\n\t\t",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Configuration"
+        ],
+        "summary": "create new configuration",
+        "operationId": "createGroupConfigurationAdminV1",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.CreateGroupConfigurationRequestV1"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/models.CreateGroupConfigurationResponseV1"
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20019</td><td>unable to parse request body</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr><tr><td>20022</td><td>token is not user token</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "409": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>73130</td><td>global configuration already exist</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/group/v1/admin/namespaces/{namespace}/configuration/initiate": {
+      "post": {
+        "description": "<p>Required permission 'ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [CREATE]'</p>\n\t\t\t<p>This endpoint is used to initiate configuration. This endpoint will automatically create default configuration and member roles with default permission</p>\n\t\t\t<p>Default Permission for admin role will cover these permission: </p>\n\t\t\t<ul>\n\t\t\t\t<li>Permission to invite user to group</li>\n\t\t\t\t<li>Permission to accept or reject join request</li>\n\t\t\t\t<li>Permission to kick group member</li>\n\t\t\t</ul>\n\t\t\t<p>Default max member value will be 50 and global rules will be empty</p>\n\t\t\t<p>Action Code: 73104</p>\n\t\t",
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Configuration"
+        ],
+        "summary": "initiate configuration",
+        "operationId": "initiateGroupConfigurationAdminV1",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/models.CreateGroupConfigurationResponseV1"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr><tr><td>20022</td><td>token is not user token</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "409": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>73130</td><td>global configuration already exist</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/group/v1/admin/namespaces/{namespace}/configuration/{configurationCode}": {
+      "get": {
+        "description": "<p>Required permission 'ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [READ]'</p>\n\t\t\t<p>This endpoint is used to get existing configuration. This Configuration is used to be the main rule of the service. Each namespace will have its own configuration</p>\n\t\t\t<p>Action Code: 73101</p>\n\t\t",
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Configuration"
+        ],
+        "summary": "get existing configuration",
+        "operationId": "getGroupConfigurationAdminV1",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Group Configuration Code",
+            "name": "configurationCode",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.GetGroupConfigurationResponseV1"
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr><tr><td>20022</td><td>token is not user token</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>73131</td><td>global configuration not found</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "<p>Required permission 'ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [DELETE]'</p>\n\t\t\t<p>This endpoint is used to delete group configuration. This Configuration is used to be the main rule of the service. Each namespace will have its own configuration</p>\n\t\t\t<p>Action Code: 73101</p>\n\t\t",
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Configuration"
+        ],
+        "summary": "Delete group configuration",
+        "operationId": "deleteGroupConfigurationAdminV1",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Group Configuration Code",
+            "name": "configurationCode",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr><tr><td>20022</td><td>token is not user token</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>73131</td><td>global configuration not found</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        }
+      },
+      "patch": {
+        "description": "<p>Required permission 'ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [UPDATE]'</p>\n\t\t\t<p>This endpoint is used to update existing configuration. groupAdminRoleId and groupMemberRoleId won't be able to be updated. User can try to change the member role permission instead for each of those member role</p>\n\t\t\t<p>Action Code: 73102</p>\n\t\t",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Configuration"
+        ],
+        "summary": "update existing configuration",
+        "operationId": "updateGroupConfigurationAdminV1",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Group Configuration Code",
+            "name": "configurationCode",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.UpdateGroupConfigurationRequestV1"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.UpdateGroupConfigurationResponseV1"
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20019</td><td>unable to parse request body</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr><tr><td>20022</td><td>token is not user token</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>73131</td><td>global configuration not found</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/group/v1/admin/namespaces/{namespace}/configuration/{configurationCode}/rules/{allowedAction}": {
+      "put": {
+        "description": "<p>Required permission 'ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [UPDATE]'</p>\n\t\t\t<p>This endpoint is used to update existing global rule configuration based on the allowed action. It will replace the permission with the request</p>\n\t\t\t<p>Action Code: 73106</p>\n\t\t",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Configuration"
+        ],
+        "summary": "update existing configuration global rule",
+        "operationId": "updateGroupConfigurationGlobalRuleAdminV1",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Group Configuration Code",
+            "name": "configurationCode",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Allowed Action. The value should be any actions in the service",
+            "name": "allowedAction",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.UpdateGroupConfigurationGlobalRulesRequestV1"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.UpdateGroupConfigurationResponseV1"
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20019</td><td>unable to parse request body</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr><tr><td>20022</td><td>token is not user token</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>73131</td><td>global configuration not found</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "<p>Required permission 'ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [UPDATE]'</p>\n\t\t\t<p>This endpoint is used to delete existing global rule configuration based on the allowed action. It will not give any error if the allowed action is not existed in the global rule</p>\n\t\t\t<p>Action Code: 73105</p>\n\t\t",
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Configuration"
+        ],
+        "summary": "delete existing configuration global rule based on allowed action",
+        "operationId": "deleteGroupConfigurationGlobalRuleAdminV1",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Group Configuration Code",
+            "name": "configurationCode",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Allowed Action. The value should be any actions in the service",
+            "name": "allowedAction",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.UpdateGroupConfigurationResponseV1"
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20019</td><td>unable to parse request body</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr><tr><td>20022</td><td>token is not user token</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>73131</td><td>global configuration not found</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/group/v1/admin/namespaces/{namespace}/groups": {
+      "get": {
+        "description": "<p>Required Permission: \"ADMIN:NAMESPACE:{namespace}:GROUP [READ]\" </p>\n\t\t\t<p>Get list of groups. This endpoint will show any types of group</p>\n\t\t\t<p>Action Code: 73301</p>\n\t\t",
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Group"
+        ],
+        "summary": "get list of groups",
+        "operationId": "getGroupListAdminV1",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "description": "size of displayed data",
+            "name": "limit",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "description": "The start position that points to query data",
+            "name": "offset",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "Query Group Name",
+            "name": "groupName",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "Query Group Region",
+            "name": "groupRegion",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "Query Group Configuration Code",
+            "name": "configurationCode",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.GetGroupsListResponseV1"
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr><tr><td>20022</td><td>token is not user token</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/group/v1/admin/namespaces/{namespace}/groups/{groupId}": {
+      "get": {
+        "description": "<p>Required Permission: \"ADMIN:NAMESPACE:{namespace}:GROUP [READ]\"</p>\n\t\t\t<p>Get single group information. This endpoint will show the group information by the groupId</p>\n\t\t\t<p>Action Code: 73306</p>\n\t\t",
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Group"
+        ],
+        "summary": "get single group",
+        "operationId": "getSingleGroupAdminV1",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Group ID",
+            "name": "groupId",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.GroupResponseV1"
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr><tr><td>20022</td><td>token is not user token</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>73333</td><td>group not found</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "<p>Required Permission: \"ADMIN:NAMESPACE:{namespace}:GROUP:{groupId} [DELETE]\"</p>\n\t\t\t<p>Delete existing group. It will check whether the groupID is exist before doing the process to delete the group.</p>\n\t\t\t<p>Action Code: 73302</p>\n\t\t",
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Group"
+        ],
+        "summary": "Delete existing group",
+        "operationId": "deleteGroupAdminV1",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Group ID",
+            "name": "groupId",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr><tr><td>20022</td><td>token is not user token</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>73333</td><td>group not found</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/group/v1/admin/namespaces/{namespace}/groups/{groupId}/members": {
+      "get": {
+        "description": "<p>Required permission ADMIN:NAMESPACE:{namespace}:GROUP:MEMBER [READ] </p>\n\t\t\t<p>This endpoint is used to get list of group members.</p>\n\t\t\t<p>Action Code: 73410</p>\n\t\t",
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Group Member"
+        ],
+        "summary": "Get list of group members",
+        "operationId": "getGroupMembersListPublicV1",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Group ID",
+            "name": "groupId",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "description": "size of displayed data",
+            "name": "limit",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "description": "The start position that points to query data",
+            "name": "offset",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "Sort group members list by User ID with ascending as default order. Set it 'desc' for descending order",
+            "name": "order",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.GetGroupMemberListResponseV1"
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20022</td><td>token is not user token</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>73433</td><td>member group not found</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/group/v1/admin/namespaces/{namespace}/roles": {
+      "get": {
+        "description": "<p>Required permission ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [READ]</p>\n\t\t\t<p>This endpoint is used to get list of member roles</p>\n\t\t\t<p>Action Code: 73201</p>\n\t\t",
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Group Roles"
+        ],
+        "summary": "get all list of member roles",
+        "operationId": "getMemberRolesListAdminV1",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "description": "size of displayed data",
+            "name": "limit",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "description": "The start position that points to query data",
+            "name": "offset",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.GetMemberRolesListResponseV1"
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "<p>Required permission ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [CREATE]</p>\n\t\t\t<p>This endpoint is used to create new member role</p>\n\t\t\t<p>Action Code: 73202</p>\n\t\t",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Group Roles"
+        ],
+        "summary": "create new member role",
+        "operationId": "createMemberRoleAdminV1",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.CreateMemberRoleRequestV1"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/models.CreateMemberRoleResponseV1"
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>20019</td><td>unable to parse request body</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr><tr><td>20022</td><td>token is not user token</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/group/v1/admin/namespaces/{namespace}/roles/{memberRoleId}": {
+      "get": {
+        "description": "<p>Required permission ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [READ]</p>\n\t\t\t<p>This endpoint is used to get member role based on the role ID</p>\n\t\t\t<p>Action Code: 73203</p>\n\t\t",
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Group Roles"
+        ],
+        "summary": "get member role",
+        "operationId": "getSingleMemberRoleAdminV1",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "member Role ID",
+            "name": "memberRoleId",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.GetMemberRoleResponseV1"
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>73232</td><td>member role not found</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "<p>Required permission ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [DELETE]</p>\n\t\t\t<p>This endpoint is used to delete member role. Any member role can't be deleted if the specific role is applied to the configuration (admin and member role)</p>\n\t\t\t<p>Action Code: 73207</p>\n\t\t",
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Group Roles"
+        ],
+        "summary": "delete member role",
+        "operationId": "deleteMemberRoleAdminV1",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "member Role ID",
+            "name": "memberRoleId",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20022</td><td>token is not user token</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>73232</td><td>member role not found</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        }
+      },
+      "patch": {
+        "description": "<p>Required permission ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [UPDATE]</p>\n\t\t\t<p>This endpoint is used to get member role</p>\n\t\t\t<p>Action Code: 73204</p>\n\t\t",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Group Roles"
+        ],
+        "summary": "update member role",
+        "operationId": "updateMemberRoleAdminV1",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "member Role ID",
+            "name": "memberRoleId",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.UpdateMemberRoleRequestV1"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.UpdateMemberRoleResponseV1"
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>20019</td><td>unable to parse request body</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20022</td><td>token is not user token</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>73232</td><td>member role not found</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/group/v1/admin/namespaces/{namespace}/roles/{memberRoleId}/permissions": {
+      "put": {
+        "description": "<p>Required permission ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [UPDATE]</p>\n\t\t\t<p>This endpoint is used to update member role permission. It will replace the existing permission based on the request from this endpoint</p>\n\t\t\t<p>Action Code: 73205</p>\n\t\t",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Group Roles"
+        ],
+        "summary": "update member role permission",
+        "operationId": "updateMemberRolePermissionAdminV1",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "member Role ID",
+            "name": "memberRoleId",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.UpdateMemberRolePermissionsRequestV1"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.UpdateMemberRoleResponseV1"
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>20019</td><td>unable to parse request body</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20022</td><td>token is not user token</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>73232</td><td>member role not found</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/group/v1/public/namespaces/{namespace}/groups": {
+      "get": {
+        "description": "<p>Required valid user authentication </p>\n\t\t\t<p>Get list of groups. This endpoint will only show OPEN and PUBLIC group type. This endpoint can search based on the group name by filling the \"groupName\" query parameter</p>\n\t\t\t<p>Action Code: 73303</p>\n\t\t",
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Group"
+        ],
+        "summary": "get list of groups",
+        "operationId": "getGroupListPublicV1",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "description": "size of displayed data",
+            "name": "limit",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "description": "The start position that points to query data",
+            "name": "offset",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "Query Group Name",
+            "name": "groupName",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "Query Group Region",
+            "name": "groupRegion",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.GetGroupsListResponseV1"
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr><tr><td>20022</td><td>token is not user token</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "<p>Required valid user authentication </p>\n\t\t\t<p>This endpoint is used to create new group</p>\n\t\t\t<p>There are some fields that needs to be fulfilled</p>\n\t\t\t<ul>\n\t\t\t\t<li><b>groupDescription</b>: the description of the group (optional)</li>\n\t\t\t\t<li><b>groupIcon</b>: group icon URL link (optional)</li>\n\t\t\t\t<li><b>groupName</b>: name of the group</li>\n\t\t\t\t<li><b>groupRegion</b>: region of the group</li>\n\t\t\t\t<li><b>groupRules</b>: rules for specific group. It consists of groupCustomRule that can be used to save custom rule, and groupPredefinedRules that has similar usage with configuration, but this rule only works in specific group</li>\n\t\t\t\t<li><b>allowedAction</b>: available action in group service. It consist of joinGroup and inviteGroup</li>\n\t\t\t\t<li><b>ruleAttribute</b>: attribute of the player that needs to be checked</li>\n\t\t\t\t<li><b>ruleCriteria</b>: criteria of the value. The value will be in enum of EQUAL, MINIMUM, MAXIMUM</li>\n\t\t\t\t<li><b>ruleValue</b>: value that needs to be checked</li>\n\t\t\t\t<li><b>customAttributes</b>: additional custom group attributes (optional)</li>\n\t\t\t</ul>\n\t\t\t<p>Action Code: 73304</p>\n\t\t",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Group"
+        ],
+        "summary": "create new group",
+        "operationId": "createNewGroupPublicV1",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.PublicCreateNewGroupRequestV1"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/models.GroupResponseV1"
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr><tr><td>20022</td><td>token is not user token</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "409": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>73342</td><td>user already joined group</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/group/v1/public/namespaces/{namespace}/groups/{groupId}": {
+      "get": {
+        "description": "<p>Required valid user authentication </p>\n\t\t\t<p>Get single group information. This endpoint will show the group information by the groupId</p>\n\t\t\t<p>Action Code: 73306</p>\n\t\t",
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Group"
+        ],
+        "summary": "get single group",
+        "operationId": "getSingleGroupPublicV1",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Group ID",
+            "name": "groupId",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.GroupResponseV1"
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr><tr><td>20022</td><td>token is not user token</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>73333</td><td>group not found</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        }
+      },
+      "put": {
+        "description": "<p>Required valid user authentication </p>\n\t\t\t<p>Required Member Role Permission: \"GROUP [UPDATE]\"</p>\n\t\t\t<p>Update existing group. This endpoint supports partial update. This endpoint will check the group ID of the user based on the access token and compare it with the group ID in path parameter. \n\t\t\tIt will also check the member role of the user based on the access token</p>\n\t\t\t<p>Action Code: 73307</p>\n\t\t",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Group"
+        ],
+        "summary": "update existing group",
+        "operationId": "updateSingleGroupPublicV1",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.UpdateGroupRequestV1"
+            }
+          },
+          {
+            "type": "string",
+            "description": "Group ID",
+            "name": "groupId",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.GroupResponseV1"
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr><tr><td>20022</td><td>token is not user token</td></tr><tr><td>73036</td><td>insufficient member role permission</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>73333</td><td>group not found</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "<p>Required valid user authentication </p>\n\t\t\t<p>Required Member Role Permission: \"GROUP [DELETE]\"</p>\n\t\t\t<p>Delete existing group. This endpoint will check the group ID of the user based on the access token\n\t\t\tand compare it with the group ID in path parameter. It will also check the member role of the user based on \n\t\t\tthe access token</p>\n\t\t\t<p>Action Code: 73305</p>\n\t\t",
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Group"
+        ],
+        "summary": "Delete existing group",
+        "operationId": "deleteGroupPublicV1",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Group ID",
+            "name": "groupId",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr><tr><td>20022</td><td>token is not user token</td></tr><tr><td>73036</td><td>insufficient member role permission</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>73333</td><td>group not found</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        }
+      },
+      "patch": {
+        "description": "<p>Required valid user authentication </p>\n\t\t\t<p>Required Member Role Permission: \"GROUP [UPDATE]\"</p>\n\t\t\t<p>Update existing group. This endpoint supports partial update. This endpoint will check the group ID of the user based on the access token and compare it with the group ID in path parameter. \n\t\t\tIt will also check the member role of the user based on the access token</p>\n\t\t\t<p>Action Code: 73307</p>\n\t\t",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Group"
+        ],
+        "summary": "update existing group",
+        "operationId": "updateSingleGroupPublicV1",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.UpdateGroupRequestV1"
+            }
+          },
+          {
+            "type": "string",
+            "description": "Group ID",
+            "name": "groupId",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.GroupResponseV1"
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr><tr><td>20022</td><td>token is not user token</td></tr><tr><td>73036</td><td>insufficient member role permission</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>73333</td><td>group not found</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/group/v1/public/namespaces/{namespace}/groups/{groupId}/attributes/custom": {
+      "put": {
+        "description": "<p>Requires valid user authentication </p>\n\t\t\t<p>Required Member Role Permission: \"GROUP [UPDATE]\"</p>\n\t\t\t<p>This endpoint replaces current group custom attributes entirely.\n\t\t\tThis endpoint will check the group ID of the user based on the access token and compare it with the group ID in path parameter. \n\t\t\tIt will also check the member role of the user based on the access token</p>\n\t\t\t<p>Action Code: 73311</p>\n\t\t",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Group"
+        ],
+        "summary": "Update group custom attributes",
+        "operationId": "updateGroupCustomAttributesPublicV1",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.UpdateGroupCustomAttributesRequestV1"
+            }
+          },
+          {
+            "type": "string",
+            "description": "Group ID",
+            "name": "groupId",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.GroupResponseV1"
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr><tr><td>20022</td><td>token is not user token</td></tr><tr><td>73036</td><td>insufficient member role permission</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>73333</td><td>group not found</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/group/v1/public/namespaces/{namespace}/groups/{groupId}/invite/accept": {
+      "post": {
+        "description": "<p>Required valid user authentication </p>\n\t\t\t<p>This endpoint is used to accept group invitation.</p>\n\t\t\t<p>Accept group invitation. If specific user is not invited in the specific group ID, it will show the the error to show if the user is not invited yet.</p>\n\t\t\t<p>This endpoint will also check if the user who access this endpoint is already joined to specific group</p>\n\t\t\t<p>Accessing this endpoint will make all requests (invite / join request) will be deleted for the user who access this endpoint</p>\n\t\t\t<p>Existing members will receive notification of newly accepted member.</p>\n\t\t\t<p>Action Code: 73401</p>\n\t\t",
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Group Member"
+        ],
+        "summary": "Accept Group Invitation",
+        "operationId": "acceptGroupInvitationPublicV1",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Group ID",
+            "name": "groupId",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.MemberRequestGroupResponseV1"
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20022</td><td>token is not user token</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>73443</td><td>member request not found</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "409": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>73442</td><td>user already joined in another group</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/group/v1/public/namespaces/{namespace}/groups/{groupId}/invite/reject": {
+      "post": {
+        "description": "<p>Required valid user authentication </p>\n\t\t\t<p>This endpoint is used to reject group invitation.</p>\n\t\t\t<p>Reject group invitation. If specific user is not invited in the specific group ID, it will show the the error to show if the user is not invited yet.</p>\n\t\t\t<p>Action Code: 73402</p>\n\t\t",
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Group Member"
+        ],
+        "summary": "Reject Group Invitation",
+        "operationId": "rejectGroupInvitationPublicV1",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Group ID",
+            "name": "groupId",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.MemberRequestGroupResponseV1"
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20022</td><td>token is not user token</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>73443</td><td>member request not found</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "409": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>73442</td><td>user already joined in another group</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/group/v1/public/namespaces/{namespace}/groups/{groupId}/join": {
+      "post": {
+        "description": "<p>Required valid user authentication </p>\n\t\t\t<p>This endpoint is used to join as group member</p>\n\t\t\t<p>Join to the group. This endpoint will check the the the type of the group based on the groupID.</p>\n\t\t\t<p>Additional Information:</p>\n\t\t\t<ul>\n\t\t\t\t<li>User cannot join to the group with PRIVATE type</li>\n\t\t\t\t<li>Joining PUBLIC group type will create join request and need approval from the privileged group member to accept the request to become the member</li>\n\t\t\t\t<li>Joining OPEN group type will make this user become member of that group immediately</li>\n\t\t\t</ul>\n\t\t\t<p>This endpoint will return status field to give information whether the user is JOINED or REQUESTED to join to the specific group</p>\n\t\t\t<p>Action Code: 73403</p>\n\t\t",
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Group Member"
+        ],
+        "summary": "Join to group",
+        "operationId": "JoinGroupV1",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Group ID",
+            "name": "groupId",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/models.JoinGroupResponseV1"
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20022</td><td>token is not user token</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "409": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>73442</td><td>user already joined in another group</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/group/v1/public/namespaces/{namespace}/groups/{groupId}/join/cancel": {
+      "post": {
+        "description": "<p>Requires valid user authentication</p>\n\t\t\t<p>This endpoint allows user to cancel request to join specific group.</p>\n\t\t\t<p>Action Code: 73411</p>\n\t\t",
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Group Member"
+        ],
+        "summary": "Cancel request to join group",
+        "operationId": "CancelGroupJoinRequestV1",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Group ID",
+            "name": "groupId",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.MemberRequestGroupResponseV1"
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20022</td><td>token is not user token</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>73443</td><td>member request not found</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/group/v1/public/namespaces/{namespace}/groups/{groupId}/join/request": {
+      "get": {
+        "description": "<p>Required valid user authentication </p>\n\t\t\t<p>Required Member Role Permission: \"GROUP:JOIN [READ]\"</p>\n\t\t\t<p>This endpoint is used to Get Group Join Request List</p>\n\t\t\t<p>Get Group Join Request List for specific group. Group members needs to have permission and also belong to the group to access this endpoint</p>\n\t\t\t<p>Action Code: 73501</p>\n\t\t",
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Member Request"
+        ],
+        "summary": "Get Group Join Request List",
+        "operationId": "getGroupJoinRequestPublicV1",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Group ID",
+            "name": "groupId",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "description": "size of displayed data",
+            "name": "limit",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "description": "The start position that points to query data",
+            "name": "offset",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.GetMemberRequestsListResponseV1"
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20022</td><td>token is not user token</td></tr><tr><td>73036</td><td>insufficient member role permission</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/group/v1/public/namespaces/{namespace}/groups/{groupId}/members": {
+      "get": {
+        "description": "<p>Required valid user authentication </p>\n\t\t\t<p>This endpoint is used to get list of group members.</p>\n\t\t\t<p>Action Code: 73410</p>\n\t\t",
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Group Member"
+        ],
+        "summary": "Get list of group members",
+        "operationId": "getGroupMembersListPublicV1",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Group ID",
+            "name": "groupId",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "description": "size of displayed data",
+            "name": "limit",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "description": "The start position that points to query data",
+            "name": "offset",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "Sort group members list by User ID with ascending as default order. Set it 'desc' for descending order",
+            "name": "order",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.GetGroupMemberListResponseV1"
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20022</td><td>token is not user token</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>73433</td><td>member group not found</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/group/v1/public/namespaces/{namespace}/groups/{groupId}/rules/custom": {
+      "put": {
+        "description": "<p>Required valid user authentication </p>\n\t\t\t<p>Update group custom rule. This endpoint will check the group ID of the user based on the access token \n\t\t\tand compare it with the group ID in path parameter. It will also check the member role of the user based \n\t\t\ton the access token</p>\n\t\t\t<p>Action Code: 73308</p>\n\t\t",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Group"
+        ],
+        "summary": "update group custom rule",
+        "operationId": "updateGroupCustomRulePublicV1",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Group ID",
+            "name": "groupId",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.UpdateGroupCustomRuleRequestV1"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.GroupResponseV1"
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>20019</td><td>unable to parse request body</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr><tr><td>20022</td><td>token is not user token</td></tr><tr><td>73036</td><td>insufficient member role permission</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>73333</td><td>group not found</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/group/v1/public/namespaces/{namespace}/groups/{groupId}/rules/defined/{allowedAction}": {
+      "put": {
+        "description": "<p>Required valid user authentication </p>\n\t\t\t<p>Required Member Role Permission: \"GROUP [UPDATE]\"</p>\n\t\t\t<p>Update predefined group rule. This endpoint will check the group ID of the user based on the access token \n\t\t\tand compare it with the group ID in path parameter. It will also check the member role of the user based on \n\t\t\tthe access token</p>\n\t\t\t<p>If the rule action is not defined in the group, it will be added immediately to the predefined group rule</p>\n\t\t\t<p>Action Code: 73310</p>\n\t\t",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Group"
+        ],
+        "summary": "update predefined group rule",
+        "operationId": "updateGroupPredefinedRulePublicV1",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Group ID",
+            "name": "groupId",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Allowed action, any available action in service",
+            "name": "allowedAction",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.UpdateGroupPredefinedRuleRequestV1"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.GroupResponseV1"
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20019</td><td>unable to parse request body</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr><tr><td>20022</td><td>token is not user token</td></tr><tr><td>73036</td><td>insufficient member role permission</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>73333</td><td>group not found</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "<p>Required valid user authentication </p>\n\t\t\t<p>Required Member Role Permission: \"GROUP [UPDATE]\"</p>\n\t\t\t<p>Delete group predefined rule based on the allowed action. This endpoint will check the group ID of the user based on the access token\n\t\t\tand compare it with the group ID in path parameter. It will also check the member role of the user based on \n\t\t\tthe access token</p>\n\t\t\t<p>Action Code: 73309</p>\n\t\t",
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Group"
+        ],
+        "summary": "Delete group predefined rule",
+        "operationId": "deleteGroupPredefinedRulePublicV1",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Group ID",
+            "name": "groupId",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Allowed action, any available action in service",
+            "name": "allowedAction",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr><tr><td>20022</td><td>token is not user token</td></tr><tr><td>73036</td><td>insufficient member role permission</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>73333</td><td>group not found</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/group/v1/public/namespaces/{namespace}/leave": {
+      "post": {
+        "description": "<p>Required valid user authentication </p>\n\t\t\t<p>This endpoint is used to leave from group.</p>\n\t\t\t<p>leave from group. Admin is not allowed to leave the group. This endpoint will also give response if the user is not belong to any group.</p>\n\t\t\t<p>Action Code: 73404</p>\n\t\t",
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Group Member"
+        ],
+        "summary": "Leave group",
+        "operationId": "leaveGroupPublicV1",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.LeaveGroupResponseV1"
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>73440</td><td>group admin cannot leave group</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20022</td><td>token is not user token</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>73034</td><td>user not belong to any group</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/group/v1/public/namespaces/{namespace}/roles": {
+      "get": {
+        "description": "<p>Required Member Role Permission: \"GROUP:ROLE [READ]\"</p>\n\t\t\t<p>This endpoint is used to get list of member roles</p>\n\t\t\t<p>Action Code: 73201</p>\n\t\t",
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Group Roles"
+        ],
+        "summary": "get all list of member roles",
+        "operationId": "getMemberRolesListPublicV1",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "description": "size of displayed data",
+            "name": "limit",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "description": "The start position that points to query data",
+            "name": "offset",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.GetMemberRolesListResponseV1"
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/group/v1/public/namespaces/{namespace}/roles/{memberRoleId}/members": {
+      "post": {
+        "description": "Required Member Role Permission: \"GROUP:ROLE [UPDATE]</p>\n\t\t\t<p>This endpoint is used to assign role to group member</p>\n\t\t\t<p>Action Code: 73204</p>",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Group Roles"
+        ],
+        "summary": "Assign role to group member",
+        "operationId": "updateMemberRoleAdminV1",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "member Role ID",
+            "name": "memberRoleId",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.AssignRoleToMemberRequestV1"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.GetUserGroupInformationResponseV1"
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>20019</td><td>unable to parse request body</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20022</td><td>token is not user token</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>73232</td><td>member role not found</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "Required Member Role Permission: \"GROUP:ROLE [UPDATE]\"</p>\n\t\t\t<p>This endpoint is used to remove role from group member</p>\n\t\t\t<p>Action Code: 73204</p>",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Group Roles"
+        ],
+        "summary": "Remove role from group member",
+        "operationId": "updateMemberRoleAdminV1",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "member Role ID",
+            "name": "memberRoleId",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.RemoveRoleFromMemberRequestV1"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.UpdateMemberRoleResponseV1"
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>20019</td><td>unable to parse request body</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20022</td><td>token is not user token</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>73232</td><td>member role not found</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "422": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>73444</td><td>member must have role</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/group/v1/public/namespaces/{namespace}/users/me/invite/request": {
+      "get": {
+        "description": "<p>Required valid user authentication </p>\n\t\t\t<p>This endpoint is used to Get Group Invitation Request List</p>\n\t\t\t<p>Get Group Invitation Request List for specific group. It will check any group invitation for this user</p>\n\t\t\t<p>Action Code: 73502</p>\n\t\t",
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Member Request"
+        ],
+        "summary": "Get Group Invitation Request List",
+        "operationId": "getGroupInvitationRequestPublicV1",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "description": "size of displayed data",
+            "name": "limit",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "description": "The start position that points to query data",
+            "name": "offset",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.GetMemberRequestsListResponseV1"
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20022</td><td>token is not user token</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/group/v1/public/namespaces/{namespace}/users/{userId}": {
+      "get": {
+        "description": "<p>Required valid user authentication </p>\n\t\t\t<p>This endpoint is used to get user group information.</p>\n\t\t\t<p>Get user group information. If user is not belong to any group, it will return warning to give information about it</p>\n\t\t\t<p>Group Member Status:</p>\n\t\t\t<ul>\n\t\t\t\t<li>JOIN : status of user requested to join group </li>\n\t\t\t\t<li>INVITE: status of user invited to a group </li>\n\t\t\t\t<li>JOINED: status of user already joined to a group</li>\n\t\t\t</ul>\n\t\t\t<p>Action Code: 73405</p>\n\t\t",
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Group Member"
+        ],
+        "summary": "Get User Group Information",
+        "operationId": "getUserGroupInformationPublicV1",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "User ID",
+            "name": "userId",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.GetUserGroupInformationResponseV1"
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20022</td><td>token is not user token</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>73034</td><td>user not belong to any group</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/group/v1/public/namespaces/{namespace}/users/{userId}/invite": {
+      "post": {
+        "description": "<p>Required valid user authentication </p>\n\t\t\t<p>Required Member Role Permission: \"GROUP:INVITE [CREATE]\"</p>\n\t\t\t<p>This endpoint is used to invite specific user to the group.</p>\n\t\t\t<p>invite specific user to the group. If specific user is already have the join request to the group, this endpoint will notify if this user already have join request that needs to be accepted / rejected</p>\n\t\t\t<p>Invited user will receive notification through lobby.</p>\n\t\t\t<p>Action Code: 73406</p>\n\t\t",
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Group Member"
+        ],
+        "summary": "Invite user to group",
+        "operationId": "inviteGroupPublicV1",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "User ID",
+            "name": "userId",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.UserInvitationResponseV1"
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20022</td><td>token is not user token</td></tr><tr><td>73036</td><td>insufficient member role permission</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>73034</td><td>user not belong to any group</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "409": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>73442</td><td>user already joined in another group</td></tr><tr><td>73437</td><td>user already invited</td></tr><tr><td>73438</td><td>user already requested to join</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/group/v1/public/namespaces/{namespace}/users/{userId}/join/accept": {
+      "post": {
+        "description": "<p>Required valid user authentication </p>\n\t\t\t<p>Required Member Role Permission: \"GROUP:JOIN [CREATE]\"</p>\n\t\t\t<p>This endpoint is used to accept group join request.</p>\n\t\t\t<p>Accept group join request. If specific user is not asked to join the specific group ID, it will show the the error to show if the user is not asked to join yet.</p>\n\t\t\t<p>This endpoint will also check if the specific user is already joined to specific group</p>\n\t\t\t<p>Action Code: 73407</p>\n\t\t",
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Group Member"
+        ],
+        "summary": "Accept Group Join Request",
+        "operationId": "acceptGroupJoinRequestPublicV1",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "User ID",
+            "name": "userId",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.MemberRequestGroupResponseV1"
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20022</td><td>token is not user token</td></tr><tr><td>73036</td><td>insufficient member role permission</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>73443</td><td>member request not found</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "409": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>73442</td><td>user already joined in another group</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/group/v1/public/namespaces/{namespace}/users/{userId}/join/reject": {
+      "post": {
+        "description": "<p>Required valid user authentication </p>\n\t\t\t<p>Required Member Role Permission: \"GROUP:JOIN [CREATE]\"</p>\n\t\t\t<p>This endpoint is used to reject group join request.</p>\n\t\t\t<p>Reject group join request. If specific user is not asked to join the specific group ID, it will show the the error to show if the user is not asked to join yet.</p>\n\t\t\t<p>This endpoint will also check if the specific user is already joined to specific group</p>\n\t\t\t<p>Action Code: 73408</p>\n\t\t",
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Group Member"
+        ],
+        "summary": "Reject Group Join Request",
+        "operationId": "rejectGroupJoinRequestPublicV1",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "User ID",
+            "name": "userId",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.MemberRequestGroupResponseV1"
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20022</td><td>token is not user token</td></tr><tr><td>73036</td><td>insufficient member role permission</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>73443</td><td>member request not found</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "409": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>73442</td><td>user already joined in another group</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/group/v1/public/namespaces/{namespace}/users/{userId}/kick": {
+      "post": {
+        "description": "<p>Required valid user authentication </p>\n\t\t\t<p>Required Member Role Permission: \"GROUP:KICK [CREATE]\"</p>\n\t\t\t<p>This endpoint is used to kick group member.</p>\n\t\t\t<p>Kick group member. This endpoint will check the member and group information, and also the role permission of the the user who accesses this endpoint</p>\n\t\t\t<p>Action Code: 73409</p>\n\t\t",
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Group Member"
+        ],
+        "summary": "Kick Group Member",
+        "operationId": "kickGroupMemberPublicV1",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "User ID",
+            "name": "userId",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.KickGroupMemberResponseV1"
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20022</td><td>token is not user token</td></tr><tr><td>73036</td><td>insufficient member role permission</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>73433</td><td>member group not found</td></tr><tr><td>73034</td><td>user not belong to any group</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "models.AssignRoleToMemberRequestV1": {
+      "required": [
+        "userId"
+      ],
+      "properties": {
+        "userId": {
+          "type": "string"
+        }
+      }
+    },
+    "models.CreateGroupConfigurationRequestV1": {
+      "required": [
+        "configurationCode",
+        "description",
+        "globalRules",
+        "groupAdminRoleId",
+        "groupMaxMember",
+        "groupMemberRoleId",
+        "name"
+      ],
+      "properties": {
+        "configurationCode": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "globalRules": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/models.Rule"
+          }
+        },
+        "groupAdminRoleId": {
+          "type": "string"
+        },
+        "groupMaxMember": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "groupMemberRoleId": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "models.CreateGroupConfigurationResponseV1": {
+      "required": [
+        "configurationCode",
+        "description",
+        "globalRules",
+        "groupAdminRoleId",
+        "groupMaxMember",
+        "groupMemberRoleId",
+        "name"
+      ],
+      "properties": {
+        "configurationCode": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "globalRules": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/models.Rule"
+          }
+        },
+        "groupAdminRoleId": {
+          "type": "string"
+        },
+        "groupMaxMember": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "groupMemberRoleId": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "models.CreateMemberRoleRequestV1": {
+      "required": [
+        "memberRoleName",
+        "memberRolePermissions"
+      ],
+      "properties": {
+        "memberRoleName": {
+          "type": "string"
+        },
+        "memberRolePermissions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/models.RolePermission"
+          }
+        }
+      }
+    },
+    "models.CreateMemberRoleResponseV1": {
+      "required": [
+        "memberRoleId",
+        "memberRoleName",
+        "memberRolePermissions"
+      ],
+      "properties": {
+        "memberRoleId": {
+          "type": "string"
+        },
+        "memberRoleName": {
+          "type": "string"
+        },
+        "memberRolePermissions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/models.RolePermission"
+          }
+        }
+      }
+    },
+    "models.GetGroupConfigurationResponseV1": {
+      "required": [
+        "configurationCode",
+        "description",
+        "globalRules",
+        "groupAdminRoleId",
+        "groupMaxMember",
+        "groupMemberRoleId",
+        "name",
+        "namespace"
+      ],
+      "properties": {
+        "configurationCode": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "globalRules": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/models.Rule"
+          }
+        },
+        "groupAdminRoleId": {
+          "type": "string"
+        },
+        "groupMaxMember": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "groupMemberRoleId": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        }
+      }
+    },
+    "models.GetGroupMemberListResponseV1": {
+      "required": [
+        "data",
+        "paging"
+      ],
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/models.GetUserGroupInformationResponseV1"
+          }
+        },
+        "paging": {
+          "$ref": "#/definitions/models.Pagination"
+        }
+      }
+    },
+    "models.GetGroupsListResponseV1": {
+      "required": [
+        "data",
+        "paging"
+      ],
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/models.GroupResponseV1"
+          }
+        },
+        "paging": {
+          "$ref": "#/definitions/models.Pagination"
+        }
+      }
+    },
+    "models.GetMemberRequestsListResponseV1": {
+      "required": [
+        "data",
+        "paging"
+      ],
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/models.MemberRequestResponseV1"
+          }
+        },
+        "paging": {
+          "$ref": "#/definitions/models.Pagination"
+        }
+      }
+    },
+    "models.GetMemberRoleResponseV1": {
+      "required": [
+        "memberRoleId",
+        "memberRoleName",
+        "memberRolePermissions"
+      ],
+      "properties": {
+        "memberRoleId": {
+          "type": "string"
+        },
+        "memberRoleName": {
+          "type": "string"
+        },
+        "memberRolePermissions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/models.RolePermission"
+          }
+        }
+      }
+    },
+    "models.GetMemberRolesListResponseV1": {
+      "required": [
+        "data",
+        "paging"
+      ],
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/models.GetMemberRoleResponseV1"
+          }
+        },
+        "paging": {
+          "$ref": "#/definitions/models.Pagination"
+        }
+      }
+    },
+    "models.GetUserGroupInformationResponseV1": {
+      "required": [
+        "groupId",
+        "memberRoleId",
+        "userId"
+      ],
+      "properties": {
+        "groupId": {
+          "type": "string"
+        },
+        "memberRoleId": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "status": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        }
+      }
+    },
+    "models.GroupMember": {
+      "required": [
+        "memberRoleId",
+        "userId"
+      ],
+      "properties": {
+        "memberRoleId": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "userId": {
+          "type": "string"
+        }
+      }
+    },
+    "models.GroupResponseV1": {
+      "required": [
+        "configurationCode",
+        "customAttributes",
+        "groupDescription",
+        "groupIcon",
+        "groupId",
+        "groupMaxMember",
+        "groupMembers",
+        "groupName",
+        "groupRegion",
+        "groupRules",
+        "groupType"
+      ],
+      "properties": {
+        "configurationCode": {
+          "type": "string"
+        },
+        "customAttributes": {
+          "type": "object"
+        },
+        "groupDescription": {
+          "type": "string"
+        },
+        "groupIcon": {
+          "type": "string"
+        },
+        "groupId": {
+          "type": "string"
+        },
+        "groupMaxMember": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "groupMembers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/models.GroupMember"
+          }
+        },
+        "groupName": {
+          "type": "string"
+        },
+        "groupRegion": {
+          "type": "string"
+        },
+        "groupRules": {
+          "$ref": "#/definitions/models.GroupRule"
+        },
+        "groupType": {
+          "type": "string"
+        }
+      }
+    },
+    "models.GroupRule": {
+      "required": [
+        "groupCustomRule",
+        "groupPredefinedRules"
+      ],
+      "properties": {
+        "groupCustomRule": {
+          "$ref": "#/definitions/models.GroupRule.groupCustomRule"
+        },
+        "groupPredefinedRules": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/models.Rule"
+          }
+        }
+      }
+    },
+    "models.GroupRule.groupCustomRule": {},
+    "models.JoinGroupResponseV1": {
+      "required": [
+        "groupId",
+        "status",
+        "userId"
+      ],
+      "properties": {
+        "groupId": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        }
+      }
+    },
+    "models.KickGroupMemberResponseV1": {
+      "required": [
+        "groupId",
+        "kickedUserId"
+      ],
+      "properties": {
+        "groupId": {
+          "type": "string"
+        },
+        "kickedUserId": {
+          "type": "string"
+        }
+      }
+    },
+    "models.LeaveGroupResponseV1": {
+      "required": [
+        "groupId",
+        "userId"
+      ],
+      "properties": {
+        "groupId": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        }
+      }
+    },
+    "models.ListConfigurationResponseV1": {
+      "required": [
+        "data",
+        "paging"
+      ],
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/models.GetGroupConfigurationResponseV1"
+          }
+        },
+        "paging": {
+          "$ref": "#/definitions/models.Pagination"
+        }
+      }
+    },
+    "models.MemberRequestGroupResponseV1": {
+      "required": [
+        "groupId",
+        "userId"
+      ],
+      "properties": {
+        "groupId": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        }
+      }
+    },
+    "models.MemberRequestResponseV1": {
+      "required": [
+        "groupId",
+        "requestType",
+        "userId"
+      ],
+      "properties": {
+        "groupId": {
+          "type": "string"
+        },
+        "requestType": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        }
+      }
+    },
+    "models.Pagination": {
+      "required": [
+        "first",
+        "last",
+        "next",
+        "previous"
+      ],
+      "properties": {
+        "first": {
+          "type": "string"
+        },
+        "last": {
+          "type": "string"
+        },
+        "next": {
+          "type": "string"
+        },
+        "previous": {
+          "type": "string"
+        }
+      }
+    },
+    "models.PublicCreateNewGroupRequestV1": {
+      "required": [
+        "configurationCode",
+        "customAttributes",
+        "groupDescription",
+        "groupIcon",
+        "groupMaxMember",
+        "groupName",
+        "groupRegion",
+        "groupRules",
+        "groupType"
+      ],
+      "properties": {
+        "configurationCode": {
+          "type": "string"
+        },
+        "customAttributes": {
+          "type": "object"
+        },
+        "groupDescription": {
+          "type": "string"
+        },
+        "groupIcon": {
+          "type": "string"
+        },
+        "groupMaxMember": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "groupName": {
+          "type": "string"
+        },
+        "groupRegion": {
+          "type": "string"
+        },
+        "groupRules": {
+          "$ref": "#/definitions/models.GroupRule"
+        },
+        "groupType": {
+          "type": "string"
+        }
+      }
+    },
+    "models.RemoveRoleFromMemberRequestV1": {
+      "required": [
+        "userId"
+      ],
+      "properties": {
+        "userId": {
+          "type": "string"
+        }
+      }
+    },
+    "models.RolePermission": {
+      "required": [
+        "action",
+        "resourceName"
+      ],
+      "properties": {
+        "action": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "resourceName": {
+          "type": "string"
+        }
+      }
+    },
+    "models.Rule": {
+      "required": [
+        "allowedAction",
+        "ruleDetail"
+      ],
+      "properties": {
+        "allowedAction": {
+          "type": "string"
+        },
+        "ruleDetail": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/models.RuleInformation"
+          }
+        }
+      }
+    },
+    "models.RuleInformation": {
+      "required": [
+        "ruleAttribute",
+        "ruleCriteria",
+        "ruleValue"
+      ],
+      "properties": {
+        "ruleAttribute": {
+          "type": "string"
+        },
+        "ruleCriteria": {
+          "type": "string"
+        },
+        "ruleValue": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "models.UpdateGroupConfigurationGlobalRulesRequestV1": {
+      "required": [
+        "ruleDetail"
+      ],
+      "properties": {
+        "ruleDetail": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/models.RuleInformation"
+          }
+        }
+      }
+    },
+    "models.UpdateGroupConfigurationRequestV1": {
+      "required": [
+        "description",
+        "groupMaxMember",
+        "name"
+      ],
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "groupMaxMember": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "models.UpdateGroupConfigurationResponseV1": {
+      "required": [
+        "configurationCode",
+        "description",
+        "globalRules",
+        "groupAdminRoleId",
+        "groupMaxMember",
+        "groupMemberRoleId",
+        "name"
+      ],
+      "properties": {
+        "configurationCode": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "globalRules": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/models.Rule"
+          }
+        },
+        "groupAdminRoleId": {
+          "type": "string"
+        },
+        "groupMaxMember": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "groupMemberRoleId": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "models.UpdateGroupCustomAttributesRequestV1": {
+      "required": [
+        "customAttributes"
+      ],
+      "properties": {
+        "customAttributes": {
+          "type": "object"
+        }
+      }
+    },
+    "models.UpdateGroupCustomRuleRequestV1": {
+      "required": [
+        "groupCustomRule"
+      ],
+      "properties": {
+        "groupCustomRule": {
+          "$ref": "#/definitions/models.UpdateGroupCustomRuleRequestV1.groupCustomRule"
+        }
+      }
+    },
+    "models.UpdateGroupCustomRuleRequestV1.groupCustomRule": {},
+    "models.UpdateGroupPredefinedRuleRequestV1": {
+      "required": [
+        "ruleDetail"
+      ],
+      "properties": {
+        "ruleDetail": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/models.RuleInformation"
+          }
+        }
+      }
+    },
+    "models.UpdateGroupRequestV1": {
+      "required": [
+        "customAttributes",
+        "groupDescription",
+        "groupIcon",
+        "groupName",
+        "groupRegion",
+        "groupType"
+      ],
+      "properties": {
+        "customAttributes": {
+          "$ref": "#/definitions/models.UpdateGroupRequestV1.customAttributes"
+        },
+        "groupDescription": {
+          "type": "string"
+        },
+        "groupIcon": {
+          "type": "string"
+        },
+        "groupName": {
+          "type": "string"
+        },
+        "groupRegion": {
+          "type": "string"
+        },
+        "groupType": {
+          "type": "string"
+        }
+      }
+    },
+    "models.UpdateGroupRequestV1.customAttributes": {
+      "type": "object"
+    },
+    "models.UpdateMemberRolePermissionsRequestV1": {
+      "required": [
+        "memberRolePermissions"
+      ],
+      "properties": {
+        "memberRolePermissions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/models.RolePermission"
+          }
+        }
+      }
+    },
+    "models.UpdateMemberRoleRequestV1": {
+      "required": [
+        "memberRoleName"
+      ],
+      "properties": {
+        "memberRoleName": {
+          "type": "string"
+        }
+      }
+    },
+    "models.UpdateMemberRoleResponseV1": {
+      "required": [
+        "memberRoleId",
+        "memberRoleName",
+        "memberRolePermissions"
+      ],
+      "properties": {
+        "memberRoleId": {
+          "type": "string"
+        },
+        "memberRoleName": {
+          "type": "string"
+        },
+        "memberRolePermissions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/models.RolePermission"
+          }
+        }
+      }
+    },
+    "models.UserInvitationResponseV1": {
+      "required": [
+        "groupId",
+        "userId"
+      ],
+      "properties": {
+        "groupId": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        }
+      }
+    },
+    "response.ErrorResponse": {
+      "required": [
+        "errorCode",
+        "errorMessage"
+      ],
+      "properties": {
+        "errorCode": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "errorMessage": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "authorization": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header"
+    }
+  },
+  "security": [
+    {
+      "authorization": []
+    }
+  ]
+}

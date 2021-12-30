@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice DSM Controller Service",
     "title": "justice-dsm-controller-service",
-    "version": "2.10.0"
+    "version": "2.11.0"
   },
   "schemes": [
     "https"
@@ -5755,6 +5755,9 @@
         "is_override_game_version": {
           "type": "boolean"
         },
+        "job_id": {
+          "type": "string"
+        },
         "last_update": {
           "format": "date-time",
           "type": "string"
@@ -5815,6 +5818,7 @@
         "image_version",
         "ip",
         "is_override_game_version",
+        "job_id",
         "last_update",
         "mem_limit",
         "namespace",

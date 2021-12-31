@@ -128,7 +128,7 @@ func (a *Client) BanUsersShort(params *BanUsersParams, authInfo runtime.ClientAu
 	switch v := result.(type) {
 
 	case *BanUsersBadRequest:
-		return nil, v
+		return v, nil
 	case *BanUsersNotFound:
 		return nil, v
 	case *BanUsersUnprocessableEntity:
@@ -508,7 +508,7 @@ func (a *Client) PublicReportUserShort(params *PublicReportUserParams, authInfo 
 	switch v := result.(type) {
 
 	case *PublicReportUserBadRequest:
-		return nil, v
+		return v, nil
 	case *PublicReportUserUnprocessableEntity:
 		return nil, v
 
@@ -589,7 +589,7 @@ func (a *Client) ReportUserShort(params *ReportUserParams, authInfo runtime.Clie
 	switch v := result.(type) {
 
 	case *ReportUserUnprocessableEntity:
-		return nil, v
+		return v, nil
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
@@ -677,7 +677,7 @@ func (a *Client) UnBanUsersShort(params *UnBanUsersParams, authInfo runtime.Clie
 	switch v := result.(type) {
 
 	case *UnBanUsersBadRequest:
-		return nil, v
+		return v, nil
 	case *UnBanUsersNotFound:
 		return nil, v
 	case *UnBanUsersUnprocessableEntity:

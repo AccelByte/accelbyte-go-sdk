@@ -152,7 +152,7 @@ func (a *Client) AuthorizationShort(params *AuthorizationParams, authInfo runtim
 	switch v := result.(type) {
 
 	case *AuthorizationFound:
-		return nil, v
+		return v, nil
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))

@@ -249,7 +249,7 @@ func (a *Client) AuthCodeRequestV3Short(params *AuthCodeRequestV3Params, authInf
 	switch v := result.(type) {
 
 	case *AuthCodeRequestV3Found:
-		return nil, v
+		return v, nil
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
@@ -362,7 +362,7 @@ func (a *Client) AuthorizeV3Short(params *AuthorizeV3Params, authInfo runtime.Cl
 	switch v := result.(type) {
 
 	case *AuthorizeV3Found:
-		return nil, v
+		return v, nil
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))

@@ -286,7 +286,7 @@ func (a *Client) PlatformAuthenticationV3Short(params *PlatformAuthenticationV3P
 	switch v := result.(type) {
 
 	case *PlatformAuthenticationV3Found:
-		return nil, v
+		return v, nil
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
@@ -369,7 +369,7 @@ func (a *Client) UserAuthenticationV3Short(params *UserAuthenticationV3Params, a
 	switch v := result.(type) {
 
 	case *UserAuthenticationV3Found:
-		return nil, v
+		return v, nil
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))

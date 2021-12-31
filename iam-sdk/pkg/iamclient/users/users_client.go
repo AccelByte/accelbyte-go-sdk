@@ -12718,7 +12718,7 @@ func (a *Client) PublicWebLinkPlatformEstablishShort(params *PublicWebLinkPlatfo
 	switch v := result.(type) {
 
 	case *PublicWebLinkPlatformEstablishFound:
-		return nil, v
+		return v, nil
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))

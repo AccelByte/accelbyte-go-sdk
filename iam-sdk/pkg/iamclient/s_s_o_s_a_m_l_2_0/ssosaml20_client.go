@@ -112,7 +112,7 @@ func (a *Client) PlatformAuthenticateSAMLV3HandlerShort(params *PlatformAuthenti
 	switch v := result.(type) {
 
 	case *PlatformAuthenticateSAMLV3HandlerFound:
-		return nil, v
+		return v, nil
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))

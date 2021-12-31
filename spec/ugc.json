@@ -138,7 +138,7 @@
         ],
         "summary": "Get Channels",
         "tags": [
-          "[Admin] Channel"
+          "Admin Channel"
         ]
       },
       "post": {
@@ -203,7 +203,7 @@
         ],
         "summary": "Create Channel",
         "tags": [
-          "[Admin] Channel"
+          "Admin Channel"
         ]
       }
     },
@@ -266,7 +266,7 @@
         ],
         "summary": "Delete Channel",
         "tags": [
-          "[Admin] Channel"
+          "Admin Channel"
         ]
       },
       "put": {
@@ -344,7 +344,7 @@
         ],
         "summary": "Update Channel",
         "tags": [
-          "[Admin] Channel"
+          "Admin Channel"
         ]
       }
     },
@@ -419,7 +419,7 @@
         ],
         "summary": "Upload content to a channel",
         "tags": [
-          "[Admin] Content"
+          "Admin Content"
         ]
       }
     },
@@ -493,7 +493,7 @@
         ],
         "summary": "Upload content to S3 bucket",
         "tags": [
-          "[Admin] Content"
+          "Admin Content"
         ]
       }
     },
@@ -580,7 +580,7 @@
         ],
         "summary": "Update content to S3 bucket",
         "tags": [
-          "[Admin] Content"
+          "Admin Content"
         ]
       }
     },
@@ -714,7 +714,7 @@
         ],
         "summary": "Search contents specific to a channel",
         "tags": [
-          "[Admin] Content"
+          "Admin Content"
         ]
       }
     },
@@ -784,7 +784,7 @@
         ],
         "summary": "Delete content",
         "tags": [
-          "[Admin] Content"
+          "Admin Content"
         ]
       },
       "put": {
@@ -870,7 +870,7 @@
         ],
         "summary": "Update content to a channel",
         "tags": [
-          "[Admin] Content"
+          "Admin Content"
         ]
       }
     },
@@ -943,7 +943,7 @@
         ],
         "summary": "Get user's generated contents",
         "tags": [
-          "[Admin] Content"
+          "Admin Content"
         ]
       }
     },
@@ -1070,7 +1070,7 @@
         ],
         "summary": "Search contents",
         "tags": [
-          "[Admin] Content"
+          "Admin Content"
         ]
       }
     },
@@ -1136,7 +1136,7 @@
         ],
         "summary": "Get user specific content",
         "tags": [
-          "[Admin] Content"
+          "Admin Content"
         ]
       }
     },
@@ -1202,7 +1202,7 @@
         ],
         "summary": "Get content preview",
         "tags": [
-          "[Admin] Content"
+          "Admin Content"
         ]
       }
     },
@@ -1282,7 +1282,7 @@
         ],
         "summary": "Upload screenshots for content",
         "tags": [
-          "[Admin] Content"
+          "Admin Content"
         ]
       },
       "put": {
@@ -1360,7 +1360,7 @@
         ],
         "summary": "Update screenshot of content",
         "tags": [
-          "[Admin] Content"
+          "Admin Content"
         ]
       }
     },
@@ -1436,7 +1436,7 @@
         ],
         "summary": "Delete screenshots content",
         "tags": [
-          "[Admin] Content"
+          "Admin Content"
         ]
       }
     },
@@ -1509,7 +1509,7 @@
         ],
         "summary": "Get all user groups",
         "tags": [
-          "[Admin] Group"
+          "Admin Group"
         ]
       },
       "post": {
@@ -1574,7 +1574,7 @@
         ],
         "summary": "Create groups",
         "tags": [
-          "[Admin] Group"
+          "Admin Group"
         ]
       }
     },
@@ -1637,7 +1637,7 @@
         ],
         "summary": "Delete group",
         "tags": [
-          "[Admin] Group"
+          "Admin Group"
         ]
       },
       "get": {
@@ -1701,7 +1701,7 @@
         ],
         "summary": "Get specific user group",
         "tags": [
-          "[Admin] Group"
+          "Admin Group"
         ]
       },
       "put": {
@@ -1779,7 +1779,7 @@
         ],
         "summary": "Update group",
         "tags": [
-          "[Admin] Group"
+          "Admin Group"
         ]
       }
     },
@@ -1859,7 +1859,7 @@
         ],
         "summary": "Get contents belong to a group",
         "tags": [
-          "[Admin] Group"
+          "Admin Group"
         ]
       }
     },
@@ -1932,7 +1932,7 @@
         ],
         "summary": "Get tags",
         "tags": [
-          "[Admin] Tag"
+          "Admin Tag"
         ]
       },
       "post": {
@@ -2003,7 +2003,7 @@
         ],
         "summary": "Create tags",
         "tags": [
-          "[Admin] Tag"
+          "Admin Tag"
         ]
       }
     },
@@ -2066,7 +2066,7 @@
         ],
         "summary": "Delete tags",
         "tags": [
-          "[Admin] Tag"
+          "Admin Tag"
         ]
       },
       "put": {
@@ -2150,7 +2150,7 @@
         ],
         "summary": "Update tag",
         "tags": [
-          "[Admin] Tag"
+          "Admin Tag"
         ]
       }
     },
@@ -2223,7 +2223,7 @@
         ],
         "summary": "Get types",
         "tags": [
-          "[Admin] Type"
+          "Admin Type"
         ]
       },
       "post": {
@@ -2294,7 +2294,7 @@
         ],
         "summary": "Create types",
         "tags": [
-          "[Admin] Type"
+          "Admin Type"
         ]
       }
     },
@@ -2357,7 +2357,7 @@
         ],
         "summary": "Delete types",
         "tags": [
-          "[Admin] Type"
+          "Admin Type"
         ]
       },
       "put": {
@@ -2441,7 +2441,7 @@
         ],
         "summary": "Update types",
         "tags": [
-          "[Admin] Type"
+          "Admin Type"
         ]
       }
     },
@@ -2582,7 +2582,7 @@
         ],
         "summary": "Get Channels",
         "tags": [
-          "[Admin] Channel"
+          "Admin Channel"
         ]
       }
     },
@@ -2652,7 +2652,7 @@
         ],
         "summary": "Delete Channel",
         "tags": [
-          "[Admin] Channel"
+          "Admin Channel"
         ]
       },
       "put": {
@@ -2737,7 +2737,7 @@
         ],
         "summary": "Update Channel",
         "tags": [
-          "[Admin] Channel"
+          "Admin Channel"
         ]
       }
     },
@@ -2831,7 +2831,7 @@
         ],
         "summary": "Update content to S3 bucket",
         "tags": [
-          "[Admin] Content"
+          "Admin Content"
         ]
       }
     },
@@ -2908,7 +2908,7 @@
         ],
         "summary": "Delete content",
         "tags": [
-          "[Admin] Content"
+          "Admin Content"
         ]
       },
       "put": {
@@ -3001,7 +3001,7 @@
         ],
         "summary": "Update content to a channel",
         "tags": [
-          "[Admin] Content"
+          "Admin Content"
         ]
       }
     },
@@ -3142,7 +3142,7 @@
         ],
         "summary": "Get user's generated contents",
         "tags": [
-          "[Admin] Content"
+          "Admin Content"
         ]
       }
     },
@@ -3223,7 +3223,7 @@
         ],
         "summary": "Hide/Unhide user's generated contents",
         "tags": [
-          "[Admin] Content"
+          "Admin Content"
         ]
       }
     },
@@ -3364,7 +3364,7 @@
         ],
         "summary": "Get all user groups",
         "tags": [
-          "[Admin] Group"
+          "Admin Group"
         ]
       }
     },
@@ -3434,7 +3434,7 @@
         ],
         "summary": "Delete group",
         "tags": [
-          "[Admin] Group"
+          "Admin Group"
         ]
       },
       "get": {
@@ -3505,7 +3505,7 @@
         ],
         "summary": "Get specific user group",
         "tags": [
-          "[Admin] Group"
+          "Admin Group"
         ]
       },
       "put": {
@@ -3590,7 +3590,7 @@
         ],
         "summary": "Update group",
         "tags": [
-          "[Admin] Group"
+          "Admin Group"
         ]
       }
     },
@@ -3677,7 +3677,7 @@
         ],
         "summary": "Get contents belong to a group",
         "tags": [
-          "[Admin] Group"
+          "Admin Group"
         ]
       }
     },
@@ -3872,7 +3872,7 @@
         ],
         "summary": "Search contents specific to a channel",
         "tags": [
-          "[Public] Content"
+          "Public Content"
         ]
       }
     },
@@ -3997,7 +3997,7 @@
         ],
         "summary": "Search contents",
         "tags": [
-          "[Public] Content"
+          "Public Content"
         ]
       }
     },
@@ -4068,7 +4068,7 @@
         ],
         "summary": "Get contents from followed creators",
         "tags": [
-          "[Public] Follow"
+          "Public Follow"
         ]
       }
     },
@@ -4139,7 +4139,7 @@
         ],
         "summary": "Get liked contents",
         "tags": [
-          "[Public] Like"
+          "Public Like"
         ]
       }
     },
@@ -4203,7 +4203,7 @@
         ],
         "summary": "Get content by sharecode",
         "tags": [
-          "[Public] Content"
+          "Public Content"
         ]
       }
     },
@@ -4267,7 +4267,7 @@
         ],
         "summary": "Get user specific content",
         "tags": [
-          "[Public] Content"
+          "Public Content"
         ]
       }
     },
@@ -4337,7 +4337,7 @@
         ],
         "summary": "Add unique download count to a content",
         "tags": [
-          "[Public] Download Count"
+          "Public Download Count"
         ]
       }
     },
@@ -4409,7 +4409,7 @@
         ],
         "summary": "Update like/unlike status to a content",
         "tags": [
-          "[Public] Like"
+          "Public Like"
         ]
       }
     },
@@ -4473,7 +4473,7 @@
         ],
         "summary": "Get content preview",
         "tags": [
-          "[Public] Content"
+          "Public Content"
         ]
       }
     },
@@ -4544,7 +4544,7 @@
         ],
         "summary": "Get tags",
         "tags": [
-          "[Public] Tag"
+          "Public Tag"
         ]
       }
     },
@@ -4615,7 +4615,7 @@
         ],
         "summary": "Get types",
         "tags": [
-          "[Public] Type"
+          "Public Type"
         ]
       }
     },
@@ -4686,7 +4686,7 @@
         ],
         "summary": "Get followed creators",
         "tags": [
-          "[Public] Follow"
+          "Public Follow"
         ]
       }
     },
@@ -4829,7 +4829,7 @@
         ],
         "summary": "Get Channels",
         "tags": [
-          "[Public] Channel"
+          "Public Channel"
         ]
       },
       "post": {
@@ -4902,7 +4902,7 @@
         ],
         "summary": "Create Channel",
         "tags": [
-          "[Public] Channel"
+          "Public Channel"
         ]
       }
     },
@@ -4973,7 +4973,7 @@
         ],
         "summary": "Delete Channel",
         "tags": [
-          "[Public] Channel"
+          "Public Channel"
         ]
       },
       "put": {
@@ -5059,7 +5059,7 @@
         ],
         "summary": "Update Channel",
         "tags": [
-          "[Public] Channel"
+          "Public Channel"
         ]
       }
     },
@@ -5142,7 +5142,7 @@
         ],
         "summary": "Upload content to a channel",
         "tags": [
-          "[Public] Content"
+          "Public Content"
         ]
       }
     },
@@ -5224,7 +5224,7 @@
         ],
         "summary": "Upload content to S3 bucket",
         "tags": [
-          "[Public] Content"
+          "Public Content"
         ]
       }
     },
@@ -5319,7 +5319,7 @@
         ],
         "summary": "Update content to S3 bucket",
         "tags": [
-          "[Public] Content"
+          "Public Content"
         ]
       }
     },
@@ -5397,7 +5397,7 @@
         ],
         "summary": "Delete content",
         "tags": [
-          "[Public] Content"
+          "Public Content"
         ]
       },
       "put": {
@@ -5491,7 +5491,7 @@
         ],
         "summary": "Update content to a channel",
         "tags": [
-          "[Public] Content"
+          "Public Content"
         ]
       }
     },
@@ -5634,7 +5634,7 @@
         ],
         "summary": "Get user's generated contents",
         "tags": [
-          "[Public] Content"
+          "Public Content"
         ]
       }
     },
@@ -5716,7 +5716,7 @@
         ],
         "summary": "Upload screenshots for content",
         "tags": [
-          "[Public] Content"
+          "Public Content"
         ]
       },
       "put": {
@@ -5802,7 +5802,7 @@
         ],
         "summary": "Update screenshot of content",
         "tags": [
-          "[Public] Content"
+          "Public Content"
         ]
       }
     },
@@ -5886,7 +5886,7 @@
         ],
         "summary": "Delete screenshots content",
         "tags": [
-          "[Public] Content"
+          "Public Content"
         ]
       }
     },
@@ -5964,7 +5964,7 @@
         ],
         "summary": "Update follow/unfollow status to a user",
         "tags": [
-          "[Public] Follow"
+          "Public Follow"
         ]
       }
     },
@@ -6107,7 +6107,7 @@
         ],
         "summary": "Get all user groups",
         "tags": [
-          "[Public] Group"
+          "Public Group"
         ]
       },
       "post": {
@@ -6180,7 +6180,7 @@
         ],
         "summary": "Create groups",
         "tags": [
-          "[Public] Group"
+          "Public Group"
         ]
       }
     },
@@ -6251,7 +6251,7 @@
         ],
         "summary": "Delete group",
         "tags": [
-          "[Public] Group"
+          "Public Group"
         ]
       },
       "get": {
@@ -6323,7 +6323,7 @@
         ],
         "summary": "Get user's groups",
         "tags": [
-          "[Public] Group"
+          "Public Group"
         ]
       },
       "put": {
@@ -6409,7 +6409,7 @@
         ],
         "summary": "Update group",
         "tags": [
-          "[Public] Group"
+          "Public Group"
         ]
       }
     },
@@ -6497,7 +6497,7 @@
         ],
         "summary": "Get contents belong to a group",
         "tags": [
-          "[Public] Group"
+          "Public Group"
         ]
       }
     },
@@ -6604,9 +6604,9 @@
       },
       "required": [
         "id",
-        "name",
         "namespace",
-        "userId"
+        "userId",
+        "name"
       ]
     },
     "models.ContentDownloadResponse": {
@@ -6693,23 +6693,23 @@
         }
       },
       "required": [
-        "channelId",
         "createdTime",
-        "creatorFollowState",
-        "creatorName",
-        "downloadCount",
-        "fileExtension",
         "id",
+        "namespace",
+        "channelId",
+        "userId",
+        "name",
+        "type",
+        "subType",
+        "shareCode",
+        "creatorName",
         "isHidden",
         "isOfficial",
-        "likeCount",
-        "name",
-        "namespace",
-        "shareCode",
-        "subType",
         "tags",
-        "type",
-        "userId"
+        "likeCount",
+        "creatorFollowState",
+        "downloadCount",
+        "fileExtension"
       ]
     },
     "models.ContentLikeRequest": {
@@ -6761,12 +6761,12 @@
         }
       },
       "required": [
-        "name",
-        "payload",
-        "preview",
-        "subType",
         "tags",
-        "type"
+        "name",
+        "type",
+        "subType",
+        "preview",
+        "payload"
       ]
     },
     "models.CreateContentRequestS3": {
@@ -6797,13 +6797,13 @@
         }
       },
       "required": [
-        "contentType",
-        "fileExtension",
-        "name",
         "preview",
-        "subType",
         "tags",
-        "type"
+        "name",
+        "type",
+        "subType",
+        "fileExtension",
+        "contentType"
       ]
     },
     "models.CreateContentResponse": {
@@ -6867,21 +6867,21 @@
         }
       },
       "required": [
-        "channelId",
         "createdTime",
-        "creatorName",
-        "fileExtension",
         "id",
-        "isHidden",
-        "isOfficial",
-        "name",
         "namespace",
-        "preview",
-        "shareCode",
-        "subType",
-        "tags",
+        "channelId",
+        "userId",
+        "name",
         "type",
-        "userId"
+        "subType",
+        "shareCode",
+        "creatorName",
+        "isOfficial",
+        "isHidden",
+        "preview",
+        "tags",
+        "fileExtension"
       ]
     },
     "models.CreateGroupRequest": {
@@ -6897,8 +6897,8 @@
         }
       },
       "required": [
-        "contents",
-        "name"
+        "name",
+        "contents"
       ]
     },
     "models.CreateGroupResponse": {
@@ -6926,19 +6926,19 @@
         }
       },
       "required": [
-        "contents",
-        "createdAt",
         "id",
-        "name",
+        "userId",
         "namespace",
-        "userId"
+        "name",
+        "createdAt",
+        "contents"
       ]
     },
     "models.CreateScreenshotRequest": {
       "properties": {
         "screenshots": {
           "items": {
-            "$ref": "#/definitions/models.createScreenshotRequestItem"
+            "$ref": "#/definitions/models.createScreenshotRequest"
           },
           "type": "array"
         }
@@ -7001,8 +7001,8 @@
         }
       },
       "required": [
-        "subtype",
-        "type"
+        "type",
+        "subtype"
       ]
     },
     "models.CreateTypeResponse": {
@@ -7026,8 +7026,8 @@
       "required": [
         "id",
         "namespace",
-        "subtype",
-        "type"
+        "type",
+        "subtype"
       ]
     },
     "models.CreatorFollowState": {
@@ -7040,8 +7040,8 @@
         }
       },
       "required": [
-        "state",
-        "userId"
+        "userId",
+        "state"
       ]
     },
     "models.CreatorOverviewResponse": {
@@ -7058,9 +7058,9 @@
         }
       },
       "required": [
-        "followCount",
         "id",
-        "namespace"
+        "namespace",
+        "followCount"
       ]
     },
     "models.GetContentPreviewResponse": {
@@ -7093,8 +7093,8 @@
         }
       },
       "required": [
-        "state",
-        "userId"
+        "userId",
+        "state"
       ]
     },
     "models.PaginatedContentDownloadResponse": {
@@ -7211,10 +7211,10 @@
         }
       },
       "required": [
-        "first",
-        "last",
         "next",
-        "previous"
+        "previous",
+        "first",
+        "last"
       ]
     },
     "models.PayloadURL": {
@@ -7253,11 +7253,11 @@
         }
       },
       "required": [
-        "description",
-        "fileExtension",
         "screenshotId",
         "source",
-        "url"
+        "url",
+        "description",
+        "fileExtension"
       ]
     },
     "models.UpdateScreenshotRequest": {
@@ -7306,11 +7306,11 @@
         }
       },
       "required": [
-        "followStatus",
-        "userId"
+        "userId",
+        "followStatus"
       ]
     },
-    "models.createScreenshotRequestItem": {
+    "models.createScreenshotRequest": {
       "properties": {
         "contentType": {
           "type": "string"
@@ -7331,9 +7331,9 @@
         }
       },
       "required": [
-        "contentType",
         "description",
-        "fileExtension"
+        "fileExtension",
+        "contentType"
       ]
     },
     "models.updateScreenshot": {
@@ -7346,8 +7346,8 @@
         }
       },
       "required": [
-        "description",
-        "screenshotId"
+        "screenshotId",
+        "description"
       ]
     },
     "response.Error": {

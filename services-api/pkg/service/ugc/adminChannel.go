@@ -8,7 +8,7 @@ import (
 	"encoding/json"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient"
-	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/nr_admin_channel"
+	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/admin_channel"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclientmodels"
 	"github.com/go-openapi/runtime/client"
 	"github.com/sirupsen/logrus"
@@ -20,13 +20,13 @@ type AdminChannelService struct {
 }
 
 // AdminCreateChannel creates channel
-func (u *AdminChannelService) AdminCreateChannel(input *nr_admin_channel.AdminCreateChannelParams) (*ugcclientmodels.ModelsChannelResponse, error) {
+func (u *AdminChannelService) AdminCreateChannel(input *admin_channel.AdminCreateChannelParams) (*ugcclientmodels.ModelsChannelResponse, error) {
 	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	created, unauthorized, notFound, internalServer, err := u.Client.NrAdminChannel.AdminCreateChannel(input, client.BearerToken(*token.AccessToken))
+	created, unauthorized, notFound, internalServer, err := u.Client.AdminChannel.AdminCreateChannel(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -50,13 +50,13 @@ func (u *AdminChannelService) AdminCreateChannel(input *nr_admin_channel.AdminCr
 }
 
 // AdminDeleteChannel deletes channel
-func (u *AdminChannelService) AdminDeleteChannel(input *nr_admin_channel.AdminDeleteChannelParams) error {
+func (u *AdminChannelService) AdminDeleteChannel(input *admin_channel.AdminDeleteChannelParams) error {
 	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return err
 	}
-	_, unauthorized, notFound, internalServer, err := u.Client.NrAdminChannel.AdminDeleteChannel(input, client.BearerToken(*token.AccessToken))
+	_, unauthorized, notFound, internalServer, err := u.Client.AdminChannel.AdminDeleteChannel(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -80,13 +80,13 @@ func (u *AdminChannelService) AdminDeleteChannel(input *nr_admin_channel.AdminDe
 }
 
 // AdminGetChannel gets channels
-func (u *AdminChannelService) AdminGetChannel(input *nr_admin_channel.AdminGetChannelParams) (*ugcclientmodels.ModelsPaginatedGetChannelResponse, error) {
+func (u *AdminChannelService) AdminGetChannel(input *admin_channel.AdminGetChannelParams) (*ugcclientmodels.ModelsPaginatedGetChannelResponse, error) {
 	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	ok, unauthorized, notFound, internalServer, err := u.Client.NrAdminChannel.AdminGetChannel(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, notFound, internalServer, err := u.Client.AdminChannel.AdminGetChannel(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -110,13 +110,13 @@ func (u *AdminChannelService) AdminGetChannel(input *nr_admin_channel.AdminGetCh
 }
 
 // AdminUpdateChannel updates channel
-func (u *AdminChannelService) AdminUpdateChannel(input *nr_admin_channel.AdminUpdateChannelParams) (*ugcclientmodels.ModelsChannelResponse, error) {
+func (u *AdminChannelService) AdminUpdateChannel(input *admin_channel.AdminUpdateChannelParams) (*ugcclientmodels.ModelsChannelResponse, error) {
 	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	ok, badRequest, unauthorized, notFound, internalServer, err := u.Client.NrAdminChannel.AdminUpdateChannel(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, notFound, internalServer, err := u.Client.AdminChannel.AdminUpdateChannel(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -145,13 +145,13 @@ func (u *AdminChannelService) AdminUpdateChannel(input *nr_admin_channel.AdminUp
 }
 
 // SingleAdminDeleteChannel deletes channel
-func (u *AdminChannelService) SingleAdminDeleteChannel(input *nr_admin_channel.SingleAdminDeleteChannelParams) error {
+func (u *AdminChannelService) SingleAdminDeleteChannel(input *admin_channel.SingleAdminDeleteChannelParams) error {
 	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return err
 	}
-	_, unauthorized, notFound, internalServer, err := u.Client.NrAdminChannel.SingleAdminDeleteChannel(input, client.BearerToken(*token.AccessToken))
+	_, unauthorized, notFound, internalServer, err := u.Client.AdminChannel.SingleAdminDeleteChannel(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -175,13 +175,13 @@ func (u *AdminChannelService) SingleAdminDeleteChannel(input *nr_admin_channel.S
 }
 
 // SingleAdminGetChannel gets channel
-func (u *AdminChannelService) SingleAdminGetChannel(input *nr_admin_channel.SingleAdminGetChannelParams) (*ugcclientmodels.ModelsPaginatedGetChannelResponse, error) {
+func (u *AdminChannelService) SingleAdminGetChannel(input *admin_channel.SingleAdminGetChannelParams) (*ugcclientmodels.ModelsPaginatedGetChannelResponse, error) {
 	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	ok, unauthorized, notFound, internalServer, err := u.Client.NrAdminChannel.SingleAdminGetChannel(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, notFound, internalServer, err := u.Client.AdminChannel.SingleAdminGetChannel(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -205,13 +205,13 @@ func (u *AdminChannelService) SingleAdminGetChannel(input *nr_admin_channel.Sing
 }
 
 // SingleAdminUpdateChannel updates channel
-func (u *AdminChannelService) SingleAdminUpdateChannel(input *nr_admin_channel.SingleAdminUpdateChannelParams) (*ugcclientmodels.ModelsChannelResponse, error) {
+func (u *AdminChannelService) SingleAdminUpdateChannel(input *admin_channel.SingleAdminUpdateChannelParams) (*ugcclientmodels.ModelsChannelResponse, error) {
 	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	ok, badRequest, unauthorized, notFound, internalServer, err := u.Client.NrAdminChannel.SingleAdminUpdateChannel(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, notFound, internalServer, err := u.Client.AdminChannel.SingleAdminUpdateChannel(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))

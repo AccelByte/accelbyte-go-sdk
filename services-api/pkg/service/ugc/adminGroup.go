@@ -8,7 +8,7 @@ import (
 	"encoding/json"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient"
-	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/nr_admin_group"
+	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/admin_group"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclientmodels"
 	"github.com/go-openapi/runtime/client"
 	"github.com/sirupsen/logrus"
@@ -20,13 +20,13 @@ type AdminGroupService struct {
 }
 
 // AdminCreateGroup creates groups
-func (u *AdminGroupService) AdminCreateGroup(input *nr_admin_group.AdminCreateGroupParams) (*ugcclientmodels.ModelsCreateGroupResponse, error) {
+func (u *AdminGroupService) AdminCreateGroup(input *admin_group.AdminCreateGroupParams) (*ugcclientmodels.ModelsCreateGroupResponse, error) {
 	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	created, badRequest, unauthorized, internalServer, err := u.Client.NrAdminGroup.AdminCreateGroup(input, client.BearerToken(*token.AccessToken))
+	created, badRequest, unauthorized, internalServer, err := u.Client.AdminGroup.AdminCreateGroup(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -50,13 +50,13 @@ func (u *AdminGroupService) AdminCreateGroup(input *nr_admin_group.AdminCreateGr
 }
 
 // AdminDeleteGroup deletes group
-func (u *AdminGroupService) AdminDeleteGroup(input *nr_admin_group.AdminDeleteGroupParams) error {
+func (u *AdminGroupService) AdminDeleteGroup(input *admin_group.AdminDeleteGroupParams) error {
 	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return err
 	}
-	_, badRequest, unauthorized, internalServer, err := u.Client.NrAdminGroup.AdminDeleteGroup(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, internalServer, err := u.Client.AdminGroup.AdminDeleteGroup(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -80,13 +80,13 @@ func (u *AdminGroupService) AdminDeleteGroup(input *nr_admin_group.AdminDeleteGr
 }
 
 // AdminGetAllGroups gets all user groups
-func (u *AdminGroupService) AdminGetAllGroups(input *nr_admin_group.AdminGetAllGroupsParams) (*ugcclientmodels.ModelsPaginatedGroupResponse, error) {
+func (u *AdminGroupService) AdminGetAllGroups(input *admin_group.AdminGetAllGroupsParams) (*ugcclientmodels.ModelsPaginatedGroupResponse, error) {
 	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	ok, unauthorized, notFound, internalServer, err := u.Client.NrAdminGroup.AdminGetAllGroups(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, notFound, internalServer, err := u.Client.AdminGroup.AdminGetAllGroups(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -110,13 +110,13 @@ func (u *AdminGroupService) AdminGetAllGroups(input *nr_admin_group.AdminGetAllG
 }
 
 // AdminGetGroup gets specific user group
-func (u *AdminGroupService) AdminGetGroup(input *nr_admin_group.AdminGetGroupParams) (*ugcclientmodels.ModelsCreateGroupResponse, error) {
+func (u *AdminGroupService) AdminGetGroup(input *admin_group.AdminGetGroupParams) (*ugcclientmodels.ModelsCreateGroupResponse, error) {
 	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	ok, unauthorized, notFound, internalServer, err := u.Client.NrAdminGroup.AdminGetGroup(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, notFound, internalServer, err := u.Client.AdminGroup.AdminGetGroup(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -140,13 +140,13 @@ func (u *AdminGroupService) AdminGetGroup(input *nr_admin_group.AdminGetGroupPar
 }
 
 // AdminGetGroupContents gets contents belong to a group
-func (u *AdminGroupService) AdminGetGroupContents(input *nr_admin_group.AdminGetGroupContentsParams) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
+func (u *AdminGroupService) AdminGetGroupContents(input *admin_group.AdminGetGroupContentsParams) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
 	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	ok, unauthorized, notFound, internalServer, err := u.Client.NrAdminGroup.AdminGetGroupContents(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, notFound, internalServer, err := u.Client.AdminGroup.AdminGetGroupContents(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -170,13 +170,13 @@ func (u *AdminGroupService) AdminGetGroupContents(input *nr_admin_group.AdminGet
 }
 
 // AdminUpdateGroup updates group
-func (u *AdminGroupService) AdminUpdateGroup(input *nr_admin_group.AdminUpdateGroupParams) (*ugcclientmodels.ModelsCreateGroupResponse, error) {
+func (u *AdminGroupService) AdminUpdateGroup(input *admin_group.AdminUpdateGroupParams) (*ugcclientmodels.ModelsCreateGroupResponse, error) {
 	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	ok, badRequest, unauthorized, notFound, internalServer, err := u.Client.NrAdminGroup.AdminUpdateGroup(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, notFound, internalServer, err := u.Client.AdminGroup.AdminUpdateGroup(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -205,13 +205,13 @@ func (u *AdminGroupService) AdminUpdateGroup(input *nr_admin_group.AdminUpdateGr
 }
 
 // SingleAdminDeleteGroup deletes group
-func (u *AdminGroupService) SingleAdminDeleteGroup(input *nr_admin_group.SingleAdminDeleteGroupParams) error {
+func (u *AdminGroupService) SingleAdminDeleteGroup(input *admin_group.SingleAdminDeleteGroupParams) error {
 	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return err
 	}
-	_, unauthorized, notFound, internalServer, err := u.Client.NrAdminGroup.SingleAdminDeleteGroup(input, client.BearerToken(*token.AccessToken))
+	_, unauthorized, notFound, internalServer, err := u.Client.AdminGroup.SingleAdminDeleteGroup(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -235,13 +235,13 @@ func (u *AdminGroupService) SingleAdminDeleteGroup(input *nr_admin_group.SingleA
 }
 
 // SingleAdminGetAllGroups gets all user groups
-func (u *AdminGroupService) SingleAdminGetAllGroups(input *nr_admin_group.SingleAdminGetAllGroupsParams) (*ugcclientmodels.ModelsPaginatedGroupResponse, error) {
+func (u *AdminGroupService) SingleAdminGetAllGroups(input *admin_group.SingleAdminGetAllGroupsParams) (*ugcclientmodels.ModelsPaginatedGroupResponse, error) {
 	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	ok, unauthorized, notFound, internalServer, err := u.Client.NrAdminGroup.SingleAdminGetAllGroups(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, notFound, internalServer, err := u.Client.AdminGroup.SingleAdminGetAllGroups(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -265,13 +265,13 @@ func (u *AdminGroupService) SingleAdminGetAllGroups(input *nr_admin_group.Single
 }
 
 // SingleAdminGetGroup gets specific user group
-func (u *AdminGroupService) SingleAdminGetGroup(input *nr_admin_group.SingleAdminGetGroupParams) (*ugcclientmodels.ModelsCreateGroupResponse, error) {
+func (u *AdminGroupService) SingleAdminGetGroup(input *admin_group.SingleAdminGetGroupParams) (*ugcclientmodels.ModelsCreateGroupResponse, error) {
 	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	ok, unauthorized, notFound, internalServer, err := u.Client.NrAdminGroup.SingleAdminGetGroup(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, notFound, internalServer, err := u.Client.AdminGroup.SingleAdminGetGroup(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -295,13 +295,13 @@ func (u *AdminGroupService) SingleAdminGetGroup(input *nr_admin_group.SingleAdmi
 }
 
 // SingleAdminGetGroupContents gets contents belong to a group
-func (u *AdminGroupService) SingleAdminGetGroupContents(input *nr_admin_group.SingleAdminGetGroupContentsParams) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
+func (u *AdminGroupService) SingleAdminGetGroupContents(input *admin_group.SingleAdminGetGroupContentsParams) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
 	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	ok, unauthorized, notFound, internalServer, err := u.Client.NrAdminGroup.SingleAdminGetGroupContents(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, notFound, internalServer, err := u.Client.AdminGroup.SingleAdminGetGroupContents(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -325,13 +325,13 @@ func (u *AdminGroupService) SingleAdminGetGroupContents(input *nr_admin_group.Si
 }
 
 // SingleAdminUpdateGroup updates group
-func (u *AdminGroupService) SingleAdminUpdateGroup(input *nr_admin_group.SingleAdminUpdateGroupParams) (*ugcclientmodels.ModelsCreateGroupResponse, error) {
+func (u *AdminGroupService) SingleAdminUpdateGroup(input *admin_group.SingleAdminUpdateGroupParams) (*ugcclientmodels.ModelsCreateGroupResponse, error) {
 	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	ok, badRequest, unauthorized, notFound, internalServer, err := u.Client.NrAdminGroup.SingleAdminUpdateGroup(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, notFound, internalServer, err := u.Client.AdminGroup.SingleAdminUpdateGroup(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))

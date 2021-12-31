@@ -8,7 +8,7 @@ import (
 	"encoding/json"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient"
-	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/nr_admin_tag"
+	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/admin_tag"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclientmodels"
 	"github.com/go-openapi/runtime/client"
 	"github.com/sirupsen/logrus"
@@ -20,13 +20,13 @@ type AdminTagService struct {
 }
 
 // AdminCreateTag creates tags
-func (a *AdminTagService) AdminCreateTag(input *nr_admin_tag.AdminCreateTagParams) (*ugcclientmodels.ModelsCreateTagResponse, error) {
+func (a *AdminTagService) AdminCreateTag(input *admin_tag.AdminCreateTagParams) (*ugcclientmodels.ModelsCreateTagResponse, error) {
 	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	created, badRequest, unauthorized, conflict, internalServer, err := a.Client.NrAdminTag.AdminCreateTag(input, client.BearerToken(*token.AccessToken))
+	created, badRequest, unauthorized, conflict, internalServer, err := a.Client.AdminTag.AdminCreateTag(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -55,13 +55,13 @@ func (a *AdminTagService) AdminCreateTag(input *nr_admin_tag.AdminCreateTagParam
 }
 
 // AdminDeleteTag deletes tags
-func (a *AdminTagService) AdminDeleteTag(input *nr_admin_tag.AdminDeleteTagParams) error {
+func (a *AdminTagService) AdminDeleteTag(input *admin_tag.AdminDeleteTagParams) error {
 	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return err
 	}
-	_, unauthorized, notFound, internalServer, err := a.Client.NrAdminTag.AdminDeleteTag(input, client.BearerToken(*token.AccessToken))
+	_, unauthorized, notFound, internalServer, err := a.Client.AdminTag.AdminDeleteTag(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -85,13 +85,13 @@ func (a *AdminTagService) AdminDeleteTag(input *nr_admin_tag.AdminDeleteTagParam
 }
 
 // AdminGetTag gets tags
-func (a *AdminTagService) AdminGetTag(input *nr_admin_tag.AdminGetTagParams) (*ugcclientmodels.ModelsPaginatedGetTagResponse, error) {
+func (a *AdminTagService) AdminGetTag(input *admin_tag.AdminGetTagParams) (*ugcclientmodels.ModelsPaginatedGetTagResponse, error) {
 	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	ok, unauthorized, notFound, internalServer, err := a.Client.NrAdminTag.AdminGetTag(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, notFound, internalServer, err := a.Client.AdminTag.AdminGetTag(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -115,13 +115,13 @@ func (a *AdminTagService) AdminGetTag(input *nr_admin_tag.AdminGetTagParams) (*u
 }
 
 // AdminUpdateTag updates tag
-func (a *AdminTagService) AdminUpdateTag(input *nr_admin_tag.AdminUpdateTagParams) (*ugcclientmodels.ModelsCreateTagResponse, error) {
+func (a *AdminTagService) AdminUpdateTag(input *admin_tag.AdminUpdateTagParams) (*ugcclientmodels.ModelsCreateTagResponse, error) {
 	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	ok, badRequest, unauthorized, notFound, conflict, internalServer, err := a.Client.NrAdminTag.AdminUpdateTag(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, notFound, conflict, internalServer, err := a.Client.AdminTag.AdminUpdateTag(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))

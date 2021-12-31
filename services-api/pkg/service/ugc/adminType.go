@@ -8,7 +8,7 @@ import (
 	"encoding/json"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient"
-	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/nr_admin_type"
+	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/admin_type"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclientmodels"
 	"github.com/go-openapi/runtime/client"
 	"github.com/sirupsen/logrus"
@@ -20,13 +20,13 @@ type AdminTypeService struct {
 }
 
 // AdminCreateType creates types
-func (a *AdminTypeService) AdminCreateType(input *nr_admin_type.AdminCreateTypeParams) (*ugcclientmodels.ModelsCreateTypeResponse, error) {
+func (a *AdminTypeService) AdminCreateType(input *admin_type.AdminCreateTypeParams) (*ugcclientmodels.ModelsCreateTypeResponse, error) {
 	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	created, badRequest, unauthorized, conflict, internalServer, err := a.Client.NrAdminType.AdminCreateType(input, client.BearerToken(*token.AccessToken))
+	created, badRequest, unauthorized, conflict, internalServer, err := a.Client.AdminType.AdminCreateType(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -55,13 +55,13 @@ func (a *AdminTypeService) AdminCreateType(input *nr_admin_type.AdminCreateTypeP
 }
 
 // AdminDeleteType deletes types
-func (a *AdminTypeService) AdminDeleteType(input *nr_admin_type.AdminDeleteTypeParams) error {
+func (a *AdminTypeService) AdminDeleteType(input *admin_type.AdminDeleteTypeParams) error {
 	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return err
 	}
-	_, unauthorized, notFound, internalServer, err := a.Client.NrAdminType.AdminDeleteType(input, client.BearerToken(*token.AccessToken))
+	_, unauthorized, notFound, internalServer, err := a.Client.AdminType.AdminDeleteType(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -85,13 +85,13 @@ func (a *AdminTypeService) AdminDeleteType(input *nr_admin_type.AdminDeleteTypeP
 }
 
 // AdminGetType gets types
-func (a *AdminTypeService) AdminGetType(input *nr_admin_type.AdminGetTypeParams) (*ugcclientmodels.ModelsPaginatedGetTypeResponse, error) {
+func (a *AdminTypeService) AdminGetType(input *admin_type.AdminGetTypeParams) (*ugcclientmodels.ModelsPaginatedGetTypeResponse, error) {
 	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	ok, unauthorized, notFound, internalServer, err := a.Client.NrAdminType.AdminGetType(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, notFound, internalServer, err := a.Client.AdminType.AdminGetType(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -115,13 +115,13 @@ func (a *AdminTypeService) AdminGetType(input *nr_admin_type.AdminGetTypeParams)
 }
 
 // AdminUpdateType updates type
-func (a *AdminTypeService) AdminUpdateType(input *nr_admin_type.AdminUpdateTypeParams) (*ugcclientmodels.ModelsCreateTypeResponse, error) {
+func (a *AdminTypeService) AdminUpdateType(input *admin_type.AdminUpdateTypeParams) (*ugcclientmodels.ModelsCreateTypeResponse, error) {
 	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	ok, badRequest, unauthorized, notFound, conflict, internalServer, err := a.Client.NrAdminType.AdminUpdateType(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, notFound, conflict, internalServer, err := a.Client.AdminType.AdminUpdateType(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))

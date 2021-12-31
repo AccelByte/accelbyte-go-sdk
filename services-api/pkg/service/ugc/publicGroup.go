@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient"
-	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/nr_public_group"
+	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/public_group"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclientmodels"
 	"github.com/go-openapi/runtime/client"
 	"github.com/sirupsen/logrus"
@@ -15,13 +15,13 @@ type PublicGroupService struct {
 	TokenRepository repository.TokenRepository
 }
 
-func (u *PublicGroupService) CreateGroup(input *nr_public_group.CreateGroupParams) (*ugcclientmodels.ModelsCreateGroupResponse, error) {
+func (u *PublicGroupService) CreateGroup(input *public_group.CreateGroupParams) (*ugcclientmodels.ModelsCreateGroupResponse, error) {
 	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	ok, unauthorized, notFound, internalServer, err := u.Client.NrPublicGroup.CreateGroup(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, notFound, internalServer, err := u.Client.PublicGroup.CreateGroup(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -44,13 +44,13 @@ func (u *PublicGroupService) CreateGroup(input *nr_public_group.CreateGroupParam
 	return ok.GetPayload(), nil
 }
 
-func (u *PublicGroupService) DeleteGroup(input *nr_public_group.DeleteGroupParams) error {
+func (u *PublicGroupService) DeleteGroup(input *public_group.DeleteGroupParams) error {
 	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return err
 	}
-	_, unauthorized, notFound, internalServer, err := u.Client.NrPublicGroup.DeleteGroup(input, client.BearerToken(*token.AccessToken))
+	_, unauthorized, notFound, internalServer, err := u.Client.PublicGroup.DeleteGroup(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -73,13 +73,13 @@ func (u *PublicGroupService) DeleteGroup(input *nr_public_group.DeleteGroupParam
 	return nil
 }
 
-func (u *PublicGroupService) GetGroup(input *nr_public_group.GetGroupParams) (*ugcclientmodels.ModelsCreateGroupResponse, error) {
+func (u *PublicGroupService) GetGroup(input *public_group.GetGroupParams) (*ugcclientmodels.ModelsCreateGroupResponse, error) {
 	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	ok, unauthorized, notFound, internalServer, err := u.Client.NrPublicGroup.GetGroup(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, notFound, internalServer, err := u.Client.PublicGroup.GetGroup(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -102,13 +102,13 @@ func (u *PublicGroupService) GetGroup(input *nr_public_group.GetGroupParams) (*u
 	return ok.GetPayload(), nil
 }
 
-func (u *PublicGroupService) GetGroupContent(input *nr_public_group.GetGroupContentParams) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
+func (u *PublicGroupService) GetGroupContent(input *public_group.GetGroupContentParams) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
 	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	ok, unauthorized, notFound, internalServer, err := u.Client.NrPublicGroup.GetGroupContent(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, notFound, internalServer, err := u.Client.PublicGroup.GetGroupContent(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -131,13 +131,13 @@ func (u *PublicGroupService) GetGroupContent(input *nr_public_group.GetGroupCont
 	return ok.GetPayload(), nil
 }
 
-func (u *PublicGroupService) GetGroups(input *nr_public_group.GetGroupsParams) (*ugcclientmodels.ModelsPaginatedGroupResponse, error) {
+func (u *PublicGroupService) GetGroups(input *public_group.GetGroupsParams) (*ugcclientmodels.ModelsPaginatedGroupResponse, error) {
 	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	ok, unauthorized, notFound, internalServer, err := u.Client.NrPublicGroup.GetGroups(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, notFound, internalServer, err := u.Client.PublicGroup.GetGroups(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
@@ -160,13 +160,13 @@ func (u *PublicGroupService) GetGroups(input *nr_public_group.GetGroupsParams) (
 	return ok.GetPayload(), nil
 }
 
-func (u *PublicGroupService) UpdateGroup(input *nr_public_group.UpdateGroupParams) (*ugcclientmodels.ModelsCreateGroupResponse, error) {
+func (u *PublicGroupService) UpdateGroup(input *public_group.UpdateGroupParams) (*ugcclientmodels.ModelsCreateGroupResponse, error) {
 	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Error(err)
 		return nil, err
 	}
-	ok, badRequest, unauthorized, notFound, internalServer, err := u.Client.NrPublicGroup.UpdateGroup(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, notFound, internalServer, err := u.Client.PublicGroup.UpdateGroup(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))

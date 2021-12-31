@@ -6,7 +6,7 @@ package ugcclientmodels
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"strconv"
+	"encoding/json"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
@@ -16,19 +16,36 @@ import (
 
 // ModelsCreateScreenshotRequest models create screenshot request
 //
-// swagger:model models.CreateScreenshotRequest
+// swagger:model models.createScreenshotRequest
 type ModelsCreateScreenshotRequest struct {
 
-	// screenshots
+	// content type
 	// Required: true
-	Screenshots []*ModelsCreateScreenshotRequestItem `json:"screenshots"`
+	ContentType *string `json:"contentType"`
+
+	// description
+	// Required: true
+	Description *string `json:"description"`
+
+	// file extension
+	// Required: true
+	// Enum: [pjp jpg jpeg jfif bmp png]
+	FileExtension *string `json:"fileExtension"`
 }
 
 // Validate validates this models create screenshot request
 func (m *ModelsCreateScreenshotRequest) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateScreenshots(formats); err != nil {
+	if err := m.validateContentType(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateDescription(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateFileExtension(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -38,26 +55,74 @@ func (m *ModelsCreateScreenshotRequest) Validate(formats strfmt.Registry) error 
 	return nil
 }
 
-func (m *ModelsCreateScreenshotRequest) validateScreenshots(formats strfmt.Registry) error {
+func (m *ModelsCreateScreenshotRequest) validateContentType(formats strfmt.Registry) error {
 
-	if err := validate.Required("screenshots", "body", m.Screenshots); err != nil {
+	if err := validate.Required("contentType", "body", m.ContentType); err != nil {
 		return err
 	}
 
-	for i := 0; i < len(m.Screenshots); i++ {
-		if swag.IsZero(m.Screenshots[i]) { // not required
-			continue
-		}
+	return nil
+}
 
-		if m.Screenshots[i] != nil {
-			if err := m.Screenshots[i].Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("screenshots" + "." + strconv.Itoa(i))
-				}
-				return err
-			}
-		}
+func (m *ModelsCreateScreenshotRequest) validateDescription(formats strfmt.Registry) error {
 
+	if err := validate.Required("description", "body", m.Description); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+var modelsCreateScreenshotRequestTypeFileExtensionPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["pjp","jpg","jpeg","jfif","bmp","png"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		modelsCreateScreenshotRequestTypeFileExtensionPropEnum = append(modelsCreateScreenshotRequestTypeFileExtensionPropEnum, v)
+	}
+}
+
+const (
+
+	// ModelsCreateScreenshotRequestFileExtensionPjp captures enum value "pjp"
+	ModelsCreateScreenshotRequestFileExtensionPjp string = "pjp"
+
+	// ModelsCreateScreenshotRequestFileExtensionJpg captures enum value "jpg"
+	ModelsCreateScreenshotRequestFileExtensionJpg string = "jpg"
+
+	// ModelsCreateScreenshotRequestFileExtensionJpeg captures enum value "jpeg"
+	ModelsCreateScreenshotRequestFileExtensionJpeg string = "jpeg"
+
+	// ModelsCreateScreenshotRequestFileExtensionJfif captures enum value "jfif"
+	ModelsCreateScreenshotRequestFileExtensionJfif string = "jfif"
+
+	// ModelsCreateScreenshotRequestFileExtensionBmp captures enum value "bmp"
+	ModelsCreateScreenshotRequestFileExtensionBmp string = "bmp"
+
+	// ModelsCreateScreenshotRequestFileExtensionPng captures enum value "png"
+	ModelsCreateScreenshotRequestFileExtensionPng string = "png"
+)
+
+// prop value enum
+func (m *ModelsCreateScreenshotRequest) validateFileExtensionEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, modelsCreateScreenshotRequestTypeFileExtensionPropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *ModelsCreateScreenshotRequest) validateFileExtension(formats strfmt.Registry) error {
+
+	if err := validate.Required("fileExtension", "body", m.FileExtension); err != nil {
+		return err
+	}
+
+	// value enum
+	if err := m.validateFileExtensionEnum("fileExtension", "body", *m.FileExtension); err != nil {
+		return err
 	}
 
 	return nil

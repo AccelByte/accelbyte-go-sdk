@@ -13,20 +13,20 @@ import (
 	httptransport "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
+	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/admin_channel"
+	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/admin_content"
+	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/admin_group"
+	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/admin_tag"
+	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/admin_type"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/anonymization"
-	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/nr_admin_channel"
-	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/nr_admin_content"
-	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/nr_admin_group"
-	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/nr_admin_tag"
-	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/nr_admin_type"
-	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/nr_public_channel"
-	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/nr_public_content"
-	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/nr_public_download_count"
-	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/nr_public_follow"
-	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/nr_public_group"
-	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/nr_public_like"
-	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/nr_public_tag"
-	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/nr_public_type"
+	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/public_channel"
+	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/public_content"
+	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/public_download_count"
+	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/public_follow"
+	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/public_group"
+	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/public_like"
+	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/public_tag"
+	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/public_type"
 )
 
 // Default justice ugc service HTTP client.
@@ -71,20 +71,20 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry) *JusticeUgc
 
 	cli := new(JusticeUgcService)
 	cli.Transport = transport
+	cli.AdminChannel = admin_channel.New(transport, formats)
+	cli.AdminContent = admin_content.New(transport, formats)
+	cli.AdminGroup = admin_group.New(transport, formats)
+	cli.AdminTag = admin_tag.New(transport, formats)
+	cli.AdminType = admin_type.New(transport, formats)
 	cli.Anonymization = anonymization.New(transport, formats)
-	cli.NrAdminChannel = nr_admin_channel.New(transport, formats)
-	cli.NrAdminContent = nr_admin_content.New(transport, formats)
-	cli.NrAdminGroup = nr_admin_group.New(transport, formats)
-	cli.NrAdminTag = nr_admin_tag.New(transport, formats)
-	cli.NrAdminType = nr_admin_type.New(transport, formats)
-	cli.NrPublicChannel = nr_public_channel.New(transport, formats)
-	cli.NrPublicContent = nr_public_content.New(transport, formats)
-	cli.NrPublicDownloadCount = nr_public_download_count.New(transport, formats)
-	cli.NrPublicFollow = nr_public_follow.New(transport, formats)
-	cli.NrPublicGroup = nr_public_group.New(transport, formats)
-	cli.NrPublicLike = nr_public_like.New(transport, formats)
-	cli.NrPublicTag = nr_public_tag.New(transport, formats)
-	cli.NrPublicType = nr_public_type.New(transport, formats)
+	cli.PublicChannel = public_channel.New(transport, formats)
+	cli.PublicContent = public_content.New(transport, formats)
+	cli.PublicDownloadCount = public_download_count.New(transport, formats)
+	cli.PublicFollow = public_follow.New(transport, formats)
+	cli.PublicGroup = public_group.New(transport, formats)
+	cli.PublicLike = public_like.New(transport, formats)
+	cli.PublicTag = public_tag.New(transport, formats)
+	cli.PublicType = public_type.New(transport, formats)
 	return cli
 }
 
@@ -143,33 +143,33 @@ func (cfg *TransportConfig) WithSchemes(schemes []string) *TransportConfig {
 
 // JusticeUgcService is a client for justice ugc service
 type JusticeUgcService struct {
+	AdminChannel admin_channel.ClientService
+
+	AdminContent admin_content.ClientService
+
+	AdminGroup admin_group.ClientService
+
+	AdminTag admin_tag.ClientService
+
+	AdminType admin_type.ClientService
+
 	Anonymization anonymization.ClientService
 
-	NrAdminChannel nr_admin_channel.ClientService
+	PublicChannel public_channel.ClientService
 
-	NrAdminContent nr_admin_content.ClientService
+	PublicContent public_content.ClientService
 
-	NrAdminGroup nr_admin_group.ClientService
+	PublicDownloadCount public_download_count.ClientService
 
-	NrAdminTag nr_admin_tag.ClientService
+	PublicFollow public_follow.ClientService
 
-	NrAdminType nr_admin_type.ClientService
+	PublicGroup public_group.ClientService
 
-	NrPublicChannel nr_public_channel.ClientService
+	PublicLike public_like.ClientService
 
-	NrPublicContent nr_public_content.ClientService
+	PublicTag public_tag.ClientService
 
-	NrPublicDownloadCount nr_public_download_count.ClientService
-
-	NrPublicFollow nr_public_follow.ClientService
-
-	NrPublicGroup nr_public_group.ClientService
-
-	NrPublicLike nr_public_like.ClientService
-
-	NrPublicTag nr_public_tag.ClientService
-
-	NrPublicType nr_public_type.ClientService
+	PublicType public_type.ClientService
 
 	Transport runtime.ClientTransport
 }
@@ -177,18 +177,18 @@ type JusticeUgcService struct {
 // SetTransport changes the transport on the client and all its subresources
 func (c *JusticeUgcService) SetTransport(transport runtime.ClientTransport) {
 	c.Transport = transport
+	c.AdminChannel.SetTransport(transport)
+	c.AdminContent.SetTransport(transport)
+	c.AdminGroup.SetTransport(transport)
+	c.AdminTag.SetTransport(transport)
+	c.AdminType.SetTransport(transport)
 	c.Anonymization.SetTransport(transport)
-	c.NrAdminChannel.SetTransport(transport)
-	c.NrAdminContent.SetTransport(transport)
-	c.NrAdminGroup.SetTransport(transport)
-	c.NrAdminTag.SetTransport(transport)
-	c.NrAdminType.SetTransport(transport)
-	c.NrPublicChannel.SetTransport(transport)
-	c.NrPublicContent.SetTransport(transport)
-	c.NrPublicDownloadCount.SetTransport(transport)
-	c.NrPublicFollow.SetTransport(transport)
-	c.NrPublicGroup.SetTransport(transport)
-	c.NrPublicLike.SetTransport(transport)
-	c.NrPublicTag.SetTransport(transport)
-	c.NrPublicType.SetTransport(transport)
+	c.PublicChannel.SetTransport(transport)
+	c.PublicContent.SetTransport(transport)
+	c.PublicDownloadCount.SetTransport(transport)
+	c.PublicFollow.SetTransport(transport)
+	c.PublicGroup.SetTransport(transport)
+	c.PublicLike.SetTransport(transport)
+	c.PublicTag.SetTransport(transport)
+	c.PublicType.SetTransport(transport)
 }

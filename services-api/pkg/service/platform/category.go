@@ -1,13 +1,17 @@
+// Copyright (c) 2018 - 2021
+// AccelByte Inc. All Rights Reserved.
+// This is licensed software from AccelByte Inc, for limitations
+// and restrictions contact your company contract manager.
+
 package platform
 
 import (
-	"encoding/json"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/category"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
-	"github.com/sirupsen/logrus"
 )
 
 type CategoryService struct {
@@ -15,173 +19,130 @@ type CategoryService struct {
 	TokenRepository repository.TokenRepository
 }
 
-func (c *CategoryService) CreateCategory(input *category.CreateCategoryParams) (*platformclientmodels.FullCategoryInfo, error) {
-	token, err := c.TokenRepository.GetToken()
+func (c *CategoryService) GetRootCategories(input *category.GetRootCategoriesParams) ([]*platformclientmodels.FullCategoryInfo, error) {
+	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, notFound, conflict, unprocessableEntity, err := c.Client.Category.CreateCategory(input, client.BearerToken(*token.AccessToken))
-	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, notFound
-	}
-	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, badRequest
-	}
-	if conflict != nil {
-		errorMsg, _ := json.Marshal(*conflict.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, conflict
-	}
-	if unprocessableEntity != nil {
-		errorMsg, _ := json.Marshal(*unprocessableEntity.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, unprocessableEntity
-	}
+	ok, err := c.Client.Category.GetRootCategories(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
-		logrus.Error(err)
-		return nil, err
-	}
-	return created.GetPayload(), nil
-}
-
-func (c *CategoryService) DeleteCategory(input *category.DeleteCategoryParams) (*platformclientmodels.FullCategoryInfo, error) {
-	token, err := c.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, notFound, conflict, err := c.Client.Category.DeleteCategory(input, client.BearerToken(*token.AccessToken))
-	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, notFound
-	}
-	if conflict != nil {
-		errorMsg, _ := json.Marshal(*conflict.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, conflict
-	}
-	if err != nil {
-		logrus.Error(err)
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (c *CategoryService) DownloadCategories(input *category.DownloadCategoriesParams) ([]*platformclientmodels.HierarchicalCategoryInfo, error) {
-	ok, notFound, err := c.Client.Category.DownloadCategories(input)
+func (c *CategoryService) CreateCategory(input *category.CreateCategoryParams) (*platformclientmodels.FullCategoryInfo, error) {
+	accessToken, err := c.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	created, badRequest, notFound, conflict, unprocessableEntity, err := c.Client.Category.CreateCategory(input, client.BearerToken(*accessToken.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
 	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, notFound
 	}
+	if conflict != nil {
+		return nil, conflict
+	}
+	if unprocessableEntity != nil {
+		return nil, unprocessableEntity
+	}
 	if err != nil {
-		logrus.Error(err)
+		return nil, err
+	}
+	return created.GetPayload(), nil
+}
+
+func (c *CategoryService) ListCategoriesBasic(input *category.ListCategoriesBasicParams) ([]*platformclientmodels.BasicCategoryInfo, error) {
+	accessToken, err := c.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := c.Client.Category.ListCategoriesBasic(input, client.BearerToken(*accessToken.AccessToken))
+	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
 func (c *CategoryService) GetCategory(input *category.GetCategoryParams) (*platformclientmodels.FullCategoryInfo, error) {
-	token, err := c.TokenRepository.GetToken()
+	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	publicGetCategory, notFound, err := c.Client.Category.GetCategory(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, err := c.Client.Category.GetCategory(input, client.BearerToken(*accessToken.AccessToken))
 	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, notFound
 	}
 	if err != nil {
-		logrus.Error(err)
 		return nil, err
 	}
-	return publicGetCategory.GetPayload(), nil
+	return ok.GetPayload(), nil
+}
+
+func (c *CategoryService) UpdateCategory(input *category.UpdateCategoryParams) (*platformclientmodels.FullCategoryInfo, error) {
+	accessToken, err := c.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, notFound, conflict, unprocessableEntity, err := c.Client.Category.UpdateCategory(input, client.BearerToken(*accessToken.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if conflict != nil {
+		return nil, conflict
+	}
+	if unprocessableEntity != nil {
+		return nil, unprocessableEntity
+	}
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (c *CategoryService) DeleteCategory(input *category.DeleteCategoryParams) (*platformclientmodels.FullCategoryInfo, error) {
+	accessToken, err := c.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, notFound, conflict, err := c.Client.Category.DeleteCategory(input, client.BearerToken(*accessToken.AccessToken))
+	if notFound != nil {
+		return nil, notFound
+	}
+	if conflict != nil {
+		return nil, conflict
+	}
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
 }
 
 func (c *CategoryService) GetChildCategories(input *category.GetChildCategoriesParams) ([]*platformclientmodels.FullCategoryInfo, error) {
-	token, err := c.TokenRepository.GetToken()
+	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := c.Client.Category.GetChildCategories(input, client.BearerToken(*token.AccessToken))
+	ok, err := c.Client.Category.GetChildCategories(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
-		logrus.Error(err)
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
 func (c *CategoryService) GetDescendantCategories(input *category.GetDescendantCategoriesParams) ([]*platformclientmodels.FullCategoryInfo, error) {
-	token, err := c.TokenRepository.GetToken()
+	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := c.Client.Category.GetDescendantCategories(input, client.BearerToken(*token.AccessToken))
+	ok, err := c.Client.Category.GetDescendantCategories(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
-		logrus.Error(err)
-		return nil, err
-	}
-	return ok.GetPayload(), nil
-}
-
-func (c *CategoryService) GetRootCategories(input *category.GetRootCategoriesParams) ([]*platformclientmodels.FullCategoryInfo, error) {
-	token, err := c.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := c.Client.Category.GetRootCategories(input, client.BearerToken(*token.AccessToken))
-	if err != nil {
-		logrus.Error(err)
-		return nil, err
-	}
-	return ok.GetPayload(), nil
-}
-
-func (c *CategoryService) ListCategoriesBasic(input *category.ListCategoriesBasicParams) ([]*platformclientmodels.BasicCategoryInfo, error) {
-	token, err := c.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := c.Client.Category.ListCategoriesBasic(input, client.BearerToken(*token.AccessToken))
-	if err != nil {
-		logrus.Error(err)
-		return nil, err
-	}
-	return ok.GetPayload(), nil
-}
-
-func (c *CategoryService) PublicGetCategory(input *category.PublicGetCategoryParams) (*platformclientmodels.CategoryInfo, error) {
-	ok, notFound, err := c.Client.Category.PublicGetCategory(input)
-	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, notFound
-	}
-	if err != nil {
-		logrus.Error(err)
-		return nil, err
-	}
-	return ok.GetPayload(), nil
-}
-
-func (c *CategoryService) PublicGetChildCategories(input *category.PublicGetChildCategoriesParams) ([]*platformclientmodels.CategoryInfo, error) {
-	ok, err := c.Client.Category.PublicGetChildCategories(input)
-	if err != nil {
-		logrus.Error(err)
-		return nil, err
-	}
-	return ok.GetPayload(), nil
-}
-
-func (c *CategoryService) PublicGetDescendantCategories(input *category.PublicGetDescendantCategoriesParams) ([]*platformclientmodels.CategoryInfo, error) {
-	ok, err := c.Client.Category.PublicGetDescendantCategories(input)
-	if err != nil {
-		logrus.Error(err)
 		return nil, err
 	}
 	return ok.GetPayload(), nil
@@ -190,40 +151,148 @@ func (c *CategoryService) PublicGetDescendantCategories(input *category.PublicGe
 func (c *CategoryService) PublicGetRootCategories(input *category.PublicGetRootCategoriesParams) ([]*platformclientmodels.CategoryInfo, error) {
 	ok, err := c.Client.Category.PublicGetRootCategories(input)
 	if err != nil {
-		logrus.Error(err)
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (c *CategoryService) UpdateCategory(input *category.UpdateCategoryParams) (*platformclientmodels.FullCategoryInfo, error) {
-	token, err := c.TokenRepository.GetToken()
+func (c *CategoryService) DownloadCategories(input *category.DownloadCategoriesParams) ([]*platformclientmodels.HierarchicalCategoryInfo, error) {
+	ok, notFound, err := c.Client.Category.DownloadCategories(input)
+	if notFound != nil {
+		return nil, notFound
+	}
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, notFound, conflict, unprocessableEntity, err := c.Client.Category.UpdateCategory(input, client.BearerToken(*token.AccessToken))
+	return ok.GetPayload(), nil
+}
+
+func (c *CategoryService) PublicGetCategory(input *category.PublicGetCategoryParams) (*platformclientmodels.CategoryInfo, error) {
+	ok, notFound, err := c.Client.Category.PublicGetCategory(input)
 	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, notFound
 	}
-	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, badRequest
-	}
-	if conflict != nil {
-		errorMsg, _ := json.Marshal(*conflict.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, conflict
-	}
-	if unprocessableEntity != nil {
-		errorMsg, _ := json.Marshal(*unprocessableEntity.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, unprocessableEntity
-	}
 	if err != nil {
-		logrus.Error(err)
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (c *CategoryService) PublicGetChildCategories(input *category.PublicGetChildCategoriesParams) ([]*platformclientmodels.CategoryInfo, error) {
+	ok, err := c.Client.Category.PublicGetChildCategories(input)
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (c *CategoryService) PublicGetDescendantCategories(input *category.PublicGetDescendantCategoriesParams) ([]*platformclientmodels.CategoryInfo, error) {
+	ok, err := c.Client.Category.PublicGetDescendantCategories(input)
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (c *CategoryService) GetRootCategoriesShort(input *category.GetRootCategoriesParams, authInfo runtime.ClientAuthInfoWriter) ([]*platformclientmodels.FullCategoryInfo, error) {
+	ok, err := c.Client.Category.GetRootCategoriesShort(input, authInfo)
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (c *CategoryService) CreateCategoryShort(input *category.CreateCategoryParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.FullCategoryInfo, error) {
+	created, err := c.Client.Category.CreateCategoryShort(input, authInfo)
+	if err != nil {
+		return nil, err
+	}
+	return created.GetPayload(), nil
+}
+
+func (c *CategoryService) ListCategoriesBasicShort(input *category.ListCategoriesBasicParams, authInfo runtime.ClientAuthInfoWriter) ([]*platformclientmodels.BasicCategoryInfo, error) {
+	ok, err := c.Client.Category.ListCategoriesBasicShort(input, authInfo)
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (c *CategoryService) GetCategoryShort(input *category.GetCategoryParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.FullCategoryInfo, error) {
+	ok, err := c.Client.Category.GetCategoryShort(input, authInfo)
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (c *CategoryService) UpdateCategoryShort(input *category.UpdateCategoryParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.FullCategoryInfo, error) {
+	ok, err := c.Client.Category.UpdateCategoryShort(input, authInfo)
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (c *CategoryService) DeleteCategoryShort(input *category.DeleteCategoryParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.FullCategoryInfo, error) {
+	ok, err := c.Client.Category.DeleteCategoryShort(input, authInfo)
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (c *CategoryService) GetChildCategoriesShort(input *category.GetChildCategoriesParams, authInfo runtime.ClientAuthInfoWriter) ([]*platformclientmodels.FullCategoryInfo, error) {
+	ok, err := c.Client.Category.GetChildCategoriesShort(input, authInfo)
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (c *CategoryService) GetDescendantCategoriesShort(input *category.GetDescendantCategoriesParams, authInfo runtime.ClientAuthInfoWriter) ([]*platformclientmodels.FullCategoryInfo, error) {
+	ok, err := c.Client.Category.GetDescendantCategoriesShort(input, authInfo)
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (c *CategoryService) PublicGetRootCategoriesShort(input *category.PublicGetRootCategoriesParams) ([]*platformclientmodels.CategoryInfo, error) {
+	ok, err := c.Client.Category.PublicGetRootCategoriesShort(input)
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (c *CategoryService) DownloadCategoriesShort(input *category.DownloadCategoriesParams) ([]*platformclientmodels.HierarchicalCategoryInfo, error) {
+	ok, err := c.Client.Category.DownloadCategoriesShort(input)
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (c *CategoryService) PublicGetCategoryShort(input *category.PublicGetCategoryParams) (*platformclientmodels.CategoryInfo, error) {
+	ok, err := c.Client.Category.PublicGetCategoryShort(input)
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (c *CategoryService) PublicGetChildCategoriesShort(input *category.PublicGetChildCategoriesParams) ([]*platformclientmodels.CategoryInfo, error) {
+	ok, err := c.Client.Category.PublicGetChildCategoriesShort(input)
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (c *CategoryService) PublicGetDescendantCategoriesShort(input *category.PublicGetDescendantCategoriesParams) ([]*platformclientmodels.CategoryInfo, error) {
+	ok, err := c.Client.Category.PublicGetDescendantCategoriesShort(input)
+	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil

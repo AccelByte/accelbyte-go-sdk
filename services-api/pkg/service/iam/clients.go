@@ -1,18 +1,17 @@
-// Copyright (c) 2021 AccelByte Inc. All Rights Reserved.
+// Copyright (c) 2018 - 2021
+// AccelByte Inc. All Rights Reserved.
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
 package iam
 
 import (
-	"encoding/json"
-
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/clients"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
-	"github.com/sirupsen/logrus"
 )
 
 type ClientsService struct {
@@ -20,63 +19,17 @@ type ClientsService struct {
 	TokenRepository repository.TokenRepository
 }
 
-func (c *ClientsService) AdminAddClientPermissionsV3(input *clients.AdminAddClientPermissionsV3Params) error {
-	accessToken, err := c.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	_, badRequest, unauthorized, forbidden, notFound, err := c.Client.Clients.AdminAddClientPermissionsV3(input, client.BearerToken(*accessToken.AccessToken))
-	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
-		return badRequest
-	}
-	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
-		return unauthorized
-	}
-	if forbidden != nil {
-		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
-		logrus.Error(string(errorMsg))
-		return forbidden
-	}
-	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
-		return notFound
-	}
-	if err != nil {
-		return err
-	}
-	return nil
-}
-
-func (c *ClientsService) AdminCreateClientV3(input *clients.AdminCreateClientV3Params) (*iamclientmodels.ClientmodelClientV3Response, error) {
+func (c *ClientsService) GetClients(input *clients.GetClientsParams) ([]*iamclientmodels.ClientmodelClientResponse, error) {
 	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, conflict, err := c.Client.Clients.AdminCreateClientV3(input, client.BearerToken(*accessToken.AccessToken))
-	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, badRequest
-	}
+	ok, unauthorized, forbidden, err := c.Client.Clients.GetClients(input, client.BearerToken(*accessToken.AccessToken))
 	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, unauthorized
 	}
 	if forbidden != nil {
-		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, forbidden
-	}
-	if conflict != nil {
-		errorMsg, _ := json.Marshal(*conflict.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, conflict
 	}
 	if err != nil {
 		return nil, err
@@ -84,30 +37,88 @@ func (c *ClientsService) AdminCreateClientV3(input *clients.AdminCreateClientV3P
 	return ok.GetPayload(), nil
 }
 
-func (c *ClientsService) AdminDeleteClientPermissionV3(input *clients.AdminDeleteClientPermissionV3Params) error {
+func (c *ClientsService) CreateClient(input *clients.CreateClientParams) (*iamclientmodels.ClientmodelClientCreationResponse, error) {
+	accessToken, err := c.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	created, badRequest, unauthorized, forbidden, conflict, err := c.Client.Clients.CreateClient(input, client.BearerToken(*accessToken.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if conflict != nil {
+		return nil, conflict
+	}
+	if err != nil {
+		return nil, err
+	}
+	return created.GetPayload(), nil
+}
+
+func (c *ClientsService) GetClient(input *clients.GetClientParams) (*iamclientmodels.ClientmodelClientResponse, error) {
+	accessToken, err := c.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, unauthorized, forbidden, notFound, err := c.Client.Clients.GetClient(input, client.BearerToken(*accessToken.AccessToken))
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (c *ClientsService) UpdateClient(input *clients.UpdateClientParams) (*iamclientmodels.ClientmodelClientResponse, error) {
+	accessToken, err := c.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, forbidden, notFound, err := c.Client.Clients.UpdateClient(input, client.BearerToken(*accessToken.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (c *ClientsService) DeleteClient(input *clients.DeleteClientParams) error {
 	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, err := c.Client.Clients.AdminDeleteClientPermissionV3(input, client.BearerToken(*accessToken.AccessToken))
-	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
-		return badRequest
-	}
+	_, unauthorized, forbidden, notFound, err := c.Client.Clients.DeleteClient(input, client.BearerToken(*accessToken.AccessToken))
 	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
 		return unauthorized
 	}
 	if forbidden != nil {
-		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
-		logrus.Error(string(errorMsg))
 		return forbidden
 	}
 	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
 		return notFound
 	}
 	if err != nil {
@@ -116,30 +127,157 @@ func (c *ClientsService) AdminDeleteClientPermissionV3(input *clients.AdminDelet
 	return nil
 }
 
-func (c *ClientsService) AdminDeleteClientV3(input *clients.AdminDeleteClientV3Params) error {
+func (c *ClientsService) UpdateClientPermission(input *clients.UpdateClientPermissionParams) error {
 	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, err := c.Client.Clients.AdminDeleteClientV3(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, err := c.Client.Clients.UpdateClientPermission(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
 		return badRequest
 	}
 	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
 		return unauthorized
 	}
 	if forbidden != nil {
-		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
-		logrus.Error(string(errorMsg))
 		return forbidden
 	}
 	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
+		return notFound
+	}
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (c *ClientsService) AddClientPermission(input *clients.AddClientPermissionParams) error {
+	accessToken, err := c.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, badRequest, unauthorized, forbidden, notFound, err := c.Client.Clients.AddClientPermission(input, client.BearerToken(*accessToken.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if forbidden != nil {
+		return forbidden
+	}
+	if notFound != nil {
+		return notFound
+	}
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (c *ClientsService) DeleteClientPermission(input *clients.DeleteClientPermissionParams) error {
+	accessToken, err := c.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, badRequest, unauthorized, forbidden, notFound, err := c.Client.Clients.DeleteClientPermission(input, client.BearerToken(*accessToken.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if forbidden != nil {
+		return forbidden
+	}
+	if notFound != nil {
+		return notFound
+	}
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (c *ClientsService) UpdateClientSecret(input *clients.UpdateClientSecretParams) error {
+	accessToken, err := c.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, badRequest, unauthorized, forbidden, notFound, err := c.Client.Clients.UpdateClientSecret(input, client.BearerToken(*accessToken.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if forbidden != nil {
+		return forbidden
+	}
+	if notFound != nil {
+		return notFound
+	}
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (c *ClientsService) GetClientsbyNamespace(input *clients.GetClientsbyNamespaceParams) ([]*iamclientmodels.ClientmodelClientResponse, error) {
+	accessToken, err := c.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, unauthorized, forbidden, err := c.Client.Clients.GetClientsbyNamespace(input, client.BearerToken(*accessToken.AccessToken))
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (c *ClientsService) CreateClientByNamespace(input *clients.CreateClientByNamespaceParams) (*iamclientmodels.ClientmodelClientCreationResponse, error) {
+	accessToken, err := c.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	created, badRequest, unauthorized, forbidden, conflict, err := c.Client.Clients.CreateClientByNamespace(input, client.BearerToken(*accessToken.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if conflict != nil {
+		return nil, conflict
+	}
+	if err != nil {
+		return nil, err
+	}
+	return created.GetPayload(), nil
+}
+
+func (c *ClientsService) DeleteClientByNamespace(input *clients.DeleteClientByNamespaceParams) error {
+	accessToken, err := c.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, unauthorized, forbidden, notFound, err := c.Client.Clients.DeleteClientByNamespace(input, client.BearerToken(*accessToken.AccessToken))
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if forbidden != nil {
+		return forbidden
+	}
+	if notFound != nil {
 		return notFound
 	}
 	if err != nil {
@@ -155,25 +293,42 @@ func (c *ClientsService) AdminGetClientsByNamespaceV3(input *clients.AdminGetCli
 	}
 	ok, badRequest, unauthorized, forbidden, err := c.Client.Clients.AdminGetClientsByNamespaceV3(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, badRequest
 	}
 	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, unauthorized
 	}
 	if forbidden != nil {
-		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, forbidden
 	}
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
+}
 
+func (c *ClientsService) AdminCreateClientV3(input *clients.AdminCreateClientV3Params) (*iamclientmodels.ClientmodelClientV3Response, error) {
+	accessToken, err := c.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	created, badRequest, unauthorized, forbidden, conflict, err := c.Client.Clients.AdminCreateClientV3(input, client.BearerToken(*accessToken.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if conflict != nil {
+		return nil, conflict
+	}
+	if err != nil {
+		return nil, err
+	}
+	return created.GetPayload(), nil
 }
 
 func (c *ClientsService) AdminGetClientsbyNamespacebyIDV3(input *clients.AdminGetClientsbyNamespacebyIDV3Params) (*iamclientmodels.ClientmodelClientV3Response, error) {
@@ -183,23 +338,15 @@ func (c *ClientsService) AdminGetClientsbyNamespacebyIDV3(input *clients.AdminGe
 	}
 	ok, badRequest, unauthorized, forbidden, notFound, err := c.Client.Clients.AdminGetClientsbyNamespacebyIDV3(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, badRequest
 	}
 	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, unauthorized
 	}
 	if forbidden != nil {
-		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, forbidden
 	}
 	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, notFound
 	}
 	if err != nil {
@@ -208,30 +355,22 @@ func (c *ClientsService) AdminGetClientsbyNamespacebyIDV3(input *clients.AdminGe
 	return ok.GetPayload(), nil
 }
 
-func (c *ClientsService) AdminUpdateClientPermissionV3(input *clients.AdminUpdateClientPermissionV3Params) error {
+func (c *ClientsService) AdminDeleteClientV3(input *clients.AdminDeleteClientV3Params) error {
 	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, err := c.Client.Clients.AdminUpdateClientPermissionV3(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, err := c.Client.Clients.AdminDeleteClientV3(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
 		return badRequest
 	}
 	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
 		return unauthorized
 	}
 	if forbidden != nil {
-		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
-		logrus.Error(string(errorMsg))
 		return forbidden
 	}
 	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
 		return notFound
 	}
 	if err != nil {
@@ -247,27 +386,251 @@ func (c *ClientsService) AdminUpdateClientV3(input *clients.AdminUpdateClientV3P
 	}
 	ok, badRequest, unauthorized, forbidden, notFound, err := c.Client.Clients.AdminUpdateClientV3(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, badRequest
 	}
 	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, unauthorized
 	}
 	if forbidden != nil {
-		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, forbidden
 	}
 	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, notFound
 	}
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
+}
+
+func (c *ClientsService) AdminUpdateClientPermissionV3(input *clients.AdminUpdateClientPermissionV3Params) error {
+	accessToken, err := c.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, badRequest, unauthorized, forbidden, notFound, err := c.Client.Clients.AdminUpdateClientPermissionV3(input, client.BearerToken(*accessToken.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if forbidden != nil {
+		return forbidden
+	}
+	if notFound != nil {
+		return notFound
+	}
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (c *ClientsService) AdminAddClientPermissionsV3(input *clients.AdminAddClientPermissionsV3Params) error {
+	accessToken, err := c.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, badRequest, unauthorized, forbidden, notFound, err := c.Client.Clients.AdminAddClientPermissionsV3(input, client.BearerToken(*accessToken.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if forbidden != nil {
+		return forbidden
+	}
+	if notFound != nil {
+		return notFound
+	}
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (c *ClientsService) AdminDeleteClientPermissionV3(input *clients.AdminDeleteClientPermissionV3Params) error {
+	accessToken, err := c.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, badRequest, unauthorized, forbidden, notFound, err := c.Client.Clients.AdminDeleteClientPermissionV3(input, client.BearerToken(*accessToken.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if forbidden != nil {
+		return forbidden
+	}
+	if notFound != nil {
+		return notFound
+	}
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (c *ClientsService) GetClientsShort(input *clients.GetClientsParams, authInfo runtime.ClientAuthInfoWriter) ([]*iamclientmodels.ClientmodelClientResponse, error) {
+	ok, err := c.Client.Clients.GetClientsShort(input, authInfo)
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (c *ClientsService) CreateClientShort(input *clients.CreateClientParams, authInfo runtime.ClientAuthInfoWriter) (*iamclientmodels.ClientmodelClientCreationResponse, error) {
+	created, err := c.Client.Clients.CreateClientShort(input, authInfo)
+	if err != nil {
+		return nil, err
+	}
+	return created.GetPayload(), nil
+}
+
+func (c *ClientsService) GetClientShort(input *clients.GetClientParams, authInfo runtime.ClientAuthInfoWriter) (*iamclientmodels.ClientmodelClientResponse, error) {
+	ok, err := c.Client.Clients.GetClientShort(input, authInfo)
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (c *ClientsService) UpdateClientShort(input *clients.UpdateClientParams, authInfo runtime.ClientAuthInfoWriter) (*iamclientmodels.ClientmodelClientResponse, error) {
+	ok, err := c.Client.Clients.UpdateClientShort(input, authInfo)
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (c *ClientsService) DeleteClientShort(input *clients.DeleteClientParams, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := c.Client.Clients.DeleteClientShort(input, authInfo)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (c *ClientsService) UpdateClientPermissionShort(input *clients.UpdateClientPermissionParams, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := c.Client.Clients.UpdateClientPermissionShort(input, authInfo)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (c *ClientsService) AddClientPermissionShort(input *clients.AddClientPermissionParams, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := c.Client.Clients.AddClientPermissionShort(input, authInfo)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (c *ClientsService) DeleteClientPermissionShort(input *clients.DeleteClientPermissionParams, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := c.Client.Clients.DeleteClientPermissionShort(input, authInfo)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (c *ClientsService) UpdateClientSecretShort(input *clients.UpdateClientSecretParams, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := c.Client.Clients.UpdateClientSecretShort(input, authInfo)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (c *ClientsService) GetClientsbyNamespaceShort(input *clients.GetClientsbyNamespaceParams, authInfo runtime.ClientAuthInfoWriter) ([]*iamclientmodels.ClientmodelClientResponse, error) {
+	ok, err := c.Client.Clients.GetClientsbyNamespaceShort(input, authInfo)
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (c *ClientsService) CreateClientByNamespaceShort(input *clients.CreateClientByNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*iamclientmodels.ClientmodelClientCreationResponse, error) {
+	created, err := c.Client.Clients.CreateClientByNamespaceShort(input, authInfo)
+	if err != nil {
+		return nil, err
+	}
+	return created.GetPayload(), nil
+}
+
+func (c *ClientsService) DeleteClientByNamespaceShort(input *clients.DeleteClientByNamespaceParams, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := c.Client.Clients.DeleteClientByNamespaceShort(input, authInfo)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (c *ClientsService) AdminGetClientsByNamespaceV3Short(input *clients.AdminGetClientsByNamespaceV3Params, authInfo runtime.ClientAuthInfoWriter) (*iamclientmodels.ClientmodelClientsV3Response, error) {
+	ok, err := c.Client.Clients.AdminGetClientsByNamespaceV3Short(input, authInfo)
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (c *ClientsService) AdminCreateClientV3Short(input *clients.AdminCreateClientV3Params, authInfo runtime.ClientAuthInfoWriter) (*iamclientmodels.ClientmodelClientV3Response, error) {
+	created, err := c.Client.Clients.AdminCreateClientV3Short(input, authInfo)
+	if err != nil {
+		return nil, err
+	}
+	return created.GetPayload(), nil
+}
+
+func (c *ClientsService) AdminGetClientsbyNamespacebyIDV3Short(input *clients.AdminGetClientsbyNamespacebyIDV3Params, authInfo runtime.ClientAuthInfoWriter) (*iamclientmodels.ClientmodelClientV3Response, error) {
+	ok, err := c.Client.Clients.AdminGetClientsbyNamespacebyIDV3Short(input, authInfo)
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (c *ClientsService) AdminDeleteClientV3Short(input *clients.AdminDeleteClientV3Params, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := c.Client.Clients.AdminDeleteClientV3Short(input, authInfo)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (c *ClientsService) AdminUpdateClientV3Short(input *clients.AdminUpdateClientV3Params, authInfo runtime.ClientAuthInfoWriter) (*iamclientmodels.ClientmodelClientV3Response, error) {
+	ok, err := c.Client.Clients.AdminUpdateClientV3Short(input, authInfo)
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (c *ClientsService) AdminUpdateClientPermissionV3Short(input *clients.AdminUpdateClientPermissionV3Params, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := c.Client.Clients.AdminUpdateClientPermissionV3Short(input, authInfo)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (c *ClientsService) AdminAddClientPermissionsV3Short(input *clients.AdminAddClientPermissionsV3Params, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := c.Client.Clients.AdminAddClientPermissionsV3Short(input, authInfo)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (c *ClientsService) AdminDeleteClientPermissionV3Short(input *clients.AdminDeleteClientPermissionV3Params, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := c.Client.Clients.AdminDeleteClientPermissionV3Short(input, authInfo)
+	if err != nil {
+		return err
+	}
+	return nil
 }

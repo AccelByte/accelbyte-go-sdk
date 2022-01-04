@@ -1,3 +1,8 @@
+// Copyright (c) 2018 - 2021
+// AccelByte Inc. All Rights Reserved.
+// This is licensed software from AccelByte Inc, for limitations
+// and restrictions contact your company contract manager.
+
 package legal
 
 import (
@@ -5,8 +10,8 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclient/utility"
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
-	"github.com/sirupsen/logrus"
 )
 
 type UtilityService struct {
@@ -14,17 +19,21 @@ type UtilityService struct {
 	TokenRepository repository.TokenRepository
 }
 
-// CheckReadiness is used to check legal data readiness
-func (u *UtilityService) CheckReadiness() (*legalclientmodels.LegalReadinessStatusResponse, error) {
-	token, err := u.TokenRepository.GetToken()
+func (u *UtilityService) CheckReadiness(input *utility.CheckReadinessParams) (*legalclientmodels.LegalReadinessStatusResponse, error) {
+	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
-		logrus.Error(err)
 		return nil, err
 	}
-	params := &utility.CheckReadinessParams{}
-	ok, err := u.Client.Utility.CheckReadiness(params, client.BearerToken(*token.AccessToken))
+	ok, err := u.Client.Utility.CheckReadiness(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
-		logrus.Error(err)
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (u *UtilityService) CheckReadinessShort(input *utility.CheckReadinessParams, authInfo runtime.ClientAuthInfoWriter) (*legalclientmodels.LegalReadinessStatusResponse, error) {
+	ok, err := u.Client.Utility.CheckReadinessShort(input, authInfo)
+	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil

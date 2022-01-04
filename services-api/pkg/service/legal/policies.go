@@ -1,13 +1,17 @@
+// Copyright (c) 2018 - 2021
+// AccelByte Inc. All Rights Reserved.
+// This is licensed software from AccelByte Inc, for limitations
+// and restrictions contact your company contract manager.
+
 package legal
 
 import (
-	"encoding/json"
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclient"
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclient/policies"
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
-	"github.com/sirupsen/logrus"
 )
 
 type PoliciesService struct {
@@ -15,97 +19,117 @@ type PoliciesService struct {
 	TokenRepository repository.TokenRepository
 }
 
-// RetrieveLatestPolicies is used to retrieve the latest policies by country
-func (p *PoliciesService) RetrieveLatestPolicies(input *policies.RetrieveLatestPoliciesParams) ([]*legalclientmodels.RetrievePolicyPublicResponse, error) {
-	_, err := p.TokenRepository.GetToken()
+func (p *PoliciesService) RetrievePolicies(input *policies.RetrievePoliciesParams) ([]*legalclientmodels.RetrievePolicyResponse, error) {
+	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
-		logrus.Error(err)
 		return nil, err
 	}
+	ok, err := p.Client.Policies.RetrievePolicies(input, client.BearerToken(*accessToken.AccessToken))
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (p *PoliciesService) UpdatePolicy(input *policies.UpdatePolicyParams) error {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = p.Client.Policies.UpdatePolicy(input, client.BearerToken(*accessToken.AccessToken))
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (p *PoliciesService) SetDefaultPolicy1(input *policies.SetDefaultPolicy1Params) error {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = p.Client.Policies.SetDefaultPolicy1(input, client.BearerToken(*accessToken.AccessToken))
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (p *PoliciesService) RetrieveLatestPolicies(input *policies.RetrieveLatestPoliciesParams) ([]*legalclientmodels.RetrievePolicyPublicResponse, error) {
 	ok, err := p.Client.Policies.RetrieveLatestPolicies(input)
 	if err != nil {
-		logrus.Error(err)
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-// RetrieveLatestPoliciesByNamespaceAndCountryPublic is used to retrieve the latest policies by namespace and country
-func (p *PoliciesService) RetrieveLatestPoliciesByNamespaceAndCountryPublic(input *policies.RetrieveLatestPoliciesByNamespaceAndCountryPublicParams) ([]*legalclientmodels.RetrievePolicyPublicResponse, error) {
-	_, err := p.TokenRepository.GetToken()
-	if err != nil {
-		logrus.Error(err)
-		return nil, err
-	}
-	ok, err := p.Client.Policies.RetrieveLatestPoliciesByNamespaceAndCountryPublic(input)
-	if err != nil {
-		logrus.Error(err)
-		return nil, err
-	}
-	return ok.GetPayload(), nil
-}
-
-// RetrieveLatestPoliciesPublic is used to update a localized version from country specific policy
 func (p *PoliciesService) RetrieveLatestPoliciesPublic(input *policies.RetrieveLatestPoliciesPublicParams) ([]*legalclientmodels.RetrievePolicyPublicResponse, error) {
-	token, err := p.TokenRepository.GetToken()
+	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
-		logrus.Error(err)
 		return nil, err
 	}
-	ok, notFound, err := p.Client.Policies.RetrieveLatestPoliciesPublic(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, err := p.Client.Policies.RetrieveLatestPoliciesPublic(input, client.BearerToken(*accessToken.AccessToken))
 	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, notFound
 	}
 	if err != nil {
-		logrus.Error(err)
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-// RetrievePolicies is used to retrieve policies by country
-func (p *PoliciesService) RetrievePolicies(input *policies.RetrievePoliciesParams) ([]*legalclientmodels.RetrievePolicyResponse, error) {
-	token, err := p.TokenRepository.GetToken()
+func (p *PoliciesService) RetrieveLatestPoliciesByNamespaceAndCountryPublic(input *policies.RetrieveLatestPoliciesByNamespaceAndCountryPublicParams) ([]*legalclientmodels.RetrievePolicyPublicResponse, error) {
+	ok, err := p.Client.Policies.RetrieveLatestPoliciesByNamespaceAndCountryPublic(input)
 	if err != nil {
-		logrus.Error(err)
-		return nil, err
-	}
-	ok, err := p.Client.Policies.RetrievePolicies(input, client.BearerToken(*token.AccessToken))
-	if err != nil {
-		logrus.Error(err)
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-// SetDefaultPolicy1 is used to set default policy
-func (p *PoliciesService) SetDefaultPolicy1(input *policies.SetDefaultPolicy1Params) error {
-	token, err := p.TokenRepository.GetToken()
+func (p *PoliciesService) RetrievePoliciesShort(input *policies.RetrievePoliciesParams, authInfo runtime.ClientAuthInfoWriter) ([]*legalclientmodels.RetrievePolicyResponse, error) {
+	ok, err := p.Client.Policies.RetrievePoliciesShort(input, authInfo)
 	if err != nil {
-		logrus.Error(err)
-		return err
+		return nil, err
 	}
-	_, err = p.Client.Policies.SetDefaultPolicy1(input, client.BearerToken(*token.AccessToken))
+	return ok.GetPayload(), nil
+}
+
+func (p *PoliciesService) UpdatePolicyShort(input *policies.UpdatePolicyParams, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := p.Client.Policies.UpdatePolicyShort(input, authInfo)
 	if err != nil {
-		logrus.Error(err)
 		return err
 	}
 	return nil
 }
 
-// UpdatePolicy is used to update country specific policy
-func (p *PoliciesService) UpdatePolicy(input *policies.UpdatePolicyParams) error {
-	token, err := p.TokenRepository.GetToken()
+func (p *PoliciesService) SetDefaultPolicy1Short(input *policies.SetDefaultPolicy1Params, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := p.Client.Policies.SetDefaultPolicy1Short(input, authInfo)
 	if err != nil {
-		logrus.Error(err)
-		return err
-	}
-	_, err = p.Client.Policies.UpdatePolicy(input, client.BearerToken(*token.AccessToken))
-	if err != nil {
-		logrus.Error(err)
 		return err
 	}
 	return nil
+}
+
+func (p *PoliciesService) RetrieveLatestPoliciesShort(input *policies.RetrieveLatestPoliciesParams) ([]*legalclientmodels.RetrievePolicyPublicResponse, error) {
+	ok, err := p.Client.Policies.RetrieveLatestPoliciesShort(input)
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (p *PoliciesService) RetrieveLatestPoliciesPublicShort(input *policies.RetrieveLatestPoliciesPublicParams, authInfo runtime.ClientAuthInfoWriter) ([]*legalclientmodels.RetrievePolicyPublicResponse, error) {
+	ok, err := p.Client.Policies.RetrieveLatestPoliciesPublicShort(input, authInfo)
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (p *PoliciesService) RetrieveLatestPoliciesByNamespaceAndCountryPublicShort(input *policies.RetrieveLatestPoliciesByNamespaceAndCountryPublicParams) ([]*legalclientmodels.RetrievePolicyPublicResponse, error) {
+	ok, err := p.Client.Policies.RetrieveLatestPoliciesByNamespaceAndCountryPublicShort(input)
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
 }

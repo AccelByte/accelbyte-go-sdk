@@ -1,3 +1,8 @@
+// Copyright (c) 2018 - 2021
+// AccelByte Inc. All Rights Reserved.
+// This is licensed software from AccelByte Inc, for limitations
+// and restrictions contact your company contract manager.
+
 package legal
 
 import (
@@ -5,8 +10,8 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclient/user_info"
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
-	"github.com/sirupsen/logrus"
 )
 
 type UserInfoService struct {
@@ -14,46 +19,61 @@ type UserInfoService struct {
 	TokenRepository repository.TokenRepository
 }
 
-// GetUserInfoStatus is used to get user info cache status
 func (u *UserInfoService) GetUserInfoStatus(input *user_info.GetUserInfoStatusParams) ([]*legalclientmodels.RetrieveUserInfoCacheStatusResponse, error) {
-	token, err := u.TokenRepository.GetToken()
+	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
-		logrus.Error(err)
 		return nil, err
 	}
-	ok, err := u.Client.UserInfo.GetUserInfoStatus(input, client.BearerToken(*token.AccessToken))
+	ok, err := u.Client.UserInfo.GetUserInfoStatus(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
-		logrus.Error(err)
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-// InvalidateUserInfoCache is used to invalidate user info cache
-func (u *UserInfoService) InvalidateUserInfoCache(input *user_info.InvalidateUserInfoCacheParams) error {
-	token, err := u.TokenRepository.GetToken()
+func (u *UserInfoService) SyncUserInfo(input *user_info.SyncUserInfoParams) error {
+	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
-		logrus.Error(err)
 		return err
 	}
-	_, err = u.Client.UserInfo.InvalidateUserInfoCache(input, client.BearerToken(*token.AccessToken))
+	_, err = u.Client.UserInfo.SyncUserInfo(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
-		logrus.Error(err)
 		return err
 	}
 	return nil
 }
 
-// SyncUserInfo is used to invalidate user info cache
-func (u *UserInfoService) SyncUserInfo(input *user_info.SyncUserInfoParams) error {
-	token, err := u.TokenRepository.GetToken()
+func (u *UserInfoService) InvalidateUserInfoCache(input *user_info.InvalidateUserInfoCacheParams) error {
+	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
-		logrus.Error(err)
 		return err
 	}
-	_, err = u.Client.UserInfo.SyncUserInfo(input, client.BearerToken(*token.AccessToken))
+	_, err = u.Client.UserInfo.InvalidateUserInfoCache(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
-		logrus.Error(err)
+		return err
+	}
+	return nil
+}
+
+func (u *UserInfoService) GetUserInfoStatusShort(input *user_info.GetUserInfoStatusParams, authInfo runtime.ClientAuthInfoWriter) ([]*legalclientmodels.RetrieveUserInfoCacheStatusResponse, error) {
+	ok, err := u.Client.UserInfo.GetUserInfoStatusShort(input, authInfo)
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (u *UserInfoService) SyncUserInfoShort(input *user_info.SyncUserInfoParams, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := u.Client.UserInfo.SyncUserInfoShort(input, authInfo)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (u *UserInfoService) InvalidateUserInfoCacheShort(input *user_info.InvalidateUserInfoCacheParams, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := u.Client.UserInfo.InvalidateUserInfoCacheShort(input, authInfo)
+	if err != nil {
 		return err
 	}
 	return nil

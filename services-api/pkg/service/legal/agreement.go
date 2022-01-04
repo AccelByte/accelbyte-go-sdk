@@ -1,13 +1,17 @@
+// Copyright (c) 2018 - 2021
+// AccelByte Inc. All Rights Reserved.
+// This is licensed software from AccelByte Inc, for limitations
+// and restrictions contact your company contract manager.
+
 package legal
 
 import (
-	"encoding/json"
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclient"
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclient/agreement"
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
-	"github.com/sirupsen/logrus"
 )
 
 type AgreementService struct {
@@ -15,133 +19,168 @@ type AgreementService struct {
 	TokenRepository repository.TokenRepository
 }
 
-// AcceptVersionedPolicy is used to accept a policy version
-func (a *AgreementService) AcceptVersionedPolicy(input *agreement.AcceptVersionedPolicyParams) error {
-	token, err := a.TokenRepository.GetToken()
-	if err != nil {
-		logrus.Error(err)
-		return err
-	}
-	_, err = a.Client.Agreement.AcceptVersionedPolicy(input, client.BearerToken(*token.AccessToken))
-	if err != nil {
-		logrus.Error(err)
-		return err
-	}
-	return nil
-}
-
-// BulkAcceptVersionedPolicy is used to bulk accept policy versions
-func (a *AgreementService) BulkAcceptVersionedPolicy(input *agreement.BulkAcceptVersionedPolicyParams) (*legalclientmodels.AcceptAgreementResponse, error) {
-	token, err := a.TokenRepository.GetToken()
-	if err != nil {
-		logrus.Error(err)
-		return nil, err
-	}
-	created, err := a.Client.Agreement.BulkAcceptVersionedPolicy(input, client.BearerToken(*token.AccessToken))
-	if err != nil {
-		logrus.Error(err)
-		return nil, err
-	}
-	return created.GetPayload(), nil
-}
-
-// ChangePreferenceConsent is used to accept revoke marketing preference consent
-func (a *AgreementService) ChangePreferenceConsent(input *agreement.ChangePreferenceConsentParams) error {
-	token, err := a.TokenRepository.GetToken()
-	if err != nil {
-		logrus.Error(err)
-		return err
-	}
-	_, badRequest, err := a.Client.Agreement.ChangePreferenceConsent(input, client.BearerToken(*token.AccessToken))
-	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
-		return badRequest
-	}
-	if err != nil {
-		logrus.Error(err)
-		return err
-	}
-	return nil
-}
-
-// IndirectBulkAcceptVersionedPolicy is used to bulk accept policy versions indirect
-func (a *AgreementService) IndirectBulkAcceptVersionedPolicy(input *agreement.IndirectBulkAcceptVersionedPolicyParams) (*legalclientmodels.AcceptAgreementResponse, error) {
-	token, err := a.TokenRepository.GetToken()
-	if err != nil {
-		logrus.Error(err)
-		return nil, err
-	}
-	created, err := a.Client.Agreement.IndirectBulkAcceptVersionedPolicy(input, client.BearerToken(*token.AccessToken))
-	if err != nil {
-		logrus.Error(err)
-		return nil, err
-	}
-	return created.GetPayload(), nil
-}
-
-// IndirectBulkAcceptVersionedPolicyV2 is used to bulk accept policy versions indirect
-func (a *AgreementService) IndirectBulkAcceptVersionedPolicyV2(input *agreement.IndirectBulkAcceptVersionedPolicyV2Params) (*legalclientmodels.AcceptAgreementResponse, error) {
-	token, err := a.TokenRepository.GetToken()
-	if err != nil {
-		logrus.Error(err)
-		return nil, err
-	}
-	created, err := a.Client.Agreement.IndirectBulkAcceptVersionedPolicyV2(input, client.BearerToken(*token.AccessToken))
-	if err != nil {
-		logrus.Error(err)
-		return nil, err
-	}
-	return created.GetPayload(), nil
-}
-
-// RetrieveAcceptedAgreements is used to retrieve accepted legal agreements
 func (a *AgreementService) RetrieveAcceptedAgreements(input *agreement.RetrieveAcceptedAgreementsParams) ([]*legalclientmodels.RetrieveAcceptedAgreementResponse, error) {
-	token, err := a.TokenRepository.GetToken()
+	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
-		logrus.Error(err)
 		return nil, err
 	}
-	ok, err := a.Client.Agreement.RetrieveAcceptedAgreements(input, client.BearerToken(*token.AccessToken))
+	ok, err := a.Client.Agreement.RetrieveAcceptedAgreements(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
-		logrus.Error(err)
-		return nil, err
-	}
-	return ok.GetPayload(), nil
-}
-
-// RetrieveAgreementsPublic is used to retrieve the accepted legal agreements
-func (a *AgreementService) RetrieveAgreementsPublic() ([]*legalclientmodels.RetrieveAcceptedAgreementResponse, error) {
-	token, err := a.TokenRepository.GetToken()
-	if err != nil {
-		logrus.Error(err)
-		return nil, err
-	}
-	params := &agreement.RetrieveAgreementsPublicParams{}
-	ok, err := a.Client.Agreement.RetrieveAgreementsPublic(params, client.BearerToken(*token.AccessToken))
-	if err != nil {
-		logrus.Error(err)
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-// RetrieveAllUsersByPolicyVersion is used to retrieve all users accepting legal agreements
 func (a *AgreementService) RetrieveAllUsersByPolicyVersion(input *agreement.RetrieveAllUsersByPolicyVersionParams) ([]*legalclientmodels.PagedRetrieveUserAcceptedAgreementResponse, error) {
-	token, err := a.TokenRepository.GetToken()
+	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
-		logrus.Error(err)
 		return nil, err
 	}
-	ok, notFound, err := a.Client.Agreement.RetrieveAllUsersByPolicyVersion(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, err := a.Client.Agreement.RetrieveAllUsersByPolicyVersion(input, client.BearerToken(*accessToken.AccessToken))
 	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, notFound
 	}
 	if err != nil {
-		logrus.Error(err)
 		return nil, err
 	}
 	return ok.GetPayload(), nil
+}
+
+func (a *AgreementService) ChangePreferenceConsent(input *agreement.ChangePreferenceConsentParams) error {
+	accessToken, err := a.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, badRequest, err := a.Client.Agreement.ChangePreferenceConsent(input, client.BearerToken(*accessToken.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (a *AgreementService) AcceptVersionedPolicy(input *agreement.AcceptVersionedPolicyParams) error {
+	accessToken, err := a.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = a.Client.Agreement.AcceptVersionedPolicy(input, client.BearerToken(*accessToken.AccessToken))
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (a *AgreementService) RetrieveAgreementsPublic(input *agreement.RetrieveAgreementsPublicParams) ([]*legalclientmodels.RetrieveAcceptedAgreementResponse, error) {
+	accessToken, err := a.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := a.Client.Agreement.RetrieveAgreementsPublic(input, client.BearerToken(*accessToken.AccessToken))
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (a *AgreementService) BulkAcceptVersionedPolicy(input *agreement.BulkAcceptVersionedPolicyParams) (*legalclientmodels.AcceptAgreementResponse, error) {
+	accessToken, err := a.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	created, err := a.Client.Agreement.BulkAcceptVersionedPolicy(input, client.BearerToken(*accessToken.AccessToken))
+	if err != nil {
+		return nil, err
+	}
+	return created.GetPayload(), nil
+}
+
+func (a *AgreementService) IndirectBulkAcceptVersionedPolicyV2(input *agreement.IndirectBulkAcceptVersionedPolicyV2Params) (*legalclientmodels.AcceptAgreementResponse, error) {
+	accessToken, err := a.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	created, err := a.Client.Agreement.IndirectBulkAcceptVersionedPolicyV2(input, client.BearerToken(*accessToken.AccessToken))
+	if err != nil {
+		return nil, err
+	}
+	return created.GetPayload(), nil
+}
+
+func (a *AgreementService) IndirectBulkAcceptVersionedPolicy(input *agreement.IndirectBulkAcceptVersionedPolicyParams) (*legalclientmodels.AcceptAgreementResponse, error) {
+	accessToken, err := a.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	created, err := a.Client.Agreement.IndirectBulkAcceptVersionedPolicy(input, client.BearerToken(*accessToken.AccessToken))
+	if err != nil {
+		return nil, err
+	}
+	return created.GetPayload(), nil
+}
+
+func (a *AgreementService) RetrieveAcceptedAgreementsShort(input *agreement.RetrieveAcceptedAgreementsParams, authInfo runtime.ClientAuthInfoWriter) ([]*legalclientmodels.RetrieveAcceptedAgreementResponse, error) {
+	ok, err := a.Client.Agreement.RetrieveAcceptedAgreementsShort(input, authInfo)
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (a *AgreementService) RetrieveAllUsersByPolicyVersionShort(input *agreement.RetrieveAllUsersByPolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) ([]*legalclientmodels.PagedRetrieveUserAcceptedAgreementResponse, error) {
+	ok, err := a.Client.Agreement.RetrieveAllUsersByPolicyVersionShort(input, authInfo)
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (a *AgreementService) ChangePreferenceConsentShort(input *agreement.ChangePreferenceConsentParams, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := a.Client.Agreement.ChangePreferenceConsentShort(input, authInfo)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (a *AgreementService) AcceptVersionedPolicyShort(input *agreement.AcceptVersionedPolicyParams, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := a.Client.Agreement.AcceptVersionedPolicyShort(input, authInfo)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (a *AgreementService) RetrieveAgreementsPublicShort(input *agreement.RetrieveAgreementsPublicParams, authInfo runtime.ClientAuthInfoWriter) ([]*legalclientmodels.RetrieveAcceptedAgreementResponse, error) {
+	ok, err := a.Client.Agreement.RetrieveAgreementsPublicShort(input, authInfo)
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (a *AgreementService) BulkAcceptVersionedPolicyShort(input *agreement.BulkAcceptVersionedPolicyParams, authInfo runtime.ClientAuthInfoWriter) (*legalclientmodels.AcceptAgreementResponse, error) {
+	created, err := a.Client.Agreement.BulkAcceptVersionedPolicyShort(input, authInfo)
+	if err != nil {
+		return nil, err
+	}
+	return created.GetPayload(), nil
+}
+
+func (a *AgreementService) IndirectBulkAcceptVersionedPolicyV2Short(input *agreement.IndirectBulkAcceptVersionedPolicyV2Params, authInfo runtime.ClientAuthInfoWriter) (*legalclientmodels.AcceptAgreementResponse, error) {
+	created, err := a.Client.Agreement.IndirectBulkAcceptVersionedPolicyV2Short(input, authInfo)
+	if err != nil {
+		return nil, err
+	}
+	return created.GetPayload(), nil
+}
+
+func (a *AgreementService) IndirectBulkAcceptVersionedPolicyShort(input *agreement.IndirectBulkAcceptVersionedPolicyParams, authInfo runtime.ClientAuthInfoWriter) (*legalclientmodels.AcceptAgreementResponse, error) {
+	created, err := a.Client.Agreement.IndirectBulkAcceptVersionedPolicyShort(input, authInfo)
+	if err != nil {
+		return nil, err
+	}
+	return created.GetPayload(), nil
 }

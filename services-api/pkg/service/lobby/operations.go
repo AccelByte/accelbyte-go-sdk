@@ -1,13 +1,17 @@
+// Copyright (c) 2018 - 2021
+// AccelByte Inc. All Rights Reserved.
+// This is licensed software from AccelByte Inc, for limitations
+// and restrictions contact your company contract manager.
+
 package lobby
 
 import (
-	"encoding/json"
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient"
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/operations"
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
-	"github.com/sirupsen/logrus"
 )
 
 type OperationsService struct {
@@ -15,65 +19,62 @@ type OperationsService struct {
 	TokenRepository repository.TokenRepository
 }
 
-func (o *OperationsService) PublicGetMessages() ([]*lobbyclientmodels.LogAppMessageDeclaration, error) {
-	token, err := o.TokenRepository.GetToken()
+func (o *OperationsService) AdminUpdatePartyAttributesV1(input *operations.AdminUpdatePartyAttributesV1Params) (*lobbyclientmodels.ModelsPartyData, error) {
+	accessToken, err := o.TokenRepository.GetToken()
 	if err != nil {
-		logrus.Error(err)
 		return nil, err
 	}
-	params := &operations.PublicGetMessagesParams{}
-	ok, internalServerError, err := o.Client.Operations.PublicGetMessages(params, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, preconditionFailed, internalServerError, err := o.Client.Operations.AdminUpdatePartyAttributesV1(input, client.BearerToken(*accessToken.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if preconditionFailed != nil {
+		return nil, preconditionFailed
+	}
 	if internalServerError != nil {
-		errorMsg, _ := json.Marshal(*internalServerError.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, internalServerError
 	}
 	if err != nil {
-		logrus.Error(err)
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (o *OperationsService) AdminUpdatePartyAttributesV1(input *operations.AdminUpdatePartyAttributesV1Params) (*lobbyclientmodels.ModelsPartyData, error) {
-	token, err := o.TokenRepository.GetToken()
+func (o *OperationsService) PublicGetMessages(input *operations.PublicGetMessagesParams) ([]*lobbyclientmodels.LogAppMessageDeclaration, error) {
+	accessToken, err := o.TokenRepository.GetToken()
 	if err != nil {
-		logrus.Error(err)
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, preconditionFailed, internalServerError, err := o.Client.Operations.AdminUpdatePartyAttributesV1(input, client.BearerToken(*token.AccessToken))
-	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, badRequest
-	}
-	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, unauthorized
-	}
-	if forbidden != nil {
-		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, forbidden
-	}
-	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, notFound
-	}
-	if preconditionFailed != nil {
-		errorMsg, _ := json.Marshal(*preconditionFailed.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, preconditionFailed
-	}
+	ok, internalServerError, err := o.Client.Operations.PublicGetMessages(input, client.BearerToken(*accessToken.AccessToken))
 	if internalServerError != nil {
-		errorMsg, _ := json.Marshal(*internalServerError.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, internalServerError
 	}
 	if err != nil {
-		logrus.Error(err)
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (o *OperationsService) AdminUpdatePartyAttributesV1Short(input *operations.AdminUpdatePartyAttributesV1Params, authInfo runtime.ClientAuthInfoWriter) (*lobbyclientmodels.ModelsPartyData, error) {
+	ok, err := o.Client.Operations.AdminUpdatePartyAttributesV1Short(input, authInfo)
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (o *OperationsService) PublicGetMessagesShort(input *operations.PublicGetMessagesParams, authInfo runtime.ClientAuthInfoWriter) ([]*lobbyclientmodels.LogAppMessageDeclaration, error) {
+	ok, err := o.Client.Operations.PublicGetMessagesShort(input, authInfo)
+	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil

@@ -1,16 +1,16 @@
-// Copyright (c) 2021 AccelByte Inc. All Rights Reserved.
+// Copyright (c) 2018 - 2021
+// AccelByte Inc. All Rights Reserved.
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
+
 package iam
 
 import (
-	"encoding/json"
-
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/s_s_o"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
-	"github.com/sirupsen/logrus"
 )
 
 type SSOService struct {
@@ -18,49 +18,51 @@ type SSOService struct {
 	TokenRepository repository.TokenRepository
 }
 
-// LoginSSOClient is used to login to SSO client with provided platformId
 func (s *SSOService) LoginSSOClient(input *s_s_o.LoginSSOClientParams) error {
-	token, err := s.TokenRepository.GetToken()
+	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {
-		logrus.Error(err)
 		return err
 	}
-	_, err = s.Client.Sso.LoginSSOClient(input, client.BearerToken(*token.AccessToken))
+	_, err = s.Client.Sso.LoginSSOClient(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
-		logrus.Error(err)
 		return err
 	}
-	logrus.Info("successfully login to SSO client with provided platform Id ")
 	return nil
 }
 
-// LogoutSSOClient is used to logout user's session on platform that logged in using SSO
 func (s *SSOService) LogoutSSOClient(input *s_s_o.LogoutSSOClientParams) error {
-	token, err := s.TokenRepository.GetToken()
+	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {
-		logrus.Error(err)
 		return err
 	}
-	_, notFound, unprocessableEntity, internalServer, err := s.Client.Sso.LogoutSSOClient(input, client.BearerToken(*token.AccessToken))
+	_, notFound, unprocessableEntity, internalServerError, err := s.Client.Sso.LogoutSSOClient(input, client.BearerToken(*accessToken.AccessToken))
 	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
 		return notFound
 	}
 	if unprocessableEntity != nil {
-		errorMsg, _ := json.Marshal(*unprocessableEntity.GetPayload())
-		logrus.Error(string(errorMsg))
 		return unprocessableEntity
 	}
-	if internalServer != nil {
-		errorMsg, _ := json.Marshal(*internalServer.GetPayload())
-		logrus.Error(string(errorMsg))
-		return internalServer
+	if internalServerError != nil {
+		return internalServerError
 	}
 	if err != nil {
-		logrus.Error(err)
 		return err
 	}
-	logrus.Info("successfully logout user's session on platform that logged in using SSO")
+	return nil
+}
+
+func (s *SSOService) LoginSSOClientShort(input *s_s_o.LoginSSOClientParams, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := s.Client.Sso.LoginSSOClientShort(input, authInfo)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (s *SSOService) LogoutSSOClientShort(input *s_s_o.LogoutSSOClientParams, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := s.Client.Sso.LogoutSSOClientShort(input, authInfo)
+	if err != nil {
+		return err
+	}
 	return nil
 }

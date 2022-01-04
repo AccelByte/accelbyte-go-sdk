@@ -1,13 +1,17 @@
+// Copyright (c) 2018 - 2021
+// AccelByte Inc. All Rights Reserved.
+// This is licensed software from AccelByte Inc, for limitations
+// and restrictions contact your company contract manager.
+
 package matchmaking
 
 import (
-	"encoding/json"
 	"github.com/AccelByte/accelbyte-go-sdk/matchmaking-sdk/pkg/matchmakingclient"
 	"github.com/AccelByte/accelbyte-go-sdk/matchmaking-sdk/pkg/matchmakingclient/operations"
 	"github.com/AccelByte/accelbyte-go-sdk/matchmaking-sdk/pkg/matchmakingclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
-	"github.com/sirupsen/logrus"
 )
 
 type OperationsService struct {
@@ -15,60 +19,83 @@ type OperationsService struct {
 	TokenRepository repository.TokenRepository
 }
 
-func (m *OperationsService) Healthz() error {
-	token, err := m.TokenRepository.GetToken()
+func (o *OperationsService) GetHealthcheckInfo(input *operations.GetHealthcheckInfoParams) error {
+	accessToken, err := o.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	params := &operations.GetHealthcheckInfoParams{}
-	_, err = m.Client.Operations.GetHealthcheckInfo(params, client.BearerToken(*token.AccessToken))
+	_, err = o.Client.Operations.GetHealthcheckInfo(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
-		logrus.Error(err)
 		return err
 	}
 	return nil
 }
 
-func (m *OperationsService) MatchmakingHealthz() error {
-	token, err := m.TokenRepository.GetToken()
+func (o *OperationsService) HandlerV3Healthz(input *operations.HandlerV3HealthzParams) error {
+	accessToken, err := o.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	params := &operations.HandlerV3HealthzParams{}
-	_, err = m.Client.Operations.HandlerV3Healthz(params, client.BearerToken(*token.AccessToken))
+	_, err = o.Client.Operations.HandlerV3Healthz(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
-		logrus.Error(err)
 		return err
 	}
 	return nil
 }
 
-func (m *OperationsService) PublicGetMessages() ([]*matchmakingclientmodels.LogAppMessageDeclaration, error) {
-	token, err := m.TokenRepository.GetToken()
+func (o *OperationsService) PublicGetMessages(input *operations.PublicGetMessagesParams) ([]*matchmakingclientmodels.LogAppMessageDeclaration, error) {
+	accessToken, err := o.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	params := &operations.PublicGetMessagesParams{}
-	ok, internalServerError, err := m.Client.Operations.PublicGetMessages(params, client.BearerToken(*token.AccessToken))
+	ok, internalServerError, err := o.Client.Operations.PublicGetMessages(input, client.BearerToken(*accessToken.AccessToken))
 	if internalServerError != nil {
-		errorMsg, _ := json.Marshal(*internalServerError.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, internalServerError
 	}
 	if err != nil {
-		logrus.Error(err)
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (m *OperationsService) VersionCheckHandler() error {
-	token, err := m.TokenRepository.GetToken()
+func (o *OperationsService) VersionCheckHandler(input *operations.VersionCheckHandlerParams) error {
+	accessToken, err := o.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	params := &operations.VersionCheckHandlerParams{}
-	_, err = m.Client.Operations.VersionCheckHandler(params, client.BearerToken(*token.AccessToken))
+	_, err = o.Client.Operations.VersionCheckHandler(input, client.BearerToken(*accessToken.AccessToken))
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *OperationsService) GetHealthcheckInfoShort(input *operations.GetHealthcheckInfoParams, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := o.Client.Operations.GetHealthcheckInfoShort(input, authInfo)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *OperationsService) HandlerV3HealthzShort(input *operations.HandlerV3HealthzParams, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := o.Client.Operations.HandlerV3HealthzShort(input, authInfo)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *OperationsService) PublicGetMessagesShort(input *operations.PublicGetMessagesParams, authInfo runtime.ClientAuthInfoWriter) ([]*matchmakingclientmodels.LogAppMessageDeclaration, error) {
+	ok, err := o.Client.Operations.PublicGetMessagesShort(input, authInfo)
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (o *OperationsService) VersionCheckHandlerShort(input *operations.VersionCheckHandlerParams, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := o.Client.Operations.VersionCheckHandlerShort(input, authInfo)
 	if err != nil {
 		return err
 	}

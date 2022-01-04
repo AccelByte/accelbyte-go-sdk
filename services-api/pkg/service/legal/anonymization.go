@@ -1,12 +1,16 @@
+// Copyright (c) 2018 - 2021
+// AccelByte Inc. All Rights Reserved.
+// This is licensed software from AccelByte Inc, for limitations
+// and restrictions contact your company contract manager.
+
 package legal
 
 import (
-	"encoding/json"
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclient"
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclient/anonymization"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
-	"github.com/sirupsen/logrus"
 )
 
 type AnonymizationService struct {
@@ -14,21 +18,24 @@ type AnonymizationService struct {
 	TokenRepository repository.TokenRepository
 }
 
-// AnonymizeUserAgreement is used to anonymize user s agreement record
 func (a *AnonymizationService) AnonymizeUserAgreement(input *anonymization.AnonymizeUserAgreementParams) error {
-	token, err := a.TokenRepository.GetToken()
+	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
-		logrus.Error(err)
 		return err
 	}
-	_, notFound, err := a.Client.Anonymization.AnonymizeUserAgreement(input, client.BearerToken(*token.AccessToken))
+	_, notFound, err := a.Client.Anonymization.AnonymizeUserAgreement(input, client.BearerToken(*accessToken.AccessToken))
 	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
 		return notFound
 	}
 	if err != nil {
-		logrus.Error(err)
+		return err
+	}
+	return nil
+}
+
+func (a *AnonymizationService) AnonymizeUserAgreementShort(input *anonymization.AnonymizeUserAgreementParams, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := a.Client.Anonymization.AnonymizeUserAgreementShort(input, authInfo)
+	if err != nil {
 		return err
 	}
 	return nil

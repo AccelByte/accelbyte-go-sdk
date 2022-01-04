@@ -1,17 +1,17 @@
-// Copyright (c) 2021 AccelByte Inc. All Rights Reserved.
+// Copyright (c) 2018 - 2021
+// AccelByte Inc. All Rights Reserved.
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
 package dslogmanager
 
 import (
-	"encoding/json"
 	"github.com/AccelByte/accelbyte-go-sdk/dslogmanager-sdk/pkg/dslogmanagerclient"
 	"github.com/AccelByte/accelbyte-go-sdk/dslogmanager-sdk/pkg/dslogmanagerclient/all_terminated_servers"
 	"github.com/AccelByte/accelbyte-go-sdk/dslogmanager-sdk/pkg/dslogmanagerclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
-	"github.com/sirupsen/logrus"
 )
 
 type AllTerminatedServersService struct {
@@ -19,31 +19,56 @@ type AllTerminatedServersService struct {
 	TokenRepository repository.TokenRepository
 }
 
-// ListAllTerminatedServers retrieves all terminated servers
-func (a *AllTerminatedServersService) ListAllTerminatedServers(input *all_terminated_servers.ListAllTerminatedServersParams) (*dslogmanagerclientmodels.ModelsListTerminatedServersResponse, error) {
-	token, err := a.TokenRepository.GetToken()
+func (a *AllTerminatedServersService) BatchDownloadServerLogs(input *all_terminated_servers.BatchDownloadServerLogsParams) error {
+	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
-		logrus.Error(err)
+		return err
+	}
+	_, badRequest, internalServerError, err := a.Client.AllTerminatedServers.BatchDownloadServerLogs(input, client.BearerToken(*accessToken.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
+	if internalServerError != nil {
+		return internalServerError
+	}
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (a *AllTerminatedServersService) ListAllTerminatedServers(input *all_terminated_servers.ListAllTerminatedServersParams) (*dslogmanagerclientmodels.ModelsListTerminatedServersResponse, error) {
+	accessToken, err := a.TokenRepository.GetToken()
+	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, internalServer, err := a.Client.AllTerminatedServers.ListAllTerminatedServers(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, internalServerError, err := a.Client.AllTerminatedServers.ListAllTerminatedServers(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, badRequest
 	}
 	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, unauthorized
 	}
-	if internalServer != nil {
-		errorMsg, _ := json.Marshal(*internalServer.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, internalServer
+	if internalServerError != nil {
+		return nil, internalServerError
 	}
 	if err != nil {
-		logrus.Error(err)
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (a *AllTerminatedServersService) BatchDownloadServerLogsShort(input *all_terminated_servers.BatchDownloadServerLogsParams, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := a.Client.AllTerminatedServers.BatchDownloadServerLogsShort(input, authInfo)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (a *AllTerminatedServersService) ListAllTerminatedServersShort(input *all_terminated_servers.ListAllTerminatedServersParams, authInfo runtime.ClientAuthInfoWriter) (*dslogmanagerclientmodels.ModelsListTerminatedServersResponse, error) {
+	ok, err := a.Client.AllTerminatedServers.ListAllTerminatedServersShort(input, authInfo)
+	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil

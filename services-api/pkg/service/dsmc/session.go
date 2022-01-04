@@ -1,13 +1,17 @@
+// Copyright (c) 2018 - 2021
+// AccelByte Inc. All Rights Reserved.
+// This is licensed software from AccelByte Inc, for limitations
+// and restrictions contact your company contract manager.
+
 package dsmc
 
 import (
-	"encoding/json"
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient"
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/session"
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
-	"github.com/sirupsen/logrus"
 )
 
 type SessionService struct {
@@ -15,83 +19,28 @@ type SessionService struct {
 	TokenRepository repository.TokenRepository
 }
 
-func (s *SessionService) ClaimServer(input *session.ClaimServerParams) error {
-	token, err := s.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	_, unauthorized, notFound, conflict, status425, internalServer, serviceUnavailable, err := s.Client.Session.ClaimServer(input, client.BearerToken(*token.AccessToken))
-	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
-		return unauthorized
-	}
-	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
-		return notFound
-	}
-	if conflict != nil {
-		errorMsg, _ := json.Marshal(*conflict.GetPayload())
-		logrus.Error(string(errorMsg))
-		return conflict
-	}
-	if status425 != nil {
-		errorMsg, _ := json.Marshal(*status425.GetPayload())
-		logrus.Error(string(errorMsg))
-		return status425
-	}
-	if internalServer != nil {
-		errorMsg, _ := json.Marshal(*internalServer.GetPayload())
-		logrus.Error(string(errorMsg))
-		return internalServer
-	}
-	if serviceUnavailable != nil {
-		errorMsg, _ := json.Marshal(*serviceUnavailable.GetPayload())
-		logrus.Error(string(errorMsg))
-		return serviceUnavailable
-	}
-	if err != nil {
-		return err
-	}
-	logrus.Info("Claim Server Success")
-	return nil
-}
-
 func (s *SessionService) CreateSession(input *session.CreateSessionParams) (*dsmcclientmodels.ModelsSessionResponse, error) {
-	token, err := s.TokenRepository.GetToken()
+	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, notFound, conflict, internalServer, serviceUnavailable, err := s.Client.Session.CreateSession(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, notFound, conflict, internalServerError, serviceUnavailable, err := s.Client.Session.CreateSession(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, badRequest
 	}
 	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, unauthorized
 	}
 	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, notFound
 	}
 	if conflict != nil {
-		errorMsg, _ := json.Marshal(*conflict.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, conflict
 	}
-	if internalServer != nil {
-		errorMsg, _ := json.Marshal(*internalServer.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, internalServer
+	if internalServerError != nil {
+		return nil, internalServerError
 	}
 	if serviceUnavailable != nil {
-		errorMsg, _ := json.Marshal(*serviceUnavailable.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, serviceUnavailable
 	}
 	if err != nil {
@@ -100,27 +49,75 @@ func (s *SessionService) CreateSession(input *session.CreateSessionParams) (*dsm
 	return ok.GetPayload(), nil
 }
 
+func (s *SessionService) ClaimServer(input *session.ClaimServerParams) error {
+	accessToken, err := s.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, unauthorized, notFound, conflict, tooEarly, internalServerError, serviceUnavailable, err := s.Client.Session.ClaimServer(input, client.BearerToken(*accessToken.AccessToken))
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if notFound != nil {
+		return notFound
+	}
+	if conflict != nil {
+		return conflict
+	}
+	if tooEarly != nil {
+		return tooEarly
+	}
+	if internalServerError != nil {
+		return internalServerError
+	}
+	if serviceUnavailable != nil {
+		return serviceUnavailable
+	}
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
 func (s *SessionService) GetSession(input *session.GetSessionParams) (*dsmcclientmodels.ModelsSessionResponse, error) {
-	token, err := s.TokenRepository.GetToken()
+	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, notFound, internalServer, err := s.Client.Session.GetSession(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, notFound, internalServerError, err := s.Client.Session.GetSession(input, client.BearerToken(*accessToken.AccessToken))
 	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, unauthorized
 	}
 	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, notFound
 	}
-	if internalServer != nil {
-		errorMsg, _ := json.Marshal(*internalServer.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, internalServer
+	if internalServerError != nil {
+		return nil, internalServerError
 	}
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (s *SessionService) CreateSessionShort(input *session.CreateSessionParams, authInfo runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsSessionResponse, error) {
+	ok, err := s.Client.Session.CreateSessionShort(input, authInfo)
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (s *SessionService) ClaimServerShort(input *session.ClaimServerParams, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := s.Client.Session.ClaimServerShort(input, authInfo)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (s *SessionService) GetSessionShort(input *session.GetSessionParams, authInfo runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsSessionResponse, error) {
+	ok, err := s.Client.Session.GetSessionShort(input, authInfo)
 	if err != nil {
 		return nil, err
 	}

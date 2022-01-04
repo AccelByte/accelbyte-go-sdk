@@ -1,17 +1,17 @@
-// Copyright (c) 2021 AccelByte Inc. All Rights Reserved.
+// Copyright (c) 2018 - 2021
+// AccelByte Inc. All Rights Reserved.
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
 package ugc
 
 import (
-	"encoding/json"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/public_tag"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclientmodels"
+	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
-	"github.com/sirupsen/logrus"
 )
 
 type PublicTagService struct {
@@ -19,31 +19,30 @@ type PublicTagService struct {
 	TokenRepository repository.TokenRepository
 }
 
-// GetTag gets tags
-func (u *PublicTagService) GetTag(input *public_tag.GetTagParams) (*ugcclientmodels.ModelsPaginatedGetTagResponse, error) {
-	token, err := u.TokenRepository.GetToken()
+func (p *PublicTagService) GetTag(input *public_tag.GetTagParams) (*ugcclientmodels.ModelsPaginatedGetTagResponse, error) {
+	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
-		logrus.Error(err)
 		return nil, err
 	}
-	ok, unauthorized, notFound, internalServer, err := u.Client.PublicTag.GetTag(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, notFound, internalServerError, err := p.Client.PublicTag.GetTag(input, client.BearerToken(*accessToken.AccessToken))
 	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, unauthorized
 	}
 	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, notFound
 	}
-	if internalServer != nil {
-		errorMsg, _ := json.Marshal(*internalServer.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, internalServer
+	if internalServerError != nil {
+		return nil, internalServerError
 	}
 	if err != nil {
-		logrus.Error(err)
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (p *PublicTagService) GetTagShort(input *public_tag.GetTagParams, authInfo runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsPaginatedGetTagResponse, error) {
+	ok, err := p.Client.PublicTag.GetTagShort(input, authInfo)
+	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil

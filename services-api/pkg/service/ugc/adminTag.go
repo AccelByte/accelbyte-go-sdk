@@ -1,17 +1,17 @@
-// Copyright (c) 2021 AccelByte Inc. All Rights Reserved.
+// Copyright (c) 2018 - 2021
+// AccelByte Inc. All Rights Reserved.
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
 package ugc
 
 import (
-	"encoding/json"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/admin_tag"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclientmodels"
+	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
-	"github.com/sirupsen/logrus"
 )
 
 type AdminTagService struct {
@@ -19,137 +19,127 @@ type AdminTagService struct {
 	TokenRepository repository.TokenRepository
 }
 
-// AdminCreateTag creates tags
-func (a *AdminTagService) AdminCreateTag(input *admin_tag.AdminCreateTagParams) (*ugcclientmodels.ModelsCreateTagResponse, error) {
-	token, err := a.TokenRepository.GetToken()
+func (a *AdminTagService) AdminGetTag(input *admin_tag.AdminGetTagParams) (*ugcclientmodels.ModelsPaginatedGetTagResponse, error) {
+	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
-		logrus.Error(err)
 		return nil, err
 	}
-	created, badRequest, unauthorized, conflict, internalServer, err := a.Client.AdminTag.AdminCreateTag(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, notFound, internalServerError, err := a.Client.AdminTag.AdminGetTag(input, client.BearerToken(*accessToken.AccessToken))
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (a *AdminTagService) AdminCreateTag(input *admin_tag.AdminCreateTagParams) (*ugcclientmodels.ModelsCreateTagResponse, error) {
+	accessToken, err := a.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	created, badRequest, unauthorized, conflict, internalServerError, err := a.Client.AdminTag.AdminCreateTag(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, badRequest
 	}
 	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, unauthorized
 	}
 	if conflict != nil {
-		errorMsg, _ := json.Marshal(*conflict.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, conflict
 	}
-	if internalServer != nil {
-		errorMsg, _ := json.Marshal(*internalServer.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, internalServer
+	if internalServerError != nil {
+		return nil, internalServerError
 	}
 	if err != nil {
-		logrus.Error(err)
 		return nil, err
 	}
 	return created.GetPayload(), nil
 }
 
-// AdminDeleteTag deletes tags
-func (a *AdminTagService) AdminDeleteTag(input *admin_tag.AdminDeleteTagParams) error {
-	token, err := a.TokenRepository.GetToken()
+func (a *AdminTagService) AdminUpdateTag(input *admin_tag.AdminUpdateTagParams) (*ugcclientmodels.ModelsCreateTagResponse, error) {
+	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
-		logrus.Error(err)
+		return nil, err
+	}
+	ok, badRequest, unauthorized, notFound, conflict, internalServerError, err := a.Client.AdminTag.AdminUpdateTag(input, client.BearerToken(*accessToken.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if conflict != nil {
+		return nil, conflict
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (a *AdminTagService) AdminDeleteTag(input *admin_tag.AdminDeleteTagParams) error {
+	accessToken, err := a.TokenRepository.GetToken()
+	if err != nil {
 		return err
 	}
-	_, unauthorized, notFound, internalServer, err := a.Client.AdminTag.AdminDeleteTag(input, client.BearerToken(*token.AccessToken))
+	_, unauthorized, notFound, internalServerError, err := a.Client.AdminTag.AdminDeleteTag(input, client.BearerToken(*accessToken.AccessToken))
 	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
 		return unauthorized
 	}
 	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
 		return notFound
 	}
-	if internalServer != nil {
-		errorMsg, _ := json.Marshal(*internalServer.GetPayload())
-		logrus.Error(string(errorMsg))
-		return internalServer
+	if internalServerError != nil {
+		return internalServerError
 	}
 	if err != nil {
-		logrus.Error(err)
 		return err
 	}
 	return nil
 }
 
-// AdminGetTag gets tags
-func (a *AdminTagService) AdminGetTag(input *admin_tag.AdminGetTagParams) (*ugcclientmodels.ModelsPaginatedGetTagResponse, error) {
-	token, err := a.TokenRepository.GetToken()
+func (a *AdminTagService) AdminGetTagShort(input *admin_tag.AdminGetTagParams, authInfo runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsPaginatedGetTagResponse, error) {
+	ok, err := a.Client.AdminTag.AdminGetTagShort(input, authInfo)
 	if err != nil {
-		logrus.Error(err)
-		return nil, err
-	}
-	ok, unauthorized, notFound, internalServer, err := a.Client.AdminTag.AdminGetTag(input, client.BearerToken(*token.AccessToken))
-	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, unauthorized
-	}
-	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, notFound
-	}
-	if internalServer != nil {
-		errorMsg, _ := json.Marshal(*internalServer.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, internalServer
-	}
-	if err != nil {
-		logrus.Error(err)
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-// AdminUpdateTag updates tag
-func (a *AdminTagService) AdminUpdateTag(input *admin_tag.AdminUpdateTagParams) (*ugcclientmodels.ModelsCreateTagResponse, error) {
-	token, err := a.TokenRepository.GetToken()
+func (a *AdminTagService) AdminCreateTagShort(input *admin_tag.AdminCreateTagParams, authInfo runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsCreateTagResponse, error) {
+	created, err := a.Client.AdminTag.AdminCreateTagShort(input, authInfo)
 	if err != nil {
-		logrus.Error(err)
 		return nil, err
 	}
-	ok, badRequest, unauthorized, notFound, conflict, internalServer, err := a.Client.AdminTag.AdminUpdateTag(input, client.BearerToken(*token.AccessToken))
-	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, badRequest
-	}
-	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, unauthorized
-	}
-	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, notFound
-	}
-	if conflict != nil {
-		errorMsg, _ := json.Marshal(*conflict.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, conflict
-	}
-	if internalServer != nil {
-		errorMsg, _ := json.Marshal(*internalServer.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, internalServer
-	}
+	return created.GetPayload(), nil
+}
+
+func (a *AdminTagService) AdminUpdateTagShort(input *admin_tag.AdminUpdateTagParams, authInfo runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsCreateTagResponse, error) {
+	ok, err := a.Client.AdminTag.AdminUpdateTagShort(input, authInfo)
 	if err != nil {
-		logrus.Error(err)
 		return nil, err
 	}
 	return ok.GetPayload(), nil
+}
+
+func (a *AdminTagService) AdminDeleteTagShort(input *admin_tag.AdminDeleteTagParams, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := a.Client.AdminTag.AdminDeleteTagShort(input, authInfo)
+	if err != nil {
+		return err
+	}
+	return nil
 }

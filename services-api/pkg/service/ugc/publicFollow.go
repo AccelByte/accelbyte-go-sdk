@@ -1,13 +1,17 @@
+// Copyright (c) 2018 - 2021
+// AccelByte Inc. All Rights Reserved.
+// This is licensed software from AccelByte Inc, for limitations
+// and restrictions contact your company contract manager.
+
 package ugc
 
 import (
-	"encoding/json"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/public_follow"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclientmodels"
+	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
-	"github.com/sirupsen/logrus"
 )
 
 type PublicFollowService struct {
@@ -15,93 +19,91 @@ type PublicFollowService struct {
 	TokenRepository repository.TokenRepository
 }
 
-func (u *PublicFollowService) GetFollowedContent(input *public_follow.GetFollowedContentParams) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
-	token, err := u.TokenRepository.GetToken()
+func (p *PublicFollowService) GetFollowedContent(input *public_follow.GetFollowedContentParams) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
+	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
-		logrus.Error(err)
 		return nil, err
 	}
-	ok, unauthorized, notFound, internalServer, err := u.Client.PublicFollow.GetFollowedContent(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, notFound, internalServerError, err := p.Client.PublicFollow.GetFollowedContent(input, client.BearerToken(*accessToken.AccessToken))
 	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, unauthorized
 	}
 	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, notFound
 	}
-	if internalServer != nil {
-		errorMsg, _ := json.Marshal(*internalServer.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, internalServer
+	if internalServerError != nil {
+		return nil, internalServerError
 	}
 	if err != nil {
-		logrus.Error(err)
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (u *PublicFollowService) GetFollowedUsers(input *public_follow.GetFollowedUsersParams) (*ugcclientmodels.ModelsPaginatedCreatorOverviewResponse, error) {
-	token, err := u.TokenRepository.GetToken()
+func (p *PublicFollowService) GetFollowedUsers(input *public_follow.GetFollowedUsersParams) (*ugcclientmodels.ModelsPaginatedCreatorOverviewResponse, error) {
+	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
-		logrus.Error(err)
 		return nil, err
 	}
-	ok, unauthorized, notFound, internalServer, err := u.Client.PublicFollow.GetFollowedUsers(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, notFound, internalServerError, err := p.Client.PublicFollow.GetFollowedUsers(input, client.BearerToken(*accessToken.AccessToken))
 	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, unauthorized
 	}
 	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, notFound
 	}
-	if internalServer != nil {
-		errorMsg, _ := json.Marshal(*internalServer.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, internalServer
+	if internalServerError != nil {
+		return nil, internalServerError
 	}
 	if err != nil {
-		logrus.Error(err)
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (u *PublicFollowService) UpdateUserFollowStatus(input *public_follow.UpdateUserFollowStatusParams) (*ugcclientmodels.ModelsUserFollowResponse, error) {
-	token, err := u.TokenRepository.GetToken()
+func (p *PublicFollowService) UpdateUserFollowStatus(input *public_follow.UpdateUserFollowStatusParams) (*ugcclientmodels.ModelsUserFollowResponse, error) {
+	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
-		logrus.Error(err)
 		return nil, err
 	}
-	ok, badRequest, unauthorized, notFound, internalServer, err := u.Client.PublicFollow.UpdateUserFollowStatus(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, notFound, internalServerError, err := p.Client.PublicFollow.UpdateUserFollowStatus(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, badRequest
 	}
 	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, unauthorized
 	}
 	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, notFound
 	}
-	if internalServer != nil {
-		errorMsg, _ := json.Marshal(*internalServer.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, internalServer
+	if internalServerError != nil {
+		return nil, internalServerError
 	}
 	if err != nil {
-		logrus.Error(err)
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (p *PublicFollowService) GetFollowedContentShort(input *public_follow.GetFollowedContentParams, authInfo runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
+	ok, err := p.Client.PublicFollow.GetFollowedContentShort(input, authInfo)
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (p *PublicFollowService) GetFollowedUsersShort(input *public_follow.GetFollowedUsersParams, authInfo runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsPaginatedCreatorOverviewResponse, error) {
+	ok, err := p.Client.PublicFollow.GetFollowedUsersShort(input, authInfo)
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (p *PublicFollowService) UpdateUserFollowStatusShort(input *public_follow.UpdateUserFollowStatusParams, authInfo runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsUserFollowResponse, error) {
+	ok, err := p.Client.PublicFollow.UpdateUserFollowStatusShort(input, authInfo)
+	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil

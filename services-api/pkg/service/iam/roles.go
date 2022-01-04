@@ -1,17 +1,17 @@
-// Copyright (c) 2021 AccelByte Inc. All Rights Reserved.
+// Copyright (c) 2018 - 2021
+// AccelByte Inc. All Rights Reserved.
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
+
 package iam
 
 import (
-	"encoding/json"
-
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/roles"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
-	"github.com/sirupsen/logrus"
 )
 
 type RolesService struct {
@@ -19,7 +19,399 @@ type RolesService struct {
 	TokenRepository repository.TokenRepository
 }
 
-// AdminGetRolesV3 is for admin to get the roles
+func (r *RolesService) GetRoles(input *roles.GetRolesParams) ([]*iamclientmodels.ModelRoleResponseWithManagers, error) {
+	accessToken, err := r.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, unauthorized, forbidden, err := r.Client.Roles.GetRoles(input, client.BearerToken(*accessToken.AccessToken))
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (r *RolesService) CreateRole(input *roles.CreateRoleParams) (*iamclientmodels.AccountcommonRole, error) {
+	accessToken, err := r.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	created, badRequest, unauthorized, forbidden, err := r.Client.Roles.CreateRole(input, client.BearerToken(*accessToken.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if err != nil {
+		return nil, err
+	}
+	return created.GetPayload(), nil
+}
+
+func (r *RolesService) GetRole(input *roles.GetRoleParams) (*iamclientmodels.ModelRoleResponse, error) {
+	accessToken, err := r.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, unauthorized, forbidden, notFound, err := r.Client.Roles.GetRole(input, client.BearerToken(*accessToken.AccessToken))
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (r *RolesService) UpdateRole(input *roles.UpdateRoleParams) (*iamclientmodels.ModelRoleResponse, error) {
+	accessToken, err := r.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, forbidden, notFound, err := r.Client.Roles.UpdateRole(input, client.BearerToken(*accessToken.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (r *RolesService) DeleteRole(input *roles.DeleteRoleParams) error {
+	accessToken, err := r.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, unauthorized, forbidden, notFound, err := r.Client.Roles.DeleteRole(input, client.BearerToken(*accessToken.AccessToken))
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if forbidden != nil {
+		return forbidden
+	}
+	if notFound != nil {
+		return notFound
+	}
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (r *RolesService) GetRoleAdminStatus(input *roles.GetRoleAdminStatusParams) (*iamclientmodels.ModelRoleAdminStatusResponse, error) {
+	accessToken, err := r.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, forbidden, notFound, err := r.Client.Roles.GetRoleAdminStatus(input, client.BearerToken(*accessToken.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (r *RolesService) SetRoleAsAdmin(input *roles.SetRoleAsAdminParams) error {
+	accessToken, err := r.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, badRequest, unauthorized, forbidden, notFound, err := r.Client.Roles.SetRoleAsAdmin(input, client.BearerToken(*accessToken.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if forbidden != nil {
+		return forbidden
+	}
+	if notFound != nil {
+		return notFound
+	}
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (r *RolesService) RemoveRoleAdmin(input *roles.RemoveRoleAdminParams) error {
+	accessToken, err := r.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, badRequest, unauthorized, forbidden, notFound, err := r.Client.Roles.RemoveRoleAdmin(input, client.BearerToken(*accessToken.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if forbidden != nil {
+		return forbidden
+	}
+	if notFound != nil {
+		return notFound
+	}
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (r *RolesService) GetRoleManagers(input *roles.GetRoleManagersParams) (*iamclientmodels.ModelRoleManagersResponse, error) {
+	accessToken, err := r.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, forbidden, notFound, err := r.Client.Roles.GetRoleManagers(input, client.BearerToken(*accessToken.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (r *RolesService) AddRoleManagers(input *roles.AddRoleManagersParams) error {
+	accessToken, err := r.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, badRequest, unauthorized, forbidden, notFound, err := r.Client.Roles.AddRoleManagers(input, client.BearerToken(*accessToken.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if forbidden != nil {
+		return forbidden
+	}
+	if notFound != nil {
+		return notFound
+	}
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (r *RolesService) RemoveRoleManagers(input *roles.RemoveRoleManagersParams) error {
+	accessToken, err := r.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, badRequest, unauthorized, forbidden, notFound, err := r.Client.Roles.RemoveRoleManagers(input, client.BearerToken(*accessToken.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if forbidden != nil {
+		return forbidden
+	}
+	if notFound != nil {
+		return notFound
+	}
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (r *RolesService) GetRoleMembers(input *roles.GetRoleMembersParams) (*iamclientmodels.ModelRoleMembersResponse, error) {
+	accessToken, err := r.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, forbidden, notFound, err := r.Client.Roles.GetRoleMembers(input, client.BearerToken(*accessToken.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (r *RolesService) AddRoleMembers(input *roles.AddRoleMembersParams) error {
+	accessToken, err := r.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, badRequest, unauthorized, forbidden, notFound, err := r.Client.Roles.AddRoleMembers(input, client.BearerToken(*accessToken.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if forbidden != nil {
+		return forbidden
+	}
+	if notFound != nil {
+		return notFound
+	}
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (r *RolesService) RemoveRoleMembers(input *roles.RemoveRoleMembersParams) error {
+	accessToken, err := r.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, badRequest, unauthorized, forbidden, notFound, err := r.Client.Roles.RemoveRoleMembers(input, client.BearerToken(*accessToken.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if forbidden != nil {
+		return forbidden
+	}
+	if notFound != nil {
+		return notFound
+	}
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (r *RolesService) UpdateRolePermissions(input *roles.UpdateRolePermissionsParams) error {
+	accessToken, err := r.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, badRequest, unauthorized, forbidden, notFound, err := r.Client.Roles.UpdateRolePermissions(input, client.BearerToken(*accessToken.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if forbidden != nil {
+		return forbidden
+	}
+	if notFound != nil {
+		return notFound
+	}
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (r *RolesService) AddRolePermission(input *roles.AddRolePermissionParams) error {
+	accessToken, err := r.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, badRequest, unauthorized, forbidden, notFound, err := r.Client.Roles.AddRolePermission(input, client.BearerToken(*accessToken.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if forbidden != nil {
+		return forbidden
+	}
+	if notFound != nil {
+		return notFound
+	}
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (r *RolesService) DeleteRolePermission(input *roles.DeleteRolePermissionParams) error {
+	accessToken, err := r.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, badRequest, unauthorized, forbidden, notFound, err := r.Client.Roles.DeleteRolePermission(input, client.BearerToken(*accessToken.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if forbidden != nil {
+		return forbidden
+	}
+	if notFound != nil {
+		return notFound
+	}
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
 func (r *RolesService) AdminGetRolesV3(input *roles.AdminGetRolesV3Params) (*iamclientmodels.ModelRoleResponseWithManagersAndPaginationV3, error) {
 	accessToken, err := r.TokenRepository.GetToken()
 	if err != nil {
@@ -27,57 +419,41 @@ func (r *RolesService) AdminGetRolesV3(input *roles.AdminGetRolesV3Params) (*iam
 	}
 	ok, badRequest, unauthorized, forbidden, err := r.Client.Roles.AdminGetRolesV3(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, badRequest
 	}
 	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, unauthorized
 	}
 	if forbidden != nil {
-		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, forbidden
 	}
 	if err != nil {
-		logrus.Error(err)
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-// AdminCreateRoleV3 is for admin to create the roles
 func (r *RolesService) AdminCreateRoleV3(input *roles.AdminCreateRoleV3Params) (*iamclientmodels.AccountcommonRoleV3, error) {
 	accessToken, err := r.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	createRole, badRequest, unauthorized, forbidden, err := r.Client.Roles.AdminCreateRoleV3(input, client.BearerToken(*accessToken.AccessToken))
+	created, badRequest, unauthorized, forbidden, err := r.Client.Roles.AdminCreateRoleV3(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, badRequest
 	}
 	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, unauthorized
 	}
 	if forbidden != nil {
-		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, forbidden
 	}
 	if err != nil {
-		logrus.Error(err)
 		return nil, err
 	}
-	return createRole.GetPayload(), nil
+	return created.GetPayload(), nil
 }
 
-// AdminGetRoleV3 is for admin to get the roles by roleId
 func (r *RolesService) AdminGetRoleV3(input *roles.AdminGetRoleV3Params) (*iamclientmodels.ModelRoleResponseV3, error) {
 	accessToken, err := r.TokenRepository.GetToken()
 	if err != nil {
@@ -85,70 +461,50 @@ func (r *RolesService) AdminGetRoleV3(input *roles.AdminGetRoleV3Params) (*iamcl
 	}
 	ok, badRequest, unauthorized, forbidden, notFound, err := r.Client.Roles.AdminGetRoleV3(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, badRequest
 	}
 	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, unauthorized
 	}
 	if forbidden != nil {
-		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, forbidden
 	}
 	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, notFound
 	}
 	if err != nil {
-		logrus.Error(err)
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-// AdminDeleteRoleV3 is for admin to delete the roles
 func (r *RolesService) AdminDeleteRoleV3(input *roles.AdminDeleteRoleV3Params) error {
 	accessToken, err := r.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, internalServer, err := r.Client.Roles.AdminDeleteRoleV3(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := r.Client.Roles.AdminDeleteRoleV3(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
 		return badRequest
 	}
 	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
 		return unauthorized
 	}
 	if forbidden != nil {
-		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
-		logrus.Error(string(errorMsg))
 		return forbidden
 	}
 	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
 		return notFound
 	}
-	if internalServer != nil {
-		return internalServer
+	if internalServerError != nil {
+		return internalServerError
 	}
 	if err != nil {
-		logrus.Error(err)
 		return err
 	}
 	return nil
 }
 
-// AdminUpdateRoleV3 is for admin to update existing role
 func (r *RolesService) AdminUpdateRoleV3(input *roles.AdminUpdateRoleV3Params) (*iamclientmodels.ModelRoleResponseV3, error) {
 	accessToken, err := r.TokenRepository.GetToken()
 	if err != nil {
@@ -156,33 +512,23 @@ func (r *RolesService) AdminUpdateRoleV3(input *roles.AdminUpdateRoleV3Params) (
 	}
 	ok, badRequest, unauthorized, forbidden, notFound, err := r.Client.Roles.AdminUpdateRoleV3(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, badRequest
 	}
 	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, unauthorized
 	}
 	if forbidden != nil {
-		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, forbidden
 	}
 	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, notFound
 	}
 	if err != nil {
-		logrus.Error(err)
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-// AdminGetRoleAdminStatusV3 is for admin to get admin status
 func (r *RolesService) AdminGetRoleAdminStatusV3(input *roles.AdminGetRoleAdminStatusV3Params) (*iamclientmodels.ModelRoleAdminStatusResponseV3, error) {
 	accessToken, err := r.TokenRepository.GetToken()
 	if err != nil {
@@ -190,141 +536,101 @@ func (r *RolesService) AdminGetRoleAdminStatusV3(input *roles.AdminGetRoleAdminS
 	}
 	ok, badRequest, unauthorized, forbidden, notFound, err := r.Client.Roles.AdminGetRoleAdminStatusV3(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, badRequest
 	}
 	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, unauthorized
 	}
 	if forbidden != nil {
-		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, forbidden
 	}
 	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, notFound
 	}
 	if err != nil {
-		logrus.Error(err)
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-// AdminUpdateAdminRoleStatusV3 is for admin to update role set as admin
 func (r *RolesService) AdminUpdateAdminRoleStatusV3(input *roles.AdminUpdateAdminRoleStatusV3Params) error {
 	accessToken, err := r.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, internalServer, err := r.Client.Roles.AdminUpdateAdminRoleStatusV3(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := r.Client.Roles.AdminUpdateAdminRoleStatusV3(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
 		return badRequest
 	}
 	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
 		return unauthorized
 	}
 	if forbidden != nil {
-		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
-		logrus.Error(string(errorMsg))
 		return forbidden
 	}
 	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
 		return notFound
 	}
-	if internalServer != nil {
-		return internalServer
+	if internalServerError != nil {
+		return internalServerError
 	}
 	if err != nil {
-		logrus.Error(err)
 		return err
 	}
 	return nil
 }
 
-// AdminRemoveRoleAdminV3 is for admin to delete role admin status
 func (r *RolesService) AdminRemoveRoleAdminV3(input *roles.AdminRemoveRoleAdminV3Params) error {
 	accessToken, err := r.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, internalServer, err := r.Client.Roles.AdminRemoveRoleAdminV3(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := r.Client.Roles.AdminRemoveRoleAdminV3(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
 		return badRequest
 	}
 	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
 		return unauthorized
 	}
 	if forbidden != nil {
-		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
-		logrus.Error(string(errorMsg))
 		return forbidden
 	}
 	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
 		return notFound
 	}
-	if internalServer != nil {
-		return internalServer
+	if internalServerError != nil {
+		return internalServerError
 	}
 	if err != nil {
-		logrus.Error(err)
 		return err
 	}
 	return nil
 }
 
-// AdminGetRoleManagers is for admin to get the roles by role's managers
-func (r *RolesService) AdminGetRoleManagers(input *roles.AdminGetRoleManagersV3Params) (*iamclientmodels.ModelRoleManagersResponsesV3, error) {
+func (r *RolesService) AdminGetRoleManagersV3(input *roles.AdminGetRoleManagersV3Params) (*iamclientmodels.ModelRoleManagersResponsesV3, error) {
 	accessToken, err := r.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
 	ok, badRequest, unauthorized, forbidden, notFound, err := r.Client.Roles.AdminGetRoleManagersV3(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, badRequest
 	}
 	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, unauthorized
 	}
 	if forbidden != nil {
-		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, forbidden
 	}
 	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, notFound
 	}
 	if err != nil {
-		logrus.Error(err)
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-// AdminAddRoleManagersV3 is for admin to add role by role's managers
 func (r *RolesService) AdminAddRoleManagersV3(input *roles.AdminAddRoleManagersV3Params) error {
 	accessToken, err := r.TokenRepository.GetToken()
 	if err != nil {
@@ -332,38 +638,26 @@ func (r *RolesService) AdminAddRoleManagersV3(input *roles.AdminAddRoleManagersV
 	}
 	_, badRequest, unauthorized, forbidden, notFound, conflict, err := r.Client.Roles.AdminAddRoleManagersV3(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
 		return badRequest
 	}
 	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
 		return unauthorized
 	}
 	if forbidden != nil {
-		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
-		logrus.Error(string(errorMsg))
 		return forbidden
 	}
 	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
 		return notFound
 	}
 	if conflict != nil {
-		errorMsg, _ := json.Marshal(*conflict.GetPayload())
-		logrus.Error(string(errorMsg))
 		return conflict
 	}
 	if err != nil {
-		logrus.Error(err)
 		return err
 	}
 	return nil
 }
 
-// AdminRemoveRoleManagersV3 is for admin to delete assigned role by role's managers
 func (r *RolesService) AdminRemoveRoleManagersV3(input *roles.AdminRemoveRoleManagersV3Params) error {
 	accessToken, err := r.TokenRepository.GetToken()
 	if err != nil {
@@ -371,33 +665,23 @@ func (r *RolesService) AdminRemoveRoleManagersV3(input *roles.AdminRemoveRoleMan
 	}
 	_, badRequest, unauthorized, forbidden, notFound, err := r.Client.Roles.AdminRemoveRoleManagersV3(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
 		return badRequest
 	}
 	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
 		return unauthorized
 	}
 	if forbidden != nil {
-		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
-		logrus.Error(string(errorMsg))
 		return forbidden
 	}
 	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
 		return notFound
 	}
 	if err != nil {
-		logrus.Error(err)
 		return err
 	}
 	return nil
 }
 
-// AdminGetRoleMembersV3 is for admin to get the role members
 func (r *RolesService) AdminGetRoleMembersV3(input *roles.AdminGetRoleMembersV3Params) (*iamclientmodels.ModelRoleMembersResponseV3, error) {
 	accessToken, err := r.TokenRepository.GetToken()
 	if err != nil {
@@ -405,33 +689,23 @@ func (r *RolesService) AdminGetRoleMembersV3(input *roles.AdminGetRoleMembersV3P
 	}
 	ok, badRequest, unauthorized, forbidden, notFound, err := r.Client.Roles.AdminGetRoleMembersV3(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, badRequest
 	}
 	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, unauthorized
 	}
 	if forbidden != nil {
-		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, forbidden
 	}
 	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, notFound
 	}
 	if err != nil {
-		logrus.Error(err)
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-// AdminAddRoleMembersV3 is for admin to add role by role's manager listed in members
 func (r *RolesService) AdminAddRoleMembersV3(input *roles.AdminAddRoleMembersV3Params) error {
 	accessToken, err := r.TokenRepository.GetToken()
 	if err != nil {
@@ -439,38 +713,26 @@ func (r *RolesService) AdminAddRoleMembersV3(input *roles.AdminAddRoleMembersV3P
 	}
 	_, badRequest, unauthorized, forbidden, notFound, conflict, err := r.Client.Roles.AdminAddRoleMembersV3(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
 		return badRequest
 	}
 	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
 		return unauthorized
 	}
 	if forbidden != nil {
-		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
-		logrus.Error(string(errorMsg))
 		return forbidden
 	}
 	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
 		return notFound
 	}
 	if conflict != nil {
-		errorMsg, _ := json.Marshal(*conflict.GetPayload())
-		logrus.Error(string(errorMsg))
 		return conflict
 	}
 	if err != nil {
-		logrus.Error(err)
 		return err
 	}
 	return nil
 }
 
-// AdminRemoveRoleMembersV3 is for admin to delete role by role's manager listed in members
 func (r *RolesService) AdminRemoveRoleMembersV3(input *roles.AdminRemoveRoleMembersV3Params) error {
 	accessToken, err := r.TokenRepository.GetToken()
 	if err != nil {
@@ -478,33 +740,23 @@ func (r *RolesService) AdminRemoveRoleMembersV3(input *roles.AdminRemoveRoleMemb
 	}
 	_, badRequest, unauthorized, forbidden, notFound, err := r.Client.Roles.AdminRemoveRoleMembersV3(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
 		return badRequest
 	}
 	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
 		return unauthorized
 	}
 	if forbidden != nil {
-		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
-		logrus.Error(string(errorMsg))
 		return forbidden
 	}
 	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
 		return notFound
 	}
 	if err != nil {
-		logrus.Error(err)
 		return err
 	}
 	return nil
 }
 
-// AdminUpdateRolePermissionsV3 is for admin to update existing role's permission
 func (r *RolesService) AdminUpdateRolePermissionsV3(input *roles.AdminUpdateRolePermissionsV3Params) error {
 	accessToken, err := r.TokenRepository.GetToken()
 	if err != nil {
@@ -512,33 +764,23 @@ func (r *RolesService) AdminUpdateRolePermissionsV3(input *roles.AdminUpdateRole
 	}
 	_, badRequest, unauthorized, forbidden, notFound, err := r.Client.Roles.AdminUpdateRolePermissionsV3(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
 		return badRequest
 	}
 	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
 		return unauthorized
 	}
 	if forbidden != nil {
-		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
-		logrus.Error(string(errorMsg))
 		return forbidden
 	}
 	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
 		return notFound
 	}
 	if err != nil {
-		logrus.Error(err)
 		return err
 	}
 	return nil
 }
 
-// AdminAddRolePermissionsV3 is for admin to add role's permission
 func (r *RolesService) AdminAddRolePermissionsV3(input *roles.AdminAddRolePermissionsV3Params) error {
 	accessToken, err := r.TokenRepository.GetToken()
 	if err != nil {
@@ -546,33 +788,23 @@ func (r *RolesService) AdminAddRolePermissionsV3(input *roles.AdminAddRolePermis
 	}
 	_, badRequest, unauthorized, forbidden, notFound, err := r.Client.Roles.AdminAddRolePermissionsV3(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
 		return badRequest
 	}
 	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
 		return unauthorized
 	}
 	if forbidden != nil {
-		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
-		logrus.Error(string(errorMsg))
 		return forbidden
 	}
 	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
 		return notFound
 	}
 	if err != nil {
-		logrus.Error(err)
 		return err
 	}
 	return nil
 }
 
-// AdminDeleteRolePermissionsV3 is for admin to delete role's permissions
 func (r *RolesService) AdminDeleteRolePermissionsV3(input *roles.AdminDeleteRolePermissionsV3Params) error {
 	accessToken, err := r.TokenRepository.GetToken()
 	if err != nil {
@@ -589,50 +821,38 @@ func (r *RolesService) AdminDeleteRolePermissionsV3(input *roles.AdminDeleteRole
 		return notFound
 	}
 	if err != nil {
-		logrus.Error(err)
 		return err
 	}
 	return nil
 }
 
-// AdminDeleteRolePermissionV3 is for admin to delete a role's permission
 func (r *RolesService) AdminDeleteRolePermissionV3(input *roles.AdminDeleteRolePermissionV3Params) error {
 	accessToken, err := r.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, internalServer, err := r.Client.Roles.AdminDeleteRolePermissionV3(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := r.Client.Roles.AdminDeleteRolePermissionV3(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
 		return badRequest
 	}
 	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
 		return unauthorized
 	}
 	if forbidden != nil {
-		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
-		logrus.Error(string(errorMsg))
 		return forbidden
 	}
 	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
 		return notFound
 	}
-	if internalServer != nil {
-		return internalServer
+	if internalServerError != nil {
+		return internalServerError
 	}
 	if err != nil {
-		logrus.Error(err)
 		return err
 	}
 	return nil
 }
 
-// PublicGetRolesV3 is for public to get the roles
 func (r *RolesService) PublicGetRolesV3(input *roles.PublicGetRolesV3Params) (*iamclientmodels.ModelRoleNamesResponseV3, error) {
 	accessToken, err := r.TokenRepository.GetToken()
 	if err != nil {
@@ -640,18 +860,14 @@ func (r *RolesService) PublicGetRolesV3(input *roles.PublicGetRolesV3Params) (*i
 	}
 	ok, badRequest, err := r.Client.Roles.PublicGetRolesV3(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, badRequest
 	}
 	if err != nil {
-		logrus.Error(err)
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-// PublicGetRoleV3 is for public to get the roles by id
 func (r *RolesService) PublicGetRoleV3(input *roles.PublicGetRoleV3Params) (*iamclientmodels.ModelRoleResponse, error) {
 	accessToken, err := r.TokenRepository.GetToken()
 	if err != nil {
@@ -659,18 +875,661 @@ func (r *RolesService) PublicGetRoleV3(input *roles.PublicGetRoleV3Params) (*iam
 	}
 	ok, badRequest, notFound, err := r.Client.Roles.PublicGetRoleV3(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, badRequest
 	}
 	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, notFound
 	}
 	if err != nil {
-		logrus.Error(err)
 		return nil, err
 	}
 	return ok.GetPayload(), nil
+}
+
+func (r *RolesService) AdminGetRolesV4(input *roles.AdminGetRolesV4Params) (*iamclientmodels.ModelListRoleV4Response, error) {
+	accessToken, err := r.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, forbidden, err := r.Client.Roles.AdminGetRolesV4(input, client.BearerToken(*accessToken.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (r *RolesService) AdminCreateRoleV4(input *roles.AdminCreateRoleV4Params) (*iamclientmodels.ModelRoleV4Response, error) {
+	accessToken, err := r.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	created, badRequest, unauthorized, forbidden, err := r.Client.Roles.AdminCreateRoleV4(input, client.BearerToken(*accessToken.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if err != nil {
+		return nil, err
+	}
+	return created.GetPayload(), nil
+}
+
+func (r *RolesService) AdminGetRoleV4(input *roles.AdminGetRoleV4Params) (*iamclientmodels.ModelRoleV4Response, error) {
+	accessToken, err := r.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, forbidden, notFound, err := r.Client.Roles.AdminGetRoleV4(input, client.BearerToken(*accessToken.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (r *RolesService) AdminDeleteRoleV4(input *roles.AdminDeleteRoleV4Params) error {
+	accessToken, err := r.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := r.Client.Roles.AdminDeleteRoleV4(input, client.BearerToken(*accessToken.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if forbidden != nil {
+		return forbidden
+	}
+	if notFound != nil {
+		return notFound
+	}
+	if internalServerError != nil {
+		return internalServerError
+	}
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (r *RolesService) AdminUpdateRoleV4(input *roles.AdminUpdateRoleV4Params) (*iamclientmodels.ModelRoleV4Response, error) {
+	accessToken, err := r.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, forbidden, notFound, err := r.Client.Roles.AdminUpdateRoleV4(input, client.BearerToken(*accessToken.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (r *RolesService) AdminUpdateRolePermissionsV4(input *roles.AdminUpdateRolePermissionsV4Params) (*iamclientmodels.ModelRoleV4Response, error) {
+	accessToken, err := r.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, forbidden, notFound, err := r.Client.Roles.AdminUpdateRolePermissionsV4(input, client.BearerToken(*accessToken.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (r *RolesService) AdminAddRolePermissionsV4(input *roles.AdminAddRolePermissionsV4Params) (*iamclientmodels.ModelRoleV4Response, error) {
+	accessToken, err := r.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, forbidden, notFound, err := r.Client.Roles.AdminAddRolePermissionsV4(input, client.BearerToken(*accessToken.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (r *RolesService) AdminDeleteRolePermissionsV4(input *roles.AdminDeleteRolePermissionsV4Params) error {
+	accessToken, err := r.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, unauthorized, forbidden, notFound, err := r.Client.Roles.AdminDeleteRolePermissionsV4(input, client.BearerToken(*accessToken.AccessToken))
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if forbidden != nil {
+		return forbidden
+	}
+	if notFound != nil {
+		return notFound
+	}
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (r *RolesService) AdminListAssignedUsersV4(input *roles.AdminListAssignedUsersV4Params) (*iamclientmodels.ModelListAssignedUsersV4Response, error) {
+	accessToken, err := r.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, forbidden, notFound, err := r.Client.Roles.AdminListAssignedUsersV4(input, client.BearerToken(*accessToken.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (r *RolesService) AdminAssignUserToRoleV4(input *roles.AdminAssignUserToRoleV4Params) (*iamclientmodels.ModelAssignedUserV4Response, error) {
+	accessToken, err := r.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	created, badRequest, unauthorized, forbidden, notFound, conflict, unprocessableEntity, err := r.Client.Roles.AdminAssignUserToRoleV4(input, client.BearerToken(*accessToken.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if conflict != nil {
+		return nil, conflict
+	}
+	if unprocessableEntity != nil {
+		return nil, unprocessableEntity
+	}
+	if err != nil {
+		return nil, err
+	}
+	return created.GetPayload(), nil
+}
+
+func (r *RolesService) AdminRevokeUserFromRoleV4(input *roles.AdminRevokeUserFromRoleV4Params) error {
+	accessToken, err := r.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, badRequest, unauthorized, forbidden, notFound, err := r.Client.Roles.AdminRevokeUserFromRoleV4(input, client.BearerToken(*accessToken.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if forbidden != nil {
+		return forbidden
+	}
+	if notFound != nil {
+		return notFound
+	}
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (r *RolesService) GetRolesShort(input *roles.GetRolesParams, authInfo runtime.ClientAuthInfoWriter) ([]*iamclientmodels.ModelRoleResponseWithManagers, error) {
+	ok, err := r.Client.Roles.GetRolesShort(input, authInfo)
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (r *RolesService) CreateRoleShort(input *roles.CreateRoleParams, authInfo runtime.ClientAuthInfoWriter) (*iamclientmodels.AccountcommonRole, error) {
+	created, err := r.Client.Roles.CreateRoleShort(input, authInfo)
+	if err != nil {
+		return nil, err
+	}
+	return created.GetPayload(), nil
+}
+
+func (r *RolesService) GetRoleShort(input *roles.GetRoleParams, authInfo runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelRoleResponse, error) {
+	ok, err := r.Client.Roles.GetRoleShort(input, authInfo)
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (r *RolesService) UpdateRoleShort(input *roles.UpdateRoleParams, authInfo runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelRoleResponse, error) {
+	ok, err := r.Client.Roles.UpdateRoleShort(input, authInfo)
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (r *RolesService) DeleteRoleShort(input *roles.DeleteRoleParams, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := r.Client.Roles.DeleteRoleShort(input, authInfo)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (r *RolesService) GetRoleAdminStatusShort(input *roles.GetRoleAdminStatusParams, authInfo runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelRoleAdminStatusResponse, error) {
+	ok, err := r.Client.Roles.GetRoleAdminStatusShort(input, authInfo)
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (r *RolesService) SetRoleAsAdminShort(input *roles.SetRoleAsAdminParams, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := r.Client.Roles.SetRoleAsAdminShort(input, authInfo)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (r *RolesService) RemoveRoleAdminShort(input *roles.RemoveRoleAdminParams, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := r.Client.Roles.RemoveRoleAdminShort(input, authInfo)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (r *RolesService) GetRoleManagersShort(input *roles.GetRoleManagersParams, authInfo runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelRoleManagersResponse, error) {
+	ok, err := r.Client.Roles.GetRoleManagersShort(input, authInfo)
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (r *RolesService) AddRoleManagersShort(input *roles.AddRoleManagersParams, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := r.Client.Roles.AddRoleManagersShort(input, authInfo)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (r *RolesService) RemoveRoleManagersShort(input *roles.RemoveRoleManagersParams, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := r.Client.Roles.RemoveRoleManagersShort(input, authInfo)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (r *RolesService) GetRoleMembersShort(input *roles.GetRoleMembersParams, authInfo runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelRoleMembersResponse, error) {
+	ok, err := r.Client.Roles.GetRoleMembersShort(input, authInfo)
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (r *RolesService) AddRoleMembersShort(input *roles.AddRoleMembersParams, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := r.Client.Roles.AddRoleMembersShort(input, authInfo)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (r *RolesService) RemoveRoleMembersShort(input *roles.RemoveRoleMembersParams, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := r.Client.Roles.RemoveRoleMembersShort(input, authInfo)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (r *RolesService) UpdateRolePermissionsShort(input *roles.UpdateRolePermissionsParams, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := r.Client.Roles.UpdateRolePermissionsShort(input, authInfo)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (r *RolesService) AddRolePermissionShort(input *roles.AddRolePermissionParams, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := r.Client.Roles.AddRolePermissionShort(input, authInfo)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (r *RolesService) DeleteRolePermissionShort(input *roles.DeleteRolePermissionParams, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := r.Client.Roles.DeleteRolePermissionShort(input, authInfo)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (r *RolesService) AdminGetRolesV3Short(input *roles.AdminGetRolesV3Params, authInfo runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelRoleResponseWithManagersAndPaginationV3, error) {
+	ok, err := r.Client.Roles.AdminGetRolesV3Short(input, authInfo)
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (r *RolesService) AdminCreateRoleV3Short(input *roles.AdminCreateRoleV3Params, authInfo runtime.ClientAuthInfoWriter) (*iamclientmodels.AccountcommonRoleV3, error) {
+	created, err := r.Client.Roles.AdminCreateRoleV3Short(input, authInfo)
+	if err != nil {
+		return nil, err
+	}
+	return created.GetPayload(), nil
+}
+
+func (r *RolesService) AdminGetRoleV3Short(input *roles.AdminGetRoleV3Params, authInfo runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelRoleResponseV3, error) {
+	ok, err := r.Client.Roles.AdminGetRoleV3Short(input, authInfo)
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (r *RolesService) AdminDeleteRoleV3Short(input *roles.AdminDeleteRoleV3Params, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := r.Client.Roles.AdminDeleteRoleV3Short(input, authInfo)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (r *RolesService) AdminUpdateRoleV3Short(input *roles.AdminUpdateRoleV3Params, authInfo runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelRoleResponseV3, error) {
+	ok, err := r.Client.Roles.AdminUpdateRoleV3Short(input, authInfo)
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (r *RolesService) AdminGetRoleAdminStatusV3Short(input *roles.AdminGetRoleAdminStatusV3Params, authInfo runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelRoleAdminStatusResponseV3, error) {
+	ok, err := r.Client.Roles.AdminGetRoleAdminStatusV3Short(input, authInfo)
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (r *RolesService) AdminUpdateAdminRoleStatusV3Short(input *roles.AdminUpdateAdminRoleStatusV3Params, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := r.Client.Roles.AdminUpdateAdminRoleStatusV3Short(input, authInfo)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (r *RolesService) AdminRemoveRoleAdminV3Short(input *roles.AdminRemoveRoleAdminV3Params, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := r.Client.Roles.AdminRemoveRoleAdminV3Short(input, authInfo)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (r *RolesService) AdminGetRoleManagersV3Short(input *roles.AdminGetRoleManagersV3Params, authInfo runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelRoleManagersResponsesV3, error) {
+	ok, err := r.Client.Roles.AdminGetRoleManagersV3Short(input, authInfo)
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (r *RolesService) AdminAddRoleManagersV3Short(input *roles.AdminAddRoleManagersV3Params, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := r.Client.Roles.AdminAddRoleManagersV3Short(input, authInfo)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (r *RolesService) AdminRemoveRoleManagersV3Short(input *roles.AdminRemoveRoleManagersV3Params, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := r.Client.Roles.AdminRemoveRoleManagersV3Short(input, authInfo)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (r *RolesService) AdminGetRoleMembersV3Short(input *roles.AdminGetRoleMembersV3Params, authInfo runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelRoleMembersResponseV3, error) {
+	ok, err := r.Client.Roles.AdminGetRoleMembersV3Short(input, authInfo)
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (r *RolesService) AdminAddRoleMembersV3Short(input *roles.AdminAddRoleMembersV3Params, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := r.Client.Roles.AdminAddRoleMembersV3Short(input, authInfo)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (r *RolesService) AdminRemoveRoleMembersV3Short(input *roles.AdminRemoveRoleMembersV3Params, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := r.Client.Roles.AdminRemoveRoleMembersV3Short(input, authInfo)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (r *RolesService) AdminUpdateRolePermissionsV3Short(input *roles.AdminUpdateRolePermissionsV3Params, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := r.Client.Roles.AdminUpdateRolePermissionsV3Short(input, authInfo)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (r *RolesService) AdminAddRolePermissionsV3Short(input *roles.AdminAddRolePermissionsV3Params, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := r.Client.Roles.AdminAddRolePermissionsV3Short(input, authInfo)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (r *RolesService) AdminDeleteRolePermissionsV3Short(input *roles.AdminDeleteRolePermissionsV3Params, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := r.Client.Roles.AdminDeleteRolePermissionsV3Short(input, authInfo)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (r *RolesService) AdminDeleteRolePermissionV3Short(input *roles.AdminDeleteRolePermissionV3Params, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := r.Client.Roles.AdminDeleteRolePermissionV3Short(input, authInfo)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (r *RolesService) PublicGetRolesV3Short(input *roles.PublicGetRolesV3Params, authInfo runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelRoleNamesResponseV3, error) {
+	ok, err := r.Client.Roles.PublicGetRolesV3Short(input, authInfo)
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (r *RolesService) PublicGetRoleV3Short(input *roles.PublicGetRoleV3Params, authInfo runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelRoleResponse, error) {
+	ok, err := r.Client.Roles.PublicGetRoleV3Short(input, authInfo)
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (r *RolesService) AdminGetRolesV4Short(input *roles.AdminGetRolesV4Params, authInfo runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelListRoleV4Response, error) {
+	ok, err := r.Client.Roles.AdminGetRolesV4Short(input, authInfo)
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (r *RolesService) AdminCreateRoleV4Short(input *roles.AdminCreateRoleV4Params, authInfo runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelRoleV4Response, error) {
+	created, err := r.Client.Roles.AdminCreateRoleV4Short(input, authInfo)
+	if err != nil {
+		return nil, err
+	}
+	return created.GetPayload(), nil
+}
+
+func (r *RolesService) AdminGetRoleV4Short(input *roles.AdminGetRoleV4Params, authInfo runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelRoleV4Response, error) {
+	ok, err := r.Client.Roles.AdminGetRoleV4Short(input, authInfo)
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (r *RolesService) AdminDeleteRoleV4Short(input *roles.AdminDeleteRoleV4Params, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := r.Client.Roles.AdminDeleteRoleV4Short(input, authInfo)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (r *RolesService) AdminUpdateRoleV4Short(input *roles.AdminUpdateRoleV4Params, authInfo runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelRoleV4Response, error) {
+	ok, err := r.Client.Roles.AdminUpdateRoleV4Short(input, authInfo)
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (r *RolesService) AdminUpdateRolePermissionsV4Short(input *roles.AdminUpdateRolePermissionsV4Params, authInfo runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelRoleV4Response, error) {
+	ok, err := r.Client.Roles.AdminUpdateRolePermissionsV4Short(input, authInfo)
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (r *RolesService) AdminAddRolePermissionsV4Short(input *roles.AdminAddRolePermissionsV4Params, authInfo runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelRoleV4Response, error) {
+	ok, err := r.Client.Roles.AdminAddRolePermissionsV4Short(input, authInfo)
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (r *RolesService) AdminDeleteRolePermissionsV4Short(input *roles.AdminDeleteRolePermissionsV4Params, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := r.Client.Roles.AdminDeleteRolePermissionsV4Short(input, authInfo)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (r *RolesService) AdminListAssignedUsersV4Short(input *roles.AdminListAssignedUsersV4Params, authInfo runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelListAssignedUsersV4Response, error) {
+	ok, err := r.Client.Roles.AdminListAssignedUsersV4Short(input, authInfo)
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (r *RolesService) AdminAssignUserToRoleV4Short(input *roles.AdminAssignUserToRoleV4Params, authInfo runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelAssignedUserV4Response, error) {
+	created, err := r.Client.Roles.AdminAssignUserToRoleV4Short(input, authInfo)
+	if err != nil {
+		return nil, err
+	}
+	return created.GetPayload(), nil
+}
+
+func (r *RolesService) AdminRevokeUserFromRoleV4Short(input *roles.AdminRevokeUserFromRoleV4Params, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := r.Client.Roles.AdminRevokeUserFromRoleV4Short(input, authInfo)
+	if err != nil {
+		return err
+	}
+	return nil
 }

@@ -1,17 +1,17 @@
-// Copyright (c) 2021 AccelByte Inc. All Rights Reserved.
+// Copyright (c) 2018 - 2021
+// AccelByte Inc. All Rights Reserved.
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
 package ugc
 
 import (
-	"encoding/json"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/public_like"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclientmodels"
+	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
-	"github.com/sirupsen/logrus"
 )
 
 type PublicLikeService struct {
@@ -19,61 +19,59 @@ type PublicLikeService struct {
 	TokenRepository repository.TokenRepository
 }
 
-// GetLikedContent gets liked contents
-func (u *PublicLikeService) GetLikedContent(input *public_like.GetLikedContentParams) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
-	token, err := u.TokenRepository.GetToken()
+func (p *PublicLikeService) GetLikedContent(input *public_like.GetLikedContentParams) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
+	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
-		logrus.Error(err)
 		return nil, err
 	}
-	ok, unauthorized, notFound, internalServer, err := u.Client.PublicLike.GetLikedContent(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, notFound, internalServerError, err := p.Client.PublicLike.GetLikedContent(input, client.BearerToken(*accessToken.AccessToken))
 	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, unauthorized
 	}
 	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, notFound
 	}
-	if internalServer != nil {
-		errorMsg, _ := json.Marshal(*internalServer.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, internalServer
+	if internalServerError != nil {
+		return nil, internalServerError
 	}
 	if err != nil {
-		logrus.Error(err)
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-// UpdateContentLikeStatus updates like unlike status to a content
-func (u *PublicLikeService) UpdateContentLikeStatus(input *public_like.UpdateContentLikeStatusParams) (*ugcclientmodels.ModelsContentLikeResponse, error) {
-	token, err := u.TokenRepository.GetToken()
+func (p *PublicLikeService) UpdateContentLikeStatus(input *public_like.UpdateContentLikeStatusParams) (*ugcclientmodels.ModelsContentLikeResponse, error) {
+	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
-		logrus.Error(err)
 		return nil, err
 	}
-	ok, unauthorized, notFound, internalServer, err := u.Client.PublicLike.UpdateContentLikeStatus(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, internalServerError, err := p.Client.PublicLike.UpdateContentLikeStatus(input, client.BearerToken(*accessToken.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
 	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, unauthorized
 	}
-	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, notFound
-	}
-	if internalServer != nil {
-		errorMsg, _ := json.Marshal(*internalServer.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, internalServer
+	if internalServerError != nil {
+		return nil, internalServerError
 	}
 	if err != nil {
-		logrus.Error(err)
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (p *PublicLikeService) GetLikedContentShort(input *public_like.GetLikedContentParams, authInfo runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
+	ok, err := p.Client.PublicLike.GetLikedContentShort(input, authInfo)
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (p *PublicLikeService) UpdateContentLikeStatusShort(input *public_like.UpdateContentLikeStatusParams, authInfo runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsContentLikeResponse, error) {
+	ok, err := p.Client.PublicLike.UpdateContentLikeStatusShort(input, authInfo)
+	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil

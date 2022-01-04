@@ -1,14 +1,17 @@
+// Copyright (c) 2018 - 2021
+// AccelByte Inc. All Rights Reserved.
+// This is licensed software from AccelByte Inc, for limitations
+// and restrictions contact your company contract manager.
+
 package lobby
 
 import (
-	"encoding/json"
-
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient"
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/notification"
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
-	"github.com/sirupsen/logrus"
 )
 
 type NotificationService struct {
@@ -16,153 +19,19 @@ type NotificationService struct {
 	TokenRepository repository.TokenRepository
 }
 
-func (n NotificationService) CreateNotificationTemplateV1Admin(input *notification.CreateNotificationTemplateV1AdminParams) error {
-	accessToken, err := n.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	_, badRequest, unauthorized, forbidden, notFound, conflict, err := n.Client.Notification.CreateNotificationTemplateV1Admin(input, client.BearerToken(*accessToken.AccessToken))
-	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
-		return badRequest
-	}
-	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
-		return unauthorized
-	}
-	if forbidden != nil {
-		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
-		logrus.Error(string(errorMsg))
-		return forbidden
-	}
-	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
-		return notFound
-	}
-	if conflict != nil {
-		errorMsg, _ := json.Marshal(*conflict.GetPayload())
-		logrus.Error(string(errorMsg))
-		return conflict
-	}
-	if err != nil {
-		return err
-	}
-	return nil
-}
-
-func (n NotificationService) CreateNotificationTopicV1Admin(input *notification.CreateNotificationTopicV1AdminParams) error {
-	accessToken, err := n.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	_, badRequest, unauthorized, forbidden, err := n.Client.Notification.CreateNotificationTopicV1Admin(input, client.BearerToken(*accessToken.AccessToken))
-	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
-		return badRequest
-	}
-	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
-		return unauthorized
-	}
-	if forbidden != nil {
-		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
-		logrus.Error(string(errorMsg))
-		return forbidden
-	}
-	if err != nil {
-		return err
-	}
-	return nil
-}
-
-func (n NotificationService) FreeFormNotification(input *notification.FreeFormNotificationParams) error {
-	accessToken, err := n.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	_, badRequest, unauthorized, forbidden, notFound, err := n.Client.Notification.FreeFormNotification(input, client.BearerToken(*accessToken.AccessToken))
-	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
-		return badRequest
-	}
-	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
-		return unauthorized
-	}
-	if forbidden != nil {
-		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
-		logrus.Error(string(errorMsg))
-		return forbidden
-	}
-	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
-		return notFound
-	}
-	if err != nil {
-		return err
-	}
-	return nil
-}
-
-func (n NotificationService) FreeFormNotificationByUserID(input *notification.FreeFormNotificationByUserIDParams) error {
-	accessToken, err := n.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	_, badRequest, unauthorized, forbidden, notFound, err := n.Client.Notification.FreeFormNotificationByUserID(input, client.BearerToken(*accessToken.AccessToken))
-	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
-		return badRequest
-	}
-	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
-		return unauthorized
-	}
-	if forbidden != nil {
-		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
-		logrus.Error(string(errorMsg))
-		return forbidden
-	}
-	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
-		return notFound
-	}
-	if err != nil {
-		return err
-	}
-	return nil
-}
-
-func (n NotificationService) SendMultipleUsersFreeformNotificationV1Admin(input *notification.SendMultipleUsersFreeformNotificationV1AdminParams) error {
+func (n *NotificationService) SendMultipleUsersFreeformNotificationV1Admin(input *notification.SendMultipleUsersFreeformNotificationV1AdminParams) error {
 	accessToken, err := n.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
 	_, badRequest, unauthorized, forbidden, err := n.Client.Notification.SendMultipleUsersFreeformNotificationV1Admin(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
 		return badRequest
 	}
 	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
 		return unauthorized
 	}
 	if forbidden != nil {
-		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
-		logrus.Error(string(errorMsg))
 		return forbidden
 	}
 	if err != nil {
@@ -171,62 +40,22 @@ func (n NotificationService) SendMultipleUsersFreeformNotificationV1Admin(input 
 	return nil
 }
 
-func (n NotificationService) SendSpecificUserFreeformNotificationV1Admin(input *notification.SendSpecificUserFreeformNotificationV1AdminParams) error {
-	accessToken, err := n.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	_, badRequest, unauthorized, forbidden, notFound, err := n.Client.Notification.SendSpecificUserFreeformNotificationV1Admin(input, client.BearerToken(*accessToken.AccessToken))
-	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
-		return badRequest
-	}
-	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
-		return unauthorized
-	}
-	if forbidden != nil {
-		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
-		logrus.Error(string(errorMsg))
-		return forbidden
-	}
-	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
-		return notFound
-	}
-	if err != nil {
-		return err
-	}
-	return nil
-}
-
-func (n NotificationService) SendUsersFreeformNotificationV1Admin(input *notification.SendUsersFreeformNotificationV1AdminParams) error {
+func (n *NotificationService) SendUsersFreeformNotificationV1Admin(input *notification.SendUsersFreeformNotificationV1AdminParams) error {
 	accessToken, err := n.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
 	_, badRequest, unauthorized, forbidden, notFound, err := n.Client.Notification.SendUsersFreeformNotificationV1Admin(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
 		return badRequest
 	}
 	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
 		return unauthorized
 	}
 	if forbidden != nil {
-		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
-		logrus.Error(string(errorMsg))
 		return forbidden
 	}
 	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
 		return notFound
 	}
 	if err != nil {
@@ -235,783 +64,101 @@ func (n NotificationService) SendUsersFreeformNotificationV1Admin(input *notific
 	return nil
 }
 
-func (n *NotificationService) CreateTemplate(input *notification.CreateTemplateParams) error {
-	token, err := n.TokenRepository.GetToken()
+func (n *NotificationService) SendPartyFreeformNotificationV1Admin(input *notification.SendPartyFreeformNotificationV1AdminParams) error {
+	accessToken, err := n.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, err := n.Client.Notification.CreateTemplate(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, err := n.Client.Notification.SendPartyFreeformNotificationV1Admin(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
 		return badRequest
 	}
 	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
 		return unauthorized
 	}
 	if forbidden != nil {
-		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
-		logrus.Error(string(errorMsg))
 		return forbidden
 	}
 	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
 		return notFound
 	}
 	if err != nil {
-		logrus.Error(err)
 		return err
 	}
 	return nil
 }
 
-func (n *NotificationService) CreateTopic(input *notification.CreateTopicParams) error {
-	token, err := n.TokenRepository.GetToken()
+func (n *NotificationService) SendPartyTemplatedNotificationV1Admin(input *notification.SendPartyTemplatedNotificationV1AdminParams) error {
+	accessToken, err := n.TokenRepository.GetToken()
 	if err != nil {
-		logrus.Error(err)
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, conflict, err := n.Client.Notification.CreateTopic(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, err := n.Client.Notification.SendPartyTemplatedNotificationV1Admin(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
 		return badRequest
 	}
 	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
 		return unauthorized
 	}
 	if forbidden != nil {
-		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
-		logrus.Error(string(errorMsg))
 		return forbidden
 	}
-	if conflict != nil {
-		errorMsg, _ := json.Marshal(*conflict.GetPayload())
-		logrus.Error(string(errorMsg))
-		return conflict
+	if notFound != nil {
+		return notFound
 	}
 	if err != nil {
-		logrus.Error(err)
-		return err
-	}
-	return nil
-}
-
-func (n *NotificationService) DeleteNotificationTemplateSlugV1Admin(input *notification.DeleteNotificationTemplateSlugV1AdminParams) error {
-	token, err := n.TokenRepository.GetToken()
-	if err != nil {
-		logrus.Error(err)
-		return err
-	}
-	_, badRequest, unauthorized, forbidden, conflict, err := n.Client.Notification.DeleteNotificationTemplateSlugV1Admin(input, client.BearerToken(*token.AccessToken))
-	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
-		return badRequest
-	}
-	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
-		return unauthorized
-	}
-	if forbidden != nil {
-		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
-		logrus.Error(string(errorMsg))
-		return forbidden
-	}
-	if conflict != nil {
-		errorMsg, _ := json.Marshal(*conflict.GetPayload())
-		logrus.Error(string(errorMsg))
-		return conflict
-	}
-	if err != nil {
-		logrus.Error(err)
-		return err
-	}
-	return nil
-}
-
-func (n *NotificationService) DeleteNotificationTopicV1Admin(input *notification.DeleteNotificationTopicV1AdminParams) error {
-	token, err := n.TokenRepository.GetToken()
-	if err != nil {
-		logrus.Error(err)
-		return err
-	}
-	_, badRequest, unauthorized, forbidden, conflict, err := n.Client.Notification.DeleteNotificationTopicV1Admin(input, client.BearerToken(*token.AccessToken))
-	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
-		return badRequest
-	}
-	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
-		return unauthorized
-	}
-	if forbidden != nil {
-		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
-		logrus.Error(string(errorMsg))
-		return forbidden
-	}
-	if conflict != nil {
-		errorMsg, _ := json.Marshal(*conflict.GetPayload())
-		logrus.Error(string(errorMsg))
-		return conflict
-	}
-	if err != nil {
-		logrus.Error(err)
-		return err
-	}
-	return nil
-}
-
-func (n *NotificationService) DeleteTemplateLocalization(input *notification.DeleteTemplateLocalizationParams) error {
-	token, err := n.TokenRepository.GetToken()
-	if err != nil {
-		logrus.Error(err)
-		return err
-	}
-	_, badRequest, unauthorized, forbidden, conflict, err := n.Client.Notification.DeleteTemplateLocalization(input, client.BearerToken(*token.AccessToken))
-	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
-		return badRequest
-	}
-	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
-		return unauthorized
-	}
-	if forbidden != nil {
-		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
-		logrus.Error(string(errorMsg))
-		return forbidden
-	}
-	if conflict != nil {
-		errorMsg, _ := json.Marshal(*conflict.GetPayload())
-		logrus.Error(string(errorMsg))
-		return conflict
-	}
-	if err != nil {
-		logrus.Error(err)
-		return err
-	}
-	return nil
-}
-
-func (n *NotificationService) DeleteTemplateLocalizationV1Admin(input *notification.DeleteTemplateLocalizationV1AdminParams) error {
-	token, err := n.TokenRepository.GetToken()
-	if err != nil {
-		logrus.Error(err)
-		return err
-	}
-	_, badRequest, unauthorized, forbidden, conflict, err := n.Client.Notification.DeleteTemplateLocalizationV1Admin(input, client.BearerToken(*token.AccessToken))
-	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
-		return badRequest
-	}
-	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
-		return unauthorized
-	}
-	if forbidden != nil {
-		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
-		logrus.Error(string(errorMsg))
-		return forbidden
-	}
-	if conflict != nil {
-		errorMsg, _ := json.Marshal(*conflict.GetPayload())
-		logrus.Error(string(errorMsg))
-		return conflict
-	}
-	if err != nil {
-		logrus.Error(err)
-		return err
-	}
-	return nil
-}
-
-func (n *NotificationService) DeleteTemplateSlug(input *notification.DeleteTemplateSlugParams) error {
-	token, err := n.TokenRepository.GetToken()
-	if err != nil {
-		logrus.Error(err)
-		return err
-	}
-	_, badRequest, unauthorized, forbidden, conflict, err := n.Client.Notification.DeleteTemplateSlug(input, client.BearerToken(*token.AccessToken))
-	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
-		return badRequest
-	}
-	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
-		return unauthorized
-	}
-	if forbidden != nil {
-		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
-		logrus.Error(string(errorMsg))
-		return forbidden
-	}
-	if conflict != nil {
-		errorMsg, _ := json.Marshal(*conflict.GetPayload())
-		logrus.Error(string(errorMsg))
-		return conflict
-	}
-	if err != nil {
-		logrus.Error(err)
-		return err
-	}
-	return nil
-}
-
-func (n *NotificationService) DeleteTopicByTopicName(input *notification.DeleteTopicByTopicNameParams) error {
-	token, err := n.TokenRepository.GetToken()
-	if err != nil {
-		logrus.Error(err)
-		return err
-	}
-	_, badRequest, unauthorized, forbidden, conflict, err := n.Client.Notification.DeleteTopicByTopicName(input, client.BearerToken(*token.AccessToken))
-	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
-		return badRequest
-	}
-	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
-		return unauthorized
-	}
-	if forbidden != nil {
-		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
-		logrus.Error(string(errorMsg))
-		return forbidden
-	}
-	if conflict != nil {
-		errorMsg, _ := json.Marshal(*conflict.GetPayload())
-		logrus.Error(string(errorMsg))
-		return conflict
-	}
-	if err != nil {
-		logrus.Error(err)
 		return err
 	}
 	return nil
 }
 
 func (n *NotificationService) GetAllNotificationTemplatesV1Admin(input *notification.GetAllNotificationTemplatesV1AdminParams) ([]*lobbyclientmodels.ModelNotificationTemplateResponse, error) {
-	token, err := n.TokenRepository.GetToken()
+	accessToken, err := n.TokenRepository.GetToken()
 	if err != nil {
-		logrus.Error(err)
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := n.Client.Notification.GetAllNotificationTemplatesV1Admin(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := n.Client.Notification.GetAllNotificationTemplatesV1Admin(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, badRequest
 	}
 	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, unauthorized
 	}
 	if forbidden != nil {
-		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, forbidden
 	}
 	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, notFound
 	}
 	if internalServerError != nil {
-		errorMsg, _ := json.Marshal(*internalServerError.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, internalServerError
 	}
 	if err != nil {
-		logrus.Error(err)
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (n *NotificationService) GetAllNotificationTopicsV1Admin(input *notification.GetAllNotificationTopicsV1AdminParams) (*lobbyclientmodels.ModelGetAllNotificationTopicsResponse, error) {
-	token, err := n.TokenRepository.GetToken()
-	if err != nil {
-		logrus.Error(err)
-		return nil, err
-	}
-	ok, unauthorized, forbidden, notFound, internalServerError, err := n.Client.Notification.GetAllNotificationTopicsV1Admin(input, client.BearerToken(*token.AccessToken))
-	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, unauthorized
-	}
-	if forbidden != nil {
-		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, forbidden
-	}
-	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, notFound
-	}
-	if internalServerError != nil {
-		errorMsg, _ := json.Marshal(*internalServerError.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, internalServerError
-	}
-	if err != nil {
-		logrus.Error(err)
-		return nil, err
-	}
-	return ok.GetPayload(), nil
-}
-
-func (n *NotificationService) GetGameTemplate(input *notification.GetGameTemplateParams) ([]*lobbyclientmodels.ModelTemplateResponse, error) {
-	token, err := n.TokenRepository.GetToken()
-	if err != nil {
-		logrus.Error(err)
-		return nil, err
-	}
-	ok, unauthorized, forbidden, notFound, internalServerError, err := n.Client.Notification.GetGameTemplate(input, client.BearerToken(*token.AccessToken))
-	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, unauthorized
-	}
-	if forbidden != nil {
-		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, forbidden
-	}
-	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, notFound
-	}
-	if internalServerError != nil {
-		errorMsg, _ := json.Marshal(*internalServerError.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, internalServerError
-	}
-	if err != nil {
-		logrus.Error(err)
-		return nil, err
-	}
-	return ok.GetPayload(), nil
-}
-
-func (n *NotificationService) GetLocalizationTemplate(input *notification.GetLocalizationTemplateParams) (*lobbyclientmodels.ModelTemplateLocalization, error) {
-	token, err := n.TokenRepository.GetToken()
-	if err != nil {
-		logrus.Error(err)
-		return nil, err
-	}
-	ok, unauthorized, forbidden, notFound, internalServerError, err := n.Client.Notification.GetLocalizationTemplate(input, client.BearerToken(*token.AccessToken))
-	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, unauthorized
-	}
-	if forbidden != nil {
-		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, forbidden
-	}
-	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, notFound
-	}
-	if internalServerError != nil {
-		errorMsg, _ := json.Marshal(*internalServerError.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, internalServerError
-	}
-	if err != nil {
-		logrus.Error(err)
-		return nil, err
-	}
-	return ok.GetPayload(), nil
-}
-
-func (n *NotificationService) GetNotificationTopicV1Admin(input *notification.GetNotificationTopicV1AdminParams) (*lobbyclientmodels.ModelNotificationTopicResponseV1, error) {
-	token, err := n.TokenRepository.GetToken()
-	if err != nil {
-		logrus.Error(err)
-		return nil, err
-	}
-	ok, unauthorized, forbidden, notFound, internalServerError, err := n.Client.Notification.GetNotificationTopicV1Admin(input, client.BearerToken(*token.AccessToken))
-	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, unauthorized
-	}
-	if forbidden != nil {
-		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, forbidden
-	}
-	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, notFound
-	}
-	if internalServerError != nil {
-		errorMsg, _ := json.Marshal(*internalServerError.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, internalServerError
-	}
-	if err != nil {
-		logrus.Error(err)
-		return nil, err
-	}
-	return ok.GetPayload(), nil
-}
-
-func (n *NotificationService) GetSingleTemplateLocalizationV1Admin(input *notification.GetSingleTemplateLocalizationV1AdminParams) (*lobbyclientmodels.ModelLocalization, error) {
-	token, err := n.TokenRepository.GetToken()
-	if err != nil {
-		logrus.Error(err)
-		return nil, err
-	}
-	ok, unauthorized, forbidden, notFound, internalServerError, err := n.Client.Notification.GetSingleTemplateLocalizationV1Admin(input, client.BearerToken(*token.AccessToken))
-	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, unauthorized
-	}
-	if forbidden != nil {
-		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, forbidden
-	}
-	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, notFound
-	}
-	if internalServerError != nil {
-		errorMsg, _ := json.Marshal(*internalServerError.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, internalServerError
-	}
-	if err != nil {
-		logrus.Error(err)
-		return nil, err
-	}
-	return ok.GetPayload(), nil
-}
-
-func (n *NotificationService) GetSlugTemplate(input *notification.GetSlugTemplateParams) (*lobbyclientmodels.ModelTemplateLocalizationResponse, error) {
-	token, err := n.TokenRepository.GetToken()
-	if err != nil {
-		logrus.Error(err)
-		return nil, err
-	}
-	ok, unauthorized, forbidden, notFound, internalServerError, err := n.Client.Notification.GetSlugTemplate(input, client.BearerToken(*token.AccessToken))
-	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, unauthorized
-	}
-	if forbidden != nil {
-		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, forbidden
-	}
-	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, notFound
-	}
-	if internalServerError != nil {
-		errorMsg, _ := json.Marshal(*internalServerError.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, internalServerError
-	}
-	if err != nil {
-		logrus.Error(err)
-		return nil, err
-	}
-	return ok.GetPayload(), nil
-}
-
-func (n *NotificationService) GetTemplateSlugLocalizationsTemplateV1Admin(input *notification.GetTemplateSlugLocalizationsTemplateV1AdminParams) (*lobbyclientmodels.ModelGetAllNotificationTemplateSlugResp, error) {
-	token, err := n.TokenRepository.GetToken()
-	if err != nil {
-		logrus.Error(err)
-		return nil, err
-	}
-	ok, unauthorized, forbidden, notFound, internalServerError, err := n.Client.Notification.GetTemplateSlugLocalizationsTemplateV1Admin(input, client.BearerToken(*token.AccessToken))
-	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, unauthorized
-	}
-	if forbidden != nil {
-		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, forbidden
-	}
-	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, notFound
-	}
-	if internalServerError != nil {
-		errorMsg, _ := json.Marshal(*internalServerError.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, internalServerError
-	}
-	if err != nil {
-		logrus.Error(err)
-		return nil, err
-	}
-	return ok.GetPayload(), nil
-}
-
-func (n *NotificationService) GetTopicByNamespace(input *notification.GetTopicByNamespaceParams) (*lobbyclientmodels.ModelTopicByNamespacesResponse, error) {
-	token, err := n.TokenRepository.GetToken()
-	if err != nil {
-		logrus.Error(err)
-		return nil, err
-	}
-	ok, unauthorized, forbidden, notFound, internalServerError, err := n.Client.Notification.GetTopicByNamespace(input, client.BearerToken(*token.AccessToken))
-	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, unauthorized
-	}
-	if forbidden != nil {
-		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, forbidden
-	}
-	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, notFound
-	}
-	if internalServerError != nil {
-		errorMsg, _ := json.Marshal(*internalServerError.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, internalServerError
-	}
-	if err != nil {
-		logrus.Error(err)
-		return nil, err
-	}
-	return ok.GetPayload(), nil
-}
-
-func (n *NotificationService) GetTopicByTopicName(input *notification.GetTopicByTopicNameParams) (*lobbyclientmodels.ModelNotificationTopicResponse, error) {
-	token, err := n.TokenRepository.GetToken()
-	if err != nil {
-		logrus.Error(err)
-		return nil, err
-	}
-	ok, unauthorized, forbidden, notFound, internalServerError, err := n.Client.Notification.GetTopicByTopicName(input, client.BearerToken(*token.AccessToken))
-	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, unauthorized
-	}
-	if forbidden != nil {
-		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, forbidden
-	}
-	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, notFound
-	}
-	if internalServerError != nil {
-		errorMsg, _ := json.Marshal(*internalServerError.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, internalServerError
-	}
-	if err != nil {
-		logrus.Error(err)
-		return nil, err
-	}
-	return ok.GetPayload(), nil
-}
-
-func (n *NotificationService) NotificationWithTemplate(input *notification.NotificationWithTemplateParams) error {
-	token, err := n.TokenRepository.GetToken()
-	if err != nil {
-		logrus.Error(err)
-		return err
-	}
-	_, unauthorized, forbidden, notFound, internalServerError, err := n.Client.Notification.NotificationWithTemplate(input, client.BearerToken(*token.AccessToken))
-	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
-		return unauthorized
-	}
-	if forbidden != nil {
-		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
-		logrus.Error(string(errorMsg))
-		return forbidden
-	}
-	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
-		return notFound
-	}
-	if internalServerError != nil {
-		errorMsg, _ := json.Marshal(*internalServerError.GetPayload())
-		logrus.Error(string(errorMsg))
-		return internalServerError
-	}
-	if err != nil {
-		logrus.Error(err)
-		return err
-	}
-	return nil
-}
-
-func (n *NotificationService) NotificationWithTemplateByUserID(input *notification.NotificationWithTemplateByUserIDParams) error {
-	token, err := n.TokenRepository.GetToken()
-	if err != nil {
-		logrus.Error(err)
-		return err
-	}
-	_, unauthorized, forbidden, notFound, internalServerError, err := n.Client.Notification.NotificationWithTemplateByUserID(input, client.BearerToken(*token.AccessToken))
-	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
-		return unauthorized
-	}
-	if forbidden != nil {
-		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
-		logrus.Error(string(errorMsg))
-		return forbidden
-	}
-	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
-		return notFound
-	}
-	if internalServerError != nil {
-		errorMsg, _ := json.Marshal(*internalServerError.GetPayload())
-		logrus.Error(string(errorMsg))
-		return internalServerError
-	}
-	if err != nil {
-		logrus.Error(err)
-		return err
-	}
-	return nil
-}
-
-func (n *NotificationService) PublishTemplate(input *notification.PublishTemplateParams) error {
-	token, err := n.TokenRepository.GetToken()
-	if err != nil {
-		logrus.Error(err)
-		return err
-	}
-	_, unauthorized, forbidden, notFound, internalServerError, err := n.Client.Notification.PublishTemplate(input, client.BearerToken(*token.AccessToken))
-	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
-		return unauthorized
-	}
-	if forbidden != nil {
-		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
-		logrus.Error(string(errorMsg))
-		return forbidden
-	}
-	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
-		return notFound
-	}
-	if internalServerError != nil {
-		errorMsg, _ := json.Marshal(*internalServerError.GetPayload())
-		logrus.Error(string(errorMsg))
-		return internalServerError
-	}
-	if err != nil {
-		logrus.Error(err)
-		return err
-	}
-	return nil
-}
-
-func (n *NotificationService) PublishTemplateLocalizationV1Admin(input *notification.PublishTemplateLocalizationV1AdminParams) error {
-	token, err := n.TokenRepository.GetToken()
-	if err != nil {
-		logrus.Error(err)
-		return err
-	}
-	_, unauthorized, forbidden, notFound, internalServerError, err := n.Client.Notification.PublishTemplateLocalizationV1Admin(input, client.BearerToken(*token.AccessToken))
-	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
-		return unauthorized
-	}
-	if forbidden != nil {
-		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
-		logrus.Error(string(errorMsg))
-		return forbidden
-	}
-	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
-		return notFound
-	}
-	if internalServerError != nil {
-		errorMsg, _ := json.Marshal(*internalServerError.GetPayload())
-		logrus.Error(string(errorMsg))
-		return internalServerError
-	}
-	if err != nil {
-		logrus.Error(err)
-		return err
-	}
-	return nil
-}
-
-func (n NotificationService) SendSpecificUserTemplatedNotificationV1Admin(input *notification.SendSpecificUserTemplatedNotificationV1AdminParams) error {
+func (n *NotificationService) CreateNotificationTemplateV1Admin(input *notification.CreateNotificationTemplateV1AdminParams) error {
 	accessToken, err := n.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, err := n.Client.Notification.SendSpecificUserTemplatedNotificationV1Admin(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, conflict, err := n.Client.Notification.CreateNotificationTemplateV1Admin(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
 		return badRequest
 	}
 	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
 		return unauthorized
 	}
 	if forbidden != nil {
-		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
-		logrus.Error(string(errorMsg))
 		return forbidden
 	}
 	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
 		return notFound
+	}
+	if conflict != nil {
+		return conflict
 	}
 	if err != nil {
 		return err
@@ -1019,30 +166,22 @@ func (n NotificationService) SendSpecificUserTemplatedNotificationV1Admin(input 
 	return nil
 }
 
-func (n NotificationService) SendUsersTemplatedNotificationV1Admin(input *notification.SendUsersTemplatedNotificationV1AdminParams) error {
+func (n *NotificationService) SendUsersTemplatedNotificationV1Admin(input *notification.SendUsersTemplatedNotificationV1AdminParams) error {
 	accessToken, err := n.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
 	_, badRequest, unauthorized, forbidden, notFound, err := n.Client.Notification.SendUsersTemplatedNotificationV1Admin(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
 		return badRequest
 	}
 	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
 		return unauthorized
 	}
 	if forbidden != nil {
-		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
-		logrus.Error(string(errorMsg))
 		return forbidden
 	}
 	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
 		return notFound
 	}
 	if err != nil {
@@ -1051,30 +190,46 @@ func (n NotificationService) SendUsersTemplatedNotificationV1Admin(input *notifi
 	return nil
 }
 
-func (n NotificationService) UpdateLocalizationTemplate(input *notification.UpdateLocalizationTemplateParams) error {
+func (n *NotificationService) GetTemplateSlugLocalizationsTemplateV1Admin(input *notification.GetTemplateSlugLocalizationsTemplateV1AdminParams) (*lobbyclientmodels.ModelGetAllNotificationTemplateSlugResp, error) {
+	accessToken, err := n.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, forbidden, notFound, err := n.Client.Notification.GetTemplateSlugLocalizationsTemplateV1Admin(input, client.BearerToken(*accessToken.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (n *NotificationService) DeleteNotificationTemplateSlugV1Admin(input *notification.DeleteNotificationTemplateSlugV1AdminParams) error {
 	accessToken, err := n.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, err := n.Client.Notification.UpdateLocalizationTemplate(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, err := n.Client.Notification.DeleteNotificationTemplateSlugV1Admin(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
 		return badRequest
 	}
 	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
 		return unauthorized
 	}
 	if forbidden != nil {
-		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
-		logrus.Error(string(errorMsg))
 		return forbidden
 	}
 	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
 		return notFound
 	}
 	if err != nil {
@@ -1083,72 +238,241 @@ func (n NotificationService) UpdateLocalizationTemplate(input *notification.Upda
 	return nil
 }
 
-func (n NotificationService) UpdateNotificationTopicV1Admin(input *notification.UpdateNotificationTopicV1AdminParams) error {
+func (n *NotificationService) GetSingleTemplateLocalizationV1Admin(input *notification.GetSingleTemplateLocalizationV1AdminParams) (*lobbyclientmodels.ModelLocalization, error) {
 	accessToken, err := n.TokenRepository.GetToken()
 	if err != nil {
-		return err
+		return nil, err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := n.Client.Notification.UpdateNotificationTopicV1Admin(input, client.BearerToken(*accessToken.AccessToken))
-	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
-		return badRequest
-	}
+	ok, unauthorized, forbidden, notFound, internalServerError, err := n.Client.Notification.GetSingleTemplateLocalizationV1Admin(input, client.BearerToken(*accessToken.AccessToken))
 	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
-		return unauthorized
+		return nil, unauthorized
 	}
 	if forbidden != nil {
-		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
-		logrus.Error(string(errorMsg))
-		return forbidden
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
 	}
 	if internalServerError != nil {
-		errorMsg, _ := json.Marshal(*internalServerError.GetPayload())
-		logrus.Error(string(errorMsg))
-		return internalServerError
-	}
-	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
-		return notFound
+		return nil, internalServerError
 	}
 	if err != nil {
-		return err
+		return nil, err
 	}
-	return nil
+	return ok.GetPayload(), nil
 }
 
-func (n NotificationService) UpdateTemplateLocalizationV1Admin(input *notification.UpdateTemplateLocalizationV1AdminParams) error {
+func (n *NotificationService) UpdateTemplateLocalizationV1Admin(input *notification.UpdateTemplateLocalizationV1AdminParams) error {
 	accessToken, err := n.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
 	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := n.Client.Notification.UpdateTemplateLocalizationV1Admin(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
 		return badRequest
 	}
 	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
 		return unauthorized
 	}
 	if forbidden != nil {
-		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
-		logrus.Error(string(errorMsg))
 		return forbidden
 	}
+	if notFound != nil {
+		return notFound
+	}
 	if internalServerError != nil {
-		errorMsg, _ := json.Marshal(*internalServerError.GetPayload())
-		logrus.Error(string(errorMsg))
 		return internalServerError
 	}
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (n *NotificationService) DeleteTemplateLocalizationV1Admin(input *notification.DeleteTemplateLocalizationV1AdminParams) error {
+	accessToken, err := n.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, unauthorized, forbidden, notFound, internalServerError, err := n.Client.Notification.DeleteTemplateLocalizationV1Admin(input, client.BearerToken(*accessToken.AccessToken))
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if forbidden != nil {
+		return forbidden
+	}
 	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
+		return notFound
+	}
+	if internalServerError != nil {
+		return internalServerError
+	}
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (n *NotificationService) PublishTemplateLocalizationV1Admin(input *notification.PublishTemplateLocalizationV1AdminParams) error {
+	accessToken, err := n.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, unauthorized, forbidden, notFound, internalServerError, err := n.Client.Notification.PublishTemplateLocalizationV1Admin(input, client.BearerToken(*accessToken.AccessToken))
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if forbidden != nil {
+		return forbidden
+	}
+	if notFound != nil {
+		return notFound
+	}
+	if internalServerError != nil {
+		return internalServerError
+	}
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (n *NotificationService) GetAllNotificationTopicsV1Admin(input *notification.GetAllNotificationTopicsV1AdminParams) (*lobbyclientmodels.ModelGetAllNotificationTopicsResponse, error) {
+	accessToken, err := n.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, unauthorized, forbidden, notFound, internalServerError, err := n.Client.Notification.GetAllNotificationTopicsV1Admin(input, client.BearerToken(*accessToken.AccessToken))
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (n *NotificationService) CreateNotificationTopicV1Admin(input *notification.CreateNotificationTopicV1AdminParams) error {
+	accessToken, err := n.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, badRequest, unauthorized, forbidden, err := n.Client.Notification.CreateNotificationTopicV1Admin(input, client.BearerToken(*accessToken.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if forbidden != nil {
+		return forbidden
+	}
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (n *NotificationService) GetNotificationTopicV1Admin(input *notification.GetNotificationTopicV1AdminParams) (*lobbyclientmodels.ModelNotificationTopicResponseV1, error) {
+	accessToken, err := n.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, unauthorized, forbidden, notFound, internalServerError, err := n.Client.Notification.GetNotificationTopicV1Admin(input, client.BearerToken(*accessToken.AccessToken))
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (n *NotificationService) UpdateNotificationTopicV1Admin(input *notification.UpdateNotificationTopicV1AdminParams) error {
+	accessToken, err := n.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := n.Client.Notification.UpdateNotificationTopicV1Admin(input, client.BearerToken(*accessToken.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if forbidden != nil {
+		return forbidden
+	}
+	if notFound != nil {
+		return notFound
+	}
+	if internalServerError != nil {
+		return internalServerError
+	}
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (n *NotificationService) DeleteNotificationTopicV1Admin(input *notification.DeleteNotificationTopicV1AdminParams) error {
+	accessToken, err := n.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, unauthorized, forbidden, notFound, internalServerError, err := n.Client.Notification.DeleteNotificationTopicV1Admin(input, client.BearerToken(*accessToken.AccessToken))
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if forbidden != nil {
+		return forbidden
+	}
+	if notFound != nil {
+		return notFound
+	}
+	if internalServerError != nil {
+		return internalServerError
+	}
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (n *NotificationService) SendSpecificUserFreeformNotificationV1Admin(input *notification.SendSpecificUserFreeformNotificationV1AdminParams) error {
+	accessToken, err := n.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, badRequest, unauthorized, forbidden, notFound, err := n.Client.Notification.SendSpecificUserFreeformNotificationV1Admin(input, client.BearerToken(*accessToken.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if forbidden != nil {
+		return forbidden
+	}
+	if notFound != nil {
 		return notFound
 	}
 	if err != nil {
@@ -1157,30 +481,406 @@ func (n NotificationService) UpdateTemplateLocalizationV1Admin(input *notificati
 	return nil
 }
 
-func (n NotificationService) UpdateTopicByTopicName(input *notification.UpdateTopicByTopicNameParams) error {
+func (n *NotificationService) SendSpecificUserTemplatedNotificationV1Admin(input *notification.SendSpecificUserTemplatedNotificationV1AdminParams) error {
+	accessToken, err := n.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, badRequest, unauthorized, forbidden, notFound, err := n.Client.Notification.SendSpecificUserTemplatedNotificationV1Admin(input, client.BearerToken(*accessToken.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if forbidden != nil {
+		return forbidden
+	}
+	if notFound != nil {
+		return notFound
+	}
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (n *NotificationService) FreeFormNotification(input *notification.FreeFormNotificationParams) error {
+	accessToken, err := n.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, badRequest, unauthorized, forbidden, notFound, err := n.Client.Notification.FreeFormNotification(input, client.BearerToken(*accessToken.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if forbidden != nil {
+		return forbidden
+	}
+	if notFound != nil {
+		return notFound
+	}
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (n *NotificationService) NotificationWithTemplate(input *notification.NotificationWithTemplateParams) error {
+	accessToken, err := n.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, badRequest, unauthorized, forbidden, notFound, err := n.Client.Notification.NotificationWithTemplate(input, client.BearerToken(*accessToken.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if forbidden != nil {
+		return forbidden
+	}
+	if notFound != nil {
+		return notFound
+	}
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (n *NotificationService) GetGameTemplate(input *notification.GetGameTemplateParams) ([]*lobbyclientmodels.ModelTemplateResponse, error) {
+	accessToken, err := n.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, forbidden, notFound, err := n.Client.Notification.GetGameTemplate(input, client.BearerToken(*accessToken.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (n *NotificationService) CreateTemplate(input *notification.CreateTemplateParams) error {
+	accessToken, err := n.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, badRequest, unauthorized, forbidden, notFound, err := n.Client.Notification.CreateTemplate(input, client.BearerToken(*accessToken.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if forbidden != nil {
+		return forbidden
+	}
+	if notFound != nil {
+		return notFound
+	}
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (n *NotificationService) GetSlugTemplate(input *notification.GetSlugTemplateParams) (*lobbyclientmodels.ModelTemplateLocalizationResponse, error) {
+	accessToken, err := n.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, forbidden, notFound, err := n.Client.Notification.GetSlugTemplate(input, client.BearerToken(*accessToken.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (n *NotificationService) DeleteTemplateSlug(input *notification.DeleteTemplateSlugParams) error {
+	accessToken, err := n.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, badRequest, unauthorized, forbidden, notFound, err := n.Client.Notification.DeleteTemplateSlug(input, client.BearerToken(*accessToken.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if forbidden != nil {
+		return forbidden
+	}
+	if notFound != nil {
+		return notFound
+	}
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (n *NotificationService) GetLocalizationTemplate(input *notification.GetLocalizationTemplateParams) (*lobbyclientmodels.ModelTemplateLocalization, error) {
+	accessToken, err := n.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, forbidden, notFound, err := n.Client.Notification.GetLocalizationTemplate(input, client.BearerToken(*accessToken.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (n *NotificationService) UpdateLocalizationTemplate(input *notification.UpdateLocalizationTemplateParams) error {
+	accessToken, err := n.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, badRequest, unauthorized, forbidden, notFound, err := n.Client.Notification.UpdateLocalizationTemplate(input, client.BearerToken(*accessToken.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if forbidden != nil {
+		return forbidden
+	}
+	if notFound != nil {
+		return notFound
+	}
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (n *NotificationService) DeleteTemplateLocalization(input *notification.DeleteTemplateLocalizationParams) error {
+	accessToken, err := n.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, badRequest, unauthorized, forbidden, notFound, err := n.Client.Notification.DeleteTemplateLocalization(input, client.BearerToken(*accessToken.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if forbidden != nil {
+		return forbidden
+	}
+	if notFound != nil {
+		return notFound
+	}
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (n *NotificationService) PublishTemplate(input *notification.PublishTemplateParams) error {
+	accessToken, err := n.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, badRequest, unauthorized, forbidden, notFound, err := n.Client.Notification.PublishTemplate(input, client.BearerToken(*accessToken.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if forbidden != nil {
+		return forbidden
+	}
+	if notFound != nil {
+		return notFound
+	}
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (n *NotificationService) GetTopicByNamespace(input *notification.GetTopicByNamespaceParams) (*lobbyclientmodels.ModelTopicByNamespacesResponse, error) {
+	accessToken, err := n.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, unauthorized, forbidden, notFound, internalServerError, err := n.Client.Notification.GetTopicByNamespace(input, client.BearerToken(*accessToken.AccessToken))
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (n *NotificationService) CreateTopic(input *notification.CreateTopicParams) error {
+	accessToken, err := n.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, badRequest, unauthorized, forbidden, conflict, err := n.Client.Notification.CreateTopic(input, client.BearerToken(*accessToken.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if forbidden != nil {
+		return forbidden
+	}
+	if conflict != nil {
+		return conflict
+	}
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (n *NotificationService) GetTopicByTopicName(input *notification.GetTopicByTopicNameParams) (*lobbyclientmodels.ModelNotificationTopicResponse, error) {
+	accessToken, err := n.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, unauthorized, forbidden, notFound, internalServerError, err := n.Client.Notification.GetTopicByTopicName(input, client.BearerToken(*accessToken.AccessToken))
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (n *NotificationService) UpdateTopicByTopicName(input *notification.UpdateTopicByTopicNameParams) error {
 	accessToken, err := n.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
 	_, unauthorized, forbidden, notFound, internalServerError, err := n.Client.Notification.UpdateTopicByTopicName(input, client.BearerToken(*accessToken.AccessToken))
 	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
 		return unauthorized
 	}
 	if forbidden != nil {
-		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
-		logrus.Error(string(errorMsg))
 		return forbidden
 	}
+	if notFound != nil {
+		return notFound
+	}
 	if internalServerError != nil {
-		errorMsg, _ := json.Marshal(*internalServerError.GetPayload())
-		logrus.Error(string(errorMsg))
 		return internalServerError
 	}
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (n *NotificationService) DeleteTopicByTopicName(input *notification.DeleteTopicByTopicNameParams) error {
+	accessToken, err := n.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, unauthorized, forbidden, notFound, internalServerError, err := n.Client.Notification.DeleteTopicByTopicName(input, client.BearerToken(*accessToken.AccessToken))
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if forbidden != nil {
+		return forbidden
+	}
 	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
+		return notFound
+	}
+	if internalServerError != nil {
+		return internalServerError
+	}
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (n *NotificationService) FreeFormNotificationByUserID(input *notification.FreeFormNotificationByUserIDParams) error {
+	accessToken, err := n.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, badRequest, unauthorized, forbidden, notFound, err := n.Client.Notification.FreeFormNotificationByUserID(input, client.BearerToken(*accessToken.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if forbidden != nil {
+		return forbidden
+	}
+	if notFound != nil {
 		return notFound
 	}
 	if err != nil {
@@ -1189,30 +889,22 @@ func (n NotificationService) UpdateTopicByTopicName(input *notification.UpdateTo
 	return nil
 }
 
-func (n NotificationService) SendPartyFreeformNotificationV1Admin(input *notification.SendPartyFreeformNotificationV1AdminParams) error {
+func (n *NotificationService) NotificationWithTemplateByUserID(input *notification.NotificationWithTemplateByUserIDParams) error {
 	accessToken, err := n.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, unauthorized, forbidden, notFound, internalServerError, err := n.Client.Notification.SendPartyFreeformNotificationV1Admin(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, err := n.Client.Notification.NotificationWithTemplateByUserID(input, client.BearerToken(*accessToken.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
 	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
 		return unauthorized
 	}
 	if forbidden != nil {
-		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
-		logrus.Error(string(errorMsg))
 		return forbidden
 	}
-	if internalServerError != nil {
-		errorMsg, _ := json.Marshal(*internalServerError.GetPayload())
-		logrus.Error(string(errorMsg))
-		return internalServerError
-	}
 	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
 		return notFound
 	}
 	if err != nil {
@@ -1221,32 +913,296 @@ func (n NotificationService) SendPartyFreeformNotificationV1Admin(input *notific
 	return nil
 }
 
-func (n NotificationService) SendPartyTemplatedNotificationV1Admin(input *notification.SendPartyTemplatedNotificationV1AdminParams) error {
-	accessToken, err := n.TokenRepository.GetToken()
+func (n *NotificationService) SendMultipleUsersFreeformNotificationV1AdminShort(input *notification.SendMultipleUsersFreeformNotificationV1AdminParams, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := n.Client.Notification.SendMultipleUsersFreeformNotificationV1AdminShort(input, authInfo)
 	if err != nil {
 		return err
 	}
-	_, unauthorized, forbidden, notFound, internalServerError, err := n.Client.Notification.SendPartyTemplatedNotificationV1Admin(input, client.BearerToken(*accessToken.AccessToken))
-	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
-		return unauthorized
+	return nil
+}
+
+func (n *NotificationService) SendUsersFreeformNotificationV1AdminShort(input *notification.SendUsersFreeformNotificationV1AdminParams, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := n.Client.Notification.SendUsersFreeformNotificationV1AdminShort(input, authInfo)
+	if err != nil {
+		return err
 	}
-	if forbidden != nil {
-		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
-		logrus.Error(string(errorMsg))
-		return forbidden
+	return nil
+}
+
+func (n *NotificationService) SendPartyFreeformNotificationV1AdminShort(input *notification.SendPartyFreeformNotificationV1AdminParams, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := n.Client.Notification.SendPartyFreeformNotificationV1AdminShort(input, authInfo)
+	if err != nil {
+		return err
 	}
-	if internalServerError != nil {
-		errorMsg, _ := json.Marshal(*internalServerError.GetPayload())
-		logrus.Error(string(errorMsg))
-		return internalServerError
+	return nil
+}
+
+func (n *NotificationService) SendPartyTemplatedNotificationV1AdminShort(input *notification.SendPartyTemplatedNotificationV1AdminParams, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := n.Client.Notification.SendPartyTemplatedNotificationV1AdminShort(input, authInfo)
+	if err != nil {
+		return err
 	}
-	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
-		return notFound
+	return nil
+}
+
+func (n *NotificationService) GetAllNotificationTemplatesV1AdminShort(input *notification.GetAllNotificationTemplatesV1AdminParams, authInfo runtime.ClientAuthInfoWriter) ([]*lobbyclientmodels.ModelNotificationTemplateResponse, error) {
+	ok, err := n.Client.Notification.GetAllNotificationTemplatesV1AdminShort(input, authInfo)
+	if err != nil {
+		return nil, err
 	}
+	return ok.GetPayload(), nil
+}
+
+func (n *NotificationService) CreateNotificationTemplateV1AdminShort(input *notification.CreateNotificationTemplateV1AdminParams, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := n.Client.Notification.CreateNotificationTemplateV1AdminShort(input, authInfo)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (n *NotificationService) SendUsersTemplatedNotificationV1AdminShort(input *notification.SendUsersTemplatedNotificationV1AdminParams, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := n.Client.Notification.SendUsersTemplatedNotificationV1AdminShort(input, authInfo)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (n *NotificationService) GetTemplateSlugLocalizationsTemplateV1AdminShort(input *notification.GetTemplateSlugLocalizationsTemplateV1AdminParams, authInfo runtime.ClientAuthInfoWriter) (*lobbyclientmodels.ModelGetAllNotificationTemplateSlugResp, error) {
+	ok, err := n.Client.Notification.GetTemplateSlugLocalizationsTemplateV1AdminShort(input, authInfo)
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (n *NotificationService) DeleteNotificationTemplateSlugV1AdminShort(input *notification.DeleteNotificationTemplateSlugV1AdminParams, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := n.Client.Notification.DeleteNotificationTemplateSlugV1AdminShort(input, authInfo)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (n *NotificationService) GetSingleTemplateLocalizationV1AdminShort(input *notification.GetSingleTemplateLocalizationV1AdminParams, authInfo runtime.ClientAuthInfoWriter) (*lobbyclientmodels.ModelLocalization, error) {
+	ok, err := n.Client.Notification.GetSingleTemplateLocalizationV1AdminShort(input, authInfo)
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (n *NotificationService) UpdateTemplateLocalizationV1AdminShort(input *notification.UpdateTemplateLocalizationV1AdminParams, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := n.Client.Notification.UpdateTemplateLocalizationV1AdminShort(input, authInfo)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (n *NotificationService) DeleteTemplateLocalizationV1AdminShort(input *notification.DeleteTemplateLocalizationV1AdminParams, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := n.Client.Notification.DeleteTemplateLocalizationV1AdminShort(input, authInfo)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (n *NotificationService) PublishTemplateLocalizationV1AdminShort(input *notification.PublishTemplateLocalizationV1AdminParams, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := n.Client.Notification.PublishTemplateLocalizationV1AdminShort(input, authInfo)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (n *NotificationService) GetAllNotificationTopicsV1AdminShort(input *notification.GetAllNotificationTopicsV1AdminParams, authInfo runtime.ClientAuthInfoWriter) (*lobbyclientmodels.ModelGetAllNotificationTopicsResponse, error) {
+	ok, err := n.Client.Notification.GetAllNotificationTopicsV1AdminShort(input, authInfo)
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (n *NotificationService) CreateNotificationTopicV1AdminShort(input *notification.CreateNotificationTopicV1AdminParams, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := n.Client.Notification.CreateNotificationTopicV1AdminShort(input, authInfo)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (n *NotificationService) GetNotificationTopicV1AdminShort(input *notification.GetNotificationTopicV1AdminParams, authInfo runtime.ClientAuthInfoWriter) (*lobbyclientmodels.ModelNotificationTopicResponseV1, error) {
+	ok, err := n.Client.Notification.GetNotificationTopicV1AdminShort(input, authInfo)
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (n *NotificationService) UpdateNotificationTopicV1AdminShort(input *notification.UpdateNotificationTopicV1AdminParams, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := n.Client.Notification.UpdateNotificationTopicV1AdminShort(input, authInfo)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (n *NotificationService) DeleteNotificationTopicV1AdminShort(input *notification.DeleteNotificationTopicV1AdminParams, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := n.Client.Notification.DeleteNotificationTopicV1AdminShort(input, authInfo)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (n *NotificationService) SendSpecificUserFreeformNotificationV1AdminShort(input *notification.SendSpecificUserFreeformNotificationV1AdminParams, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := n.Client.Notification.SendSpecificUserFreeformNotificationV1AdminShort(input, authInfo)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (n *NotificationService) SendSpecificUserTemplatedNotificationV1AdminShort(input *notification.SendSpecificUserTemplatedNotificationV1AdminParams, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := n.Client.Notification.SendSpecificUserTemplatedNotificationV1AdminShort(input, authInfo)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (n *NotificationService) FreeFormNotificationShort(input *notification.FreeFormNotificationParams, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := n.Client.Notification.FreeFormNotificationShort(input, authInfo)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (n *NotificationService) NotificationWithTemplateShort(input *notification.NotificationWithTemplateParams, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := n.Client.Notification.NotificationWithTemplateShort(input, authInfo)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (n *NotificationService) GetGameTemplateShort(input *notification.GetGameTemplateParams, authInfo runtime.ClientAuthInfoWriter) ([]*lobbyclientmodels.ModelTemplateResponse, error) {
+	ok, err := n.Client.Notification.GetGameTemplateShort(input, authInfo)
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (n *NotificationService) CreateTemplateShort(input *notification.CreateTemplateParams, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := n.Client.Notification.CreateTemplateShort(input, authInfo)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (n *NotificationService) GetSlugTemplateShort(input *notification.GetSlugTemplateParams, authInfo runtime.ClientAuthInfoWriter) (*lobbyclientmodels.ModelTemplateLocalizationResponse, error) {
+	ok, err := n.Client.Notification.GetSlugTemplateShort(input, authInfo)
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (n *NotificationService) DeleteTemplateSlugShort(input *notification.DeleteTemplateSlugParams, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := n.Client.Notification.DeleteTemplateSlugShort(input, authInfo)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (n *NotificationService) GetLocalizationTemplateShort(input *notification.GetLocalizationTemplateParams, authInfo runtime.ClientAuthInfoWriter) (*lobbyclientmodels.ModelTemplateLocalization, error) {
+	ok, err := n.Client.Notification.GetLocalizationTemplateShort(input, authInfo)
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (n *NotificationService) UpdateLocalizationTemplateShort(input *notification.UpdateLocalizationTemplateParams, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := n.Client.Notification.UpdateLocalizationTemplateShort(input, authInfo)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (n *NotificationService) DeleteTemplateLocalizationShort(input *notification.DeleteTemplateLocalizationParams, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := n.Client.Notification.DeleteTemplateLocalizationShort(input, authInfo)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (n *NotificationService) PublishTemplateShort(input *notification.PublishTemplateParams, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := n.Client.Notification.PublishTemplateShort(input, authInfo)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (n *NotificationService) GetTopicByNamespaceShort(input *notification.GetTopicByNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*lobbyclientmodels.ModelTopicByNamespacesResponse, error) {
+	ok, err := n.Client.Notification.GetTopicByNamespaceShort(input, authInfo)
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (n *NotificationService) CreateTopicShort(input *notification.CreateTopicParams, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := n.Client.Notification.CreateTopicShort(input, authInfo)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (n *NotificationService) GetTopicByTopicNameShort(input *notification.GetTopicByTopicNameParams, authInfo runtime.ClientAuthInfoWriter) (*lobbyclientmodels.ModelNotificationTopicResponse, error) {
+	ok, err := n.Client.Notification.GetTopicByTopicNameShort(input, authInfo)
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (n *NotificationService) UpdateTopicByTopicNameShort(input *notification.UpdateTopicByTopicNameParams, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := n.Client.Notification.UpdateTopicByTopicNameShort(input, authInfo)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (n *NotificationService) DeleteTopicByTopicNameShort(input *notification.DeleteTopicByTopicNameParams, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := n.Client.Notification.DeleteTopicByTopicNameShort(input, authInfo)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (n *NotificationService) FreeFormNotificationByUserIDShort(input *notification.FreeFormNotificationByUserIDParams, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := n.Client.Notification.FreeFormNotificationByUserIDShort(input, authInfo)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (n *NotificationService) NotificationWithTemplateByUserIDShort(input *notification.NotificationWithTemplateByUserIDParams, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := n.Client.Notification.NotificationWithTemplateByUserIDShort(input, authInfo)
 	if err != nil {
 		return err
 	}

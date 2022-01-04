@@ -1,13 +1,17 @@
+// Copyright (c) 2018 - 2021
+// AccelByte Inc. All Rights Reserved.
+// This is licensed software from AccelByte Inc, for limitations
+// and restrictions contact your company contract manager.
+
 package dsmc
 
 import (
-	"encoding/json"
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient"
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/admin"
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
-	"github.com/sirupsen/logrus"
 )
 
 type AdminService struct {
@@ -15,20 +19,34 @@ type AdminService struct {
 	TokenRepository repository.TokenRepository
 }
 
-func (a *AdminService) CountServer(input *admin.CountServerParams) (*dsmcclientmodels.ModelsCountServerResponse, error) {
-	token, err := a.TokenRepository.GetToken()
+func (a *AdminService) ListServer(input *admin.ListServerParams) (*dsmcclientmodels.ModelsListServerResponse, error) {
+	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, internalServerError, err := a.Client.Admin.CountServer(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, internalServerError, err := a.Client.Admin.ListServer(input, client.BearerToken(*accessToken.AccessToken))
 	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, unauthorized
 	}
 	if internalServerError != nil {
-		errorMsg, _ := json.Marshal(*internalServerError.GetPayload())
-		logrus.Error(string(errorMsg))
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (a *AdminService) CountServer(input *admin.CountServerParams) (*dsmcclientmodels.ModelsCountServerResponse, error) {
+	accessToken, err := a.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, unauthorized, internalServerError, err := a.Client.Admin.CountServer(input, client.BearerToken(*accessToken.AccessToken))
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if internalServerError != nil {
 		return nil, internalServerError
 	}
 	if err != nil {
@@ -38,19 +56,15 @@ func (a *AdminService) CountServer(input *admin.CountServerParams) (*dsmcclientm
 }
 
 func (a *AdminService) CountServerDetailed(input *admin.CountServerDetailedParams) (*dsmcclientmodels.ModelsDetailedCountServerResponse, error) {
-	token, err := a.TokenRepository.GetToken()
+	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, internalServerError, err := a.Client.Admin.CountServerDetailed(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, internalServerError, err := a.Client.Admin.CountServerDetailed(input, client.BearerToken(*accessToken.AccessToken))
 	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, unauthorized
 	}
 	if internalServerError != nil {
-		errorMsg, _ := json.Marshal(*internalServerError.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, internalServerError
 	}
 	if err != nil {
@@ -59,92 +73,34 @@ func (a *AdminService) CountServerDetailed(input *admin.CountServerDetailedParam
 	return ok.GetPayload(), nil
 }
 
-func (a *AdminService) CountSession(input *admin.CountSessionParams) (*dsmcclientmodels.ModelsCountSessionResponse, error) {
-	token, err := a.TokenRepository.GetToken()
+func (a *AdminService) ListLocalServer(input *admin.ListLocalServerParams) (*dsmcclientmodels.ModelsListServerResponse, error) {
+	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, internalServerError, err := a.Client.Admin.CountSession(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, internalServerError, err := a.Client.Admin.ListLocalServer(input, client.BearerToken(*accessToken.AccessToken))
 	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, unauthorized
 	}
 	if internalServerError != nil {
-		errorMsg, _ := json.Marshal(*internalServerError.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, internalServerError
 	}
 	if err != nil {
 		return nil, err
 	}
-	logrus.Info("Claim Server Success")
 	return ok.GetPayload(), nil
 }
 
 func (a *AdminService) DeleteLocalServer(input *admin.DeleteLocalServerParams) error {
-	token, err := a.TokenRepository.GetToken()
+	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, unauthorized, internalServerError, err := a.Client.Admin.DeleteLocalServer(input, client.BearerToken(*token.AccessToken))
+	_, unauthorized, internalServerError, err := a.Client.Admin.DeleteLocalServer(input, client.BearerToken(*accessToken.AccessToken))
 	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
 		return unauthorized
 	}
 	if internalServerError != nil {
-		errorMsg, _ := json.Marshal(*internalServerError.GetPayload())
-		logrus.Error(string(errorMsg))
-		return internalServerError
-	}
-	if err != nil {
-		return err
-	}
-	return nil
-}
-
-func (a *AdminService) DeleteServer(input *admin.DeleteServerParams) error {
-	token, err := a.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	_, unauthorized, notFound, internalServerError, err := a.Client.Admin.DeleteServer(input, client.BearerToken(*token.AccessToken))
-	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
-		return unauthorized
-	}
-	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
-		return notFound
-	}
-	if internalServerError != nil {
-		errorMsg, _ := json.Marshal(*internalServerError.GetPayload())
-		logrus.Error(string(errorMsg))
-		return internalServerError
-	}
-	if err != nil {
-		return err
-	}
-	return nil
-}
-
-func (a *AdminService) DeleteSession(input *admin.DeleteSessionParams) error {
-	token, err := a.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	_, unauthorized, internalServerError, err := a.Client.Admin.DeleteSession(input, client.BearerToken(*token.AccessToken))
-	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
-		return unauthorized
-	}
-	if internalServerError != nil {
-		errorMsg, _ := json.Marshal(*internalServerError.GetPayload())
-		logrus.Error(string(errorMsg))
 		return internalServerError
 	}
 	if err != nil {
@@ -154,132 +110,209 @@ func (a *AdminService) DeleteSession(input *admin.DeleteSessionParams) error {
 }
 
 func (a *AdminService) GetServer(input *admin.GetServerParams) (*dsmcclientmodels.ModelsServer, error) {
-	token, err := a.TokenRepository.GetToken()
+	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, notFound, internalServerError, err := a.Client.Admin.GetServer(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, notFound, internalServerError, err := a.Client.Admin.GetServer(input, client.BearerToken(*accessToken.AccessToken))
 	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, unauthorized
 	}
 	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, notFound
 	}
 	if internalServerError != nil {
-		errorMsg, _ := json.Marshal(*internalServerError.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, internalServerError
 	}
 	if err != nil {
 		return nil, err
 	}
-	logrus.Info("Claim Server Success")
 	return ok.GetPayload(), nil
 }
 
-func (a *AdminService) ListLocalServer(input *admin.ListLocalServerParams) (*dsmcclientmodels.ModelsListServerResponse, error) {
-	token, err := a.TokenRepository.GetToken()
+func (a *AdminService) DeleteServer(input *admin.DeleteServerParams) error {
+	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
-		return nil, err
+		return err
 	}
-	ok, unauthorized, internalServerError, err := a.Client.Admin.ListLocalServer(input, client.BearerToken(*token.AccessToken))
+	_, unauthorized, notFound, internalServerError, err := a.Client.Admin.DeleteServer(input, client.BearerToken(*accessToken.AccessToken))
 	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, unauthorized
+		return unauthorized
+	}
+	if notFound != nil {
+		return notFound
 	}
 	if internalServerError != nil {
-		errorMsg, _ := json.Marshal(*internalServerError.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, internalServerError
+		return internalServerError
 	}
 	if err != nil {
-		return nil, err
+		return err
 	}
-	logrus.Info("Claim Server Success")
-	return ok.GetPayload(), nil
+	return nil
 }
 
-func (a *AdminService) ListServer(input *admin.ListServerParams) (*dsmcclientmodels.ModelsListServerResponse, error) {
-	token, err := a.TokenRepository.GetToken()
+func (a *AdminService) GetServerLogs(input *admin.GetServerLogsParams) (*dsmcclientmodels.ModelsServerLogs, error) {
+	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, internalServerError, err := a.Client.Admin.ListServer(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, notFound, internalServerError, err := a.Client.Admin.GetServerLogs(input, client.BearerToken(*accessToken.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
 	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, unauthorized
 	}
+	if notFound != nil {
+		return nil, notFound
+	}
 	if internalServerError != nil {
-		errorMsg, _ := json.Marshal(*internalServerError.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, internalServerError
 	}
 	if err != nil {
 		return nil, err
 	}
-	logrus.Info("Claim Server Success")
 	return ok.GetPayload(), nil
 }
 
 func (a *AdminService) ListSession(input *admin.ListSessionParams) (*dsmcclientmodels.ModelsListSessionResponse, error) {
-	token, err := a.TokenRepository.GetToken()
+	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, internalServerError, err := a.Client.Admin.ListSession(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, internalServerError, err := a.Client.Admin.ListSession(input, client.BearerToken(*accessToken.AccessToken))
 	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, unauthorized
 	}
 	if internalServerError != nil {
-		errorMsg, _ := json.Marshal(*internalServerError.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, internalServerError
 	}
 	if err != nil {
 		return nil, err
 	}
-	logrus.Info("Claim Server Success")
 	return ok.GetPayload(), nil
 }
 
-func (a *AdminService) GetServerLogs(input *admin.GetServerLogsParams) (*dsmcclientmodels.ModelsServerLogs, error) {
-	token, err := a.TokenRepository.GetToken()
+func (a *AdminService) CountSession(input *admin.CountSessionParams) (*dsmcclientmodels.ModelsCountSessionResponse, error) {
+	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, notFound, internalServerError, err := a.Client.Admin.GetServerLogs(input, client.BearerToken(*token.AccessToken))
-	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, badRequest
-	}
+	ok, unauthorized, internalServerError, err := a.Client.Admin.CountSession(input, client.BearerToken(*accessToken.AccessToken))
 	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, unauthorized
 	}
-	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, notFound
-	}
 	if internalServerError != nil {
-		errorMsg, _ := json.Marshal(*internalServerError.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, internalServerError
 	}
 	if err != nil {
 		return nil, err
 	}
-	logrus.Info("Claim Server Success")
 	return ok.GetPayload(), nil
 }
 
+func (a *AdminService) DeleteSession(input *admin.DeleteSessionParams) error {
+	accessToken, err := a.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, unauthorized, internalServerError, err := a.Client.Admin.DeleteSession(input, client.BearerToken(*accessToken.AccessToken))
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if internalServerError != nil {
+		return internalServerError
+	}
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (a *AdminService) ListServerShort(input *admin.ListServerParams, authInfo runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsListServerResponse, error) {
+	ok, err := a.Client.Admin.ListServerShort(input, authInfo)
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (a *AdminService) CountServerShort(input *admin.CountServerParams, authInfo runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsCountServerResponse, error) {
+	ok, err := a.Client.Admin.CountServerShort(input, authInfo)
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (a *AdminService) CountServerDetailedShort(input *admin.CountServerDetailedParams, authInfo runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsDetailedCountServerResponse, error) {
+	ok, err := a.Client.Admin.CountServerDetailedShort(input, authInfo)
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (a *AdminService) ListLocalServerShort(input *admin.ListLocalServerParams, authInfo runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsListServerResponse, error) {
+	ok, err := a.Client.Admin.ListLocalServerShort(input, authInfo)
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (a *AdminService) DeleteLocalServerShort(input *admin.DeleteLocalServerParams, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := a.Client.Admin.DeleteLocalServerShort(input, authInfo)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (a *AdminService) GetServerShort(input *admin.GetServerParams, authInfo runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsServer, error) {
+	ok, err := a.Client.Admin.GetServerShort(input, authInfo)
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (a *AdminService) DeleteServerShort(input *admin.DeleteServerParams, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := a.Client.Admin.DeleteServerShort(input, authInfo)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (a *AdminService) GetServerLogsShort(input *admin.GetServerLogsParams, authInfo runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsServerLogs, error) {
+	ok, err := a.Client.Admin.GetServerLogsShort(input, authInfo)
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (a *AdminService) ListSessionShort(input *admin.ListSessionParams, authInfo runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsListSessionResponse, error) {
+	ok, err := a.Client.Admin.ListSessionShort(input, authInfo)
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (a *AdminService) CountSessionShort(input *admin.CountSessionParams, authInfo runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsCountSessionResponse, error) {
+	ok, err := a.Client.Admin.CountSessionShort(input, authInfo)
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (a *AdminService) DeleteSessionShort(input *admin.DeleteSessionParams, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := a.Client.Admin.DeleteSessionShort(input, authInfo)
+	if err != nil {
+		return err
+	}
+	return nil
+}

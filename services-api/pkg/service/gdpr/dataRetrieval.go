@@ -1,17 +1,17 @@
-// Copyright (c) 2021 AccelByte Inc. All Rights Reserved.
+// Copyright (c) 2018 - 2021
+// AccelByte Inc. All Rights Reserved.
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
 package gdpr
 
 import (
-	"encoding/json"
 	"github.com/AccelByte/accelbyte-go-sdk/gdpr-sdk/pkg/gdprclient"
-	retrieval "github.com/AccelByte/accelbyte-go-sdk/gdpr-sdk/pkg/gdprclient/data_retrieval"
+	"github.com/AccelByte/accelbyte-go-sdk/gdpr-sdk/pkg/gdprclient/data_retrieval"
 	"github.com/AccelByte/accelbyte-go-sdk/gdpr-sdk/pkg/gdprclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
-	"github.com/sirupsen/logrus"
 )
 
 type DataRetrievalService struct {
@@ -19,426 +19,399 @@ type DataRetrievalService struct {
 	TokenRepository repository.TokenRepository
 }
 
-// GetAdminEmailConfiguration is used to get admin email addresses configuration
-func (d *DataRetrievalService) GetAdminEmailConfiguration(input *retrieval.GetAdminEmailConfigurationParams) ([]string, error) {
-	token, err := d.TokenRepository.GetToken()
+func (d *DataRetrievalService) GetAdminEmailConfiguration(input *data_retrieval.GetAdminEmailConfigurationParams) ([]string, error) {
+	accessToken, err := d.TokenRepository.GetToken()
 	if err != nil {
-		logrus.Error(err)
 		return nil, err
 	}
-	ok, unauthorized, internalServer, err := d.Client.DataRetrieval.GetAdminEmailConfiguration(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, internalServerError, err := d.Client.DataRetrieval.GetAdminEmailConfiguration(input, client.BearerToken(*accessToken.AccessToken))
 	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, unauthorized
 	}
-	if internalServer != nil {
-		errorMsg, _ := json.Marshal(*internalServer.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, internalServer
+	if internalServerError != nil {
+		return nil, internalServerError
 	}
 	if err != nil {
-		logrus.Error(err)
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-// UpdateAdminEmailConfiguration is used to update admin email address configuration
-func (d *DataRetrievalService) UpdateAdminEmailConfiguration(input *retrieval.UpdateAdminEmailConfigurationParams) error {
-	token, err := d.TokenRepository.GetToken()
+func (d *DataRetrievalService) UpdateAdminEmailConfiguration(input *data_retrieval.UpdateAdminEmailConfigurationParams) error {
+	accessToken, err := d.TokenRepository.GetToken()
 	if err != nil {
-		logrus.Error(err)
 		return err
 	}
-	_, badRequest, unauthorized, internalServer, err := d.Client.DataRetrieval.UpdateAdminEmailConfiguration(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, internalServerError, err := d.Client.DataRetrieval.UpdateAdminEmailConfiguration(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
 		return badRequest
 	}
 	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
 		return unauthorized
 	}
-	if internalServer != nil {
-		errorMsg, _ := json.Marshal(*internalServer.GetPayload())
-		logrus.Error(string(errorMsg))
-		return internalServer
+	if internalServerError != nil {
+		return internalServerError
 	}
 	if err != nil {
-		logrus.Error(err)
 		return err
 	}
 	return nil
 }
 
-// SaveAdminEmailConfiguration is used to add admin email address configuration
-func (d *DataRetrievalService) SaveAdminEmailConfiguration(input *retrieval.SaveAdminEmailConfigurationParams) error {
-	token, err := d.TokenRepository.GetToken()
+func (d *DataRetrievalService) SaveAdminEmailConfiguration(input *data_retrieval.SaveAdminEmailConfigurationParams) error {
+	accessToken, err := d.TokenRepository.GetToken()
 	if err != nil {
-		logrus.Error(err)
 		return err
 	}
-	_, badRequest, unauthorized, internalServer, err := d.Client.DataRetrieval.SaveAdminEmailConfiguration(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, internalServerError, err := d.Client.DataRetrieval.SaveAdminEmailConfiguration(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
 		return badRequest
 	}
 	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
 		return unauthorized
 	}
-	if internalServer != nil {
-		errorMsg, _ := json.Marshal(*internalServer.GetPayload())
-		logrus.Error(string(errorMsg))
-		return internalServer
+	if internalServerError != nil {
+		return internalServerError
 	}
 	if err != nil {
-		logrus.Error(err)
 		return err
 	}
 	return nil
 }
 
-// DeleteAdminEmailConfiguration is used to update admin email address configuration
-func (d *DataRetrievalService) DeleteAdminEmailConfiguration(input *retrieval.DeleteAdminEmailConfigurationParams) error {
-	token, err := d.TokenRepository.GetToken()
+func (d *DataRetrievalService) DeleteAdminEmailConfiguration(input *data_retrieval.DeleteAdminEmailConfigurationParams) error {
+	accessToken, err := d.TokenRepository.GetToken()
 	if err != nil {
-		logrus.Error(err)
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, internalServer, err := d.Client.DataRetrieval.DeleteAdminEmailConfiguration(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := d.Client.DataRetrieval.DeleteAdminEmailConfiguration(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
 		return badRequest
 	}
 	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
 		return unauthorized
 	}
 	if forbidden != nil {
-		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
-		logrus.Error(string(errorMsg))
 		return forbidden
 	}
 	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
 		return notFound
 	}
-	if internalServer != nil {
-		errorMsg, _ := json.Marshal(*internalServer.GetPayload())
-		logrus.Error(string(errorMsg))
-		return internalServer
+	if internalServerError != nil {
+		return internalServerError
 	}
 	if err != nil {
-		logrus.Error(err)
 		return err
 	}
 	return nil
 }
 
-// AdminGetListPersonalDataRequest is used to get list personal data requests
-func (d *DataRetrievalService) AdminGetListPersonalDataRequest(input *retrieval.AdminGetListPersonalDataRequestParams) (*gdprclientmodels.ModelsListPersonalDataResponse, error) {
-	token, err := d.TokenRepository.GetToken()
+func (d *DataRetrievalService) AdminGetListPersonalDataRequest(input *data_retrieval.AdminGetListPersonalDataRequestParams) (*gdprclientmodels.ModelsListPersonalDataResponse, error) {
+	accessToken, err := d.TokenRepository.GetToken()
 	if err != nil {
-		logrus.Error(err)
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServer, err := d.Client.DataRetrieval.AdminGetListPersonalDataRequest(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := d.Client.DataRetrieval.AdminGetListPersonalDataRequest(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, badRequest
 	}
 	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, unauthorized
 	}
 	if forbidden != nil {
-		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, forbidden
 	}
 	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, notFound
 	}
-	if internalServer != nil {
-		errorMsg, _ := json.Marshal(*internalServer.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, internalServer
+	if internalServerError != nil {
+		return nil, internalServerError
 	}
 	if err != nil {
-		logrus.Error(err)
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-// AdminGetUserPersonalDataRequests is used to get user's personal data requests
-func (d *DataRetrievalService) AdminGetUserPersonalDataRequests(input *retrieval.AdminGetUserPersonalDataRequestsParams) (*gdprclientmodels.ModelsUserPersonalDataResponse, error) {
-	token, err := d.TokenRepository.GetToken()
+func (d *DataRetrievalService) AdminGetUserPersonalDataRequests(input *data_retrieval.AdminGetUserPersonalDataRequestsParams) (*gdprclientmodels.ModelsUserPersonalDataResponse, error) {
+	accessToken, err := d.TokenRepository.GetToken()
 	if err != nil {
-		logrus.Error(err)
 		return nil, err
 	}
-	ok, badRequest, unauthorized, internalServer, err := d.Client.DataRetrieval.AdminGetUserPersonalDataRequests(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, internalServerError, err := d.Client.DataRetrieval.AdminGetUserPersonalDataRequests(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, badRequest
 	}
 	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, unauthorized
 	}
-	if internalServer != nil {
-		errorMsg, _ := json.Marshal(*internalServer.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, internalServer
+	if internalServerError != nil {
+		return nil, internalServerError
 	}
 	if err != nil {
-		logrus.Error(err)
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-// AdminRequestDataRetrieval is used to submit user personal data retrieval request
-func (d *DataRetrievalService) AdminRequestDataRetrieval(input *retrieval.AdminRequestDataRetrievalParams) (*gdprclientmodels.ModelsDataRetrievalResponse, error) {
-	token, err := d.TokenRepository.GetToken()
+func (d *DataRetrievalService) AdminRequestDataRetrieval(input *data_retrieval.AdminRequestDataRetrievalParams) (*gdprclientmodels.ModelsDataRetrievalResponse, error) {
+	accessToken, err := d.TokenRepository.GetToken()
 	if err != nil {
-		logrus.Error(err)
 		return nil, err
 	}
-	created, badRequest, unauthorized, internalServer, err := d.Client.DataRetrieval.AdminRequestDataRetrieval(input, client.BearerToken(*token.AccessToken))
+	created, badRequest, unauthorized, internalServerError, err := d.Client.DataRetrieval.AdminRequestDataRetrieval(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, badRequest
 	}
 	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, unauthorized
 	}
-	if internalServer != nil {
-		errorMsg, _ := json.Marshal(*internalServer.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, internalServer
+	if internalServerError != nil {
+		return nil, internalServerError
 	}
 	if err != nil {
-		logrus.Error(err)
 		return nil, err
 	}
 	return created.GetPayload(), nil
 }
 
-// AdminCancelUserPersonalDataRequest is used to cancel user's personal data requests
-func (d *DataRetrievalService) AdminCancelUserPersonalDataRequest(input *retrieval.AdminCancelUserPersonalDataRequestParams) error {
-	token, err := d.TokenRepository.GetToken()
+func (d *DataRetrievalService) AdminCancelUserPersonalDataRequest(input *data_retrieval.AdminCancelUserPersonalDataRequestParams) error {
+	accessToken, err := d.TokenRepository.GetToken()
 	if err != nil {
-		logrus.Error(err)
 		return err
 	}
-	_, unauthorized, notFound, conflict, internalServer, err := d.Client.DataRetrieval.AdminCancelUserPersonalDataRequest(input, client.BearerToken(*token.AccessToken))
+	_, unauthorized, notFound, conflict, internalServerError, err := d.Client.DataRetrieval.AdminCancelUserPersonalDataRequest(input, client.BearerToken(*accessToken.AccessToken))
 	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
 		return unauthorized
 	}
 	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
 		return notFound
 	}
 	if conflict != nil {
-		errorMsg, _ := json.Marshal(*conflict.GetPayload())
-		logrus.Error(string(errorMsg))
 		return conflict
 	}
-	if internalServer != nil {
-		errorMsg, _ := json.Marshal(*internalServer.GetPayload())
-		logrus.Error(string(errorMsg))
-		return internalServer
+	if internalServerError != nil {
+		return internalServerError
 	}
 	if err != nil {
-		logrus.Error(err)
 		return err
 	}
 	return nil
 }
 
-// AdminGeneratePersonalDataURL is used to generate personal data download url
-func (d *DataRetrievalService) AdminGeneratePersonalDataURL(input *retrieval.AdminGeneratePersonalDataURLParams) (*gdprclientmodels.ModelsUserDataURL, error) {
-	token, err := d.TokenRepository.GetToken()
+func (d *DataRetrievalService) AdminGeneratePersonalDataURL(input *data_retrieval.AdminGeneratePersonalDataURLParams) (*gdprclientmodels.ModelsUserDataURL, error) {
+	accessToken, err := d.TokenRepository.GetToken()
 	if err != nil {
-		logrus.Error(err)
 		return nil, err
 	}
-	ok, badRequest, unauthorized, notFound, internalServer, err := d.Client.DataRetrieval.AdminGeneratePersonalDataURL(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, notFound, internalServerError, err := d.Client.DataRetrieval.AdminGeneratePersonalDataURL(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, badRequest
 	}
 	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, unauthorized
 	}
 	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, notFound
 	}
-	if internalServer != nil {
-		errorMsg, _ := json.Marshal(*internalServer.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, internalServer
+	if internalServerError != nil {
+		return nil, internalServerError
 	}
 	if err != nil {
-		logrus.Error(err)
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-// PublicGetUserPersonalDataRequests is used to get user's personal data requests
-func (d *DataRetrievalService) PublicGetUserPersonalDataRequests(input *retrieval.PublicGetUserPersonalDataRequestsParams) (*gdprclientmodels.ModelsUserPersonalDataResponse, error) {
-	token, err := d.TokenRepository.GetToken()
+func (d *DataRetrievalService) PublicGetUserPersonalDataRequests(input *data_retrieval.PublicGetUserPersonalDataRequestsParams) (*gdprclientmodels.ModelsUserPersonalDataResponse, error) {
+	accessToken, err := d.TokenRepository.GetToken()
 	if err != nil {
-		logrus.Error(err)
 		return nil, err
 	}
-	ok, badRequest, unauthorized, internalServer, err := d.Client.DataRetrieval.PublicGetUserPersonalDataRequests(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, internalServerError, err := d.Client.DataRetrieval.PublicGetUserPersonalDataRequests(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, badRequest
 	}
 	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, unauthorized
 	}
-	if internalServer != nil {
-		errorMsg, _ := json.Marshal(*internalServer.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, internalServer
+	if internalServerError != nil {
+		return nil, internalServerError
 	}
 	if err != nil {
-		logrus.Error(err)
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-// PublicRequestDataRetrieval is used to submit personal data retrieval request
-func (d *DataRetrievalService) PublicRequestDataRetrieval(input *retrieval.PublicRequestDataRetrievalParams) (*gdprclientmodels.ModelsDataRetrievalResponse, error) {
-	token, err := d.TokenRepository.GetToken()
+func (d *DataRetrievalService) PublicRequestDataRetrieval(input *data_retrieval.PublicRequestDataRetrievalParams) (*gdprclientmodels.ModelsDataRetrievalResponse, error) {
+	accessToken, err := d.TokenRepository.GetToken()
 	if err != nil {
-		logrus.Error(err)
 		return nil, err
 	}
-	ok, badRequest, unauthorized, internalServer, err := d.Client.DataRetrieval.PublicRequestDataRetrieval(input, client.BearerToken(*token.AccessToken))
+	created, badRequest, unauthorized, internalServerError, err := d.Client.DataRetrieval.PublicRequestDataRetrieval(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, badRequest
 	}
 	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, unauthorized
 	}
-	if internalServer != nil {
-		errorMsg, _ := json.Marshal(*internalServer.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, internalServer
+	if internalServerError != nil {
+		return nil, internalServerError
 	}
 	if err != nil {
-		logrus.Error(err)
 		return nil, err
 	}
-	return ok.GetPayload(), nil
+	return created.GetPayload(), nil
 }
 
-// PublicCancelUserPersonalDataRequest is used to cancel user s personal data requests
-func (d *DataRetrievalService) PublicCancelUserPersonalDataRequest(input *retrieval.PublicCancelUserPersonalDataRequestParams) error {
-	token, err := d.TokenRepository.GetToken()
+func (d *DataRetrievalService) PublicCancelUserPersonalDataRequest(input *data_retrieval.PublicCancelUserPersonalDataRequestParams) (*gdprclientmodels.ModelsListPersonalDataResponse, error) {
+	accessToken, err := d.TokenRepository.GetToken()
 	if err != nil {
-		logrus.Error(err)
-		return err
+		return nil, err
 	}
-	_, unauthorized, notFound, conflict, internalServer, err := d.Client.DataRetrieval.PublicCancelUserPersonalDataRequest(input, client.BearerToken(*token.AccessToken))
+	noContent, unauthorized, notFound, conflict, internalServerError, err := d.Client.DataRetrieval.PublicCancelUserPersonalDataRequest(input, client.BearerToken(*accessToken.AccessToken))
 	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
-		return unauthorized
+		return nil, unauthorized
 	}
 	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
-		return notFound
+		return nil, notFound
 	}
 	if conflict != nil {
-		errorMsg, _ := json.Marshal(*conflict.GetPayload())
-		logrus.Error(string(errorMsg))
-		return conflict
+		return nil, conflict
 	}
-	if internalServer != nil {
-		errorMsg, _ := json.Marshal(*internalServer.GetPayload())
-		logrus.Error(string(errorMsg))
-		return internalServer
+	if internalServerError != nil {
+		return nil, internalServerError
 	}
 	if err != nil {
-		logrus.Error(err)
+		return nil, err
+	}
+	return noContent.GetPayload(), nil
+}
+
+func (d *DataRetrievalService) PublicGeneratePersonalDataURL(input *data_retrieval.PublicGeneratePersonalDataURLParams) (*gdprclientmodels.ModelsUserDataURL, error) {
+	accessToken, err := d.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, notFound, internalServerError, err := d.Client.DataRetrieval.PublicGeneratePersonalDataURL(input, client.BearerToken(*accessToken.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (d *DataRetrievalService) GetAdminEmailConfigurationShort(input *data_retrieval.GetAdminEmailConfigurationParams, authInfo runtime.ClientAuthInfoWriter) ([]string, error) {
+	ok, err := d.Client.DataRetrieval.GetAdminEmailConfigurationShort(input, authInfo)
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (d *DataRetrievalService) UpdateAdminEmailConfigurationShort(input *data_retrieval.UpdateAdminEmailConfigurationParams, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := d.Client.DataRetrieval.UpdateAdminEmailConfigurationShort(input, authInfo)
+	if err != nil {
 		return err
 	}
 	return nil
 }
 
-// PublicGeneratePersonalDataURL is used to generate personal data download url
-func (d *DataRetrievalService) PublicGeneratePersonalDataURL(input *retrieval.PublicGeneratePersonalDataURLParams) (*gdprclientmodels.ModelsUserDataURL, error) {
-	token, err := d.TokenRepository.GetToken()
+func (d *DataRetrievalService) SaveAdminEmailConfigurationShort(input *data_retrieval.SaveAdminEmailConfigurationParams, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := d.Client.DataRetrieval.SaveAdminEmailConfigurationShort(input, authInfo)
 	if err != nil {
-		logrus.Error(err)
+		return err
+	}
+	return nil
+}
+
+func (d *DataRetrievalService) DeleteAdminEmailConfigurationShort(input *data_retrieval.DeleteAdminEmailConfigurationParams, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := d.Client.DataRetrieval.DeleteAdminEmailConfigurationShort(input, authInfo)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (d *DataRetrievalService) AdminGetListPersonalDataRequestShort(input *data_retrieval.AdminGetListPersonalDataRequestParams, authInfo runtime.ClientAuthInfoWriter) (*gdprclientmodels.ModelsListPersonalDataResponse, error) {
+	ok, err := d.Client.DataRetrieval.AdminGetListPersonalDataRequestShort(input, authInfo)
+	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, notFound, internalServer, err := d.Client.DataRetrieval.PublicGeneratePersonalDataURL(input, client.BearerToken(*token.AccessToken))
-	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, badRequest
-	}
-	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, unauthorized
-	}
-	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, notFound
-	}
-	if internalServer != nil {
-		errorMsg, _ := json.Marshal(*internalServer.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, internalServer
-	}
+	return ok.GetPayload(), nil
+}
+
+func (d *DataRetrievalService) AdminGetUserPersonalDataRequestsShort(input *data_retrieval.AdminGetUserPersonalDataRequestsParams, authInfo runtime.ClientAuthInfoWriter) (*gdprclientmodels.ModelsUserPersonalDataResponse, error) {
+	ok, err := d.Client.DataRetrieval.AdminGetUserPersonalDataRequestsShort(input, authInfo)
 	if err != nil {
-		logrus.Error(err)
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (d *DataRetrievalService) AdminRequestDataRetrievalShort(input *data_retrieval.AdminRequestDataRetrievalParams, authInfo runtime.ClientAuthInfoWriter) (*gdprclientmodels.ModelsDataRetrievalResponse, error) {
+	created, err := d.Client.DataRetrieval.AdminRequestDataRetrievalShort(input, authInfo)
+	if err != nil {
+		return nil, err
+	}
+	return created.GetPayload(), nil
+}
+
+func (d *DataRetrievalService) AdminCancelUserPersonalDataRequestShort(input *data_retrieval.AdminCancelUserPersonalDataRequestParams, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := d.Client.DataRetrieval.AdminCancelUserPersonalDataRequestShort(input, authInfo)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (d *DataRetrievalService) AdminGeneratePersonalDataURLShort(input *data_retrieval.AdminGeneratePersonalDataURLParams, authInfo runtime.ClientAuthInfoWriter) (*gdprclientmodels.ModelsUserDataURL, error) {
+	ok, err := d.Client.DataRetrieval.AdminGeneratePersonalDataURLShort(input, authInfo)
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (d *DataRetrievalService) PublicGetUserPersonalDataRequestsShort(input *data_retrieval.PublicGetUserPersonalDataRequestsParams, authInfo runtime.ClientAuthInfoWriter) (*gdprclientmodels.ModelsUserPersonalDataResponse, error) {
+	ok, err := d.Client.DataRetrieval.PublicGetUserPersonalDataRequestsShort(input, authInfo)
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (d *DataRetrievalService) PublicRequestDataRetrievalShort(input *data_retrieval.PublicRequestDataRetrievalParams, authInfo runtime.ClientAuthInfoWriter) (*gdprclientmodels.ModelsDataRetrievalResponse, error) {
+	created, err := d.Client.DataRetrieval.PublicRequestDataRetrievalShort(input, authInfo)
+	if err != nil {
+		return nil, err
+	}
+	return created.GetPayload(), nil
+}
+
+func (d *DataRetrievalService) PublicCancelUserPersonalDataRequestShort(input *data_retrieval.PublicCancelUserPersonalDataRequestParams, authInfo runtime.ClientAuthInfoWriter) (*gdprclientmodels.ModelsListPersonalDataResponse, error) {
+	noContent, err := d.Client.DataRetrieval.PublicCancelUserPersonalDataRequestShort(input, authInfo)
+	if err != nil {
+		return nil, err
+	}
+	return noContent.GetPayload(), nil
+}
+
+func (d *DataRetrievalService) PublicGeneratePersonalDataURLShort(input *data_retrieval.PublicGeneratePersonalDataURLParams, authInfo runtime.ClientAuthInfoWriter) (*gdprclientmodels.ModelsUserDataURL, error) {
+	ok, err := d.Client.DataRetrieval.PublicGeneratePersonalDataURLShort(input, authInfo)
+	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil

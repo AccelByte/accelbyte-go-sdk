@@ -1,16 +1,16 @@
-// Copyright (c) 2021 AccelByte Inc. All Rights Reserved.
+// Copyright (c) 2018 - 2021
+// AccelByte Inc. All Rights Reserved.
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
 package ugc
 
 import (
-	"encoding/json"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/anonymization"
+	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
-	"github.com/sirupsen/logrus"
 )
 
 type AnonymizationService struct {
@@ -18,241 +18,233 @@ type AnonymizationService struct {
 	TokenRepository repository.TokenRepository
 }
 
-// AdminDeleteAllUserChannels deletes all user channel
-func (u *AnonymizationService) AdminDeleteAllUserChannels(input *anonymization.AdminDeleteAllUserChannelsParams) error {
-	token, err := u.TokenRepository.GetToken()
+func (a *AnonymizationService) AdminDeleteAllUserChannels(input *anonymization.AdminDeleteAllUserChannelsParams) error {
+	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
-		logrus.Error(err)
 		return err
 	}
-	_, unauthorized, notFound, internalServer, err := u.Client.Anonymization.AdminDeleteAllUserChannels(input, client.BearerToken(*token.AccessToken))
+	_, unauthorized, notFound, internalServerError, err := a.Client.Anonymization.AdminDeleteAllUserChannels(input, client.BearerToken(*accessToken.AccessToken))
 	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
 		return unauthorized
 	}
 	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
 		return notFound
 	}
-	if internalServer != nil {
-		errorMsg, _ := json.Marshal(*internalServer.GetPayload())
-		logrus.Error(string(errorMsg))
-		return internalServer
+	if internalServerError != nil {
+		return internalServerError
 	}
 	if err != nil {
-		logrus.Error(err)
 		return err
 	}
 	return nil
 }
 
-// AdminDeleteAllUserContents deletes all user content
-func (u *AnonymizationService) AdminDeleteAllUserContents(input *anonymization.AdminDeleteAllUserContentsParams) error {
-	token, err := u.TokenRepository.GetToken()
+func (a *AnonymizationService) AdminDeleteAllUserContents(input *anonymization.AdminDeleteAllUserContentsParams) error {
+	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
-		logrus.Error(err)
 		return err
 	}
-	_, unauthorized, notFound, internalServer, err := u.Client.Anonymization.AdminDeleteAllUserContents(input, client.BearerToken(*token.AccessToken))
+	_, unauthorized, notFound, internalServerError, err := a.Client.Anonymization.AdminDeleteAllUserContents(input, client.BearerToken(*accessToken.AccessToken))
 	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
 		return unauthorized
 	}
 	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
 		return notFound
 	}
-	if internalServer != nil {
-		errorMsg, _ := json.Marshal(*internalServer.GetPayload())
-		logrus.Error(string(errorMsg))
-		return internalServer
+	if internalServerError != nil {
+		return internalServerError
 	}
 	if err != nil {
-		logrus.Error(err)
 		return err
 	}
 	return nil
 }
 
-// AdminDeleteAllUserGroup deletes all user group
-func (u *AnonymizationService) AdminDeleteAllUserGroup(input *anonymization.AdminDeleteAllUserGroupParams) error {
-	token, err := u.TokenRepository.GetToken()
+func (a *AnonymizationService) AdminDeleteAllUserGroup(input *anonymization.AdminDeleteAllUserGroupParams) error {
+	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
-		logrus.Error(err)
 		return err
 	}
-	_, unauthorized, notFound, internalServer, err := u.Client.Anonymization.AdminDeleteAllUserGroup(input, client.BearerToken(*token.AccessToken))
+	_, unauthorized, notFound, internalServerError, err := a.Client.Anonymization.AdminDeleteAllUserGroup(input, client.BearerToken(*accessToken.AccessToken))
 	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
 		return unauthorized
 	}
 	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
 		return notFound
 	}
-	if internalServer != nil {
-		errorMsg, _ := json.Marshal(*internalServer.GetPayload())
-		logrus.Error(string(errorMsg))
-		return internalServer
+	if internalServerError != nil {
+		return internalServerError
 	}
 	if err != nil {
-		logrus.Error(err)
 		return err
 	}
 	return nil
 }
 
-// AdminDeleteAllUserStates removes all user related state likes downloads followers following
-func (u *AnonymizationService) AdminDeleteAllUserStates(input *anonymization.AdminDeleteAllUserStatesParams) error {
-	token, err := u.TokenRepository.GetToken()
+func (a *AnonymizationService) AdminDeleteAllUserStates(input *anonymization.AdminDeleteAllUserStatesParams) error {
+	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
-		logrus.Error(err)
 		return err
 	}
-	_, badRequest, unauthorized, internalServer, err := u.Client.Anonymization.AdminDeleteAllUserStates(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, internalServerError, err := a.Client.Anonymization.AdminDeleteAllUserStates(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
 		return badRequest
 	}
 	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
 		return unauthorized
 	}
-	if internalServer != nil {
-		errorMsg, _ := json.Marshal(*internalServer.GetPayload())
-		logrus.Error(string(errorMsg))
-		return internalServer
+	if internalServerError != nil {
+		return internalServerError
 	}
 	if err != nil {
-		logrus.Error(err)
 		return err
 	}
 	return nil
 }
 
-// DeleteAllUserChannel deletes all user channel
-func (u *AnonymizationService) DeleteAllUserChannel(input *anonymization.DeleteAllUserChannelParams) error {
-	token, err := u.TokenRepository.GetToken()
+func (a *AnonymizationService) DeleteAllUserChannel(input *anonymization.DeleteAllUserChannelParams) error {
+	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
-		logrus.Error(err)
 		return err
 	}
-	_, unauthorized, notFound, internalServer, err := u.Client.Anonymization.DeleteAllUserChannel(input, client.BearerToken(*token.AccessToken))
+	_, unauthorized, notFound, internalServerError, err := a.Client.Anonymization.DeleteAllUserChannel(input, client.BearerToken(*accessToken.AccessToken))
 	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
 		return unauthorized
 	}
 	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
 		return notFound
 	}
-	if internalServer != nil {
-		errorMsg, _ := json.Marshal(*internalServer.GetPayload())
-		logrus.Error(string(errorMsg))
-		return internalServer
+	if internalServerError != nil {
+		return internalServerError
 	}
 	if err != nil {
-		logrus.Error(err)
 		return err
 	}
 	return nil
 }
 
-// DeleteAllUserContents deletes all user content
-func (u *AnonymizationService) DeleteAllUserContents(input *anonymization.DeleteAllUserContentsParams) error {
-	token, err := u.TokenRepository.GetToken()
+func (a *AnonymizationService) DeleteAllUserContents(input *anonymization.DeleteAllUserContentsParams) error {
+	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
-		logrus.Error(err)
 		return err
 	}
-	_, unauthorized, notFound, internalServer, err := u.Client.Anonymization.DeleteAllUserContents(input, client.BearerToken(*token.AccessToken))
+	_, unauthorized, notFound, internalServerError, err := a.Client.Anonymization.DeleteAllUserContents(input, client.BearerToken(*accessToken.AccessToken))
 	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
 		return unauthorized
 	}
 	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
 		return notFound
 	}
-	if internalServer != nil {
-		errorMsg, _ := json.Marshal(*internalServer.GetPayload())
-		logrus.Error(string(errorMsg))
-		return internalServer
+	if internalServerError != nil {
+		return internalServerError
 	}
 	if err != nil {
-		logrus.Error(err)
 		return err
 	}
 	return nil
 }
 
-// DeleteAllUserGroup deletes all user group
-func (u *AnonymizationService) DeleteAllUserGroup(input *anonymization.DeleteAllUserGroupParams) error {
-	token, err := u.TokenRepository.GetToken()
+func (a *AnonymizationService) DeleteAllUserGroup(input *anonymization.DeleteAllUserGroupParams) error {
+	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
-		logrus.Error(err)
 		return err
 	}
-	_, unauthorized, notFound, internalServer, err := u.Client.Anonymization.DeleteAllUserGroup(input, client.BearerToken(*token.AccessToken))
+	_, unauthorized, notFound, internalServerError, err := a.Client.Anonymization.DeleteAllUserGroup(input, client.BearerToken(*accessToken.AccessToken))
 	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
 		return unauthorized
 	}
 	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
 		return notFound
 	}
-	if internalServer != nil {
-		errorMsg, _ := json.Marshal(*internalServer.GetPayload())
-		logrus.Error(string(errorMsg))
-		return internalServer
+	if internalServerError != nil {
+		return internalServerError
 	}
 	if err != nil {
-		logrus.Error(err)
 		return err
 	}
 	return nil
 }
 
-// DeleteAllUserStates removes all user related state likes downloads followers following
-func (u *AnonymizationService) DeleteAllUserStates(input *anonymization.DeleteAllUserStatesParams) error {
-	token, err := u.TokenRepository.GetToken()
+func (a *AnonymizationService) DeleteAllUserStates(input *anonymization.DeleteAllUserStatesParams) error {
+	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
-		logrus.Error(err)
 		return err
 	}
-	_, badRequest, unauthorized, internalServer, err := u.Client.Anonymization.DeleteAllUserStates(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, internalServerError, err := a.Client.Anonymization.DeleteAllUserStates(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
 		return badRequest
 	}
 	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
 		return unauthorized
 	}
-	if internalServer != nil {
-		errorMsg, _ := json.Marshal(*internalServer.GetPayload())
-		logrus.Error(string(errorMsg))
-		return internalServer
+	if internalServerError != nil {
+		return internalServerError
 	}
 	if err != nil {
-		logrus.Error(err)
+		return err
+	}
+	return nil
+}
+
+func (a *AnonymizationService) AdminDeleteAllUserChannelsShort(input *anonymization.AdminDeleteAllUserChannelsParams, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := a.Client.Anonymization.AdminDeleteAllUserChannelsShort(input, authInfo)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (a *AnonymizationService) AdminDeleteAllUserContentsShort(input *anonymization.AdminDeleteAllUserContentsParams, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := a.Client.Anonymization.AdminDeleteAllUserContentsShort(input, authInfo)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (a *AnonymizationService) AdminDeleteAllUserGroupShort(input *anonymization.AdminDeleteAllUserGroupParams, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := a.Client.Anonymization.AdminDeleteAllUserGroupShort(input, authInfo)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (a *AnonymizationService) AdminDeleteAllUserStatesShort(input *anonymization.AdminDeleteAllUserStatesParams, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := a.Client.Anonymization.AdminDeleteAllUserStatesShort(input, authInfo)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (a *AnonymizationService) DeleteAllUserChannelShort(input *anonymization.DeleteAllUserChannelParams, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := a.Client.Anonymization.DeleteAllUserChannelShort(input, authInfo)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (a *AnonymizationService) DeleteAllUserContentsShort(input *anonymization.DeleteAllUserContentsParams, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := a.Client.Anonymization.DeleteAllUserContentsShort(input, authInfo)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (a *AnonymizationService) DeleteAllUserGroupShort(input *anonymization.DeleteAllUserGroupParams, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := a.Client.Anonymization.DeleteAllUserGroupShort(input, authInfo)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (a *AnonymizationService) DeleteAllUserStatesShort(input *anonymization.DeleteAllUserStatesParams, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := a.Client.Anonymization.DeleteAllUserStatesShort(input, authInfo)
+	if err != nil {
 		return err
 	}
 	return nil

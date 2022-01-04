@@ -1,13 +1,17 @@
+// Copyright (c) 2018 - 2021
+// AccelByte Inc. All Rights Reserved.
+// This is licensed software from AccelByte Inc, for limitations
+// and restrictions contact your company contract manager.
+
 package lobby
 
 import (
-	"encoding/json"
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient"
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/chat"
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
-	"github.com/sirupsen/logrus"
 )
 
 type ChatService struct {
@@ -15,115 +19,106 @@ type ChatService struct {
 	TokenRepository repository.TokenRepository
 }
 
-func (c *ChatService) AdminChatHistory(input *chat.AdminChatHistoryParams) ([]*lobbyclientmodels.ModelChatMessageResponse, error) {
-	token, err := c.TokenRepository.GetToken()
+func (c *ChatService) PersonalChatHistory(input *chat.PersonalChatHistoryParams) ([]*lobbyclientmodels.ModelChatMessageResponse, error) {
+	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := c.Client.Chat.AdminChatHistory(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := c.Client.Chat.PersonalChatHistory(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, badRequest
 	}
 	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, unauthorized
 	}
 	if forbidden != nil {
-		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, forbidden
 	}
 	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, notFound
 	}
 	if internalServerError != nil {
-		errorMsg, _ := json.Marshal(*internalServerError.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, internalServerError
 	}
 	if err != nil {
-		logrus.Error(err)
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (c *ChatService) AdminChatHistory(input *chat.AdminChatHistoryParams) ([]*lobbyclientmodels.ModelChatMessageResponse, error) {
+	accessToken, err := c.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := c.Client.Chat.AdminChatHistory(input, client.BearerToken(*accessToken.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
 func (c *ChatService) GetPersonalChatHistoryV1Public(input *chat.GetPersonalChatHistoryV1PublicParams) ([]*lobbyclientmodels.ModelChatMessageResponse, error) {
-	token, err := c.TokenRepository.GetToken()
+	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := c.Client.Chat.GetPersonalChatHistoryV1Public(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := c.Client.Chat.GetPersonalChatHistoryV1Public(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, badRequest
 	}
 	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, unauthorized
 	}
 	if forbidden != nil {
-		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, forbidden
 	}
 	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, notFound
 	}
 	if internalServerError != nil {
-		errorMsg, _ := json.Marshal(*internalServerError.GetPayload())
-		logrus.Error(string(errorMsg))
 		return nil, internalServerError
 	}
 	if err != nil {
-		logrus.Error(err)
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (c *ChatService) PersonalChatHistory(input *chat.PersonalChatHistoryParams) ([]*lobbyclientmodels.ModelChatMessageResponse, error) {
-	token, err := c.TokenRepository.GetToken()
+func (c *ChatService) PersonalChatHistoryShort(input *chat.PersonalChatHistoryParams, authInfo runtime.ClientAuthInfoWriter) ([]*lobbyclientmodels.ModelChatMessageResponse, error) {
+	ok, err := c.Client.Chat.PersonalChatHistoryShort(input, authInfo)
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := c.Client.Chat.PersonalChatHistory(input, client.BearerToken(*token.AccessToken))
-	if badRequest != nil {
-		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, badRequest
-	}
-	if unauthorized != nil {
-		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, unauthorized
-	}
-	if forbidden != nil {
-		errorMsg, _ := json.Marshal(*forbidden.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, forbidden
-	}
-	if notFound != nil {
-		errorMsg, _ := json.Marshal(*notFound.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, notFound
-	}
-	if internalServerError != nil {
-		errorMsg, _ := json.Marshal(*internalServerError.GetPayload())
-		logrus.Error(string(errorMsg))
-		return nil, internalServerError
-	}
+	return ok.GetPayload(), nil
+}
+
+func (c *ChatService) AdminChatHistoryShort(input *chat.AdminChatHistoryParams, authInfo runtime.ClientAuthInfoWriter) ([]*lobbyclientmodels.ModelChatMessageResponse, error) {
+	ok, err := c.Client.Chat.AdminChatHistoryShort(input, authInfo)
 	if err != nil {
-		logrus.Error(err)
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (c *ChatService) GetPersonalChatHistoryV1PublicShort(input *chat.GetPersonalChatHistoryV1PublicParams, authInfo runtime.ClientAuthInfoWriter) ([]*lobbyclientmodels.ModelChatMessageResponse, error) {
+	ok, err := c.Client.Chat.GetPersonalChatHistoryV1PublicShort(input, authInfo)
+	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil

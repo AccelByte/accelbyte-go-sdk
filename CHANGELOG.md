@@ -1,3 +1,22 @@
+<a name="v0.9.0"></a>
+## [v0.9.0] - 2022-01-05
+
+### Feat
+- regenerate all services codegen 6
+
+### Fix
+- import operations in gametelemetery client
+- go-swagger client response output index
+
+
+### Breaking Changes:
+The client and swagger have been refactored and has breaking change, these are the list:
+
+#### Chore
+- update ugc wrapper by rename and removing nr [(link)](https://github.com/AccelByte/accelbyte-go-sdk/commit/b92c4d597f542dd864c97ff5b5bcd05c2e6f3822)
+- update ugc client folder and file name based on new tag [(link)](https://github.com/AccelByte/accelbyte-go-sdk/commit/b78418922c1e4148e7a1e53aa5cfec16fd3f4902)
+- update json of ugc service [(link)](https://github.com/AccelByte/accelbyte-go-sdk/commit/34bfa66ae050996154e1b7379d4982d6cf62563c)
+
 <a name="v0.8.0"></a>
 ## [v0.8.0] - 2021-12-21
 ### Chore
@@ -267,6 +286,7 @@ The wrapper have been refactored and has breaking change, these are the list:
 - delete go.mod ([#1](https://github.com/AccelByte/accelbyte-go-sdk/issues/1))
 
 
+[v0.9.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.8.0...v0.9.0
 [v0.8.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.7.0...v0.8.0
 [v0.7.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.6.1...v0.7.0
 [v0.6.1]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.6.0...v0.6.1

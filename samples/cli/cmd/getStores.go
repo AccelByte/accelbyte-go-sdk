@@ -27,7 +27,7 @@ var getStoresCmd = &cobra.Command{
 		input := &store.ListStoresParams{
 			Namespace: namespace,
 		}
-		listStore, err := storeService.ListStore(input)
+		listStore, err := storeService.ListStores(input)
 		if err != nil {
 			return err
 		}

@@ -33,7 +33,7 @@ var getFriendsCmd = &cobra.Command{
 			Limit:     &limit,
 			Offset:    &offset,
 		}
-		friendList, err := friendService.GetFriends(input)
+		friendList, err := friendService.GetListOfFriends(input)
 		if err != nil {
 			return err
 		}

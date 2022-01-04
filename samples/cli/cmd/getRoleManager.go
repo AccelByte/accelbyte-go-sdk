@@ -37,7 +37,7 @@ var getRoleManagerCmd = &cobra.Command{
 			Limit:  &limit,
 			RoleID: roleId,
 		}
-		role, err := roleService.AdminGetRoleManagers(input)
+		role, err := roleService.AdminGetRoleManagersV3(input)
 		if err != nil {
 			return err
 		}

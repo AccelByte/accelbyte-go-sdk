@@ -6,6 +6,7 @@ package cmd
 
 import (
 	"encoding/json"
+	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/bans"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
 	"github.com/AccelByte/sample-apps/pkg/repository"
@@ -23,7 +24,8 @@ var getListBanReason = &cobra.Command{
 			Client:          factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		ok, err := bansService.AdminGetListBanReasonV3()
+		input := &bans.AdminGetListBanReasonV3Params{}
+		ok, err := bansService.AdminGetListBanReasonV3(input)
 		if err != nil {
 			logrus.Error(err)
 		} else {

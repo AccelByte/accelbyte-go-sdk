@@ -61,7 +61,7 @@ var getStoreitemCmd = &cobra.Command{
 			Tags:            &tags,
 			TargetNamespace: &targetNamespace,
 		}
-		items, err := itemService.GetItemByCriteria(input)
+		items, err := itemService.QueryItems(input)
 		if err != nil {
 			return err
 		}

@@ -39,7 +39,7 @@ var addFriendCmd = &cobra.Command{
 				FriendIds: friendIds,
 			},
 		}
-		err = friendService.AddFriends(input)
+		err = friendService.AddFriendsWithoutConfirmation(input)
 		if err != nil {
 			return err
 		}

@@ -29,7 +29,7 @@ var getVerifyCodeCmd = &cobra.Command{
 			Client:          factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		user, err := userService.GetUserVerificationCodeV3(input)
+		user, err := userService.GetUserVerificationCode(input)
 		if err != nil {
 			return err
 		}

@@ -6,6 +6,7 @@ package cmd
 
 import (
 	"encoding/json"
+	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
 	"github.com/AccelByte/sample-apps/pkg/repository"
@@ -23,7 +24,8 @@ var getAdminMyUserCmd = &cobra.Command{
 			Client:          factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		user, err := userService.AdminGetMyUserV3()
+		input := &users.AdminGetMyUserV3Params{}
+		user, err := userService.AdminGetMyUserV3(input)
 		if err != nil {
 			return err
 		}

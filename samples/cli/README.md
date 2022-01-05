@@ -1,14 +1,11 @@
-# sample-apps
+# AccelByte Golang SDK CLI
 
-# Build 
+## Usage
+1. clone the whole [accelbyte-go-sdk](https://github.com/AccelByte/accelbyte-go-sdk/tree/v0.8.0)
+2. go to [samples/cli](https://github.com/AccelByte/accelbyte-go-sdk/tree/v0.8.0/samples/cli). Make sure you already in this `cli` directory
 
-```
-go build
-```
-
-# Usage
-
-To use the sample apps:
+### commands
+You could also interact with the SDK using this package's command-line interface.
 
 ```
 sample-apps <command> [options]
@@ -31,11 +28,45 @@ To enter WebSocket mode (WebSocket endpoints):
 sample-apps --wsMode
 ```
 
-# Examples
+Most commands will require you to login as either a `client` or as a `user`.<br />
+For these commands you'll have to pass either `sample-apps login` or `sample-apps loginClient`.
+```sh
+# Login as user
+sample-apps login -u admin+omega@accelbyte.net -p S8i9wfIQrV8oQ7gRSQokh2Xn1g7bOhoP
+# Note: Please specify clientId and clientSecret in configRepository. Please refer to `sample-apps/pkg/repository`
 
-## Interacting with Justice HTTP Endpoints
+# LoginClient as client
+sample-apps loginClient
+# Note: oauth token with client_credentials grant type
+```
+But first, you need to set the environment variables
+```sh
+# To directly export the variables in terminal (linux)
+export APP_CLIENT_ID=<value>
+export APP_CLIENT_SECRET=<value>
+export JUSTICE_BASE_URL="https://<environment>.accelbyte.io"
 
-```shell
+# To check if you use the correct value
+echo $APP_CLIENT_ID
+echo $APP_CLIENT_SECRET
+echo $JUSTICE_BASE_URL
+```
+```sh
+# To directly export the variables in control panel (windows user)
+setx APP_CLIENT_ID "<value>"
+setx APP_CLIENT_SECRET "<value>"
+setx JUSTICE_BASE_URL "https://<environment>.accelbyte.io"
+
+# To check if you use the correct value
+echo %APP_CLIENT_ID%
+echo %APP_CLIENT_SECRET%
+echo %JUSTICE_BASE_URL%
+```
+
+### Examples
+
+#### Interacting with Justice HTTP Endpoints
+```sh
 # Register User
 sample-apps registerUser -b 1995-03-01 -c ID -e ridwan.taufik+cli+3@accelbyte.net -n apiTestRidwanTaufikCli3 --namespace omega -p Password1
 
@@ -51,11 +82,8 @@ sample-apps getUserRoles
 
 # Get my profile
 sample-apps getMyProfile --namespace omega
-
-# Login
-sample-apps login -u admin+omega@accelbyte.net -p S8i9wfIQrV8oQ7gRSQokh2Xn1g7bOhoP
-# Note: Please specify clientId and clientSecret in configRepository. Please refer to `sample-apps/pkg/repository`
-
+```
+```sh
 # Verify Token
 sample-apps verifyToken -t 422689 --namespace omega
 # Note: Please do login before verify token
@@ -79,15 +107,11 @@ sample-apps getGameRecord --key sample-key --namespace accelbytetesting
  sample-apps createPlayerRecord -k sample-player-record -n omega -u cc58872c06cc44fc8b4ddb7f2b9d72c1 -c '{"key1":"value1"}'
  sample-apps getPlayerRecord -k sample-player-record -n omega -u cc58872c06cc44fc8b4ddb7f2b9d72c1
 # Note: make user ID player regitered on specified namespace
-
 ```
 
-### Interacting with Justice WebSocket Endpoints
-
-Perform login and enter websocket mode.
-
+#### Interacting with Justice WebSocket Endpoints
+Perform login and enter websocket mode.<br />
 Example:
-
 ```shell
 ## Login using existing user
 sample-apps login -u admin+omega@accelbyte.net -p S8i9wfIQrV8oQ7gRSQokh2Xn1g7bOhoP

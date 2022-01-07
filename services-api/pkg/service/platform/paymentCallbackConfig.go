@@ -19,6 +19,7 @@ type PaymentCallbackConfigService struct {
 	TokenRepository repository.TokenRepository
 }
 
+// Deprecated: Use GetPaymentCallbackConfigShort instead
 func (p *PaymentCallbackConfigService) GetPaymentCallbackConfig(input *payment_callback_config.GetPaymentCallbackConfigParams) (*platformclientmodels.PaymentCallbackConfigInfo, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -34,6 +35,7 @@ func (p *PaymentCallbackConfigService) GetPaymentCallbackConfig(input *payment_c
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use UpdatePaymentCallbackConfigShort instead
 func (p *PaymentCallbackConfigService) UpdatePaymentCallbackConfig(input *payment_callback_config.UpdatePaymentCallbackConfigParams) (*platformclientmodels.PaymentCallbackConfigInfo, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {

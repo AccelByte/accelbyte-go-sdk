@@ -19,6 +19,7 @@ type OperationsService struct {
 	TokenRepository repository.TokenRepository
 }
 
+// Deprecated: Use GetHealthcheckInfoShort instead
 func (o *OperationsService) GetHealthcheckInfo(input *operations.GetHealthcheckInfoParams) error {
 	accessToken, err := o.TokenRepository.GetToken()
 	if err != nil {
@@ -31,6 +32,7 @@ func (o *OperationsService) GetHealthcheckInfo(input *operations.GetHealthcheckI
 	return nil
 }
 
+// Deprecated: Use HandlerV3HealthzShort instead
 func (o *OperationsService) HandlerV3Healthz(input *operations.HandlerV3HealthzParams) error {
 	accessToken, err := o.TokenRepository.GetToken()
 	if err != nil {
@@ -43,6 +45,7 @@ func (o *OperationsService) HandlerV3Healthz(input *operations.HandlerV3HealthzP
 	return nil
 }
 
+// Deprecated: Use PublicGetMessagesShort instead
 func (o *OperationsService) PublicGetMessages(input *operations.PublicGetMessagesParams) ([]*matchmakingclientmodels.LogAppMessageDeclaration, error) {
 	accessToken, err := o.TokenRepository.GetToken()
 	if err != nil {
@@ -58,6 +61,7 @@ func (o *OperationsService) PublicGetMessages(input *operations.PublicGetMessage
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use VersionCheckHandlerShort instead
 func (o *OperationsService) VersionCheckHandler(input *operations.VersionCheckHandlerParams) error {
 	accessToken, err := o.TokenRepository.GetToken()
 	if err != nil {

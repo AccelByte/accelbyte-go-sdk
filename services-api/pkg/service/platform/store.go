@@ -19,6 +19,7 @@ type StoreService struct {
 	TokenRepository repository.TokenRepository
 }
 
+// Deprecated: Use ListStoresShort instead
 func (s *StoreService) ListStores(input *store.ListStoresParams) ([]*platformclientmodels.StoreInfo, error) {
 	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {
@@ -31,6 +32,7 @@ func (s *StoreService) ListStores(input *store.ListStoresParams) ([]*platformcli
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use CreateStoreShort instead
 func (s *StoreService) CreateStore(input *store.CreateStoreParams) (*platformclientmodels.StoreInfo, error) {
 	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {
@@ -49,6 +51,7 @@ func (s *StoreService) CreateStore(input *store.CreateStoreParams) (*platformcli
 	return created.GetPayload(), nil
 }
 
+// Deprecated: Use ImportStoreShort instead
 func (s *StoreService) ImportStore(input *store.ImportStoreParams) (*platformclientmodels.StoreInfo, error) {
 	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {
@@ -67,6 +70,7 @@ func (s *StoreService) ImportStore(input *store.ImportStoreParams) (*platformcli
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use GetPublishedStoreShort instead
 func (s *StoreService) GetPublishedStore(input *store.GetPublishedStoreParams) (*platformclientmodels.StoreInfo, error) {
 	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {
@@ -82,6 +86,7 @@ func (s *StoreService) GetPublishedStore(input *store.GetPublishedStoreParams) (
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use DeletePublishedStoreShort instead
 func (s *StoreService) DeletePublishedStore(input *store.DeletePublishedStoreParams) (*platformclientmodels.StoreInfo, error) {
 	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {
@@ -97,6 +102,7 @@ func (s *StoreService) DeletePublishedStore(input *store.DeletePublishedStorePar
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use GetPublishedStoreBackupShort instead
 func (s *StoreService) GetPublishedStoreBackup(input *store.GetPublishedStoreBackupParams) (*platformclientmodels.StoreBackupInfo, error) {
 	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {
@@ -112,6 +118,7 @@ func (s *StoreService) GetPublishedStoreBackup(input *store.GetPublishedStoreBac
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use RollbackPublishedStoreShort instead
 func (s *StoreService) RollbackPublishedStore(input *store.RollbackPublishedStoreParams) (*platformclientmodels.StoreInfo, error) {
 	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {
@@ -127,6 +134,7 @@ func (s *StoreService) RollbackPublishedStore(input *store.RollbackPublishedStor
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use GetStoreShort instead
 func (s *StoreService) GetStore(input *store.GetStoreParams) (*platformclientmodels.StoreInfo, error) {
 	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {
@@ -142,6 +150,7 @@ func (s *StoreService) GetStore(input *store.GetStoreParams) (*platformclientmod
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use UpdateStoreShort instead
 func (s *StoreService) UpdateStore(input *store.UpdateStoreParams) (*platformclientmodels.StoreInfo, error) {
 	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {
@@ -163,6 +172,7 @@ func (s *StoreService) UpdateStore(input *store.UpdateStoreParams) (*platformcli
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use DeleteStoreShort instead
 func (s *StoreService) DeleteStore(input *store.DeleteStoreParams) (*platformclientmodels.StoreInfo, error) {
 	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {
@@ -181,6 +191,7 @@ func (s *StoreService) DeleteStore(input *store.DeleteStoreParams) (*platformcli
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use CloneStoreShort instead
 func (s *StoreService) CloneStore(input *store.CloneStoreParams) (*platformclientmodels.StoreInfo, error) {
 	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {
@@ -199,6 +210,7 @@ func (s *StoreService) CloneStore(input *store.CloneStoreParams) (*platformclien
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use ExportStoreShort instead
 func (s *StoreService) ExportStore(input *store.ExportStoreParams) error {
 	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {
@@ -214,6 +226,7 @@ func (s *StoreService) ExportStore(input *store.ExportStoreParams) error {
 	return nil
 }
 
+// Deprecated: Use PublicListStoresShort instead
 func (s *StoreService) PublicListStores(input *store.PublicListStoresParams) ([]*platformclientmodels.StoreInfo, error) {
 	ok, err := s.Client.Store.PublicListStores(input)
 	if err != nil {

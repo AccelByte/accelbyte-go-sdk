@@ -19,6 +19,7 @@ type PublicLikeService struct {
 	TokenRepository repository.TokenRepository
 }
 
+// Deprecated: Use GetLikedContentShort instead
 func (p *PublicLikeService) GetLikedContent(input *public_like.GetLikedContentParams) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -40,6 +41,7 @@ func (p *PublicLikeService) GetLikedContent(input *public_like.GetLikedContentPa
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use UpdateContentLikeStatusShort instead
 func (p *PublicLikeService) UpdateContentLikeStatus(input *public_like.UpdateContentLikeStatusParams) (*ugcclientmodels.ModelsContentLikeResponse, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {

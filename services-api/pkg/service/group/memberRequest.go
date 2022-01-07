@@ -19,6 +19,7 @@ type MemberRequestService struct {
 	TokenRepository repository.TokenRepository
 }
 
+// Deprecated: Use GetGroupJoinRequestPublicV1Short instead
 func (m *MemberRequestService) GetGroupJoinRequestPublicV1(input *member_request.GetGroupJoinRequestPublicV1Params) (*groupclientmodels.ModelsGetMemberRequestsListResponseV1, error) {
 	accessToken, err := m.TokenRepository.GetToken()
 	if err != nil {
@@ -43,6 +44,7 @@ func (m *MemberRequestService) GetGroupJoinRequestPublicV1(input *member_request
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use GetGroupInvitationRequestPublicV1Short instead
 func (m *MemberRequestService) GetGroupInvitationRequestPublicV1(input *member_request.GetGroupInvitationRequestPublicV1Params) (*groupclientmodels.ModelsGetMemberRequestsListResponseV1, error) {
 	accessToken, err := m.TokenRepository.GetToken()
 	if err != nil {

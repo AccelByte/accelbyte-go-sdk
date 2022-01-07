@@ -19,6 +19,7 @@ type PublicFollowService struct {
 	TokenRepository repository.TokenRepository
 }
 
+// Deprecated: Use GetFollowedContentShort instead
 func (p *PublicFollowService) GetFollowedContent(input *public_follow.GetFollowedContentParams) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -40,6 +41,7 @@ func (p *PublicFollowService) GetFollowedContent(input *public_follow.GetFollowe
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use GetFollowedUsersShort instead
 func (p *PublicFollowService) GetFollowedUsers(input *public_follow.GetFollowedUsersParams) (*ugcclientmodels.ModelsPaginatedCreatorOverviewResponse, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -61,6 +63,7 @@ func (p *PublicFollowService) GetFollowedUsers(input *public_follow.GetFollowedU
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use UpdateUserFollowStatusShort instead
 func (p *PublicFollowService) UpdateUserFollowStatus(input *public_follow.UpdateUserFollowStatusParams) (*ugcclientmodels.ModelsUserFollowResponse, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {

@@ -19,6 +19,7 @@ type MiscService struct {
 	TokenRepository repository.TokenRepository
 }
 
+// Deprecated: Use GetCountriesShort instead
 func (m *MiscService) GetCountries(input *misc.GetCountriesParams) ([]*basicclientmodels.CountryObject, error) {
 	accessToken, err := m.TokenRepository.GetToken()
 	if err != nil {
@@ -37,6 +38,7 @@ func (m *MiscService) GetCountries(input *misc.GetCountriesParams) ([]*basicclie
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use GetCountryGroupsShort instead
 func (m *MiscService) GetCountryGroups(input *misc.GetCountryGroupsParams) ([]*basicclientmodels.RetrieveCountryGroupResponse, error) {
 	accessToken, err := m.TokenRepository.GetToken()
 	if err != nil {
@@ -61,6 +63,7 @@ func (m *MiscService) GetCountryGroups(input *misc.GetCountryGroupsParams) ([]*b
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use AddCountryGroupShort instead
 func (m *MiscService) AddCountryGroup(input *misc.AddCountryGroupParams) (*basicclientmodels.AddCountryGroupResponse, error) {
 	accessToken, err := m.TokenRepository.GetToken()
 	if err != nil {
@@ -85,6 +88,7 @@ func (m *MiscService) AddCountryGroup(input *misc.AddCountryGroupParams) (*basic
 	return created.GetPayload(), nil
 }
 
+// Deprecated: Use UpdateCountryGroupShort instead
 func (m *MiscService) UpdateCountryGroup(input *misc.UpdateCountryGroupParams) (*basicclientmodels.CountryGroupObject, error) {
 	accessToken, err := m.TokenRepository.GetToken()
 	if err != nil {
@@ -109,6 +113,7 @@ func (m *MiscService) UpdateCountryGroup(input *misc.UpdateCountryGroupParams) (
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use DeleteCountryGroupShort instead
 func (m *MiscService) DeleteCountryGroup(input *misc.DeleteCountryGroupParams) error {
 	accessToken, err := m.TokenRepository.GetToken()
 	if err != nil {
@@ -133,6 +138,7 @@ func (m *MiscService) DeleteCountryGroup(input *misc.DeleteCountryGroupParams) e
 	return nil
 }
 
+// Deprecated: Use GetLanguagesShort instead
 func (m *MiscService) GetLanguages(input *misc.GetLanguagesParams) (map[string]interface{}, error) {
 	accessToken, err := m.TokenRepository.GetToken()
 	if err != nil {
@@ -151,6 +157,7 @@ func (m *MiscService) GetLanguages(input *misc.GetLanguagesParams) (map[string]i
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use GetTimeZonesShort instead
 func (m *MiscService) GetTimeZones(input *misc.GetTimeZonesParams) ([]string, error) {
 	accessToken, err := m.TokenRepository.GetToken()
 	if err != nil {
@@ -169,6 +176,7 @@ func (m *MiscService) GetTimeZones(input *misc.GetTimeZonesParams) ([]string, er
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use PublicGetTimeShort instead
 func (m *MiscService) PublicGetTime(input *misc.PublicGetTimeParams) (*basicclientmodels.RetrieveTimeResponse, error) {
 	ok, err := m.Client.Misc.PublicGetTime(input)
 	if err != nil {
@@ -177,6 +185,7 @@ func (m *MiscService) PublicGetTime(input *misc.PublicGetTimeParams) (*basicclie
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use PublicGetCountriesShort instead
 func (m *MiscService) PublicGetCountries(input *misc.PublicGetCountriesParams) ([]*basicclientmodels.CountryObject, error) {
 	ok, badRequest, err := m.Client.Misc.PublicGetCountries(input)
 	if badRequest != nil {
@@ -188,6 +197,7 @@ func (m *MiscService) PublicGetCountries(input *misc.PublicGetCountriesParams) (
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use PublicGetLanguagesShort instead
 func (m *MiscService) PublicGetLanguages(input *misc.PublicGetLanguagesParams) (map[string]interface{}, error) {
 	ok, badRequest, err := m.Client.Misc.PublicGetLanguages(input)
 	if badRequest != nil {
@@ -199,6 +209,7 @@ func (m *MiscService) PublicGetLanguages(input *misc.PublicGetLanguagesParams) (
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use PublicGetTimeZonesShort instead
 func (m *MiscService) PublicGetTimeZones(input *misc.PublicGetTimeZonesParams) ([]string, error) {
 	ok, badRequest, err := m.Client.Misc.PublicGetTimeZones(input)
 	if badRequest != nil {

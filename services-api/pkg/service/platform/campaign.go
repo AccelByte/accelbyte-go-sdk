@@ -19,6 +19,7 @@ type CampaignService struct {
 	TokenRepository repository.TokenRepository
 }
 
+// Deprecated: Use QueryCampaignsShort instead
 func (c *CampaignService) QueryCampaigns(input *campaign.QueryCampaignsParams) (*platformclientmodels.CampaignPagingSlicedResult, error) {
 	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
@@ -31,6 +32,7 @@ func (c *CampaignService) QueryCampaigns(input *campaign.QueryCampaignsParams) (
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use CreateCampaignShort instead
 func (c *CampaignService) CreateCampaign(input *campaign.CreateCampaignParams) (*platformclientmodels.CampaignInfo, error) {
 	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
@@ -49,6 +51,7 @@ func (c *CampaignService) CreateCampaign(input *campaign.CreateCampaignParams) (
 	return created.GetPayload(), nil
 }
 
+// Deprecated: Use GetCampaignShort instead
 func (c *CampaignService) GetCampaign(input *campaign.GetCampaignParams) (*platformclientmodels.CampaignInfo, error) {
 	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
@@ -64,6 +67,7 @@ func (c *CampaignService) GetCampaign(input *campaign.GetCampaignParams) (*platf
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use UpdateCampaignShort instead
 func (c *CampaignService) UpdateCampaign(input *campaign.UpdateCampaignParams) (*platformclientmodels.CampaignInfo, error) {
 	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
@@ -85,6 +89,7 @@ func (c *CampaignService) UpdateCampaign(input *campaign.UpdateCampaignParams) (
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use GetCampaignDynamicShort instead
 func (c *CampaignService) GetCampaignDynamic(input *campaign.GetCampaignDynamicParams) (*platformclientmodels.CampaignDynamicInfo, error) {
 	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
@@ -100,6 +105,7 @@ func (c *CampaignService) GetCampaignDynamic(input *campaign.GetCampaignDynamicP
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use QueryCodesShort instead
 func (c *CampaignService) QueryCodes(input *campaign.QueryCodesParams) (*platformclientmodels.CodeInfoPagingSlicedResult, error) {
 	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
@@ -112,6 +118,7 @@ func (c *CampaignService) QueryCodes(input *campaign.QueryCodesParams) (*platfor
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use CreateCodesShort instead
 func (c *CampaignService) CreateCodes(input *campaign.CreateCodesParams) (*platformclientmodels.CodeCreateResult, error) {
 	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
@@ -130,6 +137,7 @@ func (c *CampaignService) CreateCodes(input *campaign.CreateCodesParams) (*platf
 	return created.GetPayload(), nil
 }
 
+// Deprecated: Use DownloadShort instead
 func (c *CampaignService) Download(input *campaign.DownloadParams) error {
 	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
@@ -142,6 +150,7 @@ func (c *CampaignService) Download(input *campaign.DownloadParams) error {
 	return nil
 }
 
+// Deprecated: Use BulkDisableCodesShort instead
 func (c *CampaignService) BulkDisableCodes(input *campaign.BulkDisableCodesParams) (*platformclientmodels.BulkOperationResult, error) {
 	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
@@ -154,6 +163,7 @@ func (c *CampaignService) BulkDisableCodes(input *campaign.BulkDisableCodesParam
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use BulkEnableCodesShort instead
 func (c *CampaignService) BulkEnableCodes(input *campaign.BulkEnableCodesParams) (*platformclientmodels.BulkOperationResult, error) {
 	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
@@ -166,6 +176,7 @@ func (c *CampaignService) BulkEnableCodes(input *campaign.BulkEnableCodesParams)
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use QueryRedeemHistoryShort instead
 func (c *CampaignService) QueryRedeemHistory(input *campaign.QueryRedeemHistoryParams) (*platformclientmodels.RedeemHistoryPagingSlicedResult, error) {
 	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
@@ -178,6 +189,7 @@ func (c *CampaignService) QueryRedeemHistory(input *campaign.QueryRedeemHistoryP
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use GetCodeShort instead
 func (c *CampaignService) GetCode(input *campaign.GetCodeParams) (*platformclientmodels.CodeInfo, error) {
 	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
@@ -196,6 +208,7 @@ func (c *CampaignService) GetCode(input *campaign.GetCodeParams) (*platformclien
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use DisableCodeShort instead
 func (c *CampaignService) DisableCode(input *campaign.DisableCodeParams) (*platformclientmodels.CodeInfo, error) {
 	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
@@ -211,6 +224,7 @@ func (c *CampaignService) DisableCode(input *campaign.DisableCodeParams) (*platf
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use EnableCodeShort instead
 func (c *CampaignService) EnableCode(input *campaign.EnableCodeParams) (*platformclientmodels.CodeInfo, error) {
 	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
@@ -226,6 +240,7 @@ func (c *CampaignService) EnableCode(input *campaign.EnableCodeParams) (*platfor
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use ApplyUserRedemptionShort instead
 func (c *CampaignService) ApplyUserRedemption(input *campaign.ApplyUserRedemptionParams) (*platformclientmodels.RedeemResult, error) {
 	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {

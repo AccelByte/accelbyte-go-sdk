@@ -19,6 +19,7 @@ type AgreementService struct {
 	TokenRepository repository.TokenRepository
 }
 
+// Deprecated: Use RetrieveAcceptedAgreementsShort instead
 func (a *AgreementService) RetrieveAcceptedAgreements(input *agreement.RetrieveAcceptedAgreementsParams) ([]*legalclientmodels.RetrieveAcceptedAgreementResponse, error) {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
@@ -31,6 +32,7 @@ func (a *AgreementService) RetrieveAcceptedAgreements(input *agreement.RetrieveA
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use RetrieveAllUsersByPolicyVersionShort instead
 func (a *AgreementService) RetrieveAllUsersByPolicyVersion(input *agreement.RetrieveAllUsersByPolicyVersionParams) ([]*legalclientmodels.PagedRetrieveUserAcceptedAgreementResponse, error) {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
@@ -46,6 +48,7 @@ func (a *AgreementService) RetrieveAllUsersByPolicyVersion(input *agreement.Retr
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use ChangePreferenceConsentShort instead
 func (a *AgreementService) ChangePreferenceConsent(input *agreement.ChangePreferenceConsentParams) error {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
@@ -61,6 +64,7 @@ func (a *AgreementService) ChangePreferenceConsent(input *agreement.ChangePrefer
 	return nil
 }
 
+// Deprecated: Use AcceptVersionedPolicyShort instead
 func (a *AgreementService) AcceptVersionedPolicy(input *agreement.AcceptVersionedPolicyParams) error {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
@@ -73,6 +77,7 @@ func (a *AgreementService) AcceptVersionedPolicy(input *agreement.AcceptVersione
 	return nil
 }
 
+// Deprecated: Use RetrieveAgreementsPublicShort instead
 func (a *AgreementService) RetrieveAgreementsPublic(input *agreement.RetrieveAgreementsPublicParams) ([]*legalclientmodels.RetrieveAcceptedAgreementResponse, error) {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
@@ -85,6 +90,7 @@ func (a *AgreementService) RetrieveAgreementsPublic(input *agreement.RetrieveAgr
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use BulkAcceptVersionedPolicyShort instead
 func (a *AgreementService) BulkAcceptVersionedPolicy(input *agreement.BulkAcceptVersionedPolicyParams) (*legalclientmodels.AcceptAgreementResponse, error) {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
@@ -97,6 +103,7 @@ func (a *AgreementService) BulkAcceptVersionedPolicy(input *agreement.BulkAccept
 	return created.GetPayload(), nil
 }
 
+// Deprecated: Use IndirectBulkAcceptVersionedPolicyV2Short instead
 func (a *AgreementService) IndirectBulkAcceptVersionedPolicyV2(input *agreement.IndirectBulkAcceptVersionedPolicyV2Params) (*legalclientmodels.AcceptAgreementResponse, error) {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
@@ -109,6 +116,7 @@ func (a *AgreementService) IndirectBulkAcceptVersionedPolicyV2(input *agreement.
 	return created.GetPayload(), nil
 }
 
+// Deprecated: Use IndirectBulkAcceptVersionedPolicyShort instead
 func (a *AgreementService) IndirectBulkAcceptVersionedPolicy(input *agreement.IndirectBulkAcceptVersionedPolicyParams) (*legalclientmodels.AcceptAgreementResponse, error) {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {

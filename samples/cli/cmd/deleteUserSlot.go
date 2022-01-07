@@ -32,6 +32,8 @@ var deleteUserSlotCmd = &cobra.Command{
 			SlotID:    slotId,
 			UserID:    userId,
 		}
+		//nolint:staticcheck // SA1019 To be deprecated later
+		//lint:ignore SA1019 Ignore the deprecation warnings
 		err := socialService.PublicDeleteUserNamespaceSlot(input)
 		if err != nil {
 			logrus.Error(err)

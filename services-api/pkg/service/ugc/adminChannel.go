@@ -19,6 +19,7 @@ type AdminChannelService struct {
 	TokenRepository repository.TokenRepository
 }
 
+// Deprecated: Use SingleAdminGetChannelShort instead
 func (a *AdminChannelService) SingleAdminGetChannel(input *admin_channel.SingleAdminGetChannelParams) (*ugcclientmodels.ModelsPaginatedGetChannelResponse, error) {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
@@ -40,6 +41,7 @@ func (a *AdminChannelService) SingleAdminGetChannel(input *admin_channel.SingleA
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use AdminCreateChannelShort instead
 func (a *AdminChannelService) AdminCreateChannel(input *admin_channel.AdminCreateChannelParams) (*ugcclientmodels.ModelsChannelResponse, error) {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
@@ -61,6 +63,7 @@ func (a *AdminChannelService) AdminCreateChannel(input *admin_channel.AdminCreat
 	return created.GetPayload(), nil
 }
 
+// Deprecated: Use SingleAdminUpdateChannelShort instead
 func (a *AdminChannelService) SingleAdminUpdateChannel(input *admin_channel.SingleAdminUpdateChannelParams) (*ugcclientmodels.ModelsChannelResponse, error) {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
@@ -85,6 +88,7 @@ func (a *AdminChannelService) SingleAdminUpdateChannel(input *admin_channel.Sing
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use SingleAdminDeleteChannelShort instead
 func (a *AdminChannelService) SingleAdminDeleteChannel(input *admin_channel.SingleAdminDeleteChannelParams) error {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
@@ -106,6 +110,7 @@ func (a *AdminChannelService) SingleAdminDeleteChannel(input *admin_channel.Sing
 	return nil
 }
 
+// Deprecated: Use AdminGetChannelShort instead
 func (a *AdminChannelService) AdminGetChannel(input *admin_channel.AdminGetChannelParams) (*ugcclientmodels.ModelsPaginatedGetChannelResponse, error) {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
@@ -127,6 +132,7 @@ func (a *AdminChannelService) AdminGetChannel(input *admin_channel.AdminGetChann
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use AdminUpdateChannelShort instead
 func (a *AdminChannelService) AdminUpdateChannel(input *admin_channel.AdminUpdateChannelParams) (*ugcclientmodels.ModelsChannelResponse, error) {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
@@ -151,6 +157,7 @@ func (a *AdminChannelService) AdminUpdateChannel(input *admin_channel.AdminUpdat
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use AdminDeleteChannelShort instead
 func (a *AdminChannelService) AdminDeleteChannel(input *admin_channel.AdminDeleteChannelParams) error {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {

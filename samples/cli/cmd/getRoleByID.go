@@ -28,6 +28,8 @@ var getRoleByIDCmd = &cobra.Command{
 		input := &roles.AdminGetRoleV3Params{
 			RoleID: roleId,
 		}
+		//nolint:staticcheck // SA1019 To be deprecated later
+		//lint:ignore SA1019 Ignore the deprecation warnings
 		role, err := roleService.AdminGetRoleV3(input)
 		if err != nil {
 			return err

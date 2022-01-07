@@ -30,6 +30,8 @@ var initiateGroupConfigCmd = &cobra.Command{
 			Client:          factory.NewgroupClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
+		//nolint:staticcheck // SA1019 To be deprecated later
+		//lint:ignore SA1019 Ignore the deprecation warnings
 		ok, err := groupConfigService.InitiateGroupConfigurationAdminV1(input)
 		if err != nil {
 			logrus.Error(err)

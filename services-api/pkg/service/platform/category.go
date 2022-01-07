@@ -19,6 +19,7 @@ type CategoryService struct {
 	TokenRepository repository.TokenRepository
 }
 
+// Deprecated: Use GetRootCategoriesShort instead
 func (c *CategoryService) GetRootCategories(input *category.GetRootCategoriesParams) ([]*platformclientmodels.FullCategoryInfo, error) {
 	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
@@ -31,6 +32,7 @@ func (c *CategoryService) GetRootCategories(input *category.GetRootCategoriesPar
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use CreateCategoryShort instead
 func (c *CategoryService) CreateCategory(input *category.CreateCategoryParams) (*platformclientmodels.FullCategoryInfo, error) {
 	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
@@ -55,6 +57,7 @@ func (c *CategoryService) CreateCategory(input *category.CreateCategoryParams) (
 	return created.GetPayload(), nil
 }
 
+// Deprecated: Use ListCategoriesBasicShort instead
 func (c *CategoryService) ListCategoriesBasic(input *category.ListCategoriesBasicParams) ([]*platformclientmodels.BasicCategoryInfo, error) {
 	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
@@ -67,6 +70,7 @@ func (c *CategoryService) ListCategoriesBasic(input *category.ListCategoriesBasi
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use GetCategoryShort instead
 func (c *CategoryService) GetCategory(input *category.GetCategoryParams) (*platformclientmodels.FullCategoryInfo, error) {
 	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
@@ -82,6 +86,7 @@ func (c *CategoryService) GetCategory(input *category.GetCategoryParams) (*platf
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use UpdateCategoryShort instead
 func (c *CategoryService) UpdateCategory(input *category.UpdateCategoryParams) (*platformclientmodels.FullCategoryInfo, error) {
 	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
@@ -106,6 +111,7 @@ func (c *CategoryService) UpdateCategory(input *category.UpdateCategoryParams) (
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use DeleteCategoryShort instead
 func (c *CategoryService) DeleteCategory(input *category.DeleteCategoryParams) (*platformclientmodels.FullCategoryInfo, error) {
 	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
@@ -124,6 +130,7 @@ func (c *CategoryService) DeleteCategory(input *category.DeleteCategoryParams) (
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use GetChildCategoriesShort instead
 func (c *CategoryService) GetChildCategories(input *category.GetChildCategoriesParams) ([]*platformclientmodels.FullCategoryInfo, error) {
 	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
@@ -136,6 +143,7 @@ func (c *CategoryService) GetChildCategories(input *category.GetChildCategoriesP
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use GetDescendantCategoriesShort instead
 func (c *CategoryService) GetDescendantCategories(input *category.GetDescendantCategoriesParams) ([]*platformclientmodels.FullCategoryInfo, error) {
 	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
@@ -148,6 +156,7 @@ func (c *CategoryService) GetDescendantCategories(input *category.GetDescendantC
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use PublicGetRootCategoriesShort instead
 func (c *CategoryService) PublicGetRootCategories(input *category.PublicGetRootCategoriesParams) ([]*platformclientmodels.CategoryInfo, error) {
 	ok, err := c.Client.Category.PublicGetRootCategories(input)
 	if err != nil {
@@ -156,6 +165,7 @@ func (c *CategoryService) PublicGetRootCategories(input *category.PublicGetRootC
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use DownloadCategoriesShort instead
 func (c *CategoryService) DownloadCategories(input *category.DownloadCategoriesParams) ([]*platformclientmodels.HierarchicalCategoryInfo, error) {
 	ok, notFound, err := c.Client.Category.DownloadCategories(input)
 	if notFound != nil {
@@ -167,6 +177,7 @@ func (c *CategoryService) DownloadCategories(input *category.DownloadCategoriesP
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use PublicGetCategoryShort instead
 func (c *CategoryService) PublicGetCategory(input *category.PublicGetCategoryParams) (*platformclientmodels.CategoryInfo, error) {
 	ok, notFound, err := c.Client.Category.PublicGetCategory(input)
 	if notFound != nil {
@@ -178,6 +189,7 @@ func (c *CategoryService) PublicGetCategory(input *category.PublicGetCategoryPar
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use PublicGetChildCategoriesShort instead
 func (c *CategoryService) PublicGetChildCategories(input *category.PublicGetChildCategoriesParams) ([]*platformclientmodels.CategoryInfo, error) {
 	ok, err := c.Client.Category.PublicGetChildCategories(input)
 	if err != nil {
@@ -186,6 +198,7 @@ func (c *CategoryService) PublicGetChildCategories(input *category.PublicGetChil
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use PublicGetDescendantCategoriesShort instead
 func (c *CategoryService) PublicGetDescendantCategories(input *category.PublicGetDescendantCategoriesParams) ([]*platformclientmodels.CategoryInfo, error) {
 	ok, err := c.Client.Category.PublicGetDescendantCategories(input)
 	if err != nil {

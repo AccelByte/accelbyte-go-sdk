@@ -19,6 +19,7 @@ type UtilityService struct {
 	TokenRepository repository.TokenRepository
 }
 
+// Deprecated: Use CheckReadinessShort instead
 func (u *UtilityService) CheckReadiness(input *utility.CheckReadinessParams) (*legalclientmodels.LegalReadinessStatusResponse, error) {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {

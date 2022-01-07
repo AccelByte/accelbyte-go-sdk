@@ -35,6 +35,8 @@ var updateRoleByIDCmd = &cobra.Command{
 			},
 			RoleID: roleId,
 		}
+		//nolint:staticcheck // SA1019 To be deprecated later
+		//lint:ignore SA1019 Ignore the deprecation warnings
 		roles, err := roleService.AdminUpdateRoleV3(input)
 		if err != nil {
 			return err

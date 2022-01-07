@@ -19,6 +19,7 @@ type IAPService struct {
 	TokenRepository repository.TokenRepository
 }
 
+// Deprecated: Use GetAppleIAPConfigShort instead
 func (i *IAPService) GetAppleIAPConfig(input *i_a_p.GetAppleIAPConfigParams) (*platformclientmodels.AppleIAPConfigInfo, error) {
 	accessToken, err := i.TokenRepository.GetToken()
 	if err != nil {
@@ -31,6 +32,7 @@ func (i *IAPService) GetAppleIAPConfig(input *i_a_p.GetAppleIAPConfigParams) (*p
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use UpdateAppleIAPConfigShort instead
 func (i *IAPService) UpdateAppleIAPConfig(input *i_a_p.UpdateAppleIAPConfigParams) (*platformclientmodels.AppleIAPConfigInfo, error) {
 	accessToken, err := i.TokenRepository.GetToken()
 	if err != nil {
@@ -43,6 +45,7 @@ func (i *IAPService) UpdateAppleIAPConfig(input *i_a_p.UpdateAppleIAPConfigParam
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use DeleteAppleIAPConfigShort instead
 func (i *IAPService) DeleteAppleIAPConfig(input *i_a_p.DeleteAppleIAPConfigParams) error {
 	accessToken, err := i.TokenRepository.GetToken()
 	if err != nil {
@@ -55,6 +58,7 @@ func (i *IAPService) DeleteAppleIAPConfig(input *i_a_p.DeleteAppleIAPConfigParam
 	return nil
 }
 
+// Deprecated: Use GetEpicGamesIAPConfigShort instead
 func (i *IAPService) GetEpicGamesIAPConfig(input *i_a_p.GetEpicGamesIAPConfigParams) (*platformclientmodels.EpicGamesIAPConfigInfo, error) {
 	accessToken, err := i.TokenRepository.GetToken()
 	if err != nil {
@@ -70,6 +74,7 @@ func (i *IAPService) GetEpicGamesIAPConfig(input *i_a_p.GetEpicGamesIAPConfigPar
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use UpdateEpicGamesIAPConfigShort instead
 func (i *IAPService) UpdateEpicGamesIAPConfig(input *i_a_p.UpdateEpicGamesIAPConfigParams) (*platformclientmodels.EpicGamesIAPConfigInfo, error) {
 	accessToken, err := i.TokenRepository.GetToken()
 	if err != nil {
@@ -82,6 +87,7 @@ func (i *IAPService) UpdateEpicGamesIAPConfig(input *i_a_p.UpdateEpicGamesIAPCon
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use DeleteEpicGamesIAPConfigShort instead
 func (i *IAPService) DeleteEpicGamesIAPConfig(input *i_a_p.DeleteEpicGamesIAPConfigParams) error {
 	accessToken, err := i.TokenRepository.GetToken()
 	if err != nil {
@@ -94,6 +100,7 @@ func (i *IAPService) DeleteEpicGamesIAPConfig(input *i_a_p.DeleteEpicGamesIAPCon
 	return nil
 }
 
+// Deprecated: Use GetGoogleIAPConfigShort instead
 func (i *IAPService) GetGoogleIAPConfig(input *i_a_p.GetGoogleIAPConfigParams) (*platformclientmodels.GoogleIAPConfigInfo, error) {
 	accessToken, err := i.TokenRepository.GetToken()
 	if err != nil {
@@ -106,6 +113,7 @@ func (i *IAPService) GetGoogleIAPConfig(input *i_a_p.GetGoogleIAPConfigParams) (
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use UpdateGoogleIAPConfigShort instead
 func (i *IAPService) UpdateGoogleIAPConfig(input *i_a_p.UpdateGoogleIAPConfigParams) (*platformclientmodels.GoogleIAPConfigInfo, error) {
 	accessToken, err := i.TokenRepository.GetToken()
 	if err != nil {
@@ -118,6 +126,7 @@ func (i *IAPService) UpdateGoogleIAPConfig(input *i_a_p.UpdateGoogleIAPConfigPar
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use DeleteGoogleIAPConfigShort instead
 func (i *IAPService) DeleteGoogleIAPConfig(input *i_a_p.DeleteGoogleIAPConfigParams) error {
 	accessToken, err := i.TokenRepository.GetToken()
 	if err != nil {
@@ -130,6 +139,7 @@ func (i *IAPService) DeleteGoogleIAPConfig(input *i_a_p.DeleteGoogleIAPConfigPar
 	return nil
 }
 
+// Deprecated: Use UpdateGoogleP12FileShort instead
 func (i *IAPService) UpdateGoogleP12File(input *i_a_p.UpdateGoogleP12FileParams) (*platformclientmodels.GoogleIAPConfigInfo, error) {
 	accessToken, err := i.TokenRepository.GetToken()
 	if err != nil {
@@ -142,6 +152,7 @@ func (i *IAPService) UpdateGoogleP12File(input *i_a_p.UpdateGoogleP12FileParams)
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use GetPlayStationIAPConfigShort instead
 func (i *IAPService) GetPlayStationIAPConfig(input *i_a_p.GetPlayStationIAPConfigParams) (*platformclientmodels.PlayStationIAPConfigInfo, error) {
 	accessToken, err := i.TokenRepository.GetToken()
 	if err != nil {
@@ -154,6 +165,7 @@ func (i *IAPService) GetPlayStationIAPConfig(input *i_a_p.GetPlayStationIAPConfi
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use UpdatePlaystationIAPConfigShort instead
 func (i *IAPService) UpdatePlaystationIAPConfig(input *i_a_p.UpdatePlaystationIAPConfigParams) (*platformclientmodels.PlayStationIAPConfigInfo, error) {
 	accessToken, err := i.TokenRepository.GetToken()
 	if err != nil {
@@ -166,6 +178,7 @@ func (i *IAPService) UpdatePlaystationIAPConfig(input *i_a_p.UpdatePlaystationIA
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use DeletePlaystationIAPConfigShort instead
 func (i *IAPService) DeletePlaystationIAPConfig(input *i_a_p.DeletePlaystationIAPConfigParams) error {
 	accessToken, err := i.TokenRepository.GetToken()
 	if err != nil {
@@ -178,6 +191,7 @@ func (i *IAPService) DeletePlaystationIAPConfig(input *i_a_p.DeletePlaystationIA
 	return nil
 }
 
+// Deprecated: Use GetStadiaIAPConfigShort instead
 func (i *IAPService) GetStadiaIAPConfig(input *i_a_p.GetStadiaIAPConfigParams) (*platformclientmodels.StadiaIAPConfigInfo, error) {
 	accessToken, err := i.TokenRepository.GetToken()
 	if err != nil {
@@ -190,6 +204,7 @@ func (i *IAPService) GetStadiaIAPConfig(input *i_a_p.GetStadiaIAPConfigParams) (
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use DeleteStadiaIAPConfigShort instead
 func (i *IAPService) DeleteStadiaIAPConfig(input *i_a_p.DeleteStadiaIAPConfigParams) error {
 	accessToken, err := i.TokenRepository.GetToken()
 	if err != nil {
@@ -202,6 +217,7 @@ func (i *IAPService) DeleteStadiaIAPConfig(input *i_a_p.DeleteStadiaIAPConfigPar
 	return nil
 }
 
+// Deprecated: Use UpdateStadiaJSONConfigFileShort instead
 func (i *IAPService) UpdateStadiaJSONConfigFile(input *i_a_p.UpdateStadiaJSONConfigFileParams) (*platformclientmodels.StadiaIAPConfigInfo, error) {
 	accessToken, err := i.TokenRepository.GetToken()
 	if err != nil {
@@ -214,6 +230,7 @@ func (i *IAPService) UpdateStadiaJSONConfigFile(input *i_a_p.UpdateStadiaJSONCon
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use GetSteamIAPConfigShort instead
 func (i *IAPService) GetSteamIAPConfig(input *i_a_p.GetSteamIAPConfigParams) (*platformclientmodels.SteamIAPConfig, error) {
 	accessToken, err := i.TokenRepository.GetToken()
 	if err != nil {
@@ -226,6 +243,7 @@ func (i *IAPService) GetSteamIAPConfig(input *i_a_p.GetSteamIAPConfigParams) (*p
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use UpdateSteamIAPConfigShort instead
 func (i *IAPService) UpdateSteamIAPConfig(input *i_a_p.UpdateSteamIAPConfigParams) (*platformclientmodels.SteamIAPConfigInfo, error) {
 	accessToken, err := i.TokenRepository.GetToken()
 	if err != nil {
@@ -238,6 +256,7 @@ func (i *IAPService) UpdateSteamIAPConfig(input *i_a_p.UpdateSteamIAPConfigParam
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use DeleteSteamIAPConfigShort instead
 func (i *IAPService) DeleteSteamIAPConfig(input *i_a_p.DeleteSteamIAPConfigParams) error {
 	accessToken, err := i.TokenRepository.GetToken()
 	if err != nil {
@@ -250,6 +269,7 @@ func (i *IAPService) DeleteSteamIAPConfig(input *i_a_p.DeleteSteamIAPConfigParam
 	return nil
 }
 
+// Deprecated: Use GetXblIAPConfigShort instead
 func (i *IAPService) GetXblIAPConfig(input *i_a_p.GetXblIAPConfigParams) (*platformclientmodels.XblIAPConfigInfo, error) {
 	accessToken, err := i.TokenRepository.GetToken()
 	if err != nil {
@@ -265,6 +285,7 @@ func (i *IAPService) GetXblIAPConfig(input *i_a_p.GetXblIAPConfigParams) (*platf
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use UpdateXblIAPConfigShort instead
 func (i *IAPService) UpdateXblIAPConfig(input *i_a_p.UpdateXblIAPConfigParams) (*platformclientmodels.XblIAPConfigInfo, error) {
 	accessToken, err := i.TokenRepository.GetToken()
 	if err != nil {
@@ -277,6 +298,7 @@ func (i *IAPService) UpdateXblIAPConfig(input *i_a_p.UpdateXblIAPConfigParams) (
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use DeleteXblAPConfigShort instead
 func (i *IAPService) DeleteXblAPConfig(input *i_a_p.DeleteXblAPConfigParams) error {
 	accessToken, err := i.TokenRepository.GetToken()
 	if err != nil {
@@ -289,6 +311,7 @@ func (i *IAPService) DeleteXblAPConfig(input *i_a_p.DeleteXblAPConfigParams) err
 	return nil
 }
 
+// Deprecated: Use UpdateXblBPCertFileShort instead
 func (i *IAPService) UpdateXblBPCertFile(input *i_a_p.UpdateXblBPCertFileParams) (*platformclientmodels.XblIAPConfigInfo, error) {
 	accessToken, err := i.TokenRepository.GetToken()
 	if err != nil {
@@ -301,6 +324,7 @@ func (i *IAPService) UpdateXblBPCertFile(input *i_a_p.UpdateXblBPCertFileParams)
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use QueryUserIAPOrdersShort instead
 func (i *IAPService) QueryUserIAPOrders(input *i_a_p.QueryUserIAPOrdersParams) (*platformclientmodels.IAPOrderPagingSlicedResult, error) {
 	accessToken, err := i.TokenRepository.GetToken()
 	if err != nil {
@@ -313,6 +337,7 @@ func (i *IAPService) QueryUserIAPOrders(input *i_a_p.QueryUserIAPOrdersParams) (
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use MockFulfillIAPItemShort instead
 func (i *IAPService) MockFulfillIAPItem(input *i_a_p.MockFulfillIAPItemParams) error {
 	accessToken, err := i.TokenRepository.GetToken()
 	if err != nil {
@@ -334,6 +359,7 @@ func (i *IAPService) MockFulfillIAPItem(input *i_a_p.MockFulfillIAPItemParams) e
 	return nil
 }
 
+// Deprecated: Use PublicFulfillAppleIAPItemShort instead
 func (i *IAPService) PublicFulfillAppleIAPItem(input *i_a_p.PublicFulfillAppleIAPItemParams) error {
 	accessToken, err := i.TokenRepository.GetToken()
 	if err != nil {
@@ -355,6 +381,7 @@ func (i *IAPService) PublicFulfillAppleIAPItem(input *i_a_p.PublicFulfillAppleIA
 	return nil
 }
 
+// Deprecated: Use SyncEpicGamesInventoryShort instead
 func (i *IAPService) SyncEpicGamesInventory(input *i_a_p.SyncEpicGamesInventoryParams) ([]*platformclientmodels.EpicGamesReconcileResult, error) {
 	accessToken, err := i.TokenRepository.GetToken()
 	if err != nil {
@@ -367,6 +394,7 @@ func (i *IAPService) SyncEpicGamesInventory(input *i_a_p.SyncEpicGamesInventoryP
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use PublicFulfillGoogleIAPItemShort instead
 func (i *IAPService) PublicFulfillGoogleIAPItem(input *i_a_p.PublicFulfillGoogleIAPItemParams) error {
 	accessToken, err := i.TokenRepository.GetToken()
 	if err != nil {
@@ -388,6 +416,7 @@ func (i *IAPService) PublicFulfillGoogleIAPItem(input *i_a_p.PublicFulfillGoogle
 	return nil
 }
 
+// Deprecated: Use PublicReconcilePlayStationStoreShort instead
 func (i *IAPService) PublicReconcilePlayStationStore(input *i_a_p.PublicReconcilePlayStationStoreParams) ([]*platformclientmodels.PlayStationReconcileResult, error) {
 	accessToken, err := i.TokenRepository.GetToken()
 	if err != nil {
@@ -403,6 +432,7 @@ func (i *IAPService) PublicReconcilePlayStationStore(input *i_a_p.PublicReconcil
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use SyncStadiaEntitlementShort instead
 func (i *IAPService) SyncStadiaEntitlement(input *i_a_p.SyncStadiaEntitlementParams) error {
 	accessToken, err := i.TokenRepository.GetToken()
 	if err != nil {
@@ -415,6 +445,7 @@ func (i *IAPService) SyncStadiaEntitlement(input *i_a_p.SyncStadiaEntitlementPar
 	return nil
 }
 
+// Deprecated: Use SyncSteamInventoryShort instead
 func (i *IAPService) SyncSteamInventory(input *i_a_p.SyncSteamInventoryParams) error {
 	accessToken, err := i.TokenRepository.GetToken()
 	if err != nil {
@@ -427,6 +458,7 @@ func (i *IAPService) SyncSteamInventory(input *i_a_p.SyncSteamInventoryParams) e
 	return nil
 }
 
+// Deprecated: Use SyncXboxInventoryShort instead
 func (i *IAPService) SyncXboxInventory(input *i_a_p.SyncXboxInventoryParams) ([]*platformclientmodels.XblReconcileResult, error) {
 	accessToken, err := i.TokenRepository.GetToken()
 	if err != nil {

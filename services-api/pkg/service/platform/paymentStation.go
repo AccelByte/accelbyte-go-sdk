@@ -18,6 +18,7 @@ type PaymentStationService struct {
 	TokenRepository repository.TokenRepository
 }
 
+// Deprecated: Use GetPaymentCustomizationShort instead
 func (p *PaymentStationService) GetPaymentCustomization(input *payment_station.GetPaymentCustomizationParams) (*platformclientmodels.Customization, error) {
 	ok, err := p.Client.PaymentStation.GetPaymentCustomization(input)
 	if err != nil {
@@ -26,6 +27,7 @@ func (p *PaymentStationService) GetPaymentCustomization(input *payment_station.G
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use PublicGetPaymentURLShort instead
 func (p *PaymentStationService) PublicGetPaymentURL(input *payment_station.PublicGetPaymentURLParams) (*platformclientmodels.PaymentURL, error) {
 	ok, badRequest, forbidden, notFound, err := p.Client.PaymentStation.PublicGetPaymentURL(input)
 	if badRequest != nil {
@@ -43,6 +45,7 @@ func (p *PaymentStationService) PublicGetPaymentURL(input *payment_station.Publi
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use PublicGetPaymentMethodsShort instead
 func (p *PaymentStationService) PublicGetPaymentMethods(input *payment_station.PublicGetPaymentMethodsParams) ([]*platformclientmodels.PaymentMethod, error) {
 	ok, notFound, err := p.Client.PaymentStation.PublicGetPaymentMethods(input)
 	if notFound != nil {
@@ -54,6 +57,7 @@ func (p *PaymentStationService) PublicGetPaymentMethods(input *payment_station.P
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use PublicGetUnpaidPaymentOrderShort instead
 func (p *PaymentStationService) PublicGetUnpaidPaymentOrder(input *payment_station.PublicGetUnpaidPaymentOrderParams) (*platformclientmodels.PaymentOrderDetails, error) {
 	ok, notFound, conflict, err := p.Client.PaymentStation.PublicGetUnpaidPaymentOrder(input)
 	if notFound != nil {
@@ -68,6 +72,7 @@ func (p *PaymentStationService) PublicGetUnpaidPaymentOrder(input *payment_stati
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use PayShort instead
 func (p *PaymentStationService) Pay(input *payment_station.PayParams) (*platformclientmodels.PaymentProcessResult, error) {
 	ok, badRequest, notFound, conflict, err := p.Client.PaymentStation.Pay(input)
 	if badRequest != nil {
@@ -85,6 +90,7 @@ func (p *PaymentStationService) Pay(input *payment_station.PayParams) (*platform
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use PublicCheckPaymentOrderPaidStatusShort instead
 func (p *PaymentStationService) PublicCheckPaymentOrderPaidStatus(input *payment_station.PublicCheckPaymentOrderPaidStatusParams) (*platformclientmodels.PaymentOrderPaidResult, error) {
 	ok, notFound, err := p.Client.PaymentStation.PublicCheckPaymentOrderPaidStatus(input)
 	if notFound != nil {
@@ -96,6 +102,7 @@ func (p *PaymentStationService) PublicCheckPaymentOrderPaidStatus(input *payment
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use GetPaymentPublicConfigShort instead
 func (p *PaymentStationService) GetPaymentPublicConfig(input *payment_station.GetPaymentPublicConfigParams) (map[string]interface{}, error) {
 	ok, err := p.Client.PaymentStation.GetPaymentPublicConfig(input)
 	if err != nil {
@@ -104,6 +111,7 @@ func (p *PaymentStationService) GetPaymentPublicConfig(input *payment_station.Ge
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use PublicGetQRCodeShort instead
 func (p *PaymentStationService) PublicGetQRCode(input *payment_station.PublicGetQRCodeParams, writer io.Writer) (io.Writer, error) {
 	ok, err := p.Client.PaymentStation.PublicGetQRCode(input, writer)
 	if err != nil {
@@ -112,6 +120,7 @@ func (p *PaymentStationService) PublicGetQRCode(input *payment_station.PublicGet
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use PublicNormalizePaymentReturnURLShort instead
 func (p *PaymentStationService) PublicNormalizePaymentReturnURL(input *payment_station.PublicNormalizePaymentReturnURLParams) error {
 	_, temporaryRedirect, err := p.Client.PaymentStation.PublicNormalizePaymentReturnURL(input)
 	if temporaryRedirect != nil {
@@ -123,6 +132,7 @@ func (p *PaymentStationService) PublicNormalizePaymentReturnURL(input *payment_s
 	return nil
 }
 
+// Deprecated: Use GetPaymentTaxValueShort instead
 func (p *PaymentStationService) GetPaymentTaxValue(input *payment_station.GetPaymentTaxValueParams) (*platformclientmodels.TaxResult, error) {
 	ok, badRequest, notFound, err := p.Client.PaymentStation.GetPaymentTaxValue(input)
 	if badRequest != nil {

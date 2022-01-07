@@ -19,6 +19,7 @@ type AdminGroupService struct {
 	TokenRepository repository.TokenRepository
 }
 
+// Deprecated: Use SingleAdminGetAllGroupsShort instead
 func (a *AdminGroupService) SingleAdminGetAllGroups(input *admin_group.SingleAdminGetAllGroupsParams) (*ugcclientmodels.ModelsPaginatedGroupResponse, error) {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
@@ -40,6 +41,7 @@ func (a *AdminGroupService) SingleAdminGetAllGroups(input *admin_group.SingleAdm
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use AdminCreateGroupShort instead
 func (a *AdminGroupService) AdminCreateGroup(input *admin_group.AdminCreateGroupParams) (*ugcclientmodels.ModelsCreateGroupResponse, error) {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
@@ -61,6 +63,7 @@ func (a *AdminGroupService) AdminCreateGroup(input *admin_group.AdminCreateGroup
 	return created.GetPayload(), nil
 }
 
+// Deprecated: Use SingleAdminGetGroupShort instead
 func (a *AdminGroupService) SingleAdminGetGroup(input *admin_group.SingleAdminGetGroupParams) (*ugcclientmodels.ModelsCreateGroupResponse, error) {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
@@ -82,6 +85,7 @@ func (a *AdminGroupService) SingleAdminGetGroup(input *admin_group.SingleAdminGe
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use SingleAdminUpdateGroupShort instead
 func (a *AdminGroupService) SingleAdminUpdateGroup(input *admin_group.SingleAdminUpdateGroupParams) (*ugcclientmodels.ModelsCreateGroupResponse, error) {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
@@ -106,6 +110,7 @@ func (a *AdminGroupService) SingleAdminUpdateGroup(input *admin_group.SingleAdmi
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use SingleAdminDeleteGroupShort instead
 func (a *AdminGroupService) SingleAdminDeleteGroup(input *admin_group.SingleAdminDeleteGroupParams) error {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
@@ -127,6 +132,7 @@ func (a *AdminGroupService) SingleAdminDeleteGroup(input *admin_group.SingleAdmi
 	return nil
 }
 
+// Deprecated: Use SingleAdminGetGroupContentsShort instead
 func (a *AdminGroupService) SingleAdminGetGroupContents(input *admin_group.SingleAdminGetGroupContentsParams) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
@@ -148,6 +154,7 @@ func (a *AdminGroupService) SingleAdminGetGroupContents(input *admin_group.Singl
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use AdminGetAllGroupsShort instead
 func (a *AdminGroupService) AdminGetAllGroups(input *admin_group.AdminGetAllGroupsParams) (*ugcclientmodels.ModelsPaginatedGroupResponse, error) {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
@@ -169,6 +176,7 @@ func (a *AdminGroupService) AdminGetAllGroups(input *admin_group.AdminGetAllGrou
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use AdminGetGroupShort instead
 func (a *AdminGroupService) AdminGetGroup(input *admin_group.AdminGetGroupParams) (*ugcclientmodels.ModelsCreateGroupResponse, error) {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
@@ -190,6 +198,7 @@ func (a *AdminGroupService) AdminGetGroup(input *admin_group.AdminGetGroupParams
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use AdminUpdateGroupShort instead
 func (a *AdminGroupService) AdminUpdateGroup(input *admin_group.AdminUpdateGroupParams) (*ugcclientmodels.ModelsCreateGroupResponse, error) {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
@@ -214,6 +223,7 @@ func (a *AdminGroupService) AdminUpdateGroup(input *admin_group.AdminUpdateGroup
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use AdminDeleteGroupShort instead
 func (a *AdminGroupService) AdminDeleteGroup(input *admin_group.AdminDeleteGroupParams) error {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
@@ -235,6 +245,7 @@ func (a *AdminGroupService) AdminDeleteGroup(input *admin_group.AdminDeleteGroup
 	return nil
 }
 
+// Deprecated: Use AdminGetGroupContentsShort instead
 func (a *AdminGroupService) AdminGetGroupContents(input *admin_group.AdminGetGroupContentsParams) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {

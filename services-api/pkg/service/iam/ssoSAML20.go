@@ -18,6 +18,7 @@ type SSOSAML20Service struct {
 	TokenRepository repository.TokenRepository
 }
 
+// Deprecated: Use PlatformAuthenticateSAMLV3HandlerShort instead
 func (s *SSOSAML20Service) PlatformAuthenticateSAMLV3Handler(input *s_s_o_s_a_m_l_2_0.PlatformAuthenticateSAMLV3HandlerParams) error {
 	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {

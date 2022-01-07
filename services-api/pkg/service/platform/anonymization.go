@@ -18,6 +18,7 @@ type AnonymizationService struct {
 	TokenRepository repository.TokenRepository
 }
 
+// Deprecated: Use AnonymizeCampaignShort instead
 func (a *AnonymizationService) AnonymizeCampaign(input *anonymization.AnonymizeCampaignParams) error {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
@@ -30,6 +31,7 @@ func (a *AnonymizationService) AnonymizeCampaign(input *anonymization.AnonymizeC
 	return nil
 }
 
+// Deprecated: Use AnonymizeEntitlementShort instead
 func (a *AnonymizationService) AnonymizeEntitlement(input *anonymization.AnonymizeEntitlementParams) error {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
@@ -42,6 +44,7 @@ func (a *AnonymizationService) AnonymizeEntitlement(input *anonymization.Anonymi
 	return nil
 }
 
+// Deprecated: Use AnonymizeFulfillmentShort instead
 func (a *AnonymizationService) AnonymizeFulfillment(input *anonymization.AnonymizeFulfillmentParams) error {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
@@ -54,6 +57,7 @@ func (a *AnonymizationService) AnonymizeFulfillment(input *anonymization.Anonymi
 	return nil
 }
 
+// Deprecated: Use AnonymizeIntegrationShort instead
 func (a *AnonymizationService) AnonymizeIntegration(input *anonymization.AnonymizeIntegrationParams) error {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
@@ -66,6 +70,7 @@ func (a *AnonymizationService) AnonymizeIntegration(input *anonymization.Anonymi
 	return nil
 }
 
+// Deprecated: Use AnonymizeOrderShort instead
 func (a *AnonymizationService) AnonymizeOrder(input *anonymization.AnonymizeOrderParams) error {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
@@ -78,6 +83,7 @@ func (a *AnonymizationService) AnonymizeOrder(input *anonymization.AnonymizeOrde
 	return nil
 }
 
+// Deprecated: Use AnonymizePaymentShort instead
 func (a *AnonymizationService) AnonymizePayment(input *anonymization.AnonymizePaymentParams) error {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
@@ -90,6 +96,7 @@ func (a *AnonymizationService) AnonymizePayment(input *anonymization.AnonymizePa
 	return nil
 }
 
+// Deprecated: Use AnonymizeSubscriptionShort instead
 func (a *AnonymizationService) AnonymizeSubscription(input *anonymization.AnonymizeSubscriptionParams) error {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
@@ -102,6 +109,7 @@ func (a *AnonymizationService) AnonymizeSubscription(input *anonymization.Anonym
 	return nil
 }
 
+// Deprecated: Use AnonymizeWalletShort instead
 func (a *AnonymizationService) AnonymizeWallet(input *anonymization.AnonymizeWalletParams) error {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {

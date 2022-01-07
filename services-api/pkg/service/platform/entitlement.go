@@ -19,6 +19,7 @@ type EntitlementService struct {
 	TokenRepository repository.TokenRepository
 }
 
+// Deprecated: Use QueryEntitlementsShort instead
 func (e *EntitlementService) QueryEntitlements(input *entitlement.QueryEntitlementsParams) (*platformclientmodels.EntitlementPagingSlicedResult, error) {
 	accessToken, err := e.TokenRepository.GetToken()
 	if err != nil {
@@ -31,6 +32,7 @@ func (e *EntitlementService) QueryEntitlements(input *entitlement.QueryEntitleme
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use GetEntitlementShort instead
 func (e *EntitlementService) GetEntitlement(input *entitlement.GetEntitlementParams) (*platformclientmodels.EntitlementInfo, error) {
 	accessToken, err := e.TokenRepository.GetToken()
 	if err != nil {
@@ -46,6 +48,7 @@ func (e *EntitlementService) GetEntitlement(input *entitlement.GetEntitlementPar
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use QueryUserEntitlementsShort instead
 func (e *EntitlementService) QueryUserEntitlements(input *entitlement.QueryUserEntitlementsParams) (*platformclientmodels.EntitlementPagingSlicedResult, error) {
 	accessToken, err := e.TokenRepository.GetToken()
 	if err != nil {
@@ -58,6 +61,7 @@ func (e *EntitlementService) QueryUserEntitlements(input *entitlement.QueryUserE
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use GrantUserEntitlementShort instead
 func (e *EntitlementService) GrantUserEntitlement(input *entitlement.GrantUserEntitlementParams) ([]*platformclientmodels.StackableEntitlementInfo, error) {
 	accessToken, err := e.TokenRepository.GetToken()
 	if err != nil {
@@ -76,6 +80,7 @@ func (e *EntitlementService) GrantUserEntitlement(input *entitlement.GrantUserEn
 	return created.GetPayload(), nil
 }
 
+// Deprecated: Use GetUserAppEntitlementByAppIDShort instead
 func (e *EntitlementService) GetUserAppEntitlementByAppID(input *entitlement.GetUserAppEntitlementByAppIDParams) (*platformclientmodels.AppEntitlementInfo, error) {
 	accessToken, err := e.TokenRepository.GetToken()
 	if err != nil {
@@ -91,6 +96,7 @@ func (e *EntitlementService) GetUserAppEntitlementByAppID(input *entitlement.Get
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use QueryUserEntitlementsByAppTypeShort instead
 func (e *EntitlementService) QueryUserEntitlementsByAppType(input *entitlement.QueryUserEntitlementsByAppTypeParams) (*platformclientmodels.AppEntitlementPagingSlicedResult, error) {
 	accessToken, err := e.TokenRepository.GetToken()
 	if err != nil {
@@ -103,6 +109,7 @@ func (e *EntitlementService) QueryUserEntitlementsByAppType(input *entitlement.Q
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use GetUserEntitlementByItemIDShort instead
 func (e *EntitlementService) GetUserEntitlementByItemID(input *entitlement.GetUserEntitlementByItemIDParams) (*platformclientmodels.EntitlementInfo, error) {
 	accessToken, err := e.TokenRepository.GetToken()
 	if err != nil {
@@ -118,6 +125,7 @@ func (e *EntitlementService) GetUserEntitlementByItemID(input *entitlement.GetUs
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use GetUserEntitlementBySkuShort instead
 func (e *EntitlementService) GetUserEntitlementBySku(input *entitlement.GetUserEntitlementBySkuParams) (*platformclientmodels.EntitlementInfo, error) {
 	accessToken, err := e.TokenRepository.GetToken()
 	if err != nil {
@@ -133,6 +141,7 @@ func (e *EntitlementService) GetUserEntitlementBySku(input *entitlement.GetUserE
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use ExistsAnyUserActiveEntitlementShort instead
 func (e *EntitlementService) ExistsAnyUserActiveEntitlement(input *entitlement.ExistsAnyUserActiveEntitlementParams) (*platformclientmodels.Ownership, error) {
 	accessToken, err := e.TokenRepository.GetToken()
 	if err != nil {
@@ -145,6 +154,7 @@ func (e *EntitlementService) ExistsAnyUserActiveEntitlement(input *entitlement.E
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use ExistsAnyUserActiveEntitlementByItemIdsShort instead
 func (e *EntitlementService) ExistsAnyUserActiveEntitlementByItemIds(input *entitlement.ExistsAnyUserActiveEntitlementByItemIdsParams) (*platformclientmodels.Ownership, error) {
 	accessToken, err := e.TokenRepository.GetToken()
 	if err != nil {
@@ -157,6 +167,7 @@ func (e *EntitlementService) ExistsAnyUserActiveEntitlementByItemIds(input *enti
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use GetUserAppEntitlementOwnershipByAppIDShort instead
 func (e *EntitlementService) GetUserAppEntitlementOwnershipByAppID(input *entitlement.GetUserAppEntitlementOwnershipByAppIDParams) (*platformclientmodels.Ownership, error) {
 	accessToken, err := e.TokenRepository.GetToken()
 	if err != nil {
@@ -169,6 +180,7 @@ func (e *EntitlementService) GetUserAppEntitlementOwnershipByAppID(input *entitl
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use GetUserEntitlementOwnershipByItemIDShort instead
 func (e *EntitlementService) GetUserEntitlementOwnershipByItemID(input *entitlement.GetUserEntitlementOwnershipByItemIDParams) (*platformclientmodels.TimedOwnership, error) {
 	accessToken, err := e.TokenRepository.GetToken()
 	if err != nil {
@@ -181,6 +193,7 @@ func (e *EntitlementService) GetUserEntitlementOwnershipByItemID(input *entitlem
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use GetUserEntitlementOwnershipBySkuShort instead
 func (e *EntitlementService) GetUserEntitlementOwnershipBySku(input *entitlement.GetUserEntitlementOwnershipBySkuParams) (*platformclientmodels.TimedOwnership, error) {
 	accessToken, err := e.TokenRepository.GetToken()
 	if err != nil {
@@ -193,6 +206,7 @@ func (e *EntitlementService) GetUserEntitlementOwnershipBySku(input *entitlement
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use RevokeUserEntitlementsShort instead
 func (e *EntitlementService) RevokeUserEntitlements(input *entitlement.RevokeUserEntitlementsParams) (*platformclientmodels.BulkOperationResult, error) {
 	accessToken, err := e.TokenRepository.GetToken()
 	if err != nil {
@@ -205,6 +219,7 @@ func (e *EntitlementService) RevokeUserEntitlements(input *entitlement.RevokeUse
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use GetUserEntitlementShort instead
 func (e *EntitlementService) GetUserEntitlement(input *entitlement.GetUserEntitlementParams) (*platformclientmodels.EntitlementInfo, error) {
 	accessToken, err := e.TokenRepository.GetToken()
 	if err != nil {
@@ -220,6 +235,7 @@ func (e *EntitlementService) GetUserEntitlement(input *entitlement.GetUserEntitl
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use UpdateUserEntitlementShort instead
 func (e *EntitlementService) UpdateUserEntitlement(input *entitlement.UpdateUserEntitlementParams) (*platformclientmodels.EntitlementInfo, error) {
 	accessToken, err := e.TokenRepository.GetToken()
 	if err != nil {
@@ -241,6 +257,7 @@ func (e *EntitlementService) UpdateUserEntitlement(input *entitlement.UpdateUser
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use ConsumeUserEntitlementShort instead
 func (e *EntitlementService) ConsumeUserEntitlement(input *entitlement.ConsumeUserEntitlementParams) (*platformclientmodels.EntitlementInfo, error) {
 	accessToken, err := e.TokenRepository.GetToken()
 	if err != nil {
@@ -259,6 +276,7 @@ func (e *EntitlementService) ConsumeUserEntitlement(input *entitlement.ConsumeUs
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use DisableUserEntitlementShort instead
 func (e *EntitlementService) DisableUserEntitlement(input *entitlement.DisableUserEntitlementParams) (*platformclientmodels.EntitlementInfo, error) {
 	accessToken, err := e.TokenRepository.GetToken()
 	if err != nil {
@@ -277,6 +295,7 @@ func (e *EntitlementService) DisableUserEntitlement(input *entitlement.DisableUs
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use EnableUserEntitlementShort instead
 func (e *EntitlementService) EnableUserEntitlement(input *entitlement.EnableUserEntitlementParams) (*platformclientmodels.EntitlementInfo, error) {
 	accessToken, err := e.TokenRepository.GetToken()
 	if err != nil {
@@ -295,6 +314,7 @@ func (e *EntitlementService) EnableUserEntitlement(input *entitlement.EnableUser
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use GetUserEntitlementHistoriesShort instead
 func (e *EntitlementService) GetUserEntitlementHistories(input *entitlement.GetUserEntitlementHistoriesParams) ([]*platformclientmodels.EntitlementHistoryInfo, error) {
 	accessToken, err := e.TokenRepository.GetToken()
 	if err != nil {
@@ -307,6 +327,7 @@ func (e *EntitlementService) GetUserEntitlementHistories(input *entitlement.GetU
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use RevokeUserEntitlementShort instead
 func (e *EntitlementService) RevokeUserEntitlement(input *entitlement.RevokeUserEntitlementParams) (*platformclientmodels.EntitlementInfo, error) {
 	accessToken, err := e.TokenRepository.GetToken()
 	if err != nil {
@@ -322,6 +343,7 @@ func (e *EntitlementService) RevokeUserEntitlement(input *entitlement.RevokeUser
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use PublicExistsAnyMyActiveEntitlementShort instead
 func (e *EntitlementService) PublicExistsAnyMyActiveEntitlement(input *entitlement.PublicExistsAnyMyActiveEntitlementParams) (*platformclientmodels.Ownership, error) {
 	accessToken, err := e.TokenRepository.GetToken()
 	if err != nil {
@@ -334,6 +356,7 @@ func (e *EntitlementService) PublicExistsAnyMyActiveEntitlement(input *entitleme
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use PublicGetMyAppEntitlementOwnershipByAppIDShort instead
 func (e *EntitlementService) PublicGetMyAppEntitlementOwnershipByAppID(input *entitlement.PublicGetMyAppEntitlementOwnershipByAppIDParams) (*platformclientmodels.Ownership, error) {
 	accessToken, err := e.TokenRepository.GetToken()
 	if err != nil {
@@ -346,6 +369,7 @@ func (e *EntitlementService) PublicGetMyAppEntitlementOwnershipByAppID(input *en
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use PublicGetMyEntitlementOwnershipByItemIDShort instead
 func (e *EntitlementService) PublicGetMyEntitlementOwnershipByItemID(input *entitlement.PublicGetMyEntitlementOwnershipByItemIDParams) (*platformclientmodels.TimedOwnership, error) {
 	accessToken, err := e.TokenRepository.GetToken()
 	if err != nil {
@@ -358,6 +382,7 @@ func (e *EntitlementService) PublicGetMyEntitlementOwnershipByItemID(input *enti
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use PublicGetMyEntitlementOwnershipBySkuShort instead
 func (e *EntitlementService) PublicGetMyEntitlementOwnershipBySku(input *entitlement.PublicGetMyEntitlementOwnershipBySkuParams) (*platformclientmodels.TimedOwnership, error) {
 	accessToken, err := e.TokenRepository.GetToken()
 	if err != nil {
@@ -370,6 +395,7 @@ func (e *EntitlementService) PublicGetMyEntitlementOwnershipBySku(input *entitle
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use PublicGetEntitlementOwnershipTokenShort instead
 func (e *EntitlementService) PublicGetEntitlementOwnershipToken(input *entitlement.PublicGetEntitlementOwnershipTokenParams) (*platformclientmodels.OwnershipToken, error) {
 	accessToken, err := e.TokenRepository.GetToken()
 	if err != nil {
@@ -382,6 +408,7 @@ func (e *EntitlementService) PublicGetEntitlementOwnershipToken(input *entitleme
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use PublicQueryUserEntitlementsShort instead
 func (e *EntitlementService) PublicQueryUserEntitlements(input *entitlement.PublicQueryUserEntitlementsParams) (*platformclientmodels.EntitlementPagingSlicedResult, error) {
 	accessToken, err := e.TokenRepository.GetToken()
 	if err != nil {
@@ -394,6 +421,7 @@ func (e *EntitlementService) PublicQueryUserEntitlements(input *entitlement.Publ
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use PublicGetUserAppEntitlementByAppIDShort instead
 func (e *EntitlementService) PublicGetUserAppEntitlementByAppID(input *entitlement.PublicGetUserAppEntitlementByAppIDParams) (*platformclientmodels.AppEntitlementInfo, error) {
 	accessToken, err := e.TokenRepository.GetToken()
 	if err != nil {
@@ -409,6 +437,7 @@ func (e *EntitlementService) PublicGetUserAppEntitlementByAppID(input *entitleme
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use PublicQueryUserEntitlementsByAppTypeShort instead
 func (e *EntitlementService) PublicQueryUserEntitlementsByAppType(input *entitlement.PublicQueryUserEntitlementsByAppTypeParams) (*platformclientmodels.AppEntitlementPagingSlicedResult, error) {
 	accessToken, err := e.TokenRepository.GetToken()
 	if err != nil {
@@ -421,6 +450,7 @@ func (e *EntitlementService) PublicQueryUserEntitlementsByAppType(input *entitle
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use PublicGetUserEntitlementByItemIDShort instead
 func (e *EntitlementService) PublicGetUserEntitlementByItemID(input *entitlement.PublicGetUserEntitlementByItemIDParams) (*platformclientmodels.EntitlementInfo, error) {
 	accessToken, err := e.TokenRepository.GetToken()
 	if err != nil {
@@ -436,6 +466,7 @@ func (e *EntitlementService) PublicGetUserEntitlementByItemID(input *entitlement
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use PublicGetUserEntitlementBySkuShort instead
 func (e *EntitlementService) PublicGetUserEntitlementBySku(input *entitlement.PublicGetUserEntitlementBySkuParams) (*platformclientmodels.EntitlementInfo, error) {
 	accessToken, err := e.TokenRepository.GetToken()
 	if err != nil {
@@ -451,6 +482,7 @@ func (e *EntitlementService) PublicGetUserEntitlementBySku(input *entitlement.Pu
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use PublicExistsAnyUserActiveEntitlementShort instead
 func (e *EntitlementService) PublicExistsAnyUserActiveEntitlement(input *entitlement.PublicExistsAnyUserActiveEntitlementParams) (*platformclientmodels.Ownership, error) {
 	accessToken, err := e.TokenRepository.GetToken()
 	if err != nil {
@@ -463,6 +495,7 @@ func (e *EntitlementService) PublicExistsAnyUserActiveEntitlement(input *entitle
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use PublicGetUserAppEntitlementOwnershipByAppIDShort instead
 func (e *EntitlementService) PublicGetUserAppEntitlementOwnershipByAppID(input *entitlement.PublicGetUserAppEntitlementOwnershipByAppIDParams) (*platformclientmodels.Ownership, error) {
 	accessToken, err := e.TokenRepository.GetToken()
 	if err != nil {
@@ -475,6 +508,7 @@ func (e *EntitlementService) PublicGetUserAppEntitlementOwnershipByAppID(input *
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use PublicGetUserEntitlementOwnershipByItemIDShort instead
 func (e *EntitlementService) PublicGetUserEntitlementOwnershipByItemID(input *entitlement.PublicGetUserEntitlementOwnershipByItemIDParams) (*platformclientmodels.TimedOwnership, error) {
 	accessToken, err := e.TokenRepository.GetToken()
 	if err != nil {
@@ -487,6 +521,7 @@ func (e *EntitlementService) PublicGetUserEntitlementOwnershipByItemID(input *en
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use PublicGetUserEntitlementOwnershipBySkuShort instead
 func (e *EntitlementService) PublicGetUserEntitlementOwnershipBySku(input *entitlement.PublicGetUserEntitlementOwnershipBySkuParams) (*platformclientmodels.TimedOwnership, error) {
 	accessToken, err := e.TokenRepository.GetToken()
 	if err != nil {
@@ -499,6 +534,7 @@ func (e *EntitlementService) PublicGetUserEntitlementOwnershipBySku(input *entit
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use PublicGetUserEntitlementShort instead
 func (e *EntitlementService) PublicGetUserEntitlement(input *entitlement.PublicGetUserEntitlementParams) (*platformclientmodels.EntitlementInfo, error) {
 	accessToken, err := e.TokenRepository.GetToken()
 	if err != nil {
@@ -514,6 +550,7 @@ func (e *EntitlementService) PublicGetUserEntitlement(input *entitlement.PublicG
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use PublicConsumeUserEntitlementShort instead
 func (e *EntitlementService) PublicConsumeUserEntitlement(input *entitlement.PublicConsumeUserEntitlementParams) (*platformclientmodels.EntitlementInfo, error) {
 	accessToken, err := e.TokenRepository.GetToken()
 	if err != nil {

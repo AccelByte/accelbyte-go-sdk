@@ -19,6 +19,7 @@ type NamespaceService struct {
 	TokenRepository repository.TokenRepository
 }
 
+// Deprecated: Use GetNamespacesShort instead
 func (n *NamespaceService) GetNamespaces(input *namespace.GetNamespacesParams) ([]*basicclientmodels.NamespaceInfo, error) {
 	accessToken, err := n.TokenRepository.GetToken()
 	if err != nil {
@@ -37,6 +38,7 @@ func (n *NamespaceService) GetNamespaces(input *namespace.GetNamespacesParams) (
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use CreateNamespaceShort instead
 func (n *NamespaceService) CreateNamespace(input *namespace.CreateNamespaceParams) (*basicclientmodels.NamespaceInfo, error) {
 	accessToken, err := n.TokenRepository.GetToken()
 	if err != nil {
@@ -61,6 +63,7 @@ func (n *NamespaceService) CreateNamespace(input *namespace.CreateNamespaceParam
 	return created.GetPayload(), nil
 }
 
+// Deprecated: Use GetNamespaceShort instead
 func (n *NamespaceService) GetNamespace(input *namespace.GetNamespaceParams) (*basicclientmodels.NamespaceInfo, error) {
 	accessToken, err := n.TokenRepository.GetToken()
 	if err != nil {
@@ -85,6 +88,7 @@ func (n *NamespaceService) GetNamespace(input *namespace.GetNamespaceParams) (*b
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use DeleteNamespaceShort instead
 func (n *NamespaceService) DeleteNamespace(input *namespace.DeleteNamespaceParams) (*basicclientmodels.NamespaceInfo, error) {
 	accessToken, err := n.TokenRepository.GetToken()
 	if err != nil {
@@ -112,6 +116,7 @@ func (n *NamespaceService) DeleteNamespace(input *namespace.DeleteNamespaceParam
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use UpdateNamespaceShort instead
 func (n *NamespaceService) UpdateNamespace(input *namespace.UpdateNamespaceParams) (*basicclientmodels.NamespaceInfo, error) {
 	accessToken, err := n.TokenRepository.GetToken()
 	if err != nil {
@@ -139,6 +144,7 @@ func (n *NamespaceService) UpdateNamespace(input *namespace.UpdateNamespaceParam
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use GetNamespacePublisherShort instead
 func (n *NamespaceService) GetNamespacePublisher(input *namespace.GetNamespacePublisherParams) (*basicclientmodels.NamespacePublisherInfo, error) {
 	accessToken, err := n.TokenRepository.GetToken()
 	if err != nil {
@@ -163,6 +169,7 @@ func (n *NamespaceService) GetNamespacePublisher(input *namespace.GetNamespacePu
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use ChangeNamespaceStatusShort instead
 func (n *NamespaceService) ChangeNamespaceStatus(input *namespace.ChangeNamespaceStatusParams) (*basicclientmodels.NamespaceInfo, error) {
 	accessToken, err := n.TokenRepository.GetToken()
 	if err != nil {
@@ -190,6 +197,7 @@ func (n *NamespaceService) ChangeNamespaceStatus(input *namespace.ChangeNamespac
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use PublicGetNamespacesShort instead
 func (n *NamespaceService) PublicGetNamespaces(input *namespace.PublicGetNamespacesParams) ([]*basicclientmodels.NamespaceInfo, error) {
 	accessToken, err := n.TokenRepository.GetToken()
 	if err != nil {
@@ -205,6 +213,7 @@ func (n *NamespaceService) PublicGetNamespaces(input *namespace.PublicGetNamespa
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use PublicGetNamespacePublisherShort instead
 func (n *NamespaceService) PublicGetNamespacePublisher(input *namespace.PublicGetNamespacePublisherParams) (*basicclientmodels.NamespacePublisherInfo, error) {
 	accessToken, err := n.TokenRepository.GetToken()
 	if err != nil {

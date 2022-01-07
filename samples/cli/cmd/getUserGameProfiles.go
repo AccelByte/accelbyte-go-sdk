@@ -38,6 +38,8 @@ var getUserGameProfiles = &cobra.Command{
 			Namespace: namespace,
 			UserIds:   userIDs,
 		}
+		//nolint:staticcheck // SA1019 To be deprecated later
+		//lint:ignore SA1019 Ignore the deprecation warnings
 		ok, err := gameProfileService.PublicGetUserGameProfiles(input)
 		if err != nil {
 			return err

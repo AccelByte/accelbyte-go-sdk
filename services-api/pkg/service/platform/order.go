@@ -19,6 +19,7 @@ type OrderService struct {
 	TokenRepository repository.TokenRepository
 }
 
+// Deprecated: Use QueryOrdersShort instead
 func (o *OrderService) QueryOrders(input *order.QueryOrdersParams) (*platformclientmodels.OrderPagingResult, error) {
 	accessToken, err := o.TokenRepository.GetToken()
 	if err != nil {
@@ -34,6 +35,7 @@ func (o *OrderService) QueryOrders(input *order.QueryOrdersParams) (*platformcli
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use GetOrderStatisticsShort instead
 func (o *OrderService) GetOrderStatistics(input *order.GetOrderStatisticsParams) (*platformclientmodels.OrderStatistics, error) {
 	accessToken, err := o.TokenRepository.GetToken()
 	if err != nil {
@@ -46,6 +48,7 @@ func (o *OrderService) GetOrderStatistics(input *order.GetOrderStatisticsParams)
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use GetOrderShort instead
 func (o *OrderService) GetOrder(input *order.GetOrderParams) (*platformclientmodels.OrderInfo, error) {
 	accessToken, err := o.TokenRepository.GetToken()
 	if err != nil {
@@ -61,6 +64,7 @@ func (o *OrderService) GetOrder(input *order.GetOrderParams) (*platformclientmod
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use RefundOrderShort instead
 func (o *OrderService) RefundOrder(input *order.RefundOrderParams) (*platformclientmodels.OrderInfo, error) {
 	accessToken, err := o.TokenRepository.GetToken()
 	if err != nil {
@@ -82,6 +86,7 @@ func (o *OrderService) RefundOrder(input *order.RefundOrderParams) (*platformcli
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use QueryUserOrdersShort instead
 func (o *OrderService) QueryUserOrders(input *order.QueryUserOrdersParams) (*platformclientmodels.OrderPagingSlicedResult, error) {
 	accessToken, err := o.TokenRepository.GetToken()
 	if err != nil {
@@ -94,6 +99,7 @@ func (o *OrderService) QueryUserOrders(input *order.QueryUserOrdersParams) (*pla
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use CountOfPurchasedItemShort instead
 func (o *OrderService) CountOfPurchasedItem(input *order.CountOfPurchasedItemParams) (*platformclientmodels.PurchasedItemCount, error) {
 	accessToken, err := o.TokenRepository.GetToken()
 	if err != nil {
@@ -106,6 +112,7 @@ func (o *OrderService) CountOfPurchasedItem(input *order.CountOfPurchasedItemPar
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use GetUserOrderShort instead
 func (o *OrderService) GetUserOrder(input *order.GetUserOrderParams) (*platformclientmodels.OrderInfo, error) {
 	accessToken, err := o.TokenRepository.GetToken()
 	if err != nil {
@@ -121,6 +128,7 @@ func (o *OrderService) GetUserOrder(input *order.GetUserOrderParams) (*platformc
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use UpdateUserOrderStatusShort instead
 func (o *OrderService) UpdateUserOrderStatus(input *order.UpdateUserOrderStatusParams) (*platformclientmodels.OrderInfo, error) {
 	accessToken, err := o.TokenRepository.GetToken()
 	if err != nil {
@@ -142,6 +150,7 @@ func (o *OrderService) UpdateUserOrderStatus(input *order.UpdateUserOrderStatusP
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use FulfillUserOrderShort instead
 func (o *OrderService) FulfillUserOrder(input *order.FulfillUserOrderParams) (*platformclientmodels.OrderInfo, error) {
 	accessToken, err := o.TokenRepository.GetToken()
 	if err != nil {
@@ -163,6 +172,7 @@ func (o *OrderService) FulfillUserOrder(input *order.FulfillUserOrderParams) (*p
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use GetUserOrderGrantShort instead
 func (o *OrderService) GetUserOrderGrant(input *order.GetUserOrderGrantParams) (*platformclientmodels.OrderGrantInfo, error) {
 	accessToken, err := o.TokenRepository.GetToken()
 	if err != nil {
@@ -175,6 +185,7 @@ func (o *OrderService) GetUserOrderGrant(input *order.GetUserOrderGrantParams) (
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use GetUserOrderHistoriesShort instead
 func (o *OrderService) GetUserOrderHistories(input *order.GetUserOrderHistoriesParams) ([]*platformclientmodels.OrderHistoryInfo, error) {
 	accessToken, err := o.TokenRepository.GetToken()
 	if err != nil {
@@ -187,6 +198,7 @@ func (o *OrderService) GetUserOrderHistories(input *order.GetUserOrderHistoriesP
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use ProcessUserOrderNotificationShort instead
 func (o *OrderService) ProcessUserOrderNotification(input *order.ProcessUserOrderNotificationParams) error {
 	accessToken, err := o.TokenRepository.GetToken()
 	if err != nil {
@@ -202,6 +214,7 @@ func (o *OrderService) ProcessUserOrderNotification(input *order.ProcessUserOrde
 	return nil
 }
 
+// Deprecated: Use DownloadUserOrderReceiptShort instead
 func (o *OrderService) DownloadUserOrderReceipt(input *order.DownloadUserOrderReceiptParams) error {
 	accessToken, err := o.TokenRepository.GetToken()
 	if err != nil {
@@ -220,6 +233,7 @@ func (o *OrderService) DownloadUserOrderReceipt(input *order.DownloadUserOrderRe
 	return nil
 }
 
+// Deprecated: Use PublicQueryUserOrdersShort instead
 func (o *OrderService) PublicQueryUserOrders(input *order.PublicQueryUserOrdersParams) (*platformclientmodels.OrderPagingSlicedResult, error) {
 	accessToken, err := o.TokenRepository.GetToken()
 	if err != nil {
@@ -232,6 +246,7 @@ func (o *OrderService) PublicQueryUserOrders(input *order.PublicQueryUserOrdersP
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use PublicCreateUserOrderShort instead
 func (o *OrderService) PublicCreateUserOrder(input *order.PublicCreateUserOrderParams) (*platformclientmodels.OrderInfo, error) {
 	accessToken, err := o.TokenRepository.GetToken()
 	if err != nil {
@@ -259,6 +274,7 @@ func (o *OrderService) PublicCreateUserOrder(input *order.PublicCreateUserOrderP
 	return created.GetPayload(), nil
 }
 
+// Deprecated: Use PublicGetUserOrderShort instead
 func (o *OrderService) PublicGetUserOrder(input *order.PublicGetUserOrderParams) (*platformclientmodels.OrderInfo, error) {
 	accessToken, err := o.TokenRepository.GetToken()
 	if err != nil {
@@ -274,6 +290,7 @@ func (o *OrderService) PublicGetUserOrder(input *order.PublicGetUserOrderParams)
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use PublicCancelUserOrderShort instead
 func (o *OrderService) PublicCancelUserOrder(input *order.PublicCancelUserOrderParams) (*platformclientmodels.OrderInfo, error) {
 	accessToken, err := o.TokenRepository.GetToken()
 	if err != nil {
@@ -292,6 +309,7 @@ func (o *OrderService) PublicCancelUserOrder(input *order.PublicCancelUserOrderP
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use PublicGetUserOrderHistoriesShort instead
 func (o *OrderService) PublicGetUserOrderHistories(input *order.PublicGetUserOrderHistoriesParams) ([]*platformclientmodels.OrderHistoryInfo, error) {
 	accessToken, err := o.TokenRepository.GetToken()
 	if err != nil {
@@ -304,6 +322,7 @@ func (o *OrderService) PublicGetUserOrderHistories(input *order.PublicGetUserOrd
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use PublicDownloadUserOrderReceiptShort instead
 func (o *OrderService) PublicDownloadUserOrderReceipt(input *order.PublicDownloadUserOrderReceiptParams) error {
 	accessToken, err := o.TokenRepository.GetToken()
 	if err != nil {

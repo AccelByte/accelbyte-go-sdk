@@ -19,6 +19,7 @@ type PaymentDedicatedService struct {
 	TokenRepository repository.TokenRepository
 }
 
+// Deprecated: Use CreatePaymentOrderByDedicatedShort instead
 func (p *PaymentDedicatedService) CreatePaymentOrderByDedicated(input *payment_dedicated.CreatePaymentOrderByDedicatedParams) (*platformclientmodels.PaymentOrderCreateResult, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -46,6 +47,7 @@ func (p *PaymentDedicatedService) CreatePaymentOrderByDedicated(input *payment_d
 	return created.GetPayload(), nil
 }
 
+// Deprecated: Use RefundPaymentOrderByDedicatedShort instead
 func (p *PaymentDedicatedService) RefundPaymentOrderByDedicated(input *payment_dedicated.RefundPaymentOrderByDedicatedParams) (*platformclientmodels.PaymentOrderRefundResult, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -70,6 +72,7 @@ func (p *PaymentDedicatedService) RefundPaymentOrderByDedicated(input *payment_d
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use SyncPaymentOrdersShort instead
 func (p *PaymentDedicatedService) SyncPaymentOrders(input *payment_dedicated.SyncPaymentOrdersParams) (*platformclientmodels.PaymentOrderSyncResult, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {

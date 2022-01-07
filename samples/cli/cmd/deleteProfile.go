@@ -33,6 +33,8 @@ var deleteProfile = &cobra.Command{
 			ProfileID: profileId,
 			UserID:    userId,
 		}
+		//nolint:staticcheck // SA1019 To be deprecated later
+		//lint:ignore SA1019 Ignore the deprecation warnings
 		err := gameProfileService.PublicDeleteProfile(input)
 		if err != nil {
 			return err

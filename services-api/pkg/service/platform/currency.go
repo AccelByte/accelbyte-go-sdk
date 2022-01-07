@@ -19,6 +19,7 @@ type CurrencyService struct {
 	TokenRepository repository.TokenRepository
 }
 
+// Deprecated: Use ListCurrenciesShort instead
 func (c *CurrencyService) ListCurrencies(input *currency.ListCurrenciesParams) ([]*platformclientmodels.CurrencyInfo, error) {
 	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
@@ -31,6 +32,7 @@ func (c *CurrencyService) ListCurrencies(input *currency.ListCurrenciesParams) (
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use CreateCurrencyShort instead
 func (c *CurrencyService) CreateCurrency(input *currency.CreateCurrencyParams) (*platformclientmodels.CurrencyInfo, error) {
 	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
@@ -49,6 +51,7 @@ func (c *CurrencyService) CreateCurrency(input *currency.CreateCurrencyParams) (
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use UpdateCurrencyShort instead
 func (c *CurrencyService) UpdateCurrency(input *currency.UpdateCurrencyParams) (*platformclientmodels.CurrencyInfo, error) {
 	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
@@ -67,6 +70,7 @@ func (c *CurrencyService) UpdateCurrency(input *currency.UpdateCurrencyParams) (
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use DeleteCurrencyShort instead
 func (c *CurrencyService) DeleteCurrency(input *currency.DeleteCurrencyParams) (*platformclientmodels.CurrencyInfo, error) {
 	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
@@ -82,6 +86,7 @@ func (c *CurrencyService) DeleteCurrency(input *currency.DeleteCurrencyParams) (
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use GetCurrencyConfigShort instead
 func (c *CurrencyService) GetCurrencyConfig(input *currency.GetCurrencyConfigParams) (*platformclientmodels.CurrencyConfig, error) {
 	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
@@ -97,6 +102,7 @@ func (c *CurrencyService) GetCurrencyConfig(input *currency.GetCurrencyConfigPar
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use GetCurrencySummaryShort instead
 func (c *CurrencyService) GetCurrencySummary(input *currency.GetCurrencySummaryParams) (*platformclientmodels.CurrencySummary, error) {
 	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
@@ -112,6 +118,7 @@ func (c *CurrencyService) GetCurrencySummary(input *currency.GetCurrencySummaryP
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use PublicListCurrenciesShort instead
 func (c *CurrencyService) PublicListCurrencies(input *currency.PublicListCurrenciesParams) ([]*platformclientmodels.CurrencyInfo, error) {
 	ok, err := c.Client.Currency.PublicListCurrencies(input)
 	if err != nil {

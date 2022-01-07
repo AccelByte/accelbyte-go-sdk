@@ -39,6 +39,8 @@ var addFriendCmd = &cobra.Command{
 				FriendIds: friendIds,
 			},
 		}
+		//nolint:staticcheck // SA1019 To be deprecated later
+		//lint:ignore SA1019 Ignore the deprecation warnings
 		err = friendService.AddFriendsWithoutConfirmation(input)
 		if err != nil {
 			return err

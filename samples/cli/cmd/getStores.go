@@ -27,6 +27,8 @@ var getStoresCmd = &cobra.Command{
 		input := &store.ListStoresParams{
 			Namespace: namespace,
 		}
+		//nolint:staticcheck // SA1019 To be deprecated later
+		//lint:ignore SA1019 Ignore the deprecation warnings
 		listStore, err := storeService.ListStores(input)
 		if err != nil {
 			return err

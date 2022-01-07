@@ -40,6 +40,8 @@ var updateUserSlotConfigCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
+		//nolint:staticcheck // SA1019 To be deprecated later
+		//lint:ignore SA1019 Ignore the deprecation warnings
 		slots, err := socialService.UpdateUserSlotConfig(input)
 		if err != nil {
 			return err

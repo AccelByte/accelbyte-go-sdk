@@ -38,6 +38,8 @@ var createPlayerRecordCmd = &cobra.Command{
 			Client:          factory.NewCloudSaveClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
+		//nolint:staticcheck // SA1019 To be deprecated later
+		//lint:ignore SA1019 Ignore the deprecation warnings
 		err = cloudSaveService.PostPlayerPublicRecordHandlerV1(input)
 		if err != nil {
 			return err

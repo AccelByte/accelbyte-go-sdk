@@ -43,6 +43,8 @@ var registerUserCmd = &cobra.Command{
 			},
 			Namespace: namespace,
 		}
+		//nolint:staticcheck // SA1019 To be deprecated later
+		//lint:ignore SA1019 Ignore the deprecation warnings
 		user, err := userService.PublicCreateUserV3(input)
 		if err != nil {
 			return err
@@ -54,6 +56,8 @@ var registerUserCmd = &cobra.Command{
 			UserID:    userId,
 		}
 		if len(roleId) > 0 {
+			//nolint:staticcheck // SA1019 To be deprecated later
+			//lint:ignore SA1019 Ignore the deprecation warnings
 			err := userService.AdminAddUserRoleV3(inputRole)
 			if err != nil {
 				return err

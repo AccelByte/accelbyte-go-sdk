@@ -19,6 +19,7 @@ type OrderDedicatedService struct {
 	TokenRepository repository.TokenRepository
 }
 
+// Deprecated: Use SyncOrdersShort instead
 func (o *OrderDedicatedService) SyncOrders(input *order_dedicated.SyncOrdersParams) (*platformclientmodels.OrderSyncResult, error) {
 	accessToken, err := o.TokenRepository.GetToken()
 	if err != nil {

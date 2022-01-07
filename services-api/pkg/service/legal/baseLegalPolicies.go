@@ -19,6 +19,7 @@ type BaseLegalPoliciesService struct {
 	TokenRepository repository.TokenRepository
 }
 
+// Deprecated: Use RetrieveAllLegalPoliciesShort instead
 func (b *BaseLegalPoliciesService) RetrieveAllLegalPolicies(input *base_legal_policies.RetrieveAllLegalPoliciesParams) ([]*legalclientmodels.RetrieveBasePolicyResponse, error) {
 	accessToken, err := b.TokenRepository.GetToken()
 	if err != nil {
@@ -31,6 +32,7 @@ func (b *BaseLegalPoliciesService) RetrieveAllLegalPolicies(input *base_legal_po
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use CreatePolicyShort instead
 func (b *BaseLegalPoliciesService) CreatePolicy(input *base_legal_policies.CreatePolicyParams) (*legalclientmodels.CreateBasePolicyResponse, error) {
 	accessToken, err := b.TokenRepository.GetToken()
 	if err != nil {
@@ -49,6 +51,7 @@ func (b *BaseLegalPoliciesService) CreatePolicy(input *base_legal_policies.Creat
 	return created.GetPayload(), nil
 }
 
+// Deprecated: Use RetrieveSinglePolicyShort instead
 func (b *BaseLegalPoliciesService) RetrieveSinglePolicy(input *base_legal_policies.RetrieveSinglePolicyParams) (*legalclientmodels.RetrieveBasePolicyResponse, error) {
 	accessToken, err := b.TokenRepository.GetToken()
 	if err != nil {
@@ -64,6 +67,7 @@ func (b *BaseLegalPoliciesService) RetrieveSinglePolicy(input *base_legal_polici
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use PartialUpdatePolicyShort instead
 func (b *BaseLegalPoliciesService) PartialUpdatePolicy(input *base_legal_policies.PartialUpdatePolicyParams) (*legalclientmodels.UpdateBasePolicyResponse, error) {
 	accessToken, err := b.TokenRepository.GetToken()
 	if err != nil {
@@ -79,6 +83,7 @@ func (b *BaseLegalPoliciesService) PartialUpdatePolicy(input *base_legal_policie
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use RetrievePolicyCountryShort instead
 func (b *BaseLegalPoliciesService) RetrievePolicyCountry(input *base_legal_policies.RetrievePolicyCountryParams) (*legalclientmodels.RetrievePolicyResponse, error) {
 	accessToken, err := b.TokenRepository.GetToken()
 	if err != nil {
@@ -94,6 +99,7 @@ func (b *BaseLegalPoliciesService) RetrievePolicyCountry(input *base_legal_polic
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use RetrieveAllPolicyTypesShort instead
 func (b *BaseLegalPoliciesService) RetrieveAllPolicyTypes(input *base_legal_policies.RetrieveAllPolicyTypesParams) ([]*legalclientmodels.RetrievePolicyTypeResponse, error) {
 	accessToken, err := b.TokenRepository.GetToken()
 	if err != nil {

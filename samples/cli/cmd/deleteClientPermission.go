@@ -35,6 +35,8 @@ var deleteClientPermission = &cobra.Command{
 			Namespace: namespace,
 			Resource:  resource,
 		}
+		//nolint:staticcheck // SA1019 To be deprecated later
+		//lint:ignore SA1019 Ignore the deprecation warnings
 		err := clientService.AdminDeleteClientPermissionV3(input)
 		if err != nil {
 			logrus.Error(err)

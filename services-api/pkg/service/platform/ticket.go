@@ -19,6 +19,7 @@ type TicketService struct {
 	TokenRepository repository.TokenRepository
 }
 
+// Deprecated: Use GetTicketDynamicShort instead
 func (t *TicketService) GetTicketDynamic(input *ticket.GetTicketDynamicParams) (*platformclientmodels.TicketDynamicInfo, error) {
 	accessToken, err := t.TokenRepository.GetToken()
 	if err != nil {
@@ -34,6 +35,7 @@ func (t *TicketService) GetTicketDynamic(input *ticket.GetTicketDynamicParams) (
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use DecreaseTicketSaleShort instead
 func (t *TicketService) DecreaseTicketSale(input *ticket.DecreaseTicketSaleParams) error {
 	accessToken, err := t.TokenRepository.GetToken()
 	if err != nil {
@@ -52,6 +54,7 @@ func (t *TicketService) DecreaseTicketSale(input *ticket.DecreaseTicketSaleParam
 	return nil
 }
 
+// Deprecated: Use GetTicketBoothIDShort instead
 func (t *TicketService) GetTicketBoothID(input *ticket.GetTicketBoothIDParams) (*platformclientmodels.TicketBoothID, error) {
 	accessToken, err := t.TokenRepository.GetToken()
 	if err != nil {
@@ -67,6 +70,7 @@ func (t *TicketService) GetTicketBoothID(input *ticket.GetTicketBoothIDParams) (
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use IncreaseTicketSaleShort instead
 func (t *TicketService) IncreaseTicketSale(input *ticket.IncreaseTicketSaleParams) (*platformclientmodels.TicketSaleIncrementResult, error) {
 	accessToken, err := t.TokenRepository.GetToken()
 	if err != nil {
@@ -85,6 +89,7 @@ func (t *TicketService) IncreaseTicketSale(input *ticket.IncreaseTicketSaleParam
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use AcquireUserTicketShort instead
 func (t *TicketService) AcquireUserTicket(input *ticket.AcquireUserTicketParams) (*platformclientmodels.TicketAcquireResult, error) {
 	accessToken, err := t.TokenRepository.GetToken()
 	if err != nil {

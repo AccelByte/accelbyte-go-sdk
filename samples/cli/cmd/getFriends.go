@@ -33,6 +33,8 @@ var getFriendsCmd = &cobra.Command{
 			Limit:     &limit,
 			Offset:    &offset,
 		}
+		//nolint:staticcheck // SA1019 To be deprecated later
+		//lint:ignore SA1019 Ignore the deprecation warnings
 		friendList, err := friendService.GetListOfFriends(input)
 		if err != nil {
 			return err

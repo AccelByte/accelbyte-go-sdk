@@ -19,6 +19,7 @@ type ConfigurationService struct {
 	TokenRepository repository.TokenRepository
 }
 
+// Deprecated: Use ListGroupConfigurationAdminV1Short instead
 func (c *ConfigurationService) ListGroupConfigurationAdminV1(input *configuration.ListGroupConfigurationAdminV1Params) (*groupclientmodels.ModelsListConfigurationResponseV1, error) {
 	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
@@ -46,6 +47,7 @@ func (c *ConfigurationService) ListGroupConfigurationAdminV1(input *configuratio
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use CreateGroupConfigurationAdminV1Short instead
 func (c *ConfigurationService) CreateGroupConfigurationAdminV1(input *configuration.CreateGroupConfigurationAdminV1Params) (*groupclientmodels.ModelsCreateGroupConfigurationResponseV1, error) {
 	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
@@ -73,6 +75,7 @@ func (c *ConfigurationService) CreateGroupConfigurationAdminV1(input *configurat
 	return created.GetPayload(), nil
 }
 
+// Deprecated: Use InitiateGroupConfigurationAdminV1Short instead
 func (c *ConfigurationService) InitiateGroupConfigurationAdminV1(input *configuration.InitiateGroupConfigurationAdminV1Params) (*groupclientmodels.ModelsCreateGroupConfigurationResponseV1, error) {
 	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
@@ -97,6 +100,7 @@ func (c *ConfigurationService) InitiateGroupConfigurationAdminV1(input *configur
 	return created.GetPayload(), nil
 }
 
+// Deprecated: Use GetGroupConfigurationAdminV1Short instead
 func (c *ConfigurationService) GetGroupConfigurationAdminV1(input *configuration.GetGroupConfigurationAdminV1Params) (*groupclientmodels.ModelsGetGroupConfigurationResponseV1, error) {
 	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
@@ -124,6 +128,7 @@ func (c *ConfigurationService) GetGroupConfigurationAdminV1(input *configuration
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use DeleteGroupConfigurationV1Short instead
 func (c *ConfigurationService) DeleteGroupConfigurationV1(input *configuration.DeleteGroupConfigurationV1Params) error {
 	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
@@ -151,6 +156,7 @@ func (c *ConfigurationService) DeleteGroupConfigurationV1(input *configuration.D
 	return nil
 }
 
+// Deprecated: Use UpdateGroupConfigurationAdminV1Short instead
 func (c *ConfigurationService) UpdateGroupConfigurationAdminV1(input *configuration.UpdateGroupConfigurationAdminV1Params) (*groupclientmodels.ModelsUpdateGroupConfigurationResponseV1, error) {
 	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
@@ -178,6 +184,7 @@ func (c *ConfigurationService) UpdateGroupConfigurationAdminV1(input *configurat
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use UpdateGroupConfigurationGlobalRuleAdminV1Short instead
 func (c *ConfigurationService) UpdateGroupConfigurationGlobalRuleAdminV1(input *configuration.UpdateGroupConfigurationGlobalRuleAdminV1Params) (*groupclientmodels.ModelsUpdateGroupConfigurationResponseV1, error) {
 	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
@@ -205,6 +212,7 @@ func (c *ConfigurationService) UpdateGroupConfigurationGlobalRuleAdminV1(input *
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use DeleteGroupConfigurationGlobalRuleAdminV1Short instead
 func (c *ConfigurationService) DeleteGroupConfigurationGlobalRuleAdminV1(input *configuration.DeleteGroupConfigurationGlobalRuleAdminV1Params) (*groupclientmodels.ModelsUpdateGroupConfigurationResponseV1, error) {
 	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {

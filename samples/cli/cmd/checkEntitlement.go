@@ -76,6 +76,8 @@ var checkEntitlementCmd = &cobra.Command{
 			Skus:      skus,
 			UserID:    userId,
 		}
+		//nolint:staticcheck // SA1019 To be deprecated later
+		//lint:ignore SA1019 Ignore the deprecation warnings
 		userEntitlement, err := entitlementService.ExistsAnyUserActiveEntitlement(input)
 		if err != nil {
 			logrus.Error(err)

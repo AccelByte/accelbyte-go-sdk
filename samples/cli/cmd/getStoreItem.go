@@ -61,6 +61,8 @@ var getStoreitemCmd = &cobra.Command{
 			Tags:            &tags,
 			TargetNamespace: &targetNamespace,
 		}
+		//nolint:staticcheck // SA1019 To be deprecated later
+		//lint:ignore SA1019 Ignore the deprecation warnings
 		items, err := itemService.QueryItems(input)
 		if err != nil {
 			return err

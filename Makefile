@@ -8,7 +8,7 @@ lint:
 	rm -f lint.err
 	find -type f -iname go.mod -exec dirname {} \; | while read DIRECTORY; do \
 		echo "$$DIRECTORY"; \
-		docker run -t --rm -u $$(id -u):$$(id -g) -v $$(pwd):/data/ -w /data/ -e GOCACHE=/tmp/.cache -e GOLANGCI_LINT_CACHE=/tmp/.cache golangci/golangci-lint:v1.42.1-alpine \
+			docker run -t --rm -u $$(id -u):$$(id -g) -v $$(pwd):/data/ -w /data/ -e GOCACHE=/tmp/.cache -e GOLANGCI_LINT_CACHE=/tmp/.cache golangci/golangci-lint:v1.42.1-alpine\
 				sh -c "cd $$DIRECTORY && golangci-lint -v --timeout 5m --max-same-issues 0 --max-issues-per-linter 0 --color never run || touch /data/lint.err"; \
 	done
 	[ ! -f lint.err ] || (rm lint.err && exit 1)

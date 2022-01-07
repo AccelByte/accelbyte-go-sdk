@@ -19,6 +19,7 @@ type OAuth20ExtensionService struct {
 	TokenRepository repository.TokenRepository
 }
 
+// Deprecated: Use UserAuthenticationV3Short instead
 func (o *OAuth20ExtensionService) UserAuthenticationV3(input *o_auth2_0_extension.UserAuthenticationV3Params) error {
 	accessToken, err := o.TokenRepository.GetToken()
 	if err != nil {
@@ -31,6 +32,7 @@ func (o *OAuth20ExtensionService) UserAuthenticationV3(input *o_auth2_0_extensio
 	return nil
 }
 
+// Deprecated: Use GetCountryLocationV3Short instead
 func (o *OAuth20ExtensionService) GetCountryLocationV3(input *o_auth2_0_extension.GetCountryLocationV3Params) (*iamclientmodels.OauthmodelCountryLocationResponse, error) {
 	accessToken, err := o.TokenRepository.GetToken()
 	if err != nil {
@@ -43,6 +45,7 @@ func (o *OAuth20ExtensionService) GetCountryLocationV3(input *o_auth2_0_extensio
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use LogoutShort instead
 func (o *OAuth20ExtensionService) Logout(input *o_auth2_0_extension.LogoutParams) error {
 	accessToken, err := o.TokenRepository.GetToken()
 	if err != nil {
@@ -55,6 +58,7 @@ func (o *OAuth20ExtensionService) Logout(input *o_auth2_0_extension.LogoutParams
 	return nil
 }
 
+// Deprecated: Use PlatformAuthenticationV3Short instead
 func (o *OAuth20ExtensionService) PlatformAuthenticationV3(input *o_auth2_0_extension.PlatformAuthenticationV3Params) error {
 	accessToken, err := o.TokenRepository.GetToken()
 	if err != nil {

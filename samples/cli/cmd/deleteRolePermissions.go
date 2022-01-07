@@ -35,6 +35,8 @@ var deleteRolePermissionsCmd = &cobra.Command{
 			Body:   body,
 			RoleID: roleId,
 		}
+		//nolint:staticcheck // SA1019 To be deprecated later
+		//lint:ignore SA1019 Ignore the deprecation warnings
 		err := roleService.AdminDeleteRolePermissionsV3(input)
 		if err != nil {
 			return err

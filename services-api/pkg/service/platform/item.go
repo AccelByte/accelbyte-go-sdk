@@ -19,6 +19,7 @@ type ItemService struct {
 	TokenRepository repository.TokenRepository
 }
 
+// Deprecated: Use SyncInGameItemShort instead
 func (i *ItemService) SyncInGameItem(input *item.SyncInGameItemParams) (*platformclientmodels.FullItemInfo, error) {
 	accessToken, err := i.TokenRepository.GetToken()
 	if err != nil {
@@ -43,6 +44,7 @@ func (i *ItemService) SyncInGameItem(input *item.SyncInGameItemParams) (*platfor
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use CreateItemShort instead
 func (i *ItemService) CreateItem(input *item.CreateItemParams) (*platformclientmodels.FullItemInfo, error) {
 	accessToken, err := i.TokenRepository.GetToken()
 	if err != nil {
@@ -67,6 +69,7 @@ func (i *ItemService) CreateItem(input *item.CreateItemParams) (*platformclientm
 	return created.GetPayload(), nil
 }
 
+// Deprecated: Use GetItemByAppIDShort instead
 func (i *ItemService) GetItemByAppID(input *item.GetItemByAppIDParams) (*platformclientmodels.FullItemInfo, error) {
 	accessToken, err := i.TokenRepository.GetToken()
 	if err != nil {
@@ -82,6 +85,7 @@ func (i *ItemService) GetItemByAppID(input *item.GetItemByAppIDParams) (*platfor
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use QueryItemsShort instead
 func (i *ItemService) QueryItems(input *item.QueryItemsParams) (*platformclientmodels.FullItemPagingSlicedResult, error) {
 	accessToken, err := i.TokenRepository.GetToken()
 	if err != nil {
@@ -100,6 +104,7 @@ func (i *ItemService) QueryItems(input *item.QueryItemsParams) (*platformclientm
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use ListBasicItemsByFeaturesShort instead
 func (i *ItemService) ListBasicItemsByFeatures(input *item.ListBasicItemsByFeaturesParams) ([]*platformclientmodels.BasicItem, error) {
 	accessToken, err := i.TokenRepository.GetToken()
 	if err != nil {
@@ -112,6 +117,7 @@ func (i *ItemService) ListBasicItemsByFeatures(input *item.ListBasicItemsByFeatu
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use GetItemBySkuShort instead
 func (i *ItemService) GetItemBySku(input *item.GetItemBySkuParams) (*platformclientmodels.FullItemInfo, error) {
 	accessToken, err := i.TokenRepository.GetToken()
 	if err != nil {
@@ -127,6 +133,7 @@ func (i *ItemService) GetItemBySku(input *item.GetItemBySkuParams) (*platformcli
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use GetLocaleItemBySkuShort instead
 func (i *ItemService) GetLocaleItemBySku(input *item.GetLocaleItemBySkuParams) (*platformclientmodels.PopulatedItemInfo, error) {
 	accessToken, err := i.TokenRepository.GetToken()
 	if err != nil {
@@ -142,6 +149,7 @@ func (i *ItemService) GetLocaleItemBySku(input *item.GetLocaleItemBySkuParams) (
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use GetItemIDBySkuShort instead
 func (i *ItemService) GetItemIDBySku(input *item.GetItemIDBySkuParams) (*platformclientmodels.ItemID, error) {
 	accessToken, err := i.TokenRepository.GetToken()
 	if err != nil {
@@ -157,6 +165,7 @@ func (i *ItemService) GetItemIDBySku(input *item.GetItemIDBySkuParams) (*platfor
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use BulkGetLocaleItemsShort instead
 func (i *ItemService) BulkGetLocaleItems(input *item.BulkGetLocaleItemsParams) ([]*platformclientmodels.ItemInfo, error) {
 	accessToken, err := i.TokenRepository.GetToken()
 	if err != nil {
@@ -172,6 +181,7 @@ func (i *ItemService) BulkGetLocaleItems(input *item.BulkGetLocaleItemsParams) (
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use SearchItemsShort instead
 func (i *ItemService) SearchItems(input *item.SearchItemsParams) (*platformclientmodels.FullItemPagingSlicedResult, error) {
 	accessToken, err := i.TokenRepository.GetToken()
 	if err != nil {
@@ -187,6 +197,7 @@ func (i *ItemService) SearchItems(input *item.SearchItemsParams) (*platformclien
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use QueryUncategorizedItemsShort instead
 func (i *ItemService) QueryUncategorizedItems(input *item.QueryUncategorizedItemsParams) (*platformclientmodels.FullItemPagingSlicedResult, error) {
 	accessToken, err := i.TokenRepository.GetToken()
 	if err != nil {
@@ -205,6 +216,7 @@ func (i *ItemService) QueryUncategorizedItems(input *item.QueryUncategorizedItem
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use GetItemShort instead
 func (i *ItemService) GetItem(input *item.GetItemParams) (*platformclientmodels.FullItemInfo, error) {
 	accessToken, err := i.TokenRepository.GetToken()
 	if err != nil {
@@ -220,6 +232,7 @@ func (i *ItemService) GetItem(input *item.GetItemParams) (*platformclientmodels.
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use UpdateItemShort instead
 func (i *ItemService) UpdateItem(input *item.UpdateItemParams) (*platformclientmodels.FullItemInfo, error) {
 	accessToken, err := i.TokenRepository.GetToken()
 	if err != nil {
@@ -244,6 +257,7 @@ func (i *ItemService) UpdateItem(input *item.UpdateItemParams) (*platformclientm
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use DeleteItemShort instead
 func (i *ItemService) DeleteItem(input *item.DeleteItemParams) error {
 	accessToken, err := i.TokenRepository.GetToken()
 	if err != nil {
@@ -259,6 +273,7 @@ func (i *ItemService) DeleteItem(input *item.DeleteItemParams) error {
 	return nil
 }
 
+// Deprecated: Use AcquireItemShort instead
 func (i *ItemService) AcquireItem(input *item.AcquireItemParams) (*platformclientmodels.ItemAcquireResult, error) {
 	accessToken, err := i.TokenRepository.GetToken()
 	if err != nil {
@@ -274,6 +289,7 @@ func (i *ItemService) AcquireItem(input *item.AcquireItemParams) (*platformclien
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use GetAppShort instead
 func (i *ItemService) GetApp(input *item.GetAppParams) (*platformclientmodels.FullAppInfo, error) {
 	accessToken, err := i.TokenRepository.GetToken()
 	if err != nil {
@@ -286,6 +302,7 @@ func (i *ItemService) GetApp(input *item.GetAppParams) (*platformclientmodels.Fu
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use UpdateAppShort instead
 func (i *ItemService) UpdateApp(input *item.UpdateAppParams) (*platformclientmodels.FullAppInfo, error) {
 	accessToken, err := i.TokenRepository.GetToken()
 	if err != nil {
@@ -307,6 +324,7 @@ func (i *ItemService) UpdateApp(input *item.UpdateAppParams) (*platformclientmod
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use DisableItemShort instead
 func (i *ItemService) DisableItem(input *item.DisableItemParams) (*platformclientmodels.FullItemInfo, error) {
 	accessToken, err := i.TokenRepository.GetToken()
 	if err != nil {
@@ -325,6 +343,7 @@ func (i *ItemService) DisableItem(input *item.DisableItemParams) (*platformclien
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use GetItemDynamicDataShort instead
 func (i *ItemService) GetItemDynamicData(input *item.GetItemDynamicDataParams) (*platformclientmodels.ItemDynamicDataInfo, error) {
 	accessToken, err := i.TokenRepository.GetToken()
 	if err != nil {
@@ -340,6 +359,7 @@ func (i *ItemService) GetItemDynamicData(input *item.GetItemDynamicDataParams) (
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use EnableItemShort instead
 func (i *ItemService) EnableItem(input *item.EnableItemParams) (*platformclientmodels.FullItemInfo, error) {
 	accessToken, err := i.TokenRepository.GetToken()
 	if err != nil {
@@ -358,6 +378,7 @@ func (i *ItemService) EnableItem(input *item.EnableItemParams) (*platformclientm
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use FeatureItemShort instead
 func (i *ItemService) FeatureItem(input *item.FeatureItemParams) (*platformclientmodels.FullItemInfo, error) {
 	accessToken, err := i.TokenRepository.GetToken()
 	if err != nil {
@@ -376,6 +397,7 @@ func (i *ItemService) FeatureItem(input *item.FeatureItemParams) (*platformclien
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use DefeatureItemShort instead
 func (i *ItemService) DefeatureItem(input *item.DefeatureItemParams) (*platformclientmodels.FullItemInfo, error) {
 	accessToken, err := i.TokenRepository.GetToken()
 	if err != nil {
@@ -394,6 +416,7 @@ func (i *ItemService) DefeatureItem(input *item.DefeatureItemParams) (*platformc
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use GetLocaleItemShort instead
 func (i *ItemService) GetLocaleItem(input *item.GetLocaleItemParams) (*platformclientmodels.PopulatedItemInfo, error) {
 	accessToken, err := i.TokenRepository.GetToken()
 	if err != nil {
@@ -409,6 +432,7 @@ func (i *ItemService) GetLocaleItem(input *item.GetLocaleItemParams) (*platformc
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use ReturnItemShort instead
 func (i *ItemService) ReturnItem(input *item.ReturnItemParams) error {
 	accessToken, err := i.TokenRepository.GetToken()
 	if err != nil {
@@ -427,6 +451,7 @@ func (i *ItemService) ReturnItem(input *item.ReturnItemParams) error {
 	return nil
 }
 
+// Deprecated: Use PublicGetItemByAppIDShort instead
 func (i *ItemService) PublicGetItemByAppID(input *item.PublicGetItemByAppIDParams) (*platformclientmodels.ItemInfo, error) {
 	ok, notFound, err := i.Client.Item.PublicGetItemByAppID(input)
 	if notFound != nil {
@@ -438,6 +463,7 @@ func (i *ItemService) PublicGetItemByAppID(input *item.PublicGetItemByAppIDParam
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use PublicQueryItemsShort instead
 func (i *ItemService) PublicQueryItems(input *item.PublicQueryItemsParams) (*platformclientmodels.ItemPagingSlicedResult, error) {
 	ok, notFound, unprocessableEntity, err := i.Client.Item.PublicQueryItems(input)
 	if notFound != nil {
@@ -452,6 +478,7 @@ func (i *ItemService) PublicQueryItems(input *item.PublicQueryItemsParams) (*pla
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use PublicGetItemBySkuShort instead
 func (i *ItemService) PublicGetItemBySku(input *item.PublicGetItemBySkuParams) (*platformclientmodels.ItemInfo, error) {
 	ok, notFound, err := i.Client.Item.PublicGetItemBySku(input)
 	if notFound != nil {
@@ -463,6 +490,7 @@ func (i *ItemService) PublicGetItemBySku(input *item.PublicGetItemBySkuParams) (
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use PublicBulkGetItemsShort instead
 func (i *ItemService) PublicBulkGetItems(input *item.PublicBulkGetItemsParams) ([]*platformclientmodels.ItemInfo, error) {
 	ok, notFound, err := i.Client.Item.PublicBulkGetItems(input)
 	if notFound != nil {
@@ -474,6 +502,7 @@ func (i *ItemService) PublicBulkGetItems(input *item.PublicBulkGetItemsParams) (
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use PublicSearchItemsShort instead
 func (i *ItemService) PublicSearchItems(input *item.PublicSearchItemsParams) (*platformclientmodels.ItemPagingSlicedResult, error) {
 	ok, notFound, err := i.Client.Item.PublicSearchItems(input)
 	if notFound != nil {
@@ -485,6 +514,7 @@ func (i *ItemService) PublicSearchItems(input *item.PublicSearchItemsParams) (*p
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use PublicGetAppShort instead
 func (i *ItemService) PublicGetApp(input *item.PublicGetAppParams) (*platformclientmodels.AppInfo, error) {
 	ok, notFound, err := i.Client.Item.PublicGetApp(input)
 	if notFound != nil {
@@ -496,6 +526,7 @@ func (i *ItemService) PublicGetApp(input *item.PublicGetAppParams) (*platformcli
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use PublicGetItemDynamicDataShort instead
 func (i *ItemService) PublicGetItemDynamicData(input *item.PublicGetItemDynamicDataParams) (*platformclientmodels.ItemDynamicDataInfo, error) {
 	ok, notFound, err := i.Client.Item.PublicGetItemDynamicData(input)
 	if notFound != nil {
@@ -507,6 +538,7 @@ func (i *ItemService) PublicGetItemDynamicData(input *item.PublicGetItemDynamicD
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use PublicGetItemShort instead
 func (i *ItemService) PublicGetItem(input *item.PublicGetItemParams) (*platformclientmodels.PopulatedItemInfo, error) {
 	ok, notFound, err := i.Client.Item.PublicGetItem(input)
 	if notFound != nil {

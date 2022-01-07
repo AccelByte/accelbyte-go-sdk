@@ -25,6 +25,8 @@ var getPublicMyUserCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		input := &users.PublicGetMyUserV3Params{}
+		//nolint:staticcheck // SA1019 To be deprecated later
+		//lint:ignore SA1019 Ignore the deprecation warnings
 		user, err := userService.PublicGetMyUserV3(input)
 		if err != nil {
 			return err

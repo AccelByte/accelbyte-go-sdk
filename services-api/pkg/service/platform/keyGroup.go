@@ -19,6 +19,7 @@ type KeyGroupService struct {
 	TokenRepository repository.TokenRepository
 }
 
+// Deprecated: Use QueryKeyGroupsShort instead
 func (k *KeyGroupService) QueryKeyGroups(input *key_group.QueryKeyGroupsParams) (*platformclientmodels.KeyGroupPagingSlicedResult, error) {
 	accessToken, err := k.TokenRepository.GetToken()
 	if err != nil {
@@ -31,6 +32,7 @@ func (k *KeyGroupService) QueryKeyGroups(input *key_group.QueryKeyGroupsParams) 
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use CreateKeyGroupShort instead
 func (k *KeyGroupService) CreateKeyGroup(input *key_group.CreateKeyGroupParams) (*platformclientmodels.KeyGroupInfo, error) {
 	accessToken, err := k.TokenRepository.GetToken()
 	if err != nil {
@@ -49,6 +51,7 @@ func (k *KeyGroupService) CreateKeyGroup(input *key_group.CreateKeyGroupParams) 
 	return created.GetPayload(), nil
 }
 
+// Deprecated: Use GetKeyGroupShort instead
 func (k *KeyGroupService) GetKeyGroup(input *key_group.GetKeyGroupParams) (*platformclientmodels.KeyGroupInfo, error) {
 	accessToken, err := k.TokenRepository.GetToken()
 	if err != nil {
@@ -64,6 +67,7 @@ func (k *KeyGroupService) GetKeyGroup(input *key_group.GetKeyGroupParams) (*plat
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use UpdateKeyGroupShort instead
 func (k *KeyGroupService) UpdateKeyGroup(input *key_group.UpdateKeyGroupParams) (*platformclientmodels.KeyGroupInfo, error) {
 	accessToken, err := k.TokenRepository.GetToken()
 	if err != nil {
@@ -85,6 +89,7 @@ func (k *KeyGroupService) UpdateKeyGroup(input *key_group.UpdateKeyGroupParams) 
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use GetKeyGroupDynamicShort instead
 func (k *KeyGroupService) GetKeyGroupDynamic(input *key_group.GetKeyGroupDynamicParams) (*platformclientmodels.KeyGroupDynamicInfo, error) {
 	accessToken, err := k.TokenRepository.GetToken()
 	if err != nil {
@@ -100,6 +105,7 @@ func (k *KeyGroupService) GetKeyGroupDynamic(input *key_group.GetKeyGroupDynamic
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use ListKeysShort instead
 func (k *KeyGroupService) ListKeys(input *key_group.ListKeysParams) (*platformclientmodels.KeyPagingSliceResult, error) {
 	accessToken, err := k.TokenRepository.GetToken()
 	if err != nil {
@@ -112,6 +118,7 @@ func (k *KeyGroupService) ListKeys(input *key_group.ListKeysParams) (*platformcl
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use UploadKeysShort instead
 func (k *KeyGroupService) UploadKeys(input *key_group.UploadKeysParams) (*platformclientmodels.BulkOperationResult, error) {
 	accessToken, err := k.TokenRepository.GetToken()
 	if err != nil {

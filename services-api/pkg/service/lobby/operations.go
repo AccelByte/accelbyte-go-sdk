@@ -19,6 +19,7 @@ type OperationsService struct {
 	TokenRepository repository.TokenRepository
 }
 
+// Deprecated: Use AdminUpdatePartyAttributesV1Short instead
 func (o *OperationsService) AdminUpdatePartyAttributesV1(input *operations.AdminUpdatePartyAttributesV1Params) (*lobbyclientmodels.ModelsPartyData, error) {
 	accessToken, err := o.TokenRepository.GetToken()
 	if err != nil {
@@ -49,6 +50,7 @@ func (o *OperationsService) AdminUpdatePartyAttributesV1(input *operations.Admin
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use PublicGetMessagesShort instead
 func (o *OperationsService) PublicGetMessages(input *operations.PublicGetMessagesParams) ([]*lobbyclientmodels.LogAppMessageDeclaration, error) {
 	accessToken, err := o.TokenRepository.GetToken()
 	if err != nil {

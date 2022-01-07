@@ -29,6 +29,8 @@ var deleteStatCmd = &cobra.Command{
 			Namespace: namespace,
 			StatCode:  statCode,
 		}
+		//nolint:staticcheck // SA1019 To be deprecated later
+		//lint:ignore SA1019 Ignore the deprecation warnings
 		err := socialService.DeleteStat(input)
 		if err != nil {
 			return err

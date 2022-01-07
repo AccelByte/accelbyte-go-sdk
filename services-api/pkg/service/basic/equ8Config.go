@@ -19,6 +19,7 @@ type EQU8ConfigService struct {
 	TokenRepository repository.TokenRepository
 }
 
+// Deprecated: Use GetConfigShort instead
 func (e *EQU8ConfigService) GetConfig(input *e_q_u8_config.GetConfigParams) (*basicclientmodels.Equ8Config, error) {
 	accessToken, err := e.TokenRepository.GetToken()
 	if err != nil {
@@ -37,6 +38,7 @@ func (e *EQU8ConfigService) GetConfig(input *e_q_u8_config.GetConfigParams) (*ba
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use DeleteConfigShort instead
 func (e *EQU8ConfigService) DeleteConfig(input *e_q_u8_config.DeleteConfigParams) error {
 	accessToken, err := e.TokenRepository.GetToken()
 	if err != nil {
@@ -49,6 +51,7 @@ func (e *EQU8ConfigService) DeleteConfig(input *e_q_u8_config.DeleteConfigParams
 	return nil
 }
 
+// Deprecated: Use UpdateConfigShort instead
 func (e *EQU8ConfigService) UpdateConfig(input *e_q_u8_config.UpdateConfigParams) (*basicclientmodels.Equ8Config, error) {
 	accessToken, err := e.TokenRepository.GetToken()
 	if err != nil {

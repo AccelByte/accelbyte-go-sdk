@@ -19,6 +19,7 @@ type RewardService struct {
 	TokenRepository repository.TokenRepository
 }
 
+// Deprecated: Use CreateRewardShort instead
 func (r *RewardService) CreateReward(input *reward.CreateRewardParams) (*platformclientmodels.RewardInfo, error) {
 	accessToken, err := r.TokenRepository.GetToken()
 	if err != nil {
@@ -40,6 +41,7 @@ func (r *RewardService) CreateReward(input *reward.CreateRewardParams) (*platfor
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use QueryRewardsShort instead
 func (r *RewardService) QueryRewards(input *reward.QueryRewardsParams) (*platformclientmodels.RewardPagingSlicedResult, error) {
 	accessToken, err := r.TokenRepository.GetToken()
 	if err != nil {
@@ -55,6 +57,7 @@ func (r *RewardService) QueryRewards(input *reward.QueryRewardsParams) (*platfor
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use ExportRewardsShort instead
 func (r *RewardService) ExportRewards(input *reward.ExportRewardsParams) error {
 	accessToken, err := r.TokenRepository.GetToken()
 	if err != nil {
@@ -67,6 +70,7 @@ func (r *RewardService) ExportRewards(input *reward.ExportRewardsParams) error {
 	return nil
 }
 
+// Deprecated: Use ImportRewardsShort instead
 func (r *RewardService) ImportRewards(input *reward.ImportRewardsParams) error {
 	accessToken, err := r.TokenRepository.GetToken()
 	if err != nil {
@@ -82,6 +86,7 @@ func (r *RewardService) ImportRewards(input *reward.ImportRewardsParams) error {
 	return nil
 }
 
+// Deprecated: Use GetRewardShort instead
 func (r *RewardService) GetReward(input *reward.GetRewardParams) (*platformclientmodels.RewardInfo, error) {
 	accessToken, err := r.TokenRepository.GetToken()
 	if err != nil {
@@ -97,6 +102,7 @@ func (r *RewardService) GetReward(input *reward.GetRewardParams) (*platformclien
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use UpdateRewardShort instead
 func (r *RewardService) UpdateReward(input *reward.UpdateRewardParams) (*platformclientmodels.RewardInfo, error) {
 	accessToken, err := r.TokenRepository.GetToken()
 	if err != nil {
@@ -115,6 +121,7 @@ func (r *RewardService) UpdateReward(input *reward.UpdateRewardParams) (*platfor
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use DeleteRewardShort instead
 func (r *RewardService) DeleteReward(input *reward.DeleteRewardParams) (*platformclientmodels.RewardInfo, error) {
 	accessToken, err := r.TokenRepository.GetToken()
 	if err != nil {
@@ -130,6 +137,7 @@ func (r *RewardService) DeleteReward(input *reward.DeleteRewardParams) (*platfor
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use CheckEventConditionShort instead
 func (r *RewardService) CheckEventCondition(input *reward.CheckEventConditionParams) (*platformclientmodels.ConditionMatchResult, error) {
 	accessToken, err := r.TokenRepository.GetToken()
 	if err != nil {
@@ -145,6 +153,7 @@ func (r *RewardService) CheckEventCondition(input *reward.CheckEventConditionPar
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use GetRewardByCodeShort instead
 func (r *RewardService) GetRewardByCode(input *reward.GetRewardByCodeParams) (*platformclientmodels.RewardInfo, error) {
 	accessToken, err := r.TokenRepository.GetToken()
 	if err != nil {
@@ -160,6 +169,7 @@ func (r *RewardService) GetRewardByCode(input *reward.GetRewardByCodeParams) (*p
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use QueryRewards1Short instead
 func (r *RewardService) QueryRewards1(input *reward.QueryRewards1Params) (*platformclientmodels.RewardPagingSlicedResult, error) {
 	accessToken, err := r.TokenRepository.GetToken()
 	if err != nil {
@@ -175,6 +185,7 @@ func (r *RewardService) QueryRewards1(input *reward.QueryRewards1Params) (*platf
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use GetReward1Short instead
 func (r *RewardService) GetReward1(input *reward.GetReward1Params) (*platformclientmodels.RewardInfo, error) {
 	accessToken, err := r.TokenRepository.GetToken()
 	if err != nil {

@@ -27,6 +27,8 @@ var getMyProfileCmd = &cobra.Command{
 		input := &user_profile.GetMyProfileInfoParams{
 			Namespace: namespace,
 		}
+		//nolint:staticcheck // SA1019 To be deprecated later
+		//lint:ignore SA1019 Ignore the deprecation warnings
 		profile, err := basicService.GetMyProfileInfo(input)
 		if err != nil {
 			return err

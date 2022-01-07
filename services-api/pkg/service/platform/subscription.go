@@ -19,6 +19,7 @@ type SubscriptionService struct {
 	TokenRepository repository.TokenRepository
 }
 
+// Deprecated: Use QuerySubscriptionsShort instead
 func (s *SubscriptionService) QuerySubscriptions(input *subscription.QuerySubscriptionsParams) (*platformclientmodels.SubscriptionPagingSlicedResult, error) {
 	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {
@@ -31,6 +32,7 @@ func (s *SubscriptionService) QuerySubscriptions(input *subscription.QuerySubscr
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use RecurringChargeSubscriptionShort instead
 func (s *SubscriptionService) RecurringChargeSubscription(input *subscription.RecurringChargeSubscriptionParams) (*platformclientmodels.RecurringChargeResult, error) {
 	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {
@@ -43,6 +45,7 @@ func (s *SubscriptionService) RecurringChargeSubscription(input *subscription.Re
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use QueryUserSubscriptionsShort instead
 func (s *SubscriptionService) QueryUserSubscriptions(input *subscription.QueryUserSubscriptionsParams) (*platformclientmodels.SubscriptionPagingSlicedResult, error) {
 	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {
@@ -55,6 +58,7 @@ func (s *SubscriptionService) QueryUserSubscriptions(input *subscription.QueryUs
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use GetUserSubscriptionActivitiesShort instead
 func (s *SubscriptionService) GetUserSubscriptionActivities(input *subscription.GetUserSubscriptionActivitiesParams) (*platformclientmodels.SubscriptionActivityPagingSlicedResult, error) {
 	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {
@@ -67,6 +71,7 @@ func (s *SubscriptionService) GetUserSubscriptionActivities(input *subscription.
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use PlatformSubscribeSubscriptionShort instead
 func (s *SubscriptionService) PlatformSubscribeSubscription(input *subscription.PlatformSubscribeSubscriptionParams) (*platformclientmodels.SubscriptionInfo, error) {
 	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {
@@ -91,6 +96,7 @@ func (s *SubscriptionService) PlatformSubscribeSubscription(input *subscription.
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use CheckUserSubscriptionSubscribableByItemIDShort instead
 func (s *SubscriptionService) CheckUserSubscriptionSubscribableByItemID(input *subscription.CheckUserSubscriptionSubscribableByItemIDParams) (*platformclientmodels.Subscribable, error) {
 	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {
@@ -103,6 +109,7 @@ func (s *SubscriptionService) CheckUserSubscriptionSubscribableByItemID(input *s
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use GetUserSubscriptionShort instead
 func (s *SubscriptionService) GetUserSubscription(input *subscription.GetUserSubscriptionParams) (*platformclientmodels.SubscriptionInfo, error) {
 	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {
@@ -118,6 +125,7 @@ func (s *SubscriptionService) GetUserSubscription(input *subscription.GetUserSub
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use DeleteUserSubscriptionShort instead
 func (s *SubscriptionService) DeleteUserSubscription(input *subscription.DeleteUserSubscriptionParams) error {
 	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {
@@ -130,6 +138,7 @@ func (s *SubscriptionService) DeleteUserSubscription(input *subscription.DeleteU
 	return nil
 }
 
+// Deprecated: Use CancelSubscriptionShort instead
 func (s *SubscriptionService) CancelSubscription(input *subscription.CancelSubscriptionParams) (*platformclientmodels.SubscriptionInfo, error) {
 	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {
@@ -148,6 +157,7 @@ func (s *SubscriptionService) CancelSubscription(input *subscription.CancelSubsc
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use GrantDaysToSubscriptionShort instead
 func (s *SubscriptionService) GrantDaysToSubscription(input *subscription.GrantDaysToSubscriptionParams) (*platformclientmodels.SubscriptionInfo, error) {
 	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {
@@ -163,6 +173,7 @@ func (s *SubscriptionService) GrantDaysToSubscription(input *subscription.GrantD
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use GetUserSubscriptionBillingHistoriesShort instead
 func (s *SubscriptionService) GetUserSubscriptionBillingHistories(input *subscription.GetUserSubscriptionBillingHistoriesParams) (*platformclientmodels.BillingHistoryPagingSlicedResult, error) {
 	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {
@@ -175,6 +186,7 @@ func (s *SubscriptionService) GetUserSubscriptionBillingHistories(input *subscri
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use ProcessUserSubscriptionNotificationShort instead
 func (s *SubscriptionService) ProcessUserSubscriptionNotification(input *subscription.ProcessUserSubscriptionNotificationParams) error {
 	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {
@@ -190,6 +202,7 @@ func (s *SubscriptionService) ProcessUserSubscriptionNotification(input *subscri
 	return nil
 }
 
+// Deprecated: Use PublicQueryUserSubscriptionsShort instead
 func (s *SubscriptionService) PublicQueryUserSubscriptions(input *subscription.PublicQueryUserSubscriptionsParams) (*platformclientmodels.SubscriptionPagingSlicedResult, error) {
 	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {
@@ -202,6 +215,7 @@ func (s *SubscriptionService) PublicQueryUserSubscriptions(input *subscription.P
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use PublicSubscribeSubscriptionShort instead
 func (s *SubscriptionService) PublicSubscribeSubscription(input *subscription.PublicSubscribeSubscriptionParams) error {
 	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {
@@ -229,6 +243,7 @@ func (s *SubscriptionService) PublicSubscribeSubscription(input *subscription.Pu
 	return nil
 }
 
+// Deprecated: Use PublicCheckUserSubscriptionSubscribableByItemIDShort instead
 func (s *SubscriptionService) PublicCheckUserSubscriptionSubscribableByItemID(input *subscription.PublicCheckUserSubscriptionSubscribableByItemIDParams) (*platformclientmodels.Subscribable, error) {
 	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {
@@ -241,6 +256,7 @@ func (s *SubscriptionService) PublicCheckUserSubscriptionSubscribableByItemID(in
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use PublicGetUserSubscriptionShort instead
 func (s *SubscriptionService) PublicGetUserSubscription(input *subscription.PublicGetUserSubscriptionParams) (*platformclientmodels.SubscriptionInfo, error) {
 	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {
@@ -256,6 +272,7 @@ func (s *SubscriptionService) PublicGetUserSubscription(input *subscription.Publ
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use PublicChangeSubscriptionBillingAccountShort instead
 func (s *SubscriptionService) PublicChangeSubscriptionBillingAccount(input *subscription.PublicChangeSubscriptionBillingAccountParams) (*platformclientmodels.SubscriptionInfo, error) {
 	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {
@@ -277,6 +294,7 @@ func (s *SubscriptionService) PublicChangeSubscriptionBillingAccount(input *subs
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use PublicCancelSubscriptionShort instead
 func (s *SubscriptionService) PublicCancelSubscription(input *subscription.PublicCancelSubscriptionParams) (*platformclientmodels.SubscriptionInfo, error) {
 	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {
@@ -295,6 +313,7 @@ func (s *SubscriptionService) PublicCancelSubscription(input *subscription.Publi
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use PublicGetUserSubscriptionBillingHistoriesShort instead
 func (s *SubscriptionService) PublicGetUserSubscriptionBillingHistories(input *subscription.PublicGetUserSubscriptionBillingHistoriesParams) (*platformclientmodels.BillingHistoryPagingSlicedResult, error) {
 	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {

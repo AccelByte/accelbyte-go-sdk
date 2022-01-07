@@ -19,6 +19,7 @@ type PaymentConfigService struct {
 	TokenRepository repository.TokenRepository
 }
 
+// Deprecated: Use TestAdyenConfigShort instead
 func (p *PaymentConfigService) TestAdyenConfig(input *payment_config.TestAdyenConfigParams) (*platformclientmodels.TestResult, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -31,6 +32,7 @@ func (p *PaymentConfigService) TestAdyenConfig(input *payment_config.TestAdyenCo
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use TestAliPayConfigShort instead
 func (p *PaymentConfigService) TestAliPayConfig(input *payment_config.TestAliPayConfigParams) (*platformclientmodels.TestResult, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -43,6 +45,7 @@ func (p *PaymentConfigService) TestAliPayConfig(input *payment_config.TestAliPay
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use TestCheckoutConfigShort instead
 func (p *PaymentConfigService) TestCheckoutConfig(input *payment_config.TestCheckoutConfigParams) (*platformclientmodels.TestResult, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -55,6 +58,7 @@ func (p *PaymentConfigService) TestCheckoutConfig(input *payment_config.TestChec
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use DebugMatchedPaymentMerchantConfigShort instead
 func (p *PaymentConfigService) DebugMatchedPaymentMerchantConfig(input *payment_config.DebugMatchedPaymentMerchantConfigParams) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -70,6 +74,7 @@ func (p *PaymentConfigService) DebugMatchedPaymentMerchantConfig(input *payment_
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use TestPayPalConfigShort instead
 func (p *PaymentConfigService) TestPayPalConfig(input *payment_config.TestPayPalConfigParams) (*platformclientmodels.TestResult, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -82,6 +87,7 @@ func (p *PaymentConfigService) TestPayPalConfig(input *payment_config.TestPayPal
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use TestStripeConfigShort instead
 func (p *PaymentConfigService) TestStripeConfig(input *payment_config.TestStripeConfigParams) (*platformclientmodels.TestResult, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -94,6 +100,7 @@ func (p *PaymentConfigService) TestStripeConfig(input *payment_config.TestStripe
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use TestWxPayConfigShort instead
 func (p *PaymentConfigService) TestWxPayConfig(input *payment_config.TestWxPayConfigParams) (*platformclientmodels.TestResult, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -106,6 +113,7 @@ func (p *PaymentConfigService) TestWxPayConfig(input *payment_config.TestWxPayCo
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use TestXsollaConfigShort instead
 func (p *PaymentConfigService) TestXsollaConfig(input *payment_config.TestXsollaConfigParams) (*platformclientmodels.TestResult, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -118,6 +126,7 @@ func (p *PaymentConfigService) TestXsollaConfig(input *payment_config.TestXsolla
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use GetPaymentMerchantConfigShort instead
 func (p *PaymentConfigService) GetPaymentMerchantConfig(input *payment_config.GetPaymentMerchantConfigParams) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -133,6 +142,7 @@ func (p *PaymentConfigService) GetPaymentMerchantConfig(input *payment_config.Ge
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use UpdateAdyenConfigShort instead
 func (p *PaymentConfigService) UpdateAdyenConfig(input *payment_config.UpdateAdyenConfigParams) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -148,6 +158,7 @@ func (p *PaymentConfigService) UpdateAdyenConfig(input *payment_config.UpdateAdy
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use TestAdyenConfigByIDShort instead
 func (p *PaymentConfigService) TestAdyenConfigByID(input *payment_config.TestAdyenConfigByIDParams) (*platformclientmodels.TestResult, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -163,6 +174,7 @@ func (p *PaymentConfigService) TestAdyenConfigByID(input *payment_config.TestAdy
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use UpdateAliPayConfigShort instead
 func (p *PaymentConfigService) UpdateAliPayConfig(input *payment_config.UpdateAliPayConfigParams) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -178,6 +190,7 @@ func (p *PaymentConfigService) UpdateAliPayConfig(input *payment_config.UpdateAl
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use TestAliPayConfigByIDShort instead
 func (p *PaymentConfigService) TestAliPayConfigByID(input *payment_config.TestAliPayConfigByIDParams) (*platformclientmodels.TestResult, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -193,6 +206,7 @@ func (p *PaymentConfigService) TestAliPayConfigByID(input *payment_config.TestAl
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use UpdateCheckoutConfigShort instead
 func (p *PaymentConfigService) UpdateCheckoutConfig(input *payment_config.UpdateCheckoutConfigParams) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -208,6 +222,7 @@ func (p *PaymentConfigService) UpdateCheckoutConfig(input *payment_config.Update
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use TestCheckoutConfigByIDShort instead
 func (p *PaymentConfigService) TestCheckoutConfigByID(input *payment_config.TestCheckoutConfigByIDParams) (*platformclientmodels.TestResult, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -223,6 +238,7 @@ func (p *PaymentConfigService) TestCheckoutConfigByID(input *payment_config.Test
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use UpdatePayPalConfigShort instead
 func (p *PaymentConfigService) UpdatePayPalConfig(input *payment_config.UpdatePayPalConfigParams) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -238,6 +254,7 @@ func (p *PaymentConfigService) UpdatePayPalConfig(input *payment_config.UpdatePa
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use TestPayPalConfigByIDShort instead
 func (p *PaymentConfigService) TestPayPalConfigByID(input *payment_config.TestPayPalConfigByIDParams) (*platformclientmodels.TestResult, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -253,6 +270,7 @@ func (p *PaymentConfigService) TestPayPalConfigByID(input *payment_config.TestPa
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use UpdateStripeConfigShort instead
 func (p *PaymentConfigService) UpdateStripeConfig(input *payment_config.UpdateStripeConfigParams) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -268,6 +286,7 @@ func (p *PaymentConfigService) UpdateStripeConfig(input *payment_config.UpdateSt
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use TestStripeConfigByIDShort instead
 func (p *PaymentConfigService) TestStripeConfigByID(input *payment_config.TestStripeConfigByIDParams) (*platformclientmodels.TestResult, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -283,6 +302,7 @@ func (p *PaymentConfigService) TestStripeConfigByID(input *payment_config.TestSt
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use UpdateWxPayConfigShort instead
 func (p *PaymentConfigService) UpdateWxPayConfig(input *payment_config.UpdateWxPayConfigParams) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -298,6 +318,7 @@ func (p *PaymentConfigService) UpdateWxPayConfig(input *payment_config.UpdateWxP
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use UpdateWxPayConfigCertShort instead
 func (p *PaymentConfigService) UpdateWxPayConfigCert(input *payment_config.UpdateWxPayConfigCertParams) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -313,6 +334,7 @@ func (p *PaymentConfigService) UpdateWxPayConfigCert(input *payment_config.Updat
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use TestWxPayConfigByIDShort instead
 func (p *PaymentConfigService) TestWxPayConfigByID(input *payment_config.TestWxPayConfigByIDParams) (*platformclientmodels.TestResult, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -328,6 +350,7 @@ func (p *PaymentConfigService) TestWxPayConfigByID(input *payment_config.TestWxP
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use UpdateXsollaConfigShort instead
 func (p *PaymentConfigService) UpdateXsollaConfig(input *payment_config.UpdateXsollaConfigParams) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -343,6 +366,7 @@ func (p *PaymentConfigService) UpdateXsollaConfig(input *payment_config.UpdateXs
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use TestXsollaConfigByIDShort instead
 func (p *PaymentConfigService) TestXsollaConfigByID(input *payment_config.TestXsollaConfigByIDParams) (*platformclientmodels.TestResult, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -358,6 +382,7 @@ func (p *PaymentConfigService) TestXsollaConfigByID(input *payment_config.TestXs
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use UpdateXsollaUIConfigShort instead
 func (p *PaymentConfigService) UpdateXsollaUIConfig(input *payment_config.UpdateXsollaUIConfigParams) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -373,6 +398,7 @@ func (p *PaymentConfigService) UpdateXsollaUIConfig(input *payment_config.Update
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use QueryPaymentProviderConfigShort instead
 func (p *PaymentConfigService) QueryPaymentProviderConfig(input *payment_config.QueryPaymentProviderConfigParams) (*platformclientmodels.PaymentProviderConfigPagingSlicedResult, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -385,6 +411,7 @@ func (p *PaymentConfigService) QueryPaymentProviderConfig(input *payment_config.
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use CreatePaymentProviderConfigShort instead
 func (p *PaymentConfigService) CreatePaymentProviderConfig(input *payment_config.CreatePaymentProviderConfigParams) (*platformclientmodels.PaymentProviderConfigInfo, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -406,6 +433,7 @@ func (p *PaymentConfigService) CreatePaymentProviderConfig(input *payment_config
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use GetAggregatePaymentProvidersShort instead
 func (p *PaymentConfigService) GetAggregatePaymentProviders(input *payment_config.GetAggregatePaymentProvidersParams) ([]string, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -418,6 +446,7 @@ func (p *PaymentConfigService) GetAggregatePaymentProviders(input *payment_confi
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use DebugMatchedPaymentProviderConfigShort instead
 func (p *PaymentConfigService) DebugMatchedPaymentProviderConfig(input *payment_config.DebugMatchedPaymentProviderConfigParams) (*platformclientmodels.PaymentProviderConfigInfo, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -433,6 +462,7 @@ func (p *PaymentConfigService) DebugMatchedPaymentProviderConfig(input *payment_
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use GetSpecialPaymentProvidersShort instead
 func (p *PaymentConfigService) GetSpecialPaymentProviders(input *payment_config.GetSpecialPaymentProvidersParams) ([]string, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -445,6 +475,7 @@ func (p *PaymentConfigService) GetSpecialPaymentProviders(input *payment_config.
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use UpdatePaymentProviderConfigShort instead
 func (p *PaymentConfigService) UpdatePaymentProviderConfig(input *payment_config.UpdatePaymentProviderConfigParams) (*platformclientmodels.PaymentProviderConfigInfo, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -469,6 +500,7 @@ func (p *PaymentConfigService) UpdatePaymentProviderConfig(input *payment_config
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use DeletePaymentProviderConfigShort instead
 func (p *PaymentConfigService) DeletePaymentProviderConfig(input *payment_config.DeletePaymentProviderConfigParams) error {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -484,6 +516,7 @@ func (p *PaymentConfigService) DeletePaymentProviderConfig(input *payment_config
 	return nil
 }
 
+// Deprecated: Use GetPaymentTaxConfigShort instead
 func (p *PaymentConfigService) GetPaymentTaxConfig(input *payment_config.GetPaymentTaxConfigParams) (*platformclientmodels.PaymentTaxConfigInfo, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -496,6 +529,7 @@ func (p *PaymentConfigService) GetPaymentTaxConfig(input *payment_config.GetPaym
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use UpdatePaymentTaxConfigShort instead
 func (p *PaymentConfigService) UpdatePaymentTaxConfig(input *payment_config.UpdatePaymentTaxConfigParams) (*platformclientmodels.PaymentTaxConfigInfo, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {

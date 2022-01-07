@@ -29,6 +29,8 @@ var getBasicCategoriesCmd = &cobra.Command{
 			Namespace: namespace,
 			StoreID:   &storeId,
 		}
+		//nolint:staticcheck // SA1019 To be deprecated later
+		//lint:ignore SA1019 Ignore the deprecation warnings
 		listCategoriesBasic, err := categoryService.ListCategoriesBasic(input)
 		if err != nil {
 			return err

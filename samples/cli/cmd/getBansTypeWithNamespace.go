@@ -28,6 +28,8 @@ var getBansTypeWithNamespace = &cobra.Command{
 		input := &bans.AdminGetBansTypeWithNamespaceV3Params{
 			Namespace: namespace,
 		}
+		//nolint:staticcheck // SA1019 To be deprecated later
+		//lint:ignore SA1019 Ignore the deprecation warnings
 		ok, err := bansService.AdminGetBansTypeWithNamespaceV3(input)
 		if err != nil {
 			logrus.Error(err)

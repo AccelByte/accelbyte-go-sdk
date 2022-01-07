@@ -42,6 +42,8 @@ var updateUserSlotMetadataCmd = &cobra.Command{
 			SlotID:    slotId,
 			UserID:    userId,
 		}
+		//nolint:staticcheck // SA1019 To be deprecated later
+		//lint:ignore SA1019 Ignore the deprecation warnings
 		slots, err := socialService.PublicUpdateUserNamespaceSlotMetadata(input)
 		if err != nil {
 			return err

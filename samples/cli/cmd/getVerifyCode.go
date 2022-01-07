@@ -29,6 +29,8 @@ var getVerifyCodeCmd = &cobra.Command{
 			Client:          factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
+		//nolint:staticcheck // SA1019 To be deprecated later
+		//lint:ignore SA1019 Ignore the deprecation warnings
 		user, err := userService.GetUserVerificationCode(input)
 		if err != nil {
 			return err

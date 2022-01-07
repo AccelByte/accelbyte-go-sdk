@@ -36,6 +36,8 @@ var deleteRoleManagersCmd = &cobra.Command{
 			Body:   &iamclientmodels.ModelRoleManagersRequestV3{Managers: managers},
 			RoleID: roleId,
 		}
+		//nolint:staticcheck // SA1019 To be deprecated later
+		//lint:ignore SA1019 Ignore the deprecation warnings
 		err := roleService.AdminRemoveRoleManagersV3(input)
 		if err != nil {
 			return err

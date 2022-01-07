@@ -42,6 +42,8 @@ var getUserSlotsPublicCmd = &cobra.Command{
 			SlotID:    slotId,
 			UserID:    userId,
 		}
+		//nolint:staticcheck // SA1019 To be deprecated later
+		//lint:ignore SA1019 Ignore the deprecation warnings
 		_, err = socialService.PublicGetSlotData(input, writer)
 		if err != nil {
 			logrus.Error(err)

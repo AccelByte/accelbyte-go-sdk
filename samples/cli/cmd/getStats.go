@@ -39,6 +39,8 @@ var getStatsCmd = &cobra.Command{
 			Namespace: namespace,
 			Offset:    &offset,
 		}
+		//nolint:staticcheck // SA1019 To be deprecated later
+		//lint:ignore SA1019 Ignore the deprecation warnings
 		stats, err := socialService.GetStats(input)
 		if err != nil {
 			return err

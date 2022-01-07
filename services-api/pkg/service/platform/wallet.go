@@ -19,6 +19,7 @@ type WalletService struct {
 	TokenRepository repository.TokenRepository
 }
 
+// Deprecated: Use CheckWalletShort instead
 func (w *WalletService) CheckWallet(input *wallet.CheckWalletParams) error {
 	accessToken, err := w.TokenRepository.GetToken()
 	if err != nil {
@@ -40,6 +41,7 @@ func (w *WalletService) CheckWallet(input *wallet.CheckWalletParams) error {
 	return nil
 }
 
+// Deprecated: Use CreditUserWalletShort instead
 func (w *WalletService) CreditUserWallet(input *wallet.CreditUserWalletParams) (*platformclientmodels.WalletInfo, error) {
 	accessToken, err := w.TokenRepository.GetToken()
 	if err != nil {
@@ -61,6 +63,7 @@ func (w *WalletService) CreditUserWallet(input *wallet.CreditUserWalletParams) (
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use PayWithUserWalletShort instead
 func (w *WalletService) PayWithUserWallet(input *wallet.PayWithUserWalletParams) (*platformclientmodels.WalletInfo, error) {
 	accessToken, err := w.TokenRepository.GetToken()
 	if err != nil {
@@ -82,6 +85,7 @@ func (w *WalletService) PayWithUserWallet(input *wallet.PayWithUserWalletParams)
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use GetUserWalletShort instead
 func (w *WalletService) GetUserWallet(input *wallet.GetUserWalletParams) (*platformclientmodels.WalletInfo, error) {
 	accessToken, err := w.TokenRepository.GetToken()
 	if err != nil {
@@ -97,6 +101,7 @@ func (w *WalletService) GetUserWallet(input *wallet.GetUserWalletParams) (*platf
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use DebitUserWalletShort instead
 func (w *WalletService) DebitUserWallet(input *wallet.DebitUserWalletParams) (*platformclientmodels.WalletInfo, error) {
 	accessToken, err := w.TokenRepository.GetToken()
 	if err != nil {
@@ -121,6 +126,7 @@ func (w *WalletService) DebitUserWallet(input *wallet.DebitUserWalletParams) (*p
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use DisableUserWalletShort instead
 func (w *WalletService) DisableUserWallet(input *wallet.DisableUserWalletParams) error {
 	accessToken, err := w.TokenRepository.GetToken()
 	if err != nil {
@@ -139,6 +145,7 @@ func (w *WalletService) DisableUserWallet(input *wallet.DisableUserWalletParams)
 	return nil
 }
 
+// Deprecated: Use EnableUserWalletShort instead
 func (w *WalletService) EnableUserWallet(input *wallet.EnableUserWalletParams) error {
 	accessToken, err := w.TokenRepository.GetToken()
 	if err != nil {
@@ -157,6 +164,7 @@ func (w *WalletService) EnableUserWallet(input *wallet.EnableUserWalletParams) e
 	return nil
 }
 
+// Deprecated: Use ListUserWalletTransactionsShort instead
 func (w *WalletService) ListUserWalletTransactions(input *wallet.ListUserWalletTransactionsParams) (*platformclientmodels.WalletTransactionPagingSlicedResult, error) {
 	accessToken, err := w.TokenRepository.GetToken()
 	if err != nil {
@@ -172,6 +180,7 @@ func (w *WalletService) ListUserWalletTransactions(input *wallet.ListUserWalletT
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use QueryWalletsShort instead
 func (w *WalletService) QueryWallets(input *wallet.QueryWalletsParams) (*platformclientmodels.WalletPagingSlicedResult, error) {
 	accessToken, err := w.TokenRepository.GetToken()
 	if err != nil {
@@ -184,6 +193,7 @@ func (w *WalletService) QueryWallets(input *wallet.QueryWalletsParams) (*platfor
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use GetWalletShort instead
 func (w *WalletService) GetWallet(input *wallet.GetWalletParams) (*platformclientmodels.WalletInfo, error) {
 	accessToken, err := w.TokenRepository.GetToken()
 	if err != nil {
@@ -199,6 +209,7 @@ func (w *WalletService) GetWallet(input *wallet.GetWalletParams) (*platformclien
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use PublicGetMyWalletShort instead
 func (w *WalletService) PublicGetMyWallet(input *wallet.PublicGetMyWalletParams) (*platformclientmodels.WalletInfo, error) {
 	accessToken, err := w.TokenRepository.GetToken()
 	if err != nil {
@@ -211,6 +222,7 @@ func (w *WalletService) PublicGetMyWallet(input *wallet.PublicGetMyWalletParams)
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use PublicGetWalletShort instead
 func (w *WalletService) PublicGetWallet(input *wallet.PublicGetWalletParams) (*platformclientmodels.WalletInfo, error) {
 	accessToken, err := w.TokenRepository.GetToken()
 	if err != nil {
@@ -223,6 +235,7 @@ func (w *WalletService) PublicGetWallet(input *wallet.PublicGetWalletParams) (*p
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use PublicListUserWalletTransactionsShort instead
 func (w *WalletService) PublicListUserWalletTransactions(input *wallet.PublicListUserWalletTransactionsParams) (*platformclientmodels.WalletTransactionPagingSlicedResult, error) {
 	accessToken, err := w.TokenRepository.GetToken()
 	if err != nil {

@@ -32,6 +32,8 @@ var deletePlayerRecordCmd = &cobra.Command{
 			Namespace: namespace,
 			Key:       key,
 		}
+		//nolint:staticcheck // SA1019 To be deprecated later
+		//lint:ignore SA1019 Ignore the deprecation warnings
 		err := cloudSaveService.DeletePlayerRecordHandlerV1(input)
 		if err != nil {
 			return err

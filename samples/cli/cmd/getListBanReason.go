@@ -25,6 +25,8 @@ var getListBanReason = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		input := &bans.AdminGetListBanReasonV3Params{}
+		//nolint:staticcheck // SA1019 To be deprecated later
+		//lint:ignore SA1019 Ignore the deprecation warnings
 		ok, err := bansService.AdminGetListBanReasonV3(input)
 		if err != nil {
 			logrus.Error(err)

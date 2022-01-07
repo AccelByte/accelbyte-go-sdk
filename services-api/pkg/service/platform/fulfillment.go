@@ -19,6 +19,7 @@ type FulfillmentService struct {
 	TokenRepository repository.TokenRepository
 }
 
+// Deprecated: Use QueryFulfillmentHistoriesShort instead
 func (f *FulfillmentService) QueryFulfillmentHistories(input *fulfillment.QueryFulfillmentHistoriesParams) (*platformclientmodels.FulfillmentHistoryPagingSlicedResult, error) {
 	accessToken, err := f.TokenRepository.GetToken()
 	if err != nil {
@@ -31,6 +32,7 @@ func (f *FulfillmentService) QueryFulfillmentHistories(input *fulfillment.QueryF
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use FulfillItemShort instead
 func (f *FulfillmentService) FulfillItem(input *fulfillment.FulfillItemParams) (*platformclientmodels.FulfillmentResult, error) {
 	accessToken, err := f.TokenRepository.GetToken()
 	if err != nil {
@@ -52,6 +54,7 @@ func (f *FulfillmentService) FulfillItem(input *fulfillment.FulfillItemParams) (
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use RedeemCodeShort instead
 func (f *FulfillmentService) RedeemCode(input *fulfillment.RedeemCodeParams) (*platformclientmodels.FulfillmentResult, error) {
 	accessToken, err := f.TokenRepository.GetToken()
 	if err != nil {
@@ -73,6 +76,7 @@ func (f *FulfillmentService) RedeemCode(input *fulfillment.RedeemCodeParams) (*p
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use PublicRedeemCodeShort instead
 func (f *FulfillmentService) PublicRedeemCode(input *fulfillment.PublicRedeemCodeParams) (*platformclientmodels.FulfillmentResult, error) {
 	accessToken, err := f.TokenRepository.GetToken()
 	if err != nil {

@@ -35,6 +35,8 @@ to quickly create a Cobra application.`,
 			Namespace: namespace,
 			Key:       key,
 		}
+		//nolint:staticcheck // SA1019 To be deprecated later
+		//lint:ignore SA1019 Ignore the deprecation warnings
 		gameRecords, err := cloudSaveService.GetGameRecordHandlerV1(input)
 		if err != nil {
 			return err

@@ -19,6 +19,7 @@ type PaymentService struct {
 	TokenRepository repository.TokenRepository
 }
 
+// Deprecated: Use QueryPaymentNotificationsShort instead
 func (p *PaymentService) QueryPaymentNotifications(input *payment.QueryPaymentNotificationsParams) (*platformclientmodels.PaymentNotificationPagingSlicedResult, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -31,6 +32,7 @@ func (p *PaymentService) QueryPaymentNotifications(input *payment.QueryPaymentNo
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use QueryPaymentOrdersShort instead
 func (p *PaymentService) QueryPaymentOrders(input *payment.QueryPaymentOrdersParams) (*platformclientmodels.PaymentOrderPagingSlicedResult, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -43,6 +45,7 @@ func (p *PaymentService) QueryPaymentOrders(input *payment.QueryPaymentOrdersPar
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use ListExtOrderNoByExtTxIDShort instead
 func (p *PaymentService) ListExtOrderNoByExtTxID(input *payment.ListExtOrderNoByExtTxIDParams) ([]string, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -55,6 +58,7 @@ func (p *PaymentService) ListExtOrderNoByExtTxID(input *payment.ListExtOrderNoBy
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use GetPaymentOrderShort instead
 func (p *PaymentService) GetPaymentOrder(input *payment.GetPaymentOrderParams) (*platformclientmodels.PaymentOrderInfo, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -70,6 +74,7 @@ func (p *PaymentService) GetPaymentOrder(input *payment.GetPaymentOrderParams) (
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use ChargePaymentOrderShort instead
 func (p *PaymentService) ChargePaymentOrder(input *payment.ChargePaymentOrderParams) (*platformclientmodels.PaymentOrderInfo, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -91,6 +96,7 @@ func (p *PaymentService) ChargePaymentOrder(input *payment.ChargePaymentOrderPar
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use SimulatePaymentOrderNotificationShort instead
 func (p *PaymentService) SimulatePaymentOrderNotification(input *payment.SimulatePaymentOrderNotificationParams) (*platformclientmodels.NotificationProcessResult, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -109,6 +115,7 @@ func (p *PaymentService) SimulatePaymentOrderNotification(input *payment.Simulat
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use GetPaymentOrderChargeStatusShort instead
 func (p *PaymentService) GetPaymentOrderChargeStatus(input *payment.GetPaymentOrderChargeStatusParams) (*platformclientmodels.PaymentOrderChargeStatus, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -124,6 +131,7 @@ func (p *PaymentService) GetPaymentOrderChargeStatus(input *payment.GetPaymentOr
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use CreateUserPaymentOrderShort instead
 func (p *PaymentService) CreateUserPaymentOrder(input *payment.CreateUserPaymentOrderParams) (*platformclientmodels.PaymentOrderInfo, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -151,6 +159,7 @@ func (p *PaymentService) CreateUserPaymentOrder(input *payment.CreateUserPayment
 	return created.GetPayload(), nil
 }
 
+// Deprecated: Use RefundUserPaymentOrderShort instead
 func (p *PaymentService) RefundUserPaymentOrder(input *payment.RefundUserPaymentOrderParams) (*platformclientmodels.PaymentOrderInfo, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {

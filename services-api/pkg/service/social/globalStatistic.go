@@ -19,6 +19,7 @@ type GlobalStatisticService struct {
 	TokenRepository repository.TokenRepository
 }
 
+// Deprecated: Use GetGlobalStatItemsShort instead
 func (g *GlobalStatisticService) GetGlobalStatItems(input *global_statistic.GetGlobalStatItemsParams) (*socialclientmodels.GlobalStatItemPagingSlicedResult, error) {
 	accessToken, err := g.TokenRepository.GetToken()
 	if err != nil {

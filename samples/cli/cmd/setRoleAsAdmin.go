@@ -27,6 +27,8 @@ var setRoleAsAdminCmd = &cobra.Command{
 		input := &roles.AdminUpdateAdminRoleStatusV3Params{
 			RoleID: roleId,
 		}
+		//nolint:staticcheck // SA1019 To be deprecated later
+		//lint:ignore SA1019 Ignore the deprecation warnings
 		err := roleService.AdminUpdateAdminRoleStatusV3(input)
 		if err != nil {
 			return err

@@ -32,6 +32,8 @@ var adminGetUserProfiles = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
+		//nolint:staticcheck // SA1019 To be deprecated later
+		//lint:ignore SA1019 Ignore the deprecation warnings
 		ok, err := gameProfileService.GetUserProfiles(input)
 		if err != nil {
 			logrus.Error(err)

@@ -19,6 +19,7 @@ type MatchmakingService struct {
 	TokenRepository repository.TokenRepository
 }
 
+// Deprecated: Use GetAllChannelsHandlerShort instead
 func (m *MatchmakingService) GetAllChannelsHandler(input *matchmaking.GetAllChannelsHandlerParams) (*matchmakingclientmodels.ModelsGetChannelsResponse, error) {
 	accessToken, err := m.TokenRepository.GetToken()
 	if err != nil {
@@ -46,6 +47,7 @@ func (m *MatchmakingService) GetAllChannelsHandler(input *matchmaking.GetAllChan
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use CreateChannelHandlerShort instead
 func (m *MatchmakingService) CreateChannelHandler(input *matchmaking.CreateChannelHandlerParams) (*matchmakingclientmodels.ModelsCreateChannelResponse, error) {
 	accessToken, err := m.TokenRepository.GetToken()
 	if err != nil {
@@ -73,6 +75,7 @@ func (m *MatchmakingService) CreateChannelHandler(input *matchmaking.CreateChann
 	return created.GetPayload(), nil
 }
 
+// Deprecated: Use DeleteChannelHandlerShort instead
 func (m *MatchmakingService) DeleteChannelHandler(input *matchmaking.DeleteChannelHandlerParams) error {
 	accessToken, err := m.TokenRepository.GetToken()
 	if err != nil {
@@ -94,6 +97,7 @@ func (m *MatchmakingService) DeleteChannelHandler(input *matchmaking.DeleteChann
 	return nil
 }
 
+// Deprecated: Use StoreMatchResultsShort instead
 func (m *MatchmakingService) StoreMatchResults(input *matchmaking.StoreMatchResultsParams) (*matchmakingclientmodels.ModelsMatchResultResponse, error) {
 	accessToken, err := m.TokenRepository.GetToken()
 	if err != nil {
@@ -118,6 +122,7 @@ func (m *MatchmakingService) StoreMatchResults(input *matchmaking.StoreMatchResu
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use QueueSessionHandlerShort instead
 func (m *MatchmakingService) QueueSessionHandler(input *matchmaking.QueueSessionHandlerParams) error {
 	accessToken, err := m.TokenRepository.GetToken()
 	if err != nil {
@@ -142,6 +147,7 @@ func (m *MatchmakingService) QueueSessionHandler(input *matchmaking.QueueSession
 	return nil
 }
 
+// Deprecated: Use DequeueSessionHandlerShort instead
 func (m *MatchmakingService) DequeueSessionHandler(input *matchmaking.DequeueSessionHandlerParams) error {
 	accessToken, err := m.TokenRepository.GetToken()
 	if err != nil {
@@ -169,6 +175,7 @@ func (m *MatchmakingService) DequeueSessionHandler(input *matchmaking.DequeueSes
 	return nil
 }
 
+// Deprecated: Use QuerySessionHandlerShort instead
 func (m *MatchmakingService) QuerySessionHandler(input *matchmaking.QuerySessionHandlerParams) (*matchmakingclientmodels.ModelsMatchmakingResult, error) {
 	accessToken, err := m.TokenRepository.GetToken()
 	if err != nil {
@@ -196,6 +203,7 @@ func (m *MatchmakingService) QuerySessionHandler(input *matchmaking.QuerySession
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use GetAllPartyInAllChannelShort instead
 func (m *MatchmakingService) GetAllPartyInAllChannel(input *matchmaking.GetAllPartyInAllChannelParams) (map[string][]matchmakingclientmodels.ModelsMatchingParty, error) {
 	accessToken, err := m.TokenRepository.GetToken()
 	if err != nil {
@@ -223,6 +231,7 @@ func (m *MatchmakingService) GetAllPartyInAllChannel(input *matchmaking.GetAllPa
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use BulkGetSessionsShort instead
 func (m *MatchmakingService) BulkGetSessions(input *matchmaking.BulkGetSessionsParams) ([]*matchmakingclientmodels.ModelsMatchmakingResult, error) {
 	accessToken, err := m.TokenRepository.GetToken()
 	if err != nil {
@@ -250,6 +259,7 @@ func (m *MatchmakingService) BulkGetSessions(input *matchmaking.BulkGetSessionsP
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use ExportChannelsShort instead
 func (m *MatchmakingService) ExportChannels(input *matchmaking.ExportChannelsParams) ([]*matchmakingclientmodels.ModelsChannelV1, error) {
 	accessToken, err := m.TokenRepository.GetToken()
 	if err != nil {
@@ -271,6 +281,7 @@ func (m *MatchmakingService) ExportChannels(input *matchmaking.ExportChannelsPar
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use ImportChannelsShort instead
 func (m *MatchmakingService) ImportChannels(input *matchmaking.ImportChannelsParams) (*matchmakingclientmodels.ModelsImportConfigResponse, error) {
 	accessToken, err := m.TokenRepository.GetToken()
 	if err != nil {
@@ -295,6 +306,7 @@ func (m *MatchmakingService) ImportChannels(input *matchmaking.ImportChannelsPar
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use GetSingleMatchmakingChannelShort instead
 func (m *MatchmakingService) GetSingleMatchmakingChannel(input *matchmaking.GetSingleMatchmakingChannelParams) (*matchmakingclientmodels.ModelsChannelV1, error) {
 	accessToken, err := m.TokenRepository.GetToken()
 	if err != nil {
@@ -322,6 +334,7 @@ func (m *MatchmakingService) GetSingleMatchmakingChannel(input *matchmaking.GetS
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use UpdateMatchmakingChannelShort instead
 func (m *MatchmakingService) UpdateMatchmakingChannel(input *matchmaking.UpdateMatchmakingChannelParams) error {
 	accessToken, err := m.TokenRepository.GetToken()
 	if err != nil {
@@ -349,6 +362,7 @@ func (m *MatchmakingService) UpdateMatchmakingChannel(input *matchmaking.UpdateM
 	return nil
 }
 
+// Deprecated: Use GetAllPartyInChannelShort instead
 func (m *MatchmakingService) GetAllPartyInChannel(input *matchmaking.GetAllPartyInChannelParams) ([]*matchmakingclientmodels.ModelsMatchingParty, error) {
 	accessToken, err := m.TokenRepository.GetToken()
 	if err != nil {
@@ -376,6 +390,7 @@ func (m *MatchmakingService) GetAllPartyInChannel(input *matchmaking.GetAllParty
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use GetAllSessionsInChannelShort instead
 func (m *MatchmakingService) GetAllSessionsInChannel(input *matchmaking.GetAllSessionsInChannelParams) ([]*matchmakingclientmodels.ModelsMatchmakingResult, error) {
 	accessToken, err := m.TokenRepository.GetToken()
 	if err != nil {
@@ -403,6 +418,7 @@ func (m *MatchmakingService) GetAllSessionsInChannel(input *matchmaking.GetAllSe
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use AddUserIntoSessionInChannelShort instead
 func (m *MatchmakingService) AddUserIntoSessionInChannel(input *matchmaking.AddUserIntoSessionInChannelParams) error {
 	accessToken, err := m.TokenRepository.GetToken()
 	if err != nil {
@@ -430,6 +446,7 @@ func (m *MatchmakingService) AddUserIntoSessionInChannel(input *matchmaking.AddU
 	return nil
 }
 
+// Deprecated: Use DeleteSessionInChannelShort instead
 func (m *MatchmakingService) DeleteSessionInChannel(input *matchmaking.DeleteSessionInChannelParams) error {
 	accessToken, err := m.TokenRepository.GetToken()
 	if err != nil {
@@ -457,6 +474,7 @@ func (m *MatchmakingService) DeleteSessionInChannel(input *matchmaking.DeleteSes
 	return nil
 }
 
+// Deprecated: Use DeleteUserFromSessionInChannelShort instead
 func (m *MatchmakingService) DeleteUserFromSessionInChannel(input *matchmaking.DeleteUserFromSessionInChannelParams) error {
 	accessToken, err := m.TokenRepository.GetToken()
 	if err != nil {
@@ -487,6 +505,7 @@ func (m *MatchmakingService) DeleteUserFromSessionInChannel(input *matchmaking.D
 	return nil
 }
 
+// Deprecated: Use SearchSessionsShort instead
 func (m *MatchmakingService) SearchSessions(input *matchmaking.SearchSessionsParams) (*matchmakingclientmodels.ServiceGetSessionHistorySearchResponse, error) {
 	accessToken, err := m.TokenRepository.GetToken()
 	if err != nil {
@@ -514,6 +533,7 @@ func (m *MatchmakingService) SearchSessions(input *matchmaking.SearchSessionsPar
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use GetSessionHistoryDetailedShort instead
 func (m *MatchmakingService) GetSessionHistoryDetailed(input *matchmaking.GetSessionHistoryDetailedParams) ([]*matchmakingclientmodels.ServiceGetSessionHistoryDetailedResponseItem, error) {
 	accessToken, err := m.TokenRepository.GetToken()
 	if err != nil {
@@ -541,6 +561,7 @@ func (m *MatchmakingService) GetSessionHistoryDetailed(input *matchmaking.GetSes
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use PublicGetAllMatchmakingChannelShort instead
 func (m *MatchmakingService) PublicGetAllMatchmakingChannel(input *matchmaking.PublicGetAllMatchmakingChannelParams) ([]*matchmakingclientmodels.ModelsChannelV1, error) {
 	accessToken, err := m.TokenRepository.GetToken()
 	if err != nil {
@@ -568,6 +589,7 @@ func (m *MatchmakingService) PublicGetAllMatchmakingChannel(input *matchmaking.P
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use PublicGetSingleMatchmakingChannelShort instead
 func (m *MatchmakingService) PublicGetSingleMatchmakingChannel(input *matchmaking.PublicGetSingleMatchmakingChannelParams) (*matchmakingclientmodels.ModelsChannelV1, error) {
 	accessToken, err := m.TokenRepository.GetToken()
 	if err != nil {

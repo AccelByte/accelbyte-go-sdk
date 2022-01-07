@@ -31,6 +31,8 @@ var cloneStoreCmd = &cobra.Command{
 			StoreID:       storeId,
 			TargetStoreID: &targetStoreId,
 		}
+		//nolint:staticcheck // SA1019 To be deprecated later
+		//lint:ignore SA1019 Ignore the deprecation warnings
 		storeInfo, err := storeService.CloneStore(input)
 		if err != nil {
 			return err

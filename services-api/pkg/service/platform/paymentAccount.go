@@ -19,6 +19,7 @@ type PaymentAccountService struct {
 	TokenRepository repository.TokenRepository
 }
 
+// Deprecated: Use PublicGetPaymentAccountsShort instead
 func (p *PaymentAccountService) PublicGetPaymentAccounts(input *payment_account.PublicGetPaymentAccountsParams) ([]*platformclientmodels.PaymentAccount, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -31,6 +32,7 @@ func (p *PaymentAccountService) PublicGetPaymentAccounts(input *payment_account.
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use PublicDeletePaymentAccountShort instead
 func (p *PaymentAccountService) PublicDeletePaymentAccount(input *payment_account.PublicDeletePaymentAccountParams) error {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {

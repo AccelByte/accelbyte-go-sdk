@@ -36,6 +36,8 @@ var createUserRolePermissionCmd = &cobra.Command{
 			Body:   &iamclientmodels.AccountcommonPermissionsV3{Permissions: permissions},
 			RoleID: roleId,
 		}
+		//nolint:staticcheck // SA1019 To be deprecated later
+		//lint:ignore SA1019 Ignore the deprecation warnings
 		err := roleService.AdminAddRolePermissionsV3(input)
 		if err != nil {
 			return err

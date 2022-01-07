@@ -19,6 +19,7 @@ type FulfillmentScriptService struct {
 	TokenRepository repository.TokenRepository
 }
 
+// Deprecated: Use ListFulfillmentScriptsShort instead
 func (f *FulfillmentScriptService) ListFulfillmentScripts(input *fulfillment_script.ListFulfillmentScriptsParams) ([]*platformclientmodels.FulfillmentScriptInfo, error) {
 	accessToken, err := f.TokenRepository.GetToken()
 	if err != nil {
@@ -31,6 +32,7 @@ func (f *FulfillmentScriptService) ListFulfillmentScripts(input *fulfillment_scr
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use TestFulfillmentScriptEvalShort instead
 func (f *FulfillmentScriptService) TestFulfillmentScriptEval(input *fulfillment_script.TestFulfillmentScriptEvalParams) (*platformclientmodels.FulfillmentScriptEvalTestResult, error) {
 	accessToken, err := f.TokenRepository.GetToken()
 	if err != nil {
@@ -43,6 +45,7 @@ func (f *FulfillmentScriptService) TestFulfillmentScriptEval(input *fulfillment_
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use GetFulfillmentScriptShort instead
 func (f *FulfillmentScriptService) GetFulfillmentScript(input *fulfillment_script.GetFulfillmentScriptParams) (*platformclientmodels.FulfillmentScriptInfo, error) {
 	accessToken, err := f.TokenRepository.GetToken()
 	if err != nil {
@@ -58,6 +61,7 @@ func (f *FulfillmentScriptService) GetFulfillmentScript(input *fulfillment_scrip
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use CreateFulfillmentScriptShort instead
 func (f *FulfillmentScriptService) CreateFulfillmentScript(input *fulfillment_script.CreateFulfillmentScriptParams) (*platformclientmodels.FulfillmentScriptInfo, error) {
 	accessToken, err := f.TokenRepository.GetToken()
 	if err != nil {
@@ -73,6 +77,7 @@ func (f *FulfillmentScriptService) CreateFulfillmentScript(input *fulfillment_sc
 	return created.GetPayload(), nil
 }
 
+// Deprecated: Use DeleteFulfillmentScriptShort instead
 func (f *FulfillmentScriptService) DeleteFulfillmentScript(input *fulfillment_script.DeleteFulfillmentScriptParams) error {
 	accessToken, err := f.TokenRepository.GetToken()
 	if err != nil {
@@ -85,6 +90,7 @@ func (f *FulfillmentScriptService) DeleteFulfillmentScript(input *fulfillment_sc
 	return nil
 }
 
+// Deprecated: Use UpdateFulfillmentScriptShort instead
 func (f *FulfillmentScriptService) UpdateFulfillmentScript(input *fulfillment_script.UpdateFulfillmentScriptParams) (*platformclientmodels.FulfillmentScriptInfo, error) {
 	accessToken, err := f.TokenRepository.GetToken()
 	if err != nil {

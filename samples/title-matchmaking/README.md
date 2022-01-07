@@ -31,7 +31,7 @@ The Serverless Application Model Command Line Interface (SAM CLI) is an extensio
 To use the SAM CLI, you need the following tools.
 
 * SAM CLI - [Install the SAM CLI](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install.html)
-* [Golang 1.16 installed](https://go.dev/doc/install)
+* [Golang installed](https://go.dev/doc/install)
 * Docker (optional) - [Install Docker community edition](https://hub.docker.com/search/?type=edition&offering=community)
 
 To build and deploy your application for the first time, <br />
@@ -74,7 +74,7 @@ Test a single function by invoking it directly with a test event. An event is a 
 Run functions locally and invoke them with the `sam local invoke` command.
 
 ```bash
-sam-app$ sam local invoke "CreateTitleMatchmakingGolangFunction" --event events/event.json
+sam-app$ sam local invoke "CreateTitleMatchmakingFunction" --event events/event.json
 ```
 
 The SAM CLI can also emulate your application's API. Use the `sam local start-api` to run the API locally on port 3000.
@@ -88,7 +88,7 @@ The SAM CLI reads the application template to determine the API's routes and the
 
 ```yaml
       Events:
-        CreateTitleMatchmakingGolang:
+        CreateTitleMatchmaking:
           Type: Api
           Properties:
             Path: /

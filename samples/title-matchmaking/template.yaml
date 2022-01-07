@@ -1,0 +1,61 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: 'AWS::Serverless-2016-10-31'
+Description:
+  Title Matchmaking App (Golang)
+
+  SAM Template for the Title Matchmaking App (Golang)
+Resources:
+  CreateTitleMatchmakingFunction:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: main
+      Runtime: go1.x
+      CodeUri: .
+      Description: ''
+      MemorySize: 512
+      Timeout: 15
+      # The Amazon Resource Name (ARN) of the function's execution role.
+      # Required: Yes
+      # Type: String
+      Role: ''
+      # Specifies the events that trigger this function. Events consist of a type and a set of properties that depend on the type.
+      # Type: EventSource
+      # Required: Yes
+      # AWS CloudFormation compatibility: This property is unique to AWS SAM and doesn't have an AWS CloudFormation equivalent.
+      Events:
+        CreateTitleMatchmaking:
+          Type: Api
+          Properties:
+            Path: /
+            Method: POST
+      # For network connectivity to AWS resources in a VPC, specify a list of security groups and subnets in the VPC.
+      # Required: Yes
+      # More info about VpcConfig https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-vpcconfig.html
+      VpcConfig:
+        SecurityGroupIds:
+          - ''
+        SubnetIds:
+          - ''
+      # The configuration for the runtime environment.
+      # Type: Environment
+      # Required: Yes
+      Environment:
+        Variables:
+          GAME_CLIENT_ID: ''
+          SESSION_BROWSER_MODE: ''
+          IAM_CLIENT_ID: ''
+          REDIS_URL: ''
+          IAM_BASE_URL: ''
+          SESSION_BROWSER_GAME_VERSION: ''
+          GAME_NAMESPACE: ''
+          SESSION_BROWSER_MAP_NAME: ''
+          ACCELBYTE_BASE_URL: ''
+          GAME_MODE: ''
+          SESSION_BROWSER_USERNAME: ''
+          IAM_CLIENT_SECRET: ''
+          SESSION_BROWSER_TYPE: ''
+          SESSION_BROWSER_PASSWORD: ''
+          DSMC_DEPLOYMENT: ''
+          # Use 'host.docker.internal' when running locally
+          REDIS_HOST: ''
+          REDIS_PORT: ''

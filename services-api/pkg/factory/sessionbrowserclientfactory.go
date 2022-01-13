@@ -12,7 +12,7 @@ import (
 
 var sessionbrowserClientInstance *sessionbrowserclient.JusticeSessionbrowserService
 
-func NewSessionClient(configRepository repository.ConfigRepository) *sessionbrowserclient.JusticeSessionbrowserService {
+func NewSessionbrowserClient(configRepository repository.ConfigRepository) *sessionbrowserclient.JusticeSessionbrowserService {
 	if sessionbrowserClientInstance == nil {
 		baseUrl := configRepository.GetJusticeBaseUrl()
 		if len(baseUrl) > 0 {

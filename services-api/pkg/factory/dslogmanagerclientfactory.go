@@ -13,7 +13,7 @@ import (
 
 var dsLogManagerClientInstance *dslogmanagerclient.JusticeDslogmanagerService
 
-func NewDSLogManagerClient(configRepository repository.ConfigRepository) *dslogmanagerclient.JusticeDslogmanagerService {
+func NewDslogmanagerClient(configRepository repository.ConfigRepository) *dslogmanagerclient.JusticeDslogmanagerService {
 	if dsLogManagerClientInstance == nil {
 		baseUrl := configRepository.GetJusticeBaseUrl()
 		if len(baseUrl) > 0 {

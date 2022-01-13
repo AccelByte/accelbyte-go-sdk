@@ -12,7 +12,7 @@ import (
 
 var groupClientInstance *groupclient.JusticeGroupService
 
-func NewgroupClient(configRepository repository.ConfigRepository) *groupclient.JusticeGroupService {
+func NewGroupClient(configRepository repository.ConfigRepository) *groupclient.JusticeGroupService {
 	if groupClientInstance == nil {
 		baseUrl := configRepository.GetJusticeBaseUrl()
 		if len(baseUrl) > 0 {

@@ -7,26 +7,26 @@ package factory
 import (
 	"strings"
 
-	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient"
+	"github.com/AccelByte/accelbyte-go-sdk/qosm-sdk/pkg/qosmclient"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 )
 
-var dsmcClientInstance *dsmcclient.JusticeDsmcService
+var qosmClientInstance *qosmclient.JusticeQosmService
 
-func NewDsmcClient(configRepository repository.ConfigRepository) *dsmcclient.JusticeDsmcService {
-	if dsmcClientInstance == nil {
+func NewQosmClient(configRepository repository.ConfigRepository) *qosmclient.JusticeQosmService {
+	if qosmClientInstance == nil {
 		baseUrl := configRepository.GetJusticeBaseUrl()
 		if len(baseUrl) > 0 {
 			baseUrlSplit := strings.Split(baseUrl, "://")
-			httpClientConfig := &dsmcclient.TransportConfig{
+			httpClientConfig := &qosmclient.TransportConfig{
 				Host:     baseUrlSplit[1],
 				BasePath: "",
 				Schemes:  []string{baseUrlSplit[0]},
 			}
-			dsmcClientInstance = dsmcclient.NewHTTPClientWithConfig(nil, httpClientConfig)
+			qosmClientInstance = qosmclient.NewHTTPClientWithConfig(nil, httpClientConfig)
 		} else {
-			dsmcClientInstance = dsmcclient.NewHTTPClient(nil)
+			qosmClientInstance = qosmclient.NewHTTPClient(nil)
 		}
 	}
-	return dsmcClientInstance
+	return qosmClientInstance
 }

@@ -9,7 +9,7 @@ import (
 
 var eventlogClientInstance *eventlogclient.JusticeEventlogService
 
-func NewEventLogClient(configRepository repository.ConfigRepository) *eventlogclient.JusticeEventlogService {
+func NewEventlogClient(configRepository repository.ConfigRepository) *eventlogclient.JusticeEventlogService {
 	if eventlogClientInstance == nil {
 		baseUrl := configRepository.GetJusticeBaseUrl()
 		if len(baseUrl) > 0 {

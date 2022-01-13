@@ -13,7 +13,7 @@ import (
 
 var ugcClientInstance *ugcclient.JusticeUgcService
 
-func NewUGCClient(configRepository repository.ConfigRepository) *ugcclient.JusticeUgcService {
+func NewUgcClient(configRepository repository.ConfigRepository) *ugcclient.JusticeUgcService {
 	if ugcClientInstance == nil {
 		baseUrl := configRepository.GetJusticeBaseUrl()
 		if len(baseUrl) > 0 {

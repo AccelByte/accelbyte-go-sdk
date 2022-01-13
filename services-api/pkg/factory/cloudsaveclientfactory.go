@@ -12,7 +12,7 @@ import (
 
 var cloudSaveClientInstance *cloudsaveclient.JusticeCloudsaveService
 
-func NewCloudSaveClient(configRepository repository.ConfigRepository) *cloudsaveclient.JusticeCloudsaveService {
+func NewCloudsaveClient(configRepository repository.ConfigRepository) *cloudsaveclient.JusticeCloudsaveService {
 	if cloudSaveClientInstance == nil {
 		baseUrl := configRepository.GetJusticeBaseUrl()
 		if len(baseUrl) > 0 {

@@ -49,7 +49,7 @@ var deleteUserRolesCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(deleteUserRolesCmd)
+	RootCmd.AddCommand(deleteUserRolesCmd)
 	deleteUserRolesCmd.Flags().StringP("namespace", "n", "", "User Namespace")
 	deleteUserRolesCmd.Flags().StringP("userId", "u", "", "User ID")
 	deleteUserRolesCmd.Flags().StringP("body", "b", "", "Role's roles body. In json format, example: '{\"roleID1\", \"roleID2\"}'")

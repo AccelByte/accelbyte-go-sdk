@@ -50,7 +50,7 @@ var addUserRolesCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(addUserRolesCmd)
+	RootCmd.AddCommand(addUserRolesCmd)
 	addUserRolesCmd.Flags().StringP("namespace", "n", "", "User Namespace")
 	addUserRolesCmd.Flags().StringP("userId", "u", "", "User ID")
 	addUserRolesCmd.Flags().StringP("body", "b", "", "Role's roles body. In json format, example: '{\"key1\", \"value1\"}'")

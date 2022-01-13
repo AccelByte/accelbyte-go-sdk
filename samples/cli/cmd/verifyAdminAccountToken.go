@@ -49,7 +49,7 @@ var verifyAdminAccountTokenCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(verifyAdminAccountTokenCmd)
+	RootCmd.AddCommand(verifyAdminAccountTokenCmd)
 	verifyAdminAccountTokenCmd.Flags().StringP("namespace", "", "", "User namespace")
 	_ = verifyAdminAccountTokenCmd.MarkFlagRequired("namespace")
 	verifyAdminAccountTokenCmd.Flags().StringP("userId", "u", "", "User ID")

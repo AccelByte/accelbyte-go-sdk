@@ -55,7 +55,7 @@ var getStatsCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(getStatsCmd)
+	RootCmd.AddCommand(getStatsCmd)
 	getStatsCmd.Flags().StringP("namespace", "n", "", "User namespace")
 	_ = getStatsCmd.MarkFlagRequired("namespace")
 	getStatsCmd.Flags().Int32P("offset", "o", 0, "Pagination offset")

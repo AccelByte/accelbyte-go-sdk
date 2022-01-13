@@ -52,7 +52,7 @@ var getUserRolesCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(getUserRolesCmd)
+	RootCmd.AddCommand(getUserRolesCmd)
 	getUserRolesCmd.Flags().BoolP("isWildCard", "w", true, "isWildCard. Default true.")
 	getUserRolesCmd.Flags().StringP("after", "a", "", "After")
 	getUserRolesCmd.Flags().StringP("before", "b", "", "Before")

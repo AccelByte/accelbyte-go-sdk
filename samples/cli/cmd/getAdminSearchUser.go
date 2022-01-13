@@ -59,7 +59,7 @@ var getAdminSearchUserCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(getAdminSearchUserCmd)
+	RootCmd.AddCommand(getAdminSearchUserCmd)
 	getAdminSearchUserCmd.Flags().StringP("namespace", "n", "", "User namespace")
 	_ = getAdminSearchUserCmd.MarkFlagRequired("namespace")
 	getAdminSearchUserCmd.Flags().StringP("by", "b", "", "by")

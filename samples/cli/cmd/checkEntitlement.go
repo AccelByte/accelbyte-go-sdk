@@ -94,7 +94,7 @@ var checkEntitlementCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(checkEntitlementCmd)
+	RootCmd.AddCommand(checkEntitlementCmd)
 	checkEntitlementCmd.Flags().StringP("namespace", "", "", "User namespace")
 	_ = checkEntitlementCmd.MarkFlagRequired("namespace")
 	checkEntitlementCmd.Flags().StringP("userId", "u", "", "User ID")

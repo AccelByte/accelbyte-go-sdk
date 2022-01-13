@@ -33,7 +33,7 @@ var createGameRecordCmd = &cobra.Command{
 			Body:      content,
 		}
 		cloudSaveService := &cloudsave.PublicGameRecordService{
-			Client:          factory.NewCloudSaveClient(&repository.ConfigRepositoryImpl{}),
+			Client:          factory.NewCloudsaveClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		//nolint:staticcheck // SA1019 To be deprecated later
@@ -48,7 +48,7 @@ var createGameRecordCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(createGameRecordCmd)
+	RootCmd.AddCommand(createGameRecordCmd)
 	createGameRecordCmd.Flags().StringP("key", "k", "", "Game record key")
 	_ = createGameRecordCmd.MarkFlagRequired("key")
 	createGameRecordCmd.Flags().StringP("namespace", "n", "", "Namespace")

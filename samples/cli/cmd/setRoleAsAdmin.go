@@ -44,6 +44,6 @@ var setRoleAsAdminCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(setRoleAsAdminCmd)
+	RootCmd.AddCommand(setRoleAsAdminCmd)
 	setRoleAsAdminCmd.Flags().StringP("roleId", "r", "", "After")
 }

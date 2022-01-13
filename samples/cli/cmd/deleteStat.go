@@ -41,7 +41,7 @@ var deleteStatCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(deleteStatCmd)
+	RootCmd.AddCommand(deleteStatCmd)
 	deleteStatCmd.Flags().StringP("namespace", "n", "", "User Namespace")
 	deleteStatCmd.Flags().StringP("statCode", "s", "", "User ID")
 }

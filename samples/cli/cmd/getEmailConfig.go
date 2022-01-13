@@ -44,7 +44,7 @@ var getEmailConfigCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(getEmailConfigCmd)
+	RootCmd.AddCommand(getEmailConfigCmd)
 	getEmailConfigCmd.Flags().StringP("namespace", "n", "", "namespace")
 	_ = getEmailConfigCmd.MarkFlagRequired("namespace")
 }

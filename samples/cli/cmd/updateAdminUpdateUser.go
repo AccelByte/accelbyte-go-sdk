@@ -59,7 +59,7 @@ var updateAdminUserCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(updateAdminUserCmd)
+	RootCmd.AddCommand(updateAdminUserCmd)
 	updateAdminUserCmd.Flags().StringP("namespace", "n", "", "User namespace")
 	_ = updateAdminUserCmd.MarkFlagRequired("namespace")
 	updateAdminUserCmd.Flags().StringP("userId", "u", "", "User ID")

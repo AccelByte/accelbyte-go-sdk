@@ -58,7 +58,7 @@ var addUserBanCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(addUserBanCmd)
+	RootCmd.AddCommand(addUserBanCmd)
 	addUserBanCmd.Flags().StringP("userId", "u", "", "User ID")
 	_ = addUserBanCmd.MarkFlagRequired("userId")
 	addUserBanCmd.Flags().StringP("namespace", "", "", "User namespace")

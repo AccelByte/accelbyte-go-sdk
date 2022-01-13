@@ -54,7 +54,7 @@ var createClient = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(createClient)
+	RootCmd.AddCommand(createClient)
 	createClient.Flags().StringP("namespace", "n", "", "User namespace")
 	_ = createClient.MarkFlagRequired("namespace")
 	createClient.Flags().StringP("clientModelCreateReq", "r", "", "Client Model Create Request V3. Example : '{\"audiences\":[],\"baseUri\":\"\",\"clientId\":\"9e95123ji123ji123i\",\"clientName\":\"test-jalal\",\"namespace\":\"accelbyte\",\"oauthClientType\":\"Confidential\",\"redirectUri\":\"http://127.0.0.1\",\"secret\":\"123password\",\"clientPermissions\":[]}'")

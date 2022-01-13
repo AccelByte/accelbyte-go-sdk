@@ -51,7 +51,7 @@ var addFriendCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(addFriendCmd)
+	RootCmd.AddCommand(addFriendCmd)
 	addFriendCmd.Flags().StringP("userId", "u", "", "User ID")
 	_ = addFriendCmd.MarkFlagRequired("userId")
 	addFriendCmd.Flags().StringP("namespace", "n", "", "User namespace")

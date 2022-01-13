@@ -48,7 +48,7 @@ var deleteRoleManagersCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(deleteRoleManagersCmd)
+	RootCmd.AddCommand(deleteRoleManagersCmd)
 	deleteRoleManagersCmd.Flags().StringP("roleId", "r", "", "Role ID")
 	deleteRoleManagersCmd.Flags().StringP("managers", "m", "", "Role's managers. In json format, example: '{\"key1\", \"value1\"}'")
 	_ = deleteRoleManagersCmd.MarkFlagRequired("managers")

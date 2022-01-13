@@ -56,7 +56,7 @@ var updateClient = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(updateClient)
+	RootCmd.AddCommand(updateClient)
 	updateClient.Flags().StringP("clientID", "c", "", "Client ID")
 	_ = updateClient.MarkFlagRequired("clientID")
 	updateClient.Flags().StringP("namespace", "n", "", "User namespace")

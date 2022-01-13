@@ -72,7 +72,7 @@ var createUserRoleCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(createUserRoleCmd)
+	RootCmd.AddCommand(createUserRoleCmd)
 	createUserRoleCmd.Flags().StringP("roleName", "n", "", "Role Name")
 	createUserRoleCmd.Flags().BoolP("adminRole", "a", true, "Admin Role. Default true.")
 	createUserRoleCmd.Flags().BoolP("isWildCard", "w", true, "isWildCard. Default true.")

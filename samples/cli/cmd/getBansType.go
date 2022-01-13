@@ -43,5 +43,5 @@ var getBansType = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(getBansType)
+	RootCmd.AddCommand(getBansType)
 }

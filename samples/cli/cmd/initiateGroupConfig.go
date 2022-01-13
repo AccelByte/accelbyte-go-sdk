@@ -27,7 +27,7 @@ var initiateGroupConfigCmd = &cobra.Command{
 			Namespace: namespace,
 		}
 		groupConfigService := &group.ConfigurationService{
-			Client:          factory.NewgroupClient(&repository.ConfigRepositoryImpl{}),
+			Client:          factory.NewGroupClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		//nolint:staticcheck // SA1019 To be deprecated later
@@ -47,7 +47,7 @@ var initiateGroupConfigCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(initiateGroupConfigCmd)
+	RootCmd.AddCommand(initiateGroupConfigCmd)
 	initiateGroupConfigCmd.Flags().StringP("namespace", "n", "", "Namespace")
 	_ = initiateGroupConfigCmd.MarkFlagRequired("namespace")
 }

@@ -35,7 +35,7 @@ var createPlayerRecordCmd = &cobra.Command{
 			Body:      content,
 		}
 		cloudSaveService := &cloudsave.PublicPlayerRecordService{
-			Client:          factory.NewCloudSaveClient(&repository.ConfigRepositoryImpl{}),
+			Client:          factory.NewCloudsaveClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		//nolint:staticcheck // SA1019 To be deprecated later
@@ -50,7 +50,7 @@ var createPlayerRecordCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(createPlayerRecordCmd)
+	RootCmd.AddCommand(createPlayerRecordCmd)
 	createPlayerRecordCmd.Flags().StringP("userId", "u", "", "User ID")
 	_ = createPlayerRecordCmd.MarkFlagRequired("userId")
 	createPlayerRecordCmd.Flags().StringP("namespace", "n", "", "User namespace")

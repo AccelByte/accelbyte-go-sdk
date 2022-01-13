@@ -24,7 +24,7 @@ var getPlayerRecordCmd = &cobra.Command{
 		namespace := cmd.Flag("namespace").Value.String()
 		userId := cmd.Flag("userId").Value.String()
 		cloudSaveService := &cloudsave.PublicPlayerRecordService{
-			Client:          factory.NewCloudSaveClient(&repository.ConfigRepositoryImpl{}),
+			Client:          factory.NewCloudsaveClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		input := &public_player_record.GetPlayerPublicRecordHandlerV1Params{
@@ -48,7 +48,7 @@ var getPlayerRecordCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(getPlayerRecordCmd)
+	RootCmd.AddCommand(getPlayerRecordCmd)
 	getPlayerRecordCmd.Flags().StringP("key", "k", "", "Player record key")
 	_ = getPlayerRecordCmd.MarkFlagRequired("key")
 	getPlayerRecordCmd.Flags().StringP("namespace", "n", "", "Player namespace")

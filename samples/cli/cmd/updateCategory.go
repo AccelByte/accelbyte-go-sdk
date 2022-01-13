@@ -62,7 +62,7 @@ var updateCategoryCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(updateCategoryCmd)
+	RootCmd.AddCommand(updateCategoryCmd)
 	updateCategoryCmd.Flags().StringP("namespace", "n", "", "Store namespace")
 	_ = updateCategoryCmd.MarkFlagRequired("namespace")
 	updateCategoryCmd.Flags().StringP("storeId", "", "", "Store ID")

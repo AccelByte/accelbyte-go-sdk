@@ -54,7 +54,7 @@ var createStatCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(createStatCmd)
+	RootCmd.AddCommand(createStatCmd)
 	createStatCmd.Flags().StringP("namespace", "n", "", "User namespace")
 	_ = createStatCmd.MarkFlagRequired("namespace")
 	createStatCmd.Flags().StringP("body", "b", "", "Slot Body. Example `{\"Key1\":\"Value1\",\"Key2\":\"Value2\"}'")

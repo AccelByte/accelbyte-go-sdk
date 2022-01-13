@@ -50,7 +50,7 @@ var getClientBynamespace = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(getClientBynamespace)
+	RootCmd.AddCommand(getClientBynamespace)
 	getClientBynamespace.Flags().StringP("namespace", "n", "", "User namespace")
 	_ = getClientBynamespace.MarkFlagRequired("namespace")
 	getClientBynamespace.Flags().Int64P("limit", "l", -1, "limit")

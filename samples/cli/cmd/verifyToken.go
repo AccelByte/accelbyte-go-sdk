@@ -43,7 +43,7 @@ var verifyTokenCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(verifyTokenCmd)
+	RootCmd.AddCommand(verifyTokenCmd)
 	verifyTokenCmd.Flags().StringP("token", "t", "", "Token received by email")
 	_ = verifyTokenCmd.MarkFlagRequired("token")
 	verifyTokenCmd.Flags().StringP("namespace", "", "", "User namespace")

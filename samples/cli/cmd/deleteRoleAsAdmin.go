@@ -44,6 +44,6 @@ var deleteRoleAsAdminCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(deleteRoleAsAdminCmd)
+	RootCmd.AddCommand(deleteRoleAsAdminCmd)
 	deleteRoleAsAdminCmd.Flags().StringP("roleId", "r", "", "After")
 }

@@ -22,7 +22,7 @@ var deleteGameRecordCmd = &cobra.Command{
 		key := cmd.Flag("key").Value.String()
 		namespace := cmd.Flag("namespace").Value.String()
 		cloudSaveService := &cloudsave.PublicGameRecordService{
-			Client:          factory.NewCloudSaveClient(&repository.ConfigRepositoryImpl{}),
+			Client:          factory.NewCloudsaveClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		input := &public_game_record.DeleteGameRecordHandlerV1Params{
@@ -41,7 +41,7 @@ var deleteGameRecordCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(deleteGameRecordCmd)
+	RootCmd.AddCommand(deleteGameRecordCmd)
 	deleteGameRecordCmd.Flags().StringP("key", "k", "", "Game record key")
 	_ = deleteGameRecordCmd.MarkFlagRequired("key")
 	deleteGameRecordCmd.Flags().StringP("namespace", "n", "", "Game record key")

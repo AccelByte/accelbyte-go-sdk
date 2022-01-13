@@ -46,7 +46,7 @@ var getAdminUserByUserIDCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(getAdminUserByUserIDCmd)
+	RootCmd.AddCommand(getAdminUserByUserIDCmd)
 	getAdminUserByUserIDCmd.Flags().StringP("namespace", "n", "", "User namespace")
 	_ = getAdminUserByUserIDCmd.MarkFlagRequired("namespace")
 	getAdminUserByUserIDCmd.Flags().StringP("userId", "u", "", "User ID")

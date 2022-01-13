@@ -50,7 +50,7 @@ var deleteUserPermissionsBulkCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(deleteUserPermissionsBulkCmd)
+	RootCmd.AddCommand(deleteUserPermissionsBulkCmd)
 	deleteUserPermissionsBulkCmd.Flags().StringP("namespace", "n", "", "User Namespace")
 	deleteUserPermissionsBulkCmd.Flags().StringP("userId", "u", "", "User ID")
 	deleteUserPermissionsBulkCmd.Flags().StringP("body", "b", "", "Role's permissionsBulk body. In json format, example: '{\"key1\", \"value1\"}'")

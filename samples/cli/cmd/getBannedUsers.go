@@ -63,7 +63,7 @@ var getBannedUsers = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(getBannedUsers)
+	RootCmd.AddCommand(getBannedUsers)
 	getBannedUsers.Flags().BoolP("activeOnly", "a", false, "Active Only. a Boolean value")
 	_ = getBannedUsers.MarkFlagRequired("activeOnly")
 	getBannedUsers.Flags().StringP("banType", "b", "", "Ban Type")

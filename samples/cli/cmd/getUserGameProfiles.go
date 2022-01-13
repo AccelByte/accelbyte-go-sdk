@@ -56,7 +56,7 @@ var getUserGameProfiles = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(getUserGameProfiles)
+	RootCmd.AddCommand(getUserGameProfiles)
 	getUserGameProfiles.Flags().StringP("namespace", "n", "", "User namespace")
 	_ = getUserGameProfiles.MarkFlagRequired("namespace")
 	getUserGameProfiles.Flags().StringP("userIDs", "u", "", "Array of User ID. Example: '[\"98603754a2854b83bafde85402086956\",\"98603754a2854b83bafde8540208777\"]' ")

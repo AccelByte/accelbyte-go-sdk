@@ -50,7 +50,7 @@ var addUserPermissionsCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(addUserPermissionsCmd)
+	RootCmd.AddCommand(addUserPermissionsCmd)
 	addUserPermissionsCmd.Flags().StringP("namespace", "n", "", "User Namespace")
 	addUserPermissionsCmd.Flags().StringP("userId", "u", "", "User ID")
 	addUserPermissionsCmd.Flags().StringP("permissions", "p", "", "Role's permissions. In json format, example: '{\"key1\", \"value1\"}'")

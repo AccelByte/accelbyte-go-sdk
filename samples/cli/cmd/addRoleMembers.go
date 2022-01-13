@@ -48,7 +48,7 @@ var addRoleMembersCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(addRoleMembersCmd)
+	RootCmd.AddCommand(addRoleMembersCmd)
 	addRoleMembersCmd.Flags().StringP("roleId", "r", "", "Role ID")
 	addRoleMembersCmd.Flags().StringP("members", "m", "", "Role's members. In json format, example: '{\"key1\", \"value1\"}'")
 	_ = addRoleMembersCmd.MarkFlagRequired("members")

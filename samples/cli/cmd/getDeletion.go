@@ -60,7 +60,7 @@ var getDeletionCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(getDeletionCmd)
+	RootCmd.AddCommand(getDeletionCmd)
 	getDeletionCmd.Flags().StringP("namespace", "n", "", "User namespace")
 	_ = getDeletionCmd.MarkFlagRequired("namespace")
 	getDeletionCmd.Flags().StringP("requestDate", "d", "", "YYYY-MM-DD")

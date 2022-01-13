@@ -28,7 +28,7 @@ to quickly create a Cobra application.`,
 		key := cmd.Flag("key").Value.String()
 		namespace := cmd.Flag("namespace").Value.String()
 		cloudSaveService := &cloudsave.PublicGameRecordService{
-			Client:          factory.NewCloudSaveClient(&repository.ConfigRepositoryImpl{}),
+			Client:          factory.NewCloudsaveClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		input := &public_game_record.GetGameRecordHandlerV1Params{
@@ -51,7 +51,7 @@ to quickly create a Cobra application.`,
 }
 
 func init() {
-	rootCmd.AddCommand(getGameRecordCmd)
+	RootCmd.AddCommand(getGameRecordCmd)
 	getGameRecordCmd.Flags().StringP("key", "k", "", "Game record key")
 	_ = getGameRecordCmd.MarkFlagRequired("key")
 	getGameRecordCmd.Flags().StringP("namespace", "n", "", "Game record key")

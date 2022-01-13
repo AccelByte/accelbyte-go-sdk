@@ -53,7 +53,7 @@ var getRoleMemberCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(getRoleMemberCmd)
+	RootCmd.AddCommand(getRoleMemberCmd)
 	getRoleMemberCmd.Flags().StringP("roleId", "r", "", "Role ID")
 	getRoleMemberCmd.Flags().StringP("after", "a", "", "After")
 	getRoleMemberCmd.Flags().StringP("before", "b", "", "Before")

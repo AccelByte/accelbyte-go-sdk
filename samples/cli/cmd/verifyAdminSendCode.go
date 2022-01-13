@@ -49,7 +49,7 @@ var verifyAdminSendCodeCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(verifyAdminSendCodeCmd)
+	RootCmd.AddCommand(verifyAdminSendCodeCmd)
 	verifyAdminSendCodeCmd.Flags().StringP("namespace", "", "", "User namespace")
 	_ = verifyAdminSendCodeCmd.MarkFlagRequired("namespace")
 	verifyAdminSendCodeCmd.Flags().StringP("userId", "u", "", "User ID")

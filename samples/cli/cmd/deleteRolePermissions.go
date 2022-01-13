@@ -47,7 +47,7 @@ var deleteRolePermissionsCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(deleteRolePermissionsCmd)
+	RootCmd.AddCommand(deleteRolePermissionsCmd)
 	deleteRolePermissionsCmd.Flags().StringP("roleId", "r", "", "Role ID")
 	deleteRolePermissionsCmd.Flags().StringP("body", "b", "", "Role's permissions body. In json format, example: '{\"key1\", \"value1\"}'")
 	_ = deleteRolePermissionsCmd.MarkFlagRequired("body")

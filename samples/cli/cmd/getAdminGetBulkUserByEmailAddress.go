@@ -53,7 +53,7 @@ var getAdminGetBulkUserByEmailAddressCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(getAdminGetBulkUserByEmailAddressCmd)
+	RootCmd.AddCommand(getAdminGetBulkUserByEmailAddressCmd)
 	getAdminGetBulkUserByEmailAddressCmd.Flags().StringP("namespace", "n", "", "User namespace")
 	_ = getAdminGetBulkUserByEmailAddressCmd.MarkFlagRequired("namespace")
 	getAdminGetBulkUserByEmailAddressCmd.Flags().StringP("listEmailAddressRequests", "e", "", "list Email Address Requests, value in json. example: '[\"12345\", \"12346\", \"12347\"]'")

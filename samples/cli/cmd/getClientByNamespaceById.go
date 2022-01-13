@@ -48,7 +48,7 @@ var getClientBynamespaceById = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(getClientBynamespaceById)
+	RootCmd.AddCommand(getClientBynamespaceById)
 	getClientBynamespaceById.Flags().StringP("clientID", "c", "", "Client ID")
 	_ = getClientBynamespaceById.MarkFlagRequired("clientID")
 	getClientBynamespaceById.Flags().StringP("namespace", "n", "", "Client Namespace")

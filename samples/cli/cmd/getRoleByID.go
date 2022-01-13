@@ -44,6 +44,6 @@ var getRoleByIDCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(getRoleByIDCmd)
+	RootCmd.AddCommand(getRoleByIDCmd)
 	getRoleByIDCmd.Flags().StringP("roleId", "r", "", "Role ID")
 }

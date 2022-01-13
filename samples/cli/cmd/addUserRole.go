@@ -43,7 +43,7 @@ var addUserRoleCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(addUserRoleCmd)
+	RootCmd.AddCommand(addUserRoleCmd)
 	addUserRoleCmd.Flags().StringP("namespace", "n", "", "User Namespace")
 	addUserRoleCmd.Flags().StringP("userId", "u", "", "User ID")
 	addUserRoleCmd.Flags().StringP("roleId", "r", "", "Role ID")

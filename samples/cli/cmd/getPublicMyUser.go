@@ -41,6 +41,6 @@ var getPublicMyUserCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(getPublicMyUserCmd)
+	RootCmd.AddCommand(getPublicMyUserCmd)
 
 }

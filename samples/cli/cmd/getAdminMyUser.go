@@ -41,6 +41,6 @@ var getAdminMyUserCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(getAdminMyUserCmd)
+	RootCmd.AddCommand(getAdminMyUserCmd)
 
 }

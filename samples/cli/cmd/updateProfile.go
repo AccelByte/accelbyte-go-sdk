@@ -60,7 +60,7 @@ var updateProfile = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(updateProfile)
+	RootCmd.AddCommand(updateProfile)
 	updateProfile.Flags().StringP("namespace", "n", "", "User namespace")
 	_ = updateProfile.MarkFlagRequired("namespace")
 	updateProfile.Flags().StringP("userId", "u", "", "User ID")

@@ -44,6 +44,6 @@ var deleteRoleCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(deleteRoleCmd)
+	RootCmd.AddCommand(deleteRoleCmd)
 	deleteRoleCmd.Flags().StringP("roleId", "r", "", "Role ID")
 }

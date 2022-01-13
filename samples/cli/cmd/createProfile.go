@@ -53,7 +53,7 @@ var createProfile = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(createProfile)
+	RootCmd.AddCommand(createProfile)
 	createProfile.Flags().StringP("namespace", "n", "", "User namespace")
 	_ = createProfile.MarkFlagRequired("namespace")
 	createProfile.Flags().StringP("userId", "u", "", "User ID")

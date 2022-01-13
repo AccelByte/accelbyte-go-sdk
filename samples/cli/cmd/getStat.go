@@ -47,7 +47,7 @@ var getStatCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(getStatCmd)
+	RootCmd.AddCommand(getStatCmd)
 	getStatCmd.Flags().StringP("namespace", "n", "", "User namespace")
 	_ = getStatCmd.MarkFlagRequired("namespace")
 	getStatCmd.Flags().StringP("statCode", "s", "", "Stat Code")

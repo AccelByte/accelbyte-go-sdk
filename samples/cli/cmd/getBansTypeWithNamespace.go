@@ -46,7 +46,7 @@ var getBansTypeWithNamespace = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(getBansTypeWithNamespace)
+	RootCmd.AddCommand(getBansTypeWithNamespace)
 	getBansTypeWithNamespace.Flags().StringP("namespace", "n", "", "namespace")
 	_ = getBansTypeWithNamespace.MarkFlagRequired("namespace")
 }

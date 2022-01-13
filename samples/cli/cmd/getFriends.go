@@ -49,7 +49,7 @@ var getFriendsCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(getFriendsCmd)
+	RootCmd.AddCommand(getFriendsCmd)
 	getFriendsCmd.Flags().StringP("userId", "u", "", "User ID")
 	_ = getFriendsCmd.MarkFlagRequired("userId")
 	getFriendsCmd.Flags().StringP("namespace", "n", "", "User namespace")

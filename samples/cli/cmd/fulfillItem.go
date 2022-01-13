@@ -67,7 +67,7 @@ var fulfillItemCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(fulfillItemCmd)
+	RootCmd.AddCommand(fulfillItemCmd)
 	fulfillItemCmd.Flags().StringP("userId", "u", "", "User ID")
 	_ = fulfillItemCmd.MarkFlagRequired("userId")
 	fulfillItemCmd.Flags().StringP("itemId", "i", "", "Item ID")

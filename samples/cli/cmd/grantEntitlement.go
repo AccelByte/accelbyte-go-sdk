@@ -73,7 +73,7 @@ var grantEntitlementCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(grantEntitlementCmd)
+	RootCmd.AddCommand(grantEntitlementCmd)
 	grantEntitlementCmd.Flags().StringP("userId", "u", "", "User ID")
 	_ = grantEntitlementCmd.MarkFlagRequired("userId")
 	grantEntitlementCmd.Flags().StringP("itemId", "i", "", "Item ID")

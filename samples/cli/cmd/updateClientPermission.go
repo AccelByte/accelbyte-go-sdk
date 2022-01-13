@@ -51,7 +51,7 @@ var updateClientPermission = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(updateClientPermission)
+	RootCmd.AddCommand(updateClientPermission)
 	updateClientPermission.Flags().StringP("clientID", "c", "", "Client ID")
 	_ = updateClientPermission.MarkFlagRequired("clientID")
 	updateClientPermission.Flags().StringP("namespace", "n", "", "User namespace")

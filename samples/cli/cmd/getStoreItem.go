@@ -77,7 +77,7 @@ var getStoreitemCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(getStoreitemCmd)
+	RootCmd.AddCommand(getStoreitemCmd)
 	getStoreitemCmd.Flags().StringP("appType", "", "", "Sub type of APP item")
 	getStoreitemCmd.Flags().StringP("baseAppId", "", "", "Base APP ID")
 	getStoreitemCmd.Flags().StringP("categoryPath", "", "", "Category Path")

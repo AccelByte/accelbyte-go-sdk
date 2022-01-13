@@ -51,7 +51,7 @@ var updateRoleByIDCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(updateRoleByIDCmd)
+	RootCmd.AddCommand(updateRoleByIDCmd)
 	updateRoleByIDCmd.Flags().BoolP("isWildCard", "w", true, "isWildCard. Default true.")
 	updateRoleByIDCmd.Flags().StringP("roleId", "r", "", "Role ID")
 	updateRoleByIDCmd.Flags().StringP("roleName", "a", "", "Role Name")

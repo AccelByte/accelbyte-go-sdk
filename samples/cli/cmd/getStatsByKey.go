@@ -57,7 +57,7 @@ var getStatsByKeywordCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(getStatsByKeywordCmd)
+	RootCmd.AddCommand(getStatsByKeywordCmd)
 	getStatsByKeywordCmd.Flags().StringP("namespace", "n", "", "User namespace")
 	_ = getStatsByKeywordCmd.MarkFlagRequired("namespace")
 	getStatsByKeywordCmd.Flags().StringP("keyword", "k", "", "Keyword")

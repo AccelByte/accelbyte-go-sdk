@@ -52,7 +52,7 @@ var createUserRolePermissionCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(createUserRolePermissionCmd)
+	RootCmd.AddCommand(createUserRolePermissionCmd)
 	createUserRolePermissionCmd.Flags().StringP("roleId", "r", "", "Role Name")
 	createUserRolePermissionCmd.Flags().StringP("permissions", "p", "", "Role's permissions. In json format, example: '{\"key1\", \"value1\"}'")
 	_ = createUserRolePermissionCmd.MarkFlagRequired("permissions")

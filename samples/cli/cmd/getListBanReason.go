@@ -43,5 +43,5 @@ var getListBanReason = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(getListBanReason)
+	RootCmd.AddCommand(getListBanReason)
 }

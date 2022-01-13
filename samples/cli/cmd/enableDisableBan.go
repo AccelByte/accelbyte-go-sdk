@@ -54,7 +54,7 @@ var enableDisableBanCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(enableDisableBanCmd)
+	RootCmd.AddCommand(enableDisableBanCmd)
 	enableDisableBanCmd.Flags().StringP("namespace", "", "", "User namespace")
 	_ = enableDisableBanCmd.MarkFlagRequired("namespace")
 	enableDisableBanCmd.Flags().StringP("userId", "u", "", "User ID")

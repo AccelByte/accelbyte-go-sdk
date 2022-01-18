@@ -1,3 +1,27 @@
+<a name="v0.10.0"></a>
+## [v0.10.0] - 2022-01-19
+
+### Chore
+- restore deprecated comment for old wrapper
+- add deprecated comment for old wrapper
+- put the manual code wrapper of oAuth2.0 into auth.go
+- delete duplicate wrapper file based on service's tag name
+
+### Docs
+- update CHANGELOG.md for v0.10.0 release
+- **cli:** update README.md
+- **tic-tac-toe:** add template.yaml and event
+- **tic-tac-toe:** add README.md
+- **titleMM:** add template.yaml and event
+- **titleMM:** add README.md
+
+### Feat
+- generate wrapper coverage with jinja template
+
+### Fix
+- cli method used after synchronize with wrapper name
+
+
 <a name="v0.9.0"></a>
 ## [v0.9.0] - 2022-01-05
 
@@ -286,6 +310,7 @@ The wrapper have been refactored and has breaking change, these are the list:
 - delete go.mod ([#1](https://github.com/AccelByte/accelbyte-go-sdk/issues/1))
 
 
+[v0.10.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.9.0...v0.10.0
 [v0.9.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.8.0...v0.9.0
 [v0.8.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.7.0...v0.8.0
 [v0.7.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.6.1...v0.7.0

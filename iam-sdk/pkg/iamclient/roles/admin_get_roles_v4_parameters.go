@@ -68,16 +68,6 @@ type AdminGetRolesV4Params struct {
 
 	*/
 	AdminRole *bool
-	/*After
-	  The cursor that points to query data for the next page
-
-	*/
-	After *string
-	/*Before
-	  The cursor that points to query data for the previous page
-
-	*/
-	Before *string
 	/*IsWildcard
 	  - true if the expected result should only returns records with wildcard = true
 	          - false if the expected result should only returns records with wildcard = false
@@ -90,6 +80,11 @@ type AdminGetRolesV4Params struct {
 
 	*/
 	Limit *int64
+	/*Offset
+	  the count to skip
+
+	*/
+	Offset *int64
 
 	timeout    time.Duration
 	Context    context.Context
@@ -140,28 +135,6 @@ func (o *AdminGetRolesV4Params) SetAdminRole(adminRole *bool) {
 	o.AdminRole = adminRole
 }
 
-// WithAfter adds the after to the admin get roles v4 params
-func (o *AdminGetRolesV4Params) WithAfter(after *string) *AdminGetRolesV4Params {
-	o.SetAfter(after)
-	return o
-}
-
-// SetAfter adds the after to the admin get roles v4 params
-func (o *AdminGetRolesV4Params) SetAfter(after *string) {
-	o.After = after
-}
-
-// WithBefore adds the before to the admin get roles v4 params
-func (o *AdminGetRolesV4Params) WithBefore(before *string) *AdminGetRolesV4Params {
-	o.SetBefore(before)
-	return o
-}
-
-// SetBefore adds the before to the admin get roles v4 params
-func (o *AdminGetRolesV4Params) SetBefore(before *string) {
-	o.Before = before
-}
-
 // WithIsWildcard adds the isWildcard to the admin get roles v4 params
 func (o *AdminGetRolesV4Params) WithIsWildcard(isWildcard *bool) *AdminGetRolesV4Params {
 	o.SetIsWildcard(isWildcard)
@@ -184,6 +157,17 @@ func (o *AdminGetRolesV4Params) SetLimit(limit *int64) {
 	o.Limit = limit
 }
 
+// WithOffset adds the offset to the admin get roles v4 params
+func (o *AdminGetRolesV4Params) WithOffset(offset *int64) *AdminGetRolesV4Params {
+	o.SetOffset(offset)
+	return o
+}
+
+// SetOffset adds the offset to the admin get roles v4 params
+func (o *AdminGetRolesV4Params) SetOffset(offset *int64) {
+	o.Offset = offset
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *AdminGetRolesV4Params) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -202,38 +186,6 @@ func (o *AdminGetRolesV4Params) WriteToRequest(r runtime.ClientRequest, reg strf
 		qAdminRole := swag.FormatBool(qrAdminRole)
 		if qAdminRole != "" {
 			if err := r.SetQueryParam("adminRole", qAdminRole); err != nil {
-				return err
-			}
-		}
-
-	}
-
-	if o.After != nil {
-
-		// query param after
-		var qrAfter string
-		if o.After != nil {
-			qrAfter = *o.After
-		}
-		qAfter := qrAfter
-		if qAfter != "" {
-			if err := r.SetQueryParam("after", qAfter); err != nil {
-				return err
-			}
-		}
-
-	}
-
-	if o.Before != nil {
-
-		// query param before
-		var qrBefore string
-		if o.Before != nil {
-			qrBefore = *o.Before
-		}
-		qBefore := qrBefore
-		if qBefore != "" {
-			if err := r.SetQueryParam("before", qBefore); err != nil {
 				return err
 			}
 		}
@@ -266,6 +218,22 @@ func (o *AdminGetRolesV4Params) WriteToRequest(r runtime.ClientRequest, reg strf
 		qLimit := swag.FormatInt64(qrLimit)
 		if qLimit != "" {
 			if err := r.SetQueryParam("limit", qLimit); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Offset != nil {
+
+		// query param offset
+		var qrOffset int64
+		if o.Offset != nil {
+			qrOffset = *o.Offset
+		}
+		qOffset := swag.FormatInt64(qrOffset)
+		if qOffset != "" {
+			if err := r.SetQueryParam("offset", qOffset); err != nil {
 				return err
 			}
 		}

@@ -75,23 +75,13 @@ func NewAdminBulkBlockPlayersV1NoContent() *AdminBulkBlockPlayersV1NoContent {
   No Content
 */
 type AdminBulkBlockPlayersV1NoContent struct {
-	Payload int64
 }
 
 func (o *AdminBulkBlockPlayersV1NoContent) Error() string {
-	return fmt.Sprintf("[POST /lobby/v1/admin/player/namespaces/{namespace}/users/{userId}/bulk/block][%d] adminBulkBlockPlayersV1NoContent  %+v", 204, o.Payload)
-}
-
-func (o *AdminBulkBlockPlayersV1NoContent) GetPayload() int64 {
-	return o.Payload
+	return fmt.Sprintf("[POST /lobby/v1/admin/player/namespaces/{namespace}/users/{userId}/bulk/block][%d] adminBulkBlockPlayersV1NoContent ", 204)
 }
 
 func (o *AdminBulkBlockPlayersV1NoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-
-	// response payload
-	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
-		return err
-	}
 
 	return nil
 }

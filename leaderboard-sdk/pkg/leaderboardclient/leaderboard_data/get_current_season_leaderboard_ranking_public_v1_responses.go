@@ -36,18 +36,6 @@ func (o *GetCurrentSeasonLeaderboardRankingPublicV1Reader) ReadResponse(response
 			return nil, err
 		}
 		return result, nil
-	case 401:
-		result := NewGetCurrentSeasonLeaderboardRankingPublicV1Unauthorized()
-		if err := result.readResponse(response, consumer, o.formats); err != nil {
-			return nil, err
-		}
-		return result, nil
-	case 403:
-		result := NewGetCurrentSeasonLeaderboardRankingPublicV1Forbidden()
-		if err := result.readResponse(response, consumer, o.formats); err != nil {
-			return nil, err
-		}
-		return result, nil
 	case 404:
 		result := NewGetCurrentSeasonLeaderboardRankingPublicV1NotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -126,72 +114,6 @@ func (o *GetCurrentSeasonLeaderboardRankingPublicV1BadRequest) GetPayload() *lea
 }
 
 func (o *GetCurrentSeasonLeaderboardRankingPublicV1BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-
-	o.Payload = new(leaderboardclientmodels.ResponseErrorResponse)
-
-	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
-		return err
-	}
-
-	return nil
-}
-
-// NewGetCurrentSeasonLeaderboardRankingPublicV1Unauthorized creates a GetCurrentSeasonLeaderboardRankingPublicV1Unauthorized with default headers values
-func NewGetCurrentSeasonLeaderboardRankingPublicV1Unauthorized() *GetCurrentSeasonLeaderboardRankingPublicV1Unauthorized {
-	return &GetCurrentSeasonLeaderboardRankingPublicV1Unauthorized{}
-}
-
-/*GetCurrentSeasonLeaderboardRankingPublicV1Unauthorized handles this case with default header values.
-
-  Unauthorized
-*/
-type GetCurrentSeasonLeaderboardRankingPublicV1Unauthorized struct {
-	Payload *leaderboardclientmodels.ResponseErrorResponse
-}
-
-func (o *GetCurrentSeasonLeaderboardRankingPublicV1Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /leaderboard/v1/public/namespaces/{namespace}/leaderboards/{leaderboardCode}/season][%d] getCurrentSeasonLeaderboardRankingPublicV1Unauthorized  %+v", 401, o.Payload)
-}
-
-func (o *GetCurrentSeasonLeaderboardRankingPublicV1Unauthorized) GetPayload() *leaderboardclientmodels.ResponseErrorResponse {
-	return o.Payload
-}
-
-func (o *GetCurrentSeasonLeaderboardRankingPublicV1Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-
-	o.Payload = new(leaderboardclientmodels.ResponseErrorResponse)
-
-	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
-		return err
-	}
-
-	return nil
-}
-
-// NewGetCurrentSeasonLeaderboardRankingPublicV1Forbidden creates a GetCurrentSeasonLeaderboardRankingPublicV1Forbidden with default headers values
-func NewGetCurrentSeasonLeaderboardRankingPublicV1Forbidden() *GetCurrentSeasonLeaderboardRankingPublicV1Forbidden {
-	return &GetCurrentSeasonLeaderboardRankingPublicV1Forbidden{}
-}
-
-/*GetCurrentSeasonLeaderboardRankingPublicV1Forbidden handles this case with default header values.
-
-  Forbidden
-*/
-type GetCurrentSeasonLeaderboardRankingPublicV1Forbidden struct {
-	Payload *leaderboardclientmodels.ResponseErrorResponse
-}
-
-func (o *GetCurrentSeasonLeaderboardRankingPublicV1Forbidden) Error() string {
-	return fmt.Sprintf("[GET /leaderboard/v1/public/namespaces/{namespace}/leaderboards/{leaderboardCode}/season][%d] getCurrentSeasonLeaderboardRankingPublicV1Forbidden  %+v", 403, o.Payload)
-}
-
-func (o *GetCurrentSeasonLeaderboardRankingPublicV1Forbidden) GetPayload() *leaderboardclientmodels.ResponseErrorResponse {
-	return o.Payload
-}
-
-func (o *GetCurrentSeasonLeaderboardRankingPublicV1Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(leaderboardclientmodels.ResponseErrorResponse)
 

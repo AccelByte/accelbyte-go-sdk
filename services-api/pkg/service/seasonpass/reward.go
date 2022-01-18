@@ -19,7 +19,6 @@ type RewardService struct {
 	TokenRepository repository.TokenRepository
 }
 
-// Deprecated: Use GetRewardShort instead
 func (r *RewardService) GetReward(input *reward.GetRewardParams) (*seasonpassclientmodels.RewardInfo, error) {
 	accessToken, err := r.TokenRepository.GetToken()
 	if err != nil {
@@ -38,7 +37,6 @@ func (r *RewardService) GetReward(input *reward.GetRewardParams) (*seasonpasscli
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use DeleteRewardShort instead
 func (r *RewardService) DeleteReward(input *reward.DeleteRewardParams) error {
 	accessToken, err := r.TokenRepository.GetToken()
 	if err != nil {
@@ -60,7 +58,6 @@ func (r *RewardService) DeleteReward(input *reward.DeleteRewardParams) error {
 	return nil
 }
 
-// Deprecated: Use UpdateRewardShort instead
 func (r *RewardService) UpdateReward(input *reward.UpdateRewardParams) (*seasonpassclientmodels.RewardInfo, error) {
 	accessToken, err := r.TokenRepository.GetToken()
 	if err != nil {
@@ -85,7 +82,6 @@ func (r *RewardService) UpdateReward(input *reward.UpdateRewardParams) (*seasonp
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use QueryRewardsShort instead
 func (r *RewardService) QueryRewards(input *reward.QueryRewardsParams) ([]*seasonpassclientmodels.RewardInfo, error) {
 	accessToken, err := r.TokenRepository.GetToken()
 	if err != nil {
@@ -104,7 +100,6 @@ func (r *RewardService) QueryRewards(input *reward.QueryRewardsParams) ([]*seaso
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use CreateRewardShort instead
 func (r *RewardService) CreateReward(input *reward.CreateRewardParams) (*seasonpassclientmodels.RewardInfo, error) {
 	accessToken, err := r.TokenRepository.GetToken()
 	if err != nil {
@@ -129,7 +124,6 @@ func (r *RewardService) CreateReward(input *reward.CreateRewardParams) (*seasonp
 	return created.GetPayload(), nil
 }
 
-// Deprecated: Use PublicClaimUserRewardShort instead
 func (r *RewardService) PublicClaimUserReward(input *reward.PublicClaimUserRewardParams) (*seasonpassclientmodels.ClaimableRewards, error) {
 	accessToken, err := r.TokenRepository.GetToken()
 	if err != nil {
@@ -151,7 +145,6 @@ func (r *RewardService) PublicClaimUserReward(input *reward.PublicClaimUserRewar
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use PublicBulkClaimUserRewardsShort instead
 func (r *RewardService) PublicBulkClaimUserRewards(input *reward.PublicBulkClaimUserRewardsParams) (*seasonpassclientmodels.ClaimableRewards, error) {
 	accessToken, err := r.TokenRepository.GetToken()
 	if err != nil {

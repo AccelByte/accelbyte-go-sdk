@@ -19,44 +19,43 @@ type PaymentAccountService struct {
 	TokenRepository repository.TokenRepository
 }
 
-// Deprecated: Use PublicGetPaymentAccountsShort instead
-func (p *PaymentAccountService) PublicGetPaymentAccounts(input *payment_account.PublicGetPaymentAccountsParams) ([]*platformclientmodels.PaymentAccount, error) {
-	accessToken, err := p.TokenRepository.GetToken()
-	if err != nil {
+func (p *PaymentAccountService) PublicGetPaymentAccounts(input *payment_account.PublicGetPaymentAccountsParams)([]*platformclientmodels.PaymentAccount, error) {
+    accessToken, err := p.TokenRepository.GetToken()
+    if err != nil {
 		return nil, err
 	}
-	ok, err := p.Client.PaymentAccount.PublicGetPaymentAccounts(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
+ok, err := p.Client.PaymentAccount.PublicGetPaymentAccounts(input, client.BearerToken(*accessToken.AccessToken))
+    if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use PublicDeletePaymentAccountShort instead
 func (p *PaymentAccountService) PublicDeletePaymentAccount(input *payment_account.PublicDeletePaymentAccountParams) error {
 	accessToken, err := p.TokenRepository.GetToken()
-	if err != nil {
+    if err != nil {
 		return err
 	}
-	_, err = p.Client.PaymentAccount.PublicDeletePaymentAccount(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
+    _, err = p.Client.PaymentAccount.PublicDeletePaymentAccount(input, client.BearerToken(*accessToken.AccessToken))
+    if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (p *PaymentAccountService) PublicGetPaymentAccountsShort(input *payment_account.PublicGetPaymentAccountsParams, authInfo runtime.ClientAuthInfoWriter) ([]*platformclientmodels.PaymentAccount, error) {
-	ok, err := p.Client.PaymentAccount.PublicGetPaymentAccountsShort(input, authInfo)
-	if err != nil {
+func (p *PaymentAccountService) PublicGetPaymentAccountsShort(input *payment_account.PublicGetPaymentAccountsParams, authInfo runtime.ClientAuthInfoWriter)([]*platformclientmodels.PaymentAccount, error) {
+    ok, err := p.Client.PaymentAccount.PublicGetPaymentAccountsShort(input, authInfo)
+    if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
 func (p *PaymentAccountService) PublicDeletePaymentAccountShort(input *payment_account.PublicDeletePaymentAccountParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := p.Client.PaymentAccount.PublicDeletePaymentAccountShort(input, authInfo)
-	if err != nil {
+    _, err := p.Client.PaymentAccount.PublicDeletePaymentAccountShort(input, authInfo)
+    if err != nil {
 		return err
 	}
 	return nil
 }
+

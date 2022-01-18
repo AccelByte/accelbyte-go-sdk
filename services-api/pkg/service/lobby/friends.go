@@ -19,7 +19,6 @@ type FriendsService struct {
 	TokenRepository repository.TokenRepository
 }
 
-// Deprecated: Use GetUserFriendsUpdatedShort instead
 func (f *FriendsService) GetUserFriendsUpdated(input *friends.GetUserFriendsUpdatedParams) ([]*lobbyclientmodels.ModelGetUserFriendsResponse, error) {
 	accessToken, err := f.TokenRepository.GetToken()
 	if err != nil {
@@ -47,7 +46,6 @@ func (f *FriendsService) GetUserFriendsUpdated(input *friends.GetUserFriendsUpda
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use GetUserIncomingFriendsShort instead
 func (f *FriendsService) GetUserIncomingFriends(input *friends.GetUserIncomingFriendsParams) ([]*lobbyclientmodels.ModelGetUserIncomingFriendsResponse, error) {
 	accessToken, err := f.TokenRepository.GetToken()
 	if err != nil {
@@ -75,7 +73,6 @@ func (f *FriendsService) GetUserIncomingFriends(input *friends.GetUserIncomingFr
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use GetUserOutgoingFriendsShort instead
 func (f *FriendsService) GetUserOutgoingFriends(input *friends.GetUserOutgoingFriendsParams) ([]*lobbyclientmodels.ModelGetUserOutgoingFriendsResponse, error) {
 	accessToken, err := f.TokenRepository.GetToken()
 	if err != nil {
@@ -103,7 +100,6 @@ func (f *FriendsService) GetUserOutgoingFriends(input *friends.GetUserOutgoingFr
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use UserRequestFriendShort instead
 func (f *FriendsService) UserRequestFriend(input *friends.UserRequestFriendParams) error {
 	accessToken, err := f.TokenRepository.GetToken()
 	if err != nil {
@@ -134,7 +130,6 @@ func (f *FriendsService) UserRequestFriend(input *friends.UserRequestFriendParam
 	return nil
 }
 
-// Deprecated: Use UserAcceptFriendRequestShort instead
 func (f *FriendsService) UserAcceptFriendRequest(input *friends.UserAcceptFriendRequestParams) error {
 	accessToken, err := f.TokenRepository.GetToken()
 	if err != nil {
@@ -162,7 +157,6 @@ func (f *FriendsService) UserAcceptFriendRequest(input *friends.UserAcceptFriend
 	return nil
 }
 
-// Deprecated: Use UserCancelFriendRequestShort instead
 func (f *FriendsService) UserCancelFriendRequest(input *friends.UserCancelFriendRequestParams) error {
 	accessToken, err := f.TokenRepository.GetToken()
 	if err != nil {
@@ -190,7 +184,6 @@ func (f *FriendsService) UserCancelFriendRequest(input *friends.UserCancelFriend
 	return nil
 }
 
-// Deprecated: Use UserRejectFriendRequestShort instead
 func (f *FriendsService) UserRejectFriendRequest(input *friends.UserRejectFriendRequestParams) error {
 	accessToken, err := f.TokenRepository.GetToken()
 	if err != nil {
@@ -218,7 +211,6 @@ func (f *FriendsService) UserRejectFriendRequest(input *friends.UserRejectFriend
 	return nil
 }
 
-// Deprecated: Use UserGetFriendshipStatusShort instead
 func (f *FriendsService) UserGetFriendshipStatus(input *friends.UserGetFriendshipStatusParams) (*lobbyclientmodels.ModelUserGetFriendshipStatusResponse, error) {
 	accessToken, err := f.TokenRepository.GetToken()
 	if err != nil {
@@ -243,7 +235,6 @@ func (f *FriendsService) UserGetFriendshipStatus(input *friends.UserGetFriendshi
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use UserUnfriendRequestShort instead
 func (f *FriendsService) UserUnfriendRequest(input *friends.UserUnfriendRequestParams) error {
 	accessToken, err := f.TokenRepository.GetToken()
 	if err != nil {
@@ -271,7 +262,6 @@ func (f *FriendsService) UserUnfriendRequest(input *friends.UserUnfriendRequestP
 	return nil
 }
 
-// Deprecated: Use AddFriendsWithoutConfirmationShort instead
 func (f *FriendsService) AddFriendsWithoutConfirmation(input *friends.AddFriendsWithoutConfirmationParams) error {
 	accessToken, err := f.TokenRepository.GetToken()
 	if err != nil {
@@ -296,7 +286,6 @@ func (f *FriendsService) AddFriendsWithoutConfirmation(input *friends.AddFriends
 	return nil
 }
 
-// Deprecated: Use GetListOfFriendsShort instead
 func (f *FriendsService) GetListOfFriends(input *friends.GetListOfFriendsParams) (*lobbyclientmodels.ModelGetFriendsResponse, error) {
 	accessToken, err := f.TokenRepository.GetToken()
 	if err != nil {

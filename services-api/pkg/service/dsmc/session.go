@@ -19,7 +19,6 @@ type SessionService struct {
 	TokenRepository repository.TokenRepository
 }
 
-// Deprecated: Use CreateSessionShort instead
 func (s *SessionService) CreateSession(input *session.CreateSessionParams) (*dsmcclientmodels.ModelsSessionResponse, error) {
 	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {
@@ -50,7 +49,6 @@ func (s *SessionService) CreateSession(input *session.CreateSessionParams) (*dsm
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use ClaimServerShort instead
 func (s *SessionService) ClaimServer(input *session.ClaimServerParams) error {
 	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {
@@ -81,7 +79,6 @@ func (s *SessionService) ClaimServer(input *session.ClaimServerParams) error {
 	return nil
 }
 
-// Deprecated: Use GetSessionShort instead
 func (s *SessionService) GetSession(input *session.GetSessionParams) (*dsmcclientmodels.ModelsSessionResponse, error) {
 	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {

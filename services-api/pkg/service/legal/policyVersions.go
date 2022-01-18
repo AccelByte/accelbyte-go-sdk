@@ -19,7 +19,6 @@ type PolicyVersionsService struct {
 	TokenRepository repository.TokenRepository
 }
 
-// Deprecated: Use UpdatePolicyVersionShort instead
 func (p *PolicyVersionsService) UpdatePolicyVersion(input *policy_versions.UpdatePolicyVersionParams) (*legalclientmodels.UpdatePolicyVersionResponse, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -35,7 +34,6 @@ func (p *PolicyVersionsService) UpdatePolicyVersion(input *policy_versions.Updat
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use PublishPolicyVersionShort instead
 func (p *PolicyVersionsService) PublishPolicyVersion(input *policy_versions.PublishPolicyVersionParams) error {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -51,7 +49,6 @@ func (p *PolicyVersionsService) PublishPolicyVersion(input *policy_versions.Publ
 	return nil
 }
 
-// Deprecated: Use RetrieveSinglePolicyVersionShort instead
 func (p *PolicyVersionsService) RetrieveSinglePolicyVersion(input *policy_versions.RetrieveSinglePolicyVersionParams) ([]*legalclientmodels.RetrievePolicyVersionResponse, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -67,7 +64,6 @@ func (p *PolicyVersionsService) RetrieveSinglePolicyVersion(input *policy_versio
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use CreatePolicyVersionShort instead
 func (p *PolicyVersionsService) CreatePolicyVersion(input *policy_versions.CreatePolicyVersionParams) (*legalclientmodels.CreatePolicyVersionResponse, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -83,7 +79,6 @@ func (p *PolicyVersionsService) CreatePolicyVersion(input *policy_versions.Creat
 	return created.GetPayload(), nil
 }
 
-// Deprecated: Use RetrievePolicyVersionsShort instead
 func (p *PolicyVersionsService) RetrievePolicyVersions(input *policy_versions.RetrievePolicyVersionsParams) ([]*legalclientmodels.RetrievePolicyVersionResponse, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {

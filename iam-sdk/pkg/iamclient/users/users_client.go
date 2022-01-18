@@ -95,6 +95,8 @@ type ClientService interface {
 	AdminInviteUserV3Short(params *AdminInviteUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminInviteUserV3Created, error)
 	AdminLinkPlatformAccount(params *AdminLinkPlatformAccountParams, authInfo runtime.ClientAuthInfoWriter) (*AdminLinkPlatformAccountNoContent, *AdminLinkPlatformAccountBadRequest, *AdminLinkPlatformAccountUnauthorized, *AdminLinkPlatformAccountForbidden, *AdminLinkPlatformAccountInternalServerError, error)
 	AdminLinkPlatformAccountShort(params *AdminLinkPlatformAccountParams, authInfo runtime.ClientAuthInfoWriter) (*AdminLinkPlatformAccountNoContent, error)
+	AdminListUserIDByUserIDsV3(params *AdminListUserIDByUserIDsV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminListUserIDByUserIDsV3OK, *AdminListUserIDByUserIDsV3BadRequest, *AdminListUserIDByUserIDsV3Unauthorized, *AdminListUserIDByUserIDsV3Forbidden, *AdminListUserIDByUserIDsV3InternalServerError, error)
+	AdminListUserIDByUserIDsV3Short(params *AdminListUserIDByUserIDsV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminListUserIDByUserIDsV3OK, error)
 	AdminListUsersV3(params *AdminListUsersV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminListUsersV3OK, *AdminListUsersV3BadRequest, *AdminListUsersV3Unauthorized, *AdminListUsersV3Forbidden, *AdminListUsersV3InternalServerError, error)
 	AdminListUsersV3Short(params *AdminListUsersV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminListUsersV3OK, error)
 	AdminPlatformLinkV3(params *AdminPlatformLinkV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPlatformLinkV3NoContent, *AdminPlatformLinkV3BadRequest, *AdminPlatformLinkV3Unauthorized, *AdminPlatformLinkV3Forbidden, *AdminPlatformLinkV3NotFound, *AdminPlatformLinkV3Conflict, *AdminPlatformLinkV3InternalServerError, error)
@@ -139,6 +141,8 @@ type ClientService interface {
 	AdminVerifyUserWithoutVerificationCodeV3Short(params *AdminVerifyUserWithoutVerificationCodeV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminVerifyUserWithoutVerificationCodeV3NoContent, error)
 	BanUser(params *BanUserParams, authInfo runtime.ClientAuthInfoWriter) (*BanUserCreated, *BanUserBadRequest, *BanUserUnauthorized, *BanUserForbidden, *BanUserNotFound, *BanUserInternalServerError, error)
 	BanUserShort(params *BanUserParams, authInfo runtime.ClientAuthInfoWriter) (*BanUserCreated, error)
+	CheckUserAvailability(params *CheckUserAvailabilityParams, authInfo runtime.ClientAuthInfoWriter) (*CheckUserAvailabilityNoContent, *CheckUserAvailabilityBadRequest, *CheckUserAvailabilityUnauthorized, *CheckUserAvailabilityForbidden, *CheckUserAvailabilityNotFound, *CheckUserAvailabilityUnprocessableEntity, error)
+	CheckUserAvailabilityShort(params *CheckUserAvailabilityParams, authInfo runtime.ClientAuthInfoWriter) (*CheckUserAvailabilityNoContent, error)
 	CreateUser(params *CreateUserParams, authInfo runtime.ClientAuthInfoWriter) (*CreateUserCreated, *CreateUserBadRequest, *CreateUserUnauthorized, *CreateUserForbidden, *CreateUserConflict, error)
 	CreateUserShort(params *CreateUserParams, authInfo runtime.ClientAuthInfoWriter) (*CreateUserCreated, error)
 	CreateUserFromInvitationV3(params *CreateUserFromInvitationV3Params, authInfo runtime.ClientAuthInfoWriter) (*CreateUserFromInvitationV3Created, *CreateUserFromInvitationV3BadRequest, *CreateUserFromInvitationV3NotFound, *CreateUserFromInvitationV3InternalServerError, error)
@@ -201,7 +205,7 @@ type ClientService interface {
 	PlatformLinkShort(params *PlatformLinkParams, authInfo runtime.ClientAuthInfoWriter) (*PlatformLinkNoContent, error)
 	PlatformUnlink(params *PlatformUnlinkParams, authInfo runtime.ClientAuthInfoWriter) (*PlatformUnlinkNoContent, *PlatformUnlinkBadRequest, *PlatformUnlinkUnauthorized, *PlatformUnlinkForbidden, *PlatformUnlinkNotFound, *PlatformUnlinkInternalServerError, error)
 	PlatformUnlinkShort(params *PlatformUnlinkParams, authInfo runtime.ClientAuthInfoWriter) (*PlatformUnlinkNoContent, error)
-	PublicBulkGetUsers(params *PublicBulkGetUsersParams, authInfo runtime.ClientAuthInfoWriter) (*PublicBulkGetUsersOK, *PublicBulkGetUsersBadRequest, *PublicBulkGetUsersUnauthorized, *PublicBulkGetUsersInternalServerError, error)
+	PublicBulkGetUsers(params *PublicBulkGetUsersParams, authInfo runtime.ClientAuthInfoWriter) (*PublicBulkGetUsersOK, *PublicBulkGetUsersBadRequest, *PublicBulkGetUsersInternalServerError, error)
 	PublicBulkGetUsersShort(params *PublicBulkGetUsersParams, authInfo runtime.ClientAuthInfoWriter) (*PublicBulkGetUsersOK, error)
 	PublicCreateJusticeUser(params *PublicCreateJusticeUserParams, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateJusticeUserCreated, *PublicCreateJusticeUserBadRequest, *PublicCreateJusticeUserUnauthorized, *PublicCreateJusticeUserForbidden, *PublicCreateJusticeUserNotFound, *PublicCreateJusticeUserInternalServerError, error)
 	PublicCreateJusticeUserShort(params *PublicCreateJusticeUserParams, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateJusticeUserCreated, error)
@@ -3705,6 +3709,108 @@ func (a *Client) AdminLinkPlatformAccountShort(params *AdminLinkPlatformAccountP
 }
 
 /*
+  AdminListUserIDByUserIDsV3 lists user by user ID
+
+  List User By User ID
+This endpoint requires ADMIN:NAMESPACE:{namespace}:USER [READ] permission.
+This endpoint intended to list user information from the given list of userID and namespace
+
+*/
+func (a *Client) AdminListUserIDByUserIDsV3(params *AdminListUserIDByUserIDsV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminListUserIDByUserIDsV3OK, *AdminListUserIDByUserIDsV3BadRequest, *AdminListUserIDByUserIDsV3Unauthorized, *AdminListUserIDByUserIDsV3Forbidden, *AdminListUserIDByUserIDsV3InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminListUserIDByUserIDsV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminListUserIDByUserIDsV3",
+		Method:             "POST",
+		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/users/bulk",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminListUserIDByUserIDsV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminListUserIDByUserIDsV3OK:
+		return v, nil, nil, nil, nil, nil
+
+	case *AdminListUserIDByUserIDsV3BadRequest:
+		return nil, v, nil, nil, nil, nil
+
+	case *AdminListUserIDByUserIDsV3Unauthorized:
+		return nil, nil, v, nil, nil, nil
+
+	case *AdminListUserIDByUserIDsV3Forbidden:
+		return nil, nil, nil, v, nil, nil
+
+	case *AdminListUserIDByUserIDsV3InternalServerError:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminListUserIDByUserIDsV3Short(params *AdminListUserIDByUserIDsV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminListUserIDByUserIDsV3OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminListUserIDByUserIDsV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminListUserIDByUserIDsV3",
+		Method:             "POST",
+		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/users/bulk",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminListUserIDByUserIDsV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminListUserIDByUserIDsV3OK:
+		return v, nil
+	case *AdminListUserIDByUserIDsV3BadRequest:
+		return nil, v
+	case *AdminListUserIDByUserIDsV3Unauthorized:
+		return nil, v
+	case *AdminListUserIDByUserIDsV3Forbidden:
+		return nil, v
+	case *AdminListUserIDByUserIDsV3InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
   AdminListUsersV3 admins list users v3
 
   This endpoint requires ADMIN:NAMESPACE:{namespace}:USER [READ] permission.
@@ -6105,6 +6211,120 @@ func (a *Client) BanUserShort(params *BanUserParams, authInfo runtime.ClientAuth
 	case *BanUserNotFound:
 		return nil, v
 	case *BanUserInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  CheckUserAvailability checks user s account availability
+
+  Check user&#39;s account availability.
+Available field :
+	- displayName
+
+If request include access token with user ID data, that user ID will be excluded from availability check.
+For example, in case user update his emailAddress, he can use his own emailAddress to update his account.
+
+Response Code :
+	- Account Available : 404 (not found)
+	- Account Not Available : 204 (no content)
+
+*/
+func (a *Client) CheckUserAvailability(params *CheckUserAvailabilityParams, authInfo runtime.ClientAuthInfoWriter) (*CheckUserAvailabilityNoContent, *CheckUserAvailabilityBadRequest, *CheckUserAvailabilityUnauthorized, *CheckUserAvailabilityForbidden, *CheckUserAvailabilityNotFound, *CheckUserAvailabilityUnprocessableEntity, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCheckUserAvailabilityParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "CheckUserAvailability",
+		Method:             "GET",
+		PathPattern:        "/iam/v3/public/namespaces/{namespace}/users/availability",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CheckUserAvailabilityReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *CheckUserAvailabilityNoContent:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *CheckUserAvailabilityBadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *CheckUserAvailabilityUnauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *CheckUserAvailabilityForbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *CheckUserAvailabilityNotFound:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *CheckUserAvailabilityUnprocessableEntity:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) CheckUserAvailabilityShort(params *CheckUserAvailabilityParams, authInfo runtime.ClientAuthInfoWriter) (*CheckUserAvailabilityNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCheckUserAvailabilityParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "CheckUserAvailability",
+		Method:             "GET",
+		PathPattern:        "/iam/v3/public/namespaces/{namespace}/users/availability",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CheckUserAvailabilityReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *CheckUserAvailabilityNoContent:
+		return v, nil
+	case *CheckUserAvailabilityBadRequest:
+		return nil, v
+	case *CheckUserAvailabilityUnauthorized:
+		return nil, v
+	case *CheckUserAvailabilityForbidden:
+		return nil, v
+	case *CheckUserAvailabilityNotFound:
+		return nil, v
+	case *CheckUserAvailabilityUnprocessableEntity:
 		return nil, v
 
 	default:
@@ -9206,17 +9426,17 @@ func (a *Client) PlatformUnlinkShort(params *PlatformUnlinkParams, authInfo runt
 }
 
 /*
-  PublicBulkGetUsers bulks get game users basic info by user Id
+  PublicBulkGetUsers bulks get users basic info by user Id
 
-  Required valid user authorization.
-		&lt;p&gt;Notes:&lt;/p&gt;
+  &lt;p&gt;Notes:&lt;/p&gt;
 		&lt;ul&gt;
-			&lt;li&gt;This endpoint bulk get game users&#39; basic info by userId, max allowed 20 at a time&lt;/li&gt;
+			&lt;li&gt;This endpoint bulk get users&#39; basic info by userId, max allowed 20 at a time&lt;/li&gt;
+			&lt;li&gt;If namespace is game, will search by game user Id, other wise will search by publisher namespace&lt;/li&gt;
 			&lt;li&gt;&lt;strong&gt;Result will include displayName(if it exists)&lt;/strong&gt;&lt;/li&gt;
 		&lt;/ul&gt;
 
 */
-func (a *Client) PublicBulkGetUsers(params *PublicBulkGetUsersParams, authInfo runtime.ClientAuthInfoWriter) (*PublicBulkGetUsersOK, *PublicBulkGetUsersBadRequest, *PublicBulkGetUsersUnauthorized, *PublicBulkGetUsersInternalServerError, error) {
+func (a *Client) PublicBulkGetUsers(params *PublicBulkGetUsersParams, authInfo runtime.ClientAuthInfoWriter) (*PublicBulkGetUsersOK, *PublicBulkGetUsersBadRequest, *PublicBulkGetUsersInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublicBulkGetUsersParams()
@@ -9240,25 +9460,22 @@ func (a *Client) PublicBulkGetUsers(params *PublicBulkGetUsersParams, authInfo r
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, err
+		return nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *PublicBulkGetUsersOK:
-		return v, nil, nil, nil, nil
+		return v, nil, nil, nil
 
 	case *PublicBulkGetUsersBadRequest:
-		return nil, v, nil, nil, nil
-
-	case *PublicBulkGetUsersUnauthorized:
-		return nil, nil, v, nil, nil
+		return nil, v, nil, nil
 
 	case *PublicBulkGetUsersInternalServerError:
-		return nil, nil, nil, v, nil
+		return nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -9294,8 +9511,6 @@ func (a *Client) PublicBulkGetUsersShort(params *PublicBulkGetUsersParams, authI
 	case *PublicBulkGetUsersOK:
 		return v, nil
 	case *PublicBulkGetUsersBadRequest:
-		return nil, v
-	case *PublicBulkGetUsersUnauthorized:
 		return nil, v
 	case *PublicBulkGetUsersInternalServerError:
 		return nil, v

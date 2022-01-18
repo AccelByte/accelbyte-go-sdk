@@ -326,7 +326,7 @@ func (a *Client) BulkGetLocaleItemsShort(params *BulkGetLocaleItemsParams, authI
               will use it to calculate discounted price if it is not 0),
             &#34;discountAmount&#34;:0(integer, optional, range[0,itemPrice], will use it to calculate discounted price if discountPercentage is 0),
             &#34;currencyCode&#34;:&#34;code(required, example: USD)&#34;,
-            &#34;currencyNamespace&#34;:&#34;test-ns-required&#34;,
+            &#34;currencyNamespace&#34;:&#34;test-ns-required(allow publisher namespace if namespace is publisher namespace, allow publisher and game namespace if namespace is not publisher namespace)&#34;,
             &#34;trialPrice&#34;:5(required while fixedTrialCycles set, should &gt;=0 and &lt;= price, will same as price if not present),
             &#34;purchaseAt&#34;:&#34;optional yyyy-MM-dd&#39;T&#39;HH:mm:ss.SSS&#39;Z&#39;&#34;,
             &#34;expireAt&#34;:&#34;optional yyyy-MM-dd&#39;T&#39;HH:mm:ss.SSS&#39;Z&#39;&#34;,
@@ -338,6 +338,9 @@ func (a *Client) BulkGetLocaleItemsShort(params *BulkGetLocaleItemsParams, authI
    &#34;itemIds&#34;: \[
        &#34;itemId&#34;
    \],
+   &#34;itemQty&#34;: \{
+       &#34;itemId&#34;:1
+   \},
    &#34;recurring&#34;: \{
        &#34;cycle&#34;:&#34;MONTHLY(allowed: [WEEKLY,MONTHLY,QUARTERLY,YEARLY])&#34;,
        &#34;fixedFreeDays&#34;:0(integer, fixed free days, 0 means not set),
@@ -2958,7 +2961,7 @@ func (a *Client) UpdateAppShort(params *UpdateAppParams, authInfo runtime.Client
               if it is not 0, will use it to calculate discounted price),
             &#34;discountAmount&#34;:0(integer, optional, range[0,itemPrice], will use it to calculate discounted price if discountPercentage is 0),
             &#34;currencyCode&#34;:&#34;code(required, example: USD)&#34;,
-            &#34;currencyNamespace&#34;:&#34;test-ns-required&#34;,
+            &#34;currencyNamespace&#34;:&#34;test-ns-required(allow publisher namespace if namespace is publisher namespace, allow publisher and game namespace if namespace is not publisher namespace)&#34;,
             &#34;trialPrice&#34;:5(required while fixedTrialCycles set, should &gt;=0 and &lt;= price, will same as price if not present),
             &#34;purchaseAt&#34;:&#34;optional yyyy-MM-dd&#39;T&#39;HH:mm:ss.SSS&#39;Z&#39;&#34;,
             &#34;expireAt&#34;:&#34;optional yyyy-MM-dd&#39;T&#39;HH:mm:ss.SSS&#39;Z&#39;&#34;,
@@ -2970,6 +2973,9 @@ func (a *Client) UpdateAppShort(params *UpdateAppParams, authInfo runtime.Client
    &#34;itemIds&#34;: \[
        &#34;itemId&#34;
    \],
+   &#34;itemQty&#34;: \{
+       &#34;itemId&#34;:1
+   \},
    &#34;recurring&#34;: \{
        &#34;cycle&#34;:&#34;MONTHLY(allowed: [WEEKLY,MONTHLY,QUARTERLY,YEARLY])&#34;,
        &#34;fixedFreeDays&#34;:0(integer, fixed free days, 0 means not set),

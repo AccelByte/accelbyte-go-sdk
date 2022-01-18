@@ -19,7 +19,6 @@ type PublicService struct {
 	TokenRepository repository.TokenRepository
 }
 
-// Deprecated: Use GetDefaultProviderShort instead
 func (p *PublicService) GetDefaultProvider(input *public.GetDefaultProviderParams) (*dsmcclientmodels.ModelsDefaultProvider, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -32,7 +31,6 @@ func (p *PublicService) GetDefaultProvider(input *public.GetDefaultProviderParam
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use ListProvidersShort instead
 func (p *PublicService) ListProviders(input *public.ListProvidersParams) ([]string, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -45,7 +43,6 @@ func (p *PublicService) ListProviders(input *public.ListProvidersParams) ([]stri
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use ListProvidersByRegionShort instead
 func (p *PublicService) ListProvidersByRegion(input *public.ListProvidersByRegionParams) (*dsmcclientmodels.ModelsDefaultProvider, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {

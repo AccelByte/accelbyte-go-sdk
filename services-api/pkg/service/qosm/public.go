@@ -19,7 +19,6 @@ type PublicService struct {
 	TokenRepository repository.TokenRepository
 }
 
-// Deprecated: Use ListServerShort instead
 func (p *PublicService) ListServer(input *public.ListServerParams) (*qosmclientmodels.ModelsListServerResponse, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {

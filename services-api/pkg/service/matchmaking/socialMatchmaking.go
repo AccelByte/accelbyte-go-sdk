@@ -19,7 +19,6 @@ type SocialMatchmakingService struct {
 	TokenRepository repository.TokenRepository
 }
 
-// Deprecated: Use UpdatePlayTimeWeightShort instead
 func (s *SocialMatchmakingService) UpdatePlayTimeWeight(input *social_matchmaking.UpdatePlayTimeWeightParams) (*matchmakingclientmodels.ModelsUpdatePlayerPlaytimeWeightResponse, error) {
 	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {

@@ -63,7 +63,7 @@ for the public bulk get users operation typically these are written to a http.Re
 type PublicBulkGetUsersParams struct {
 
 	/*Body*/
-	Body *iamclientmodels.ModelGameUserIDsRequest
+	Body *iamclientmodels.ModelUserIDsRequest
 	/*Namespace
 	  Namespace, only accept alphabet and numeric
 
@@ -109,13 +109,13 @@ func (o *PublicBulkGetUsersParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithBody adds the body to the public bulk get users params
-func (o *PublicBulkGetUsersParams) WithBody(body *iamclientmodels.ModelGameUserIDsRequest) *PublicBulkGetUsersParams {
+func (o *PublicBulkGetUsersParams) WithBody(body *iamclientmodels.ModelUserIDsRequest) *PublicBulkGetUsersParams {
 	o.SetBody(body)
 	return o
 }
 
 // SetBody adds the body to the public bulk get users params
-func (o *PublicBulkGetUsersParams) SetBody(body *iamclientmodels.ModelGameUserIDsRequest) {
+func (o *PublicBulkGetUsersParams) SetBody(body *iamclientmodels.ModelUserIDsRequest) {
 	o.Body = body
 }
 

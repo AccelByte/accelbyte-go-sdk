@@ -19,7 +19,6 @@ type ConfigService struct {
 	TokenRepository repository.TokenRepository
 }
 
-// Deprecated: Use ListConfigShort instead
 func (c *ConfigService) ListConfig(input *config.ListConfigParams) (*dsmcclientmodels.ModelsListConfigResponse, error) {
 	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
@@ -38,7 +37,6 @@ func (c *ConfigService) ListConfig(input *config.ListConfigParams) (*dsmcclientm
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use SaveConfigShort instead
 func (c *ConfigService) SaveConfig(input *config.SaveConfigParams) error {
 	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
@@ -60,7 +58,6 @@ func (c *ConfigService) SaveConfig(input *config.SaveConfigParams) error {
 	return nil
 }
 
-// Deprecated: Use GetConfigShort instead
 func (c *ConfigService) GetConfig(input *config.GetConfigParams) (*dsmcclientmodels.ModelsDSMConfigRecord, error) {
 	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
@@ -82,7 +79,6 @@ func (c *ConfigService) GetConfig(input *config.GetConfigParams) (*dsmcclientmod
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use CreateConfigShort instead
 func (c *ConfigService) CreateConfig(input *config.CreateConfigParams) (*dsmcclientmodels.ModelsDSMConfigRecord, error) {
 	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
@@ -107,7 +103,6 @@ func (c *ConfigService) CreateConfig(input *config.CreateConfigParams) (*dsmccli
 	return created.GetPayload(), nil
 }
 
-// Deprecated: Use DeleteConfigShort instead
 func (c *ConfigService) DeleteConfig(input *config.DeleteConfigParams) error {
 	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
@@ -132,7 +127,6 @@ func (c *ConfigService) DeleteConfig(input *config.DeleteConfigParams) error {
 	return nil
 }
 
-// Deprecated: Use UpdateConfigShort instead
 func (c *ConfigService) UpdateConfig(input *config.UpdateConfigParams) (*dsmcclientmodels.ModelsDSMConfigRecord, error) {
 	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
@@ -157,7 +151,6 @@ func (c *ConfigService) UpdateConfig(input *config.UpdateConfigParams) (*dsmccli
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use ClearCacheShort instead
 func (c *ConfigService) ClearCache(input *config.ClearCacheParams) error {
 	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
@@ -176,7 +169,6 @@ func (c *ConfigService) ClearCache(input *config.ClearCacheParams) error {
 	return nil
 }
 
-// Deprecated: Use AddPortShort instead
 func (c *ConfigService) AddPort(input *config.AddPortParams) (*dsmcclientmodels.ModelsDSMConfigRecord, error) {
 	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
@@ -204,7 +196,6 @@ func (c *ConfigService) AddPort(input *config.AddPortParams) (*dsmcclientmodels.
 	return created.GetPayload(), nil
 }
 
-// Deprecated: Use DeletePortShort instead
 func (c *ConfigService) DeletePort(input *config.DeletePortParams) (*dsmcclientmodels.ModelsDSMConfigRecord, error) {
 	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
@@ -229,7 +220,6 @@ func (c *ConfigService) DeletePort(input *config.DeletePortParams) (*dsmcclientm
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use UpdatePortShort instead
 func (c *ConfigService) UpdatePort(input *config.UpdatePortParams) (*dsmcclientmodels.ModelsDSMConfigRecord, error) {
 	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
@@ -254,7 +244,6 @@ func (c *ConfigService) UpdatePort(input *config.UpdatePortParams) (*dsmcclientm
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use ExportConfigV1Short instead
 func (c *ConfigService) ExportConfigV1(input *config.ExportConfigV1Params) (*dsmcclientmodels.ModelsDSMConfigExport, error) {
 	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
@@ -279,7 +268,6 @@ func (c *ConfigService) ExportConfigV1(input *config.ExportConfigV1Params) (*dsm
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use ImportConfigV1Short instead
 func (c *ConfigService) ImportConfigV1(input *config.ImportConfigV1Params) (*dsmcclientmodels.ModelsImportResponse, error) {
 	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {

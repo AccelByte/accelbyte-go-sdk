@@ -49,7 +49,7 @@ type FulfillmentRequest struct {
 	Region string `json:"region,omitempty"`
 
 	// source
-	// Enum: [PURCHASE IAP PROMOTION ACHIEVEMENT REFERRAL_BONUS REDEEM_CODE REWARD GIFT OTHER]
+	// Enum: [PURCHASE IAP PROMOTION ACHIEVEMENT REFERRAL_BONUS REDEEM_CODE REWARD GIFT DLC OTHER]
 	Source string `json:"source,omitempty"`
 
 	// start date time
@@ -134,7 +134,7 @@ var fulfillmentRequestTypeSourcePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["PURCHASE","IAP","PROMOTION","ACHIEVEMENT","REFERRAL_BONUS","REDEEM_CODE","REWARD","GIFT","OTHER"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["PURCHASE","IAP","PROMOTION","ACHIEVEMENT","REFERRAL_BONUS","REDEEM_CODE","REWARD","GIFT","DLC","OTHER"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -167,6 +167,9 @@ const (
 
 	// FulfillmentRequestSourceGIFT captures enum value "GIFT"
 	FulfillmentRequestSourceGIFT string = "GIFT"
+
+	// FulfillmentRequestSourceDLC captures enum value "DLC"
+	FulfillmentRequestSourceDLC string = "DLC"
 
 	// FulfillmentRequestSourceOTHER captures enum value "OTHER"
 	FulfillmentRequestSourceOTHER string = "OTHER"

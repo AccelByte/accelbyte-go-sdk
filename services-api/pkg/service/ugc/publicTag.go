@@ -19,7 +19,6 @@ type PublicTagService struct {
 	TokenRepository repository.TokenRepository
 }
 
-// Deprecated: Use GetTagShort instead
 func (p *PublicTagService) GetTag(input *public_tag.GetTagParams) (*ugcclientmodels.ModelsPaginatedGetTagResponse, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {

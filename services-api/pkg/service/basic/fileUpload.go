@@ -19,7 +19,6 @@ type FileUploadService struct {
 	TokenRepository repository.TokenRepository
 }
 
-// Deprecated: Use GeneratedUploadURLShort instead
 func (f *FileUploadService) GeneratedUploadURL(input *file_upload.GeneratedUploadURLParams) (*basicclientmodels.FileUploadURLInfo, error) {
 	accessToken, err := f.TokenRepository.GetToken()
 	if err != nil {
@@ -44,7 +43,6 @@ func (f *FileUploadService) GeneratedUploadURL(input *file_upload.GeneratedUploa
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use GeneratedUserUploadContentURLShort instead
 func (f *FileUploadService) GeneratedUserUploadContentURL(input *file_upload.GeneratedUserUploadContentURLParams) (*basicclientmodels.FileUploadURLInfo, error) {
 	accessToken, err := f.TokenRepository.GetToken()
 	if err != nil {
@@ -72,7 +70,6 @@ func (f *FileUploadService) GeneratedUserUploadContentURL(input *file_upload.Gen
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use PublicGeneratedUploadURLShort instead
 func (f *FileUploadService) PublicGeneratedUploadURL(input *file_upload.PublicGeneratedUploadURLParams) (*basicclientmodels.FileUploadURLInfo, error) {
 	accessToken, err := f.TokenRepository.GetToken()
 	if err != nil {
@@ -97,7 +94,6 @@ func (f *FileUploadService) PublicGeneratedUploadURL(input *file_upload.PublicGe
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use PublicGeneratedUserUploadContentURLShort instead
 func (f *FileUploadService) PublicGeneratedUserUploadContentURL(input *file_upload.PublicGeneratedUserUploadContentURLParams) (*basicclientmodels.FileUploadURLInfo, error) {
 	accessToken, err := f.TokenRepository.GetToken()
 	if err != nil {

@@ -18,7 +18,6 @@ type AdminService struct {
 	TokenRepository repository.TokenRepository
 }
 
-// Deprecated: Use DeleteServerShort instead
 func (a *AdminService) DeleteServer(input *admin.DeleteServerParams) error {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
@@ -34,7 +33,6 @@ func (a *AdminService) DeleteServer(input *admin.DeleteServerParams) error {
 	return nil
 }
 
-// Deprecated: Use SetServerAliasShort instead
 func (a *AdminService) SetServerAlias(input *admin.SetServerAliasParams) error {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {

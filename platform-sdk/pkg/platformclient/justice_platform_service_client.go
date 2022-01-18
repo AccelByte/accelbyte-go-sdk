@@ -17,6 +17,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/campaign"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/category"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/currency"
+	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/d_l_c"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/entitlement"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/fulfillment"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/fulfillment_script"
@@ -84,6 +85,7 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry) *JusticePla
 	cli.Campaign = campaign.New(transport, formats)
 	cli.Category = category.New(transport, formats)
 	cli.Currency = currency.New(transport, formats)
+	cli.Dlc = d_l_c.New(transport, formats)
 	cli.Entitlement = entitlement.New(transport, formats)
 	cli.Fulfillment = fulfillment.New(transport, formats)
 	cli.FulfillmentScript = fulfillment_script.New(transport, formats)
@@ -169,6 +171,8 @@ type JusticePlatformService struct {
 
 	Currency currency.ClientService
 
+	Dlc d_l_c.ClientService
+
 	Entitlement entitlement.ClientService
 
 	Fulfillment fulfillment.ClientService
@@ -217,6 +221,7 @@ func (c *JusticePlatformService) SetTransport(transport runtime.ClientTransport)
 	c.Campaign.SetTransport(transport)
 	c.Category.SetTransport(transport)
 	c.Currency.SetTransport(transport)
+	c.Dlc.SetTransport(transport)
 	c.Entitlement.SetTransport(transport)
 	c.Fulfillment.SetTransport(transport)
 	c.FulfillmentScript.SetTransport(transport)

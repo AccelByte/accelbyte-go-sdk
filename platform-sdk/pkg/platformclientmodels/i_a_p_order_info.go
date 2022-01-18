@@ -28,6 +28,9 @@ type IAPOrderInfo struct {
 	// credit summary
 	Credits []*CreditSummary `json:"credits"`
 
+	// currency code
+	CurrencyCode string `json:"currencyCode,omitempty"`
+
 	// entitlement summary
 	Entitlements []*EntitlementSummary `json:"entitlements"`
 
@@ -45,6 +48,9 @@ type IAPOrderInfo struct {
 	// namespace
 	// Required: true
 	Namespace *string `json:"namespace"`
+
+	// price
+	Price float64 `json:"price,omitempty"`
 
 	// product id
 	ProductID string `json:"productId,omitempty"`

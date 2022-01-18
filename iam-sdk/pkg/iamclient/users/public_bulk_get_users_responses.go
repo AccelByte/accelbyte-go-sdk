@@ -36,12 +36,6 @@ func (o *PublicBulkGetUsersReader) ReadResponse(response runtime.ClientResponse,
 			return nil, err
 		}
 		return result, nil
-	case 401:
-		result := NewPublicBulkGetUsersUnauthorized()
-		if err := result.readResponse(response, consumer, o.formats); err != nil {
-			return nil, err
-		}
-		return result, nil
 	case 500:
 		result := NewPublicBulkGetUsersInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -69,20 +63,20 @@ func NewPublicBulkGetUsersOK() *PublicBulkGetUsersOK {
   OK
 */
 type PublicBulkGetUsersOK struct {
-	Payload *iamclientmodels.ModelListBulkUserGameResponse
+	Payload *iamclientmodels.ModelListBulkUserResponse
 }
 
 func (o *PublicBulkGetUsersOK) Error() string {
 	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/bulk/basic][%d] publicBulkGetUsersOK  %+v", 200, o.Payload)
 }
 
-func (o *PublicBulkGetUsersOK) GetPayload() *iamclientmodels.ModelListBulkUserGameResponse {
+func (o *PublicBulkGetUsersOK) GetPayload() *iamclientmodels.ModelListBulkUserResponse {
 	return o.Payload
 }
 
 func (o *PublicBulkGetUsersOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(iamclientmodels.ModelListBulkUserGameResponse)
+	o.Payload = new(iamclientmodels.ModelListBulkUserResponse)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -114,39 +108,6 @@ func (o *PublicBulkGetUsersBadRequest) GetPayload() *iamclientmodels.RestErrorRe
 }
 
 func (o *PublicBulkGetUsersBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-
-	o.Payload = new(iamclientmodels.RestErrorResponse)
-
-	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
-		return err
-	}
-
-	return nil
-}
-
-// NewPublicBulkGetUsersUnauthorized creates a PublicBulkGetUsersUnauthorized with default headers values
-func NewPublicBulkGetUsersUnauthorized() *PublicBulkGetUsersUnauthorized {
-	return &PublicBulkGetUsersUnauthorized{}
-}
-
-/*PublicBulkGetUsersUnauthorized handles this case with default header values.
-
-  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
-*/
-type PublicBulkGetUsersUnauthorized struct {
-	Payload *iamclientmodels.RestErrorResponse
-}
-
-func (o *PublicBulkGetUsersUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /iam/v3/public/namespaces/{namespace}/users/bulk/basic][%d] publicBulkGetUsersUnauthorized  %+v", 401, o.Payload)
-}
-
-func (o *PublicBulkGetUsersUnauthorized) GetPayload() *iamclientmodels.RestErrorResponse {
-	return o.Payload
-}
-
-func (o *PublicBulkGetUsersUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(iamclientmodels.RestErrorResponse)
 

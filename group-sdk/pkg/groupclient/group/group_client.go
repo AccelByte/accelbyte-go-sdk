@@ -51,8 +51,8 @@ type ClientService interface {
 	UpdateGroupCustomRulePublicV1Short(params *UpdateGroupCustomRulePublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateGroupCustomRulePublicV1OK, error)
 	UpdateGroupPredefinedRulePublicV1(params *UpdateGroupPredefinedRulePublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateGroupPredefinedRulePublicV1OK, *UpdateGroupPredefinedRulePublicV1BadRequest, *UpdateGroupPredefinedRulePublicV1Unauthorized, *UpdateGroupPredefinedRulePublicV1Forbidden, *UpdateGroupPredefinedRulePublicV1NotFound, *UpdateGroupPredefinedRulePublicV1InternalServerError, error)
 	UpdateGroupPredefinedRulePublicV1Short(params *UpdateGroupPredefinedRulePublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateGroupPredefinedRulePublicV1OK, error)
-	UpdateSingleGroupPublicV1(params *UpdateSingleGroupPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateSingleGroupPublicV1OK, *UpdateSingleGroupPublicV1BadRequest, *UpdateSingleGroupPublicV1Unauthorized, *UpdateSingleGroupPublicV1Forbidden, *UpdateSingleGroupPublicV1NotFound, *UpdateSingleGroupPublicV1InternalServerError, error)
-	UpdateSingleGroupPublicV1Short(params *UpdateSingleGroupPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateSingleGroupPublicV1OK, error)
+	UpdatePatchSingleGroupPublicV1(params *UpdatePatchSingleGroupPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdatePatchSingleGroupPublicV1OK, *UpdatePatchSingleGroupPublicV1BadRequest, *UpdatePatchSingleGroupPublicV1Unauthorized, *UpdatePatchSingleGroupPublicV1Forbidden, *UpdatePatchSingleGroupPublicV1NotFound, *UpdatePatchSingleGroupPublicV1InternalServerError, error)
+	UpdatePatchSingleGroupPublicV1Short(params *UpdatePatchSingleGroupPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdatePatchSingleGroupPublicV1OK, error)
 	UpdateSingleGroupV1(params *UpdateSingleGroupV1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateSingleGroupV1OK, *UpdateSingleGroupV1BadRequest, *UpdateSingleGroupV1Unauthorized, *UpdateSingleGroupV1Forbidden, *UpdateSingleGroupV1NotFound, *UpdateSingleGroupV1InternalServerError, error)
 	UpdateSingleGroupV1Short(params *UpdateSingleGroupV1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateSingleGroupV1OK, error)
 
@@ -1255,7 +1255,7 @@ func (a *Client) UpdateGroupPredefinedRulePublicV1Short(params *UpdateGroupPrede
 }
 
 /*
-  UpdateSingleGroupPublicV1 updates existing group
+  UpdatePatchSingleGroupPublicV1 updates existing group
 
   &lt;p&gt;Required valid user authentication &lt;/p&gt;
 			&lt;p&gt;Required Member Role Permission: &#34;GROUP [UPDATE]&#34;&lt;/p&gt;
@@ -1264,10 +1264,10 @@ func (a *Client) UpdateGroupPredefinedRulePublicV1Short(params *UpdateGroupPrede
 			&lt;p&gt;Action Code: 73307&lt;/p&gt;
 
 */
-func (a *Client) UpdateSingleGroupPublicV1(params *UpdateSingleGroupPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateSingleGroupPublicV1OK, *UpdateSingleGroupPublicV1BadRequest, *UpdateSingleGroupPublicV1Unauthorized, *UpdateSingleGroupPublicV1Forbidden, *UpdateSingleGroupPublicV1NotFound, *UpdateSingleGroupPublicV1InternalServerError, error) {
+func (a *Client) UpdatePatchSingleGroupPublicV1(params *UpdatePatchSingleGroupPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdatePatchSingleGroupPublicV1OK, *UpdatePatchSingleGroupPublicV1BadRequest, *UpdatePatchSingleGroupPublicV1Unauthorized, *UpdatePatchSingleGroupPublicV1Forbidden, *UpdatePatchSingleGroupPublicV1NotFound, *UpdatePatchSingleGroupPublicV1InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewUpdateSingleGroupPublicV1Params()
+		params = NewUpdatePatchSingleGroupPublicV1Params()
 	}
 
 	if params.Context == nil {
@@ -1275,14 +1275,14 @@ func (a *Client) UpdateSingleGroupPublicV1(params *UpdateSingleGroupPublicV1Para
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "updateSingleGroupPublicV1",
+		ID:                 "updatePatchSingleGroupPublicV1",
 		Method:             "PATCH",
 		PathPattern:        "/group/v1/public/namespaces/{namespace}/groups/{groupId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &UpdateSingleGroupPublicV1Reader{formats: a.formats},
+		Reader:             &UpdatePatchSingleGroupPublicV1Reader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -1293,22 +1293,22 @@ func (a *Client) UpdateSingleGroupPublicV1(params *UpdateSingleGroupPublicV1Para
 
 	switch v := result.(type) {
 
-	case *UpdateSingleGroupPublicV1OK:
+	case *UpdatePatchSingleGroupPublicV1OK:
 		return v, nil, nil, nil, nil, nil, nil
 
-	case *UpdateSingleGroupPublicV1BadRequest:
+	case *UpdatePatchSingleGroupPublicV1BadRequest:
 		return nil, v, nil, nil, nil, nil, nil
 
-	case *UpdateSingleGroupPublicV1Unauthorized:
+	case *UpdatePatchSingleGroupPublicV1Unauthorized:
 		return nil, nil, v, nil, nil, nil, nil
 
-	case *UpdateSingleGroupPublicV1Forbidden:
+	case *UpdatePatchSingleGroupPublicV1Forbidden:
 		return nil, nil, nil, v, nil, nil, nil
 
-	case *UpdateSingleGroupPublicV1NotFound:
+	case *UpdatePatchSingleGroupPublicV1NotFound:
 		return nil, nil, nil, nil, v, nil, nil
 
-	case *UpdateSingleGroupPublicV1InternalServerError:
+	case *UpdatePatchSingleGroupPublicV1InternalServerError:
 		return nil, nil, nil, nil, nil, v, nil
 
 	default:
@@ -1316,10 +1316,10 @@ func (a *Client) UpdateSingleGroupPublicV1(params *UpdateSingleGroupPublicV1Para
 	}
 }
 
-func (a *Client) UpdateSingleGroupPublicV1Short(params *UpdateSingleGroupPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateSingleGroupPublicV1OK, error) {
+func (a *Client) UpdatePatchSingleGroupPublicV1Short(params *UpdatePatchSingleGroupPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdatePatchSingleGroupPublicV1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewUpdateSingleGroupPublicV1Params()
+		params = NewUpdatePatchSingleGroupPublicV1Params()
 	}
 
 	if params.Context == nil {
@@ -1327,14 +1327,14 @@ func (a *Client) UpdateSingleGroupPublicV1Short(params *UpdateSingleGroupPublicV
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "updateSingleGroupPublicV1",
+		ID:                 "updatePatchSingleGroupPublicV1",
 		Method:             "PATCH",
 		PathPattern:        "/group/v1/public/namespaces/{namespace}/groups/{groupId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &UpdateSingleGroupPublicV1Reader{formats: a.formats},
+		Reader:             &UpdatePatchSingleGroupPublicV1Reader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -1345,17 +1345,17 @@ func (a *Client) UpdateSingleGroupPublicV1Short(params *UpdateSingleGroupPublicV
 
 	switch v := result.(type) {
 
-	case *UpdateSingleGroupPublicV1OK:
+	case *UpdatePatchSingleGroupPublicV1OK:
 		return v, nil
-	case *UpdateSingleGroupPublicV1BadRequest:
+	case *UpdatePatchSingleGroupPublicV1BadRequest:
 		return nil, v
-	case *UpdateSingleGroupPublicV1Unauthorized:
+	case *UpdatePatchSingleGroupPublicV1Unauthorized:
 		return nil, v
-	case *UpdateSingleGroupPublicV1Forbidden:
+	case *UpdatePatchSingleGroupPublicV1Forbidden:
 		return nil, v
-	case *UpdateSingleGroupPublicV1NotFound:
+	case *UpdatePatchSingleGroupPublicV1NotFound:
 		return nil, v
-	case *UpdateSingleGroupPublicV1InternalServerError:
+	case *UpdatePatchSingleGroupPublicV1InternalServerError:
 		return nil, v
 
 	default:

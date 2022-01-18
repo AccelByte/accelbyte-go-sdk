@@ -19,7 +19,6 @@ type SSOCredentialService struct {
 	TokenRepository repository.TokenRepository
 }
 
-// Deprecated: Use RetrieveAllSSOLoginPlatformCredentialV3Short instead
 func (s *SSOCredentialService) RetrieveAllSSOLoginPlatformCredentialV3(input *s_s_o_credential.RetrieveAllSSOLoginPlatformCredentialV3Params) ([]*iamclientmodels.ModelSSOPlatformCredentialResponse, error) {
 	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {
@@ -44,7 +43,6 @@ func (s *SSOCredentialService) RetrieveAllSSOLoginPlatformCredentialV3(input *s_
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use RetrieveSSOLoginPlatformCredentialShort instead
 func (s *SSOCredentialService) RetrieveSSOLoginPlatformCredential(input *s_s_o_credential.RetrieveSSOLoginPlatformCredentialParams) (*iamclientmodels.ModelSSOPlatformCredentialResponse, error) {
 	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {
@@ -69,7 +67,6 @@ func (s *SSOCredentialService) RetrieveSSOLoginPlatformCredential(input *s_s_o_c
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use AddSSOLoginPlatformCredentialShort instead
 func (s *SSOCredentialService) AddSSOLoginPlatformCredential(input *s_s_o_credential.AddSSOLoginPlatformCredentialParams) (*iamclientmodels.ModelSSOPlatformCredentialResponse, error) {
 	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {
@@ -94,7 +91,6 @@ func (s *SSOCredentialService) AddSSOLoginPlatformCredential(input *s_s_o_creden
 	return created.GetPayload(), nil
 }
 
-// Deprecated: Use DeleteSSOLoginPlatformCredentialV3Short instead
 func (s *SSOCredentialService) DeleteSSOLoginPlatformCredentialV3(input *s_s_o_credential.DeleteSSOLoginPlatformCredentialV3Params) error {
 	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {
@@ -119,7 +115,6 @@ func (s *SSOCredentialService) DeleteSSOLoginPlatformCredentialV3(input *s_s_o_c
 	return nil
 }
 
-// Deprecated: Use UpdateSSOPlatformCredentialShort instead
 func (s *SSOCredentialService) UpdateSSOPlatformCredential(input *s_s_o_credential.UpdateSSOPlatformCredentialParams) (*iamclientmodels.ModelSSOPlatformCredentialResponse, error) {
 	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {

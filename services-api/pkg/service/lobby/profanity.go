@@ -19,7 +19,6 @@ type ProfanityService struct {
 	TokenRepository repository.TokenRepository
 }
 
-// Deprecated: Use AdminDebugProfanityFiltersShort instead
 func (p *ProfanityService) AdminDebugProfanityFilters(input *profanity.AdminDebugProfanityFiltersParams) ([]*lobbyclientmodels.ModelsProfanityFilter, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -47,7 +46,6 @@ func (p *ProfanityService) AdminDebugProfanityFilters(input *profanity.AdminDebu
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use AdminGetProfanityListFiltersV1Short instead
 func (p *ProfanityService) AdminGetProfanityListFiltersV1(input *profanity.AdminGetProfanityListFiltersV1Params) (*lobbyclientmodels.ModelsAdminGetProfanityListFiltersV1Response, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -75,7 +73,6 @@ func (p *ProfanityService) AdminGetProfanityListFiltersV1(input *profanity.Admin
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use AdminAddProfanityFilterIntoListShort instead
 func (p *ProfanityService) AdminAddProfanityFilterIntoList(input *profanity.AdminAddProfanityFilterIntoListParams) error {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -103,7 +100,6 @@ func (p *ProfanityService) AdminAddProfanityFilterIntoList(input *profanity.Admi
 	return nil
 }
 
-// Deprecated: Use AdminAddProfanityFiltersShort instead
 func (p *ProfanityService) AdminAddProfanityFilters(input *profanity.AdminAddProfanityFiltersParams) error {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -131,7 +127,6 @@ func (p *ProfanityService) AdminAddProfanityFilters(input *profanity.AdminAddPro
 	return nil
 }
 
-// Deprecated: Use AdminImportProfanityFiltersFromFileShort instead
 func (p *ProfanityService) AdminImportProfanityFiltersFromFile(input *profanity.AdminImportProfanityFiltersFromFileParams) error {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -159,7 +154,6 @@ func (p *ProfanityService) AdminImportProfanityFiltersFromFile(input *profanity.
 	return nil
 }
 
-// Deprecated: Use AdminDeleteProfanityFilterShort instead
 func (p *ProfanityService) AdminDeleteProfanityFilter(input *profanity.AdminDeleteProfanityFilterParams) ([]*lobbyclientmodels.ModelsProfanityFilter, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -187,7 +181,6 @@ func (p *ProfanityService) AdminDeleteProfanityFilter(input *profanity.AdminDele
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use AdminGetProfanityListsShort instead
 func (p *ProfanityService) AdminGetProfanityLists(input *profanity.AdminGetProfanityListsParams) ([]*lobbyclientmodels.ModelsAdminGetProfanityListsListResponse, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -215,7 +208,6 @@ func (p *ProfanityService) AdminGetProfanityLists(input *profanity.AdminGetProfa
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use AdminCreateProfanityListShort instead
 func (p *ProfanityService) AdminCreateProfanityList(input *profanity.AdminCreateProfanityListParams) error {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -243,7 +235,6 @@ func (p *ProfanityService) AdminCreateProfanityList(input *profanity.AdminCreate
 	return nil
 }
 
-// Deprecated: Use AdminUpdateProfanityListShort instead
 func (p *ProfanityService) AdminUpdateProfanityList(input *profanity.AdminUpdateProfanityListParams) error {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -271,7 +262,6 @@ func (p *ProfanityService) AdminUpdateProfanityList(input *profanity.AdminUpdate
 	return nil
 }
 
-// Deprecated: Use AdminDeleteProfanityListShort instead
 func (p *ProfanityService) AdminDeleteProfanityList(input *profanity.AdminDeleteProfanityListParams) error {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -299,7 +289,6 @@ func (p *ProfanityService) AdminDeleteProfanityList(input *profanity.AdminDelete
 	return nil
 }
 
-// Deprecated: Use AdminGetProfanityRuleShort instead
 func (p *ProfanityService) AdminGetProfanityRule(input *profanity.AdminGetProfanityRuleParams) (*lobbyclientmodels.ModelsProfanityRule, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -327,7 +316,6 @@ func (p *ProfanityService) AdminGetProfanityRule(input *profanity.AdminGetProfan
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use AdminSetProfanityRuleForNamespaceShort instead
 func (p *ProfanityService) AdminSetProfanityRuleForNamespace(input *profanity.AdminSetProfanityRuleForNamespaceParams) error {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -355,7 +343,6 @@ func (p *ProfanityService) AdminSetProfanityRuleForNamespace(input *profanity.Ad
 	return nil
 }
 
-// Deprecated: Use AdminVerifyMessageProfanityResponseShort instead
 func (p *ProfanityService) AdminVerifyMessageProfanityResponse(input *profanity.AdminVerifyMessageProfanityResponseParams) (*lobbyclientmodels.ModelsAdminVerifyMessageProfanityResponse, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {

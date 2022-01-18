@@ -19,7 +19,6 @@ type PlayerService struct {
 	TokenRepository repository.TokenRepository
 }
 
-// Deprecated: Use AdminGetLobbyCCUShort instead
 func (p *PlayerService) AdminGetLobbyCCU(input *player.AdminGetLobbyCCUParams) (*lobbyclientmodels.ModelsGetLobbyCcuResponse, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -47,7 +46,6 @@ func (p *PlayerService) AdminGetLobbyCCU(input *player.AdminGetLobbyCCUParams) (
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use AdminGetAllPlayerSessionAttributeShort instead
 func (p *PlayerService) AdminGetAllPlayerSessionAttribute(input *player.AdminGetAllPlayerSessionAttributeParams) (*lobbyclientmodels.ModelsGetAllPlayerSessionAttributeResponse, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -75,7 +73,6 @@ func (p *PlayerService) AdminGetAllPlayerSessionAttribute(input *player.AdminGet
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use AdminSetPlayerSessionAttributeShort instead
 func (p *PlayerService) AdminSetPlayerSessionAttribute(input *player.AdminSetPlayerSessionAttributeParams) error {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -103,7 +100,6 @@ func (p *PlayerService) AdminSetPlayerSessionAttribute(input *player.AdminSetPla
 	return nil
 }
 
-// Deprecated: Use AdminGetPlayerSessionAttributeShort instead
 func (p *PlayerService) AdminGetPlayerSessionAttribute(input *player.AdminGetPlayerSessionAttributeParams) (*lobbyclientmodels.ModelsGetPlayerSessionAttributeResponse, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -131,7 +127,6 @@ func (p *PlayerService) AdminGetPlayerSessionAttribute(input *player.AdminGetPla
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use AdminGetPlayerBlockedPlayersV1Short instead
 func (p *PlayerService) AdminGetPlayerBlockedPlayersV1(input *player.AdminGetPlayerBlockedPlayersV1Params) (*lobbyclientmodels.ModelsGetAllPlayerBlockedUsersResponse, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -159,7 +154,6 @@ func (p *PlayerService) AdminGetPlayerBlockedPlayersV1(input *player.AdminGetPla
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use AdminGetPlayerBlockedByPlayersV1Short instead
 func (p *PlayerService) AdminGetPlayerBlockedByPlayersV1(input *player.AdminGetPlayerBlockedByPlayersV1Params) (*lobbyclientmodels.ModelsGetAllPlayerBlockedByUsersResponse, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -187,32 +181,30 @@ func (p *PlayerService) AdminGetPlayerBlockedByPlayersV1(input *player.AdminGetP
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use AdminBulkBlockPlayersV1Short instead
-func (p *PlayerService) AdminBulkBlockPlayersV1(input *player.AdminBulkBlockPlayersV1Params) (int64, error) {
+func (p *PlayerService) AdminBulkBlockPlayersV1(input *player.AdminBulkBlockPlayersV1Params) error {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
-		return 0, err
+		return err
 	}
-	noContent, badRequest, unauthorized, forbidden, internalServerError, err := p.Client.Player.AdminBulkBlockPlayersV1(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, internalServerError, err := p.Client.Player.AdminBulkBlockPlayersV1(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
-		return 0, badRequest
+		return badRequest
 	}
 	if unauthorized != nil {
-		return 0, unauthorized
+		return unauthorized
 	}
 	if forbidden != nil {
-		return 0, forbidden
+		return forbidden
 	}
 	if internalServerError != nil {
-		return 0, internalServerError
+		return internalServerError
 	}
 	if err != nil {
-		return 0, err
+		return err
 	}
-	return noContent.GetPayload(), nil
+	return nil
 }
 
-// Deprecated: Use PublicGetPlayerBlockedPlayersV1Short instead
 func (p *PlayerService) PublicGetPlayerBlockedPlayersV1(input *player.PublicGetPlayerBlockedPlayersV1Params) (*lobbyclientmodels.ModelsGetAllPlayerBlockedUsersResponse, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -240,7 +232,6 @@ func (p *PlayerService) PublicGetPlayerBlockedPlayersV1(input *player.PublicGetP
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use PublicGetPlayerBlockedByPlayersV1Short instead
 func (p *PlayerService) PublicGetPlayerBlockedByPlayersV1(input *player.PublicGetPlayerBlockedByPlayersV1Params) (*lobbyclientmodels.ModelsGetAllPlayerBlockedByUsersResponse, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -316,12 +307,12 @@ func (p *PlayerService) AdminGetPlayerBlockedByPlayersV1Short(input *player.Admi
 	return ok.GetPayload(), nil
 }
 
-func (p *PlayerService) AdminBulkBlockPlayersV1Short(input *player.AdminBulkBlockPlayersV1Params, authInfo runtime.ClientAuthInfoWriter) (int64, error) {
-	noContent, err := p.Client.Player.AdminBulkBlockPlayersV1Short(input, authInfo)
+func (p *PlayerService) AdminBulkBlockPlayersV1Short(input *player.AdminBulkBlockPlayersV1Params, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := p.Client.Player.AdminBulkBlockPlayersV1Short(input, authInfo)
 	if err != nil {
-		return 0, err
+		return err
 	}
-	return noContent.GetPayload(), nil
+	return nil
 }
 
 func (p *PlayerService) PublicGetPlayerBlockedPlayersV1Short(input *player.PublicGetPlayerBlockedPlayersV1Params, authInfo runtime.ClientAuthInfoWriter) (*lobbyclientmodels.ModelsGetAllPlayerBlockedUsersResponse, error) {

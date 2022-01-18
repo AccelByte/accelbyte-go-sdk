@@ -19,7 +19,6 @@ type PublicChannelService struct {
 	TokenRepository repository.TokenRepository
 }
 
-// Deprecated: Use GetChannelsShort instead
 func (p *PublicChannelService) GetChannels(input *public_channel.GetChannelsParams) (*ugcclientmodels.ModelsPaginatedGetChannelResponse, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -41,7 +40,6 @@ func (p *PublicChannelService) GetChannels(input *public_channel.GetChannelsPara
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use CreateChannelShort instead
 func (p *PublicChannelService) CreateChannel(input *public_channel.CreateChannelParams) (*ugcclientmodels.ModelsChannelResponse, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -63,7 +61,6 @@ func (p *PublicChannelService) CreateChannel(input *public_channel.CreateChannel
 	return created.GetPayload(), nil
 }
 
-// Deprecated: Use UpdateChannelShort instead
 func (p *PublicChannelService) UpdateChannel(input *public_channel.UpdateChannelParams) (*ugcclientmodels.ModelsChannelResponse, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -88,7 +85,6 @@ func (p *PublicChannelService) UpdateChannel(input *public_channel.UpdateChannel
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use DeleteChannelShort instead
 func (p *PublicChannelService) DeleteChannel(input *public_channel.DeleteChannelParams) error {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {

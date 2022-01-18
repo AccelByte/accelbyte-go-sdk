@@ -61,16 +61,6 @@ for the admin get clients by namespace v3 operation typically these are written 
 */
 type AdminGetClientsByNamespaceV3Params struct {
 
-	/*After
-	  The cursor that points to query data for the next page
-
-	*/
-	After *string
-	/*Before
-	  The cursor that points to query data for the previous page
-
-	*/
-	Before *string
 	/*Limit
 	  the maximum number of data that may be returned (1...100)
 
@@ -81,6 +71,11 @@ type AdminGetClientsByNamespaceV3Params struct {
 
 	*/
 	Namespace string
+	/*Offset
+	  the count to skip
+
+	*/
+	Offset *string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -120,28 +115,6 @@ func (o *AdminGetClientsByNamespaceV3Params) SetHTTPClient(client *http.Client) 
 	o.HTTPClient = client
 }
 
-// WithAfter adds the after to the admin get clients by namespace v3 params
-func (o *AdminGetClientsByNamespaceV3Params) WithAfter(after *string) *AdminGetClientsByNamespaceV3Params {
-	o.SetAfter(after)
-	return o
-}
-
-// SetAfter adds the after to the admin get clients by namespace v3 params
-func (o *AdminGetClientsByNamespaceV3Params) SetAfter(after *string) {
-	o.After = after
-}
-
-// WithBefore adds the before to the admin get clients by namespace v3 params
-func (o *AdminGetClientsByNamespaceV3Params) WithBefore(before *string) *AdminGetClientsByNamespaceV3Params {
-	o.SetBefore(before)
-	return o
-}
-
-// SetBefore adds the before to the admin get clients by namespace v3 params
-func (o *AdminGetClientsByNamespaceV3Params) SetBefore(before *string) {
-	o.Before = before
-}
-
 // WithLimit adds the limit to the admin get clients by namespace v3 params
 func (o *AdminGetClientsByNamespaceV3Params) WithLimit(limit *int64) *AdminGetClientsByNamespaceV3Params {
 	o.SetLimit(limit)
@@ -164,6 +137,17 @@ func (o *AdminGetClientsByNamespaceV3Params) SetNamespace(namespace string) {
 	o.Namespace = namespace
 }
 
+// WithOffset adds the offset to the admin get clients by namespace v3 params
+func (o *AdminGetClientsByNamespaceV3Params) WithOffset(offset *string) *AdminGetClientsByNamespaceV3Params {
+	o.SetOffset(offset)
+	return o
+}
+
+// SetOffset adds the offset to the admin get clients by namespace v3 params
+func (o *AdminGetClientsByNamespaceV3Params) SetOffset(offset *string) {
+	o.Offset = offset
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *AdminGetClientsByNamespaceV3Params) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -171,38 +155,6 @@ func (o *AdminGetClientsByNamespaceV3Params) WriteToRequest(r runtime.ClientRequ
 		return err
 	}
 	var res []error
-
-	if o.After != nil {
-
-		// query param after
-		var qrAfter string
-		if o.After != nil {
-			qrAfter = *o.After
-		}
-		qAfter := qrAfter
-		if qAfter != "" {
-			if err := r.SetQueryParam("after", qAfter); err != nil {
-				return err
-			}
-		}
-
-	}
-
-	if o.Before != nil {
-
-		// query param before
-		var qrBefore string
-		if o.Before != nil {
-			qrBefore = *o.Before
-		}
-		qBefore := qrBefore
-		if qBefore != "" {
-			if err := r.SetQueryParam("before", qBefore); err != nil {
-				return err
-			}
-		}
-
-	}
 
 	if o.Limit != nil {
 
@@ -223,6 +175,22 @@ func (o *AdminGetClientsByNamespaceV3Params) WriteToRequest(r runtime.ClientRequ
 	// path param namespace
 	if err := r.SetPathParam("namespace", o.Namespace); err != nil {
 		return err
+	}
+
+	if o.Offset != nil {
+
+		// query param offset
+		var qrOffset string
+		if o.Offset != nil {
+			qrOffset = *o.Offset
+		}
+		qOffset := qrOffset
+		if qOffset != "" {
+			if err := r.SetQueryParam("offset", qOffset); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	if len(res) > 0 {

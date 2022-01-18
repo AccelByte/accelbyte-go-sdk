@@ -18,7 +18,6 @@ type ConcurrentRecordService struct {
 	TokenRepository repository.TokenRepository
 }
 
-// Deprecated: Use PutGameRecordConcurrentHandlerV1Short instead
 func (c *ConcurrentRecordService) PutGameRecordConcurrentHandlerV1(input *concurrent_record.PutGameRecordConcurrentHandlerV1Params) error {
 	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
@@ -43,7 +42,6 @@ func (c *ConcurrentRecordService) PutGameRecordConcurrentHandlerV1(input *concur
 	return nil
 }
 
-// Deprecated: Use PutPlayerPublicRecordConcurrentHandlerV1Short instead
 func (c *ConcurrentRecordService) PutPlayerPublicRecordConcurrentHandlerV1(input *concurrent_record.PutPlayerPublicRecordConcurrentHandlerV1Params) error {
 	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {

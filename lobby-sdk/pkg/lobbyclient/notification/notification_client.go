@@ -111,7 +111,7 @@ type ClientService interface {
   CreateNotificationTemplateV1Admin creates new notification template
 
   Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
-			&lt;br&gt;Create new notification template. Include handlebars {{key}} for replaceable contexts. The the key inside
+			&lt;br&gt;Create new notification template. Include handlebars {{key}} for replaceable contexts. The key inside
 			handlebars will be the key to be replaced when sending notification. Already existing template with the same
 			slug and language can not be created.
 			&lt;br&gt;Check model description for detailed input restrictions.&lt;br&gt;

@@ -19,7 +19,6 @@ type NotificationService struct {
 	TokenRepository repository.TokenRepository
 }
 
-// Deprecated: Use SendMultipleUsersFreeformNotificationV1AdminShort instead
 func (n *NotificationService) SendMultipleUsersFreeformNotificationV1Admin(input *notification.SendMultipleUsersFreeformNotificationV1AdminParams) error {
 	accessToken, err := n.TokenRepository.GetToken()
 	if err != nil {
@@ -41,7 +40,6 @@ func (n *NotificationService) SendMultipleUsersFreeformNotificationV1Admin(input
 	return nil
 }
 
-// Deprecated: Use SendUsersFreeformNotificationV1AdminShort instead
 func (n *NotificationService) SendUsersFreeformNotificationV1Admin(input *notification.SendUsersFreeformNotificationV1AdminParams) error {
 	accessToken, err := n.TokenRepository.GetToken()
 	if err != nil {
@@ -66,7 +64,6 @@ func (n *NotificationService) SendUsersFreeformNotificationV1Admin(input *notifi
 	return nil
 }
 
-// Deprecated: Use SendPartyFreeformNotificationV1AdminShort instead
 func (n *NotificationService) SendPartyFreeformNotificationV1Admin(input *notification.SendPartyFreeformNotificationV1AdminParams) error {
 	accessToken, err := n.TokenRepository.GetToken()
 	if err != nil {
@@ -91,7 +88,6 @@ func (n *NotificationService) SendPartyFreeformNotificationV1Admin(input *notifi
 	return nil
 }
 
-// Deprecated: Use SendPartyTemplatedNotificationV1AdminShort instead
 func (n *NotificationService) SendPartyTemplatedNotificationV1Admin(input *notification.SendPartyTemplatedNotificationV1AdminParams) error {
 	accessToken, err := n.TokenRepository.GetToken()
 	if err != nil {
@@ -116,7 +112,6 @@ func (n *NotificationService) SendPartyTemplatedNotificationV1Admin(input *notif
 	return nil
 }
 
-// Deprecated: Use GetAllNotificationTemplatesV1AdminShort instead
 func (n *NotificationService) GetAllNotificationTemplatesV1Admin(input *notification.GetAllNotificationTemplatesV1AdminParams) ([]*lobbyclientmodels.ModelNotificationTemplateResponse, error) {
 	accessToken, err := n.TokenRepository.GetToken()
 	if err != nil {
@@ -144,7 +139,6 @@ func (n *NotificationService) GetAllNotificationTemplatesV1Admin(input *notifica
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use CreateNotificationTemplateV1AdminShort instead
 func (n *NotificationService) CreateNotificationTemplateV1Admin(input *notification.CreateNotificationTemplateV1AdminParams) error {
 	accessToken, err := n.TokenRepository.GetToken()
 	if err != nil {
@@ -172,7 +166,6 @@ func (n *NotificationService) CreateNotificationTemplateV1Admin(input *notificat
 	return nil
 }
 
-// Deprecated: Use SendUsersTemplatedNotificationV1AdminShort instead
 func (n *NotificationService) SendUsersTemplatedNotificationV1Admin(input *notification.SendUsersTemplatedNotificationV1AdminParams) error {
 	accessToken, err := n.TokenRepository.GetToken()
 	if err != nil {
@@ -197,7 +190,6 @@ func (n *NotificationService) SendUsersTemplatedNotificationV1Admin(input *notif
 	return nil
 }
 
-// Deprecated: Use GetTemplateSlugLocalizationsTemplateV1AdminShort instead
 func (n *NotificationService) GetTemplateSlugLocalizationsTemplateV1Admin(input *notification.GetTemplateSlugLocalizationsTemplateV1AdminParams) (*lobbyclientmodels.ModelGetAllNotificationTemplateSlugResp, error) {
 	accessToken, err := n.TokenRepository.GetToken()
 	if err != nil {
@@ -222,7 +214,6 @@ func (n *NotificationService) GetTemplateSlugLocalizationsTemplateV1Admin(input 
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use DeleteNotificationTemplateSlugV1AdminShort instead
 func (n *NotificationService) DeleteNotificationTemplateSlugV1Admin(input *notification.DeleteNotificationTemplateSlugV1AdminParams) error {
 	accessToken, err := n.TokenRepository.GetToken()
 	if err != nil {
@@ -247,7 +238,6 @@ func (n *NotificationService) DeleteNotificationTemplateSlugV1Admin(input *notif
 	return nil
 }
 
-// Deprecated: Use GetSingleTemplateLocalizationV1AdminShort instead
 func (n *NotificationService) GetSingleTemplateLocalizationV1Admin(input *notification.GetSingleTemplateLocalizationV1AdminParams) (*lobbyclientmodels.ModelLocalization, error) {
 	accessToken, err := n.TokenRepository.GetToken()
 	if err != nil {
@@ -272,7 +262,6 @@ func (n *NotificationService) GetSingleTemplateLocalizationV1Admin(input *notifi
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use UpdateTemplateLocalizationV1AdminShort instead
 func (n *NotificationService) UpdateTemplateLocalizationV1Admin(input *notification.UpdateTemplateLocalizationV1AdminParams) error {
 	accessToken, err := n.TokenRepository.GetToken()
 	if err != nil {
@@ -300,7 +289,6 @@ func (n *NotificationService) UpdateTemplateLocalizationV1Admin(input *notificat
 	return nil
 }
 
-// Deprecated: Use DeleteTemplateLocalizationV1AdminShort instead
 func (n *NotificationService) DeleteTemplateLocalizationV1Admin(input *notification.DeleteTemplateLocalizationV1AdminParams) error {
 	accessToken, err := n.TokenRepository.GetToken()
 	if err != nil {
@@ -325,7 +313,6 @@ func (n *NotificationService) DeleteTemplateLocalizationV1Admin(input *notificat
 	return nil
 }
 
-// Deprecated: Use PublishTemplateLocalizationV1AdminShort instead
 func (n *NotificationService) PublishTemplateLocalizationV1Admin(input *notification.PublishTemplateLocalizationV1AdminParams) error {
 	accessToken, err := n.TokenRepository.GetToken()
 	if err != nil {
@@ -350,7 +337,6 @@ func (n *NotificationService) PublishTemplateLocalizationV1Admin(input *notifica
 	return nil
 }
 
-// Deprecated: Use GetAllNotificationTopicsV1AdminShort instead
 func (n *NotificationService) GetAllNotificationTopicsV1Admin(input *notification.GetAllNotificationTopicsV1AdminParams) (*lobbyclientmodels.ModelGetAllNotificationTopicsResponse, error) {
 	accessToken, err := n.TokenRepository.GetToken()
 	if err != nil {
@@ -375,7 +361,6 @@ func (n *NotificationService) GetAllNotificationTopicsV1Admin(input *notificatio
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use CreateNotificationTopicV1AdminShort instead
 func (n *NotificationService) CreateNotificationTopicV1Admin(input *notification.CreateNotificationTopicV1AdminParams) error {
 	accessToken, err := n.TokenRepository.GetToken()
 	if err != nil {
@@ -397,7 +382,6 @@ func (n *NotificationService) CreateNotificationTopicV1Admin(input *notification
 	return nil
 }
 
-// Deprecated: Use GetNotificationTopicV1AdminShort instead
 func (n *NotificationService) GetNotificationTopicV1Admin(input *notification.GetNotificationTopicV1AdminParams) (*lobbyclientmodels.ModelNotificationTopicResponseV1, error) {
 	accessToken, err := n.TokenRepository.GetToken()
 	if err != nil {
@@ -422,7 +406,6 @@ func (n *NotificationService) GetNotificationTopicV1Admin(input *notification.Ge
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use UpdateNotificationTopicV1AdminShort instead
 func (n *NotificationService) UpdateNotificationTopicV1Admin(input *notification.UpdateNotificationTopicV1AdminParams) error {
 	accessToken, err := n.TokenRepository.GetToken()
 	if err != nil {
@@ -450,7 +433,6 @@ func (n *NotificationService) UpdateNotificationTopicV1Admin(input *notification
 	return nil
 }
 
-// Deprecated: Use DeleteNotificationTopicV1AdminShort instead
 func (n *NotificationService) DeleteNotificationTopicV1Admin(input *notification.DeleteNotificationTopicV1AdminParams) error {
 	accessToken, err := n.TokenRepository.GetToken()
 	if err != nil {
@@ -475,7 +457,6 @@ func (n *NotificationService) DeleteNotificationTopicV1Admin(input *notification
 	return nil
 }
 
-// Deprecated: Use SendSpecificUserFreeformNotificationV1AdminShort instead
 func (n *NotificationService) SendSpecificUserFreeformNotificationV1Admin(input *notification.SendSpecificUserFreeformNotificationV1AdminParams) error {
 	accessToken, err := n.TokenRepository.GetToken()
 	if err != nil {
@@ -500,7 +481,6 @@ func (n *NotificationService) SendSpecificUserFreeformNotificationV1Admin(input 
 	return nil
 }
 
-// Deprecated: Use SendSpecificUserTemplatedNotificationV1AdminShort instead
 func (n *NotificationService) SendSpecificUserTemplatedNotificationV1Admin(input *notification.SendSpecificUserTemplatedNotificationV1AdminParams) error {
 	accessToken, err := n.TokenRepository.GetToken()
 	if err != nil {
@@ -525,7 +505,6 @@ func (n *NotificationService) SendSpecificUserTemplatedNotificationV1Admin(input
 	return nil
 }
 
-// Deprecated: Use FreeFormNotificationShort instead
 func (n *NotificationService) FreeFormNotification(input *notification.FreeFormNotificationParams) error {
 	accessToken, err := n.TokenRepository.GetToken()
 	if err != nil {
@@ -550,7 +529,6 @@ func (n *NotificationService) FreeFormNotification(input *notification.FreeFormN
 	return nil
 }
 
-// Deprecated: Use NotificationWithTemplateShort instead
 func (n *NotificationService) NotificationWithTemplate(input *notification.NotificationWithTemplateParams) error {
 	accessToken, err := n.TokenRepository.GetToken()
 	if err != nil {
@@ -575,7 +553,6 @@ func (n *NotificationService) NotificationWithTemplate(input *notification.Notif
 	return nil
 }
 
-// Deprecated: Use GetGameTemplateShort instead
 func (n *NotificationService) GetGameTemplate(input *notification.GetGameTemplateParams) ([]*lobbyclientmodels.ModelTemplateResponse, error) {
 	accessToken, err := n.TokenRepository.GetToken()
 	if err != nil {
@@ -600,7 +577,6 @@ func (n *NotificationService) GetGameTemplate(input *notification.GetGameTemplat
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use CreateTemplateShort instead
 func (n *NotificationService) CreateTemplate(input *notification.CreateTemplateParams) error {
 	accessToken, err := n.TokenRepository.GetToken()
 	if err != nil {
@@ -625,7 +601,6 @@ func (n *NotificationService) CreateTemplate(input *notification.CreateTemplateP
 	return nil
 }
 
-// Deprecated: Use GetSlugTemplateShort instead
 func (n *NotificationService) GetSlugTemplate(input *notification.GetSlugTemplateParams) (*lobbyclientmodels.ModelTemplateLocalizationResponse, error) {
 	accessToken, err := n.TokenRepository.GetToken()
 	if err != nil {
@@ -650,7 +625,6 @@ func (n *NotificationService) GetSlugTemplate(input *notification.GetSlugTemplat
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use DeleteTemplateSlugShort instead
 func (n *NotificationService) DeleteTemplateSlug(input *notification.DeleteTemplateSlugParams) error {
 	accessToken, err := n.TokenRepository.GetToken()
 	if err != nil {
@@ -675,7 +649,6 @@ func (n *NotificationService) DeleteTemplateSlug(input *notification.DeleteTempl
 	return nil
 }
 
-// Deprecated: Use GetLocalizationTemplateShort instead
 func (n *NotificationService) GetLocalizationTemplate(input *notification.GetLocalizationTemplateParams) (*lobbyclientmodels.ModelTemplateLocalization, error) {
 	accessToken, err := n.TokenRepository.GetToken()
 	if err != nil {
@@ -700,7 +673,6 @@ func (n *NotificationService) GetLocalizationTemplate(input *notification.GetLoc
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use UpdateLocalizationTemplateShort instead
 func (n *NotificationService) UpdateLocalizationTemplate(input *notification.UpdateLocalizationTemplateParams) error {
 	accessToken, err := n.TokenRepository.GetToken()
 	if err != nil {
@@ -725,7 +697,6 @@ func (n *NotificationService) UpdateLocalizationTemplate(input *notification.Upd
 	return nil
 }
 
-// Deprecated: Use DeleteTemplateLocalizationShort instead
 func (n *NotificationService) DeleteTemplateLocalization(input *notification.DeleteTemplateLocalizationParams) error {
 	accessToken, err := n.TokenRepository.GetToken()
 	if err != nil {
@@ -750,7 +721,6 @@ func (n *NotificationService) DeleteTemplateLocalization(input *notification.Del
 	return nil
 }
 
-// Deprecated: Use PublishTemplateShort instead
 func (n *NotificationService) PublishTemplate(input *notification.PublishTemplateParams) error {
 	accessToken, err := n.TokenRepository.GetToken()
 	if err != nil {
@@ -775,7 +745,6 @@ func (n *NotificationService) PublishTemplate(input *notification.PublishTemplat
 	return nil
 }
 
-// Deprecated: Use GetTopicByNamespaceShort instead
 func (n *NotificationService) GetTopicByNamespace(input *notification.GetTopicByNamespaceParams) (*lobbyclientmodels.ModelTopicByNamespacesResponse, error) {
 	accessToken, err := n.TokenRepository.GetToken()
 	if err != nil {
@@ -800,7 +769,6 @@ func (n *NotificationService) GetTopicByNamespace(input *notification.GetTopicBy
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use CreateTopicShort instead
 func (n *NotificationService) CreateTopic(input *notification.CreateTopicParams) error {
 	accessToken, err := n.TokenRepository.GetToken()
 	if err != nil {
@@ -825,7 +793,6 @@ func (n *NotificationService) CreateTopic(input *notification.CreateTopicParams)
 	return nil
 }
 
-// Deprecated: Use GetTopicByTopicNameShort instead
 func (n *NotificationService) GetTopicByTopicName(input *notification.GetTopicByTopicNameParams) (*lobbyclientmodels.ModelNotificationTopicResponse, error) {
 	accessToken, err := n.TokenRepository.GetToken()
 	if err != nil {
@@ -850,7 +817,6 @@ func (n *NotificationService) GetTopicByTopicName(input *notification.GetTopicBy
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use UpdateTopicByTopicNameShort instead
 func (n *NotificationService) UpdateTopicByTopicName(input *notification.UpdateTopicByTopicNameParams) error {
 	accessToken, err := n.TokenRepository.GetToken()
 	if err != nil {
@@ -875,7 +841,6 @@ func (n *NotificationService) UpdateTopicByTopicName(input *notification.UpdateT
 	return nil
 }
 
-// Deprecated: Use DeleteTopicByTopicNameShort instead
 func (n *NotificationService) DeleteTopicByTopicName(input *notification.DeleteTopicByTopicNameParams) error {
 	accessToken, err := n.TokenRepository.GetToken()
 	if err != nil {
@@ -900,7 +865,6 @@ func (n *NotificationService) DeleteTopicByTopicName(input *notification.DeleteT
 	return nil
 }
 
-// Deprecated: Use FreeFormNotificationByUserIDShort instead
 func (n *NotificationService) FreeFormNotificationByUserID(input *notification.FreeFormNotificationByUserIDParams) error {
 	accessToken, err := n.TokenRepository.GetToken()
 	if err != nil {
@@ -925,7 +889,6 @@ func (n *NotificationService) FreeFormNotificationByUserID(input *notification.F
 	return nil
 }
 
-// Deprecated: Use NotificationWithTemplateByUserIDShort instead
 func (n *NotificationService) NotificationWithTemplateByUserID(input *notification.NotificationWithTemplateByUserIDParams) error {
 	accessToken, err := n.TokenRepository.GetToken()
 	if err != nil {

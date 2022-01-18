@@ -35,7 +35,7 @@ type ClientService interface {
 	CreateArchivedLeaderboardRankingDataV1HandlerShort(params *CreateArchivedLeaderboardRankingDataV1HandlerParams, authInfo runtime.ClientAuthInfoWriter) (*CreateArchivedLeaderboardRankingDataV1HandlerCreated, error)
 	GetAllTimeLeaderboardRankingAdminV1(params *GetAllTimeLeaderboardRankingAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetAllTimeLeaderboardRankingAdminV1OK, *GetAllTimeLeaderboardRankingAdminV1BadRequest, *GetAllTimeLeaderboardRankingAdminV1Unauthorized, *GetAllTimeLeaderboardRankingAdminV1Forbidden, *GetAllTimeLeaderboardRankingAdminV1NotFound, *GetAllTimeLeaderboardRankingAdminV1InternalServerError, error)
 	GetAllTimeLeaderboardRankingAdminV1Short(params *GetAllTimeLeaderboardRankingAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetAllTimeLeaderboardRankingAdminV1OK, error)
-	GetAllTimeLeaderboardRankingPublicV1(params *GetAllTimeLeaderboardRankingPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetAllTimeLeaderboardRankingPublicV1OK, *GetAllTimeLeaderboardRankingPublicV1BadRequest, *GetAllTimeLeaderboardRankingPublicV1Unauthorized, *GetAllTimeLeaderboardRankingPublicV1Forbidden, *GetAllTimeLeaderboardRankingPublicV1NotFound, *GetAllTimeLeaderboardRankingPublicV1InternalServerError, error)
+	GetAllTimeLeaderboardRankingPublicV1(params *GetAllTimeLeaderboardRankingPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetAllTimeLeaderboardRankingPublicV1OK, *GetAllTimeLeaderboardRankingPublicV1BadRequest, *GetAllTimeLeaderboardRankingPublicV1NotFound, *GetAllTimeLeaderboardRankingPublicV1InternalServerError, error)
 	GetAllTimeLeaderboardRankingPublicV1Short(params *GetAllTimeLeaderboardRankingPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetAllTimeLeaderboardRankingPublicV1OK, error)
 	GetAllTimeLeaderboardRankingPublicV2(params *GetAllTimeLeaderboardRankingPublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*GetAllTimeLeaderboardRankingPublicV2OK, *GetAllTimeLeaderboardRankingPublicV2BadRequest, *GetAllTimeLeaderboardRankingPublicV2Unauthorized, *GetAllTimeLeaderboardRankingPublicV2Forbidden, *GetAllTimeLeaderboardRankingPublicV2NotFound, *GetAllTimeLeaderboardRankingPublicV2InternalServerError, error)
 	GetAllTimeLeaderboardRankingPublicV2Short(params *GetAllTimeLeaderboardRankingPublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*GetAllTimeLeaderboardRankingPublicV2OK, error)
@@ -43,19 +43,19 @@ type ClientService interface {
 	GetArchivedLeaderboardRankingDataV1HandlerShort(params *GetArchivedLeaderboardRankingDataV1HandlerParams, authInfo runtime.ClientAuthInfoWriter) (*GetArchivedLeaderboardRankingDataV1HandlerOK, error)
 	GetCurrentMonthLeaderboardRankingAdminV1(params *GetCurrentMonthLeaderboardRankingAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetCurrentMonthLeaderboardRankingAdminV1OK, *GetCurrentMonthLeaderboardRankingAdminV1BadRequest, *GetCurrentMonthLeaderboardRankingAdminV1Unauthorized, *GetCurrentMonthLeaderboardRankingAdminV1Forbidden, *GetCurrentMonthLeaderboardRankingAdminV1NotFound, *GetCurrentMonthLeaderboardRankingAdminV1InternalServerError, error)
 	GetCurrentMonthLeaderboardRankingAdminV1Short(params *GetCurrentMonthLeaderboardRankingAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetCurrentMonthLeaderboardRankingAdminV1OK, error)
-	GetCurrentMonthLeaderboardRankingPublicV1(params *GetCurrentMonthLeaderboardRankingPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetCurrentMonthLeaderboardRankingPublicV1OK, *GetCurrentMonthLeaderboardRankingPublicV1BadRequest, *GetCurrentMonthLeaderboardRankingPublicV1Unauthorized, *GetCurrentMonthLeaderboardRankingPublicV1Forbidden, *GetCurrentMonthLeaderboardRankingPublicV1NotFound, *GetCurrentMonthLeaderboardRankingPublicV1InternalServerError, error)
+	GetCurrentMonthLeaderboardRankingPublicV1(params *GetCurrentMonthLeaderboardRankingPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetCurrentMonthLeaderboardRankingPublicV1OK, *GetCurrentMonthLeaderboardRankingPublicV1BadRequest, *GetCurrentMonthLeaderboardRankingPublicV1NotFound, *GetCurrentMonthLeaderboardRankingPublicV1InternalServerError, error)
 	GetCurrentMonthLeaderboardRankingPublicV1Short(params *GetCurrentMonthLeaderboardRankingPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetCurrentMonthLeaderboardRankingPublicV1OK, error)
 	GetCurrentSeasonLeaderboardRankingAdminV1(params *GetCurrentSeasonLeaderboardRankingAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetCurrentSeasonLeaderboardRankingAdminV1OK, *GetCurrentSeasonLeaderboardRankingAdminV1BadRequest, *GetCurrentSeasonLeaderboardRankingAdminV1Unauthorized, *GetCurrentSeasonLeaderboardRankingAdminV1Forbidden, *GetCurrentSeasonLeaderboardRankingAdminV1NotFound, *GetCurrentSeasonLeaderboardRankingAdminV1InternalServerError, error)
 	GetCurrentSeasonLeaderboardRankingAdminV1Short(params *GetCurrentSeasonLeaderboardRankingAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetCurrentSeasonLeaderboardRankingAdminV1OK, error)
-	GetCurrentSeasonLeaderboardRankingPublicV1(params *GetCurrentSeasonLeaderboardRankingPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetCurrentSeasonLeaderboardRankingPublicV1OK, *GetCurrentSeasonLeaderboardRankingPublicV1BadRequest, *GetCurrentSeasonLeaderboardRankingPublicV1Unauthorized, *GetCurrentSeasonLeaderboardRankingPublicV1Forbidden, *GetCurrentSeasonLeaderboardRankingPublicV1NotFound, *GetCurrentSeasonLeaderboardRankingPublicV1InternalServerError, error)
+	GetCurrentSeasonLeaderboardRankingPublicV1(params *GetCurrentSeasonLeaderboardRankingPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetCurrentSeasonLeaderboardRankingPublicV1OK, *GetCurrentSeasonLeaderboardRankingPublicV1BadRequest, *GetCurrentSeasonLeaderboardRankingPublicV1NotFound, *GetCurrentSeasonLeaderboardRankingPublicV1InternalServerError, error)
 	GetCurrentSeasonLeaderboardRankingPublicV1Short(params *GetCurrentSeasonLeaderboardRankingPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetCurrentSeasonLeaderboardRankingPublicV1OK, error)
 	GetCurrentWeekLeaderboardRankingAdminV1(params *GetCurrentWeekLeaderboardRankingAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetCurrentWeekLeaderboardRankingAdminV1OK, *GetCurrentWeekLeaderboardRankingAdminV1BadRequest, *GetCurrentWeekLeaderboardRankingAdminV1Unauthorized, *GetCurrentWeekLeaderboardRankingAdminV1Forbidden, *GetCurrentWeekLeaderboardRankingAdminV1NotFound, *GetCurrentWeekLeaderboardRankingAdminV1InternalServerError, error)
 	GetCurrentWeekLeaderboardRankingAdminV1Short(params *GetCurrentWeekLeaderboardRankingAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetCurrentWeekLeaderboardRankingAdminV1OK, error)
-	GetCurrentWeekLeaderboardRankingPublicV1(params *GetCurrentWeekLeaderboardRankingPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetCurrentWeekLeaderboardRankingPublicV1OK, *GetCurrentWeekLeaderboardRankingPublicV1BadRequest, *GetCurrentWeekLeaderboardRankingPublicV1Unauthorized, *GetCurrentWeekLeaderboardRankingPublicV1Forbidden, *GetCurrentWeekLeaderboardRankingPublicV1NotFound, *GetCurrentWeekLeaderboardRankingPublicV1InternalServerError, error)
+	GetCurrentWeekLeaderboardRankingPublicV1(params *GetCurrentWeekLeaderboardRankingPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetCurrentWeekLeaderboardRankingPublicV1OK, *GetCurrentWeekLeaderboardRankingPublicV1BadRequest, *GetCurrentWeekLeaderboardRankingPublicV1NotFound, *GetCurrentWeekLeaderboardRankingPublicV1InternalServerError, error)
 	GetCurrentWeekLeaderboardRankingPublicV1Short(params *GetCurrentWeekLeaderboardRankingPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetCurrentWeekLeaderboardRankingPublicV1OK, error)
 	GetTodayLeaderboardRankingAdminV1(params *GetTodayLeaderboardRankingAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetTodayLeaderboardRankingAdminV1OK, *GetTodayLeaderboardRankingAdminV1BadRequest, *GetTodayLeaderboardRankingAdminV1Unauthorized, *GetTodayLeaderboardRankingAdminV1Forbidden, *GetTodayLeaderboardRankingAdminV1NotFound, *GetTodayLeaderboardRankingAdminV1InternalServerError, error)
 	GetTodayLeaderboardRankingAdminV1Short(params *GetTodayLeaderboardRankingAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetTodayLeaderboardRankingAdminV1OK, error)
-	GetTodayLeaderboardRankingPublicV1(params *GetTodayLeaderboardRankingPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetTodayLeaderboardRankingPublicV1OK, *GetTodayLeaderboardRankingPublicV1BadRequest, *GetTodayLeaderboardRankingPublicV1Unauthorized, *GetTodayLeaderboardRankingPublicV1Forbidden, *GetTodayLeaderboardRankingPublicV1NotFound, *GetTodayLeaderboardRankingPublicV1InternalServerError, error)
+	GetTodayLeaderboardRankingPublicV1(params *GetTodayLeaderboardRankingPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetTodayLeaderboardRankingPublicV1OK, *GetTodayLeaderboardRankingPublicV1BadRequest, *GetTodayLeaderboardRankingPublicV1NotFound, *GetTodayLeaderboardRankingPublicV1InternalServerError, error)
 	GetTodayLeaderboardRankingPublicV1Short(params *GetTodayLeaderboardRankingPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetTodayLeaderboardRankingPublicV1OK, error)
 	DeleteUserRankingAdminV1(params *DeleteUserRankingAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserRankingAdminV1NoContent, *DeleteUserRankingAdminV1Unauthorized, *DeleteUserRankingAdminV1Forbidden, *DeleteUserRankingAdminV1NotFound, *DeleteUserRankingAdminV1InternalServerError, error)
 	DeleteUserRankingAdminV1Short(params *DeleteUserRankingAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserRankingAdminV1NoContent, error)
@@ -397,7 +397,7 @@ func (a *Client) GetAllTimeLeaderboardRankingAdminV1Short(params *GetAllTimeLead
   	&lt;p&gt;Get rankings in an all time leaderboard.&lt;/p&gt;
 
 */
-func (a *Client) GetAllTimeLeaderboardRankingPublicV1(params *GetAllTimeLeaderboardRankingPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetAllTimeLeaderboardRankingPublicV1OK, *GetAllTimeLeaderboardRankingPublicV1BadRequest, *GetAllTimeLeaderboardRankingPublicV1Unauthorized, *GetAllTimeLeaderboardRankingPublicV1Forbidden, *GetAllTimeLeaderboardRankingPublicV1NotFound, *GetAllTimeLeaderboardRankingPublicV1InternalServerError, error) {
+func (a *Client) GetAllTimeLeaderboardRankingPublicV1(params *GetAllTimeLeaderboardRankingPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetAllTimeLeaderboardRankingPublicV1OK, *GetAllTimeLeaderboardRankingPublicV1BadRequest, *GetAllTimeLeaderboardRankingPublicV1NotFound, *GetAllTimeLeaderboardRankingPublicV1InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetAllTimeLeaderboardRankingPublicV1Params()
@@ -421,31 +421,25 @@ func (a *Client) GetAllTimeLeaderboardRankingPublicV1(params *GetAllTimeLeaderbo
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *GetAllTimeLeaderboardRankingPublicV1OK:
-		return v, nil, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil
 
 	case *GetAllTimeLeaderboardRankingPublicV1BadRequest:
-		return nil, v, nil, nil, nil, nil, nil
-
-	case *GetAllTimeLeaderboardRankingPublicV1Unauthorized:
-		return nil, nil, v, nil, nil, nil, nil
-
-	case *GetAllTimeLeaderboardRankingPublicV1Forbidden:
-		return nil, nil, nil, v, nil, nil, nil
+		return nil, v, nil, nil, nil
 
 	case *GetAllTimeLeaderboardRankingPublicV1NotFound:
-		return nil, nil, nil, nil, v, nil, nil
+		return nil, nil, v, nil, nil
 
 	case *GetAllTimeLeaderboardRankingPublicV1InternalServerError:
-		return nil, nil, nil, nil, nil, v, nil
+		return nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -481,10 +475,6 @@ func (a *Client) GetAllTimeLeaderboardRankingPublicV1Short(params *GetAllTimeLea
 	case *GetAllTimeLeaderboardRankingPublicV1OK:
 		return v, nil
 	case *GetAllTimeLeaderboardRankingPublicV1BadRequest:
-		return nil, v
-	case *GetAllTimeLeaderboardRankingPublicV1Unauthorized:
-		return nil, v
-	case *GetAllTimeLeaderboardRankingPublicV1Forbidden:
 		return nil, v
 	case *GetAllTimeLeaderboardRankingPublicV1NotFound:
 		return nil, v
@@ -816,7 +806,7 @@ func (a *Client) GetCurrentMonthLeaderboardRankingAdminV1Short(params *GetCurren
 
   &lt;p&gt;Get rankings in current month leaderboard.&lt;/p&gt;
 */
-func (a *Client) GetCurrentMonthLeaderboardRankingPublicV1(params *GetCurrentMonthLeaderboardRankingPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetCurrentMonthLeaderboardRankingPublicV1OK, *GetCurrentMonthLeaderboardRankingPublicV1BadRequest, *GetCurrentMonthLeaderboardRankingPublicV1Unauthorized, *GetCurrentMonthLeaderboardRankingPublicV1Forbidden, *GetCurrentMonthLeaderboardRankingPublicV1NotFound, *GetCurrentMonthLeaderboardRankingPublicV1InternalServerError, error) {
+func (a *Client) GetCurrentMonthLeaderboardRankingPublicV1(params *GetCurrentMonthLeaderboardRankingPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetCurrentMonthLeaderboardRankingPublicV1OK, *GetCurrentMonthLeaderboardRankingPublicV1BadRequest, *GetCurrentMonthLeaderboardRankingPublicV1NotFound, *GetCurrentMonthLeaderboardRankingPublicV1InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetCurrentMonthLeaderboardRankingPublicV1Params()
@@ -840,31 +830,25 @@ func (a *Client) GetCurrentMonthLeaderboardRankingPublicV1(params *GetCurrentMon
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *GetCurrentMonthLeaderboardRankingPublicV1OK:
-		return v, nil, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil
 
 	case *GetCurrentMonthLeaderboardRankingPublicV1BadRequest:
-		return nil, v, nil, nil, nil, nil, nil
-
-	case *GetCurrentMonthLeaderboardRankingPublicV1Unauthorized:
-		return nil, nil, v, nil, nil, nil, nil
-
-	case *GetCurrentMonthLeaderboardRankingPublicV1Forbidden:
-		return nil, nil, nil, v, nil, nil, nil
+		return nil, v, nil, nil, nil
 
 	case *GetCurrentMonthLeaderboardRankingPublicV1NotFound:
-		return nil, nil, nil, nil, v, nil, nil
+		return nil, nil, v, nil, nil
 
 	case *GetCurrentMonthLeaderboardRankingPublicV1InternalServerError:
-		return nil, nil, nil, nil, nil, v, nil
+		return nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -900,10 +884,6 @@ func (a *Client) GetCurrentMonthLeaderboardRankingPublicV1Short(params *GetCurre
 	case *GetCurrentMonthLeaderboardRankingPublicV1OK:
 		return v, nil
 	case *GetCurrentMonthLeaderboardRankingPublicV1BadRequest:
-		return nil, v
-	case *GetCurrentMonthLeaderboardRankingPublicV1Unauthorized:
-		return nil, v
-	case *GetCurrentMonthLeaderboardRankingPublicV1Forbidden:
 		return nil, v
 	case *GetCurrentMonthLeaderboardRankingPublicV1NotFound:
 		return nil, v
@@ -1026,7 +1006,7 @@ func (a *Client) GetCurrentSeasonLeaderboardRankingAdminV1Short(params *GetCurre
 
   &lt;p&gt;Get rankings in current season leaderboard.&lt;/p&gt;
 */
-func (a *Client) GetCurrentSeasonLeaderboardRankingPublicV1(params *GetCurrentSeasonLeaderboardRankingPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetCurrentSeasonLeaderboardRankingPublicV1OK, *GetCurrentSeasonLeaderboardRankingPublicV1BadRequest, *GetCurrentSeasonLeaderboardRankingPublicV1Unauthorized, *GetCurrentSeasonLeaderboardRankingPublicV1Forbidden, *GetCurrentSeasonLeaderboardRankingPublicV1NotFound, *GetCurrentSeasonLeaderboardRankingPublicV1InternalServerError, error) {
+func (a *Client) GetCurrentSeasonLeaderboardRankingPublicV1(params *GetCurrentSeasonLeaderboardRankingPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetCurrentSeasonLeaderboardRankingPublicV1OK, *GetCurrentSeasonLeaderboardRankingPublicV1BadRequest, *GetCurrentSeasonLeaderboardRankingPublicV1NotFound, *GetCurrentSeasonLeaderboardRankingPublicV1InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetCurrentSeasonLeaderboardRankingPublicV1Params()
@@ -1050,31 +1030,25 @@ func (a *Client) GetCurrentSeasonLeaderboardRankingPublicV1(params *GetCurrentSe
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *GetCurrentSeasonLeaderboardRankingPublicV1OK:
-		return v, nil, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil
 
 	case *GetCurrentSeasonLeaderboardRankingPublicV1BadRequest:
-		return nil, v, nil, nil, nil, nil, nil
-
-	case *GetCurrentSeasonLeaderboardRankingPublicV1Unauthorized:
-		return nil, nil, v, nil, nil, nil, nil
-
-	case *GetCurrentSeasonLeaderboardRankingPublicV1Forbidden:
-		return nil, nil, nil, v, nil, nil, nil
+		return nil, v, nil, nil, nil
 
 	case *GetCurrentSeasonLeaderboardRankingPublicV1NotFound:
-		return nil, nil, nil, nil, v, nil, nil
+		return nil, nil, v, nil, nil
 
 	case *GetCurrentSeasonLeaderboardRankingPublicV1InternalServerError:
-		return nil, nil, nil, nil, nil, v, nil
+		return nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -1110,10 +1084,6 @@ func (a *Client) GetCurrentSeasonLeaderboardRankingPublicV1Short(params *GetCurr
 	case *GetCurrentSeasonLeaderboardRankingPublicV1OK:
 		return v, nil
 	case *GetCurrentSeasonLeaderboardRankingPublicV1BadRequest:
-		return nil, v
-	case *GetCurrentSeasonLeaderboardRankingPublicV1Unauthorized:
-		return nil, v
-	case *GetCurrentSeasonLeaderboardRankingPublicV1Forbidden:
 		return nil, v
 	case *GetCurrentSeasonLeaderboardRankingPublicV1NotFound:
 		return nil, v
@@ -1236,7 +1206,7 @@ func (a *Client) GetCurrentWeekLeaderboardRankingAdminV1Short(params *GetCurrent
 
   &lt;p&gt;Get rankings in current week leaderboard.&lt;/p&gt;
 */
-func (a *Client) GetCurrentWeekLeaderboardRankingPublicV1(params *GetCurrentWeekLeaderboardRankingPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetCurrentWeekLeaderboardRankingPublicV1OK, *GetCurrentWeekLeaderboardRankingPublicV1BadRequest, *GetCurrentWeekLeaderboardRankingPublicV1Unauthorized, *GetCurrentWeekLeaderboardRankingPublicV1Forbidden, *GetCurrentWeekLeaderboardRankingPublicV1NotFound, *GetCurrentWeekLeaderboardRankingPublicV1InternalServerError, error) {
+func (a *Client) GetCurrentWeekLeaderboardRankingPublicV1(params *GetCurrentWeekLeaderboardRankingPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetCurrentWeekLeaderboardRankingPublicV1OK, *GetCurrentWeekLeaderboardRankingPublicV1BadRequest, *GetCurrentWeekLeaderboardRankingPublicV1NotFound, *GetCurrentWeekLeaderboardRankingPublicV1InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetCurrentWeekLeaderboardRankingPublicV1Params()
@@ -1260,31 +1230,25 @@ func (a *Client) GetCurrentWeekLeaderboardRankingPublicV1(params *GetCurrentWeek
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *GetCurrentWeekLeaderboardRankingPublicV1OK:
-		return v, nil, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil
 
 	case *GetCurrentWeekLeaderboardRankingPublicV1BadRequest:
-		return nil, v, nil, nil, nil, nil, nil
-
-	case *GetCurrentWeekLeaderboardRankingPublicV1Unauthorized:
-		return nil, nil, v, nil, nil, nil, nil
-
-	case *GetCurrentWeekLeaderboardRankingPublicV1Forbidden:
-		return nil, nil, nil, v, nil, nil, nil
+		return nil, v, nil, nil, nil
 
 	case *GetCurrentWeekLeaderboardRankingPublicV1NotFound:
-		return nil, nil, nil, nil, v, nil, nil
+		return nil, nil, v, nil, nil
 
 	case *GetCurrentWeekLeaderboardRankingPublicV1InternalServerError:
-		return nil, nil, nil, nil, nil, v, nil
+		return nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -1320,10 +1284,6 @@ func (a *Client) GetCurrentWeekLeaderboardRankingPublicV1Short(params *GetCurren
 	case *GetCurrentWeekLeaderboardRankingPublicV1OK:
 		return v, nil
 	case *GetCurrentWeekLeaderboardRankingPublicV1BadRequest:
-		return nil, v
-	case *GetCurrentWeekLeaderboardRankingPublicV1Unauthorized:
-		return nil, v
-	case *GetCurrentWeekLeaderboardRankingPublicV1Forbidden:
 		return nil, v
 	case *GetCurrentWeekLeaderboardRankingPublicV1NotFound:
 		return nil, v
@@ -1446,7 +1406,7 @@ func (a *Client) GetTodayLeaderboardRankingAdminV1Short(params *GetTodayLeaderbo
 
   &lt;p&gt;Get rankings in today leaderboard.&lt;/p&gt;
 */
-func (a *Client) GetTodayLeaderboardRankingPublicV1(params *GetTodayLeaderboardRankingPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetTodayLeaderboardRankingPublicV1OK, *GetTodayLeaderboardRankingPublicV1BadRequest, *GetTodayLeaderboardRankingPublicV1Unauthorized, *GetTodayLeaderboardRankingPublicV1Forbidden, *GetTodayLeaderboardRankingPublicV1NotFound, *GetTodayLeaderboardRankingPublicV1InternalServerError, error) {
+func (a *Client) GetTodayLeaderboardRankingPublicV1(params *GetTodayLeaderboardRankingPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetTodayLeaderboardRankingPublicV1OK, *GetTodayLeaderboardRankingPublicV1BadRequest, *GetTodayLeaderboardRankingPublicV1NotFound, *GetTodayLeaderboardRankingPublicV1InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetTodayLeaderboardRankingPublicV1Params()
@@ -1470,31 +1430,25 @@ func (a *Client) GetTodayLeaderboardRankingPublicV1(params *GetTodayLeaderboardR
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *GetTodayLeaderboardRankingPublicV1OK:
-		return v, nil, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil
 
 	case *GetTodayLeaderboardRankingPublicV1BadRequest:
-		return nil, v, nil, nil, nil, nil, nil
-
-	case *GetTodayLeaderboardRankingPublicV1Unauthorized:
-		return nil, nil, v, nil, nil, nil, nil
-
-	case *GetTodayLeaderboardRankingPublicV1Forbidden:
-		return nil, nil, nil, v, nil, nil, nil
+		return nil, v, nil, nil, nil
 
 	case *GetTodayLeaderboardRankingPublicV1NotFound:
-		return nil, nil, nil, nil, v, nil, nil
+		return nil, nil, v, nil, nil
 
 	case *GetTodayLeaderboardRankingPublicV1InternalServerError:
-		return nil, nil, nil, nil, nil, v, nil
+		return nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -1530,10 +1484,6 @@ func (a *Client) GetTodayLeaderboardRankingPublicV1Short(params *GetTodayLeaderb
 	case *GetTodayLeaderboardRankingPublicV1OK:
 		return v, nil
 	case *GetTodayLeaderboardRankingPublicV1BadRequest:
-		return nil, v
-	case *GetTodayLeaderboardRankingPublicV1Unauthorized:
-		return nil, v
-	case *GetTodayLeaderboardRankingPublicV1Forbidden:
 		return nil, v
 	case *GetTodayLeaderboardRankingPublicV1NotFound:
 		return nil, v

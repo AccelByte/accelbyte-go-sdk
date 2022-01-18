@@ -19,7 +19,6 @@ type LocalizedPolicyVersionsService struct {
 	TokenRepository repository.TokenRepository
 }
 
-// Deprecated: Use RetrieveLocalizedPolicyVersionsShort instead
 func (l *LocalizedPolicyVersionsService) RetrieveLocalizedPolicyVersions(input *localized_policy_versions.RetrieveLocalizedPolicyVersionsParams) ([]*legalclientmodels.RetrieveLocalizedPolicyVersionResponse, error) {
 	accessToken, err := l.TokenRepository.GetToken()
 	if err != nil {
@@ -32,7 +31,6 @@ func (l *LocalizedPolicyVersionsService) RetrieveLocalizedPolicyVersions(input *
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use CreateLocalizedPolicyVersionShort instead
 func (l *LocalizedPolicyVersionsService) CreateLocalizedPolicyVersion(input *localized_policy_versions.CreateLocalizedPolicyVersionParams) (*legalclientmodels.CreateLocalizedPolicyVersionResponse, error) {
 	accessToken, err := l.TokenRepository.GetToken()
 	if err != nil {
@@ -51,7 +49,6 @@ func (l *LocalizedPolicyVersionsService) CreateLocalizedPolicyVersion(input *loc
 	return created.GetPayload(), nil
 }
 
-// Deprecated: Use RetrieveSingleLocalizedPolicyVersionShort instead
 func (l *LocalizedPolicyVersionsService) RetrieveSingleLocalizedPolicyVersion(input *localized_policy_versions.RetrieveSingleLocalizedPolicyVersionParams) (*legalclientmodels.UpdateLocalizedPolicyVersionResponse, error) {
 	accessToken, err := l.TokenRepository.GetToken()
 	if err != nil {
@@ -67,7 +64,6 @@ func (l *LocalizedPolicyVersionsService) RetrieveSingleLocalizedPolicyVersion(in
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use UpdateLocalizedPolicyVersionShort instead
 func (l *LocalizedPolicyVersionsService) UpdateLocalizedPolicyVersion(input *localized_policy_versions.UpdateLocalizedPolicyVersionParams) (*legalclientmodels.UpdateLocalizedPolicyVersionResponse, error) {
 	accessToken, err := l.TokenRepository.GetToken()
 	if err != nil {
@@ -83,7 +79,6 @@ func (l *LocalizedPolicyVersionsService) UpdateLocalizedPolicyVersion(input *loc
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use RequestPresignedURLShort instead
 func (l *LocalizedPolicyVersionsService) RequestPresignedURL(input *localized_policy_versions.RequestPresignedURLParams) (*legalclientmodels.UploadLocalizedPolicyVersionAttachmentResponse, error) {
 	accessToken, err := l.TokenRepository.GetToken()
 	if err != nil {
@@ -99,7 +94,6 @@ func (l *LocalizedPolicyVersionsService) RequestPresignedURL(input *localized_po
 	return created.GetPayload(), nil
 }
 
-// Deprecated: Use SetDefaultPolicyShort instead
 func (l *LocalizedPolicyVersionsService) SetDefaultPolicy(input *localized_policy_versions.SetDefaultPolicyParams) error {
 	accessToken, err := l.TokenRepository.GetToken()
 	if err != nil {
@@ -112,7 +106,6 @@ func (l *LocalizedPolicyVersionsService) SetDefaultPolicy(input *localized_polic
 	return nil
 }
 
-// Deprecated: Use RetrieveSingleLocalizedPolicyVersion1Short instead
 func (l *LocalizedPolicyVersionsService) RetrieveSingleLocalizedPolicyVersion1(input *localized_policy_versions.RetrieveSingleLocalizedPolicyVersion1Params) (*legalclientmodels.RetrieveLocalizedPolicyVersionPublicResponse, error) {
 	ok, notFound, err := l.Client.LocalizedPolicyVersions.RetrieveSingleLocalizedPolicyVersion1(input)
 	if notFound != nil {

@@ -19,7 +19,6 @@ type UserActionService struct {
 	TokenRepository repository.TokenRepository
 }
 
-// Deprecated: Use GetActionsShort instead
 func (u *UserActionService) GetActions(input *user_action.GetActionsParams) ([]*basicclientmodels.Action, error) {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
@@ -41,7 +40,6 @@ func (u *UserActionService) GetActions(input *user_action.GetActionsParams) ([]*
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use BanUsersShort instead
 func (u *UserActionService) BanUsers(input *user_action.BanUsersParams) (*basicclientmodels.ErrorEntity, error) {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
@@ -63,7 +61,6 @@ func (u *UserActionService) BanUsers(input *user_action.BanUsersParams) (*basicc
 	return badRequest.GetPayload(), nil
 }
 
-// Deprecated: Use GetBannedUsersShort instead
 func (u *UserActionService) GetBannedUsers(input *user_action.GetBannedUsersParams) ([]*basicclientmodels.ADTOObjectForEqu8UserBanStatus, error) {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
@@ -88,7 +85,6 @@ func (u *UserActionService) GetBannedUsers(input *user_action.GetBannedUsersPara
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use ReportUserShort instead
 func (u *UserActionService) ReportUser(input *user_action.ReportUserParams) (*basicclientmodels.ValidationErrorEntity, error) {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
@@ -101,7 +97,6 @@ func (u *UserActionService) ReportUser(input *user_action.ReportUserParams) (*ba
 	return unprocessableEntity.GetPayload(), nil
 }
 
-// Deprecated: Use GetUserStatusShort instead
 func (u *UserActionService) GetUserStatus(input *user_action.GetUserStatusParams) (*basicclientmodels.ADTOObjectForEqu8UserStatus, error) {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
@@ -126,7 +121,6 @@ func (u *UserActionService) GetUserStatus(input *user_action.GetUserStatusParams
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use UnBanUsersShort instead
 func (u *UserActionService) UnBanUsers(input *user_action.UnBanUsersParams) (*basicclientmodels.ErrorEntity, error) {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
@@ -148,7 +142,6 @@ func (u *UserActionService) UnBanUsers(input *user_action.UnBanUsersParams) (*ba
 	return badRequest.GetPayload(), nil
 }
 
-// Deprecated: Use PublicReportUserShort instead
 func (u *UserActionService) PublicReportUser(input *user_action.PublicReportUserParams) (*basicclientmodels.ErrorEntity, error) {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {

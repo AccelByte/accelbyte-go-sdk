@@ -36,18 +36,6 @@ func (o *GetCurrentMonthLeaderboardRankingPublicV1Reader) ReadResponse(response 
 			return nil, err
 		}
 		return result, nil
-	case 401:
-		result := NewGetCurrentMonthLeaderboardRankingPublicV1Unauthorized()
-		if err := result.readResponse(response, consumer, o.formats); err != nil {
-			return nil, err
-		}
-		return result, nil
-	case 403:
-		result := NewGetCurrentMonthLeaderboardRankingPublicV1Forbidden()
-		if err := result.readResponse(response, consumer, o.formats); err != nil {
-			return nil, err
-		}
-		return result, nil
 	case 404:
 		result := NewGetCurrentMonthLeaderboardRankingPublicV1NotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -126,72 +114,6 @@ func (o *GetCurrentMonthLeaderboardRankingPublicV1BadRequest) GetPayload() *lead
 }
 
 func (o *GetCurrentMonthLeaderboardRankingPublicV1BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-
-	o.Payload = new(leaderboardclientmodels.ResponseErrorResponse)
-
-	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
-		return err
-	}
-
-	return nil
-}
-
-// NewGetCurrentMonthLeaderboardRankingPublicV1Unauthorized creates a GetCurrentMonthLeaderboardRankingPublicV1Unauthorized with default headers values
-func NewGetCurrentMonthLeaderboardRankingPublicV1Unauthorized() *GetCurrentMonthLeaderboardRankingPublicV1Unauthorized {
-	return &GetCurrentMonthLeaderboardRankingPublicV1Unauthorized{}
-}
-
-/*GetCurrentMonthLeaderboardRankingPublicV1Unauthorized handles this case with default header values.
-
-  Unauthorized
-*/
-type GetCurrentMonthLeaderboardRankingPublicV1Unauthorized struct {
-	Payload *leaderboardclientmodels.ResponseErrorResponse
-}
-
-func (o *GetCurrentMonthLeaderboardRankingPublicV1Unauthorized) Error() string {
-	return fmt.Sprintf("[GET /leaderboard/v1/public/namespaces/{namespace}/leaderboards/{leaderboardCode}/month][%d] getCurrentMonthLeaderboardRankingPublicV1Unauthorized  %+v", 401, o.Payload)
-}
-
-func (o *GetCurrentMonthLeaderboardRankingPublicV1Unauthorized) GetPayload() *leaderboardclientmodels.ResponseErrorResponse {
-	return o.Payload
-}
-
-func (o *GetCurrentMonthLeaderboardRankingPublicV1Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-
-	o.Payload = new(leaderboardclientmodels.ResponseErrorResponse)
-
-	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
-		return err
-	}
-
-	return nil
-}
-
-// NewGetCurrentMonthLeaderboardRankingPublicV1Forbidden creates a GetCurrentMonthLeaderboardRankingPublicV1Forbidden with default headers values
-func NewGetCurrentMonthLeaderboardRankingPublicV1Forbidden() *GetCurrentMonthLeaderboardRankingPublicV1Forbidden {
-	return &GetCurrentMonthLeaderboardRankingPublicV1Forbidden{}
-}
-
-/*GetCurrentMonthLeaderboardRankingPublicV1Forbidden handles this case with default header values.
-
-  Forbidden
-*/
-type GetCurrentMonthLeaderboardRankingPublicV1Forbidden struct {
-	Payload *leaderboardclientmodels.ResponseErrorResponse
-}
-
-func (o *GetCurrentMonthLeaderboardRankingPublicV1Forbidden) Error() string {
-	return fmt.Sprintf("[GET /leaderboard/v1/public/namespaces/{namespace}/leaderboards/{leaderboardCode}/month][%d] getCurrentMonthLeaderboardRankingPublicV1Forbidden  %+v", 403, o.Payload)
-}
-
-func (o *GetCurrentMonthLeaderboardRankingPublicV1Forbidden) GetPayload() *leaderboardclientmodels.ResponseErrorResponse {
-	return o.Payload
-}
-
-func (o *GetCurrentMonthLeaderboardRankingPublicV1Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(leaderboardclientmodels.ResponseErrorResponse)
 

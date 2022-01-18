@@ -74,6 +74,9 @@ type FullItemInfo struct {
 	// Bundle item's item ids
 	ItemIds []string `json:"itemIds"`
 
+	// itemQty, the quantity of item in itemIds, default 1, should be empty if item type is not "BUNDLE"
+	ItemQty map[string]int32 `json:"itemQty,omitempty"`
+
 	// Item type
 	// Required: true
 	// Enum: [APP COINS INGAMEITEM BUNDLE CODE SUBSCRIPTION SEASON MEDIA]

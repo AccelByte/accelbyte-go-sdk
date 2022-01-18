@@ -15,6 +15,15 @@ import (
 // swagger:model PlayStationReconcileRequest
 type PlayStationReconcileRequest struct {
 
+	// product price currency
+	CurrencyCode string `json:"currencyCode,omitempty"`
+
+	// product price
+	Price float64 `json:"price,omitempty"`
+
+	// productId
+	ProductID string `json:"productId,omitempty"`
+
 	// service label
 	ServiceLabel int32 `json:"serviceLabel,omitempty"`
 }

@@ -168,7 +168,7 @@ func (a *Client) AdminRetrieveUserThirdPartyPlatformTokenV3Short(params *AdminRe
 /*
   AuthCodeRequestV3 generates url to request auth code from third party platform
 
-  &#39;Generate url to request auth code from third party platform &lt;br&gt;
+  Generate url to request auth code from third party platform &lt;br&gt;
                &lt;h2&gt;Supported platforms:&lt;/h2&gt;&lt;ul&gt;
                &lt;li&gt;&lt;strong&gt;steamopenid&lt;/strong&gt;&lt;/li&gt;This endpoint redirects to steam login page, then redirect back to platform
                authenticate endpoint after successfully authenticating user steam.
@@ -180,6 +180,12 @@ func (a *Client) AdminRetrieveUserThirdPartyPlatformTokenV3Short(params *AdminRe
                authenticate endpoint after successfully authenticating an Epicgames credential
                &lt;li&gt;&lt;strong&gt;twitch&lt;/strong&gt;&lt;/li&gt;This endpoint redirects to twitch login page, then redirect back to platform
                authenticate endpoint after successfully authenticating twitch user.
+               &lt;li&gt;&lt;strong&gt;azure&lt;/strong&gt;&lt;/li&gt;This endpoint redirects to azure login page, then redirect back to platform
+               authenticate(saml) endpoint after successfully authenticating azure user.
+               &lt;li&gt;&lt;strong&gt;facebook&lt;/strong&gt;&lt;/li&gt;This endpoint redirects to facebook login page, then redirect back to platform
+               authenticate endpoint after successfully authenticating facebook user.
+               &lt;li&gt;&lt;strong&gt;google&lt;/strong&gt;&lt;/li&gt;This endpoint redirects to google login page, then redirect back to platform
+               authenticate endpoint after successfully authenticating google user.
                &lt;/ul&gt; action code : 10702&#39;
 */
 func (a *Client) AuthCodeRequestV3(params *AuthCodeRequestV3Params, authInfo runtime.ClientAuthInfoWriter) (*AuthCodeRequestV3Found, error) {
@@ -569,7 +575,9 @@ func (a *Client) GetRevocationListV3Short(params *GetRevocationListV3Params, aut
 				&lt;li&gt;&lt;strong&gt;ps4&lt;/strong&gt;: The platform_token’s value is the authorization code returned by Sony OAuth.&lt;/li&gt;
 				&lt;li&gt;&lt;strong&gt;ps5&lt;/strong&gt;: The platform_token’s value is the authorization code returned by Sony OAuth.&lt;/li&gt;
 				&lt;li&gt;&lt;strong&gt;nintendo&lt;/strong&gt;: The platform_token’s value is the authorization code(id_token) returned by Nintendo OAuth.&lt;/li&gt;
-				&lt;li&gt;&lt;strong&gt;awscognito&lt;/strong&gt;: The platform_token’s value is the aws cognito access token (JWT).&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;awscognito&lt;/strong&gt;: The platform_token’s value is the aws cognito access token or id token (JWT).&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;xbl&lt;/strong&gt;: The platform_token’s value is XSTS token&lt;/li&gt;
+				&lt;li&gt;&lt;strong&gt;xblweb&lt;/strong&gt;: The platform_token’s value is code returned by xbox after login&lt;/li&gt;
 			&lt;/ul&gt;
 			&lt;h2&gt;Account Group&lt;/h2&gt;
 			&lt;p&gt;Several platforms are grouped under account groups. The accounts on these platforms have the same platform user id.

@@ -19,7 +19,6 @@ type EligibilitiesService struct {
 	TokenRepository repository.TokenRepository
 }
 
-// Deprecated: Use RetrieveEligibilitiesPublicShort instead
 func (e *EligibilitiesService) RetrieveEligibilitiesPublic(input *eligibilities.RetrieveEligibilitiesPublicParams) ([]*legalclientmodels.RetrieveUserEligibilitiesResponse, error) {
 	accessToken, err := e.TokenRepository.GetToken()
 	if err != nil {
@@ -32,7 +31,6 @@ func (e *EligibilitiesService) RetrieveEligibilitiesPublic(input *eligibilities.
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use RetrieveEligibilitiesPublicIndirectShort instead
 func (e *EligibilitiesService) RetrieveEligibilitiesPublicIndirect(input *eligibilities.RetrieveEligibilitiesPublicIndirectParams) (*legalclientmodels.RetrieveUserEligibilitiesIndirectResponse, error) {
 	accessToken, err := e.TokenRepository.GetToken()
 	if err != nil {

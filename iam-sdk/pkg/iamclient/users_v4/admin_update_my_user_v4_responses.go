@@ -171,7 +171,7 @@ func NewAdminUpdateMyUserV4Conflict() *AdminUpdateMyUserV4Conflict {
 
 /*AdminUpdateMyUserV4Conflict handles this case with default header values.
 
-  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>10133</td><td>email already used</td></tr><tr><td>10133</td><td>email already used</td></tr></table>
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>10177</td><td>username already used</td></tr></table>
 */
 type AdminUpdateMyUserV4Conflict struct {
 	Payload *iamclientmodels.RestErrorResponse

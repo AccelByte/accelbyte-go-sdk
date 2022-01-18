@@ -19,7 +19,6 @@ type PodConfigService struct {
 	TokenRepository repository.TokenRepository
 }
 
-// Deprecated: Use GetAllPodConfigShort instead
 func (p *PodConfigService) GetAllPodConfig(input *pod_config.GetAllPodConfigParams) (*dsmcclientmodels.ModelsListPodConfigResponse, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -41,7 +40,6 @@ func (p *PodConfigService) GetAllPodConfig(input *pod_config.GetAllPodConfigPara
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use GetPodConfigShort instead
 func (p *PodConfigService) GetPodConfig(input *pod_config.GetPodConfigParams) (*dsmcclientmodels.ModelsPodConfigRecord, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -66,7 +64,6 @@ func (p *PodConfigService) GetPodConfig(input *pod_config.GetPodConfigParams) (*
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use CreatePodConfigShort instead
 func (p *PodConfigService) CreatePodConfig(input *pod_config.CreatePodConfigParams) (*dsmcclientmodels.ModelsPodConfigRecord, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -91,7 +88,6 @@ func (p *PodConfigService) CreatePodConfig(input *pod_config.CreatePodConfigPara
 	return created.GetPayload(), nil
 }
 
-// Deprecated: Use DeletePodConfigShort instead
 func (p *PodConfigService) DeletePodConfig(input *pod_config.DeletePodConfigParams) error {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -119,7 +115,6 @@ func (p *PodConfigService) DeletePodConfig(input *pod_config.DeletePodConfigPara
 	return nil
 }
 
-// Deprecated: Use UpdatePodConfigShort instead
 func (p *PodConfigService) UpdatePodConfig(input *pod_config.UpdatePodConfigParams) (*dsmcclientmodels.ModelsPodConfigRecord, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {

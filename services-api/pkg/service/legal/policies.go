@@ -19,7 +19,6 @@ type PoliciesService struct {
 	TokenRepository repository.TokenRepository
 }
 
-// Deprecated: Use RetrievePoliciesShort instead
 func (p *PoliciesService) RetrievePolicies(input *policies.RetrievePoliciesParams) ([]*legalclientmodels.RetrievePolicyResponse, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -32,7 +31,6 @@ func (p *PoliciesService) RetrievePolicies(input *policies.RetrievePoliciesParam
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use UpdatePolicyShort instead
 func (p *PoliciesService) UpdatePolicy(input *policies.UpdatePolicyParams) error {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -45,7 +43,6 @@ func (p *PoliciesService) UpdatePolicy(input *policies.UpdatePolicyParams) error
 	return nil
 }
 
-// Deprecated: Use SetDefaultPolicy1Short instead
 func (p *PoliciesService) SetDefaultPolicy1(input *policies.SetDefaultPolicy1Params) error {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -58,7 +55,6 @@ func (p *PoliciesService) SetDefaultPolicy1(input *policies.SetDefaultPolicy1Par
 	return nil
 }
 
-// Deprecated: Use RetrieveLatestPoliciesShort instead
 func (p *PoliciesService) RetrieveLatestPolicies(input *policies.RetrieveLatestPoliciesParams) ([]*legalclientmodels.RetrievePolicyPublicResponse, error) {
 	ok, err := p.Client.Policies.RetrieveLatestPolicies(input)
 	if err != nil {
@@ -67,7 +63,6 @@ func (p *PoliciesService) RetrieveLatestPolicies(input *policies.RetrieveLatestP
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use RetrieveLatestPoliciesPublicShort instead
 func (p *PoliciesService) RetrieveLatestPoliciesPublic(input *policies.RetrieveLatestPoliciesPublicParams) ([]*legalclientmodels.RetrievePolicyPublicResponse, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -83,7 +78,6 @@ func (p *PoliciesService) RetrieveLatestPoliciesPublic(input *policies.RetrieveL
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use RetrieveLatestPoliciesByNamespaceAndCountryPublicShort instead
 func (p *PoliciesService) RetrieveLatestPoliciesByNamespaceAndCountryPublic(input *policies.RetrieveLatestPoliciesByNamespaceAndCountryPublicParams) ([]*legalclientmodels.RetrievePolicyPublicResponse, error) {
 	ok, err := p.Client.Policies.RetrieveLatestPoliciesByNamespaceAndCountryPublic(input)
 	if err != nil {

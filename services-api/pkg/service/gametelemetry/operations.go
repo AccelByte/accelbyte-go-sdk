@@ -18,7 +18,6 @@ type OperationsService struct {
 	TokenRepository repository.TokenRepository
 }
 
-// Deprecated: Use ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostShort instead
 func (o *OperationsService) ProtectedSaveEventsGameTelemetryV1ProtectedEventsPost(input *operations.ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostParams) error {
 	accessToken, err := o.TokenRepository.GetToken()
 	if err != nil {
@@ -34,7 +33,6 @@ func (o *OperationsService) ProtectedSaveEventsGameTelemetryV1ProtectedEventsPos
 	return nil
 }
 
-// Deprecated: Use ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetShort instead
 func (o *OperationsService) ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGet(input *operations.ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetParams) (int64, error) {
 	accessToken, err := o.TokenRepository.GetToken()
 	if err != nil {
@@ -50,7 +48,6 @@ func (o *OperationsService) ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIds
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutShort instead
 func (o *OperationsService) ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePut(input *operations.ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutParams) error {
 	accessToken, err := o.TokenRepository.GetToken()
 	if err != nil {

@@ -19,134 +19,130 @@ type TicketService struct {
 	TokenRepository repository.TokenRepository
 }
 
-// Deprecated: Use GetTicketDynamicShort instead
-func (t *TicketService) GetTicketDynamic(input *ticket.GetTicketDynamicParams) (*platformclientmodels.TicketDynamicInfo, error) {
-	accessToken, err := t.TokenRepository.GetToken()
-	if err != nil {
+func (t *TicketService) GetTicketDynamic(input *ticket.GetTicketDynamicParams)(*platformclientmodels.TicketDynamicInfo, error) {
+    accessToken, err := t.TokenRepository.GetToken()
+    if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := t.Client.Ticket.GetTicketDynamic(input, client.BearerToken(*accessToken.AccessToken))
-	if notFound != nil {
+ok, notFound, err := t.Client.Ticket.GetTicketDynamic(input, client.BearerToken(*accessToken.AccessToken))
+    if notFound != nil {
 		return nil, notFound
-	}
-	if err != nil {
+    }
+    if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use DecreaseTicketSaleShort instead
 func (t *TicketService) DecreaseTicketSale(input *ticket.DecreaseTicketSaleParams) error {
 	accessToken, err := t.TokenRepository.GetToken()
-	if err != nil {
+    if err != nil {
 		return err
 	}
-	_, notFound, unprocessableEntity, err := t.Client.Ticket.DecreaseTicketSale(input, client.BearerToken(*accessToken.AccessToken))
-	if notFound != nil {
+    _, notFound, unprocessableEntity, err := t.Client.Ticket.DecreaseTicketSale(input, client.BearerToken(*accessToken.AccessToken))
+    if notFound != nil {
 		return notFound
-	}
-	if unprocessableEntity != nil {
+    }
+    if unprocessableEntity != nil {
 		return unprocessableEntity
-	}
-	if err != nil {
+    }
+    if err != nil {
 		return err
 	}
 	return nil
 }
 
-// Deprecated: Use GetTicketBoothIDShort instead
-func (t *TicketService) GetTicketBoothID(input *ticket.GetTicketBoothIDParams) (*platformclientmodels.TicketBoothID, error) {
-	accessToken, err := t.TokenRepository.GetToken()
-	if err != nil {
+func (t *TicketService) GetTicketBoothID(input *ticket.GetTicketBoothIDParams)(*platformclientmodels.TicketBoothID, error) {
+    accessToken, err := t.TokenRepository.GetToken()
+    if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := t.Client.Ticket.GetTicketBoothID(input, client.BearerToken(*accessToken.AccessToken))
-	if notFound != nil {
+ok, notFound, err := t.Client.Ticket.GetTicketBoothID(input, client.BearerToken(*accessToken.AccessToken))
+    if notFound != nil {
 		return nil, notFound
-	}
-	if err != nil {
+    }
+    if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use IncreaseTicketSaleShort instead
-func (t *TicketService) IncreaseTicketSale(input *ticket.IncreaseTicketSaleParams) (*platformclientmodels.TicketSaleIncrementResult, error) {
-	accessToken, err := t.TokenRepository.GetToken()
-	if err != nil {
+func (t *TicketService) IncreaseTicketSale(input *ticket.IncreaseTicketSaleParams)(*platformclientmodels.TicketSaleIncrementResult, error) {
+    accessToken, err := t.TokenRepository.GetToken()
+    if err != nil {
 		return nil, err
 	}
-	ok, notFound, unprocessableEntity, err := t.Client.Ticket.IncreaseTicketSale(input, client.BearerToken(*accessToken.AccessToken))
-	if notFound != nil {
+ok, notFound, unprocessableEntity, err := t.Client.Ticket.IncreaseTicketSale(input, client.BearerToken(*accessToken.AccessToken))
+    if notFound != nil {
 		return nil, notFound
-	}
-	if unprocessableEntity != nil {
+    }
+    if unprocessableEntity != nil {
 		return nil, unprocessableEntity
-	}
-	if err != nil {
+    }
+    if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use AcquireUserTicketShort instead
-func (t *TicketService) AcquireUserTicket(input *ticket.AcquireUserTicketParams) (*platformclientmodels.TicketAcquireResult, error) {
-	accessToken, err := t.TokenRepository.GetToken()
-	if err != nil {
+func (t *TicketService) AcquireUserTicket(input *ticket.AcquireUserTicketParams)(*platformclientmodels.TicketAcquireResult, error) {
+    accessToken, err := t.TokenRepository.GetToken()
+    if err != nil {
 		return nil, err
 	}
-	ok, notFound, conflict, unprocessableEntity, err := t.Client.Ticket.AcquireUserTicket(input, client.BearerToken(*accessToken.AccessToken))
-	if notFound != nil {
+ok, notFound, conflict, unprocessableEntity, err := t.Client.Ticket.AcquireUserTicket(input, client.BearerToken(*accessToken.AccessToken))
+    if notFound != nil {
 		return nil, notFound
-	}
-	if conflict != nil {
+    }
+    if conflict != nil {
 		return nil, conflict
-	}
-	if unprocessableEntity != nil {
+    }
+    if unprocessableEntity != nil {
 		return nil, unprocessableEntity
-	}
-	if err != nil {
+    }
+    if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (t *TicketService) GetTicketDynamicShort(input *ticket.GetTicketDynamicParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.TicketDynamicInfo, error) {
-	ok, err := t.Client.Ticket.GetTicketDynamicShort(input, authInfo)
-	if err != nil {
+func (t *TicketService) GetTicketDynamicShort(input *ticket.GetTicketDynamicParams, authInfo runtime.ClientAuthInfoWriter)(*platformclientmodels.TicketDynamicInfo, error) {
+    ok, err := t.Client.Ticket.GetTicketDynamicShort(input, authInfo)
+    if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
 func (t *TicketService) DecreaseTicketSaleShort(input *ticket.DecreaseTicketSaleParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := t.Client.Ticket.DecreaseTicketSaleShort(input, authInfo)
-	if err != nil {
+    _, err := t.Client.Ticket.DecreaseTicketSaleShort(input, authInfo)
+    if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (t *TicketService) GetTicketBoothIDShort(input *ticket.GetTicketBoothIDParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.TicketBoothID, error) {
-	ok, err := t.Client.Ticket.GetTicketBoothIDShort(input, authInfo)
-	if err != nil {
+func (t *TicketService) GetTicketBoothIDShort(input *ticket.GetTicketBoothIDParams, authInfo runtime.ClientAuthInfoWriter)(*platformclientmodels.TicketBoothID, error) {
+    ok, err := t.Client.Ticket.GetTicketBoothIDShort(input, authInfo)
+    if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (t *TicketService) IncreaseTicketSaleShort(input *ticket.IncreaseTicketSaleParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.TicketSaleIncrementResult, error) {
-	ok, err := t.Client.Ticket.IncreaseTicketSaleShort(input, authInfo)
-	if err != nil {
+func (t *TicketService) IncreaseTicketSaleShort(input *ticket.IncreaseTicketSaleParams, authInfo runtime.ClientAuthInfoWriter)(*platformclientmodels.TicketSaleIncrementResult, error) {
+    ok, err := t.Client.Ticket.IncreaseTicketSaleShort(input, authInfo)
+    if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (t *TicketService) AcquireUserTicketShort(input *ticket.AcquireUserTicketParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.TicketAcquireResult, error) {
-	ok, err := t.Client.Ticket.AcquireUserTicketShort(input, authInfo)
-	if err != nil {
+func (t *TicketService) AcquireUserTicketShort(input *ticket.AcquireUserTicketParams, authInfo runtime.ClientAuthInfoWriter)(*platformclientmodels.TicketAcquireResult, error) {
+    ok, err := t.Client.Ticket.AcquireUserTicketShort(input, authInfo)
+    if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
+

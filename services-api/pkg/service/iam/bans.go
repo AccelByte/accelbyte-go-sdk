@@ -19,7 +19,6 @@ type BansService struct {
 	TokenRepository repository.TokenRepository
 }
 
-// Deprecated: Use GetBansTypeShort instead
 func (b *BansService) GetBansType(input *bans.GetBansTypeParams) (*iamclientmodels.AccountcommonBans, error) {
 	accessToken, err := b.TokenRepository.GetToken()
 	if err != nil {
@@ -38,7 +37,6 @@ func (b *BansService) GetBansType(input *bans.GetBansTypeParams) (*iamclientmode
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use GetListBanReasonShort instead
 func (b *BansService) GetListBanReason(input *bans.GetListBanReasonParams) (*iamclientmodels.AccountcommonBanReasons, error) {
 	accessToken, err := b.TokenRepository.GetToken()
 	if err != nil {
@@ -57,7 +55,6 @@ func (b *BansService) GetListBanReason(input *bans.GetListBanReasonParams) (*iam
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use AdminGetBansTypeV3Short instead
 func (b *BansService) AdminGetBansTypeV3(input *bans.AdminGetBansTypeV3Params) (*iamclientmodels.AccountcommonBansV3, error) {
 	accessToken, err := b.TokenRepository.GetToken()
 	if err != nil {
@@ -76,7 +73,6 @@ func (b *BansService) AdminGetBansTypeV3(input *bans.AdminGetBansTypeV3Params) (
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use AdminGetListBanReasonV3Short instead
 func (b *BansService) AdminGetListBanReasonV3(input *bans.AdminGetListBanReasonV3Params) (*iamclientmodels.AccountcommonBanReasonsV3, error) {
 	accessToken, err := b.TokenRepository.GetToken()
 	if err != nil {
@@ -95,7 +91,6 @@ func (b *BansService) AdminGetListBanReasonV3(input *bans.AdminGetListBanReasonV
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use AdminGetBannedUsersV3Short instead
 func (b *BansService) AdminGetBannedUsersV3(input *bans.AdminGetBannedUsersV3Params) (*iamclientmodels.ModelGetUserBanV3Response, error) {
 	accessToken, err := b.TokenRepository.GetToken()
 	if err != nil {
@@ -114,7 +109,6 @@ func (b *BansService) AdminGetBannedUsersV3(input *bans.AdminGetBannedUsersV3Par
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use AdminGetBansTypeWithNamespaceV3Short instead
 func (b *BansService) AdminGetBansTypeWithNamespaceV3(input *bans.AdminGetBansTypeWithNamespaceV3Params) (*iamclientmodels.AccountcommonBansV3, error) {
 	accessToken, err := b.TokenRepository.GetToken()
 	if err != nil {

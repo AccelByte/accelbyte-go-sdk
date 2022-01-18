@@ -76,6 +76,11 @@ type ListGameRecordsHandlerV1Params struct {
 
 	*/
 	Offset int64
+	/*Query
+	  key
+
+	*/
+	Query *string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -148,6 +153,17 @@ func (o *ListGameRecordsHandlerV1Params) SetOffset(offset int64) {
 	o.Offset = offset
 }
 
+// WithQuery adds the query to the list game records handler v1 params
+func (o *ListGameRecordsHandlerV1Params) WithQuery(query *string) *ListGameRecordsHandlerV1Params {
+	o.SetQuery(query)
+	return o
+}
+
+// SetQuery adds the query to the list game records handler v1 params
+func (o *ListGameRecordsHandlerV1Params) SetQuery(query *string) {
+	o.Query = query
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *ListGameRecordsHandlerV1Params) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -177,6 +193,22 @@ func (o *ListGameRecordsHandlerV1Params) WriteToRequest(r runtime.ClientRequest,
 		if err := r.SetQueryParam("offset", qOffset); err != nil {
 			return err
 		}
+	}
+
+	if o.Query != nil {
+
+		// query param query
+		var qrQuery string
+		if o.Query != nil {
+			qrQuery = *o.Query
+		}
+		qQuery := qrQuery
+		if qQuery != "" {
+			if err := r.SetQueryParam("query", qQuery); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	if len(res) > 0 {

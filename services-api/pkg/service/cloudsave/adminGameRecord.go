@@ -19,7 +19,6 @@ type AdminGameRecordService struct {
 	TokenRepository repository.TokenRepository
 }
 
-// Deprecated: Use ListGameRecordsHandlerV1Short instead
 func (a *AdminGameRecordService) ListGameRecordsHandlerV1(input *admin_game_record.ListGameRecordsHandlerV1Params) (*cloudsaveclientmodels.ModelsListGameRecordKeys, error) {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
@@ -38,7 +37,6 @@ func (a *AdminGameRecordService) ListGameRecordsHandlerV1(input *admin_game_reco
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use AdminGetGameRecordHandlerV1Short instead
 func (a *AdminGameRecordService) AdminGetGameRecordHandlerV1(input *admin_game_record.AdminGetGameRecordHandlerV1Params) (*cloudsaveclientmodels.ModelsGameRecord, error) {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
@@ -60,7 +58,6 @@ func (a *AdminGameRecordService) AdminGetGameRecordHandlerV1(input *admin_game_r
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use AdminPutGameRecordHandlerV1Short instead
 func (a *AdminGameRecordService) AdminPutGameRecordHandlerV1(input *admin_game_record.AdminPutGameRecordHandlerV1Params) error {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
@@ -79,7 +76,6 @@ func (a *AdminGameRecordService) AdminPutGameRecordHandlerV1(input *admin_game_r
 	return nil
 }
 
-// Deprecated: Use AdminPostGameRecordHandlerV1Short instead
 func (a *AdminGameRecordService) AdminPostGameRecordHandlerV1(input *admin_game_record.AdminPostGameRecordHandlerV1Params) error {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
@@ -98,7 +94,6 @@ func (a *AdminGameRecordService) AdminPostGameRecordHandlerV1(input *admin_game_
 	return nil
 }
 
-// Deprecated: Use AdminDeleteGameRecordHandlerV1Short instead
 func (a *AdminGameRecordService) AdminDeleteGameRecordHandlerV1(input *admin_game_record.AdminDeleteGameRecordHandlerV1Params) error {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {

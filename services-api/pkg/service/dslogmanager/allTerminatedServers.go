@@ -19,7 +19,6 @@ type AllTerminatedServersService struct {
 	TokenRepository repository.TokenRepository
 }
 
-// Deprecated: Use BatchDownloadServerLogsShort instead
 func (a *AllTerminatedServersService) BatchDownloadServerLogs(input *all_terminated_servers.BatchDownloadServerLogsParams) error {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
@@ -38,7 +37,6 @@ func (a *AllTerminatedServersService) BatchDownloadServerLogs(input *all_termina
 	return nil
 }
 
-// Deprecated: Use ListAllTerminatedServersShort instead
 func (a *AllTerminatedServersService) ListAllTerminatedServers(input *all_terminated_servers.ListAllTerminatedServersParams) (*dslogmanagerclientmodels.ModelsListTerminatedServersResponse, error) {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {

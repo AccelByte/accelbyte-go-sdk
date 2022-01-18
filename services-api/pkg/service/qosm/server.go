@@ -18,7 +18,6 @@ type ServerService struct {
 	TokenRepository repository.TokenRepository
 }
 
-// Deprecated: Use HeartbeatShort instead
 func (s *ServerService) Heartbeat(input *server.HeartbeatParams) error {
 	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {

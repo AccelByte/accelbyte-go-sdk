@@ -19,7 +19,6 @@ type ImageConfigService struct {
 	TokenRepository repository.TokenRepository
 }
 
-// Deprecated: Use UpdateImageShort instead
 func (i *ImageConfigService) UpdateImage(input *image_config.UpdateImageParams) error {
 	accessToken, err := i.TokenRepository.GetToken()
 	if err != nil {
@@ -41,7 +40,6 @@ func (i *ImageConfigService) UpdateImage(input *image_config.UpdateImageParams) 
 	return nil
 }
 
-// Deprecated: Use CreateImageShort instead
 func (i *ImageConfigService) CreateImage(input *image_config.CreateImageParams) error {
 	accessToken, err := i.TokenRepository.GetToken()
 	if err != nil {
@@ -66,7 +64,6 @@ func (i *ImageConfigService) CreateImage(input *image_config.CreateImageParams) 
 	return nil
 }
 
-// Deprecated: Use ImportImagesShort instead
 func (i *ImageConfigService) ImportImages(input *image_config.ImportImagesParams) (*dsmcclientmodels.ModelsImportResponse, error) {
 	accessToken, err := i.TokenRepository.GetToken()
 	if err != nil {
@@ -91,7 +88,6 @@ func (i *ImageConfigService) ImportImages(input *image_config.ImportImagesParams
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use ListImagesShort instead
 func (i *ImageConfigService) ListImages(input *image_config.ListImagesParams) (*dsmcclientmodels.ModelsListImageResponse, error) {
 	accessToken, err := i.TokenRepository.GetToken()
 	if err != nil {
@@ -113,7 +109,6 @@ func (i *ImageConfigService) ListImages(input *image_config.ListImagesParams) (*
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use DeleteImageShort instead
 func (i *ImageConfigService) DeleteImage(input *image_config.DeleteImageParams) error {
 	accessToken, err := i.TokenRepository.GetToken()
 	if err != nil {
@@ -141,7 +136,6 @@ func (i *ImageConfigService) DeleteImage(input *image_config.DeleteImageParams) 
 	return nil
 }
 
-// Deprecated: Use ExportImagesShort instead
 func (i *ImageConfigService) ExportImages(input *image_config.ExportImagesParams) ([]*dsmcclientmodels.ModelsImageRecord, error) {
 	accessToken, err := i.TokenRepository.GetToken()
 	if err != nil {
@@ -166,7 +160,6 @@ func (i *ImageConfigService) ExportImages(input *image_config.ExportImagesParams
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use GetImageLimitShort instead
 func (i *ImageConfigService) GetImageLimit(input *image_config.GetImageLimitParams) (*dsmcclientmodels.ModelsGetImageLimitResponse, error) {
 	accessToken, err := i.TokenRepository.GetToken()
 	if err != nil {
@@ -188,7 +181,6 @@ func (i *ImageConfigService) GetImageLimit(input *image_config.GetImageLimitPara
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use GetImageDetailShort instead
 func (i *ImageConfigService) GetImageDetail(input *image_config.GetImageDetailParams) (*dsmcclientmodels.ModelsGetImageDetailResponse, error) {
 	accessToken, err := i.TokenRepository.GetToken()
 	if err != nil {
@@ -210,7 +202,6 @@ func (i *ImageConfigService) GetImageDetail(input *image_config.GetImageDetailPa
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use ImageDetailClientShort instead
 func (i *ImageConfigService) ImageDetailClient(input *image_config.ImageDetailClientParams) (*dsmcclientmodels.ModelsGetImageDetailResponse, error) {
 	accessToken, err := i.TokenRepository.GetToken()
 	if err != nil {

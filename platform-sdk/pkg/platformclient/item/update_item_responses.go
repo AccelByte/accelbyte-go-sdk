@@ -105,7 +105,7 @@ func NewUpdateItemBadRequest() *UpdateItemBadRequest {
 
 /*UpdateItemBadRequest handles this case with default header values.
 
-  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>30322</td><td>Bundle item [{itemId}] can't be bundled</td></tr><tr><td>30325</td><td>Code item [{itemId}] can't be bundled</td></tr><tr><td>30326</td><td>Subscription item [{itemId}] can't be bundled</td></tr><tr><td>30328</td><td>Season item [{itemId}] can't be bundled</td></tr><tr><td>30021</td><td>Default language [{language}] required</td></tr><tr><td>30321</td><td>Invalid item discount amount</td></tr><tr><td>30022</td><td>Default region [{region}] is required</td></tr><tr><td>30323</td><td>Target namespace is required</td></tr><tr><td>30327</td><td>Invalid item trial price</td></tr></table>
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>30322</td><td>Bundle item [{itemId}] can't be bundled</td></tr><tr><td>30325</td><td>Code item [{itemId}] can't be bundled</td></tr><tr><td>30326</td><td>Subscription item [{itemId}] can't be bundled</td></tr><tr><td>30329</td><td>Invalid bundled item [{itemId}] quantity</td></tr><tr><td>30021</td><td>Default language [{language}] required</td></tr><tr><td>30321</td><td>Invalid item discount amount</td></tr><tr><td>30022</td><td>Default region [{region}] is required</td></tr><tr><td>30323</td><td>Target namespace is required</td></tr><tr><td>30327</td><td>Invalid item trial price</td></tr><tr><td>30330</td><td>Invalid item region price currency namespace [{namespace}]</td></tr></table>
 */
 type UpdateItemBadRequest struct {
 	Payload *platformclientmodels.ErrorEntity

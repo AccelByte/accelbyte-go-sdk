@@ -19,7 +19,6 @@ type OperationsService struct {
 	TokenRepository repository.TokenRepository
 }
 
-// Deprecated: Use PublicGetMessagesShort instead
 func (o *OperationsService) PublicGetMessages(input *operations.PublicGetMessagesParams) ([]*dslogmanagerclientmodels.LogAppMessageDeclaration, error) {
 	accessToken, err := o.TokenRepository.GetToken()
 	if err != nil {

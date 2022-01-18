@@ -19,7 +19,6 @@ type ServerService struct {
 	TokenRepository repository.TokenRepository
 }
 
-// Deprecated: Use DeregisterLocalServerShort instead
 func (s *ServerService) DeregisterLocalServer(input *server.DeregisterLocalServerParams) error {
 	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {
@@ -41,7 +40,6 @@ func (s *ServerService) DeregisterLocalServer(input *server.DeregisterLocalServe
 	return nil
 }
 
-// Deprecated: Use RegisterLocalServerShort instead
 func (s *ServerService) RegisterLocalServer(input *server.RegisterLocalServerParams) (*dsmcclientmodels.ModelsServer, error) {
 	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {
@@ -66,7 +64,6 @@ func (s *ServerService) RegisterLocalServer(input *server.RegisterLocalServerPar
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use RegisterServerShort instead
 func (s *ServerService) RegisterServer(input *server.RegisterServerParams) (*dsmcclientmodels.ModelsServer, error) {
 	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {
@@ -91,7 +88,6 @@ func (s *ServerService) RegisterServer(input *server.RegisterServerParams) (*dsm
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use ShutdownServerShort instead
 func (s *ServerService) ShutdownServer(input *server.ShutdownServerParams) error {
 	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {
@@ -116,7 +112,6 @@ func (s *ServerService) ShutdownServer(input *server.ShutdownServerParams) error
 	return nil
 }
 
-// Deprecated: Use GetServerSessionShort instead
 func (s *ServerService) GetServerSession(input *server.GetServerSessionParams) (*dsmcclientmodels.ModelsServerSessionResponse, error) {
 	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {

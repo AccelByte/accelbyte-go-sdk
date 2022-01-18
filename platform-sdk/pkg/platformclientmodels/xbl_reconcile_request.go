@@ -15,6 +15,15 @@ import (
 // swagger:model XblReconcileRequest
 type XblReconcileRequest struct {
 
+	// product price currency
+	CurrencyCode string `json:"currencyCode,omitempty"`
+
+	// product price
+	Price float64 `json:"price,omitempty"`
+
+	// productId
+	ProductID string `json:"productId,omitempty"`
+
 	// xstsToken
 	XstsToken string `json:"xstsToken,omitempty"`
 }

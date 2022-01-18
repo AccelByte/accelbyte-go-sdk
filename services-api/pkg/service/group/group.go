@@ -19,7 +19,6 @@ type GroupService struct {
 	TokenRepository repository.TokenRepository
 }
 
-// Deprecated: Use GetGroupListAdminV1Short instead
 func (g *GroupService) GetGroupListAdminV1(input *group.GetGroupListAdminV1Params) (*groupclientmodels.ModelsGetGroupsListResponseV1, error) {
 	accessToken, err := g.TokenRepository.GetToken()
 	if err != nil {
@@ -44,7 +43,6 @@ func (g *GroupService) GetGroupListAdminV1(input *group.GetGroupListAdminV1Param
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use GetSingleGroupAdminV1Short instead
 func (g *GroupService) GetSingleGroupAdminV1(input *group.GetSingleGroupAdminV1Params) (*groupclientmodels.ModelsGroupResponseV1, error) {
 	accessToken, err := g.TokenRepository.GetToken()
 	if err != nil {
@@ -72,7 +70,6 @@ func (g *GroupService) GetSingleGroupAdminV1(input *group.GetSingleGroupAdminV1P
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use DeleteGroupAdminV1Short instead
 func (g *GroupService) DeleteGroupAdminV1(input *group.DeleteGroupAdminV1Params) error {
 	accessToken, err := g.TokenRepository.GetToken()
 	if err != nil {
@@ -100,7 +97,6 @@ func (g *GroupService) DeleteGroupAdminV1(input *group.DeleteGroupAdminV1Params)
 	return nil
 }
 
-// Deprecated: Use GetGroupListPublicV1Short instead
 func (g *GroupService) GetGroupListPublicV1(input *group.GetGroupListPublicV1Params) (*groupclientmodels.ModelsGetGroupsListResponseV1, error) {
 	accessToken, err := g.TokenRepository.GetToken()
 	if err != nil {
@@ -125,7 +121,6 @@ func (g *GroupService) GetGroupListPublicV1(input *group.GetGroupListPublicV1Par
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use CreateNewGroupPublicV1Short instead
 func (g *GroupService) CreateNewGroupPublicV1(input *group.CreateNewGroupPublicV1Params) (*groupclientmodels.ModelsGroupResponseV1, error) {
 	accessToken, err := g.TokenRepository.GetToken()
 	if err != nil {
@@ -153,7 +148,6 @@ func (g *GroupService) CreateNewGroupPublicV1(input *group.CreateNewGroupPublicV
 	return created.GetPayload(), nil
 }
 
-// Deprecated: Use GetSingleGroupPublicV1Short instead
 func (g *GroupService) GetSingleGroupPublicV1(input *group.GetSingleGroupPublicV1Params) (*groupclientmodels.ModelsGroupResponseV1, error) {
 	accessToken, err := g.TokenRepository.GetToken()
 	if err != nil {
@@ -181,7 +175,6 @@ func (g *GroupService) GetSingleGroupPublicV1(input *group.GetSingleGroupPublicV
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use UpdateSingleGroupV1Short instead
 func (g *GroupService) UpdateSingleGroupV1(input *group.UpdateSingleGroupV1Params) (*groupclientmodels.ModelsGroupResponseV1, error) {
 	accessToken, err := g.TokenRepository.GetToken()
 	if err != nil {
@@ -209,7 +202,6 @@ func (g *GroupService) UpdateSingleGroupV1(input *group.UpdateSingleGroupV1Param
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use DeleteGroupPublicV1Short instead
 func (g *GroupService) DeleteGroupPublicV1(input *group.DeleteGroupPublicV1Params) error {
 	accessToken, err := g.TokenRepository.GetToken()
 	if err != nil {
@@ -237,13 +229,12 @@ func (g *GroupService) DeleteGroupPublicV1(input *group.DeleteGroupPublicV1Param
 	return nil
 }
 
-// Deprecated: Use UpdateSingleGroupPublicV1Short instead
-func (g *GroupService) UpdateSingleGroupPublicV1(input *group.UpdateSingleGroupPublicV1Params) (*groupclientmodels.ModelsGroupResponseV1, error) {
+func (g *GroupService) UpdatePatchSingleGroupPublicV1(input *group.UpdatePatchSingleGroupPublicV1Params) (*groupclientmodels.ModelsGroupResponseV1, error) {
 	accessToken, err := g.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := g.Client.Group.UpdateSingleGroupPublicV1(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := g.Client.Group.UpdatePatchSingleGroupPublicV1(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -265,7 +256,6 @@ func (g *GroupService) UpdateSingleGroupPublicV1(input *group.UpdateSingleGroupP
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use UpdateGroupCustomAttributesPublicV1Short instead
 func (g *GroupService) UpdateGroupCustomAttributesPublicV1(input *group.UpdateGroupCustomAttributesPublicV1Params) (*groupclientmodels.ModelsGroupResponseV1, error) {
 	accessToken, err := g.TokenRepository.GetToken()
 	if err != nil {
@@ -293,7 +283,6 @@ func (g *GroupService) UpdateGroupCustomAttributesPublicV1(input *group.UpdateGr
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use UpdateGroupCustomRulePublicV1Short instead
 func (g *GroupService) UpdateGroupCustomRulePublicV1(input *group.UpdateGroupCustomRulePublicV1Params) (*groupclientmodels.ModelsGroupResponseV1, error) {
 	accessToken, err := g.TokenRepository.GetToken()
 	if err != nil {
@@ -321,7 +310,6 @@ func (g *GroupService) UpdateGroupCustomRulePublicV1(input *group.UpdateGroupCus
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use UpdateGroupPredefinedRulePublicV1Short instead
 func (g *GroupService) UpdateGroupPredefinedRulePublicV1(input *group.UpdateGroupPredefinedRulePublicV1Params) (*groupclientmodels.ModelsGroupResponseV1, error) {
 	accessToken, err := g.TokenRepository.GetToken()
 	if err != nil {
@@ -349,7 +337,6 @@ func (g *GroupService) UpdateGroupPredefinedRulePublicV1(input *group.UpdateGrou
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use DeleteGroupPredefinedRulePublicV1Short instead
 func (g *GroupService) DeleteGroupPredefinedRulePublicV1(input *group.DeleteGroupPredefinedRulePublicV1Params) error {
 	accessToken, err := g.TokenRepository.GetToken()
 	if err != nil {
@@ -441,8 +428,8 @@ func (g *GroupService) DeleteGroupPublicV1Short(input *group.DeleteGroupPublicV1
 	return nil
 }
 
-func (g *GroupService) UpdateSingleGroupPublicV1Short(input *group.UpdateSingleGroupPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsGroupResponseV1, error) {
-	ok, err := g.Client.Group.UpdateSingleGroupPublicV1Short(input, authInfo)
+func (g *GroupService) UpdatePatchSingleGroupPublicV1Short(input *group.UpdatePatchSingleGroupPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsGroupResponseV1, error) {
+	ok, err := g.Client.Group.UpdatePatchSingleGroupPublicV1Short(input, authInfo)
 	if err != nil {
 		return nil, err
 	}

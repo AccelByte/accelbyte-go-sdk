@@ -19,7 +19,7 @@ type ModelsUpdateGroupCustomRuleRequestV1 struct {
 
 	// group custom rule
 	// Required: true
-	GroupCustomRule ModelsUpdateGroupCustomRuleRequestV1GroupCustomRule `json:"groupCustomRule"`
+	GroupCustomRule interface{} `json:"groupCustomRule"`
 }
 
 // Validate validates this models update group custom rule request v1

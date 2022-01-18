@@ -19,7 +19,6 @@ type AchievementsService struct {
 	TokenRepository repository.TokenRepository
 }
 
-// Deprecated: Use AdminListAchievementsShort instead
 func (a *AchievementsService) AdminListAchievements(input *achievements.AdminListAchievementsParams) (*achievementclientmodels.ModelsPaginatedAchievementResponse, error) {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
@@ -44,7 +43,6 @@ func (a *AchievementsService) AdminListAchievements(input *achievements.AdminLis
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use AdminCreateNewAchievementShort instead
 func (a *AchievementsService) AdminCreateNewAchievement(input *achievements.AdminCreateNewAchievementParams) (*achievementclientmodels.ModelsAchievementResponse, error) {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
@@ -66,7 +64,6 @@ func (a *AchievementsService) AdminCreateNewAchievement(input *achievements.Admi
 	return created.GetPayload(), nil
 }
 
-// Deprecated: Use ExportAchievementsShort instead
 func (a *AchievementsService) ExportAchievements(input *achievements.ExportAchievementsParams) ([]*achievementclientmodels.ModelsAchievement, error) {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
@@ -88,7 +85,6 @@ func (a *AchievementsService) ExportAchievements(input *achievements.ExportAchie
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use ImportAchievementsShort instead
 func (a *AchievementsService) ImportAchievements(input *achievements.ImportAchievementsParams) (*achievementclientmodels.ServiceImportConfigResponse, error) {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
@@ -110,7 +106,6 @@ func (a *AchievementsService) ImportAchievements(input *achievements.ImportAchie
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use AdminGetAchievementShort instead
 func (a *AchievementsService) AdminGetAchievement(input *achievements.AdminGetAchievementParams) (*achievementclientmodels.ModelsAchievementResponse, error) {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
@@ -135,7 +130,6 @@ func (a *AchievementsService) AdminGetAchievement(input *achievements.AdminGetAc
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use AdminUpdateAchievementShort instead
 func (a *AchievementsService) AdminUpdateAchievement(input *achievements.AdminUpdateAchievementParams) (*achievementclientmodels.ModelsAchievementResponse, error) {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
@@ -160,7 +154,6 @@ func (a *AchievementsService) AdminUpdateAchievement(input *achievements.AdminUp
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use AdminDeleteAchievementShort instead
 func (a *AchievementsService) AdminDeleteAchievement(input *achievements.AdminDeleteAchievementParams) error {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
@@ -185,7 +178,6 @@ func (a *AchievementsService) AdminDeleteAchievement(input *achievements.AdminDe
 	return nil
 }
 
-// Deprecated: Use AdminUpdateAchievementListOrderShort instead
 func (a *AchievementsService) AdminUpdateAchievementListOrder(input *achievements.AdminUpdateAchievementListOrderParams) error {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
@@ -210,7 +202,6 @@ func (a *AchievementsService) AdminUpdateAchievementListOrder(input *achievement
 	return nil
 }
 
-// Deprecated: Use AdminListUserAchievementsShort instead
 func (a *AchievementsService) AdminListUserAchievements(input *achievements.AdminListUserAchievementsParams) (*achievementclientmodels.ModelsPaginatedUserAchievementResponse, error) {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
@@ -235,7 +226,6 @@ func (a *AchievementsService) AdminListUserAchievements(input *achievements.Admi
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use AdminUnlockAchievementShort instead
 func (a *AchievementsService) AdminUnlockAchievement(input *achievements.AdminUnlockAchievementParams) error {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
@@ -257,7 +247,6 @@ func (a *AchievementsService) AdminUnlockAchievement(input *achievements.AdminUn
 	return nil
 }
 
-// Deprecated: Use PublicListAchievementsShort instead
 func (a *AchievementsService) PublicListAchievements(input *achievements.PublicListAchievementsParams) (*achievementclientmodels.ModelsPublicAchievementsResponse, error) {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
@@ -282,7 +271,6 @@ func (a *AchievementsService) PublicListAchievements(input *achievements.PublicL
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use PublicGetAchievementShort instead
 func (a *AchievementsService) PublicGetAchievement(input *achievements.PublicGetAchievementParams) (*achievementclientmodels.ModelsPublicAchievementResponse, error) {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
@@ -307,7 +295,6 @@ func (a *AchievementsService) PublicGetAchievement(input *achievements.PublicGet
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use PublicListUserAchievementsShort instead
 func (a *AchievementsService) PublicListUserAchievements(input *achievements.PublicListUserAchievementsParams) (*achievementclientmodels.ModelsPaginatedUserAchievementResponse, error) {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
@@ -332,7 +319,6 @@ func (a *AchievementsService) PublicListUserAchievements(input *achievements.Pub
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use PublicUnlockAchievementShort instead
 func (a *AchievementsService) PublicUnlockAchievement(input *achievements.PublicUnlockAchievementParams) error {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {

@@ -19,7 +19,6 @@ type EventV2Service struct {
 	TokenRepository repository.TokenRepository
 }
 
-// Deprecated: Use QueryEventStreamHandlerShort instead
 func (e *EventV2Service) QueryEventStreamHandler(input *event_v2.QueryEventStreamHandlerParams) (*eventlogclientmodels.ModelsEventResponseV2, error) {
 	accessToken, err := e.TokenRepository.GetToken()
 	if err != nil {
@@ -50,7 +49,6 @@ func (e *EventV2Service) QueryEventStreamHandler(input *event_v2.QueryEventStrea
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use GetEventSpecificUserV2HandlerShort instead
 func (e *EventV2Service) GetEventSpecificUserV2Handler(input *event_v2.GetEventSpecificUserV2HandlerParams) (*eventlogclientmodels.ModelsEventResponseV2, error) {
 	accessToken, err := e.TokenRepository.GetToken()
 	if err != nil {
@@ -81,7 +79,6 @@ func (e *EventV2Service) GetEventSpecificUserV2Handler(input *event_v2.GetEventS
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use GetPublicEditHistoryShort instead
 func (e *EventV2Service) GetPublicEditHistory(input *event_v2.GetPublicEditHistoryParams) (*eventlogclientmodels.ModelsEventResponseV2, error) {
 	accessToken, err := e.TokenRepository.GetToken()
 	if err != nil {
@@ -112,7 +109,6 @@ func (e *EventV2Service) GetPublicEditHistory(input *event_v2.GetPublicEditHisto
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use GetUserEventsV2PublicShort instead
 func (e *EventV2Service) GetUserEventsV2Public(input *event_v2.GetUserEventsV2PublicParams) (*eventlogclientmodels.ModelsEventResponseV2, error) {
 	accessToken, err := e.TokenRepository.GetToken()
 	if err != nil {

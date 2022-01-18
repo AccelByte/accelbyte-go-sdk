@@ -19,7 +19,6 @@ type ThirdPartyService struct {
 	TokenRepository repository.TokenRepository
 }
 
-// Deprecated: Use AdminGetThirdPartyConfigShort instead
 func (t *ThirdPartyService) AdminGetThirdPartyConfig(input *third_party.AdminGetThirdPartyConfigParams) (*lobbyclientmodels.ModelsGetConfigResponse, error) {
 	accessToken, err := t.TokenRepository.GetToken()
 	if err != nil {
@@ -44,7 +43,6 @@ func (t *ThirdPartyService) AdminGetThirdPartyConfig(input *third_party.AdminGet
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use AdminUpdateThirdPartyConfigShort instead
 func (t *ThirdPartyService) AdminUpdateThirdPartyConfig(input *third_party.AdminUpdateThirdPartyConfigParams) (*lobbyclientmodels.ModelsUpdateConfigResponse, error) {
 	accessToken, err := t.TokenRepository.GetToken()
 	if err != nil {
@@ -69,7 +67,6 @@ func (t *ThirdPartyService) AdminUpdateThirdPartyConfig(input *third_party.Admin
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use AdminCreateThirdPartyConfigShort instead
 func (t *ThirdPartyService) AdminCreateThirdPartyConfig(input *third_party.AdminCreateThirdPartyConfigParams) (*lobbyclientmodels.ModelsCreateConfigResponse, error) {
 	accessToken, err := t.TokenRepository.GetToken()
 	if err != nil {
@@ -94,7 +91,6 @@ func (t *ThirdPartyService) AdminCreateThirdPartyConfig(input *third_party.Admin
 	return created.GetPayload(), nil
 }
 
-// Deprecated: Use AdminDeleteThirdPartyConfigShort instead
 func (t *ThirdPartyService) AdminDeleteThirdPartyConfig(input *third_party.AdminDeleteThirdPartyConfigParams) (string, error) {
 	accessToken, err := t.TokenRepository.GetToken()
 	if err != nil {

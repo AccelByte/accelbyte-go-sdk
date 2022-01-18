@@ -20,7 +20,6 @@ type OAuth20Service struct {
 	TokenRepository  repository.TokenRepository
 }
 
-// Deprecated: Use AdminRetrieveUserThirdPartyPlatformTokenV3Short instead
 func (o *OAuth20Service) AdminRetrieveUserThirdPartyPlatformTokenV3(input *o_auth2_0.AdminRetrieveUserThirdPartyPlatformTokenV3Params) (*iamclientmodels.OauthmodelTokenThirdPartyResponse, error) {
 	accessToken, err := o.TokenRepository.GetToken()
 	if err != nil {
@@ -42,7 +41,6 @@ func (o *OAuth20Service) AdminRetrieveUserThirdPartyPlatformTokenV3(input *o_aut
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use RevokeUserV3Short instead
 func (o *OAuth20Service) RevokeUserV3(input *o_auth2_0.RevokeUserV3Params) error {
 	accessToken, err := o.TokenRepository.GetToken()
 	if err != nil {
@@ -64,7 +62,6 @@ func (o *OAuth20Service) RevokeUserV3(input *o_auth2_0.RevokeUserV3Params) error
 	return nil
 }
 
-// Deprecated: Use AuthorizeV3Short instead
 func (o *OAuth20Service) AuthorizeV3(input *o_auth2_0.AuthorizeV3Params) error {
 	accessToken, err := o.TokenRepository.GetToken()
 	if err != nil {
@@ -77,7 +74,6 @@ func (o *OAuth20Service) AuthorizeV3(input *o_auth2_0.AuthorizeV3Params) error {
 	return nil
 }
 
-// Deprecated: Use TokenIntrospectionV3Short instead
 func (o *OAuth20Service) TokenIntrospectionV3(input *o_auth2_0.TokenIntrospectionV3Params) (*iamclientmodels.OauthmodelTokenIntrospectResponse, error) {
 	accessToken, err := o.TokenRepository.GetToken()
 	if err != nil {
@@ -96,7 +92,6 @@ func (o *OAuth20Service) TokenIntrospectionV3(input *o_auth2_0.TokenIntrospectio
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use GetJWKSV3Short instead
 func (o *OAuth20Service) GetJWKSV3(input *o_auth2_0.GetJWKSV3Params) (*iamclientmodels.OauthcommonJWKSet, error) {
 	accessToken, err := o.TokenRepository.GetToken()
 	if err != nil {
@@ -109,7 +104,6 @@ func (o *OAuth20Service) GetJWKSV3(input *o_auth2_0.GetJWKSV3Params) (*iamclient
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use RetrieveUserThirdPartyPlatformTokenV3Short instead
 func (o *OAuth20Service) RetrieveUserThirdPartyPlatformTokenV3(input *o_auth2_0.RetrieveUserThirdPartyPlatformTokenV3Params) (*iamclientmodels.OauthmodelTokenThirdPartyResponse, error) {
 	accessToken, err := o.TokenRepository.GetToken()
 	if err != nil {
@@ -131,7 +125,6 @@ func (o *OAuth20Service) RetrieveUserThirdPartyPlatformTokenV3(input *o_auth2_0.
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use AuthCodeRequestV3Short instead
 func (o *OAuth20Service) AuthCodeRequestV3(input *o_auth2_0.AuthCodeRequestV3Params) error {
 	accessToken, err := o.TokenRepository.GetToken()
 	if err != nil {
@@ -144,7 +137,6 @@ func (o *OAuth20Service) AuthCodeRequestV3(input *o_auth2_0.AuthCodeRequestV3Par
 	return nil
 }
 
-// Deprecated: Use PlatformTokenGrantV3Short instead
 func (o *OAuth20Service) PlatformTokenGrantV3(input *o_auth2_0.PlatformTokenGrantV3Params) (*iamclientmodels.OauthmodelTokenResponse, error) {
 	accessToken, err := o.TokenRepository.GetToken()
 	if err != nil {
@@ -163,7 +155,6 @@ func (o *OAuth20Service) PlatformTokenGrantV3(input *o_auth2_0.PlatformTokenGran
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use GetRevocationListV3Short instead
 func (o *OAuth20Service) GetRevocationListV3(input *o_auth2_0.GetRevocationListV3Params) (*iamclientmodels.OauthapiRevocationList, error) {
 	accessToken, err := o.TokenRepository.GetToken()
 	if err != nil {
@@ -179,7 +170,6 @@ func (o *OAuth20Service) GetRevocationListV3(input *o_auth2_0.GetRevocationListV
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use TokenRevocationV3Short instead
 func (o *OAuth20Service) TokenRevocationV3(input *o_auth2_0.TokenRevocationV3Params) error {
 	accessToken, err := o.TokenRepository.GetToken()
 	if err != nil {
@@ -198,7 +188,6 @@ func (o *OAuth20Service) TokenRevocationV3(input *o_auth2_0.TokenRevocationV3Par
 	return nil
 }
 
-// Deprecated: Use TokenGrantV3Short instead
 func (o *OAuth20Service) TokenGrantV3(input *o_auth2_0.TokenGrantV3Params) (*iamclientmodels.OauthmodelTokenResponseV3, error) {
 	accessToken, err := o.TokenRepository.GetToken()
 	if err != nil {

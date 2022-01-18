@@ -31,6 +31,8 @@ type Client struct {
 type ClientService interface {
 	FulfillItem(params *FulfillItemParams, authInfo runtime.ClientAuthInfoWriter) (*FulfillItemOK, *FulfillItemBadRequest, *FulfillItemNotFound, *FulfillItemConflict, error)
 	FulfillItemShort(params *FulfillItemParams, authInfo runtime.ClientAuthInfoWriter) (*FulfillItemOK, error)
+	FulfillRewards(params *FulfillRewardsParams, authInfo runtime.ClientAuthInfoWriter) (*FulfillRewardsNoContent, *FulfillRewardsBadRequest, *FulfillRewardsNotFound, *FulfillRewardsConflict, error)
+	FulfillRewardsShort(params *FulfillRewardsParams, authInfo runtime.ClientAuthInfoWriter) (*FulfillRewardsNoContent, error)
 	PublicRedeemCode(params *PublicRedeemCodeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicRedeemCodeOK, *PublicRedeemCodeBadRequest, *PublicRedeemCodeNotFound, *PublicRedeemCodeConflict, error)
 	PublicRedeemCodeShort(params *PublicRedeemCodeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicRedeemCodeOK, error)
 	QueryFulfillmentHistories(params *QueryFulfillmentHistoriesParams, authInfo runtime.ClientAuthInfoWriter) (*QueryFulfillmentHistoriesOK, error)
@@ -128,6 +130,100 @@ func (a *Client) FulfillItemShort(params *FulfillItemParams, authInfo runtime.Cl
 	case *FulfillItemNotFound:
 		return nil, v
 	case *FulfillItemConflict:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  FulfillRewards fulfills rewards
+
+  &lt;b&gt;[SERVICE COMMUNICATION ONLY]&lt;/b&gt; Fulfill rewards.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:FULFILLMENT&#34;, action=1 (CREATED)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: fulfillment result&lt;/li&gt;&lt;/ul&gt;
+*/
+func (a *Client) FulfillRewards(params *FulfillRewardsParams, authInfo runtime.ClientAuthInfoWriter) (*FulfillRewardsNoContent, *FulfillRewardsBadRequest, *FulfillRewardsNotFound, *FulfillRewardsConflict, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewFulfillRewardsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "fulfillRewards",
+		Method:             "POST",
+		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/fulfillment/rewards",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &FulfillRewardsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *FulfillRewardsNoContent:
+		return v, nil, nil, nil, nil
+
+	case *FulfillRewardsBadRequest:
+		return nil, v, nil, nil, nil
+
+	case *FulfillRewardsNotFound:
+		return nil, nil, v, nil, nil
+
+	case *FulfillRewardsConflict:
+		return nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) FulfillRewardsShort(params *FulfillRewardsParams, authInfo runtime.ClientAuthInfoWriter) (*FulfillRewardsNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewFulfillRewardsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "fulfillRewards",
+		Method:             "POST",
+		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/fulfillment/rewards",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &FulfillRewardsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *FulfillRewardsNoContent:
+		return v, nil
+	case *FulfillRewardsBadRequest:
+		return nil, v
+	case *FulfillRewardsNotFound:
+		return nil, v
+	case *FulfillRewardsConflict:
 		return nil, v
 
 	default:

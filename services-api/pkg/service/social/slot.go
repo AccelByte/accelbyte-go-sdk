@@ -20,7 +20,6 @@ type SlotService struct {
 	TokenRepository repository.TokenRepository
 }
 
-// Deprecated: Use GetUserNamespaceSlotsShort instead
 func (s *SlotService) GetUserNamespaceSlots(input *slot.GetUserNamespaceSlotsParams) ([]*socialclientmodels.SlotInfo, error) {
 	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {
@@ -33,7 +32,6 @@ func (s *SlotService) GetUserNamespaceSlots(input *slot.GetUserNamespaceSlotsPar
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use GetSlotDataShort instead
 func (s *SlotService) GetSlotData(input *slot.GetSlotDataParams, writer io.Writer) (io.Writer, error) {
 	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {
@@ -49,7 +47,6 @@ func (s *SlotService) GetSlotData(input *slot.GetSlotDataParams, writer io.Write
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use PublicGetUserNamespaceSlotsShort instead
 func (s *SlotService) PublicGetUserNamespaceSlots(input *slot.PublicGetUserNamespaceSlotsParams) ([]*socialclientmodels.SlotInfo, error) {
 	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {
@@ -62,7 +59,6 @@ func (s *SlotService) PublicGetUserNamespaceSlots(input *slot.PublicGetUserNames
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use PublicCreateUserNamespaceSlotShort instead
 func (s *SlotService) PublicCreateUserNamespaceSlot(input *slot.PublicCreateUserNamespaceSlotParams) error {
 	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {
@@ -81,7 +77,6 @@ func (s *SlotService) PublicCreateUserNamespaceSlot(input *slot.PublicCreateUser
 	return nil
 }
 
-// Deprecated: Use PublicGetSlotDataShort instead
 func (s *SlotService) PublicGetSlotData(input *slot.PublicGetSlotDataParams, writer io.Writer) (io.Writer, error) {
 	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {
@@ -97,7 +92,6 @@ func (s *SlotService) PublicGetSlotData(input *slot.PublicGetSlotDataParams, wri
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use PublicUpdateUserNamespaceSlotShort instead
 func (s *SlotService) PublicUpdateUserNamespaceSlot(input *slot.PublicUpdateUserNamespaceSlotParams) (*socialclientmodels.SlotInfo, error) {
 	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {
@@ -116,7 +110,6 @@ func (s *SlotService) PublicUpdateUserNamespaceSlot(input *slot.PublicUpdateUser
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use PublicDeleteUserNamespaceSlotShort instead
 func (s *SlotService) PublicDeleteUserNamespaceSlot(input *slot.PublicDeleteUserNamespaceSlotParams) error {
 	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {
@@ -132,7 +125,6 @@ func (s *SlotService) PublicDeleteUserNamespaceSlot(input *slot.PublicDeleteUser
 	return nil
 }
 
-// Deprecated: Use PublicUpdateUserNamespaceSlotMetadataShort instead
 func (s *SlotService) PublicUpdateUserNamespaceSlotMetadata(input *slot.PublicUpdateUserNamespaceSlotMetadataParams) (*socialclientmodels.SlotInfo, error) {
 	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {

@@ -29,6 +29,8 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
+	BulkGetPlayerPublicRecordHandlerV1(params *BulkGetPlayerPublicRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*BulkGetPlayerPublicRecordHandlerV1OK, *BulkGetPlayerPublicRecordHandlerV1BadRequest, *BulkGetPlayerPublicRecordHandlerV1Unauthorized, *BulkGetPlayerPublicRecordHandlerV1Forbidden, *BulkGetPlayerPublicRecordHandlerV1InternalServerError, error)
+	BulkGetPlayerPublicRecordHandlerV1Short(params *BulkGetPlayerPublicRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*BulkGetPlayerPublicRecordHandlerV1OK, error)
 	DeletePlayerRecordHandlerV1(params *DeletePlayerRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeletePlayerRecordHandlerV1NoContent, *DeletePlayerRecordHandlerV1Unauthorized, *DeletePlayerRecordHandlerV1InternalServerError, error)
 	DeletePlayerRecordHandlerV1Short(params *DeletePlayerRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeletePlayerRecordHandlerV1NoContent, error)
 	GetPlayerPublicRecordHandlerV1(params *GetPlayerPublicRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetPlayerPublicRecordHandlerV1OK, *GetPlayerPublicRecordHandlerV1Unauthorized, *GetPlayerPublicRecordHandlerV1NotFound, *GetPlayerPublicRecordHandlerV1InternalServerError, error)
@@ -47,6 +49,119 @@ type ClientService interface {
 	PutPlayerRecordHandlerV1Short(params *PutPlayerRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PutPlayerRecordHandlerV1OK, error)
 
 	SetTransport(transport runtime.ClientTransport)
+}
+
+/*
+  BulkGetPlayerPublicRecordHandlerV1 bulks get other player s public record
+
+  &lt;table&gt;
+	&lt;tr&gt;
+		&lt;td&gt;Required Permission&lt;/td&gt;
+		&lt;td&gt;&lt;code&gt;NAMESPACE:{namespace}:PUBLIC:CLOUDSAVE:RECORD [READ]&lt;/code&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;Required Scope&lt;/td&gt;
+		&lt;td&gt;&lt;code&gt;social&lt;/code&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+&lt;br/&gt;
+
+Bulk get other player&#39;s record that is public by userIds, max allowed 20 at a time. Only record with &lt;code&gt;isPublic=true&lt;/code&gt; that can be
+retrieved using this endpoint.
+
+*/
+func (a *Client) BulkGetPlayerPublicRecordHandlerV1(params *BulkGetPlayerPublicRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*BulkGetPlayerPublicRecordHandlerV1OK, *BulkGetPlayerPublicRecordHandlerV1BadRequest, *BulkGetPlayerPublicRecordHandlerV1Unauthorized, *BulkGetPlayerPublicRecordHandlerV1Forbidden, *BulkGetPlayerPublicRecordHandlerV1InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewBulkGetPlayerPublicRecordHandlerV1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "bulkGetPlayerPublicRecordHandlerV1",
+		Method:             "POST",
+		PathPattern:        "/cloudsave/v1/namespaces/{namespace}/users/bulk/records/{key}/public",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &BulkGetPlayerPublicRecordHandlerV1Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *BulkGetPlayerPublicRecordHandlerV1OK:
+		return v, nil, nil, nil, nil, nil
+
+	case *BulkGetPlayerPublicRecordHandlerV1BadRequest:
+		return nil, v, nil, nil, nil, nil
+
+	case *BulkGetPlayerPublicRecordHandlerV1Unauthorized:
+		return nil, nil, v, nil, nil, nil
+
+	case *BulkGetPlayerPublicRecordHandlerV1Forbidden:
+		return nil, nil, nil, v, nil, nil
+
+	case *BulkGetPlayerPublicRecordHandlerV1InternalServerError:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) BulkGetPlayerPublicRecordHandlerV1Short(params *BulkGetPlayerPublicRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*BulkGetPlayerPublicRecordHandlerV1OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewBulkGetPlayerPublicRecordHandlerV1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "bulkGetPlayerPublicRecordHandlerV1",
+		Method:             "POST",
+		PathPattern:        "/cloudsave/v1/namespaces/{namespace}/users/bulk/records/{key}/public",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &BulkGetPlayerPublicRecordHandlerV1Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *BulkGetPlayerPublicRecordHandlerV1OK:
+		return v, nil
+	case *BulkGetPlayerPublicRecordHandlerV1BadRequest:
+		return nil, v
+	case *BulkGetPlayerPublicRecordHandlerV1Unauthorized:
+		return nil, v
+	case *BulkGetPlayerPublicRecordHandlerV1Forbidden:
+		return nil, v
+	case *BulkGetPlayerPublicRecordHandlerV1InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
 }
 
 /*

@@ -15,6 +15,7 @@ import (
 
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/bans"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/clients"
+	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/input_validations"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth2_0"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth2_0_extension"
@@ -71,6 +72,7 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry) *JusticeIam
 	cli.Transport = transport
 	cli.Bans = bans.New(transport, formats)
 	cli.Clients = clients.New(transport, formats)
+	cli.InputValidations = input_validations.New(transport, formats)
 	cli.OAuth = o_auth.New(transport, formats)
 	cli.OAuth20 = o_auth2_0.New(transport, formats)
 	cli.OAuth20Extension = o_auth2_0_extension.New(transport, formats)
@@ -143,6 +145,8 @@ type JusticeIamService struct {
 
 	Clients clients.ClientService
 
+	InputValidations input_validations.ClientService
+
 	OAuth o_auth.ClientService
 
 	OAuth20 o_auth2_0.ClientService
@@ -171,6 +175,7 @@ func (c *JusticeIamService) SetTransport(transport runtime.ClientTransport) {
 	c.Transport = transport
 	c.Bans.SetTransport(transport)
 	c.Clients.SetTransport(transport)
+	c.InputValidations.SetTransport(transport)
 	c.OAuth.SetTransport(transport)
 	c.OAuth20.SetTransport(transport)
 	c.OAuth20Extension.SetTransport(transport)

@@ -19,7 +19,6 @@ type ThirdPartyCredentialService struct {
 	TokenRepository repository.TokenRepository
 }
 
-// Deprecated: Use RetrieveAllThirdPartyLoginPlatformCredentialV3Short instead
 func (t *ThirdPartyCredentialService) RetrieveAllThirdPartyLoginPlatformCredentialV3(input *third_party_credential.RetrieveAllThirdPartyLoginPlatformCredentialV3Params) ([]*iamclientmodels.ModelThirdPartyLoginPlatformCredentialResponse, error) {
 	accessToken, err := t.TokenRepository.GetToken()
 	if err != nil {
@@ -44,7 +43,6 @@ func (t *ThirdPartyCredentialService) RetrieveAllThirdPartyLoginPlatformCredenti
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use RetrieveAllActiveThirdPartyLoginPlatformCredentialV3Short instead
 func (t *ThirdPartyCredentialService) RetrieveAllActiveThirdPartyLoginPlatformCredentialV3(input *third_party_credential.RetrieveAllActiveThirdPartyLoginPlatformCredentialV3Params) ([]*iamclientmodels.ModelThirdPartyLoginPlatformCredentialResponse, error) {
 	accessToken, err := t.TokenRepository.GetToken()
 	if err != nil {
@@ -69,7 +67,6 @@ func (t *ThirdPartyCredentialService) RetrieveAllActiveThirdPartyLoginPlatformCr
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use RetrieveThirdPartyLoginPlatformCredentialV3Short instead
 func (t *ThirdPartyCredentialService) RetrieveThirdPartyLoginPlatformCredentialV3(input *third_party_credential.RetrieveThirdPartyLoginPlatformCredentialV3Params) (*iamclientmodels.ModelThirdPartyLoginPlatformCredentialResponse, error) {
 	accessToken, err := t.TokenRepository.GetToken()
 	if err != nil {
@@ -94,7 +91,6 @@ func (t *ThirdPartyCredentialService) RetrieveThirdPartyLoginPlatformCredentialV
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use AddThirdPartyLoginPlatformCredentialV3Short instead
 func (t *ThirdPartyCredentialService) AddThirdPartyLoginPlatformCredentialV3(input *third_party_credential.AddThirdPartyLoginPlatformCredentialV3Params) (*iamclientmodels.ModelThirdPartyLoginPlatformCredentialResponse, error) {
 	accessToken, err := t.TokenRepository.GetToken()
 	if err != nil {
@@ -119,7 +115,6 @@ func (t *ThirdPartyCredentialService) AddThirdPartyLoginPlatformCredentialV3(inp
 	return created.GetPayload(), nil
 }
 
-// Deprecated: Use DeleteThirdPartyLoginPlatformCredentialV3Short instead
 func (t *ThirdPartyCredentialService) DeleteThirdPartyLoginPlatformCredentialV3(input *third_party_credential.DeleteThirdPartyLoginPlatformCredentialV3Params) error {
 	accessToken, err := t.TokenRepository.GetToken()
 	if err != nil {
@@ -144,7 +139,6 @@ func (t *ThirdPartyCredentialService) DeleteThirdPartyLoginPlatformCredentialV3(
 	return nil
 }
 
-// Deprecated: Use UpdateThirdPartyLoginPlatformCredentialV3Short instead
 func (t *ThirdPartyCredentialService) UpdateThirdPartyLoginPlatformCredentialV3(input *third_party_credential.UpdateThirdPartyLoginPlatformCredentialV3Params) (*iamclientmodels.ModelThirdPartyLoginPlatformCredentialResponse, error) {
 	accessToken, err := t.TokenRepository.GetToken()
 	if err != nil {
@@ -172,7 +166,6 @@ func (t *ThirdPartyCredentialService) UpdateThirdPartyLoginPlatformCredentialV3(
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Short instead
 func (t *ThirdPartyCredentialService) RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3(input *third_party_credential.RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Params) ([]*iamclientmodels.ModelPublicThirdPartyPlatformInfo, error) {
 	accessToken, err := t.TokenRepository.GetToken()
 	if err != nil {

@@ -19,7 +19,6 @@ type EventRegistryService struct {
 	TokenRepository repository.TokenRepository
 }
 
-// Deprecated: Use GetRegisteredEventsHandlerShort instead
 func (e *EventRegistryService) GetRegisteredEventsHandler(input *event_registry.GetRegisteredEventsHandlerParams) (*eventlogclientmodels.ModelsEventRegistry, error) {
 	accessToken, err := e.TokenRepository.GetToken()
 	if err != nil {
@@ -41,7 +40,6 @@ func (e *EventRegistryService) GetRegisteredEventsHandler(input *event_registry.
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use RegisterEventHandlerShort instead
 func (e *EventRegistryService) RegisterEventHandler(input *event_registry.RegisterEventHandlerParams) error {
 	accessToken, err := e.TokenRepository.GetToken()
 	if err != nil {
@@ -69,7 +67,6 @@ func (e *EventRegistryService) RegisterEventHandler(input *event_registry.Regist
 	return nil
 }
 
-// Deprecated: Use GetRegisteredEventIDHandlerShort instead
 func (e *EventRegistryService) GetRegisteredEventIDHandler(input *event_registry.GetRegisteredEventIDHandlerParams) (*eventlogclientmodels.ModelsEventRegistry, error) {
 	accessToken, err := e.TokenRepository.GetToken()
 	if err != nil {
@@ -97,7 +94,6 @@ func (e *EventRegistryService) GetRegisteredEventIDHandler(input *event_registry
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use UpdateEventRegistryHandlerShort instead
 func (e *EventRegistryService) UpdateEventRegistryHandler(input *event_registry.UpdateEventRegistryHandlerParams) error {
 	accessToken, err := e.TokenRepository.GetToken()
 	if err != nil {
@@ -125,7 +121,6 @@ func (e *EventRegistryService) UpdateEventRegistryHandler(input *event_registry.
 	return nil
 }
 
-// Deprecated: Use UnregisterEventIDHandlerShort instead
 func (e *EventRegistryService) UnregisterEventIDHandler(input *event_registry.UnregisterEventIDHandlerParams) error {
 	accessToken, err := e.TokenRepository.GetToken()
 	if err != nil {
@@ -150,7 +145,6 @@ func (e *EventRegistryService) UnregisterEventIDHandler(input *event_registry.Un
 	return nil
 }
 
-// Deprecated: Use GetRegisteredEventsByEventTypeHandlerShort instead
 func (e *EventRegistryService) GetRegisteredEventsByEventTypeHandler(input *event_registry.GetRegisteredEventsByEventTypeHandlerParams) (*eventlogclientmodels.ModelsEventRegistry, error) {
 	accessToken, err := e.TokenRepository.GetToken()
 	if err != nil {

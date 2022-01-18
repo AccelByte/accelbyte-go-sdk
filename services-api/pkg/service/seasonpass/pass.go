@@ -19,7 +19,6 @@ type PassService struct {
 	TokenRepository repository.TokenRepository
 }
 
-// Deprecated: Use GetPassShort instead
 func (p *PassService) GetPass(input *pass.GetPassParams) (*seasonpassclientmodels.PassInfo, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -38,7 +37,6 @@ func (p *PassService) GetPass(input *pass.GetPassParams) (*seasonpassclientmodel
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use DeletePassShort instead
 func (p *PassService) DeletePass(input *pass.DeletePassParams) error {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -60,7 +58,6 @@ func (p *PassService) DeletePass(input *pass.DeletePassParams) error {
 	return nil
 }
 
-// Deprecated: Use UpdatePassShort instead
 func (p *PassService) UpdatePass(input *pass.UpdatePassParams) (*seasonpassclientmodels.PassInfo, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -85,7 +82,6 @@ func (p *PassService) UpdatePass(input *pass.UpdatePassParams) (*seasonpassclien
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use QueryPassesShort instead
 func (p *PassService) QueryPasses(input *pass.QueryPassesParams) ([]*seasonpassclientmodels.PassInfo, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -104,7 +100,6 @@ func (p *PassService) QueryPasses(input *pass.QueryPassesParams) ([]*seasonpassc
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use CreatePassShort instead
 func (p *PassService) CreatePass(input *pass.CreatePassParams) (*seasonpassclientmodels.PassInfo, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -129,7 +124,6 @@ func (p *PassService) CreatePass(input *pass.CreatePassParams) (*seasonpassclien
 	return created.GetPayload(), nil
 }
 
-// Deprecated: Use GrantUserPassShort instead
 func (p *PassService) GrantUserPass(input *pass.GrantUserPassParams) (*seasonpassclientmodels.UserSeasonSummary, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {

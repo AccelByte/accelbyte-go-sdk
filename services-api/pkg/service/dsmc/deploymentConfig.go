@@ -19,7 +19,6 @@ type DeploymentConfigService struct {
 	TokenRepository repository.TokenRepository
 }
 
-// Deprecated: Use GetAllDeploymentShort instead
 func (d *DeploymentConfigService) GetAllDeployment(input *deployment_config.GetAllDeploymentParams) (*dsmcclientmodels.ModelsListDeploymentResponse, error) {
 	accessToken, err := d.TokenRepository.GetToken()
 	if err != nil {
@@ -41,7 +40,6 @@ func (d *DeploymentConfigService) GetAllDeployment(input *deployment_config.GetA
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use GetDeploymentShort instead
 func (d *DeploymentConfigService) GetDeployment(input *deployment_config.GetDeploymentParams) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
 	accessToken, err := d.TokenRepository.GetToken()
 	if err != nil {
@@ -66,7 +64,6 @@ func (d *DeploymentConfigService) GetDeployment(input *deployment_config.GetDepl
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use CreateDeploymentShort instead
 func (d *DeploymentConfigService) CreateDeployment(input *deployment_config.CreateDeploymentParams) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
 	accessToken, err := d.TokenRepository.GetToken()
 	if err != nil {
@@ -91,7 +88,6 @@ func (d *DeploymentConfigService) CreateDeployment(input *deployment_config.Crea
 	return created.GetPayload(), nil
 }
 
-// Deprecated: Use DeleteDeploymentShort instead
 func (d *DeploymentConfigService) DeleteDeployment(input *deployment_config.DeleteDeploymentParams) error {
 	accessToken, err := d.TokenRepository.GetToken()
 	if err != nil {
@@ -116,7 +112,6 @@ func (d *DeploymentConfigService) DeleteDeployment(input *deployment_config.Dele
 	return nil
 }
 
-// Deprecated: Use UpdateDeploymentShort instead
 func (d *DeploymentConfigService) UpdateDeployment(input *deployment_config.UpdateDeploymentParams) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
 	accessToken, err := d.TokenRepository.GetToken()
 	if err != nil {
@@ -141,7 +136,6 @@ func (d *DeploymentConfigService) UpdateDeployment(input *deployment_config.Upda
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use CreateRootRegionOverrideShort instead
 func (d *DeploymentConfigService) CreateRootRegionOverride(input *deployment_config.CreateRootRegionOverrideParams) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
 	accessToken, err := d.TokenRepository.GetToken()
 	if err != nil {
@@ -169,7 +163,6 @@ func (d *DeploymentConfigService) CreateRootRegionOverride(input *deployment_con
 	return created.GetPayload(), nil
 }
 
-// Deprecated: Use DeleteRootRegionOverrideShort instead
 func (d *DeploymentConfigService) DeleteRootRegionOverride(input *deployment_config.DeleteRootRegionOverrideParams) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
 	accessToken, err := d.TokenRepository.GetToken()
 	if err != nil {
@@ -194,7 +187,6 @@ func (d *DeploymentConfigService) DeleteRootRegionOverride(input *deployment_con
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use UpdateRootRegionOverrideShort instead
 func (d *DeploymentConfigService) UpdateRootRegionOverride(input *deployment_config.UpdateRootRegionOverrideParams) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
 	accessToken, err := d.TokenRepository.GetToken()
 	if err != nil {
@@ -219,7 +211,6 @@ func (d *DeploymentConfigService) UpdateRootRegionOverride(input *deployment_con
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use CreateDeploymentOverrideShort instead
 func (d *DeploymentConfigService) CreateDeploymentOverride(input *deployment_config.CreateDeploymentOverrideParams) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
 	accessToken, err := d.TokenRepository.GetToken()
 	if err != nil {
@@ -247,7 +238,6 @@ func (d *DeploymentConfigService) CreateDeploymentOverride(input *deployment_con
 	return created.GetPayload(), nil
 }
 
-// Deprecated: Use DeleteDeploymentOverrideShort instead
 func (d *DeploymentConfigService) DeleteDeploymentOverride(input *deployment_config.DeleteDeploymentOverrideParams) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
 	accessToken, err := d.TokenRepository.GetToken()
 	if err != nil {
@@ -272,7 +262,6 @@ func (d *DeploymentConfigService) DeleteDeploymentOverride(input *deployment_con
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use UpdateDeploymentOverrideShort instead
 func (d *DeploymentConfigService) UpdateDeploymentOverride(input *deployment_config.UpdateDeploymentOverrideParams) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
 	accessToken, err := d.TokenRepository.GetToken()
 	if err != nil {
@@ -297,7 +286,6 @@ func (d *DeploymentConfigService) UpdateDeploymentOverride(input *deployment_con
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use CreateOverrideRegionOverrideShort instead
 func (d *DeploymentConfigService) CreateOverrideRegionOverride(input *deployment_config.CreateOverrideRegionOverrideParams) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
 	accessToken, err := d.TokenRepository.GetToken()
 	if err != nil {
@@ -325,7 +313,6 @@ func (d *DeploymentConfigService) CreateOverrideRegionOverride(input *deployment
 	return created.GetPayload(), nil
 }
 
-// Deprecated: Use DeleteOverrideRegionOverrideShort instead
 func (d *DeploymentConfigService) DeleteOverrideRegionOverride(input *deployment_config.DeleteOverrideRegionOverrideParams) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
 	accessToken, err := d.TokenRepository.GetToken()
 	if err != nil {
@@ -350,7 +337,6 @@ func (d *DeploymentConfigService) DeleteOverrideRegionOverride(input *deployment
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use UpdateOverrideRegionOverrideShort instead
 func (d *DeploymentConfigService) UpdateOverrideRegionOverride(input *deployment_config.UpdateOverrideRegionOverrideParams) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
 	accessToken, err := d.TokenRepository.GetToken()
 	if err != nil {

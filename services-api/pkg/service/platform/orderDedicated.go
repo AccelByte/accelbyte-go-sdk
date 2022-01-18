@@ -19,23 +19,23 @@ type OrderDedicatedService struct {
 	TokenRepository repository.TokenRepository
 }
 
-// Deprecated: Use SyncOrdersShort instead
-func (o *OrderDedicatedService) SyncOrders(input *order_dedicated.SyncOrdersParams) (*platformclientmodels.OrderSyncResult, error) {
-	accessToken, err := o.TokenRepository.GetToken()
-	if err != nil {
+func (o *OrderDedicatedService) SyncOrders(input *order_dedicated.SyncOrdersParams)(*platformclientmodels.OrderSyncResult, error) {
+    accessToken, err := o.TokenRepository.GetToken()
+    if err != nil {
 		return nil, err
 	}
-	ok, err := o.Client.OrderDedicated.SyncOrders(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
+ok, err := o.Client.OrderDedicated.SyncOrders(input, client.BearerToken(*accessToken.AccessToken))
+    if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (o *OrderDedicatedService) SyncOrdersShort(input *order_dedicated.SyncOrdersParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.OrderSyncResult, error) {
-	ok, err := o.Client.OrderDedicated.SyncOrdersShort(input, authInfo)
-	if err != nil {
+func (o *OrderDedicatedService) SyncOrdersShort(input *order_dedicated.SyncOrdersParams, authInfo runtime.ClientAuthInfoWriter)(*platformclientmodels.OrderSyncResult, error) {
+    ok, err := o.Client.OrderDedicated.SyncOrdersShort(input, authInfo)
+    if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
+

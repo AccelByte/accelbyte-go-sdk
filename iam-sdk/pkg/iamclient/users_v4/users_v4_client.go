@@ -491,13 +491,9 @@ func (a *Client) AdminRemoveUserRoleV4Short(params *AdminRemoveUserRoleV4Params,
 
   &lt;p&gt;Requires valid user access token &lt;/p&gt;
 &lt;br&gt;&lt;p&gt;This Endpoint support update user based on given data. &lt;b&gt;Single request can update single field or multi fields.&lt;/b&gt;&lt;/p&gt;
-&lt;p&gt;Supported field {country, displayName, emailAddress, languageTag, dateOfBirth}&lt;/p&gt;
+&lt;p&gt;Supported field {country, displayName, languageTag, dateOfBirth, userName}&lt;/p&gt;
 &lt;p&gt;Country use ISO3166-1 alpha-2 two letter, e.g. US.&lt;/p&gt;
 &lt;p&gt;Date of Birth format : YYYY-MM-DD, e.g. 2019-04-29.&lt;/p&gt;
-&lt;br&gt;&lt;b&gt;Several case of updating email address&lt;/b&gt;
-&lt;ul&gt;&lt;li&gt;User want to update email address of which have been verified, newEmailAddress response field will be filled with new email address.&lt;/li&gt;
-&lt;li&gt;User want to update email address of which have not been verified, { oldEmailAddress, emailAddress} response field will be filled with new email address. &lt;/li&gt;
-&lt;li&gt;User want to update email address of which have been verified and updated before, { oldEmailAddress, emailAddress} response field will be filled with verified email before. newEmailAddress response field will be filled with newest email address. &lt;/li&gt;
 &lt;p&gt;action code : 10103 &lt;/p&gt;
 */
 func (a *Client) AdminUpdateMyUserV4(params *AdminUpdateMyUserV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateMyUserV4OK, *AdminUpdateMyUserV4BadRequest, *AdminUpdateMyUserV4Unauthorized, *AdminUpdateMyUserV4Conflict, *AdminUpdateMyUserV4InternalServerError, error) {

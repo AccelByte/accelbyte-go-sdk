@@ -119,7 +119,7 @@ func (a *Client) RetrieveEligibilitiesPublicShort(params *RetrieveEligibilitiesP
 /*
   RetrieveEligibilitiesPublicIndirect checks user legal eligibility
 
-  Retrieve the active policies and its conformance status by user. This endpoint used by Authentication Service during user login.&lt;br&gt;This process supports cross-namespace checking, that means if the active policy already accepted by the same user in other namespace, then it will be considered as eligible.&lt;br/&gt;&lt;br/&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: login user&lt;/li&gt;&lt;/ul&gt;
+  Retrieve the active policies and its conformance status by userThis process only supports cross-namespace checking between game namespace and publisher namespace , that means if the active policy already accepted by the same user in publisher namespace, then it will also be considered as eligible in non-publisher namespace.&lt;br/&gt;&lt;br/&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: login user&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) RetrieveEligibilitiesPublicIndirect(params *RetrieveEligibilitiesPublicIndirectParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveEligibilitiesPublicIndirectOK, error) {
 	// TODO: Validate the params before sending

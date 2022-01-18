@@ -32,7 +32,7 @@ type FulfillmentScriptContext struct {
 
 	// fulfillment source, default PURCHASE
 	// Required: true
-	// Enum: [PURCHASE IAP PROMOTION ACHIEVEMENT REFERRAL_BONUS REDEEM_CODE REWARD GIFT OTHER]
+	// Enum: [PURCHASE IAP PROMOTION ACHIEVEMENT REFERRAL_BONUS REDEEM_CODE REWARD GIFT DLC OTHER]
 	Source *string `json:"source"`
 }
 
@@ -111,7 +111,7 @@ var fulfillmentScriptContextTypeSourcePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["PURCHASE","IAP","PROMOTION","ACHIEVEMENT","REFERRAL_BONUS","REDEEM_CODE","REWARD","GIFT","OTHER"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["PURCHASE","IAP","PROMOTION","ACHIEVEMENT","REFERRAL_BONUS","REDEEM_CODE","REWARD","GIFT","DLC","OTHER"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -144,6 +144,9 @@ const (
 
 	// FulfillmentScriptContextSourceGIFT captures enum value "GIFT"
 	FulfillmentScriptContextSourceGIFT string = "GIFT"
+
+	// FulfillmentScriptContextSourceDLC captures enum value "DLC"
+	FulfillmentScriptContextSourceDLC string = "DLC"
 
 	// FulfillmentScriptContextSourceOTHER captures enum value "OTHER"
 	FulfillmentScriptContextSourceOTHER string = "OTHER"

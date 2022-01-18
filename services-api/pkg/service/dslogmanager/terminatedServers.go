@@ -19,7 +19,6 @@ type TerminatedServersService struct {
 	TokenRepository repository.TokenRepository
 }
 
-// Deprecated: Use ListTerminatedServersShort instead
 func (t *TerminatedServersService) ListTerminatedServers(input *terminated_servers.ListTerminatedServersParams) (*dslogmanagerclientmodels.ModelsListTerminatedServersResponse, error) {
 	accessToken, err := t.TokenRepository.GetToken()
 	if err != nil {
@@ -41,7 +40,6 @@ func (t *TerminatedServersService) ListTerminatedServers(input *terminated_serve
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use DownloadServerLogsShort instead
 func (t *TerminatedServersService) DownloadServerLogs(input *terminated_servers.DownloadServerLogsParams) error {
 	accessToken, err := t.TokenRepository.GetToken()
 	if err != nil {
@@ -60,7 +58,6 @@ func (t *TerminatedServersService) DownloadServerLogs(input *terminated_servers.
 	return nil
 }
 
-// Deprecated: Use CheckServerLogsShort instead
 func (t *TerminatedServersService) CheckServerLogs(input *terminated_servers.CheckServerLogsParams) (*dslogmanagerclientmodels.ModelsLogFileStatus, error) {
 	accessToken, err := t.TokenRepository.GetToken()
 	if err != nil {

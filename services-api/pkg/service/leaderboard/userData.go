@@ -19,7 +19,6 @@ type UserDataService struct {
 	TokenRepository repository.TokenRepository
 }
 
-// Deprecated: Use GetUserLeaderboardRankingsAdminV1Short instead
 func (u *UserDataService) GetUserLeaderboardRankingsAdminV1(input *user_data.GetUserLeaderboardRankingsAdminV1Params) (*leaderboardclientmodels.ModelsGetAllUserLeaderboardsResp, error) {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {

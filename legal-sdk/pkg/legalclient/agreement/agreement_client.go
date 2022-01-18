@@ -35,10 +35,10 @@ type ClientService interface {
 	BulkAcceptVersionedPolicyShort(params *BulkAcceptVersionedPolicyParams, authInfo runtime.ClientAuthInfoWriter) (*BulkAcceptVersionedPolicyCreated, error)
 	ChangePreferenceConsent(params *ChangePreferenceConsentParams, authInfo runtime.ClientAuthInfoWriter) (*ChangePreferenceConsentOK, *ChangePreferenceConsentBadRequest, error)
 	ChangePreferenceConsentShort(params *ChangePreferenceConsentParams, authInfo runtime.ClientAuthInfoWriter) (*ChangePreferenceConsentOK, error)
-	IndirectBulkAcceptVersionedPolicy(params *IndirectBulkAcceptVersionedPolicyParams, authInfo runtime.ClientAuthInfoWriter) (*IndirectBulkAcceptVersionedPolicyCreated, error)
-	IndirectBulkAcceptVersionedPolicyShort(params *IndirectBulkAcceptVersionedPolicyParams, authInfo runtime.ClientAuthInfoWriter) (*IndirectBulkAcceptVersionedPolicyCreated, error)
 	IndirectBulkAcceptVersionedPolicyV2(params *IndirectBulkAcceptVersionedPolicyV2Params, authInfo runtime.ClientAuthInfoWriter) (*IndirectBulkAcceptVersionedPolicyV2Created, error)
 	IndirectBulkAcceptVersionedPolicyV2Short(params *IndirectBulkAcceptVersionedPolicyV2Params, authInfo runtime.ClientAuthInfoWriter) (*IndirectBulkAcceptVersionedPolicyV2Created, error)
+	IndirectBulkAcceptVersionedPolicy1(params *IndirectBulkAcceptVersionedPolicy1Params, authInfo runtime.ClientAuthInfoWriter) (*IndirectBulkAcceptVersionedPolicy1Created, error)
+	IndirectBulkAcceptVersionedPolicy1Short(params *IndirectBulkAcceptVersionedPolicy1Params, authInfo runtime.ClientAuthInfoWriter) (*IndirectBulkAcceptVersionedPolicy1Created, error)
 	RetrieveAcceptedAgreements(params *RetrieveAcceptedAgreementsParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAcceptedAgreementsOK, error)
 	RetrieveAcceptedAgreementsShort(params *RetrieveAcceptedAgreementsParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAcceptedAgreementsOK, error)
 	RetrieveAgreementsPublic(params *RetrieveAgreementsPublicParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAgreementsPublicOK, error)
@@ -292,85 +292,6 @@ func (a *Client) ChangePreferenceConsentShort(params *ChangePreferenceConsentPar
 }
 
 /*
-  IndirectBulkAcceptVersionedPolicy bulks accept policy versions indirect
-
-  Accepts many legal policy versions all at once. Supply with localized version policy id and userId to accept an agreement. This endpoint used by Authentication Service during new user registration.&lt;br&gt;&lt;br/&gt;Available Extra Information to return: &lt;br/&gt;&lt;ul&gt;&lt;li&gt;&lt;b&gt;userIds&lt;/b&gt; : List of userId mapping (&lt;b&gt;IMPORTANT: GOING TO DEPRECATE&lt;/b&gt;)&lt;/li&gt;&lt;/ul&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: login user&lt;/li&gt;&lt;/ul&gt;
-*/
-func (a *Client) IndirectBulkAcceptVersionedPolicy(params *IndirectBulkAcceptVersionedPolicyParams, authInfo runtime.ClientAuthInfoWriter) (*IndirectBulkAcceptVersionedPolicyCreated, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewIndirectBulkAcceptVersionedPolicyParams()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "indirectBulkAcceptVersionedPolicy",
-		Method:             "POST",
-		PathPattern:        "/public/agreements/policies/users/{userId}",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &IndirectBulkAcceptVersionedPolicyReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *IndirectBulkAcceptVersionedPolicyCreated:
-		return v, nil
-
-	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-func (a *Client) IndirectBulkAcceptVersionedPolicyShort(params *IndirectBulkAcceptVersionedPolicyParams, authInfo runtime.ClientAuthInfoWriter) (*IndirectBulkAcceptVersionedPolicyCreated, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewIndirectBulkAcceptVersionedPolicyParams()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "indirectBulkAcceptVersionedPolicy",
-		Method:             "POST",
-		PathPattern:        "/public/agreements/policies/users/{userId}",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &IndirectBulkAcceptVersionedPolicyReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *IndirectBulkAcceptVersionedPolicyCreated:
-		return v, nil
-
-	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-/*
   IndirectBulkAcceptVersionedPolicyV2 bulks accept policy versions indirect
 
   &lt;b&gt;IMPORTANT: GOING TO DEPRECATE&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;Accepts many legal policy versions all at once. Supply with localized version policy id, version policy id, policy id, userId, namespace, country code and client id to accept an agreement. This endpoint used by APIGateway during new user registration.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:LEGAL&#34;, action=1 (CREATE)&lt;/li&gt;&lt;/ul&gt;
@@ -442,6 +363,85 @@ func (a *Client) IndirectBulkAcceptVersionedPolicyV2Short(params *IndirectBulkAc
 	switch v := result.(type) {
 
 	case *IndirectBulkAcceptVersionedPolicyV2Created:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  IndirectBulkAcceptVersionedPolicy1 bulks accept policy versions indirect
+
+  Accepts many legal policy versions all at once. Supply with localized version policy id and userId to accept an agreement. This endpoint used by Authentication Service during new user registration.&lt;br&gt;&lt;br/&gt;Available Extra Information to return: &lt;br/&gt;&lt;ul&gt;&lt;li&gt;&lt;b&gt;userIds&lt;/b&gt; : List of userId mapping (&lt;b&gt;IMPORTANT: GOING TO DEPRECATE&lt;/b&gt;)&lt;/li&gt;&lt;/ul&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: login user&lt;/li&gt;&lt;/ul&gt;
+*/
+func (a *Client) IndirectBulkAcceptVersionedPolicy1(params *IndirectBulkAcceptVersionedPolicy1Params, authInfo runtime.ClientAuthInfoWriter) (*IndirectBulkAcceptVersionedPolicy1Created, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewIndirectBulkAcceptVersionedPolicy1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "indirectBulkAcceptVersionedPolicy_1",
+		Method:             "POST",
+		PathPattern:        "/public/agreements/policies/users/{userId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &IndirectBulkAcceptVersionedPolicy1Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *IndirectBulkAcceptVersionedPolicy1Created:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) IndirectBulkAcceptVersionedPolicy1Short(params *IndirectBulkAcceptVersionedPolicy1Params, authInfo runtime.ClientAuthInfoWriter) (*IndirectBulkAcceptVersionedPolicy1Created, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewIndirectBulkAcceptVersionedPolicy1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "indirectBulkAcceptVersionedPolicy_1",
+		Method:             "POST",
+		PathPattern:        "/public/agreements/policies/users/{userId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &IndirectBulkAcceptVersionedPolicy1Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *IndirectBulkAcceptVersionedPolicy1Created:
 		return v, nil
 
 	default:

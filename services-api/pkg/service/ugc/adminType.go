@@ -19,7 +19,6 @@ type AdminTypeService struct {
 	TokenRepository repository.TokenRepository
 }
 
-// Deprecated: Use AdminGetTypeShort instead
 func (a *AdminTypeService) AdminGetType(input *admin_type.AdminGetTypeParams) (*ugcclientmodels.ModelsPaginatedGetTypeResponse, error) {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
@@ -41,7 +40,6 @@ func (a *AdminTypeService) AdminGetType(input *admin_type.AdminGetTypeParams) (*
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use AdminCreateTypeShort instead
 func (a *AdminTypeService) AdminCreateType(input *admin_type.AdminCreateTypeParams) (*ugcclientmodels.ModelsCreateTypeResponse, error) {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
@@ -66,7 +64,6 @@ func (a *AdminTypeService) AdminCreateType(input *admin_type.AdminCreateTypePara
 	return created.GetPayload(), nil
 }
 
-// Deprecated: Use AdminUpdateTypeShort instead
 func (a *AdminTypeService) AdminUpdateType(input *admin_type.AdminUpdateTypeParams) (*ugcclientmodels.ModelsCreateTypeResponse, error) {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
@@ -94,7 +91,6 @@ func (a *AdminTypeService) AdminUpdateType(input *admin_type.AdminUpdateTypePara
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use AdminDeleteTypeShort instead
 func (a *AdminTypeService) AdminDeleteType(input *admin_type.AdminDeleteTypeParams) error {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {

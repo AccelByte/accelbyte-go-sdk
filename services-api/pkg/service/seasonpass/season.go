@@ -19,7 +19,6 @@ type SeasonService struct {
 	TokenRepository repository.TokenRepository
 }
 
-// Deprecated: Use UnpublishSeasonShort instead
 func (s *SeasonService) UnpublishSeason(input *season.UnpublishSeasonParams) (*seasonpassclientmodels.SeasonInfo, error) {
 	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {
@@ -41,7 +40,6 @@ func (s *SeasonService) UnpublishSeason(input *season.UnpublishSeasonParams) (*s
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use GetSeasonShort instead
 func (s *SeasonService) GetSeason(input *season.GetSeasonParams) (*seasonpassclientmodels.SeasonInfo, error) {
 	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {
@@ -60,7 +58,6 @@ func (s *SeasonService) GetSeason(input *season.GetSeasonParams) (*seasonpasscli
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use DeleteSeasonShort instead
 func (s *SeasonService) DeleteSeason(input *season.DeleteSeasonParams) error {
 	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {
@@ -82,7 +79,6 @@ func (s *SeasonService) DeleteSeason(input *season.DeleteSeasonParams) error {
 	return nil
 }
 
-// Deprecated: Use UpdateSeasonShort instead
 func (s *SeasonService) UpdateSeason(input *season.UpdateSeasonParams) (*seasonpassclientmodels.SeasonInfo, error) {
 	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {
@@ -107,7 +103,6 @@ func (s *SeasonService) UpdateSeason(input *season.UpdateSeasonParams) (*seasonp
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use CloneSeasonShort instead
 func (s *SeasonService) CloneSeason(input *season.CloneSeasonParams) (*seasonpassclientmodels.SeasonInfo, error) {
 	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {
@@ -129,7 +124,6 @@ func (s *SeasonService) CloneSeason(input *season.CloneSeasonParams) (*seasonpas
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use QuerySeasonsShort instead
 func (s *SeasonService) QuerySeasons(input *season.QuerySeasonsParams) (*seasonpassclientmodels.ListSeasonInfoPagingSlicedResult, error) {
 	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {
@@ -145,7 +139,6 @@ func (s *SeasonService) QuerySeasons(input *season.QuerySeasonsParams) (*seasonp
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use CreateSeasonShort instead
 func (s *SeasonService) CreateSeason(input *season.CreateSeasonParams) (*seasonpassclientmodels.SeasonInfo, error) {
 	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {
@@ -167,7 +160,6 @@ func (s *SeasonService) CreateSeason(input *season.CreateSeasonParams) (*seasonp
 	return created.GetPayload(), nil
 }
 
-// Deprecated: Use RetireSeasonShort instead
 func (s *SeasonService) RetireSeason(input *season.RetireSeasonParams) (*seasonpassclientmodels.SeasonInfo, error) {
 	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {
@@ -189,7 +181,6 @@ func (s *SeasonService) RetireSeason(input *season.RetireSeasonParams) (*seasonp
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use PublishSeasonShort instead
 func (s *SeasonService) PublishSeason(input *season.PublishSeasonParams) (*seasonpassclientmodels.SeasonInfo, error) {
 	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {
@@ -211,7 +202,6 @@ func (s *SeasonService) PublishSeason(input *season.PublishSeasonParams) (*seaso
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use GetCurrentSeasonShort instead
 func (s *SeasonService) GetCurrentSeason(input *season.GetCurrentSeasonParams) (*seasonpassclientmodels.SeasonSummary, error) {
 	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {
@@ -230,7 +220,6 @@ func (s *SeasonService) GetCurrentSeason(input *season.GetCurrentSeasonParams) (
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use ExistsAnyPassByPassCodesShort instead
 func (s *SeasonService) ExistsAnyPassByPassCodes(input *season.ExistsAnyPassByPassCodesParams) (*seasonpassclientmodels.Ownership, error) {
 	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {
@@ -246,7 +235,6 @@ func (s *SeasonService) ExistsAnyPassByPassCodes(input *season.ExistsAnyPassByPa
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use GetUserSeasonShort instead
 func (s *SeasonService) GetUserSeason(input *season.GetUserSeasonParams) (*seasonpassclientmodels.ClaimableUserSeasonInfo, error) {
 	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {
@@ -265,7 +253,6 @@ func (s *SeasonService) GetUserSeason(input *season.GetUserSeasonParams) (*seaso
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use CheckSeasonPurchasableShort instead
 func (s *SeasonService) CheckSeasonPurchasable(input *season.CheckSeasonPurchasableParams) error {
 	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {
@@ -287,7 +274,6 @@ func (s *SeasonService) CheckSeasonPurchasable(input *season.CheckSeasonPurchasa
 	return nil
 }
 
-// Deprecated: Use GetCurrentUserSeasonProgressionShort instead
 func (s *SeasonService) GetCurrentUserSeasonProgression(input *season.GetCurrentUserSeasonProgressionParams) (*seasonpassclientmodels.UserSeasonSummary, error) {
 	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {
@@ -306,7 +292,6 @@ func (s *SeasonService) GetCurrentUserSeasonProgression(input *season.GetCurrent
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use ResetUserSeasonShort instead
 func (s *SeasonService) ResetUserSeason(input *season.ResetUserSeasonParams) error {
 	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {
@@ -322,7 +307,6 @@ func (s *SeasonService) ResetUserSeason(input *season.ResetUserSeasonParams) err
 	return nil
 }
 
-// Deprecated: Use GetUserParticipatedSeasonsShort instead
 func (s *SeasonService) GetUserParticipatedSeasons(input *season.GetUserParticipatedSeasonsParams) (*seasonpassclientmodels.ListUserSeasonInfoPagingSlicedResult, error) {
 	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {
@@ -338,7 +322,6 @@ func (s *SeasonService) GetUserParticipatedSeasons(input *season.GetUserParticip
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use PublicGetCurrentSeasonShort instead
 func (s *SeasonService) PublicGetCurrentSeason(input *season.PublicGetCurrentSeasonParams) (*seasonpassclientmodels.LocalizedSeasonInfo, error) {
 	ok, notFound, badRequest, err := s.Client.Season.PublicGetCurrentSeason(input)
 	if notFound != nil {
@@ -353,7 +336,6 @@ func (s *SeasonService) PublicGetCurrentSeason(input *season.PublicGetCurrentSea
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use PublicGetCurrentUserSeasonShort instead
 func (s *SeasonService) PublicGetCurrentUserSeason(input *season.PublicGetCurrentUserSeasonParams) (*seasonpassclientmodels.ClaimableUserSeasonInfo, error) {
 	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {
@@ -372,7 +354,6 @@ func (s *SeasonService) PublicGetCurrentUserSeason(input *season.PublicGetCurren
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use PublicGetUserSeasonShort instead
 func (s *SeasonService) PublicGetUserSeason(input *season.PublicGetUserSeasonParams) (*seasonpassclientmodels.ClaimableUserSeasonInfo, error) {
 	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {

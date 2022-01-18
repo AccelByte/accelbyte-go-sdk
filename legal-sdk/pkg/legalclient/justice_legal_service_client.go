@@ -13,6 +13,8 @@ import (
 	httptransport "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
+	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclient/admin_user_agreement"
+	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclient/admin_user_eligibilities"
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclient/agreement"
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclient/anonymization"
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclient/base_legal_policies"
@@ -66,6 +68,8 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry) *JusticeLeg
 
 	cli := new(JusticeLegalService)
 	cli.Transport = transport
+	cli.AdminUserAgreement = admin_user_agreement.New(transport, formats)
+	cli.AdminUserEligibilities = admin_user_eligibilities.New(transport, formats)
 	cli.Agreement = agreement.New(transport, formats)
 	cli.Anonymization = anonymization.New(transport, formats)
 	cli.BaseLegalPolicies = base_legal_policies.New(transport, formats)
@@ -133,6 +137,10 @@ func (cfg *TransportConfig) WithSchemes(schemes []string) *TransportConfig {
 
 // JusticeLegalService is a client for justice legal service
 type JusticeLegalService struct {
+	AdminUserAgreement admin_user_agreement.ClientService
+
+	AdminUserEligibilities admin_user_eligibilities.ClientService
+
 	Agreement agreement.ClientService
 
 	Anonymization anonymization.ClientService
@@ -157,6 +165,8 @@ type JusticeLegalService struct {
 // SetTransport changes the transport on the client and all its subresources
 func (c *JusticeLegalService) SetTransport(transport runtime.ClientTransport) {
 	c.Transport = transport
+	c.AdminUserAgreement.SetTransport(transport)
+	c.AdminUserEligibilities.SetTransport(transport)
 	c.Agreement.SetTransport(transport)
 	c.Anonymization.SetTransport(transport)
 	c.BaseLegalPolicies.SetTransport(transport)

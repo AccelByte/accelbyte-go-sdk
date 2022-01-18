@@ -19,7 +19,6 @@ type ConfigService struct {
 	TokenRepository repository.TokenRepository
 }
 
-// Deprecated: Use AdminGetAllConfigV1Short instead
 func (c *ConfigService) AdminGetAllConfigV1(input *config.AdminGetAllConfigV1Params) (*lobbyclientmodels.ModelsConfigList, error) {
 	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
@@ -47,7 +46,6 @@ func (c *ConfigService) AdminGetAllConfigV1(input *config.AdminGetAllConfigV1Par
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use AdminGetConfigV1Short instead
 func (c *ConfigService) AdminGetConfigV1(input *config.AdminGetConfigV1Params) (*lobbyclientmodels.ModelsConfigReq, error) {
 	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
@@ -75,7 +73,6 @@ func (c *ConfigService) AdminGetConfigV1(input *config.AdminGetConfigV1Params) (
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use AdminUpdateConfigV1Short instead
 func (c *ConfigService) AdminUpdateConfigV1(input *config.AdminUpdateConfigV1Params) (*lobbyclientmodels.ModelsConfigReq, error) {
 	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
@@ -106,7 +103,6 @@ func (c *ConfigService) AdminUpdateConfigV1(input *config.AdminUpdateConfigV1Par
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use ExportConfigShort instead
 func (c *ConfigService) ExportConfig(input *config.ExportConfigParams) ([]*lobbyclientmodels.ModelsConfigExport, error) {
 	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
@@ -128,7 +124,6 @@ func (c *ConfigService) ExportConfig(input *config.ExportConfigParams) ([]*lobby
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use ImportConfigShort instead
 func (c *ConfigService) ImportConfig(input *config.ImportConfigParams) (*lobbyclientmodels.ModelsImportConfigResponse, error) {
 	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {

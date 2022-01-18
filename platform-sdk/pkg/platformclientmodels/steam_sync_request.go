@@ -21,8 +21,17 @@ type SteamSyncRequest struct {
 	// Required: true
 	AppID *string `json:"appId"`
 
+	// product price currency
+	CurrencyCode string `json:"currencyCode,omitempty"`
+
 	// language value from language tag, allowed format: en, en-US
 	Language string `json:"language,omitempty"`
+
+	// product price
+	Price float64 `json:"price,omitempty"`
+
+	// steamdefid
+	ProductID string `json:"productId,omitempty"`
 
 	// country value from ISO countries
 	Region string `json:"region,omitempty"`

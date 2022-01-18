@@ -19,7 +19,6 @@ type LeaderboardDataService struct {
 	TokenRepository repository.TokenRepository
 }
 
-// Deprecated: Use AdminGetArchivedLeaderboardRankingDataV1HandlerShort instead
 func (l *LeaderboardDataService) AdminGetArchivedLeaderboardRankingDataV1Handler(input *leaderboard_data.AdminGetArchivedLeaderboardRankingDataV1HandlerParams) ([]*leaderboardclientmodels.ModelsArchiveLeaderboardSignedURLResponse, error) {
 	accessToken, err := l.TokenRepository.GetToken()
 	if err != nil {
@@ -47,7 +46,6 @@ func (l *LeaderboardDataService) AdminGetArchivedLeaderboardRankingDataV1Handler
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use CreateArchivedLeaderboardRankingDataV1HandlerShort instead
 func (l *LeaderboardDataService) CreateArchivedLeaderboardRankingDataV1Handler(input *leaderboard_data.CreateArchivedLeaderboardRankingDataV1HandlerParams) error {
 	accessToken, err := l.TokenRepository.GetToken()
 	if err != nil {
@@ -75,7 +73,6 @@ func (l *LeaderboardDataService) CreateArchivedLeaderboardRankingDataV1Handler(i
 	return nil
 }
 
-// Deprecated: Use GetAllTimeLeaderboardRankingAdminV1Short instead
 func (l *LeaderboardDataService) GetAllTimeLeaderboardRankingAdminV1(input *leaderboard_data.GetAllTimeLeaderboardRankingAdminV1Params) (*leaderboardclientmodels.ModelsGetLeaderboardRankingResp, error) {
 	accessToken, err := l.TokenRepository.GetToken()
 	if err != nil {
@@ -103,7 +100,6 @@ func (l *LeaderboardDataService) GetAllTimeLeaderboardRankingAdminV1(input *lead
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use GetCurrentMonthLeaderboardRankingAdminV1Short instead
 func (l *LeaderboardDataService) GetCurrentMonthLeaderboardRankingAdminV1(input *leaderboard_data.GetCurrentMonthLeaderboardRankingAdminV1Params) (*leaderboardclientmodels.ModelsGetLeaderboardRankingResp, error) {
 	accessToken, err := l.TokenRepository.GetToken()
 	if err != nil {
@@ -131,7 +127,6 @@ func (l *LeaderboardDataService) GetCurrentMonthLeaderboardRankingAdminV1(input 
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use GetCurrentSeasonLeaderboardRankingAdminV1Short instead
 func (l *LeaderboardDataService) GetCurrentSeasonLeaderboardRankingAdminV1(input *leaderboard_data.GetCurrentSeasonLeaderboardRankingAdminV1Params) (*leaderboardclientmodels.ModelsGetLeaderboardRankingResp, error) {
 	accessToken, err := l.TokenRepository.GetToken()
 	if err != nil {
@@ -159,7 +154,6 @@ func (l *LeaderboardDataService) GetCurrentSeasonLeaderboardRankingAdminV1(input
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use GetTodayLeaderboardRankingAdminV1Short instead
 func (l *LeaderboardDataService) GetTodayLeaderboardRankingAdminV1(input *leaderboard_data.GetTodayLeaderboardRankingAdminV1Params) (*leaderboardclientmodels.ModelsGetLeaderboardRankingResp, error) {
 	accessToken, err := l.TokenRepository.GetToken()
 	if err != nil {
@@ -187,7 +181,6 @@ func (l *LeaderboardDataService) GetTodayLeaderboardRankingAdminV1(input *leader
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use GetUserRankingAdminV1Short instead
 func (l *LeaderboardDataService) GetUserRankingAdminV1(input *leaderboard_data.GetUserRankingAdminV1Params) (*leaderboardclientmodels.ModelsUserRankingResponse, error) {
 	accessToken, err := l.TokenRepository.GetToken()
 	if err != nil {
@@ -212,7 +205,6 @@ func (l *LeaderboardDataService) GetUserRankingAdminV1(input *leaderboard_data.G
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use UpdateUserPointAdminV1Short instead
 func (l *LeaderboardDataService) UpdateUserPointAdminV1(input *leaderboard_data.UpdateUserPointAdminV1Params) (*leaderboardclientmodels.ModelsUpdateUserPointAdminV1Response, error) {
 	accessToken, err := l.TokenRepository.GetToken()
 	if err != nil {
@@ -240,7 +232,6 @@ func (l *LeaderboardDataService) UpdateUserPointAdminV1(input *leaderboard_data.
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use DeleteUserRankingAdminV1Short instead
 func (l *LeaderboardDataService) DeleteUserRankingAdminV1(input *leaderboard_data.DeleteUserRankingAdminV1Params) error {
 	accessToken, err := l.TokenRepository.GetToken()
 	if err != nil {
@@ -265,7 +256,6 @@ func (l *LeaderboardDataService) DeleteUserRankingAdminV1(input *leaderboard_dat
 	return nil
 }
 
-// Deprecated: Use GetCurrentWeekLeaderboardRankingAdminV1Short instead
 func (l *LeaderboardDataService) GetCurrentWeekLeaderboardRankingAdminV1(input *leaderboard_data.GetCurrentWeekLeaderboardRankingAdminV1Params) (*leaderboardclientmodels.ModelsGetLeaderboardRankingResp, error) {
 	accessToken, err := l.TokenRepository.GetToken()
 	if err != nil {
@@ -293,7 +283,6 @@ func (l *LeaderboardDataService) GetCurrentWeekLeaderboardRankingAdminV1(input *
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use DeleteUserRankingsAdminV1Short instead
 func (l *LeaderboardDataService) DeleteUserRankingsAdminV1(input *leaderboard_data.DeleteUserRankingsAdminV1Params) error {
 	accessToken, err := l.TokenRepository.GetToken()
 	if err != nil {
@@ -318,21 +307,14 @@ func (l *LeaderboardDataService) DeleteUserRankingsAdminV1(input *leaderboard_da
 	return nil
 }
 
-// Deprecated: Use GetAllTimeLeaderboardRankingPublicV1Short instead
 func (l *LeaderboardDataService) GetAllTimeLeaderboardRankingPublicV1(input *leaderboard_data.GetAllTimeLeaderboardRankingPublicV1Params) (*leaderboardclientmodels.ModelsGetLeaderboardRankingResp, error) {
 	accessToken, err := l.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := l.Client.LeaderboardData.GetAllTimeLeaderboardRankingPublicV1(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, notFound, internalServerError, err := l.Client.LeaderboardData.GetAllTimeLeaderboardRankingPublicV1(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
-	}
-	if unauthorized != nil {
-		return nil, unauthorized
-	}
-	if forbidden != nil {
-		return nil, forbidden
 	}
 	if notFound != nil {
 		return nil, notFound
@@ -346,7 +328,6 @@ func (l *LeaderboardDataService) GetAllTimeLeaderboardRankingPublicV1(input *lea
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use GetArchivedLeaderboardRankingDataV1HandlerShort instead
 func (l *LeaderboardDataService) GetArchivedLeaderboardRankingDataV1Handler(input *leaderboard_data.GetArchivedLeaderboardRankingDataV1HandlerParams) ([]*leaderboardclientmodels.ModelsArchiveLeaderboardSignedURLResponse, error) {
 	accessToken, err := l.TokenRepository.GetToken()
 	if err != nil {
@@ -374,21 +355,14 @@ func (l *LeaderboardDataService) GetArchivedLeaderboardRankingDataV1Handler(inpu
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use GetCurrentMonthLeaderboardRankingPublicV1Short instead
 func (l *LeaderboardDataService) GetCurrentMonthLeaderboardRankingPublicV1(input *leaderboard_data.GetCurrentMonthLeaderboardRankingPublicV1Params) (*leaderboardclientmodels.ModelsGetLeaderboardRankingResp, error) {
 	accessToken, err := l.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := l.Client.LeaderboardData.GetCurrentMonthLeaderboardRankingPublicV1(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, notFound, internalServerError, err := l.Client.LeaderboardData.GetCurrentMonthLeaderboardRankingPublicV1(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
-	}
-	if unauthorized != nil {
-		return nil, unauthorized
-	}
-	if forbidden != nil {
-		return nil, forbidden
 	}
 	if notFound != nil {
 		return nil, notFound
@@ -402,21 +376,14 @@ func (l *LeaderboardDataService) GetCurrentMonthLeaderboardRankingPublicV1(input
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use GetCurrentSeasonLeaderboardRankingPublicV1Short instead
 func (l *LeaderboardDataService) GetCurrentSeasonLeaderboardRankingPublicV1(input *leaderboard_data.GetCurrentSeasonLeaderboardRankingPublicV1Params) (*leaderboardclientmodels.ModelsGetLeaderboardRankingResp, error) {
 	accessToken, err := l.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := l.Client.LeaderboardData.GetCurrentSeasonLeaderboardRankingPublicV1(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, notFound, internalServerError, err := l.Client.LeaderboardData.GetCurrentSeasonLeaderboardRankingPublicV1(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
-	}
-	if unauthorized != nil {
-		return nil, unauthorized
-	}
-	if forbidden != nil {
-		return nil, forbidden
 	}
 	if notFound != nil {
 		return nil, notFound
@@ -430,21 +397,14 @@ func (l *LeaderboardDataService) GetCurrentSeasonLeaderboardRankingPublicV1(inpu
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use GetTodayLeaderboardRankingPublicV1Short instead
 func (l *LeaderboardDataService) GetTodayLeaderboardRankingPublicV1(input *leaderboard_data.GetTodayLeaderboardRankingPublicV1Params) (*leaderboardclientmodels.ModelsGetLeaderboardRankingResp, error) {
 	accessToken, err := l.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := l.Client.LeaderboardData.GetTodayLeaderboardRankingPublicV1(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, notFound, internalServerError, err := l.Client.LeaderboardData.GetTodayLeaderboardRankingPublicV1(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
-	}
-	if unauthorized != nil {
-		return nil, unauthorized
-	}
-	if forbidden != nil {
-		return nil, forbidden
 	}
 	if notFound != nil {
 		return nil, notFound
@@ -458,7 +418,6 @@ func (l *LeaderboardDataService) GetTodayLeaderboardRankingPublicV1(input *leade
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use GetUserRankingPublicV1Short instead
 func (l *LeaderboardDataService) GetUserRankingPublicV1(input *leaderboard_data.GetUserRankingPublicV1Params) (*leaderboardclientmodels.ModelsUserRankingResponse, error) {
 	accessToken, err := l.TokenRepository.GetToken()
 	if err != nil {
@@ -483,7 +442,6 @@ func (l *LeaderboardDataService) GetUserRankingPublicV1(input *leaderboard_data.
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use DeleteUserRankingPublicV1Short instead
 func (l *LeaderboardDataService) DeleteUserRankingPublicV1(input *leaderboard_data.DeleteUserRankingPublicV1Params) error {
 	accessToken, err := l.TokenRepository.GetToken()
 	if err != nil {
@@ -508,21 +466,14 @@ func (l *LeaderboardDataService) DeleteUserRankingPublicV1(input *leaderboard_da
 	return nil
 }
 
-// Deprecated: Use GetCurrentWeekLeaderboardRankingPublicV1Short instead
 func (l *LeaderboardDataService) GetCurrentWeekLeaderboardRankingPublicV1(input *leaderboard_data.GetCurrentWeekLeaderboardRankingPublicV1Params) (*leaderboardclientmodels.ModelsGetLeaderboardRankingResp, error) {
 	accessToken, err := l.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := l.Client.LeaderboardData.GetCurrentWeekLeaderboardRankingPublicV1(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, notFound, internalServerError, err := l.Client.LeaderboardData.GetCurrentWeekLeaderboardRankingPublicV1(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
-	}
-	if unauthorized != nil {
-		return nil, unauthorized
-	}
-	if forbidden != nil {
-		return nil, forbidden
 	}
 	if notFound != nil {
 		return nil, notFound
@@ -536,7 +487,6 @@ func (l *LeaderboardDataService) GetCurrentWeekLeaderboardRankingPublicV1(input 
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use GetAllTimeLeaderboardRankingPublicV2Short instead
 func (l *LeaderboardDataService) GetAllTimeLeaderboardRankingPublicV2(input *leaderboard_data.GetAllTimeLeaderboardRankingPublicV2Params) (*leaderboardclientmodels.V2GetPublicLeaderboardRankingResponse, error) {
 	accessToken, err := l.TokenRepository.GetToken()
 	if err != nil {

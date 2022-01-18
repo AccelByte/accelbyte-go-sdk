@@ -19,7 +19,6 @@ type PresenceService struct {
 	TokenRepository repository.TokenRepository
 }
 
-// Deprecated: Use UsersPresenceHandlerV1Short instead
 func (p *PresenceService) UsersPresenceHandlerV1(input *presence.UsersPresenceHandlerV1Params) (*lobbyclientmodels.HandlersGetUsersPresenceResponse, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {

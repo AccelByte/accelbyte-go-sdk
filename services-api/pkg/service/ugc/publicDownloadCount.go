@@ -19,7 +19,6 @@ type PublicDownloadCountService struct {
 	TokenRepository repository.TokenRepository
 }
 
-// Deprecated: Use AddDownloadCountShort instead
 func (p *PublicDownloadCountService) AddDownloadCount(input *public_download_count.AddDownloadCountParams) (*ugcclientmodels.ModelsAddDownloadCountResponse, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {

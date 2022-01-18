@@ -35,6 +35,8 @@ type ClientService interface {
 	DeleteEpicGamesIAPConfigShort(params *DeleteEpicGamesIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteEpicGamesIAPConfigNoContent, error)
 	DeleteGoogleIAPConfig(params *DeleteGoogleIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteGoogleIAPConfigNoContent, error)
 	DeleteGoogleIAPConfigShort(params *DeleteGoogleIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteGoogleIAPConfigNoContent, error)
+	DeleteIAPItemConfig(params *DeleteIAPItemConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteIAPItemConfigNoContent, error)
+	DeleteIAPItemConfigShort(params *DeleteIAPItemConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteIAPItemConfigNoContent, error)
 	DeletePlaystationIAPConfig(params *DeletePlaystationIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeletePlaystationIAPConfigNoContent, error)
 	DeletePlaystationIAPConfigShort(params *DeletePlaystationIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeletePlaystationIAPConfigNoContent, error)
 	DeleteStadiaIAPConfig(params *DeleteStadiaIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteStadiaIAPConfigNoContent, error)
@@ -49,6 +51,8 @@ type ClientService interface {
 	GetEpicGamesIAPConfigShort(params *GetEpicGamesIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetEpicGamesIAPConfigOK, error)
 	GetGoogleIAPConfig(params *GetGoogleIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetGoogleIAPConfigOK, error)
 	GetGoogleIAPConfigShort(params *GetGoogleIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetGoogleIAPConfigOK, error)
+	GetIAPItemConfig(params *GetIAPItemConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetIAPItemConfigOK, *GetIAPItemConfigNotFound, error)
+	GetIAPItemConfigShort(params *GetIAPItemConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetIAPItemConfigOK, error)
 	GetPlayStationIAPConfig(params *GetPlayStationIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetPlayStationIAPConfigOK, error)
 	GetPlayStationIAPConfigShort(params *GetPlayStationIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetPlayStationIAPConfigOK, error)
 	GetStadiaIAPConfig(params *GetStadiaIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetStadiaIAPConfigOK, error)
@@ -65,6 +69,8 @@ type ClientService interface {
 	PublicFulfillGoogleIAPItemShort(params *PublicFulfillGoogleIAPItemParams, authInfo runtime.ClientAuthInfoWriter) (*PublicFulfillGoogleIAPItemNoContent, error)
 	PublicReconcilePlayStationStore(params *PublicReconcilePlayStationStoreParams, authInfo runtime.ClientAuthInfoWriter) (*PublicReconcilePlayStationStoreOK, *PublicReconcilePlayStationStoreBadRequest, error)
 	PublicReconcilePlayStationStoreShort(params *PublicReconcilePlayStationStoreParams, authInfo runtime.ClientAuthInfoWriter) (*PublicReconcilePlayStationStoreOK, error)
+	QueryAllUserIAPOrders(params *QueryAllUserIAPOrdersParams, authInfo runtime.ClientAuthInfoWriter) (*QueryAllUserIAPOrdersOK, error)
+	QueryAllUserIAPOrdersShort(params *QueryAllUserIAPOrdersParams, authInfo runtime.ClientAuthInfoWriter) (*QueryAllUserIAPOrdersOK, error)
 	QueryUserIAPOrders(params *QueryUserIAPOrdersParams, authInfo runtime.ClientAuthInfoWriter) (*QueryUserIAPOrdersOK, error)
 	QueryUserIAPOrdersShort(params *QueryUserIAPOrdersParams, authInfo runtime.ClientAuthInfoWriter) (*QueryUserIAPOrdersOK, error)
 	SyncEpicGamesInventory(params *SyncEpicGamesInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*SyncEpicGamesInventoryOK, error)
@@ -83,6 +89,8 @@ type ClientService interface {
 	UpdateGoogleIAPConfigShort(params *UpdateGoogleIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateGoogleIAPConfigOK, error)
 	UpdateGoogleP12File(params *UpdateGoogleP12FileParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateGoogleP12FileOK, error)
 	UpdateGoogleP12FileShort(params *UpdateGoogleP12FileParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateGoogleP12FileOK, error)
+	UpdateIAPItemConfig(params *UpdateIAPItemConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateIAPItemConfigOK, *UpdateIAPItemConfigUnprocessableEntity, error)
+	UpdateIAPItemConfigShort(params *UpdateIAPItemConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateIAPItemConfigOK, error)
 	UpdatePlaystationIAPConfig(params *UpdatePlaystationIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePlaystationIAPConfigOK, error)
 	UpdatePlaystationIAPConfigShort(params *UpdatePlaystationIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePlaystationIAPConfigOK, error)
 	UpdateStadiaJSONConfigFile(params *UpdateStadiaJSONConfigFileParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateStadiaJSONConfigFileOK, error)
@@ -327,6 +335,85 @@ func (a *Client) DeleteGoogleIAPConfigShort(params *DeleteGoogleIAPConfigParams,
 	switch v := result.(type) {
 
 	case *DeleteGoogleIAPConfigNoContent:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  DeleteIAPItemConfig deletes a iap item config
+
+  delete a iap item config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;&lt;/b&gt;, action=8 &lt;b&gt;(DELETE)&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;
+*/
+func (a *Client) DeleteIAPItemConfig(params *DeleteIAPItemConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteIAPItemConfigNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteIAPItemConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "deleteIAPItemConfig",
+		Method:             "DELETE",
+		PathPattern:        "/admin/namespaces/{namespace}/iap/config/item",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteIAPItemConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeleteIAPItemConfigNoContent:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) DeleteIAPItemConfigShort(params *DeleteIAPItemConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteIAPItemConfigNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteIAPItemConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "deleteIAPItemConfig",
+		Method:             "DELETE",
+		PathPattern:        "/admin/namespaces/{namespace}/iap/config/item",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteIAPItemConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeleteIAPItemConfigNoContent:
 		return v, nil
 
 	default:
@@ -886,6 +973,90 @@ func (a *Client) GetGoogleIAPConfigShort(params *GetGoogleIAPConfigParams, authI
 
 	case *GetGoogleIAPConfigOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  GetIAPItemConfig gets iap item config
+
+  Get iap item config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;&lt;/b&gt;, action=2 &lt;b&gt;(READ)&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;
+*/
+func (a *Client) GetIAPItemConfig(params *GetIAPItemConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetIAPItemConfigOK, *GetIAPItemConfigNotFound, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetIAPItemConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getIAPItemConfig",
+		Method:             "GET",
+		PathPattern:        "/admin/namespaces/{namespace}/iap/config/item",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetIAPItemConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetIAPItemConfigOK:
+		return v, nil, nil
+
+	case *GetIAPItemConfigNotFound:
+		return nil, v, nil
+
+	default:
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetIAPItemConfigShort(params *GetIAPItemConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetIAPItemConfigOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetIAPItemConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getIAPItemConfig",
+		Method:             "GET",
+		PathPattern:        "/admin/namespaces/{namespace}/iap/config/item",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetIAPItemConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetIAPItemConfigOK:
+		return v, nil
+	case *GetIAPItemConfigNotFound:
+		return nil, v
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
@@ -1573,6 +1744,85 @@ func (a *Client) PublicReconcilePlayStationStoreShort(params *PublicReconcilePla
 		return v, nil
 	case *PublicReconcilePlayStationStoreBadRequest:
 		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  QueryAllUserIAPOrders queries all user i a p orders
+
+  Query all user IAP orders.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:IAP&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: list of iap orders&lt;/li&gt;&lt;/ul&gt;
+*/
+func (a *Client) QueryAllUserIAPOrders(params *QueryAllUserIAPOrdersParams, authInfo runtime.ClientAuthInfoWriter) (*QueryAllUserIAPOrdersOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewQueryAllUserIAPOrdersParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "queryAllUserIAPOrders",
+		Method:             "GET",
+		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/iap/all",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &QueryAllUserIAPOrdersReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *QueryAllUserIAPOrdersOK:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) QueryAllUserIAPOrdersShort(params *QueryAllUserIAPOrdersParams, authInfo runtime.ClientAuthInfoWriter) (*QueryAllUserIAPOrdersOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewQueryAllUserIAPOrdersParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "queryAllUserIAPOrders",
+		Method:             "GET",
+		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/iap/all",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &QueryAllUserIAPOrdersReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *QueryAllUserIAPOrdersOK:
+		return v, nil
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
@@ -2284,6 +2534,90 @@ func (a *Client) UpdateGoogleP12FileShort(params *UpdateGoogleP12FileParams, aut
 
 	case *UpdateGoogleP12FileOK:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  UpdateIAPItemConfig updates iap item config
+
+  Update iap item config. Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated iap item config&lt;/li&gt;&lt;/ul&gt;
+*/
+func (a *Client) UpdateIAPItemConfig(params *UpdateIAPItemConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateIAPItemConfigOK, *UpdateIAPItemConfigUnprocessableEntity, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateIAPItemConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updateIAPItemConfig",
+		Method:             "PUT",
+		PathPattern:        "/admin/namespaces/{namespace}/iap/config/item",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateIAPItemConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateIAPItemConfigOK:
+		return v, nil, nil
+
+	case *UpdateIAPItemConfigUnprocessableEntity:
+		return nil, v, nil
+
+	default:
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) UpdateIAPItemConfigShort(params *UpdateIAPItemConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateIAPItemConfigOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateIAPItemConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updateIAPItemConfig",
+		Method:             "PUT",
+		PathPattern:        "/admin/namespaces/{namespace}/iap/config/item",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateIAPItemConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateIAPItemConfigOK:
+		return v, nil
+	case *UpdateIAPItemConfigUnprocessableEntity:
+		return nil, v
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))

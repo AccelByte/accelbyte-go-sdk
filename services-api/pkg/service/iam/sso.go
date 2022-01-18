@@ -18,6 +18,7 @@ type SSOService struct {
 	TokenRepository repository.TokenRepository
 }
 
+// Deprecated: Use LoginSSOClientShort instead
 func (s *SSOService) LoginSSOClient(input *s_s_o.LoginSSOClientParams) error {
 	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {
@@ -30,6 +31,7 @@ func (s *SSOService) LoginSSOClient(input *s_s_o.LoginSSOClientParams) error {
 	return nil
 }
 
+// Deprecated: Use LogoutSSOClientShort instead
 func (s *SSOService) LogoutSSOClient(input *s_s_o.LogoutSSOClientParams) error {
 	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {

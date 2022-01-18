@@ -19,6 +19,7 @@ type PublicTypeService struct {
 	TokenRepository repository.TokenRepository
 }
 
+// Deprecated: Use GetTypeShort instead
 func (p *PublicTypeService) GetType(input *public_type.GetTypeParams) (*ugcclientmodels.ModelsPaginatedGetTypeResponse, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {

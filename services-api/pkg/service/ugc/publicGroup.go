@@ -19,6 +19,7 @@ type PublicGroupService struct {
 	TokenRepository repository.TokenRepository
 }
 
+// Deprecated: Use GetGroupsShort instead
 func (p *PublicGroupService) GetGroups(input *public_group.GetGroupsParams) (*ugcclientmodels.ModelsPaginatedGroupResponse, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -40,6 +41,7 @@ func (p *PublicGroupService) GetGroups(input *public_group.GetGroupsParams) (*ug
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use CreateGroupShort instead
 func (p *PublicGroupService) CreateGroup(input *public_group.CreateGroupParams) (*ugcclientmodels.ModelsCreateGroupResponse, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -61,6 +63,7 @@ func (p *PublicGroupService) CreateGroup(input *public_group.CreateGroupParams) 
 	return created.GetPayload(), nil
 }
 
+// Deprecated: Use GetGroupShort instead
 func (p *PublicGroupService) GetGroup(input *public_group.GetGroupParams) (*ugcclientmodels.ModelsCreateGroupResponse, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -82,6 +85,7 @@ func (p *PublicGroupService) GetGroup(input *public_group.GetGroupParams) (*ugcc
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use UpdateGroupShort instead
 func (p *PublicGroupService) UpdateGroup(input *public_group.UpdateGroupParams) (*ugcclientmodels.ModelsCreateGroupResponse, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -106,6 +110,7 @@ func (p *PublicGroupService) UpdateGroup(input *public_group.UpdateGroupParams) 
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use DeleteGroupShort instead
 func (p *PublicGroupService) DeleteGroup(input *public_group.DeleteGroupParams) error {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -127,6 +132,7 @@ func (p *PublicGroupService) DeleteGroup(input *public_group.DeleteGroupParams) 
 	return nil
 }
 
+// Deprecated: Use GetGroupContentShort instead
 func (p *PublicGroupService) GetGroupContent(input *public_group.GetGroupContentParams) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {

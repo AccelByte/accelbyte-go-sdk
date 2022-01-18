@@ -19,6 +19,7 @@ type LeaderboardConfigurationService struct {
 	TokenRepository repository.TokenRepository
 }
 
+// Deprecated: Use GetLeaderboardConfigurationsAdminV1Short instead
 func (l *LeaderboardConfigurationService) GetLeaderboardConfigurationsAdminV1(input *leaderboard_configuration.GetLeaderboardConfigurationsAdminV1Params) (*leaderboardclientmodels.ModelsGetAllLeaderboardConfigsResp, error) {
 	accessToken, err := l.TokenRepository.GetToken()
 	if err != nil {
@@ -43,6 +44,7 @@ func (l *LeaderboardConfigurationService) GetLeaderboardConfigurationsAdminV1(in
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use CreateLeaderboardConfigurationAdminV1Short instead
 func (l *LeaderboardConfigurationService) CreateLeaderboardConfigurationAdminV1(input *leaderboard_configuration.CreateLeaderboardConfigurationAdminV1Params) (*leaderboardclientmodels.ModelsLeaderboardConfigReq, error) {
 	accessToken, err := l.TokenRepository.GetToken()
 	if err != nil {
@@ -70,6 +72,7 @@ func (l *LeaderboardConfigurationService) CreateLeaderboardConfigurationAdminV1(
 	return created.GetPayload(), nil
 }
 
+// Deprecated: Use DeleteBulkLeaderboardConfigurationAdminV1Short instead
 func (l *LeaderboardConfigurationService) DeleteBulkLeaderboardConfigurationAdminV1(input *leaderboard_configuration.DeleteBulkLeaderboardConfigurationAdminV1Params) (*leaderboardclientmodels.ModelsDeleteBulkLeaderboardsResp, error) {
 	accessToken, err := l.TokenRepository.GetToken()
 	if err != nil {
@@ -94,6 +97,7 @@ func (l *LeaderboardConfigurationService) DeleteBulkLeaderboardConfigurationAdmi
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use GetLeaderboardConfigurationAdminV1Short instead
 func (l *LeaderboardConfigurationService) GetLeaderboardConfigurationAdminV1(input *leaderboard_configuration.GetLeaderboardConfigurationAdminV1Params) (*leaderboardclientmodels.ModelsGetLeaderboardConfigResp, error) {
 	accessToken, err := l.TokenRepository.GetToken()
 	if err != nil {
@@ -121,6 +125,7 @@ func (l *LeaderboardConfigurationService) GetLeaderboardConfigurationAdminV1(inp
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use UpdateLeaderboardConfigurationAdminV1Short instead
 func (l *LeaderboardConfigurationService) UpdateLeaderboardConfigurationAdminV1(input *leaderboard_configuration.UpdateLeaderboardConfigurationAdminV1Params) (*leaderboardclientmodels.ModelsGetLeaderboardConfigResp, error) {
 	accessToken, err := l.TokenRepository.GetToken()
 	if err != nil {
@@ -148,6 +153,7 @@ func (l *LeaderboardConfigurationService) UpdateLeaderboardConfigurationAdminV1(
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use DeleteLeaderboardConfigurationAdminV1Short instead
 func (l *LeaderboardConfigurationService) DeleteLeaderboardConfigurationAdminV1(input *leaderboard_configuration.DeleteLeaderboardConfigurationAdminV1Params) error {
 	accessToken, err := l.TokenRepository.GetToken()
 	if err != nil {
@@ -175,6 +181,7 @@ func (l *LeaderboardConfigurationService) DeleteLeaderboardConfigurationAdminV1(
 	return nil
 }
 
+// Deprecated: Use GetLeaderboardConfigurationsPublicV1Short instead
 func (l *LeaderboardConfigurationService) GetLeaderboardConfigurationsPublicV1(input *leaderboard_configuration.GetLeaderboardConfigurationsPublicV1Params) (*leaderboardclientmodels.ModelsGetAllLeaderboardConfigsPublicResp, error) {
 	accessToken, err := l.TokenRepository.GetToken()
 	if err != nil {
@@ -199,6 +206,7 @@ func (l *LeaderboardConfigurationService) GetLeaderboardConfigurationsPublicV1(i
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use CreateLeaderboardConfigurationPublicV1Short instead
 func (l *LeaderboardConfigurationService) CreateLeaderboardConfigurationPublicV1(input *leaderboard_configuration.CreateLeaderboardConfigurationPublicV1Params) (*leaderboardclientmodels.ModelsLeaderboardConfigReq, error) {
 	accessToken, err := l.TokenRepository.GetToken()
 	if err != nil {
@@ -226,6 +234,7 @@ func (l *LeaderboardConfigurationService) CreateLeaderboardConfigurationPublicV1
 	return created.GetPayload(), nil
 }
 
+// Deprecated: Use GetLeaderboardConfigurationsPublicV2Short instead
 func (l *LeaderboardConfigurationService) GetLeaderboardConfigurationsPublicV2(input *leaderboard_configuration.GetLeaderboardConfigurationsPublicV2Params) (*leaderboardclientmodels.V2GetAllLeaderboardConfigsPublicResp, error) {
 	accessToken, err := l.TokenRepository.GetToken()
 	if err != nil {

@@ -19,6 +19,7 @@ type EventService struct {
 	TokenRepository repository.TokenRepository
 }
 
+// Deprecated: Use GetEventByNamespaceHandlerShort instead
 func (e *EventService) GetEventByNamespaceHandler(input *event.GetEventByNamespaceHandlerParams) (*eventlogclientmodels.ModelsEventResponse, error) {
 	accessToken, err := e.TokenRepository.GetToken()
 	if err != nil {
@@ -46,6 +47,7 @@ func (e *EventService) GetEventByNamespaceHandler(input *event.GetEventByNamespa
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use PostEventHandlerShort instead
 func (e *EventService) PostEventHandler(input *event.PostEventHandlerParams) error {
 	accessToken, err := e.TokenRepository.GetToken()
 	if err != nil {
@@ -70,6 +72,7 @@ func (e *EventService) PostEventHandler(input *event.PostEventHandlerParams) err
 	return nil
 }
 
+// Deprecated: Use GetEventByEventIDHandlerShort instead
 func (e *EventService) GetEventByEventIDHandler(input *event.GetEventByEventIDHandlerParams) (*eventlogclientmodels.ModelsEventResponse, error) {
 	accessToken, err := e.TokenRepository.GetToken()
 	if err != nil {
@@ -97,6 +100,7 @@ func (e *EventService) GetEventByEventIDHandler(input *event.GetEventByEventIDHa
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use GetEventByEventTypeHandlerShort instead
 func (e *EventService) GetEventByEventTypeHandler(input *event.GetEventByEventTypeHandlerParams) (*eventlogclientmodels.ModelsEventResponse, error) {
 	accessToken, err := e.TokenRepository.GetToken()
 	if err != nil {
@@ -124,6 +128,7 @@ func (e *EventService) GetEventByEventTypeHandler(input *event.GetEventByEventTy
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use GetEventByEventTypeAndEventIDHandlerShort instead
 func (e *EventService) GetEventByEventTypeAndEventIDHandler(input *event.GetEventByEventTypeAndEventIDHandlerParams) (*eventlogclientmodels.ModelsEventResponse, error) {
 	accessToken, err := e.TokenRepository.GetToken()
 	if err != nil {
@@ -151,6 +156,7 @@ func (e *EventService) GetEventByEventTypeAndEventIDHandler(input *event.GetEven
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use GetEventByUserIDHandlerShort instead
 func (e *EventService) GetEventByUserIDHandler(input *event.GetEventByUserIDHandlerParams) (*eventlogclientmodels.ModelsEventResponse, error) {
 	accessToken, err := e.TokenRepository.GetToken()
 	if err != nil {
@@ -178,6 +184,7 @@ func (e *EventService) GetEventByUserIDHandler(input *event.GetEventByUserIDHand
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use GetEventByUserIDAndEventIDHandlerShort instead
 func (e *EventService) GetEventByUserIDAndEventIDHandler(input *event.GetEventByUserIDAndEventIDHandlerParams) (*eventlogclientmodels.ModelsEventResponse, error) {
 	accessToken, err := e.TokenRepository.GetToken()
 	if err != nil {
@@ -205,6 +212,7 @@ func (e *EventService) GetEventByUserIDAndEventIDHandler(input *event.GetEventBy
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use GetEventByUserIDAndEventTypeHandlerShort instead
 func (e *EventService) GetEventByUserIDAndEventTypeHandler(input *event.GetEventByUserIDAndEventTypeHandlerParams) (*eventlogclientmodels.ModelsEventResponse, error) {
 	accessToken, err := e.TokenRepository.GetToken()
 	if err != nil {
@@ -232,6 +240,7 @@ func (e *EventService) GetEventByUserIDAndEventTypeHandler(input *event.GetEvent
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use GetEventByUserEventIDAndEventTypeHandlerShort instead
 func (e *EventService) GetEventByUserEventIDAndEventTypeHandler(input *event.GetEventByUserEventIDAndEventTypeHandlerParams) (*eventlogclientmodels.ModelsEventResponse, error) {
 	accessToken, err := e.TokenRepository.GetToken()
 	if err != nil {

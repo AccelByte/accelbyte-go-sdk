@@ -19,6 +19,7 @@ type AdminUserAgreementService struct {
 	TokenRepository repository.TokenRepository
 }
 
+// Deprecated: Use IndirectBulkAcceptVersionedPolicyShort instead
 func (a *AdminUserAgreementService) IndirectBulkAcceptVersionedPolicy(input *admin_user_agreement.IndirectBulkAcceptVersionedPolicyParams) (*legalclientmodels.AcceptAgreementResponse, error) {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {

@@ -19,6 +19,7 @@ type TierService struct {
 	TokenRepository repository.TokenRepository
 }
 
+// Deprecated: Use UpdateTierShort instead
 func (t *TierService) UpdateTier(input *tier.UpdateTierParams) (*seasonpassclientmodels.Tier, error) {
 	accessToken, err := t.TokenRepository.GetToken()
 	if err != nil {
@@ -43,6 +44,7 @@ func (t *TierService) UpdateTier(input *tier.UpdateTierParams) (*seasonpassclien
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use DeleteTierShort instead
 func (t *TierService) DeleteTier(input *tier.DeleteTierParams) error {
 	accessToken, err := t.TokenRepository.GetToken()
 	if err != nil {
@@ -64,6 +66,7 @@ func (t *TierService) DeleteTier(input *tier.DeleteTierParams) error {
 	return nil
 }
 
+// Deprecated: Use QueryTiersShort instead
 func (t *TierService) QueryTiers(input *tier.QueryTiersParams) (*seasonpassclientmodels.TierPagingSlicedResult, error) {
 	accessToken, err := t.TokenRepository.GetToken()
 	if err != nil {
@@ -82,6 +85,7 @@ func (t *TierService) QueryTiers(input *tier.QueryTiersParams) (*seasonpassclien
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use CreateTierShort instead
 func (t *TierService) CreateTier(input *tier.CreateTierParams) ([]*seasonpassclientmodels.Tier, error) {
 	accessToken, err := t.TokenRepository.GetToken()
 	if err != nil {
@@ -106,6 +110,7 @@ func (t *TierService) CreateTier(input *tier.CreateTierParams) ([]*seasonpasscli
 	return created.GetPayload(), nil
 }
 
+// Deprecated: Use GrantUserTierShort instead
 func (t *TierService) GrantUserTier(input *tier.GrantUserTierParams) (*seasonpassclientmodels.UserSeasonSummary, error) {
 	accessToken, err := t.TokenRepository.GetToken()
 	if err != nil {
@@ -124,6 +129,7 @@ func (t *TierService) GrantUserTier(input *tier.GrantUserTierParams) (*seasonpas
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use GrantUserExpShort instead
 func (t *TierService) GrantUserExp(input *tier.GrantUserExpParams) (*seasonpassclientmodels.UserSeasonSummary, error) {
 	accessToken, err := t.TokenRepository.GetToken()
 	if err != nil {

@@ -19,6 +19,7 @@ type ClientsService struct {
 	TokenRepository repository.TokenRepository
 }
 
+// Deprecated: Use GetClientsShort instead
 func (c *ClientsService) GetClients(input *clients.GetClientsParams) ([]*iamclientmodels.ClientmodelClientResponse, error) {
 	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
@@ -37,6 +38,7 @@ func (c *ClientsService) GetClients(input *clients.GetClientsParams) ([]*iamclie
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use CreateClientShort instead
 func (c *ClientsService) CreateClient(input *clients.CreateClientParams) (*iamclientmodels.ClientmodelClientCreationResponse, error) {
 	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
@@ -61,6 +63,7 @@ func (c *ClientsService) CreateClient(input *clients.CreateClientParams) (*iamcl
 	return created.GetPayload(), nil
 }
 
+// Deprecated: Use GetClientShort instead
 func (c *ClientsService) GetClient(input *clients.GetClientParams) (*iamclientmodels.ClientmodelClientResponse, error) {
 	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
@@ -82,6 +85,7 @@ func (c *ClientsService) GetClient(input *clients.GetClientParams) (*iamclientmo
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use UpdateClientShort instead
 func (c *ClientsService) UpdateClient(input *clients.UpdateClientParams) (*iamclientmodels.ClientmodelClientResponse, error) {
 	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
@@ -106,6 +110,7 @@ func (c *ClientsService) UpdateClient(input *clients.UpdateClientParams) (*iamcl
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use DeleteClientShort instead
 func (c *ClientsService) DeleteClient(input *clients.DeleteClientParams) error {
 	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
@@ -127,6 +132,7 @@ func (c *ClientsService) DeleteClient(input *clients.DeleteClientParams) error {
 	return nil
 }
 
+// Deprecated: Use UpdateClientPermissionShort instead
 func (c *ClientsService) UpdateClientPermission(input *clients.UpdateClientPermissionParams) error {
 	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
@@ -151,6 +157,7 @@ func (c *ClientsService) UpdateClientPermission(input *clients.UpdateClientPermi
 	return nil
 }
 
+// Deprecated: Use AddClientPermissionShort instead
 func (c *ClientsService) AddClientPermission(input *clients.AddClientPermissionParams) error {
 	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
@@ -175,6 +182,7 @@ func (c *ClientsService) AddClientPermission(input *clients.AddClientPermissionP
 	return nil
 }
 
+// Deprecated: Use DeleteClientPermissionShort instead
 func (c *ClientsService) DeleteClientPermission(input *clients.DeleteClientPermissionParams) error {
 	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
@@ -199,6 +207,7 @@ func (c *ClientsService) DeleteClientPermission(input *clients.DeleteClientPermi
 	return nil
 }
 
+// Deprecated: Use UpdateClientSecretShort instead
 func (c *ClientsService) UpdateClientSecret(input *clients.UpdateClientSecretParams) error {
 	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
@@ -223,6 +232,7 @@ func (c *ClientsService) UpdateClientSecret(input *clients.UpdateClientSecretPar
 	return nil
 }
 
+// Deprecated: Use GetClientsbyNamespaceShort instead
 func (c *ClientsService) GetClientsbyNamespace(input *clients.GetClientsbyNamespaceParams) ([]*iamclientmodels.ClientmodelClientResponse, error) {
 	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
@@ -241,6 +251,7 @@ func (c *ClientsService) GetClientsbyNamespace(input *clients.GetClientsbyNamesp
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use CreateClientByNamespaceShort instead
 func (c *ClientsService) CreateClientByNamespace(input *clients.CreateClientByNamespaceParams) (*iamclientmodels.ClientmodelClientCreationResponse, error) {
 	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
@@ -265,6 +276,7 @@ func (c *ClientsService) CreateClientByNamespace(input *clients.CreateClientByNa
 	return created.GetPayload(), nil
 }
 
+// Deprecated: Use DeleteClientByNamespaceShort instead
 func (c *ClientsService) DeleteClientByNamespace(input *clients.DeleteClientByNamespaceParams) error {
 	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
@@ -286,6 +298,7 @@ func (c *ClientsService) DeleteClientByNamespace(input *clients.DeleteClientByNa
 	return nil
 }
 
+// Deprecated: Use AdminGetClientsByNamespaceV3Short instead
 func (c *ClientsService) AdminGetClientsByNamespaceV3(input *clients.AdminGetClientsByNamespaceV3Params) (*iamclientmodels.ClientmodelClientsV3Response, error) {
 	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
@@ -307,6 +320,7 @@ func (c *ClientsService) AdminGetClientsByNamespaceV3(input *clients.AdminGetCli
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use AdminCreateClientV3Short instead
 func (c *ClientsService) AdminCreateClientV3(input *clients.AdminCreateClientV3Params) (*iamclientmodels.ClientmodelClientV3Response, error) {
 	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
@@ -331,6 +345,7 @@ func (c *ClientsService) AdminCreateClientV3(input *clients.AdminCreateClientV3P
 	return created.GetPayload(), nil
 }
 
+// Deprecated: Use AdminGetClientsbyNamespacebyIDV3Short instead
 func (c *ClientsService) AdminGetClientsbyNamespacebyIDV3(input *clients.AdminGetClientsbyNamespacebyIDV3Params) (*iamclientmodels.ClientmodelClientV3Response, error) {
 	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
@@ -355,6 +370,7 @@ func (c *ClientsService) AdminGetClientsbyNamespacebyIDV3(input *clients.AdminGe
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use AdminDeleteClientV3Short instead
 func (c *ClientsService) AdminDeleteClientV3(input *clients.AdminDeleteClientV3Params) error {
 	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
@@ -379,6 +395,7 @@ func (c *ClientsService) AdminDeleteClientV3(input *clients.AdminDeleteClientV3P
 	return nil
 }
 
+// Deprecated: Use AdminUpdateClientV3Short instead
 func (c *ClientsService) AdminUpdateClientV3(input *clients.AdminUpdateClientV3Params) (*iamclientmodels.ClientmodelClientV3Response, error) {
 	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
@@ -403,6 +420,7 @@ func (c *ClientsService) AdminUpdateClientV3(input *clients.AdminUpdateClientV3P
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use AdminUpdateClientPermissionV3Short instead
 func (c *ClientsService) AdminUpdateClientPermissionV3(input *clients.AdminUpdateClientPermissionV3Params) error {
 	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
@@ -427,6 +445,7 @@ func (c *ClientsService) AdminUpdateClientPermissionV3(input *clients.AdminUpdat
 	return nil
 }
 
+// Deprecated: Use AdminAddClientPermissionsV3Short instead
 func (c *ClientsService) AdminAddClientPermissionsV3(input *clients.AdminAddClientPermissionsV3Params) error {
 	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
@@ -451,6 +470,7 @@ func (c *ClientsService) AdminAddClientPermissionsV3(input *clients.AdminAddClie
 	return nil
 }
 
+// Deprecated: Use AdminDeleteClientPermissionV3Short instead
 func (c *ClientsService) AdminDeleteClientPermissionV3(input *clients.AdminDeleteClientPermissionV3Params) error {
 	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {

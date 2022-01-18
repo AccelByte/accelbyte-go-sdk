@@ -19,6 +19,7 @@ type PublicPlayerRecordService struct {
 	TokenRepository repository.TokenRepository
 }
 
+// Deprecated: Use BulkGetPlayerPublicRecordHandlerV1Short instead
 func (p *PublicPlayerRecordService) BulkGetPlayerPublicRecordHandlerV1(input *public_player_record.BulkGetPlayerPublicRecordHandlerV1Params) (*cloudsaveclientmodels.ModelsBulkGetPlayerRecordResponse, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -43,6 +44,7 @@ func (p *PublicPlayerRecordService) BulkGetPlayerPublicRecordHandlerV1(input *pu
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use PublicDeletePlayerPublicRecordHandlerV1Short instead
 func (p *PublicPlayerRecordService) PublicDeletePlayerPublicRecordHandlerV1(input *public_player_record.PublicDeletePlayerPublicRecordHandlerV1Params) error {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -64,6 +66,7 @@ func (p *PublicPlayerRecordService) PublicDeletePlayerPublicRecordHandlerV1(inpu
 	return nil
 }
 
+// Deprecated: Use GetPlayerRecordHandlerV1Short instead
 func (p *PublicPlayerRecordService) GetPlayerRecordHandlerV1(input *public_player_record.GetPlayerRecordHandlerV1Params) (*cloudsaveclientmodels.ModelsPlayerRecord, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -85,6 +88,7 @@ func (p *PublicPlayerRecordService) GetPlayerRecordHandlerV1(input *public_playe
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use PutPlayerRecordHandlerV1Short instead
 func (p *PublicPlayerRecordService) PutPlayerRecordHandlerV1(input *public_player_record.PutPlayerRecordHandlerV1Params) error {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -103,6 +107,7 @@ func (p *PublicPlayerRecordService) PutPlayerRecordHandlerV1(input *public_playe
 	return nil
 }
 
+// Deprecated: Use PostPlayerRecordHandlerV1Short instead
 func (p *PublicPlayerRecordService) PostPlayerRecordHandlerV1(input *public_player_record.PostPlayerRecordHandlerV1Params) error {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -121,6 +126,7 @@ func (p *PublicPlayerRecordService) PostPlayerRecordHandlerV1(input *public_play
 	return nil
 }
 
+// Deprecated: Use DeletePlayerRecordHandlerV1Short instead
 func (p *PublicPlayerRecordService) DeletePlayerRecordHandlerV1(input *public_player_record.DeletePlayerRecordHandlerV1Params) error {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -139,6 +145,7 @@ func (p *PublicPlayerRecordService) DeletePlayerRecordHandlerV1(input *public_pl
 	return nil
 }
 
+// Deprecated: Use GetPlayerPublicRecordHandlerV1Short instead
 func (p *PublicPlayerRecordService) GetPlayerPublicRecordHandlerV1(input *public_player_record.GetPlayerPublicRecordHandlerV1Params) (*cloudsaveclientmodels.ModelsPlayerRecord, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -160,6 +167,7 @@ func (p *PublicPlayerRecordService) GetPlayerPublicRecordHandlerV1(input *public
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use PutPlayerPublicRecordHandlerV1Short instead
 func (p *PublicPlayerRecordService) PutPlayerPublicRecordHandlerV1(input *public_player_record.PutPlayerPublicRecordHandlerV1Params) error {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -178,6 +186,7 @@ func (p *PublicPlayerRecordService) PutPlayerPublicRecordHandlerV1(input *public
 	return nil
 }
 
+// Deprecated: Use PostPlayerPublicRecordHandlerV1Short instead
 func (p *PublicPlayerRecordService) PostPlayerPublicRecordHandlerV1(input *public_player_record.PostPlayerPublicRecordHandlerV1Params) error {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {

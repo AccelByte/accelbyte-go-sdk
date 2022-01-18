@@ -19,6 +19,7 @@ type ChatService struct {
 	TokenRepository repository.TokenRepository
 }
 
+// Deprecated: Use PersonalChatHistoryShort instead
 func (c *ChatService) PersonalChatHistory(input *chat.PersonalChatHistoryParams) ([]*lobbyclientmodels.ModelChatMessageResponse, error) {
 	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
@@ -46,6 +47,7 @@ func (c *ChatService) PersonalChatHistory(input *chat.PersonalChatHistoryParams)
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use AdminChatHistoryShort instead
 func (c *ChatService) AdminChatHistory(input *chat.AdminChatHistoryParams) ([]*lobbyclientmodels.ModelChatMessageResponse, error) {
 	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
@@ -73,6 +75,7 @@ func (c *ChatService) AdminChatHistory(input *chat.AdminChatHistoryParams) ([]*l
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use GetPersonalChatHistoryV1PublicShort instead
 func (c *ChatService) GetPersonalChatHistoryV1Public(input *chat.GetPersonalChatHistoryV1PublicParams) ([]*lobbyclientmodels.ModelChatMessageResponse, error) {
 	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {

@@ -18,6 +18,7 @@ type AnonymizationService struct {
 	TokenRepository repository.TokenRepository
 }
 
+// Deprecated: Use AnonymizeUserAgreementShort instead
 func (a *AnonymizationService) AnonymizeUserAgreement(input *anonymization.AnonymizeUserAgreementParams) error {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {

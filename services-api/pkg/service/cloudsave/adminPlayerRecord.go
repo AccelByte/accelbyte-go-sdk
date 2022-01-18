@@ -19,6 +19,7 @@ type AdminPlayerRecordService struct {
 	TokenRepository repository.TokenRepository
 }
 
+// Deprecated: Use ListPlayerRecordHandlerV1Short instead
 func (a *AdminPlayerRecordService) ListPlayerRecordHandlerV1(input *admin_player_record.ListPlayerRecordHandlerV1Params) (*cloudsaveclientmodels.ModelsListPlayerRecordKeys, error) {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
@@ -40,6 +41,7 @@ func (a *AdminPlayerRecordService) ListPlayerRecordHandlerV1(input *admin_player
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use AdminRetrievePlayerRecordsShort instead
 func (a *AdminPlayerRecordService) AdminRetrievePlayerRecords(input *admin_player_record.AdminRetrievePlayerRecordsParams) (*cloudsaveclientmodels.ModelsListPlayerRecordKeys, error) {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
@@ -61,6 +63,7 @@ func (a *AdminPlayerRecordService) AdminRetrievePlayerRecords(input *admin_playe
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use AdminGetPlayerRecordHandlerV1Short instead
 func (a *AdminPlayerRecordService) AdminGetPlayerRecordHandlerV1(input *admin_player_record.AdminGetPlayerRecordHandlerV1Params) (*cloudsaveclientmodels.ModelsPlayerRecord, error) {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
@@ -82,6 +85,7 @@ func (a *AdminPlayerRecordService) AdminGetPlayerRecordHandlerV1(input *admin_pl
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use AdminPutPlayerRecordHandlerV1Short instead
 func (a *AdminPlayerRecordService) AdminPutPlayerRecordHandlerV1(input *admin_player_record.AdminPutPlayerRecordHandlerV1Params) error {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
@@ -100,6 +104,7 @@ func (a *AdminPlayerRecordService) AdminPutPlayerRecordHandlerV1(input *admin_pl
 	return nil
 }
 
+// Deprecated: Use AdminPostPlayerRecordHandlerV1Short instead
 func (a *AdminPlayerRecordService) AdminPostPlayerRecordHandlerV1(input *admin_player_record.AdminPostPlayerRecordHandlerV1Params) error {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
@@ -118,6 +123,7 @@ func (a *AdminPlayerRecordService) AdminPostPlayerRecordHandlerV1(input *admin_p
 	return nil
 }
 
+// Deprecated: Use AdminDeletePlayerRecordHandlerV1Short instead
 func (a *AdminPlayerRecordService) AdminDeletePlayerRecordHandlerV1(input *admin_player_record.AdminDeletePlayerRecordHandlerV1Params) error {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
@@ -136,6 +142,7 @@ func (a *AdminPlayerRecordService) AdminDeletePlayerRecordHandlerV1(input *admin
 	return nil
 }
 
+// Deprecated: Use AdminGetPlayerPublicRecordHandlerV1Short instead
 func (a *AdminPlayerRecordService) AdminGetPlayerPublicRecordHandlerV1(input *admin_player_record.AdminGetPlayerPublicRecordHandlerV1Params) (*cloudsaveclientmodels.ModelsPlayerRecord, error) {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
@@ -157,6 +164,7 @@ func (a *AdminPlayerRecordService) AdminGetPlayerPublicRecordHandlerV1(input *ad
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use AdminPutPlayerPublicRecordHandlerV1Short instead
 func (a *AdminPlayerRecordService) AdminPutPlayerPublicRecordHandlerV1(input *admin_player_record.AdminPutPlayerPublicRecordHandlerV1Params) error {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
@@ -178,6 +186,7 @@ func (a *AdminPlayerRecordService) AdminPutPlayerPublicRecordHandlerV1(input *ad
 	return nil
 }
 
+// Deprecated: Use AdminPostPlayerPublicRecordHandlerV1Short instead
 func (a *AdminPlayerRecordService) AdminPostPlayerPublicRecordHandlerV1(input *admin_player_record.AdminPostPlayerPublicRecordHandlerV1Params) error {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
@@ -199,6 +208,7 @@ func (a *AdminPlayerRecordService) AdminPostPlayerPublicRecordHandlerV1(input *a
 	return nil
 }
 
+// Deprecated: Use AdminDeletePlayerPublicRecordHandlerV1Short instead
 func (a *AdminPlayerRecordService) AdminDeletePlayerPublicRecordHandlerV1(input *admin_player_record.AdminDeletePlayerPublicRecordHandlerV1Params) error {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {

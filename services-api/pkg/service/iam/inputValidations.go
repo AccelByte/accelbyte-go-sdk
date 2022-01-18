@@ -19,6 +19,7 @@ type InputValidationsService struct {
 	TokenRepository repository.TokenRepository
 }
 
+// Deprecated: Use AdminGetInputValidationsShort instead
 func (i *InputValidationsService) AdminGetInputValidations(input *input_validations.AdminGetInputValidationsParams) (*iamclientmodels.ModelInputValidationsResponse, error) {
 	accessToken, err := i.TokenRepository.GetToken()
 	if err != nil {
@@ -37,6 +38,7 @@ func (i *InputValidationsService) AdminGetInputValidations(input *input_validati
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use AdminUpdateInputValidationsShort instead
 func (i *InputValidationsService) AdminUpdateInputValidations(input *input_validations.AdminUpdateInputValidationsParams) error {
 	accessToken, err := i.TokenRepository.GetToken()
 	if err != nil {
@@ -58,6 +60,7 @@ func (i *InputValidationsService) AdminUpdateInputValidations(input *input_valid
 	return nil
 }
 
+// Deprecated: Use AdminResetInputValidationsShort instead
 func (i *InputValidationsService) AdminResetInputValidations(input *input_validations.AdminResetInputValidationsParams) error {
 	accessToken, err := i.TokenRepository.GetToken()
 	if err != nil {
@@ -79,6 +82,7 @@ func (i *InputValidationsService) AdminResetInputValidations(input *input_valida
 	return nil
 }
 
+// Deprecated: Use PublicGetInputValidationsShort instead
 func (i *InputValidationsService) PublicGetInputValidations(input *input_validations.PublicGetInputValidationsParams) (*iamclientmodels.ModelInputValidationsPublicResponse, error) {
 	accessToken, err := i.TokenRepository.GetToken()
 	if err != nil {

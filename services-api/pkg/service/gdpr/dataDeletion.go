@@ -19,6 +19,7 @@ type DataDeletionService struct {
 	TokenRepository repository.TokenRepository
 }
 
+// Deprecated: Use AdminGetListDeletionDataRequestShort instead
 func (d *DataDeletionService) AdminGetListDeletionDataRequest(input *data_deletion.AdminGetListDeletionDataRequestParams) (*gdprclientmodels.ModelsListDeletionDataResponse, error) {
 	accessToken, err := d.TokenRepository.GetToken()
 	if err != nil {
@@ -46,6 +47,7 @@ func (d *DataDeletionService) AdminGetListDeletionDataRequest(input *data_deleti
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use AdminGetUserAccountDeletionRequestShort instead
 func (d *DataDeletionService) AdminGetUserAccountDeletionRequest(input *data_deletion.AdminGetUserAccountDeletionRequestParams) (*gdprclientmodels.ModelsDeletionData, error) {
 	accessToken, err := d.TokenRepository.GetToken()
 	if err != nil {
@@ -70,6 +72,7 @@ func (d *DataDeletionService) AdminGetUserAccountDeletionRequest(input *data_del
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use AdminSubmitUserAccountDeletionRequestShort instead
 func (d *DataDeletionService) AdminSubmitUserAccountDeletionRequest(input *data_deletion.AdminSubmitUserAccountDeletionRequestParams) (*gdprclientmodels.ModelsRequestDeleteResponse, error) {
 	accessToken, err := d.TokenRepository.GetToken()
 	if err != nil {
@@ -97,6 +100,7 @@ func (d *DataDeletionService) AdminSubmitUserAccountDeletionRequest(input *data_
 	return created.GetPayload(), nil
 }
 
+// Deprecated: Use AdminCancelUserAccountDeletionRequestShort instead
 func (d *DataDeletionService) AdminCancelUserAccountDeletionRequest(input *data_deletion.AdminCancelUserAccountDeletionRequestParams) error {
 	accessToken, err := d.TokenRepository.GetToken()
 	if err != nil {
@@ -124,6 +128,7 @@ func (d *DataDeletionService) AdminCancelUserAccountDeletionRequest(input *data_
 	return nil
 }
 
+// Deprecated: Use PublicSubmitUserAccountDeletionRequestShort instead
 func (d *DataDeletionService) PublicSubmitUserAccountDeletionRequest(input *data_deletion.PublicSubmitUserAccountDeletionRequestParams) (*gdprclientmodels.ModelsRequestDeleteResponse, error) {
 	accessToken, err := d.TokenRepository.GetToken()
 	if err != nil {
@@ -151,6 +156,7 @@ func (d *DataDeletionService) PublicSubmitUserAccountDeletionRequest(input *data
 	return created.GetPayload(), nil
 }
 
+// Deprecated: Use PublicCancelUserAccountDeletionRequestShort instead
 func (d *DataDeletionService) PublicCancelUserAccountDeletionRequest(input *data_deletion.PublicCancelUserAccountDeletionRequestParams) error {
 	accessToken, err := d.TokenRepository.GetToken()
 	if err != nil {
@@ -175,6 +181,7 @@ func (d *DataDeletionService) PublicCancelUserAccountDeletionRequest(input *data
 	return nil
 }
 
+// Deprecated: Use PublicGetUserAccountDeletionStatusShort instead
 func (d *DataDeletionService) PublicGetUserAccountDeletionStatus(input *data_deletion.PublicGetUserAccountDeletionStatusParams) (*gdprclientmodels.ModelsDeletionStatus, error) {
 	accessToken, err := d.TokenRepository.GetToken()
 	if err != nil {

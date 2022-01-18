@@ -19,6 +19,7 @@ type SlotConfigService struct {
 	TokenRepository repository.TokenRepository
 }
 
+// Deprecated: Use GetNamespaceSlotConfigShort instead
 func (s *SlotConfigService) GetNamespaceSlotConfig(input *slot_config.GetNamespaceSlotConfigParams) (*socialclientmodels.NamespaceSlotConfigInfo, error) {
 	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {
@@ -31,6 +32,7 @@ func (s *SlotConfigService) GetNamespaceSlotConfig(input *slot_config.GetNamespa
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use UpdateNamespaceSlotConfigShort instead
 func (s *SlotConfigService) UpdateNamespaceSlotConfig(input *slot_config.UpdateNamespaceSlotConfigParams) (*socialclientmodels.NamespaceSlotConfigInfo, error) {
 	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {
@@ -43,6 +45,7 @@ func (s *SlotConfigService) UpdateNamespaceSlotConfig(input *slot_config.UpdateN
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use DeleteNamespaceSlotConfigShort instead
 func (s *SlotConfigService) DeleteNamespaceSlotConfig(input *slot_config.DeleteNamespaceSlotConfigParams) error {
 	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {
@@ -55,6 +58,7 @@ func (s *SlotConfigService) DeleteNamespaceSlotConfig(input *slot_config.DeleteN
 	return nil
 }
 
+// Deprecated: Use GetUserSlotConfigShort instead
 func (s *SlotConfigService) GetUserSlotConfig(input *slot_config.GetUserSlotConfigParams) (*socialclientmodels.UserSlotConfigInfo, error) {
 	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {
@@ -67,6 +71,7 @@ func (s *SlotConfigService) GetUserSlotConfig(input *slot_config.GetUserSlotConf
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use UpdateUserSlotConfigShort instead
 func (s *SlotConfigService) UpdateUserSlotConfig(input *slot_config.UpdateUserSlotConfigParams) (*socialclientmodels.UserSlotConfigInfo, error) {
 	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {
@@ -79,6 +84,7 @@ func (s *SlotConfigService) UpdateUserSlotConfig(input *slot_config.UpdateUserSl
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use DeleteUserSlotConfigShort instead
 func (s *SlotConfigService) DeleteUserSlotConfig(input *slot_config.DeleteUserSlotConfigParams) error {
 	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {

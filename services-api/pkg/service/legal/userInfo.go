@@ -19,6 +19,7 @@ type UserInfoService struct {
 	TokenRepository repository.TokenRepository
 }
 
+// Deprecated: Use GetUserInfoStatusShort instead
 func (u *UserInfoService) GetUserInfoStatus(input *user_info.GetUserInfoStatusParams) ([]*legalclientmodels.RetrieveUserInfoCacheStatusResponse, error) {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
@@ -31,6 +32,7 @@ func (u *UserInfoService) GetUserInfoStatus(input *user_info.GetUserInfoStatusPa
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use SyncUserInfoShort instead
 func (u *UserInfoService) SyncUserInfo(input *user_info.SyncUserInfoParams) error {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
@@ -43,6 +45,7 @@ func (u *UserInfoService) SyncUserInfo(input *user_info.SyncUserInfoParams) erro
 	return nil
 }
 
+// Deprecated: Use InvalidateUserInfoCacheShort instead
 func (u *UserInfoService) InvalidateUserInfoCache(input *user_info.InvalidateUserInfoCacheParams) error {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {

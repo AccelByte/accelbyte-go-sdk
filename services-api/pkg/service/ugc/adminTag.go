@@ -19,6 +19,7 @@ type AdminTagService struct {
 	TokenRepository repository.TokenRepository
 }
 
+// Deprecated: Use AdminGetTagShort instead
 func (a *AdminTagService) AdminGetTag(input *admin_tag.AdminGetTagParams) (*ugcclientmodels.ModelsPaginatedGetTagResponse, error) {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
@@ -40,6 +41,7 @@ func (a *AdminTagService) AdminGetTag(input *admin_tag.AdminGetTagParams) (*ugcc
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use AdminCreateTagShort instead
 func (a *AdminTagService) AdminCreateTag(input *admin_tag.AdminCreateTagParams) (*ugcclientmodels.ModelsCreateTagResponse, error) {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
@@ -64,6 +66,7 @@ func (a *AdminTagService) AdminCreateTag(input *admin_tag.AdminCreateTagParams) 
 	return created.GetPayload(), nil
 }
 
+// Deprecated: Use AdminUpdateTagShort instead
 func (a *AdminTagService) AdminUpdateTag(input *admin_tag.AdminUpdateTagParams) (*ugcclientmodels.ModelsCreateTagResponse, error) {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
@@ -91,6 +94,7 @@ func (a *AdminTagService) AdminUpdateTag(input *admin_tag.AdminUpdateTagParams) 
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use AdminDeleteTagShort instead
 func (a *AdminTagService) AdminDeleteTag(input *admin_tag.AdminDeleteTagParams) error {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {

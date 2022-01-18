@@ -19,6 +19,7 @@ type UserInformationService struct {
 	TokenRepository repository.TokenRepository
 }
 
+// Deprecated: Use GetUserActivitiesHandlerShort instead
 func (u *UserInformationService) GetUserActivitiesHandler(input *user_information.GetUserActivitiesHandlerParams) (*eventlogclientmodels.ModelsEventResponse, error) {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
@@ -46,6 +47,7 @@ func (u *UserInformationService) GetUserActivitiesHandler(input *user_informatio
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use DeleteUserActivitiesHandlerShort instead
 func (u *UserInformationService) DeleteUserActivitiesHandler(input *user_information.DeleteUserActivitiesHandlerParams) error {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
@@ -70,6 +72,7 @@ func (u *UserInformationService) DeleteUserActivitiesHandler(input *user_informa
 	return nil
 }
 
+// Deprecated: Use LastUserActivityTimeHandlerShort instead
 func (u *UserInformationService) LastUserActivityTimeHandler(input *user_information.LastUserActivityTimeHandlerParams) (*eventlogclientmodels.ModelsUserLastActivity, error) {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {

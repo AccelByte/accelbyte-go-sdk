@@ -19,6 +19,7 @@ type PublicGameRecordService struct {
 	TokenRepository repository.TokenRepository
 }
 
+// Deprecated: Use GetGameRecordHandlerV1Short instead
 func (p *PublicGameRecordService) GetGameRecordHandlerV1(input *public_game_record.GetGameRecordHandlerV1Params) (*cloudsaveclientmodels.ModelsGameRecord, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -40,6 +41,7 @@ func (p *PublicGameRecordService) GetGameRecordHandlerV1(input *public_game_reco
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use PutGameRecordHandlerV1Short instead
 func (p *PublicGameRecordService) PutGameRecordHandlerV1(input *public_game_record.PutGameRecordHandlerV1Params) error {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -58,6 +60,7 @@ func (p *PublicGameRecordService) PutGameRecordHandlerV1(input *public_game_reco
 	return nil
 }
 
+// Deprecated: Use PostGameRecordHandlerV1Short instead
 func (p *PublicGameRecordService) PostGameRecordHandlerV1(input *public_game_record.PostGameRecordHandlerV1Params) error {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -76,6 +79,7 @@ func (p *PublicGameRecordService) PostGameRecordHandlerV1(input *public_game_rec
 	return nil
 }
 
+// Deprecated: Use DeleteGameRecordHandlerV1Short instead
 func (p *PublicGameRecordService) DeleteGameRecordHandlerV1(input *public_game_record.DeleteGameRecordHandlerV1Params) error {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {

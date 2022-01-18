@@ -19,6 +19,7 @@ type GameProfileService struct {
 	TokenRepository repository.TokenRepository
 }
 
+// Deprecated: Use GetUserProfilesShort instead
 func (g *GameProfileService) GetUserProfiles(input *game_profile.GetUserProfilesParams) ([]*socialclientmodels.GameProfileHeader, error) {
 	accessToken, err := g.TokenRepository.GetToken()
 	if err != nil {
@@ -31,6 +32,7 @@ func (g *GameProfileService) GetUserProfiles(input *game_profile.GetUserProfiles
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use GetProfileShort instead
 func (g *GameProfileService) GetProfile(input *game_profile.GetProfileParams) (*socialclientmodels.GameProfileInfo, error) {
 	accessToken, err := g.TokenRepository.GetToken()
 	if err != nil {
@@ -46,6 +48,7 @@ func (g *GameProfileService) GetProfile(input *game_profile.GetProfileParams) (*
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use PublicGetUserGameProfilesShort instead
 func (g *GameProfileService) PublicGetUserGameProfiles(input *game_profile.PublicGetUserGameProfilesParams) ([]*socialclientmodels.UserGameProfiles, error) {
 	accessToken, err := g.TokenRepository.GetToken()
 	if err != nil {
@@ -61,6 +64,7 @@ func (g *GameProfileService) PublicGetUserGameProfiles(input *game_profile.Publi
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use PublicGetUserProfilesShort instead
 func (g *GameProfileService) PublicGetUserProfiles(input *game_profile.PublicGetUserProfilesParams) ([]*socialclientmodels.GameProfileHeader, error) {
 	accessToken, err := g.TokenRepository.GetToken()
 	if err != nil {
@@ -73,6 +77,7 @@ func (g *GameProfileService) PublicGetUserProfiles(input *game_profile.PublicGet
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use PublicCreateProfileShort instead
 func (g *GameProfileService) PublicCreateProfile(input *game_profile.PublicCreateProfileParams) error {
 	accessToken, err := g.TokenRepository.GetToken()
 	if err != nil {
@@ -88,6 +93,7 @@ func (g *GameProfileService) PublicCreateProfile(input *game_profile.PublicCreat
 	return nil
 }
 
+// Deprecated: Use PublicGetProfileShort instead
 func (g *GameProfileService) PublicGetProfile(input *game_profile.PublicGetProfileParams) (*socialclientmodels.GameProfileInfo, error) {
 	accessToken, err := g.TokenRepository.GetToken()
 	if err != nil {
@@ -103,6 +109,7 @@ func (g *GameProfileService) PublicGetProfile(input *game_profile.PublicGetProfi
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use PublicUpdateProfileShort instead
 func (g *GameProfileService) PublicUpdateProfile(input *game_profile.PublicUpdateProfileParams) (*socialclientmodels.GameProfileInfo, error) {
 	accessToken, err := g.TokenRepository.GetToken()
 	if err != nil {
@@ -121,6 +128,7 @@ func (g *GameProfileService) PublicUpdateProfile(input *game_profile.PublicUpdat
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use PublicDeleteProfileShort instead
 func (g *GameProfileService) PublicDeleteProfile(input *game_profile.PublicDeleteProfileParams) error {
 	accessToken, err := g.TokenRepository.GetToken()
 	if err != nil {
@@ -136,6 +144,7 @@ func (g *GameProfileService) PublicDeleteProfile(input *game_profile.PublicDelet
 	return nil
 }
 
+// Deprecated: Use PublicGetProfileAttributeShort instead
 func (g *GameProfileService) PublicGetProfileAttribute(input *game_profile.PublicGetProfileAttributeParams) (*socialclientmodels.Attribute, error) {
 	accessToken, err := g.TokenRepository.GetToken()
 	if err != nil {
@@ -151,6 +160,7 @@ func (g *GameProfileService) PublicGetProfileAttribute(input *game_profile.Publi
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use PublicUpdateAttributeShort instead
 func (g *GameProfileService) PublicUpdateAttribute(input *game_profile.PublicUpdateAttributeParams) (*socialclientmodels.GameProfileInfo, error) {
 	accessToken, err := g.TokenRepository.GetToken()
 	if err != nil {

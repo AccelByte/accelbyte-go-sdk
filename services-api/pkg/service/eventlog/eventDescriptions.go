@@ -19,6 +19,7 @@ type EventDescriptionsService struct {
 	TokenRepository repository.TokenRepository
 }
 
+// Deprecated: Use AgentTypeDescriptionHandlerShort instead
 func (e *EventDescriptionsService) AgentTypeDescriptionHandler(input *event_descriptions.AgentTypeDescriptionHandlerParams) (*eventlogclientmodels.ModelsMultipleAgentType, error) {
 	accessToken, err := e.TokenRepository.GetToken()
 	if err != nil {
@@ -31,6 +32,7 @@ func (e *EventDescriptionsService) AgentTypeDescriptionHandler(input *event_desc
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use SpecificAgentTypeDescriptionHandlerShort instead
 func (e *EventDescriptionsService) SpecificAgentTypeDescriptionHandler(input *event_descriptions.SpecificAgentTypeDescriptionHandlerParams) (*eventlogclientmodels.ModelsMultipleAgentType, error) {
 	accessToken, err := e.TokenRepository.GetToken()
 	if err != nil {
@@ -49,6 +51,7 @@ func (e *EventDescriptionsService) SpecificAgentTypeDescriptionHandler(input *ev
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use EventIDDescriptionHandlerShort instead
 func (e *EventDescriptionsService) EventIDDescriptionHandler(input *event_descriptions.EventIDDescriptionHandlerParams) (*eventlogclientmodels.ModelsMultipleEventID, error) {
 	accessToken, err := e.TokenRepository.GetToken()
 	if err != nil {
@@ -61,6 +64,7 @@ func (e *EventDescriptionsService) EventIDDescriptionHandler(input *event_descri
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use SpecificEventIDDescriptionHandlerShort instead
 func (e *EventDescriptionsService) SpecificEventIDDescriptionHandler(input *event_descriptions.SpecificEventIDDescriptionHandlerParams) (*eventlogclientmodels.ModelsMultipleEventID, error) {
 	accessToken, err := e.TokenRepository.GetToken()
 	if err != nil {
@@ -79,6 +83,7 @@ func (e *EventDescriptionsService) SpecificEventIDDescriptionHandler(input *even
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use EventLevelDescriptionHandlerShort instead
 func (e *EventDescriptionsService) EventLevelDescriptionHandler(input *event_descriptions.EventLevelDescriptionHandlerParams) (*eventlogclientmodels.ModelsMultipleEventLevel, error) {
 	accessToken, err := e.TokenRepository.GetToken()
 	if err != nil {
@@ -91,6 +96,7 @@ func (e *EventDescriptionsService) EventLevelDescriptionHandler(input *event_des
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use SpecificEventLevelDescriptionHandlerShort instead
 func (e *EventDescriptionsService) SpecificEventLevelDescriptionHandler(input *event_descriptions.SpecificEventLevelDescriptionHandlerParams) (*eventlogclientmodels.ModelsMultipleEventLevel, error) {
 	accessToken, err := e.TokenRepository.GetToken()
 	if err != nil {
@@ -109,6 +115,7 @@ func (e *EventDescriptionsService) SpecificEventLevelDescriptionHandler(input *e
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use EventTypeDescriptionHandlerShort instead
 func (e *EventDescriptionsService) EventTypeDescriptionHandler(input *event_descriptions.EventTypeDescriptionHandlerParams) (*eventlogclientmodels.ModelsMultipleEventType, error) {
 	accessToken, err := e.TokenRepository.GetToken()
 	if err != nil {
@@ -121,6 +128,7 @@ func (e *EventDescriptionsService) EventTypeDescriptionHandler(input *event_desc
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use SpecificEventTypeDescriptionHandlerShort instead
 func (e *EventDescriptionsService) SpecificEventTypeDescriptionHandler(input *event_descriptions.SpecificEventTypeDescriptionHandlerParams) (*eventlogclientmodels.ModelsMultipleEventType, error) {
 	accessToken, err := e.TokenRepository.GetToken()
 	if err != nil {
@@ -139,6 +147,7 @@ func (e *EventDescriptionsService) SpecificEventTypeDescriptionHandler(input *ev
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use UXNameDescriptionHandlerShort instead
 func (e *EventDescriptionsService) UXNameDescriptionHandler(input *event_descriptions.UXNameDescriptionHandlerParams) (*eventlogclientmodels.ModelsMultipleUX, error) {
 	accessToken, err := e.TokenRepository.GetToken()
 	if err != nil {
@@ -151,6 +160,7 @@ func (e *EventDescriptionsService) UXNameDescriptionHandler(input *event_descrip
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use SpecificUXDescriptionHandlerShort instead
 func (e *EventDescriptionsService) SpecificUXDescriptionHandler(input *event_descriptions.SpecificUXDescriptionHandlerParams) (*eventlogclientmodels.ModelsMultipleUX, error) {
 	accessToken, err := e.TokenRepository.GetToken()
 	if err != nil {

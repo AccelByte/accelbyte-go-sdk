@@ -19,6 +19,7 @@ type AdminUserEligibilitiesService struct {
 	TokenRepository repository.TokenRepository
 }
 
+// Deprecated: Use AdminRetrieveEligibilitiesShort instead
 func (a *AdminUserEligibilitiesService) AdminRetrieveEligibilities(input *admin_user_eligibilities.AdminRetrieveEligibilitiesParams) (*legalclientmodels.RetrieveUserEligibilitiesIndirectResponse, error) {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {

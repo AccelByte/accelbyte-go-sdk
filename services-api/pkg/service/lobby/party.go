@@ -19,6 +19,7 @@ type PartyService struct {
 	TokenRepository repository.TokenRepository
 }
 
+// Deprecated: Use AdminGetPartyDataV1Short instead
 func (p *PartyService) AdminGetPartyDataV1(input *party.AdminGetPartyDataV1Params) (*lobbyclientmodels.ModelsPartyData, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -46,6 +47,7 @@ func (p *PartyService) AdminGetPartyDataV1(input *party.AdminGetPartyDataV1Param
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use AdminGetUserPartyV1Short instead
 func (p *PartyService) AdminGetUserPartyV1(input *party.AdminGetUserPartyV1Params) (*lobbyclientmodels.ModelsPartyData, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -73,6 +75,7 @@ func (p *PartyService) AdminGetUserPartyV1(input *party.AdminGetUserPartyV1Param
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use PublicGetPartyDataV1Short instead
 func (p *PartyService) PublicGetPartyDataV1(input *party.PublicGetPartyDataV1Params) (*lobbyclientmodels.ModelsPartyData, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -100,6 +103,7 @@ func (p *PartyService) PublicGetPartyDataV1(input *party.PublicGetPartyDataV1Par
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use PublicUpdatePartyAttributesV1Short instead
 func (p *PartyService) PublicUpdatePartyAttributesV1(input *party.PublicUpdatePartyAttributesV1Params) (*lobbyclientmodels.ModelsPartyData, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {

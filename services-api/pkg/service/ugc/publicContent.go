@@ -19,6 +19,7 @@ type PublicContentService struct {
 	TokenRepository repository.TokenRepository
 }
 
+// Deprecated: Use SearchChannelSpecificContentShort instead
 func (p *PublicContentService) SearchChannelSpecificContent(input *public_content.SearchChannelSpecificContentParams) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -40,6 +41,7 @@ func (p *PublicContentService) SearchChannelSpecificContent(input *public_conten
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use PublicSearchContentShort instead
 func (p *PublicContentService) PublicSearchContent(input *public_content.PublicSearchContentParams) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -61,6 +63,7 @@ func (p *PublicContentService) PublicSearchContent(input *public_content.PublicS
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use DownloadContentByShareCodeShort instead
 func (p *PublicContentService) DownloadContentByShareCode(input *public_content.DownloadContentByShareCodeParams) (*ugcclientmodels.ModelsContentDownloadResponse, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -82,6 +85,7 @@ func (p *PublicContentService) DownloadContentByShareCode(input *public_content.
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use PublicDownloadContentByContentIDShort instead
 func (p *PublicContentService) PublicDownloadContentByContentID(input *public_content.PublicDownloadContentByContentIDParams) (*ugcclientmodels.ModelsContentDownloadResponse, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -103,6 +107,7 @@ func (p *PublicContentService) PublicDownloadContentByContentID(input *public_co
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use PublicDownloadContentPreviewShort instead
 func (p *PublicContentService) PublicDownloadContentPreview(input *public_content.PublicDownloadContentPreviewParams) (*ugcclientmodels.ModelsGetContentPreviewResponse, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -124,6 +129,7 @@ func (p *PublicContentService) PublicDownloadContentPreview(input *public_conten
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use CreateContentDirectShort instead
 func (p *PublicContentService) CreateContentDirect(input *public_content.CreateContentDirectParams) (*ugcclientmodels.ModelsCreateContentResponse, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -145,6 +151,7 @@ func (p *PublicContentService) CreateContentDirect(input *public_content.CreateC
 	return created.GetPayload(), nil
 }
 
+// Deprecated: Use CreateContentS3Short instead
 func (p *PublicContentService) CreateContentS3(input *public_content.CreateContentS3Params) (*ugcclientmodels.ModelsCreateContentResponse, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -166,6 +173,7 @@ func (p *PublicContentService) CreateContentS3(input *public_content.CreateConte
 	return created.GetPayload(), nil
 }
 
+// Deprecated: Use UpdateContentS3Short instead
 func (p *PublicContentService) UpdateContentS3(input *public_content.UpdateContentS3Params) (*ugcclientmodels.ModelsCreateContentResponse, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -190,6 +198,7 @@ func (p *PublicContentService) UpdateContentS3(input *public_content.UpdateConte
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use UpdateContentDirectShort instead
 func (p *PublicContentService) UpdateContentDirect(input *public_content.UpdateContentDirectParams) (*ugcclientmodels.ModelsCreateContentResponse, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -214,6 +223,7 @@ func (p *PublicContentService) UpdateContentDirect(input *public_content.UpdateC
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use DeleteContentShort instead
 func (p *PublicContentService) DeleteContent(input *public_content.DeleteContentParams) error {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -235,6 +245,7 @@ func (p *PublicContentService) DeleteContent(input *public_content.DeleteContent
 	return nil
 }
 
+// Deprecated: Use PublicGetUserContentShort instead
 func (p *PublicContentService) PublicGetUserContent(input *public_content.PublicGetUserContentParams) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -256,6 +267,7 @@ func (p *PublicContentService) PublicGetUserContent(input *public_content.Public
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use UpdateScreenshotsShort instead
 func (p *PublicContentService) UpdateScreenshots(input *public_content.UpdateScreenshotsParams) (*ugcclientmodels.ModelsUpdateScreenshotResponse, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -280,6 +292,7 @@ func (p *PublicContentService) UpdateScreenshots(input *public_content.UpdateScr
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use UploadContentScreenshotShort instead
 func (p *PublicContentService) UploadContentScreenshot(input *public_content.UploadContentScreenshotParams) (*ugcclientmodels.ModelsCreateScreenshotResponse, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -301,6 +314,7 @@ func (p *PublicContentService) UploadContentScreenshot(input *public_content.Upl
 	return created.GetPayload(), nil
 }
 
+// Deprecated: Use DeleteContentScreenshotShort instead
 func (p *PublicContentService) DeleteContentScreenshot(input *public_content.DeleteContentScreenshotParams) error {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {

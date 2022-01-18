@@ -18,6 +18,7 @@ type AnonymizationService struct {
 	TokenRepository repository.TokenRepository
 }
 
+// Deprecated: Use AdminDeleteAllUserChannelsShort instead
 func (a *AnonymizationService) AdminDeleteAllUserChannels(input *anonymization.AdminDeleteAllUserChannelsParams) error {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
@@ -39,6 +40,7 @@ func (a *AnonymizationService) AdminDeleteAllUserChannels(input *anonymization.A
 	return nil
 }
 
+// Deprecated: Use AdminDeleteAllUserContentsShort instead
 func (a *AnonymizationService) AdminDeleteAllUserContents(input *anonymization.AdminDeleteAllUserContentsParams) error {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
@@ -60,6 +62,7 @@ func (a *AnonymizationService) AdminDeleteAllUserContents(input *anonymization.A
 	return nil
 }
 
+// Deprecated: Use AdminDeleteAllUserGroupShort instead
 func (a *AnonymizationService) AdminDeleteAllUserGroup(input *anonymization.AdminDeleteAllUserGroupParams) error {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
@@ -81,6 +84,7 @@ func (a *AnonymizationService) AdminDeleteAllUserGroup(input *anonymization.Admi
 	return nil
 }
 
+// Deprecated: Use AdminDeleteAllUserStatesShort instead
 func (a *AnonymizationService) AdminDeleteAllUserStates(input *anonymization.AdminDeleteAllUserStatesParams) error {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
@@ -102,6 +106,7 @@ func (a *AnonymizationService) AdminDeleteAllUserStates(input *anonymization.Adm
 	return nil
 }
 
+// Deprecated: Use DeleteAllUserChannelShort instead
 func (a *AnonymizationService) DeleteAllUserChannel(input *anonymization.DeleteAllUserChannelParams) error {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
@@ -123,6 +128,7 @@ func (a *AnonymizationService) DeleteAllUserChannel(input *anonymization.DeleteA
 	return nil
 }
 
+// Deprecated: Use DeleteAllUserContentsShort instead
 func (a *AnonymizationService) DeleteAllUserContents(input *anonymization.DeleteAllUserContentsParams) error {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
@@ -144,6 +150,7 @@ func (a *AnonymizationService) DeleteAllUserContents(input *anonymization.Delete
 	return nil
 }
 
+// Deprecated: Use DeleteAllUserGroupShort instead
 func (a *AnonymizationService) DeleteAllUserGroup(input *anonymization.DeleteAllUserGroupParams) error {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
@@ -165,6 +172,7 @@ func (a *AnonymizationService) DeleteAllUserGroup(input *anonymization.DeleteAll
 	return nil
 }
 
+// Deprecated: Use DeleteAllUserStatesShort instead
 func (a *AnonymizationService) DeleteAllUserStates(input *anonymization.DeleteAllUserStatesParams) error {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {

@@ -19,6 +19,7 @@ type UserVisibilityService struct {
 	TokenRepository repository.TokenRepository
 }
 
+// Deprecated: Use GetHiddenUsersV2Short instead
 func (u *UserVisibilityService) GetHiddenUsersV2(input *user_visibility.GetHiddenUsersV2Params) (*leaderboardclientmodels.ModelsGetHiddenUserResponse, error) {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
@@ -46,6 +47,7 @@ func (u *UserVisibilityService) GetHiddenUsersV2(input *user_visibility.GetHidde
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use GetUserVisibilityStatusV2Short instead
 func (u *UserVisibilityService) GetUserVisibilityStatusV2(input *user_visibility.GetUserVisibilityStatusV2Params) (*leaderboardclientmodels.ModelsGetUserVisibilityResponse, error) {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
@@ -73,6 +75,7 @@ func (u *UserVisibilityService) GetUserVisibilityStatusV2(input *user_visibility
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use SetUserLeaderboardVisibilityStatusV2Short instead
 func (u *UserVisibilityService) SetUserLeaderboardVisibilityStatusV2(input *user_visibility.SetUserLeaderboardVisibilityStatusV2Params) (*leaderboardclientmodels.ModelsGetUserVisibilityResponse, error) {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
@@ -100,6 +103,7 @@ func (u *UserVisibilityService) SetUserLeaderboardVisibilityStatusV2(input *user
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use SetUserVisibilityStatusV2Short instead
 func (u *UserVisibilityService) SetUserVisibilityStatusV2(input *user_visibility.SetUserVisibilityStatusV2Params) (*leaderboardclientmodels.ModelsGetUserVisibilityResponse, error) {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {

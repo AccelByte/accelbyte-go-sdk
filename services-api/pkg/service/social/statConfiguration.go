@@ -19,6 +19,7 @@ type StatConfigurationService struct {
 	TokenRepository repository.TokenRepository
 }
 
+// Deprecated: Use GetStatsShort instead
 func (s *StatConfigurationService) GetStats(input *stat_configuration.GetStatsParams) (*socialclientmodels.StatPagingSlicedResult, error) {
 	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {
@@ -31,6 +32,7 @@ func (s *StatConfigurationService) GetStats(input *stat_configuration.GetStatsPa
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use CreateStatShort instead
 func (s *StatConfigurationService) CreateStat(input *stat_configuration.CreateStatParams) (*socialclientmodels.StatInfo, error) {
 	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {
@@ -46,6 +48,7 @@ func (s *StatConfigurationService) CreateStat(input *stat_configuration.CreateSt
 	return created.GetPayload(), nil
 }
 
+// Deprecated: Use ExportStatsShort instead
 func (s *StatConfigurationService) ExportStats(input *stat_configuration.ExportStatsParams) error {
 	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {
@@ -58,6 +61,7 @@ func (s *StatConfigurationService) ExportStats(input *stat_configuration.ExportS
 	return nil
 }
 
+// Deprecated: Use ImportStatsShort instead
 func (s *StatConfigurationService) ImportStats(input *stat_configuration.ImportStatsParams) (*socialclientmodels.StatImportInfo, error) {
 	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {
@@ -73,6 +77,7 @@ func (s *StatConfigurationService) ImportStats(input *stat_configuration.ImportS
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use QueryStatsShort instead
 func (s *StatConfigurationService) QueryStats(input *stat_configuration.QueryStatsParams) (*socialclientmodels.StatPagingSlicedResult, error) {
 	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {
@@ -85,6 +90,7 @@ func (s *StatConfigurationService) QueryStats(input *stat_configuration.QuerySta
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use GetStatShort instead
 func (s *StatConfigurationService) GetStat(input *stat_configuration.GetStatParams) (*socialclientmodels.StatInfo, error) {
 	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {
@@ -100,6 +106,7 @@ func (s *StatConfigurationService) GetStat(input *stat_configuration.GetStatPara
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use DeleteStatShort instead
 func (s *StatConfigurationService) DeleteStat(input *stat_configuration.DeleteStatParams) error {
 	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {
@@ -115,6 +122,7 @@ func (s *StatConfigurationService) DeleteStat(input *stat_configuration.DeleteSt
 	return nil
 }
 
+// Deprecated: Use UpdateStatShort instead
 func (s *StatConfigurationService) UpdateStat(input *stat_configuration.UpdateStatParams) (*socialclientmodels.StatInfo, error) {
 	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {
@@ -130,6 +138,7 @@ func (s *StatConfigurationService) UpdateStat(input *stat_configuration.UpdateSt
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use CreateStat1Short instead
 func (s *StatConfigurationService) CreateStat1(input *stat_configuration.CreateStat1Params) (*socialclientmodels.StatInfo, error) {
 	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {

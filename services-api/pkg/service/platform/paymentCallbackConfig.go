@@ -19,46 +19,47 @@ type PaymentCallbackConfigService struct {
 	TokenRepository repository.TokenRepository
 }
 
-func (p *PaymentCallbackConfigService) GetPaymentCallbackConfig(input *payment_callback_config.GetPaymentCallbackConfigParams)(*platformclientmodels.PaymentCallbackConfigInfo, error) {
-    accessToken, err := p.TokenRepository.GetToken()
-    if err != nil {
+// Deprecated: Use GetPaymentCallbackConfigShort instead
+func (p *PaymentCallbackConfigService) GetPaymentCallbackConfig(input *payment_callback_config.GetPaymentCallbackConfigParams) (*platformclientmodels.PaymentCallbackConfigInfo, error) {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
 		return nil, err
 	}
-ok, notFound, err := p.Client.PaymentCallbackConfig.GetPaymentCallbackConfig(input, client.BearerToken(*accessToken.AccessToken))
-    if notFound != nil {
+	ok, notFound, err := p.Client.PaymentCallbackConfig.GetPaymentCallbackConfig(input, client.BearerToken(*accessToken.AccessToken))
+	if notFound != nil {
 		return nil, notFound
-    }
-    if err != nil {
+	}
+	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (p *PaymentCallbackConfigService) UpdatePaymentCallbackConfig(input *payment_callback_config.UpdatePaymentCallbackConfigParams)(*platformclientmodels.PaymentCallbackConfigInfo, error) {
-    accessToken, err := p.TokenRepository.GetToken()
-    if err != nil {
+// Deprecated: Use UpdatePaymentCallbackConfigShort instead
+func (p *PaymentCallbackConfigService) UpdatePaymentCallbackConfig(input *payment_callback_config.UpdatePaymentCallbackConfigParams) (*platformclientmodels.PaymentCallbackConfigInfo, error) {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
 		return nil, err
 	}
-ok, err := p.Client.PaymentCallbackConfig.UpdatePaymentCallbackConfig(input, client.BearerToken(*accessToken.AccessToken))
-    if err != nil {
-		return nil, err
-	}
-	return ok.GetPayload(), nil
-}
-
-func (p *PaymentCallbackConfigService) GetPaymentCallbackConfigShort(input *payment_callback_config.GetPaymentCallbackConfigParams, authInfo runtime.ClientAuthInfoWriter)(*platformclientmodels.PaymentCallbackConfigInfo, error) {
-    ok, err := p.Client.PaymentCallbackConfig.GetPaymentCallbackConfigShort(input, authInfo)
-    if err != nil {
+	ok, err := p.Client.PaymentCallbackConfig.UpdatePaymentCallbackConfig(input, client.BearerToken(*accessToken.AccessToken))
+	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (p *PaymentCallbackConfigService) UpdatePaymentCallbackConfigShort(input *payment_callback_config.UpdatePaymentCallbackConfigParams, authInfo runtime.ClientAuthInfoWriter)(*platformclientmodels.PaymentCallbackConfigInfo, error) {
-    ok, err := p.Client.PaymentCallbackConfig.UpdatePaymentCallbackConfigShort(input, authInfo)
-    if err != nil {
+func (p *PaymentCallbackConfigService) GetPaymentCallbackConfigShort(input *payment_callback_config.GetPaymentCallbackConfigParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.PaymentCallbackConfigInfo, error) {
+	ok, err := p.Client.PaymentCallbackConfig.GetPaymentCallbackConfigShort(input, authInfo)
+	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
+func (p *PaymentCallbackConfigService) UpdatePaymentCallbackConfigShort(input *payment_callback_config.UpdatePaymentCallbackConfigParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.PaymentCallbackConfigInfo, error) {
+	ok, err := p.Client.PaymentCallbackConfig.UpdatePaymentCallbackConfigShort(input, authInfo)
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}

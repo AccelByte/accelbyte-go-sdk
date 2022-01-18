@@ -19,6 +19,7 @@ type UsersV4Service struct {
 	TokenRepository repository.TokenRepository
 }
 
+// Deprecated: Use AdminUpdateUserV4Short instead
 func (u *UsersV4Service) AdminUpdateUserV4(input *users_v4.AdminUpdateUserV4Params) (*iamclientmodels.ModelUserResponseV3, error) {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
@@ -49,6 +50,7 @@ func (u *UsersV4Service) AdminUpdateUserV4(input *users_v4.AdminUpdateUserV4Para
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use AdminUpdateUserEmailAddressV4Short instead
 func (u *UsersV4Service) AdminUpdateUserEmailAddressV4(input *users_v4.AdminUpdateUserEmailAddressV4Params) error {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
@@ -76,6 +78,7 @@ func (u *UsersV4Service) AdminUpdateUserEmailAddressV4(input *users_v4.AdminUpda
 	return nil
 }
 
+// Deprecated: Use AdminListUserRolesV4Short instead
 func (u *UsersV4Service) AdminListUserRolesV4(input *users_v4.AdminListUserRolesV4Params) (*iamclientmodels.ModelListUserRolesV4Response, error) {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
@@ -97,6 +100,7 @@ func (u *UsersV4Service) AdminListUserRolesV4(input *users_v4.AdminListUserRoles
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use AdminUpdateUserRoleV4Short instead
 func (u *UsersV4Service) AdminUpdateUserRoleV4(input *users_v4.AdminUpdateUserRoleV4Params) (*iamclientmodels.ModelListUserRolesV4Response, error) {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
@@ -124,6 +128,7 @@ func (u *UsersV4Service) AdminUpdateUserRoleV4(input *users_v4.AdminUpdateUserRo
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use AdminAddUserRoleV4Short instead
 func (u *UsersV4Service) AdminAddUserRoleV4(input *users_v4.AdminAddUserRoleV4Params) (*iamclientmodels.ModelListUserRolesV4Response, error) {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
@@ -151,6 +156,7 @@ func (u *UsersV4Service) AdminAddUserRoleV4(input *users_v4.AdminAddUserRoleV4Pa
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use AdminRemoveUserRoleV4Short instead
 func (u *UsersV4Service) AdminRemoveUserRoleV4(input *users_v4.AdminRemoveUserRoleV4Params) error {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
@@ -178,6 +184,7 @@ func (u *UsersV4Service) AdminRemoveUserRoleV4(input *users_v4.AdminRemoveUserRo
 	return nil
 }
 
+// Deprecated: Use AdminUpdateMyUserV4Short instead
 func (u *UsersV4Service) AdminUpdateMyUserV4(input *users_v4.AdminUpdateMyUserV4Params) (*iamclientmodels.ModelUserResponseV3, error) {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
@@ -202,6 +209,7 @@ func (u *UsersV4Service) AdminUpdateMyUserV4(input *users_v4.AdminUpdateMyUserV4
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use AdminInviteUserV4Short instead
 func (u *UsersV4Service) AdminInviteUserV4(input *users_v4.AdminInviteUserV4Params) (*iamclientmodels.ModelInviteUserResponseV3, error) {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
@@ -229,6 +237,7 @@ func (u *UsersV4Service) AdminInviteUserV4(input *users_v4.AdminInviteUserV4Para
 	return created.GetPayload(), nil
 }
 
+// Deprecated: Use PublicCreateTestUserV4Short instead
 func (u *UsersV4Service) PublicCreateTestUserV4(input *users_v4.PublicCreateTestUserV4Params) (*iamclientmodels.AccountCreateUserResponseV4, error) {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
@@ -253,6 +262,7 @@ func (u *UsersV4Service) PublicCreateTestUserV4(input *users_v4.PublicCreateTest
 	return created.GetPayload(), nil
 }
 
+// Deprecated: Use PublicCreateUserV4Short instead
 func (u *UsersV4Service) PublicCreateUserV4(input *users_v4.PublicCreateUserV4Params) (*iamclientmodels.AccountCreateUserResponseV4, error) {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
@@ -277,6 +287,7 @@ func (u *UsersV4Service) PublicCreateUserV4(input *users_v4.PublicCreateUserV4Pa
 	return created.GetPayload(), nil
 }
 
+// Deprecated: Use CreateUserFromInvitationV4Short instead
 func (u *UsersV4Service) CreateUserFromInvitationV4(input *users_v4.CreateUserFromInvitationV4Params) (*iamclientmodels.AccountCreateUserResponseV4, error) {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
@@ -298,6 +309,7 @@ func (u *UsersV4Service) CreateUserFromInvitationV4(input *users_v4.CreateUserFr
 	return created.GetPayload(), nil
 }
 
+// Deprecated: Use PublicUpdateUserV4Short instead
 func (u *UsersV4Service) PublicUpdateUserV4(input *users_v4.PublicUpdateUserV4Params) (*iamclientmodels.ModelUserResponseV3, error) {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
@@ -322,6 +334,7 @@ func (u *UsersV4Service) PublicUpdateUserV4(input *users_v4.PublicUpdateUserV4Pa
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use PublicUpdateUserEmailAddressV4Short instead
 func (u *UsersV4Service) PublicUpdateUserEmailAddressV4(input *users_v4.PublicUpdateUserEmailAddressV4Params) error {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
@@ -349,6 +362,7 @@ func (u *UsersV4Service) PublicUpdateUserEmailAddressV4(input *users_v4.PublicUp
 	return nil
 }
 
+// Deprecated: Use PublicUpgradeHeadlessAccountWithVerificationCodeV4Short instead
 func (u *UsersV4Service) PublicUpgradeHeadlessAccountWithVerificationCodeV4(input *users_v4.PublicUpgradeHeadlessAccountWithVerificationCodeV4Params) (*iamclientmodels.AccountUserResponseV4, error) {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
@@ -379,6 +393,7 @@ func (u *UsersV4Service) PublicUpgradeHeadlessAccountWithVerificationCodeV4(inpu
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use PublicUpgradeHeadlessAccountV4Short instead
 func (u *UsersV4Service) PublicUpgradeHeadlessAccountV4(input *users_v4.PublicUpgradeHeadlessAccountV4Params) (*iamclientmodels.AccountUserResponseV4, error) {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {

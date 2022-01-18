@@ -26,13 +26,9 @@ var getClientBynamespace = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		namespace := cmd.Flag("namespace").Value.String()
-		after := cmd.Flag("after").Value.String()
-		before := cmd.Flag("before").Value.String()
 		limit := cmd.Flag("limit").Value.String()
 		limitInt, _ := strconv.ParseInt(limit, 10, 64)
 		input := &clients.AdminGetClientsByNamespaceV3Params{
-			After:     &after,
-			Before:    &before,
 			Limit:     &limitInt,
 			Namespace: namespace,
 		}
@@ -57,10 +53,6 @@ func init() {
 	rootCmd.AddCommand(getClientBynamespace)
 	getClientBynamespace.Flags().StringP("namespace", "n", "", "User namespace")
 	_ = getClientBynamespace.MarkFlagRequired("namespace")
-	getClientBynamespace.Flags().StringP("after", "a", "", "after")
-	_ = getClientBynamespace.MarkFlagRequired("after")
-	getClientBynamespace.Flags().StringP("before", "b", "", "before")
-	_ = getClientBynamespace.MarkFlagRequired("before")
 	getClientBynamespace.Flags().Int64P("limit", "l", -1, "limit")
 	_ = getClientBynamespace.MarkFlagRequired("limit")
 }

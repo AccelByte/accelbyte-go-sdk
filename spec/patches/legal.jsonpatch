@@ -1,6 +1,11 @@
 [
   {
     "op": "add",
+    "path": "/host",
+    "value": "demo.accelbyte.io"
+  },
+  {
+    "op": "add",
     "path": "/schemes",
     "value": [
       "https"
@@ -8,12 +13,22 @@
   },
   {
     "op": "add",
-    "path": "/host",
-    "value": "demo.accelbyte.io"
+    "path": "/paths/~1admin~1namespaces~1{namespace}~1users~1{userId}~1agreements~1policies/post/security/1",
+    "value": {
+      "HasPermission": [
+        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:LEGAL [CREATE]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1admin~1namespaces~1{namespace}~1users~1{userId}~1agreements~1policies/post/description",
+    "value": "Accepts many legal policy versions all at once. Supply with localized version policy id and userId to accept an agreement. Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:LEGAL&#34;, action=1 (CREATE)&lt;/li&gt;&lt;/ul&gt;"
   },
   {
     "op": "add",
-    "path": "/paths/~1admin~1agreements~1policies~1users~1{userId}/get/security/1",
+    "path": "/paths/~1admin~1base-policies~1{basePolicyId}~1countries~1{countryCode}/get/security/1",
     "value": {
       "HasPermission": [
         "ADMIN:NAMESPACE:*:LEGAL [READ]"
@@ -23,63 +38,8 @@
   },
   {
     "op": "replace",
-    "path": "/paths/~1admin~1agreements~1policies~1users~1{userId}/get/description",
-    "value": "This API will return all accepted Legal Agreements for specified user. Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1public~1policies~1namespaces~1{namespace}/get/description",
-    "value": "Retrieve all active latest policies based on a namespace and country. The country will be read from user token.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Leave the policyType empty if you want to be responded with all policy type&lt;/i&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Fill the tags if you want to filter the responded policy by tags&lt;/i&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Fill the defaultOnEmpty with true if you want to be responded with default country-specific policy if your requested country is not exist&lt;/i&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Fill the alwaysIncludeDefault with true if you want to be responded with always include default policy. If there are duplicate policies (default policies and country specific policies with same base policy) it&#39;ll include policy with same country code, for example:&lt;ul&gt;&lt;li&gt;Document 1 (default): Region US (default), UA&lt;/li&gt;&lt;li&gt;Document 2 (default): Region US (default)&lt;/li&gt;&lt;li&gt;Document 3 (default): Region US (default)&lt;/li&gt;&lt;li&gt;User: Region UA&lt;/li&gt;&lt;li&gt;Query: alwaysIncludeDefault: true&lt;/li&gt;&lt;li&gt;Response: Document 1 (UA), Document 2 (US), Document 3 (US)&lt;/li&gt;&lt;/ul&gt;&lt;/i&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Required permission: login user &lt;/i&gt;&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1admin~1policies~1versions~1{policyVersionId}/patch/security/1",
-    "value": {
-      "HasPermission": [
-        "ADMIN:NAMESPACE:*:LEGAL [UPDATE]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1admin~1policies~1versions~1{policyVersionId}/patch/description",
-    "value": "Update a particular policy version.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1admin~1policies~1versions~1{policyVersionId}~1latest/patch/security/1",
-    "value": {
-      "HasPermission": [
-        "ADMIN:NAMESPACE:*:LEGAL [UPDATE]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1admin~1policies~1versions~1{policyVersionId}~1latest/patch/description",
-    "value": "Manually publish a version of a particular country-specific policy.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1admin~1policies~1{policyId}~1default/patch/security/1",
-    "value": {
-      "HasPermission": [
-        "ADMIN:NAMESPACE:*:LEGAL [UPDATE]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1admin~1policies~1{policyId}~1default/patch/description",
-    "value": "Update a policy to be the default.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1public~1policies~1namespaces~1{namespace}~1countries~1{countryCode}/get/description",
-    "value": "Retrieve all active latest policies based on a namespace and country.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Leave the policyType empty if you want to be responded with all policy type&lt;/i&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Fill the tags if you want to filter the responded policy by tags&lt;/i&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Fill the defaultOnEmpty with true if you want to be responded with default country-specific policy if your requested country is not exist&lt;/i&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Fill the alwaysIncludeDefault with true if you want to be responded with always include default policy. If there are duplicate policies (default policies and country specific policies with same base policy) it&#39;ll include policy with same country code, for example:&lt;ul&gt;&lt;li&gt;Document 1 (default): Region US (default), UA&lt;/li&gt;&lt;li&gt;Document 2 (default): Region US (default)&lt;/li&gt;&lt;li&gt;Document 3 (default): Region US (default)&lt;/li&gt;&lt;li&gt;User: Region UA&lt;/li&gt;&lt;li&gt;Query: alwaysIncludeDefault: true&lt;/li&gt;&lt;li&gt;Response: Document 1 (UA), Document 2 (US), Document 3 (US)&lt;/li&gt;&lt;/ul&gt;"
+    "path": "/paths/~1admin~1base-policies~1{basePolicyId}~1countries~1{countryCode}/get/description",
+    "value": "Retrieve a Base Legal Policy based on a Particular Country.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;"
   },
   {
     "op": "add",
@@ -113,111 +73,6 @@
   },
   {
     "op": "add",
-    "path": "/paths/~1admin~1agreements~1policy-versions~1users/get/security/1",
-    "value": {
-      "HasPermission": [
-        "ADMIN:NAMESPACE:*:LEGAL [READ]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1admin~1agreements~1policy-versions~1users/get/description",
-    "value": "This API will return all users who has accepted a specific policy version.Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1admin~1userInfo/put/security/1",
-    "value": {
-      "HasPermission": [
-        "ADMIN:NAMESPACE:*:LEGAL [UPDATE]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1admin~1userInfo/put/description",
-    "value": "&lt;b&gt;Important: GOING TO DEPRECATE&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;Sync user info cache in agreement service with iam service.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1admin~1userInfo/get/security/1",
-    "value": {
-      "HasPermission": [
-        "ADMIN:NAMESPACE:*:LEGAL [READ]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1admin~1userInfo/get/description",
-    "value": "Get user info cache last updated time per namespace.&lt;br&gt;The query parameter namespaces can be a list of namespace separated by comma.&lt;br&gt;If query parameter namespaces is empty, user info cache status for all available namespaces will be returned. &lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1admin~1userInfo/delete/security/1",
-    "value": {
-      "HasPermission": [
-        "ADMIN:NAMESPACE:*:LEGAL [DELETE]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1admin~1userInfo/delete/description",
-    "value": "&lt;b&gt;Important: GOING TO DEPRECATE&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;Invalidate user info cache in agreement service.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1public~1agreements~1policies/get/description",
-    "value": "Retrieve accepted Legal Agreements.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: login user&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1public~1agreements~1policies/post/description",
-    "value": "Accepts many legal policy versions all at once. Supply with localized version policy id to accept an agreement.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: login user&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1public~1eligibilities~1namespaces~1{namespace}/get/description",
-    "value": "Retrieve the active policies and its conformance status by user.&lt;br&gt;This process supports cross-namespace checking, that means if the active policy already accepted by the same user in other namespace, then it will be considered as eligible.&lt;br/&gt;&lt;br/&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: login user&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1admin~1localized-policy-versions~1{localizedPolicyVersionId}/put/security/1",
-    "value": {
-      "HasPermission": [
-        "ADMIN:NAMESPACE:*:LEGAL [UPDATE]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1admin~1localized-policy-versions~1{localizedPolicyVersionId}/put/description",
-    "value": "Update a version of a particular country-specific policy.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1admin~1localized-policy-versions~1{localizedPolicyVersionId}/get/security/1",
-    "value": {
-      "HasPermission": [
-        "ADMIN:NAMESPACE:*:LEGAL [READ]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1admin~1localized-policy-versions~1{localizedPolicyVersionId}/get/description",
-    "value": "Retrieve a version of a particular country-specific policy.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
     "path": "/paths/~1public~1policies/get/security/1",
     "value": {
       "HasPermission": [
@@ -230,231 +85,6 @@
     "op": "replace",
     "path": "/paths/~1public~1policies/get/description",
     "value": "[TODO] Retrieve one or more legal policies with its versions.&lt;br&gt;If the basePolicyId not supplied, then retrieve only all latest policies version with localeId matched.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1public~1agreements~1policies~1namespaces~1{namespace}~1countries~1{countryCode}~1clients~1{clientId}~1users~1{userId}/post/security/1",
-    "value": {
-      "HasPermission": [
-        "NAMESPACE:{namespace}:LEGAL [CREATE]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1public~1agreements~1policies~1namespaces~1{namespace}~1countries~1{countryCode}~1clients~1{clientId}~1users~1{userId}/post/description",
-    "value": "&lt;b&gt;IMPORTANT: GOING TO DEPRECATE&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;Accepts many legal policy versions all at once. Supply with localized version policy id, version policy id, policy id, userId, namespace, country code and client id to accept an agreement. This endpoint used by APIGateway during new user registration.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:LEGAL&#34;, action=1 (CREATE)&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1public~1eligibilities~1namespaces~1{namespace}~1countries~1{countryCode}~1clients~1{clientId}~1users~1{userId}/get/description",
-    "value": "Retrieve the active policies and its conformance status by user. This endpoint used by Authentication Service during user login.&lt;br&gt;This process supports cross-namespace checking, that means if the active policy already accepted by the same user in other namespace, then it will be considered as eligible.&lt;br/&gt;&lt;br/&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: login user&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1admin~1policies~1countries~1{countryCode}/get/security/1",
-    "value": {
-      "HasPermission": [
-        "ADMIN:NAMESPACE:*:LEGAL [READ]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1admin~1policies~1countries~1{countryCode}/get/description",
-    "value": "Retrieve all active policies based on a country.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1admin~1policies~1{policyId}/patch/security/1",
-    "value": {
-      "HasPermission": [
-        "ADMIN:NAMESPACE:*:LEGAL [UPDATE]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1admin~1policies~1{policyId}/patch/description",
-    "value": "Update country-specific policy.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1admin~1policy-types/get/security/1",
-    "value": {
-      "HasPermission": [
-        "ADMIN:NAMESPACE:*:LEGAL [READ]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1admin~1policy-types/get/description",
-    "value": "Retrieve all supported policy types.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1public~1localized-policy-versions~1{localizedPolicyVersionId}/get/description",
-    "value": "Retrieve specific localized policy version including the policy version and base policy version where the localized policy version located.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1admin~1users~1{userId}~1anonymization~1agreements/delete/security/1",
-    "value": {
-      "HasPermission": [
-        "ADMIN:NAMESPACE:*:LEGAL [DELETE]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1admin~1users~1{userId}~1anonymization~1agreements/delete/description",
-    "value": "This API will anonymize agreement record for specified user. Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1admin~1base-policies~1{basePolicyId}~1countries~1{countryCode}/get/security/1",
-    "value": {
-      "HasPermission": [
-        "ADMIN:NAMESPACE:*:LEGAL [READ]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1admin~1base-policies~1{basePolicyId}~1countries~1{countryCode}/get/description",
-    "value": "Retrieve a Base Legal Policy based on a Particular Country.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1public~1agreements~1policies~1users~1{userId}/post/description",
-    "value": "Accepts many legal policy versions all at once. Supply with localized version policy id and userId to accept an agreement. This endpoint used by Authentication Service during new user registration.&lt;br&gt;&lt;br/&gt;Available Extra Information to return: &lt;br/&gt;&lt;ul&gt;&lt;li&gt;&lt;b&gt;userIds&lt;/b&gt; : List of userId mapping (&lt;b&gt;IMPORTANT: GOING TO DEPRECATE&lt;/b&gt;)&lt;/li&gt;&lt;/ul&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: login user&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1public~1agreements~1localized-policy-versions~1preferences/patch/description",
-    "value": "Change marketing preference consent.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: login user&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1public~1policies~1countries~1{countryCode}/get/description",
-    "value": "Retrieve all active latest policies based on a country.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Leave the policyType empty if you want to be responded with all policy type&lt;/i&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Fill the tags if you want to filter the responded policy by tags&lt;/i&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Fill the defaultOnEmpty with true if you want to be responded with default country-specific policy if your requested country is not exist&lt;/i&gt;&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1admin~1localized-policy-versions~1{localizedPolicyVersionId}~1attachments/post/security/1",
-    "value": {
-      "HasPermission": [
-        "ADMIN:NAMESPACE:*:LEGAL [CREATE]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1admin~1localized-policy-versions~1{localizedPolicyVersionId}~1attachments/post/description",
-    "value": "Request presigned URL for  upload attachment for a particular localized version of base policy.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=1 (CREATE)&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1public~1readiness/get/security/1",
-    "value": {
-      "HasPermission": [
-        "NAMESPACE:{namespace}:LEGAL [READ]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1public~1readiness/get/description",
-    "value": "Readiness status defined as at least one legal basePolicy is present and having active basePolicy.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:LEGAL&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1admin~1localized-policy-versions~1versions~1{policyVersionId}/get/security/1",
-    "value": {
-      "HasPermission": [
-        "ADMIN:NAMESPACE:*:LEGAL [READ]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1admin~1localized-policy-versions~1versions~1{policyVersionId}/get/description",
-    "value": "Retrieve versions of a particular country-specific policy.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1admin~1localized-policy-versions~1versions~1{policyVersionId}/post/security/1",
-    "value": {
-      "HasPermission": [
-        "ADMIN:NAMESPACE:*:LEGAL [CREATE]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1admin~1localized-policy-versions~1versions~1{policyVersionId}/post/description",
-    "value": "Create a version of a particular country-specific policy.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=1 (CREATE)&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1admin~1base-policies/get/security/1",
-    "value": {
-      "HasPermission": [
-        "ADMIN:NAMESPACE:*:LEGAL [READ]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1admin~1base-policies/get/description",
-    "value": "Retrieve all base policies.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1admin~1base-policies/post/security/1",
-    "value": {
-      "HasPermission": [
-        "ADMIN:NAMESPACE:*:LEGAL [CREATE]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1admin~1base-policies/post/description",
-    "value": "Create a legal policy.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=1 (CREATE)&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1admin~1localized-policy-versions~1{localizedPolicyVersionId}~1default/patch/security/1",
-    "value": {
-      "HasPermission": [
-        "ADMIN:NAMESPACE:*:LEGAL [UPDATE]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1admin~1localized-policy-versions~1{localizedPolicyVersionId}~1default/patch/description",
-    "value": "Update a localized version policy to be the default.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1public~1agreements~1localized-policy-versions~1{localizedPolicyVersionId}/post/description",
-    "value": "Accepts a legal policy version. Supply with localized version policy id to accept an agreement.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: login user&lt;/li&gt;&lt;/ul&gt;"
   },
   {
     "op": "add",
@@ -488,6 +118,406 @@
   },
   {
     "op": "add",
+    "path": "/paths/~1admin~1policies~1{policyId}/patch/security/1",
+    "value": {
+      "HasPermission": [
+        "ADMIN:NAMESPACE:*:LEGAL [UPDATE]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1admin~1policies~1{policyId}/patch/description",
+    "value": "Update country-specific policy.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1public~1agreements~1localized-policy-versions~1preferences/patch/description",
+    "value": "Change marketing preference consent.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: login user&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1public~1agreements~1policies/get/description",
+    "value": "Retrieve accepted Legal Agreements.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: login user&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1public~1agreements~1policies/post/description",
+    "value": "Accepts many legal policy versions all at once. Supply with localized version policy id to accept an agreement.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: login user&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1admin~1policies~1versions~1{policyVersionId}~1latest/patch/security/1",
+    "value": {
+      "HasPermission": [
+        "ADMIN:NAMESPACE:*:LEGAL [UPDATE]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1admin~1policies~1versions~1{policyVersionId}~1latest/patch/description",
+    "value": "Manually publish a version of a particular country-specific policy.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1admin~1users~1{userId}~1anonymization~1agreements/delete/security/1",
+    "value": {
+      "HasPermission": [
+        "ADMIN:NAMESPACE:*:LEGAL [DELETE]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1admin~1users~1{userId}~1anonymization~1agreements/delete/description",
+    "value": "This API will anonymize agreement record for specified user. Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1public~1agreements~1localized-policy-versions~1{localizedPolicyVersionId}/post/description",
+    "value": "Accepts a legal policy version. Supply with localized version policy id to accept an agreement.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: login user&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1admin~1agreements~1policies~1users~1{userId}/get/security/1",
+    "value": {
+      "HasPermission": [
+        "ADMIN:NAMESPACE:*:LEGAL [READ]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1admin~1agreements~1policies~1users~1{userId}/get/description",
+    "value": "This API will return all accepted Legal Agreements for specified user. Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1admin~1policies~1versions~1{policyVersionId}/patch/security/1",
+    "value": {
+      "HasPermission": [
+        "ADMIN:NAMESPACE:*:LEGAL [UPDATE]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1admin~1policies~1versions~1{policyVersionId}/patch/description",
+    "value": "Update a particular policy version.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1admin~1policies~1countries~1{countryCode}/get/security/1",
+    "value": {
+      "HasPermission": [
+        "ADMIN:NAMESPACE:*:LEGAL [READ]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1admin~1policies~1countries~1{countryCode}/get/description",
+    "value": "Retrieve all active policies based on a country.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1admin~1localized-policy-versions~1versions~1{policyVersionId}/get/security/1",
+    "value": {
+      "HasPermission": [
+        "ADMIN:NAMESPACE:*:LEGAL [READ]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1admin~1localized-policy-versions~1versions~1{policyVersionId}/get/description",
+    "value": "Retrieve versions of a particular country-specific policy.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1admin~1localized-policy-versions~1versions~1{policyVersionId}/post/security/1",
+    "value": {
+      "HasPermission": [
+        "ADMIN:NAMESPACE:*:LEGAL [CREATE]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1admin~1localized-policy-versions~1versions~1{policyVersionId}/post/description",
+    "value": "Create a version of a particular country-specific policy.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=1 (CREATE)&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1public~1policies~1namespaces~1{namespace}/get/description",
+    "value": "Retrieve all active latest policies based on a namespace and country. The country will be read from user token.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Leave the policyType empty if you want to be responded with all policy type&lt;/i&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Fill the tags if you want to filter the responded policy by tags&lt;/i&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Fill the defaultOnEmpty with true if you want to be responded with default country-specific policy if your requested country is not exist&lt;/i&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Fill the alwaysIncludeDefault with true if you want to be responded with always include default policy. If there are duplicate policies (default policies and country specific policies with same base policy) it&#39;ll include policy with same country code, for example:&lt;ul&gt;&lt;li&gt;Document 1 (default): Region US (default), UA&lt;/li&gt;&lt;li&gt;Document 2 (default): Region US (default)&lt;/li&gt;&lt;li&gt;Document 3 (default): Region US (default)&lt;/li&gt;&lt;li&gt;User: Region UA&lt;/li&gt;&lt;li&gt;Query: alwaysIncludeDefault: true&lt;/li&gt;&lt;li&gt;Response: Document 1 (UA), Document 2 (US), Document 3 (US)&lt;/li&gt;&lt;/ul&gt;&lt;/i&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Required permission: login user &lt;/i&gt;&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1admin~1agreements~1policy-versions~1users/get/security/1",
+    "value": {
+      "HasPermission": [
+        "ADMIN:NAMESPACE:*:LEGAL [READ]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1admin~1agreements~1policy-versions~1users/get/description",
+    "value": "This API will return all users who has accepted a specific policy version.Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1admin~1policy-types/get/security/1",
+    "value": {
+      "HasPermission": [
+        "ADMIN:NAMESPACE:*:LEGAL [READ]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1admin~1policy-types/get/description",
+    "value": "Retrieve all supported policy types.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1admin~1base-policies/get/security/1",
+    "value": {
+      "HasPermission": [
+        "ADMIN:NAMESPACE:*:LEGAL [READ]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1admin~1base-policies/get/description",
+    "value": "Retrieve all base policies.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1admin~1base-policies/post/security/1",
+    "value": {
+      "HasPermission": [
+        "ADMIN:NAMESPACE:*:LEGAL [CREATE]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1admin~1base-policies/post/description",
+    "value": "Create a legal policy.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=1 (CREATE)&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1admin~1policies~1{policyId}~1default/patch/security/1",
+    "value": {
+      "HasPermission": [
+        "ADMIN:NAMESPACE:*:LEGAL [UPDATE]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1admin~1policies~1{policyId}~1default/patch/description",
+    "value": "Update a policy to be the default.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1public~1eligibilities~1namespaces~1{namespace}~1countries~1{countryCode}~1clients~1{clientId}~1users~1{userId}/get/description",
+    "value": "Retrieve the active policies and its conformance status by userThis process only supports cross-namespace checking between game namespace and publisher namespace , that means if the active policy already accepted by the same user in publisher namespace, then it will also be considered as eligible in non-publisher namespace.&lt;br/&gt;&lt;br/&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: login user&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1admin~1userInfo/delete/security/1",
+    "value": {
+      "HasPermission": [
+        "ADMIN:NAMESPACE:*:LEGAL [DELETE]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1admin~1userInfo/delete/description",
+    "value": "&lt;b&gt;Important: GOING TO DEPRECATE&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;Invalidate user info cache in agreement service.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1admin~1userInfo/get/security/1",
+    "value": {
+      "HasPermission": [
+        "ADMIN:NAMESPACE:*:LEGAL [READ]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1admin~1userInfo/get/description",
+    "value": "Get user info cache last updated time per namespace.&lt;br&gt;The query parameter namespaces can be a list of namespace separated by comma.&lt;br&gt;If query parameter namespaces is empty, user info cache status for all available namespaces will be returned. &lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1admin~1userInfo/put/security/1",
+    "value": {
+      "HasPermission": [
+        "ADMIN:NAMESPACE:*:LEGAL [UPDATE]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1admin~1userInfo/put/description",
+    "value": "&lt;b&gt;Important: GOING TO DEPRECATE&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;Sync user info cache in agreement service with iam service.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1admin~1localized-policy-versions~1{localizedPolicyVersionId}~1default/patch/security/1",
+    "value": {
+      "HasPermission": [
+        "ADMIN:NAMESPACE:*:LEGAL [UPDATE]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1admin~1localized-policy-versions~1{localizedPolicyVersionId}~1default/patch/description",
+    "value": "Update a localized version policy to be the default.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1public~1readiness/get/security/1",
+    "value": {
+      "HasPermission": [
+        "NAMESPACE:{namespace}:LEGAL [READ]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1public~1readiness/get/description",
+    "value": "Readiness status defined as at least one legal basePolicy is present and having active basePolicy.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:LEGAL&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1admin~1localized-policy-versions~1{localizedPolicyVersionId}~1attachments/post/security/1",
+    "value": {
+      "HasPermission": [
+        "ADMIN:NAMESPACE:*:LEGAL [CREATE]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1admin~1localized-policy-versions~1{localizedPolicyVersionId}~1attachments/post/description",
+    "value": "Request presigned URL for  upload attachment for a particular localized version of base policy.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=1 (CREATE)&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1public~1policies~1countries~1{countryCode}/get/description",
+    "value": "Retrieve all active latest policies based on a country.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Leave the policyType empty if you want to be responded with all policy type&lt;/i&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Fill the tags if you want to filter the responded policy by tags&lt;/i&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Fill the defaultOnEmpty with true if you want to be responded with default country-specific policy if your requested country is not exist&lt;/i&gt;&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1admin~1namespaces~1{namespace}~1users~1{userId}~1eligibilities/get/security/1",
+    "value": {
+      "HasPermission": [
+        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:LEGAL [READ]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1admin~1namespaces~1{namespace}~1users~1{userId}~1eligibilities/get/description",
+    "value": "Retrieve the active policies and its conformance status by userThis process only supports cross-namespace checking between game namespace and publisher namespace , that means if the active policy already accepted by the same user in publisher namespace, then it will also be considered as eligible in non-publisher namespace.&lt;br/&gt;&lt;br/&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:LEGAL&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1public~1localized-policy-versions~1{localizedPolicyVersionId}/get/description",
+    "value": "Retrieve specific localized policy version including the policy version and base policy version where the localized policy version located.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1public~1agreements~1policies~1users~1{userId}/post/description",
+    "value": "Accepts many legal policy versions all at once. Supply with localized version policy id and userId to accept an agreement. This endpoint used by Authentication Service during new user registration.&lt;br&gt;&lt;br/&gt;Available Extra Information to return: &lt;br/&gt;&lt;ul&gt;&lt;li&gt;&lt;b&gt;userIds&lt;/b&gt; : List of userId mapping (&lt;b&gt;IMPORTANT: GOING TO DEPRECATE&lt;/b&gt;)&lt;/li&gt;&lt;/ul&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: login user&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1admin~1localized-policy-versions~1{localizedPolicyVersionId}/get/security/1",
+    "value": {
+      "HasPermission": [
+        "ADMIN:NAMESPACE:*:LEGAL [READ]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1admin~1localized-policy-versions~1{localizedPolicyVersionId}/get/description",
+    "value": "Retrieve a version of a particular country-specific policy.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1admin~1localized-policy-versions~1{localizedPolicyVersionId}/put/security/1",
+    "value": {
+      "HasPermission": [
+        "ADMIN:NAMESPACE:*:LEGAL [UPDATE]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1admin~1localized-policy-versions~1{localizedPolicyVersionId}/put/description",
+    "value": "Update a version of a particular country-specific policy.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:*:LEGAL&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1public~1agreements~1policies~1namespaces~1{namespace}~1countries~1{countryCode}~1clients~1{clientId}~1users~1{userId}/post/security/1",
+    "value": {
+      "HasPermission": [
+        "NAMESPACE:{namespace}:LEGAL [CREATE]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1public~1agreements~1policies~1namespaces~1{namespace}~1countries~1{countryCode}~1clients~1{clientId}~1users~1{userId}/post/description",
+    "value": "&lt;b&gt;IMPORTANT: GOING TO DEPRECATE&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;Accepts many legal policy versions all at once. Supply with localized version policy id, version policy id, policy id, userId, namespace, country code and client id to accept an agreement. This endpoint used by APIGateway during new user registration.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:LEGAL&#34;, action=1 (CREATE)&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1public~1eligibilities~1namespaces~1{namespace}/get/description",
+    "value": "Retrieve the active policies and its conformance status by user.&lt;br&gt;This process supports cross-namespace checking, that means if the active policy already accepted by the same user in other namespace, then it will be considered as eligible.&lt;br/&gt;&lt;br/&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: login user&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1public~1policies~1namespaces~1{namespace}~1countries~1{countryCode}/get/description",
+    "value": "Retrieve all active latest policies based on a namespace and country.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Leave the policyType empty if you want to be responded with all policy type&lt;/i&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Fill the tags if you want to filter the responded policy by tags&lt;/i&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Fill the defaultOnEmpty with true if you want to be responded with default country-specific policy if your requested country is not exist&lt;/i&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Fill the alwaysIncludeDefault with true if you want to be responded with always include default policy. If there are duplicate policies (default policies and country specific policies with same base policy) it&#39;ll include policy with same country code, for example:&lt;ul&gt;&lt;li&gt;Document 1 (default): Region US (default), UA&lt;/li&gt;&lt;li&gt;Document 2 (default): Region US (default)&lt;/li&gt;&lt;li&gt;Document 3 (default): Region US (default)&lt;/li&gt;&lt;li&gt;User: Region UA&lt;/li&gt;&lt;li&gt;Query: alwaysIncludeDefault: true&lt;/li&gt;&lt;li&gt;Response: Document 1 (UA), Document 2 (US), Document 3 (US)&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
     "path": "/securityDefinitions/HasPermission",
     "value": {
       "authorizationUrl": "https://dummy.oauth.net/auth",
@@ -497,6 +527,8 @@
         "ADMIN:NAMESPACE:*:LEGAL [DELETE]": "ADMIN:NAMESPACE:*:LEGAL [DELETE]",
         "ADMIN:NAMESPACE:*:LEGAL [READ]": "ADMIN:NAMESPACE:*:LEGAL [READ]",
         "ADMIN:NAMESPACE:*:LEGAL [UPDATE]": "ADMIN:NAMESPACE:*:LEGAL [UPDATE]",
+        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:LEGAL [CREATE]": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:LEGAL [CREATE]",
+        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:LEGAL [READ]": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:LEGAL [READ]",
         "NAMESPACE:{namespace}:LEGAL [CREATE]": "NAMESPACE:{namespace}:LEGAL [CREATE]",
         "NAMESPACE:{namespace}:LEGAL [READ]": "NAMESPACE:{namespace}:LEGAL [READ]"
       },

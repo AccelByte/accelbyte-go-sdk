@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "description": "Justice SeasonPass Service",
-    "version": "1.6.0",
+    "version": "1.7.0",
     "title": "justice-seasonpass-service",
     "contact": {
       "name": "Engineering Team at AccelByte",

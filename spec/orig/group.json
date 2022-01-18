@@ -8,7 +8,7 @@
       "url": "https://accelbyte.io",
       "email": "engineering@accelbyte.io"
     },
-    "version": "2.9.0"
+    "version": "2.10.0"
   },
   "paths": {
     "/group/v1/admin/namespaces/{namespace}/configuration": {
@@ -791,7 +791,7 @@
           "Group Member"
         ],
         "summary": "Get list of group members",
-        "operationId": "getGroupMembersListPublicV1",
+        "operationId": "getGroupMembersListAdminV1",
         "parameters": [
           {
             "type": "string",
@@ -1503,7 +1503,7 @@
           "Group"
         ],
         "summary": "update existing group",
-        "operationId": "updateSingleGroupPublicV1",
+        "operationId": "updatePutSingleGroupPublicV1",
         "parameters": [
           {
             "type": "string",
@@ -1641,7 +1641,7 @@
           "Group"
         ],
         "summary": "update existing group",
-        "operationId": "updateSingleGroupPublicV1",
+        "operationId": "updatePatchSingleGroupPublicV1",
         "parameters": [
           {
             "type": "string",
@@ -2593,7 +2593,7 @@
           "Group Roles"
         ],
         "summary": "Assign role to group member",
-        "operationId": "updateMemberRoleAdminV1",
+        "operationId": "updateMemberRolePublicV1",
         "parameters": [
           {
             "type": "string",
@@ -2669,7 +2669,7 @@
           "Group Roles"
         ],
         "summary": "Remove role from group member",
-        "operationId": "updateMemberRoleAdminV1",
+        "operationId": "deleteMemberRolePublicV1",
         "parameters": [
           {
             "type": "string",
@@ -3836,11 +3836,10 @@
       ],
       "properties": {
         "groupCustomRule": {
-          "$ref": "#/definitions/models.UpdateGroupCustomRuleRequestV1.groupCustomRule"
+          "type": "object"
         }
       }
     },
-    "models.UpdateGroupCustomRuleRequestV1.groupCustomRule": {},
     "models.UpdateGroupPredefinedRuleRequestV1": {
       "required": [
         "ruleDetail"

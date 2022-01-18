@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "description": "Justice Platform Service",
-    "version": "3.40.0",
+    "version": "4.1.1",
     "title": "justice-platform-service",
     "contact": {
       "name": "Engineering Team at AccelByte",
@@ -44,6 +44,9 @@
     },
     {
       "name": "FulfillmentScript"
+    },
+    {
+      "name": "DLC"
     },
     {
       "name": "IAP"
@@ -2465,7 +2468,7 @@
           "Item"
         ],
         "summary": "Update an item",
-        "description": "This API is used to update an item.<p>An item update example:<p><pre><code>{\r\n\t\"categoryPath\": \"/games\",\r\n\t\"localizations\": \\{\r\n       \"en\": \\{\r\n           \"title\":\"required\",\r\n           \"description\":\"optional\",\r\n           \"longDescription\":\"optional\",\r\n           \"localExt\": \\{\r\n                  \"properties\":\\[\r\n                                   \\{\r\n                                       \"key1\":\"value1\",\r\n                                       \"key2\":\"value2\"\r\n                                   \\}\r\n                  \\],\r\n                  \"functions\":\\[\r\n                                   \\{\r\n                                       \"key1\":\"value1\",\r\n                                       \"key2\":\"value2\"\r\n                                   \\}\r\n                 \\]\r\n           \\}\r\n       \\}\r\n   \\},\r\n   \"images\": \\[\r\n     \\{\r\n           \"as\":\"optional, image for\",\r\n           \"caption\":\"optional\",\r\n           \"height\":10,\r\n           \"width\":10,\r\n           \"imageUrl\":\"http://img-url-required\",\r\n           \"smallImageUrl\":\"http://small-img-url-required\"\r\n     \\}\r\n   \\],\r\n   \"thumbnailUrl\": \"optional, thumbnail url\",\r\n   \"status\": \"ACTIVE\",\r\n   \"listable\": true,\r\n   \"purchasable\": true,\r\n   \"itemType\": \"APP(allowed: [APP,COINS,INGAMEITEM,CODE,BUNDLE])\",\r\n   \"name\": \"optional\",\r\n   \"entitlementType\": \"DURABLE(allowed:[DURABLE,CONSUMABLE], should be CONSUMABLE when item type is COINS)\", \r\n   \"useCount\": 1(optional, required if the entitlement type is consumable),\r\n   \"stackable\": false,\r\n   \"appId\": \"optional, required if itemType is APP\",\r\n   \"baseAppId\": \"optional, set value of game app id if you want to link to a game\",\r\n   \"appType\": \"GAME(optional, required if itemType is APP)\",\r\n   \"seasonType\": \"PASS(optional, required if itemType is SEASON)\",\r\n   \"sku\": \"optional, commonly unique item code\",\r\n   \"targetCurrencyCode\": \"optional, required if itemType is COINS\",\r\n   \"targetNamespace\": \"optional, required when itemType is INGAMEITEM, the targetNamespace will only take effect when the item\r\n   created belongs to the publisher namespace\",\r\n   \"regionData\": \\{\r\n       \"US(store's default region is required)\": \\[\r\n         \\{\r\n            \"price\":10,\r\n            \"discountPercentage\":0(integer, optional, range[0,100], discountedPrice = price\\*((100 - discountPercentage) \\* 0.01),\r\n              if it is not 0, will use it to calculate discounted price),\r\n            \"discountAmount\":0(integer, optional, range[0,itemPrice], will use it to calculate discounted price if discountPercentage is 0),\r\n            \"currencyCode\":\"code(required, example: USD)\",\r\n            \"currencyNamespace\":\"test-ns-required\",\r\n            \"trialPrice\":5(required while fixedTrialCycles set, should >=0 and <= price, will same as price if not present),\r\n            \"purchaseAt\":\"optional yyyy-MM-dd'T'HH:mm:ss.SSS'Z'\",\r\n            \"expireAt\":\"optional yyyy-MM-dd'T'HH:mm:ss.SSS'Z'\",\r\n            \"discountPurchaseAt\":\"optional yyyy-MM-dd'T'HH:mm:ss.SSS'Z'\",\r\n            \"discountExpireAt\":\"optional yyyy-MM-dd'T'HH:mm:ss.SSS'Z'\"\r\n         \\}\r\n       \\]\r\n   \\},\r\n   \"itemIds\": \\[\r\n       \"itemId\"\r\n   \\],\r\n   \"recurring\": \\{\r\n       \"cycle\":\"MONTHLY(allowed: [WEEKLY,MONTHLY,QUARTERLY,YEARLY])\",\r\n       \"fixedFreeDays\":0(integer, fixed free days, 0 means not set),\r\n       \"fixedTrialCycles\":0(integer, fixed trial cycles, 0 means not set, will not take effect if fixedFreeDays set),\r\n       \"graceDays\":7(integer, recurring grace days, retry recurring charge within configured days if charge fail, default 7)\r\n   \\},\r\n   \"tags\": \\[\r\n       \"tag\"\r\n   \\],\r\n   \"features\": \\[\r\n       \"feature\"\r\n   \\],\r\n   \"clazz\": \"weapon\",\r\n   \"boothName\": \"C_campaign1\",\r\n   \"displayOrder\": 1000,\r\n   \"ext\": \\{\r\n       \"properties\":\\[\r\n           \\{\r\n               \"key1\":\"value1\",\r\n               \"key2\":\"value2\"\r\n           \\}\r\n       \\],\r\n       \"functions\":\\[\r\n           \\{\r\n               \"key1\":\"value1\",\r\n               \"key2\":\"value2\"\r\n           \\}\r\n       \\]\r\n   \\},\r\n   \"maxCountPerUser\": 1(integer, optional, -1 means UNLIMITED),\r\n   \"maxCount\": 1(integer, optional, -1 means UNLIMITED, new value should >= old value if both old value and new value is\r\n   limited, unset when item type is CODE)\r\n}</code></pre>Other detail info: <ul><li><i>Required permission</i>: resource=\"ADMIN:NAMESPACE:{namespace}:ITEM\", action=4 (UPDATE)</li><li><i>Returns</i>: updated item data</li></ul>",
+        "description": "This API is used to update an item.<p>An item update example:<p><pre><code>{\r\n\t\"categoryPath\": \"/games\",\r\n\t\"localizations\": \\{\r\n       \"en\": \\{\r\n           \"title\":\"required\",\r\n           \"description\":\"optional\",\r\n           \"longDescription\":\"optional\",\r\n           \"localExt\": \\{\r\n                  \"properties\":\\[\r\n                                   \\{\r\n                                       \"key1\":\"value1\",\r\n                                       \"key2\":\"value2\"\r\n                                   \\}\r\n                  \\],\r\n                  \"functions\":\\[\r\n                                   \\{\r\n                                       \"key1\":\"value1\",\r\n                                       \"key2\":\"value2\"\r\n                                   \\}\r\n                 \\]\r\n           \\}\r\n       \\}\r\n   \\},\r\n   \"images\": \\[\r\n     \\{\r\n           \"as\":\"optional, image for\",\r\n           \"caption\":\"optional\",\r\n           \"height\":10,\r\n           \"width\":10,\r\n           \"imageUrl\":\"http://img-url-required\",\r\n           \"smallImageUrl\":\"http://small-img-url-required\"\r\n     \\}\r\n   \\],\r\n   \"thumbnailUrl\": \"optional, thumbnail url\",\r\n   \"status\": \"ACTIVE\",\r\n   \"listable\": true,\r\n   \"purchasable\": true,\r\n   \"itemType\": \"APP(allowed: [APP,COINS,INGAMEITEM,CODE,BUNDLE])\",\r\n   \"name\": \"optional\",\r\n   \"entitlementType\": \"DURABLE(allowed:[DURABLE,CONSUMABLE], should be CONSUMABLE when item type is COINS)\", \r\n   \"useCount\": 1(optional, required if the entitlement type is consumable),\r\n   \"stackable\": false,\r\n   \"appId\": \"optional, required if itemType is APP\",\r\n   \"baseAppId\": \"optional, set value of game app id if you want to link to a game\",\r\n   \"appType\": \"GAME(optional, required if itemType is APP)\",\r\n   \"seasonType\": \"PASS(optional, required if itemType is SEASON)\",\r\n   \"sku\": \"optional, commonly unique item code\",\r\n   \"targetCurrencyCode\": \"optional, required if itemType is COINS\",\r\n   \"targetNamespace\": \"optional, required when itemType is INGAMEITEM, the targetNamespace will only take effect when the item\r\n   created belongs to the publisher namespace\",\r\n   \"regionData\": \\{\r\n       \"US(store's default region is required)\": \\[\r\n         \\{\r\n            \"price\":10,\r\n            \"discountPercentage\":0(integer, optional, range[0,100], discountedPrice = price\\*((100 - discountPercentage) \\* 0.01),\r\n              if it is not 0, will use it to calculate discounted price),\r\n            \"discountAmount\":0(integer, optional, range[0,itemPrice], will use it to calculate discounted price if discountPercentage is 0),\r\n            \"currencyCode\":\"code(required, example: USD)\",\r\n            \"currencyNamespace\":\"test-ns-required(allow publisher namespace if namespace is publisher namespace, allow publisher and game namespace if namespace is not publisher namespace)\",\r\n            \"trialPrice\":5(required while fixedTrialCycles set, should >=0 and <= price, will same as price if not present),\r\n            \"purchaseAt\":\"optional yyyy-MM-dd'T'HH:mm:ss.SSS'Z'\",\r\n            \"expireAt\":\"optional yyyy-MM-dd'T'HH:mm:ss.SSS'Z'\",\r\n            \"discountPurchaseAt\":\"optional yyyy-MM-dd'T'HH:mm:ss.SSS'Z'\",\r\n            \"discountExpireAt\":\"optional yyyy-MM-dd'T'HH:mm:ss.SSS'Z'\"\r\n         \\}\r\n       \\]\r\n   \\},\r\n   \"itemIds\": \\[\r\n       \"itemId\"\r\n   \\],\r\n   \"itemQty\": \\{\r\n       \"itemId\":1\r\n   \\},\r\n   \"recurring\": \\{\r\n       \"cycle\":\"MONTHLY(allowed: [WEEKLY,MONTHLY,QUARTERLY,YEARLY])\",\r\n       \"fixedFreeDays\":0(integer, fixed free days, 0 means not set),\r\n       \"fixedTrialCycles\":0(integer, fixed trial cycles, 0 means not set, will not take effect if fixedFreeDays set),\r\n       \"graceDays\":7(integer, recurring grace days, retry recurring charge within configured days if charge fail, default 7)\r\n   \\},\r\n   \"tags\": \\[\r\n       \"tag\"\r\n   \\],\r\n   \"features\": \\[\r\n       \"feature\"\r\n   \\],\r\n   \"clazz\": \"weapon\",\r\n   \"boothName\": \"C_campaign1\",\r\n   \"displayOrder\": 1000,\r\n   \"ext\": \\{\r\n       \"properties\":\\[\r\n           \\{\r\n               \"key1\":\"value1\",\r\n               \"key2\":\"value2\"\r\n           \\}\r\n       \\],\r\n       \"functions\":\\[\r\n           \\{\r\n               \"key1\":\"value1\",\r\n               \"key2\":\"value2\"\r\n           \\}\r\n       \\]\r\n   \\},\r\n   \"maxCountPerUser\": 1(integer, optional, -1 means UNLIMITED),\r\n   \"maxCount\": 1(integer, optional, -1 means UNLIMITED, new value should >= old value if both old value and new value is\r\n   limited, unset when item type is CODE)\r\n}</code></pre>Other detail info: <ul><li><i>Required permission</i>: resource=\"ADMIN:NAMESPACE:{namespace}:ITEM\", action=4 (UPDATE)</li><li><i>Returns</i>: updated item data</li></ul>",
         "operationId": "updateItem",
         "consumes": [
           "application/json"
@@ -2515,7 +2518,7 @@
             }
           },
           "400": {
-            "description": "<table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>30322</td><td>Bundle item [{itemId}] can't be bundled</td></tr><tr><td>30325</td><td>Code item [{itemId}] can't be bundled</td></tr><tr><td>30326</td><td>Subscription item [{itemId}] can't be bundled</td></tr><tr><td>30328</td><td>Season item [{itemId}] can't be bundled</td></tr><tr><td>30021</td><td>Default language [{language}] required</td></tr><tr><td>30321</td><td>Invalid item discount amount</td></tr><tr><td>30022</td><td>Default region [{region}] is required</td></tr><tr><td>30323</td><td>Target namespace is required</td></tr><tr><td>30327</td><td>Invalid item trial price</td></tr></table>",
+            "description": "<table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>30322</td><td>Bundle item [{itemId}] can't be bundled</td></tr><tr><td>30325</td><td>Code item [{itemId}] can't be bundled</td></tr><tr><td>30326</td><td>Subscription item [{itemId}] can't be bundled</td></tr><tr><td>30329</td><td>Invalid bundled item [{itemId}] quantity</td></tr><tr><td>30021</td><td>Default language [{language}] required</td></tr><tr><td>30321</td><td>Invalid item discount amount</td></tr><tr><td>30022</td><td>Default region [{region}] is required</td></tr><tr><td>30323</td><td>Target namespace is required</td></tr><tr><td>30327</td><td>Invalid item trial price</td></tr><tr><td>30330</td><td>Invalid item region price currency namespace [{namespace}]</td></tr></table>",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -3679,7 +3682,7 @@
           "Item"
         ],
         "summary": "Create an Item",
-        "description": "This API is used to create an item. APP item only can created in publisher namespace.<p>An item create example:<p><pre><code>{\r\n   \"categoryPath\": \"/games\",\r\n   \"localizations\": \\{\r\n       \"en\": \\{\r\n           \"title\":\"required\",\r\n           \"description\":\"optional\",\r\n           \"longDescription\":\"optional\",\r\n           \"localExt\": \\{\r\n                  \"properties\":\\[\r\n                                   \\{\r\n                                       \"key1\":\"value1\",\r\n                                       \"key2\":\"value2\"\r\n                                   \\}\r\n                  \\],\r\n                  \"functions\":\\[\r\n                                   \\{\r\n                                       \"key1\":\"value1\",\r\n                                       \"key2\":\"value2\"\r\n                                   \\}\r\n                 \\]\r\n           \\}\r\n        \\}\r\n   \\},\r\n   \"images\": \\[\r\n     \\{\r\n           \"as\":\"optional, image for\",\r\n           \"caption\":\"optional\",\r\n           \"height\":10,\r\n           \"width\":10,\r\n           \"imageUrl\":\"http://img-url-required\",\r\n           \"smallImageUrl\":\"http://small-img-url-required\"\r\n     \\}\r\n   \\],\r\n   \"thumbnailUrl\": \"optional, thumbnail url\",\r\n   \"status\": \"ACTIVE\",\r\n   \"listable\": true,\r\n   \"purchasable\": true,\r\n   \"itemType\": \"APP(allowed: [APP,COINS,INGAMEITEM,CODE,BUNDLE])\",\r\n   \"name\": \"required, also will be used as entitlement name\",\r\n   \"entitlementType\": \"DURABLE(allowed:[DURABLE,CONSUMABLE], should be CONSUMABLE when item type is COINS)\", \r\n   \"useCount\": 1(optional, required if the entitlement type is consumable),\r\n   \"stackable\": false,\r\n   \"appId\": \"optional, required if itemType is APP\",\r\n   \"appType\": \"GAME(optional, required if itemType is APP)\",\r\n   \"seasonType\": \"PASS(optional, required if itemType is SEASON)\",\r\n   \"baseAppId\": \"optional, set value of game app id if you want to link to a game\",\r\n   \"targetCurrencyCode\": \"optional, required if itemType is COINS\",\r\n   \"targetNamespace\": \"optional, required when itemType is INGAMEITEM, the targetNamespace will only take effect when the item\r\n   created belongs to the publisher namespace\",\r\n   \"sku\": \"optional, commonly unique item code\",\r\n   \"regionData\": \\{\r\n       \"US(store's default region is required)\": \\[\r\n         \\{\r\n            \"price\":10,\r\n            \"discountPercentage\": 0(integer, optional, range[0,100], discountedPrice = price  \\* ((100 - discountPercentage) \\* 0.01),\r\n              will use it to calculate discounted price if it is not 0),\r\n            \"discountAmount\":0(integer, optional, range[0,itemPrice], will use it to calculate discounted price if discountPercentage is 0),\r\n            \"currencyCode\":\"code(required, example: USD)\",\r\n            \"currencyNamespace\":\"test-ns-required\",\r\n            \"trialPrice\":5(required while fixedTrialCycles set, should >=0 and <= price, will same as price if not present),\r\n            \"purchaseAt\":\"optional yyyy-MM-dd'T'HH:mm:ss.SSS'Z'\",\r\n            \"expireAt\":\"optional yyyy-MM-dd'T'HH:mm:ss.SSS'Z'\",\r\n            \"discountPurchaseAt\":\"optional yyyy-MM-dd'T'HH:mm:ss.SSS'Z'\",\r\n            \"discountExpireAt\":\"optional yyyy-MM-dd'T'HH:mm:ss.SSS'Z'\"\r\n         \\}\r\n       \\]\r\n   \\},\r\n   \"itemIds\": \\[\r\n       \"itemId\"\r\n   \\],\r\n   \"recurring\": \\{\r\n       \"cycle\":\"MONTHLY(allowed: [WEEKLY,MONTHLY,QUARTERLY,YEARLY])\",\r\n       \"fixedFreeDays\":0(integer, fixed free days, 0 means not set),\r\n       \"fixedTrialCycles\":0(integer, fixed trial cycles, 0 means not set, will not take effect if fixedFreeDays set),\r\n       \"graceDays\":7(integer, recurring grace days, retry recurring charge within configured days if charge fail, default 7)\r\n   \\},\r\n   \"tags\": \\[\r\n       \"tag\"\r\n   \\],\r\n   \"features\": \\[\r\n       \"feature\"\r\n   \\],\r\n   \"clazz\": \"weapon\",\r\n   \"boothName\": \"C_campaign1\",\r\n   \"displayOrder\": 1000,\r\n   \"ext\": \\{\r\n       \"properties\":\\[\r\n           \\{\r\n               \"key1\":\"value1\",\r\n               \"key2\":\"value2\"\r\n           \\}\r\n       \\],\r\n       \"functions\":\\[\r\n           \\{\r\n               \"key1\":\"value1\",\r\n               \"key2\":\"value2\"\r\n           \\}\r\n       \\]\r\n   \\},\r\n   \"maxCountPerUser\": 1(integer, optional, -1 means UNLIMITED),\r\n   \"maxCount\": 1(integer, optional, -1 means UNLIMITED, unset when itemType is CODE)\r\n}</code></pre>Other detail info: <ul><li><i>Required permission</i>: resource=\"ADMIN:NAMESPACE:{namespace}:ITEM\", action=1 (CREATE)</li><li><i>Returns</i>: created item data</li></ul>",
+        "description": "This API is used to create an item. APP item only can created in publisher namespace.<p>An item create example:<p><pre><code>{\r\n   \"categoryPath\": \"/games\",\r\n   \"localizations\": \\{\r\n       \"en\": \\{\r\n           \"title\":\"required\",\r\n           \"description\":\"optional\",\r\n           \"longDescription\":\"optional\",\r\n           \"localExt\": \\{\r\n                  \"properties\":\\[\r\n                                   \\{\r\n                                       \"key1\":\"value1\",\r\n                                       \"key2\":\"value2\"\r\n                                   \\}\r\n                  \\],\r\n                  \"functions\":\\[\r\n                                   \\{\r\n                                       \"key1\":\"value1\",\r\n                                       \"key2\":\"value2\"\r\n                                   \\}\r\n                 \\]\r\n           \\}\r\n        \\}\r\n   \\},\r\n   \"images\": \\[\r\n     \\{\r\n           \"as\":\"optional, image for\",\r\n           \"caption\":\"optional\",\r\n           \"height\":10,\r\n           \"width\":10,\r\n           \"imageUrl\":\"http://img-url-required\",\r\n           \"smallImageUrl\":\"http://small-img-url-required\"\r\n     \\}\r\n   \\],\r\n   \"thumbnailUrl\": \"optional, thumbnail url\",\r\n   \"status\": \"ACTIVE\",\r\n   \"listable\": true,\r\n   \"purchasable\": true,\r\n   \"itemType\": \"APP(allowed: [APP,COINS,INGAMEITEM,CODE,BUNDLE])\",\r\n   \"name\": \"required, also will be used as entitlement name\",\r\n   \"entitlementType\": \"DURABLE(allowed:[DURABLE,CONSUMABLE], should be CONSUMABLE when item type is COINS)\", \r\n   \"useCount\": 1(optional, required if the entitlement type is consumable),\r\n   \"stackable\": false,\r\n   \"appId\": \"optional, required if itemType is APP\",\r\n   \"appType\": \"GAME(optional, required if itemType is APP)\",\r\n   \"seasonType\": \"PASS(optional, required if itemType is SEASON)\",\r\n   \"baseAppId\": \"optional, set value of game app id if you want to link to a game\",\r\n   \"targetCurrencyCode\": \"optional, required if itemType is COINS\",\r\n   \"targetNamespace\": \"optional, required when itemType is INGAMEITEM, the targetNamespace will only take effect when the item\r\n   created belongs to the publisher namespace\",\r\n   \"sku\": \"optional, commonly unique item code\",\r\n   \"regionData\": \\{\r\n       \"US(store's default region is required)\": \\[\r\n         \\{\r\n            \"price\":10,\r\n            \"discountPercentage\": 0(integer, optional, range[0,100], discountedPrice = price  \\* ((100 - discountPercentage) \\* 0.01),\r\n              will use it to calculate discounted price if it is not 0),\r\n            \"discountAmount\":0(integer, optional, range[0,itemPrice], will use it to calculate discounted price if discountPercentage is 0),\r\n            \"currencyCode\":\"code(required, example: USD)\",\r\n            \"currencyNamespace\":\"test-ns-required(allow publisher namespace if namespace is publisher namespace, allow publisher and game namespace if namespace is not publisher namespace)\",\r\n            \"trialPrice\":5(required while fixedTrialCycles set, should >=0 and <= price, will same as price if not present),\r\n            \"purchaseAt\":\"optional yyyy-MM-dd'T'HH:mm:ss.SSS'Z'\",\r\n            \"expireAt\":\"optional yyyy-MM-dd'T'HH:mm:ss.SSS'Z'\",\r\n            \"discountPurchaseAt\":\"optional yyyy-MM-dd'T'HH:mm:ss.SSS'Z'\",\r\n            \"discountExpireAt\":\"optional yyyy-MM-dd'T'HH:mm:ss.SSS'Z'\"\r\n         \\}\r\n       \\]\r\n   \\},\r\n   \"itemIds\": \\[\r\n       \"itemId\"\r\n   \\],\r\n   \"itemQty\": \\{\r\n       \"itemId\":1\r\n   \\},\r\n   \"recurring\": \\{\r\n       \"cycle\":\"MONTHLY(allowed: [WEEKLY,MONTHLY,QUARTERLY,YEARLY])\",\r\n       \"fixedFreeDays\":0(integer, fixed free days, 0 means not set),\r\n       \"fixedTrialCycles\":0(integer, fixed trial cycles, 0 means not set, will not take effect if fixedFreeDays set),\r\n       \"graceDays\":7(integer, recurring grace days, retry recurring charge within configured days if charge fail, default 7)\r\n   \\},\r\n   \"tags\": \\[\r\n       \"tag\"\r\n   \\],\r\n   \"features\": \\[\r\n       \"feature\"\r\n   \\],\r\n   \"clazz\": \"weapon\",\r\n   \"boothName\": \"C_campaign1\",\r\n   \"displayOrder\": 1000,\r\n   \"ext\": \\{\r\n       \"properties\":\\[\r\n           \\{\r\n               \"key1\":\"value1\",\r\n               \"key2\":\"value2\"\r\n           \\}\r\n       \\],\r\n       \"functions\":\\[\r\n           \\{\r\n               \"key1\":\"value1\",\r\n               \"key2\":\"value2\"\r\n           \\}\r\n       \\]\r\n   \\},\r\n   \"maxCountPerUser\": 1(integer, optional, -1 means UNLIMITED),\r\n   \"maxCount\": 1(integer, optional, -1 means UNLIMITED, unset when itemType is CODE)\r\n}</code></pre>Other detail info: <ul><li><i>Required permission</i>: resource=\"ADMIN:NAMESPACE:{namespace}:ITEM\", action=1 (CREATE)</li><li><i>Returns</i>: created item data</li></ul>",
         "operationId": "createItem",
         "consumes": [
           "application/json"
@@ -3724,7 +3727,7 @@
             }
           },
           "400": {
-            "description": "<table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>30322</td><td>Bundle item [{itemId}] can't be bundled</td></tr><tr><td>30325</td><td>Code item [{itemId}] can't be bundled</td></tr><tr><td>30326</td><td>Subscription item [{itemId}] can't be bundled</td></tr><tr><td>30328</td><td>Season item [{itemId}] can't be bundled</td></tr><tr><td>30021</td><td>Default language [{language}] required</td></tr><tr><td>30321</td><td>Invalid item discount amount</td></tr><tr><td>30022</td><td>Default region [{region}] is required</td></tr><tr><td>30323</td><td>Target namespace is required</td></tr><tr><td>30327</td><td>Invalid item trial price</td></tr></table>",
+            "description": "<table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>30322</td><td>Bundle item [{itemId}] can't be bundled</td></tr><tr><td>30325</td><td>Code item [{itemId}] can't be bundled</td></tr><tr><td>30326</td><td>Subscription item [{itemId}] can't be bundled</td></tr><tr><td>30329</td><td>Invalid bundled item [{itemId}] quantity</td></tr><tr><td>30021</td><td>Default language [{language}] required</td></tr><tr><td>30321</td><td>Invalid item discount amount</td></tr><tr><td>30022</td><td>Default region [{region}] is required</td></tr><tr><td>30323</td><td>Target namespace is required</td></tr><tr><td>30327</td><td>Invalid item trial price</td></tr><tr><td>30330</td><td>Invalid item region price currency namespace [{namespace}]</td></tr></table>",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -8837,6 +8840,76 @@
         }
       }
     },
+    "/admin/namespaces/{namespace}/users/{userId}/fulfillment/rewards": {
+      "post": {
+        "tags": [
+          "Fulfillment"
+        ],
+        "summary": "Fulfill rewards",
+        "description": "<b>[SERVICE COMMUNICATION ONLY]</b> Fulfill rewards.<br>Other detail info: <ul><li><i>Required permission</i>: resource=\"ADMIN:NAMESPACE:{namespace}:USER:{userId}:FULFILLMENT\", action=1 (CREATED)</li><li><i>Returns</i>: fulfillment result</li></ul>",
+        "operationId": "fulfillRewards",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/RewardsRequest"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "fulfill successfully"
+          },
+          "400": {
+            "description": "<table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>35123</td><td>Wallet [{walletId}] is inactive</td></tr><tr><td>38121</td><td>Duplicate permanent item exists</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>30341</td><td>Item [{itemId}] does not exist in namespace [{namespace}]</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "409": {
+            "description": "<table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>20006</td><td>optimistic lock</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "x-authorization": {
+          "resource": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:FULFILLMENT",
+          "action": "1"
+        }
+      }
+    },
     "/admin/namespaces/{namespace}/users/{userId}/fulfillment": {
       "post": {
         "tags": [
@@ -8980,6 +9053,268 @@
         "x-authorization": {
           "resource": "NAMESPACE:{namespace}:USER:{userId}:FULFILLMENT",
           "action": "1"
+        }
+      }
+    },
+    "/admin/namespaces/{namespace}/dlc/config/platformMap": {
+      "get": {
+        "tags": [
+          "DLC"
+        ],
+        "summary": "Get Platform DLC config",
+        "description": "Get Platform DLC config.<br>Other detail info: <ul><li><i>Required permission</i>: resource=<b>\"ADMIN:NAMESPACE:{namespace}:DLC:CONFIG\"</b>, action=2 <b>(READ)</b></li></ul>",
+        "operationId": "getPlatformDLCConfig",
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/PlatformDLCConfigInfo"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>39341</td><td>Platform DLC config cannot be found in namespace [{namespace}]</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "x-authorization": {
+          "resource": "ADMIN:NAMESPACE:{namespace}:DLC:CONFIG",
+          "action": "2"
+        }
+      },
+      "put": {
+        "tags": [
+          "DLC"
+        ],
+        "summary": "Update Platform DLC config",
+        "description": "Update Platform DLC config. Other detail info: <ul><li><i>Required permission</i>: resource=\"ADMIN:NAMESPACE:{namespace}:DLC:CONFIG\", action=4 (UPDATE)</li><li><i>Returns</i>: updated Platform DLC config</li></ul>",
+        "operationId": "updatePlatformDLCConfig",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/PlatformDLCConfigUpdate"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/PlatformDLCConfigInfo"
+            }
+          },
+          "422": {
+            "description": "<table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "x-authorization": {
+          "resource": "ADMIN:NAMESPACE:{namespace}:DLC:CONFIG",
+          "action": "4"
+        }
+      },
+      "delete": {
+        "tags": [
+          "DLC"
+        ],
+        "summary": "delete a Platform DLC config",
+        "description": "delete a Platform DLC config.<br>Other detail info: <ul><li><i>Required permission</i>: resource=<b>\"ADMIN:NAMESPACE:{namespace}:DLC:CONFIG\"</b>, action=8 <b>(DELETE)</b></li></ul>",
+        "operationId": "deletePlatformDLCConfig",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "description": "namespace, only accept alphabet and numeric",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Delete successfully"
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "x-authorization": {
+          "resource": "ADMIN:NAMESPACE:{namespace}:DLC:CONFIG",
+          "action": "8"
+        }
+      }
+    },
+    "/admin/namespaces/{namespace}/dlc/config/item": {
+      "get": {
+        "tags": [
+          "DLC"
+        ],
+        "summary": "Get DLC item config",
+        "description": "Get DLC item config.<br>Other detail info: <ul><li><i>Required permission</i>: resource=<b>\"ADMIN:NAMESPACE:{namespace}:DLC:CONFIG\"</b>, action=2 <b>(READ)</b></li></ul>",
+        "operationId": "getDLCItemConfig",
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/DLCItemConfigInfo"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>39341</td><td>DLC item config cannot be found in namespace [{namespace}]</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "x-authorization": {
+          "resource": "ADMIN:NAMESPACE:{namespace}:DLC:CONFIG",
+          "action": "2"
+        }
+      },
+      "put": {
+        "tags": [
+          "DLC"
+        ],
+        "summary": "Update DLC item config",
+        "description": "Update DLC item config. Other detail info: <ul><li><i>Required permission</i>: resource=\"ADMIN:NAMESPACE:{namespace}:DLC:CONFIG\", action=4 (UPDATE)</li><li><i>Returns</i>: updated DLC item config</li></ul>",
+        "operationId": "updateDLCItemConfig",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/DLCItemConfigUpdate"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/DLCItemConfigInfo"
+            }
+          },
+          "422": {
+            "description": "<table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "x-authorization": {
+          "resource": "ADMIN:NAMESPACE:{namespace}:DLC:CONFIG",
+          "action": "4"
+        }
+      },
+      "delete": {
+        "tags": [
+          "DLC"
+        ],
+        "summary": "delete a DLC item config",
+        "description": "delete a DLC item config.<br>Other detail info: <ul><li><i>Required permission</i>: resource=<b>\"ADMIN:NAMESPACE:{namespace}:DLC:CONFIG\"</b>, action=8 <b>(DELETE)</b></li></ul>",
+        "operationId": "deleteDLCItemConfig",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "description": "namespace, only accept alphabet and numeric",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Delete successfully"
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "x-authorization": {
+          "resource": "ADMIN:NAMESPACE:{namespace}:DLC:CONFIG",
+          "action": "8"
         }
       }
     },
@@ -9140,6 +9475,137 @@
           {
             "name": "namespace",
             "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Delete successfully"
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "x-authorization": {
+          "resource": "ADMIN:NAMESPACE:{namespace}:IAP:CONFIG",
+          "action": "8"
+        }
+      }
+    },
+    "/admin/namespaces/{namespace}/iap/config/item": {
+      "get": {
+        "tags": [
+          "IAP"
+        ],
+        "summary": "Get iap item config",
+        "description": "Get iap item config.<br>Other detail info: <ul><li><i>Required permission</i>: resource=<b>\"ADMIN:NAMESPACE:{namespace}:IAP:CONFIG\"</b>, action=2 <b>(READ)</b></li></ul>",
+        "operationId": "getIAPItemConfig",
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/IAPItemConfigInfo"
+            }
+          },
+          "404": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>39341</td><td>IAP item config cannot be found in namespace [{namespace}]</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "x-authorization": {
+          "resource": "ADMIN:NAMESPACE:{namespace}:IAP:CONFIG",
+          "action": "2"
+        }
+      },
+      "put": {
+        "tags": [
+          "IAP"
+        ],
+        "summary": "Update iap item config",
+        "description": "Update iap item config. Other detail info: <ul><li><i>Required permission</i>: resource=\"ADMIN:NAMESPACE:{namespace}:IAP:CONFIG\", action=4 (UPDATE)</li><li><i>Returns</i>: updated iap item config</li></ul>",
+        "operationId": "updateIAPItemConfig",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/IAPItemConfigUpdate"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/IAPItemConfigInfo"
+            }
+          },
+          "422": {
+            "description": "<table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "x-authorization": {
+          "resource": "ADMIN:NAMESPACE:{namespace}:IAP:CONFIG",
+          "action": "4"
+        }
+      },
+      "delete": {
+        "tags": [
+          "IAP"
+        ],
+        "summary": "delete a iap item config",
+        "description": "delete a iap item config.<br>Other detail info: <ul><li><i>Required permission</i>: resource=<b>\"ADMIN:NAMESPACE:{namespace}:IAP:CONFIG\"</b>, action=8 <b>(DELETE)</b></li></ul>",
+        "operationId": "deleteIAPItemConfig",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "description": "namespace, only accept alphabet and numeric",
             "required": true,
             "type": "string"
           }
@@ -10032,6 +10498,50 @@
         }
       }
     },
+    "/admin/namespaces/{namespace}/users/{userId}/iap/all": {
+      "get": {
+        "tags": [
+          "IAP"
+        ],
+        "summary": "Query all user IAP orders",
+        "description": "Query all user IAP orders.<br>Other detail info: <ul><li><i>Required permission</i>: resource=\"ADMIN:NAMESPACE:{namespace}:USER:{userId}:IAP\", action=2 (READ)</li><li><i>Returns</i>: list of iap orders</li></ul>",
+        "operationId": "queryAllUserIAPOrders",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/IAPOrderPagingSlicedResult"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "x-authorization": {
+          "resource": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:IAP",
+          "action": "2"
+        }
+      }
+    },
     "/admin/namespaces/{namespace}/users/{userId}/iap": {
       "get": {
         "tags": [
@@ -10135,6 +10645,159 @@
         "x-authorization": {
           "resource": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:IAP",
           "action": "2"
+        }
+      }
+    },
+    "/public/namespaces/{namespace}/users/{userId}/dlc/steam/sync": {
+      "put": {
+        "tags": [
+          "DLC"
+        ],
+        "summary": "Sync steam dlc.",
+        "description": "Sync steam dlc.<p>Other detail info: <ul><li><i>Required permission</i>: resource=NAMESPACE:{namespace}:USER:{userId}:DLC, action=4 (UPDATE)</li><li><i>Returns</i>: </li></ul>",
+        "operationId": "syncSteamDLC",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/SteamDLCSyncRequest"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful operation"
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "x-authorization": {
+          "resource": "NAMESPACE:{namespace}:USER:{userId}:DLC",
+          "action": "4"
+        }
+      }
+    },
+    "/public/namespaces/{namespace}/users/{userId}/dlc/psn/sync": {
+      "put": {
+        "tags": [
+          "DLC"
+        ],
+        "summary": "Synchronize with dlc entitlements in PSN Store.",
+        "description": "Synchronize with dlc entitlements in PSN Store.<p>Other detail info: <ul><li><i>Required permission</i>: resource=NAMESPACE:{namespace}:USER:{userId}:DLC, action=4 (UPDATE)</li><li><i>Returns</i>: result of synchronization</li></ul>",
+        "operationId": "publicSyncPsnDlcInventory",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/PlayStationDLCSyncRequest"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful operation"
+          },
+          "400": {
+            "description": "<table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>39123</td><td>PSN Sync failed with status code [{statusCode}] and psnAuthCode is [{psnAuthCode}]</td></tr>",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "x-authorization": {
+          "resource": "NAMESPACE:{namespace}:USER:{userId}:DLC",
+          "action": "4"
+        }
+      }
+    },
+    "/public/namespaces/{namespace}/users/{userId}/dlc/xbl/sync": {
+      "put": {
+        "tags": [
+          "DLC"
+        ],
+        "summary": "Sync Xbox dlc items.",
+        "description": "Sync Xbox inventory's dlc items.<p>Other detail info: <ul><li><i>Required permission</i>: resource=NAMESPACE:{namespace}:USER:{userId}:DLC, action=4 (UPDATE)</li><li><i>Returns</i>: </li></ul>",
+        "operationId": "syncXboxDLC",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/XblDLCSyncRequest"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful operation"
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "x-authorization": {
+          "resource": "NAMESPACE:{namespace}:USER:{userId}:DLC",
+          "action": "4"
         }
       }
     },
@@ -20150,6 +20813,14 @@
             "type": "string"
           }
         },
+        "itemQty": {
+          "type": "object",
+          "description": "itemQty, the quantity of item in itemIds, default 1, should be empty if item type is not \"BUNDLE\"",
+          "additionalProperties": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
         "boundItemIds": {
           "type": "array",
           "description": "the items which this item being bounded to",
@@ -20391,7 +21062,7 @@
       },
       "description": "Region data"
     },
-    "ItemInfo": {
+    "BundledItemInfo": {
       "type": "object",
       "required": [
         "categoryPath",
@@ -20554,6 +21225,14 @@
             "type": "string"
           }
         },
+        "itemQty": {
+          "type": "object",
+          "description": "itemQty, the quantity of item in itemIds, default 1, should be empty if item type is not \"BUNDLE\"",
+          "additionalProperties": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
         "boundItemIds": {
           "type": "array",
           "description": "the items which this item being bounded to",
@@ -20625,6 +21304,10 @@
           "type": "string",
           "format": "date-time",
           "description": "updated at"
+        },
+        "bundledQty": {
+          "type": "integer",
+          "format": "int32"
         },
         "localExt": {
           "type": "object",
@@ -20797,6 +21480,14 @@
             "type": "string"
           }
         },
+        "itemQty": {
+          "type": "object",
+          "description": "itemQty, the quantity of item in itemIds, default 1, should be empty if item type is not \"BUNDLE\"",
+          "additionalProperties": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
         "boundItemIds": {
           "type": "array",
           "description": "the items which this item being bounded to",
@@ -20873,7 +21564,7 @@
           "type": "array",
           "description": "bundle items, only has value when item is bundle and is populated",
           "items": {
-            "$ref": "#/definitions/ItemInfo"
+            "$ref": "#/definitions/BundledItemInfo"
           }
         },
         "localExt": {
@@ -20959,6 +21650,257 @@
           "type": "integer",
           "format": "int32",
           "description": "acquire count"
+        }
+      }
+    },
+    "ItemInfo": {
+      "type": "object",
+      "required": [
+        "categoryPath",
+        "createdAt",
+        "entitlementType",
+        "itemId",
+        "itemType",
+        "language",
+        "name",
+        "namespace",
+        "region",
+        "status",
+        "title",
+        "updatedAt"
+      ],
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "title info"
+        },
+        "description": {
+          "type": "string",
+          "description": "description info"
+        },
+        "longDescription": {
+          "type": "string",
+          "description": "long description info"
+        },
+        "itemId": {
+          "type": "string",
+          "description": "Item id"
+        },
+        "appId": {
+          "type": "string",
+          "description": "App id, required when itemType is APP"
+        },
+        "appType": {
+          "type": "string",
+          "description": "App type, required when itemType is APP",
+          "enum": [
+            "GAME",
+            "SOFTWARE",
+            "DLC",
+            "DEMO"
+          ]
+        },
+        "seasonType": {
+          "type": "string",
+          "description": "Season type, required while itemType is SEASON",
+          "enum": [
+            "PASS",
+            "TIER"
+          ]
+        },
+        "baseAppId": {
+          "type": "string",
+          "description": "Base app id"
+        },
+        "sku": {
+          "type": "string",
+          "description": "Sku"
+        },
+        "namespace": {
+          "type": "string",
+          "description": "Item namespace"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name"
+        },
+        "entitlementType": {
+          "type": "string",
+          "description": "Entitlement type",
+          "enum": [
+            "DURABLE",
+            "CONSUMABLE"
+          ]
+        },
+        "useCount": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Item use count, required when entitlement type is consumable or itemType is COINS"
+        },
+        "stackable": {
+          "type": "boolean",
+          "description": "Whether stack the CONSUMABLE entitlement"
+        },
+        "categoryPath": {
+          "type": "string",
+          "description": "Item category path"
+        },
+        "status": {
+          "type": "string",
+          "description": "Item status",
+          "enum": [
+            "ACTIVE",
+            "INACTIVE"
+          ]
+        },
+        "listable": {
+          "type": "boolean",
+          "description": "Whether can be visible in Store for public user"
+        },
+        "purchasable": {
+          "type": "boolean",
+          "description": "Whether can be purchased"
+        },
+        "itemType": {
+          "type": "string",
+          "description": "Item type",
+          "enum": [
+            "APP",
+            "COINS",
+            "INGAMEITEM",
+            "BUNDLE",
+            "CODE",
+            "SUBSCRIPTION",
+            "SEASON",
+            "MEDIA"
+          ]
+        },
+        "targetNamespace": {
+          "type": "string",
+          "description": "The target namespace of a cross namespace item"
+        },
+        "targetCurrencyCode": {
+          "type": "string",
+          "description": "Target currency code of coin item"
+        },
+        "targetItemId": {
+          "type": "string",
+          "description": "Target item id if this item is mapping from game namespace"
+        },
+        "images": {
+          "type": "array",
+          "description": "images",
+          "items": {
+            "$ref": "#/definitions/Image"
+          }
+        },
+        "thumbnailUrl": {
+          "type": "string",
+          "description": "thumbnail url"
+        },
+        "regionData": {
+          "type": "array",
+          "description": "Region data",
+          "items": {
+            "$ref": "#/definitions/RegionDataItem"
+          }
+        },
+        "recurring": {
+          "description": "recurring for subscription",
+          "$ref": "#/definitions/Recurring"
+        },
+        "itemIds": {
+          "type": "array",
+          "description": "itemIds, should be empty if item type is not \"BUNDLE\"",
+          "items": {
+            "type": "string"
+          }
+        },
+        "itemQty": {
+          "type": "object",
+          "description": "itemQty, the quantity of item in itemIds, default 1, should be empty if item type is not \"BUNDLE\"",
+          "additionalProperties": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "boundItemIds": {
+          "type": "array",
+          "description": "the items which this item being bounded to",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "tags": {
+          "type": "array",
+          "description": "Tags",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "features": {
+          "type": "array",
+          "description": "Features",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "maxCountPerUser": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Max count per user, -1 means UNLIMITED"
+        },
+        "maxCount": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Max count, -1 means UNLIMITED, unset when itemType is CODE"
+        },
+        "clazz": {
+          "type": "string",
+          "description": "customized item clazz"
+        },
+        "boothName": {
+          "type": "string",
+          "description": "booth name to get tickets while it's item type is CODE"
+        },
+        "displayOrder": {
+          "type": "integer",
+          "format": "int32",
+          "description": "display order"
+        },
+        "ext": {
+          "type": "object",
+          "description": "customized item properties",
+          "additionalProperties": {
+            "type": "object"
+          }
+        },
+        "region": {
+          "type": "string",
+          "description": "region"
+        },
+        "language": {
+          "type": "string",
+          "description": "language"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "created at"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "updated at"
+        },
+        "localExt": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object"
+          }
         }
       }
     },
@@ -21096,6 +22038,14 @@
           "description": "itemIds, should be empty if item type is not \"BUNDLE\"",
           "items": {
             "type": "string"
+          }
+        },
+        "itemQty": {
+          "type": "object",
+          "description": "itemQty, the quantity of item in itemIds, default 1, should be empty if item type is not \"BUNDLE\"",
+          "additionalProperties": {
+            "type": "integer",
+            "format": "int32"
           }
         },
         "recurring": {
@@ -21348,6 +22298,14 @@
           "description": "itemIds, should be empty if item type is not \"BUNDLE\"",
           "items": {
             "type": "string"
+          }
+        },
+        "itemQty": {
+          "type": "object",
+          "description": "itemQty, the quantity of item in itemIds, default 1, should be empty if item type is not \"BUNDLE\"",
+          "additionalProperties": {
+            "type": "integer",
+            "format": "int32"
           }
         },
         "recurring": {
@@ -22421,6 +23379,14 @@
             "type": "string"
           }
         },
+        "itemQty": {
+          "type": "object",
+          "description": "itemQty, the quantity of item in itemIds, default 1, should be empty if item type is not \"BUNDLE\"",
+          "additionalProperties": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
         "features": {
           "type": "array",
           "description": "supported features",
@@ -23263,6 +24229,7 @@
             "REDEEM_CODE",
             "REWARD",
             "GIFT",
+            "DLC",
             "OTHER"
           ]
         },
@@ -23447,6 +24414,95 @@
         }
       }
     },
+    "PlatformReward": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "reward type",
+          "enum": [
+            "ITEM",
+            "CURRENCY"
+          ]
+        },
+        "item": {
+          "description": "required if type is ITEM, can be fulfilled by itemId or itemSku",
+          "$ref": "#/definitions/PlatformRewardItem"
+        },
+        "currency": {
+          "description": "required if type is CURRENCY",
+          "$ref": "#/definitions/PlatformRewardCurrency"
+        },
+        "quantity": {
+          "type": "integer",
+          "format": "int32",
+          "description": "quantity if type is ITEM, amount if type is CURRENCY"
+        }
+      }
+    },
+    "PlatformRewardCurrency": {
+      "type": "object",
+      "required": [
+        "currencyCode",
+        "namespace"
+      ],
+      "properties": {
+        "namespace": {
+          "type": "string",
+          "description": "namespace, allowed values: game namespace or publisher namespace"
+        },
+        "currencyCode": {
+          "type": "string",
+          "description": "currency code, alphabet uppercase"
+        }
+      }
+    },
+    "PlatformRewardItem": {
+      "type": "object",
+      "properties": {
+        "itemType": {
+          "type": "string"
+        },
+        "itemId": {
+          "type": "string"
+        },
+        "itemSku": {
+          "type": "string"
+        }
+      }
+    },
+    "RewardsRequest": {
+      "type": "object",
+      "required": [
+        "rewards"
+      ],
+      "properties": {
+        "rewards": {
+          "type": "array",
+          "description": "reward",
+          "items": {
+            "$ref": "#/definitions/PlatformReward"
+          }
+        },
+        "source": {
+          "type": "string",
+          "description": "source",
+          "enum": [
+            "PURCHASE",
+            "IAP",
+            "PROMOTION",
+            "ACHIEVEMENT",
+            "REFERRAL_BONUS",
+            "REDEEM_CODE",
+            "REWARD",
+            "GIFT",
+            "DLC",
+            "OTHER"
+          ]
+        }
+      },
+      "description": "A DTO object for rewards request API call."
+    },
     "FulfillmentRequest": {
       "type": "object",
       "required": [
@@ -23490,6 +24546,7 @@
             "REDEEM_CODE",
             "REWARD",
             "GIFT",
+            "DLC",
             "OTHER"
           ]
         },
@@ -23518,6 +24575,88 @@
         }
       },
       "description": "A DTO object for fulfillment request API call."
+    },
+    "PlatformDLCConfigInfo": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PlatformDlcEntry"
+          }
+        }
+      }
+    },
+    "PlatformDlcEntry": {
+      "type": "object",
+      "properties": {
+        "platform": {
+          "type": "string",
+          "description": "platform: steam, psn, xbl",
+          "enum": [
+            "PSN",
+            "STEAM",
+            "XBOX"
+          ]
+        },
+        "platformDlcIdMap": {
+          "type": "object",
+          "description": "key is platform product id, value is dlc id",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "DLCItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "dlc id"
+        },
+        "rewards": {
+          "type": "array",
+          "description": "reward list",
+          "items": {
+            "$ref": "#/definitions/PlatformReward"
+          }
+        }
+      }
+    },
+    "DLCItemConfigInfo": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DLCItem"
+          }
+        }
+      }
+    },
+    "PlatformDLCConfigUpdate": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "description": "platform dlc config list",
+          "items": {
+            "$ref": "#/definitions/PlatformDlcEntry"
+          }
+        }
+      }
+    },
+    "DLCItemConfigUpdate": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DLCItem"
+          }
+        }
+      }
     },
     "XblIAPConfigInfo": {
       "type": "object",
@@ -23569,6 +24708,44 @@
         "sandboxId": {
           "type": "string",
           "description": "sandboxId"
+        }
+      }
+    },
+    "IAPItemConfigInfo": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/IAPItemEntry"
+          }
+        }
+      }
+    },
+    "IAPItemEntry": {
+      "type": "object",
+      "properties": {
+        "itemIdentity": {
+          "type": "string",
+          "description": "item sku"
+        },
+        "platformProductIdMap": {
+          "type": "object",
+          "description": "IAP Platform production ids related item id",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "IAPItemConfigUpdate": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/IAPItemEntry"
+          }
         }
       }
     },
@@ -23905,6 +25082,15 @@
           "type": "string",
           "format": "date-time",
           "description": "updated at"
+        },
+        "price": {
+          "type": "number",
+          "format": "double",
+          "description": "price"
+        },
+        "currencyCode": {
+          "type": "string",
+          "description": "currency code"
         }
       }
     },
@@ -23923,6 +25109,42 @@
         },
         "paging": {
           "$ref": "#/definitions/Paging"
+        }
+      }
+    },
+    "SteamDLCSyncRequest": {
+      "type": "object",
+      "required": [
+        "appId",
+        "steamId"
+      ],
+      "properties": {
+        "steamId": {
+          "type": "string",
+          "description": "Steam ID of the user"
+        },
+        "appId": {
+          "type": "string",
+          "description": "Steam app id"
+        }
+      }
+    },
+    "PlayStationDLCSyncRequest": {
+      "type": "object",
+      "properties": {
+        "serviceLabel": {
+          "type": "integer",
+          "format": "int32",
+          "description": "service label"
+        }
+      }
+    },
+    "XblDLCSyncRequest": {
+      "type": "object",
+      "properties": {
+        "xstsToken": {
+          "type": "string",
+          "description": "xstsToken"
         }
       }
     },
@@ -23948,6 +25170,19 @@
         "language": {
           "type": "string",
           "description": "language value from language tag, allowed format: en, en-US"
+        },
+        "productId": {
+          "type": "string",
+          "description": "steamdefid"
+        },
+        "price": {
+          "type": "number",
+          "format": "double",
+          "description": "product price"
+        },
+        "currencyCode": {
+          "type": "string",
+          "description": "product price currency"
         }
       }
     },
@@ -24013,6 +25248,19 @@
     "PlayStationReconcileRequest": {
       "type": "object",
       "properties": {
+        "productId": {
+          "type": "string",
+          "description": "productId"
+        },
+        "price": {
+          "type": "number",
+          "format": "double",
+          "description": "product price"
+        },
+        "currencyCode": {
+          "type": "string",
+          "description": "product price currency"
+        },
         "serviceLabel": {
           "type": "integer",
           "format": "int32",
@@ -24117,6 +25365,19 @@
         "xstsToken": {
           "type": "string",
           "description": "xstsToken"
+        },
+        "productId": {
+          "type": "string",
+          "description": "productId"
+        },
+        "price": {
+          "type": "number",
+          "format": "double",
+          "description": "product price"
+        },
+        "currencyCode": {
+          "type": "string",
+          "description": "product price currency"
         }
       }
     },

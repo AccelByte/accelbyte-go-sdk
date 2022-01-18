@@ -12,62 +12,24 @@
     "value": "demo.accelbyte.io"
   },
   {
-    "op": "remove",
-    "path": "/definitions/models.PodConfig"
-  },
-  {
     "op": "add",
-    "path": "/securityDefinitions/HasPermission",
-    "value": {
-      "authorizationUrl": "https://dummy.oauth.net/auth",
-      "flow": "accessCode",
-      "scopes": {
-        "ADMIN:NAMESPACE:{namespace}:DSLM:LOG [READ]": "ADMIN:NAMESPACE:{namespace}:DSLM:LOG [READ]",
-        "ADMIN:NAMESPACE:{namespace}:DSLM:SERVER [READ]": "ADMIN:NAMESPACE:{namespace}:DSLM:SERVER [READ]"
-      },
-      "tokenUrl": "https://dumy.oauth.net/token",
-      "type": "oauth2"
-    }
-  },
-  {
-    "op": "add",
-    "path": "/securityDefinitions/HasScope",
-    "value": {
-      "authorizationUrl": "https://dummy.oauth.net/auth",
-      "flow": "accessCode",
-      "scopes": {
-        "social": "social"
-      },
-      "tokenUrl": "https://dumy.oauth.net/token",
-      "type": "oauth2"
-    }
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1dslogmanager~1servers~1search/get/security",
+    "path": "/paths/~1dslogmanager~1servers~1logs~1download/post/security",
     "value": [
       {
         "HasPermission": [
-          "ADMIN:NAMESPACE:{namespace}:DSLM:SERVER [READ]"
+          "ADMIN:NAMESPACE:{namespace}:DSLM:LOG [READ]"
+        ],
+        "HasScope": [
+          "social"
         ],
         "authorization": []
       }
     ]
   },
   {
-    "op": "move",
-    "from": "/security",
-    "path": "/paths/~1dslogmanager~1v1~1messages/get/security"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1dslogmanager~1v1~1messages/get/responses/200/description",
-    "value": ""
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1dslogmanager~1v1~1messages/get/responses/500/description",
-    "value": ""
+    "op": "replace",
+    "path": "/paths/~1dslogmanager~1servers~1logs~1download/post/description",
+    "value": "Required permission: ADMIN:NAMESPACE:{namespace}:DSLM:LOG [READ]\n\nRequired scope: social\n\nThis endpoint will download dedicated server&#39;s log file (.zip)."
   },
   {
     "op": "add",
@@ -102,13 +64,13 @@
   },
   {
     "op": "replace",
-    "path": "/paths/~1dslogmanager~1namespaces~1{namespace}~1servers~1search/get/parameters/1/in",
-    "value": "query"
+    "path": "/paths/~1dslogmanager~1namespaces~1{namespace}~1servers~1search/get/parameters/1/name",
+    "value": "region"
   },
   {
     "op": "replace",
-    "path": "/paths/~1dslogmanager~1namespaces~1{namespace}~1servers~1search/get/parameters/1/name",
-    "value": "region"
+    "path": "/paths/~1dslogmanager~1namespaces~1{namespace}~1servers~1search/get/parameters/1/in",
+    "value": "query"
   },
   {
     "op": "replace",
@@ -232,6 +194,11 @@
   },
   {
     "op": "replace",
+    "path": "/paths/~1dslogmanager~1namespaces~1{namespace}~1servers~1search/get/parameters/13/type",
+    "value": "integer"
+  },
+  {
+    "op": "replace",
     "path": "/paths/~1dslogmanager~1namespaces~1{namespace}~1servers~1search/get/parameters/13/name",
     "value": "limit"
   },
@@ -241,13 +208,20 @@
     "value": "limit"
   },
   {
-    "op": "replace",
-    "path": "/paths/~1dslogmanager~1namespaces~1{namespace}~1servers~1search/get/parameters/13/type",
-    "value": "integer"
-  },
-  {
     "op": "remove",
     "path": "/paths/~1dslogmanager~1namespaces~1{namespace}~1servers~1search/get/parameters/14"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1dslogmanager~1servers~1search/get/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:DSLM:SERVER [READ]"
+        ],
+        "authorization": []
+      }
+    ]
   },
   {
     "op": "add",
@@ -270,23 +244,49 @@
     "value": "Required permission: ADMIN:NAMESPACE:{namespace}:DSLM:LOG [READ]\n\nRequired scope: social\n\nThis endpoint will download dedicated server&#39;s log file (.log)."
   },
   {
-    "op": "add",
-    "path": "/paths/~1dslogmanager~1servers~1logs~1download/post/security",
-    "value": [
-      {
-        "HasPermission": [
-          "ADMIN:NAMESPACE:{namespace}:DSLM:LOG [READ]"
-        ],
-        "HasScope": [
-          "social"
-        ],
-        "authorization": []
-      }
-    ]
+    "op": "move",
+    "from": "/security",
+    "path": "/paths/~1dslogmanager~1v1~1messages/get/security"
   },
   {
-    "op": "replace",
-    "path": "/paths/~1dslogmanager~1servers~1logs~1download/post/description",
-    "value": "Required permission: ADMIN:NAMESPACE:{namespace}:DSLM:LOG [READ]\n\nRequired scope: social\n\nThis endpoint will download dedicated server&#39;s log file (.zip)."
+    "op": "add",
+    "path": "/paths/~1dslogmanager~1v1~1messages/get/responses/500/description",
+    "value": ""
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1dslogmanager~1v1~1messages/get/responses/200/description",
+    "value": ""
+  },
+  {
+    "op": "add",
+    "path": "/securityDefinitions/HasPermission",
+    "value": {
+      "authorizationUrl": "https://dummy.oauth.net/auth",
+      "flow": "accessCode",
+      "scopes": {
+        "ADMIN:NAMESPACE:{namespace}:DSLM:LOG [READ]": "ADMIN:NAMESPACE:{namespace}:DSLM:LOG [READ]",
+        "ADMIN:NAMESPACE:{namespace}:DSLM:SERVER [READ]": "ADMIN:NAMESPACE:{namespace}:DSLM:SERVER [READ]"
+      },
+      "tokenUrl": "https://dumy.oauth.net/token",
+      "type": "oauth2"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/securityDefinitions/HasScope",
+    "value": {
+      "authorizationUrl": "https://dummy.oauth.net/auth",
+      "flow": "accessCode",
+      "scopes": {
+        "social": "social"
+      },
+      "tokenUrl": "https://dumy.oauth.net/token",
+      "type": "oauth2"
+    }
+  },
+  {
+    "op": "remove",
+    "path": "/definitions/models.PodConfig"
   }
 ]

@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "description": "Justice Social Service",
-    "version": "1.22.1",
+    "version": "1.23.0",
     "title": "justice-social-service",
     "contact": {
       "name": "Engineering Team at AccelByte",

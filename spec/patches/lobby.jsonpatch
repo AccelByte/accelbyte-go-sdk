@@ -1,1721 +1,15 @@
 [
   {
     "op": "add",
-    "path": "/host",
-    "value": "demo.accelbyte.io"
-  },
-  {
-    "op": "add",
     "path": "/schemes",
     "value": [
       "https"
     ]
   },
   {
-    "op": "move",
-    "from": "/security",
-    "path": "/paths/~1friends~1namespaces~1{namespace}~1me~1request/post/security"
-  },
-  {
     "op": "add",
-    "path": "/paths/~1friends~1namespaces~1{namespace}~1users~1{userId}~1add~1bulk/post/security",
-    "value": [
-      {
-        "HasPermission": [
-          "NAMESPACE:{namespace}:USER:{userId}:FRIENDS [CREATE]"
-        ],
-        "HasScope": [
-          "social"
-        ],
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1friends~1namespaces~1{namespace}~1users~1{userId}~1add~1bulk/post/description",
-    "value": "Required permission : &lt;code&gt;NAMESPACE:{namespace}:USER:{userId}:FRIENDS [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;friends request in a namespace."
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1lobby~1v1~1admin~1notification~1namespaces~1{namespace}~1users~1{userId}~1freeform~1notify/post/security",
-    "value": [
-      {
-        "HasPermission": [
-          "ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]"
-        ],
-        "HasScope": [
-          "social"
-        ],
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1lobby~1v1~1admin~1notification~1namespaces~1{namespace}~1users~1{userId}~1freeform~1notify/post/description",
-    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;Sends notification to a user.\n\t\t\tAction Code: 50211"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1lobby~1v1~1admin~1notification~1namespaces~1{namespace}~1users~1{userId}~1templates~1notify/post/security",
-    "value": [
-      {
-        "HasPermission": [
-          "ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]"
-        ],
-        "HasScope": [
-          "social"
-        ],
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1lobby~1v1~1admin~1notification~1namespaces~1{namespace}~1users~1{userId}~1templates~1notify/post/description",
-    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;Sends templated notification to a user.\n\t\t\t&lt;br&gt;In the request body, specify which template slug (template identifier) to use and the template language. \n\t\t\t&lt;br&gt;NotificationTemplate context is the key-value pair defining the value of each handlebar specified in the template content. \n\t\t\tTemplate need to be published before it can be use to send notifications&lt;br&gt;\n\t\t\tAction Code: 50212"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1lobby~1v1~1public~1presence~1namespaces~1{namespace}~1users~1presence/get/security",
-    "value": [
-      {
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1lobby~1v1~1admin~1player~1namespaces~1{namespace}~1users~1{userId}~1blocked-by/get/security",
-    "value": [
-      {
-        "HasPermission": [
-          "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PLAYER:BLOCK [READ]"
-        ],
-        "HasScope": [
-          "social"
-        ],
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1lobby~1v1~1admin~1player~1namespaces~1{namespace}~1users~1{userId}~1blocked-by/get/description",
-    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:PLAYER:BLOCK [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;load get players who blocked this player in a namespace based on user id"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1lobby~1v1~1admin~1profanity~1namespaces~1{namespace}~1list~1{list}~1filters~1delete/post/security",
-    "value": [
-      {
-        "HasPermission": [
-          "ADMIN:NAMESPACE:{namespace}:PROFANITY [DELETE]"
-        ],
-        "HasScope": [
-          "social"
-        ],
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1lobby~1v1~1admin~1profanity~1namespaces~1{namespace}~1list~1{list}~1filters~1delete/post/responses/200/schema/items/$ref",
-    "value": "#/definitions/models.ProfanityFilter"
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1lobby~1v1~1admin~1profanity~1namespaces~1{namespace}~1list~1{list}~1filters~1delete/post/description",
-    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:PROFANITY [DELETE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;delete the filter from the list"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1lobby~1v1~1admin~1profanity~1namespaces~1{namespace}~1lists/get/security",
-    "value": [
-      {
-        "HasPermission": [
-          "ADMIN:NAMESPACE:{namespace}:PROFANITY [READ]"
-        ],
-        "HasScope": [
-          "social"
-        ],
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1lobby~1v1~1admin~1profanity~1namespaces~1{namespace}~1lists/get/description",
-    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:PROFANITY [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;get lists"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1lobby~1v1~1admin~1profanity~1namespaces~1{namespace}~1lists/post/security",
-    "value": [
-      {
-        "HasPermission": [
-          "ADMIN:NAMESPACE:{namespace}:PROFANITY [CREATE]"
-        ],
-        "HasScope": [
-          "social"
-        ],
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1lobby~1v1~1admin~1profanity~1namespaces~1{namespace}~1lists/post/description",
-    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:PROFANITY [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;create a new list"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1lobby~1chat~1namespaces~1{namespace}~1users~1{userId}~1friend~1{friendId}/get/security",
-    "value": [
-      {
-        "HasPermission": [
-          "NAMESPACE:{namespace}:USER:{userId}:CHAT [READ]"
-        ],
-        "HasScope": [
-          "social"
-        ],
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1lobby~1chat~1namespaces~1{namespace}~1users~1{userId}~1friend~1{friendId}/get/description",
-    "value": "Required permission : &lt;code&gt;NAMESPACE:{namespace}:USER:{userId}:CHAT [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;load personal chat history in a namespace."
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1friends~1namespaces~1{namespace}~1me/get/security",
-    "value": [
-      {
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1friends~1namespaces~1{namespace}~1me/get/operationId",
-    "value": "getUserFriendsUpdated"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1lobby~1v1~1admin~1player~1namespaces~1{namespace}~1users~1{userId}~1attributes/get/security",
-    "value": [
-      {
-        "HasPermission": [
-          "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PLAYER:ATTRIBUTES [READ]"
-        ],
-        "HasScope": [
-          "social"
-        ],
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1lobby~1v1~1admin~1player~1namespaces~1{namespace}~1users~1{userId}~1attributes/get/description",
-    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:PLAYER:ATTRIBUTES [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;get all player&#39;s session attribute by user id in a namespace."
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1lobby~1v1~1admin~1player~1namespaces~1{namespace}~1users~1{userId}~1attributes/put/security",
-    "value": [
-      {
-        "HasPermission": [
-          "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PLAYER:ATTRIBUTES [UPDATE]"
-        ],
-        "HasScope": [
-          "social"
-        ],
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1lobby~1v1~1admin~1player~1namespaces~1{namespace}~1users~1{userId}~1attributes/put/description",
-    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:PLAYER:ATTRIBUTES [UPDATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;set player&#39;s session attribute by user id in a namespace."
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1lobby~1v1~1admin~1player~1namespaces~1{namespace}~1ccu/get/security",
-    "value": [
-      {
-        "HasPermission": [
-          "ADMIN:NAMESPACE:{namespace}:LOBBY:CCU [READ]"
-        ],
-        "HasScope": [
-          "social"
-        ],
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1lobby~1v1~1admin~1player~1namespaces~1{namespace}~1ccu/get/description",
-    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:LOBBY:CCU [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;Get the number of players connected to the Lobby in the given namespace."
-  },
-  {
-    "op": "remove",
-    "path": "/paths/~1lobby~1v1~1admin~1player~1namespaces~1{namespace}~1ccu/get/parameters/1"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1lobby~1v1~1admin~1profanity~1namespaces~1{namespace}~1verify/post/security",
-    "value": [
-      {
-        "HasPermission": [
-          "ADMIN:NAMESPACE:{namespace}:PROFANITY [READ]"
-        ],
-        "HasScope": [
-          "social"
-        ],
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1lobby~1v1~1admin~1profanity~1namespaces~1{namespace}~1verify/post/description",
-    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:PROFANITY [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;verify a message directly from the UI or other services"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1friends~1namespaces~1{namespace}~1me~1request~1accept/post/security",
-    "value": [
-      {
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1lobby~1v1~1messages/get/security",
-    "value": [
-      {
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1lobby~1v1~1public~1player~1namespaces~1{namespace}~1users~1me~1blocked-by/get/security",
-    "value": [
-      {
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1lobby~1v1~1public~1player~1namespaces~1{namespace}~1users~1me~1blocked-by/get/description",
-    "value": "Required valid user authorization &lt;br/&gt;\n\t\t\t&lt;br&gt;load get players who blocked this player in a namespace based on user id &lt;br/&gt;\n\t\t\tAction Code: 50101"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1notification~1namespaces~1{namespace}~1users~1{userId}~1templated/post/security",
-    "value": [
-      {
-        "HasPermission": [
-          "NAMESPACE:{namespace}:USER:{userId}:NOTIFICATION [CREATE]"
-        ],
-        "HasScope": [
-          "social"
-        ],
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1notification~1namespaces~1{namespace}~1users~1{userId}~1templated/post/description",
-    "value": "Required permission : &lt;code&gt;NAMESPACE:{namespace}:USER:{userId}:NOTIFICATION [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;Sends notification to a user with predefined template.\n\t\t\t&lt;br&gt;In the request body, specify which template slug (template identifier) to use and the template language. \n\t\t\t&lt;br&gt;NotificationTemplate context is the key-value pair defining the value of each handlebar specified in the template content. \n\t\t\tTemplate need to be published before it can be use to send notifications"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1friends~1namespaces~1{namespace}~1me~1unfriend/post/security",
-    "value": [
-      {
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1lobby~1v1~1public~1player~1namespaces~1{namespace}~1users~1me~1blocked/get/security",
-    "value": [
-      {
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1lobby~1v1~1public~1player~1namespaces~1{namespace}~1users~1me~1blocked/get/description",
-    "value": "Required valid user authorization &lt;br/&gt;\n\t\t\t&lt;br&gt;load blocked players in a namespace based on user id &lt;br/&gt;\n\t\t\tAction Code: 50101"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1lobby~1v1~1admin~1notification~1namespaces~1{namespace}~1topics/get/security",
-    "value": [
-      {
-        "HasPermission": [
-          "ADMIN:NAMESPACE:{namespace}:NOTIFICATION [READ]"
-        ],
-        "HasScope": [
-          "social"
-        ],
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1lobby~1v1~1admin~1notification~1namespaces~1{namespace}~1topics/get/description",
-    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;get topic by namespace.&lt;br/&gt;\n\t\t\tAction Code: 50213"
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1lobby~1v1~1admin~1notification~1namespaces~1{namespace}~1topics/get/parameters/1/type",
-    "value": "integer"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1lobby~1v1~1admin~1notification~1namespaces~1{namespace}~1topics/post/security",
-    "value": [
-      {
-        "HasPermission": [
-          "ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]"
-        ],
-        "HasScope": [
-          "social"
-        ],
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1lobby~1v1~1admin~1notification~1namespaces~1{namespace}~1topics/post/description",
-    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;Create new notification topic.\n\t\t\t&lt;br&gt;topic should be alphabets, no special char except underscore, uppercase and no spacing. for example: TOPIC_TEST. \n\t\t\tAlready existing topic can not be created&lt;br/&gt;\n\t\t\tAction Code: 50214"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1notification~1namespaces~1{namespace}~1templates/get/security",
-    "value": [
-      {
-        "HasPermission": [
-          "NAMESPACE:{namespace}:TEMPLATE [READ]"
-        ],
-        "HasScope": [
-          "social"
-        ],
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1notification~1namespaces~1{namespace}~1templates/get/description",
-    "value": "Required permission : &lt;code&gt;NAMESPACE:{namespace}:TEMPLATE [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;Get all templates in a namespace"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1notification~1namespaces~1{namespace}~1templates/post/security",
-    "value": [
-      {
-        "HasPermission": [
-          "NAMESPACE:{namespace}:TEMPLATE [CREATE]"
-        ],
-        "HasScope": [
-          "social"
-        ],
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1notification~1namespaces~1{namespace}~1templates/post/description",
-    "value": "Required permission : &lt;code&gt;NAMESPACE:{namespace}:TEMPLATE [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;Create new notification template. Include handlebars {{key}} for replaceable contexts. The the key inside \n\t\t\thandlebars will be the key to be replaced when sending notification. Already existing template with the same \n\t\t\tslug and language can not be created.\n\t\t\t&lt;br&gt;Check model description for detailed input restrictions."
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1notification~1namespaces~1{namespace}~1templates~1{templateSlug}~1languages~1{templateLanguage}~1publish/post/security",
-    "value": [
-      {
-        "HasPermission": [
-          "NAMESPACE:{namespace}:TEMPLATE [CREATE]"
-        ],
-        "HasScope": [
-          "social"
-        ],
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1notification~1namespaces~1{namespace}~1templates~1{templateSlug}~1languages~1{templateLanguage}~1publish/post/description",
-    "value": "Required permission : &lt;code&gt;NAMESPACE:{namespace}:TEMPLATE [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;Publish notification template draft. Empty draft can not be published."
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1lobby~1v1~1admin~1profanity~1namespaces~1{namespace}~1list~1{list}~1filters~1bulk-file/post/security",
-    "value": [
-      {
-        "HasPermission": [
-          "ADMIN:NAMESPACE:{namespace}:PROFANITY [CREATE]"
-        ],
-        "HasScope": [
-          "social"
-        ],
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1lobby~1v1~1admin~1profanity~1namespaces~1{namespace}~1list~1{list}~1filters~1bulk-file/post/description",
-    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:PROFANITY [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;import a file with filters"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1lobby~1v1~1admin~1config~1namespaces~1{namespace}~1import/post/security",
-    "value": [
-      {
-        "HasPermission": [
-          "ADMIN:NAMESPACE:{namespace}:LOBBY:CONFIG [UPDATE]"
-        ],
-        "HasScope": [
-          "social"
-        ],
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1lobby~1v1~1admin~1config~1namespaces~1{namespace}~1import/post/parameters/0/required",
-    "value": true
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1lobby~1v1~1admin~1config~1namespaces~1{namespace}~1import/post/parameters/0/description",
-    "value": "namespace"
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1lobby~1v1~1admin~1config~1namespaces~1{namespace}~1import/post/parameters/0/type",
-    "value": "string"
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1lobby~1v1~1admin~1config~1namespaces~1{namespace}~1import/post/parameters/0/in",
-    "value": "path"
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1lobby~1v1~1admin~1config~1namespaces~1{namespace}~1import/post/parameters/0/name",
-    "value": "namespace"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1lobby~1v1~1admin~1notification~1namespaces~1{namespace}~1parties~1{partyId}~1freeform~1notify/post/security",
-    "value": [
-      {
-        "HasPermission": [
-          "ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]"
-        ],
-        "HasScope": [
-          "social"
-        ],
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1lobby~1v1~1admin~1notification~1namespaces~1{namespace}~1parties~1{partyId}~1freeform~1notify/post/description",
-    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t\t\t&lt;br&gt;Sends notification to a party."
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1lobby~1v1~1admin~1player~1namespaces~1{namespace}~1users~1{userId}~1bulk~1block/post/security",
-    "value": [
-      {
-        "HasPermission": [
-          "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PLAYER:BLOCK [CREATE]"
-        ],
-        "HasScope": [
-          "social"
-        ],
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1lobby~1v1~1admin~1player~1namespaces~1{namespace}~1users~1{userId}~1bulk~1block/post/responses/204/schema/type",
-    "value": "integer"
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1lobby~1v1~1admin~1player~1namespaces~1{namespace}~1users~1{userId}~1bulk~1block/post/description",
-    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:PLAYER:BLOCK [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;Bulk block player in a namespace by list of user id"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1lobby~1v1~1admin~1party~1namespaces~1{namespace}~1parties~1{partyId}/get/security",
-    "value": [
-      {
-        "HasPermission": [
-          "ADMIN:NAMESPACE:{namespace}:PARTY:STORAGE [READ]"
-        ],
-        "HasScope": [
-          "social"
-        ],
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1lobby~1v1~1admin~1party~1namespaces~1{namespace}~1parties~1{partyId}/get/description",
-    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:PARTY:STORAGE [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;get party data in a namespace."
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1lobby~1v1~1admin~1thirdparty~1namespaces~1{namespace}~1config~1steam/get/security",
-    "value": [
-      {
-        "HasPermission": [
-          "ADMIN:NAMESPACE:{namespace}:THIRDPARTY:CONFIG [READ]"
-        ],
-        "HasScope": [
-          "social"
-        ],
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1lobby~1v1~1admin~1thirdparty~1namespaces~1{namespace}~1config~1steam/get/description",
-    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:THIRDPARTY:CONFIG [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;get third party config for specified namespace."
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1lobby~1v1~1admin~1thirdparty~1namespaces~1{namespace}~1config~1steam/delete/security",
-    "value": [
-      {
-        "HasPermission": [
-          "ADMIN:NAMESPACE:{namespace}:THIRDPARTY:CONFIG [DELETE]"
-        ],
-        "HasScope": [
-          "social"
-        ],
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1lobby~1v1~1admin~1thirdparty~1namespaces~1{namespace}~1config~1steam/delete/description",
-    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:THIRDPARTY:CONFIG [DELETE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;delete third party config in a namespace."
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1lobby~1v1~1admin~1thirdparty~1namespaces~1{namespace}~1config~1steam/put/security",
-    "value": [
-      {
-        "HasPermission": [
-          "ADMIN:NAMESPACE:{namespace}:THIRDPARTY:CONFIG [UPDATE]"
-        ],
-        "HasScope": [
-          "social"
-        ],
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1lobby~1v1~1admin~1thirdparty~1namespaces~1{namespace}~1config~1steam/put/description",
-    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:THIRDPARTY:CONFIG [UPDATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;Update third party config in a namespace."
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1lobby~1v1~1admin~1thirdparty~1namespaces~1{namespace}~1config~1steam/post/security",
-    "value": [
-      {
-        "HasPermission": [
-          "ADMIN:NAMESPACE:{namespace}:THIRDPARTY:CONFIG [CREATE]"
-        ],
-        "HasScope": [
-          "social"
-        ],
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1lobby~1v1~1admin~1thirdparty~1namespaces~1{namespace}~1config~1steam/post/description",
-    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:THIRDPARTY:CONFIG [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;create third party config in a namespace."
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1notification~1namespaces~1{namespace}~1freeform/post/security",
-    "value": [
-      {
-        "HasPermission": [
-          "NAMESPACE:{namespace}:NOTIFICATION [CREATE]"
-        ],
-        "HasScope": [
-          "social"
-        ],
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1notification~1namespaces~1{namespace}~1freeform/post/description",
-    "value": "Required permission : &lt;code&gt;NAMESPACE:{namespace}:NOTIFICATION [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;Sends notification to all connected users in a namespace."
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1friends~1namespaces~1{namespace}~1me~1incoming/get/security",
-    "value": [
-      {
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1friends~1namespaces~1{namespace}~1me~1request~1reject/post/security",
-    "value": [
-      {
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1lobby~1v1~1admin~1notification~1namespaces~1{namespace}~1bulkUsers~1freeform~1notify/post/security",
-    "value": [
-      {
-        "HasPermission": [
-          "ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]"
-        ],
-        "HasScope": [
-          "social"
-        ],
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1lobby~1v1~1admin~1notification~1namespaces~1{namespace}~1bulkUsers~1freeform~1notify/post/description",
-    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;Sends notification to multiple user.\n\t\t\tAction Code: 50211"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1lobby~1v1~1admin~1profanity~1namespaces~1{namespace}~1lists~1{list}/delete/security",
-    "value": [
-      {
-        "HasPermission": [
-          "ADMIN:NAMESPACE:{namespace}:PROFANITY [DELETE]"
-        ],
-        "HasScope": [
-          "social"
-        ],
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1lobby~1v1~1admin~1profanity~1namespaces~1{namespace}~1lists~1{list}/delete/description",
-    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:PROFANITY [DELETE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;delete a list include all filters inside of it"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1lobby~1v1~1admin~1profanity~1namespaces~1{namespace}~1lists~1{list}/post/security",
-    "value": [
-      {
-        "HasPermission": [
-          "ADMIN:NAMESPACE:{namespace}:PROFANITY [UPDATE]"
-        ],
-        "HasScope": [
-          "social"
-        ],
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1lobby~1v1~1admin~1profanity~1namespaces~1{namespace}~1lists~1{list}/post/description",
-    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:PROFANITY [UPDATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;update the list"
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1lobby~1v1~1admin~1profanity~1namespaces~1{namespace}~1lists~1{list}/post/operationId",
-    "value": "adminUpdateProfanityList"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1lobby~1v1~1admin~1config/get/security",
-    "value": [
-      {
-        "HasPermission": [
-          "ADMIN:NAMESPACE:*:LOBBY:CONFIG [READ]"
-        ],
-        "HasScope": [
-          "social"
-        ],
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1lobby~1v1~1admin~1config/get/description",
-    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:*:LOBBY:CONFIG [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;get lobby config of all namespaces."
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1notification~1namespaces~1{namespace}~1topics~1{topic}/get/security",
-    "value": [
-      {
-        "HasPermission": [
-          "NAMESPACE:{namespace}:TOPIC [READ]"
-        ],
-        "HasScope": [
-          "social"
-        ],
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1notification~1namespaces~1{namespace}~1topics~1{topic}/get/description",
-    "value": "Required permission : &lt;code&gt;NAMESPACE:{namespace}:TOPIC [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;get topic information by topic name."
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1notification~1namespaces~1{namespace}~1topics~1{topic}/delete/security",
-    "value": [
-      {
-        "HasPermission": [
-          "NAMESPACE:{namespace}:TOPIC [DELETE]"
-        ],
-        "HasScope": [
-          "social"
-        ],
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1notification~1namespaces~1{namespace}~1topics~1{topic}/delete/description",
-    "value": "Required permission : &lt;code&gt;NAMESPACE:{namespace}:TOPIC [DELETE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;delete topic information by topic name.\n\t\t\t&lt;br&gt;topic should be alphabets, no special char except underscore, uppercase and no spacing. for example: TOPIC_TEST. \n\t\t\tAlready existing topic can not be created"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1notification~1namespaces~1{namespace}~1topics~1{topic}/put/security",
-    "value": [
-      {
-        "HasPermission": [
-          "NAMESPACE:{namespace}:TOPIC [UPDATE]"
-        ],
-        "HasScope": [
-          "social"
-        ],
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1notification~1namespaces~1{namespace}~1topics~1{topic}/put/description",
-    "value": "Required permission : &lt;code&gt;NAMESPACE:{namespace}:TOPIC [UPDATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;update topic information by topic name.\n\t\t\t&lt;br&gt;topic should be alphabets, no special char except underscore, uppercase and no spacing. for example: TOPIC_TEST. \n\t\t\tAlready existing topic can not be created"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1lobby~1v1~1admin~1notification~1namespaces~1{namespace}~1templates~1{templateSlug}~1languages~1{templateLanguage}/get/security",
-    "value": [
-      {
-        "HasPermission": [
-          "ADMIN:NAMESPACE:{namespace}:NOTIFICATION [READ]"
-        ],
-        "HasScope": [
-          "social"
-        ],
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1lobby~1v1~1admin~1notification~1namespaces~1{namespace}~1templates~1{templateSlug}~1languages~1{templateLanguage}/get/description",
-    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;Get a template localization&lt;br/&gt;\n\t\t\tAction Code: 50207"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1lobby~1v1~1admin~1notification~1namespaces~1{namespace}~1templates~1{templateSlug}~1languages~1{templateLanguage}/delete/security",
-    "value": [
-      {
-        "HasPermission": [
-          "ADMIN:NAMESPACE:{namespace}:NOTIFICATION [DELETE]"
-        ],
-        "HasScope": [
-          "social"
-        ],
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1lobby~1v1~1admin~1notification~1namespaces~1{namespace}~1templates~1{templateSlug}~1languages~1{templateLanguage}/delete/description",
-    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [DELETE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;delete template localization&lt;br/&gt;\n\t\t\tAction Code: 50209"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1lobby~1v1~1admin~1notification~1namespaces~1{namespace}~1templates~1{templateSlug}~1languages~1{templateLanguage}/put/security",
-    "value": [
-      {
-        "HasPermission": [
-          "ADMIN:NAMESPACE:{namespace}:NOTIFICATION [UPDATE]"
-        ],
-        "HasScope": [
-          "social"
-        ],
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1lobby~1v1~1admin~1notification~1namespaces~1{namespace}~1templates~1{templateSlug}~1languages~1{templateLanguage}/put/description",
-    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [UPDATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br/&gt;update template localization&lt;br/&gt;\n\t\t\tAction Code: 50208"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1lobby~1v1~1admin~1party~1namespaces~1{namespace}~1users~1{userId}~1party/get/security",
-    "value": [
-      {
-        "HasPermission": [
-          "ADMIN:NAMESPACE:{namespace}:PARTY:STORAGE [READ]"
-        ],
-        "HasScope": [
-          "social"
-        ],
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1lobby~1v1~1admin~1party~1namespaces~1{namespace}~1users~1{userId}~1party/get/description",
-    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:PARTY:STORAGE [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;get party data in a namespace."
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1notification~1namespaces~1{namespace}~1templates~1{templateSlug}/get/security",
-    "value": [
-      {
-        "HasPermission": [
-          "NAMESPACE:{namespace}:TEMPLATE [READ]"
-        ],
-        "HasScope": [
-          "social"
-        ],
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1notification~1namespaces~1{namespace}~1templates~1{templateSlug}/get/description",
-    "value": "Required permission : &lt;code&gt;NAMESPACE:{namespace}:TEMPLATE [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;Get all templates in a namespace"
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1notification~1namespaces~1{namespace}~1templates~1{templateSlug}/get/parameters/2/type",
-    "value": "integer"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1notification~1namespaces~1{namespace}~1templates~1{templateSlug}/delete/security",
-    "value": [
-      {
-        "HasPermission": [
-          "NAMESPACE:{namespace}:TEMPLATE [DELETE]"
-        ],
-        "HasScope": [
-          "social"
-        ],
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1notification~1namespaces~1{namespace}~1templates~1{templateSlug}/delete/description",
-    "value": "Required permission : &lt;code&gt;NAMESPACE:{namespace}:TEMPLATE [DELETE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;Delete localization template"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1lobby~1v1~1admin~1notification~1namespaces~1{namespace}~1templates~1{templateSlug}/get/security",
-    "value": [
-      {
-        "HasPermission": [
-          "ADMIN:NAMESPACE:{namespace}:NOTIFICATION [READ]"
-        ],
-        "HasScope": [
-          "social"
-        ],
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1lobby~1v1~1admin~1notification~1namespaces~1{namespace}~1templates~1{templateSlug}/get/description",
-    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;Get all templates in a namespace&lt;br&gt;\n\t\t\tAction Code: 50205"
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1lobby~1v1~1admin~1notification~1namespaces~1{namespace}~1templates~1{templateSlug}/get/parameters/2/type",
-    "value": "integer"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1lobby~1v1~1admin~1notification~1namespaces~1{namespace}~1templates~1{templateSlug}/delete/security",
-    "value": [
-      {
-        "HasPermission": [
-          "ADMIN:NAMESPACE:{namespace}:NOTIFICATION [DELETE]"
-        ],
-        "HasScope": [
-          "social"
-        ],
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1lobby~1v1~1admin~1notification~1namespaces~1{namespace}~1templates~1{templateSlug}/delete/description",
-    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [DELETE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;Delete template slug in notification template&lt;br&gt;\n\t\t\tAction Code: 50206"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1lobby~1v1~1admin~1config~1namespaces~1{namespace}~1export/get/security",
-    "value": [
-      {
-        "HasPermission": [
-          "ADMIN:NAMESPACE:{namespace}:LOBBY:CONFIG [READ]"
-        ],
-        "HasScope": [
-          "social"
-        ],
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1lobby~1v1~1admin~1config~1namespaces~1{namespace}~1export/get/parameters",
-    "value": [
-      {
-        "description": "namespace",
-        "in": "path",
-        "name": "namespace",
-        "required": true,
-        "type": "string"
-      }
-    ]
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1lobby~1v1~1admin~1notification~1namespaces~1{namespace}~1topics~1{topicName}/get/security",
-    "value": [
-      {
-        "HasPermission": [
-          "ADMIN:NAMESPACE:{namespace}:NOTIFICATION [READ]"
-        ],
-        "HasScope": [
-          "social"
-        ],
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1lobby~1v1~1admin~1notification~1namespaces~1{namespace}~1topics~1{topicName}/get/description",
-    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;get topic information by topic name.&lt;br/&gt;\n\t\t\tAction Code: 50215"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1lobby~1v1~1admin~1notification~1namespaces~1{namespace}~1topics~1{topicName}/delete/security",
-    "value": [
-      {
-        "HasPermission": [
-          "ADMIN:NAMESPACE:{namespace}:NOTIFICATION [DELETE]"
-        ],
-        "HasScope": [
-          "social"
-        ],
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1lobby~1v1~1admin~1notification~1namespaces~1{namespace}~1topics~1{topicName}/delete/description",
-    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [DELETE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;delete topic information by topic name.\n\t\t\t&lt;br&gt;topic should be alphabets, no special char except underscore, uppercase and no spacing. for example: TOPIC_TEST. \n\t\t\tAlready existing topic can not be created &lt;br/&gt;\n\t\t\tAction Code: 50217"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1lobby~1v1~1admin~1notification~1namespaces~1{namespace}~1topics~1{topicName}/put/security",
-    "value": [
-      {
-        "HasPermission": [
-          "ADMIN:NAMESPACE:{namespace}:NOTIFICATION [UPDATE]"
-        ],
-        "HasScope": [
-          "social"
-        ],
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1lobby~1v1~1admin~1notification~1namespaces~1{namespace}~1topics~1{topicName}/put/description",
-    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [UPDATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;update topic information by topic name.\n\t\t\t&lt;br&gt;topic should be alphabets, no special char except underscore, uppercase and no spacing. for example: TOPIC_TEST. \n\t\t\tAlready existing topic can not be created &lt;br/&gt;\n\t\t\tAction Code: 50216"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1lobby~1v1~1admin~1profanity~1namespaces~1{namespace}~1rule/get/security",
-    "value": [
-      {
-        "HasPermission": [
-          "ADMIN:NAMESPACE:{namespace}:PROFANITY [READ]"
-        ],
-        "HasScope": [
-          "social"
-        ],
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1lobby~1v1~1admin~1profanity~1namespaces~1{namespace}~1rule/get/description",
-    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:PROFANITY [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;get current profanity rule"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1lobby~1v1~1admin~1profanity~1namespaces~1{namespace}~1rule/post/security",
-    "value": [
-      {
-        "HasPermission": [
-          "ADMIN:NAMESPACE:{namespace}:PROFANITY [UPDATE]"
-        ],
-        "HasScope": [
-          "social"
-        ],
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1lobby~1v1~1admin~1profanity~1namespaces~1{namespace}~1rule/post/description",
-    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:PROFANITY [UPDATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;set current profanity rule"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1friends~1namespaces~1{namespace}~1me~1status~1{friendId}/get/security",
-    "value": [
-      {
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1lobby~1v1~1admin~1profanity~1namespaces~1{namespace}~1list~1{list}~1filters~1bulk/post/security",
-    "value": [
-      {
-        "HasPermission": [
-          "ADMIN:NAMESPACE:{namespace}:PROFANITY [CREATE]"
-        ],
-        "HasScope": [
-          "social"
-        ],
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1lobby~1v1~1admin~1profanity~1namespaces~1{namespace}~1list~1{list}~1filters~1bulk/post/description",
-    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:PROFANITY [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;add multiple filters into the list"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1lobby~1v1~1admin~1notification~1namespaces~1{namespace}~1templates~1{templateSlug}~1languages~1{templateLanguage}~1publish/post/security",
-    "value": [
-      {
-        "HasPermission": [
-          "ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]"
-        ],
-        "HasScope": [
-          "social"
-        ],
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1lobby~1v1~1admin~1notification~1namespaces~1{namespace}~1templates~1{templateSlug}~1languages~1{templateLanguage}~1publish/post/description",
-    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;Publish notification template draft. Empty draft can not be published.&lt;br/&gt;\n\t\t\tAction Code: 50210"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1lobby~1v1~1admin~1notification~1namespaces~1{namespace}~1templates~1notify/post/security",
-    "value": [
-      {
-        "HasPermission": [
-          "ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]"
-        ],
-        "HasScope": [
-          "social"
-        ],
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1lobby~1v1~1admin~1notification~1namespaces~1{namespace}~1templates~1notify/post/description",
-    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;Sends notification to all connected users in a namespace with predefined template. \n\t\t\t&lt;br&gt;In the request body, specify which template slug (template identifier) to use and the template language. \n\t\t\t&lt;br&gt;NotificationTemplate context is the key-value pair defining the value of each handlebar specified in the template content. \n\t\t\tTemplate need to be published before it can be use to send notifications&lt;br/&gt;\n\t\t\tAction Code: 50202"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1lobby~1v1~1admin~1friend~1namespaces~1{namespace}~1users~1{userId}/get/security",
-    "value": [
-      {
-        "HasPermission": [
-          "NAMESPACE:{namespace}:USER:{userId}:FRIENDS [READ]"
-        ],
-        "HasScope": [
-          "social"
-        ],
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1lobby~1v1~1admin~1friend~1namespaces~1{namespace}~1users~1{userId}/get/description",
-    "value": "Required permission : &lt;code&gt;NAMESPACE:{namespace}:USER:{userId}:FRIENDS [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n&lt;br&gt;get list of friends in a namespace."
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1lobby~1v1~1admin~1profanity~1namespaces~1{namespace}~1filters~1debug/post/security",
-    "value": [
-      {
-        "HasPermission": [
-          "ADMIN:NAMESPACE:{namespace}:PROFANITY [READ]"
-        ],
-        "HasScope": [
-          "social"
-        ],
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1lobby~1v1~1admin~1profanity~1namespaces~1{namespace}~1filters~1debug/post/responses/200/schema/items/$ref",
-    "value": "#/definitions/models.ProfanityFilter"
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1lobby~1v1~1admin~1profanity~1namespaces~1{namespace}~1filters~1debug/post/description",
-    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:PROFANITY [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;get the list of filters that would modify the phrase"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1lobby~1v1~1admin~1notification~1namespaces~1{namespace}~1parties~1{partyId}~1templates~1notify/post/security",
-    "value": [
-      {
-        "HasPermission": [
-          "ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]"
-        ],
-        "HasScope": [
-          "social"
-        ],
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1lobby~1v1~1admin~1notification~1namespaces~1{namespace}~1parties~1{partyId}~1templates~1notify/post/description",
-    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t\t\t&lt;br&gt;Sends templated notification to a party.\n\t\t\t\t\t&lt;br&gt;In the request body, specify which template slug (template identifier) to use and the template language. \n\t\t\t\t\t&lt;br&gt;NotificationTemplate context is the key-value pair defining the value of each handlebar specified in the template content. \n\t\t\t\t\tTemplate need to be published before it can be use to send notifications&lt;br&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1friends~1namespaces~1{namespace}~1me~1request~1cancel/post/security",
-    "value": [
-      {
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1lobby~1v1~1admin~1player~1namespaces~1{namespace}~1users~1{userId}~1attributes~1{attribute}/get/security",
-    "value": [
-      {
-        "HasPermission": [
-          "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PLAYER:ATTRIBUTES [READ]"
-        ],
-        "HasScope": [
-          "social"
-        ],
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1lobby~1v1~1admin~1player~1namespaces~1{namespace}~1users~1{userId}~1attributes~1{attribute}/get/description",
-    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:PLAYER:ATTRIBUTES [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;get player&#39;s specific session attribute by user id in a namespace."
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1lobby~1v1~1admin~1profanity~1namespaces~1{namespace}~1list~1{list}~1filters/get/security",
-    "value": [
-      {
-        "HasPermission": [
-          "ADMIN:NAMESPACE:{namespace}:PROFANITY [READ]"
-        ],
-        "HasScope": [
-          "social"
-        ],
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1lobby~1v1~1admin~1profanity~1namespaces~1{namespace}~1list~1{list}~1filters/get/description",
-    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:PROFANITY [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;get the list of filters inside the list."
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1lobby~1v1~1admin~1profanity~1namespaces~1{namespace}~1list~1{list}~1filters/post/security",
-    "value": [
-      {
-        "HasPermission": [
-          "ADMIN:NAMESPACE:{namespace}:PROFANITY [CREATE]"
-        ],
-        "HasScope": [
-          "social"
-        ],
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1lobby~1v1~1admin~1profanity~1namespaces~1{namespace}~1list~1{list}~1filters/post/description",
-    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:PROFANITY [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;add a single filter into the list"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1lobby~1v1~1public~1chat~1namespaces~1{namespace}~1users~1me~1friends~1{friendId}/get/security",
-    "value": [
-      {
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1lobby~1v1~1public~1chat~1namespaces~1{namespace}~1users~1me~1friends~1{friendId}/get/description",
-    "value": "Required valid user authorization &lt;br/&gt;\n\t\t\t&lt;br&gt;load personal chat history in a namespace based on Friend User ID &lt;br/&gt;\n\t\t\tAction Code: 50101"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1lobby~1v1~1public~1party~1namespaces~1{namespace}~1parties~1{partyId}~1attributes/put/security",
-    "value": [
-      {
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1lobby~1v1~1public~1party~1namespaces~1{namespace}~1parties~1{partyId}~1attributes/put/description",
-    "value": "Required valid user authorization &lt;br/&gt;\n\t\t\t&lt;br&gt;update party attributes in a namespace."
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1lobby~1v1~1admin~1party~1namespaces~1{namespace}~1parties~1{partyId}~1attributes/put/security",
-    "value": [
-      {
-        "HasPermission": [
-          "ADMIN:NAMESPACE:{namespace}:PARTY:STORAGE [UPDATE]"
-        ],
-        "HasScope": [
-          "social"
-        ],
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1lobby~1v1~1admin~1party~1namespaces~1{namespace}~1parties~1{partyId}~1attributes/put/description",
-    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:PARTY:STORAGE [UPDATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;update party attributes in a namespace."
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1lobby~1v1~1public~1party~1namespaces~1{namespace}~1parties~1{partyId}/get/security",
-    "value": [
-      {
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1lobby~1v1~1public~1party~1namespaces~1{namespace}~1parties~1{partyId}/get/description",
-    "value": "Required valid user authorization &lt;br/&gt;\n\t\t\t&lt;br&gt;load personal party data in a namespace based on Party ID &lt;br/&gt;\n\t\t\tAction Code: 50101"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1lobby~1v1~1admin~1player~1namespaces~1{namespace}~1users~1{userId}~1blocked/get/security",
-    "value": [
-      {
-        "HasPermission": [
-          "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PLAYER:BLOCK [READ]"
-        ],
-        "HasScope": [
-          "social"
-        ],
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1lobby~1v1~1admin~1player~1namespaces~1{namespace}~1users~1{userId}~1blocked/get/description",
-    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:PLAYER:BLOCK [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;get blocked players data by user id in a namespace."
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1notification~1namespaces~1{namespace}~1users~1{userId}~1freeform/post/security",
-    "value": [
-      {
-        "HasPermission": [
-          "NAMESPACE:{namespace}:USER:{userId}:NOTIFICATION [CREATE]"
-        ],
-        "HasScope": [
-          "social"
-        ],
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1notification~1namespaces~1{namespace}~1users~1{userId}~1freeform/post/description",
-    "value": "Required permission : &lt;code&gt;NAMESPACE:{namespace}:USER:{userId}:NOTIFICATION [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;Sends notification to a user."
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1lobby~1v1~1admin~1notification~1namespaces~1{namespace}~1templates/get/security",
-    "value": [
-      {
-        "HasPermission": [
-          "ADMIN:NAMESPACE:{namespace}:NOTIFICATION [READ]"
-        ],
-        "HasScope": [
-          "social"
-        ],
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1lobby~1v1~1admin~1notification~1namespaces~1{namespace}~1templates/get/description",
-    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;Get all templates in a namespace&lt;br&gt;\n\t\t\tAction Code: 50203"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1lobby~1v1~1admin~1notification~1namespaces~1{namespace}~1templates/post/security",
-    "value": [
-      {
-        "HasPermission": [
-          "ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]"
-        ],
-        "HasScope": [
-          "social"
-        ],
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1lobby~1v1~1admin~1notification~1namespaces~1{namespace}~1templates/post/description",
-    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;Create new notification template. Include handlebars {{key}} for replaceable contexts. The the key inside \n\t\t\thandlebars will be the key to be replaced when sending notification. Already existing template with the same \n\t\t\tslug and language can not be created.\n\t\t\t&lt;br&gt;Check model description for detailed input restrictions.&lt;br&gt;\n\t\t\tAction Code: 50204"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1lobby~1v1~1admin~1notification~1namespaces~1{namespace}~1freeform~1notify/post/security",
-    "value": [
-      {
-        "HasPermission": [
-          "ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]"
-        ],
-        "HasScope": [
-          "social"
-        ],
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1lobby~1v1~1admin~1notification~1namespaces~1{namespace}~1freeform~1notify/post/description",
-    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;Sends notification to all connected users in a namespace.&lt;br&gt;\n\t\t\tAction Code: 50201"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1friends~1namespaces~1{namespace}~1me~1outgoing/get/security",
-    "value": [
-      {
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1lobby~1v1~1admin~1config~1namespaces~1{namespace}/get/security",
-    "value": [
-      {
-        "HasPermission": [
-          "ADMIN:NAMESPACE:{namespace}:LOBBY:CONFIG [READ]"
-        ],
-        "HasScope": [
-          "social"
-        ],
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1lobby~1v1~1admin~1config~1namespaces~1{namespace}/get/description",
-    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:LOBBY:CONFIG [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;get lobby config of a namespace."
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1lobby~1v1~1admin~1config~1namespaces~1{namespace}/put/security",
-    "value": [
-      {
-        "HasPermission": [
-          "ADMIN:NAMESPACE:{namespace}:LOBBY:CONFIG [UPDATE]"
-        ],
-        "HasScope": [
-          "social"
-        ],
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1lobby~1v1~1admin~1config~1namespaces~1{namespace}/put/description",
-    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:LOBBY:CONFIG [UPDATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;update lobby config of a namespace."
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1lobby~1v1~1admin~1chat~1namespaces~1{namespace}~1users~1{userId}~1friends~1{friendId}/get/security",
-    "value": [
-      {
-        "HasPermission": [
-          "NAMESPACE:{namespace}:USER:{userId}:CHAT [READ]"
-        ],
-        "HasScope": [
-          "social"
-        ],
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1lobby~1v1~1admin~1chat~1namespaces~1{namespace}~1users~1{userId}~1friends~1{friendId}/get/description",
-    "value": "Required permission : &lt;code&gt;NAMESPACE:{namespace}:USER:{userId}:CHAT [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;get chat history in a namespace."
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1notification~1namespaces~1{namespace}~1topics/get/security",
-    "value": [
-      {
-        "HasPermission": [
-          "NAMESPACE:{namespace}:TOPIC [READ]"
-        ],
-        "HasScope": [
-          "social"
-        ],
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1notification~1namespaces~1{namespace}~1topics/get/description",
-    "value": "Required permission : &lt;code&gt;NAMESPACE:{namespace}:TOPIC [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;get topic by namespace."
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1notification~1namespaces~1{namespace}~1topics/get/parameters/1/type",
-    "value": "integer"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1notification~1namespaces~1{namespace}~1topics/post/security",
-    "value": [
-      {
-        "HasPermission": [
-          "NAMESPACE:{namespace}:TOPIC [CREATE]"
-        ],
-        "HasScope": [
-          "social"
-        ],
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1notification~1namespaces~1{namespace}~1topics/post/description",
-    "value": "Required permission : &lt;code&gt;NAMESPACE:{namespace}:TOPIC [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;Create new notification topic.\n\t\t\t&lt;br&gt;topic should be alphabets, no special char except underscore, uppercase and no spacing. for example: TOPIC_TEST. \n\t\t\tAlready existing topic can not be created"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1notification~1namespaces~1{namespace}~1templates~1{templateSlug}~1languages~1{templateLanguage}/get/security",
-    "value": [
-      {
-        "HasPermission": [
-          "NAMESPACE:{namespace}:TEMPLATE [READ]"
-        ],
-        "HasScope": [
-          "social"
-        ],
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1notification~1namespaces~1{namespace}~1templates~1{templateSlug}~1languages~1{templateLanguage}/get/description",
-    "value": "Required permission : &lt;code&gt;NAMESPACE:{namespace}:TEMPLATE [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;Get a template localization"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1notification~1namespaces~1{namespace}~1templates~1{templateSlug}~1languages~1{templateLanguage}/delete/security",
-    "value": [
-      {
-        "HasPermission": [
-          "NAMESPACE:{namespace}:TEMPLATE [DELETE]"
-        ],
-        "HasScope": [
-          "social"
-        ],
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1notification~1namespaces~1{namespace}~1templates~1{templateSlug}~1languages~1{templateLanguage}/delete/description",
-    "value": "Required permission : &lt;code&gt;NAMESPACE:{namespace}:TEMPLATE [DELETE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;Delete all template in a slug"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1notification~1namespaces~1{namespace}~1templates~1{templateSlug}~1languages~1{templateLanguage}/put/security",
-    "value": [
-      {
-        "HasPermission": [
-          "NAMESPACE:{namespace}:TEMPLATE [UPDATE]"
-        ],
-        "HasScope": [
-          "social"
-        ],
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1notification~1namespaces~1{namespace}~1templates~1{templateSlug}~1languages~1{templateLanguage}/put/description",
-    "value": "Required permission : &lt;code&gt;NAMESPACE:{namespace}:TEMPLATE [UPDATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;Modify draft template"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1notification~1namespaces~1{namespace}~1templated/post/security",
-    "value": [
-      {
-        "HasPermission": [
-          "NAMESPACE:{namespace}:NOTIFICATION [CREATE]"
-        ],
-        "HasScope": [
-          "social"
-        ],
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1notification~1namespaces~1{namespace}~1templated/post/description",
-    "value": "Required permission : &lt;code&gt;NAMESPACE:{namespace}:NOTIFICATION [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;Sends notification to all connected users in a namespace with predefined template. \n\t\t\t&lt;br&gt;In the request body, specify which template slug (template identifier) to use and the template language. \n\t\t\t&lt;br&gt;NotificationTemplate context is the key-value pair defining the value of each handlebar specified in the template content. \n\t\t\tTemplate need to be published before it can be use to send notifications"
-  },
-  {
-    "op": "remove",
-    "path": "/definitions/*models.ProfanityFilter"
+    "path": "/host",
+    "value": "demo.accelbyte.io"
   },
   {
     "op": "add",
@@ -1776,5 +70,1710 @@
       "tokenUrl": "https://dumy.oauth.net/token",
       "type": "oauth2"
     }
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1lobby~1v1~1admin~1profanity~1namespaces~1{namespace}~1lists~1{list}/post/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:PROFANITY [UPDATE]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1lobby~1v1~1admin~1profanity~1namespaces~1{namespace}~1lists~1{list}/post/operationId",
+    "value": "adminUpdateProfanityList"
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1lobby~1v1~1admin~1profanity~1namespaces~1{namespace}~1lists~1{list}/post/description",
+    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:PROFANITY [UPDATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;update the list"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1lobby~1v1~1admin~1profanity~1namespaces~1{namespace}~1lists~1{list}/delete/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:PROFANITY [DELETE]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1lobby~1v1~1admin~1profanity~1namespaces~1{namespace}~1lists~1{list}/delete/description",
+    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:PROFANITY [DELETE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;delete a list include all filters inside of it"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1lobby~1v1~1admin~1profanity~1namespaces~1{namespace}~1rule/post/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:PROFANITY [UPDATE]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1lobby~1v1~1admin~1profanity~1namespaces~1{namespace}~1rule/post/description",
+    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:PROFANITY [UPDATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;set current profanity rule"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1lobby~1v1~1admin~1profanity~1namespaces~1{namespace}~1rule/get/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:PROFANITY [READ]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1lobby~1v1~1admin~1profanity~1namespaces~1{namespace}~1rule/get/description",
+    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:PROFANITY [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;get current profanity rule"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1notification~1namespaces~1{namespace}~1topics~1{topic}/put/security",
+    "value": [
+      {
+        "HasPermission": [
+          "NAMESPACE:{namespace}:TOPIC [UPDATE]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1notification~1namespaces~1{namespace}~1topics~1{topic}/put/description",
+    "value": "Required permission : &lt;code&gt;NAMESPACE:{namespace}:TOPIC [UPDATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;update topic information by topic name.\n\t\t\t&lt;br&gt;topic should be alphabets, no special char except underscore, uppercase and no spacing. for example: TOPIC_TEST. \n\t\t\tAlready existing topic can not be created"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1notification~1namespaces~1{namespace}~1topics~1{topic}/delete/security",
+    "value": [
+      {
+        "HasPermission": [
+          "NAMESPACE:{namespace}:TOPIC [DELETE]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1notification~1namespaces~1{namespace}~1topics~1{topic}/delete/description",
+    "value": "Required permission : &lt;code&gt;NAMESPACE:{namespace}:TOPIC [DELETE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;delete topic information by topic name.\n\t\t\t&lt;br&gt;topic should be alphabets, no special char except underscore, uppercase and no spacing. for example: TOPIC_TEST. \n\t\t\tAlready existing topic can not be created"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1notification~1namespaces~1{namespace}~1topics~1{topic}/get/security",
+    "value": [
+      {
+        "HasPermission": [
+          "NAMESPACE:{namespace}:TOPIC [READ]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1notification~1namespaces~1{namespace}~1topics~1{topic}/get/description",
+    "value": "Required permission : &lt;code&gt;NAMESPACE:{namespace}:TOPIC [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;get topic information by topic name."
+  },
+  {
+    "op": "move",
+    "from": "/security",
+    "path": "/paths/~1friends~1namespaces~1{namespace}~1me~1status~1{friendId}/get/security"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1lobby~1v1~1public~1party~1namespaces~1{namespace}~1parties~1{partyId}/get/security",
+    "value": [
+      {
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1lobby~1v1~1public~1party~1namespaces~1{namespace}~1parties~1{partyId}/get/description",
+    "value": "Required valid user authorization &lt;br/&gt;\n\t\t\t&lt;br&gt;load personal party data in a namespace based on Party ID &lt;br/&gt;\n\t\t\tAction Code: 50101"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1lobby~1v1~1admin~1config~1namespaces~1{namespace}~1export/get/parameters",
+    "value": [
+      {
+        "description": "namespace",
+        "in": "path",
+        "name": "namespace",
+        "required": true,
+        "type": "string"
+      }
+    ]
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1lobby~1v1~1admin~1config~1namespaces~1{namespace}~1export/get/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:LOBBY:CONFIG [READ]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1lobby~1v1~1admin~1profanity~1namespaces~1{namespace}~1list~1{list}~1filters~1bulk/post/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:PROFANITY [CREATE]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1lobby~1v1~1admin~1profanity~1namespaces~1{namespace}~1list~1{list}~1filters~1bulk/post/description",
+    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:PROFANITY [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;add multiple filters into the list"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1lobby~1v1~1public~1player~1namespaces~1{namespace}~1users~1me~1blocked-by/get/security",
+    "value": [
+      {
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1lobby~1v1~1public~1player~1namespaces~1{namespace}~1users~1me~1blocked-by/get/description",
+    "value": "Required valid user authorization &lt;br/&gt;\n\t\t\t&lt;br&gt;load get players who blocked this player in a namespace based on user id &lt;br/&gt;\n\t\t\tAction Code: 50101"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1notification~1namespaces~1{namespace}~1templates~1{templateSlug}~1languages~1{templateLanguage}/put/security",
+    "value": [
+      {
+        "HasPermission": [
+          "NAMESPACE:{namespace}:TEMPLATE [UPDATE]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1notification~1namespaces~1{namespace}~1templates~1{templateSlug}~1languages~1{templateLanguage}/put/description",
+    "value": "Required permission : &lt;code&gt;NAMESPACE:{namespace}:TEMPLATE [UPDATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;Modify draft template"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1notification~1namespaces~1{namespace}~1templates~1{templateSlug}~1languages~1{templateLanguage}/delete/security",
+    "value": [
+      {
+        "HasPermission": [
+          "NAMESPACE:{namespace}:TEMPLATE [DELETE]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1notification~1namespaces~1{namespace}~1templates~1{templateSlug}~1languages~1{templateLanguage}/delete/description",
+    "value": "Required permission : &lt;code&gt;NAMESPACE:{namespace}:TEMPLATE [DELETE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;Delete all template in a slug"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1notification~1namespaces~1{namespace}~1templates~1{templateSlug}~1languages~1{templateLanguage}/get/security",
+    "value": [
+      {
+        "HasPermission": [
+          "NAMESPACE:{namespace}:TEMPLATE [READ]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1notification~1namespaces~1{namespace}~1templates~1{templateSlug}~1languages~1{templateLanguage}/get/description",
+    "value": "Required permission : &lt;code&gt;NAMESPACE:{namespace}:TEMPLATE [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;Get a template localization"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1notification~1namespaces~1{namespace}~1freeform/post/security",
+    "value": [
+      {
+        "HasPermission": [
+          "NAMESPACE:{namespace}:NOTIFICATION [CREATE]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1notification~1namespaces~1{namespace}~1freeform/post/description",
+    "value": "Required permission : &lt;code&gt;NAMESPACE:{namespace}:NOTIFICATION [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;Sends notification to all connected users in a namespace."
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1lobby~1v1~1admin~1notification~1namespaces~1{namespace}~1users~1{userId}~1templates~1notify/post/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1lobby~1v1~1admin~1notification~1namespaces~1{namespace}~1users~1{userId}~1templates~1notify/post/description",
+    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;Sends templated notification to a user.\n\t\t\t&lt;br&gt;In the request body, specify which template slug (template identifier) to use and the template language. \n\t\t\t&lt;br&gt;NotificationTemplate context is the key-value pair defining the value of each handlebar specified in the template content. \n\t\t\tTemplate need to be published before it can be use to send notifications&lt;br&gt;\n\t\t\tAction Code: 50212"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1notification~1namespaces~1{namespace}~1templates~1{templateSlug}/delete/security",
+    "value": [
+      {
+        "HasPermission": [
+          "NAMESPACE:{namespace}:TEMPLATE [DELETE]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1notification~1namespaces~1{namespace}~1templates~1{templateSlug}/delete/description",
+    "value": "Required permission : &lt;code&gt;NAMESPACE:{namespace}:TEMPLATE [DELETE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;Delete localization template"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1notification~1namespaces~1{namespace}~1templates~1{templateSlug}/get/security",
+    "value": [
+      {
+        "HasPermission": [
+          "NAMESPACE:{namespace}:TEMPLATE [READ]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1notification~1namespaces~1{namespace}~1templates~1{templateSlug}/get/parameters/2/type",
+    "value": "integer"
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1notification~1namespaces~1{namespace}~1templates~1{templateSlug}/get/description",
+    "value": "Required permission : &lt;code&gt;NAMESPACE:{namespace}:TEMPLATE [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;Get all templates in a namespace"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1lobby~1v1~1admin~1profanity~1namespaces~1{namespace}~1list~1{list}~1filters/post/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:PROFANITY [CREATE]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1lobby~1v1~1admin~1profanity~1namespaces~1{namespace}~1list~1{list}~1filters/post/description",
+    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:PROFANITY [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;add a single filter into the list"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1lobby~1v1~1admin~1profanity~1namespaces~1{namespace}~1list~1{list}~1filters/get/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:PROFANITY [READ]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1lobby~1v1~1admin~1profanity~1namespaces~1{namespace}~1list~1{list}~1filters/get/description",
+    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:PROFANITY [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;get the list of filters inside the list."
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1lobby~1v1~1admin~1player~1namespaces~1{namespace}~1users~1{userId}~1attributes~1{attribute}/get/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PLAYER:ATTRIBUTES [READ]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1lobby~1v1~1admin~1player~1namespaces~1{namespace}~1users~1{userId}~1attributes~1{attribute}/get/description",
+    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:PLAYER:ATTRIBUTES [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;get player&#39;s specific session attribute by user id in a namespace."
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1friends~1namespaces~1{namespace}~1me~1request~1cancel/post/security",
+    "value": [
+      {
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1lobby~1v1~1admin~1profanity~1namespaces~1{namespace}~1list~1{list}~1filters~1delete/post/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:PROFANITY [DELETE]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1lobby~1v1~1admin~1profanity~1namespaces~1{namespace}~1list~1{list}~1filters~1delete/post/responses/200/schema/items/$ref",
+    "value": "#/definitions/models.ProfanityFilter"
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1lobby~1v1~1admin~1profanity~1namespaces~1{namespace}~1list~1{list}~1filters~1delete/post/description",
+    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:PROFANITY [DELETE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;delete the filter from the list"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1friends~1namespaces~1{namespace}~1me~1unfriend/post/security",
+    "value": [
+      {
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1lobby~1v1~1public~1presence~1namespaces~1{namespace}~1users~1presence/get/security",
+    "value": [
+      {
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1lobby~1v1~1admin~1chat~1namespaces~1{namespace}~1users~1{userId}~1friends~1{friendId}/get/security",
+    "value": [
+      {
+        "HasPermission": [
+          "NAMESPACE:{namespace}:USER:{userId}:CHAT [READ]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1lobby~1v1~1admin~1chat~1namespaces~1{namespace}~1users~1{userId}~1friends~1{friendId}/get/description",
+    "value": "Required permission : &lt;code&gt;NAMESPACE:{namespace}:USER:{userId}:CHAT [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;get chat history in a namespace."
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1lobby~1v1~1admin~1friend~1namespaces~1{namespace}~1users~1{userId}/get/security",
+    "value": [
+      {
+        "HasPermission": [
+          "NAMESPACE:{namespace}:USER:{userId}:FRIENDS [READ]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1lobby~1v1~1admin~1friend~1namespaces~1{namespace}~1users~1{userId}/get/description",
+    "value": "Required permission : &lt;code&gt;NAMESPACE:{namespace}:USER:{userId}:FRIENDS [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n&lt;br&gt;get list of friends in a namespace."
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1lobby~1v1~1admin~1notification~1namespaces~1{namespace}~1templates~1notify/post/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1lobby~1v1~1admin~1notification~1namespaces~1{namespace}~1templates~1notify/post/description",
+    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;Sends notification to all connected users in a namespace with predefined template. \n\t\t\t&lt;br&gt;In the request body, specify which template slug (template identifier) to use and the template language. \n\t\t\t&lt;br&gt;NotificationTemplate context is the key-value pair defining the value of each handlebar specified in the template content. \n\t\t\tTemplate need to be published before it can be use to send notifications&lt;br/&gt;\n\t\t\tAction Code: 50202"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1lobby~1v1~1admin~1notification~1namespaces~1{namespace}~1templates~1{templateSlug}~1languages~1{templateLanguage}~1publish/post/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1lobby~1v1~1admin~1notification~1namespaces~1{namespace}~1templates~1{templateSlug}~1languages~1{templateLanguage}~1publish/post/description",
+    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;Publish notification template draft. Empty draft can not be published.&lt;br/&gt;\n\t\t\tAction Code: 50210"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1friends~1namespaces~1{namespace}~1me~1request/post/security",
+    "value": [
+      {
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1notification~1namespaces~1{namespace}~1templates~1{templateSlug}~1languages~1{templateLanguage}~1publish/post/security",
+    "value": [
+      {
+        "HasPermission": [
+          "NAMESPACE:{namespace}:TEMPLATE [CREATE]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1notification~1namespaces~1{namespace}~1templates~1{templateSlug}~1languages~1{templateLanguage}~1publish/post/description",
+    "value": "Required permission : &lt;code&gt;NAMESPACE:{namespace}:TEMPLATE [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;Publish notification template draft. Empty draft can not be published."
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1notification~1namespaces~1{namespace}~1topics/post/security",
+    "value": [
+      {
+        "HasPermission": [
+          "NAMESPACE:{namespace}:TOPIC [CREATE]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1notification~1namespaces~1{namespace}~1topics/post/description",
+    "value": "Required permission : &lt;code&gt;NAMESPACE:{namespace}:TOPIC [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;Create new notification topic.\n\t\t\t&lt;br&gt;topic should be alphabets, no special char except underscore, uppercase and no spacing. for example: TOPIC_TEST. \n\t\t\tAlready existing topic can not be created"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1notification~1namespaces~1{namespace}~1topics/get/security",
+    "value": [
+      {
+        "HasPermission": [
+          "NAMESPACE:{namespace}:TOPIC [READ]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1notification~1namespaces~1{namespace}~1topics/get/parameters/1/type",
+    "value": "integer"
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1notification~1namespaces~1{namespace}~1topics/get/description",
+    "value": "Required permission : &lt;code&gt;NAMESPACE:{namespace}:TOPIC [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;get topic by namespace."
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1lobby~1v1~1admin~1notification~1namespaces~1{namespace}~1templates~1{templateSlug}/delete/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:NOTIFICATION [DELETE]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1lobby~1v1~1admin~1notification~1namespaces~1{namespace}~1templates~1{templateSlug}/delete/description",
+    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [DELETE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;Delete template slug in notification template&lt;br&gt;\n\t\t\tAction Code: 50206"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1lobby~1v1~1admin~1notification~1namespaces~1{namespace}~1templates~1{templateSlug}/get/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:NOTIFICATION [READ]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1lobby~1v1~1admin~1notification~1namespaces~1{namespace}~1templates~1{templateSlug}/get/parameters/2/type",
+    "value": "integer"
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1lobby~1v1~1admin~1notification~1namespaces~1{namespace}~1templates~1{templateSlug}/get/description",
+    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;Get all templates in a namespace&lt;br&gt;\n\t\t\tAction Code: 50205"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1lobby~1v1~1admin~1notification~1namespaces~1{namespace}~1bulkUsers~1freeform~1notify/post/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1lobby~1v1~1admin~1notification~1namespaces~1{namespace}~1bulkUsers~1freeform~1notify/post/description",
+    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;Sends notification to multiple user.\n\t\t\tAction Code: 50211"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1lobby~1v1~1admin~1notification~1namespaces~1{namespace}~1freeform~1notify/post/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1lobby~1v1~1admin~1notification~1namespaces~1{namespace}~1freeform~1notify/post/description",
+    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;Sends notification to all connected users in a namespace.&lt;br&gt;\n\t\t\tAction Code: 50201"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1lobby~1v1~1admin~1player~1namespaces~1{namespace}~1users~1{userId}~1attributes/put/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PLAYER:ATTRIBUTES [UPDATE]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1lobby~1v1~1admin~1player~1namespaces~1{namespace}~1users~1{userId}~1attributes/put/description",
+    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:PLAYER:ATTRIBUTES [UPDATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;set player&#39;s session attribute by user id in a namespace."
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1lobby~1v1~1admin~1player~1namespaces~1{namespace}~1users~1{userId}~1attributes/get/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PLAYER:ATTRIBUTES [READ]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1lobby~1v1~1admin~1player~1namespaces~1{namespace}~1users~1{userId}~1attributes/get/description",
+    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:PLAYER:ATTRIBUTES [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;get all player&#39;s session attribute by user id in a namespace."
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1lobby~1v1~1admin~1profanity~1namespaces~1{namespace}~1filters~1debug/post/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:PROFANITY [READ]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1lobby~1v1~1admin~1profanity~1namespaces~1{namespace}~1filters~1debug/post/responses/200/schema/items/$ref",
+    "value": "#/definitions/models.ProfanityFilter"
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1lobby~1v1~1admin~1profanity~1namespaces~1{namespace}~1filters~1debug/post/description",
+    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:PROFANITY [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;get the list of filters that would modify the phrase"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1lobby~1v1~1admin~1notification~1namespaces~1{namespace}~1parties~1{partyId}~1templates~1notify/post/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1lobby~1v1~1admin~1notification~1namespaces~1{namespace}~1parties~1{partyId}~1templates~1notify/post/description",
+    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t\t\t&lt;br&gt;Sends templated notification to a party.\n\t\t\t\t\t&lt;br&gt;In the request body, specify which template slug (template identifier) to use and the template language. \n\t\t\t\t\t&lt;br&gt;NotificationTemplate context is the key-value pair defining the value of each handlebar specified in the template content. \n\t\t\t\t\tTemplate need to be published before it can be use to send notifications&lt;br&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1friends~1namespaces~1{namespace}~1me~1incoming/get/security",
+    "value": [
+      {
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1lobby~1v1~1admin~1notification~1namespaces~1{namespace}~1topics~1{topicName}/put/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:NOTIFICATION [UPDATE]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1lobby~1v1~1admin~1notification~1namespaces~1{namespace}~1topics~1{topicName}/put/description",
+    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [UPDATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;update topic information by topic name.\n\t\t\t&lt;br&gt;topic should be alphabets, no special char except underscore, uppercase and no spacing. for example: TOPIC_TEST. \n\t\t\tAlready existing topic can not be created &lt;br/&gt;\n\t\t\tAction Code: 50216"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1lobby~1v1~1admin~1notification~1namespaces~1{namespace}~1topics~1{topicName}/delete/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:NOTIFICATION [DELETE]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1lobby~1v1~1admin~1notification~1namespaces~1{namespace}~1topics~1{topicName}/delete/description",
+    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [DELETE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;delete topic information by topic name.\n\t\t\t&lt;br&gt;topic should be alphabets, no special char except underscore, uppercase and no spacing. for example: TOPIC_TEST. \n\t\t\tAlready existing topic can not be created &lt;br/&gt;\n\t\t\tAction Code: 50217"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1lobby~1v1~1admin~1notification~1namespaces~1{namespace}~1topics~1{topicName}/get/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:NOTIFICATION [READ]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1lobby~1v1~1admin~1notification~1namespaces~1{namespace}~1topics~1{topicName}/get/description",
+    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;get topic information by topic name.&lt;br/&gt;\n\t\t\tAction Code: 50215"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1lobby~1v1~1admin~1player~1namespaces~1{namespace}~1users~1{userId}~1blocked-by/get/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PLAYER:BLOCK [READ]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1lobby~1v1~1admin~1player~1namespaces~1{namespace}~1users~1{userId}~1blocked-by/get/description",
+    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:PLAYER:BLOCK [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;load get players who blocked this player in a namespace based on user id"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1friends~1namespaces~1{namespace}~1me~1request~1reject/post/security",
+    "value": [
+      {
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1lobby~1v1~1admin~1player~1namespaces~1{namespace}~1ccu/get/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:LOBBY:CCU [READ]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "remove",
+    "path": "/paths/~1lobby~1v1~1admin~1player~1namespaces~1{namespace}~1ccu/get/parameters/1"
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1lobby~1v1~1admin~1player~1namespaces~1{namespace}~1ccu/get/description",
+    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:LOBBY:CCU [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;Get the number of players connected to the Lobby in the given namespace."
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1lobby~1v1~1admin~1config~1namespaces~1{namespace}~1import/post/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:LOBBY:CONFIG [UPDATE]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1lobby~1v1~1admin~1config~1namespaces~1{namespace}~1import/post/parameters/0/required",
+    "value": true
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1lobby~1v1~1admin~1config~1namespaces~1{namespace}~1import/post/parameters/0/type",
+    "value": "string"
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1lobby~1v1~1admin~1config~1namespaces~1{namespace}~1import/post/parameters/0/name",
+    "value": "namespace"
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1lobby~1v1~1admin~1config~1namespaces~1{namespace}~1import/post/parameters/0/in",
+    "value": "path"
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1lobby~1v1~1admin~1config~1namespaces~1{namespace}~1import/post/parameters/0/description",
+    "value": "namespace"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1lobby~1v1~1admin~1notification~1namespaces~1{namespace}~1templates~1{templateSlug}~1languages~1{templateLanguage}/put/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:NOTIFICATION [UPDATE]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1lobby~1v1~1admin~1notification~1namespaces~1{namespace}~1templates~1{templateSlug}~1languages~1{templateLanguage}/put/description",
+    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [UPDATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br/&gt;update template localization&lt;br/&gt;\n\t\t\tAction Code: 50208"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1lobby~1v1~1admin~1notification~1namespaces~1{namespace}~1templates~1{templateSlug}~1languages~1{templateLanguage}/delete/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:NOTIFICATION [DELETE]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1lobby~1v1~1admin~1notification~1namespaces~1{namespace}~1templates~1{templateSlug}~1languages~1{templateLanguage}/delete/description",
+    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [DELETE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;delete template localization&lt;br/&gt;\n\t\t\tAction Code: 50209"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1lobby~1v1~1admin~1notification~1namespaces~1{namespace}~1templates~1{templateSlug}~1languages~1{templateLanguage}/get/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:NOTIFICATION [READ]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1lobby~1v1~1admin~1notification~1namespaces~1{namespace}~1templates~1{templateSlug}~1languages~1{templateLanguage}/get/description",
+    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;Get a template localization&lt;br/&gt;\n\t\t\tAction Code: 50207"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1lobby~1v1~1admin~1notification~1namespaces~1{namespace}~1users~1{userId}~1freeform~1notify/post/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1lobby~1v1~1admin~1notification~1namespaces~1{namespace}~1users~1{userId}~1freeform~1notify/post/description",
+    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;Sends notification to a user.\n\t\t\tAction Code: 50211"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1lobby~1v1~1admin~1player~1namespaces~1{namespace}~1users~1{userId}~1blocked/get/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PLAYER:BLOCK [READ]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1lobby~1v1~1admin~1player~1namespaces~1{namespace}~1users~1{userId}~1blocked/get/description",
+    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:PLAYER:BLOCK [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;get blocked players data by user id in a namespace."
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1lobby~1v1~1admin~1profanity~1namespaces~1{namespace}~1lists/post/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:PROFANITY [CREATE]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1lobby~1v1~1admin~1profanity~1namespaces~1{namespace}~1lists/post/description",
+    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:PROFANITY [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;create a new list"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1lobby~1v1~1admin~1profanity~1namespaces~1{namespace}~1lists/get/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:PROFANITY [READ]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1lobby~1v1~1admin~1profanity~1namespaces~1{namespace}~1lists/get/description",
+    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:PROFANITY [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;get lists"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1lobby~1v1~1messages/get/security",
+    "value": [
+      {
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1notification~1namespaces~1{namespace}~1templated/post/security",
+    "value": [
+      {
+        "HasPermission": [
+          "NAMESPACE:{namespace}:NOTIFICATION [CREATE]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1notification~1namespaces~1{namespace}~1templated/post/description",
+    "value": "Required permission : &lt;code&gt;NAMESPACE:{namespace}:NOTIFICATION [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;Sends notification to all connected users in a namespace with predefined template. \n\t\t\t&lt;br&gt;In the request body, specify which template slug (template identifier) to use and the template language. \n\t\t\t&lt;br&gt;NotificationTemplate context is the key-value pair defining the value of each handlebar specified in the template content. \n\t\t\tTemplate need to be published before it can be use to send notifications"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1lobby~1v1~1admin~1profanity~1namespaces~1{namespace}~1verify/post/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:PROFANITY [READ]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1lobby~1v1~1admin~1profanity~1namespaces~1{namespace}~1verify/post/description",
+    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:PROFANITY [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;verify a message directly from the UI or other services"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1lobby~1v1~1admin~1party~1namespaces~1{namespace}~1parties~1{partyId}/get/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:PARTY:STORAGE [READ]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1lobby~1v1~1admin~1party~1namespaces~1{namespace}~1parties~1{partyId}/get/description",
+    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:PARTY:STORAGE [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;get party data in a namespace."
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1notification~1namespaces~1{namespace}~1templates/post/security",
+    "value": [
+      {
+        "HasPermission": [
+          "NAMESPACE:{namespace}:TEMPLATE [CREATE]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1notification~1namespaces~1{namespace}~1templates/post/description",
+    "value": "Required permission : &lt;code&gt;NAMESPACE:{namespace}:TEMPLATE [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;Create new notification template. Include handlebars {{key}} for replaceable contexts. The the key inside \n\t\t\thandlebars will be the key to be replaced when sending notification. Already existing template with the same \n\t\t\tslug and language can not be created.\n\t\t\t&lt;br&gt;Check model description for detailed input restrictions."
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1notification~1namespaces~1{namespace}~1templates/get/security",
+    "value": [
+      {
+        "HasPermission": [
+          "NAMESPACE:{namespace}:TEMPLATE [READ]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1notification~1namespaces~1{namespace}~1templates/get/description",
+    "value": "Required permission : &lt;code&gt;NAMESPACE:{namespace}:TEMPLATE [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;Get all templates in a namespace"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1lobby~1v1~1admin~1party~1namespaces~1{namespace}~1parties~1{partyId}~1attributes/put/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:PARTY:STORAGE [UPDATE]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1lobby~1v1~1admin~1party~1namespaces~1{namespace}~1parties~1{partyId}~1attributes/put/description",
+    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:PARTY:STORAGE [UPDATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;update party attributes in a namespace."
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1lobby~1v1~1admin~1thirdparty~1namespaces~1{namespace}~1config~1steam/post/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:THIRDPARTY:CONFIG [CREATE]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1lobby~1v1~1admin~1thirdparty~1namespaces~1{namespace}~1config~1steam/post/description",
+    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:THIRDPARTY:CONFIG [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;create third party config in a namespace."
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1lobby~1v1~1admin~1thirdparty~1namespaces~1{namespace}~1config~1steam/put/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:THIRDPARTY:CONFIG [UPDATE]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1lobby~1v1~1admin~1thirdparty~1namespaces~1{namespace}~1config~1steam/put/description",
+    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:THIRDPARTY:CONFIG [UPDATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;Update third party config in a namespace."
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1lobby~1v1~1admin~1thirdparty~1namespaces~1{namespace}~1config~1steam/delete/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:THIRDPARTY:CONFIG [DELETE]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1lobby~1v1~1admin~1thirdparty~1namespaces~1{namespace}~1config~1steam/delete/description",
+    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:THIRDPARTY:CONFIG [DELETE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;delete third party config in a namespace."
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1lobby~1v1~1admin~1thirdparty~1namespaces~1{namespace}~1config~1steam/get/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:THIRDPARTY:CONFIG [READ]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1lobby~1v1~1admin~1thirdparty~1namespaces~1{namespace}~1config~1steam/get/description",
+    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:THIRDPARTY:CONFIG [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;get third party config for specified namespace."
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1friends~1namespaces~1{namespace}~1users~1{userId}~1add~1bulk/post/security",
+    "value": [
+      {
+        "HasPermission": [
+          "NAMESPACE:{namespace}:USER:{userId}:FRIENDS [CREATE]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1friends~1namespaces~1{namespace}~1users~1{userId}~1add~1bulk/post/description",
+    "value": "Required permission : &lt;code&gt;NAMESPACE:{namespace}:USER:{userId}:FRIENDS [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;friends request in a namespace."
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1lobby~1v1~1admin~1profanity~1namespaces~1{namespace}~1list~1{list}~1filters~1bulk-file/post/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:PROFANITY [CREATE]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1lobby~1v1~1admin~1profanity~1namespaces~1{namespace}~1list~1{list}~1filters~1bulk-file/post/description",
+    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:PROFANITY [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;import a file with filters"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1lobby~1v1~1admin~1player~1namespaces~1{namespace}~1users~1{userId}~1bulk~1block/post/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PLAYER:BLOCK [CREATE]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "remove",
+    "path": "/paths/~1lobby~1v1~1admin~1player~1namespaces~1{namespace}~1users~1{userId}~1bulk~1block/post/responses/204/schema"
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1lobby~1v1~1admin~1player~1namespaces~1{namespace}~1users~1{userId}~1bulk~1block/post/description",
+    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:PLAYER:BLOCK [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;Bulk block player in a namespace by list of user id"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1lobby~1v1~1admin~1notification~1namespaces~1{namespace}~1templates/post/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1lobby~1v1~1admin~1notification~1namespaces~1{namespace}~1templates/post/description",
+    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;Create new notification template. Include handlebars {{key}} for replaceable contexts. The key inside \n\t\t\thandlebars will be the key to be replaced when sending notification. Already existing template with the same \n\t\t\tslug and language can not be created.\n\t\t\t&lt;br&gt;Check model description for detailed input restrictions.&lt;br&gt;\n\t\t\tAction Code: 50204"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1lobby~1v1~1admin~1notification~1namespaces~1{namespace}~1templates/get/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:NOTIFICATION [READ]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1lobby~1v1~1admin~1notification~1namespaces~1{namespace}~1templates/get/description",
+    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;Get all templates in a namespace&lt;br&gt;\n\t\t\tAction Code: 50203"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1lobby~1v1~1admin~1config~1namespaces~1{namespace}/put/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:LOBBY:CONFIG [UPDATE]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1lobby~1v1~1admin~1config~1namespaces~1{namespace}/put/description",
+    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:LOBBY:CONFIG [UPDATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;update lobby config of a namespace."
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1lobby~1v1~1admin~1config~1namespaces~1{namespace}/get/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:LOBBY:CONFIG [READ]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1lobby~1v1~1admin~1config~1namespaces~1{namespace}/get/description",
+    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:LOBBY:CONFIG [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;get lobby config of a namespace."
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1lobby~1v1~1public~1party~1namespaces~1{namespace}~1parties~1{partyId}~1attributes/put/security",
+    "value": [
+      {
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1lobby~1v1~1public~1party~1namespaces~1{namespace}~1parties~1{partyId}~1attributes/put/description",
+    "value": "Required valid user authorization &lt;br/&gt;\n\t\t\t&lt;br&gt;update party attributes in a namespace."
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1lobby~1v1~1admin~1notification~1namespaces~1{namespace}~1parties~1{partyId}~1freeform~1notify/post/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1lobby~1v1~1admin~1notification~1namespaces~1{namespace}~1parties~1{partyId}~1freeform~1notify/post/description",
+    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t\t\t&lt;br&gt;Sends notification to a party."
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1notification~1namespaces~1{namespace}~1users~1{userId}~1freeform/post/security",
+    "value": [
+      {
+        "HasPermission": [
+          "NAMESPACE:{namespace}:USER:{userId}:NOTIFICATION [CREATE]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1notification~1namespaces~1{namespace}~1users~1{userId}~1freeform/post/description",
+    "value": "Required permission : &lt;code&gt;NAMESPACE:{namespace}:USER:{userId}:NOTIFICATION [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;Sends notification to a user."
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1friends~1namespaces~1{namespace}~1me~1outgoing/get/security",
+    "value": [
+      {
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1lobby~1v1~1admin~1config/get/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:*:LOBBY:CONFIG [READ]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1lobby~1v1~1admin~1config/get/description",
+    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:*:LOBBY:CONFIG [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;get lobby config of all namespaces."
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1friends~1namespaces~1{namespace}~1me~1request~1accept/post/security",
+    "value": [
+      {
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1lobby~1v1~1public~1player~1namespaces~1{namespace}~1users~1me~1blocked/get/security",
+    "value": [
+      {
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1lobby~1v1~1public~1player~1namespaces~1{namespace}~1users~1me~1blocked/get/description",
+    "value": "Required valid user authorization &lt;br/&gt;\n\t\t\t&lt;br&gt;load blocked players in a namespace based on user id &lt;br/&gt;\n\t\t\tAction Code: 50101"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1lobby~1v1~1admin~1party~1namespaces~1{namespace}~1users~1{userId}~1party/get/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:PARTY:STORAGE [READ]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1lobby~1v1~1admin~1party~1namespaces~1{namespace}~1users~1{userId}~1party/get/description",
+    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:PARTY:STORAGE [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;get party data in a namespace."
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1friends~1namespaces~1{namespace}~1me/get/security",
+    "value": [
+      {
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1friends~1namespaces~1{namespace}~1me/get/operationId",
+    "value": "getUserFriendsUpdated"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1lobby~1v1~1admin~1notification~1namespaces~1{namespace}~1topics/post/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1lobby~1v1~1admin~1notification~1namespaces~1{namespace}~1topics/post/description",
+    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;Create new notification topic.\n\t\t\t&lt;br&gt;topic should be alphabets, no special char except underscore, uppercase and no spacing. for example: TOPIC_TEST. \n\t\t\tAlready existing topic can not be created&lt;br/&gt;\n\t\t\tAction Code: 50214"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1lobby~1v1~1admin~1notification~1namespaces~1{namespace}~1topics/get/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:NOTIFICATION [READ]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1lobby~1v1~1admin~1notification~1namespaces~1{namespace}~1topics/get/parameters/1/type",
+    "value": "integer"
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1lobby~1v1~1admin~1notification~1namespaces~1{namespace}~1topics/get/description",
+    "value": "Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;get topic by namespace.&lt;br/&gt;\n\t\t\tAction Code: 50213"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1notification~1namespaces~1{namespace}~1users~1{userId}~1templated/post/security",
+    "value": [
+      {
+        "HasPermission": [
+          "NAMESPACE:{namespace}:USER:{userId}:NOTIFICATION [CREATE]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1notification~1namespaces~1{namespace}~1users~1{userId}~1templated/post/description",
+    "value": "Required permission : &lt;code&gt;NAMESPACE:{namespace}:USER:{userId}:NOTIFICATION [CREATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;Sends notification to a user with predefined template.\n\t\t\t&lt;br&gt;In the request body, specify which template slug (template identifier) to use and the template language. \n\t\t\t&lt;br&gt;NotificationTemplate context is the key-value pair defining the value of each handlebar specified in the template content. \n\t\t\tTemplate need to be published before it can be use to send notifications"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1lobby~1v1~1public~1chat~1namespaces~1{namespace}~1users~1me~1friends~1{friendId}/get/security",
+    "value": [
+      {
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1lobby~1v1~1public~1chat~1namespaces~1{namespace}~1users~1me~1friends~1{friendId}/get/description",
+    "value": "Required valid user authorization &lt;br/&gt;\n\t\t\t&lt;br&gt;load personal chat history in a namespace based on Friend User ID &lt;br/&gt;\n\t\t\tAction Code: 50101"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1lobby~1chat~1namespaces~1{namespace}~1users~1{userId}~1friend~1{friendId}/get/security",
+    "value": [
+      {
+        "HasPermission": [
+          "NAMESPACE:{namespace}:USER:{userId}:CHAT [READ]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1lobby~1chat~1namespaces~1{namespace}~1users~1{userId}~1friend~1{friendId}/get/description",
+    "value": "Required permission : &lt;code&gt;NAMESPACE:{namespace}:USER:{userId}:CHAT [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;\n\t\t\t&lt;br&gt;load personal chat history in a namespace."
+  },
+  {
+    "op": "remove",
+    "path": "/definitions/*models.ProfanityFilter"
   }
 ]

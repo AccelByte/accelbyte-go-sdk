@@ -1,746 +1,15 @@
 [
   {
     "op": "add",
-    "path": "/schemes",
-    "value": [
-      "https"
-    ]
-  },
-  {
-    "op": "add",
     "path": "/host",
     "value": "demo.accelbyte.io"
   },
   {
     "op": "add",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1users~1{userId}~1profiles/get/security/1",
-    "value": {
-      "HasPermission": [
-        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE [READ]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1users~1{userId}~1profiles/get/description",
-    "value": "Get user profile.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE&#34;&lt;/b&gt;, action=2 &lt;b&gt;(READ)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: user profile&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11403&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1users~1{userId}~1profiles/put/security/1",
-    "value": {
-      "HasPermission": [
-        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE [UPDATE]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1users~1{userId}~1profiles/put/description",
-    "value": "Update user profile.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE&#34;&lt;/b&gt;, action=4 &lt;b&gt;(UPDATE)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11402&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: Updated user profile&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1users~1{userId}~1profiles/delete/security/1",
-    "value": {
-      "HasPermission": [
-        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE [DELETE]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1users~1{userId}~1profiles/delete/description",
-    "value": "Delete user profile.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE&#34;&lt;/b&gt;, action=8 &lt;b&gt;(DELETE)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11407&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: Delete user profile&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}/get/security/1",
-    "value": {
-      "HasPermission": [
-        "ADMIN:NAMESPACE:{namespace}:NAMESPACE [READ]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}/get/description",
-    "value": "Get a namespace.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:NAMESPACE&#34;&lt;/b&gt;, action=2 &lt;b&gt;(READ)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11304&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: namespace&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}/delete/security/1",
-    "value": {
-      "HasPermission": [
-        "ADMIN:NAMESPACE:{namespace}:NAMESPACE [DELETE]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}/delete/description",
-    "value": "Delete a namespace.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:NAMESPACE&#34;&lt;/b&gt;, action=8 &lt;b&gt;(DELETE)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11307&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: deleted namespace&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1me~1profiles~1zipCode/get/security/1",
-    "value": {
-      "HasPermission": [
-        "NAMESPACE:{namespace}:PROFILE [READ]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1me~1profiles~1zipCode/get/description",
-    "value": "Get my zip code.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;NAMESPACE:{namespace}:PROFILE&#34;&lt;/b&gt;, action=2 &lt;b&gt;(READ)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11407&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: user zip code&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1me~1profiles~1zipCode/patch/security/1",
-    "value": {
-      "HasPermission": [
-        "NAMESPACE:{namespace}:PROFILE [UPDATE]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1me~1profiles~1zipCode/patch/description",
-    "value": "Update my zip code.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;NAMESPACE:{namespace}:PROFILE&#34;&lt;/b&gt;, action=4 &lt;b&gt;(UPDATE)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11408&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: user zip code&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1misc~1countries/get/description",
-    "value": "List countries.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: login user&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11204&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: country code list&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1equ8~1config/get/description",
-    "value": "Get equ8 config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:EQU8CONFIG&#34;&lt;/b&gt;, action=2 &lt;b&gt;(READ)&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1equ8~1config/delete/description",
-    "value": "Delete equ8 config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:EQU8CONFIG&#34;&lt;/b&gt;, action=8 &lt;b&gt;(DELETE)&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1equ8~1config/patch/description",
-    "value": "Update equ8 config, create if not exists.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:EQU8CONFIG&#34;&lt;/b&gt;, action=4 &lt;b&gt;(UPDATE)&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1{userId}~1actions~1report/post/security/1",
-    "value": {
-      "HasPermission": [
-        "NAMESPACE:{namespace}:USER:{userId}:ACTION [CREATE]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1{userId}~1actions~1report/post/description",
-    "value": "This API is used to report a game user.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:ACTION&#34;, action=1 (CREATE)&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1{userId}~1files/post/security/1",
-    "value": {
-      "HasPermission": [
-        "NAMESPACE:{namespace}:USER:{userId}:FILEUPLOAD [CREATE]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1{userId}~1files/post/description",
-    "value": "Generate an upload URL for user content. It&#39;s valid for 10 minutes.&lt;br/&gt;There are 2 kinds of storage limitation per user : maximum file count and maximum file size.&lt;br/&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource = &lt;b&gt;&#34;NAMESPACE:{namespace}:USER:{userId}:FILEUPLOAD&#34;&lt;/b&gt;, action=1 &lt;b&gt;(CREATE)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11102&lt;/li&gt;&lt;li&gt;&lt;i&gt;Default maximum file count per user&lt;/i&gt;: 10 files&lt;/li&gt;&lt;li&gt;&lt;i&gt;Default maximum file size per user&lt;/i&gt;: 104857600 bytes&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: URL data&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1profiles~1public/post/security/1",
-    "value": {
-      "HasPermission": [
-        "ADMIN:NAMESPACE:{namespace}:PROFILE []"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1profiles~1public/post/description",
-    "value": "Admin get user public profile by ids.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:PROFILE&#34;&lt;/b&gt;, action=2 &lt;b&gt;(GET)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11405&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: user public profiles&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1users~1{userId}~1anonymization~1profiles/delete/security/1",
-    "value": {
-      "HasPermission": [
-        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION [DELETE]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1users~1{userId}~1anonymization~1profiles/delete/description",
-    "value": "Anonymize user profile.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION&#34;&lt;/b&gt;, action=8 &lt;b&gt;(DELETE)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11501&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1basic/patch/security/1",
-    "value": {
-      "HasPermission": [
-        "ADMIN:NAMESPACE:{namespace}:NAMESPACE [UPDATE]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1basic/patch/description",
-    "value": "Update namespace basic info.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:NAMESPACE&#34;&lt;/b&gt;, action=4 &lt;b&gt;(UPDATE)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11302&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated namespace&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1misc~1languages/get/description",
-    "value": "List languages.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: language list&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1folders~1{folder}~1files/post/security/1",
-    "value": {
-      "HasPermission": [
-        "NAMESPACE:{namespace}:FILEUPLOAD [CREATE]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1folders~1{folder}~1files/post/description",
-    "value": "Generate an upload URL. It&#39;s valid for 10 minutes.&lt;br/&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource = &lt;b&gt;&#34;NAMESPACE:{namespace}:FILEUPLOAD&#34;&lt;/b&gt;, action=1 &lt;b&gt;(CREATE)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11101&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: URL data&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1actions~1unban/post/security/1",
-    "value": {
-      "HasPermission": [
-        "ADMIN:NAMESPACE:{namespace}:ACTION [UPDATE]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1actions~1unban/post/description",
-    "value": "Unban user.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:ACTION&#34;&lt;/b&gt;, action=4 &lt;b&gt;(UPDATE)&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1users~1{userId}~1profiles~1status/patch/security/1",
-    "value": {
-      "HasPermission": [
-        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE [UPDATE]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1users~1{userId}~1profiles~1status/patch/description",
-    "value": "Update user profile status.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE&#34;&lt;/b&gt;, action=4 &lt;b&gt;(UPDATE)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11406&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: user profile&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1{userId}~1profiles~1public/get/description",
-    "value": "Get user profile public info.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11404&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: user public profile&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1misc~1timezones/get/description",
-    "value": "List time zones.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: login user&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11205&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: time zones&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1me~1profiles/get/security/1",
-    "value": {
-      "HasPermission": [
-        "NAMESPACE:{namespace}:PROFILE [READ]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1me~1profiles/get/description",
-    "value": "Get my profile&lt;br&gt;&lt;b&gt;Client with user token can get user profile in target namespace&lt;/b&gt;&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;NAMESPACE:{namespace}:PROFILE&#34;&lt;/b&gt;, action=2 &lt;b&gt;(READ)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11403&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: user profile&lt;/li&gt;&lt;li&gt;&lt;i&gt;Path&#39;s namespace&lt;/i&gt; : &lt;ul&gt;&lt;li&gt;can be filled with &lt;b&gt;publisher namespace&lt;/b&gt; in order to get &lt;b&gt;publisher user profile&lt;/b&gt;&lt;/li&gt;&lt;li&gt;can be filled with &lt;b&gt;game namespace&lt;/b&gt; in order to get &lt;b&gt;game user profile&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Language&lt;/i&gt; : allowed format: en, en-US&lt;/li&gt;&lt;li&gt;&lt;i&gt;Timezone&lt;/i&gt; : IANA time zone, e.g. Asia/Shanghai&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1me~1profiles/put/security/1",
-    "value": {
-      "HasPermission": [
-        "NAMESPACE:{namespace}:PROFILE [UPDATE]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1me~1profiles/put/description",
-    "value": "Update my profile.&lt;br&gt;Updates user profile in the target namespace (namespace in the path). If token&#39;s namespace doesn&#39;t match the target namespace, the service automatically maps the token&#39;s user ID into the user ID in the target namespace. The endpoint returns the updated user profile on a successful call.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;NAMESPACE:{namespace}:PROFILE&#34;&lt;/b&gt;, action=4 &lt;b&gt;(UPDATE)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11402&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: user profile&lt;/li&gt;&lt;li&gt;&lt;i&gt;Path&#39;s namespace&lt;/i&gt; : &lt;ul&gt;&lt;li&gt;can be filled with &lt;b&gt;publisher namespace&lt;/b&gt; in order to update &lt;b&gt;publisher user profile&lt;/b&gt;&lt;/li&gt;&lt;li&gt;can be filled with &lt;b&gt;game namespace&lt;/b&gt; in order to update &lt;b&gt;game user profile&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Language&lt;/i&gt; : allowed format: en, en-US&lt;/li&gt;&lt;li&gt;&lt;i&gt;Timezone&lt;/i&gt; : IANA time zone, e.g. Asia/Shanghai&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1me~1profiles/post/security/1",
-    "value": {
-      "HasPermission": [
-        "NAMESPACE:{namespace}:PROFILE [CREATE]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1me~1profiles/post/description",
-    "value": "Create my profile.&lt;br&gt;&lt;b&gt;Client with user token can create user profile in target namespace&lt;/b&gt;&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;NAMESPACE:{namespace}:PROFILE&#34;&lt;/b&gt;, action=1 &lt;b&gt;(CREATE)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11401&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: Created user profile&lt;/li&gt;&lt;li&gt;&lt;i&gt;Path&#39;s namespace&lt;/i&gt; : &lt;ul&gt;&lt;li&gt;can be filled with &lt;b&gt;publisher namespace&lt;/b&gt; in order to create &lt;b&gt;publisher user profile&lt;/b&gt;&lt;/li&gt;&lt;li&gt;can be filled with &lt;b&gt;game namespace&lt;/b&gt; in order to create &lt;b&gt;game user profile&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Language&lt;/i&gt; : allowed format: en, en-US&lt;/li&gt;&lt;li&gt;&lt;i&gt;Country&lt;/i&gt;  : ISO3166-1 alpha-2 two letter, e.g. US &lt;/li&gt;&lt;li&gt;&lt;i&gt;Timezone&lt;/i&gt; : IANA time zone, e.g. Asia/Shanghai&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1actions/get/security/1",
-    "value": {
-      "HasPermission": [
-        "ADMIN:NAMESPACE:{namespace}:ACTION [READ]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1actions/get/description",
-    "value": "Get configured actions.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:ACTION&#34;&lt;/b&gt;, action=2 &lt;b&gt;(READ)&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1misc~1countrygroups/get/security/1",
-    "value": {
-      "HasPermission": [
-        "ADMIN:NAMESPACE:{namespace}:MISC [READ]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1misc~1countrygroups/get/description",
-    "value": "List country groups. Will return all available country groups if the query param is not specified&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource = &lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:MISC&#34;&lt;/b&gt;, action=2 &lt;b&gt;(READ)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11203&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: list of country groups&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1misc~1countrygroups/post/security/1",
-    "value": {
-      "HasPermission": [
-        "ADMIN:NAMESPACE:{namespace}:MISC [CREATE]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1misc~1countrygroups/post/description",
-    "value": "Add a country groups&lt;br&gt;Country code must follow ISO3166-1 alpha-2.&lt;br/&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource = &lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:MISC&#34;&lt;/b&gt;, action=1 &lt;b&gt;(CREATE)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11201&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: newly created country group&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1{userId}~1profiles~1customAttributes/get/security/1",
-    "value": {
-      "HasPermission": [
-        "NAMESPACE:{namespace}:USER:{userId}:PROFILE [READ]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1{userId}~1profiles~1customAttributes/get/description",
-    "value": "Get custom attributes info.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;NAMESPACE:{namespace}:USER:{userId}:PROFILE&#34;&lt;/b&gt;, action=2 &lt;b&gt;(READ)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11404&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: user custom attributes&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1{userId}~1profiles~1customAttributes/put/security/1",
-    "value": {
-      "HasPermission": [
-        "NAMESPACE:{namespace}:USER:{userId}:PROFILE [UPDATE]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1{userId}~1profiles~1customAttributes/put/description",
-    "value": "Update partially custom attributes tied to user id.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;NAMESPACE:{namespace}:USER:{userId}:PROFILE&#34;&lt;/b&gt;, action=4 &lt;b&gt;(UPDATE)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11402&lt;/li&gt;&lt;li&gt;&lt;i&gt;Request body&lt;/i&gt; : allowed format: JSON object&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: Updated custom attributes&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1profiles~1public/get/description",
-    "value": "Get user public profile by ids.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11405&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: user public profiles&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1actions~1report/post/security/1",
-    "value": {
-      "HasPermission": [
-        "ADMIN:NAMESPACE:{namespace}:ACTION [CREATE]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1actions~1report/post/description",
-    "value": "This API is for game service to report a game player.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:ACTION&#34;, action=1 (CREATE)&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1misc~1countrygroups~1{countryGroupCode}/put/security/1",
-    "value": {
-      "HasPermission": [
-        "ADMIN:NAMESPACE:{namespace}:MISC [UPDATE]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1misc~1countrygroups~1{countryGroupCode}/put/description",
-    "value": "Update a country groups. The countryGroupCode must be exist beforehand.&lt;br&gt;Valid update behaviour :&lt;br/&gt;- To update &lt;i&gt;countryGroupName&lt;/i&gt; only, do not include &lt;i&gt;countries&lt;/i&gt; key or just specify it with empty array.&lt;br/&gt;- To update &lt;i&gt;countries&lt;/i&gt; only, do not include &lt;i&gt;countryGroupName&lt;/i&gt; key or just specify it with blank value.&lt;br/&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource = &lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:MISC&#34;&lt;/b&gt;, action=4 &lt;b&gt;(UPDATE)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11202&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated country group&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1misc~1countrygroups~1{countryGroupCode}/delete/security/1",
-    "value": {
-      "HasPermission": [
-        "ADMIN:NAMESPACE:{namespace}:MISC [DELETE]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1misc~1countrygroups~1{countryGroupCode}/delete/description",
-    "value": "Delete a country groups by its country group code. This endpoint usually used for testing purpose to cleanup test data.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource = &lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:MISC&#34;&lt;/b&gt;, action=8 &lt;b&gt;(DELETE)&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1users~1{userId}~1profiles~1customAttributes/get/security/1",
-    "value": {
-      "HasPermission": [
-        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE [READ]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1users~1{userId}~1profiles~1customAttributes/get/description",
-    "value": "Get user custom attributes.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE&#34;&lt;/b&gt;, action=2 &lt;b&gt;(READ)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: custom attributes&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11403&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1users~1{userId}~1profiles~1customAttributes/put/security/1",
-    "value": {
-      "HasPermission": [
-        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE [UPDATE]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1users~1{userId}~1profiles~1customAttributes/put/description",
-    "value": "Update partially custom attributes tied to the user id.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE&#34;&lt;/b&gt;, action=4 &lt;b&gt;(UPDATE)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11402&lt;/li&gt;&lt;li&gt;&lt;i&gt;Request body&lt;/i&gt;: allowed format: JSON object&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: Updated custom attributes&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1users~1{userId}~1files/post/security/1",
-    "value": {
-      "HasPermission": [
-        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:FILEUPLOAD [CREATE]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1users~1{userId}~1files/post/description",
-    "value": "Generate an upload URL for user content. It&#39;s valid for 10 minutes.&lt;br/&gt;There are 2 kinds of storage limitation per user : maximum file count and maximum file size.&lt;br/&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource = &lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:FILEUPLOAD&#34;&lt;/b&gt;, action=1 &lt;b&gt;(CREATE)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11102&lt;/li&gt;&lt;li&gt;&lt;i&gt;Default maximum file count per user&lt;/i&gt;: 10 files&lt;/li&gt;&lt;li&gt;&lt;i&gt;Default maximum file size per user&lt;/i&gt;: 104857600 bytes&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: URL data&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1v1~1admin~1namespaces/get/security/1",
-    "value": {
-      "HasPermission": [
-        "ADMIN:NAMESPACE [READ]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v1~1admin~1namespaces/get/description",
-    "value": "Get all namespaces.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE&#34;&lt;/b&gt;, action=2 &lt;b&gt;(READ)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11303&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: list of namespaces&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1v1~1admin~1namespaces/post/security/1",
-    "value": {
-      "HasPermission": [
-        "ADMIN:NAMESPACE [CREATE]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v1~1admin~1namespaces/post/description",
-    "value": "Create a namespace.&lt;br&gt;By default the namespace is enabled.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE&#34;&lt;/b&gt;, action=1 &lt;b&gt;(CREATE)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11301&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: created namespace&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v1~1public~1namespaces/get/description",
-    "value": "Get all namespaces.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: login user&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11303&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: list of namespaces&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1users~1{userId}~1profiles~1privateCustomAttributes/get/security/1",
-    "value": {
-      "HasPermission": [
-        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE [READ]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1users~1{userId}~1profiles~1privateCustomAttributes/get/description",
-    "value": "Get user private custom attributes.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE&#34;&lt;/b&gt;, action=2 &lt;b&gt;(READ)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: custom attributes&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11403&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1users~1{userId}~1profiles~1privateCustomAttributes/put/security/1",
-    "value": {
-      "HasPermission": [
-        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE [UPDATE]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1users~1{userId}~1profiles~1privateCustomAttributes/put/description",
-    "value": "Update partially private custom attributes tied to the user id.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE&#34;&lt;/b&gt;, action=4 &lt;b&gt;(UPDATE)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11402&lt;/li&gt;&lt;li&gt;&lt;i&gt;Request body&lt;/i&gt;: allowed format: JSON object&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: Updated custom attributes&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1publisher/get/security/1",
-    "value": {
-      "HasPermission": [
-        "ADMIN:NAMESPACE:{namespace}:NAMESPACE [READ]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1publisher/get/description",
-    "value": "Get namespace info related publisher namespace.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:NAMESPACE&#34;&lt;/b&gt;, action=2 &lt;b&gt;(READ)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11305&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: Namespace info related publisher namespace&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1status/patch/security/1",
-    "value": {
-      "HasPermission": [
-        "ADMIN:NAMESPACE:{namespace}:NAMESPACE [UPDATE]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1status/patch/description",
-    "value": "Change a namespace status.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:NAMESPACE&#34;&lt;/b&gt;, action=4 &lt;b&gt;(UPDATE)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;Action code&lt;i&gt;&lt;/i&gt;: 11306&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated namespace&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1actions~1banned/get/security/1",
-    "value": {
-      "HasPermission": [
-        "ADMIN:NAMESPACE:{namespace}:ACTION [READ]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1actions~1banned/get/description",
-    "value": "Get banned status.&lt;br&gt;Unbanned users will not return, for example: request has 8 userIds, only 5 of then were banned, then the api will these 5 user status.Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:ACTION&#34;&lt;/b&gt;, action=2 &lt;b&gt;(READ)&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1misc~1languages/get/description",
-    "value": "List languages.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: login user&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11206&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: language list&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1{userId}~1profiles~1status/patch/security/1",
-    "value": {
-      "HasPermission": [
-        "NAMESPACE:{namespace}:USER:{userId}:PROFILE [UPDATE]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1{userId}~1profiles~1status/patch/description",
-    "value": "Update user profile status.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;NAMESPACE:{namespace}:USER:{userId}:PROFILE&#34;&lt;/b&gt;, action=4 &lt;b&gt;(UPDATE)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11406&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: user profile&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1actions~1status/get/security/1",
-    "value": {
-      "HasPermission": [
-        "ADMIN:NAMESPACE:{namespace}:ACTION [READ]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1actions~1status/get/description",
-    "value": "Get user status.&lt;br&gt;If actionId does not exist, then the user is not banned.If actionId and expires exist, then the user is temporarily banned, if expires does not exist, then the user is permanently banned.Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:ACTION&#34;&lt;/b&gt;, action=2 &lt;b&gt;(READ)&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1folders~1{folder}~1files/post/security/1",
-    "value": {
-      "HasPermission": [
-        "ADMIN:NAMESPACE:{namespace}:FILEUPLOAD [CREATE]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1folders~1{folder}~1files/post/description",
-    "value": "Generate an upload URL. It&#39;s valid for 10 minutes.&lt;br/&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource = &lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:FILEUPLOAD&#34;&lt;/b&gt;, action=1 &lt;b&gt;(CREATE)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11101&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: URL data&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1misc~1timezones/get/description",
-    "value": "List time zones.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: time zones&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1misc~1countries/get/description",
-    "value": "List countries.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: country code list&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1actions~1ban/post/security/1",
-    "value": {
-      "HasPermission": [
-        "ADMIN:NAMESPACE:{namespace}:ACTION [UPDATE]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1actions~1ban/post/description",
-    "value": "Ban user.&lt;br&gt; actionId: 1 means permanent ban, actionId: 10 means Temporary ban.Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:ACTION&#34;&lt;/b&gt;, action=4 &lt;b&gt;(UPDATE)&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1publisher/get/security/1",
-    "value": {
-      "HasPermission": [
-        "NAMESPACE:{namespace}:NAMESPACE [READ]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1publisher/get/description",
-    "value": "Get namespace info related publisher namespace.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;NAMESPACE:{namespace}:NAMESPACE&#34;&lt;/b&gt;, action=2 &lt;b&gt;(READ)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11305&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: Namespace info related publisher namespace&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1{userId}~1profiles/get/security/1",
-    "value": {
-      "HasPermission": [
-        "NAMESPACE:{namespace}:USER:{userId}:PROFILE [READ]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1{userId}~1profiles/get/description",
-    "value": "Get user profile.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;NAMESPACE:{namespace}:USER:{userId}:PROFILE&#34;&lt;/b&gt;, action=2 &lt;b&gt;(READ)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11403&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: user profile&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1{userId}~1profiles/put/security/1",
-    "value": {
-      "HasPermission": [
-        "NAMESPACE:{namespace}:USER:{userId}:PROFILE [UPDATE]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1{userId}~1profiles/put/description",
-    "value": "Update user profile.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;NAMESPACE:{namespace}:USER:{userId}:PROFILE&#34;&lt;/b&gt;, action=4 &lt;b&gt;(UPDATE)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11402&lt;/li&gt;&lt;li&gt;&lt;i&gt;Language&lt;/i&gt; : allowed format: en, en-US&lt;/li&gt;&lt;li&gt;&lt;i&gt;Timezone&lt;/i&gt; : IANA time zone, e.g. Asia/Shanghai&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: Updated user profile&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1{userId}~1profiles/post/security/1",
-    "value": {
-      "HasPermission": [
-        "NAMESPACE:{namespace}:USER:{userId}:PROFILE [CREATE]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1{userId}~1profiles/post/description",
-    "value": "Create user profile.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;NAMESPACE:{namespace}:USER:{userId}:PROFILE&#34;&lt;/b&gt;, action=1 &lt;b&gt;(CREATE)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11401&lt;/li&gt;&lt;li&gt;&lt;i&gt;Language&lt;/i&gt; : allowed format: en, en-US&lt;/li&gt;&lt;li&gt;&lt;i&gt;Timezone&lt;/i&gt; : IANA time zone, e.g. Asia/Shanghai&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: Created user profile&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/securityDefinitions/HasScope",
-    "value": {
-      "authorizationUrl": "https://dummy.oauth.net/auth",
-      "flow": "accessCode",
-      "scopes": {},
-      "tokenUrl": "https://dumy.oauth.net/token",
-      "type": "oauth2"
-    }
+    "path": "/schemes",
+    "value": [
+      "https"
+    ]
   },
   {
     "op": "add",
@@ -781,6 +50,737 @@
       },
       "tokenUrl": "https://dumy.oauth.net/token",
       "type": "oauth2"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/securityDefinitions/HasScope",
+    "value": {
+      "authorizationUrl": "https://dummy.oauth.net/auth",
+      "flow": "accessCode",
+      "scopes": {},
+      "tokenUrl": "https://dumy.oauth.net/token",
+      "type": "oauth2"
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v1~1admin~1namespaces/post/description",
+    "value": "Create a namespace.&lt;br&gt;By default the namespace is enabled.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE&#34;&lt;/b&gt;, action=1 &lt;b&gt;(CREATE)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11301&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: created namespace&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1v1~1admin~1namespaces/post/security/1",
+    "value": {
+      "HasPermission": [
+        "ADMIN:NAMESPACE [CREATE]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v1~1admin~1namespaces/get/description",
+    "value": "Get all namespaces.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE&#34;&lt;/b&gt;, action=2 &lt;b&gt;(READ)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11303&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: list of namespaces&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1v1~1admin~1namespaces/get/security/1",
+    "value": {
+      "HasPermission": [
+        "ADMIN:NAMESPACE [READ]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1misc~1countrygroups~1{countryGroupCode}/put/description",
+    "value": "Update a country groups. The countryGroupCode must be exist beforehand.&lt;br&gt;Valid update behaviour :&lt;br/&gt;- To update &lt;i&gt;countryGroupName&lt;/i&gt; only, do not include &lt;i&gt;countries&lt;/i&gt; key or just specify it with empty array.&lt;br/&gt;- To update &lt;i&gt;countries&lt;/i&gt; only, do not include &lt;i&gt;countryGroupName&lt;/i&gt; key or just specify it with blank value.&lt;br/&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource = &lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:MISC&#34;&lt;/b&gt;, action=4 &lt;b&gt;(UPDATE)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11202&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated country group&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1misc~1countrygroups~1{countryGroupCode}/put/security/1",
+    "value": {
+      "HasPermission": [
+        "ADMIN:NAMESPACE:{namespace}:MISC [UPDATE]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1misc~1countrygroups~1{countryGroupCode}/delete/description",
+    "value": "Delete a country groups by its country group code. This endpoint usually used for testing purpose to cleanup test data.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource = &lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:MISC&#34;&lt;/b&gt;, action=8 &lt;b&gt;(DELETE)&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1misc~1countrygroups~1{countryGroupCode}/delete/security/1",
+    "value": {
+      "HasPermission": [
+        "ADMIN:NAMESPACE:{namespace}:MISC [DELETE]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1{userId}~1files/post/description",
+    "value": "Generate an upload URL for user content. It&#39;s valid for 10 minutes.&lt;br/&gt;There are 2 kinds of storage limitation per user : maximum file count and maximum file size.&lt;br/&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource = &lt;b&gt;&#34;NAMESPACE:{namespace}:USER:{userId}:FILEUPLOAD&#34;&lt;/b&gt;, action=1 &lt;b&gt;(CREATE)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11102&lt;/li&gt;&lt;li&gt;&lt;i&gt;Default maximum file count per user&lt;/i&gt;: 10 files&lt;/li&gt;&lt;li&gt;&lt;i&gt;Default maximum file size per user&lt;/i&gt;: 104857600 bytes&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: URL data&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1{userId}~1files/post/security/1",
+    "value": {
+      "HasPermission": [
+        "NAMESPACE:{namespace}:USER:{userId}:FILEUPLOAD [CREATE]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1actions~1ban/post/description",
+    "value": "Ban user.&lt;br&gt; actionId: 1 means permanent ban, actionId: 10 means Temporary ban.Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:ACTION&#34;&lt;/b&gt;, action=4 &lt;b&gt;(UPDATE)&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1actions~1ban/post/security/1",
+    "value": {
+      "HasPermission": [
+        "ADMIN:NAMESPACE:{namespace}:ACTION [UPDATE]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1{userId}~1profiles/put/description",
+    "value": "Update user profile.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;NAMESPACE:{namespace}:USER:{userId}:PROFILE&#34;&lt;/b&gt;, action=4 &lt;b&gt;(UPDATE)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11402&lt;/li&gt;&lt;li&gt;&lt;i&gt;Language&lt;/i&gt; : allowed format: en, en-US&lt;/li&gt;&lt;li&gt;&lt;i&gt;Timezone&lt;/i&gt; : IANA time zone, e.g. Asia/Shanghai&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: Updated user profile&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1{userId}~1profiles/put/security/1",
+    "value": {
+      "HasPermission": [
+        "NAMESPACE:{namespace}:USER:{userId}:PROFILE [UPDATE]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1{userId}~1profiles/post/description",
+    "value": "Create user profile.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;NAMESPACE:{namespace}:USER:{userId}:PROFILE&#34;&lt;/b&gt;, action=1 &lt;b&gt;(CREATE)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11401&lt;/li&gt;&lt;li&gt;&lt;i&gt;Language&lt;/i&gt; : allowed format: en, en-US&lt;/li&gt;&lt;li&gt;&lt;i&gt;Timezone&lt;/i&gt; : IANA time zone, e.g. Asia/Shanghai&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: Created user profile&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1{userId}~1profiles/post/security/1",
+    "value": {
+      "HasPermission": [
+        "NAMESPACE:{namespace}:USER:{userId}:PROFILE [CREATE]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1{userId}~1profiles/get/description",
+    "value": "Get user profile.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;NAMESPACE:{namespace}:USER:{userId}:PROFILE&#34;&lt;/b&gt;, action=2 &lt;b&gt;(READ)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11403&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: user profile&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1{userId}~1profiles/get/security/1",
+    "value": {
+      "HasPermission": [
+        "NAMESPACE:{namespace}:USER:{userId}:PROFILE [READ]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1users~1{userId}~1profiles~1customAttributes/put/description",
+    "value": "Update partially custom attributes tied to the user id.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE&#34;&lt;/b&gt;, action=4 &lt;b&gt;(UPDATE)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11402&lt;/li&gt;&lt;li&gt;&lt;i&gt;Request body&lt;/i&gt;: allowed format: JSON object&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: Updated custom attributes&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1users~1{userId}~1profiles~1customAttributes/put/security/1",
+    "value": {
+      "HasPermission": [
+        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE [UPDATE]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1users~1{userId}~1profiles~1customAttributes/get/description",
+    "value": "Get user custom attributes.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE&#34;&lt;/b&gt;, action=2 &lt;b&gt;(READ)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: custom attributes&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11403&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1users~1{userId}~1profiles~1customAttributes/get/security/1",
+    "value": {
+      "HasPermission": [
+        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE [READ]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1{userId}~1profiles~1public/get/description",
+    "value": "Get user profile public info.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11404&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: user public profile&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1actions~1banned/get/description",
+    "value": "Get banned status.&lt;br&gt;Unbanned users will not return, for example: request has 8 userIds, only 5 of then were banned, then the api will these 5 user status.Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:ACTION&#34;&lt;/b&gt;, action=2 &lt;b&gt;(READ)&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1actions~1banned/get/security/1",
+    "value": {
+      "HasPermission": [
+        "ADMIN:NAMESPACE:{namespace}:ACTION [READ]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1misc~1timezones/get/description",
+    "value": "List time zones.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: login user&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11205&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: time zones&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1folders~1{folder}~1files/post/description",
+    "value": "Generate an upload URL. It&#39;s valid for 10 minutes.&lt;br/&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource = &lt;b&gt;&#34;NAMESPACE:{namespace}:FILEUPLOAD&#34;&lt;/b&gt;, action=1 &lt;b&gt;(CREATE)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11101&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: URL data&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1folders~1{folder}~1files/post/security/1",
+    "value": {
+      "HasPermission": [
+        "NAMESPACE:{namespace}:FILEUPLOAD [CREATE]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1actions/get/description",
+    "value": "Get configured actions.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:ACTION&#34;&lt;/b&gt;, action=2 &lt;b&gt;(READ)&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1actions/get/security/1",
+    "value": {
+      "HasPermission": [
+        "ADMIN:NAMESPACE:{namespace}:ACTION [READ]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1users~1{userId}~1anonymization~1profiles/delete/description",
+    "value": "Anonymize user profile.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION&#34;&lt;/b&gt;, action=8 &lt;b&gt;(DELETE)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11501&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1users~1{userId}~1anonymization~1profiles/delete/security/1",
+    "value": {
+      "HasPermission": [
+        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION [DELETE]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v1~1public~1namespaces/get/description",
+    "value": "Get all namespaces.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: login user&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11303&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: list of namespaces&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}/delete/description",
+    "value": "Delete a namespace.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:NAMESPACE&#34;&lt;/b&gt;, action=8 &lt;b&gt;(DELETE)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11307&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: deleted namespace&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}/delete/security/1",
+    "value": {
+      "HasPermission": [
+        "ADMIN:NAMESPACE:{namespace}:NAMESPACE [DELETE]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}/get/description",
+    "value": "Get a namespace.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:NAMESPACE&#34;&lt;/b&gt;, action=2 &lt;b&gt;(READ)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11304&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: namespace&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}/get/security/1",
+    "value": {
+      "HasPermission": [
+        "ADMIN:NAMESPACE:{namespace}:NAMESPACE [READ]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1actions~1unban/post/description",
+    "value": "Unban user.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:ACTION&#34;&lt;/b&gt;, action=4 &lt;b&gt;(UPDATE)&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1actions~1unban/post/security/1",
+    "value": {
+      "HasPermission": [
+        "ADMIN:NAMESPACE:{namespace}:ACTION [UPDATE]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1status/patch/description",
+    "value": "Change a namespace status.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:NAMESPACE&#34;&lt;/b&gt;, action=4 &lt;b&gt;(UPDATE)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;Action code&lt;i&gt;&lt;/i&gt;: 11306&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated namespace&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1status/patch/security/1",
+    "value": {
+      "HasPermission": [
+        "ADMIN:NAMESPACE:{namespace}:NAMESPACE [UPDATE]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1publisher/get/description",
+    "value": "Get namespace info related publisher namespace.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;NAMESPACE:{namespace}:NAMESPACE&#34;&lt;/b&gt;, action=2 &lt;b&gt;(READ)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11305&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: Namespace info related publisher namespace&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1publisher/get/security/1",
+    "value": {
+      "HasPermission": [
+        "NAMESPACE:{namespace}:NAMESPACE [READ]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1misc~1countries/get/description",
+    "value": "List countries.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: country code list&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1misc~1countrygroups/post/description",
+    "value": "Add a country groups&lt;br&gt;Country code must follow ISO3166-1 alpha-2.&lt;br/&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource = &lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:MISC&#34;&lt;/b&gt;, action=1 &lt;b&gt;(CREATE)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11201&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: newly created country group&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1misc~1countrygroups/post/security/1",
+    "value": {
+      "HasPermission": [
+        "ADMIN:NAMESPACE:{namespace}:MISC [CREATE]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1misc~1countrygroups/get/description",
+    "value": "List country groups. Will return all available country groups if the query param is not specified&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource = &lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:MISC&#34;&lt;/b&gt;, action=2 &lt;b&gt;(READ)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11203&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: list of country groups&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1misc~1countrygroups/get/security/1",
+    "value": {
+      "HasPermission": [
+        "ADMIN:NAMESPACE:{namespace}:MISC [READ]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1actions~1report/post/description",
+    "value": "This API is for game service to report a game player.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:ACTION&#34;, action=1 (CREATE)&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1actions~1report/post/security/1",
+    "value": {
+      "HasPermission": [
+        "ADMIN:NAMESPACE:{namespace}:ACTION [CREATE]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1profiles~1public/post/description",
+    "value": "Admin get user public profile by ids.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:PROFILE&#34;&lt;/b&gt;, action=2 &lt;b&gt;(GET)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11405&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: user public profiles&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1profiles~1public/post/security/1",
+    "value": {
+      "HasPermission": [
+        "ADMIN:NAMESPACE:{namespace}:PROFILE []"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1basic/patch/description",
+    "value": "Update namespace basic info.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:NAMESPACE&#34;&lt;/b&gt;, action=4 &lt;b&gt;(UPDATE)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11302&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated namespace&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1basic/patch/security/1",
+    "value": {
+      "HasPermission": [
+        "ADMIN:NAMESPACE:{namespace}:NAMESPACE [UPDATE]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1users~1{userId}~1files/post/description",
+    "value": "Generate an upload URL for user content. It&#39;s valid for 10 minutes.&lt;br/&gt;There are 2 kinds of storage limitation per user : maximum file count and maximum file size.&lt;br/&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource = &lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:FILEUPLOAD&#34;&lt;/b&gt;, action=1 &lt;b&gt;(CREATE)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11102&lt;/li&gt;&lt;li&gt;&lt;i&gt;Default maximum file count per user&lt;/i&gt;: 10 files&lt;/li&gt;&lt;li&gt;&lt;i&gt;Default maximum file size per user&lt;/i&gt;: 104857600 bytes&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: URL data&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1users~1{userId}~1files/post/security/1",
+    "value": {
+      "HasPermission": [
+        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:FILEUPLOAD [CREATE]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1users~1{userId}~1profiles~1status/patch/description",
+    "value": "Update user profile status.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE&#34;&lt;/b&gt;, action=4 &lt;b&gt;(UPDATE)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11406&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: user profile&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1users~1{userId}~1profiles~1status/patch/security/1",
+    "value": {
+      "HasPermission": [
+        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE [UPDATE]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1{userId}~1actions~1report/post/description",
+    "value": "This API is used to report a game user.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:ACTION&#34;, action=1 (CREATE)&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1{userId}~1actions~1report/post/security/1",
+    "value": {
+      "HasPermission": [
+        "NAMESPACE:{namespace}:USER:{userId}:ACTION [CREATE]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1misc~1timezones/get/description",
+    "value": "List time zones.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: time zones&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1equ8~1config/patch/description",
+    "value": "Update equ8 config, create if not exists.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:EQU8CONFIG&#34;&lt;/b&gt;, action=4 &lt;b&gt;(UPDATE)&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1equ8~1config/delete/description",
+    "value": "Delete equ8 config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:EQU8CONFIG&#34;&lt;/b&gt;, action=8 &lt;b&gt;(DELETE)&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1equ8~1config/get/description",
+    "value": "Get equ8 config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:EQU8CONFIG&#34;&lt;/b&gt;, action=2 &lt;b&gt;(READ)&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1me~1profiles~1zipCode/patch/description",
+    "value": "Update my zip code.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;NAMESPACE:{namespace}:PROFILE&#34;&lt;/b&gt;, action=4 &lt;b&gt;(UPDATE)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11408&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: user zip code&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1me~1profiles~1zipCode/patch/security/1",
+    "value": {
+      "HasPermission": [
+        "NAMESPACE:{namespace}:PROFILE [UPDATE]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1me~1profiles~1zipCode/get/description",
+    "value": "Get my zip code.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;NAMESPACE:{namespace}:PROFILE&#34;&lt;/b&gt;, action=2 &lt;b&gt;(READ)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11407&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: user zip code&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1me~1profiles~1zipCode/get/security/1",
+    "value": {
+      "HasPermission": [
+        "NAMESPACE:{namespace}:PROFILE [READ]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1{userId}~1profiles~1status/patch/description",
+    "value": "Update user profile status.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;NAMESPACE:{namespace}:USER:{userId}:PROFILE&#34;&lt;/b&gt;, action=4 &lt;b&gt;(UPDATE)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11406&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: user profile&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1{userId}~1profiles~1status/patch/security/1",
+    "value": {
+      "HasPermission": [
+        "NAMESPACE:{namespace}:USER:{userId}:PROFILE [UPDATE]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1folders~1{folder}~1files/post/description",
+    "value": "Generate an upload URL. It&#39;s valid for 10 minutes.&lt;br/&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource = &lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:FILEUPLOAD&#34;&lt;/b&gt;, action=1 &lt;b&gt;(CREATE)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11101&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: URL data&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1folders~1{folder}~1files/post/security/1",
+    "value": {
+      "HasPermission": [
+        "ADMIN:NAMESPACE:{namespace}:FILEUPLOAD [CREATE]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1{userId}~1profiles~1customAttributes/put/description",
+    "value": "Update partially custom attributes tied to user id.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;NAMESPACE:{namespace}:USER:{userId}:PROFILE&#34;&lt;/b&gt;, action=4 &lt;b&gt;(UPDATE)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11402&lt;/li&gt;&lt;li&gt;&lt;i&gt;Request body&lt;/i&gt; : allowed format: JSON object&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: Updated custom attributes&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1{userId}~1profiles~1customAttributes/put/security/1",
+    "value": {
+      "HasPermission": [
+        "NAMESPACE:{namespace}:USER:{userId}:PROFILE [UPDATE]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1{userId}~1profiles~1customAttributes/get/description",
+    "value": "Get custom attributes info.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;NAMESPACE:{namespace}:USER:{userId}:PROFILE&#34;&lt;/b&gt;, action=2 &lt;b&gt;(READ)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11404&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: user custom attributes&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1{userId}~1profiles~1customAttributes/get/security/1",
+    "value": {
+      "HasPermission": [
+        "NAMESPACE:{namespace}:USER:{userId}:PROFILE [READ]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1actions~1status/get/description",
+    "value": "Get user status.&lt;br&gt;If actionId does not exist, then the user is not banned.If actionId and expires exist, then the user is temporarily banned, if expires does not exist, then the user is permanently banned.Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:ACTION&#34;&lt;/b&gt;, action=2 &lt;b&gt;(READ)&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1actions~1status/get/security/1",
+    "value": {
+      "HasPermission": [
+        "ADMIN:NAMESPACE:{namespace}:ACTION [READ]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1misc~1languages/get/description",
+    "value": "List languages.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: login user&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11206&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: language list&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1misc~1languages/get/description",
+    "value": "List languages.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: language list&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1profiles~1public/get/description",
+    "value": "Get user public profile by ids.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11405&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: user public profiles&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1publisher/get/description",
+    "value": "Get namespace info related publisher namespace.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:NAMESPACE&#34;&lt;/b&gt;, action=2 &lt;b&gt;(READ)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11305&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: Namespace info related publisher namespace&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1publisher/get/security/1",
+    "value": {
+      "HasPermission": [
+        "ADMIN:NAMESPACE:{namespace}:NAMESPACE [READ]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1users~1{userId}~1profiles/put/description",
+    "value": "Update user profile.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE&#34;&lt;/b&gt;, action=4 &lt;b&gt;(UPDATE)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11402&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: Updated user profile&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1users~1{userId}~1profiles/put/security/1",
+    "value": {
+      "HasPermission": [
+        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE [UPDATE]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1users~1{userId}~1profiles/delete/description",
+    "value": "Delete user profile.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE&#34;&lt;/b&gt;, action=8 &lt;b&gt;(DELETE)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11407&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: Delete user profile&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1users~1{userId}~1profiles/delete/security/1",
+    "value": {
+      "HasPermission": [
+        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE [DELETE]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1users~1{userId}~1profiles/get/description",
+    "value": "Get user profile.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE&#34;&lt;/b&gt;, action=2 &lt;b&gt;(READ)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: user profile&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11403&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1users~1{userId}~1profiles/get/security/1",
+    "value": {
+      "HasPermission": [
+        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE [READ]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1misc~1countries/get/description",
+    "value": "List countries.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: login user&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11204&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: country code list&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1me~1profiles/put/description",
+    "value": "Update my profile.&lt;br&gt;Updates user profile in the target namespace (namespace in the path). If token&#39;s namespace doesn&#39;t match the target namespace, the service automatically maps the token&#39;s user ID into the user ID in the target namespace. The endpoint returns the updated user profile on a successful call.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;NAMESPACE:{namespace}:PROFILE&#34;&lt;/b&gt;, action=4 &lt;b&gt;(UPDATE)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11402&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: user profile&lt;/li&gt;&lt;li&gt;&lt;i&gt;Path&#39;s namespace&lt;/i&gt; : &lt;ul&gt;&lt;li&gt;can be filled with &lt;b&gt;publisher namespace&lt;/b&gt; in order to update &lt;b&gt;publisher user profile&lt;/b&gt;&lt;/li&gt;&lt;li&gt;can be filled with &lt;b&gt;game namespace&lt;/b&gt; in order to update &lt;b&gt;game user profile&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Language&lt;/i&gt; : allowed format: en, en-US&lt;/li&gt;&lt;li&gt;&lt;i&gt;Timezone&lt;/i&gt; : IANA time zone, e.g. Asia/Shanghai&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1me~1profiles/put/security/1",
+    "value": {
+      "HasPermission": [
+        "NAMESPACE:{namespace}:PROFILE [UPDATE]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1me~1profiles/post/description",
+    "value": "Create my profile.&lt;br&gt;&lt;b&gt;Client with user token can create user profile in target namespace&lt;/b&gt;&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;NAMESPACE:{namespace}:PROFILE&#34;&lt;/b&gt;, action=1 &lt;b&gt;(CREATE)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11401&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: Created user profile&lt;/li&gt;&lt;li&gt;&lt;i&gt;Path&#39;s namespace&lt;/i&gt; : &lt;ul&gt;&lt;li&gt;can be filled with &lt;b&gt;publisher namespace&lt;/b&gt; in order to create &lt;b&gt;publisher user profile&lt;/b&gt;&lt;/li&gt;&lt;li&gt;can be filled with &lt;b&gt;game namespace&lt;/b&gt; in order to create &lt;b&gt;game user profile&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Language&lt;/i&gt; : allowed format: en, en-US&lt;/li&gt;&lt;li&gt;&lt;i&gt;Country&lt;/i&gt;  : ISO3166-1 alpha-2 two letter, e.g. US &lt;/li&gt;&lt;li&gt;&lt;i&gt;Timezone&lt;/i&gt; : IANA time zone, e.g. Asia/Shanghai&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1me~1profiles/post/security/1",
+    "value": {
+      "HasPermission": [
+        "NAMESPACE:{namespace}:PROFILE [CREATE]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1me~1profiles/get/description",
+    "value": "Get my profile&lt;br&gt;&lt;b&gt;Client with user token can get user profile in target namespace&lt;/b&gt;&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;NAMESPACE:{namespace}:PROFILE&#34;&lt;/b&gt;, action=2 &lt;b&gt;(READ)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11403&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: user profile&lt;/li&gt;&lt;li&gt;&lt;i&gt;Path&#39;s namespace&lt;/i&gt; : &lt;ul&gt;&lt;li&gt;can be filled with &lt;b&gt;publisher namespace&lt;/b&gt; in order to get &lt;b&gt;publisher user profile&lt;/b&gt;&lt;/li&gt;&lt;li&gt;can be filled with &lt;b&gt;game namespace&lt;/b&gt; in order to get &lt;b&gt;game user profile&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Language&lt;/i&gt; : allowed format: en, en-US&lt;/li&gt;&lt;li&gt;&lt;i&gt;Timezone&lt;/i&gt; : IANA time zone, e.g. Asia/Shanghai&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1me~1profiles/get/security/1",
+    "value": {
+      "HasPermission": [
+        "NAMESPACE:{namespace}:PROFILE [READ]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1users~1{userId}~1profiles~1privateCustomAttributes/put/description",
+    "value": "Update partially private custom attributes tied to the user id.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE&#34;&lt;/b&gt;, action=4 &lt;b&gt;(UPDATE)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11402&lt;/li&gt;&lt;li&gt;&lt;i&gt;Request body&lt;/i&gt;: allowed format: JSON object&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: Updated custom attributes&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1users~1{userId}~1profiles~1privateCustomAttributes/put/security/1",
+    "value": {
+      "HasPermission": [
+        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE [UPDATE]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1users~1{userId}~1profiles~1privateCustomAttributes/get/description",
+    "value": "Get user private custom attributes.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&lt;b&gt;&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE&#34;&lt;/b&gt;, action=2 &lt;b&gt;(READ)&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: custom attributes&lt;/li&gt;&lt;li&gt;&lt;i&gt;Action code&lt;/i&gt;: 11403&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1users~1{userId}~1profiles~1privateCustomAttributes/get/security/1",
+    "value": {
+      "HasPermission": [
+        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE [READ]"
+      ],
+      "authorization": []
     }
   }
 ]

@@ -1,15 +1,1062 @@
 [
   {
     "op": "add",
-    "path": "/host",
-    "value": "demo.accelbyte.io"
-  },
-  {
-    "op": "add",
     "path": "/schemes",
     "value": [
       "https"
     ]
+  },
+  {
+    "op": "add",
+    "path": "/host",
+    "value": "demo.accelbyte.io"
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1admin~1namespaces~1{namespace}~1users~1{userId}~1config/put/description",
+    "value": "Update a user slot configuration in given namespace.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTCONFIG&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated slot config&lt;/li&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1admin~1namespaces~1{namespace}~1users~1{userId}~1config/put/security/1",
+    "value": {
+      "HasPermission": [
+        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTCONFIG [UPDATE]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1admin~1namespaces~1{namespace}~1users~1{userId}~1config/delete/description",
+    "value": "Deletes a user slot configuration in given namespace, the namespace slot configuration will be returned after delete.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTCONFIG&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/li&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1admin~1namespaces~1{namespace}~1users~1{userId}~1config/delete/security/1",
+    "value": {
+      "HasPermission": [
+        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTCONFIG [DELETE]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1admin~1namespaces~1{namespace}~1users~1{userId}~1config/get/description",
+    "value": "Get\u00a0a user slot configuration in given namespace. In case the user slot configuration is not set, the namespace configuration will be returned.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTCONFIG&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;Returns&lt;/i&gt;: slot config info&lt;/li&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1admin~1namespaces~1{namespace}~1users~1{userId}~1config/get/security/1",
+    "value": {
+      "HasPermission": [
+        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTCONFIG [READ]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1{userId}~1statitems~1bulk/post/description",
+    "value": "Bulk create statItems.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: bulk created result&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1{userId}~1statitems~1bulk/post/security/1",
+    "value": {
+      "HasPermission": [
+        "NAMESPACE:{namespace}:USER:{userId}:STATITEM [CREATE]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1users~1{userId}~1stats~1{statCode}~1statitems/post/description",
+    "value": "Create statItem for a user.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: created user&#39;s statItem&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1users~1{userId}~1stats~1{statCode}~1statitems/post/security/1",
+    "value": {
+      "HasPermission": [
+        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM [CREATE]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1users~1{userId}~1stats~1{statCode}~1statitems/delete/description",
+    "value": "This endpoint is for testing purpose. Use this endpoint for cleaning up after testing.&lt;br&gt;Delete user&#39;s statItems given stat code.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=8 (DELETE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: no content&lt;/li&gt;&lt;/li&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1users~1{userId}~1stats~1{statCode}~1statitems/delete/security/1",
+    "value": {
+      "HasPermission": [
+        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM [DELETE]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1stats~1{statCode}/delete/description",
+    "value": "Deletes stat template.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STAT&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1stats~1{statCode}/delete/security/1",
+    "value": {
+      "HasPermission": [
+        "ADMIN:NAMESPACE:{namespace}:STAT [DELETE]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1stats~1{statCode}/patch/description",
+    "value": "Update stat.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STAT&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated stat&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1stats~1{statCode}/patch/security/1",
+    "value": {
+      "HasPermission": [
+        "ADMIN:NAMESPACE:{namespace}:STAT [UPDATE]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1stats~1{statCode}/get/description",
+    "value": "Get stat by statCode.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STAT&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: stat info&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1stats~1{statCode}/get/security/1",
+    "value": {
+      "HasPermission": [
+        "ADMIN:NAMESPACE:{namespace}:STAT [READ]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1statitems~1value~1reset~1bulk/put/description",
+    "value": "Bulk reset multiple user&#39;s statitems value.\nUser&#39;s statitem value will be reset to the default value defined in the statistic configuration.\n\nOther detail info:\n+ *Required permission*: resource=&#34;ADMIN:NAMESPACE:{namespace}:STATITEM&#34;, action=4 (UPDATE)\n+ *Returns*: bulk updated result"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1statitems~1value~1reset~1bulk/put/security/1",
+    "value": {
+      "HasPermission": [
+        "ADMIN:NAMESPACE:{namespace}:STATITEM [UPDATE]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1users~1{userId}~1statitems/get/description",
+    "value": "List user&#39;s statItems.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: stat items&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1users~1{userId}~1statitems/get/security/1",
+    "value": {
+      "HasPermission": [
+        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM [READ]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1{userId}~1statitems~1value~1reset~1bulk/put/description",
+    "value": "Public bulk reset user&#39;s statitems value for given namespace and user.  \nOther detail info:\n+ *Required permission*: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=4 (UPDATE)\n+ *Returns*: bulk updated result"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1{userId}~1statitems~1value~1reset~1bulk/put/security/1",
+    "value": {
+      "HasPermission": [
+        "NAMESPACE:{namespace}:USER:{userId}:STATITEM [UPDATE]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v2~1admin~1namespaces~1{namespace}~1users~1{userId}~1statitems~1value~1bulk/put/description",
+    "value": "Bulk update user&#39;s statitems value for given namespace and user with specific update strategy.  \nThere are four supported update strategies:\n+ *OVERRIDE*: update user statitem with the new value\n+ *INCREMENT*: increment user statitem with the specified value\n+ *MAX*: update user statitem with the specified value if it&#39;s larger than the existing value\n+ *MIN*: update user statitem with the specified value if it&#39;s lower than the existing value\n\nThe *additionalKey* parameter will be suffixed to *userId* and is used to support multi level user&#39;s statitems, such as character&#39;s statitems. \nIf provided, user&#39;s statitems will be saved with key: *userId_additionalKey* \n\nOther detail info:\n+ *Required permission*: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=4 (UPDATE)\n+ *Returns*: bulk updated result"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1v2~1admin~1namespaces~1{namespace}~1users~1{userId}~1statitems~1value~1bulk/put/security/1",
+    "value": {
+      "HasPermission": [
+        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM [UPDATE]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v2~1public~1namespaces~1{namespace}~1users~1{userId}~1stats~1{statCode}~1statitems~1value/put/description",
+    "value": "Public update user&#39;s statitem value for a given namespace and user with a certain update strategy. \nThere are four supported update strategies:\n+ *OVERRIDE*: update user statitem with the new value\n+ *INCREMENT*: increment user statitem with the specified value\n+ *MAX*: update user statitem with the specified value if it&#39;s larger than the existing value\n+ *MIN*: update user statitem with the specified value if it&#39;s lower than the existing value\n\nThe *additionalKey* parameter will be suffixed to *userId* and is used to support multi level user&#39;s statitems, such as character&#39;s statitems. \nIf provided, user&#39;s statitems will be saved with key: *userId_additionalKey* \n\nOther detail info:\n+ *Required permission*: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=4 (UPDATE)\n+ *Returns*: updated user&#39;s statItem"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1v2~1public~1namespaces~1{namespace}~1users~1{userId}~1stats~1{statCode}~1statitems~1value/put/security/1",
+    "value": {
+      "HasPermission": [
+        "NAMESPACE:{namespace}:USER:{userId}:STATITEM [UPDATE]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1users~1{userId}~1stats~1{statCode}~1statitems~1value~1reset/put/description",
+    "value": "Reset user&#39;s statitem value for a given namespace and user.\nUser&#39;s statitem value will be reset to the default value defined in the statistic configuration.\n\nOther detail info:\n+ *Required permission*: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=4 (UPDATE)\n+ *Returns*: updated user&#39;s statItem"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1users~1{userId}~1stats~1{statCode}~1statitems~1value~1reset/put/security/1",
+    "value": {
+      "HasPermission": [
+        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM [UPDATE]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v2~1admin~1namespaces~1{namespace}~1users~1{userId}~1stats~1{statCode}~1statitems/delete/description",
+    "value": "Delete user&#39;s stat items for given namespace, statCode, and user Id. \nIf query param *additionalKey* is provided, it will delete user stat items of specific key (i.e. characterName). \nOtherwise, it will delete all stat items related to the user Id. \n&lt;br&gt;Delete user&#39;s statItems given stat code.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=8 (DELETE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: no content&lt;/li&gt;&lt;/li&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1v2~1admin~1namespaces~1{namespace}~1users~1{userId}~1stats~1{statCode}~1statitems/delete/security/1",
+    "value": {
+      "HasPermission": [
+        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM [DELETE]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1users~1{userId}~1statitems~1bulk/post/description",
+    "value": "Bulk create user&#39;s statItems.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: bulk created result&lt;/li&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1users~1{userId}~1statitems~1bulk/post/security/1",
+    "value": {
+      "HasPermission": [
+        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM [CREATE]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v2~1admin~1namespaces~1{namespace}~1statitems~1value~1bulk/put/description",
+    "value": "Bulk update multiple user&#39;s statitems value with specific update strategy.  \nThere are four supported update strategies:\n+ *OVERRIDE*: update user statitem with the new value\n+ *INCREMENT*: increment user statitem with the specified value\n+ *MAX*: update user statitem with the specified value if it&#39;s larger than the existing value\n+ *MIN*: update user statitem with the specified value if it&#39;s lower than the existing value\n\nOther detail info:\n+ *Required permission*: resource=&#34;ADMIN:NAMESPACE:{namespace}:STATITEM&#34;, action=4 (UPDATE)\n+ *Returns*: bulk updated result"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1v2~1admin~1namespaces~1{namespace}~1statitems~1value~1bulk/put/security/1",
+    "value": {
+      "HasPermission": [
+        "ADMIN:NAMESPACE:{namespace}:STATITEM [UPDATE]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1admin~1namespaces~1{namespace}~1users~1{userId}~1profiles/get/description",
+    "value": "Returns all profiles&#39; header for a user.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: list of profiles&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1admin~1namespaces~1{namespace}~1users~1{userId}~1profiles/get/security/1",
+    "value": {
+      "HasPermission": [
+        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE [READ]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v2~1public~1namespaces~1{namespace}~1statitems~1value~1bulk/put/description",
+    "value": "Public bulk update multiple user&#39;s statitems value with specific update strategy.  \nThere are four supported update strategies:\n+ *OVERRIDE*: update user statitem with the new value\n+ *INCREMENT*: increment user statitem with the specified value\n+ *MAX*: update user statitem with the specified value if it&#39;s larger than the existing value\n+ *MIN*: update user statitem with the specified value if it&#39;s lower than the existing value\n\nOther detail info:\n+ *Required permission*: resource=&#34;NAMESPACE:{namespace}:STATITEM&#34;, action=4 (UPDATE)\n+ *Returns*: bulk updated result"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1v2~1public~1namespaces~1{namespace}~1statitems~1value~1bulk/put/security/1",
+    "value": {
+      "HasPermission": [
+        "NAMESPACE:{namespace}:STATITEM [UPDATE]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1statitems~1bulk/get/description",
+    "value": "Public bulk fetch multiple user&#39;s statitem value for a given namespace and statCode.  \nOther detail info:\n+ *Required permission*: resource=&#34;NAMESPACE:{namespace}:STATITEM&#34;, action=2 (READ)\n+ *Returns*: list of user&#39;s statItem"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1statitems~1bulk/get/security/1",
+    "value": {
+      "HasPermission": [
+        "NAMESPACE:{namespace}:STATITEM [READ]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1admin~1namespaces~1{namespace}~1config/put/description",
+    "value": "Update a slot namespace configuration.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:SLOTCONFIG&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated namespace slot config&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1admin~1namespaces~1{namespace}~1config/put/security/1",
+    "value": {
+      "HasPermission": [
+        "ADMIN:NAMESPACE:{namespace}:SLOTCONFIG [UPDATE]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1admin~1namespaces~1{namespace}~1config/delete/description",
+    "value": "Deletes a namespace slot configuration, the configuration will be default after delete.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:SLOTCONFIG&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1admin~1namespaces~1{namespace}~1config/delete/security/1",
+    "value": {
+      "HasPermission": [
+        "ADMIN:NAMESPACE:{namespace}:SLOTCONFIG [DELETE]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1admin~1namespaces~1{namespace}~1config/get/description",
+    "value": "Get slot configuration for a given namespace. In case slot configuration is not set, the default will be returned.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:SLOTCONFIG&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: namespace slot config info&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1admin~1namespaces~1{namespace}~1config/get/security/1",
+    "value": {
+      "HasPermission": [
+        "ADMIN:NAMESPACE:{namespace}:SLOTCONFIG [READ]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1statitems~1value~1bulk/put/description",
+    "value": "Public bulk update multiple user&#39;s statitems value.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:STATITEM&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: bulk updated result&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1statitems~1value~1bulk/put/security/1",
+    "value": {
+      "HasPermission": [
+        "NAMESPACE:{namespace}:STATITEM [UPDATE]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1statitems~1value~1bulk/patch/description",
+    "value": "Public bulk update multiple user&#39;s statitems value.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:STATITEM&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: bulk updated result&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1statitems~1value~1bulk/patch/security/1",
+    "value": {
+      "HasPermission": [
+        "NAMESPACE:{namespace}:STATITEM [UPDATE]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1{userId}~1stats~1{statCode}~1statitems/post/description",
+    "value": "Create user&#39;s statItem.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: created user&#39;s statItem&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1{userId}~1stats~1{statCode}~1statitems/post/security/1",
+    "value": {
+      "HasPermission": [
+        "NAMESPACE:{namespace}:USER:{userId}:STATITEM [CREATE]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1{userId}~1stats~1{statCode}~1statitems/delete/description",
+    "value": "Delete user&#39;s statItems given stat code.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=8 (DELETE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: no content&lt;/li&gt;&lt;/li&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1{userId}~1stats~1{statCode}~1statitems/delete/security/1",
+    "value": {
+      "HasPermission": [
+        "NAMESPACE:{namespace}:USER:{userId}:STATITEM [DELETE]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1stats/post/description",
+    "value": "Create stat.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STAT&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: created stat template&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1stats/post/security/1",
+    "value": {
+      "HasPermission": [
+        "ADMIN:NAMESPACE:{namespace}:STAT [CREATE]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1stats/get/description",
+    "value": "List stats by pagination.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STAT&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: stats&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1stats/get/security/1",
+    "value": {
+      "HasPermission": [
+        "ADMIN:NAMESPACE:{namespace}:STAT [READ]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v2~1public~1namespaces~1{namespace}~1users~1{userId}~1statitems~1value~1bulk/put/description",
+    "value": "Public bulk update user&#39;s statitems value for given namespace and user with specific update strategy.  \nThere are four supported update strategies:\n+ *OVERRIDE*: update user statitem with the new value\n+ *INCREMENT*: increment user statitem with the specified value\n+ *MAX*: update user statitem with the specified value if it&#39;s larger than the existing value\n+ *MIN*: update user statitem with the specified value if it&#39;s lower than the existing value\n\nThe *additionalKey* parameter will be suffixed to *userId* and is used to support multi level user&#39;s statitems, such as character&#39;s statitems. \nIf provided, user&#39;s statitems will be saved with key: *userId_additionalKey* \n\nOther detail info:\n+ *Required permission*: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=4 (UPDATE)\n+ *Returns*: bulk updated result"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1v2~1public~1namespaces~1{namespace}~1users~1{userId}~1statitems~1value~1bulk/put/security/1",
+    "value": {
+      "HasPermission": [
+        "NAMESPACE:{namespace}:USER:{userId}:STATITEM [UPDATE]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1stats~1export/get/description",
+    "value": "Export all stat configurations for a given namespace into file  At current, only JSON file is supported.&lt;p&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;*Required permission*: resource=&#34;ADMIN:NAMESPACE:{namespace}:STAT&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1stats~1export/get/security/1",
+    "value": {
+      "HasPermission": [
+        "ADMIN:NAMESPACE:{namespace}:STAT [READ]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1stats~1import/post/description",
+    "value": "Import stat configurations for a given namespace from file. At current, only JSON file is supported.&lt;p&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;*Required permission*: resource=&#34;ADMIN:NAMESPACE:{namespace}:STAT&#34;, action=1 (CREATE)&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1stats~1import/post/security/1",
+    "value": {
+      "HasPermission": [
+        "ADMIN:NAMESPACE:{namespace}:STAT [CREATE]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1public~1namespaces~1{namespace}~1users~1{userId}~1slots~1{slotId}/put/description",
+    "value": "Updates a slot.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:SLOTDATA&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated slot&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1public~1namespaces~1{namespace}~1users~1{userId}~1slots~1{slotId}/put/security/1",
+    "value": {
+      "HasPermission": [
+        "NAMESPACE:{namespace}:USER:{userId}:SLOTDATA [UPDATE]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1public~1namespaces~1{namespace}~1users~1{userId}~1slots~1{slotId}/delete/description",
+    "value": "Deletes the slot.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:SLOTDATA&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1public~1namespaces~1{namespace}~1users~1{userId}~1slots~1{slotId}/delete/security/1",
+    "value": {
+      "HasPermission": [
+        "NAMESPACE:{namespace}:USER:{userId}:SLOTDATA [DELETE]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1public~1namespaces~1{namespace}~1users~1{userId}~1slots~1{slotId}/get/description",
+    "value": "Get slot data.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:SLOTDATA&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: slot data&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1public~1namespaces~1{namespace}~1users~1{userId}~1slots~1{slotId}/get/security/1",
+    "value": {
+      "HasPermission": [
+        "NAMESPACE:{namespace}:USER:{userId}:SLOTDATA [READ]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1public~1namespaces~1{namespace}~1users~1{userId}~1slots~1{slotId}/get/responses/200/schema",
+    "value": {
+      "format": "binary",
+      "type": "string"
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1users~1{userId}~1statitems~1value~1reset~1bulk/put/description",
+    "value": "Bulk reset user&#39;s statitems value for given namespace and user.  \nOther detail info:\n+ *Required permission*: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=4 (UPDATE)\n+ *Returns*: bulk updated result"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1users~1{userId}~1statitems~1value~1reset~1bulk/put/security/1",
+    "value": {
+      "HasPermission": [
+        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM [UPDATE]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1{userId}~1statitems~1value~1bulk/put/description",
+    "value": "Public bulk update user&#39;s statitems value.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: bulk updated result&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1{userId}~1statitems~1value~1bulk/put/security/1",
+    "value": {
+      "HasPermission": [
+        "NAMESPACE:{namespace}:USER:{userId}:STATITEM [UPDATE]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1{userId}~1statitems~1value~1bulk/patch/description",
+    "value": "Public bulk update user&#39;s statitems value.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: bulk updated result&lt;/li&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1{userId}~1statitems~1value~1bulk/patch/security/1",
+    "value": {
+      "HasPermission": [
+        "NAMESPACE:{namespace}:USER:{userId}:STATITEM [UPDATE]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1admin~1namespaces~1{namespace}~1users~1{userId}~1slots/get/description",
+    "value": "Get\u00a0slots for a given user.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTDATA&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: list of slots&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1admin~1namespaces~1{namespace}~1users~1{userId}~1slots/get/security/1",
+    "value": {
+      "HasPermission": [
+        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTDATA [READ]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1users~1{userId}~1statitems~1value~1bulk/put/description",
+    "value": "Bulk update user&#39;s statitems value.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: bulk updated result&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1users~1{userId}~1statitems~1value~1bulk/put/security/1",
+    "value": {
+      "HasPermission": [
+        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM [UPDATE]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1users~1{userId}~1statitems~1value~1bulk/patch/description",
+    "value": "Bulk update user&#39;s statitems value.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: bulk updated result&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1users~1{userId}~1statitems~1value~1bulk/patch/security/1",
+    "value": {
+      "HasPermission": [
+        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM [UPDATE]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1{userId}~1stats~1{statCode}~1statitems~1value/put/description",
+    "value": "Public update user&#39;s statitem value.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated user&#39;s statItem&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1{userId}~1stats~1{statCode}~1statitems~1value/put/security/1",
+    "value": {
+      "HasPermission": [
+        "NAMESPACE:{namespace}:USER:{userId}:STATITEM [UPDATE]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1{userId}~1stats~1{statCode}~1statitems~1value/patch/description",
+    "value": "Public update user&#39;s statitem value.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated user&#39;s statItem&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1{userId}~1stats~1{statCode}~1statitems~1value/patch/security/1",
+    "value": {
+      "HasPermission": [
+        "NAMESPACE:{namespace}:USER:{userId}:STATITEM [UPDATE]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1public~1namespaces~1{namespace}~1users~1{userId}~1profiles~1{profileId}/put/description",
+    "value": "Updates user game profile, returns updated profile.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated game profile&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1public~1namespaces~1{namespace}~1users~1{userId}~1profiles~1{profileId}/put/security/1",
+    "value": {
+      "HasPermission": [
+        "NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE [UPDATE]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1public~1namespaces~1{namespace}~1users~1{userId}~1profiles~1{profileId}/delete/description",
+    "value": "Deletes game profile.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1public~1namespaces~1{namespace}~1users~1{userId}~1profiles~1{profileId}/delete/security/1",
+    "value": {
+      "HasPermission": [
+        "NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE [DELETE]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1public~1namespaces~1{namespace}~1users~1{userId}~1profiles~1{profileId}/get/description",
+    "value": "Returns profile for a user.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: game profile info&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1public~1namespaces~1{namespace}~1users~1{userId}~1profiles~1{profileId}/get/security/1",
+    "value": {
+      "HasPermission": [
+        "NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE [READ]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1statitems~1value~1bulk/put/description",
+    "value": "Bulk update multiple user&#39;s statitems value.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STATITEM&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: bulk updated result&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1statitems~1value~1bulk/put/security/1",
+    "value": {
+      "HasPermission": [
+        "ADMIN:NAMESPACE:{namespace}:STATITEM [UPDATE]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1statitems~1value~1bulk/patch/description",
+    "value": "Bulk update multiple user&#39;s statitems value.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STATITEM&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: bulk updated result&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1statitems~1value~1bulk/patch/security/1",
+    "value": {
+      "HasPermission": [
+        "ADMIN:NAMESPACE:{namespace}:STATITEM [UPDATE]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1admin~1namespaces~1{namespace}~1users~1{userId}~1profiles~1{profileId}/get/description",
+    "value": "Returns profile for a user.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: game profile info&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1admin~1namespaces~1{namespace}~1users~1{userId}~1profiles~1{profileId}/get/security/1",
+    "value": {
+      "HasPermission": [
+        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE [READ]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1statitems~1bulk/get/description",
+    "value": "Bulk fetch multiple user&#39;s statitem value for a given namespace and statCode.  \nOther detail info:\n+ *Required permission*: resource=&#34;ADMIN:NAMESPACE:{namespace}:STATITEM&#34;, action=2 (READ)\n+ *Returns*: list of user&#39;s statItem"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1statitems~1bulk/get/security/1",
+    "value": {
+      "HasPermission": [
+        "ADMIN:NAMESPACE:{namespace}:STATITEM [READ]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1statitems~1value~1reset~1bulk/put/description",
+    "value": "Bulk reset multiple user&#39;s statitems value. \nUser&#39;s statitem value will be reset to the default value defined in the statistic configuration.\n\nOther detail info:\n+ *Required permission*: resource=&#34;NAMESPACE:{namespace}:STATITEM&#34;, action=4 (UPDATE)\n+ *Returns*: bulk updated result"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1statitems~1value~1reset~1bulk/put/security/1",
+    "value": {
+      "HasPermission": [
+        "NAMESPACE:{namespace}:STATITEM [UPDATE]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v2~1admin~1namespaces~1{namespace}~1users~1{userId}~1stats~1{statCode}~1statitems~1value/put/description",
+    "value": "Update user&#39;s statitem value for a given namespace and user with a certain update strategy.\nThere are four supported update strategies:\n+ *OVERRIDE*: update user statitem with the new value\n+ *INCREMENT*: increment user statitem with the specified value\n+ *MAX*: update user statitem with the specified value if it&#39;s larger than the existing value\n+ *MIN*: update user statitem with the specified value if it&#39;s lower than the existing value\n\nThe *additionalKey* parameter will be suffixed to *userId* and is used to support multi level user&#39;s statitems, such as character&#39;s statitems. \nIf provided, user&#39;s statitems will be saved with key: *userId_additionalKey* \n\nOther detail info:\n+ *Required permission*: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=4 (UPDATE)\n+ *Returns*: updated user&#39;s statItem"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1v2~1admin~1namespaces~1{namespace}~1users~1{userId}~1stats~1{statCode}~1statitems~1value/put/security/1",
+    "value": {
+      "HasPermission": [
+        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM [UPDATE]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1{userId}~1stats~1{statCode}~1statitems~1value~1reset/put/description",
+    "value": "Reset user&#39;s statitem value for a given namespace and user.\nUser&#39;s statitem value will be reset to the default value defined in the statistic configuration.\n\nOther detail info:\n+ *Required permission*: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=4 (UPDATE)\n+ *Returns*: updated user&#39;s statItem"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1{userId}~1stats~1{statCode}~1statitems~1value~1reset/put/security/1",
+    "value": {
+      "HasPermission": [
+        "NAMESPACE:{namespace}:USER:{userId}:STATITEM [UPDATE]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1globalstatitems/get/description",
+    "value": "List global statItems by pagination.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STATITEM&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: stat items&lt;/li&gt;ul"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1globalstatitems/get/security/1",
+    "value": {
+      "HasPermission": [
+        "ADMIN:NAMESPACE:{namespace}:STATITEM [READ]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1admin~1namespaces~1{namespace}~1users~1{userId}~1slots~1{slotId}/get/description",
+    "value": "Get slot data.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTDATA&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: slot data&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1admin~1namespaces~1{namespace}~1users~1{userId}~1slots~1{slotId}/get/security/1",
+    "value": {
+      "HasPermission": [
+        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTDATA [READ]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1admin~1namespaces~1{namespace}~1users~1{userId}~1slots~1{slotId}/get/responses/200/schema",
+    "value": {
+      "format": "binary",
+      "type": "string"
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1stats~1search/get/description",
+    "value": "Query stats stats by keyword.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STAT&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;i&gt;: stats&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1stats~1search/get/security/1",
+    "value": {
+      "HasPermission": [
+        "ADMIN:NAMESPACE:{namespace}:STAT [READ]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1public~1namespaces~1{namespace}~1profiles/get/description",
+    "value": "Returns all profiles for specified users.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:GAMEPROFILE&#34;, action=2 (READ)\n&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: list of profiles&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1public~1namespaces~1{namespace}~1profiles/get/security/1",
+    "value": {
+      "HasPermission": [
+        "NAMESPACE:{namespace}:GAMEPROFILE [READ]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1stats/post/description",
+    "value": "Create stat.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:STAT&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: created stat template&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1stats/post/security/1",
+    "value": {
+      "HasPermission": [
+        "NAMESPACE:{namespace}:STAT [CREATE]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1users~1{userId}~1stats~1{statCode}~1statitems~1value/patch/description",
+    "value": "Update user&#39;s statitem value.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated user&#39;s statItem&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1users~1{userId}~1stats~1{statCode}~1statitems~1value/patch/security/1",
+    "value": {
+      "HasPermission": [
+        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM [UPDATE]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1public~1namespaces~1{namespace}~1users~1{userId}~1slots/post/description",
+    "value": "Creates a slot.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:SLOTDATA&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: created slot info&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1public~1namespaces~1{namespace}~1users~1{userId}~1slots/post/security/1",
+    "value": {
+      "HasPermission": [
+        "NAMESPACE:{namespace}:USER:{userId}:SLOTDATA [CREATE]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1public~1namespaces~1{namespace}~1users~1{userId}~1slots/get/description",
+    "value": "Get\u00a0list of slots for a given user in namespace.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:SLOTDATA&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: list of slots&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1public~1namespaces~1{namespace}~1users~1{userId}~1slots/get/security/1",
+    "value": {
+      "HasPermission": [
+        "NAMESPACE:{namespace}:USER:{userId}:SLOTDATA [READ]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1public~1namespaces~1{namespace}~1users~1{userId}~1profiles~1{profileId}~1attributes~1{attributeName}/put/description",
+    "value": "Updates game profile attribute, returns updated profile.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated attribute&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1public~1namespaces~1{namespace}~1users~1{userId}~1profiles~1{profileId}~1attributes~1{attributeName}/put/security/1",
+    "value": {
+      "HasPermission": [
+        "NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE [UPDATE]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1public~1namespaces~1{namespace}~1users~1{userId}~1profiles~1{profileId}~1attributes~1{attributeName}/get/description",
+    "value": "Returns game profile attribute.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: attribute info&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1public~1namespaces~1{namespace}~1users~1{userId}~1profiles~1{profileId}~1attributes~1{attributeName}/get/security/1",
+    "value": {
+      "HasPermission": [
+        "NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE [READ]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1public~1namespaces~1{namespace}~1users~1{userId}~1slots~1{slotId}~1metadata/put/description",
+    "value": "Updates the slot metadata.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:SLOTDATA&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated slot&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1public~1namespaces~1{namespace}~1users~1{userId}~1slots~1{slotId}~1metadata/put/security/1",
+    "value": {
+      "HasPermission": [
+        "NAMESPACE:{namespace}:USER:{userId}:SLOTDATA [UPDATE]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1public~1namespaces~1{namespace}~1users~1{userId}~1profiles/post/description",
+    "value": "Create new profile for user.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/li&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/li&gt;: created game profile&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1public~1namespaces~1{namespace}~1users~1{userId}~1profiles/post/security/1",
+    "value": {
+      "HasPermission": [
+        "NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE [CREATE]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1public~1namespaces~1{namespace}~1users~1{userId}~1profiles/get/description",
+    "value": "Returns all profiles&#39; header for a user.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: list of profiles&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1public~1namespaces~1{namespace}~1users~1{userId}~1profiles/get/security/1",
+    "value": {
+      "HasPermission": [
+        "NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE [READ]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1{userId}~1statitems/get/description",
+    "value": "Public list all statItems by pagination.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: stat items&lt;/li&gt;&lt;/ul&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1{userId}~1statitems/get/security/1",
+    "value": {
+      "HasPermission": [
+        "NAMESPACE:{namespace}:USER:{userId}:STATITEM [READ]"
+      ],
+      "authorization": []
+    }
+  },
+  {
+    "op": "add",
+    "path": "/securityDefinitions/HasScope",
+    "value": {
+      "authorizationUrl": "https://dummy.oauth.net/auth",
+      "flow": "accessCode",
+      "scopes": {},
+      "tokenUrl": "https://dumy.oauth.net/token",
+      "type": "oauth2"
+    }
   },
   {
     "op": "add",
@@ -55,1053 +1102,6 @@
       },
       "tokenUrl": "https://dumy.oauth.net/token",
       "type": "oauth2"
-    }
-  },
-  {
-    "op": "add",
-    "path": "/securityDefinitions/HasScope",
-    "value": {
-      "authorizationUrl": "https://dummy.oauth.net/auth",
-      "flow": "accessCode",
-      "scopes": {},
-      "tokenUrl": "https://dumy.oauth.net/token",
-      "type": "oauth2"
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1public~1namespaces~1{namespace}~1users~1{userId}~1profiles/get/description",
-    "value": "Returns all profiles&#39; header for a user.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: list of profiles&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1public~1namespaces~1{namespace}~1users~1{userId}~1profiles/get/security/1",
-    "value": {
-      "HasPermission": [
-        "NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE [READ]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1public~1namespaces~1{namespace}~1users~1{userId}~1profiles/post/description",
-    "value": "Create new profile for user.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/li&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/li&gt;: created game profile&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1public~1namespaces~1{namespace}~1users~1{userId}~1profiles/post/security/1",
-    "value": {
-      "HasPermission": [
-        "NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE [CREATE]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v2~1admin~1namespaces~1{namespace}~1users~1{userId}~1stats~1{statCode}~1statitems~1value/put/description",
-    "value": "Update user&#39;s statitem value for a given namespace and user with a certain update strategy.\nThere are four supported update strategies:\n+ *OVERRIDE*: update user statitem with the new value\n+ *INCREMENT*: increment user statitem with the specified value\n+ *MAX*: update user statitem with the specified value if it&#39;s larger than the existing value\n+ *MIN*: update user statitem with the specified value if it&#39;s lower than the existing value\n\nThe *additionalKey* parameter will be suffixed to *userId* and is used to support multi level user&#39;s statitems, such as character&#39;s statitems. \nIf provided, user&#39;s statitems will be saved with key: *userId_additionalKey* \n\nOther detail info:\n+ *Required permission*: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=4 (UPDATE)\n+ *Returns*: updated user&#39;s statItem"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1v2~1admin~1namespaces~1{namespace}~1users~1{userId}~1stats~1{statCode}~1statitems~1value/put/security/1",
-    "value": {
-      "HasPermission": [
-        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM [UPDATE]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v2~1public~1namespaces~1{namespace}~1users~1{userId}~1stats~1{statCode}~1statitems~1value/put/description",
-    "value": "Public update user&#39;s statitem value for a given namespace and user with a certain update strategy. \nThere are four supported update strategies:\n+ *OVERRIDE*: update user statitem with the new value\n+ *INCREMENT*: increment user statitem with the specified value\n+ *MAX*: update user statitem with the specified value if it&#39;s larger than the existing value\n+ *MIN*: update user statitem with the specified value if it&#39;s lower than the existing value\n\nThe *additionalKey* parameter will be suffixed to *userId* and is used to support multi level user&#39;s statitems, such as character&#39;s statitems. \nIf provided, user&#39;s statitems will be saved with key: *userId_additionalKey* \n\nOther detail info:\n+ *Required permission*: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=4 (UPDATE)\n+ *Returns*: updated user&#39;s statItem"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1v2~1public~1namespaces~1{namespace}~1users~1{userId}~1stats~1{statCode}~1statitems~1value/put/security/1",
-    "value": {
-      "HasPermission": [
-        "NAMESPACE:{namespace}:USER:{userId}:STATITEM [UPDATE]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v2~1admin~1namespaces~1{namespace}~1statitems~1value~1bulk/put/description",
-    "value": "Bulk update multiple user&#39;s statitems value with specific update strategy.  \nThere are four supported update strategies:\n+ *OVERRIDE*: update user statitem with the new value\n+ *INCREMENT*: increment user statitem with the specified value\n+ *MAX*: update user statitem with the specified value if it&#39;s larger than the existing value\n+ *MIN*: update user statitem with the specified value if it&#39;s lower than the existing value\n\nOther detail info:\n+ *Required permission*: resource=&#34;ADMIN:NAMESPACE:{namespace}:STATITEM&#34;, action=4 (UPDATE)\n+ *Returns*: bulk updated result"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1v2~1admin~1namespaces~1{namespace}~1statitems~1value~1bulk/put/security/1",
-    "value": {
-      "HasPermission": [
-        "ADMIN:NAMESPACE:{namespace}:STATITEM [UPDATE]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1public~1namespaces~1{namespace}~1users~1{userId}~1slots~1{slotId}~1metadata/put/description",
-    "value": "Updates the slot metadata.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:SLOTDATA&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated slot&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1public~1namespaces~1{namespace}~1users~1{userId}~1slots~1{slotId}~1metadata/put/security/1",
-    "value": {
-      "HasPermission": [
-        "NAMESPACE:{namespace}:USER:{userId}:SLOTDATA [UPDATE]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1globalstatitems/get/description",
-    "value": "List global statItems by pagination.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STATITEM&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: stat items&lt;/li&gt;ul"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1globalstatitems/get/security/1",
-    "value": {
-      "HasPermission": [
-        "ADMIN:NAMESPACE:{namespace}:STATITEM [READ]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1users~1{userId}~1statitems/get/description",
-    "value": "List user&#39;s statItems.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: stat items&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1users~1{userId}~1statitems/get/security/1",
-    "value": {
-      "HasPermission": [
-        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM [READ]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1admin~1namespaces~1{namespace}~1config/get/description",
-    "value": "Get slot configuration for a given namespace. In case slot configuration is not set, the default will be returned.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:SLOTCONFIG&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: namespace slot config info&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1admin~1namespaces~1{namespace}~1config/get/security/1",
-    "value": {
-      "HasPermission": [
-        "ADMIN:NAMESPACE:{namespace}:SLOTCONFIG [READ]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1admin~1namespaces~1{namespace}~1config/put/description",
-    "value": "Update a slot namespace configuration.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:SLOTCONFIG&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated namespace slot config&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1admin~1namespaces~1{namespace}~1config/put/security/1",
-    "value": {
-      "HasPermission": [
-        "ADMIN:NAMESPACE:{namespace}:SLOTCONFIG [UPDATE]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1admin~1namespaces~1{namespace}~1config/delete/description",
-    "value": "Deletes a namespace slot configuration, the configuration will be default after delete.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:SLOTCONFIG&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1admin~1namespaces~1{namespace}~1config/delete/security/1",
-    "value": {
-      "HasPermission": [
-        "ADMIN:NAMESPACE:{namespace}:SLOTCONFIG [DELETE]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1{userId}~1statitems~1bulk/post/description",
-    "value": "Bulk create statItems.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: bulk created result&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1{userId}~1statitems~1bulk/post/security/1",
-    "value": {
-      "HasPermission": [
-        "NAMESPACE:{namespace}:USER:{userId}:STATITEM [CREATE]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1admin~1namespaces~1{namespace}~1users~1{userId}~1profiles~1{profileId}/get/description",
-    "value": "Returns profile for a user.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: game profile info&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1admin~1namespaces~1{namespace}~1users~1{userId}~1profiles~1{profileId}/get/security/1",
-    "value": {
-      "HasPermission": [
-        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE [READ]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1stats~1import/post/description",
-    "value": "Import stat configurations for a given namespace from file. At current, only JSON file is supported.&lt;p&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;*Required permission*: resource=&#34;ADMIN:NAMESPACE:{namespace}:STAT&#34;, action=1 (CREATE)&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1stats~1import/post/security/1",
-    "value": {
-      "HasPermission": [
-        "ADMIN:NAMESPACE:{namespace}:STAT [CREATE]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1stats~1search/get/description",
-    "value": "Query stats stats by keyword.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STAT&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;i&gt;: stats&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1stats~1search/get/security/1",
-    "value": {
-      "HasPermission": [
-        "ADMIN:NAMESPACE:{namespace}:STAT [READ]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1users~1{userId}~1stats~1{statCode}~1statitems~1value~1reset/put/description",
-    "value": "Reset user&#39;s statitem value for a given namespace and user.\nUser&#39;s statitem value will be reset to the default value defined in the statistic configuration.\n\nOther detail info:\n+ *Required permission*: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=4 (UPDATE)\n+ *Returns*: updated user&#39;s statItem"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1users~1{userId}~1stats~1{statCode}~1statitems~1value~1reset/put/security/1",
-    "value": {
-      "HasPermission": [
-        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM [UPDATE]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v2~1admin~1namespaces~1{namespace}~1users~1{userId}~1stats~1{statCode}~1statitems/delete/description",
-    "value": "Delete user&#39;s stat items for given namespace, statCode, and user Id. \nIf query param *additionalKey* is provided, it will delete user stat items of specific key (i.e. characterName). \nOtherwise, it will delete all stat items related to the user Id. \n&lt;br&gt;Delete user&#39;s statItems given stat code.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=8 (DELETE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: no content&lt;/li&gt;&lt;/li&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1v2~1admin~1namespaces~1{namespace}~1users~1{userId}~1stats~1{statCode}~1statitems/delete/security/1",
-    "value": {
-      "HasPermission": [
-        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM [DELETE]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1public~1namespaces~1{namespace}~1users~1{userId}~1profiles~1{profileId}~1attributes~1{attributeName}/get/description",
-    "value": "Returns game profile attribute.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: attribute info&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1public~1namespaces~1{namespace}~1users~1{userId}~1profiles~1{profileId}~1attributes~1{attributeName}/get/security/1",
-    "value": {
-      "HasPermission": [
-        "NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE [READ]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1public~1namespaces~1{namespace}~1users~1{userId}~1profiles~1{profileId}~1attributes~1{attributeName}/put/description",
-    "value": "Updates game profile attribute, returns updated profile.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated attribute&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1public~1namespaces~1{namespace}~1users~1{userId}~1profiles~1{profileId}~1attributes~1{attributeName}/put/security/1",
-    "value": {
-      "HasPermission": [
-        "NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE [UPDATE]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v2~1public~1namespaces~1{namespace}~1users~1{userId}~1statitems~1value~1bulk/put/description",
-    "value": "Public bulk update user&#39;s statitems value for given namespace and user with specific update strategy.  \nThere are four supported update strategies:\n+ *OVERRIDE*: update user statitem with the new value\n+ *INCREMENT*: increment user statitem with the specified value\n+ *MAX*: update user statitem with the specified value if it&#39;s larger than the existing value\n+ *MIN*: update user statitem with the specified value if it&#39;s lower than the existing value\n\nThe *additionalKey* parameter will be suffixed to *userId* and is used to support multi level user&#39;s statitems, such as character&#39;s statitems. \nIf provided, user&#39;s statitems will be saved with key: *userId_additionalKey* \n\nOther detail info:\n+ *Required permission*: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=4 (UPDATE)\n+ *Returns*: bulk updated result"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1v2~1public~1namespaces~1{namespace}~1users~1{userId}~1statitems~1value~1bulk/put/security/1",
-    "value": {
-      "HasPermission": [
-        "NAMESPACE:{namespace}:USER:{userId}:STATITEM [UPDATE]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1statitems~1bulk/get/description",
-    "value": "Public bulk fetch multiple user&#39;s statitem value for a given namespace and statCode.  \nOther detail info:\n+ *Required permission*: resource=&#34;NAMESPACE:{namespace}:STATITEM&#34;, action=2 (READ)\n+ *Returns*: list of user&#39;s statItem"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1statitems~1bulk/get/security/1",
-    "value": {
-      "HasPermission": [
-        "NAMESPACE:{namespace}:STATITEM [READ]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1{userId}~1statitems~1value~1reset~1bulk/put/description",
-    "value": "Public bulk reset user&#39;s statitems value for given namespace and user.  \nOther detail info:\n+ *Required permission*: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=4 (UPDATE)\n+ *Returns*: bulk updated result"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1{userId}~1statitems~1value~1reset~1bulk/put/security/1",
-    "value": {
-      "HasPermission": [
-        "NAMESPACE:{namespace}:USER:{userId}:STATITEM [UPDATE]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1public~1namespaces~1{namespace}~1users~1{userId}~1slots~1{slotId}/get/description",
-    "value": "Get slot data.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:SLOTDATA&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: slot data&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1public~1namespaces~1{namespace}~1users~1{userId}~1slots~1{slotId}/get/responses/200/schema",
-    "value": {
-      "format": "binary",
-      "type": "string"
-    }
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1public~1namespaces~1{namespace}~1users~1{userId}~1slots~1{slotId}/get/security/1",
-    "value": {
-      "HasPermission": [
-        "NAMESPACE:{namespace}:USER:{userId}:SLOTDATA [READ]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1public~1namespaces~1{namespace}~1users~1{userId}~1slots~1{slotId}/put/description",
-    "value": "Updates a slot.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:SLOTDATA&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated slot&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1public~1namespaces~1{namespace}~1users~1{userId}~1slots~1{slotId}/put/security/1",
-    "value": {
-      "HasPermission": [
-        "NAMESPACE:{namespace}:USER:{userId}:SLOTDATA [UPDATE]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1public~1namespaces~1{namespace}~1users~1{userId}~1slots~1{slotId}/delete/description",
-    "value": "Deletes the slot.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:SLOTDATA&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1public~1namespaces~1{namespace}~1users~1{userId}~1slots~1{slotId}/delete/security/1",
-    "value": {
-      "HasPermission": [
-        "NAMESPACE:{namespace}:USER:{userId}:SLOTDATA [DELETE]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v2~1admin~1namespaces~1{namespace}~1users~1{userId}~1statitems~1value~1bulk/put/description",
-    "value": "Bulk update user&#39;s statitems value for given namespace and user with specific update strategy.  \nThere are four supported update strategies:\n+ *OVERRIDE*: update user statitem with the new value\n+ *INCREMENT*: increment user statitem with the specified value\n+ *MAX*: update user statitem with the specified value if it&#39;s larger than the existing value\n+ *MIN*: update user statitem with the specified value if it&#39;s lower than the existing value\n\nThe *additionalKey* parameter will be suffixed to *userId* and is used to support multi level user&#39;s statitems, such as character&#39;s statitems. \nIf provided, user&#39;s statitems will be saved with key: *userId_additionalKey* \n\nOther detail info:\n+ *Required permission*: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=4 (UPDATE)\n+ *Returns*: bulk updated result"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1v2~1admin~1namespaces~1{namespace}~1users~1{userId}~1statitems~1value~1bulk/put/security/1",
-    "value": {
-      "HasPermission": [
-        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM [UPDATE]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1admin~1namespaces~1{namespace}~1users~1{userId}~1slots~1{slotId}/get/description",
-    "value": "Get slot data.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTDATA&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: slot data&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1admin~1namespaces~1{namespace}~1users~1{userId}~1slots~1{slotId}/get/responses/200/schema",
-    "value": {
-      "format": "binary",
-      "type": "string"
-    }
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1admin~1namespaces~1{namespace}~1users~1{userId}~1slots~1{slotId}/get/security/1",
-    "value": {
-      "HasPermission": [
-        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTDATA [READ]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1statitems~1bulk/get/description",
-    "value": "Bulk fetch multiple user&#39;s statitem value for a given namespace and statCode.  \nOther detail info:\n+ *Required permission*: resource=&#34;ADMIN:NAMESPACE:{namespace}:STATITEM&#34;, action=2 (READ)\n+ *Returns*: list of user&#39;s statItem"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1statitems~1bulk/get/security/1",
-    "value": {
-      "HasPermission": [
-        "ADMIN:NAMESPACE:{namespace}:STATITEM [READ]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1stats~1{statCode}/get/description",
-    "value": "Get stat by statCode.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STAT&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: stat info&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1stats~1{statCode}/get/security/1",
-    "value": {
-      "HasPermission": [
-        "ADMIN:NAMESPACE:{namespace}:STAT [READ]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1stats~1{statCode}/delete/description",
-    "value": "Deletes stat template.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STAT&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1stats~1{statCode}/delete/security/1",
-    "value": {
-      "HasPermission": [
-        "ADMIN:NAMESPACE:{namespace}:STAT [DELETE]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1stats~1{statCode}/patch/description",
-    "value": "Update stat.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STAT&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated stat&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1stats~1{statCode}/patch/security/1",
-    "value": {
-      "HasPermission": [
-        "ADMIN:NAMESPACE:{namespace}:STAT [UPDATE]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v2~1public~1namespaces~1{namespace}~1statitems~1value~1bulk/put/description",
-    "value": "Public bulk update multiple user&#39;s statitems value with specific update strategy.  \nThere are four supported update strategies:\n+ *OVERRIDE*: update user statitem with the new value\n+ *INCREMENT*: increment user statitem with the specified value\n+ *MAX*: update user statitem with the specified value if it&#39;s larger than the existing value\n+ *MIN*: update user statitem with the specified value if it&#39;s lower than the existing value\n\nOther detail info:\n+ *Required permission*: resource=&#34;NAMESPACE:{namespace}:STATITEM&#34;, action=4 (UPDATE)\n+ *Returns*: bulk updated result"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1v2~1public~1namespaces~1{namespace}~1statitems~1value~1bulk/put/security/1",
-    "value": {
-      "HasPermission": [
-        "NAMESPACE:{namespace}:STATITEM [UPDATE]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1users~1{userId}~1stats~1{statCode}~1statitems~1value/patch/description",
-    "value": "Update user&#39;s statitem value.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated user&#39;s statItem&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1users~1{userId}~1stats~1{statCode}~1statitems~1value/patch/security/1",
-    "value": {
-      "HasPermission": [
-        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM [UPDATE]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1public~1namespaces~1{namespace}~1users~1{userId}~1slots/get/description",
-    "value": "Get\u00a0list of slots for a given user in namespace.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:SLOTDATA&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: list of slots&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1public~1namespaces~1{namespace}~1users~1{userId}~1slots/get/security/1",
-    "value": {
-      "HasPermission": [
-        "NAMESPACE:{namespace}:USER:{userId}:SLOTDATA [READ]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1public~1namespaces~1{namespace}~1users~1{userId}~1slots/post/description",
-    "value": "Creates a slot.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:SLOTDATA&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: created slot info&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1public~1namespaces~1{namespace}~1users~1{userId}~1slots/post/security/1",
-    "value": {
-      "HasPermission": [
-        "NAMESPACE:{namespace}:USER:{userId}:SLOTDATA [CREATE]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1stats/get/description",
-    "value": "List stats by pagination.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STAT&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: stats&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1stats/get/security/1",
-    "value": {
-      "HasPermission": [
-        "ADMIN:NAMESPACE:{namespace}:STAT [READ]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1stats/post/description",
-    "value": "Create stat.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STAT&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: created stat template&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1stats/post/security/1",
-    "value": {
-      "HasPermission": [
-        "ADMIN:NAMESPACE:{namespace}:STAT [CREATE]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1stats/post/description",
-    "value": "Create stat.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:STAT&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: created stat template&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1stats/post/security/1",
-    "value": {
-      "HasPermission": [
-        "NAMESPACE:{namespace}:STAT [CREATE]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1{userId}~1statitems/get/description",
-    "value": "Public list all statItems by pagination.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: stat items&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1{userId}~1statitems/get/security/1",
-    "value": {
-      "HasPermission": [
-        "NAMESPACE:{namespace}:USER:{userId}:STATITEM [READ]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1statitems~1value~1reset~1bulk/put/description",
-    "value": "Bulk reset multiple user&#39;s statitems value. \nUser&#39;s statitem value will be reset to the default value defined in the statistic configuration.\n\nOther detail info:\n+ *Required permission*: resource=&#34;NAMESPACE:{namespace}:STATITEM&#34;, action=4 (UPDATE)\n+ *Returns*: bulk updated result"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1statitems~1value~1reset~1bulk/put/security/1",
-    "value": {
-      "HasPermission": [
-        "NAMESPACE:{namespace}:STATITEM [UPDATE]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1public~1namespaces~1{namespace}~1users~1{userId}~1profiles~1{profileId}/get/description",
-    "value": "Returns profile for a user.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: game profile info&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1public~1namespaces~1{namespace}~1users~1{userId}~1profiles~1{profileId}/get/security/1",
-    "value": {
-      "HasPermission": [
-        "NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE [READ]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1public~1namespaces~1{namespace}~1users~1{userId}~1profiles~1{profileId}/put/description",
-    "value": "Updates user game profile, returns updated profile.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated game profile&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1public~1namespaces~1{namespace}~1users~1{userId}~1profiles~1{profileId}/put/security/1",
-    "value": {
-      "HasPermission": [
-        "NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE [UPDATE]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1public~1namespaces~1{namespace}~1users~1{userId}~1profiles~1{profileId}/delete/description",
-    "value": "Deletes game profile.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1public~1namespaces~1{namespace}~1users~1{userId}~1profiles~1{profileId}/delete/security/1",
-    "value": {
-      "HasPermission": [
-        "NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE [DELETE]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1{userId}~1stats~1{statCode}~1statitems/post/description",
-    "value": "Create user&#39;s statItem.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: created user&#39;s statItem&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1{userId}~1stats~1{statCode}~1statitems/post/security/1",
-    "value": {
-      "HasPermission": [
-        "NAMESPACE:{namespace}:USER:{userId}:STATITEM [CREATE]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1{userId}~1stats~1{statCode}~1statitems/delete/description",
-    "value": "Delete user&#39;s statItems given stat code.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=8 (DELETE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: no content&lt;/li&gt;&lt;/li&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1{userId}~1stats~1{statCode}~1statitems/delete/security/1",
-    "value": {
-      "HasPermission": [
-        "NAMESPACE:{namespace}:USER:{userId}:STATITEM [DELETE]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1statitems~1value~1bulk/put/description",
-    "value": "Bulk update multiple user&#39;s statitems value.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STATITEM&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: bulk updated result&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1statitems~1value~1bulk/put/security/1",
-    "value": {
-      "HasPermission": [
-        "ADMIN:NAMESPACE:{namespace}:STATITEM [UPDATE]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1statitems~1value~1bulk/patch/description",
-    "value": "Bulk update multiple user&#39;s statitems value.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:STATITEM&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: bulk updated result&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1statitems~1value~1bulk/patch/security/1",
-    "value": {
-      "HasPermission": [
-        "ADMIN:NAMESPACE:{namespace}:STATITEM [UPDATE]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1{userId}~1stats~1{statCode}~1statitems~1value/put/description",
-    "value": "Public update user&#39;s statitem value.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated user&#39;s statItem&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1{userId}~1stats~1{statCode}~1statitems~1value/put/security/1",
-    "value": {
-      "HasPermission": [
-        "NAMESPACE:{namespace}:USER:{userId}:STATITEM [UPDATE]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1{userId}~1stats~1{statCode}~1statitems~1value/patch/description",
-    "value": "Public update user&#39;s statitem value.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated user&#39;s statItem&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1{userId}~1stats~1{statCode}~1statitems~1value/patch/security/1",
-    "value": {
-      "HasPermission": [
-        "NAMESPACE:{namespace}:USER:{userId}:STATITEM [UPDATE]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1admin~1namespaces~1{namespace}~1users~1{userId}~1slots/get/description",
-    "value": "Get\u00a0slots for a given user.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTDATA&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: list of slots&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1admin~1namespaces~1{namespace}~1users~1{userId}~1slots/get/security/1",
-    "value": {
-      "HasPermission": [
-        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTDATA [READ]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1statitems~1value~1bulk/put/description",
-    "value": "Public bulk update multiple user&#39;s statitems value.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:STATITEM&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: bulk updated result&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1statitems~1value~1bulk/put/security/1",
-    "value": {
-      "HasPermission": [
-        "NAMESPACE:{namespace}:STATITEM [UPDATE]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1statitems~1value~1bulk/patch/description",
-    "value": "Public bulk update multiple user&#39;s statitems value.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:STATITEM&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: bulk updated result&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1statitems~1value~1bulk/patch/security/1",
-    "value": {
-      "HasPermission": [
-        "NAMESPACE:{namespace}:STATITEM [UPDATE]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1users~1{userId}~1statitems~1bulk/post/description",
-    "value": "Bulk create user&#39;s statItems.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: bulk created result&lt;/li&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1users~1{userId}~1statitems~1bulk/post/security/1",
-    "value": {
-      "HasPermission": [
-        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM [CREATE]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1users~1{userId}~1stats~1{statCode}~1statitems/post/description",
-    "value": "Create statItem for a user.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: created user&#39;s statItem&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1users~1{userId}~1stats~1{statCode}~1statitems/post/security/1",
-    "value": {
-      "HasPermission": [
-        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM [CREATE]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1users~1{userId}~1stats~1{statCode}~1statitems/delete/description",
-    "value": "This endpoint is for testing purpose. Use this endpoint for cleaning up after testing.&lt;br&gt;Delete user&#39;s statItems given stat code.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=8 (DELETE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: no content&lt;/li&gt;&lt;/li&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1users~1{userId}~1stats~1{statCode}~1statitems/delete/security/1",
-    "value": {
-      "HasPermission": [
-        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM [DELETE]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1{userId}~1statitems~1value~1bulk/put/description",
-    "value": "Public bulk update user&#39;s statitems value.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: bulk updated result&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1{userId}~1statitems~1value~1bulk/put/security/1",
-    "value": {
-      "HasPermission": [
-        "NAMESPACE:{namespace}:USER:{userId}:STATITEM [UPDATE]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1{userId}~1statitems~1value~1bulk/patch/description",
-    "value": "Public bulk update user&#39;s statitems value.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: bulk updated result&lt;/li&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1{userId}~1statitems~1value~1bulk/patch/security/1",
-    "value": {
-      "HasPermission": [
-        "NAMESPACE:{namespace}:USER:{userId}:STATITEM [UPDATE]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1users~1{userId}~1statitems~1value~1reset~1bulk/put/description",
-    "value": "Bulk reset user&#39;s statitems value for given namespace and user.  \nOther detail info:\n+ *Required permission*: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=4 (UPDATE)\n+ *Returns*: bulk updated result"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1users~1{userId}~1statitems~1value~1reset~1bulk/put/security/1",
-    "value": {
-      "HasPermission": [
-        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM [UPDATE]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1admin~1namespaces~1{namespace}~1users~1{userId}~1config/get/description",
-    "value": "Get\u00a0a user slot configuration in given namespace. In case the user slot configuration is not set, the namespace configuration will be returned.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTCONFIG&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;Returns&lt;/i&gt;: slot config info&lt;/li&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1admin~1namespaces~1{namespace}~1users~1{userId}~1config/get/security/1",
-    "value": {
-      "HasPermission": [
-        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTCONFIG [READ]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1admin~1namespaces~1{namespace}~1users~1{userId}~1config/put/description",
-    "value": "Update a user slot configuration in given namespace.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTCONFIG&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated slot config&lt;/li&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1admin~1namespaces~1{namespace}~1users~1{userId}~1config/put/security/1",
-    "value": {
-      "HasPermission": [
-        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTCONFIG [UPDATE]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1admin~1namespaces~1{namespace}~1users~1{userId}~1config/delete/description",
-    "value": "Deletes a user slot configuration in given namespace, the namespace slot configuration will be returned after delete.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTCONFIG&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/li&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1admin~1namespaces~1{namespace}~1users~1{userId}~1config/delete/security/1",
-    "value": {
-      "HasPermission": [
-        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTCONFIG [DELETE]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1statitems~1value~1reset~1bulk/put/description",
-    "value": "Bulk reset multiple user&#39;s statitems value.\nUser&#39;s statitem value will be reset to the default value defined in the statistic configuration.\n\nOther detail info:\n+ *Required permission*: resource=&#34;ADMIN:NAMESPACE:{namespace}:STATITEM&#34;, action=4 (UPDATE)\n+ *Returns*: bulk updated result"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1statitems~1value~1reset~1bulk/put/security/1",
-    "value": {
-      "HasPermission": [
-        "ADMIN:NAMESPACE:{namespace}:STATITEM [UPDATE]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1stats~1export/get/description",
-    "value": "Export all stat configurations for a given namespace into file  At current, only JSON file is supported.&lt;p&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;*Required permission*: resource=&#34;ADMIN:NAMESPACE:{namespace}:STAT&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1stats~1export/get/security/1",
-    "value": {
-      "HasPermission": [
-        "ADMIN:NAMESPACE:{namespace}:STAT [READ]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1users~1{userId}~1statitems~1value~1bulk/put/description",
-    "value": "Bulk update user&#39;s statitems value.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: bulk updated result&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1users~1{userId}~1statitems~1value~1bulk/put/security/1",
-    "value": {
-      "HasPermission": [
-        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM [UPDATE]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1users~1{userId}~1statitems~1value~1bulk/patch/description",
-    "value": "Bulk update user&#39;s statitems value.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: bulk updated result&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1v1~1admin~1namespaces~1{namespace}~1users~1{userId}~1statitems~1value~1bulk/patch/security/1",
-    "value": {
-      "HasPermission": [
-        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM [UPDATE]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1{userId}~1stats~1{statCode}~1statitems~1value~1reset/put/description",
-    "value": "Reset user&#39;s statitem value for a given namespace and user.\nUser&#39;s statitem value will be reset to the default value defined in the statistic configuration.\n\nOther detail info:\n+ *Required permission*: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=4 (UPDATE)\n+ *Returns*: updated user&#39;s statItem"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1v1~1public~1namespaces~1{namespace}~1users~1{userId}~1stats~1{statCode}~1statitems~1value~1reset/put/security/1",
-    "value": {
-      "HasPermission": [
-        "NAMESPACE:{namespace}:USER:{userId}:STATITEM [UPDATE]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1admin~1namespaces~1{namespace}~1users~1{userId}~1profiles/get/description",
-    "value": "Returns all profiles&#39; header for a user.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: list of profiles&lt;/li&gt;&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1admin~1namespaces~1{namespace}~1users~1{userId}~1profiles/get/security/1",
-    "value": {
-      "HasPermission": [
-        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE [READ]"
-      ],
-      "authorization": []
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1public~1namespaces~1{namespace}~1profiles/get/description",
-    "value": "Returns all profiles for specified users.&lt;br&gt;Other detail info:&lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:GAMEPROFILE&#34;, action=2 (READ)\n&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: list of profiles&lt;/ul&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1public~1namespaces~1{namespace}~1profiles/get/security/1",
-    "value": {
-      "HasPermission": [
-        "NAMESPACE:{namespace}:GAMEPROFILE [READ]"
-      ],
-      "authorization": []
     }
   }
 ]

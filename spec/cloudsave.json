@@ -8,7 +8,7 @@
     },
     "description": "Justice Cloudsave Service",
     "title": "justice-cloudsave-service",
-    "version": "1.9.2"
+    "version": "2.1.0"
   },
   "schemes": [
     "https"
@@ -35,6 +35,7 @@
         "NAMESPACE:{namespace}:CLOUDSAVE:RECORD [DELETE]": "NAMESPACE:{namespace}:CLOUDSAVE:RECORD [DELETE]",
         "NAMESPACE:{namespace}:CLOUDSAVE:RECORD [READ]": "NAMESPACE:{namespace}:CLOUDSAVE:RECORD [READ]",
         "NAMESPACE:{namespace}:CLOUDSAVE:RECORD [UPDATE]": "NAMESPACE:{namespace}:CLOUDSAVE:RECORD [UPDATE]",
+        "NAMESPACE:{namespace}:PUBLIC:CLOUDSAVE:RECORD [READ]": "NAMESPACE:{namespace}:PUBLIC:CLOUDSAVE:RECORD [READ]",
         "NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [DELETE]": "NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [DELETE]",
         "NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [READ]": "NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [READ]",
         "NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [UPDATE]": "NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [UPDATE]",
@@ -76,6 +77,12 @@
             "in": "path",
             "name": "namespace",
             "required": true,
+            "type": "string"
+          },
+          {
+            "description": "key",
+            "in": "query",
+            "name": "query",
             "type": "string"
           },
           {
@@ -489,6 +496,13 @@
             "type": "string"
           },
           {
+            "description": "user ID who own the record",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          },
+          {
             "description": "offset",
             "in": "query",
             "name": "offset",
@@ -499,13 +513,6 @@
             "in": "query",
             "name": "limit",
             "type": "integer"
-          },
-          {
-            "description": "user ID who own the record",
-            "in": "path",
-            "name": "userId",
-            "required": true,
-            "type": "string"
           }
         ],
         "produces": [
@@ -1485,6 +1492,89 @@
         ]
       }
     },
+    "/cloudsave/v1/namespaces/{namespace}/users/bulk/records/{key}/public": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "\u0026lt;table\u0026gt;\n\t\u0026lt;tr\u0026gt;\n\t\t\u0026lt;td\u0026gt;Required Permission\u0026lt;/td\u0026gt;\n\t\t\u0026lt;td\u0026gt;\u0026lt;code\u0026gt;NAMESPACE:{namespace}:PUBLIC:CLOUDSAVE:RECORD [READ]\u0026lt;/code\u0026gt;\u0026lt;/td\u0026gt;\n\t\u0026lt;/tr\u0026gt;\n\t\u0026lt;tr\u0026gt;\n\t\t\u0026lt;td\u0026gt;Required Scope\u0026lt;/td\u0026gt;\n\t\t\u0026lt;td\u0026gt;\u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\u0026lt;/td\u0026gt;\n\t\u0026lt;/tr\u0026gt;\n\u0026lt;/table\u0026gt;\n\u0026lt;br/\u0026gt;\n\t\nBulk get other player\u0026#39;s record that is public by userIds, max allowed 20 at a time. Only record with \u0026lt;code\u0026gt;isPublic=true\u0026lt;/code\u0026gt; that can be\nretrieved using this endpoint.\n",
+        "operationId": "bulkGetPlayerPublicRecordHandlerV1",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "key of record",
+            "in": "path",
+            "name": "key",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.BulkUserIDsRequest"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Record retrieved",
+            "schema": {
+              "$ref": "#/definitions/models.BulkGetPlayerRecordResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:PUBLIC:CLOUDSAVE:RECORD [READ]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Bulk get other player's public record",
+        "tags": [
+          "PublicPlayerRecord"
+        ]
+      }
+    },
     "/cloudsave/v1/namespaces/{namespace}/users/me/records/{key}/public": {
       "delete": {
         "consumes": [
@@ -2147,6 +2237,32 @@
     }
   },
   "definitions": {
+    "models.BulkGetPlayerRecordResponse": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/models.PlayerRecord"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "data"
+      ]
+    },
+    "models.BulkUserIDsRequest": {
+      "properties": {
+        "userIds": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "userIds"
+      ]
+    },
     "models.ConcurrentRecordRequest": {
       "properties": {
         "updatedAt": {

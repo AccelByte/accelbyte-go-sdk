@@ -8,7 +8,7 @@
       "url": "https://accelbyte.io",
       "email": "engineering@accelbyte.io"
     },
-    "version": "1.4.1"
+    "version": "2.0.0"
   },
   "paths": {
     "/dslogmanager/namespaces/{namespace}/servers/search": {

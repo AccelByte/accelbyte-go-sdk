@@ -8,7 +8,7 @@
       "url": "https://accelbyte.io",
       "email": "engineering@accelbyte.io"
     },
-    "version": "1.9.2"
+    "version": "2.1.0"
   },
   "paths": {
     "/cloudsave/v1/admin/namespaces/{namespace}/records": {
@@ -32,6 +32,12 @@
             "name": "namespace",
             "in": "path",
             "required": true
+          },
+          {
+            "type": "string",
+            "description": "key",
+            "name": "query",
+            "in": "query"
           },
           {
             "type": "integer",
@@ -374,6 +380,13 @@
             "type": "string",
             "description": "namespace of the game",
             "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "user ID who own the record",
+            "name": "userId",
             "in": "path",
             "required": true
           },
@@ -1206,6 +1219,78 @@
         }
       }
     },
+    "/cloudsave/v1/namespaces/{namespace}/users/bulk/records/{key}/public": {
+      "post": {
+        "description": "<table>\n\t<tr>\n\t\t<td>Required Permission</td>\n\t\t<td><code>NAMESPACE:{namespace}:PUBLIC:CLOUDSAVE:RECORD [READ]</code></td>\n\t</tr>\n\t<tr>\n\t\t<td>Required Scope</td>\n\t\t<td><code>social</code></td>\n\t</tr>\n</table>\n<br/>\n\t\nBulk get other player's record that is public by userIds, max allowed 20 at a time. Only record with <code>isPublic=true</code> that can be\nretrieved using this endpoint.\n",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "PublicPlayerRecord"
+        ],
+        "summary": "Bulk get other player's public record",
+        "operationId": "bulkGetPlayerPublicRecordHandlerV1",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "namespace of the game",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "key of record",
+            "name": "key",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.BulkUserIDsRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Record retrieved",
+            "schema": {
+              "$ref": "#/definitions/models.BulkGetPlayerRecordResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          }
+        }
+      }
+    },
     "/cloudsave/v1/namespaces/{namespace}/users/me/records/{key}/public": {
       "delete": {
         "description": "Required scope: social\n\nRequired valid user authorization\n\nDelete player public record (arbitrary JSON data) in user-level with given key.",
@@ -1771,6 +1856,32 @@
     }
   },
   "definitions": {
+    "models.BulkGetPlayerRecordResponse": {
+      "required": [
+        "data"
+      ],
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/models.PlayerRecord"
+          }
+        }
+      }
+    },
+    "models.BulkUserIDsRequest": {
+      "required": [
+        "userIds"
+      ],
+      "properties": {
+        "userIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
     "models.ConcurrentRecordRequest": {
       "required": [
         "updatedAt",

@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "description": "Justice Legal Service",
-    "version": "1.15.1",
+    "version": "1.16.0",
     "title": "justice-legal-service",
     "contact": {
       "name": "Engineering Team at AccelByte",
@@ -32,6 +32,12 @@
     },
     {
       "name": "Policy Versions"
+    },
+    {
+      "name": "Admin User Agreement"
+    },
+    {
+      "name": "Admin User Eligibilities"
     },
     {
       "name": "UserInfo"
@@ -1013,6 +1019,143 @@
         ]
       }
     },
+    "/admin/namespaces/{namespace}/users/{userId}/agreements/policies": {
+      "post": {
+        "tags": [
+          "Admin User Agreement"
+        ],
+        "summary": "Admin bulk accept Policy Versions",
+        "description": "Accepts many legal policy versions all at once. Supply with localized version policy id and userId to accept an agreement. Other detail info: <ul><li><i>Required permission</i>: resource=\"ADMIN:NAMESPACE:{namespace}:USER:{userId}:LEGAL\", action=1 (CREATE)</li></ul>",
+        "operationId": "indirectBulkAcceptVersionedPolicy",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "description": "Namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "User Id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "countryCode",
+            "in": "query",
+            "description": "Country Code",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "clientId",
+            "in": "query",
+            "description": "Client Id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "publisherUserId",
+            "in": "query",
+            "description": "Publisher user Id",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/AcceptAgreementRequest"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/AcceptAgreementResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ]
+      }
+    },
+    "/admin/namespaces/{namespace}/users/{userId}/eligibilities": {
+      "get": {
+        "tags": [
+          "Admin User Eligibilities"
+        ],
+        "summary": "Check User Legal Eligibility",
+        "description": "Retrieve the active policies and its conformance status by userThis process only supports cross-namespace checking between game namespace and publisher namespace , that means if the active policy already accepted by the same user in publisher namespace, then it will also be considered as eligible in non-publisher namespace.<br/><br/>Other detail info: <ul><li><i>Required permission</i>: resource=\"ADMIN:NAMESPACE:{namespace}:USER:{userId}:LEGAL\", action=2 (READ)</li></ul>",
+        "operationId": "adminRetrieveEligibilities",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "description": "Namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "User Id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "countryCode",
+            "in": "query",
+            "description": "Country Code",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "clientId",
+            "in": "query",
+            "description": "Client Id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "publisherUserId",
+            "in": "query",
+            "description": "Publisher user Id",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/RetrieveUserEligibilitiesIndirectResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ]
+      }
+    },
     "/admin/userInfo": {
       "get": {
         "tags": [
@@ -1324,7 +1467,7 @@
         ],
         "summary": "Bulk Accept Policy Versions (Indirect)",
         "description": "Accepts many legal policy versions all at once. Supply with localized version policy id and userId to accept an agreement. This endpoint used by Authentication Service during new user registration.<br><br/>Available Extra Information to return: <br/><ul><li><b>userIds</b> : List of userId mapping (<b>IMPORTANT: GOING TO DEPRECATE</b>)</li></ul>Other detail info: <ul><li><i>Required permission</i>: login user</li></ul>",
-        "operationId": "indirectBulkAcceptVersionedPolicy",
+        "operationId": "indirectBulkAcceptVersionedPolicy_1",
         "produces": [
           "application/json"
         ],
@@ -1369,7 +1512,7 @@
           "Eligibilities"
         ],
         "summary": "Check User Legal Eligibility",
-        "description": "Retrieve the active policies and its conformance status by user. This endpoint used by Authentication Service during user login.<br>This process supports cross-namespace checking, that means if the active policy already accepted by the same user in other namespace, then it will be considered as eligible.<br/><br/>Other detail info: <ul><li><i>Required permission</i>: login user</li></ul>",
+        "description": "Retrieve the active policies and its conformance status by userThis process only supports cross-namespace checking between game namespace and publisher namespace , that means if the active policy already accepted by the same user in publisher namespace, then it will also be considered as eligible in non-publisher namespace.<br/><br/>Other detail info: <ul><li><i>Required permission</i>: login user</li></ul>",
         "operationId": "retrieveEligibilitiesPublicIndirect",
         "produces": [
           "application/json"
@@ -2828,22 +2971,6 @@
         }
       }
     },
-    "RetrieveUserInfoCacheStatusResponse": {
-      "type": "object",
-      "required": [
-        "lastUpdatedAt",
-        "namespace"
-      ],
-      "properties": {
-        "namespace": {
-          "type": "string"
-        },
-        "lastUpdatedAt": {
-          "type": "string",
-          "format": "date-time"
-        }
-      }
-    },
     "AcceptAgreementResponse": {
       "type": "object",
       "required": [
@@ -2899,6 +3026,22 @@
       "properties": {
         "isComply": {
           "type": "boolean"
+        }
+      }
+    },
+    "RetrieveUserInfoCacheStatusResponse": {
+      "type": "object",
+      "required": [
+        "lastUpdatedAt",
+        "namespace"
+      ],
+      "properties": {
+        "namespace": {
+          "type": "string"
+        },
+        "lastUpdatedAt": {
+          "type": "string",
+          "format": "date-time"
         }
       }
     },

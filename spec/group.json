@@ -8,7 +8,7 @@
     },
     "description": "Justice Group Service",
     "title": "justice-group-service",
-    "version": "2.9.0"
+    "version": "2.10.0"
   },
   "schemes": [
     "https"
@@ -1765,7 +1765,7 @@
           "application/json"
         ],
         "description": "\u0026lt;p\u0026gt;Required valid user authentication \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Required Member Role Permission: \u0026#34;GROUP [UPDATE]\u0026#34;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Update existing group. This endpoint supports partial update. This endpoint will check the group ID of the user based on the access token and compare it with the group ID in path parameter. \n\t\t\tIt will also check the member role of the user based on the access token\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73307\u0026lt;/p\u0026gt;\n\t\t",
-        "operationId": "updateSingleGroupPublicV1",
+        "operationId": "updatePatchSingleGroupPublicV1",
         "parameters": [
           {
             "description": "namespace",
@@ -4168,14 +4168,13 @@
     "models.UpdateGroupCustomRuleRequestV1": {
       "properties": {
         "groupCustomRule": {
-          "$ref": "#/definitions/models.UpdateGroupCustomRuleRequestV1.groupCustomRule"
+          "type": "object"
         }
       },
       "required": [
         "groupCustomRule"
       ]
     },
-    "models.UpdateGroupCustomRuleRequestV1.groupCustomRule": {},
     "models.UpdateGroupPredefinedRuleRequestV1": {
       "properties": {
         "ruleDetail": {

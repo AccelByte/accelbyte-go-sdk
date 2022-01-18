@@ -8,7 +8,7 @@
       "url": "https://accelbyte.io",
       "email": "engineering@accelbyte.io"
     },
-    "version": "1.10.1"
+    "version": "1.12.0"
   },
   "paths": {
     "/ugc/v1/admin/namespaces/{namespace}/channels": {

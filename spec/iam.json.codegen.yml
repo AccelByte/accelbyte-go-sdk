@@ -2,10 +2,10 @@ x-operations:
   Authorization:
     location-query: PLACEHOLDER
   UserAuthenticationV3:
-    security: null
+    security-type: null
     location-query: code
   AuthorizeV3:
-    security: null
+    security-type: null
     location-query: request_id
   AuthCodeRequestV3:
     location-query: code
@@ -14,8 +14,8 @@ x-operations:
   PublicWebLinkPlatformEstablish:
     location-query: PLACEHOLDER
   TokenGrantV3:
-    security: basic
+    security-type: basic
   TokenRevocationV3:
-    security: basic
+    security-type: basic
   platformAuthenticateSAMLV3Handler:
     location-query: PLACEHOLDER

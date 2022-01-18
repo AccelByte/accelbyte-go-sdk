@@ -8,7 +8,7 @@
       "url": "https://accelbyte.io",
       "email": "engineering@accelbyte.io"
     },
-    "version": "4.10.0"
+    "version": "5.0.0"
   },
   "paths": {
     "/iam/bans": {
@@ -5529,6 +5529,120 @@
         }
       }
     },
+    "/iam/v3/admin/inputValidations": {
+      "get": {
+        "description": "<p>Required permission 'ADMIN:CONFIGURATION'[READ]</p>\n\t\t<p>This endpoint is to get list of input validation configuration.</p>\n\t\t<p><code>regex</code> parameter will be returned if <code>isCustomRegex</code> is true. Otherwise, it will be empty.</p>",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "InputValidations"
+        ],
+        "summary": "Admin Get Input Validations",
+        "operationId": "AdminGetInputValidations",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/model.InputValidationsResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized access"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      },
+      "put": {
+        "description": "<p>Required permission 'ADMIN:CONFIGURATION' [UPDATE]</p>\n\t\t<p>This endpoint is used to update input validation configuration.</p>\n\t\tSupported <code>field</code>:<br>\n\t\t<ul>\n\t\t<li>displayName</li>\n\t\t<li>password</li>\n\t\t<li>username</li>\n\t\t</ul>\n\t\t<p>If <code>isCustomRegex</code> is set to true, <code>regex</code> parameter will be used as input validation and the other parameters will be ignored. Otherwise, <code>regex</code> parameter will be ignored and regex for input validation will be generated based on the combination of the other parameters. </p>\n\t\t<p>If <code>allowUnicode</code> is set to true, unicode regex pattern will be use as the input validation and the other parameters will be ignored.</p>\n\t\tSupported <code>letterCase</code>:<br>\n\t\t<ul>\n\t\t<li>lowercase</li>\n\t\t<li>uppercase</li>\n\t\t<li>mixed: uppercase and lowercase</li>\n\t\t<li>mixed: uppercase and/or lowercase</li>\n\t\t</ul>\n\t\tSupported <code>specialCharacterLocation</code>:<br>\n\t\t<ul>\n\t\t<li>anywhere</li>\n\t\t<li>middle</li>\n\t\t</ul>\n\t\t<p>If <code>specialCharacters</code> is empty, <code>specialCharacterLocation</code> and <code>maxRepeatingSpecialCharacter</code> will be ignored.</p>\n\t\t<p><code>minCharType</code> is used to identify how many required criteria in the regex. The supported criteria are number, letter, special character, and letter case. If set to 0 or 1 means all criteria are optional. It can be set as much as the number of criteria enabled.</p>\n\t\t",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "InputValidations"
+        ],
+        "summary": "Admin Update Input Validations",
+        "operationId": "AdminUpdateInputValidations",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/model.InputValidationUpdatePayload"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized access"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/iam/v3/admin/inputValidations/{field}": {
+      "delete": {
+        "description": "<p>Required permission 'ADMIN:CONFIGURATION' [DELETE]</p><p>This endpoint is used to reset input validation to the default input validation configurations</p>",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "InputValidations"
+        ],
+        "summary": "Admin Reset Input Validations",
+        "operationId": "AdminResetInputValidations",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "Name of the input validation field to reset: username, displayName, or password",
+            "name": "field",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized access"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
     "/iam/v3/admin/namespaces/{namespace}/admins": {
       "get": {
         "description": "This endpoint requires ADMIN:NAMESPACE:{namespace}:USER [READ] permission.\n\nList all users that has admin role (role that has admin_role attribute set to true). \n",
@@ -5988,14 +6102,8 @@
           },
           {
             "type": "string",
-            "description": "The cursor that points to query data for the next page",
-            "name": "after",
-            "in": "query"
-          },
-          {
-            "type": "string",
-            "description": "The cursor that points to query data for the previous page",
-            "name": "before",
+            "description": "the count to skip",
+            "name": "offset",
             "in": "query"
           }
         ],
@@ -7331,6 +7439,68 @@
           },
           "404": {
             "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20008</td><td>user not found</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/iam/v3/admin/namespaces/{namespace}/users/bulk": {
+      "post": {
+        "description": "List User By User ID\nThis endpoint requires ADMIN:NAMESPACE:{namespace}:USER [READ] permission.\nThis endpoint intended to list user information from the given list of userID and namespace\n",
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Users"
+        ],
+        "summary": "List User By User ID",
+        "operationId": "AdminListUserIDByUserIDsV3",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "Namespace, only accept alphabet and numeric",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/model.UserIDsRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/model.ListUserInformationResult"
+            }
+          },
+          "400": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr><tr><td>20022</td><td>token is not user token</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20013</td><td>insufficient permissions</td></tr></table>",
             "schema": {
               "$ref": "#/definitions/rest.ErrorResponse"
             }
@@ -11173,7 +11343,7 @@
     },
     "/iam/v3/oauth/platforms/{platformId}/authorize": {
       "get": {
-        "description": "'Generate url to request auth code from third party platform <br>\n               <h2>Supported platforms:</h2><ul>\n               <li><strong>steamopenid</strong></li>This endpoint redirects to steam login page, then redirect back to platform\n               authenticate endpoint after successfully authenticating user steam.\n               <li><strong>xblweb</strong></li>This endpoint redirects to xbox login page, then redirect back to platform\n               authenticate endpoint after successfully authenticating xbox user.\n               <li><strong>ps4web</strong></li>This endpoint redirects to psn login page, then redirect back to platform\n               authenticate endpoint after successfully authenticating psn user.\n               <li><strong>epicgames</strong></li>This endpoint redirects to Epicgames OAuth login page. then redirect to platform\n               authenticate endpoint after successfully authenticating an Epicgames credential\n               <li><strong>twitch</strong></li>This endpoint redirects to twitch login page, then redirect back to platform\n               authenticate endpoint after successfully authenticating twitch user.\n               </ul> action code : 10702'",
+        "description": "Generate url to request auth code from third party platform <br>\n               <h2>Supported platforms:</h2><ul>\n               <li><strong>steamopenid</strong></li>This endpoint redirects to steam login page, then redirect back to platform\n               authenticate endpoint after successfully authenticating user steam.\n               <li><strong>xblweb</strong></li>This endpoint redirects to xbox login page, then redirect back to platform\n               authenticate endpoint after successfully authenticating xbox user.\n               <li><strong>ps4web</strong></li>This endpoint redirects to psn login page, then redirect back to platform\n               authenticate endpoint after successfully authenticating psn user.\n               <li><strong>epicgames</strong></li>This endpoint redirects to Epicgames OAuth login page. then redirect to platform\n               authenticate endpoint after successfully authenticating an Epicgames credential\n               <li><strong>twitch</strong></li>This endpoint redirects to twitch login page, then redirect back to platform\n               authenticate endpoint after successfully authenticating twitch user.\n               <li><strong>azure</strong></li>This endpoint redirects to azure login page, then redirect back to platform\n               authenticate(saml) endpoint after successfully authenticating azure user.\n               <li><strong>facebook</strong></li>This endpoint redirects to facebook login page, then redirect back to platform\n               authenticate endpoint after successfully authenticating facebook user.\n               <li><strong>google</strong></li>This endpoint redirects to google login page, then redirect back to platform\n               authenticate endpoint after successfully authenticating google user.\t\t\t\t\n               </ul> action code : 10702'",
         "consumes": [
           "application/x-www-form-urlencoded"
         ],
@@ -11222,7 +11392,7 @@
     },
     "/iam/v3/oauth/platforms/{platformId}/token": {
       "post": {
-        "description": "<p>Platform token grant specifically used for performing token grant using platform, e.g. Steam, Justice, etc. The endpoint automatically create an account if the account associated with the platform is not exists yet.\n\t\t\tThis endpoint requires all requests to have Authorization header set with Basic access authentication\n\t\t\tconstructed from client id and client secret. For publisher-game namespace schema : Specify only either platform_token or device_id. Device token grant\n\t\t\tshould be requested along with device_id parameter against game namespace. Another 3rd party platform token grant should be requested\n\t\t\talong with platform_token parameter against publisher namespace.</p>\n\t\t\t<h2>Supported platforms:</h2>\n\t\t\t<ul>\n\t\t\t\t<li><strong>steam</strong>: The platform_token\u2019s value is the authentication code returned by Steam.</li>\n\t\t\t\t<li><strong>steamopenid</strong>: Steam's user authentication method using OpenID 2.0. The platform_token's value is URL generated by Steam on web authentication</li>\n\t\t\t\t<li><strong>facebook</strong>: The platform_token\u2019s value is the authorization code returned by Facebook OAuth</li>\n\t\t\t\t<li><strong>google</strong>: The platform_token\u2019s value is the authorization code returned by Google OAuth</li>\n\t\t\t\t<li><strong>oculus</strong>: The platform_token\u2019s value is a string composed of Oculus's user ID and the nonce separated by a colon (:).</li>\n\t\t\t\t<li><strong>twitch</strong>: The platform_token\u2019s value is the authorization code returned by Twitch OAuth.</li>\n\t\t\t\t<li><strong>discord</strong>: The platform_token\u2019s value is the authorization code returned by Discord OAuth</li>\n\t\t\t\t<li><strong>android</strong>: The device_id is the Android\u2019s device ID</li>\n\t\t\t\t<li><strong>ios</strong>: The device_id is the iOS\u2019s device ID.</li>\n\t\t\t\t<li><strong>apple</strong>: The platform_token\u2019s value is the authorization code returned by Apple OAuth.(We will use this code to generate APP token)</li>\n\t\t\t\t<li><strong>device</strong>: Every device that does\u2019nt run Android and iOS is categorized as a device. The device_id is the device\u2019s ID.</li>\n\t\t\t\t<li><strong>justice</strong>: The platform_token\u2019s value is the designated user\u2019s access token.</li>\n\t\t\t\t<li><strong>epicgames</strong>: The platform_token\u2019s value is an access-token obtained from Epicgames EOS Account Service.</li>\n                <li><strong>stadia</strong>: The platform_token's value is a JWT Token, which can be obtained after calling the Stadia SDK's function.</li>\n\t\t\t\t<li><strong>ps4</strong>: The platform_token\u2019s value is the authorization code returned by Sony OAuth.</li>\n\t\t\t\t<li><strong>ps5</strong>: The platform_token\u2019s value is the authorization code returned by Sony OAuth.</li>\n\t\t\t\t<li><strong>nintendo</strong>: The platform_token\u2019s value is the authorization code(id_token) returned by Nintendo OAuth.</li>\n\t\t\t\t<li><strong>awscognito</strong>: The platform_token\u2019s value is the aws cognito access token (JWT).</li>\n\t\t\t</ul>\n\t\t\t<h2>Account Group</h2>\n\t\t\t<p>Several platforms are grouped under account groups. The accounts on these platforms have the same platform user id. \n\t\t\tLogin using one of these platform will returns the same IAM user. </p>\n\t\t\t<p>Following is the current registered account grouping: </p>\n\t\t\t<ul>\n\t\t\t<li> (psn) ps4web </li>\n\t\t\t<li> (psn) ps4 </li>\n\t\t\t<li> (psn) ps5 </li>\n\t\t\t</ul>\n\t\t\t<h2>Access Token Content</h2>\n\t\t\t<p>Following is the access token\u2019s content:</p>\n\t\t\t<ul>\n\t\t\t<li>\n\t\t\t\t<p><strong>namespace</strong>. It is the namespace the token was generated from.</p>\n\t\t\t</li>\n\t\t\t<li>\n\t\t\t\t<p><strong>display_name</strong>. The display name of the sub. It is empty if the token is generated from the client credential</p>\n\t\t\t</li>\n\t\t\t<li>\n\t\t\t\t<p><strong>roles</strong>. The sub\u2019s roles. It is empty if the token is generated from the client credential</p>\n\t\t\t</li>\n\t\t\t<li>\n\t\t\t\t<p><strong>namespace_roles</strong>. The sub\u2019s roles scoped to namespace. Improvement from roles, which make the role scoped to specific namespace instead of global to publisher namespace</p>\n\t\t\t</li>\n\t\t\t<li>\n\t\t\t\t<p><strong>permissions</strong>. The sub or aud\u2019 permissions</p>\n\t\t\t</li>\n\t\t\t<li>\n\t\t\t\t<p><strong>bans</strong>. The sub\u2019s list of bans. It is used by the IAM client for validating the token.</p>\n\t\t\t</li>\n\t\t\t<li>\n\t\t\t\t<p><strong>jflgs</strong>. It stands for Justice Flags. It is a special flag used for storing additional status information regarding the sub. It is implemented as a bit mask. Following explains what each bit represents:</p>\n\t\t\t<ul>\n\t\t\t\t<li><p>1: Email Address Verified</p></li>\n\t\t\t\t<li><p>2: Phone Number Verified</p></li>\n\t\t\t\t<li><p>4: Anonymous</p></li>\n\t\t\t\t<li><p>8: Suspicious Login</p></li>\n\t\t\t</ul>\n\t\t\t</li>\n\t\t\t<li>\n\t\t\t\t<p><strong>aud</strong>. The aud is the client ID.</p>\n\t\t\t</li>\n\t\t\t<li>\n\t\t\t\t<p><strong>iat</strong>. The time the token issues at. It is in Epoch time format</p>\n\t\t\t</li>\n\t\t\t<li>\n\t\t\t\t<p><strong>exp</strong>. The time the token expires. It is in Epoch time format</p>\n\t\t\t</li>\n\t\t\t<li>\n\t\t\t\t<p><strong>sub</strong>. The UserID. The sub is omitted if the token is generated from client credential</p>\n\t\t\t</li>\n\t\t\t<h2>Bans</h2>\n\t\t\t<p>The JWT contains user's active bans with its expiry date. List of ban types can be obtained from /bans.</p>\n\t\t\t<br>action code : 10704",
+        "description": "<p>Platform token grant specifically used for performing token grant using platform, e.g. Steam, Justice, etc. The endpoint automatically create an account if the account associated with the platform is not exists yet.\n\t\t\tThis endpoint requires all requests to have Authorization header set with Basic access authentication\n\t\t\tconstructed from client id and client secret. For publisher-game namespace schema : Specify only either platform_token or device_id. Device token grant\n\t\t\tshould be requested along with device_id parameter against game namespace. Another 3rd party platform token grant should be requested\n\t\t\talong with platform_token parameter against publisher namespace.</p>\n\t\t\t<h2>Supported platforms:</h2>\n\t\t\t<ul>\n\t\t\t\t<li><strong>steam</strong>: The platform_token\u2019s value is the authentication code returned by Steam.</li>\n\t\t\t\t<li><strong>steamopenid</strong>: Steam's user authentication method using OpenID 2.0. The platform_token's value is URL generated by Steam on web authentication</li>\n\t\t\t\t<li><strong>facebook</strong>: The platform_token\u2019s value is the authorization code returned by Facebook OAuth</li>\n\t\t\t\t<li><strong>google</strong>: The platform_token\u2019s value is the authorization code returned by Google OAuth</li>\n\t\t\t\t<li><strong>oculus</strong>: The platform_token\u2019s value is a string composed of Oculus's user ID and the nonce separated by a colon (:).</li>\n\t\t\t\t<li><strong>twitch</strong>: The platform_token\u2019s value is the authorization code returned by Twitch OAuth.</li>\n\t\t\t\t<li><strong>discord</strong>: The platform_token\u2019s value is the authorization code returned by Discord OAuth</li>\n\t\t\t\t<li><strong>android</strong>: The device_id is the Android\u2019s device ID</li>\n\t\t\t\t<li><strong>ios</strong>: The device_id is the iOS\u2019s device ID.</li>\n\t\t\t\t<li><strong>apple</strong>: The platform_token\u2019s value is the authorization code returned by Apple OAuth.(We will use this code to generate APP token)</li>\n\t\t\t\t<li><strong>device</strong>: Every device that does\u2019nt run Android and iOS is categorized as a device. The device_id is the device\u2019s ID.</li>\n\t\t\t\t<li><strong>justice</strong>: The platform_token\u2019s value is the designated user\u2019s access token.</li>\n\t\t\t\t<li><strong>epicgames</strong>: The platform_token\u2019s value is an access-token obtained from Epicgames EOS Account Service.</li>\n                <li><strong>stadia</strong>: The platform_token's value is a JWT Token, which can be obtained after calling the Stadia SDK's function.</li>\n\t\t\t\t<li><strong>ps4</strong>: The platform_token\u2019s value is the authorization code returned by Sony OAuth.</li>\n\t\t\t\t<li><strong>ps5</strong>: The platform_token\u2019s value is the authorization code returned by Sony OAuth.</li>\n\t\t\t\t<li><strong>nintendo</strong>: The platform_token\u2019s value is the authorization code(id_token) returned by Nintendo OAuth.</li>\n\t\t\t\t<li><strong>awscognito</strong>: The platform_token\u2019s value is the aws cognito access token or id token (JWT).</li>\n\t\t\t\t<li><strong>xbl</strong>: The platform_token\u2019s value is XSTS token</li>\n\t\t\t\t<li><strong>xblweb</strong>: The platform_token\u2019s value is code returned by xbox after login</li>\n\t\t\t</ul>\n\t\t\t<h2>Account Group</h2>\n\t\t\t<p>Several platforms are grouped under account groups. The accounts on these platforms have the same platform user id. \n\t\t\tLogin using one of these platform will returns the same IAM user. </p>\n\t\t\t<p>Following is the current registered account grouping: </p>\n\t\t\t<ul>\n\t\t\t<li> (psn) ps4web </li>\n\t\t\t<li> (psn) ps4 </li>\n\t\t\t<li> (psn) ps5 </li>\n\t\t\t</ul>\n\t\t\t<h2>Access Token Content</h2>\n\t\t\t<p>Following is the access token\u2019s content:</p>\n\t\t\t<ul>\n\t\t\t<li>\n\t\t\t\t<p><strong>namespace</strong>. It is the namespace the token was generated from.</p>\n\t\t\t</li>\n\t\t\t<li>\n\t\t\t\t<p><strong>display_name</strong>. The display name of the sub. It is empty if the token is generated from the client credential</p>\n\t\t\t</li>\n\t\t\t<li>\n\t\t\t\t<p><strong>roles</strong>. The sub\u2019s roles. It is empty if the token is generated from the client credential</p>\n\t\t\t</li>\n\t\t\t<li>\n\t\t\t\t<p><strong>namespace_roles</strong>. The sub\u2019s roles scoped to namespace. Improvement from roles, which make the role scoped to specific namespace instead of global to publisher namespace</p>\n\t\t\t</li>\n\t\t\t<li>\n\t\t\t\t<p><strong>permissions</strong>. The sub or aud\u2019 permissions</p>\n\t\t\t</li>\n\t\t\t<li>\n\t\t\t\t<p><strong>bans</strong>. The sub\u2019s list of bans. It is used by the IAM client for validating the token.</p>\n\t\t\t</li>\n\t\t\t<li>\n\t\t\t\t<p><strong>jflgs</strong>. It stands for Justice Flags. It is a special flag used for storing additional status information regarding the sub. It is implemented as a bit mask. Following explains what each bit represents:</p>\n\t\t\t<ul>\n\t\t\t\t<li><p>1: Email Address Verified</p></li>\n\t\t\t\t<li><p>2: Phone Number Verified</p></li>\n\t\t\t\t<li><p>4: Anonymous</p></li>\n\t\t\t\t<li><p>8: Suspicious Login</p></li>\n\t\t\t</ul>\n\t\t\t</li>\n\t\t\t<li>\n\t\t\t\t<p><strong>aud</strong>. The aud is the client ID.</p>\n\t\t\t</li>\n\t\t\t<li>\n\t\t\t\t<p><strong>iat</strong>. The time the token issues at. It is in Epoch time format</p>\n\t\t\t</li>\n\t\t\t<li>\n\t\t\t\t<p><strong>exp</strong>. The time the token expires. It is in Epoch time format</p>\n\t\t\t</li>\n\t\t\t<li>\n\t\t\t\t<p><strong>sub</strong>. The UserID. The sub is omitted if the token is generated from client credential</p>\n\t\t\t</li>\n\t\t\t<h2>Bans</h2>\n\t\t\t<p>The JWT contains user's active bans with its expiry date. List of ban types can be obtained from /bans.</p>\n\t\t\t<br>action code : 10704",
         "consumes": [
           "application/x-www-form-urlencoded"
         ],
@@ -11450,7 +11620,7 @@
     },
     "/iam/v3/platforms/{platformId}/authenticate": {
       "get": {
-        "description": "This endpoint authenticates user platform. It validates user to its\n          respective platforms. Deactivated or login-banned users are unable to login. <br>\n          <h2>Supported platforms:</h2><ul>\n          <li><strong>steamopenid</strong></li>Steam login page will redirects to this endpoint after login success\n          as previously defined on openID request parameter <code>openid.return_to</code> when request login to steam\n          https://openid.net/specs/openid-authentication-2_0.html#anchor27\n          <li><strong>ps4web</strong></li>PS4 login page will redirects to this endpoint after login success\n          as previously defined on authorize request parameter <code>redirect_uri</code> \n\t\t  https://ps4.siedev.net/resources/documents/WebAPI/1/Auth_WebAPI-Reference/0002.html#0GetAccessTokenUsingAuthorizationCode\n          <li><strong>xblweb</strong></li>XBL login page will redirects to this endpoint after login success\n          as previously defined on authorize request parameter <code>redirect_uri</code> \n          <li><strong>epicgames</strong></li>Epicgames login page will redirects to this endpoint after login success\n          or an error occurred. If error, it redirects to the login page.\n          <li><strong>twitch</strong></li>Twitch login page will redirects to this endpoint after login success\n          as previously defined on authorize request parameter <code>redirect_uri</code>\n          </ul> action code : 10709",
+        "description": "This endpoint authenticates user platform. It validates user to its\n          respective platforms. Deactivated or login-banned users are unable to login. <br>\n          <h2>Supported platforms:</h2><ul>\n          <li><strong>steamopenid</strong></li>Steam login page will redirects to this endpoint after login success\n          as previously defined on openID request parameter <code>openid.return_to</code> when request login to steam\n          https://openid.net/specs/openid-authentication-2_0.html#anchor27\n          <li><strong>ps4web</strong></li>PS4 login page will redirects to this endpoint after login success\n          as previously defined on authorize request parameter <code>redirect_uri</code> \n\t\t  https://ps4.siedev.net/resources/documents/WebAPI/1/Auth_WebAPI-Reference/0002.html#0GetAccessTokenUsingAuthorizationCode\n          <li><strong>xblweb</strong></li>XBL login page will redirects to this endpoint after login success\n          as previously defined on authorize request parameter <code>redirect_uri</code> \n          <li><strong>epicgames</strong></li>Epicgames login page will redirects to this endpoint after login success\n          or an error occurred. If error, it redirects to the login page.\n          <li><strong>twitch</strong></li>Twitch login page will redirects to this endpoint after login success\n          as previously defined on authorize request parameter <code>redirect_uri</code>\n          <li><strong>facebook</strong></li>Facebook login page will redirects to this endpoint after login success\n          as previously defined on authorize request parameter <code>redirect_uri</code>\n          <li><strong>google</strong></li>Google login page will redirects to this endpoint after login success\n          as previously defined on authorize request parameter <code>redirect_uri</code>\n          </ul> action code : 10709",
         "consumes": [
           "*/*"
         ],
@@ -11553,6 +11723,51 @@
         "responses": {
           "302": {
             "description": "Found. Redirect to clients redirection URL with either code or error on the query parameter"
+          }
+        }
+      }
+    },
+    "/iam/v3/public/inputValidations": {
+      "get": {
+        "description": "<p>No role required</p>\n\t\t<p>This endpoint is to get list of input validation configuration.</p>\n\t\t<p><code>regex</code> parameter will be returned if <code>isCustomRegex</code> is true. Otherwise, it will be empty.</p>\n\t\t",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "InputValidations"
+        ],
+        "summary": "Public Get Input Validations",
+        "operationId": "PublicGetInputValidations",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "Language Code for description",
+            "name": "languageCode",
+            "in": "query"
+          },
+          {
+            "type": "boolean",
+            "default": true,
+            "description": "default true, will return default language if languageCode is empty or language not available",
+            "name": "defaultOnEmpty",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/model.InputValidationsPublicResponse"
+            }
+          },
+          "404": {
+            "description": "Data not found"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
@@ -11926,9 +12141,68 @@
         }
       }
     },
+    "/iam/v3/public/namespaces/{namespace}/users/availability": {
+      "get": {
+        "description": "Check user's account availability. \nAvailable field :\n\t- displayName\n\nIf request include access token with user ID data, that user ID will be excluded from availability check.\nFor example, in case user update his emailAddress, he can use his own emailAddress to update his account.\n\nResponse Code :\n\t- Account Available : 404 (not found)\n\t- Account Not Available : 204 (no content)\n",
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Users"
+        ],
+        "summary": "Check user's account availability",
+        "operationId": "CheckUserAvailability",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "Namespace, only accept alphabet and numeric",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "field name that want to be checked",
+            "name": "field",
+            "in": "query",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "query or value that want to be checked",
+            "name": "query",
+            "in": "query",
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "Unauthorized access"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "422": {
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
     "/iam/v3/public/namespaces/{namespace}/users/bulk/basic": {
       "post": {
-        "description": "Required valid user authorization.\n\t\t<p>Notes:</p>\n\t\t<ul>\n\t\t\t<li>This endpoint bulk get game users' basic info by userId, max allowed 20 at a time</li>\n\t\t\t<li><strong>Result will include displayName(if it exists)</strong></li>\n\t\t</ul>\n\t\t",
+        "description": "<p>Notes:</p>\n\t\t<ul>\n\t\t\t<li>This endpoint bulk get users' basic info by userId, max allowed 20 at a time</li>\n\t\t\t<li>If namespace is game, will search by game user Id, other wise will search by publisher namespace</li>\n\t\t\t<li><strong>Result will include displayName(if it exists)</strong></li>\n\t\t</ul>\n\t\t",
         "consumes": [
           "application/json"
         ],
@@ -11938,7 +12212,7 @@
         "tags": [
           "Users"
         ],
-        "summary": "Bulk get game users' basic info by user Id",
+        "summary": "Bulk get users' basic info by user Id",
         "operationId": "PublicBulkGetUsers",
         "parameters": [
           {
@@ -11953,7 +12227,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/model.GameUserIDsRequest"
+              "$ref": "#/definitions/model.UserIDsRequest"
             }
           }
         ],
@@ -11961,17 +12235,11 @@
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/model.ListBulkUserGameResponse"
+              "$ref": "#/definitions/model.ListBulkUserResponse"
             }
           },
           "400": {
             "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>10185</td><td>publisher namespace not allowed</td></tr></table>",
-            "schema": {
-              "$ref": "#/definitions/rest.ErrorResponse"
-            }
-          },
-          "401": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>",
             "schema": {
               "$ref": "#/definitions/rest.ErrorResponse"
             }
@@ -14094,15 +14362,9 @@
             "in": "query"
           },
           {
-            "type": "string",
-            "description": "The cursor that points to query data for the next page",
-            "name": "after",
-            "in": "query"
-          },
-          {
-            "type": "string",
-            "description": "The cursor that points to query data for the previous page",
-            "name": "before",
+            "type": "integer",
+            "description": "the count to skip",
+            "name": "offset",
             "in": "query"
           }
         ],
@@ -14738,7 +15000,7 @@
     },
     "/iam/v4/admin/users/me": {
       "patch": {
-        "description": "<p>Requires valid user access token </p>\n<br><p>This Endpoint support update user based on given data. <b>Single request can update single field or multi fields.</b></p> \n<p>Supported field {country, displayName, emailAddress, languageTag, dateOfBirth}</p>\n<p>Country use ISO3166-1 alpha-2 two letter, e.g. US.</p>\n<p>Date of Birth format : YYYY-MM-DD, e.g. 2019-04-29.</p>\n<br><b>Several case of updating email address</b>\n<ul><li>User want to update email address of which have been verified, newEmailAddress response field will be filled with new email address.</li>\n<li>User want to update email address of which have not been verified, { oldEmailAddress, emailAddress} response field will be filled with new email address. </li>\n<li>User want to update email address of which have been verified and updated before, { oldEmailAddress, emailAddress} response field will be filled with verified email before. newEmailAddress response field will be filled with newest email address. </li>\n<p>action code : 10103 </p>",
+        "description": "<p>Requires valid user access token </p>\n<br><p>This Endpoint support update user based on given data. <b>Single request can update single field or multi fields.</b></p> \n<p>Supported field {country, displayName, languageTag, dateOfBirth, userName}</p>\n<p>Country use ISO3166-1 alpha-2 two letter, e.g. US.</p>\n<p>Date of Birth format : YYYY-MM-DD, e.g. 2019-04-29.</p>\n<p>action code : 10103 </p>",
         "produces": [
           "application/json"
         ],
@@ -14777,7 +15039,7 @@
             }
           },
           "409": {
-            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>10133</td><td>email already used</td></tr><tr><td>10133</td><td>email already used</td></tr></table>",
+            "description": "<table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>10177</td><td>username already used</td></tr></table>",
             "schema": {
               "$ref": "#/definitions/rest.ErrorResponse"
             }
@@ -15321,6 +15583,100 @@
         },
         "userId": {
           "type": "string"
+        }
+      }
+    },
+    ".validation": {
+      "required": [
+        "allowDigit",
+        "allowLetter",
+        "allowSpace",
+        "allowUnicode",
+        "description",
+        "isCustomRegex",
+        "letterCase",
+        "maxLength",
+        "maxRepeatingAlphaNum",
+        "maxRepeatingSpecialCharacter",
+        "minCharType",
+        "minLength",
+        "regex",
+        "specialCharacterLocation",
+        "specialCharacters"
+      ],
+      "properties": {
+        "allowDigit": {
+          "type": "boolean"
+        },
+        "allowLetter": {
+          "type": "boolean"
+        },
+        "allowSpace": {
+          "type": "boolean"
+        },
+        "allowUnicode": {
+          "type": "boolean"
+        },
+        "description": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/.validation.description"
+          }
+        },
+        "isCustomRegex": {
+          "type": "boolean"
+        },
+        "letterCase": {
+          "type": "string"
+        },
+        "maxLength": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "maxRepeatingAlphaNum": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "maxRepeatingSpecialCharacter": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "minCharType": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "minLength": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "regex": {
+          "type": "string"
+        },
+        "specialCharacterLocation": {
+          "type": "string"
+        },
+        "specialCharacters": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    ".validation.description": {
+      "required": [
+        "language",
+        "message"
+      ],
+      "properties": {
+        "language": {
+          "type": "string"
+        },
+        "message": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       }
     },
@@ -15937,6 +16293,23 @@
         },
         "zh-CN": {
           "type": "string"
+        }
+      }
+    },
+    "accountcommon.InputValidationDescription": {
+      "required": [
+        "language",
+        "message"
+      ],
+      "properties": {
+        "language": {
+          "type": "string"
+        },
+        "message": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       }
     },
@@ -17134,37 +17507,6 @@
         }
       }
     },
-    "model.GameUserBaseInfo": {
-      "required": [
-        "avatarUrl",
-        "displayName",
-        "userId"
-      ],
-      "properties": {
-        "avatarUrl": {
-          "type": "string"
-        },
-        "displayName": {
-          "type": "string"
-        },
-        "userId": {
-          "type": "string"
-        }
-      }
-    },
-    "model.GameUserIDsRequest": {
-      "required": [
-        "userIds"
-      ],
-      "properties": {
-        "userIds": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        }
-      }
-    },
     "model.GetAdminUsersResponse": {
       "required": [
         "Data",
@@ -17255,6 +17597,84 @@
         },
         "paging": {
           "$ref": "#/definitions/accountcommon.PaginationV3"
+        }
+      }
+    },
+    "model.InputValidationData": {
+      "required": [
+        "field",
+        "validation"
+      ],
+      "properties": {
+        "field": {
+          "type": "string"
+        },
+        "validation": {
+          "$ref": "#/definitions/model.ValidationDetail"
+        }
+      }
+    },
+    "model.InputValidationDataPublic": {
+      "required": [
+        "field",
+        "validation"
+      ],
+      "properties": {
+        "field": {
+          "type": "string"
+        },
+        "validation": {
+          "$ref": "#/definitions/model.ValidationDetailPublic"
+        }
+      }
+    },
+    "model.InputValidationUpdatePayload": {
+      "required": [
+        "field",
+        "validation"
+      ],
+      "properties": {
+        "field": {
+          "type": "string"
+        },
+        "validation": {
+          "$ref": "#/definitions/.validation"
+        }
+      }
+    },
+    "model.InputValidationsPublicResponse": {
+      "required": [
+        "data",
+        "version"
+      ],
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/model.InputValidationDataPublic"
+          }
+        },
+        "version": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "model.InputValidationsResponse": {
+      "required": [
+        "data",
+        "version"
+      ],
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/model.InputValidationData"
+          }
+        },
+        "version": {
+          "type": "integer",
+          "format": "int32"
         }
       }
     },
@@ -17395,7 +17815,7 @@
         }
       }
     },
-    "model.ListBulkUserGameResponse": {
+    "model.ListBulkUserResponse": {
       "required": [
         "data"
       ],
@@ -17403,7 +17823,7 @@
         "data": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/model.GameUserBaseInfo"
+            "$ref": "#/definitions/model.UserBaseInfo"
           }
         }
       }
@@ -17435,6 +17855,19 @@
         },
         "paging": {
           "$ref": "#/definitions/accountcommon.PaginationV3"
+        }
+      }
+    },
+    "model.ListUserInformationResult": {
+      "required": [
+        "data"
+      ],
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/model.UserInfoResponse"
+          }
         }
       }
     },
@@ -18887,6 +19320,24 @@
         }
       }
     },
+    "model.UserBaseInfo": {
+      "required": [
+        "avatarUrl",
+        "displayName",
+        "userId"
+      ],
+      "properties": {
+        "avatarUrl": {
+          "type": "string"
+        },
+        "displayName": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        }
+      }
+    },
     "model.UserCreateFromInvitationRequestV3": {
       "required": [
         "authType",
@@ -19106,6 +19557,41 @@
       "properties": {
         "deletionStatus": {
           "type": "boolean"
+        }
+      }
+    },
+    "model.UserIDsRequest": {
+      "required": [
+        "userIds"
+      ],
+      "properties": {
+        "userIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "model.UserInfoResponse": {
+      "required": [
+        "displayName",
+        "emailAddress",
+        "namespace",
+        "userId"
+      ],
+      "properties": {
+        "displayName": {
+          "type": "string"
+        },
+        "emailAddress": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
         }
       }
     },
@@ -19599,6 +20085,227 @@
         },
         "languageTag": {
           "type": "string"
+        }
+      }
+    },
+    "model.ValidationConfig": {
+      "required": [
+        "allowDigit",
+        "allowLetter",
+        "allowSpace",
+        "allowUnicode",
+        "isCustomRegex",
+        "letterCase",
+        "maxLength",
+        "maxRepeatingAlphaNum",
+        "maxRepeatingSpecialCharacter",
+        "minCharType",
+        "minLength",
+        "regex",
+        "specialCharacterLocation",
+        "specialCharacters"
+      ],
+      "properties": {
+        "allowDigit": {
+          "type": "boolean"
+        },
+        "allowLetter": {
+          "type": "boolean"
+        },
+        "allowSpace": {
+          "type": "boolean"
+        },
+        "allowUnicode": {
+          "type": "boolean"
+        },
+        "isCustomRegex": {
+          "type": "boolean"
+        },
+        "letterCase": {
+          "type": "string"
+        },
+        "maxLength": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "maxRepeatingAlphaNum": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "maxRepeatingSpecialCharacter": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "minCharType": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "minLength": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "regex": {
+          "type": "string"
+        },
+        "specialCharacterLocation": {
+          "type": "string"
+        },
+        "specialCharacters": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "model.ValidationDetail": {
+      "required": [
+        "allowDigit",
+        "allowLetter",
+        "allowSpace",
+        "allowUnicode",
+        "description",
+        "isCustomRegex",
+        "letterCase",
+        "maxLength",
+        "maxRepeatingAlphaNum",
+        "maxRepeatingSpecialCharacter",
+        "minCharType",
+        "minLength",
+        "regex",
+        "specialCharacterLocation",
+        "specialCharacters"
+      ],
+      "properties": {
+        "allowDigit": {
+          "type": "boolean"
+        },
+        "allowLetter": {
+          "type": "boolean"
+        },
+        "allowSpace": {
+          "type": "boolean"
+        },
+        "allowUnicode": {
+          "type": "boolean"
+        },
+        "description": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/accountcommon.InputValidationDescription"
+          }
+        },
+        "isCustomRegex": {
+          "type": "boolean"
+        },
+        "letterCase": {
+          "type": "string"
+        },
+        "maxLength": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "maxRepeatingAlphaNum": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "maxRepeatingSpecialCharacter": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "minCharType": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "minLength": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "regex": {
+          "type": "string"
+        },
+        "specialCharacterLocation": {
+          "type": "string"
+        },
+        "specialCharacters": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "model.ValidationDetailPublic": {
+      "required": [
+        "allowDigit",
+        "allowLetter",
+        "allowSpace",
+        "allowUnicode",
+        "description",
+        "isCustomRegex",
+        "letterCase",
+        "maxLength",
+        "maxRepeatingAlphaNum",
+        "maxRepeatingSpecialCharacter",
+        "minCharType",
+        "minLength",
+        "regex",
+        "specialCharacterLocation",
+        "specialCharacters"
+      ],
+      "properties": {
+        "allowDigit": {
+          "type": "boolean"
+        },
+        "allowLetter": {
+          "type": "boolean"
+        },
+        "allowSpace": {
+          "type": "boolean"
+        },
+        "allowUnicode": {
+          "type": "boolean"
+        },
+        "description": {
+          "$ref": "#/definitions/accountcommon.InputValidationDescription"
+        },
+        "isCustomRegex": {
+          "type": "boolean"
+        },
+        "letterCase": {
+          "type": "string"
+        },
+        "maxLength": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "maxRepeatingAlphaNum": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "maxRepeatingSpecialCharacter": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "minCharType": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "minLength": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "regex": {
+          "type": "string"
+        },
+        "specialCharacterLocation": {
+          "type": "string"
+        },
+        "specialCharacters": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       }
     },

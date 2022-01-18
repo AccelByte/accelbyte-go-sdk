@@ -1524,7 +1524,7 @@
         }
       },
       "post": {
-        "description": "Required permission : <code>ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]</code> with scope <code>social</code>\n\t\t\t<br>Create new notification template. Include handlebars {{key}} for replaceable contexts. The the key inside \n\t\t\thandlebars will be the key to be replaced when sending notification. Already existing template with the same \n\t\t\tslug and language can not be created.\n\t\t\t<br>Check model description for detailed input restrictions.<br>\n\t\t\tAction Code: 50204",
+        "description": "Required permission : <code>ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]</code> with scope <code>social</code>\n\t\t\t<br>Create new notification template. Include handlebars {{key}} for replaceable contexts. The key inside \n\t\t\thandlebars will be the key to be replaced when sending notification. Already existing template with the same \n\t\t\tslug and language can not be created.\n\t\t\t<br>Check model description for detailed input restrictions.<br>\n\t\t\tAction Code: 50204",
         "consumes": [
           "application/json"
         ],

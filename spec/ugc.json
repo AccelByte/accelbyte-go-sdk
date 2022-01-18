@@ -8,7 +8,7 @@
     },
     "description": "Justice UGC Service",
     "title": "justice-ugc-service",
-    "version": "1.10.1"
+    "version": "1.12.0"
   },
   "schemes": [
     "https"
@@ -6604,9 +6604,9 @@
       },
       "required": [
         "id",
+        "name",
         "namespace",
-        "userId",
-        "name"
+        "userId"
       ]
     },
     "models.ContentDownloadResponse": {
@@ -6693,23 +6693,23 @@
         }
       },
       "required": [
-        "createdTime",
-        "id",
-        "namespace",
         "channelId",
-        "userId",
-        "name",
-        "type",
-        "subType",
-        "shareCode",
+        "createdTime",
+        "creatorFollowState",
         "creatorName",
+        "downloadCount",
+        "fileExtension",
+        "id",
         "isHidden",
         "isOfficial",
-        "tags",
         "likeCount",
-        "creatorFollowState",
-        "downloadCount",
-        "fileExtension"
+        "name",
+        "namespace",
+        "shareCode",
+        "subType",
+        "tags",
+        "type",
+        "userId"
       ]
     },
     "models.ContentLikeRequest": {
@@ -6761,12 +6761,12 @@
         }
       },
       "required": [
-        "tags",
         "name",
-        "type",
-        "subType",
+        "payload",
         "preview",
-        "payload"
+        "subType",
+        "tags",
+        "type"
       ]
     },
     "models.CreateContentRequestS3": {
@@ -6797,13 +6797,13 @@
         }
       },
       "required": [
-        "preview",
-        "tags",
-        "name",
-        "type",
-        "subType",
+        "contentType",
         "fileExtension",
-        "contentType"
+        "name",
+        "preview",
+        "subType",
+        "tags",
+        "type"
       ]
     },
     "models.CreateContentResponse": {
@@ -6867,21 +6867,21 @@
         }
       },
       "required": [
-        "createdTime",
-        "id",
-        "namespace",
         "channelId",
-        "userId",
-        "name",
-        "type",
-        "subType",
-        "shareCode",
+        "createdTime",
         "creatorName",
-        "isOfficial",
+        "fileExtension",
+        "id",
         "isHidden",
+        "isOfficial",
+        "name",
+        "namespace",
         "preview",
+        "shareCode",
+        "subType",
         "tags",
-        "fileExtension"
+        "type",
+        "userId"
       ]
     },
     "models.CreateGroupRequest": {
@@ -6897,8 +6897,8 @@
         }
       },
       "required": [
-        "name",
-        "contents"
+        "contents",
+        "name"
       ]
     },
     "models.CreateGroupResponse": {
@@ -6926,19 +6926,19 @@
         }
       },
       "required": [
-        "id",
-        "userId",
-        "namespace",
-        "name",
+        "contents",
         "createdAt",
-        "contents"
+        "id",
+        "name",
+        "namespace",
+        "userId"
       ]
     },
     "models.CreateScreenshotRequest": {
       "properties": {
         "screenshots": {
           "items": {
-            "$ref": "#/definitions/models.createScreenshotRequest"
+            "$ref": "#/definitions/models.createScreenshotRequestItem"
           },
           "type": "array"
         }
@@ -7001,8 +7001,8 @@
         }
       },
       "required": [
-        "type",
-        "subtype"
+        "subtype",
+        "type"
       ]
     },
     "models.CreateTypeResponse": {
@@ -7026,8 +7026,8 @@
       "required": [
         "id",
         "namespace",
-        "type",
-        "subtype"
+        "subtype",
+        "type"
       ]
     },
     "models.CreatorFollowState": {
@@ -7040,8 +7040,8 @@
         }
       },
       "required": [
-        "userId",
-        "state"
+        "state",
+        "userId"
       ]
     },
     "models.CreatorOverviewResponse": {
@@ -7058,9 +7058,9 @@
         }
       },
       "required": [
+        "followCount",
         "id",
-        "namespace",
-        "followCount"
+        "namespace"
       ]
     },
     "models.GetContentPreviewResponse": {
@@ -7093,8 +7093,8 @@
         }
       },
       "required": [
-        "userId",
-        "state"
+        "state",
+        "userId"
       ]
     },
     "models.PaginatedContentDownloadResponse": {
@@ -7211,10 +7211,10 @@
         }
       },
       "required": [
-        "next",
-        "previous",
         "first",
-        "last"
+        "last",
+        "next",
+        "previous"
       ]
     },
     "models.PayloadURL": {
@@ -7253,11 +7253,11 @@
         }
       },
       "required": [
+        "description",
+        "fileExtension",
         "screenshotId",
         "source",
-        "url",
-        "description",
-        "fileExtension"
+        "url"
       ]
     },
     "models.UpdateScreenshotRequest": {
@@ -7306,11 +7306,11 @@
         }
       },
       "required": [
-        "userId",
-        "followStatus"
+        "followStatus",
+        "userId"
       ]
     },
-    "models.createScreenshotRequest": {
+    "models.createScreenshotRequestItem": {
       "properties": {
         "contentType": {
           "type": "string"
@@ -7331,9 +7331,9 @@
         }
       },
       "required": [
+        "contentType",
         "description",
-        "fileExtension",
-        "contentType"
+        "fileExtension"
       ]
     },
     "models.updateScreenshot": {
@@ -7346,8 +7346,8 @@
         }
       },
       "required": [
-        "screenshotId",
-        "description"
+        "description",
+        "screenshotId"
       ]
     },
     "response.Error": {

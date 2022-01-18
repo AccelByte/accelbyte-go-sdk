@@ -8,7 +8,7 @@
       "url": "https://accelbyte.io",
       "email": "engineering@accelbyte.io"
     },
-    "version": "2.11.1"
+    "version": "2.11.2"
   },
   "paths": {
     "/leaderboard/v1/admin/namespaces/{namespace}/leaderboards": {
@@ -1523,18 +1523,6 @@
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
-          "401": {
-            "description": "Unauthorized",
-            "schema": {
-              "$ref": "#/definitions/response.ErrorResponse"
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "schema": {
-              "$ref": "#/definitions/response.ErrorResponse"
-            }
-          },
           "404": {
             "description": "Not Found",
             "schema": {
@@ -1685,18 +1673,6 @@
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
-          "401": {
-            "description": "Unauthorized",
-            "schema": {
-              "$ref": "#/definitions/response.ErrorResponse"
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "schema": {
-              "$ref": "#/definitions/response.ErrorResponse"
-            }
-          },
           "404": {
             "description": "Not Found",
             "schema": {
@@ -1764,18 +1740,6 @@
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
-          "401": {
-            "description": "Unauthorized",
-            "schema": {
-              "$ref": "#/definitions/response.ErrorResponse"
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "schema": {
-              "$ref": "#/definitions/response.ErrorResponse"
-            }
-          },
           "404": {
             "description": "Not Found",
             "schema": {
@@ -1839,18 +1803,6 @@
           },
           "400": {
             "description": "Bad Request",
-            "schema": {
-              "$ref": "#/definitions/response.ErrorResponse"
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "schema": {
-              "$ref": "#/definitions/response.ErrorResponse"
-            }
-          },
-          "403": {
-            "description": "Forbidden",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }
@@ -2052,18 +2004,6 @@
           },
           "400": {
             "description": "Bad Request",
-            "schema": {
-              "$ref": "#/definitions/response.ErrorResponse"
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "schema": {
-              "$ref": "#/definitions/response.ErrorResponse"
-            }
-          },
-          "403": {
-            "description": "Forbidden",
             "schema": {
               "$ref": "#/definitions/response.ErrorResponse"
             }

@@ -1799,7 +1799,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission : \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]\u0026lt;/code\u0026gt; with scope \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\t\t\t\u0026lt;br\u0026gt;Create new notification template. Include handlebars {{key}} for replaceable contexts. The the key inside \n\t\t\thandlebars will be the key to be replaced when sending notification. Already existing template with the same \n\t\t\tslug and language can not be created.\n\t\t\t\u0026lt;br\u0026gt;Check model description for detailed input restrictions.\u0026lt;br\u0026gt;\n\t\t\tAction Code: 50204",
+        "description": "Required permission : \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]\u0026lt;/code\u0026gt; with scope \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\t\t\t\u0026lt;br\u0026gt;Create new notification template. Include handlebars {{key}} for replaceable contexts. The key inside \n\t\t\thandlebars will be the key to be replaced when sending notification. Already existing template with the same \n\t\t\tslug and language can not be created.\n\t\t\t\u0026lt;br\u0026gt;Check model description for detailed input restrictions.\u0026lt;br\u0026gt;\n\t\t\tAction Code: 50204",
         "operationId": "createNotificationTemplateV1Admin",
         "parameters": [
           {
@@ -3766,10 +3766,7 @@
         ],
         "responses": {
           "204": {
-            "description": "No Content",
-            "schema": {
-              "type": "integer"
-            }
+            "description": "No Content"
           },
           "400": {
             "description": "Bad Request",

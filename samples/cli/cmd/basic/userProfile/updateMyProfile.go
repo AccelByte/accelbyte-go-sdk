@@ -1,0 +1,56 @@
+// Copyright (c) 2021 AccelByte Inc. All Rights Reserved.
+// This is licensed software from AccelByte Inc, for limitations
+// and restrictions contact your company contract manager.
+
+package cmd
+
+import (
+	"encoding/json"
+	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclient/user_profile"
+	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclientmodels"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/basic"
+	"github.com/AccelByte/sample-apps/cmd"
+	"github.com/AccelByte/sample-apps/pkg/repository"
+	"github.com/sirupsen/logrus"
+	"github.com/spf13/cobra"
+)
+
+// updateMyProfileCmd represents the updateMyProfile command
+var updateMyProfileCmd = &cobra.Command{
+	Use:   "updateMyProfile",
+	Short: "Update my profile",
+	Long:  `Update my profile`,
+	RunE: func(cmd *cobra.Command, args []string) error {
+		userProfileService := &basic.UserProfileService{
+			Client:          factory.NewBasicClient(&repository.ConfigRepositoryImpl{}),
+			TokenRepository: &repository.TokenRepositoryImpl{},
+		}
+		namespace, _ := cmd.Flags().GetString("namespace")
+		bodyString := cmd.Flag("body").Value.String()
+		var body *basicclientmodels.UserProfilePrivateUpdate
+		errBody := json.Unmarshal([]byte(bodyString), &body)
+		if errBody != nil {
+			return errBody
+		}
+		input := &user_profile.UpdateMyProfileParams{
+			Body:      body,
+			Namespace: namespace,
+		}
+		//lint:ignore SA1019 Ignore the deprecation warnings
+		ok, err := userProfileService.UpdateMyProfile(input)
+		logrus.Infof("Response %v", ok)
+		if err != nil {
+			logrus.Error(err)
+			return err
+		}
+		return nil
+	},
+}
+
+func init() {
+	cmd.RootCmd.AddCommand(updateMyProfileCmd)
+	updateMyProfileCmd.Flags().StringP("body", "b", " ", "Body")
+	updateMyProfileCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	_ = updateMyProfileCmd.MarkFlagRequired("namespace")
+}

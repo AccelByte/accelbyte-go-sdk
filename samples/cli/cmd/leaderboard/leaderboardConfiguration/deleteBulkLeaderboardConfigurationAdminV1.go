@@ -1,0 +1,57 @@
+// Copyright (c) 2021 AccelByte Inc. All Rights Reserved.
+// This is licensed software from AccelByte Inc, for limitations
+// and restrictions contact your company contract manager.
+
+package cmd
+
+import (
+	"encoding/json"
+	"github.com/AccelByte/accelbyte-go-sdk/leaderboard-sdk/pkg/leaderboardclient/leaderboard_configuration"
+	"github.com/AccelByte/accelbyte-go-sdk/leaderboard-sdk/pkg/leaderboardclientmodels"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/leaderboard"
+	"github.com/AccelByte/sample-apps/cmd"
+	"github.com/AccelByte/sample-apps/pkg/repository"
+	"github.com/sirupsen/logrus"
+	"github.com/spf13/cobra"
+)
+
+// deleteBulkLeaderboardConfigurationAdminV1Cmd represents the deleteBulkLeaderboardConfigurationAdminV1 command
+var deleteBulkLeaderboardConfigurationAdminV1Cmd = &cobra.Command{
+	Use:   "deleteBulkLeaderboardConfigurationAdminV1",
+	Short: "Delete bulk leaderboard configuration admin V1",
+	Long:  `Delete bulk leaderboard configuration admin V1`,
+	RunE: func(cmd *cobra.Command, args []string) error {
+		leaderboardConfigurationService := &leaderboard.LeaderboardConfigurationService{
+			Client:          factory.NewLeaderboardClient(&repository.ConfigRepositoryImpl{}),
+			TokenRepository: &repository.TokenRepositoryImpl{},
+		}
+		bodyString := cmd.Flag("body").Value.String()
+		var body *leaderboardclientmodels.ModelsDeleteBulkLeaderboardsReq
+		errBody := json.Unmarshal([]byte(bodyString), &body)
+		if errBody != nil {
+			return errBody
+		}
+		namespace, _ := cmd.Flags().GetString("namespace")
+		input := &leaderboard_configuration.DeleteBulkLeaderboardConfigurationAdminV1Params{
+			Body:      body,
+			Namespace: namespace,
+		}
+		//lint:ignore SA1019 Ignore the deprecation warnings
+		ok, err := leaderboardConfigurationService.DeleteBulkLeaderboardConfigurationAdminV1(input)
+		logrus.Infof("Response %v", ok)
+		if err != nil {
+			logrus.Error(err)
+			return err
+		}
+		return nil
+	},
+}
+
+func init() {
+	cmd.RootCmd.AddCommand(deleteBulkLeaderboardConfigurationAdminV1Cmd)
+	deleteBulkLeaderboardConfigurationAdminV1Cmd.Flags().StringP("body", "b", " ", "Body")
+	_ = deleteBulkLeaderboardConfigurationAdminV1Cmd.MarkFlagRequired("body")
+	deleteBulkLeaderboardConfigurationAdminV1Cmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	_ = deleteBulkLeaderboardConfigurationAdminV1Cmd.MarkFlagRequired("namespace")
+}

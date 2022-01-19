@@ -1,0 +1,61 @@
+// Copyright (c) 2021 AccelByte Inc. All Rights Reserved.
+// This is licensed software from AccelByte Inc, for limitations
+// and restrictions contact your company contract manager.
+
+package cmd
+
+import (
+	"encoding/json"
+	group_ "github.com/AccelByte/accelbyte-go-sdk/group-sdk/pkg/groupclient/group"
+	"github.com/AccelByte/accelbyte-go-sdk/group-sdk/pkg/groupclientmodels"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/group"
+	"github.com/AccelByte/sample-apps/cmd"
+	"github.com/AccelByte/sample-apps/pkg/repository"
+	"github.com/sirupsen/logrus"
+	"github.com/spf13/cobra"
+)
+
+// updatePatchSingleGroupPublicV1Cmd represents the updatePatchSingleGroupPublicV1 command
+var updatePatchSingleGroupPublicV1Cmd = &cobra.Command{
+	Use:   "updatePatchSingleGroupPublicV1",
+	Short: "Update patch single group public V1",
+	Long:  `Update patch single group public V1`,
+	RunE: func(cmd *cobra.Command, args []string) error {
+		groupService := &group.GroupService{
+			Client:          factory.NewGroupClient(&repository.ConfigRepositoryImpl{}),
+			TokenRepository: &repository.TokenRepositoryImpl{},
+		}
+		bodyString := cmd.Flag("body").Value.String()
+		var body *groupclientmodels.ModelsUpdateGroupRequestV1
+		errBody := json.Unmarshal([]byte(bodyString), &body)
+		if errBody != nil {
+			return errBody
+		}
+		groupId, _ := cmd.Flags().GetString("groupId")
+		namespace, _ := cmd.Flags().GetString("namespace")
+		input := &group_.UpdatePatchSingleGroupPublicV1Params{
+			Body:      body,
+			GroupID:   groupId,
+			Namespace: namespace,
+		}
+		//lint:ignore SA1019 Ignore the deprecation warnings
+		ok, err := groupService.UpdatePatchSingleGroupPublicV1(input)
+		logrus.Infof("Response %v", ok)
+		if err != nil {
+			logrus.Error(err)
+			return err
+		}
+		return nil
+	},
+}
+
+func init() {
+	cmd.RootCmd.AddCommand(updatePatchSingleGroupPublicV1Cmd)
+	updatePatchSingleGroupPublicV1Cmd.Flags().StringP("body", "b", " ", "Body")
+	_ = updatePatchSingleGroupPublicV1Cmd.MarkFlagRequired("body")
+	updatePatchSingleGroupPublicV1Cmd.Flags().StringP("groupId", "g", " ", "Group id")
+	_ = updatePatchSingleGroupPublicV1Cmd.MarkFlagRequired("groupId")
+	updatePatchSingleGroupPublicV1Cmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	_ = updatePatchSingleGroupPublicV1Cmd.MarkFlagRequired("namespace")
+}

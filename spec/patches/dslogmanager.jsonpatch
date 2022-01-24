@@ -1,6 +1,11 @@
 [
   {
     "op": "add",
+    "path": "/host",
+    "value": "demo.accelbyte.io"
+  },
+  {
+    "op": "add",
     "path": "/schemes",
     "value": [
       "https"
@@ -8,8 +13,66 @@
   },
   {
     "op": "add",
-    "path": "/host",
-    "value": "demo.accelbyte.io"
+    "path": "/securityDefinitions/HasScope",
+    "value": {
+      "authorizationUrl": "https://dummy.oauth.net/auth",
+      "flow": "accessCode",
+      "scopes": {
+        "social": "social"
+      },
+      "tokenUrl": "https://dumy.oauth.net/token",
+      "type": "oauth2"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/securityDefinitions/HasPermission",
+    "value": {
+      "authorizationUrl": "https://dummy.oauth.net/auth",
+      "flow": "accessCode",
+      "scopes": {
+        "ADMIN:NAMESPACE:{namespace}:DSLM:LOG [READ]": "ADMIN:NAMESPACE:{namespace}:DSLM:LOG [READ]",
+        "ADMIN:NAMESPACE:{namespace}:DSLM:SERVER [READ]": "ADMIN:NAMESPACE:{namespace}:DSLM:SERVER [READ]"
+      },
+      "tokenUrl": "https://dumy.oauth.net/token",
+      "type": "oauth2"
+    }
+  },
+  {
+    "op": "remove",
+    "path": "/definitions/models.PodConfig"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1dslogmanager~1servers~1search/get/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:DSLM:SERVER [READ]"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1dslogmanager~1namespaces~1{namespace}~1servers~1{podName}~1logs~1download/get/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:DSLM:LOG [READ]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1dslogmanager~1namespaces~1{namespace}~1servers~1{podName}~1logs~1download/get/description",
+    "value": "Required permission: ADMIN:NAMESPACE:{namespace}:DSLM:LOG [READ]\n\nRequired scope: social\n\nThis endpoint will download dedicated server&#39;s log file (.log)."
   },
   {
     "op": "add",
@@ -64,6 +127,11 @@
   },
   {
     "op": "replace",
+    "path": "/paths/~1dslogmanager~1namespaces~1{namespace}~1servers~1search/get/parameters/1/description",
+    "value": "region of the server"
+  },
+  {
+    "op": "replace",
     "path": "/paths/~1dslogmanager~1namespaces~1{namespace}~1servers~1search/get/parameters/1/name",
     "value": "region"
   },
@@ -74,8 +142,8 @@
   },
   {
     "op": "replace",
-    "path": "/paths/~1dslogmanager~1namespaces~1{namespace}~1servers~1search/get/parameters/1/description",
-    "value": "region of the server"
+    "path": "/paths/~1dslogmanager~1namespaces~1{namespace}~1servers~1search/get/parameters/2/description",
+    "value": "provider of the server"
   },
   {
     "op": "replace",
@@ -84,8 +152,8 @@
   },
   {
     "op": "replace",
-    "path": "/paths/~1dslogmanager~1namespaces~1{namespace}~1servers~1search/get/parameters/2/description",
-    "value": "provider of the server"
+    "path": "/paths/~1dslogmanager~1namespaces~1{namespace}~1servers~1search/get/parameters/3/description",
+    "value": "session id of the game"
   },
   {
     "op": "replace",
@@ -94,8 +162,8 @@
   },
   {
     "op": "replace",
-    "path": "/paths/~1dslogmanager~1namespaces~1{namespace}~1servers~1search/get/parameters/3/description",
-    "value": "session id of the game"
+    "path": "/paths/~1dslogmanager~1namespaces~1{namespace}~1servers~1search/get/parameters/4/description",
+    "value": "pod name of the server"
   },
   {
     "op": "replace",
@@ -104,8 +172,8 @@
   },
   {
     "op": "replace",
-    "path": "/paths/~1dslogmanager~1namespaces~1{namespace}~1servers~1search/get/parameters/4/description",
-    "value": "pod name of the server"
+    "path": "/paths/~1dslogmanager~1namespaces~1{namespace}~1servers~1search/get/parameters/5/description",
+    "value": "ID of the party"
   },
   {
     "op": "replace",
@@ -114,8 +182,8 @@
   },
   {
     "op": "replace",
-    "path": "/paths/~1dslogmanager~1namespaces~1{namespace}~1servers~1search/get/parameters/5/description",
-    "value": "ID of the party"
+    "path": "/paths/~1dslogmanager~1namespaces~1{namespace}~1servers~1search/get/parameters/6/description",
+    "value": "ID of the user"
   },
   {
     "op": "replace",
@@ -124,8 +192,8 @@
   },
   {
     "op": "replace",
-    "path": "/paths/~1dslogmanager~1namespaces~1{namespace}~1servers~1search/get/parameters/6/description",
-    "value": "ID of the user"
+    "path": "/paths/~1dslogmanager~1namespaces~1{namespace}~1servers~1search/get/parameters/7/description",
+    "value": "game mode of the game"
   },
   {
     "op": "replace",
@@ -134,8 +202,8 @@
   },
   {
     "op": "replace",
-    "path": "/paths/~1dslogmanager~1namespaces~1{namespace}~1servers~1search/get/parameters/7/description",
-    "value": "game mode of the game"
+    "path": "/paths/~1dslogmanager~1namespaces~1{namespace}~1servers~1search/get/parameters/8/description",
+    "value": "deployment of the game"
   },
   {
     "op": "replace",
@@ -144,8 +212,8 @@
   },
   {
     "op": "replace",
-    "path": "/paths/~1dslogmanager~1namespaces~1{namespace}~1servers~1search/get/parameters/8/description",
-    "value": "deployment of the game"
+    "path": "/paths/~1dslogmanager~1namespaces~1{namespace}~1servers~1search/get/parameters/9/description",
+    "value": "start date on last update of the game RFC 3339"
   },
   {
     "op": "replace",
@@ -154,8 +222,8 @@
   },
   {
     "op": "replace",
-    "path": "/paths/~1dslogmanager~1namespaces~1{namespace}~1servers~1search/get/parameters/9/description",
-    "value": "start date on last update of the game RFC 3339"
+    "path": "/paths/~1dslogmanager~1namespaces~1{namespace}~1servers~1search/get/parameters/10/description",
+    "value": "end date on last update of the game RFC 3339"
   },
   {
     "op": "replace",
@@ -164,8 +232,8 @@
   },
   {
     "op": "replace",
-    "path": "/paths/~1dslogmanager~1namespaces~1{namespace}~1servers~1search/get/parameters/10/description",
-    "value": "end date on last update of the game RFC 3339"
+    "path": "/paths/~1dslogmanager~1namespaces~1{namespace}~1servers~1search/get/parameters/11/description",
+    "value": "next"
   },
   {
     "op": "replace",
@@ -174,17 +242,12 @@
   },
   {
     "op": "replace",
-    "path": "/paths/~1dslogmanager~1namespaces~1{namespace}~1servers~1search/get/parameters/11/description",
-    "value": "next"
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1dslogmanager~1namespaces~1{namespace}~1servers~1search/get/parameters/12/name",
+    "path": "/paths/~1dslogmanager~1namespaces~1{namespace}~1servers~1search/get/parameters/12/description",
     "value": "previous"
   },
   {
     "op": "replace",
-    "path": "/paths/~1dslogmanager~1namespaces~1{namespace}~1servers~1search/get/parameters/12/description",
+    "path": "/paths/~1dslogmanager~1namespaces~1{namespace}~1servers~1search/get/parameters/12/name",
     "value": "previous"
   },
   {
@@ -194,8 +257,8 @@
   },
   {
     "op": "replace",
-    "path": "/paths/~1dslogmanager~1namespaces~1{namespace}~1servers~1search/get/parameters/13/type",
-    "value": "integer"
+    "path": "/paths/~1dslogmanager~1namespaces~1{namespace}~1servers~1search/get/parameters/13/description",
+    "value": "limit"
   },
   {
     "op": "replace",
@@ -204,44 +267,12 @@
   },
   {
     "op": "replace",
-    "path": "/paths/~1dslogmanager~1namespaces~1{namespace}~1servers~1search/get/parameters/13/description",
-    "value": "limit"
+    "path": "/paths/~1dslogmanager~1namespaces~1{namespace}~1servers~1search/get/parameters/13/type",
+    "value": "integer"
   },
   {
     "op": "remove",
     "path": "/paths/~1dslogmanager~1namespaces~1{namespace}~1servers~1search/get/parameters/14"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1dslogmanager~1servers~1search/get/security",
-    "value": [
-      {
-        "HasPermission": [
-          "ADMIN:NAMESPACE:{namespace}:DSLM:SERVER [READ]"
-        ],
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1dslogmanager~1namespaces~1{namespace}~1servers~1{podName}~1logs~1download/get/security",
-    "value": [
-      {
-        "HasPermission": [
-          "ADMIN:NAMESPACE:{namespace}:DSLM:LOG [READ]"
-        ],
-        "HasScope": [
-          "social"
-        ],
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1dslogmanager~1namespaces~1{namespace}~1servers~1{podName}~1logs~1download/get/description",
-    "value": "Required permission: ADMIN:NAMESPACE:{namespace}:DSLM:LOG [READ]\n\nRequired scope: social\n\nThis endpoint will download dedicated server&#39;s log file (.log)."
   },
   {
     "op": "move",
@@ -250,43 +281,12 @@
   },
   {
     "op": "add",
-    "path": "/paths/~1dslogmanager~1v1~1messages/get/responses/500/description",
-    "value": ""
-  },
-  {
-    "op": "add",
     "path": "/paths/~1dslogmanager~1v1~1messages/get/responses/200/description",
     "value": ""
   },
   {
     "op": "add",
-    "path": "/securityDefinitions/HasPermission",
-    "value": {
-      "authorizationUrl": "https://dummy.oauth.net/auth",
-      "flow": "accessCode",
-      "scopes": {
-        "ADMIN:NAMESPACE:{namespace}:DSLM:LOG [READ]": "ADMIN:NAMESPACE:{namespace}:DSLM:LOG [READ]",
-        "ADMIN:NAMESPACE:{namespace}:DSLM:SERVER [READ]": "ADMIN:NAMESPACE:{namespace}:DSLM:SERVER [READ]"
-      },
-      "tokenUrl": "https://dumy.oauth.net/token",
-      "type": "oauth2"
-    }
-  },
-  {
-    "op": "add",
-    "path": "/securityDefinitions/HasScope",
-    "value": {
-      "authorizationUrl": "https://dummy.oauth.net/auth",
-      "flow": "accessCode",
-      "scopes": {
-        "social": "social"
-      },
-      "tokenUrl": "https://dumy.oauth.net/token",
-      "type": "oauth2"
-    }
-  },
-  {
-    "op": "remove",
-    "path": "/definitions/models.PodConfig"
+    "path": "/paths/~1dslogmanager~1v1~1messages/get/responses/500/description",
+    "value": ""
   }
 ]

@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Matchmaking Service",
     "title": "Justice Matchmaking Service",
-    "version": "2.13.1"
+    "version": "2.13.2"
   },
   "schemes": [
     "https"
@@ -1995,6 +1995,124 @@
         ]
       }
     },
+    "/matchmaking/v2/admin/namespaces/{namespace}/sessions/history/search": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]\n\t\nRequired Scope: social\n\t\nSearch sessions. Optimize the query by differentiating query with filter namespace only and filter with namespace \u0026amp; other filter (partyID, userID, matchID).\nQuery with filter namespace only will not group whole session data while query with filter namespace \u0026amp; other filter will include session data.",
+        "operationId": "SearchSessionsV2",
+        "parameters": [
+          {
+            "description": "namespace of the game, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "ID of the match session",
+            "in": "query",
+            "name": "matchID",
+            "type": "string"
+          },
+          {
+            "description": "ID of the user",
+            "in": "query",
+            "name": "userID",
+            "type": "string"
+          },
+          {
+            "description": "ID of the party",
+            "in": "query",
+            "name": "partyID",
+            "type": "string"
+          },
+          {
+            "description": "ID of the channel",
+            "in": "query",
+            "name": "channel",
+            "type": "string"
+          },
+          {
+            "description": "only deleted session",
+            "in": "query",
+            "name": "deleted",
+            "type": "boolean"
+          },
+          {
+            "description": "limit",
+            "in": "query",
+            "name": "limit",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "description": "offset",
+            "in": "query",
+            "name": "offset",
+            "required": true,
+            "type": "number"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Operation succeeded",
+            "schema": {
+              "$ref": "#/definitions/service.GetSessionHistorySearchResponseV2"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20019\u003c/td\u003e\u003ctd\u003eunable to parse request body\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20014\u003c/td\u003e\u003ctd\u003einvalid audience\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20015\u003c/td\u003e\u003ctd\u003einsufficient scope\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e510110\u003c/td\u003e\u003ctd\u003echannel not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorV1"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Search sessions",
+        "tags": [
+          "Matchmaking"
+        ]
+      }
+    },
     "/matchmaking/version": {
       "get": {
         "operationId": "versionCheckHandler",
@@ -3258,6 +3376,65 @@
         "region",
         "server_name",
         "status"
+      ]
+    },
+    "service.GetSessionHistorySearchResponseItemV2": {
+      "properties": {
+        "_id": {
+          "type": "string",
+          "x-nullable": false
+        },
+        "created_at": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        },
+        "game_mode": {
+          "type": "string",
+          "x-nullable": false
+        },
+        "joinable": {
+          "type": "boolean",
+          "x-nullable": false
+        },
+        "match_id": {
+          "type": "string",
+          "x-nullable": false
+        },
+        "namespace": {
+          "type": "string",
+          "x-nullable": false
+        },
+        "status": {
+          "type": "string",
+          "x-nullable": false
+        }
+      },
+      "required": [
+        "_id",
+        "created_at",
+        "game_mode",
+        "joinable",
+        "match_id",
+        "namespace",
+        "status"
+      ]
+    },
+    "service.GetSessionHistorySearchResponseV2": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/service.GetSessionHistorySearchResponseItemV2"
+          },
+          "type": "array"
+        },
+        "pagination": {
+          "$ref": "#/definitions/models.Pagination"
+        }
+      },
+      "required": [
+        "data",
+        "pagination"
       ]
     }
   }

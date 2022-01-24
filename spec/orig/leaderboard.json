@@ -8,7 +8,7 @@
       "url": "https://accelbyte.io",
       "email": "engineering@accelbyte.io"
     },
-    "version": "2.11.2"
+    "version": "2.12.0"
   },
   "paths": {
     "/leaderboard/v1/admin/namespaces/{namespace}/leaderboards": {

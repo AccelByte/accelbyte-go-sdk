@@ -8,7 +8,7 @@
       "url": "https://accelbyte.io",
       "email": "engineering@accelbyte.io"
     },
-    "version": "5.0.0"
+    "version": "5.1.1"
   },
   "paths": {
     "/iam/bans": {
@@ -6984,6 +6984,145 @@
           },
           "404": {
             "description": "Third Party Credential Not Found",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/clients/domain": {
+      "put": {
+        "description": "<p>This is the API to set 3rd Platform domain.</p>\n\t\t\t\t\t <p>It needs ADMIN:NAMESPACE:{namespace}:CLIENTDOMAIN [UPDATE] resource.</p>\n\t\t",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Third Party Credential"
+        ],
+        "summary": "Set Third Party Platform Credential's domain",
+        "operationId": "UpdateThirdPartyLoginPlatformDomainV3",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "Namespace, only accept alphabet and numeric",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Platform ID",
+            "name": "platformId",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/model.PlatformDomainUpdateRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Domain config updated",
+            "schema": {
+              "$ref": "#/definitions/model.PlatformDomainResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Platform client not found",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "<p>This is the API to unregister 3rd Platform domain.</p>\n\t\t\t\t\t <p>It needs ADMIN:NAMESPACE:{namespace}:CLIENTDOMAIN [DELETE] resource.</p>\n\t\t",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Third Party Credential"
+        ],
+        "summary": "Unregister Third Party Platform Credential's domain",
+        "operationId": "DeleteThirdPartyLoginPlatformDomainV3",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "Namespace, only accept alphabet and numeric",
+            "name": "namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Platform ID",
+            "name": "platformId",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/model.PlatformDomainDeleteRequest"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Domain unregister succeeded"
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Platform client not found",
             "schema": {
               "$ref": "#/definitions/rest.ErrorResponse"
             }
@@ -16516,6 +16655,34 @@
         }
       }
     },
+    "accountcommon.RegisteredDomain": {
+      "required": [
+        "affectedClientIDs",
+        "domain",
+        "namespaces",
+        "roleId"
+      ],
+      "properties": {
+        "affectedClientIDs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "domain": {
+          "type": "string"
+        },
+        "namespaces": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "roleId": {
+          "type": "string"
+        }
+      }
+    },
     "accountcommon.Role": {
       "required": [
         "AdminRole",
@@ -17948,6 +18115,57 @@
         }
       }
     },
+    "model.PlatformDomainDeleteRequest": {
+      "required": [
+        "domain"
+      ],
+      "properties": {
+        "domain": {
+          "type": "string"
+        }
+      }
+    },
+    "model.PlatformDomainResponse": {
+      "required": [
+        "registeredDomains"
+      ],
+      "properties": {
+        "registeredDomains": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/accountcommon.RegisteredDomain"
+          }
+        }
+      }
+    },
+    "model.PlatformDomainUpdateRequest": {
+      "required": [
+        "affectedClientIDs",
+        "assignedNamespaces",
+        "domain",
+        "roleId"
+      ],
+      "properties": {
+        "affectedClientIDs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "assignedNamespaces": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "domain": {
+          "type": "string"
+        },
+        "roleId": {
+          "type": "string"
+        }
+      }
+    },
     "model.PlatformUserIDRequest": {
       "required": [
         "platformUserIds"
@@ -19002,7 +19220,8 @@
         "PlatformId",
         "RedirectUri",
         "Secret",
-        "TeamID"
+        "TeamID",
+        "registeredDomains"
       ],
       "properties": {
         "ACSURL": {
@@ -19049,6 +19268,12 @@
         },
         "TeamID": {
           "type": "string"
+        },
+        "registeredDomains": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/accountcommon.RegisteredDomain"
+          }
         }
       }
     },
@@ -20564,10 +20789,13 @@
         "namespace",
         "namespace_roles",
         "permissions",
+        "refresh_expires_in",
         "refresh_token",
         "roles",
+        "scope",
         "token_type",
-        "user_id"
+        "user_id",
+        "xuid"
       ],
       "properties": {
         "access_token": {
@@ -20614,6 +20842,10 @@
         "platform_user_id": {
           "type": "string"
         },
+        "refresh_expires_in": {
+          "type": "integer",
+          "format": "int32"
+        },
         "refresh_token": {
           "type": "string"
         },
@@ -20623,10 +20855,16 @@
             "type": "string"
           }
         },
+        "scope": {
+          "type": "string"
+        },
         "token_type": {
           "type": "string"
         },
         "user_id": {
+          "type": "string"
+        },
+        "xuid": {
           "type": "string"
         }
       }

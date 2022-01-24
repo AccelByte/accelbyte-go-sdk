@@ -17,8 +17,162 @@
   },
   {
     "op": "add",
+    "path": "/securityDefinitions/HasPermission",
+    "value": {
+      "authorizationUrl": "https://dummy.oauth.net/auth",
+      "flow": "accessCode",
+      "scopes": {
+        "ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [CREATE]": "ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [CREATE]",
+        "ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [DELETE]": "ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [DELETE]",
+        "ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [READ]": "ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [READ]",
+        "ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [UPDATE]": "ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [UPDATE]",
+        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [READ]": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [READ]",
+        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [UPDATE]": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [UPDATE]",
+        "NAMESPACE:{namespace}:ACHIEVEMENT [READ]": "NAMESPACE:{namespace}:ACHIEVEMENT [READ]",
+        "NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [READ]": "NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [READ]",
+        "NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [UPDATE]": "NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [UPDATE]"
+      },
+      "tokenUrl": "https://dumy.oauth.net/token",
+      "type": "oauth2"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/securityDefinitions/HasScope",
+    "value": {
+      "authorizationUrl": "https://dummy.oauth.net/auth",
+      "flow": "accessCode",
+      "scopes": {
+        "social": "social"
+      },
+      "tokenUrl": "https://dumy.oauth.net/token",
+      "type": "oauth2"
+    }
+  },
+  {
+    "op": "add",
     "path": "/info/version",
     "value": ""
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1achievement~1v1~1admin~1namespaces~1{namespace}~1users~1{userId}~1achievements/get/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [READ]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1achievement~1v1~1admin~1namespaces~1{namespace}~1users~1{userId}~1achievements/get/description",
+    "value": "&lt;p&gt;Required permission\n&lt;code&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [READ]&lt;/code&gt; and scope &lt;code&gt;social&lt;/code&gt;&lt;/p&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1achievement~1v1~1admin~1namespaces~1{namespace}~1achievements/post/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [CREATE]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1achievement~1v1~1admin~1namespaces~1{namespace}~1achievements/post/description",
+    "value": "&lt;p&gt;Required permission \n\t\t\t&lt;code&gt;ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [CREATE]&lt;/code&gt; and scope &lt;code&gt;social&lt;/code&gt;&lt;/p&gt;\n        \tOther detail info:\n          - achievementCode: Human readable unique code to indentify the achievement. Must be lowercase \n\t\t\tand maximum length is 32\n          - incremental:  If the achievement is not incremental, it does not need to store a goal value \n\t\t\t\t\t\t\tof a stat to be unlocked.\n                          If the achievement is incremental, it needs to set statCode and goalValue\n          - statCode: Selected statistic code, from the published statistic code event.Human readable unique \n\t\t\tcode to indentify the achievement. Must be lowercase and maximum length is 32\n          - goalValue: Statistics value required to unlock the achievement.\n          - defaultLanguage: localozation for achievement name and achievement description. Allowed format : en, en-US\n          - slug: specify the image they want to use, it can be file image name or something \n\t\t\tto define the achievement icon."
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1achievement~1v1~1admin~1namespaces~1{namespace}~1achievements/get/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [READ]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1achievement~1v1~1admin~1namespaces~1{namespace}~1achievements/get/description",
+    "value": "&lt;p&gt;Required permission \n&lt;code&gt;ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [READ]&lt;/code&gt; and scope &lt;code&gt;social&lt;/code&gt;&lt;/p&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1achievement~1v1~1public~1namespaces~1{namespace}~1users~1{userId}~1achievements/get/security",
+    "value": [
+      {
+        "HasPermission": [
+          "NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [READ]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1achievement~1v1~1public~1namespaces~1{namespace}~1users~1{userId}~1achievements/get/description",
+    "value": "&lt;p&gt;Required permission \n&lt;code&gt;NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [READ]&lt;/code&gt; and scope &lt;code&gt;social&lt;/code&gt;&lt;/p&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1achievement~1v1~1public~1namespaces~1{namespace}~1achievements~1{achievementCode}/get/security",
+    "value": [
+      {
+        "HasPermission": [
+          "NAMESPACE:{namespace}:ACHIEVEMENT [READ]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1achievement~1v1~1public~1namespaces~1{namespace}~1achievements~1{achievementCode}/get/description",
+    "value": "&lt;p&gt;Required permission \n&lt;code&gt;NAMESPACE:{namespace}:ACHIEVEMENT [READ]&lt;/code&gt; and scope &lt;code&gt;social&lt;/code&gt;&lt;/p&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1achievement~1v1~1public~1namespaces~1{namespace}~1users~1{userId}~1achievements~1{achievementCode}~1unlock/put/security",
+    "value": [
+      {
+        "HasPermission": [
+          "NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [UPDATE]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1achievement~1v1~1public~1namespaces~1{namespace}~1users~1{userId}~1achievements~1{achievementCode}~1unlock/put/description",
+    "value": "&lt;p&gt;Required permission \n&lt;code&gt;NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [UPDATE]&lt;/code&gt; and scope &lt;code&gt;social&lt;/code&gt;&lt;/p&gt;"
   },
   {
     "op": "add",
@@ -27,6 +181,121 @@
       {
         "HasPermission": [
           "ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [READ]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1achievement~1v1~1admin~1namespaces~1{namespace}~1achievements~1{achievementCode}/put/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [UPDATE]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1achievement~1v1~1admin~1namespaces~1{namespace}~1achievements~1{achievementCode}/put/description",
+    "value": "&lt;p&gt;Required permission \n&lt;code&gt;ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [UPDATE]&lt;/code&gt; and scope &lt;code&gt;social&lt;/code&gt;&lt;/p&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1achievement~1v1~1admin~1namespaces~1{namespace}~1achievements~1{achievementCode}/get/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [READ]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1achievement~1v1~1admin~1namespaces~1{namespace}~1achievements~1{achievementCode}/get/description",
+    "value": "&lt;p&gt;Required permission \n&lt;code&gt;ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [READ]&lt;/code&gt; and scope &lt;code&gt;social&lt;/code&gt;&lt;/p&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1achievement~1v1~1admin~1namespaces~1{namespace}~1achievements~1{achievementCode}/delete/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [DELETE]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1achievement~1v1~1admin~1namespaces~1{namespace}~1achievements~1{achievementCode}/delete/description",
+    "value": "&lt;p&gt;Required permission \n&lt;code&gt;ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [DELETE]&lt;/code&gt; and scope &lt;code&gt;social&lt;/code&gt;&lt;/p&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1achievement~1v1~1admin~1namespaces~1{namespace}~1achievements~1{achievementCode}/patch/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [UPDATE]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1achievement~1v1~1admin~1namespaces~1{namespace}~1achievements~1{achievementCode}/patch/description",
+    "value": "&lt;p&gt;Required permission \n&lt;code&gt;ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [UPDATE]&lt;/code&gt; and scope &lt;code&gt;social&lt;/code&gt;&lt;/p&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1achievement~1v1~1admin~1namespaces~1{namespace}~1users~1{userId}~1achievements~1{achievementCode}~1unlock/put/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [UPDATE]"
+        ],
+        "HasScope": [
+          "social"
+        ],
+        "authorization": []
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/paths/~1achievement~1v1~1admin~1namespaces~1{namespace}~1users~1{userId}~1achievements~1{achievementCode}~1unlock/put/description",
+    "value": "&lt;p&gt;Required permission \n&lt;code&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [UPDATE]&lt;/code&gt; and scope &lt;code&gt;social&lt;/code&gt;&lt;/p&gt;"
+  },
+  {
+    "op": "add",
+    "path": "/paths/~1achievement~1v1~1admin~1namespaces~1{namespace}~1achievements~1import/post/security",
+    "value": [
+      {
+        "HasPermission": [
+          "ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [UPDATE]"
         ],
         "HasScope": [
           "social"
@@ -54,274 +323,5 @@
     "op": "replace",
     "path": "/paths/~1achievement~1v1~1public~1namespaces~1{namespace}~1achievements/get/description",
     "value": "&lt;p&gt;Required permission \n&lt;code&gt;NAMESPACE:{namespace}:ACHIEVEMENT [READ]&lt;/code&gt; and scope &lt;code&gt;social&lt;/code&gt;&lt;/p&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1achievement~1v1~1admin~1namespaces~1{namespace}~1achievements/get/security",
-    "value": [
-      {
-        "HasPermission": [
-          "ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [READ]"
-        ],
-        "HasScope": [
-          "social"
-        ],
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1achievement~1v1~1admin~1namespaces~1{namespace}~1achievements/get/description",
-    "value": "&lt;p&gt;Required permission \n&lt;code&gt;ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [READ]&lt;/code&gt; and scope &lt;code&gt;social&lt;/code&gt;&lt;/p&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1achievement~1v1~1admin~1namespaces~1{namespace}~1achievements/post/security",
-    "value": [
-      {
-        "HasPermission": [
-          "ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [CREATE]"
-        ],
-        "HasScope": [
-          "social"
-        ],
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1achievement~1v1~1admin~1namespaces~1{namespace}~1achievements/post/description",
-    "value": "&lt;p&gt;Required permission \n\t\t\t&lt;code&gt;ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [CREATE]&lt;/code&gt; and scope &lt;code&gt;social&lt;/code&gt;&lt;/p&gt;\n        \tOther detail info:\n          - achievementCode: Human readable unique code to indentify the achievement. Must be lowercase \n\t\t\tand maximum length is 32\n          - incremental:  If the achievement is not incremental, it does not need to store a goal value \n\t\t\t\t\t\t\tof a stat to be unlocked.\n                          If the achievement is incremental, it needs to set statCode and goalValue\n          - statCode: Selected statistic code, from the published statistic code event.Human readable unique \n\t\t\tcode to indentify the achievement. Must be lowercase and maximum length is 32\n          - goalValue: Statistics value required to unlock the achievement.\n          - defaultLanguage: localozation for achievement name and achievement description. Allowed format : en, en-US\n          - slug: specify the image they want to use, it can be file image name or something \n\t\t\tto define the achievement icon."
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1achievement~1v1~1public~1namespaces~1{namespace}~1users~1{userId}~1achievements~1{achievementCode}~1unlock/put/security",
-    "value": [
-      {
-        "HasPermission": [
-          "NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [UPDATE]"
-        ],
-        "HasScope": [
-          "social"
-        ],
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1achievement~1v1~1public~1namespaces~1{namespace}~1users~1{userId}~1achievements~1{achievementCode}~1unlock/put/description",
-    "value": "&lt;p&gt;Required permission \n&lt;code&gt;NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [UPDATE]&lt;/code&gt; and scope &lt;code&gt;social&lt;/code&gt;&lt;/p&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1achievement~1v1~1public~1namespaces~1{namespace}~1achievements~1{achievementCode}/get/security",
-    "value": [
-      {
-        "HasPermission": [
-          "NAMESPACE:{namespace}:ACHIEVEMENT [READ]"
-        ],
-        "HasScope": [
-          "social"
-        ],
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1achievement~1v1~1public~1namespaces~1{namespace}~1achievements~1{achievementCode}/get/description",
-    "value": "&lt;p&gt;Required permission \n&lt;code&gt;NAMESPACE:{namespace}:ACHIEVEMENT [READ]&lt;/code&gt; and scope &lt;code&gt;social&lt;/code&gt;&lt;/p&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1achievement~1v1~1admin~1namespaces~1{namespace}~1users~1{userId}~1achievements/get/security",
-    "value": [
-      {
-        "HasPermission": [
-          "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [READ]"
-        ],
-        "HasScope": [
-          "social"
-        ],
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1achievement~1v1~1admin~1namespaces~1{namespace}~1users~1{userId}~1achievements/get/description",
-    "value": "&lt;p&gt;Required permission\n&lt;code&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [READ]&lt;/code&gt; and scope &lt;code&gt;social&lt;/code&gt;&lt;/p&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1achievement~1v1~1admin~1namespaces~1{namespace}~1achievements~1import/post/security",
-    "value": [
-      {
-        "HasPermission": [
-          "ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [UPDATE]"
-        ],
-        "HasScope": [
-          "social"
-        ],
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1achievement~1v1~1admin~1namespaces~1{namespace}~1users~1{userId}~1achievements~1{achievementCode}~1unlock/put/security",
-    "value": [
-      {
-        "HasPermission": [
-          "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [UPDATE]"
-        ],
-        "HasScope": [
-          "social"
-        ],
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1achievement~1v1~1admin~1namespaces~1{namespace}~1users~1{userId}~1achievements~1{achievementCode}~1unlock/put/description",
-    "value": "&lt;p&gt;Required permission \n&lt;code&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [UPDATE]&lt;/code&gt; and scope &lt;code&gt;social&lt;/code&gt;&lt;/p&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1achievement~1v1~1public~1namespaces~1{namespace}~1users~1{userId}~1achievements/get/security",
-    "value": [
-      {
-        "HasPermission": [
-          "NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [READ]"
-        ],
-        "HasScope": [
-          "social"
-        ],
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1achievement~1v1~1public~1namespaces~1{namespace}~1users~1{userId}~1achievements/get/description",
-    "value": "&lt;p&gt;Required permission \n&lt;code&gt;NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [READ]&lt;/code&gt; and scope &lt;code&gt;social&lt;/code&gt;&lt;/p&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1achievement~1v1~1admin~1namespaces~1{namespace}~1achievements~1{achievementCode}/patch/security",
-    "value": [
-      {
-        "HasPermission": [
-          "ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [UPDATE]"
-        ],
-        "HasScope": [
-          "social"
-        ],
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1achievement~1v1~1admin~1namespaces~1{namespace}~1achievements~1{achievementCode}/patch/description",
-    "value": "&lt;p&gt;Required permission \n&lt;code&gt;ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [UPDATE]&lt;/code&gt; and scope &lt;code&gt;social&lt;/code&gt;&lt;/p&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1achievement~1v1~1admin~1namespaces~1{namespace}~1achievements~1{achievementCode}/get/security",
-    "value": [
-      {
-        "HasPermission": [
-          "ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [READ]"
-        ],
-        "HasScope": [
-          "social"
-        ],
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1achievement~1v1~1admin~1namespaces~1{namespace}~1achievements~1{achievementCode}/get/description",
-    "value": "&lt;p&gt;Required permission \n&lt;code&gt;ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [READ]&lt;/code&gt; and scope &lt;code&gt;social&lt;/code&gt;&lt;/p&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1achievement~1v1~1admin~1namespaces~1{namespace}~1achievements~1{achievementCode}/put/security",
-    "value": [
-      {
-        "HasPermission": [
-          "ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [UPDATE]"
-        ],
-        "HasScope": [
-          "social"
-        ],
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1achievement~1v1~1admin~1namespaces~1{namespace}~1achievements~1{achievementCode}/put/description",
-    "value": "&lt;p&gt;Required permission \n&lt;code&gt;ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [UPDATE]&lt;/code&gt; and scope &lt;code&gt;social&lt;/code&gt;&lt;/p&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/paths/~1achievement~1v1~1admin~1namespaces~1{namespace}~1achievements~1{achievementCode}/delete/security",
-    "value": [
-      {
-        "HasPermission": [
-          "ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [DELETE]"
-        ],
-        "HasScope": [
-          "social"
-        ],
-        "authorization": []
-      }
-    ]
-  },
-  {
-    "op": "replace",
-    "path": "/paths/~1achievement~1v1~1admin~1namespaces~1{namespace}~1achievements~1{achievementCode}/delete/description",
-    "value": "&lt;p&gt;Required permission \n&lt;code&gt;ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [DELETE]&lt;/code&gt; and scope &lt;code&gt;social&lt;/code&gt;&lt;/p&gt;"
-  },
-  {
-    "op": "add",
-    "path": "/securityDefinitions/HasScope",
-    "value": {
-      "authorizationUrl": "https://dummy.oauth.net/auth",
-      "flow": "accessCode",
-      "scopes": {
-        "social": "social"
-      },
-      "tokenUrl": "https://dumy.oauth.net/token",
-      "type": "oauth2"
-    }
-  },
-  {
-    "op": "add",
-    "path": "/securityDefinitions/HasPermission",
-    "value": {
-      "authorizationUrl": "https://dummy.oauth.net/auth",
-      "flow": "accessCode",
-      "scopes": {
-        "ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [CREATE]": "ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [CREATE]",
-        "ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [DELETE]": "ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [DELETE]",
-        "ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [READ]": "ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [READ]",
-        "ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [UPDATE]": "ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [UPDATE]",
-        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [READ]": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [READ]",
-        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [UPDATE]": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [UPDATE]",
-        "NAMESPACE:{namespace}:ACHIEVEMENT [READ]": "NAMESPACE:{namespace}:ACHIEVEMENT [READ]",
-        "NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [READ]": "NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [READ]",
-        "NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [UPDATE]": "NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [UPDATE]"
-      },
-      "tokenUrl": "https://dumy.oauth.net/token",
-      "type": "oauth2"
-    }
   }
 ]

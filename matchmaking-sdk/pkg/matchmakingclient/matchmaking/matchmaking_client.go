@@ -69,6 +69,8 @@ type ClientService interface {
 	QueueSessionHandlerShort(params *QueueSessionHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*QueueSessionHandlerNoContent, error)
 	SearchSessions(params *SearchSessionsParams, authInfo runtime.ClientAuthInfoWriter) (*SearchSessionsOK, *SearchSessionsBadRequest, *SearchSessionsUnauthorized, *SearchSessionsForbidden, *SearchSessionsNotFound, *SearchSessionsInternalServerError, error)
 	SearchSessionsShort(params *SearchSessionsParams, authInfo runtime.ClientAuthInfoWriter) (*SearchSessionsOK, error)
+	SearchSessionsV2(params *SearchSessionsV2Params, authInfo runtime.ClientAuthInfoWriter) (*SearchSessionsV2OK, *SearchSessionsV2BadRequest, *SearchSessionsV2Unauthorized, *SearchSessionsV2Forbidden, *SearchSessionsV2NotFound, *SearchSessionsV2InternalServerError, error)
+	SearchSessionsV2Short(params *SearchSessionsV2Params, authInfo runtime.ClientAuthInfoWriter) (*SearchSessionsV2OK, error)
 	StoreMatchResults(params *StoreMatchResultsParams, authInfo runtime.ClientAuthInfoWriter) (*StoreMatchResultsOK, *StoreMatchResultsBadRequest, *StoreMatchResultsUnauthorized, *StoreMatchResultsForbidden, *StoreMatchResultsInternalServerError, error)
 	StoreMatchResultsShort(params *StoreMatchResultsParams, authInfo runtime.ClientAuthInfoWriter) (*StoreMatchResultsOK, error)
 	UpdateMatchmakingChannel(params *UpdateMatchmakingChannelParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateMatchmakingChannelNoContent, *UpdateMatchmakingChannelBadRequest, *UpdateMatchmakingChannelUnauthorized, *UpdateMatchmakingChannelForbidden, *UpdateMatchmakingChannelNotFound, *UpdateMatchmakingChannelInternalServerError, error)
@@ -2247,6 +2249,115 @@ func (a *Client) SearchSessionsShort(params *SearchSessionsParams, authInfo runt
 	case *SearchSessionsNotFound:
 		return nil, v
 	case *SearchSessionsInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  SearchSessionsV2 searches sessions
+
+  Required Permission: ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]
+
+Required Scope: social
+
+Search sessions. Optimize the query by differentiating query with filter namespace only and filter with namespace &amp; other filter (partyID, userID, matchID).
+Query with filter namespace only will not group whole session data while query with filter namespace &amp; other filter will include session data.
+*/
+func (a *Client) SearchSessionsV2(params *SearchSessionsV2Params, authInfo runtime.ClientAuthInfoWriter) (*SearchSessionsV2OK, *SearchSessionsV2BadRequest, *SearchSessionsV2Unauthorized, *SearchSessionsV2Forbidden, *SearchSessionsV2NotFound, *SearchSessionsV2InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewSearchSessionsV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "SearchSessionsV2",
+		Method:             "GET",
+		PathPattern:        "/matchmaking/v2/admin/namespaces/{namespace}/sessions/history/search",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &SearchSessionsV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *SearchSessionsV2OK:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *SearchSessionsV2BadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *SearchSessionsV2Unauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *SearchSessionsV2Forbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *SearchSessionsV2NotFound:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *SearchSessionsV2InternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) SearchSessionsV2Short(params *SearchSessionsV2Params, authInfo runtime.ClientAuthInfoWriter) (*SearchSessionsV2OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewSearchSessionsV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "SearchSessionsV2",
+		Method:             "GET",
+		PathPattern:        "/matchmaking/v2/admin/namespaces/{namespace}/sessions/history/search",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &SearchSessionsV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *SearchSessionsV2OK:
+		return v, nil
+	case *SearchSessionsV2BadRequest:
+		return nil, v
+	case *SearchSessionsV2Unauthorized:
+		return nil, v
+	case *SearchSessionsV2Forbidden:
+		return nil, v
+	case *SearchSessionsV2NotFound:
+		return nil, v
+	case *SearchSessionsV2InternalServerError:
 		return nil, v
 
 	default:

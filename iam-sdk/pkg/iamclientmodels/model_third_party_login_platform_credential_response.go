@@ -6,6 +6,8 @@ package iamclientmodels
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"strconv"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -76,6 +78,10 @@ type ModelThirdPartyLoginPlatformCredentialResponse struct {
 	// team ID
 	// Required: true
 	TeamID *string `json:"TeamID"`
+
+	// registered domains
+	// Required: true
+	RegisteredDomains []*AccountcommonRegisteredDomain `json:"registeredDomains"`
 }
 
 // Validate validates this model third party login platform credential response
@@ -139,6 +145,10 @@ func (m *ModelThirdPartyLoginPlatformCredentialResponse) Validate(formats strfmt
 	}
 
 	if err := m.validateTeamID(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateRegisteredDomains(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -278,6 +288,31 @@ func (m *ModelThirdPartyLoginPlatformCredentialResponse) validateTeamID(formats 
 
 	if err := validate.Required("TeamID", "body", m.TeamID); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *ModelThirdPartyLoginPlatformCredentialResponse) validateRegisteredDomains(formats strfmt.Registry) error {
+
+	if err := validate.Required("registeredDomains", "body", m.RegisteredDomains); err != nil {
+		return err
+	}
+
+	for i := 0; i < len(m.RegisteredDomains); i++ {
+		if swag.IsZero(m.RegisteredDomains[i]) { // not required
+			continue
+		}
+
+		if m.RegisteredDomains[i] != nil {
+			if err := m.RegisteredDomains[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("registeredDomains" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
 	}
 
 	return nil

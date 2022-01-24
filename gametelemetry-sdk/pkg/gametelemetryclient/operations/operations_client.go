@@ -42,7 +42,10 @@ type ClientService interface {
 /*
   ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGet protecteds get playtime
 
-  This endpoint retrieves player&#39;s total playtime in Steam for a specific game (AppId) and store them in service&#39;s cache.
+  This endpoint requires valid JWT token.
+This endpoint does not require permission.
+
+This endpoint retrieves player&#39;s total playtime in Steam for a specific game (AppId) and store them in service&#39;s cache.
 
 Players&#39; Steam account must be set into public to enable the service fetch their total playtime data.
 */
@@ -128,7 +131,8 @@ func (a *Client) ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlay
 /*
   ProtectedSaveEventsGameTelemetryV1ProtectedEventsPost protecteds save events
 
-  This endpoint require valid JWT token.
+  This endpoint requires valid JWT token.
+This endpoint does not require permission.
 
 This endpoint send events into designated streaming pipeline and each request can contain single or multiple events.
 &lt;p&gt; Format of the event:
@@ -225,7 +229,10 @@ func (a *Client) ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostShort(para
 /*
   ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePut protecteds update playtime
 
-  This endpoint update player&#39;s total playtime in a specific game (AppId) from service&#39;s cache.
+  This endpoint requires valid JWT token.
+This endpoint does not require permission.
+
+This endpoint update player&#39;s total playtime in a specific game (AppId) from service&#39;s cache.
 */
 func (a *Client) ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePut(params *ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutParams, authInfo runtime.ClientAuthInfoWriter) (*ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutOK, *ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutUnprocessableEntity, error) {
 	// TODO: Validate the params before sending

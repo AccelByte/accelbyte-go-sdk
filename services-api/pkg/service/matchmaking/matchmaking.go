@@ -617,6 +617,34 @@ func (m *MatchmakingService) PublicGetSingleMatchmakingChannel(input *matchmakin
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use SearchSessionsV2Short instead
+func (m *MatchmakingService) SearchSessionsV2(input *matchmaking.SearchSessionsV2Params) (*matchmakingclientmodels.ServiceGetSessionHistorySearchResponseV2, error) {
+	accessToken, err := m.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := m.Client.Matchmaking.SearchSessionsV2(input, client.BearerToken(*accessToken.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
 func (m *MatchmakingService) GetAllChannelsHandlerShort(input *matchmaking.GetAllChannelsHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*matchmakingclientmodels.ModelsGetChannelsResponse, error) {
 	ok, err := m.Client.Matchmaking.GetAllChannelsHandlerShort(input, authInfo)
 	if err != nil {
@@ -787,6 +815,14 @@ func (m *MatchmakingService) PublicGetAllMatchmakingChannelShort(input *matchmak
 
 func (m *MatchmakingService) PublicGetSingleMatchmakingChannelShort(input *matchmaking.PublicGetSingleMatchmakingChannelParams, authInfo runtime.ClientAuthInfoWriter) (*matchmakingclientmodels.ModelsChannelV1, error) {
 	ok, err := m.Client.Matchmaking.PublicGetSingleMatchmakingChannelShort(input, authInfo)
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (m *MatchmakingService) SearchSessionsV2Short(input *matchmaking.SearchSessionsV2Params, authInfo runtime.ClientAuthInfoWriter) (*matchmakingclientmodels.ServiceGetSessionHistorySearchResponseV2, error) {
+	ok, err := m.Client.Matchmaking.SearchSessionsV2Short(input, authInfo)
 	if err != nil {
 		return nil, err
 	}

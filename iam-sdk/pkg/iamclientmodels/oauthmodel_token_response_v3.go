@@ -59,6 +59,10 @@ type OauthmodelTokenResponseV3 struct {
 	// platform user id
 	PlatformUserID string `json:"platform_user_id,omitempty"`
 
+	// refresh expires in
+	// Required: true
+	RefreshExpiresIn *int32 `json:"refresh_expires_in"`
+
 	// refresh token
 	// Required: true
 	RefreshToken *string `json:"refresh_token"`
@@ -67,6 +71,10 @@ type OauthmodelTokenResponseV3 struct {
 	// Required: true
 	Roles []string `json:"roles"`
 
+	// scope
+	// Required: true
+	Scope *string `json:"scope"`
+
 	// token type
 	// Required: true
 	TokenType *string `json:"token_type"`
@@ -74,6 +82,10 @@ type OauthmodelTokenResponseV3 struct {
 	// user id
 	// Required: true
 	UserID *string `json:"user_id"`
+
+	// xuid
+	// Required: true
+	Xuid *string `json:"xuid"`
 }
 
 // Validate validates this oauthmodel token response v3
@@ -108,6 +120,10 @@ func (m *OauthmodelTokenResponseV3) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateRefreshExpiresIn(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateRefreshToken(formats); err != nil {
 		res = append(res, err)
 	}
@@ -116,11 +132,19 @@ func (m *OauthmodelTokenResponseV3) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateScope(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateTokenType(formats); err != nil {
 		res = append(res, err)
 	}
 
 	if err := m.validateUserID(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateXuid(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -241,6 +265,15 @@ func (m *OauthmodelTokenResponseV3) validatePermissions(formats strfmt.Registry)
 	return nil
 }
 
+func (m *OauthmodelTokenResponseV3) validateRefreshExpiresIn(formats strfmt.Registry) error {
+
+	if err := validate.Required("refresh_expires_in", "body", m.RefreshExpiresIn); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *OauthmodelTokenResponseV3) validateRefreshToken(formats strfmt.Registry) error {
 
 	if err := validate.Required("refresh_token", "body", m.RefreshToken); err != nil {
@@ -259,6 +292,15 @@ func (m *OauthmodelTokenResponseV3) validateRoles(formats strfmt.Registry) error
 	return nil
 }
 
+func (m *OauthmodelTokenResponseV3) validateScope(formats strfmt.Registry) error {
+
+	if err := validate.Required("scope", "body", m.Scope); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *OauthmodelTokenResponseV3) validateTokenType(formats strfmt.Registry) error {
 
 	if err := validate.Required("token_type", "body", m.TokenType); err != nil {
@@ -271,6 +313,15 @@ func (m *OauthmodelTokenResponseV3) validateTokenType(formats strfmt.Registry) e
 func (m *OauthmodelTokenResponseV3) validateUserID(formats strfmt.Registry) error {
 
 	if err := validate.Required("user_id", "body", m.UserID); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *OauthmodelTokenResponseV3) validateXuid(formats strfmt.Registry) error {
+
+	if err := validate.Required("xuid", "body", m.Xuid); err != nil {
 		return err
 	}
 

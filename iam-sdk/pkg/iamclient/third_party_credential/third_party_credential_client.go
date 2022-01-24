@@ -33,6 +33,8 @@ type ClientService interface {
 	AddThirdPartyLoginPlatformCredentialV3Short(params *AddThirdPartyLoginPlatformCredentialV3Params, authInfo runtime.ClientAuthInfoWriter) (*AddThirdPartyLoginPlatformCredentialV3Created, error)
 	DeleteThirdPartyLoginPlatformCredentialV3(params *DeleteThirdPartyLoginPlatformCredentialV3Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteThirdPartyLoginPlatformCredentialV3NoContent, *DeleteThirdPartyLoginPlatformCredentialV3Unauthorized, *DeleteThirdPartyLoginPlatformCredentialV3Forbidden, *DeleteThirdPartyLoginPlatformCredentialV3NotFound, *DeleteThirdPartyLoginPlatformCredentialV3InternalServerError, error)
 	DeleteThirdPartyLoginPlatformCredentialV3Short(params *DeleteThirdPartyLoginPlatformCredentialV3Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteThirdPartyLoginPlatformCredentialV3NoContent, error)
+	DeleteThirdPartyLoginPlatformDomainV3(params *DeleteThirdPartyLoginPlatformDomainV3Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteThirdPartyLoginPlatformDomainV3NoContent, *DeleteThirdPartyLoginPlatformDomainV3BadRequest, *DeleteThirdPartyLoginPlatformDomainV3Unauthorized, *DeleteThirdPartyLoginPlatformDomainV3Forbidden, *DeleteThirdPartyLoginPlatformDomainV3NotFound, *DeleteThirdPartyLoginPlatformDomainV3InternalServerError, error)
+	DeleteThirdPartyLoginPlatformDomainV3Short(params *DeleteThirdPartyLoginPlatformDomainV3Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteThirdPartyLoginPlatformDomainV3NoContent, error)
 	RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3(params *RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Params, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3OK, *RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Unauthorized, *RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Forbidden, *RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3NotFound, *RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3InternalServerError, error)
 	RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Short(params *RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Params, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3OK, error)
 	RetrieveAllActiveThirdPartyLoginPlatformCredentialV3(params *RetrieveAllActiveThirdPartyLoginPlatformCredentialV3Params, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAllActiveThirdPartyLoginPlatformCredentialV3OK, *RetrieveAllActiveThirdPartyLoginPlatformCredentialV3Unauthorized, *RetrieveAllActiveThirdPartyLoginPlatformCredentialV3Forbidden, *RetrieveAllActiveThirdPartyLoginPlatformCredentialV3NotFound, *RetrieveAllActiveThirdPartyLoginPlatformCredentialV3InternalServerError, error)
@@ -43,6 +45,8 @@ type ClientService interface {
 	RetrieveThirdPartyLoginPlatformCredentialV3Short(params *RetrieveThirdPartyLoginPlatformCredentialV3Params, authInfo runtime.ClientAuthInfoWriter) (*RetrieveThirdPartyLoginPlatformCredentialV3OK, error)
 	UpdateThirdPartyLoginPlatformCredentialV3(params *UpdateThirdPartyLoginPlatformCredentialV3Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateThirdPartyLoginPlatformCredentialV3OK, *UpdateThirdPartyLoginPlatformCredentialV3BadRequest, *UpdateThirdPartyLoginPlatformCredentialV3Unauthorized, *UpdateThirdPartyLoginPlatformCredentialV3Forbidden, *UpdateThirdPartyLoginPlatformCredentialV3NotFound, *UpdateThirdPartyLoginPlatformCredentialV3InternalServerError, error)
 	UpdateThirdPartyLoginPlatformCredentialV3Short(params *UpdateThirdPartyLoginPlatformCredentialV3Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateThirdPartyLoginPlatformCredentialV3OK, error)
+	UpdateThirdPartyLoginPlatformDomainV3(params *UpdateThirdPartyLoginPlatformDomainV3Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateThirdPartyLoginPlatformDomainV3OK, *UpdateThirdPartyLoginPlatformDomainV3BadRequest, *UpdateThirdPartyLoginPlatformDomainV3Unauthorized, *UpdateThirdPartyLoginPlatformDomainV3Forbidden, *UpdateThirdPartyLoginPlatformDomainV3NotFound, *UpdateThirdPartyLoginPlatformDomainV3InternalServerError, error)
+	UpdateThirdPartyLoginPlatformDomainV3Short(params *UpdateThirdPartyLoginPlatformDomainV3Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateThirdPartyLoginPlatformDomainV3OK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -241,6 +245,112 @@ func (a *Client) DeleteThirdPartyLoginPlatformCredentialV3Short(params *DeleteTh
 	case *DeleteThirdPartyLoginPlatformCredentialV3NotFound:
 		return nil, v
 	case *DeleteThirdPartyLoginPlatformCredentialV3InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  DeleteThirdPartyLoginPlatformDomainV3 unregisters third party platform credential s domain
+
+  &lt;p&gt;This is the API to unregister 3rd Platform domain.&lt;/p&gt;
+					 &lt;p&gt;It needs ADMIN:NAMESPACE:{namespace}:CLIENTDOMAIN [DELETE] resource.&lt;/p&gt;
+
+*/
+func (a *Client) DeleteThirdPartyLoginPlatformDomainV3(params *DeleteThirdPartyLoginPlatformDomainV3Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteThirdPartyLoginPlatformDomainV3NoContent, *DeleteThirdPartyLoginPlatformDomainV3BadRequest, *DeleteThirdPartyLoginPlatformDomainV3Unauthorized, *DeleteThirdPartyLoginPlatformDomainV3Forbidden, *DeleteThirdPartyLoginPlatformDomainV3NotFound, *DeleteThirdPartyLoginPlatformDomainV3InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteThirdPartyLoginPlatformDomainV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "DeleteThirdPartyLoginPlatformDomainV3",
+		Method:             "DELETE",
+		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/clients/domain",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteThirdPartyLoginPlatformDomainV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeleteThirdPartyLoginPlatformDomainV3NoContent:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *DeleteThirdPartyLoginPlatformDomainV3BadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *DeleteThirdPartyLoginPlatformDomainV3Unauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *DeleteThirdPartyLoginPlatformDomainV3Forbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *DeleteThirdPartyLoginPlatformDomainV3NotFound:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *DeleteThirdPartyLoginPlatformDomainV3InternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) DeleteThirdPartyLoginPlatformDomainV3Short(params *DeleteThirdPartyLoginPlatformDomainV3Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteThirdPartyLoginPlatformDomainV3NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteThirdPartyLoginPlatformDomainV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "DeleteThirdPartyLoginPlatformDomainV3",
+		Method:             "DELETE",
+		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/clients/domain",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteThirdPartyLoginPlatformDomainV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeleteThirdPartyLoginPlatformDomainV3NoContent:
+		return v, nil
+	case *DeleteThirdPartyLoginPlatformDomainV3BadRequest:
+		return nil, v
+	case *DeleteThirdPartyLoginPlatformDomainV3Unauthorized:
+		return nil, v
+	case *DeleteThirdPartyLoginPlatformDomainV3Forbidden:
+		return nil, v
+	case *DeleteThirdPartyLoginPlatformDomainV3NotFound:
+		return nil, v
+	case *DeleteThirdPartyLoginPlatformDomainV3InternalServerError:
 		return nil, v
 
 	default:
@@ -744,6 +854,112 @@ func (a *Client) UpdateThirdPartyLoginPlatformCredentialV3Short(params *UpdateTh
 	case *UpdateThirdPartyLoginPlatformCredentialV3NotFound:
 		return nil, v
 	case *UpdateThirdPartyLoginPlatformCredentialV3InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  UpdateThirdPartyLoginPlatformDomainV3 sets third party platform credential s domain
+
+  &lt;p&gt;This is the API to set 3rd Platform domain.&lt;/p&gt;
+					 &lt;p&gt;It needs ADMIN:NAMESPACE:{namespace}:CLIENTDOMAIN [UPDATE] resource.&lt;/p&gt;
+
+*/
+func (a *Client) UpdateThirdPartyLoginPlatformDomainV3(params *UpdateThirdPartyLoginPlatformDomainV3Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateThirdPartyLoginPlatformDomainV3OK, *UpdateThirdPartyLoginPlatformDomainV3BadRequest, *UpdateThirdPartyLoginPlatformDomainV3Unauthorized, *UpdateThirdPartyLoginPlatformDomainV3Forbidden, *UpdateThirdPartyLoginPlatformDomainV3NotFound, *UpdateThirdPartyLoginPlatformDomainV3InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateThirdPartyLoginPlatformDomainV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "UpdateThirdPartyLoginPlatformDomainV3",
+		Method:             "PUT",
+		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/clients/domain",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateThirdPartyLoginPlatformDomainV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateThirdPartyLoginPlatformDomainV3OK:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *UpdateThirdPartyLoginPlatformDomainV3BadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *UpdateThirdPartyLoginPlatformDomainV3Unauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *UpdateThirdPartyLoginPlatformDomainV3Forbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *UpdateThirdPartyLoginPlatformDomainV3NotFound:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *UpdateThirdPartyLoginPlatformDomainV3InternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) UpdateThirdPartyLoginPlatformDomainV3Short(params *UpdateThirdPartyLoginPlatformDomainV3Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateThirdPartyLoginPlatformDomainV3OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateThirdPartyLoginPlatformDomainV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "UpdateThirdPartyLoginPlatformDomainV3",
+		Method:             "PUT",
+		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/clients/domain",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateThirdPartyLoginPlatformDomainV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateThirdPartyLoginPlatformDomainV3OK:
+		return v, nil
+	case *UpdateThirdPartyLoginPlatformDomainV3BadRequest:
+		return nil, v
+	case *UpdateThirdPartyLoginPlatformDomainV3Unauthorized:
+		return nil, v
+	case *UpdateThirdPartyLoginPlatformDomainV3Forbidden:
+		return nil, v
+	case *UpdateThirdPartyLoginPlatformDomainV3NotFound:
+		return nil, v
+	case *UpdateThirdPartyLoginPlatformDomainV3InternalServerError:
 		return nil, v
 
 	default:

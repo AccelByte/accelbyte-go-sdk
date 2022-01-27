@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminVerifyUserWithoutVerificationCodeV3Cmd represents the adminVerifyUserWithoutVerificationCodeV3 command
-var adminVerifyUserWithoutVerificationCodeV3Cmd = &cobra.Command{
-	Use:   "adminVerifyUserWithoutVerificationCodeV3",
+// AdminVerifyUserWithoutVerificationCodeV3Cmd represents the AdminVerifyUserWithoutVerificationCodeV3 command
+var AdminVerifyUserWithoutVerificationCodeV3Cmd = &cobra.Command{
+	Use:   "AdminVerifyUserWithoutVerificationCodeV3",
 	Short: "Admin verify user without verification code V3",
 	Long:  `Admin verify user without verification code V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,9 +40,8 @@ var adminVerifyUserWithoutVerificationCodeV3Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminVerifyUserWithoutVerificationCodeV3Cmd)
-	adminVerifyUserWithoutVerificationCodeV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = adminVerifyUserWithoutVerificationCodeV3Cmd.MarkFlagRequired("namespace")
-	adminVerifyUserWithoutVerificationCodeV3Cmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = adminVerifyUserWithoutVerificationCodeV3Cmd.MarkFlagRequired("userId")
+	AdminVerifyUserWithoutVerificationCodeV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AdminVerifyUserWithoutVerificationCodeV3Cmd.MarkFlagRequired("namespace")
+	AdminVerifyUserWithoutVerificationCodeV3Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = AdminVerifyUserWithoutVerificationCodeV3Cmd.MarkFlagRequired("userId")
 }

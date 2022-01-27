@@ -9,7 +9,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/payment_station"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
@@ -17,9 +16,9 @@ import (
 	"os"
 )
 
-// publicGetQRCodeCmd represents the publicGetQRCode command
-var publicGetQRCodeCmd = &cobra.Command{
-	Use:   "publicGetQRCode",
+// PublicGetQRCodeCmd represents the PublicGetQRCode command
+var PublicGetQRCodeCmd = &cobra.Command{
+	Use:   "PublicGetQRCode",
 	Short: "Public get QR code",
 	Long:  `Public get QR code`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -56,9 +55,8 @@ var publicGetQRCodeCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(publicGetQRCodeCmd)
-	publicGetQRCodeCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = publicGetQRCodeCmd.MarkFlagRequired("namespace")
-	publicGetQRCodeCmd.Flags().StringP("code", "ce", " ", "Code")
-	_ = publicGetQRCodeCmd.MarkFlagRequired("code")
+	PublicGetQRCodeCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PublicGetQRCodeCmd.MarkFlagRequired("namespace")
+	PublicGetQRCodeCmd.Flags().StringP("code", "ce", " ", "Code")
+	_ = PublicGetQRCodeCmd.MarkFlagRequired("code")
 }

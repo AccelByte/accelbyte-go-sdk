@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/achievement-sdk/pkg/achievementclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/achievement"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminUpdateAchievementListOrderCmd represents the adminUpdateAchievementListOrder command
-var adminUpdateAchievementListOrderCmd = &cobra.Command{
-	Use:   "adminUpdateAchievementListOrder",
+// AdminUpdateAchievementListOrderCmd represents the AdminUpdateAchievementListOrder command
+var AdminUpdateAchievementListOrderCmd = &cobra.Command{
+	Use:   "AdminUpdateAchievementListOrder",
 	Short: "Admin update achievement list order",
 	Long:  `Admin update achievement list order`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,11 +49,10 @@ var adminUpdateAchievementListOrderCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminUpdateAchievementListOrderCmd)
-	adminUpdateAchievementListOrderCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = adminUpdateAchievementListOrderCmd.MarkFlagRequired("body")
-	adminUpdateAchievementListOrderCmd.Flags().StringP("achievementCode", "ae", " ", "Achievement code")
-	_ = adminUpdateAchievementListOrderCmd.MarkFlagRequired("achievementCode")
-	adminUpdateAchievementListOrderCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = adminUpdateAchievementListOrderCmd.MarkFlagRequired("namespace")
+	AdminUpdateAchievementListOrderCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = AdminUpdateAchievementListOrderCmd.MarkFlagRequired("body")
+	AdminUpdateAchievementListOrderCmd.Flags().StringP("achievementCode", "ae", " ", "Achievement code")
+	_ = AdminUpdateAchievementListOrderCmd.MarkFlagRequired("achievementCode")
+	AdminUpdateAchievementListOrderCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AdminUpdateAchievementListOrderCmd.MarkFlagRequired("namespace")
 }

@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/group-sdk/pkg/groupclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/group"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// updatePatchSingleGroupPublicV1Cmd represents the updatePatchSingleGroupPublicV1 command
-var updatePatchSingleGroupPublicV1Cmd = &cobra.Command{
-	Use:   "updatePatchSingleGroupPublicV1",
+// UpdatePatchSingleGroupPublicV1Cmd represents the UpdatePatchSingleGroupPublicV1 command
+var UpdatePatchSingleGroupPublicV1Cmd = &cobra.Command{
+	Use:   "UpdatePatchSingleGroupPublicV1",
 	Short: "Update patch single group public V1",
 	Long:  `Update patch single group public V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -51,11 +50,10 @@ var updatePatchSingleGroupPublicV1Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(updatePatchSingleGroupPublicV1Cmd)
-	updatePatchSingleGroupPublicV1Cmd.Flags().StringP("body", "by", " ", "Body")
-	_ = updatePatchSingleGroupPublicV1Cmd.MarkFlagRequired("body")
-	updatePatchSingleGroupPublicV1Cmd.Flags().StringP("groupId", "gd", " ", "Group id")
-	_ = updatePatchSingleGroupPublicV1Cmd.MarkFlagRequired("groupId")
-	updatePatchSingleGroupPublicV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = updatePatchSingleGroupPublicV1Cmd.MarkFlagRequired("namespace")
+	UpdatePatchSingleGroupPublicV1Cmd.Flags().StringP("body", "by", " ", "Body")
+	_ = UpdatePatchSingleGroupPublicV1Cmd.MarkFlagRequired("body")
+	UpdatePatchSingleGroupPublicV1Cmd.Flags().StringP("groupId", "gd", " ", "Group id")
+	_ = UpdatePatchSingleGroupPublicV1Cmd.MarkFlagRequired("groupId")
+	UpdatePatchSingleGroupPublicV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = UpdatePatchSingleGroupPublicV1Cmd.MarkFlagRequired("namespace")
 }

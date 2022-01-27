@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/third_party"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/lobby"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminGetThirdPartyConfigCmd represents the adminGetThirdPartyConfig command
-var adminGetThirdPartyConfigCmd = &cobra.Command{
-	Use:   "adminGetThirdPartyConfig",
+// AdminGetThirdPartyConfigCmd represents the AdminGetThirdPartyConfig command
+var AdminGetThirdPartyConfigCmd = &cobra.Command{
+	Use:   "AdminGetThirdPartyConfig",
 	Short: "Admin get third party config",
 	Long:  `Admin get third party config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,7 +39,6 @@ var adminGetThirdPartyConfigCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminGetThirdPartyConfigCmd)
-	adminGetThirdPartyConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = adminGetThirdPartyConfigCmd.MarkFlagRequired("namespace")
+	AdminGetThirdPartyConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AdminGetThirdPartyConfigCmd.MarkFlagRequired("namespace")
 }

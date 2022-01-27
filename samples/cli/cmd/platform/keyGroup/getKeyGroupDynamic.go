@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/key_group"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getKeyGroupDynamicCmd represents the getKeyGroupDynamic command
-var getKeyGroupDynamicCmd = &cobra.Command{
-	Use:   "getKeyGroupDynamic",
+// GetKeyGroupDynamicCmd represents the GetKeyGroupDynamic command
+var GetKeyGroupDynamicCmd = &cobra.Command{
+	Use:   "GetKeyGroupDynamic",
 	Short: "Get key group dynamic",
 	Long:  `Get key group dynamic`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,9 +41,8 @@ var getKeyGroupDynamicCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getKeyGroupDynamicCmd)
-	getKeyGroupDynamicCmd.Flags().StringP("keyGroupId", "kd", " ", "Key group id")
-	_ = getKeyGroupDynamicCmd.MarkFlagRequired("keyGroupId")
-	getKeyGroupDynamicCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getKeyGroupDynamicCmd.MarkFlagRequired("namespace")
+	GetKeyGroupDynamicCmd.Flags().StringP("keyGroupId", "kd", " ", "Key group id")
+	_ = GetKeyGroupDynamicCmd.MarkFlagRequired("keyGroupId")
+	GetKeyGroupDynamicCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetKeyGroupDynamicCmd.MarkFlagRequired("namespace")
 }

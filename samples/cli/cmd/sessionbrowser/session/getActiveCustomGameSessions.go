@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/sessionbrowser"
 	"github.com/AccelByte/accelbyte-go-sdk/sessionbrowser-sdk/pkg/sessionbrowserclient/session"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getActiveCustomGameSessionsCmd represents the getActiveCustomGameSessions command
-var getActiveCustomGameSessionsCmd = &cobra.Command{
-	Use:   "getActiveCustomGameSessions",
+// GetActiveCustomGameSessionsCmd represents the GetActiveCustomGameSessions command
+var GetActiveCustomGameSessionsCmd = &cobra.Command{
+	Use:   "GetActiveCustomGameSessions",
 	Short: "Get active custom game sessions",
 	Long:  `Get active custom game sessions`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -44,9 +43,8 @@ var getActiveCustomGameSessionsCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getActiveCustomGameSessionsCmd)
-	getActiveCustomGameSessionsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getActiveCustomGameSessionsCmd.MarkFlagRequired("namespace")
-	getActiveCustomGameSessionsCmd.Flags().StringP("server_region", "sn", " ", "Server region")
-	getActiveCustomGameSessionsCmd.Flags().StringP("session_id", "sd", " ", "Session id")
+	GetActiveCustomGameSessionsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetActiveCustomGameSessionsCmd.MarkFlagRequired("namespace")
+	GetActiveCustomGameSessionsCmd.Flags().StringP("server_region", "sn", " ", "Server region")
+	GetActiveCustomGameSessionsCmd.Flags().StringP("session_id", "sd", " ", "Session id")
 }

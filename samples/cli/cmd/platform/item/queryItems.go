@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/item"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// queryItemsCmd represents the queryItems command
-var queryItemsCmd = &cobra.Command{
-	Use:   "queryItems",
+// QueryItemsCmd represents the QueryItems command
+var QueryItemsCmd = &cobra.Command{
+	Use:   "QueryItems",
 	Short: "Query items",
 	Long:  `Query items`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -68,21 +67,20 @@ var queryItemsCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(queryItemsCmd)
-	queryItemsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = queryItemsCmd.MarkFlagRequired("namespace")
-	queryItemsCmd.Flags().BoolP("activeOnly", "ay", false, "Active only")
-	queryItemsCmd.Flags().StringP("appType", "ae", " ", "App type")
-	queryItemsCmd.Flags().StringP("availableDate", "ae", " ", "Available date")
-	queryItemsCmd.Flags().StringP("baseAppId", "bd", " ", "Base app id")
-	queryItemsCmd.Flags().StringP("categoryPath", "ch", " ", "Category path")
-	queryItemsCmd.Flags().StringP("features", "fs", " ", "Features")
-	queryItemsCmd.Flags().StringP("itemType", "ie", " ", "Item type")
-	queryItemsCmd.Flags().Int32P("limit", "lt", 20, "Limit")
-	queryItemsCmd.Flags().Int32P("offset", "ot", 0, "Offset")
-	queryItemsCmd.Flags().StringP("region", "rn", " ", "Region")
-	queryItemsCmd.Flags().StringP("sortBy", "sy", " ", "Sort by")
-	queryItemsCmd.Flags().StringP("storeId", "sd", " ", "Store id")
-	queryItemsCmd.Flags().StringP("tags", "ts", " ", "Tags")
-	queryItemsCmd.Flags().StringP("targetNamespace", "te", " ", "Target namespace")
+	QueryItemsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = QueryItemsCmd.MarkFlagRequired("namespace")
+	QueryItemsCmd.Flags().BoolP("activeOnly", "ay", false, "Active only")
+	QueryItemsCmd.Flags().StringP("appType", "ae", " ", "App type")
+	QueryItemsCmd.Flags().StringP("availableDate", "ae", " ", "Available date")
+	QueryItemsCmd.Flags().StringP("baseAppId", "bd", " ", "Base app id")
+	QueryItemsCmd.Flags().StringP("categoryPath", "ch", " ", "Category path")
+	QueryItemsCmd.Flags().StringP("features", "fs", " ", "Features")
+	QueryItemsCmd.Flags().StringP("itemType", "ie", " ", "Item type")
+	QueryItemsCmd.Flags().Int32P("limit", "lt", 20, "Limit")
+	QueryItemsCmd.Flags().Int32P("offset", "ot", 0, "Offset")
+	QueryItemsCmd.Flags().StringP("region", "rn", " ", "Region")
+	QueryItemsCmd.Flags().StringP("sortBy", "sy", " ", "Sort by")
+	QueryItemsCmd.Flags().StringP("storeId", "sd", " ", "Store id")
+	QueryItemsCmd.Flags().StringP("tags", "ts", " ", "Tags")
+	QueryItemsCmd.Flags().StringP("targetNamespace", "te", " ", "Target namespace")
 }

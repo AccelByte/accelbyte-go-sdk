@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// updatePlaystationIAPConfigCmd represents the updatePlaystationIAPConfig command
-var updatePlaystationIAPConfigCmd = &cobra.Command{
-	Use:   "updatePlaystationIAPConfig",
+// UpdatePlaystationIAPConfigCmd represents the UpdatePlaystationIAPConfig command
+var UpdatePlaystationIAPConfigCmd = &cobra.Command{
+	Use:   "UpdatePlaystationIAPConfig",
 	Short: "Update playstation IAP config",
 	Long:  `Update playstation IAP config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,8 +48,7 @@ var updatePlaystationIAPConfigCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(updatePlaystationIAPConfigCmd)
-	updatePlaystationIAPConfigCmd.Flags().StringP("body", "by", " ", "Body")
-	updatePlaystationIAPConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = updatePlaystationIAPConfigCmd.MarkFlagRequired("namespace")
+	UpdatePlaystationIAPConfigCmd.Flags().StringP("body", "by", " ", "Body")
+	UpdatePlaystationIAPConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = UpdatePlaystationIAPConfigCmd.MarkFlagRequired("namespace")
 }

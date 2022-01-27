@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// publicValidateUserByUserIDAndPasswordV3Cmd represents the publicValidateUserByUserIDAndPasswordV3 command
-var publicValidateUserByUserIDAndPasswordV3Cmd = &cobra.Command{
-	Use:   "publicValidateUserByUserIDAndPasswordV3",
+// PublicValidateUserByUserIDAndPasswordV3Cmd represents the PublicValidateUserByUserIDAndPasswordV3 command
+var PublicValidateUserByUserIDAndPasswordV3Cmd = &cobra.Command{
+	Use:   "PublicValidateUserByUserIDAndPasswordV3",
 	Short: "Public validate user by user ID and password V3",
 	Long:  `Public validate user by user ID and password V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,11 +42,10 @@ var publicValidateUserByUserIDAndPasswordV3Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(publicValidateUserByUserIDAndPasswordV3Cmd)
-	publicValidateUserByUserIDAndPasswordV3Cmd.Flags().StringP("password", "pd", " ", "Password")
-	_ = publicValidateUserByUserIDAndPasswordV3Cmd.MarkFlagRequired("password")
-	publicValidateUserByUserIDAndPasswordV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = publicValidateUserByUserIDAndPasswordV3Cmd.MarkFlagRequired("namespace")
-	publicValidateUserByUserIDAndPasswordV3Cmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = publicValidateUserByUserIDAndPasswordV3Cmd.MarkFlagRequired("userId")
+	PublicValidateUserByUserIDAndPasswordV3Cmd.Flags().StringP("password", "pd", " ", "Password")
+	_ = PublicValidateUserByUserIDAndPasswordV3Cmd.MarkFlagRequired("password")
+	PublicValidateUserByUserIDAndPasswordV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PublicValidateUserByUserIDAndPasswordV3Cmd.MarkFlagRequired("namespace")
+	PublicValidateUserByUserIDAndPasswordV3Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = PublicValidateUserByUserIDAndPasswordV3Cmd.MarkFlagRequired("userId")
 }

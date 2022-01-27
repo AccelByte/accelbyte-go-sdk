@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth2_0"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminRetrieveUserThirdPartyPlatformTokenV3Cmd represents the adminRetrieveUserThirdPartyPlatformTokenV3 command
-var adminRetrieveUserThirdPartyPlatformTokenV3Cmd = &cobra.Command{
-	Use:   "adminRetrieveUserThirdPartyPlatformTokenV3",
+// AdminRetrieveUserThirdPartyPlatformTokenV3Cmd represents the AdminRetrieveUserThirdPartyPlatformTokenV3 command
+var AdminRetrieveUserThirdPartyPlatformTokenV3Cmd = &cobra.Command{
+	Use:   "AdminRetrieveUserThirdPartyPlatformTokenV3",
 	Short: "Admin retrieve user third party platform token V3",
 	Long:  `Admin retrieve user third party platform token V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -44,11 +43,10 @@ var adminRetrieveUserThirdPartyPlatformTokenV3Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminRetrieveUserThirdPartyPlatformTokenV3Cmd)
-	adminRetrieveUserThirdPartyPlatformTokenV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = adminRetrieveUserThirdPartyPlatformTokenV3Cmd.MarkFlagRequired("namespace")
-	adminRetrieveUserThirdPartyPlatformTokenV3Cmd.Flags().StringP("platformId", "pd", " ", "Platform id")
-	_ = adminRetrieveUserThirdPartyPlatformTokenV3Cmd.MarkFlagRequired("platformId")
-	adminRetrieveUserThirdPartyPlatformTokenV3Cmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = adminRetrieveUserThirdPartyPlatformTokenV3Cmd.MarkFlagRequired("userId")
+	AdminRetrieveUserThirdPartyPlatformTokenV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AdminRetrieveUserThirdPartyPlatformTokenV3Cmd.MarkFlagRequired("namespace")
+	AdminRetrieveUserThirdPartyPlatformTokenV3Cmd.Flags().StringP("platformId", "pd", " ", "Platform id")
+	_ = AdminRetrieveUserThirdPartyPlatformTokenV3Cmd.MarkFlagRequired("platformId")
+	AdminRetrieveUserThirdPartyPlatformTokenV3Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = AdminRetrieveUserThirdPartyPlatformTokenV3Cmd.MarkFlagRequired("userId")
 }

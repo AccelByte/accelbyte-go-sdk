@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/entitlement"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getUserEntitlementOwnershipBySkuCmd represents the getUserEntitlementOwnershipBySku command
-var getUserEntitlementOwnershipBySkuCmd = &cobra.Command{
-	Use:   "getUserEntitlementOwnershipBySku",
+// GetUserEntitlementOwnershipBySkuCmd represents the GetUserEntitlementOwnershipBySku command
+var GetUserEntitlementOwnershipBySkuCmd = &cobra.Command{
+	Use:   "GetUserEntitlementOwnershipBySku",
 	Short: "Get user entitlement ownership by sku",
 	Long:  `Get user entitlement ownership by sku`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -46,12 +45,11 @@ var getUserEntitlementOwnershipBySkuCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getUserEntitlementOwnershipBySkuCmd)
-	getUserEntitlementOwnershipBySkuCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getUserEntitlementOwnershipBySkuCmd.MarkFlagRequired("namespace")
-	getUserEntitlementOwnershipBySkuCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = getUserEntitlementOwnershipBySkuCmd.MarkFlagRequired("userId")
-	getUserEntitlementOwnershipBySkuCmd.Flags().StringP("entitlementClazz", "ez", " ", "Entitlement clazz")
-	getUserEntitlementOwnershipBySkuCmd.Flags().StringP("sku", "su", " ", "Sku")
-	_ = getUserEntitlementOwnershipBySkuCmd.MarkFlagRequired("sku")
+	GetUserEntitlementOwnershipBySkuCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetUserEntitlementOwnershipBySkuCmd.MarkFlagRequired("namespace")
+	GetUserEntitlementOwnershipBySkuCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = GetUserEntitlementOwnershipBySkuCmd.MarkFlagRequired("userId")
+	GetUserEntitlementOwnershipBySkuCmd.Flags().StringP("entitlementClazz", "ez", " ", "Entitlement clazz")
+	GetUserEntitlementOwnershipBySkuCmd.Flags().StringP("sku", "su", " ", "Sku")
+	_ = GetUserEntitlementOwnershipBySkuCmd.MarkFlagRequired("sku")
 }

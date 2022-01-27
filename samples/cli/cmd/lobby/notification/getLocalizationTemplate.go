@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/notification"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/lobby"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getLocalizationTemplateCmd represents the getLocalizationTemplate command
-var getLocalizationTemplateCmd = &cobra.Command{
-	Use:   "getLocalizationTemplate",
+// GetLocalizationTemplateCmd represents the GetLocalizationTemplate command
+var GetLocalizationTemplateCmd = &cobra.Command{
+	Use:   "GetLocalizationTemplate",
 	Short: "Get localization template",
 	Long:  `Get localization template`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -44,11 +43,10 @@ var getLocalizationTemplateCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getLocalizationTemplateCmd)
-	getLocalizationTemplateCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getLocalizationTemplateCmd.MarkFlagRequired("namespace")
-	getLocalizationTemplateCmd.Flags().StringP("templateLanguage", "te", " ", "Template language")
-	_ = getLocalizationTemplateCmd.MarkFlagRequired("templateLanguage")
-	getLocalizationTemplateCmd.Flags().StringP("templateSlug", "tg", " ", "Template slug")
-	_ = getLocalizationTemplateCmd.MarkFlagRequired("templateSlug")
+	GetLocalizationTemplateCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetLocalizationTemplateCmd.MarkFlagRequired("namespace")
+	GetLocalizationTemplateCmd.Flags().StringP("templateLanguage", "te", " ", "Template language")
+	_ = GetLocalizationTemplateCmd.MarkFlagRequired("templateLanguage")
+	GetLocalizationTemplateCmd.Flags().StringP("templateSlug", "tg", " ", "Template slug")
+	_ = GetLocalizationTemplateCmd.MarkFlagRequired("templateSlug")
 }

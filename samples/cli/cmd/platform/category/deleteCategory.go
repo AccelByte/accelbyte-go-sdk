@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/category"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// deleteCategoryCmd represents the deleteCategory command
-var deleteCategoryCmd = &cobra.Command{
-	Use:   "deleteCategory",
+// DeleteCategoryCmd represents the DeleteCategory command
+var DeleteCategoryCmd = &cobra.Command{
+	Use:   "DeleteCategory",
 	Short: "Delete category",
 	Long:  `Delete category`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -44,11 +43,10 @@ var deleteCategoryCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(deleteCategoryCmd)
-	deleteCategoryCmd.Flags().StringP("categoryPath", "ch", " ", "Category path")
-	_ = deleteCategoryCmd.MarkFlagRequired("categoryPath")
-	deleteCategoryCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = deleteCategoryCmd.MarkFlagRequired("namespace")
-	deleteCategoryCmd.Flags().StringP("storeId", "sd", " ", "Store id")
-	_ = deleteCategoryCmd.MarkFlagRequired("storeId")
+	DeleteCategoryCmd.Flags().StringP("categoryPath", "ch", " ", "Category path")
+	_ = DeleteCategoryCmd.MarkFlagRequired("categoryPath")
+	DeleteCategoryCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = DeleteCategoryCmd.MarkFlagRequired("namespace")
+	DeleteCategoryCmd.Flags().StringP("storeId", "sd", " ", "Store id")
+	_ = DeleteCategoryCmd.MarkFlagRequired("storeId")
 }

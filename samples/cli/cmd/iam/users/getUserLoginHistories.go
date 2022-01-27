@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getUserLoginHistoriesCmd represents the getUserLoginHistories command
-var getUserLoginHistoriesCmd = &cobra.Command{
-	Use:   "getUserLoginHistories",
+// GetUserLoginHistoriesCmd represents the GetUserLoginHistories command
+var GetUserLoginHistoriesCmd = &cobra.Command{
+	Use:   "GetUserLoginHistories",
 	Short: "Get user login histories",
 	Long:  `Get user login histories`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,12 +47,11 @@ var getUserLoginHistoriesCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getUserLoginHistoriesCmd)
-	getUserLoginHistoriesCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getUserLoginHistoriesCmd.MarkFlagRequired("namespace")
-	getUserLoginHistoriesCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = getUserLoginHistoriesCmd.MarkFlagRequired("userId")
-	getUserLoginHistoriesCmd.Flags().Float64P("after", "ar", 0, "After")
-	getUserLoginHistoriesCmd.Flags().Float64P("before", "be", 0, "Before")
-	getUserLoginHistoriesCmd.Flags().Float64P("limit", "lt", 20, "Limit")
+	GetUserLoginHistoriesCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetUserLoginHistoriesCmd.MarkFlagRequired("namespace")
+	GetUserLoginHistoriesCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = GetUserLoginHistoriesCmd.MarkFlagRequired("userId")
+	GetUserLoginHistoriesCmd.Flags().Float64P("after", "ar", 0, "After")
+	GetUserLoginHistoriesCmd.Flags().Float64P("before", "be", 0, "Before")
+	GetUserLoginHistoriesCmd.Flags().Float64P("limit", "lt", 20, "Limit")
 }

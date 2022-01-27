@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/entitlement"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getUserEntitlementByItemIdCmd represents the getUserEntitlementByItemId command
-var getUserEntitlementByItemIdCmd = &cobra.Command{
-	Use:   "getUserEntitlementByItemId",
+// GetUserEntitlementByItemIdCmd represents the GetUserEntitlementByItemId command
+var GetUserEntitlementByItemIdCmd = &cobra.Command{
+	Use:   "GetUserEntitlementByItemId",
 	Short: "Get user entitlement by item id",
 	Long:  `Get user entitlement by item id`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,13 +47,12 @@ var getUserEntitlementByItemIdCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getUserEntitlementByItemIdCmd)
-	getUserEntitlementByItemIdCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getUserEntitlementByItemIdCmd.MarkFlagRequired("namespace")
-	getUserEntitlementByItemIdCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = getUserEntitlementByItemIdCmd.MarkFlagRequired("userId")
-	getUserEntitlementByItemIdCmd.Flags().BoolP("activeOnly", "ay", false, "Active only")
-	getUserEntitlementByItemIdCmd.Flags().StringP("entitlementClazz", "ez", " ", "Entitlement clazz")
-	getUserEntitlementByItemIdCmd.Flags().StringP("itemId", "id", " ", "Item id")
-	_ = getUserEntitlementByItemIdCmd.MarkFlagRequired("itemId")
+	GetUserEntitlementByItemIdCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetUserEntitlementByItemIdCmd.MarkFlagRequired("namespace")
+	GetUserEntitlementByItemIdCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = GetUserEntitlementByItemIdCmd.MarkFlagRequired("userId")
+	GetUserEntitlementByItemIdCmd.Flags().BoolP("activeOnly", "ay", false, "Active only")
+	GetUserEntitlementByItemIdCmd.Flags().StringP("entitlementClazz", "ez", " ", "Entitlement clazz")
+	GetUserEntitlementByItemIdCmd.Flags().StringP("itemId", "id", " ", "Item id")
+	_ = GetUserEntitlementByItemIdCmd.MarkFlagRequired("itemId")
 }

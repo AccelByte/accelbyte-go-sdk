@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/roles"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// deleteRoleCmd represents the deleteRole command
-var deleteRoleCmd = &cobra.Command{
-	Use:   "deleteRole",
+// DeleteRoleCmd represents the DeleteRole command
+var DeleteRoleCmd = &cobra.Command{
+	Use:   "DeleteRole",
 	Short: "Delete role",
 	Long:  `Delete role`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,7 +38,6 @@ var deleteRoleCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(deleteRoleCmd)
-	deleteRoleCmd.Flags().StringP("roleId", "rd", " ", "Role id")
-	_ = deleteRoleCmd.MarkFlagRequired("roleId")
+	DeleteRoleCmd.Flags().StringP("roleId", "rd", " ", "Role id")
+	_ = DeleteRoleCmd.MarkFlagRequired("roleId")
 }

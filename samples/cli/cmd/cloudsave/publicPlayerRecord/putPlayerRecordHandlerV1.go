@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/cloudsave"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// putPlayerRecordHandlerV1Cmd represents the putPlayerRecordHandlerV1 command
-var putPlayerRecordHandlerV1Cmd = &cobra.Command{
-	Use:   "putPlayerRecordHandlerV1",
+// PutPlayerRecordHandlerV1Cmd represents the PutPlayerRecordHandlerV1 command
+var PutPlayerRecordHandlerV1Cmd = &cobra.Command{
+	Use:   "PutPlayerRecordHandlerV1",
 	Short: "Put player record handler V1",
 	Long:  `Put player record handler V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -52,13 +51,12 @@ var putPlayerRecordHandlerV1Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(putPlayerRecordHandlerV1Cmd)
-	putPlayerRecordHandlerV1Cmd.Flags().StringP("body", "by", " ", "Body")
-	_ = putPlayerRecordHandlerV1Cmd.MarkFlagRequired("body")
-	putPlayerRecordHandlerV1Cmd.Flags().StringP("key", "ky", " ", "Key")
-	_ = putPlayerRecordHandlerV1Cmd.MarkFlagRequired("key")
-	putPlayerRecordHandlerV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = putPlayerRecordHandlerV1Cmd.MarkFlagRequired("namespace")
-	putPlayerRecordHandlerV1Cmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = putPlayerRecordHandlerV1Cmd.MarkFlagRequired("userId")
+	PutPlayerRecordHandlerV1Cmd.Flags().StringP("body", "by", " ", "Body")
+	_ = PutPlayerRecordHandlerV1Cmd.MarkFlagRequired("body")
+	PutPlayerRecordHandlerV1Cmd.Flags().StringP("key", "ky", " ", "Key")
+	_ = PutPlayerRecordHandlerV1Cmd.MarkFlagRequired("key")
+	PutPlayerRecordHandlerV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PutPlayerRecordHandlerV1Cmd.MarkFlagRequired("namespace")
+	PutPlayerRecordHandlerV1Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = PutPlayerRecordHandlerV1Cmd.MarkFlagRequired("userId")
 }

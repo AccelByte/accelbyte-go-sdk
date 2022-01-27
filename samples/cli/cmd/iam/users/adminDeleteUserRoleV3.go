@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminDeleteUserRoleV3Cmd represents the adminDeleteUserRoleV3 command
-var adminDeleteUserRoleV3Cmd = &cobra.Command{
-	Use:   "adminDeleteUserRoleV3",
+// AdminDeleteUserRoleV3Cmd represents the AdminDeleteUserRoleV3 command
+var AdminDeleteUserRoleV3Cmd = &cobra.Command{
+	Use:   "AdminDeleteUserRoleV3",
 	Short: "Admin delete user role V3",
 	Long:  `Admin delete user role V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,11 +42,10 @@ var adminDeleteUserRoleV3Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminDeleteUserRoleV3Cmd)
-	adminDeleteUserRoleV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = adminDeleteUserRoleV3Cmd.MarkFlagRequired("namespace")
-	adminDeleteUserRoleV3Cmd.Flags().StringP("roleId", "rd", " ", "Role id")
-	_ = adminDeleteUserRoleV3Cmd.MarkFlagRequired("roleId")
-	adminDeleteUserRoleV3Cmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = adminDeleteUserRoleV3Cmd.MarkFlagRequired("userId")
+	AdminDeleteUserRoleV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AdminDeleteUserRoleV3Cmd.MarkFlagRequired("namespace")
+	AdminDeleteUserRoleV3Cmd.Flags().StringP("roleId", "rd", " ", "Role id")
+	_ = AdminDeleteUserRoleV3Cmd.MarkFlagRequired("roleId")
+	AdminDeleteUserRoleV3Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = AdminDeleteUserRoleV3Cmd.MarkFlagRequired("userId")
 }

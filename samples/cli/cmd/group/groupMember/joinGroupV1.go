@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/group-sdk/pkg/groupclient/group_member"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/group"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// joinGroupV1Cmd represents the joinGroupV1 command
-var joinGroupV1Cmd = &cobra.Command{
-	Use:   "joinGroupV1",
+// JoinGroupV1Cmd represents the JoinGroupV1 command
+var JoinGroupV1Cmd = &cobra.Command{
+	Use:   "JoinGroupV1",
 	Short: "Join group V1",
 	Long:  `Join group V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,9 +41,8 @@ var joinGroupV1Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(joinGroupV1Cmd)
-	joinGroupV1Cmd.Flags().StringP("groupId", "gd", " ", "Group id")
-	_ = joinGroupV1Cmd.MarkFlagRequired("groupId")
-	joinGroupV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = joinGroupV1Cmd.MarkFlagRequired("namespace")
+	JoinGroupV1Cmd.Flags().StringP("groupId", "gd", " ", "Group id")
+	_ = JoinGroupV1Cmd.MarkFlagRequired("groupId")
+	JoinGroupV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = JoinGroupV1Cmd.MarkFlagRequired("namespace")
 }

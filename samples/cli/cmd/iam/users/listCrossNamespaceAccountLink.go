@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// listCrossNamespaceAccountLinkCmd represents the listCrossNamespaceAccountLink command
-var listCrossNamespaceAccountLinkCmd = &cobra.Command{
-	Use:   "listCrossNamespaceAccountLink",
+// ListCrossNamespaceAccountLinkCmd represents the ListCrossNamespaceAccountLink command
+var ListCrossNamespaceAccountLinkCmd = &cobra.Command{
+	Use:   "ListCrossNamespaceAccountLink",
 	Short: "List cross namespace account link",
 	Long:  `List cross namespace account link`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -45,12 +44,11 @@ var listCrossNamespaceAccountLinkCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(listCrossNamespaceAccountLinkCmd)
-	listCrossNamespaceAccountLinkCmd.Flags().StringP("platformId", "pd", " ", "Platform id")
-	listCrossNamespaceAccountLinkCmd.Flags().StringP("linkingToken", "ln", " ", "Linking token")
-	_ = listCrossNamespaceAccountLinkCmd.MarkFlagRequired("linkingToken")
-	listCrossNamespaceAccountLinkCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = listCrossNamespaceAccountLinkCmd.MarkFlagRequired("namespace")
-	listCrossNamespaceAccountLinkCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = listCrossNamespaceAccountLinkCmd.MarkFlagRequired("userId")
+	ListCrossNamespaceAccountLinkCmd.Flags().StringP("platformId", "pd", " ", "Platform id")
+	ListCrossNamespaceAccountLinkCmd.Flags().StringP("linkingToken", "ln", " ", "Linking token")
+	_ = ListCrossNamespaceAccountLinkCmd.MarkFlagRequired("linkingToken")
+	ListCrossNamespaceAccountLinkCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = ListCrossNamespaceAccountLinkCmd.MarkFlagRequired("namespace")
+	ListCrossNamespaceAccountLinkCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = ListCrossNamespaceAccountLinkCmd.MarkFlagRequired("userId")
 }

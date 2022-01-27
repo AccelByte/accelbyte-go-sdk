@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminUpdateUserBanV3Cmd represents the adminUpdateUserBanV3 command
-var adminUpdateUserBanV3Cmd = &cobra.Command{
-	Use:   "adminUpdateUserBanV3",
+// AdminUpdateUserBanV3Cmd represents the AdminUpdateUserBanV3 command
+var AdminUpdateUserBanV3Cmd = &cobra.Command{
+	Use:   "AdminUpdateUserBanV3",
 	Short: "Admin update user ban V3",
 	Long:  `Admin update user ban V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -53,13 +52,12 @@ var adminUpdateUserBanV3Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminUpdateUserBanV3Cmd)
-	adminUpdateUserBanV3Cmd.Flags().StringP("body", "by", " ", "Body")
-	_ = adminUpdateUserBanV3Cmd.MarkFlagRequired("body")
-	adminUpdateUserBanV3Cmd.Flags().StringP("banId", "bd", " ", "Ban id")
-	_ = adminUpdateUserBanV3Cmd.MarkFlagRequired("banId")
-	adminUpdateUserBanV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = adminUpdateUserBanV3Cmd.MarkFlagRequired("namespace")
-	adminUpdateUserBanV3Cmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = adminUpdateUserBanV3Cmd.MarkFlagRequired("userId")
+	AdminUpdateUserBanV3Cmd.Flags().StringP("body", "by", " ", "Body")
+	_ = AdminUpdateUserBanV3Cmd.MarkFlagRequired("body")
+	AdminUpdateUserBanV3Cmd.Flags().StringP("banId", "bd", " ", "Ban id")
+	_ = AdminUpdateUserBanV3Cmd.MarkFlagRequired("banId")
+	AdminUpdateUserBanV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AdminUpdateUserBanV3Cmd.MarkFlagRequired("namespace")
+	AdminUpdateUserBanV3Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = AdminUpdateUserBanV3Cmd.MarkFlagRequired("userId")
 }

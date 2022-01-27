@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/group-sdk/pkg/groupclient/group_member"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/group"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getGroupMembersListAdminV1Cmd represents the getGroupMembersListAdminV1 command
-var getGroupMembersListAdminV1Cmd = &cobra.Command{
-	Use:   "getGroupMembersListAdminV1",
+// GetGroupMembersListAdminV1Cmd represents the GetGroupMembersListAdminV1 command
+var GetGroupMembersListAdminV1Cmd = &cobra.Command{
+	Use:   "GetGroupMembersListAdminV1",
 	Short: "Get group members list admin V1",
 	Long:  `Get group members list admin V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,12 +47,11 @@ var getGroupMembersListAdminV1Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getGroupMembersListAdminV1Cmd)
-	getGroupMembersListAdminV1Cmd.Flags().StringP("groupId", "gd", " ", "Group id")
-	_ = getGroupMembersListAdminV1Cmd.MarkFlagRequired("groupId")
-	getGroupMembersListAdminV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getGroupMembersListAdminV1Cmd.MarkFlagRequired("namespace")
-	getGroupMembersListAdminV1Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
-	getGroupMembersListAdminV1Cmd.Flags().Int64P("offset", "ot", 0, "Offset")
-	getGroupMembersListAdminV1Cmd.Flags().StringP("order", "or", " ", "Order")
+	GetGroupMembersListAdminV1Cmd.Flags().StringP("groupId", "gd", " ", "Group id")
+	_ = GetGroupMembersListAdminV1Cmd.MarkFlagRequired("groupId")
+	GetGroupMembersListAdminV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetGroupMembersListAdminV1Cmd.MarkFlagRequired("namespace")
+	GetGroupMembersListAdminV1Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
+	GetGroupMembersListAdminV1Cmd.Flags().Int64P("offset", "ot", 0, "Offset")
+	GetGroupMembersListAdminV1Cmd.Flags().StringP("order", "or", " ", "Order")
 }

@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/item"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getLocaleItemBySkuCmd represents the getLocaleItemBySku command
-var getLocaleItemBySkuCmd = &cobra.Command{
-	Use:   "getLocaleItemBySku",
+// GetLocaleItemBySkuCmd represents the GetLocaleItemBySku command
+var GetLocaleItemBySkuCmd = &cobra.Command{
+	Use:   "GetLocaleItemBySku",
 	Short: "Get locale item by sku",
 	Long:  `Get locale item by sku`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -52,14 +51,13 @@ var getLocaleItemBySkuCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getLocaleItemBySkuCmd)
-	getLocaleItemBySkuCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getLocaleItemBySkuCmd.MarkFlagRequired("namespace")
-	getLocaleItemBySkuCmd.Flags().BoolP("activeOnly", "ay", false, "Active only")
-	getLocaleItemBySkuCmd.Flags().StringP("language", "le", " ", "Language")
-	getLocaleItemBySkuCmd.Flags().BoolP("populateBundle", "pe", false, "Populate bundle")
-	getLocaleItemBySkuCmd.Flags().StringP("region", "rn", " ", "Region")
-	getLocaleItemBySkuCmd.Flags().StringP("storeId", "sd", " ", "Store id")
-	getLocaleItemBySkuCmd.Flags().StringP("sku", "su", " ", "Sku")
-	_ = getLocaleItemBySkuCmd.MarkFlagRequired("sku")
+	GetLocaleItemBySkuCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetLocaleItemBySkuCmd.MarkFlagRequired("namespace")
+	GetLocaleItemBySkuCmd.Flags().BoolP("activeOnly", "ay", false, "Active only")
+	GetLocaleItemBySkuCmd.Flags().StringP("language", "le", " ", "Language")
+	GetLocaleItemBySkuCmd.Flags().BoolP("populateBundle", "pe", false, "Populate bundle")
+	GetLocaleItemBySkuCmd.Flags().StringP("region", "rn", " ", "Region")
+	GetLocaleItemBySkuCmd.Flags().StringP("storeId", "sd", " ", "Store id")
+	GetLocaleItemBySkuCmd.Flags().StringP("sku", "su", " ", "Sku")
+	_ = GetLocaleItemBySkuCmd.MarkFlagRequired("sku")
 }

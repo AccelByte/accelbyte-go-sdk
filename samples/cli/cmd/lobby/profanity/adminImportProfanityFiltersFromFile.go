@@ -9,15 +9,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/profanity"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/lobby"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminImportProfanityFiltersFromFileCmd represents the adminImportProfanityFiltersFromFile command
-var adminImportProfanityFiltersFromFileCmd = &cobra.Command{
-	Use:   "adminImportProfanityFiltersFromFile",
+// AdminImportProfanityFiltersFromFileCmd represents the AdminImportProfanityFiltersFromFile command
+var AdminImportProfanityFiltersFromFileCmd = &cobra.Command{
+	Use:   "AdminImportProfanityFiltersFromFile",
 	Short: "Admin import profanity filters from file",
 	Long:  `Admin import profanity filters from file`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,11 +48,10 @@ var adminImportProfanityFiltersFromFileCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminImportProfanityFiltersFromFileCmd)
-	adminImportProfanityFiltersFromFileCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = adminImportProfanityFiltersFromFileCmd.MarkFlagRequired("body")
-	adminImportProfanityFiltersFromFileCmd.Flags().StringP("list", "lt", " ", "List")
-	_ = adminImportProfanityFiltersFromFileCmd.MarkFlagRequired("list")
-	adminImportProfanityFiltersFromFileCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = adminImportProfanityFiltersFromFileCmd.MarkFlagRequired("namespace")
+	AdminImportProfanityFiltersFromFileCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = AdminImportProfanityFiltersFromFileCmd.MarkFlagRequired("body")
+	AdminImportProfanityFiltersFromFileCmd.Flags().StringP("list", "lt", " ", "List")
+	_ = AdminImportProfanityFiltersFromFileCmd.MarkFlagRequired("list")
+	AdminImportProfanityFiltersFromFileCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AdminImportProfanityFiltersFromFileCmd.MarkFlagRequired("namespace")
 }

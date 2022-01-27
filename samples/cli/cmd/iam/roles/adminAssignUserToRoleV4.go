@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminAssignUserToRoleV4Cmd represents the adminAssignUserToRoleV4 command
-var adminAssignUserToRoleV4Cmd = &cobra.Command{
-	Use:   "adminAssignUserToRoleV4",
+// AdminAssignUserToRoleV4Cmd represents the AdminAssignUserToRoleV4 command
+var AdminAssignUserToRoleV4Cmd = &cobra.Command{
+	Use:   "AdminAssignUserToRoleV4",
 	Short: "Admin assign user to role V4",
 	Long:  `Admin assign user to role V4`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,9 +48,8 @@ var adminAssignUserToRoleV4Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminAssignUserToRoleV4Cmd)
-	adminAssignUserToRoleV4Cmd.Flags().StringP("body", "by", " ", "Body")
-	_ = adminAssignUserToRoleV4Cmd.MarkFlagRequired("body")
-	adminAssignUserToRoleV4Cmd.Flags().StringP("roleId", "rd", " ", "Role id")
-	_ = adminAssignUserToRoleV4Cmd.MarkFlagRequired("roleId")
+	AdminAssignUserToRoleV4Cmd.Flags().StringP("body", "by", " ", "Body")
+	_ = AdminAssignUserToRoleV4Cmd.MarkFlagRequired("body")
+	AdminAssignUserToRoleV4Cmd.Flags().StringP("roleId", "rd", " ", "Role id")
+	_ = AdminAssignUserToRoleV4Cmd.MarkFlagRequired("roleId")
 }

@@ -8,16 +8,15 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/i_a_p"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 	"os"
 )
 
-// updateGoogleP12FileCmd represents the updateGoogleP12File command
-var updateGoogleP12FileCmd = &cobra.Command{
-	Use:   "updateGoogleP12File",
+// UpdateGoogleP12FileCmd represents the UpdateGoogleP12File command
+var UpdateGoogleP12FileCmd = &cobra.Command{
+	Use:   "UpdateGoogleP12File",
 	Short: "Update google P12 file",
 	Long:  `Update google P12 file`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,8 +47,7 @@ var updateGoogleP12FileCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(updateGoogleP12FileCmd)
-	updateGoogleP12FileCmd.Flags().StringP("file", "fe", " ", "File")
-	updateGoogleP12FileCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = updateGoogleP12FileCmd.MarkFlagRequired("namespace")
+	UpdateGoogleP12FileCmd.Flags().StringP("file", "fe", " ", "File")
+	UpdateGoogleP12FileCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = UpdateGoogleP12FileCmd.MarkFlagRequired("namespace")
 }

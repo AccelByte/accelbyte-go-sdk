@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/qosm-sdk/pkg/qosmclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/qosm"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// heartbeatCmd represents the heartbeat command
-var heartbeatCmd = &cobra.Command{
-	Use:   "heartbeat",
+// HeartbeatCmd represents the Heartbeat command
+var HeartbeatCmd = &cobra.Command{
+	Use:   "Heartbeat",
 	Short: "Heartbeat",
 	Long:  `Heartbeat`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -46,7 +45,6 @@ var heartbeatCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(heartbeatCmd)
-	heartbeatCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = heartbeatCmd.MarkFlagRequired("body")
+	HeartbeatCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = HeartbeatCmd.MarkFlagRequired("body")
 }

@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/lobby"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminDebugProfanityFiltersCmd represents the adminDebugProfanityFilters command
-var adminDebugProfanityFiltersCmd = &cobra.Command{
-	Use:   "adminDebugProfanityFilters",
+// AdminDebugProfanityFiltersCmd represents the AdminDebugProfanityFilters command
+var AdminDebugProfanityFiltersCmd = &cobra.Command{
+	Use:   "AdminDebugProfanityFilters",
 	Short: "Admin debug profanity filters",
 	Long:  `Admin debug profanity filters`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,9 +48,8 @@ var adminDebugProfanityFiltersCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminDebugProfanityFiltersCmd)
-	adminDebugProfanityFiltersCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = adminDebugProfanityFiltersCmd.MarkFlagRequired("body")
-	adminDebugProfanityFiltersCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = adminDebugProfanityFiltersCmd.MarkFlagRequired("namespace")
+	AdminDebugProfanityFiltersCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = AdminDebugProfanityFiltersCmd.MarkFlagRequired("body")
+	AdminDebugProfanityFiltersCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AdminDebugProfanityFiltersCmd.MarkFlagRequired("namespace")
 }

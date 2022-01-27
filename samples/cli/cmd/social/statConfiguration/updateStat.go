@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/social"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient/stat_configuration"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclientmodels"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// updateStatCmd represents the updateStat command
-var updateStatCmd = &cobra.Command{
-	Use:   "updateStat",
+// UpdateStatCmd represents the UpdateStat command
+var UpdateStatCmd = &cobra.Command{
+	Use:   "UpdateStat",
 	Short: "Update stat",
 	Long:  `Update stat`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -51,10 +50,9 @@ var updateStatCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(updateStatCmd)
-	updateStatCmd.Flags().StringP("body", "by", " ", "Body")
-	updateStatCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = updateStatCmd.MarkFlagRequired("namespace")
-	updateStatCmd.Flags().StringP("statCode", "se", " ", "Stat code")
-	_ = updateStatCmd.MarkFlagRequired("statCode")
+	UpdateStatCmd.Flags().StringP("body", "by", " ", "Body")
+	UpdateStatCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = UpdateStatCmd.MarkFlagRequired("namespace")
+	UpdateStatCmd.Flags().StringP("statCode", "se", " ", "Stat code")
+	_ = UpdateStatCmd.MarkFlagRequired("statCode")
 }

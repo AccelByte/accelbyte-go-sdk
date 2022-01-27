@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/subscription"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// recurringChargeSubscriptionCmd represents the recurringChargeSubscription command
-var recurringChargeSubscriptionCmd = &cobra.Command{
-	Use:   "recurringChargeSubscription",
+// RecurringChargeSubscriptionCmd represents the RecurringChargeSubscription command
+var RecurringChargeSubscriptionCmd = &cobra.Command{
+	Use:   "RecurringChargeSubscription",
 	Short: "Recurring charge subscription",
 	Long:  `Recurring charge subscription`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,9 +41,8 @@ var recurringChargeSubscriptionCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(recurringChargeSubscriptionCmd)
-	recurringChargeSubscriptionCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = recurringChargeSubscriptionCmd.MarkFlagRequired("namespace")
-	recurringChargeSubscriptionCmd.Flags().StringP("subscriptionId", "sd", " ", "Subscription id")
-	_ = recurringChargeSubscriptionCmd.MarkFlagRequired("subscriptionId")
+	RecurringChargeSubscriptionCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = RecurringChargeSubscriptionCmd.MarkFlagRequired("namespace")
+	RecurringChargeSubscriptionCmd.Flags().StringP("subscriptionId", "sd", " ", "Subscription id")
+	_ = RecurringChargeSubscriptionCmd.MarkFlagRequired("subscriptionId")
 }

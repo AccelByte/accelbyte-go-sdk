@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/notification"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/lobby"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getTopicByNamespaceCmd represents the getTopicByNamespace command
-var getTopicByNamespaceCmd = &cobra.Command{
-	Use:   "getTopicByNamespace",
+// GetTopicByNamespaceCmd represents the GetTopicByNamespace command
+var GetTopicByNamespaceCmd = &cobra.Command{
+	Use:   "GetTopicByNamespace",
 	Short: "Get topic by namespace",
 	Long:  `Get topic by namespace`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -46,10 +45,9 @@ var getTopicByNamespaceCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getTopicByNamespaceCmd)
-	getTopicByNamespaceCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getTopicByNamespaceCmd.MarkFlagRequired("namespace")
-	getTopicByNamespaceCmd.Flags().StringP("after", "ar", "0", "After")
-	getTopicByNamespaceCmd.Flags().StringP("before", "be", "0", "Before")
-	getTopicByNamespaceCmd.Flags().Int64P("limit", "lt", 20, "Limit")
+	GetTopicByNamespaceCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetTopicByNamespaceCmd.MarkFlagRequired("namespace")
+	GetTopicByNamespaceCmd.Flags().StringP("after", "ar", "0", "After")
+	GetTopicByNamespaceCmd.Flags().StringP("before", "be", "0", "Before")
+	GetTopicByNamespaceCmd.Flags().Int64P("limit", "lt", 20, "Limit")
 }

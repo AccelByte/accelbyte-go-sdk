@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminUpdateRolePermissionsV3Cmd represents the adminUpdateRolePermissionsV3 command
-var adminUpdateRolePermissionsV3Cmd = &cobra.Command{
-	Use:   "adminUpdateRolePermissionsV3",
+// AdminUpdateRolePermissionsV3Cmd represents the AdminUpdateRolePermissionsV3 command
+var AdminUpdateRolePermissionsV3Cmd = &cobra.Command{
+	Use:   "AdminUpdateRolePermissionsV3",
 	Short: "Admin update role permissions V3",
 	Long:  `Admin update role permissions V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,9 +47,8 @@ var adminUpdateRolePermissionsV3Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminUpdateRolePermissionsV3Cmd)
-	adminUpdateRolePermissionsV3Cmd.Flags().StringP("body", "by", " ", "Body")
-	_ = adminUpdateRolePermissionsV3Cmd.MarkFlagRequired("body")
-	adminUpdateRolePermissionsV3Cmd.Flags().StringP("roleId", "rd", " ", "Role id")
-	_ = adminUpdateRolePermissionsV3Cmd.MarkFlagRequired("roleId")
+	AdminUpdateRolePermissionsV3Cmd.Flags().StringP("body", "by", " ", "Body")
+	_ = AdminUpdateRolePermissionsV3Cmd.MarkFlagRequired("body")
+	AdminUpdateRolePermissionsV3Cmd.Flags().StringP("roleId", "rd", " ", "Role id")
+	_ = AdminUpdateRolePermissionsV3Cmd.MarkFlagRequired("roleId")
 }

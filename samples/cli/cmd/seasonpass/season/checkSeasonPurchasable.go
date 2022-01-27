@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/seasonpass-sdk/pkg/seasonpassclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/seasonpass"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// checkSeasonPurchasableCmd represents the checkSeasonPurchasable command
-var checkSeasonPurchasableCmd = &cobra.Command{
-	Use:   "checkSeasonPurchasable",
+// CheckSeasonPurchasableCmd represents the CheckSeasonPurchasable command
+var CheckSeasonPurchasableCmd = &cobra.Command{
+	Use:   "CheckSeasonPurchasable",
 	Short: "Check season purchasable",
 	Long:  `Check season purchasable`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,10 +49,9 @@ var checkSeasonPurchasableCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(checkSeasonPurchasableCmd)
-	checkSeasonPurchasableCmd.Flags().StringP("body", "by", " ", "Body")
-	checkSeasonPurchasableCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = checkSeasonPurchasableCmd.MarkFlagRequired("namespace")
-	checkSeasonPurchasableCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = checkSeasonPurchasableCmd.MarkFlagRequired("userId")
+	CheckSeasonPurchasableCmd.Flags().StringP("body", "by", " ", "Body")
+	CheckSeasonPurchasableCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = CheckSeasonPurchasableCmd.MarkFlagRequired("namespace")
+	CheckSeasonPurchasableCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = CheckSeasonPurchasableCmd.MarkFlagRequired("userId")
 }

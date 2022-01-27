@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth2_0_extension"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// logoutCmd represents the logout command
-var logoutCmd = &cobra.Command{
-	Use:   "logout",
+// LogoutCmd represents the Logout command
+var LogoutCmd = &cobra.Command{
+	Use:   "Logout",
 	Short: "Logout",
 	Long:  `Logout`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -33,8 +32,4 @@ var logoutCmd = &cobra.Command{
 		}
 		return nil
 	},
-}
-
-func init() {
-	cmd.RootCmd.AddCommand(logoutCmd)
 }

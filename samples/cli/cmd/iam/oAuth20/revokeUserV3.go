@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth2_0"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// revokeUserV3Cmd represents the revokeUserV3 command
-var revokeUserV3Cmd = &cobra.Command{
-	Use:   "revokeUserV3",
+// RevokeUserV3Cmd represents the RevokeUserV3 command
+var RevokeUserV3Cmd = &cobra.Command{
+	Use:   "RevokeUserV3",
 	Short: "Revoke user V3",
 	Long:  `Revoke user V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,9 +40,8 @@ var revokeUserV3Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(revokeUserV3Cmd)
-	revokeUserV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = revokeUserV3Cmd.MarkFlagRequired("namespace")
-	revokeUserV3Cmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = revokeUserV3Cmd.MarkFlagRequired("userId")
+	RevokeUserV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = RevokeUserV3Cmd.MarkFlagRequired("namespace")
+	RevokeUserV3Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = RevokeUserV3Cmd.MarkFlagRequired("userId")
 }

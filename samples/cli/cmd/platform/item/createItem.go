@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// createItemCmd represents the createItem command
-var createItemCmd = &cobra.Command{
-	Use:   "createItem",
+// CreateItemCmd represents the CreateItem command
+var CreateItemCmd = &cobra.Command{
+	Use:   "CreateItem",
 	Short: "Create item",
 	Long:  `Create item`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -51,10 +50,9 @@ var createItemCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(createItemCmd)
-	createItemCmd.Flags().StringP("body", "by", " ", "Body")
-	createItemCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = createItemCmd.MarkFlagRequired("namespace")
-	createItemCmd.Flags().StringP("storeId", "sd", " ", "Store id")
-	_ = createItemCmd.MarkFlagRequired("storeId")
+	CreateItemCmd.Flags().StringP("body", "by", " ", "Body")
+	CreateItemCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = CreateItemCmd.MarkFlagRequired("namespace")
+	CreateItemCmd.Flags().StringP("storeId", "sd", " ", "Store id")
+	_ = CreateItemCmd.MarkFlagRequired("storeId")
 }

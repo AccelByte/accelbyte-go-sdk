@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminUpdateClientPermissionV3Cmd represents the adminUpdateClientPermissionV3 command
-var adminUpdateClientPermissionV3Cmd = &cobra.Command{
-	Use:   "adminUpdateClientPermissionV3",
+// AdminUpdateClientPermissionV3Cmd represents the AdminUpdateClientPermissionV3 command
+var AdminUpdateClientPermissionV3Cmd = &cobra.Command{
+	Use:   "AdminUpdateClientPermissionV3",
 	Short: "Admin update client permission V3",
 	Long:  `Admin update client permission V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,11 +49,10 @@ var adminUpdateClientPermissionV3Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminUpdateClientPermissionV3Cmd)
-	adminUpdateClientPermissionV3Cmd.Flags().StringP("body", "by", " ", "Body")
-	_ = adminUpdateClientPermissionV3Cmd.MarkFlagRequired("body")
-	adminUpdateClientPermissionV3Cmd.Flags().StringP("clientId", "cd", " ", "Client id")
-	_ = adminUpdateClientPermissionV3Cmd.MarkFlagRequired("clientId")
-	adminUpdateClientPermissionV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = adminUpdateClientPermissionV3Cmd.MarkFlagRequired("namespace")
+	AdminUpdateClientPermissionV3Cmd.Flags().StringP("body", "by", " ", "Body")
+	_ = AdminUpdateClientPermissionV3Cmd.MarkFlagRequired("body")
+	AdminUpdateClientPermissionV3Cmd.Flags().StringP("clientId", "cd", " ", "Client id")
+	_ = AdminUpdateClientPermissionV3Cmd.MarkFlagRequired("clientId")
+	AdminUpdateClientPermissionV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AdminUpdateClientPermissionV3Cmd.MarkFlagRequired("namespace")
 }

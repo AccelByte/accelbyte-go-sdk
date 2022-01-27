@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclient/admin_player_record"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/cloudsave"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminRetrievePlayerRecordsCmd represents the adminRetrievePlayerRecords command
-var adminRetrievePlayerRecordsCmd = &cobra.Command{
-	Use:   "adminRetrievePlayerRecords",
+// AdminRetrievePlayerRecordsCmd represents the AdminRetrievePlayerRecords command
+var AdminRetrievePlayerRecordsCmd = &cobra.Command{
+	Use:   "AdminRetrievePlayerRecords",
 	Short: "Admin retrieve player records",
 	Long:  `Admin retrieve player records`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -46,11 +45,10 @@ var adminRetrievePlayerRecordsCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminRetrievePlayerRecordsCmd)
-	adminRetrievePlayerRecordsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = adminRetrievePlayerRecordsCmd.MarkFlagRequired("namespace")
-	adminRetrievePlayerRecordsCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = adminRetrievePlayerRecordsCmd.MarkFlagRequired("userId")
-	adminRetrievePlayerRecordsCmd.Flags().Int64P("limit", "lt", 20, "Limit")
-	adminRetrievePlayerRecordsCmd.Flags().Int64P("offset", "ot", 0, "Offset")
+	AdminRetrievePlayerRecordsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AdminRetrievePlayerRecordsCmd.MarkFlagRequired("namespace")
+	AdminRetrievePlayerRecordsCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = AdminRetrievePlayerRecordsCmd.MarkFlagRequired("userId")
+	AdminRetrievePlayerRecordsCmd.Flags().Int64P("limit", "lt", 20, "Limit")
+	AdminRetrievePlayerRecordsCmd.Flags().Int64P("offset", "ot", 0, "Offset")
 }

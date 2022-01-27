@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/eventlog-sdk/pkg/eventlogclient/event"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/eventlog"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getEventByEventTypeAndEventIDHandlerCmd represents the getEventByEventTypeAndEventIDHandler command
-var getEventByEventTypeAndEventIDHandlerCmd = &cobra.Command{
-	Use:   "getEventByEventTypeAndEventIDHandler",
+// GetEventByEventTypeAndEventIDHandlerCmd represents the GetEventByEventTypeAndEventIDHandler command
+var GetEventByEventTypeAndEventIDHandlerCmd = &cobra.Command{
+	Use:   "GetEventByEventTypeAndEventIDHandler",
 	Short: "Get event by event type and event ID handler",
 	Long:  `Get event by event type and event ID handler`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -52,18 +51,17 @@ var getEventByEventTypeAndEventIDHandlerCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getEventByEventTypeAndEventIDHandlerCmd)
-	getEventByEventTypeAndEventIDHandlerCmd.Flags().Float64P("eventId", "ed", 0, "Event id")
-	_ = getEventByEventTypeAndEventIDHandlerCmd.MarkFlagRequired("eventId")
-	getEventByEventTypeAndEventIDHandlerCmd.Flags().Float64P("eventType", "ee", 0, "Event type")
-	_ = getEventByEventTypeAndEventIDHandlerCmd.MarkFlagRequired("eventType")
-	getEventByEventTypeAndEventIDHandlerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getEventByEventTypeAndEventIDHandlerCmd.MarkFlagRequired("namespace")
-	getEventByEventTypeAndEventIDHandlerCmd.Flags().Float64P("offset", "ot", 0, "Offset")
-	getEventByEventTypeAndEventIDHandlerCmd.Flags().StringP("endDate", "ee", " ", "End date")
-	_ = getEventByEventTypeAndEventIDHandlerCmd.MarkFlagRequired("endDate")
-	getEventByEventTypeAndEventIDHandlerCmd.Flags().Float64P("pageSize", "pe", 1, "Page size")
-	_ = getEventByEventTypeAndEventIDHandlerCmd.MarkFlagRequired("pageSize")
-	getEventByEventTypeAndEventIDHandlerCmd.Flags().StringP("startDate", "se", " ", "Start date")
-	_ = getEventByEventTypeAndEventIDHandlerCmd.MarkFlagRequired("startDate")
+	GetEventByEventTypeAndEventIDHandlerCmd.Flags().Float64P("eventId", "ed", 0, "Event id")
+	_ = GetEventByEventTypeAndEventIDHandlerCmd.MarkFlagRequired("eventId")
+	GetEventByEventTypeAndEventIDHandlerCmd.Flags().Float64P("eventType", "ee", 0, "Event type")
+	_ = GetEventByEventTypeAndEventIDHandlerCmd.MarkFlagRequired("eventType")
+	GetEventByEventTypeAndEventIDHandlerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetEventByEventTypeAndEventIDHandlerCmd.MarkFlagRequired("namespace")
+	GetEventByEventTypeAndEventIDHandlerCmd.Flags().Float64P("offset", "ot", 0, "Offset")
+	GetEventByEventTypeAndEventIDHandlerCmd.Flags().StringP("endDate", "ee", " ", "End date")
+	_ = GetEventByEventTypeAndEventIDHandlerCmd.MarkFlagRequired("endDate")
+	GetEventByEventTypeAndEventIDHandlerCmd.Flags().Float64P("pageSize", "pe", 1, "Page size")
+	_ = GetEventByEventTypeAndEventIDHandlerCmd.MarkFlagRequired("pageSize")
+	GetEventByEventTypeAndEventIDHandlerCmd.Flags().StringP("startDate", "se", " ", "Start date")
+	_ = GetEventByEventTypeAndEventIDHandlerCmd.MarkFlagRequired("startDate")
 }

@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// publicListUserIDByPlatformUserIDsV3Cmd represents the publicListUserIDByPlatformUserIDsV3 command
-var publicListUserIDByPlatformUserIDsV3Cmd = &cobra.Command{
-	Use:   "publicListUserIDByPlatformUserIDsV3",
+// PublicListUserIDByPlatformUserIDsV3Cmd represents the PublicListUserIDByPlatformUserIDsV3 command
+var PublicListUserIDByPlatformUserIDsV3Cmd = &cobra.Command{
+	Use:   "PublicListUserIDByPlatformUserIDsV3",
 	Short: "Public list user ID by platform user I ds V3",
 	Long:  `Public list user ID by platform user I ds V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -51,11 +50,10 @@ var publicListUserIDByPlatformUserIDsV3Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(publicListUserIDByPlatformUserIDsV3Cmd)
-	publicListUserIDByPlatformUserIDsV3Cmd.Flags().StringP("body", "by", " ", "Body")
-	_ = publicListUserIDByPlatformUserIDsV3Cmd.MarkFlagRequired("body")
-	publicListUserIDByPlatformUserIDsV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = publicListUserIDByPlatformUserIDsV3Cmd.MarkFlagRequired("namespace")
-	publicListUserIDByPlatformUserIDsV3Cmd.Flags().StringP("platformId", "pd", " ", "Platform id")
-	_ = publicListUserIDByPlatformUserIDsV3Cmd.MarkFlagRequired("platformId")
+	PublicListUserIDByPlatformUserIDsV3Cmd.Flags().StringP("body", "by", " ", "Body")
+	_ = PublicListUserIDByPlatformUserIDsV3Cmd.MarkFlagRequired("body")
+	PublicListUserIDByPlatformUserIDsV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PublicListUserIDByPlatformUserIDsV3Cmd.MarkFlagRequired("namespace")
+	PublicListUserIDByPlatformUserIDsV3Cmd.Flags().StringP("platformId", "pd", " ", "Platform id")
+	_ = PublicListUserIDByPlatformUserIDsV3Cmd.MarkFlagRequired("platformId")
 }

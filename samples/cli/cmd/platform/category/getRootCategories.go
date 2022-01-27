@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/category"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getRootCategoriesCmd represents the getRootCategories command
-var getRootCategoriesCmd = &cobra.Command{
-	Use:   "getRootCategories",
+// GetRootCategoriesCmd represents the GetRootCategories command
+var GetRootCategoriesCmd = &cobra.Command{
+	Use:   "GetRootCategories",
 	Short: "Get root categories",
 	Long:  `Get root categories`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,8 +41,7 @@ var getRootCategoriesCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getRootCategoriesCmd)
-	getRootCategoriesCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getRootCategoriesCmd.MarkFlagRequired("namespace")
-	getRootCategoriesCmd.Flags().StringP("storeId", "sd", " ", "Store id")
+	GetRootCategoriesCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetRootCategoriesCmd.MarkFlagRequired("namespace")
+	GetRootCategoriesCmd.Flags().StringP("storeId", "sd", " ", "Store id")
 }

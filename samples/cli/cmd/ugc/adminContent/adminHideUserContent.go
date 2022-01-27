@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/ugc"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/admin_content"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclientmodels"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminHideUserContentCmd represents the adminHideUserContent command
-var adminHideUserContentCmd = &cobra.Command{
-	Use:   "adminHideUserContent",
+// AdminHideUserContentCmd represents the AdminHideUserContent command
+var AdminHideUserContentCmd = &cobra.Command{
+	Use:   "AdminHideUserContent",
 	Short: "Admin hide user content",
 	Long:  `Admin hide user content`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -53,13 +52,12 @@ var adminHideUserContentCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminHideUserContentCmd)
-	adminHideUserContentCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = adminHideUserContentCmd.MarkFlagRequired("body")
-	adminHideUserContentCmd.Flags().StringP("contentId", "cd", " ", "Content id")
-	_ = adminHideUserContentCmd.MarkFlagRequired("contentId")
-	adminHideUserContentCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = adminHideUserContentCmd.MarkFlagRequired("namespace")
-	adminHideUserContentCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = adminHideUserContentCmd.MarkFlagRequired("userId")
+	AdminHideUserContentCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = AdminHideUserContentCmd.MarkFlagRequired("body")
+	AdminHideUserContentCmd.Flags().StringP("contentId", "cd", " ", "Content id")
+	_ = AdminHideUserContentCmd.MarkFlagRequired("contentId")
+	AdminHideUserContentCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AdminHideUserContentCmd.MarkFlagRequired("namespace")
+	AdminHideUserContentCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = AdminHideUserContentCmd.MarkFlagRequired("userId")
 }

@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclient/admin_user_eligibilities"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/legal"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminRetrieveEligibilitiesCmd represents the adminRetrieveEligibilities command
-var adminRetrieveEligibilitiesCmd = &cobra.Command{
-	Use:   "adminRetrieveEligibilities",
+// AdminRetrieveEligibilitiesCmd represents the AdminRetrieveEligibilities command
+var AdminRetrieveEligibilitiesCmd = &cobra.Command{
+	Use:   "AdminRetrieveEligibilities",
 	Short: "Admin retrieve eligibilities",
 	Long:  `Admin retrieve eligibilities`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,14 +47,13 @@ var adminRetrieveEligibilitiesCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminRetrieveEligibilitiesCmd)
-	adminRetrieveEligibilitiesCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = adminRetrieveEligibilitiesCmd.MarkFlagRequired("namespace")
-	adminRetrieveEligibilitiesCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = adminRetrieveEligibilitiesCmd.MarkFlagRequired("userId")
-	adminRetrieveEligibilitiesCmd.Flags().StringP("publisherUserId", "pd", " ", "Publisher user id")
-	adminRetrieveEligibilitiesCmd.Flags().StringP("clientId", "cd", " ", "Client id")
-	_ = adminRetrieveEligibilitiesCmd.MarkFlagRequired("clientId")
-	adminRetrieveEligibilitiesCmd.Flags().StringP("countryCode", "ce", " ", "Country code")
-	_ = adminRetrieveEligibilitiesCmd.MarkFlagRequired("countryCode")
+	AdminRetrieveEligibilitiesCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AdminRetrieveEligibilitiesCmd.MarkFlagRequired("namespace")
+	AdminRetrieveEligibilitiesCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = AdminRetrieveEligibilitiesCmd.MarkFlagRequired("userId")
+	AdminRetrieveEligibilitiesCmd.Flags().StringP("publisherUserId", "pd", " ", "Publisher user id")
+	AdminRetrieveEligibilitiesCmd.Flags().StringP("clientId", "cd", " ", "Client id")
+	_ = AdminRetrieveEligibilitiesCmd.MarkFlagRequired("clientId")
+	AdminRetrieveEligibilitiesCmd.Flags().StringP("countryCode", "ce", " ", "Country code")
+	_ = AdminRetrieveEligibilitiesCmd.MarkFlagRequired("countryCode")
 }

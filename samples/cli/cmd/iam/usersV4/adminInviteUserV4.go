@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminInviteUserV4Cmd represents the adminInviteUserV4 command
-var adminInviteUserV4Cmd = &cobra.Command{
-	Use:   "adminInviteUserV4",
+// AdminInviteUserV4Cmd represents the AdminInviteUserV4 command
+var AdminInviteUserV4Cmd = &cobra.Command{
+	Use:   "AdminInviteUserV4",
 	Short: "Admin invite user V4",
 	Long:  `Admin invite user V4`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -47,7 +46,6 @@ var adminInviteUserV4Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminInviteUserV4Cmd)
-	adminInviteUserV4Cmd.Flags().StringP("body", "by", " ", "Body")
-	_ = adminInviteUserV4Cmd.MarkFlagRequired("body")
+	AdminInviteUserV4Cmd.Flags().StringP("body", "by", " ", "Body")
+	_ = AdminInviteUserV4Cmd.MarkFlagRequired("body")
 }

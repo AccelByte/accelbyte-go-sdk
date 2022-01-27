@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/seasonpass-sdk/pkg/seasonpassclient/season"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/seasonpass"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// unpublishSeasonCmd represents the unpublishSeason command
-var unpublishSeasonCmd = &cobra.Command{
-	Use:   "unpublishSeason",
+// UnpublishSeasonCmd represents the UnpublishSeason command
+var UnpublishSeasonCmd = &cobra.Command{
+	Use:   "UnpublishSeason",
 	Short: "Unpublish season",
 	Long:  `Unpublish season`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -44,10 +43,9 @@ var unpublishSeasonCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(unpublishSeasonCmd)
-	unpublishSeasonCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = unpublishSeasonCmd.MarkFlagRequired("namespace")
-	unpublishSeasonCmd.Flags().StringP("seasonId", "sd", " ", "Season id")
-	_ = unpublishSeasonCmd.MarkFlagRequired("seasonId")
-	unpublishSeasonCmd.Flags().BoolP("force", "fe", false, "Force")
+	UnpublishSeasonCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = UnpublishSeasonCmd.MarkFlagRequired("namespace")
+	UnpublishSeasonCmd.Flags().StringP("seasonId", "sd", " ", "Season id")
+	_ = UnpublishSeasonCmd.MarkFlagRequired("seasonId")
+	UnpublishSeasonCmd.Flags().BoolP("force", "fe", false, "Force")
 }

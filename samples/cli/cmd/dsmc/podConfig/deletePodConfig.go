@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/pod_config"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/dsmc"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// deletePodConfigCmd represents the deletePodConfig command
-var deletePodConfigCmd = &cobra.Command{
-	Use:   "deletePodConfig",
+// DeletePodConfigCmd represents the DeletePodConfig command
+var DeletePodConfigCmd = &cobra.Command{
+	Use:   "DeletePodConfig",
 	Short: "Delete pod config",
 	Long:  `Delete pod config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,9 +40,8 @@ var deletePodConfigCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(deletePodConfigCmd)
-	deletePodConfigCmd.Flags().StringP("name", "ne", " ", "Name")
-	_ = deletePodConfigCmd.MarkFlagRequired("name")
-	deletePodConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = deletePodConfigCmd.MarkFlagRequired("namespace")
+	DeletePodConfigCmd.Flags().StringP("name", "ne", " ", "Name")
+	_ = DeletePodConfigCmd.MarkFlagRequired("name")
+	DeletePodConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = DeletePodConfigCmd.MarkFlagRequired("namespace")
 }

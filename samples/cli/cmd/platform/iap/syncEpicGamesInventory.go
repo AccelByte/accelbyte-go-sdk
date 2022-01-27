@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// syncEpicGamesInventoryCmd represents the syncEpicGamesInventory command
-var syncEpicGamesInventoryCmd = &cobra.Command{
-	Use:   "syncEpicGamesInventory",
+// SyncEpicGamesInventoryCmd represents the SyncEpicGamesInventory command
+var SyncEpicGamesInventoryCmd = &cobra.Command{
+	Use:   "SyncEpicGamesInventory",
 	Short: "Sync epic games inventory",
 	Long:  `Sync epic games inventory`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -51,10 +50,9 @@ var syncEpicGamesInventoryCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(syncEpicGamesInventoryCmd)
-	syncEpicGamesInventoryCmd.Flags().StringP("body", "by", " ", "Body")
-	syncEpicGamesInventoryCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = syncEpicGamesInventoryCmd.MarkFlagRequired("namespace")
-	syncEpicGamesInventoryCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = syncEpicGamesInventoryCmd.MarkFlagRequired("userId")
+	SyncEpicGamesInventoryCmd.Flags().StringP("body", "by", " ", "Body")
+	SyncEpicGamesInventoryCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = SyncEpicGamesInventoryCmd.MarkFlagRequired("namespace")
+	SyncEpicGamesInventoryCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = SyncEpicGamesInventoryCmd.MarkFlagRequired("userId")
 }

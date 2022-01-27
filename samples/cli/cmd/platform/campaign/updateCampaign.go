@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// updateCampaignCmd represents the updateCampaign command
-var updateCampaignCmd = &cobra.Command{
-	Use:   "updateCampaign",
+// UpdateCampaignCmd represents the UpdateCampaign command
+var UpdateCampaignCmd = &cobra.Command{
+	Use:   "UpdateCampaign",
 	Short: "Update campaign",
 	Long:  `Update campaign`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -51,10 +50,9 @@ var updateCampaignCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(updateCampaignCmd)
-	updateCampaignCmd.Flags().StringP("body", "by", " ", "Body")
-	updateCampaignCmd.Flags().StringP("campaignId", "cd", " ", "Campaign id")
-	_ = updateCampaignCmd.MarkFlagRequired("campaignId")
-	updateCampaignCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = updateCampaignCmd.MarkFlagRequired("namespace")
+	UpdateCampaignCmd.Flags().StringP("body", "by", " ", "Body")
+	UpdateCampaignCmd.Flags().StringP("campaignId", "cd", " ", "Campaign id")
+	_ = UpdateCampaignCmd.MarkFlagRequired("campaignId")
+	UpdateCampaignCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = UpdateCampaignCmd.MarkFlagRequired("namespace")
 }

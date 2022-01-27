@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclient/admin_player_record"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/cloudsave"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminDeletePlayerPublicRecordHandlerV1Cmd represents the adminDeletePlayerPublicRecordHandlerV1 command
-var adminDeletePlayerPublicRecordHandlerV1Cmd = &cobra.Command{
-	Use:   "adminDeletePlayerPublicRecordHandlerV1",
+// AdminDeletePlayerPublicRecordHandlerV1Cmd represents the AdminDeletePlayerPublicRecordHandlerV1 command
+var AdminDeletePlayerPublicRecordHandlerV1Cmd = &cobra.Command{
+	Use:   "AdminDeletePlayerPublicRecordHandlerV1",
 	Short: "Admin delete player public record handler V1",
 	Long:  `Admin delete player public record handler V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,11 +42,10 @@ var adminDeletePlayerPublicRecordHandlerV1Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminDeletePlayerPublicRecordHandlerV1Cmd)
-	adminDeletePlayerPublicRecordHandlerV1Cmd.Flags().StringP("key", "ky", " ", "Key")
-	_ = adminDeletePlayerPublicRecordHandlerV1Cmd.MarkFlagRequired("key")
-	adminDeletePlayerPublicRecordHandlerV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = adminDeletePlayerPublicRecordHandlerV1Cmd.MarkFlagRequired("namespace")
-	adminDeletePlayerPublicRecordHandlerV1Cmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = adminDeletePlayerPublicRecordHandlerV1Cmd.MarkFlagRequired("userId")
+	AdminDeletePlayerPublicRecordHandlerV1Cmd.Flags().StringP("key", "ky", " ", "Key")
+	_ = AdminDeletePlayerPublicRecordHandlerV1Cmd.MarkFlagRequired("key")
+	AdminDeletePlayerPublicRecordHandlerV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AdminDeletePlayerPublicRecordHandlerV1Cmd.MarkFlagRequired("namespace")
+	AdminDeletePlayerPublicRecordHandlerV1Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = AdminDeletePlayerPublicRecordHandlerV1Cmd.MarkFlagRequired("userId")
 }

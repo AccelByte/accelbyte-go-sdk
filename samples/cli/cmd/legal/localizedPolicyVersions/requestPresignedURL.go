@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/legal"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// requestPresignedURLCmd represents the requestPresignedURL command
-var requestPresignedURLCmd = &cobra.Command{
-	Use:   "requestPresignedURL",
+// RequestPresignedURLCmd represents the RequestPresignedURL command
+var RequestPresignedURLCmd = &cobra.Command{
+	Use:   "RequestPresignedURL",
 	Short: "Request presigned URL",
 	Long:  `Request presigned URL`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,8 +48,7 @@ var requestPresignedURLCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(requestPresignedURLCmd)
-	requestPresignedURLCmd.Flags().StringP("body", "by", " ", "Body")
-	requestPresignedURLCmd.Flags().StringP("localizedPolicyVersionId", "ld", " ", "Localized policy version id")
-	_ = requestPresignedURLCmd.MarkFlagRequired("localizedPolicyVersionId")
+	RequestPresignedURLCmd.Flags().StringP("body", "by", " ", "Body")
+	RequestPresignedURLCmd.Flags().StringP("localizedPolicyVersionId", "ld", " ", "Localized policy version id")
+	_ = RequestPresignedURLCmd.MarkFlagRequired("localizedPolicyVersionId")
 }

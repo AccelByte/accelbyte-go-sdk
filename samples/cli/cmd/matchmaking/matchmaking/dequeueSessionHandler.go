@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/matchmaking-sdk/pkg/matchmakingclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/matchmaking"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// dequeueSessionHandlerCmd represents the dequeueSessionHandler command
-var dequeueSessionHandlerCmd = &cobra.Command{
-	Use:   "dequeueSessionHandler",
+// DequeueSessionHandlerCmd represents the DequeueSessionHandler command
+var DequeueSessionHandlerCmd = &cobra.Command{
+	Use:   "DequeueSessionHandler",
 	Short: "Dequeue session handler",
 	Long:  `Dequeue session handler`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,9 +47,8 @@ var dequeueSessionHandlerCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(dequeueSessionHandlerCmd)
-	dequeueSessionHandlerCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = dequeueSessionHandlerCmd.MarkFlagRequired("body")
-	dequeueSessionHandlerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = dequeueSessionHandlerCmd.MarkFlagRequired("namespace")
+	DequeueSessionHandlerCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = DequeueSessionHandlerCmd.MarkFlagRequired("body")
+	DequeueSessionHandlerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = DequeueSessionHandlerCmd.MarkFlagRequired("namespace")
 }

@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/group-sdk/pkg/groupclient/group_member"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/group"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// kickGroupMemberPublicV1Cmd represents the kickGroupMemberPublicV1 command
-var kickGroupMemberPublicV1Cmd = &cobra.Command{
-	Use:   "kickGroupMemberPublicV1",
+// KickGroupMemberPublicV1Cmd represents the KickGroupMemberPublicV1 command
+var KickGroupMemberPublicV1Cmd = &cobra.Command{
+	Use:   "KickGroupMemberPublicV1",
 	Short: "Kick group member public V1",
 	Long:  `Kick group member public V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,9 +41,8 @@ var kickGroupMemberPublicV1Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(kickGroupMemberPublicV1Cmd)
-	kickGroupMemberPublicV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = kickGroupMemberPublicV1Cmd.MarkFlagRequired("namespace")
-	kickGroupMemberPublicV1Cmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = kickGroupMemberPublicV1Cmd.MarkFlagRequired("userId")
+	KickGroupMemberPublicV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = KickGroupMemberPublicV1Cmd.MarkFlagRequired("namespace")
+	KickGroupMemberPublicV1Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = KickGroupMemberPublicV1Cmd.MarkFlagRequired("userId")
 }

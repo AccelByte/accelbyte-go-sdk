@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/basic"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// reportUserCmd represents the reportUser command
-var reportUserCmd = &cobra.Command{
-	Use:   "reportUser",
+// ReportUserCmd represents the ReportUser command
+var ReportUserCmd = &cobra.Command{
+	Use:   "ReportUser",
 	Short: "Report user",
 	Long:  `Report user`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,8 +48,7 @@ var reportUserCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(reportUserCmd)
-	reportUserCmd.Flags().StringP("body", "by", " ", "Body")
-	reportUserCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = reportUserCmd.MarkFlagRequired("namespace")
+	ReportUserCmd.Flags().StringP("body", "by", " ", "Body")
+	ReportUserCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = ReportUserCmd.MarkFlagRequired("namespace")
 }

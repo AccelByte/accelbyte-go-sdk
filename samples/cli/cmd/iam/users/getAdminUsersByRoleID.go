@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getAdminUsersByRoleIDCmd represents the getAdminUsersByRoleID command
-var getAdminUsersByRoleIDCmd = &cobra.Command{
-	Use:   "getAdminUsersByRoleID",
+// GetAdminUsersByRoleIDCmd represents the GetAdminUsersByRoleID command
+var GetAdminUsersByRoleIDCmd = &cobra.Command{
+	Use:   "GetAdminUsersByRoleID",
 	Short: "Get admin users by role ID",
 	Long:  `Get admin users by role ID`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,11 +47,10 @@ var getAdminUsersByRoleIDCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getAdminUsersByRoleIDCmd)
-	getAdminUsersByRoleIDCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getAdminUsersByRoleIDCmd.MarkFlagRequired("namespace")
-	getAdminUsersByRoleIDCmd.Flags().Int64P("after", "ar", 0, "After")
-	getAdminUsersByRoleIDCmd.Flags().Int64P("before", "be", 0, "Before")
-	getAdminUsersByRoleIDCmd.Flags().Int64P("limit", "lt", 20, "Limit")
-	getAdminUsersByRoleIDCmd.Flags().StringP("roleId", "rd", " ", "Role id")
+	GetAdminUsersByRoleIDCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetAdminUsersByRoleIDCmd.MarkFlagRequired("namespace")
+	GetAdminUsersByRoleIDCmd.Flags().Int64P("after", "ar", 0, "After")
+	GetAdminUsersByRoleIDCmd.Flags().Int64P("before", "be", 0, "Before")
+	GetAdminUsersByRoleIDCmd.Flags().Int64P("limit", "lt", 20, "Limit")
+	GetAdminUsersByRoleIDCmd.Flags().StringP("roleId", "rd", " ", "Role id")
 }

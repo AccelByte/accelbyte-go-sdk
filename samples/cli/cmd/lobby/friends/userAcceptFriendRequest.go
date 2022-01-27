@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/lobby"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// userAcceptFriendRequestCmd represents the userAcceptFriendRequest command
-var userAcceptFriendRequestCmd = &cobra.Command{
-	Use:   "userAcceptFriendRequest",
+// UserAcceptFriendRequestCmd represents the UserAcceptFriendRequest command
+var UserAcceptFriendRequestCmd = &cobra.Command{
+	Use:   "UserAcceptFriendRequest",
 	Short: "User accept friend request",
 	Long:  `User accept friend request`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,9 +47,8 @@ var userAcceptFriendRequestCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(userAcceptFriendRequestCmd)
-	userAcceptFriendRequestCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = userAcceptFriendRequestCmd.MarkFlagRequired("body")
-	userAcceptFriendRequestCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = userAcceptFriendRequestCmd.MarkFlagRequired("namespace")
+	UserAcceptFriendRequestCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = UserAcceptFriendRequestCmd.MarkFlagRequired("body")
+	UserAcceptFriendRequestCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = UserAcceptFriendRequestCmd.MarkFlagRequired("namespace")
 }

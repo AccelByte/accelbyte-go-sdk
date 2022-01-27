@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/order"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getOrderCmd represents the getOrder command
-var getOrderCmd = &cobra.Command{
-	Use:   "getOrder",
+// GetOrderCmd represents the GetOrder command
+var GetOrderCmd = &cobra.Command{
+	Use:   "GetOrder",
 	Short: "Get order",
 	Long:  `Get order`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,9 +41,8 @@ var getOrderCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getOrderCmd)
-	getOrderCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getOrderCmd.MarkFlagRequired("namespace")
-	getOrderCmd.Flags().StringP("orderNo", "oo", " ", "Order no")
-	_ = getOrderCmd.MarkFlagRequired("orderNo")
+	GetOrderCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetOrderCmd.MarkFlagRequired("namespace")
+	GetOrderCmd.Flags().StringP("orderNo", "oo", " ", "Order no")
+	_ = GetOrderCmd.MarkFlagRequired("orderNo")
 }

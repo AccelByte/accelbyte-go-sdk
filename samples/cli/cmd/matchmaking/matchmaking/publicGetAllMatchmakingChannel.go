@@ -8,15 +8,14 @@ import (
 	matchmaking_ "github.com/AccelByte/accelbyte-go-sdk/matchmaking-sdk/pkg/matchmakingclient/matchmaking"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/matchmaking"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// publicGetAllMatchmakingChannelCmd represents the publicGetAllMatchmakingChannel command
-var publicGetAllMatchmakingChannelCmd = &cobra.Command{
-	Use:   "publicGetAllMatchmakingChannel",
+// PublicGetAllMatchmakingChannelCmd represents the PublicGetAllMatchmakingChannel command
+var PublicGetAllMatchmakingChannelCmd = &cobra.Command{
+	Use:   "PublicGetAllMatchmakingChannel",
 	Short: "Public get all matchmaking channel",
 	Long:  `Public get all matchmaking channel`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,7 +39,6 @@ var publicGetAllMatchmakingChannelCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(publicGetAllMatchmakingChannelCmd)
-	publicGetAllMatchmakingChannelCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = publicGetAllMatchmakingChannelCmd.MarkFlagRequired("namespace")
+	PublicGetAllMatchmakingChannelCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PublicGetAllMatchmakingChannelCmd.MarkFlagRequired("namespace")
 }

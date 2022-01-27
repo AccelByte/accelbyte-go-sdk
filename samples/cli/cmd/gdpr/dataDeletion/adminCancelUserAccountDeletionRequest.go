@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/gdpr-sdk/pkg/gdprclient/data_deletion"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/gdpr"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminCancelUserAccountDeletionRequestCmd represents the adminCancelUserAccountDeletionRequest command
-var adminCancelUserAccountDeletionRequestCmd = &cobra.Command{
-	Use:   "adminCancelUserAccountDeletionRequest",
+// AdminCancelUserAccountDeletionRequestCmd represents the AdminCancelUserAccountDeletionRequest command
+var AdminCancelUserAccountDeletionRequestCmd = &cobra.Command{
+	Use:   "AdminCancelUserAccountDeletionRequest",
 	Short: "Admin cancel user account deletion request",
 	Long:  `Admin cancel user account deletion request`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,9 +40,8 @@ var adminCancelUserAccountDeletionRequestCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminCancelUserAccountDeletionRequestCmd)
-	adminCancelUserAccountDeletionRequestCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = adminCancelUserAccountDeletionRequestCmd.MarkFlagRequired("namespace")
-	adminCancelUserAccountDeletionRequestCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = adminCancelUserAccountDeletionRequestCmd.MarkFlagRequired("userId")
+	AdminCancelUserAccountDeletionRequestCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AdminCancelUserAccountDeletionRequestCmd.MarkFlagRequired("namespace")
+	AdminCancelUserAccountDeletionRequestCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = AdminCancelUserAccountDeletionRequestCmd.MarkFlagRequired("userId")
 }

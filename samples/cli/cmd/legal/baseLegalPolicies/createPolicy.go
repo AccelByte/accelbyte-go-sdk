@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/legal"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// createPolicyCmd represents the createPolicy command
-var createPolicyCmd = &cobra.Command{
-	Use:   "createPolicy",
+// CreatePolicyCmd represents the CreatePolicy command
+var CreatePolicyCmd = &cobra.Command{
+	Use:   "CreatePolicy",
 	Short: "Create policy",
 	Long:  `Create policy`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -47,6 +46,5 @@ var createPolicyCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(createPolicyCmd)
-	createPolicyCmd.Flags().StringP("body", "by", " ", "Body")
+	CreatePolicyCmd.Flags().StringP("body", "by", " ", "Body")
 }

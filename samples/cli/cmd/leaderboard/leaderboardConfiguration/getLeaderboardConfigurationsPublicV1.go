@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/leaderboard-sdk/pkg/leaderboardclient/leaderboard_configuration"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/leaderboard"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getLeaderboardConfigurationsPublicV1Cmd represents the getLeaderboardConfigurationsPublicV1 command
-var getLeaderboardConfigurationsPublicV1Cmd = &cobra.Command{
-	Use:   "getLeaderboardConfigurationsPublicV1",
+// GetLeaderboardConfigurationsPublicV1Cmd represents the GetLeaderboardConfigurationsPublicV1 command
+var GetLeaderboardConfigurationsPublicV1Cmd = &cobra.Command{
+	Use:   "GetLeaderboardConfigurationsPublicV1",
 	Short: "Get leaderboard configurations public V1",
 	Long:  `Get leaderboard configurations public V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,11 +47,10 @@ var getLeaderboardConfigurationsPublicV1Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getLeaderboardConfigurationsPublicV1Cmd)
-	getLeaderboardConfigurationsPublicV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getLeaderboardConfigurationsPublicV1Cmd.MarkFlagRequired("namespace")
-	getLeaderboardConfigurationsPublicV1Cmd.Flags().BoolP("isArchived", "id", false, "Is archived")
-	getLeaderboardConfigurationsPublicV1Cmd.Flags().BoolP("isDeleted", "id", false, "Is deleted")
-	getLeaderboardConfigurationsPublicV1Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
-	getLeaderboardConfigurationsPublicV1Cmd.Flags().Int64P("offset", "ot", 0, "Offset")
+	GetLeaderboardConfigurationsPublicV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetLeaderboardConfigurationsPublicV1Cmd.MarkFlagRequired("namespace")
+	GetLeaderboardConfigurationsPublicV1Cmd.Flags().BoolP("isArchived", "id", false, "Is archived")
+	GetLeaderboardConfigurationsPublicV1Cmd.Flags().BoolP("isDeleted", "id", false, "Is deleted")
+	GetLeaderboardConfigurationsPublicV1Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
+	GetLeaderboardConfigurationsPublicV1Cmd.Flags().Int64P("offset", "ot", 0, "Offset")
 }

@@ -8,15 +8,14 @@ import (
 	matchmaking_ "github.com/AccelByte/accelbyte-go-sdk/matchmaking-sdk/pkg/matchmakingclient/matchmaking"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/matchmaking"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getAllSessionsInChannelCmd represents the getAllSessionsInChannel command
-var getAllSessionsInChannelCmd = &cobra.Command{
-	Use:   "getAllSessionsInChannel",
+// GetAllSessionsInChannelCmd represents the GetAllSessionsInChannel command
+var GetAllSessionsInChannelCmd = &cobra.Command{
+	Use:   "GetAllSessionsInChannel",
 	Short: "Get all sessions in channel",
 	Long:  `Get all sessions in channel`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,9 +41,8 @@ var getAllSessionsInChannelCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getAllSessionsInChannelCmd)
-	getAllSessionsInChannelCmd.Flags().StringP("channelName", "ce", " ", "Channel name")
-	_ = getAllSessionsInChannelCmd.MarkFlagRequired("channelName")
-	getAllSessionsInChannelCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getAllSessionsInChannelCmd.MarkFlagRequired("namespace")
+	GetAllSessionsInChannelCmd.Flags().StringP("channelName", "ce", " ", "Channel name")
+	_ = GetAllSessionsInChannelCmd.MarkFlagRequired("channelName")
+	GetAllSessionsInChannelCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetAllSessionsInChannelCmd.MarkFlagRequired("namespace")
 }

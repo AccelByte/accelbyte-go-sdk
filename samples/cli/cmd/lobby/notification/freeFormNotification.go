@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/lobby"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// freeFormNotificationCmd represents the freeFormNotification command
-var freeFormNotificationCmd = &cobra.Command{
-	Use:   "freeFormNotification",
+// FreeFormNotificationCmd represents the FreeFormNotification command
+var FreeFormNotificationCmd = &cobra.Command{
+	Use:   "FreeFormNotification",
 	Short: "Free form notification",
 	Long:  `Free form notification`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,9 +47,8 @@ var freeFormNotificationCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(freeFormNotificationCmd)
-	freeFormNotificationCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = freeFormNotificationCmd.MarkFlagRequired("body")
-	freeFormNotificationCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = freeFormNotificationCmd.MarkFlagRequired("namespace")
+	FreeFormNotificationCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = FreeFormNotificationCmd.MarkFlagRequired("body")
+	FreeFormNotificationCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = FreeFormNotificationCmd.MarkFlagRequired("namespace")
 }

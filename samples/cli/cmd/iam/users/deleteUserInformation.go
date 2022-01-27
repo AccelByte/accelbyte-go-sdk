@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// deleteUserInformationCmd represents the deleteUserInformation command
-var deleteUserInformationCmd = &cobra.Command{
-	Use:   "deleteUserInformation",
+// DeleteUserInformationCmd represents the DeleteUserInformation command
+var DeleteUserInformationCmd = &cobra.Command{
+	Use:   "DeleteUserInformation",
 	Short: "Delete user information",
 	Long:  `Delete user information`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,9 +40,8 @@ var deleteUserInformationCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(deleteUserInformationCmd)
-	deleteUserInformationCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = deleteUserInformationCmd.MarkFlagRequired("namespace")
-	deleteUserInformationCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = deleteUserInformationCmd.MarkFlagRequired("userId")
+	DeleteUserInformationCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = DeleteUserInformationCmd.MarkFlagRequired("namespace")
+	DeleteUserInformationCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = DeleteUserInformationCmd.MarkFlagRequired("userId")
 }

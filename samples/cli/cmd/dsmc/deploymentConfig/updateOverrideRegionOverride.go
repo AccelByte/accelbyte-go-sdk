@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/dsmc"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// updateOverrideRegionOverrideCmd represents the updateOverrideRegionOverride command
-var updateOverrideRegionOverrideCmd = &cobra.Command{
-	Use:   "updateOverrideRegionOverride",
+// UpdateOverrideRegionOverrideCmd represents the UpdateOverrideRegionOverride command
+var UpdateOverrideRegionOverrideCmd = &cobra.Command{
+	Use:   "UpdateOverrideRegionOverride",
 	Short: "Update override region override",
 	Long:  `Update override region override`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -55,15 +54,14 @@ var updateOverrideRegionOverrideCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(updateOverrideRegionOverrideCmd)
-	updateOverrideRegionOverrideCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = updateOverrideRegionOverrideCmd.MarkFlagRequired("body")
-	updateOverrideRegionOverrideCmd.Flags().StringP("deployment", "dt", " ", "Deployment")
-	_ = updateOverrideRegionOverrideCmd.MarkFlagRequired("deployment")
-	updateOverrideRegionOverrideCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = updateOverrideRegionOverrideCmd.MarkFlagRequired("namespace")
-	updateOverrideRegionOverrideCmd.Flags().StringP("region", "rn", " ", "Region")
-	_ = updateOverrideRegionOverrideCmd.MarkFlagRequired("region")
-	updateOverrideRegionOverrideCmd.Flags().StringP("version", "vn", " ", "Version")
-	_ = updateOverrideRegionOverrideCmd.MarkFlagRequired("version")
+	UpdateOverrideRegionOverrideCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = UpdateOverrideRegionOverrideCmd.MarkFlagRequired("body")
+	UpdateOverrideRegionOverrideCmd.Flags().StringP("deployment", "dt", " ", "Deployment")
+	_ = UpdateOverrideRegionOverrideCmd.MarkFlagRequired("deployment")
+	UpdateOverrideRegionOverrideCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = UpdateOverrideRegionOverrideCmd.MarkFlagRequired("namespace")
+	UpdateOverrideRegionOverrideCmd.Flags().StringP("region", "rn", " ", "Region")
+	_ = UpdateOverrideRegionOverrideCmd.MarkFlagRequired("region")
+	UpdateOverrideRegionOverrideCmd.Flags().StringP("version", "vn", " ", "Version")
+	_ = UpdateOverrideRegionOverrideCmd.MarkFlagRequired("version")
 }

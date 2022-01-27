@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/ugc"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/public_type"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getTypeCmd represents the getType command
-var getTypeCmd = &cobra.Command{
-	Use:   "getType",
+// GetTypeCmd represents the GetType command
+var GetTypeCmd = &cobra.Command{
+	Use:   "GetType",
 	Short: "Get type",
 	Long:  `Get type`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -44,9 +43,8 @@ var getTypeCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getTypeCmd)
-	getTypeCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getTypeCmd.MarkFlagRequired("namespace")
-	getTypeCmd.Flags().StringP("limit", "lt", "20", "Limit")
-	getTypeCmd.Flags().StringP("offset", "ot", "0", "Offset")
+	GetTypeCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetTypeCmd.MarkFlagRequired("namespace")
+	GetTypeCmd.Flags().StringP("limit", "lt", "20", "Limit")
+	GetTypeCmd.Flags().StringP("offset", "ot", "0", "Offset")
 }

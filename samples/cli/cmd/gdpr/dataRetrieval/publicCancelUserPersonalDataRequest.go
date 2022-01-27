@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/gdpr-sdk/pkg/gdprclient/data_retrieval"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/gdpr"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// publicCancelUserPersonalDataRequestCmd represents the publicCancelUserPersonalDataRequest command
-var publicCancelUserPersonalDataRequestCmd = &cobra.Command{
-	Use:   "publicCancelUserPersonalDataRequest",
+// PublicCancelUserPersonalDataRequestCmd represents the PublicCancelUserPersonalDataRequest command
+var PublicCancelUserPersonalDataRequestCmd = &cobra.Command{
+	Use:   "PublicCancelUserPersonalDataRequest",
 	Short: "Public cancel user personal data request",
 	Long:  `Public cancel user personal data request`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -44,11 +43,10 @@ var publicCancelUserPersonalDataRequestCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(publicCancelUserPersonalDataRequestCmd)
-	publicCancelUserPersonalDataRequestCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = publicCancelUserPersonalDataRequestCmd.MarkFlagRequired("namespace")
-	publicCancelUserPersonalDataRequestCmd.Flags().StringP("requestDate", "re", " ", "Request date")
-	_ = publicCancelUserPersonalDataRequestCmd.MarkFlagRequired("requestDate")
-	publicCancelUserPersonalDataRequestCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = publicCancelUserPersonalDataRequestCmd.MarkFlagRequired("userId")
+	PublicCancelUserPersonalDataRequestCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PublicCancelUserPersonalDataRequestCmd.MarkFlagRequired("namespace")
+	PublicCancelUserPersonalDataRequestCmd.Flags().StringP("requestDate", "re", " ", "Request date")
+	_ = PublicCancelUserPersonalDataRequestCmd.MarkFlagRequired("requestDate")
+	PublicCancelUserPersonalDataRequestCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = PublicCancelUserPersonalDataRequestCmd.MarkFlagRequired("userId")
 }

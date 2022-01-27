@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminListUsersV3Cmd represents the adminListUsersV3 command
-var adminListUsersV3Cmd = &cobra.Command{
-	Use:   "adminListUsersV3",
+// AdminListUsersV3Cmd represents the AdminListUsersV3 command
+var AdminListUsersV3Cmd = &cobra.Command{
+	Use:   "AdminListUsersV3",
 	Short: "Admin list users V3",
 	Long:  `Admin list users V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -44,9 +43,8 @@ var adminListUsersV3Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminListUsersV3Cmd)
-	adminListUsersV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = adminListUsersV3Cmd.MarkFlagRequired("namespace")
-	adminListUsersV3Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
-	adminListUsersV3Cmd.Flags().Int64P("offset", "ot", 0, "Offset")
+	AdminListUsersV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AdminListUsersV3Cmd.MarkFlagRequired("namespace")
+	AdminListUsersV3Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
+	AdminListUsersV3Cmd.Flags().Int64P("offset", "ot", 0, "Offset")
 }

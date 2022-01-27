@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminBanUserV3Cmd represents the adminBanUserV3 command
-var adminBanUserV3Cmd = &cobra.Command{
-	Use:   "adminBanUserV3",
+// AdminBanUserV3Cmd represents the AdminBanUserV3 command
+var AdminBanUserV3Cmd = &cobra.Command{
+	Use:   "AdminBanUserV3",
 	Short: "Admin ban user V3",
 	Long:  `Admin ban user V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -51,11 +50,10 @@ var adminBanUserV3Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminBanUserV3Cmd)
-	adminBanUserV3Cmd.Flags().StringP("body", "by", " ", "Body")
-	_ = adminBanUserV3Cmd.MarkFlagRequired("body")
-	adminBanUserV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = adminBanUserV3Cmd.MarkFlagRequired("namespace")
-	adminBanUserV3Cmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = adminBanUserV3Cmd.MarkFlagRequired("userId")
+	AdminBanUserV3Cmd.Flags().StringP("body", "by", " ", "Body")
+	_ = AdminBanUserV3Cmd.MarkFlagRequired("body")
+	AdminBanUserV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AdminBanUserV3Cmd.MarkFlagRequired("namespace")
+	AdminBanUserV3Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = AdminBanUserV3Cmd.MarkFlagRequired("userId")
 }

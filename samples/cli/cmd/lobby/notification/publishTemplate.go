@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/notification"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/lobby"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// publishTemplateCmd represents the publishTemplate command
-var publishTemplateCmd = &cobra.Command{
-	Use:   "publishTemplate",
+// PublishTemplateCmd represents the PublishTemplate command
+var PublishTemplateCmd = &cobra.Command{
+	Use:   "PublishTemplate",
 	Short: "Publish template",
 	Long:  `Publish template`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,11 +42,10 @@ var publishTemplateCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(publishTemplateCmd)
-	publishTemplateCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = publishTemplateCmd.MarkFlagRequired("namespace")
-	publishTemplateCmd.Flags().StringP("templateLanguage", "te", " ", "Template language")
-	_ = publishTemplateCmd.MarkFlagRequired("templateLanguage")
-	publishTemplateCmd.Flags().StringP("templateSlug", "tg", " ", "Template slug")
-	_ = publishTemplateCmd.MarkFlagRequired("templateSlug")
+	PublishTemplateCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PublishTemplateCmd.MarkFlagRequired("namespace")
+	PublishTemplateCmd.Flags().StringP("templateLanguage", "te", " ", "Template language")
+	_ = PublishTemplateCmd.MarkFlagRequired("templateLanguage")
+	PublishTemplateCmd.Flags().StringP("templateSlug", "tg", " ", "Template slug")
+	_ = PublishTemplateCmd.MarkFlagRequired("templateSlug")
 }

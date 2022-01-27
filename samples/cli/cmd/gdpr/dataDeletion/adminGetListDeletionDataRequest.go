@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/gdpr-sdk/pkg/gdprclient/data_deletion"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/gdpr"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminGetListDeletionDataRequestCmd represents the adminGetListDeletionDataRequest command
-var adminGetListDeletionDataRequestCmd = &cobra.Command{
-	Use:   "adminGetListDeletionDataRequest",
+// AdminGetListDeletionDataRequestCmd represents the AdminGetListDeletionDataRequest command
+var AdminGetListDeletionDataRequestCmd = &cobra.Command{
+	Use:   "AdminGetListDeletionDataRequest",
 	Short: "Admin get list deletion data request",
 	Long:  `Admin get list deletion data request`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,12 +49,11 @@ var adminGetListDeletionDataRequestCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminGetListDeletionDataRequestCmd)
-	adminGetListDeletionDataRequestCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = adminGetListDeletionDataRequestCmd.MarkFlagRequired("namespace")
-	adminGetListDeletionDataRequestCmd.Flags().StringP("after", "ar", "0", "After")
-	adminGetListDeletionDataRequestCmd.Flags().StringP("before", "be", "0", "Before")
-	adminGetListDeletionDataRequestCmd.Flags().Int64P("limit", "lt", 20, "Limit")
-	adminGetListDeletionDataRequestCmd.Flags().Int64P("offset", "ot", 0, "Offset")
-	adminGetListDeletionDataRequestCmd.Flags().StringP("requestDate", "re", " ", "Request date")
+	AdminGetListDeletionDataRequestCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AdminGetListDeletionDataRequestCmd.MarkFlagRequired("namespace")
+	AdminGetListDeletionDataRequestCmd.Flags().StringP("after", "ar", "0", "After")
+	AdminGetListDeletionDataRequestCmd.Flags().StringP("before", "be", "0", "Before")
+	AdminGetListDeletionDataRequestCmd.Flags().Int64P("limit", "lt", 20, "Limit")
+	AdminGetListDeletionDataRequestCmd.Flags().Int64P("offset", "ot", 0, "Offset")
+	AdminGetListDeletionDataRequestCmd.Flags().StringP("requestDate", "re", " ", "Request date")
 }

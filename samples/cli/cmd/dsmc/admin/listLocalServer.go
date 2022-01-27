@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/admin"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/dsmc"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// listLocalServerCmd represents the listLocalServer command
-var listLocalServerCmd = &cobra.Command{
-	Use:   "listLocalServer",
+// ListLocalServerCmd represents the ListLocalServer command
+var ListLocalServerCmd = &cobra.Command{
+	Use:   "ListLocalServer",
 	Short: "List local server",
 	Long:  `List local server`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,7 +39,6 @@ var listLocalServerCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(listLocalServerCmd)
-	listLocalServerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = listLocalServerCmd.MarkFlagRequired("namespace")
+	ListLocalServerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = ListLocalServerCmd.MarkFlagRequired("namespace")
 }

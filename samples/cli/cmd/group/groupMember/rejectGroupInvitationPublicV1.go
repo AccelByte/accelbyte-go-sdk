@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/group-sdk/pkg/groupclient/group_member"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/group"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// rejectGroupInvitationPublicV1Cmd represents the rejectGroupInvitationPublicV1 command
-var rejectGroupInvitationPublicV1Cmd = &cobra.Command{
-	Use:   "rejectGroupInvitationPublicV1",
+// RejectGroupInvitationPublicV1Cmd represents the RejectGroupInvitationPublicV1 command
+var RejectGroupInvitationPublicV1Cmd = &cobra.Command{
+	Use:   "RejectGroupInvitationPublicV1",
 	Short: "Reject group invitation public V1",
 	Long:  `Reject group invitation public V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,9 +41,8 @@ var rejectGroupInvitationPublicV1Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(rejectGroupInvitationPublicV1Cmd)
-	rejectGroupInvitationPublicV1Cmd.Flags().StringP("groupId", "gd", " ", "Group id")
-	_ = rejectGroupInvitationPublicV1Cmd.MarkFlagRequired("groupId")
-	rejectGroupInvitationPublicV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = rejectGroupInvitationPublicV1Cmd.MarkFlagRequired("namespace")
+	RejectGroupInvitationPublicV1Cmd.Flags().StringP("groupId", "gd", " ", "Group id")
+	_ = RejectGroupInvitationPublicV1Cmd.MarkFlagRequired("groupId")
+	RejectGroupInvitationPublicV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = RejectGroupInvitationPublicV1Cmd.MarkFlagRequired("namespace")
 }

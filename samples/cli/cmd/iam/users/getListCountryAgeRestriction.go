@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getListCountryAgeRestrictionCmd represents the getListCountryAgeRestriction command
-var getListCountryAgeRestrictionCmd = &cobra.Command{
-	Use:   "getListCountryAgeRestriction",
+// GetListCountryAgeRestrictionCmd represents the GetListCountryAgeRestriction command
+var GetListCountryAgeRestrictionCmd = &cobra.Command{
+	Use:   "GetListCountryAgeRestriction",
 	Short: "Get list country age restriction",
 	Long:  `Get list country age restriction`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,7 +39,6 @@ var getListCountryAgeRestrictionCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getListCountryAgeRestrictionCmd)
-	getListCountryAgeRestrictionCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getListCountryAgeRestrictionCmd.MarkFlagRequired("namespace")
+	GetListCountryAgeRestrictionCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetListCountryAgeRestrictionCmd.MarkFlagRequired("namespace")
 }

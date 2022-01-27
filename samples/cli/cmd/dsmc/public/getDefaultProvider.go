@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/public"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/dsmc"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getDefaultProviderCmd represents the getDefaultProvider command
-var getDefaultProviderCmd = &cobra.Command{
-	Use:   "getDefaultProvider",
+// GetDefaultProviderCmd represents the GetDefaultProvider command
+var GetDefaultProviderCmd = &cobra.Command{
+	Use:   "GetDefaultProvider",
 	Short: "Get default provider",
 	Long:  `Get default provider`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -34,8 +33,4 @@ var getDefaultProviderCmd = &cobra.Command{
 		}
 		return nil
 	},
-}
-
-func init() {
-	cmd.RootCmd.AddCommand(getDefaultProviderCmd)
 }

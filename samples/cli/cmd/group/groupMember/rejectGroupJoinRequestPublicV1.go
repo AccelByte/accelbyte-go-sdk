@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/group-sdk/pkg/groupclient/group_member"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/group"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// rejectGroupJoinRequestPublicV1Cmd represents the rejectGroupJoinRequestPublicV1 command
-var rejectGroupJoinRequestPublicV1Cmd = &cobra.Command{
-	Use:   "rejectGroupJoinRequestPublicV1",
+// RejectGroupJoinRequestPublicV1Cmd represents the RejectGroupJoinRequestPublicV1 command
+var RejectGroupJoinRequestPublicV1Cmd = &cobra.Command{
+	Use:   "RejectGroupJoinRequestPublicV1",
 	Short: "Reject group join request public V1",
 	Long:  `Reject group join request public V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,9 +41,8 @@ var rejectGroupJoinRequestPublicV1Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(rejectGroupJoinRequestPublicV1Cmd)
-	rejectGroupJoinRequestPublicV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = rejectGroupJoinRequestPublicV1Cmd.MarkFlagRequired("namespace")
-	rejectGroupJoinRequestPublicV1Cmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = rejectGroupJoinRequestPublicV1Cmd.MarkFlagRequired("userId")
+	RejectGroupJoinRequestPublicV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = RejectGroupJoinRequestPublicV1Cmd.MarkFlagRequired("namespace")
+	RejectGroupJoinRequestPublicV1Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = RejectGroupJoinRequestPublicV1Cmd.MarkFlagRequired("userId")
 }

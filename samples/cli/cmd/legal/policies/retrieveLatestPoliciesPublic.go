@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclient/policies"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/legal"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// retrieveLatestPoliciesPublicCmd represents the retrieveLatestPoliciesPublic command
-var retrieveLatestPoliciesPublicCmd = &cobra.Command{
-	Use:   "retrieveLatestPoliciesPublic",
+// RetrieveLatestPoliciesPublicCmd represents the RetrieveLatestPoliciesPublic command
+var RetrieveLatestPoliciesPublicCmd = &cobra.Command{
+	Use:   "RetrieveLatestPoliciesPublic",
 	Short: "Retrieve latest policies public",
 	Long:  `Retrieve latest policies public`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,11 +47,10 @@ var retrieveLatestPoliciesPublicCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(retrieveLatestPoliciesPublicCmd)
-	retrieveLatestPoliciesPublicCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = retrieveLatestPoliciesPublicCmd.MarkFlagRequired("namespace")
-	retrieveLatestPoliciesPublicCmd.Flags().BoolP("alwaysIncludeDefault", "at", false, "Always include default")
-	retrieveLatestPoliciesPublicCmd.Flags().BoolP("defaultOnEmpty", "dy", false, "Default on empty")
-	retrieveLatestPoliciesPublicCmd.Flags().StringP("policyType", "pe", " ", "Policy type")
-	retrieveLatestPoliciesPublicCmd.Flags().StringP("tags", "ts", " ", "Tags")
+	RetrieveLatestPoliciesPublicCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = RetrieveLatestPoliciesPublicCmd.MarkFlagRequired("namespace")
+	RetrieveLatestPoliciesPublicCmd.Flags().BoolP("alwaysIncludeDefault", "at", false, "Always include default")
+	RetrieveLatestPoliciesPublicCmd.Flags().BoolP("defaultOnEmpty", "dy", false, "Default on empty")
+	RetrieveLatestPoliciesPublicCmd.Flags().StringP("policyType", "pe", " ", "Policy type")
+	RetrieveLatestPoliciesPublicCmd.Flags().StringP("tags", "ts", " ", "Tags")
 }

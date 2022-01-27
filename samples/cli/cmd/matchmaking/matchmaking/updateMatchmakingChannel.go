@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/matchmaking-sdk/pkg/matchmakingclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/matchmaking"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// updateMatchmakingChannelCmd represents the updateMatchmakingChannel command
-var updateMatchmakingChannelCmd = &cobra.Command{
-	Use:   "updateMatchmakingChannel",
+// UpdateMatchmakingChannelCmd represents the UpdateMatchmakingChannel command
+var UpdateMatchmakingChannelCmd = &cobra.Command{
+	Use:   "UpdateMatchmakingChannel",
 	Short: "Update matchmaking channel",
 	Long:  `Update matchmaking channel`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,11 +49,10 @@ var updateMatchmakingChannelCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(updateMatchmakingChannelCmd)
-	updateMatchmakingChannelCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = updateMatchmakingChannelCmd.MarkFlagRequired("body")
-	updateMatchmakingChannelCmd.Flags().StringP("channelName", "ce", " ", "Channel name")
-	_ = updateMatchmakingChannelCmd.MarkFlagRequired("channelName")
-	updateMatchmakingChannelCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = updateMatchmakingChannelCmd.MarkFlagRequired("namespace")
+	UpdateMatchmakingChannelCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = UpdateMatchmakingChannelCmd.MarkFlagRequired("body")
+	UpdateMatchmakingChannelCmd.Flags().StringP("channelName", "ce", " ", "Channel name")
+	_ = UpdateMatchmakingChannelCmd.MarkFlagRequired("channelName")
+	UpdateMatchmakingChannelCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = UpdateMatchmakingChannelCmd.MarkFlagRequired("namespace")
 }

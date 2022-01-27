@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/payment"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getPaymentOrderChargeStatusCmd represents the getPaymentOrderChargeStatus command
-var getPaymentOrderChargeStatusCmd = &cobra.Command{
-	Use:   "getPaymentOrderChargeStatus",
+// GetPaymentOrderChargeStatusCmd represents the GetPaymentOrderChargeStatus command
+var GetPaymentOrderChargeStatusCmd = &cobra.Command{
+	Use:   "GetPaymentOrderChargeStatus",
 	Short: "Get payment order charge status",
 	Long:  `Get payment order charge status`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,9 +41,8 @@ var getPaymentOrderChargeStatusCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getPaymentOrderChargeStatusCmd)
-	getPaymentOrderChargeStatusCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getPaymentOrderChargeStatusCmd.MarkFlagRequired("namespace")
-	getPaymentOrderChargeStatusCmd.Flags().StringP("paymentOrderNo", "po", " ", "Payment order no")
-	_ = getPaymentOrderChargeStatusCmd.MarkFlagRequired("paymentOrderNo")
+	GetPaymentOrderChargeStatusCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetPaymentOrderChargeStatusCmd.MarkFlagRequired("namespace")
+	GetPaymentOrderChargeStatusCmd.Flags().StringP("paymentOrderNo", "po", " ", "Payment order no")
+	_ = GetPaymentOrderChargeStatusCmd.MarkFlagRequired("paymentOrderNo")
 }

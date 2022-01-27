@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/friends"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/lobby"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getUserFriendsUpdatedCmd represents the getUserFriendsUpdated command
-var getUserFriendsUpdatedCmd = &cobra.Command{
-	Use:   "getUserFriendsUpdated",
+// GetUserFriendsUpdatedCmd represents the GetUserFriendsUpdated command
+var GetUserFriendsUpdatedCmd = &cobra.Command{
+	Use:   "GetUserFriendsUpdated",
 	Short: "Get user friends updated",
 	Long:  `Get user friends updated`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -44,9 +43,8 @@ var getUserFriendsUpdatedCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getUserFriendsUpdatedCmd)
-	getUserFriendsUpdatedCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getUserFriendsUpdatedCmd.MarkFlagRequired("namespace")
-	getUserFriendsUpdatedCmd.Flags().StringP("limit", "lt", "20", "Limit")
-	getUserFriendsUpdatedCmd.Flags().StringP("offset", "ot", "0", "Offset")
+	GetUserFriendsUpdatedCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetUserFriendsUpdatedCmd.MarkFlagRequired("namespace")
+	GetUserFriendsUpdatedCmd.Flags().StringP("limit", "lt", "20", "Limit")
+	GetUserFriendsUpdatedCmd.Flags().StringP("offset", "ot", "0", "Offset")
 }

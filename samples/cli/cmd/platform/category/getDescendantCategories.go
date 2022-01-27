@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/category"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getDescendantCategoriesCmd represents the getDescendantCategories command
-var getDescendantCategoriesCmd = &cobra.Command{
-	Use:   "getDescendantCategories",
+// GetDescendantCategoriesCmd represents the GetDescendantCategories command
+var GetDescendantCategoriesCmd = &cobra.Command{
+	Use:   "GetDescendantCategories",
 	Short: "Get descendant categories",
 	Long:  `Get descendant categories`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -44,10 +43,9 @@ var getDescendantCategoriesCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getDescendantCategoriesCmd)
-	getDescendantCategoriesCmd.Flags().StringP("categoryPath", "ch", " ", "Category path")
-	_ = getDescendantCategoriesCmd.MarkFlagRequired("categoryPath")
-	getDescendantCategoriesCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getDescendantCategoriesCmd.MarkFlagRequired("namespace")
-	getDescendantCategoriesCmd.Flags().StringP("storeId", "sd", " ", "Store id")
+	GetDescendantCategoriesCmd.Flags().StringP("categoryPath", "ch", " ", "Category path")
+	_ = GetDescendantCategoriesCmd.MarkFlagRequired("categoryPath")
+	GetDescendantCategoriesCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetDescendantCategoriesCmd.MarkFlagRequired("namespace")
+	GetDescendantCategoriesCmd.Flags().StringP("storeId", "sd", " ", "Store id")
 }

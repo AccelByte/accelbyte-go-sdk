@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/roles"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// setRoleAsAdminCmd represents the setRoleAsAdmin command
-var setRoleAsAdminCmd = &cobra.Command{
-	Use:   "setRoleAsAdmin",
+// SetRoleAsAdminCmd represents the SetRoleAsAdmin command
+var SetRoleAsAdminCmd = &cobra.Command{
+	Use:   "SetRoleAsAdmin",
 	Short: "Set role as admin",
 	Long:  `Set role as admin`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,7 +38,6 @@ var setRoleAsAdminCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(setRoleAsAdminCmd)
-	setRoleAsAdminCmd.Flags().StringP("roleId", "rd", " ", "Role id")
-	_ = setRoleAsAdminCmd.MarkFlagRequired("roleId")
+	SetRoleAsAdminCmd.Flags().StringP("roleId", "rd", " ", "Role id")
+	_ = SetRoleAsAdminCmd.MarkFlagRequired("roleId")
 }

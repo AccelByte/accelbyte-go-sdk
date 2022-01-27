@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/group-sdk/pkg/groupclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/group"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// updateGroupCustomRulePublicV1Cmd represents the updateGroupCustomRulePublicV1 command
-var updateGroupCustomRulePublicV1Cmd = &cobra.Command{
-	Use:   "updateGroupCustomRulePublicV1",
+// UpdateGroupCustomRulePublicV1Cmd represents the UpdateGroupCustomRulePublicV1 command
+var UpdateGroupCustomRulePublicV1Cmd = &cobra.Command{
+	Use:   "UpdateGroupCustomRulePublicV1",
 	Short: "Update group custom rule public V1",
 	Long:  `Update group custom rule public V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -51,11 +50,10 @@ var updateGroupCustomRulePublicV1Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(updateGroupCustomRulePublicV1Cmd)
-	updateGroupCustomRulePublicV1Cmd.Flags().StringP("body", "by", " ", "Body")
-	_ = updateGroupCustomRulePublicV1Cmd.MarkFlagRequired("body")
-	updateGroupCustomRulePublicV1Cmd.Flags().StringP("groupId", "gd", " ", "Group id")
-	_ = updateGroupCustomRulePublicV1Cmd.MarkFlagRequired("groupId")
-	updateGroupCustomRulePublicV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = updateGroupCustomRulePublicV1Cmd.MarkFlagRequired("namespace")
+	UpdateGroupCustomRulePublicV1Cmd.Flags().StringP("body", "by", " ", "Body")
+	_ = UpdateGroupCustomRulePublicV1Cmd.MarkFlagRequired("body")
+	UpdateGroupCustomRulePublicV1Cmd.Flags().StringP("groupId", "gd", " ", "Group id")
+	_ = UpdateGroupCustomRulePublicV1Cmd.MarkFlagRequired("groupId")
+	UpdateGroupCustomRulePublicV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = UpdateGroupCustomRulePublicV1Cmd.MarkFlagRequired("namespace")
 }

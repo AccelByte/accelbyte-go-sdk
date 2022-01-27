@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/eventlog-sdk/pkg/eventlogclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/eventlog"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// registerEventHandlerCmd represents the registerEventHandler command
-var registerEventHandlerCmd = &cobra.Command{
-	Use:   "registerEventHandler",
+// RegisterEventHandlerCmd represents the RegisterEventHandler command
+var RegisterEventHandlerCmd = &cobra.Command{
+	Use:   "RegisterEventHandler",
 	Short: "Register event handler",
 	Long:  `Register event handler`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -46,7 +45,6 @@ var registerEventHandlerCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(registerEventHandlerCmd)
-	registerEventHandlerCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = registerEventHandlerCmd.MarkFlagRequired("body")
+	RegisterEventHandlerCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = RegisterEventHandlerCmd.MarkFlagRequired("body")
 }

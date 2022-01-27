@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/achievement-sdk/pkg/achievementclient/achievements"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/achievement"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// exportAchievementsCmd represents the exportAchievements command
-var exportAchievementsCmd = &cobra.Command{
-	Use:   "exportAchievements",
+// ExportAchievementsCmd represents the ExportAchievements command
+var ExportAchievementsCmd = &cobra.Command{
+	Use:   "ExportAchievements",
 	Short: "Export achievements",
 	Long:  `Export achievements`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,7 +39,6 @@ var exportAchievementsCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(exportAchievementsCmd)
-	exportAchievementsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = exportAchievementsCmd.MarkFlagRequired("namespace")
+	ExportAchievementsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = ExportAchievementsCmd.MarkFlagRequired("namespace")
 }

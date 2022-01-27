@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/bans"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminGetListBanReasonV3Cmd represents the adminGetListBanReasonV3 command
-var adminGetListBanReasonV3Cmd = &cobra.Command{
-	Use:   "adminGetListBanReasonV3",
+// AdminGetListBanReasonV3Cmd represents the AdminGetListBanReasonV3 command
+var AdminGetListBanReasonV3Cmd = &cobra.Command{
+	Use:   "AdminGetListBanReasonV3",
 	Short: "Admin get list ban reason V3",
 	Long:  `Admin get list ban reason V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -34,8 +33,4 @@ var adminGetListBanReasonV3Cmd = &cobra.Command{
 		}
 		return nil
 	},
-}
-
-func init() {
-	cmd.RootCmd.AddCommand(adminGetListBanReasonV3Cmd)
 }

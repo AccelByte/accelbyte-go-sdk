@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/basic"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// publicReportUserCmd represents the publicReportUser command
-var publicReportUserCmd = &cobra.Command{
-	Use:   "publicReportUser",
+// PublicReportUserCmd represents the PublicReportUser command
+var PublicReportUserCmd = &cobra.Command{
+	Use:   "PublicReportUser",
 	Short: "Public report user",
 	Long:  `Public report user`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -51,10 +50,9 @@ var publicReportUserCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(publicReportUserCmd)
-	publicReportUserCmd.Flags().StringP("body", "by", " ", "Body")
-	publicReportUserCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = publicReportUserCmd.MarkFlagRequired("namespace")
-	publicReportUserCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = publicReportUserCmd.MarkFlagRequired("userId")
+	PublicReportUserCmd.Flags().StringP("body", "by", " ", "Body")
+	PublicReportUserCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PublicReportUserCmd.MarkFlagRequired("namespace")
+	PublicReportUserCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = PublicReportUserCmd.MarkFlagRequired("userId")
 }

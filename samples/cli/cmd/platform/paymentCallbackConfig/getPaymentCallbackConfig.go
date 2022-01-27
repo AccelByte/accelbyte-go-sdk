@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/payment_callback_config"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getPaymentCallbackConfigCmd represents the getPaymentCallbackConfig command
-var getPaymentCallbackConfigCmd = &cobra.Command{
-	Use:   "getPaymentCallbackConfig",
+// GetPaymentCallbackConfigCmd represents the GetPaymentCallbackConfig command
+var GetPaymentCallbackConfigCmd = &cobra.Command{
+	Use:   "GetPaymentCallbackConfig",
 	Short: "Get payment callback config",
 	Long:  `Get payment callback config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,7 +39,6 @@ var getPaymentCallbackConfigCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getPaymentCallbackConfigCmd)
-	getPaymentCallbackConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getPaymentCallbackConfigCmd.MarkFlagRequired("namespace")
+	GetPaymentCallbackConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetPaymentCallbackConfigCmd.MarkFlagRequired("namespace")
 }

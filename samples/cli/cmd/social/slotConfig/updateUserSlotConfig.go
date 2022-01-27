@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/social"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient/slot_config"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclientmodels"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// updateUserSlotConfigCmd represents the updateUserSlotConfig command
-var updateUserSlotConfigCmd = &cobra.Command{
-	Use:   "updateUserSlotConfig",
+// UpdateUserSlotConfigCmd represents the UpdateUserSlotConfig command
+var UpdateUserSlotConfigCmd = &cobra.Command{
+	Use:   "UpdateUserSlotConfig",
 	Short: "Update user slot config",
 	Long:  `Update user slot config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -51,10 +50,9 @@ var updateUserSlotConfigCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(updateUserSlotConfigCmd)
-	updateUserSlotConfigCmd.Flags().StringP("body", "by", " ", "Body")
-	updateUserSlotConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = updateUserSlotConfigCmd.MarkFlagRequired("namespace")
-	updateUserSlotConfigCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = updateUserSlotConfigCmd.MarkFlagRequired("userId")
+	UpdateUserSlotConfigCmd.Flags().StringP("body", "by", " ", "Body")
+	UpdateUserSlotConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = UpdateUserSlotConfigCmd.MarkFlagRequired("namespace")
+	UpdateUserSlotConfigCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = UpdateUserSlotConfigCmd.MarkFlagRequired("userId")
 }

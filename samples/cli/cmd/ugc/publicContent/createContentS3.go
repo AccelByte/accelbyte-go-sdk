@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/ugc"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/public_content"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclientmodels"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// createContentS3Cmd represents the createContentS3 command
-var createContentS3Cmd = &cobra.Command{
-	Use:   "createContentS3",
+// CreateContentS3Cmd represents the CreateContentS3 command
+var CreateContentS3Cmd = &cobra.Command{
+	Use:   "CreateContentS3",
 	Short: "Create content S3",
 	Long:  `Create content S3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -53,13 +52,12 @@ var createContentS3Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(createContentS3Cmd)
-	createContentS3Cmd.Flags().StringP("body", "by", " ", "Body")
-	_ = createContentS3Cmd.MarkFlagRequired("body")
-	createContentS3Cmd.Flags().StringP("channelId", "cd", " ", "Channel id")
-	_ = createContentS3Cmd.MarkFlagRequired("channelId")
-	createContentS3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = createContentS3Cmd.MarkFlagRequired("namespace")
-	createContentS3Cmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = createContentS3Cmd.MarkFlagRequired("userId")
+	CreateContentS3Cmd.Flags().StringP("body", "by", " ", "Body")
+	_ = CreateContentS3Cmd.MarkFlagRequired("body")
+	CreateContentS3Cmd.Flags().StringP("channelId", "cd", " ", "Channel id")
+	_ = CreateContentS3Cmd.MarkFlagRequired("channelId")
+	CreateContentS3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = CreateContentS3Cmd.MarkFlagRequired("namespace")
+	CreateContentS3Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = CreateContentS3Cmd.MarkFlagRequired("userId")
 }

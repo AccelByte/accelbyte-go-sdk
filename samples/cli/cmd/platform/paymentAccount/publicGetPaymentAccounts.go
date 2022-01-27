@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/payment_account"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// publicGetPaymentAccountsCmd represents the publicGetPaymentAccounts command
-var publicGetPaymentAccountsCmd = &cobra.Command{
-	Use:   "publicGetPaymentAccounts",
+// PublicGetPaymentAccountsCmd represents the PublicGetPaymentAccounts command
+var PublicGetPaymentAccountsCmd = &cobra.Command{
+	Use:   "PublicGetPaymentAccounts",
 	Short: "Public get payment accounts",
 	Long:  `Public get payment accounts`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,9 +41,8 @@ var publicGetPaymentAccountsCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(publicGetPaymentAccountsCmd)
-	publicGetPaymentAccountsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = publicGetPaymentAccountsCmd.MarkFlagRequired("namespace")
-	publicGetPaymentAccountsCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = publicGetPaymentAccountsCmd.MarkFlagRequired("userId")
+	PublicGetPaymentAccountsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PublicGetPaymentAccountsCmd.MarkFlagRequired("namespace")
+	PublicGetPaymentAccountsCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = PublicGetPaymentAccountsCmd.MarkFlagRequired("userId")
 }

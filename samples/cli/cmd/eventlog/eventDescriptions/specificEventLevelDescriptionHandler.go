@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/eventlog-sdk/pkg/eventlogclient/event_descriptions"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/eventlog"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// specificEventLevelDescriptionHandlerCmd represents the specificEventLevelDescriptionHandler command
-var specificEventLevelDescriptionHandlerCmd = &cobra.Command{
-	Use:   "specificEventLevelDescriptionHandler",
+// SpecificEventLevelDescriptionHandlerCmd represents the SpecificEventLevelDescriptionHandler command
+var SpecificEventLevelDescriptionHandlerCmd = &cobra.Command{
+	Use:   "SpecificEventLevelDescriptionHandler",
 	Short: "Specific event level description handler",
 	Long:  `Specific event level description handler`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,6 +39,5 @@ var specificEventLevelDescriptionHandlerCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(specificEventLevelDescriptionHandlerCmd)
-	specificEventLevelDescriptionHandlerCmd.Flags().StringP("eventLevels", "es", " ", "Event levels")
+	SpecificEventLevelDescriptionHandlerCmd.Flags().StringP("eventLevels", "es", " ", "Event levels")
 }

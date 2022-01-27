@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/payment_station"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getPaymentTaxValueCmd represents the getPaymentTaxValue command
-var getPaymentTaxValueCmd = &cobra.Command{
-	Use:   "getPaymentTaxValue",
+// GetPaymentTaxValueCmd represents the GetPaymentTaxValue command
+var GetPaymentTaxValueCmd = &cobra.Command{
+	Use:   "GetPaymentTaxValue",
 	Short: "Get payment tax value",
 	Long:  `Get payment tax value`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -46,12 +45,11 @@ var getPaymentTaxValueCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getPaymentTaxValueCmd)
-	getPaymentTaxValueCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getPaymentTaxValueCmd.MarkFlagRequired("namespace")
-	getPaymentTaxValueCmd.Flags().StringP("zipCode", "ze", " ", "Zip code")
-	getPaymentTaxValueCmd.Flags().StringP("paymentOrderNo", "po", " ", "Payment order no")
-	_ = getPaymentTaxValueCmd.MarkFlagRequired("paymentOrderNo")
-	getPaymentTaxValueCmd.Flags().StringP("paymentProvider", "pr", " ", "Payment provider")
-	_ = getPaymentTaxValueCmd.MarkFlagRequired("paymentProvider")
+	GetPaymentTaxValueCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetPaymentTaxValueCmd.MarkFlagRequired("namespace")
+	GetPaymentTaxValueCmd.Flags().StringP("zipCode", "ze", " ", "Zip code")
+	GetPaymentTaxValueCmd.Flags().StringP("paymentOrderNo", "po", " ", "Payment order no")
+	_ = GetPaymentTaxValueCmd.MarkFlagRequired("paymentOrderNo")
+	GetPaymentTaxValueCmd.Flags().StringP("paymentProvider", "pr", " ", "Payment provider")
+	_ = GetPaymentTaxValueCmd.MarkFlagRequired("paymentProvider")
 }

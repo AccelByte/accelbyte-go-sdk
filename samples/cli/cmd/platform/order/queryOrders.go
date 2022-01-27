@@ -9,15 +9,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/order"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// queryOrdersCmd represents the queryOrders command
-var queryOrdersCmd = &cobra.Command{
-	Use:   "queryOrders",
+// QueryOrdersCmd represents the QueryOrders command
+var QueryOrdersCmd = &cobra.Command{
+	Use:   "QueryOrders",
 	Short: "Query orders",
 	Long:  `Query orders`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -62,15 +61,14 @@ var queryOrdersCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(queryOrdersCmd)
-	queryOrdersCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = queryOrdersCmd.MarkFlagRequired("namespace")
-	queryOrdersCmd.Flags().StringP("endTime", "ee", " ", "End time")
-	queryOrdersCmd.Flags().Int32P("limit", "lt", 20, "Limit")
-	queryOrdersCmd.Flags().Int32P("offset", "ot", 0, "Offset")
-	queryOrdersCmd.Flags().StringP("orderNos", "os", " ", "Order nos")
-	queryOrdersCmd.Flags().StringP("sortBy", "sy", " ", "Sort by")
-	queryOrdersCmd.Flags().StringP("startTime", "se", " ", "Start time")
-	queryOrdersCmd.Flags().StringP("status", "ss", " ", "Status")
-	queryOrdersCmd.Flags().BoolP("withTotal", "wl", false, "With total")
+	QueryOrdersCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = QueryOrdersCmd.MarkFlagRequired("namespace")
+	QueryOrdersCmd.Flags().StringP("endTime", "ee", " ", "End time")
+	QueryOrdersCmd.Flags().Int32P("limit", "lt", 20, "Limit")
+	QueryOrdersCmd.Flags().Int32P("offset", "ot", 0, "Offset")
+	QueryOrdersCmd.Flags().StringP("orderNos", "os", " ", "Order nos")
+	QueryOrdersCmd.Flags().StringP("sortBy", "sy", " ", "Sort by")
+	QueryOrdersCmd.Flags().StringP("startTime", "se", " ", "Start time")
+	QueryOrdersCmd.Flags().StringP("status", "ss", " ", "Status")
+	QueryOrdersCmd.Flags().BoolP("withTotal", "wl", false, "With total")
 }

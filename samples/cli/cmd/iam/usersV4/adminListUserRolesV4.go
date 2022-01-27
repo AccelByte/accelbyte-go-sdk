@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users_v4"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminListUserRolesV4Cmd represents the adminListUserRolesV4 command
-var adminListUserRolesV4Cmd = &cobra.Command{
-	Use:   "adminListUserRolesV4",
+// AdminListUserRolesV4Cmd represents the AdminListUserRolesV4 command
+var AdminListUserRolesV4Cmd = &cobra.Command{
+	Use:   "AdminListUserRolesV4",
 	Short: "Admin list user roles V4",
 	Long:  `Admin list user roles V4`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,9 +41,8 @@ var adminListUserRolesV4Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminListUserRolesV4Cmd)
-	adminListUserRolesV4Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = adminListUserRolesV4Cmd.MarkFlagRequired("namespace")
-	adminListUserRolesV4Cmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = adminListUserRolesV4Cmd.MarkFlagRequired("userId")
+	AdminListUserRolesV4Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AdminListUserRolesV4Cmd.MarkFlagRequired("namespace")
+	AdminListUserRolesV4Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = AdminListUserRolesV4Cmd.MarkFlagRequired("userId")
 }

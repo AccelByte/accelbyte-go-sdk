@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/payment_config"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// queryPaymentProviderConfigCmd represents the queryPaymentProviderConfig command
-var queryPaymentProviderConfigCmd = &cobra.Command{
-	Use:   "queryPaymentProviderConfig",
+// QueryPaymentProviderConfigCmd represents the QueryPaymentProviderConfig command
+var QueryPaymentProviderConfigCmd = &cobra.Command{
+	Use:   "QueryPaymentProviderConfig",
 	Short: "Query payment provider config",
 	Long:  `Query payment provider config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -46,9 +45,8 @@ var queryPaymentProviderConfigCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(queryPaymentProviderConfigCmd)
-	queryPaymentProviderConfigCmd.Flags().Int32P("limit", "lt", 20, "Limit")
-	queryPaymentProviderConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	queryPaymentProviderConfigCmd.Flags().Int32P("offset", "ot", 0, "Offset")
-	queryPaymentProviderConfigCmd.Flags().StringP("region", "rn", " ", "Region")
+	QueryPaymentProviderConfigCmd.Flags().Int32P("limit", "lt", 20, "Limit")
+	QueryPaymentProviderConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	QueryPaymentProviderConfigCmd.Flags().Int32P("offset", "ot", 0, "Offset")
+	QueryPaymentProviderConfigCmd.Flags().StringP("region", "rn", " ", "Region")
 }

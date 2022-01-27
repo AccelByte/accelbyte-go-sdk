@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/ugc"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/anonymization"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminDeleteAllUserStatesCmd represents the adminDeleteAllUserStates command
-var adminDeleteAllUserStatesCmd = &cobra.Command{
-	Use:   "adminDeleteAllUserStates",
+// AdminDeleteAllUserStatesCmd represents the AdminDeleteAllUserStates command
+var AdminDeleteAllUserStatesCmd = &cobra.Command{
+	Use:   "AdminDeleteAllUserStates",
 	Short: "Admin delete all user states",
 	Long:  `Admin delete all user states`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,9 +40,8 @@ var adminDeleteAllUserStatesCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminDeleteAllUserStatesCmd)
-	adminDeleteAllUserStatesCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = adminDeleteAllUserStatesCmd.MarkFlagRequired("namespace")
-	adminDeleteAllUserStatesCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = adminDeleteAllUserStatesCmd.MarkFlagRequired("userId")
+	AdminDeleteAllUserStatesCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AdminDeleteAllUserStatesCmd.MarkFlagRequired("namespace")
+	AdminDeleteAllUserStatesCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = AdminDeleteAllUserStatesCmd.MarkFlagRequired("userId")
 }

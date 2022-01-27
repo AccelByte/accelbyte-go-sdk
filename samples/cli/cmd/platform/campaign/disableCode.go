@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/campaign"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// disableCodeCmd represents the disableCode command
-var disableCodeCmd = &cobra.Command{
-	Use:   "disableCode",
+// DisableCodeCmd represents the DisableCode command
+var DisableCodeCmd = &cobra.Command{
+	Use:   "DisableCode",
 	Short: "Disable code",
 	Long:  `Disable code`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,9 +41,8 @@ var disableCodeCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(disableCodeCmd)
-	disableCodeCmd.Flags().StringP("code", "ce", " ", "Code")
-	_ = disableCodeCmd.MarkFlagRequired("code")
-	disableCodeCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = disableCodeCmd.MarkFlagRequired("namespace")
+	DisableCodeCmd.Flags().StringP("code", "ce", " ", "Code")
+	_ = DisableCodeCmd.MarkFlagRequired("code")
+	DisableCodeCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = DisableCodeCmd.MarkFlagRequired("namespace")
 }

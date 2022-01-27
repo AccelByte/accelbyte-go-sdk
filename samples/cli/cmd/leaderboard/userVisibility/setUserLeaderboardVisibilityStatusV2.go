@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/leaderboard-sdk/pkg/leaderboardclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/leaderboard"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// setUserLeaderboardVisibilityStatusV2Cmd represents the setUserLeaderboardVisibilityStatusV2 command
-var setUserLeaderboardVisibilityStatusV2Cmd = &cobra.Command{
-	Use:   "setUserLeaderboardVisibilityStatusV2",
+// SetUserLeaderboardVisibilityStatusV2Cmd represents the SetUserLeaderboardVisibilityStatusV2 command
+var SetUserLeaderboardVisibilityStatusV2Cmd = &cobra.Command{
+	Use:   "SetUserLeaderboardVisibilityStatusV2",
 	Short: "Set user leaderboard visibility status V2",
 	Long:  `Set user leaderboard visibility status V2`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -53,13 +52,12 @@ var setUserLeaderboardVisibilityStatusV2Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(setUserLeaderboardVisibilityStatusV2Cmd)
-	setUserLeaderboardVisibilityStatusV2Cmd.Flags().StringP("body", "by", " ", "Body")
-	_ = setUserLeaderboardVisibilityStatusV2Cmd.MarkFlagRequired("body")
-	setUserLeaderboardVisibilityStatusV2Cmd.Flags().StringP("leaderboardCode", "le", " ", "Leaderboard code")
-	_ = setUserLeaderboardVisibilityStatusV2Cmd.MarkFlagRequired("leaderboardCode")
-	setUserLeaderboardVisibilityStatusV2Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = setUserLeaderboardVisibilityStatusV2Cmd.MarkFlagRequired("namespace")
-	setUserLeaderboardVisibilityStatusV2Cmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = setUserLeaderboardVisibilityStatusV2Cmd.MarkFlagRequired("userId")
+	SetUserLeaderboardVisibilityStatusV2Cmd.Flags().StringP("body", "by", " ", "Body")
+	_ = SetUserLeaderboardVisibilityStatusV2Cmd.MarkFlagRequired("body")
+	SetUserLeaderboardVisibilityStatusV2Cmd.Flags().StringP("leaderboardCode", "le", " ", "Leaderboard code")
+	_ = SetUserLeaderboardVisibilityStatusV2Cmd.MarkFlagRequired("leaderboardCode")
+	SetUserLeaderboardVisibilityStatusV2Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = SetUserLeaderboardVisibilityStatusV2Cmd.MarkFlagRequired("namespace")
+	SetUserLeaderboardVisibilityStatusV2Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = SetUserLeaderboardVisibilityStatusV2Cmd.MarkFlagRequired("userId")
 }

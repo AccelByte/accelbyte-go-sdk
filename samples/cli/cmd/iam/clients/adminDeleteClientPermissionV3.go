@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/clients"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminDeleteClientPermissionV3Cmd represents the adminDeleteClientPermissionV3 command
-var adminDeleteClientPermissionV3Cmd = &cobra.Command{
-	Use:   "adminDeleteClientPermissionV3",
+// AdminDeleteClientPermissionV3Cmd represents the AdminDeleteClientPermissionV3 command
+var AdminDeleteClientPermissionV3Cmd = &cobra.Command{
+	Use:   "AdminDeleteClientPermissionV3",
 	Short: "Admin delete client permission V3",
 	Long:  `Admin delete client permission V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -45,13 +44,12 @@ var adminDeleteClientPermissionV3Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminDeleteClientPermissionV3Cmd)
-	adminDeleteClientPermissionV3Cmd.Flags().Int64P("action", "an", -1, "Action")
-	_ = adminDeleteClientPermissionV3Cmd.MarkFlagRequired("action")
-	adminDeleteClientPermissionV3Cmd.Flags().StringP("clientId", "cd", " ", "Client id")
-	_ = adminDeleteClientPermissionV3Cmd.MarkFlagRequired("clientId")
-	adminDeleteClientPermissionV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = adminDeleteClientPermissionV3Cmd.MarkFlagRequired("namespace")
-	adminDeleteClientPermissionV3Cmd.Flags().StringP("resource", "re", " ", "Resource")
-	_ = adminDeleteClientPermissionV3Cmd.MarkFlagRequired("resource")
+	AdminDeleteClientPermissionV3Cmd.Flags().Int64P("action", "an", -1, "Action")
+	_ = AdminDeleteClientPermissionV3Cmd.MarkFlagRequired("action")
+	AdminDeleteClientPermissionV3Cmd.Flags().StringP("clientId", "cd", " ", "Client id")
+	_ = AdminDeleteClientPermissionV3Cmd.MarkFlagRequired("clientId")
+	AdminDeleteClientPermissionV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AdminDeleteClientPermissionV3Cmd.MarkFlagRequired("namespace")
+	AdminDeleteClientPermissionV3Cmd.Flags().StringP("resource", "re", " ", "Resource")
+	_ = AdminDeleteClientPermissionV3Cmd.MarkFlagRequired("resource")
 }

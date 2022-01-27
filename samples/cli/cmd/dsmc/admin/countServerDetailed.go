@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/admin"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/dsmc"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// countServerDetailedCmd represents the countServerDetailed command
-var countServerDetailedCmd = &cobra.Command{
-	Use:   "countServerDetailed",
+// CountServerDetailedCmd represents the CountServerDetailed command
+var CountServerDetailedCmd = &cobra.Command{
+	Use:   "CountServerDetailed",
 	Short: "Count server detailed",
 	Long:  `Count server detailed`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,8 +41,7 @@ var countServerDetailedCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(countServerDetailedCmd)
-	countServerDetailedCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = countServerDetailedCmd.MarkFlagRequired("namespace")
-	countServerDetailedCmd.Flags().StringP("region", "rn", " ", "Region")
+	CountServerDetailedCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = CountServerDetailedCmd.MarkFlagRequired("namespace")
+	CountServerDetailedCmd.Flags().StringP("region", "rn", " ", "Region")
 }

@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/basic"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// updateMyZipCodeCmd represents the updateMyZipCode command
-var updateMyZipCodeCmd = &cobra.Command{
-	Use:   "updateMyZipCode",
+// UpdateMyZipCodeCmd represents the UpdateMyZipCode command
+var UpdateMyZipCodeCmd = &cobra.Command{
+	Use:   "UpdateMyZipCode",
 	Short: "Update my zip code",
 	Long:  `Update my zip code`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,9 +48,8 @@ var updateMyZipCodeCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(updateMyZipCodeCmd)
-	updateMyZipCodeCmd.Flags().StringP("userZipCodeUpdate", "ue", " ", "User zip code update")
-	_ = updateMyZipCodeCmd.MarkFlagRequired("userZipCodeUpdate")
-	updateMyZipCodeCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = updateMyZipCodeCmd.MarkFlagRequired("namespace")
+	UpdateMyZipCodeCmd.Flags().StringP("userZipCodeUpdate", "ue", " ", "User zip code update")
+	_ = UpdateMyZipCodeCmd.MarkFlagRequired("userZipCodeUpdate")
+	UpdateMyZipCodeCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = UpdateMyZipCodeCmd.MarkFlagRequired("namespace")
 }

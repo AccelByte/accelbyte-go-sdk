@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// removeRoleMembersCmd represents the removeRoleMembers command
-var removeRoleMembersCmd = &cobra.Command{
-	Use:   "removeRoleMembers",
+// RemoveRoleMembersCmd represents the RemoveRoleMembers command
+var RemoveRoleMembersCmd = &cobra.Command{
+	Use:   "RemoveRoleMembers",
 	Short: "Remove role members",
 	Long:  `Remove role members`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,9 +47,8 @@ var removeRoleMembersCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(removeRoleMembersCmd)
-	removeRoleMembersCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = removeRoleMembersCmd.MarkFlagRequired("body")
-	removeRoleMembersCmd.Flags().StringP("roleId", "rd", " ", "Role id")
-	_ = removeRoleMembersCmd.MarkFlagRequired("roleId")
+	RemoveRoleMembersCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = RemoveRoleMembersCmd.MarkFlagRequired("body")
+	RemoveRoleMembersCmd.Flags().StringP("roleId", "rd", " ", "Role id")
+	_ = RemoveRoleMembersCmd.MarkFlagRequired("roleId")
 }

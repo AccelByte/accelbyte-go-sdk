@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/group-sdk/pkg/groupclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/group"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// updateMemberRoleAdminV1Cmd represents the updateMemberRoleAdminV1 command
-var updateMemberRoleAdminV1Cmd = &cobra.Command{
-	Use:   "updateMemberRoleAdminV1",
+// UpdateMemberRoleAdminV1Cmd represents the UpdateMemberRoleAdminV1 command
+var UpdateMemberRoleAdminV1Cmd = &cobra.Command{
+	Use:   "UpdateMemberRoleAdminV1",
 	Short: "Update member role admin V1",
 	Long:  `Update member role admin V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -51,11 +50,10 @@ var updateMemberRoleAdminV1Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(updateMemberRoleAdminV1Cmd)
-	updateMemberRoleAdminV1Cmd.Flags().StringP("body", "by", " ", "Body")
-	_ = updateMemberRoleAdminV1Cmd.MarkFlagRequired("body")
-	updateMemberRoleAdminV1Cmd.Flags().StringP("memberRoleId", "md", " ", "Member role id")
-	_ = updateMemberRoleAdminV1Cmd.MarkFlagRequired("memberRoleId")
-	updateMemberRoleAdminV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = updateMemberRoleAdminV1Cmd.MarkFlagRequired("namespace")
+	UpdateMemberRoleAdminV1Cmd.Flags().StringP("body", "by", " ", "Body")
+	_ = UpdateMemberRoleAdminV1Cmd.MarkFlagRequired("body")
+	UpdateMemberRoleAdminV1Cmd.Flags().StringP("memberRoleId", "md", " ", "Member role id")
+	_ = UpdateMemberRoleAdminV1Cmd.MarkFlagRequired("memberRoleId")
+	UpdateMemberRoleAdminV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = UpdateMemberRoleAdminV1Cmd.MarkFlagRequired("namespace")
 }

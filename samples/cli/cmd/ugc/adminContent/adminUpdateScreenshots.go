@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/ugc"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/admin_content"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclientmodels"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminUpdateScreenshotsCmd represents the adminUpdateScreenshots command
-var adminUpdateScreenshotsCmd = &cobra.Command{
-	Use:   "adminUpdateScreenshots",
+// AdminUpdateScreenshotsCmd represents the AdminUpdateScreenshots command
+var AdminUpdateScreenshotsCmd = &cobra.Command{
+	Use:   "AdminUpdateScreenshots",
 	Short: "Admin update screenshots",
 	Long:  `Admin update screenshots`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -51,11 +50,10 @@ var adminUpdateScreenshotsCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminUpdateScreenshotsCmd)
-	adminUpdateScreenshotsCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = adminUpdateScreenshotsCmd.MarkFlagRequired("body")
-	adminUpdateScreenshotsCmd.Flags().StringP("contentId", "cd", " ", "Content id")
-	_ = adminUpdateScreenshotsCmd.MarkFlagRequired("contentId")
-	adminUpdateScreenshotsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = adminUpdateScreenshotsCmd.MarkFlagRequired("namespace")
+	AdminUpdateScreenshotsCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = AdminUpdateScreenshotsCmd.MarkFlagRequired("body")
+	AdminUpdateScreenshotsCmd.Flags().StringP("contentId", "cd", " ", "Content id")
+	_ = AdminUpdateScreenshotsCmd.MarkFlagRequired("contentId")
+	AdminUpdateScreenshotsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AdminUpdateScreenshotsCmd.MarkFlagRequired("namespace")
 }

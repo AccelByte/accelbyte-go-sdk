@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth2_0"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// authCodeRequestV3Cmd represents the authCodeRequestV3 command
-var authCodeRequestV3Cmd = &cobra.Command{
-	Use:   "authCodeRequestV3",
+// AuthCodeRequestV3Cmd represents the AuthCodeRequestV3 command
+var AuthCodeRequestV3Cmd = &cobra.Command{
+	Use:   "AuthCodeRequestV3",
 	Short: "Auth code request V3",
 	Long:  `Auth code request V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -45,11 +44,10 @@ var authCodeRequestV3Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(authCodeRequestV3Cmd)
-	authCodeRequestV3Cmd.Flags().StringP("platformId", "pd", " ", "Platform id")
-	_ = authCodeRequestV3Cmd.MarkFlagRequired("platformId")
-	authCodeRequestV3Cmd.Flags().StringP("client_id", "cd", " ", "Client id")
-	authCodeRequestV3Cmd.Flags().StringP("redirect_uri", "ri", " ", "Redirect uri")
-	authCodeRequestV3Cmd.Flags().StringP("request_id", "rd", " ", "Request id")
-	_ = authCodeRequestV3Cmd.MarkFlagRequired("request_id")
+	AuthCodeRequestV3Cmd.Flags().StringP("platformId", "pd", " ", "Platform id")
+	_ = AuthCodeRequestV3Cmd.MarkFlagRequired("platformId")
+	AuthCodeRequestV3Cmd.Flags().StringP("client_id", "cd", " ", "Client id")
+	AuthCodeRequestV3Cmd.Flags().StringP("redirect_uri", "ri", " ", "Redirect uri")
+	AuthCodeRequestV3Cmd.Flags().StringP("request_id", "rd", " ", "Request id")
+	_ = AuthCodeRequestV3Cmd.MarkFlagRequired("request_id")
 }

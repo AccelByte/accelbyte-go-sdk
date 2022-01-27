@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/player"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/lobby"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminGetAllPlayerSessionAttributeCmd represents the adminGetAllPlayerSessionAttribute command
-var adminGetAllPlayerSessionAttributeCmd = &cobra.Command{
-	Use:   "adminGetAllPlayerSessionAttribute",
+// AdminGetAllPlayerSessionAttributeCmd represents the AdminGetAllPlayerSessionAttribute command
+var AdminGetAllPlayerSessionAttributeCmd = &cobra.Command{
+	Use:   "AdminGetAllPlayerSessionAttribute",
 	Short: "Admin get all player session attribute",
 	Long:  `Admin get all player session attribute`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,9 +41,8 @@ var adminGetAllPlayerSessionAttributeCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminGetAllPlayerSessionAttributeCmd)
-	adminGetAllPlayerSessionAttributeCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = adminGetAllPlayerSessionAttributeCmd.MarkFlagRequired("namespace")
-	adminGetAllPlayerSessionAttributeCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = adminGetAllPlayerSessionAttributeCmd.MarkFlagRequired("userId")
+	AdminGetAllPlayerSessionAttributeCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AdminGetAllPlayerSessionAttributeCmd.MarkFlagRequired("namespace")
+	AdminGetAllPlayerSessionAttributeCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = AdminGetAllPlayerSessionAttributeCmd.MarkFlagRequired("userId")
 }

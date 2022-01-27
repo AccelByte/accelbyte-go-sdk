@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// publicGetAsyncStatusCmd represents the publicGetAsyncStatus command
-var publicGetAsyncStatusCmd = &cobra.Command{
-	Use:   "publicGetAsyncStatus",
+// PublicGetAsyncStatusCmd represents the PublicGetAsyncStatus command
+var PublicGetAsyncStatusCmd = &cobra.Command{
+	Use:   "PublicGetAsyncStatus",
 	Short: "Public get async status",
 	Long:  `Public get async status`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,9 +41,8 @@ var publicGetAsyncStatusCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(publicGetAsyncStatusCmd)
-	publicGetAsyncStatusCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = publicGetAsyncStatusCmd.MarkFlagRequired("namespace")
-	publicGetAsyncStatusCmd.Flags().StringP("requestId", "rd", " ", "Request id")
-	_ = publicGetAsyncStatusCmd.MarkFlagRequired("requestId")
+	PublicGetAsyncStatusCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PublicGetAsyncStatusCmd.MarkFlagRequired("namespace")
+	PublicGetAsyncStatusCmd.Flags().StringP("requestId", "rd", " ", "Request id")
+	_ = PublicGetAsyncStatusCmd.MarkFlagRequired("requestId")
 }

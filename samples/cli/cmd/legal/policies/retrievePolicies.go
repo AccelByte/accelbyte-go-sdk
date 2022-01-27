@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclient/policies"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/legal"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// retrievePoliciesCmd represents the retrievePolicies command
-var retrievePoliciesCmd = &cobra.Command{
-	Use:   "retrievePolicies",
+// RetrievePoliciesCmd represents the RetrievePolicies command
+var RetrievePoliciesCmd = &cobra.Command{
+	Use:   "RetrievePolicies",
 	Short: "Retrieve policies",
 	Long:  `Retrieve policies`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,7 +39,6 @@ var retrievePoliciesCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(retrievePoliciesCmd)
-	retrievePoliciesCmd.Flags().StringP("countryCode", "ce", " ", "Country code")
-	_ = retrievePoliciesCmd.MarkFlagRequired("countryCode")
+	RetrievePoliciesCmd.Flags().StringP("countryCode", "ce", " ", "Country code")
+	_ = RetrievePoliciesCmd.MarkFlagRequired("countryCode")
 }

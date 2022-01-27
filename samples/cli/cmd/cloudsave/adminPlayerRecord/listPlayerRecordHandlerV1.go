@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclient/admin_player_record"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/cloudsave"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// listPlayerRecordHandlerV1Cmd represents the listPlayerRecordHandlerV1 command
-var listPlayerRecordHandlerV1Cmd = &cobra.Command{
-	Use:   "listPlayerRecordHandlerV1",
+// ListPlayerRecordHandlerV1Cmd represents the ListPlayerRecordHandlerV1 command
+var ListPlayerRecordHandlerV1Cmd = &cobra.Command{
+	Use:   "ListPlayerRecordHandlerV1",
 	Short: "List player record handler V1",
 	Long:  `List player record handler V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -46,10 +45,9 @@ var listPlayerRecordHandlerV1Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(listPlayerRecordHandlerV1Cmd)
-	listPlayerRecordHandlerV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = listPlayerRecordHandlerV1Cmd.MarkFlagRequired("namespace")
-	listPlayerRecordHandlerV1Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
-	listPlayerRecordHandlerV1Cmd.Flags().Int64P("offset", "ot", 0, "Offset")
-	listPlayerRecordHandlerV1Cmd.Flags().StringP("query", "qy", " ", "Query")
+	ListPlayerRecordHandlerV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = ListPlayerRecordHandlerV1Cmd.MarkFlagRequired("namespace")
+	ListPlayerRecordHandlerV1Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
+	ListPlayerRecordHandlerV1Cmd.Flags().Int64P("offset", "ot", 0, "Offset")
+	ListPlayerRecordHandlerV1Cmd.Flags().StringP("query", "qy", " ", "Query")
 }

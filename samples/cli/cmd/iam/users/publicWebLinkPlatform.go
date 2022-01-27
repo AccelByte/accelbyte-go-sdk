@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// publicWebLinkPlatformCmd represents the publicWebLinkPlatform command
-var publicWebLinkPlatformCmd = &cobra.Command{
-	Use:   "publicWebLinkPlatform",
+// PublicWebLinkPlatformCmd represents the PublicWebLinkPlatform command
+var PublicWebLinkPlatformCmd = &cobra.Command{
+	Use:   "PublicWebLinkPlatform",
 	Short: "Public web link platform",
 	Long:  `Public web link platform`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -46,11 +45,10 @@ var publicWebLinkPlatformCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(publicWebLinkPlatformCmd)
-	publicWebLinkPlatformCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = publicWebLinkPlatformCmd.MarkFlagRequired("namespace")
-	publicWebLinkPlatformCmd.Flags().StringP("platformId", "pd", " ", "Platform id")
-	_ = publicWebLinkPlatformCmd.MarkFlagRequired("platformId")
-	publicWebLinkPlatformCmd.Flags().StringP("clientId", "cd", " ", "Client id")
-	publicWebLinkPlatformCmd.Flags().StringP("redirectUri", "ri", " ", "Redirect uri")
+	PublicWebLinkPlatformCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PublicWebLinkPlatformCmd.MarkFlagRequired("namespace")
+	PublicWebLinkPlatformCmd.Flags().StringP("platformId", "pd", " ", "Platform id")
+	_ = PublicWebLinkPlatformCmd.MarkFlagRequired("platformId")
+	PublicWebLinkPlatformCmd.Flags().StringP("clientId", "cd", " ", "Client id")
+	PublicWebLinkPlatformCmd.Flags().StringP("redirectUri", "ri", " ", "Redirect uri")
 }

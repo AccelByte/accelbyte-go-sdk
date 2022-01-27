@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/leaderboard-sdk/pkg/leaderboardclient/user_data"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/leaderboard"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getUserLeaderboardRankingsAdminV1Cmd represents the getUserLeaderboardRankingsAdminV1 command
-var getUserLeaderboardRankingsAdminV1Cmd = &cobra.Command{
-	Use:   "getUserLeaderboardRankingsAdminV1",
+// GetUserLeaderboardRankingsAdminV1Cmd represents the GetUserLeaderboardRankingsAdminV1 command
+var GetUserLeaderboardRankingsAdminV1Cmd = &cobra.Command{
+	Use:   "GetUserLeaderboardRankingsAdminV1",
 	Short: "Get user leaderboard rankings admin V1",
 	Long:  `Get user leaderboard rankings admin V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -46,11 +45,10 @@ var getUserLeaderboardRankingsAdminV1Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getUserLeaderboardRankingsAdminV1Cmd)
-	getUserLeaderboardRankingsAdminV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getUserLeaderboardRankingsAdminV1Cmd.MarkFlagRequired("namespace")
-	getUserLeaderboardRankingsAdminV1Cmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = getUserLeaderboardRankingsAdminV1Cmd.MarkFlagRequired("userId")
-	getUserLeaderboardRankingsAdminV1Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
-	getUserLeaderboardRankingsAdminV1Cmd.Flags().Int64P("offset", "ot", 0, "Offset")
+	GetUserLeaderboardRankingsAdminV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetUserLeaderboardRankingsAdminV1Cmd.MarkFlagRequired("namespace")
+	GetUserLeaderboardRankingsAdminV1Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = GetUserLeaderboardRankingsAdminV1Cmd.MarkFlagRequired("userId")
+	GetUserLeaderboardRankingsAdminV1Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
+	GetUserLeaderboardRankingsAdminV1Cmd.Flags().Int64P("offset", "ot", 0, "Offset")
 }

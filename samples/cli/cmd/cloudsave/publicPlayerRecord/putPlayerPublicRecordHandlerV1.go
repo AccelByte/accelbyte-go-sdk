@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/cloudsave"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// putPlayerPublicRecordHandlerV1Cmd represents the putPlayerPublicRecordHandlerV1 command
-var putPlayerPublicRecordHandlerV1Cmd = &cobra.Command{
-	Use:   "putPlayerPublicRecordHandlerV1",
+// PutPlayerPublicRecordHandlerV1Cmd represents the PutPlayerPublicRecordHandlerV1 command
+var PutPlayerPublicRecordHandlerV1Cmd = &cobra.Command{
+	Use:   "PutPlayerPublicRecordHandlerV1",
 	Short: "Put player public record handler V1",
 	Long:  `Put player public record handler V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -52,13 +51,12 @@ var putPlayerPublicRecordHandlerV1Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(putPlayerPublicRecordHandlerV1Cmd)
-	putPlayerPublicRecordHandlerV1Cmd.Flags().StringP("body", "by", " ", "Body")
-	_ = putPlayerPublicRecordHandlerV1Cmd.MarkFlagRequired("body")
-	putPlayerPublicRecordHandlerV1Cmd.Flags().StringP("key", "ky", " ", "Key")
-	_ = putPlayerPublicRecordHandlerV1Cmd.MarkFlagRequired("key")
-	putPlayerPublicRecordHandlerV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = putPlayerPublicRecordHandlerV1Cmd.MarkFlagRequired("namespace")
-	putPlayerPublicRecordHandlerV1Cmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = putPlayerPublicRecordHandlerV1Cmd.MarkFlagRequired("userId")
+	PutPlayerPublicRecordHandlerV1Cmd.Flags().StringP("body", "by", " ", "Body")
+	_ = PutPlayerPublicRecordHandlerV1Cmd.MarkFlagRequired("body")
+	PutPlayerPublicRecordHandlerV1Cmd.Flags().StringP("key", "ky", " ", "Key")
+	_ = PutPlayerPublicRecordHandlerV1Cmd.MarkFlagRequired("key")
+	PutPlayerPublicRecordHandlerV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PutPlayerPublicRecordHandlerV1Cmd.MarkFlagRequired("namespace")
+	PutPlayerPublicRecordHandlerV1Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = PutPlayerPublicRecordHandlerV1Cmd.MarkFlagRequired("userId")
 }

@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// updateAdyenConfigCmd represents the updateAdyenConfig command
-var updateAdyenConfigCmd = &cobra.Command{
-	Use:   "updateAdyenConfig",
+// UpdateAdyenConfigCmd represents the UpdateAdyenConfig command
+var UpdateAdyenConfigCmd = &cobra.Command{
+	Use:   "UpdateAdyenConfig",
 	Short: "Update adyen config",
 	Long:  `Update adyen config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -53,10 +52,9 @@ var updateAdyenConfigCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(updateAdyenConfigCmd)
-	updateAdyenConfigCmd.Flags().StringP("body", "by", " ", "Body")
-	updateAdyenConfigCmd.Flags().StringP("id", "id", " ", "Id")
-	_ = updateAdyenConfigCmd.MarkFlagRequired("id")
-	updateAdyenConfigCmd.Flags().BoolP("sandbox", "sx", false, "Sandbox")
-	updateAdyenConfigCmd.Flags().BoolP("validate", "ve", false, "Validate")
+	UpdateAdyenConfigCmd.Flags().StringP("body", "by", " ", "Body")
+	UpdateAdyenConfigCmd.Flags().StringP("id", "id", " ", "Id")
+	_ = UpdateAdyenConfigCmd.MarkFlagRequired("id")
+	UpdateAdyenConfigCmd.Flags().BoolP("sandbox", "sx", false, "Sandbox")
+	UpdateAdyenConfigCmd.Flags().BoolP("validate", "ve", false, "Validate")
 }

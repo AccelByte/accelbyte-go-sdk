@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/cloudsave"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// bulkGetPlayerPublicRecordHandlerV1Cmd represents the bulkGetPlayerPublicRecordHandlerV1 command
-var bulkGetPlayerPublicRecordHandlerV1Cmd = &cobra.Command{
-	Use:   "bulkGetPlayerPublicRecordHandlerV1",
+// BulkGetPlayerPublicRecordHandlerV1Cmd represents the BulkGetPlayerPublicRecordHandlerV1 command
+var BulkGetPlayerPublicRecordHandlerV1Cmd = &cobra.Command{
+	Use:   "BulkGetPlayerPublicRecordHandlerV1",
 	Short: "Bulk get player public record handler V1",
 	Long:  `Bulk get player public record handler V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -51,11 +50,10 @@ var bulkGetPlayerPublicRecordHandlerV1Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(bulkGetPlayerPublicRecordHandlerV1Cmd)
-	bulkGetPlayerPublicRecordHandlerV1Cmd.Flags().StringP("body", "by", " ", "Body")
-	_ = bulkGetPlayerPublicRecordHandlerV1Cmd.MarkFlagRequired("body")
-	bulkGetPlayerPublicRecordHandlerV1Cmd.Flags().StringP("key", "ky", " ", "Key")
-	_ = bulkGetPlayerPublicRecordHandlerV1Cmd.MarkFlagRequired("key")
-	bulkGetPlayerPublicRecordHandlerV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = bulkGetPlayerPublicRecordHandlerV1Cmd.MarkFlagRequired("namespace")
+	BulkGetPlayerPublicRecordHandlerV1Cmd.Flags().StringP("body", "by", " ", "Body")
+	_ = BulkGetPlayerPublicRecordHandlerV1Cmd.MarkFlagRequired("body")
+	BulkGetPlayerPublicRecordHandlerV1Cmd.Flags().StringP("key", "ky", " ", "Key")
+	_ = BulkGetPlayerPublicRecordHandlerV1Cmd.MarkFlagRequired("key")
+	BulkGetPlayerPublicRecordHandlerV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = BulkGetPlayerPublicRecordHandlerV1Cmd.MarkFlagRequired("namespace")
 }

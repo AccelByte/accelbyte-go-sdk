@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/item"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// publicGetItemCmd represents the publicGetItem command
-var publicGetItemCmd = &cobra.Command{
-	Use:   "publicGetItem",
+// PublicGetItemCmd represents the PublicGetItem command
+var PublicGetItemCmd = &cobra.Command{
+	Use:   "PublicGetItem",
 	Short: "Public get item",
 	Long:  `Public get item`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,13 +49,12 @@ var publicGetItemCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(publicGetItemCmd)
-	publicGetItemCmd.Flags().StringP("itemId", "id", " ", "Item id")
-	_ = publicGetItemCmd.MarkFlagRequired("itemId")
-	publicGetItemCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = publicGetItemCmd.MarkFlagRequired("namespace")
-	publicGetItemCmd.Flags().StringP("language", "le", " ", "Language")
-	publicGetItemCmd.Flags().BoolP("populateBundle", "pe", false, "Populate bundle")
-	publicGetItemCmd.Flags().StringP("region", "rn", " ", "Region")
-	publicGetItemCmd.Flags().StringP("storeId", "sd", " ", "Store id")
+	PublicGetItemCmd.Flags().StringP("itemId", "id", " ", "Item id")
+	_ = PublicGetItemCmd.MarkFlagRequired("itemId")
+	PublicGetItemCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PublicGetItemCmd.MarkFlagRequired("namespace")
+	PublicGetItemCmd.Flags().StringP("language", "le", " ", "Language")
+	PublicGetItemCmd.Flags().BoolP("populateBundle", "pe", false, "Populate bundle")
+	PublicGetItemCmd.Flags().StringP("region", "rn", " ", "Region")
+	PublicGetItemCmd.Flags().StringP("storeId", "sd", " ", "Store id")
 }

@@ -8,15 +8,14 @@ import (
 	matchmaking_ "github.com/AccelByte/accelbyte-go-sdk/matchmaking-sdk/pkg/matchmakingclient/matchmaking"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/matchmaking"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getSingleMatchmakingChannelCmd represents the getSingleMatchmakingChannel command
-var getSingleMatchmakingChannelCmd = &cobra.Command{
-	Use:   "getSingleMatchmakingChannel",
+// GetSingleMatchmakingChannelCmd represents the GetSingleMatchmakingChannel command
+var GetSingleMatchmakingChannelCmd = &cobra.Command{
+	Use:   "GetSingleMatchmakingChannel",
 	Short: "Get single matchmaking channel",
 	Long:  `Get single matchmaking channel`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,9 +41,8 @@ var getSingleMatchmakingChannelCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getSingleMatchmakingChannelCmd)
-	getSingleMatchmakingChannelCmd.Flags().StringP("channelName", "ce", " ", "Channel name")
-	_ = getSingleMatchmakingChannelCmd.MarkFlagRequired("channelName")
-	getSingleMatchmakingChannelCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getSingleMatchmakingChannelCmd.MarkFlagRequired("namespace")
+	GetSingleMatchmakingChannelCmd.Flags().StringP("channelName", "ce", " ", "Channel name")
+	_ = GetSingleMatchmakingChannelCmd.MarkFlagRequired("channelName")
+	GetSingleMatchmakingChannelCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetSingleMatchmakingChannelCmd.MarkFlagRequired("namespace")
 }

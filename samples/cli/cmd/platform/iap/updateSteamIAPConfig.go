@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// updateSteamIAPConfigCmd represents the updateSteamIAPConfig command
-var updateSteamIAPConfigCmd = &cobra.Command{
-	Use:   "updateSteamIAPConfig",
+// UpdateSteamIAPConfigCmd represents the UpdateSteamIAPConfig command
+var UpdateSteamIAPConfigCmd = &cobra.Command{
+	Use:   "UpdateSteamIAPConfig",
 	Short: "Update steam IAP config",
 	Long:  `Update steam IAP config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,8 +48,7 @@ var updateSteamIAPConfigCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(updateSteamIAPConfigCmd)
-	updateSteamIAPConfigCmd.Flags().StringP("body", "by", " ", "Body")
-	updateSteamIAPConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = updateSteamIAPConfigCmd.MarkFlagRequired("namespace")
+	UpdateSteamIAPConfigCmd.Flags().StringP("body", "by", " ", "Body")
+	UpdateSteamIAPConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = UpdateSteamIAPConfigCmd.MarkFlagRequired("namespace")
 }

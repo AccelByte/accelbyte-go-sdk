@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/lobby"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// userUnfriendRequestCmd represents the userUnfriendRequest command
-var userUnfriendRequestCmd = &cobra.Command{
-	Use:   "userUnfriendRequest",
+// UserUnfriendRequestCmd represents the UserUnfriendRequest command
+var UserUnfriendRequestCmd = &cobra.Command{
+	Use:   "UserUnfriendRequest",
 	Short: "User unfriend request",
 	Long:  `User unfriend request`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,9 +47,8 @@ var userUnfriendRequestCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(userUnfriendRequestCmd)
-	userUnfriendRequestCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = userUnfriendRequestCmd.MarkFlagRequired("body")
-	userUnfriendRequestCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = userUnfriendRequestCmd.MarkFlagRequired("namespace")
+	UserUnfriendRequestCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = UserUnfriendRequestCmd.MarkFlagRequired("body")
+	UserUnfriendRequestCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = UserUnfriendRequestCmd.MarkFlagRequired("namespace")
 }

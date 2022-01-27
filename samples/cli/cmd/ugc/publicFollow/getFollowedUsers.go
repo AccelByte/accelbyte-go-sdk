@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/ugc"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/public_follow"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getFollowedUsersCmd represents the getFollowedUsers command
-var getFollowedUsersCmd = &cobra.Command{
-	Use:   "getFollowedUsers",
+// GetFollowedUsersCmd represents the GetFollowedUsers command
+var GetFollowedUsersCmd = &cobra.Command{
+	Use:   "GetFollowedUsers",
 	Short: "Get followed users",
 	Long:  `Get followed users`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -44,9 +43,8 @@ var getFollowedUsersCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getFollowedUsersCmd)
-	getFollowedUsersCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getFollowedUsersCmd.MarkFlagRequired("namespace")
-	getFollowedUsersCmd.Flags().StringP("limit", "lt", "20", "Limit")
-	getFollowedUsersCmd.Flags().StringP("offset", "ot", "0", "Offset")
+	GetFollowedUsersCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetFollowedUsersCmd.MarkFlagRequired("namespace")
+	GetFollowedUsersCmd.Flags().StringP("limit", "lt", "20", "Limit")
+	GetFollowedUsersCmd.Flags().StringP("offset", "ot", "0", "Offset")
 }

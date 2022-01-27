@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminUpdateCountryAgeRestrictionV3Cmd represents the adminUpdateCountryAgeRestrictionV3 command
-var adminUpdateCountryAgeRestrictionV3Cmd = &cobra.Command{
-	Use:   "adminUpdateCountryAgeRestrictionV3",
+// AdminUpdateCountryAgeRestrictionV3Cmd represents the AdminUpdateCountryAgeRestrictionV3 command
+var AdminUpdateCountryAgeRestrictionV3Cmd = &cobra.Command{
+	Use:   "AdminUpdateCountryAgeRestrictionV3",
 	Short: "Admin update country age restriction V3",
 	Long:  `Admin update country age restriction V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -51,11 +50,10 @@ var adminUpdateCountryAgeRestrictionV3Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminUpdateCountryAgeRestrictionV3Cmd)
-	adminUpdateCountryAgeRestrictionV3Cmd.Flags().StringP("body", "by", " ", "Body")
-	_ = adminUpdateCountryAgeRestrictionV3Cmd.MarkFlagRequired("body")
-	adminUpdateCountryAgeRestrictionV3Cmd.Flags().StringP("countryCode", "ce", " ", "Country code")
-	_ = adminUpdateCountryAgeRestrictionV3Cmd.MarkFlagRequired("countryCode")
-	adminUpdateCountryAgeRestrictionV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = adminUpdateCountryAgeRestrictionV3Cmd.MarkFlagRequired("namespace")
+	AdminUpdateCountryAgeRestrictionV3Cmd.Flags().StringP("body", "by", " ", "Body")
+	_ = AdminUpdateCountryAgeRestrictionV3Cmd.MarkFlagRequired("body")
+	AdminUpdateCountryAgeRestrictionV3Cmd.Flags().StringP("countryCode", "ce", " ", "Country code")
+	_ = AdminUpdateCountryAgeRestrictionV3Cmd.MarkFlagRequired("countryCode")
+	AdminUpdateCountryAgeRestrictionV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AdminUpdateCountryAgeRestrictionV3Cmd.MarkFlagRequired("namespace")
 }

@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// publicPlatformLinkV3Cmd represents the publicPlatformLinkV3 command
-var publicPlatformLinkV3Cmd = &cobra.Command{
-	Use:   "publicPlatformLinkV3",
+// PublicPlatformLinkV3Cmd represents the PublicPlatformLinkV3 command
+var PublicPlatformLinkV3Cmd = &cobra.Command{
+	Use:   "PublicPlatformLinkV3",
 	Short: "Public platform link V3",
 	Long:  `Public platform link V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -45,12 +44,11 @@ var publicPlatformLinkV3Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(publicPlatformLinkV3Cmd)
-	publicPlatformLinkV3Cmd.Flags().StringP("redirectUri", "ri", " ", "Redirect uri")
-	publicPlatformLinkV3Cmd.Flags().StringP("ticket", "tt", " ", "Ticket")
-	_ = publicPlatformLinkV3Cmd.MarkFlagRequired("ticket")
-	publicPlatformLinkV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = publicPlatformLinkV3Cmd.MarkFlagRequired("namespace")
-	publicPlatformLinkV3Cmd.Flags().StringP("platformId", "pd", " ", "Platform id")
-	_ = publicPlatformLinkV3Cmd.MarkFlagRequired("platformId")
+	PublicPlatformLinkV3Cmd.Flags().StringP("redirectUri", "ri", " ", "Redirect uri")
+	PublicPlatformLinkV3Cmd.Flags().StringP("ticket", "tt", " ", "Ticket")
+	_ = PublicPlatformLinkV3Cmd.MarkFlagRequired("ticket")
+	PublicPlatformLinkV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PublicPlatformLinkV3Cmd.MarkFlagRequired("namespace")
+	PublicPlatformLinkV3Cmd.Flags().StringP("platformId", "pd", " ", "Platform id")
+	_ = PublicPlatformLinkV3Cmd.MarkFlagRequired("platformId")
 }

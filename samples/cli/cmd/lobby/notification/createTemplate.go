@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/lobby"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// createTemplateCmd represents the createTemplate command
-var createTemplateCmd = &cobra.Command{
-	Use:   "createTemplate",
+// CreateTemplateCmd represents the CreateTemplate command
+var CreateTemplateCmd = &cobra.Command{
+	Use:   "CreateTemplate",
 	Short: "Create template",
 	Long:  `Create template`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,9 +47,8 @@ var createTemplateCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(createTemplateCmd)
-	createTemplateCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = createTemplateCmd.MarkFlagRequired("body")
-	createTemplateCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = createTemplateCmd.MarkFlagRequired("namespace")
+	CreateTemplateCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = CreateTemplateCmd.MarkFlagRequired("body")
+	CreateTemplateCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = CreateTemplateCmd.MarkFlagRequired("namespace")
 }

@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/ugc"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/admin_content"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminGetContentCmd represents the adminGetContent command
-var adminGetContentCmd = &cobra.Command{
-	Use:   "adminGetContent",
+// AdminGetContentCmd represents the AdminGetContent command
+var AdminGetContentCmd = &cobra.Command{
+	Use:   "AdminGetContent",
 	Short: "Admin get content",
 	Long:  `Admin get content`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -46,11 +45,10 @@ var adminGetContentCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminGetContentCmd)
-	adminGetContentCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = adminGetContentCmd.MarkFlagRequired("namespace")
-	adminGetContentCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = adminGetContentCmd.MarkFlagRequired("userId")
-	adminGetContentCmd.Flags().StringP("limit", "lt", "20", "Limit")
-	adminGetContentCmd.Flags().StringP("offset", "ot", "0", "Offset")
+	AdminGetContentCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AdminGetContentCmd.MarkFlagRequired("namespace")
+	AdminGetContentCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = AdminGetContentCmd.MarkFlagRequired("userId")
+	AdminGetContentCmd.Flags().StringP("limit", "lt", "20", "Limit")
+	AdminGetContentCmd.Flags().StringP("offset", "ot", "0", "Offset")
 }

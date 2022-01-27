@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclient/agreement"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/legal"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// retrieveAgreementsPublicCmd represents the retrieveAgreementsPublic command
-var retrieveAgreementsPublicCmd = &cobra.Command{
-	Use:   "retrieveAgreementsPublic",
+// RetrieveAgreementsPublicCmd represents the RetrieveAgreementsPublic command
+var RetrieveAgreementsPublicCmd = &cobra.Command{
+	Use:   "RetrieveAgreementsPublic",
 	Short: "Retrieve agreements public",
 	Long:  `Retrieve agreements public`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -34,8 +33,4 @@ var retrieveAgreementsPublicCmd = &cobra.Command{
 		}
 		return nil
 	},
-}
-
-func init() {
-	cmd.RootCmd.AddCommand(retrieveAgreementsPublicCmd)
 }

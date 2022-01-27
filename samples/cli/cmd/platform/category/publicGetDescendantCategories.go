@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/category"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// publicGetDescendantCategoriesCmd represents the publicGetDescendantCategories command
-var publicGetDescendantCategoriesCmd = &cobra.Command{
-	Use:   "publicGetDescendantCategories",
+// PublicGetDescendantCategoriesCmd represents the PublicGetDescendantCategories command
+var PublicGetDescendantCategoriesCmd = &cobra.Command{
+	Use:   "PublicGetDescendantCategories",
 	Short: "Public get descendant categories",
 	Long:  `Public get descendant categories`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -46,11 +45,10 @@ var publicGetDescendantCategoriesCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(publicGetDescendantCategoriesCmd)
-	publicGetDescendantCategoriesCmd.Flags().StringP("categoryPath", "ch", " ", "Category path")
-	_ = publicGetDescendantCategoriesCmd.MarkFlagRequired("categoryPath")
-	publicGetDescendantCategoriesCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = publicGetDescendantCategoriesCmd.MarkFlagRequired("namespace")
-	publicGetDescendantCategoriesCmd.Flags().StringP("language", "le", " ", "Language")
-	publicGetDescendantCategoriesCmd.Flags().StringP("storeId", "sd", " ", "Store id")
+	PublicGetDescendantCategoriesCmd.Flags().StringP("categoryPath", "ch", " ", "Category path")
+	_ = PublicGetDescendantCategoriesCmd.MarkFlagRequired("categoryPath")
+	PublicGetDescendantCategoriesCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PublicGetDescendantCategoriesCmd.MarkFlagRequired("namespace")
+	PublicGetDescendantCategoriesCmd.Flags().StringP("language", "le", " ", "Language")
+	PublicGetDescendantCategoriesCmd.Flags().StringP("storeId", "sd", " ", "Store id")
 }

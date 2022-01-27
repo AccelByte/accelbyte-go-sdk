@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/notification"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/lobby"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// deleteTemplateLocalizationV1AdminCmd represents the deleteTemplateLocalizationV1Admin command
-var deleteTemplateLocalizationV1AdminCmd = &cobra.Command{
-	Use:   "deleteTemplateLocalizationV1Admin",
+// DeleteTemplateLocalizationV1AdminCmd represents the DeleteTemplateLocalizationV1Admin command
+var DeleteTemplateLocalizationV1AdminCmd = &cobra.Command{
+	Use:   "DeleteTemplateLocalizationV1Admin",
 	Short: "Delete template localization V1 admin",
 	Long:  `Delete template localization V1 admin`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,11 +42,10 @@ var deleteTemplateLocalizationV1AdminCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(deleteTemplateLocalizationV1AdminCmd)
-	deleteTemplateLocalizationV1AdminCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = deleteTemplateLocalizationV1AdminCmd.MarkFlagRequired("namespace")
-	deleteTemplateLocalizationV1AdminCmd.Flags().StringP("templateLanguage", "te", " ", "Template language")
-	_ = deleteTemplateLocalizationV1AdminCmd.MarkFlagRequired("templateLanguage")
-	deleteTemplateLocalizationV1AdminCmd.Flags().StringP("templateSlug", "tg", " ", "Template slug")
-	_ = deleteTemplateLocalizationV1AdminCmd.MarkFlagRequired("templateSlug")
+	DeleteTemplateLocalizationV1AdminCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = DeleteTemplateLocalizationV1AdminCmd.MarkFlagRequired("namespace")
+	DeleteTemplateLocalizationV1AdminCmd.Flags().StringP("templateLanguage", "te", " ", "Template language")
+	_ = DeleteTemplateLocalizationV1AdminCmd.MarkFlagRequired("templateLanguage")
+	DeleteTemplateLocalizationV1AdminCmd.Flags().StringP("templateSlug", "tg", " ", "Template slug")
+	_ = DeleteTemplateLocalizationV1AdminCmd.MarkFlagRequired("templateSlug")
 }

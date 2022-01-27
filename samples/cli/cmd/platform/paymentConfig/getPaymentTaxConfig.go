@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/payment_config"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getPaymentTaxConfigCmd represents the getPaymentTaxConfig command
-var getPaymentTaxConfigCmd = &cobra.Command{
-	Use:   "getPaymentTaxConfig",
+// GetPaymentTaxConfigCmd represents the GetPaymentTaxConfig command
+var GetPaymentTaxConfigCmd = &cobra.Command{
+	Use:   "GetPaymentTaxConfig",
 	Short: "Get payment tax config",
 	Long:  `Get payment tax config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -34,8 +33,4 @@ var getPaymentTaxConfigCmd = &cobra.Command{
 		}
 		return nil
 	},
-}
-
-func init() {
-	cmd.RootCmd.AddCommand(getPaymentTaxConfigCmd)
 }

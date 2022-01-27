@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/roles"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getRolesCmd represents the getRoles command
-var getRolesCmd = &cobra.Command{
-	Use:   "getRoles",
+// GetRolesCmd represents the GetRoles command
+var GetRolesCmd = &cobra.Command{
+	Use:   "GetRoles",
 	Short: "Get roles",
 	Long:  `Get roles`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,6 +39,5 @@ var getRolesCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getRolesCmd)
-	getRolesCmd.Flags().StringP("isWildcard", "id", " ", "Is wildcard")
+	GetRolesCmd.Flags().StringP("isWildcard", "id", " ", "Is wildcard")
 }

@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// createKeyGroupCmd represents the createKeyGroup command
-var createKeyGroupCmd = &cobra.Command{
-	Use:   "createKeyGroup",
+// CreateKeyGroupCmd represents the CreateKeyGroup command
+var CreateKeyGroupCmd = &cobra.Command{
+	Use:   "CreateKeyGroup",
 	Short: "Create key group",
 	Long:  `Create key group`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,8 +48,7 @@ var createKeyGroupCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(createKeyGroupCmd)
-	createKeyGroupCmd.Flags().StringP("body", "by", " ", "Body")
-	createKeyGroupCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = createKeyGroupCmd.MarkFlagRequired("namespace")
+	CreateKeyGroupCmd.Flags().StringP("body", "by", " ", "Body")
+	CreateKeyGroupCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = CreateKeyGroupCmd.MarkFlagRequired("namespace")
 }

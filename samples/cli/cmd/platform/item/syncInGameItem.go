@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// syncInGameItemCmd represents the syncInGameItem command
-var syncInGameItemCmd = &cobra.Command{
-	Use:   "syncInGameItem",
+// SyncInGameItemCmd represents the SyncInGameItem command
+var SyncInGameItemCmd = &cobra.Command{
+	Use:   "SyncInGameItem",
 	Short: "Sync in game item",
 	Long:  `Sync in game item`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -51,10 +50,9 @@ var syncInGameItemCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(syncInGameItemCmd)
-	syncInGameItemCmd.Flags().StringP("body", "by", " ", "Body")
-	syncInGameItemCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = syncInGameItemCmd.MarkFlagRequired("namespace")
-	syncInGameItemCmd.Flags().StringP("storeId", "sd", " ", "Store id")
-	_ = syncInGameItemCmd.MarkFlagRequired("storeId")
+	SyncInGameItemCmd.Flags().StringP("body", "by", " ", "Body")
+	SyncInGameItemCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = SyncInGameItemCmd.MarkFlagRequired("namespace")
+	SyncInGameItemCmd.Flags().StringP("storeId", "sd", " ", "Store id")
+	_ = SyncInGameItemCmd.MarkFlagRequired("storeId")
 }

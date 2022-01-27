@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/group-sdk/pkg/groupclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/group"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// updateGroupConfigurationGlobalRuleAdminV1Cmd represents the updateGroupConfigurationGlobalRuleAdminV1 command
-var updateGroupConfigurationGlobalRuleAdminV1Cmd = &cobra.Command{
-	Use:   "updateGroupConfigurationGlobalRuleAdminV1",
+// UpdateGroupConfigurationGlobalRuleAdminV1Cmd represents the UpdateGroupConfigurationGlobalRuleAdminV1 command
+var UpdateGroupConfigurationGlobalRuleAdminV1Cmd = &cobra.Command{
+	Use:   "UpdateGroupConfigurationGlobalRuleAdminV1",
 	Short: "Update group configuration global rule admin V1",
 	Long:  `Update group configuration global rule admin V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -53,13 +52,12 @@ var updateGroupConfigurationGlobalRuleAdminV1Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(updateGroupConfigurationGlobalRuleAdminV1Cmd)
-	updateGroupConfigurationGlobalRuleAdminV1Cmd.Flags().StringP("body", "by", " ", "Body")
-	_ = updateGroupConfigurationGlobalRuleAdminV1Cmd.MarkFlagRequired("body")
-	updateGroupConfigurationGlobalRuleAdminV1Cmd.Flags().StringP("allowedAction", "an", " ", "Allowed action")
-	_ = updateGroupConfigurationGlobalRuleAdminV1Cmd.MarkFlagRequired("allowedAction")
-	updateGroupConfigurationGlobalRuleAdminV1Cmd.Flags().StringP("configurationCode", "ce", " ", "Configuration code")
-	_ = updateGroupConfigurationGlobalRuleAdminV1Cmd.MarkFlagRequired("configurationCode")
-	updateGroupConfigurationGlobalRuleAdminV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = updateGroupConfigurationGlobalRuleAdminV1Cmd.MarkFlagRequired("namespace")
+	UpdateGroupConfigurationGlobalRuleAdminV1Cmd.Flags().StringP("body", "by", " ", "Body")
+	_ = UpdateGroupConfigurationGlobalRuleAdminV1Cmd.MarkFlagRequired("body")
+	UpdateGroupConfigurationGlobalRuleAdminV1Cmd.Flags().StringP("allowedAction", "an", " ", "Allowed action")
+	_ = UpdateGroupConfigurationGlobalRuleAdminV1Cmd.MarkFlagRequired("allowedAction")
+	UpdateGroupConfigurationGlobalRuleAdminV1Cmd.Flags().StringP("configurationCode", "ce", " ", "Configuration code")
+	_ = UpdateGroupConfigurationGlobalRuleAdminV1Cmd.MarkFlagRequired("configurationCode")
+	UpdateGroupConfigurationGlobalRuleAdminV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = UpdateGroupConfigurationGlobalRuleAdminV1Cmd.MarkFlagRequired("namespace")
 }

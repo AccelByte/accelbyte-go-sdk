@@ -9,15 +9,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/roles"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminDeleteRolePermissionsV3Cmd represents the adminDeleteRolePermissionsV3 command
-var adminDeleteRolePermissionsV3Cmd = &cobra.Command{
-	Use:   "adminDeleteRolePermissionsV3",
+// AdminDeleteRolePermissionsV3Cmd represents the AdminDeleteRolePermissionsV3 command
+var AdminDeleteRolePermissionsV3Cmd = &cobra.Command{
+	Use:   "AdminDeleteRolePermissionsV3",
 	Short: "Admin delete role permissions V3",
 	Long:  `Admin delete role permissions V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -47,9 +46,8 @@ var adminDeleteRolePermissionsV3Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminDeleteRolePermissionsV3Cmd)
-	adminDeleteRolePermissionsV3Cmd.Flags().StringP("body", "by", " ", "Body")
-	_ = adminDeleteRolePermissionsV3Cmd.MarkFlagRequired("body")
-	adminDeleteRolePermissionsV3Cmd.Flags().StringP("roleId", "rd", " ", "Role id")
-	_ = adminDeleteRolePermissionsV3Cmd.MarkFlagRequired("roleId")
+	AdminDeleteRolePermissionsV3Cmd.Flags().StringP("body", "by", " ", "Body")
+	_ = AdminDeleteRolePermissionsV3Cmd.MarkFlagRequired("body")
+	AdminDeleteRolePermissionsV3Cmd.Flags().StringP("roleId", "rd", " ", "Role id")
+	_ = AdminDeleteRolePermissionsV3Cmd.MarkFlagRequired("roleId")
 }

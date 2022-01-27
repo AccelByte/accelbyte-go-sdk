@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/matchmaking-sdk/pkg/matchmakingclient/operations"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/matchmaking"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getHealthcheckInfoCmd represents the getHealthcheckInfo command
-var getHealthcheckInfoCmd = &cobra.Command{
-	Use:   "getHealthcheckInfo",
+// GetHealthcheckInfoCmd represents the GetHealthcheckInfo command
+var GetHealthcheckInfoCmd = &cobra.Command{
+	Use:   "GetHealthcheckInfo",
 	Short: "Get healthcheck info",
 	Long:  `Get healthcheck info`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -33,8 +32,4 @@ var getHealthcheckInfoCmd = &cobra.Command{
 		}
 		return nil
 	},
-}
-
-func init() {
-	cmd.RootCmd.AddCommand(getHealthcheckInfoCmd)
 }

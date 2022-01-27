@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/ugc"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/admin_group"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclientmodels"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// singleAdminUpdateGroupCmd represents the singleAdminUpdateGroup command
-var singleAdminUpdateGroupCmd = &cobra.Command{
-	Use:   "singleAdminUpdateGroup",
+// SingleAdminUpdateGroupCmd represents the SingleAdminUpdateGroup command
+var SingleAdminUpdateGroupCmd = &cobra.Command{
+	Use:   "SingleAdminUpdateGroup",
 	Short: "Single admin update group",
 	Long:  `Single admin update group`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -51,11 +50,10 @@ var singleAdminUpdateGroupCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(singleAdminUpdateGroupCmd)
-	singleAdminUpdateGroupCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = singleAdminUpdateGroupCmd.MarkFlagRequired("body")
-	singleAdminUpdateGroupCmd.Flags().StringP("groupId", "gd", " ", "Group id")
-	_ = singleAdminUpdateGroupCmd.MarkFlagRequired("groupId")
-	singleAdminUpdateGroupCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = singleAdminUpdateGroupCmd.MarkFlagRequired("namespace")
+	SingleAdminUpdateGroupCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = SingleAdminUpdateGroupCmd.MarkFlagRequired("body")
+	SingleAdminUpdateGroupCmd.Flags().StringP("groupId", "gd", " ", "Group id")
+	_ = SingleAdminUpdateGroupCmd.MarkFlagRequired("groupId")
+	SingleAdminUpdateGroupCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = SingleAdminUpdateGroupCmd.MarkFlagRequired("namespace")
 }

@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclient/misc"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/basic"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// publicGetTimeCmd represents the publicGetTime command
-var publicGetTimeCmd = &cobra.Command{
-	Use:   "publicGetTime",
+// PublicGetTimeCmd represents the PublicGetTime command
+var PublicGetTimeCmd = &cobra.Command{
+	Use:   "PublicGetTime",
 	Short: "Public get time",
 	Long:  `Public get time`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -34,8 +33,4 @@ var publicGetTimeCmd = &cobra.Command{
 		}
 		return nil
 	},
-}
-
-func init() {
-	cmd.RootCmd.AddCommand(publicGetTimeCmd)
 }

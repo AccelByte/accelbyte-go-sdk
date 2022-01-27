@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/config"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/lobby"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminGetAllConfigV1Cmd represents the adminGetAllConfigV1 command
-var adminGetAllConfigV1Cmd = &cobra.Command{
-	Use:   "adminGetAllConfigV1",
+// AdminGetAllConfigV1Cmd represents the AdminGetAllConfigV1 command
+var AdminGetAllConfigV1Cmd = &cobra.Command{
+	Use:   "AdminGetAllConfigV1",
 	Short: "Admin get all config V1",
 	Long:  `Admin get all config V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -34,8 +33,4 @@ var adminGetAllConfigV1Cmd = &cobra.Command{
 		}
 		return nil
 	},
-}
-
-func init() {
-	cmd.RootCmd.AddCommand(adminGetAllConfigV1Cmd)
 }

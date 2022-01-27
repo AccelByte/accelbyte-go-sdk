@@ -9,15 +9,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/seasonpass-sdk/pkg/seasonpassclient/season"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/seasonpass"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// querySeasonsCmd represents the querySeasons command
-var querySeasonsCmd = &cobra.Command{
-	Use:   "querySeasons",
+// QuerySeasonsCmd represents the QuerySeasons command
+var QuerySeasonsCmd = &cobra.Command{
+	Use:   "QuerySeasons",
 	Short: "Query seasons",
 	Long:  `Query seasons`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -52,10 +51,9 @@ var querySeasonsCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(querySeasonsCmd)
-	querySeasonsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = querySeasonsCmd.MarkFlagRequired("namespace")
-	querySeasonsCmd.Flags().Int32P("limit", "lt", 20, "Limit")
-	querySeasonsCmd.Flags().Int32P("offset", "ot", 0, "Offset")
-	querySeasonsCmd.Flags().StringP("status", "ss", " ", "Status")
+	QuerySeasonsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = QuerySeasonsCmd.MarkFlagRequired("namespace")
+	QuerySeasonsCmd.Flags().Int32P("limit", "lt", 20, "Limit")
+	QuerySeasonsCmd.Flags().Int32P("offset", "ot", 0, "Offset")
+	QuerySeasonsCmd.Flags().StringP("status", "ss", " ", "Status")
 }

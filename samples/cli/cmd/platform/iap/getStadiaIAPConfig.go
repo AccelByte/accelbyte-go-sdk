@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/i_a_p"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getStadiaIAPConfigCmd represents the getStadiaIAPConfig command
-var getStadiaIAPConfigCmd = &cobra.Command{
-	Use:   "getStadiaIAPConfig",
+// GetStadiaIAPConfigCmd represents the GetStadiaIAPConfig command
+var GetStadiaIAPConfigCmd = &cobra.Command{
+	Use:   "GetStadiaIAPConfig",
 	Short: "Get stadia IAP config",
 	Long:  `Get stadia IAP config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,7 +39,6 @@ var getStadiaIAPConfigCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getStadiaIAPConfigCmd)
-	getStadiaIAPConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getStadiaIAPConfigCmd.MarkFlagRequired("namespace")
+	GetStadiaIAPConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetStadiaIAPConfigCmd.MarkFlagRequired("namespace")
 }

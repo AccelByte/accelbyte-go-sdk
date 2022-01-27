@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/eventlog-sdk/pkg/eventlogclient/user_information"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/eventlog"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getUserActivitiesHandlerCmd represents the getUserActivitiesHandler command
-var getUserActivitiesHandlerCmd = &cobra.Command{
-	Use:   "getUserActivitiesHandler",
+// GetUserActivitiesHandlerCmd represents the GetUserActivitiesHandler command
+var GetUserActivitiesHandlerCmd = &cobra.Command{
+	Use:   "GetUserActivitiesHandler",
 	Short: "Get user activities handler",
 	Long:  `Get user activities handler`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -46,12 +45,11 @@ var getUserActivitiesHandlerCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getUserActivitiesHandlerCmd)
-	getUserActivitiesHandlerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getUserActivitiesHandlerCmd.MarkFlagRequired("namespace")
-	getUserActivitiesHandlerCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = getUserActivitiesHandlerCmd.MarkFlagRequired("userId")
-	getUserActivitiesHandlerCmd.Flags().Float64P("offset", "ot", 0, "Offset")
-	getUserActivitiesHandlerCmd.Flags().Float64P("pageSize", "pe", 1, "Page size")
-	_ = getUserActivitiesHandlerCmd.MarkFlagRequired("pageSize")
+	GetUserActivitiesHandlerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetUserActivitiesHandlerCmd.MarkFlagRequired("namespace")
+	GetUserActivitiesHandlerCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = GetUserActivitiesHandlerCmd.MarkFlagRequired("userId")
+	GetUserActivitiesHandlerCmd.Flags().Float64P("offset", "ot", 0, "Offset")
+	GetUserActivitiesHandlerCmd.Flags().Float64P("pageSize", "pe", 1, "Page size")
+	_ = GetUserActivitiesHandlerCmd.MarkFlagRequired("pageSize")
 }

@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// syncStadiaEntitlementCmd represents the syncStadiaEntitlement command
-var syncStadiaEntitlementCmd = &cobra.Command{
-	Use:   "syncStadiaEntitlement",
+// SyncStadiaEntitlementCmd represents the SyncStadiaEntitlement command
+var SyncStadiaEntitlementCmd = &cobra.Command{
+	Use:   "SyncStadiaEntitlement",
 	Short: "Sync stadia entitlement",
 	Long:  `Sync stadia entitlement`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,10 +49,9 @@ var syncStadiaEntitlementCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(syncStadiaEntitlementCmd)
-	syncStadiaEntitlementCmd.Flags().StringP("body", "by", " ", "Body")
-	syncStadiaEntitlementCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = syncStadiaEntitlementCmd.MarkFlagRequired("namespace")
-	syncStadiaEntitlementCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = syncStadiaEntitlementCmd.MarkFlagRequired("userId")
+	SyncStadiaEntitlementCmd.Flags().StringP("body", "by", " ", "Body")
+	SyncStadiaEntitlementCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = SyncStadiaEntitlementCmd.MarkFlagRequired("namespace")
+	SyncStadiaEntitlementCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = SyncStadiaEntitlementCmd.MarkFlagRequired("userId")
 }

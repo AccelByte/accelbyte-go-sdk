@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminUpdateUserV4Cmd represents the adminUpdateUserV4 command
-var adminUpdateUserV4Cmd = &cobra.Command{
-	Use:   "adminUpdateUserV4",
+// AdminUpdateUserV4Cmd represents the AdminUpdateUserV4 command
+var AdminUpdateUserV4Cmd = &cobra.Command{
+	Use:   "AdminUpdateUserV4",
 	Short: "Admin update user V4",
 	Long:  `Admin update user V4`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -51,11 +50,10 @@ var adminUpdateUserV4Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminUpdateUserV4Cmd)
-	adminUpdateUserV4Cmd.Flags().StringP("body", "by", " ", "Body")
-	_ = adminUpdateUserV4Cmd.MarkFlagRequired("body")
-	adminUpdateUserV4Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = adminUpdateUserV4Cmd.MarkFlagRequired("namespace")
-	adminUpdateUserV4Cmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = adminUpdateUserV4Cmd.MarkFlagRequired("userId")
+	AdminUpdateUserV4Cmd.Flags().StringP("body", "by", " ", "Body")
+	_ = AdminUpdateUserV4Cmd.MarkFlagRequired("body")
+	AdminUpdateUserV4Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AdminUpdateUserV4Cmd.MarkFlagRequired("namespace")
+	AdminUpdateUserV4Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = AdminUpdateUserV4Cmd.MarkFlagRequired("userId")
 }

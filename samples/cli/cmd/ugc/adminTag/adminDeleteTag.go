@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/ugc"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/admin_tag"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminDeleteTagCmd represents the adminDeleteTag command
-var adminDeleteTagCmd = &cobra.Command{
-	Use:   "adminDeleteTag",
+// AdminDeleteTagCmd represents the AdminDeleteTag command
+var AdminDeleteTagCmd = &cobra.Command{
+	Use:   "AdminDeleteTag",
 	Short: "Admin delete tag",
 	Long:  `Admin delete tag`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,9 +40,8 @@ var adminDeleteTagCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminDeleteTagCmd)
-	adminDeleteTagCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = adminDeleteTagCmd.MarkFlagRequired("namespace")
-	adminDeleteTagCmd.Flags().StringP("tagId", "td", " ", "Tag id")
-	_ = adminDeleteTagCmd.MarkFlagRequired("tagId")
+	AdminDeleteTagCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AdminDeleteTagCmd.MarkFlagRequired("namespace")
+	AdminDeleteTagCmd.Flags().StringP("tagId", "td", " ", "Tag id")
+	_ = AdminDeleteTagCmd.MarkFlagRequired("tagId")
 }

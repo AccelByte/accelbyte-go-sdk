@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// debitUserWalletCmd represents the debitUserWallet command
-var debitUserWalletCmd = &cobra.Command{
-	Use:   "debitUserWallet",
+// DebitUserWalletCmd represents the DebitUserWallet command
+var DebitUserWalletCmd = &cobra.Command{
+	Use:   "DebitUserWallet",
 	Short: "Debit user wallet",
 	Long:  `Debit user wallet`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -53,12 +52,11 @@ var debitUserWalletCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(debitUserWalletCmd)
-	debitUserWalletCmd.Flags().StringP("body", "by", " ", "Body")
-	debitUserWalletCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = debitUserWalletCmd.MarkFlagRequired("namespace")
-	debitUserWalletCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = debitUserWalletCmd.MarkFlagRequired("userId")
-	debitUserWalletCmd.Flags().StringP("walletId", "wd", " ", "Wallet id")
-	_ = debitUserWalletCmd.MarkFlagRequired("walletId")
+	DebitUserWalletCmd.Flags().StringP("body", "by", " ", "Body")
+	DebitUserWalletCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = DebitUserWalletCmd.MarkFlagRequired("namespace")
+	DebitUserWalletCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = DebitUserWalletCmd.MarkFlagRequired("userId")
+	DebitUserWalletCmd.Flags().StringP("walletId", "wd", " ", "Wallet id")
+	_ = DebitUserWalletCmd.MarkFlagRequired("walletId")
 }

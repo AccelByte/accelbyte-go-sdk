@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// updateXblIAPConfigCmd represents the updateXblIAPConfig command
-var updateXblIAPConfigCmd = &cobra.Command{
-	Use:   "updateXblIAPConfig",
+// UpdateXblIAPConfigCmd represents the UpdateXblIAPConfig command
+var UpdateXblIAPConfigCmd = &cobra.Command{
+	Use:   "UpdateXblIAPConfig",
 	Short: "Update xbl IAP config",
 	Long:  `Update xbl IAP config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,8 +48,7 @@ var updateXblIAPConfigCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(updateXblIAPConfigCmd)
-	updateXblIAPConfigCmd.Flags().StringP("body", "by", " ", "Body")
-	updateXblIAPConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = updateXblIAPConfigCmd.MarkFlagRequired("namespace")
+	UpdateXblIAPConfigCmd.Flags().StringP("body", "by", " ", "Body")
+	UpdateXblIAPConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = UpdateXblIAPConfigCmd.MarkFlagRequired("namespace")
 }

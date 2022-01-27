@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/subscription"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// publicQueryUserSubscriptionsCmd represents the publicQueryUserSubscriptions command
-var publicQueryUserSubscriptionsCmd = &cobra.Command{
-	Use:   "publicQueryUserSubscriptions",
+// PublicQueryUserSubscriptionsCmd represents the PublicQueryUserSubscriptions command
+var PublicQueryUserSubscriptionsCmd = &cobra.Command{
+	Use:   "PublicQueryUserSubscriptions",
 	Short: "Public query user subscriptions",
 	Long:  `Public query user subscriptions`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -56,16 +55,15 @@ var publicQueryUserSubscriptionsCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(publicQueryUserSubscriptionsCmd)
-	publicQueryUserSubscriptionsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = publicQueryUserSubscriptionsCmd.MarkFlagRequired("namespace")
-	publicQueryUserSubscriptionsCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = publicQueryUserSubscriptionsCmd.MarkFlagRequired("userId")
-	publicQueryUserSubscriptionsCmd.Flags().StringP("chargeStatus", "cs", " ", "Charge status")
-	publicQueryUserSubscriptionsCmd.Flags().StringP("itemId", "id", " ", "Item id")
-	publicQueryUserSubscriptionsCmd.Flags().Int32P("limit", "lt", 20, "Limit")
-	publicQueryUserSubscriptionsCmd.Flags().Int32P("offset", "ot", 0, "Offset")
-	publicQueryUserSubscriptionsCmd.Flags().StringP("sku", "su", " ", "Sku")
-	publicQueryUserSubscriptionsCmd.Flags().StringP("status", "ss", " ", "Status")
-	publicQueryUserSubscriptionsCmd.Flags().StringP("subscribedBy", "sy", " ", "Subscribed by")
+	PublicQueryUserSubscriptionsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PublicQueryUserSubscriptionsCmd.MarkFlagRequired("namespace")
+	PublicQueryUserSubscriptionsCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = PublicQueryUserSubscriptionsCmd.MarkFlagRequired("userId")
+	PublicQueryUserSubscriptionsCmd.Flags().StringP("chargeStatus", "cs", " ", "Charge status")
+	PublicQueryUserSubscriptionsCmd.Flags().StringP("itemId", "id", " ", "Item id")
+	PublicQueryUserSubscriptionsCmd.Flags().Int32P("limit", "lt", 20, "Limit")
+	PublicQueryUserSubscriptionsCmd.Flags().Int32P("offset", "ot", 0, "Offset")
+	PublicQueryUserSubscriptionsCmd.Flags().StringP("sku", "su", " ", "Sku")
+	PublicQueryUserSubscriptionsCmd.Flags().StringP("status", "ss", " ", "Status")
+	PublicQueryUserSubscriptionsCmd.Flags().StringP("subscribedBy", "sy", " ", "Subscribed by")
 }

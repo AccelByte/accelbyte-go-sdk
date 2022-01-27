@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/order"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getOrderStatisticsCmd represents the getOrderStatistics command
-var getOrderStatisticsCmd = &cobra.Command{
-	Use:   "getOrderStatistics",
+// GetOrderStatisticsCmd represents the GetOrderStatistics command
+var GetOrderStatisticsCmd = &cobra.Command{
+	Use:   "GetOrderStatistics",
 	Short: "Get order statistics",
 	Long:  `Get order statistics`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,7 +39,6 @@ var getOrderStatisticsCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getOrderStatisticsCmd)
-	getOrderStatisticsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getOrderStatisticsCmd.MarkFlagRequired("namespace")
+	GetOrderStatisticsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetOrderStatisticsCmd.MarkFlagRequired("namespace")
 }

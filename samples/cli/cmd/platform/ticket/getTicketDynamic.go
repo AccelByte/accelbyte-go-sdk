@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/ticket"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getTicketDynamicCmd represents the getTicketDynamic command
-var getTicketDynamicCmd = &cobra.Command{
-	Use:   "getTicketDynamic",
+// GetTicketDynamicCmd represents the GetTicketDynamic command
+var GetTicketDynamicCmd = &cobra.Command{
+	Use:   "GetTicketDynamic",
 	Short: "Get ticket dynamic",
 	Long:  `Get ticket dynamic`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,9 +41,8 @@ var getTicketDynamicCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getTicketDynamicCmd)
-	getTicketDynamicCmd.Flags().StringP("boothName", "be", " ", "Booth name")
-	_ = getTicketDynamicCmd.MarkFlagRequired("boothName")
-	getTicketDynamicCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getTicketDynamicCmd.MarkFlagRequired("namespace")
+	GetTicketDynamicCmd.Flags().StringP("boothName", "be", " ", "Booth name")
+	_ = GetTicketDynamicCmd.MarkFlagRequired("boothName")
+	GetTicketDynamicCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetTicketDynamicCmd.MarkFlagRequired("namespace")
 }

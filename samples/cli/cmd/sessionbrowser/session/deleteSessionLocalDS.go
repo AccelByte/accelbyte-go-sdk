@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/sessionbrowser"
 	"github.com/AccelByte/accelbyte-go-sdk/sessionbrowser-sdk/pkg/sessionbrowserclient/session"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// deleteSessionLocalDSCmd represents the deleteSessionLocalDS command
-var deleteSessionLocalDSCmd = &cobra.Command{
-	Use:   "deleteSessionLocalDS",
+// DeleteSessionLocalDSCmd represents the DeleteSessionLocalDS command
+var DeleteSessionLocalDSCmd = &cobra.Command{
+	Use:   "DeleteSessionLocalDS",
 	Short: "Delete session local DS",
 	Long:  `Delete session local DS`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,9 +41,8 @@ var deleteSessionLocalDSCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(deleteSessionLocalDSCmd)
-	deleteSessionLocalDSCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = deleteSessionLocalDSCmd.MarkFlagRequired("namespace")
-	deleteSessionLocalDSCmd.Flags().StringP("sessionID", "sD", " ", "Session ID")
-	_ = deleteSessionLocalDSCmd.MarkFlagRequired("sessionID")
+	DeleteSessionLocalDSCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = DeleteSessionLocalDSCmd.MarkFlagRequired("namespace")
+	DeleteSessionLocalDSCmd.Flags().StringP("sessionID", "sD", " ", "Session ID")
+	_ = DeleteSessionLocalDSCmd.MarkFlagRequired("sessionID")
 }

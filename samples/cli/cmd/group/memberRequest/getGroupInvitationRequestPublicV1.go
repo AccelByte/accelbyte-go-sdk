@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/group-sdk/pkg/groupclient/member_request"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/group"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getGroupInvitationRequestPublicV1Cmd represents the getGroupInvitationRequestPublicV1 command
-var getGroupInvitationRequestPublicV1Cmd = &cobra.Command{
-	Use:   "getGroupInvitationRequestPublicV1",
+// GetGroupInvitationRequestPublicV1Cmd represents the GetGroupInvitationRequestPublicV1 command
+var GetGroupInvitationRequestPublicV1Cmd = &cobra.Command{
+	Use:   "GetGroupInvitationRequestPublicV1",
 	Short: "Get group invitation request public V1",
 	Long:  `Get group invitation request public V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -44,9 +43,8 @@ var getGroupInvitationRequestPublicV1Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getGroupInvitationRequestPublicV1Cmd)
-	getGroupInvitationRequestPublicV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getGroupInvitationRequestPublicV1Cmd.MarkFlagRequired("namespace")
-	getGroupInvitationRequestPublicV1Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
-	getGroupInvitationRequestPublicV1Cmd.Flags().Int64P("offset", "ot", 0, "Offset")
+	GetGroupInvitationRequestPublicV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetGroupInvitationRequestPublicV1Cmd.MarkFlagRequired("namespace")
+	GetGroupInvitationRequestPublicV1Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
+	GetGroupInvitationRequestPublicV1Cmd.Flags().Int64P("offset", "ot", 0, "Offset")
 }

@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/ugc"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/admin_type"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclientmodels"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminCreateTypeCmd represents the adminCreateType command
-var adminCreateTypeCmd = &cobra.Command{
-	Use:   "adminCreateType",
+// AdminCreateTypeCmd represents the AdminCreateType command
+var AdminCreateTypeCmd = &cobra.Command{
+	Use:   "AdminCreateType",
 	Short: "Admin create type",
 	Long:  `Admin create type`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,9 +48,8 @@ var adminCreateTypeCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminCreateTypeCmd)
-	adminCreateTypeCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = adminCreateTypeCmd.MarkFlagRequired("body")
-	adminCreateTypeCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = adminCreateTypeCmd.MarkFlagRequired("namespace")
+	AdminCreateTypeCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = AdminCreateTypeCmd.MarkFlagRequired("body")
+	AdminCreateTypeCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AdminCreateTypeCmd.MarkFlagRequired("namespace")
 }

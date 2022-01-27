@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/roles"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// deleteRolePermissionCmd represents the deleteRolePermission command
-var deleteRolePermissionCmd = &cobra.Command{
-	Use:   "deleteRolePermission",
+// DeleteRolePermissionCmd represents the DeleteRolePermission command
+var DeleteRolePermissionCmd = &cobra.Command{
+	Use:   "DeleteRolePermission",
 	Short: "Delete role permission",
 	Long:  `Delete role permission`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,11 +42,10 @@ var deleteRolePermissionCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(deleteRolePermissionCmd)
-	deleteRolePermissionCmd.Flags().Int64P("action", "an", -1, "Action")
-	_ = deleteRolePermissionCmd.MarkFlagRequired("action")
-	deleteRolePermissionCmd.Flags().StringP("resource", "re", " ", "Resource")
-	_ = deleteRolePermissionCmd.MarkFlagRequired("resource")
-	deleteRolePermissionCmd.Flags().StringP("roleId", "rd", " ", "Role id")
-	_ = deleteRolePermissionCmd.MarkFlagRequired("roleId")
+	DeleteRolePermissionCmd.Flags().Int64P("action", "an", -1, "Action")
+	_ = DeleteRolePermissionCmd.MarkFlagRequired("action")
+	DeleteRolePermissionCmd.Flags().StringP("resource", "re", " ", "Resource")
+	_ = DeleteRolePermissionCmd.MarkFlagRequired("resource")
+	DeleteRolePermissionCmd.Flags().StringP("roleId", "rd", " ", "Role id")
+	_ = DeleteRolePermissionCmd.MarkFlagRequired("roleId")
 }

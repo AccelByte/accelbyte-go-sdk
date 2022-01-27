@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/group-sdk/pkg/groupclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/group"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// createMemberRoleAdminV1Cmd represents the createMemberRoleAdminV1 command
-var createMemberRoleAdminV1Cmd = &cobra.Command{
-	Use:   "createMemberRoleAdminV1",
+// CreateMemberRoleAdminV1Cmd represents the CreateMemberRoleAdminV1 command
+var CreateMemberRoleAdminV1Cmd = &cobra.Command{
+	Use:   "CreateMemberRoleAdminV1",
 	Short: "Create member role admin V1",
 	Long:  `Create member role admin V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,9 +48,8 @@ var createMemberRoleAdminV1Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(createMemberRoleAdminV1Cmd)
-	createMemberRoleAdminV1Cmd.Flags().StringP("body", "by", " ", "Body")
-	_ = createMemberRoleAdminV1Cmd.MarkFlagRequired("body")
-	createMemberRoleAdminV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = createMemberRoleAdminV1Cmd.MarkFlagRequired("namespace")
+	CreateMemberRoleAdminV1Cmd.Flags().StringP("body", "by", " ", "Body")
+	_ = CreateMemberRoleAdminV1Cmd.MarkFlagRequired("body")
+	CreateMemberRoleAdminV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = CreateMemberRoleAdminV1Cmd.MarkFlagRequired("namespace")
 }

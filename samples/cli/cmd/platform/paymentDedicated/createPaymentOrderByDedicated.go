@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// createPaymentOrderByDedicatedCmd represents the createPaymentOrderByDedicated command
-var createPaymentOrderByDedicatedCmd = &cobra.Command{
-	Use:   "createPaymentOrderByDedicated",
+// CreatePaymentOrderByDedicatedCmd represents the CreatePaymentOrderByDedicated command
+var CreatePaymentOrderByDedicatedCmd = &cobra.Command{
+	Use:   "CreatePaymentOrderByDedicated",
 	Short: "Create payment order by dedicated",
 	Long:  `Create payment order by dedicated`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,8 +48,7 @@ var createPaymentOrderByDedicatedCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(createPaymentOrderByDedicatedCmd)
-	createPaymentOrderByDedicatedCmd.Flags().StringP("body", "by", " ", "Body")
-	createPaymentOrderByDedicatedCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = createPaymentOrderByDedicatedCmd.MarkFlagRequired("namespace")
+	CreatePaymentOrderByDedicatedCmd.Flags().StringP("body", "by", " ", "Body")
+	CreatePaymentOrderByDedicatedCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = CreatePaymentOrderByDedicatedCmd.MarkFlagRequired("namespace")
 }

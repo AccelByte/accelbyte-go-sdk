@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/entitlement"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getUserAppEntitlementByAppIdCmd represents the getUserAppEntitlementByAppId command
-var getUserAppEntitlementByAppIdCmd = &cobra.Command{
-	Use:   "getUserAppEntitlementByAppId",
+// GetUserAppEntitlementByAppIdCmd represents the GetUserAppEntitlementByAppId command
+var GetUserAppEntitlementByAppIdCmd = &cobra.Command{
+	Use:   "GetUserAppEntitlementByAppId",
 	Short: "Get user app entitlement by app id",
 	Long:  `Get user app entitlement by app id`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -46,12 +45,11 @@ var getUserAppEntitlementByAppIdCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getUserAppEntitlementByAppIdCmd)
-	getUserAppEntitlementByAppIdCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getUserAppEntitlementByAppIdCmd.MarkFlagRequired("namespace")
-	getUserAppEntitlementByAppIdCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = getUserAppEntitlementByAppIdCmd.MarkFlagRequired("userId")
-	getUserAppEntitlementByAppIdCmd.Flags().BoolP("activeOnly", "ay", false, "Active only")
-	getUserAppEntitlementByAppIdCmd.Flags().StringP("appId", "ad", " ", "App id")
-	_ = getUserAppEntitlementByAppIdCmd.MarkFlagRequired("appId")
+	GetUserAppEntitlementByAppIdCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetUserAppEntitlementByAppIdCmd.MarkFlagRequired("namespace")
+	GetUserAppEntitlementByAppIdCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = GetUserAppEntitlementByAppIdCmd.MarkFlagRequired("userId")
+	GetUserAppEntitlementByAppIdCmd.Flags().BoolP("activeOnly", "ay", false, "Active only")
+	GetUserAppEntitlementByAppIdCmd.Flags().StringP("appId", "ad", " ", "App id")
+	_ = GetUserAppEntitlementByAppIdCmd.MarkFlagRequired("appId")
 }

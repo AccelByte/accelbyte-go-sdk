@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/third_party"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/lobby"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminDeleteThirdPartyConfigCmd represents the adminDeleteThirdPartyConfig command
-var adminDeleteThirdPartyConfigCmd = &cobra.Command{
-	Use:   "adminDeleteThirdPartyConfig",
+// AdminDeleteThirdPartyConfigCmd represents the AdminDeleteThirdPartyConfig command
+var AdminDeleteThirdPartyConfigCmd = &cobra.Command{
+	Use:   "AdminDeleteThirdPartyConfig",
 	Short: "Admin delete third party config",
 	Long:  `Admin delete third party config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,7 +39,6 @@ var adminDeleteThirdPartyConfigCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminDeleteThirdPartyConfigCmd)
-	adminDeleteThirdPartyConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = adminDeleteThirdPartyConfigCmd.MarkFlagRequired("namespace")
+	AdminDeleteThirdPartyConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AdminDeleteThirdPartyConfigCmd.MarkFlagRequired("namespace")
 }

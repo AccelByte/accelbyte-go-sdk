@@ -8,16 +8,15 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/achievement-sdk/pkg/achievementclient/achievements"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/achievement"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 	"os"
 )
 
-// importAchievementsCmd represents the importAchievements command
-var importAchievementsCmd = &cobra.Command{
-	Use:   "importAchievements",
+// ImportAchievementsCmd represents the ImportAchievements command
+var ImportAchievementsCmd = &cobra.Command{
+	Use:   "ImportAchievements",
 	Short: "Import achievements",
 	Long:  `Import achievements`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,9 +49,8 @@ var importAchievementsCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(importAchievementsCmd)
-	importAchievementsCmd.Flags().StringP("file", "fe", " ", "File")
-	importAchievementsCmd.Flags().StringP("strategy", "sy", " ", "Strategy")
-	importAchievementsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = importAchievementsCmd.MarkFlagRequired("namespace")
+	ImportAchievementsCmd.Flags().StringP("file", "fe", " ", "File")
+	ImportAchievementsCmd.Flags().StringP("strategy", "sy", " ", "Strategy")
+	ImportAchievementsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = ImportAchievementsCmd.MarkFlagRequired("namespace")
 }

@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/social"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient/global_statistic"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getGlobalStatItemsCmd represents the getGlobalStatItems command
-var getGlobalStatItemsCmd = &cobra.Command{
-	Use:   "getGlobalStatItems",
+// GetGlobalStatItemsCmd represents the GetGlobalStatItems command
+var GetGlobalStatItemsCmd = &cobra.Command{
+	Use:   "GetGlobalStatItems",
 	Short: "Get global stat items",
 	Long:  `Get global stat items`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -44,9 +43,8 @@ var getGlobalStatItemsCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getGlobalStatItemsCmd)
-	getGlobalStatItemsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getGlobalStatItemsCmd.MarkFlagRequired("namespace")
-	getGlobalStatItemsCmd.Flags().Int32P("limit", "lt", 20, "Limit")
-	getGlobalStatItemsCmd.Flags().Int32P("offset", "ot", 0, "Offset")
+	GetGlobalStatItemsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetGlobalStatItemsCmd.MarkFlagRequired("namespace")
+	GetGlobalStatItemsCmd.Flags().Int32P("limit", "lt", 20, "Limit")
+	GetGlobalStatItemsCmd.Flags().Int32P("offset", "ot", 0, "Offset")
 }

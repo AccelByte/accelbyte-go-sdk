@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// syncXboxDLCCmd represents the syncXboxDLC command
-var syncXboxDLCCmd = &cobra.Command{
-	Use:   "syncXboxDLC",
+// SyncXboxDLCCmd represents the SyncXboxDLC command
+var SyncXboxDLCCmd = &cobra.Command{
+	Use:   "SyncXboxDLC",
 	Short: "Sync xbox DLC",
 	Long:  `Sync xbox DLC`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,10 +49,9 @@ var syncXboxDLCCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(syncXboxDLCCmd)
-	syncXboxDLCCmd.Flags().StringP("body", "by", " ", "Body")
-	syncXboxDLCCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = syncXboxDLCCmd.MarkFlagRequired("namespace")
-	syncXboxDLCCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = syncXboxDLCCmd.MarkFlagRequired("userId")
+	SyncXboxDLCCmd.Flags().StringP("body", "by", " ", "Body")
+	SyncXboxDLCCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = SyncXboxDLCCmd.MarkFlagRequired("namespace")
+	SyncXboxDLCCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = SyncXboxDLCCmd.MarkFlagRequired("userId")
 }

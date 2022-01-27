@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclient/user_profile"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/basic"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getMyZipCodeCmd represents the getMyZipCode command
-var getMyZipCodeCmd = &cobra.Command{
-	Use:   "getMyZipCode",
+// GetMyZipCodeCmd represents the GetMyZipCode command
+var GetMyZipCodeCmd = &cobra.Command{
+	Use:   "GetMyZipCode",
 	Short: "Get my zip code",
 	Long:  `Get my zip code`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,7 +39,6 @@ var getMyZipCodeCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getMyZipCodeCmd)
-	getMyZipCodeCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getMyZipCodeCmd.MarkFlagRequired("namespace")
+	GetMyZipCodeCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetMyZipCodeCmd.MarkFlagRequired("namespace")
 }

@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// checkUserAvailabilityCmd represents the checkUserAvailability command
-var checkUserAvailabilityCmd = &cobra.Command{
-	Use:   "checkUserAvailability",
+// CheckUserAvailabilityCmd represents the CheckUserAvailability command
+var CheckUserAvailabilityCmd = &cobra.Command{
+	Use:   "CheckUserAvailability",
 	Short: "Check user availability",
 	Long:  `Check user availability`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,11 +42,10 @@ var checkUserAvailabilityCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(checkUserAvailabilityCmd)
-	checkUserAvailabilityCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = checkUserAvailabilityCmd.MarkFlagRequired("namespace")
-	checkUserAvailabilityCmd.Flags().StringP("field", "fd", " ", "Field")
-	_ = checkUserAvailabilityCmd.MarkFlagRequired("field")
-	checkUserAvailabilityCmd.Flags().StringP("query", "qy", " ", "Query")
-	_ = checkUserAvailabilityCmd.MarkFlagRequired("query")
+	CheckUserAvailabilityCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = CheckUserAvailabilityCmd.MarkFlagRequired("namespace")
+	CheckUserAvailabilityCmd.Flags().StringP("field", "fd", " ", "Field")
+	_ = CheckUserAvailabilityCmd.MarkFlagRequired("field")
+	CheckUserAvailabilityCmd.Flags().StringP("query", "qy", " ", "Query")
+	_ = CheckUserAvailabilityCmd.MarkFlagRequired("query")
 }

@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclient/user_profile"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/basic"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getCustomAttributesInfoCmd represents the getCustomAttributesInfo command
-var getCustomAttributesInfoCmd = &cobra.Command{
-	Use:   "getCustomAttributesInfo",
+// GetCustomAttributesInfoCmd represents the GetCustomAttributesInfo command
+var GetCustomAttributesInfoCmd = &cobra.Command{
+	Use:   "GetCustomAttributesInfo",
 	Short: "Get custom attributes info",
 	Long:  `Get custom attributes info`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,9 +41,8 @@ var getCustomAttributesInfoCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getCustomAttributesInfoCmd)
-	getCustomAttributesInfoCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getCustomAttributesInfoCmd.MarkFlagRequired("namespace")
-	getCustomAttributesInfoCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = getCustomAttributesInfoCmd.MarkFlagRequired("userId")
+	GetCustomAttributesInfoCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetCustomAttributesInfoCmd.MarkFlagRequired("namespace")
+	GetCustomAttributesInfoCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = GetCustomAttributesInfoCmd.MarkFlagRequired("userId")
 }

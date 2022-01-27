@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclient/localized_policy_versions"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/legal"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// setDefaultPolicyCmd represents the setDefaultPolicy command
-var setDefaultPolicyCmd = &cobra.Command{
-	Use:   "setDefaultPolicy",
+// SetDefaultPolicyCmd represents the SetDefaultPolicy command
+var SetDefaultPolicyCmd = &cobra.Command{
+	Use:   "SetDefaultPolicy",
 	Short: "Set default policy",
 	Long:  `Set default policy`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,7 +38,6 @@ var setDefaultPolicyCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(setDefaultPolicyCmd)
-	setDefaultPolicyCmd.Flags().StringP("localizedPolicyVersionId", "ld", " ", "Localized policy version id")
-	_ = setDefaultPolicyCmd.MarkFlagRequired("localizedPolicyVersionId")
+	SetDefaultPolicyCmd.Flags().StringP("localizedPolicyVersionId", "ld", " ", "Localized policy version id")
+	_ = SetDefaultPolicyCmd.MarkFlagRequired("localizedPolicyVersionId")
 }

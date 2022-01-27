@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/campaign"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// bulkDisableCodesCmd represents the bulkDisableCodes command
-var bulkDisableCodesCmd = &cobra.Command{
-	Use:   "bulkDisableCodes",
+// BulkDisableCodesCmd represents the BulkDisableCodes command
+var BulkDisableCodesCmd = &cobra.Command{
+	Use:   "BulkDisableCodes",
 	Short: "Bulk disable codes",
 	Long:  `Bulk disable codes`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -44,10 +43,9 @@ var bulkDisableCodesCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(bulkDisableCodesCmd)
-	bulkDisableCodesCmd.Flags().StringP("campaignId", "cd", " ", "Campaign id")
-	_ = bulkDisableCodesCmd.MarkFlagRequired("campaignId")
-	bulkDisableCodesCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = bulkDisableCodesCmd.MarkFlagRequired("namespace")
-	bulkDisableCodesCmd.Flags().Int32P("batchNo", "bo", 0, "Batch no")
+	BulkDisableCodesCmd.Flags().StringP("campaignId", "cd", " ", "Campaign id")
+	_ = BulkDisableCodesCmd.MarkFlagRequired("campaignId")
+	BulkDisableCodesCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = BulkDisableCodesCmd.MarkFlagRequired("namespace")
+	BulkDisableCodesCmd.Flags().Int32P("batchNo", "bo", 0, "Batch no")
 }

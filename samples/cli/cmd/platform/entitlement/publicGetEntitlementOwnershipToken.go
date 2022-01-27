@@ -9,15 +9,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/entitlement"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// publicGetEntitlementOwnershipTokenCmd represents the publicGetEntitlementOwnershipToken command
-var publicGetEntitlementOwnershipTokenCmd = &cobra.Command{
-	Use:   "publicGetEntitlementOwnershipToken",
+// PublicGetEntitlementOwnershipTokenCmd represents the PublicGetEntitlementOwnershipToken command
+var PublicGetEntitlementOwnershipTokenCmd = &cobra.Command{
+	Use:   "PublicGetEntitlementOwnershipToken",
 	Short: "Public get entitlement ownership token",
 	Long:  `Public get entitlement ownership token`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -62,10 +61,9 @@ var publicGetEntitlementOwnershipTokenCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(publicGetEntitlementOwnershipTokenCmd)
-	publicGetEntitlementOwnershipTokenCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = publicGetEntitlementOwnershipTokenCmd.MarkFlagRequired("namespace")
-	publicGetEntitlementOwnershipTokenCmd.Flags().StringP("appIds", "as", " ", "App ids")
-	publicGetEntitlementOwnershipTokenCmd.Flags().StringP("itemIds", "is", " ", "Item ids")
-	publicGetEntitlementOwnershipTokenCmd.Flags().StringP("skus", "ss", " ", "Skus")
+	PublicGetEntitlementOwnershipTokenCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PublicGetEntitlementOwnershipTokenCmd.MarkFlagRequired("namespace")
+	PublicGetEntitlementOwnershipTokenCmd.Flags().StringP("appIds", "as", " ", "App ids")
+	PublicGetEntitlementOwnershipTokenCmd.Flags().StringP("itemIds", "is", " ", "Item ids")
+	PublicGetEntitlementOwnershipTokenCmd.Flags().StringP("skus", "ss", " ", "Skus")
 }

@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/notification"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/lobby"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getNotificationTopicV1AdminCmd represents the getNotificationTopicV1Admin command
-var getNotificationTopicV1AdminCmd = &cobra.Command{
-	Use:   "getNotificationTopicV1Admin",
+// GetNotificationTopicV1AdminCmd represents the GetNotificationTopicV1Admin command
+var GetNotificationTopicV1AdminCmd = &cobra.Command{
+	Use:   "GetNotificationTopicV1Admin",
 	Short: "Get notification topic V1 admin",
 	Long:  `Get notification topic V1 admin`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,9 +41,8 @@ var getNotificationTopicV1AdminCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getNotificationTopicV1AdminCmd)
-	getNotificationTopicV1AdminCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getNotificationTopicV1AdminCmd.MarkFlagRequired("namespace")
-	getNotificationTopicV1AdminCmd.Flags().StringP("topicName", "te", " ", "Topic name")
-	_ = getNotificationTopicV1AdminCmd.MarkFlagRequired("topicName")
+	GetNotificationTopicV1AdminCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetNotificationTopicV1AdminCmd.MarkFlagRequired("namespace")
+	GetNotificationTopicV1AdminCmd.Flags().StringP("topicName", "te", " ", "Topic name")
+	_ = GetNotificationTopicV1AdminCmd.MarkFlagRequired("topicName")
 }

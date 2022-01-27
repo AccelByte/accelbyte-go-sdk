@@ -9,7 +9,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/social"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient/slot"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
@@ -17,9 +16,9 @@ import (
 	"os"
 )
 
-// publicGetSlotDataCmd represents the publicGetSlotData command
-var publicGetSlotDataCmd = &cobra.Command{
-	Use:   "publicGetSlotData",
+// PublicGetSlotDataCmd represents the PublicGetSlotData command
+var PublicGetSlotDataCmd = &cobra.Command{
+	Use:   "PublicGetSlotData",
 	Short: "Public get slot data",
 	Long:  `Public get slot data`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -58,11 +57,10 @@ var publicGetSlotDataCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(publicGetSlotDataCmd)
-	publicGetSlotDataCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = publicGetSlotDataCmd.MarkFlagRequired("namespace")
-	publicGetSlotDataCmd.Flags().StringP("slotId", "sd", " ", "Slot id")
-	_ = publicGetSlotDataCmd.MarkFlagRequired("slotId")
-	publicGetSlotDataCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = publicGetSlotDataCmd.MarkFlagRequired("userId")
+	PublicGetSlotDataCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PublicGetSlotDataCmd.MarkFlagRequired("namespace")
+	PublicGetSlotDataCmd.Flags().StringP("slotId", "sd", " ", "Slot id")
+	_ = PublicGetSlotDataCmd.MarkFlagRequired("slotId")
+	PublicGetSlotDataCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = PublicGetSlotDataCmd.MarkFlagRequired("userId")
 }

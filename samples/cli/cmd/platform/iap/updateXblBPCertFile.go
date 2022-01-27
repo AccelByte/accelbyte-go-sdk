@@ -8,16 +8,15 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/i_a_p"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 	"os"
 )
 
-// updateXblBPCertFileCmd represents the updateXblBPCertFile command
-var updateXblBPCertFileCmd = &cobra.Command{
-	Use:   "updateXblBPCertFile",
+// UpdateXblBPCertFileCmd represents the UpdateXblBPCertFile command
+var UpdateXblBPCertFileCmd = &cobra.Command{
+	Use:   "UpdateXblBPCertFile",
 	Short: "Update xbl BP cert file",
 	Long:  `Update xbl BP cert file`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,9 +49,8 @@ var updateXblBPCertFileCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(updateXblBPCertFileCmd)
-	updateXblBPCertFileCmd.Flags().StringP("file", "fe", " ", "File")
-	updateXblBPCertFileCmd.Flags().StringP("password", "pd", " ", "Password")
-	updateXblBPCertFileCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = updateXblBPCertFileCmd.MarkFlagRequired("namespace")
+	UpdateXblBPCertFileCmd.Flags().StringP("file", "fe", " ", "File")
+	UpdateXblBPCertFileCmd.Flags().StringP("password", "pd", " ", "Password")
+	UpdateXblBPCertFileCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = UpdateXblBPCertFileCmd.MarkFlagRequired("namespace")
 }

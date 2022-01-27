@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/ugc"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/admin_channel"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclientmodels"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// singleAdminUpdateChannelCmd represents the singleAdminUpdateChannel command
-var singleAdminUpdateChannelCmd = &cobra.Command{
-	Use:   "singleAdminUpdateChannel",
+// SingleAdminUpdateChannelCmd represents the SingleAdminUpdateChannel command
+var SingleAdminUpdateChannelCmd = &cobra.Command{
+	Use:   "SingleAdminUpdateChannel",
 	Short: "Single admin update channel",
 	Long:  `Single admin update channel`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -51,11 +50,10 @@ var singleAdminUpdateChannelCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(singleAdminUpdateChannelCmd)
-	singleAdminUpdateChannelCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = singleAdminUpdateChannelCmd.MarkFlagRequired("body")
-	singleAdminUpdateChannelCmd.Flags().StringP("channelId", "cd", " ", "Channel id")
-	_ = singleAdminUpdateChannelCmd.MarkFlagRequired("channelId")
-	singleAdminUpdateChannelCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = singleAdminUpdateChannelCmd.MarkFlagRequired("namespace")
+	SingleAdminUpdateChannelCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = SingleAdminUpdateChannelCmd.MarkFlagRequired("body")
+	SingleAdminUpdateChannelCmd.Flags().StringP("channelId", "cd", " ", "Channel id")
+	_ = SingleAdminUpdateChannelCmd.MarkFlagRequired("channelId")
+	SingleAdminUpdateChannelCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = SingleAdminUpdateChannelCmd.MarkFlagRequired("namespace")
 }

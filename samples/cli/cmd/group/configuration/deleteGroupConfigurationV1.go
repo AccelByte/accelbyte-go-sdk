@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/group-sdk/pkg/groupclient/configuration"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/group"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// deleteGroupConfigurationV1Cmd represents the deleteGroupConfigurationV1 command
-var deleteGroupConfigurationV1Cmd = &cobra.Command{
-	Use:   "deleteGroupConfigurationV1",
+// DeleteGroupConfigurationV1Cmd represents the DeleteGroupConfigurationV1 command
+var DeleteGroupConfigurationV1Cmd = &cobra.Command{
+	Use:   "DeleteGroupConfigurationV1",
 	Short: "Delete group configuration V1",
 	Long:  `Delete group configuration V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,9 +40,8 @@ var deleteGroupConfigurationV1Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(deleteGroupConfigurationV1Cmd)
-	deleteGroupConfigurationV1Cmd.Flags().StringP("configurationCode", "ce", " ", "Configuration code")
-	_ = deleteGroupConfigurationV1Cmd.MarkFlagRequired("configurationCode")
-	deleteGroupConfigurationV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = deleteGroupConfigurationV1Cmd.MarkFlagRequired("namespace")
+	DeleteGroupConfigurationV1Cmd.Flags().StringP("configurationCode", "ce", " ", "Configuration code")
+	_ = DeleteGroupConfigurationV1Cmd.MarkFlagRequired("configurationCode")
+	DeleteGroupConfigurationV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = DeleteGroupConfigurationV1Cmd.MarkFlagRequired("namespace")
 }

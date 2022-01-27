@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/dsmc"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// updateImageCmd represents the updateImage command
-var updateImageCmd = &cobra.Command{
-	Use:   "updateImage",
+// UpdateImageCmd represents the UpdateImage command
+var UpdateImageCmd = &cobra.Command{
+	Use:   "UpdateImage",
 	Short: "Update image",
 	Long:  `Update image`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -46,7 +45,6 @@ var updateImageCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(updateImageCmd)
-	updateImageCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = updateImageCmd.MarkFlagRequired("body")
+	UpdateImageCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = UpdateImageCmd.MarkFlagRequired("body")
 }

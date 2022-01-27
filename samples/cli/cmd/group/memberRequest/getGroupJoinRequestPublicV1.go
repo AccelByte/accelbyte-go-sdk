@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/group-sdk/pkg/groupclient/member_request"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/group"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getGroupJoinRequestPublicV1Cmd represents the getGroupJoinRequestPublicV1 command
-var getGroupJoinRequestPublicV1Cmd = &cobra.Command{
-	Use:   "getGroupJoinRequestPublicV1",
+// GetGroupJoinRequestPublicV1Cmd represents the GetGroupJoinRequestPublicV1 command
+var GetGroupJoinRequestPublicV1Cmd = &cobra.Command{
+	Use:   "GetGroupJoinRequestPublicV1",
 	Short: "Get group join request public V1",
 	Long:  `Get group join request public V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -46,11 +45,10 @@ var getGroupJoinRequestPublicV1Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getGroupJoinRequestPublicV1Cmd)
-	getGroupJoinRequestPublicV1Cmd.Flags().StringP("groupId", "gd", " ", "Group id")
-	_ = getGroupJoinRequestPublicV1Cmd.MarkFlagRequired("groupId")
-	getGroupJoinRequestPublicV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getGroupJoinRequestPublicV1Cmd.MarkFlagRequired("namespace")
-	getGroupJoinRequestPublicV1Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
-	getGroupJoinRequestPublicV1Cmd.Flags().Int64P("offset", "ot", 0, "Offset")
+	GetGroupJoinRequestPublicV1Cmd.Flags().StringP("groupId", "gd", " ", "Group id")
+	_ = GetGroupJoinRequestPublicV1Cmd.MarkFlagRequired("groupId")
+	GetGroupJoinRequestPublicV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetGroupJoinRequestPublicV1Cmd.MarkFlagRequired("namespace")
+	GetGroupJoinRequestPublicV1Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
+	GetGroupJoinRequestPublicV1Cmd.Flags().Int64P("offset", "ot", 0, "Offset")
 }

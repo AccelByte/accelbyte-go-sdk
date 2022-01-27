@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/payment"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// queryPaymentNotificationsCmd represents the queryPaymentNotifications command
-var queryPaymentNotificationsCmd = &cobra.Command{
-	Use:   "queryPaymentNotifications",
+// QueryPaymentNotificationsCmd represents the QueryPaymentNotifications command
+var QueryPaymentNotificationsCmd = &cobra.Command{
+	Use:   "QueryPaymentNotifications",
 	Short: "Query payment notifications",
 	Long:  `Query payment notifications`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -58,16 +57,15 @@ var queryPaymentNotificationsCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(queryPaymentNotificationsCmd)
-	queryPaymentNotificationsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = queryPaymentNotificationsCmd.MarkFlagRequired("namespace")
-	queryPaymentNotificationsCmd.Flags().StringP("endDate", "ee", " ", "End date")
-	queryPaymentNotificationsCmd.Flags().StringP("externalId", "ed", " ", "External id")
-	queryPaymentNotificationsCmd.Flags().Int32P("limit", "lt", 20, "Limit")
-	queryPaymentNotificationsCmd.Flags().StringP("notificationSource", "ne", " ", "Notification source")
-	queryPaymentNotificationsCmd.Flags().StringP("notificationType", "ne", " ", "Notification type")
-	queryPaymentNotificationsCmd.Flags().Int32P("offset", "ot", 0, "Offset")
-	queryPaymentNotificationsCmd.Flags().StringP("paymentOrderNo", "po", " ", "Payment order no")
-	queryPaymentNotificationsCmd.Flags().StringP("startDate", "se", " ", "Start date")
-	queryPaymentNotificationsCmd.Flags().StringP("status", "ss", " ", "Status")
+	QueryPaymentNotificationsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = QueryPaymentNotificationsCmd.MarkFlagRequired("namespace")
+	QueryPaymentNotificationsCmd.Flags().StringP("endDate", "ee", " ", "End date")
+	QueryPaymentNotificationsCmd.Flags().StringP("externalId", "ed", " ", "External id")
+	QueryPaymentNotificationsCmd.Flags().Int32P("limit", "lt", 20, "Limit")
+	QueryPaymentNotificationsCmd.Flags().StringP("notificationSource", "ne", " ", "Notification source")
+	QueryPaymentNotificationsCmd.Flags().StringP("notificationType", "ne", " ", "Notification type")
+	QueryPaymentNotificationsCmd.Flags().Int32P("offset", "ot", 0, "Offset")
+	QueryPaymentNotificationsCmd.Flags().StringP("paymentOrderNo", "po", " ", "Payment order no")
+	QueryPaymentNotificationsCmd.Flags().StringP("startDate", "se", " ", "Start date")
+	QueryPaymentNotificationsCmd.Flags().StringP("status", "ss", " ", "Status")
 }

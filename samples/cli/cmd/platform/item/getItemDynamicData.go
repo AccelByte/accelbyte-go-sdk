@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/item"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getItemDynamicDataCmd represents the getItemDynamicData command
-var getItemDynamicDataCmd = &cobra.Command{
-	Use:   "getItemDynamicData",
+// GetItemDynamicDataCmd represents the GetItemDynamicData command
+var GetItemDynamicDataCmd = &cobra.Command{
+	Use:   "GetItemDynamicData",
 	Short: "Get item dynamic data",
 	Long:  `Get item dynamic data`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,9 +41,8 @@ var getItemDynamicDataCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getItemDynamicDataCmd)
-	getItemDynamicDataCmd.Flags().StringP("itemId", "id", " ", "Item id")
-	_ = getItemDynamicDataCmd.MarkFlagRequired("itemId")
-	getItemDynamicDataCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getItemDynamicDataCmd.MarkFlagRequired("namespace")
+	GetItemDynamicDataCmd.Flags().StringP("itemId", "id", " ", "Item id")
+	_ = GetItemDynamicDataCmd.MarkFlagRequired("itemId")
+	GetItemDynamicDataCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetItemDynamicDataCmd.MarkFlagRequired("namespace")
 }

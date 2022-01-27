@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/pod_config"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/dsmc"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getPodConfigCmd represents the getPodConfig command
-var getPodConfigCmd = &cobra.Command{
-	Use:   "getPodConfig",
+// GetPodConfigCmd represents the GetPodConfig command
+var GetPodConfigCmd = &cobra.Command{
+	Use:   "GetPodConfig",
 	Short: "Get pod config",
 	Long:  `Get pod config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,9 +41,8 @@ var getPodConfigCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getPodConfigCmd)
-	getPodConfigCmd.Flags().StringP("name", "ne", " ", "Name")
-	_ = getPodConfigCmd.MarkFlagRequired("name")
-	getPodConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getPodConfigCmd.MarkFlagRequired("namespace")
+	GetPodConfigCmd.Flags().StringP("name", "ne", " ", "Name")
+	_ = GetPodConfigCmd.MarkFlagRequired("name")
+	GetPodConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetPodConfigCmd.MarkFlagRequired("namespace")
 }

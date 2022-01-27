@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/basic"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// createNamespaceCmd represents the createNamespace command
-var createNamespaceCmd = &cobra.Command{
-	Use:   "createNamespace",
+// CreateNamespaceCmd represents the CreateNamespace command
+var CreateNamespaceCmd = &cobra.Command{
+	Use:   "CreateNamespace",
 	Short: "Create namespace",
 	Long:  `Create namespace`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -47,6 +46,5 @@ var createNamespaceCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(createNamespaceCmd)
-	createNamespaceCmd.Flags().StringP("body", "by", " ", "Body")
+	CreateNamespaceCmd.Flags().StringP("body", "by", " ", "Body")
 }

@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/achievement-sdk/pkg/achievementclient/achievements"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/achievement"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// publicGetAchievementCmd represents the publicGetAchievement command
-var publicGetAchievementCmd = &cobra.Command{
-	Use:   "publicGetAchievement",
+// PublicGetAchievementCmd represents the PublicGetAchievement command
+var PublicGetAchievementCmd = &cobra.Command{
+	Use:   "PublicGetAchievement",
 	Short: "Public get achievement",
 	Long:  `Public get achievement`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -44,11 +43,10 @@ var publicGetAchievementCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(publicGetAchievementCmd)
-	publicGetAchievementCmd.Flags().StringP("achievementCode", "ae", " ", "Achievement code")
-	_ = publicGetAchievementCmd.MarkFlagRequired("achievementCode")
-	publicGetAchievementCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = publicGetAchievementCmd.MarkFlagRequired("namespace")
-	publicGetAchievementCmd.Flags().StringP("language", "le", " ", "Language")
-	_ = publicGetAchievementCmd.MarkFlagRequired("language")
+	PublicGetAchievementCmd.Flags().StringP("achievementCode", "ae", " ", "Achievement code")
+	_ = PublicGetAchievementCmd.MarkFlagRequired("achievementCode")
+	PublicGetAchievementCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PublicGetAchievementCmd.MarkFlagRequired("namespace")
+	PublicGetAchievementCmd.Flags().StringP("language", "le", " ", "Language")
+	_ = PublicGetAchievementCmd.MarkFlagRequired("language")
 }

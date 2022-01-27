@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/dsmc"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// createSessionCmd represents the createSession command
-var createSessionCmd = &cobra.Command{
-	Use:   "createSession",
+// CreateSessionCmd represents the CreateSession command
+var CreateSessionCmd = &cobra.Command{
+	Use:   "CreateSession",
 	Short: "Create session",
 	Long:  `Create session`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,9 +48,8 @@ var createSessionCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(createSessionCmd)
-	createSessionCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = createSessionCmd.MarkFlagRequired("body")
-	createSessionCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = createSessionCmd.MarkFlagRequired("namespace")
+	CreateSessionCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = CreateSessionCmd.MarkFlagRequired("body")
+	CreateSessionCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = CreateSessionCmd.MarkFlagRequired("namespace")
 }

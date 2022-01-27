@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/player"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/lobby"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminGetLobbyCCUCmd represents the adminGetLobbyCCU command
-var adminGetLobbyCCUCmd = &cobra.Command{
-	Use:   "adminGetLobbyCCU",
+// AdminGetLobbyCCUCmd represents the AdminGetLobbyCCU command
+var AdminGetLobbyCCUCmd = &cobra.Command{
+	Use:   "AdminGetLobbyCCU",
 	Short: "Admin get lobby CCU",
 	Long:  `Admin get lobby CCU`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,7 +39,6 @@ var adminGetLobbyCCUCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminGetLobbyCCUCmd)
-	adminGetLobbyCCUCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = adminGetLobbyCCUCmd.MarkFlagRequired("namespace")
+	AdminGetLobbyCCUCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AdminGetLobbyCCUCmd.MarkFlagRequired("namespace")
 }

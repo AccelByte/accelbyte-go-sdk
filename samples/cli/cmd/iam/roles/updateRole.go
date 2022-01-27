@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// updateRoleCmd represents the updateRole command
-var updateRoleCmd = &cobra.Command{
-	Use:   "updateRole",
+// UpdateRoleCmd represents the UpdateRole command
+var UpdateRoleCmd = &cobra.Command{
+	Use:   "UpdateRole",
 	Short: "Update role",
 	Long:  `Update role`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,9 +48,8 @@ var updateRoleCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(updateRoleCmd)
-	updateRoleCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = updateRoleCmd.MarkFlagRequired("body")
-	updateRoleCmd.Flags().StringP("roleId", "rd", " ", "Role id")
-	_ = updateRoleCmd.MarkFlagRequired("roleId")
+	UpdateRoleCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = UpdateRoleCmd.MarkFlagRequired("body")
+	UpdateRoleCmd.Flags().StringP("roleId", "rd", " ", "Role id")
+	_ = UpdateRoleCmd.MarkFlagRequired("roleId")
 }

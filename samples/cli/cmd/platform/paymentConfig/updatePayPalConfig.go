@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// updatePayPalConfigCmd represents the updatePayPalConfig command
-var updatePayPalConfigCmd = &cobra.Command{
-	Use:   "updatePayPalConfig",
+// UpdatePayPalConfigCmd represents the UpdatePayPalConfig command
+var UpdatePayPalConfigCmd = &cobra.Command{
+	Use:   "UpdatePayPalConfig",
 	Short: "Update pay pal config",
 	Long:  `Update pay pal config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -53,10 +52,9 @@ var updatePayPalConfigCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(updatePayPalConfigCmd)
-	updatePayPalConfigCmd.Flags().StringP("body", "by", " ", "Body")
-	updatePayPalConfigCmd.Flags().StringP("id", "id", " ", "Id")
-	_ = updatePayPalConfigCmd.MarkFlagRequired("id")
-	updatePayPalConfigCmd.Flags().BoolP("sandbox", "sx", false, "Sandbox")
-	updatePayPalConfigCmd.Flags().BoolP("validate", "ve", false, "Validate")
+	UpdatePayPalConfigCmd.Flags().StringP("body", "by", " ", "Body")
+	UpdatePayPalConfigCmd.Flags().StringP("id", "id", " ", "Id")
+	_ = UpdatePayPalConfigCmd.MarkFlagRequired("id")
+	UpdatePayPalConfigCmd.Flags().BoolP("sandbox", "sx", false, "Sandbox")
+	UpdatePayPalConfigCmd.Flags().BoolP("validate", "ve", false, "Validate")
 }

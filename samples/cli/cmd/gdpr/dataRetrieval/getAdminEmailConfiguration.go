@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/gdpr-sdk/pkg/gdprclient/data_retrieval"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/gdpr"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getAdminEmailConfigurationCmd represents the getAdminEmailConfiguration command
-var getAdminEmailConfigurationCmd = &cobra.Command{
-	Use:   "getAdminEmailConfiguration",
+// GetAdminEmailConfigurationCmd represents the GetAdminEmailConfiguration command
+var GetAdminEmailConfigurationCmd = &cobra.Command{
+	Use:   "GetAdminEmailConfiguration",
 	Short: "Get admin email configuration",
 	Long:  `Get admin email configuration`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,7 +39,6 @@ var getAdminEmailConfigurationCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getAdminEmailConfigurationCmd)
-	getAdminEmailConfigurationCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getAdminEmailConfigurationCmd.MarkFlagRequired("namespace")
+	GetAdminEmailConfigurationCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetAdminEmailConfigurationCmd.MarkFlagRequired("namespace")
 }

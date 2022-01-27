@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/entitlement"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// publicGetUserEntitlementOwnershipByItemIdCmd represents the publicGetUserEntitlementOwnershipByItemId command
-var publicGetUserEntitlementOwnershipByItemIdCmd = &cobra.Command{
-	Use:   "publicGetUserEntitlementOwnershipByItemId",
+// PublicGetUserEntitlementOwnershipByItemIdCmd represents the PublicGetUserEntitlementOwnershipByItemId command
+var PublicGetUserEntitlementOwnershipByItemIdCmd = &cobra.Command{
+	Use:   "PublicGetUserEntitlementOwnershipByItemId",
 	Short: "Public get user entitlement ownership by item id",
 	Long:  `Public get user entitlement ownership by item id`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -46,12 +45,11 @@ var publicGetUserEntitlementOwnershipByItemIdCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(publicGetUserEntitlementOwnershipByItemIdCmd)
-	publicGetUserEntitlementOwnershipByItemIdCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = publicGetUserEntitlementOwnershipByItemIdCmd.MarkFlagRequired("namespace")
-	publicGetUserEntitlementOwnershipByItemIdCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = publicGetUserEntitlementOwnershipByItemIdCmd.MarkFlagRequired("userId")
-	publicGetUserEntitlementOwnershipByItemIdCmd.Flags().StringP("entitlementClazz", "ez", " ", "Entitlement clazz")
-	publicGetUserEntitlementOwnershipByItemIdCmd.Flags().StringP("itemId", "id", " ", "Item id")
-	_ = publicGetUserEntitlementOwnershipByItemIdCmd.MarkFlagRequired("itemId")
+	PublicGetUserEntitlementOwnershipByItemIdCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PublicGetUserEntitlementOwnershipByItemIdCmd.MarkFlagRequired("namespace")
+	PublicGetUserEntitlementOwnershipByItemIdCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = PublicGetUserEntitlementOwnershipByItemIdCmd.MarkFlagRequired("userId")
+	PublicGetUserEntitlementOwnershipByItemIdCmd.Flags().StringP("entitlementClazz", "ez", " ", "Entitlement clazz")
+	PublicGetUserEntitlementOwnershipByItemIdCmd.Flags().StringP("itemId", "id", " ", "Item id")
+	_ = PublicGetUserEntitlementOwnershipByItemIdCmd.MarkFlagRequired("itemId")
 }

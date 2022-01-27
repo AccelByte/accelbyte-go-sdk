@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/chat"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/lobby"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminChatHistoryCmd represents the adminChatHistory command
-var adminChatHistoryCmd = &cobra.Command{
-	Use:   "adminChatHistory",
+// AdminChatHistoryCmd represents the AdminChatHistory command
+var AdminChatHistoryCmd = &cobra.Command{
+	Use:   "AdminChatHistory",
 	Short: "Admin chat history",
 	Long:  `Admin chat history`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -44,11 +43,10 @@ var adminChatHistoryCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminChatHistoryCmd)
-	adminChatHistoryCmd.Flags().StringP("friendId", "fd", " ", "Friend id")
-	_ = adminChatHistoryCmd.MarkFlagRequired("friendId")
-	adminChatHistoryCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = adminChatHistoryCmd.MarkFlagRequired("namespace")
-	adminChatHistoryCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = adminChatHistoryCmd.MarkFlagRequired("userId")
+	AdminChatHistoryCmd.Flags().StringP("friendId", "fd", " ", "Friend id")
+	_ = AdminChatHistoryCmd.MarkFlagRequired("friendId")
+	AdminChatHistoryCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AdminChatHistoryCmd.MarkFlagRequired("namespace")
+	AdminChatHistoryCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = AdminChatHistoryCmd.MarkFlagRequired("userId")
 }

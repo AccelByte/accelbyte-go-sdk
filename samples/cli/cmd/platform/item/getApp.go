@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/item"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getAppCmd represents the getApp command
-var getAppCmd = &cobra.Command{
-	Use:   "getApp",
+// GetAppCmd represents the GetApp command
+var GetAppCmd = &cobra.Command{
+	Use:   "GetApp",
 	Short: "Get app",
 	Long:  `Get app`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -46,11 +45,10 @@ var getAppCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getAppCmd)
-	getAppCmd.Flags().StringP("itemId", "id", " ", "Item id")
-	_ = getAppCmd.MarkFlagRequired("itemId")
-	getAppCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getAppCmd.MarkFlagRequired("namespace")
-	getAppCmd.Flags().BoolP("activeOnly", "ay", false, "Active only")
-	getAppCmd.Flags().StringP("storeId", "sd", " ", "Store id")
+	GetAppCmd.Flags().StringP("itemId", "id", " ", "Item id")
+	_ = GetAppCmd.MarkFlagRequired("itemId")
+	GetAppCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetAppCmd.MarkFlagRequired("namespace")
+	GetAppCmd.Flags().BoolP("activeOnly", "ay", false, "Active only")
+	GetAppCmd.Flags().StringP("storeId", "sd", " ", "Store id")
 }

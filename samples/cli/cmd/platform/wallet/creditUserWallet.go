@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// creditUserWalletCmd represents the creditUserWallet command
-var creditUserWalletCmd = &cobra.Command{
-	Use:   "creditUserWallet",
+// CreditUserWalletCmd represents the CreditUserWallet command
+var CreditUserWalletCmd = &cobra.Command{
+	Use:   "CreditUserWallet",
 	Short: "Credit user wallet",
 	Long:  `Credit user wallet`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -53,12 +52,11 @@ var creditUserWalletCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(creditUserWalletCmd)
-	creditUserWalletCmd.Flags().StringP("body", "by", " ", "Body")
-	creditUserWalletCmd.Flags().StringP("currencyCode", "ce", " ", "Currency code")
-	_ = creditUserWalletCmd.MarkFlagRequired("currencyCode")
-	creditUserWalletCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = creditUserWalletCmd.MarkFlagRequired("namespace")
-	creditUserWalletCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = creditUserWalletCmd.MarkFlagRequired("userId")
+	CreditUserWalletCmd.Flags().StringP("body", "by", " ", "Body")
+	CreditUserWalletCmd.Flags().StringP("currencyCode", "ce", " ", "Currency code")
+	_ = CreditUserWalletCmd.MarkFlagRequired("currencyCode")
+	CreditUserWalletCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = CreditUserWalletCmd.MarkFlagRequired("namespace")
+	CreditUserWalletCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = CreditUserWalletCmd.MarkFlagRequired("userId")
 }

@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/group-sdk/pkg/groupclient/configuration"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/group"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// listGroupConfigurationAdminV1Cmd represents the listGroupConfigurationAdminV1 command
-var listGroupConfigurationAdminV1Cmd = &cobra.Command{
-	Use:   "listGroupConfigurationAdminV1",
+// ListGroupConfigurationAdminV1Cmd represents the ListGroupConfigurationAdminV1 command
+var ListGroupConfigurationAdminV1Cmd = &cobra.Command{
+	Use:   "ListGroupConfigurationAdminV1",
 	Short: "List group configuration admin V1",
 	Long:  `List group configuration admin V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -44,9 +43,8 @@ var listGroupConfigurationAdminV1Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(listGroupConfigurationAdminV1Cmd)
-	listGroupConfigurationAdminV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = listGroupConfigurationAdminV1Cmd.MarkFlagRequired("namespace")
-	listGroupConfigurationAdminV1Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
-	listGroupConfigurationAdminV1Cmd.Flags().Int64P("offset", "ot", 0, "Offset")
+	ListGroupConfigurationAdminV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = ListGroupConfigurationAdminV1Cmd.MarkFlagRequired("namespace")
+	ListGroupConfigurationAdminV1Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
+	ListGroupConfigurationAdminV1Cmd.Flags().Int64P("offset", "ot", 0, "Offset")
 }

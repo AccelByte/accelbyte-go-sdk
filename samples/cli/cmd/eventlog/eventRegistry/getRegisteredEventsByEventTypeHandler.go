@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/eventlog-sdk/pkg/eventlogclient/event_registry"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/eventlog"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getRegisteredEventsByEventTypeHandlerCmd represents the getRegisteredEventsByEventTypeHandler command
-var getRegisteredEventsByEventTypeHandlerCmd = &cobra.Command{
-	Use:   "getRegisteredEventsByEventTypeHandler",
+// GetRegisteredEventsByEventTypeHandlerCmd represents the GetRegisteredEventsByEventTypeHandler command
+var GetRegisteredEventsByEventTypeHandlerCmd = &cobra.Command{
+	Use:   "GetRegisteredEventsByEventTypeHandler",
 	Short: "Get registered events by event type handler",
 	Long:  `Get registered events by event type handler`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,7 +39,6 @@ var getRegisteredEventsByEventTypeHandlerCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getRegisteredEventsByEventTypeHandlerCmd)
-	getRegisteredEventsByEventTypeHandlerCmd.Flags().StringP("eventType", "ee", "0", "Event type")
-	_ = getRegisteredEventsByEventTypeHandlerCmd.MarkFlagRequired("eventType")
+	GetRegisteredEventsByEventTypeHandlerCmd.Flags().StringP("eventType", "ee", "0", "Event type")
+	_ = GetRegisteredEventsByEventTypeHandlerCmd.MarkFlagRequired("eventType")
 }

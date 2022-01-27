@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/ugc"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/public_like"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclientmodels"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// updateContentLikeStatusCmd represents the updateContentLikeStatus command
-var updateContentLikeStatusCmd = &cobra.Command{
-	Use:   "updateContentLikeStatus",
+// UpdateContentLikeStatusCmd represents the UpdateContentLikeStatus command
+var UpdateContentLikeStatusCmd = &cobra.Command{
+	Use:   "UpdateContentLikeStatus",
 	Short: "Update content like status",
 	Long:  `Update content like status`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -51,11 +50,10 @@ var updateContentLikeStatusCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(updateContentLikeStatusCmd)
-	updateContentLikeStatusCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = updateContentLikeStatusCmd.MarkFlagRequired("body")
-	updateContentLikeStatusCmd.Flags().StringP("contentId", "cd", " ", "Content id")
-	_ = updateContentLikeStatusCmd.MarkFlagRequired("contentId")
-	updateContentLikeStatusCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = updateContentLikeStatusCmd.MarkFlagRequired("namespace")
+	UpdateContentLikeStatusCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = UpdateContentLikeStatusCmd.MarkFlagRequired("body")
+	UpdateContentLikeStatusCmd.Flags().StringP("contentId", "cd", " ", "Content id")
+	_ = UpdateContentLikeStatusCmd.MarkFlagRequired("contentId")
+	UpdateContentLikeStatusCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = UpdateContentLikeStatusCmd.MarkFlagRequired("namespace")
 }

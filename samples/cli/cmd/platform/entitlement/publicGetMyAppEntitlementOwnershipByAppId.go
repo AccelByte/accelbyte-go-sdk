@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/entitlement"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// publicGetMyAppEntitlementOwnershipByAppIdCmd represents the publicGetMyAppEntitlementOwnershipByAppId command
-var publicGetMyAppEntitlementOwnershipByAppIdCmd = &cobra.Command{
-	Use:   "publicGetMyAppEntitlementOwnershipByAppId",
+// PublicGetMyAppEntitlementOwnershipByAppIdCmd represents the PublicGetMyAppEntitlementOwnershipByAppId command
+var PublicGetMyAppEntitlementOwnershipByAppIdCmd = &cobra.Command{
+	Use:   "PublicGetMyAppEntitlementOwnershipByAppId",
 	Short: "Public get my app entitlement ownership by app id",
 	Long:  `Public get my app entitlement ownership by app id`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,9 +41,8 @@ var publicGetMyAppEntitlementOwnershipByAppIdCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(publicGetMyAppEntitlementOwnershipByAppIdCmd)
-	publicGetMyAppEntitlementOwnershipByAppIdCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = publicGetMyAppEntitlementOwnershipByAppIdCmd.MarkFlagRequired("namespace")
-	publicGetMyAppEntitlementOwnershipByAppIdCmd.Flags().StringP("appId", "ad", " ", "App id")
-	_ = publicGetMyAppEntitlementOwnershipByAppIdCmd.MarkFlagRequired("appId")
+	PublicGetMyAppEntitlementOwnershipByAppIdCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PublicGetMyAppEntitlementOwnershipByAppIdCmd.MarkFlagRequired("namespace")
+	PublicGetMyAppEntitlementOwnershipByAppIdCmd.Flags().StringP("appId", "ad", " ", "App id")
+	_ = PublicGetMyAppEntitlementOwnershipByAppIdCmd.MarkFlagRequired("appId")
 }

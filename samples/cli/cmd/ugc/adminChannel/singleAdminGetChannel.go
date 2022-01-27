@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/ugc"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/admin_channel"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// singleAdminGetChannelCmd represents the singleAdminGetChannel command
-var singleAdminGetChannelCmd = &cobra.Command{
-	Use:   "singleAdminGetChannel",
+// SingleAdminGetChannelCmd represents the SingleAdminGetChannel command
+var SingleAdminGetChannelCmd = &cobra.Command{
+	Use:   "SingleAdminGetChannel",
 	Short: "Single admin get channel",
 	Long:  `Single admin get channel`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -44,9 +43,8 @@ var singleAdminGetChannelCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(singleAdminGetChannelCmd)
-	singleAdminGetChannelCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = singleAdminGetChannelCmd.MarkFlagRequired("namespace")
-	singleAdminGetChannelCmd.Flags().StringP("limit", "lt", "20", "Limit")
-	singleAdminGetChannelCmd.Flags().StringP("offset", "ot", "0", "Offset")
+	SingleAdminGetChannelCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = SingleAdminGetChannelCmd.MarkFlagRequired("namespace")
+	SingleAdminGetChannelCmd.Flags().StringP("limit", "lt", "20", "Limit")
+	SingleAdminGetChannelCmd.Flags().StringP("offset", "ot", "0", "Offset")
 }

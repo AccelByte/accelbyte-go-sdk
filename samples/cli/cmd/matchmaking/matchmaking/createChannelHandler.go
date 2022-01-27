@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/matchmaking-sdk/pkg/matchmakingclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/matchmaking"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// createChannelHandlerCmd represents the createChannelHandler command
-var createChannelHandlerCmd = &cobra.Command{
-	Use:   "createChannelHandler",
+// CreateChannelHandlerCmd represents the CreateChannelHandler command
+var CreateChannelHandlerCmd = &cobra.Command{
+	Use:   "CreateChannelHandler",
 	Short: "Create channel handler",
 	Long:  `Create channel handler`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,9 +48,8 @@ var createChannelHandlerCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(createChannelHandlerCmd)
-	createChannelHandlerCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = createChannelHandlerCmd.MarkFlagRequired("body")
-	createChannelHandlerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = createChannelHandlerCmd.MarkFlagRequired("namespace")
+	CreateChannelHandlerCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = CreateChannelHandlerCmd.MarkFlagRequired("body")
+	CreateChannelHandlerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = CreateChannelHandlerCmd.MarkFlagRequired("namespace")
 }

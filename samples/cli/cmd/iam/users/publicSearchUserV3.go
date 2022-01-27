@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// publicSearchUserV3Cmd represents the publicSearchUserV3 command
-var publicSearchUserV3Cmd = &cobra.Command{
-	Use:   "publicSearchUserV3",
+// PublicSearchUserV3Cmd represents the PublicSearchUserV3 command
+var PublicSearchUserV3Cmd = &cobra.Command{
+	Use:   "PublicSearchUserV3",
 	Short: "Public search user V3",
 	Long:  `Public search user V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -44,9 +43,8 @@ var publicSearchUserV3Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(publicSearchUserV3Cmd)
-	publicSearchUserV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = publicSearchUserV3Cmd.MarkFlagRequired("namespace")
-	publicSearchUserV3Cmd.Flags().StringP("by", "by", " ", "By")
-	publicSearchUserV3Cmd.Flags().StringP("query", "qy", " ", "Query")
+	PublicSearchUserV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PublicSearchUserV3Cmd.MarkFlagRequired("namespace")
+	PublicSearchUserV3Cmd.Flags().StringP("by", "by", " ", "By")
+	PublicSearchUserV3Cmd.Flags().StringP("query", "qy", " ", "Query")
 }

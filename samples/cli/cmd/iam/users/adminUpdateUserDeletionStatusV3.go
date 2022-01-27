@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminUpdateUserDeletionStatusV3Cmd represents the adminUpdateUserDeletionStatusV3 command
-var adminUpdateUserDeletionStatusV3Cmd = &cobra.Command{
-	Use:   "adminUpdateUserDeletionStatusV3",
+// AdminUpdateUserDeletionStatusV3Cmd represents the AdminUpdateUserDeletionStatusV3 command
+var AdminUpdateUserDeletionStatusV3Cmd = &cobra.Command{
+	Use:   "AdminUpdateUserDeletionStatusV3",
 	Short: "Admin update user deletion status V3",
 	Long:  `Admin update user deletion status V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,11 +49,10 @@ var adminUpdateUserDeletionStatusV3Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminUpdateUserDeletionStatusV3Cmd)
-	adminUpdateUserDeletionStatusV3Cmd.Flags().StringP("body", "by", " ", "Body")
-	_ = adminUpdateUserDeletionStatusV3Cmd.MarkFlagRequired("body")
-	adminUpdateUserDeletionStatusV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = adminUpdateUserDeletionStatusV3Cmd.MarkFlagRequired("namespace")
-	adminUpdateUserDeletionStatusV3Cmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = adminUpdateUserDeletionStatusV3Cmd.MarkFlagRequired("userId")
+	AdminUpdateUserDeletionStatusV3Cmd.Flags().StringP("body", "by", " ", "Body")
+	_ = AdminUpdateUserDeletionStatusV3Cmd.MarkFlagRequired("body")
+	AdminUpdateUserDeletionStatusV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AdminUpdateUserDeletionStatusV3Cmd.MarkFlagRequired("namespace")
+	AdminUpdateUserDeletionStatusV3Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = AdminUpdateUserDeletionStatusV3Cmd.MarkFlagRequired("userId")
 }

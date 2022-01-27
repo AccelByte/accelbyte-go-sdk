@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/item"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// featureItemCmd represents the featureItem command
-var featureItemCmd = &cobra.Command{
-	Use:   "featureItem",
+// FeatureItemCmd represents the FeatureItem command
+var FeatureItemCmd = &cobra.Command{
+	Use:   "FeatureItem",
 	Short: "Feature item",
 	Long:  `Feature item`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -46,13 +45,12 @@ var featureItemCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(featureItemCmd)
-	featureItemCmd.Flags().StringP("feature", "fe", " ", "Feature")
-	_ = featureItemCmd.MarkFlagRequired("feature")
-	featureItemCmd.Flags().StringP("itemId", "id", " ", "Item id")
-	_ = featureItemCmd.MarkFlagRequired("itemId")
-	featureItemCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = featureItemCmd.MarkFlagRequired("namespace")
-	featureItemCmd.Flags().StringP("storeId", "sd", " ", "Store id")
-	_ = featureItemCmd.MarkFlagRequired("storeId")
+	FeatureItemCmd.Flags().StringP("feature", "fe", " ", "Feature")
+	_ = FeatureItemCmd.MarkFlagRequired("feature")
+	FeatureItemCmd.Flags().StringP("itemId", "id", " ", "Item id")
+	_ = FeatureItemCmd.MarkFlagRequired("itemId")
+	FeatureItemCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = FeatureItemCmd.MarkFlagRequired("namespace")
+	FeatureItemCmd.Flags().StringP("storeId", "sd", " ", "Store id")
+	_ = FeatureItemCmd.MarkFlagRequired("storeId")
 }

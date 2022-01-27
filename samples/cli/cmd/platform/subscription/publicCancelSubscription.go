@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// publicCancelSubscriptionCmd represents the publicCancelSubscription command
-var publicCancelSubscriptionCmd = &cobra.Command{
-	Use:   "publicCancelSubscription",
+// PublicCancelSubscriptionCmd represents the PublicCancelSubscription command
+var PublicCancelSubscriptionCmd = &cobra.Command{
+	Use:   "PublicCancelSubscription",
 	Short: "Public cancel subscription",
 	Long:  `Public cancel subscription`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -53,12 +52,11 @@ var publicCancelSubscriptionCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(publicCancelSubscriptionCmd)
-	publicCancelSubscriptionCmd.Flags().StringP("body", "by", " ", "Body")
-	publicCancelSubscriptionCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = publicCancelSubscriptionCmd.MarkFlagRequired("namespace")
-	publicCancelSubscriptionCmd.Flags().StringP("subscriptionId", "sd", " ", "Subscription id")
-	_ = publicCancelSubscriptionCmd.MarkFlagRequired("subscriptionId")
-	publicCancelSubscriptionCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = publicCancelSubscriptionCmd.MarkFlagRequired("userId")
+	PublicCancelSubscriptionCmd.Flags().StringP("body", "by", " ", "Body")
+	PublicCancelSubscriptionCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PublicCancelSubscriptionCmd.MarkFlagRequired("namespace")
+	PublicCancelSubscriptionCmd.Flags().StringP("subscriptionId", "sd", " ", "Subscription id")
+	_ = PublicCancelSubscriptionCmd.MarkFlagRequired("subscriptionId")
+	PublicCancelSubscriptionCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = PublicCancelSubscriptionCmd.MarkFlagRequired("userId")
 }

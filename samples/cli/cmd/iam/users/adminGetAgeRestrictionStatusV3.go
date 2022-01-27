@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminGetAgeRestrictionStatusV3Cmd represents the adminGetAgeRestrictionStatusV3 command
-var adminGetAgeRestrictionStatusV3Cmd = &cobra.Command{
-	Use:   "adminGetAgeRestrictionStatusV3",
+// AdminGetAgeRestrictionStatusV3Cmd represents the AdminGetAgeRestrictionStatusV3 command
+var AdminGetAgeRestrictionStatusV3Cmd = &cobra.Command{
+	Use:   "AdminGetAgeRestrictionStatusV3",
 	Short: "Admin get age restriction status V3",
 	Long:  `Admin get age restriction status V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,7 +39,6 @@ var adminGetAgeRestrictionStatusV3Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminGetAgeRestrictionStatusV3Cmd)
-	adminGetAgeRestrictionStatusV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = adminGetAgeRestrictionStatusV3Cmd.MarkFlagRequired("namespace")
+	AdminGetAgeRestrictionStatusV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AdminGetAgeRestrictionStatusV3Cmd.MarkFlagRequired("namespace")
 }

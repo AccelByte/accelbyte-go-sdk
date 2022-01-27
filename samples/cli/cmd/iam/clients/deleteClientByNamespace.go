@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/clients"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// deleteClientByNamespaceCmd represents the deleteClientByNamespace command
-var deleteClientByNamespaceCmd = &cobra.Command{
-	Use:   "deleteClientByNamespace",
+// DeleteClientByNamespaceCmd represents the DeleteClientByNamespace command
+var DeleteClientByNamespaceCmd = &cobra.Command{
+	Use:   "DeleteClientByNamespace",
 	Short: "Delete client by namespace",
 	Long:  `Delete client by namespace`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,9 +40,8 @@ var deleteClientByNamespaceCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(deleteClientByNamespaceCmd)
-	deleteClientByNamespaceCmd.Flags().StringP("clientId", "cd", " ", "Client id")
-	_ = deleteClientByNamespaceCmd.MarkFlagRequired("clientId")
-	deleteClientByNamespaceCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = deleteClientByNamespaceCmd.MarkFlagRequired("namespace")
+	DeleteClientByNamespaceCmd.Flags().StringP("clientId", "cd", " ", "Client id")
+	_ = DeleteClientByNamespaceCmd.MarkFlagRequired("clientId")
+	DeleteClientByNamespaceCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = DeleteClientByNamespaceCmd.MarkFlagRequired("namespace")
 }

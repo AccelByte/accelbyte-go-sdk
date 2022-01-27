@@ -9,15 +9,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclient/user_profile"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/basic"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// updatePrivateCustomAttributesPartiallyCmd represents the updatePrivateCustomAttributesPartially command
-var updatePrivateCustomAttributesPartiallyCmd = &cobra.Command{
-	Use:   "updatePrivateCustomAttributesPartially",
+// UpdatePrivateCustomAttributesPartiallyCmd represents the UpdatePrivateCustomAttributesPartially command
+var UpdatePrivateCustomAttributesPartiallyCmd = &cobra.Command{
+	Use:   "UpdatePrivateCustomAttributesPartially",
 	Short: "Update private custom attributes partially",
 	Long:  `Update private custom attributes partially`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,10 +49,9 @@ var updatePrivateCustomAttributesPartiallyCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(updatePrivateCustomAttributesPartiallyCmd)
-	updatePrivateCustomAttributesPartiallyCmd.Flags().StringP("body", "by", " ", "Body")
-	updatePrivateCustomAttributesPartiallyCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = updatePrivateCustomAttributesPartiallyCmd.MarkFlagRequired("namespace")
-	updatePrivateCustomAttributesPartiallyCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = updatePrivateCustomAttributesPartiallyCmd.MarkFlagRequired("userId")
+	UpdatePrivateCustomAttributesPartiallyCmd.Flags().StringP("body", "by", " ", "Body")
+	UpdatePrivateCustomAttributesPartiallyCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = UpdatePrivateCustomAttributesPartiallyCmd.MarkFlagRequired("namespace")
+	UpdatePrivateCustomAttributesPartiallyCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = UpdatePrivateCustomAttributesPartiallyCmd.MarkFlagRequired("userId")
 }

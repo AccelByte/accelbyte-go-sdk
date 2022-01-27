@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/ugc"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/admin_content"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclientmodels"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// singleAdminUpdateContentS3Cmd represents the singleAdminUpdateContentS3 command
-var singleAdminUpdateContentS3Cmd = &cobra.Command{
-	Use:   "singleAdminUpdateContentS3",
+// SingleAdminUpdateContentS3Cmd represents the SingleAdminUpdateContentS3 command
+var SingleAdminUpdateContentS3Cmd = &cobra.Command{
+	Use:   "SingleAdminUpdateContentS3",
 	Short: "Single admin update content S3",
 	Long:  `Single admin update content S3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -53,13 +52,12 @@ var singleAdminUpdateContentS3Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(singleAdminUpdateContentS3Cmd)
-	singleAdminUpdateContentS3Cmd.Flags().StringP("body", "by", " ", "Body")
-	_ = singleAdminUpdateContentS3Cmd.MarkFlagRequired("body")
-	singleAdminUpdateContentS3Cmd.Flags().StringP("channelId", "cd", " ", "Channel id")
-	_ = singleAdminUpdateContentS3Cmd.MarkFlagRequired("channelId")
-	singleAdminUpdateContentS3Cmd.Flags().StringP("contentId", "cd", " ", "Content id")
-	_ = singleAdminUpdateContentS3Cmd.MarkFlagRequired("contentId")
-	singleAdminUpdateContentS3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = singleAdminUpdateContentS3Cmd.MarkFlagRequired("namespace")
+	SingleAdminUpdateContentS3Cmd.Flags().StringP("body", "by", " ", "Body")
+	_ = SingleAdminUpdateContentS3Cmd.MarkFlagRequired("body")
+	SingleAdminUpdateContentS3Cmd.Flags().StringP("channelId", "cd", " ", "Channel id")
+	_ = SingleAdminUpdateContentS3Cmd.MarkFlagRequired("channelId")
+	SingleAdminUpdateContentS3Cmd.Flags().StringP("contentId", "cd", " ", "Content id")
+	_ = SingleAdminUpdateContentS3Cmd.MarkFlagRequired("contentId")
+	SingleAdminUpdateContentS3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = SingleAdminUpdateContentS3Cmd.MarkFlagRequired("namespace")
 }

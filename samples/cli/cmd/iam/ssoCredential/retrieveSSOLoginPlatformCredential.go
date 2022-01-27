@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/s_s_o_credential"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// retrieveSSOLoginPlatformCredentialCmd represents the retrieveSSOLoginPlatformCredential command
-var retrieveSSOLoginPlatformCredentialCmd = &cobra.Command{
-	Use:   "retrieveSSOLoginPlatformCredential",
+// RetrieveSSOLoginPlatformCredentialCmd represents the RetrieveSSOLoginPlatformCredential command
+var RetrieveSSOLoginPlatformCredentialCmd = &cobra.Command{
+	Use:   "RetrieveSSOLoginPlatformCredential",
 	Short: "Retrieve SSO login platform credential",
 	Long:  `Retrieve SSO login platform credential`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,9 +41,8 @@ var retrieveSSOLoginPlatformCredentialCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(retrieveSSOLoginPlatformCredentialCmd)
-	retrieveSSOLoginPlatformCredentialCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = retrieveSSOLoginPlatformCredentialCmd.MarkFlagRequired("namespace")
-	retrieveSSOLoginPlatformCredentialCmd.Flags().StringP("platformId", "pd", " ", "Platform id")
-	_ = retrieveSSOLoginPlatformCredentialCmd.MarkFlagRequired("platformId")
+	RetrieveSSOLoginPlatformCredentialCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = RetrieveSSOLoginPlatformCredentialCmd.MarkFlagRequired("namespace")
+	RetrieveSSOLoginPlatformCredentialCmd.Flags().StringP("platformId", "pd", " ", "Platform id")
+	_ = RetrieveSSOLoginPlatformCredentialCmd.MarkFlagRequired("platformId")
 }

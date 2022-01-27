@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth2_0"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// authorizeV3Cmd represents the authorizeV3 command
-var authorizeV3Cmd = &cobra.Command{
-	Use:   "authorizeV3",
+// AuthorizeV3Cmd represents the AuthorizeV3 command
+var AuthorizeV3Cmd = &cobra.Command{
+	Use:   "AuthorizeV3",
 	Short: "Authorize V3",
 	Long:  `Authorize V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -53,15 +52,14 @@ var authorizeV3Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(authorizeV3Cmd)
-	authorizeV3Cmd.Flags().StringP("code_challenge", "ce", " ", "Code challenge")
-	authorizeV3Cmd.Flags().StringP("code_challenge_method", "cd", " ", "Code challenge method")
-	authorizeV3Cmd.Flags().StringP("redirect_uri", "ri", " ", "Redirect uri")
-	authorizeV3Cmd.Flags().StringP("scope", "se", " ", "Scope")
-	authorizeV3Cmd.Flags().StringP("state", "se", " ", "State")
-	authorizeV3Cmd.Flags().StringP("target_auth_page", "te", " ", "Target auth page")
-	authorizeV3Cmd.Flags().StringP("client_id", "cd", " ", "Client id")
-	_ = authorizeV3Cmd.MarkFlagRequired("client_id")
-	authorizeV3Cmd.Flags().StringP("response_type", "re", " ", "Response type")
-	_ = authorizeV3Cmd.MarkFlagRequired("response_type")
+	AuthorizeV3Cmd.Flags().StringP("code_challenge", "ce", " ", "Code challenge")
+	AuthorizeV3Cmd.Flags().StringP("code_challenge_method", "cd", " ", "Code challenge method")
+	AuthorizeV3Cmd.Flags().StringP("redirect_uri", "ri", " ", "Redirect uri")
+	AuthorizeV3Cmd.Flags().StringP("scope", "se", " ", "Scope")
+	AuthorizeV3Cmd.Flags().StringP("state", "se", " ", "State")
+	AuthorizeV3Cmd.Flags().StringP("target_auth_page", "te", " ", "Target auth page")
+	AuthorizeV3Cmd.Flags().StringP("client_id", "cd", " ", "Client id")
+	_ = AuthorizeV3Cmd.MarkFlagRequired("client_id")
+	AuthorizeV3Cmd.Flags().StringP("response_type", "re", " ", "Response type")
+	_ = AuthorizeV3Cmd.MarkFlagRequired("response_type")
 }

@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/payment_config"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// testCheckoutConfigByIdCmd represents the testCheckoutConfigById command
-var testCheckoutConfigByIdCmd = &cobra.Command{
-	Use:   "testCheckoutConfigById",
+// TestCheckoutConfigByIdCmd represents the TestCheckoutConfigById command
+var TestCheckoutConfigByIdCmd = &cobra.Command{
+	Use:   "TestCheckoutConfigById",
 	Short: "Test checkout config by id",
 	Long:  `Test checkout config by id`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,8 +41,7 @@ var testCheckoutConfigByIdCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(testCheckoutConfigByIdCmd)
-	testCheckoutConfigByIdCmd.Flags().StringP("id", "id", " ", "Id")
-	_ = testCheckoutConfigByIdCmd.MarkFlagRequired("id")
-	testCheckoutConfigByIdCmd.Flags().BoolP("sandbox", "sx", false, "Sandbox")
+	TestCheckoutConfigByIdCmd.Flags().StringP("id", "id", " ", "Id")
+	_ = TestCheckoutConfigByIdCmd.MarkFlagRequired("id")
+	TestCheckoutConfigByIdCmd.Flags().BoolP("sandbox", "sx", false, "Sandbox")
 }

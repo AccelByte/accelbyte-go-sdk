@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// publicSyncPsnDlcInventoryCmd represents the publicSyncPsnDlcInventory command
-var publicSyncPsnDlcInventoryCmd = &cobra.Command{
-	Use:   "publicSyncPsnDlcInventory",
+// PublicSyncPsnDlcInventoryCmd represents the PublicSyncPsnDlcInventory command
+var PublicSyncPsnDlcInventoryCmd = &cobra.Command{
+	Use:   "PublicSyncPsnDlcInventory",
 	Short: "Public sync psn dlc inventory",
 	Long:  `Public sync psn dlc inventory`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,10 +49,9 @@ var publicSyncPsnDlcInventoryCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(publicSyncPsnDlcInventoryCmd)
-	publicSyncPsnDlcInventoryCmd.Flags().StringP("body", "by", " ", "Body")
-	publicSyncPsnDlcInventoryCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = publicSyncPsnDlcInventoryCmd.MarkFlagRequired("namespace")
-	publicSyncPsnDlcInventoryCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = publicSyncPsnDlcInventoryCmd.MarkFlagRequired("userId")
+	PublicSyncPsnDlcInventoryCmd.Flags().StringP("body", "by", " ", "Body")
+	PublicSyncPsnDlcInventoryCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PublicSyncPsnDlcInventoryCmd.MarkFlagRequired("namespace")
+	PublicSyncPsnDlcInventoryCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = PublicSyncPsnDlcInventoryCmd.MarkFlagRequired("userId")
 }

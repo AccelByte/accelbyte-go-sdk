@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/ugc"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/admin_content"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminSearchChannelSpecificContentCmd represents the adminSearchChannelSpecificContent command
-var adminSearchChannelSpecificContentCmd = &cobra.Command{
-	Use:   "adminSearchChannelSpecificContent",
+// AdminSearchChannelSpecificContentCmd represents the AdminSearchChannelSpecificContent command
+var AdminSearchChannelSpecificContentCmd = &cobra.Command{
+	Use:   "AdminSearchChannelSpecificContent",
 	Short: "Admin search channel specific content",
 	Long:  `Admin search channel specific content`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -64,20 +63,19 @@ var adminSearchChannelSpecificContentCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminSearchChannelSpecificContentCmd)
-	adminSearchChannelSpecificContentCmd.Flags().StringP("channelId", "cd", " ", "Channel id")
-	_ = adminSearchChannelSpecificContentCmd.MarkFlagRequired("channelId")
-	adminSearchChannelSpecificContentCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = adminSearchChannelSpecificContentCmd.MarkFlagRequired("namespace")
-	adminSearchChannelSpecificContentCmd.Flags().StringP("creator", "cr", " ", "Creator")
-	adminSearchChannelSpecificContentCmd.Flags().StringP("isofficial", "il", " ", "Isofficial")
-	adminSearchChannelSpecificContentCmd.Flags().StringP("limit", "lt", "20", "Limit")
-	adminSearchChannelSpecificContentCmd.Flags().StringP("name", "ne", " ", "Name")
-	adminSearchChannelSpecificContentCmd.Flags().StringP("offset", "ot", "0", "Offset")
-	adminSearchChannelSpecificContentCmd.Flags().StringP("orderby", "oy", " ", "Orderby")
-	adminSearchChannelSpecificContentCmd.Flags().StringP("sortby", "sy", " ", "Sortby")
-	adminSearchChannelSpecificContentCmd.Flags().StringP("subtype", "se", " ", "Subtype")
-	adminSearchChannelSpecificContentCmd.Flags().StringP("tags", "ts", " ", "Tags")
-	adminSearchChannelSpecificContentCmd.Flags().StringP("type", "te", " ", "Type")
-	adminSearchChannelSpecificContentCmd.Flags().StringP("userId", "ud", " ", "User id")
+	AdminSearchChannelSpecificContentCmd.Flags().StringP("channelId", "cd", " ", "Channel id")
+	_ = AdminSearchChannelSpecificContentCmd.MarkFlagRequired("channelId")
+	AdminSearchChannelSpecificContentCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AdminSearchChannelSpecificContentCmd.MarkFlagRequired("namespace")
+	AdminSearchChannelSpecificContentCmd.Flags().StringP("creator", "cr", " ", "Creator")
+	AdminSearchChannelSpecificContentCmd.Flags().StringP("isofficial", "il", " ", "Isofficial")
+	AdminSearchChannelSpecificContentCmd.Flags().StringP("limit", "lt", "20", "Limit")
+	AdminSearchChannelSpecificContentCmd.Flags().StringP("name", "ne", " ", "Name")
+	AdminSearchChannelSpecificContentCmd.Flags().StringP("offset", "ot", "0", "Offset")
+	AdminSearchChannelSpecificContentCmd.Flags().StringP("orderby", "oy", " ", "Orderby")
+	AdminSearchChannelSpecificContentCmd.Flags().StringP("sortby", "sy", " ", "Sortby")
+	AdminSearchChannelSpecificContentCmd.Flags().StringP("subtype", "se", " ", "Subtype")
+	AdminSearchChannelSpecificContentCmd.Flags().StringP("tags", "ts", " ", "Tags")
+	AdminSearchChannelSpecificContentCmd.Flags().StringP("type", "te", " ", "Type")
+	AdminSearchChannelSpecificContentCmd.Flags().StringP("userId", "ud", " ", "User id")
 }

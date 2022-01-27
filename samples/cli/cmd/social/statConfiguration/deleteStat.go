@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/social"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient/stat_configuration"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// deleteStatCmd represents the deleteStat command
-var deleteStatCmd = &cobra.Command{
-	Use:   "deleteStat",
+// DeleteStatCmd represents the DeleteStat command
+var DeleteStatCmd = &cobra.Command{
+	Use:   "DeleteStat",
 	Short: "Delete stat",
 	Long:  `Delete stat`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,9 +40,8 @@ var deleteStatCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(deleteStatCmd)
-	deleteStatCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = deleteStatCmd.MarkFlagRequired("namespace")
-	deleteStatCmd.Flags().StringP("statCode", "se", " ", "Stat code")
-	_ = deleteStatCmd.MarkFlagRequired("statCode")
+	DeleteStatCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = DeleteStatCmd.MarkFlagRequired("namespace")
+	DeleteStatCmd.Flags().StringP("statCode", "se", " ", "Stat code")
+	_ = DeleteStatCmd.MarkFlagRequired("statCode")
 }

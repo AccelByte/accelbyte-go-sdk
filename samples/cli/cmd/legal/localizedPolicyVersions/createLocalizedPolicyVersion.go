@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/legal"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// createLocalizedPolicyVersionCmd represents the createLocalizedPolicyVersion command
-var createLocalizedPolicyVersionCmd = &cobra.Command{
-	Use:   "createLocalizedPolicyVersion",
+// CreateLocalizedPolicyVersionCmd represents the CreateLocalizedPolicyVersion command
+var CreateLocalizedPolicyVersionCmd = &cobra.Command{
+	Use:   "CreateLocalizedPolicyVersion",
 	Short: "Create localized policy version",
 	Long:  `Create localized policy version`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,8 +48,7 @@ var createLocalizedPolicyVersionCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(createLocalizedPolicyVersionCmd)
-	createLocalizedPolicyVersionCmd.Flags().StringP("body", "by", " ", "Body")
-	createLocalizedPolicyVersionCmd.Flags().StringP("policyVersionId", "pd", " ", "Policy version id")
-	_ = createLocalizedPolicyVersionCmd.MarkFlagRequired("policyVersionId")
+	CreateLocalizedPolicyVersionCmd.Flags().StringP("body", "by", " ", "Body")
+	CreateLocalizedPolicyVersionCmd.Flags().StringP("policyVersionId", "pd", " ", "Policy version id")
+	_ = CreateLocalizedPolicyVersionCmd.MarkFlagRequired("policyVersionId")
 }

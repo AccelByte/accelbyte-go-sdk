@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/deployment_config"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/dsmc"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getAllDeploymentCmd represents the getAllDeployment command
-var getAllDeploymentCmd = &cobra.Command{
-	Use:   "getAllDeployment",
+// GetAllDeploymentCmd represents the GetAllDeployment command
+var GetAllDeploymentCmd = &cobra.Command{
+	Use:   "GetAllDeployment",
 	Short: "Get all deployment",
 	Long:  `Get all deployment`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -44,9 +43,8 @@ var getAllDeploymentCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getAllDeploymentCmd)
-	getAllDeploymentCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getAllDeploymentCmd.MarkFlagRequired("namespace")
-	getAllDeploymentCmd.Flags().Int64P("count", "ct", 1, "Count")
-	getAllDeploymentCmd.Flags().Int64P("offset", "ot", 0, "Offset")
+	GetAllDeploymentCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetAllDeploymentCmd.MarkFlagRequired("namespace")
+	GetAllDeploymentCmd.Flags().Int64P("count", "ct", 1, "Count")
+	GetAllDeploymentCmd.Flags().Int64P("offset", "ot", 0, "Offset")
 }

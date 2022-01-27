@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// checkEventConditionCmd represents the checkEventCondition command
-var checkEventConditionCmd = &cobra.Command{
-	Use:   "checkEventCondition",
+// CheckEventConditionCmd represents the CheckEventCondition command
+var CheckEventConditionCmd = &cobra.Command{
+	Use:   "CheckEventCondition",
 	Short: "Check event condition",
 	Long:  `Check event condition`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -51,10 +50,9 @@ var checkEventConditionCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(checkEventConditionCmd)
-	checkEventConditionCmd.Flags().StringP("body", "by", " ", "Body")
-	checkEventConditionCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = checkEventConditionCmd.MarkFlagRequired("namespace")
-	checkEventConditionCmd.Flags().StringP("rewardId", "rd", " ", "Reward id")
-	_ = checkEventConditionCmd.MarkFlagRequired("rewardId")
+	CheckEventConditionCmd.Flags().StringP("body", "by", " ", "Body")
+	CheckEventConditionCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = CheckEventConditionCmd.MarkFlagRequired("namespace")
+	CheckEventConditionCmd.Flags().StringP("rewardId", "rd", " ", "Reward id")
+	_ = CheckEventConditionCmd.MarkFlagRequired("rewardId")
 }

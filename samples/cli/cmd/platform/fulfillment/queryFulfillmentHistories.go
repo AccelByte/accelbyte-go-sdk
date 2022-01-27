@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/fulfillment"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// queryFulfillmentHistoriesCmd represents the queryFulfillmentHistories command
-var queryFulfillmentHistoriesCmd = &cobra.Command{
-	Use:   "queryFulfillmentHistories",
+// QueryFulfillmentHistoriesCmd represents the QueryFulfillmentHistories command
+var QueryFulfillmentHistoriesCmd = &cobra.Command{
+	Use:   "QueryFulfillmentHistories",
 	Short: "Query fulfillment histories",
 	Long:  `Query fulfillment histories`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,11 +47,10 @@ var queryFulfillmentHistoriesCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(queryFulfillmentHistoriesCmd)
-	queryFulfillmentHistoriesCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = queryFulfillmentHistoriesCmd.MarkFlagRequired("namespace")
-	queryFulfillmentHistoriesCmd.Flags().Int32P("limit", "lt", 20, "Limit")
-	queryFulfillmentHistoriesCmd.Flags().Int32P("offset", "ot", 0, "Offset")
-	queryFulfillmentHistoriesCmd.Flags().StringP("status", "ss", " ", "Status")
-	queryFulfillmentHistoriesCmd.Flags().StringP("userId", "ud", " ", "User id")
+	QueryFulfillmentHistoriesCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = QueryFulfillmentHistoriesCmd.MarkFlagRequired("namespace")
+	QueryFulfillmentHistoriesCmd.Flags().Int32P("limit", "lt", 20, "Limit")
+	QueryFulfillmentHistoriesCmd.Flags().Int32P("offset", "ot", 0, "Offset")
+	QueryFulfillmentHistoriesCmd.Flags().StringP("status", "ss", " ", "Status")
+	QueryFulfillmentHistoriesCmd.Flags().StringP("userId", "ud", " ", "User id")
 }

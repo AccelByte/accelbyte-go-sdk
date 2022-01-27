@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// updateAliPayConfigCmd represents the updateAliPayConfig command
-var updateAliPayConfigCmd = &cobra.Command{
-	Use:   "updateAliPayConfig",
+// UpdateAliPayConfigCmd represents the UpdateAliPayConfig command
+var UpdateAliPayConfigCmd = &cobra.Command{
+	Use:   "UpdateAliPayConfig",
 	Short: "Update ali pay config",
 	Long:  `Update ali pay config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -53,10 +52,9 @@ var updateAliPayConfigCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(updateAliPayConfigCmd)
-	updateAliPayConfigCmd.Flags().StringP("body", "by", " ", "Body")
-	updateAliPayConfigCmd.Flags().StringP("id", "id", " ", "Id")
-	_ = updateAliPayConfigCmd.MarkFlagRequired("id")
-	updateAliPayConfigCmd.Flags().BoolP("sandbox", "sx", false, "Sandbox")
-	updateAliPayConfigCmd.Flags().BoolP("validate", "ve", false, "Validate")
+	UpdateAliPayConfigCmd.Flags().StringP("body", "by", " ", "Body")
+	UpdateAliPayConfigCmd.Flags().StringP("id", "id", " ", "Id")
+	_ = UpdateAliPayConfigCmd.MarkFlagRequired("id")
+	UpdateAliPayConfigCmd.Flags().BoolP("sandbox", "sx", false, "Sandbox")
+	UpdateAliPayConfigCmd.Flags().BoolP("validate", "ve", false, "Validate")
 }

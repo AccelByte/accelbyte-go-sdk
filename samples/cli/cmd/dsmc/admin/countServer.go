@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/admin"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/dsmc"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// countServerCmd represents the countServer command
-var countServerCmd = &cobra.Command{
-	Use:   "countServer",
+// CountServerCmd represents the CountServer command
+var CountServerCmd = &cobra.Command{
+	Use:   "CountServer",
 	Short: "Count server",
 	Long:  `Count server`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,7 +39,6 @@ var countServerCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(countServerCmd)
-	countServerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = countServerCmd.MarkFlagRequired("namespace")
+	CountServerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = CountServerCmd.MarkFlagRequired("namespace")
 }

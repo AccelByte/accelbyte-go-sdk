@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminGetUserBanV2Cmd represents the adminGetUserBanV2 command
-var adminGetUserBanV2Cmd = &cobra.Command{
-	Use:   "adminGetUserBanV2",
+// AdminGetUserBanV2Cmd represents the AdminGetUserBanV2 command
+var AdminGetUserBanV2Cmd = &cobra.Command{
+	Use:   "AdminGetUserBanV2",
 	Short: "Admin get user ban V2",
 	Long:  `Admin get user ban V2`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -44,10 +43,9 @@ var adminGetUserBanV2Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminGetUserBanV2Cmd)
-	adminGetUserBanV2Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = adminGetUserBanV2Cmd.MarkFlagRequired("namespace")
-	adminGetUserBanV2Cmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = adminGetUserBanV2Cmd.MarkFlagRequired("userId")
-	adminGetUserBanV2Cmd.Flags().BoolP("activeOnly", "ay", false, "Active only")
+	AdminGetUserBanV2Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AdminGetUserBanV2Cmd.MarkFlagRequired("namespace")
+	AdminGetUserBanV2Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = AdminGetUserBanV2Cmd.MarkFlagRequired("userId")
+	AdminGetUserBanV2Cmd.Flags().BoolP("activeOnly", "ay", false, "Active only")
 }

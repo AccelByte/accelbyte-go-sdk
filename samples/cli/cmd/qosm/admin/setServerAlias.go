@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/qosm-sdk/pkg/qosmclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/qosm"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// setServerAliasCmd represents the setServerAlias command
-var setServerAliasCmd = &cobra.Command{
-	Use:   "setServerAlias",
+// SetServerAliasCmd represents the SetServerAlias command
+var SetServerAliasCmd = &cobra.Command{
+	Use:   "SetServerAlias",
 	Short: "Set server alias",
 	Long:  `Set server alias`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,9 +47,8 @@ var setServerAliasCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(setServerAliasCmd)
-	setServerAliasCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = setServerAliasCmd.MarkFlagRequired("body")
-	setServerAliasCmd.Flags().StringP("region", "rn", " ", "Region")
-	_ = setServerAliasCmd.MarkFlagRequired("region")
+	SetServerAliasCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = SetServerAliasCmd.MarkFlagRequired("body")
+	SetServerAliasCmd.Flags().StringP("region", "rn", " ", "Region")
+	_ = SetServerAliasCmd.MarkFlagRequired("region")
 }

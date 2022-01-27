@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/leaderboard-sdk/pkg/leaderboardclient/user_visibility"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/leaderboard"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getUserVisibilityStatusV2Cmd represents the getUserVisibilityStatusV2 command
-var getUserVisibilityStatusV2Cmd = &cobra.Command{
-	Use:   "getUserVisibilityStatusV2",
+// GetUserVisibilityStatusV2Cmd represents the GetUserVisibilityStatusV2 command
+var GetUserVisibilityStatusV2Cmd = &cobra.Command{
+	Use:   "GetUserVisibilityStatusV2",
 	Short: "Get user visibility status V2",
 	Long:  `Get user visibility status V2`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -44,11 +43,10 @@ var getUserVisibilityStatusV2Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getUserVisibilityStatusV2Cmd)
-	getUserVisibilityStatusV2Cmd.Flags().StringP("leaderboardCode", "le", " ", "Leaderboard code")
-	_ = getUserVisibilityStatusV2Cmd.MarkFlagRequired("leaderboardCode")
-	getUserVisibilityStatusV2Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getUserVisibilityStatusV2Cmd.MarkFlagRequired("namespace")
-	getUserVisibilityStatusV2Cmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = getUserVisibilityStatusV2Cmd.MarkFlagRequired("userId")
+	GetUserVisibilityStatusV2Cmd.Flags().StringP("leaderboardCode", "le", " ", "Leaderboard code")
+	_ = GetUserVisibilityStatusV2Cmd.MarkFlagRequired("leaderboardCode")
+	GetUserVisibilityStatusV2Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetUserVisibilityStatusV2Cmd.MarkFlagRequired("namespace")
+	GetUserVisibilityStatusV2Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = GetUserVisibilityStatusV2Cmd.MarkFlagRequired("userId")
 }

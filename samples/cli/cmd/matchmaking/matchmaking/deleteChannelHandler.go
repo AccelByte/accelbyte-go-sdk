@@ -8,15 +8,14 @@ import (
 	matchmaking_ "github.com/AccelByte/accelbyte-go-sdk/matchmaking-sdk/pkg/matchmakingclient/matchmaking"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/matchmaking"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// deleteChannelHandlerCmd represents the deleteChannelHandler command
-var deleteChannelHandlerCmd = &cobra.Command{
-	Use:   "deleteChannelHandler",
+// DeleteChannelHandlerCmd represents the DeleteChannelHandler command
+var DeleteChannelHandlerCmd = &cobra.Command{
+	Use:   "DeleteChannelHandler",
 	Short: "Delete channel handler",
 	Long:  `Delete channel handler`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,9 +40,8 @@ var deleteChannelHandlerCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(deleteChannelHandlerCmd)
-	deleteChannelHandlerCmd.Flags().StringP("channel", "cl", " ", "Channel")
-	_ = deleteChannelHandlerCmd.MarkFlagRequired("channel")
-	deleteChannelHandlerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = deleteChannelHandlerCmd.MarkFlagRequired("namespace")
+	DeleteChannelHandlerCmd.Flags().StringP("channel", "cl", " ", "Channel")
+	_ = DeleteChannelHandlerCmd.MarkFlagRequired("channel")
+	DeleteChannelHandlerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = DeleteChannelHandlerCmd.MarkFlagRequired("namespace")
 }

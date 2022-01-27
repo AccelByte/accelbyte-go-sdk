@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/admin"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/dsmc"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// listServerCmd represents the listServer command
-var listServerCmd = &cobra.Command{
-	Use:   "listServer",
+// ListServerCmd represents the ListServer command
+var ListServerCmd = &cobra.Command{
+	Use:   "ListServer",
 	Short: "List server",
 	Long:  `List server`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -46,10 +45,9 @@ var listServerCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(listServerCmd)
-	listServerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = listServerCmd.MarkFlagRequired("namespace")
-	listServerCmd.Flags().Int64P("count", "ct", 1, "Count")
-	listServerCmd.Flags().Int64P("offset", "ot", 0, "Offset")
-	listServerCmd.Flags().StringP("region", "rn", " ", "Region")
+	ListServerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = ListServerCmd.MarkFlagRequired("namespace")
+	ListServerCmd.Flags().Int64P("count", "ct", 1, "Count")
+	ListServerCmd.Flags().Int64P("offset", "ot", 0, "Offset")
+	ListServerCmd.Flags().StringP("region", "rn", " ", "Region")
 }

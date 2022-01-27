@@ -8,15 +8,14 @@ import (
 	matchmaking_ "github.com/AccelByte/accelbyte-go-sdk/matchmaking-sdk/pkg/matchmakingclient/matchmaking"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/matchmaking"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// exportChannelsCmd represents the exportChannels command
-var exportChannelsCmd = &cobra.Command{
-	Use:   "exportChannels",
+// ExportChannelsCmd represents the ExportChannels command
+var ExportChannelsCmd = &cobra.Command{
+	Use:   "ExportChannels",
 	Short: "Export channels",
 	Long:  `Export channels`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,7 +39,6 @@ var exportChannelsCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(exportChannelsCmd)
-	exportChannelsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = exportChannelsCmd.MarkFlagRequired("namespace")
+	ExportChannelsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = ExportChannelsCmd.MarkFlagRequired("namespace")
 }

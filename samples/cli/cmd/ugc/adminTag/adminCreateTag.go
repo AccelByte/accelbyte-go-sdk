@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/ugc"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/admin_tag"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclientmodels"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminCreateTagCmd represents the adminCreateTag command
-var adminCreateTagCmd = &cobra.Command{
-	Use:   "adminCreateTag",
+// AdminCreateTagCmd represents the AdminCreateTag command
+var AdminCreateTagCmd = &cobra.Command{
+	Use:   "AdminCreateTag",
 	Short: "Admin create tag",
 	Long:  `Admin create tag`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,9 +48,8 @@ var adminCreateTagCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminCreateTagCmd)
-	adminCreateTagCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = adminCreateTagCmd.MarkFlagRequired("body")
-	adminCreateTagCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = adminCreateTagCmd.MarkFlagRequired("namespace")
+	AdminCreateTagCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = AdminCreateTagCmd.MarkFlagRequired("body")
+	AdminCreateTagCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AdminCreateTagCmd.MarkFlagRequired("namespace")
 }

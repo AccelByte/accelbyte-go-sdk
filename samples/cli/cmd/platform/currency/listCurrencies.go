@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/currency"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// listCurrenciesCmd represents the listCurrencies command
-var listCurrenciesCmd = &cobra.Command{
-	Use:   "listCurrencies",
+// ListCurrenciesCmd represents the ListCurrencies command
+var ListCurrenciesCmd = &cobra.Command{
+	Use:   "ListCurrencies",
 	Short: "List currencies",
 	Long:  `List currencies`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,7 +39,6 @@ var listCurrenciesCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(listCurrenciesCmd)
-	listCurrenciesCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = listCurrenciesCmd.MarkFlagRequired("namespace")
+	ListCurrenciesCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = ListCurrenciesCmd.MarkFlagRequired("namespace")
 }

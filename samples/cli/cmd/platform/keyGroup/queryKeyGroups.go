@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/key_group"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// queryKeyGroupsCmd represents the queryKeyGroups command
-var queryKeyGroupsCmd = &cobra.Command{
-	Use:   "queryKeyGroups",
+// QueryKeyGroupsCmd represents the QueryKeyGroups command
+var QueryKeyGroupsCmd = &cobra.Command{
+	Use:   "QueryKeyGroups",
 	Short: "Query key groups",
 	Long:  `Query key groups`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,11 +47,10 @@ var queryKeyGroupsCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(queryKeyGroupsCmd)
-	queryKeyGroupsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = queryKeyGroupsCmd.MarkFlagRequired("namespace")
-	queryKeyGroupsCmd.Flags().Int32P("limit", "lt", 20, "Limit")
-	queryKeyGroupsCmd.Flags().StringP("name", "ne", " ", "Name")
-	queryKeyGroupsCmd.Flags().Int32P("offset", "ot", 0, "Offset")
-	queryKeyGroupsCmd.Flags().StringP("tag", "tg", " ", "Tag")
+	QueryKeyGroupsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = QueryKeyGroupsCmd.MarkFlagRequired("namespace")
+	QueryKeyGroupsCmd.Flags().Int32P("limit", "lt", 20, "Limit")
+	QueryKeyGroupsCmd.Flags().StringP("name", "ne", " ", "Name")
+	QueryKeyGroupsCmd.Flags().Int32P("offset", "ot", 0, "Offset")
+	QueryKeyGroupsCmd.Flags().StringP("tag", "tg", " ", "Tag")
 }

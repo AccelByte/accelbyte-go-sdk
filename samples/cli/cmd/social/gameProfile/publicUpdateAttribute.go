@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/social"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient/game_profile"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclientmodels"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// publicUpdateAttributeCmd represents the publicUpdateAttribute command
-var publicUpdateAttributeCmd = &cobra.Command{
-	Use:   "publicUpdateAttribute",
+// PublicUpdateAttributeCmd represents the PublicUpdateAttribute command
+var PublicUpdateAttributeCmd = &cobra.Command{
+	Use:   "PublicUpdateAttribute",
 	Short: "Public update attribute",
 	Long:  `Public update attribute`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -55,14 +54,13 @@ var publicUpdateAttributeCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(publicUpdateAttributeCmd)
-	publicUpdateAttributeCmd.Flags().StringP("body", "by", " ", "Body")
-	publicUpdateAttributeCmd.Flags().StringP("attributeName", "ae", " ", "Attribute name")
-	_ = publicUpdateAttributeCmd.MarkFlagRequired("attributeName")
-	publicUpdateAttributeCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = publicUpdateAttributeCmd.MarkFlagRequired("namespace")
-	publicUpdateAttributeCmd.Flags().StringP("profileId", "pd", " ", "Profile id")
-	_ = publicUpdateAttributeCmd.MarkFlagRequired("profileId")
-	publicUpdateAttributeCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = publicUpdateAttributeCmd.MarkFlagRequired("userId")
+	PublicUpdateAttributeCmd.Flags().StringP("body", "by", " ", "Body")
+	PublicUpdateAttributeCmd.Flags().StringP("attributeName", "ae", " ", "Attribute name")
+	_ = PublicUpdateAttributeCmd.MarkFlagRequired("attributeName")
+	PublicUpdateAttributeCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PublicUpdateAttributeCmd.MarkFlagRequired("namespace")
+	PublicUpdateAttributeCmd.Flags().StringP("profileId", "pd", " ", "Profile id")
+	_ = PublicUpdateAttributeCmd.MarkFlagRequired("profileId")
+	PublicUpdateAttributeCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = PublicUpdateAttributeCmd.MarkFlagRequired("userId")
 }

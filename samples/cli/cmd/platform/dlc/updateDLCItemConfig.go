@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// updateDLCItemConfigCmd represents the updateDLCItemConfig command
-var updateDLCItemConfigCmd = &cobra.Command{
-	Use:   "updateDLCItemConfig",
+// UpdateDLCItemConfigCmd represents the UpdateDLCItemConfig command
+var UpdateDLCItemConfigCmd = &cobra.Command{
+	Use:   "UpdateDLCItemConfig",
 	Short: "Update DLC item config",
 	Long:  `Update DLC item config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,8 +48,7 @@ var updateDLCItemConfigCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(updateDLCItemConfigCmd)
-	updateDLCItemConfigCmd.Flags().StringP("body", "by", " ", "Body")
-	updateDLCItemConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = updateDLCItemConfigCmd.MarkFlagRequired("namespace")
+	UpdateDLCItemConfigCmd.Flags().StringP("body", "by", " ", "Body")
+	UpdateDLCItemConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = UpdateDLCItemConfigCmd.MarkFlagRequired("namespace")
 }

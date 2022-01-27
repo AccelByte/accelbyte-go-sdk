@@ -9,15 +9,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/entitlement"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// existsAnyUserActiveEntitlementCmd represents the existsAnyUserActiveEntitlement command
-var existsAnyUserActiveEntitlementCmd = &cobra.Command{
-	Use:   "existsAnyUserActiveEntitlement",
+// ExistsAnyUserActiveEntitlementCmd represents the ExistsAnyUserActiveEntitlement command
+var ExistsAnyUserActiveEntitlementCmd = &cobra.Command{
+	Use:   "ExistsAnyUserActiveEntitlement",
 	Short: "Exists any user active entitlement",
 	Long:  `Exists any user active entitlement`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -64,12 +63,11 @@ var existsAnyUserActiveEntitlementCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(existsAnyUserActiveEntitlementCmd)
-	existsAnyUserActiveEntitlementCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = existsAnyUserActiveEntitlementCmd.MarkFlagRequired("namespace")
-	existsAnyUserActiveEntitlementCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = existsAnyUserActiveEntitlementCmd.MarkFlagRequired("userId")
-	existsAnyUserActiveEntitlementCmd.Flags().StringP("appIds", "as", " ", "App ids")
-	existsAnyUserActiveEntitlementCmd.Flags().StringP("itemIds", "is", " ", "Item ids")
-	existsAnyUserActiveEntitlementCmd.Flags().StringP("skus", "ss", " ", "Skus")
+	ExistsAnyUserActiveEntitlementCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = ExistsAnyUserActiveEntitlementCmd.MarkFlagRequired("namespace")
+	ExistsAnyUserActiveEntitlementCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = ExistsAnyUserActiveEntitlementCmd.MarkFlagRequired("userId")
+	ExistsAnyUserActiveEntitlementCmd.Flags().StringP("appIds", "as", " ", "App ids")
+	ExistsAnyUserActiveEntitlementCmd.Flags().StringP("itemIds", "is", " ", "Item ids")
+	ExistsAnyUserActiveEntitlementCmd.Flags().StringP("skus", "ss", " ", "Skus")
 }

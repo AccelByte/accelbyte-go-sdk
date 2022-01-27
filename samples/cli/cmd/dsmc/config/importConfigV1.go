@@ -8,16 +8,15 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/config"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/dsmc"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 	"os"
 )
 
-// importConfigV1Cmd represents the importConfigV1 command
-var importConfigV1Cmd = &cobra.Command{
-	Use:   "importConfigV1",
+// ImportConfigV1Cmd represents the ImportConfigV1 command
+var ImportConfigV1Cmd = &cobra.Command{
+	Use:   "ImportConfigV1",
 	Short: "Import config V1",
 	Long:  `Import config V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,8 +47,7 @@ var importConfigV1Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(importConfigV1Cmd)
-	importConfigV1Cmd.Flags().StringP("file", "fe", " ", "File")
-	importConfigV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = importConfigV1Cmd.MarkFlagRequired("namespace")
+	ImportConfigV1Cmd.Flags().StringP("file", "fe", " ", "File")
+	ImportConfigV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = ImportConfigV1Cmd.MarkFlagRequired("namespace")
 }

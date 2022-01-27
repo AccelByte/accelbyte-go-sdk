@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/dsmc"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// registerServerCmd represents the registerServer command
-var registerServerCmd = &cobra.Command{
-	Use:   "registerServer",
+// RegisterServerCmd represents the RegisterServer command
+var RegisterServerCmd = &cobra.Command{
+	Use:   "RegisterServer",
 	Short: "Register server",
 	Long:  `Register server`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,9 +48,8 @@ var registerServerCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(registerServerCmd)
-	registerServerCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = registerServerCmd.MarkFlagRequired("body")
-	registerServerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = registerServerCmd.MarkFlagRequired("namespace")
+	RegisterServerCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = RegisterServerCmd.MarkFlagRequired("body")
+	RegisterServerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = RegisterServerCmd.MarkFlagRequired("namespace")
 }

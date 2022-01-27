@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/ugc"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/admin_group"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminGetGroupContentsCmd represents the adminGetGroupContents command
-var adminGetGroupContentsCmd = &cobra.Command{
-	Use:   "adminGetGroupContents",
+// AdminGetGroupContentsCmd represents the AdminGetGroupContents command
+var AdminGetGroupContentsCmd = &cobra.Command{
+	Use:   "AdminGetGroupContents",
 	Short: "Admin get group contents",
 	Long:  `Admin get group contents`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,13 +47,12 @@ var adminGetGroupContentsCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminGetGroupContentsCmd)
-	adminGetGroupContentsCmd.Flags().StringP("groupId", "gd", " ", "Group id")
-	_ = adminGetGroupContentsCmd.MarkFlagRequired("groupId")
-	adminGetGroupContentsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = adminGetGroupContentsCmd.MarkFlagRequired("namespace")
-	adminGetGroupContentsCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = adminGetGroupContentsCmd.MarkFlagRequired("userId")
-	adminGetGroupContentsCmd.Flags().StringP("limit", "lt", "20", "Limit")
-	adminGetGroupContentsCmd.Flags().StringP("offset", "ot", "0", "Offset")
+	AdminGetGroupContentsCmd.Flags().StringP("groupId", "gd", " ", "Group id")
+	_ = AdminGetGroupContentsCmd.MarkFlagRequired("groupId")
+	AdminGetGroupContentsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AdminGetGroupContentsCmd.MarkFlagRequired("namespace")
+	AdminGetGroupContentsCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = AdminGetGroupContentsCmd.MarkFlagRequired("userId")
+	AdminGetGroupContentsCmd.Flags().StringP("limit", "lt", "20", "Limit")
+	AdminGetGroupContentsCmd.Flags().StringP("offset", "ot", "0", "Offset")
 }

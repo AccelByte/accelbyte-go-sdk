@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/cloudsave"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// putGameRecordConcurrentHandlerV1Cmd represents the putGameRecordConcurrentHandlerV1 command
-var putGameRecordConcurrentHandlerV1Cmd = &cobra.Command{
-	Use:   "putGameRecordConcurrentHandlerV1",
+// PutGameRecordConcurrentHandlerV1Cmd represents the PutGameRecordConcurrentHandlerV1 command
+var PutGameRecordConcurrentHandlerV1Cmd = &cobra.Command{
+	Use:   "PutGameRecordConcurrentHandlerV1",
 	Short: "Put game record concurrent handler V1",
 	Long:  `Put game record concurrent handler V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,11 +49,10 @@ var putGameRecordConcurrentHandlerV1Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(putGameRecordConcurrentHandlerV1Cmd)
-	putGameRecordConcurrentHandlerV1Cmd.Flags().StringP("body", "by", " ", "Body")
-	_ = putGameRecordConcurrentHandlerV1Cmd.MarkFlagRequired("body")
-	putGameRecordConcurrentHandlerV1Cmd.Flags().StringP("key", "ky", " ", "Key")
-	_ = putGameRecordConcurrentHandlerV1Cmd.MarkFlagRequired("key")
-	putGameRecordConcurrentHandlerV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = putGameRecordConcurrentHandlerV1Cmd.MarkFlagRequired("namespace")
+	PutGameRecordConcurrentHandlerV1Cmd.Flags().StringP("body", "by", " ", "Body")
+	_ = PutGameRecordConcurrentHandlerV1Cmd.MarkFlagRequired("body")
+	PutGameRecordConcurrentHandlerV1Cmd.Flags().StringP("key", "ky", " ", "Key")
+	_ = PutGameRecordConcurrentHandlerV1Cmd.MarkFlagRequired("key")
+	PutGameRecordConcurrentHandlerV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PutGameRecordConcurrentHandlerV1Cmd.MarkFlagRequired("namespace")
 }

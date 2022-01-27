@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/matchmaking-sdk/pkg/matchmakingclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/matchmaking"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// queueSessionHandlerCmd represents the queueSessionHandler command
-var queueSessionHandlerCmd = &cobra.Command{
-	Use:   "queueSessionHandler",
+// QueueSessionHandlerCmd represents the QueueSessionHandler command
+var QueueSessionHandlerCmd = &cobra.Command{
+	Use:   "QueueSessionHandler",
 	Short: "Queue session handler",
 	Long:  `Queue session handler`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,9 +47,8 @@ var queueSessionHandlerCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(queueSessionHandlerCmd)
-	queueSessionHandlerCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = queueSessionHandlerCmd.MarkFlagRequired("body")
-	queueSessionHandlerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = queueSessionHandlerCmd.MarkFlagRequired("namespace")
+	QueueSessionHandlerCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = QueueSessionHandlerCmd.MarkFlagRequired("body")
+	QueueSessionHandlerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = QueueSessionHandlerCmd.MarkFlagRequired("namespace")
 }

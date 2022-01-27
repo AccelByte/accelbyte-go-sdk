@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclient/e_q_u8_config"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/basic"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// deleteConfigCmd represents the deleteConfig command
-var deleteConfigCmd = &cobra.Command{
-	Use:   "deleteConfig",
+// DeleteConfigCmd represents the DeleteConfig command
+var DeleteConfigCmd = &cobra.Command{
+	Use:   "DeleteConfig",
 	Short: "Delete config",
 	Long:  `Delete config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,7 +38,6 @@ var deleteConfigCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(deleteConfigCmd)
-	deleteConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = deleteConfigCmd.MarkFlagRequired("namespace")
+	DeleteConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = DeleteConfigCmd.MarkFlagRequired("namespace")
 }

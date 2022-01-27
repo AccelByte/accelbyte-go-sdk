@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// updateCurrencyCmd represents the updateCurrency command
-var updateCurrencyCmd = &cobra.Command{
-	Use:   "updateCurrency",
+// UpdateCurrencyCmd represents the UpdateCurrency command
+var UpdateCurrencyCmd = &cobra.Command{
+	Use:   "UpdateCurrency",
 	Short: "Update currency",
 	Long:  `Update currency`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -51,10 +50,9 @@ var updateCurrencyCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(updateCurrencyCmd)
-	updateCurrencyCmd.Flags().StringP("body", "by", " ", "Body")
-	updateCurrencyCmd.Flags().StringP("currencyCode", "ce", " ", "Currency code")
-	_ = updateCurrencyCmd.MarkFlagRequired("currencyCode")
-	updateCurrencyCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = updateCurrencyCmd.MarkFlagRequired("namespace")
+	UpdateCurrencyCmd.Flags().StringP("body", "by", " ", "Body")
+	UpdateCurrencyCmd.Flags().StringP("currencyCode", "ce", " ", "Currency code")
+	_ = UpdateCurrencyCmd.MarkFlagRequired("currencyCode")
+	UpdateCurrencyCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = UpdateCurrencyCmd.MarkFlagRequired("namespace")
 }

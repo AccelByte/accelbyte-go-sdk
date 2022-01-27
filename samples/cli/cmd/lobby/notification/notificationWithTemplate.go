@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/lobby"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// notificationWithTemplateCmd represents the notificationWithTemplate command
-var notificationWithTemplateCmd = &cobra.Command{
-	Use:   "notificationWithTemplate",
+// NotificationWithTemplateCmd represents the NotificationWithTemplate command
+var NotificationWithTemplateCmd = &cobra.Command{
+	Use:   "NotificationWithTemplate",
 	Short: "Notification with template",
 	Long:  `Notification with template`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,9 +47,8 @@ var notificationWithTemplateCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(notificationWithTemplateCmd)
-	notificationWithTemplateCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = notificationWithTemplateCmd.MarkFlagRequired("body")
-	notificationWithTemplateCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = notificationWithTemplateCmd.MarkFlagRequired("namespace")
+	NotificationWithTemplateCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = NotificationWithTemplateCmd.MarkFlagRequired("body")
+	NotificationWithTemplateCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = NotificationWithTemplateCmd.MarkFlagRequired("namespace")
 }

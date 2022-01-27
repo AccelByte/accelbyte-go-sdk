@@ -8,15 +8,14 @@ import (
 	matchmaking_ "github.com/AccelByte/accelbyte-go-sdk/matchmaking-sdk/pkg/matchmakingclient/matchmaking"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/matchmaking"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// querySessionHandlerCmd represents the querySessionHandler command
-var querySessionHandlerCmd = &cobra.Command{
-	Use:   "querySessionHandler",
+// QuerySessionHandlerCmd represents the QuerySessionHandler command
+var QuerySessionHandlerCmd = &cobra.Command{
+	Use:   "QuerySessionHandler",
 	Short: "Query session handler",
 	Long:  `Query session handler`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,9 +41,8 @@ var querySessionHandlerCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(querySessionHandlerCmd)
-	querySessionHandlerCmd.Flags().StringP("matchID", "mD", " ", "Match ID")
-	_ = querySessionHandlerCmd.MarkFlagRequired("matchID")
-	querySessionHandlerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = querySessionHandlerCmd.MarkFlagRequired("namespace")
+	QuerySessionHandlerCmd.Flags().StringP("matchID", "mD", " ", "Match ID")
+	_ = QuerySessionHandlerCmd.MarkFlagRequired("matchID")
+	QuerySessionHandlerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = QuerySessionHandlerCmd.MarkFlagRequired("namespace")
 }

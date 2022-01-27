@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/leaderboard-sdk/pkg/leaderboardclient/leaderboard_data"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/leaderboard"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getCurrentSeasonLeaderboardRankingAdminV1Cmd represents the getCurrentSeasonLeaderboardRankingAdminV1 command
-var getCurrentSeasonLeaderboardRankingAdminV1Cmd = &cobra.Command{
-	Use:   "getCurrentSeasonLeaderboardRankingAdminV1",
+// GetCurrentSeasonLeaderboardRankingAdminV1Cmd represents the GetCurrentSeasonLeaderboardRankingAdminV1 command
+var GetCurrentSeasonLeaderboardRankingAdminV1Cmd = &cobra.Command{
+	Use:   "GetCurrentSeasonLeaderboardRankingAdminV1",
 	Short: "Get current season leaderboard ranking admin V1",
 	Long:  `Get current season leaderboard ranking admin V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -46,11 +45,10 @@ var getCurrentSeasonLeaderboardRankingAdminV1Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getCurrentSeasonLeaderboardRankingAdminV1Cmd)
-	getCurrentSeasonLeaderboardRankingAdminV1Cmd.Flags().StringP("leaderboardCode", "le", " ", "Leaderboard code")
-	_ = getCurrentSeasonLeaderboardRankingAdminV1Cmd.MarkFlagRequired("leaderboardCode")
-	getCurrentSeasonLeaderboardRankingAdminV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getCurrentSeasonLeaderboardRankingAdminV1Cmd.MarkFlagRequired("namespace")
-	getCurrentSeasonLeaderboardRankingAdminV1Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
-	getCurrentSeasonLeaderboardRankingAdminV1Cmd.Flags().Int64P("offset", "ot", 0, "Offset")
+	GetCurrentSeasonLeaderboardRankingAdminV1Cmd.Flags().StringP("leaderboardCode", "le", " ", "Leaderboard code")
+	_ = GetCurrentSeasonLeaderboardRankingAdminV1Cmd.MarkFlagRequired("leaderboardCode")
+	GetCurrentSeasonLeaderboardRankingAdminV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetCurrentSeasonLeaderboardRankingAdminV1Cmd.MarkFlagRequired("namespace")
+	GetCurrentSeasonLeaderboardRankingAdminV1Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
+	GetCurrentSeasonLeaderboardRankingAdminV1Cmd.Flags().Int64P("offset", "ot", 0, "Offset")
 }

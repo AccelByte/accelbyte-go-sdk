@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/category"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// downloadCategoriesCmd represents the downloadCategories command
-var downloadCategoriesCmd = &cobra.Command{
-	Use:   "downloadCategories",
+// DownloadCategoriesCmd represents the DownloadCategories command
+var DownloadCategoriesCmd = &cobra.Command{
+	Use:   "DownloadCategories",
 	Short: "Download categories",
 	Long:  `Download categories`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -44,9 +43,8 @@ var downloadCategoriesCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(downloadCategoriesCmd)
-	downloadCategoriesCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = downloadCategoriesCmd.MarkFlagRequired("namespace")
-	downloadCategoriesCmd.Flags().StringP("language", "le", " ", "Language")
-	downloadCategoriesCmd.Flags().StringP("storeId", "sd", " ", "Store id")
+	DownloadCategoriesCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = DownloadCategoriesCmd.MarkFlagRequired("namespace")
+	DownloadCategoriesCmd.Flags().StringP("language", "le", " ", "Language")
+	DownloadCategoriesCmd.Flags().StringP("storeId", "sd", " ", "Store id")
 }

@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/bans"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminGetBannedUsersV3Cmd represents the adminGetBannedUsersV3 command
-var adminGetBannedUsersV3Cmd = &cobra.Command{
-	Use:   "adminGetBannedUsersV3",
+// AdminGetBannedUsersV3Cmd represents the AdminGetBannedUsersV3 command
+var AdminGetBannedUsersV3Cmd = &cobra.Command{
+	Use:   "AdminGetBannedUsersV3",
 	Short: "Admin get banned users V3",
 	Long:  `Admin get banned users V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,11 +47,10 @@ var adminGetBannedUsersV3Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminGetBannedUsersV3Cmd)
-	adminGetBannedUsersV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = adminGetBannedUsersV3Cmd.MarkFlagRequired("namespace")
-	adminGetBannedUsersV3Cmd.Flags().BoolP("activeOnly", "ay", false, "Active only")
-	adminGetBannedUsersV3Cmd.Flags().StringP("banType", "be", " ", "Ban type")
-	adminGetBannedUsersV3Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
-	adminGetBannedUsersV3Cmd.Flags().Int64P("offset", "ot", 0, "Offset")
+	AdminGetBannedUsersV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AdminGetBannedUsersV3Cmd.MarkFlagRequired("namespace")
+	AdminGetBannedUsersV3Cmd.Flags().BoolP("activeOnly", "ay", false, "Active only")
+	AdminGetBannedUsersV3Cmd.Flags().StringP("banType", "be", " ", "Ban type")
+	AdminGetBannedUsersV3Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
+	AdminGetBannedUsersV3Cmd.Flags().Int64P("offset", "ot", 0, "Offset")
 }

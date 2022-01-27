@@ -9,15 +9,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/social"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient/game_profile"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// publicGetUserGameProfilesCmd represents the publicGetUserGameProfiles command
-var publicGetUserGameProfilesCmd = &cobra.Command{
-	Use:   "publicGetUserGameProfiles",
+// PublicGetUserGameProfilesCmd represents the PublicGetUserGameProfiles command
+var PublicGetUserGameProfilesCmd = &cobra.Command{
+	Use:   "PublicGetUserGameProfiles",
 	Short: "Public get user game profiles",
 	Long:  `Public get user game profiles`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,9 +47,8 @@ var publicGetUserGameProfilesCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(publicGetUserGameProfilesCmd)
-	publicGetUserGameProfilesCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = publicGetUserGameProfilesCmd.MarkFlagRequired("namespace")
-	publicGetUserGameProfilesCmd.Flags().StringP("userIds", "us", " ", "User ids")
-	_ = publicGetUserGameProfilesCmd.MarkFlagRequired("userIds")
+	PublicGetUserGameProfilesCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PublicGetUserGameProfilesCmd.MarkFlagRequired("namespace")
+	PublicGetUserGameProfilesCmd.Flags().StringP("userIds", "us", " ", "User ids")
+	_ = PublicGetUserGameProfilesCmd.MarkFlagRequired("userIds")
 }

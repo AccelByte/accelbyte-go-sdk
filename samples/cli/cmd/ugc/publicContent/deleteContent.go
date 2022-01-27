@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/ugc"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/public_content"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// deleteContentCmd represents the deleteContent command
-var deleteContentCmd = &cobra.Command{
-	Use:   "deleteContent",
+// DeleteContentCmd represents the DeleteContent command
+var DeleteContentCmd = &cobra.Command{
+	Use:   "DeleteContent",
 	Short: "Delete content",
 	Long:  `Delete content`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -45,13 +44,12 @@ var deleteContentCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(deleteContentCmd)
-	deleteContentCmd.Flags().StringP("channelId", "cd", " ", "Channel id")
-	_ = deleteContentCmd.MarkFlagRequired("channelId")
-	deleteContentCmd.Flags().StringP("contentId", "cd", " ", "Content id")
-	_ = deleteContentCmd.MarkFlagRequired("contentId")
-	deleteContentCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = deleteContentCmd.MarkFlagRequired("namespace")
-	deleteContentCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = deleteContentCmd.MarkFlagRequired("userId")
+	DeleteContentCmd.Flags().StringP("channelId", "cd", " ", "Channel id")
+	_ = DeleteContentCmd.MarkFlagRequired("channelId")
+	DeleteContentCmd.Flags().StringP("contentId", "cd", " ", "Content id")
+	_ = DeleteContentCmd.MarkFlagRequired("contentId")
+	DeleteContentCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = DeleteContentCmd.MarkFlagRequired("namespace")
+	DeleteContentCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = DeleteContentCmd.MarkFlagRequired("userId")
 }

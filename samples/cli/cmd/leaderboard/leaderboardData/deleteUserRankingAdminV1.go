@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/leaderboard-sdk/pkg/leaderboardclient/leaderboard_data"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/leaderboard"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// deleteUserRankingAdminV1Cmd represents the deleteUserRankingAdminV1 command
-var deleteUserRankingAdminV1Cmd = &cobra.Command{
-	Use:   "deleteUserRankingAdminV1",
+// DeleteUserRankingAdminV1Cmd represents the DeleteUserRankingAdminV1 command
+var DeleteUserRankingAdminV1Cmd = &cobra.Command{
+	Use:   "DeleteUserRankingAdminV1",
 	Short: "Delete user ranking admin V1",
 	Long:  `Delete user ranking admin V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,11 +42,10 @@ var deleteUserRankingAdminV1Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(deleteUserRankingAdminV1Cmd)
-	deleteUserRankingAdminV1Cmd.Flags().StringP("leaderboardCode", "le", " ", "Leaderboard code")
-	_ = deleteUserRankingAdminV1Cmd.MarkFlagRequired("leaderboardCode")
-	deleteUserRankingAdminV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = deleteUserRankingAdminV1Cmd.MarkFlagRequired("namespace")
-	deleteUserRankingAdminV1Cmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = deleteUserRankingAdminV1Cmd.MarkFlagRequired("userId")
+	DeleteUserRankingAdminV1Cmd.Flags().StringP("leaderboardCode", "le", " ", "Leaderboard code")
+	_ = DeleteUserRankingAdminV1Cmd.MarkFlagRequired("leaderboardCode")
+	DeleteUserRankingAdminV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = DeleteUserRankingAdminV1Cmd.MarkFlagRequired("namespace")
+	DeleteUserRankingAdminV1Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = DeleteUserRankingAdminV1Cmd.MarkFlagRequired("userId")
 }

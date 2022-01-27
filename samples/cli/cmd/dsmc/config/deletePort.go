@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/config"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/dsmc"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// deletePortCmd represents the deletePort command
-var deletePortCmd = &cobra.Command{
-	Use:   "deletePort",
+// DeletePortCmd represents the DeletePort command
+var DeletePortCmd = &cobra.Command{
+	Use:   "DeletePort",
 	Short: "Delete port",
 	Long:  `Delete port`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,9 +41,8 @@ var deletePortCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(deletePortCmd)
-	deletePortCmd.Flags().StringP("name", "ne", " ", "Name")
-	_ = deletePortCmd.MarkFlagRequired("name")
-	deletePortCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = deletePortCmd.MarkFlagRequired("namespace")
+	DeletePortCmd.Flags().StringP("name", "ne", " ", "Name")
+	_ = DeletePortCmd.MarkFlagRequired("name")
+	DeletePortCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = DeletePortCmd.MarkFlagRequired("namespace")
 }

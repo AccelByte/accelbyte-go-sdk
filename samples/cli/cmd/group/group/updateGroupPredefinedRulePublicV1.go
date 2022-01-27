@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/group-sdk/pkg/groupclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/group"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// updateGroupPredefinedRulePublicV1Cmd represents the updateGroupPredefinedRulePublicV1 command
-var updateGroupPredefinedRulePublicV1Cmd = &cobra.Command{
-	Use:   "updateGroupPredefinedRulePublicV1",
+// UpdateGroupPredefinedRulePublicV1Cmd represents the UpdateGroupPredefinedRulePublicV1 command
+var UpdateGroupPredefinedRulePublicV1Cmd = &cobra.Command{
+	Use:   "UpdateGroupPredefinedRulePublicV1",
 	Short: "Update group predefined rule public V1",
 	Long:  `Update group predefined rule public V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -53,13 +52,12 @@ var updateGroupPredefinedRulePublicV1Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(updateGroupPredefinedRulePublicV1Cmd)
-	updateGroupPredefinedRulePublicV1Cmd.Flags().StringP("body", "by", " ", "Body")
-	_ = updateGroupPredefinedRulePublicV1Cmd.MarkFlagRequired("body")
-	updateGroupPredefinedRulePublicV1Cmd.Flags().StringP("allowedAction", "an", " ", "Allowed action")
-	_ = updateGroupPredefinedRulePublicV1Cmd.MarkFlagRequired("allowedAction")
-	updateGroupPredefinedRulePublicV1Cmd.Flags().StringP("groupId", "gd", " ", "Group id")
-	_ = updateGroupPredefinedRulePublicV1Cmd.MarkFlagRequired("groupId")
-	updateGroupPredefinedRulePublicV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = updateGroupPredefinedRulePublicV1Cmd.MarkFlagRequired("namespace")
+	UpdateGroupPredefinedRulePublicV1Cmd.Flags().StringP("body", "by", " ", "Body")
+	_ = UpdateGroupPredefinedRulePublicV1Cmd.MarkFlagRequired("body")
+	UpdateGroupPredefinedRulePublicV1Cmd.Flags().StringP("allowedAction", "an", " ", "Allowed action")
+	_ = UpdateGroupPredefinedRulePublicV1Cmd.MarkFlagRequired("allowedAction")
+	UpdateGroupPredefinedRulePublicV1Cmd.Flags().StringP("groupId", "gd", " ", "Group id")
+	_ = UpdateGroupPredefinedRulePublicV1Cmd.MarkFlagRequired("groupId")
+	UpdateGroupPredefinedRulePublicV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = UpdateGroupPredefinedRulePublicV1Cmd.MarkFlagRequired("namespace")
 }

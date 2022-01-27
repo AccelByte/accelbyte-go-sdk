@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// redeemCodeCmd represents the redeemCode command
-var redeemCodeCmd = &cobra.Command{
-	Use:   "redeemCode",
+// RedeemCodeCmd represents the RedeemCode command
+var RedeemCodeCmd = &cobra.Command{
+	Use:   "RedeemCode",
 	Short: "Redeem code",
 	Long:  `Redeem code`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -51,10 +50,9 @@ var redeemCodeCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(redeemCodeCmd)
-	redeemCodeCmd.Flags().StringP("body", "by", " ", "Body")
-	redeemCodeCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = redeemCodeCmd.MarkFlagRequired("namespace")
-	redeemCodeCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = redeemCodeCmd.MarkFlagRequired("userId")
+	RedeemCodeCmd.Flags().StringP("body", "by", " ", "Body")
+	RedeemCodeCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = RedeemCodeCmd.MarkFlagRequired("namespace")
+	RedeemCodeCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = RedeemCodeCmd.MarkFlagRequired("userId")
 }

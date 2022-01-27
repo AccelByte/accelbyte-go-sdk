@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/social"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient/stat_configuration"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getStatCmd represents the getStat command
-var getStatCmd = &cobra.Command{
-	Use:   "getStat",
+// GetStatCmd represents the GetStat command
+var GetStatCmd = &cobra.Command{
+	Use:   "GetStat",
 	Short: "Get stat",
 	Long:  `Get stat`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,9 +41,8 @@ var getStatCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getStatCmd)
-	getStatCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getStatCmd.MarkFlagRequired("namespace")
-	getStatCmd.Flags().StringP("statCode", "se", " ", "Stat code")
-	_ = getStatCmd.MarkFlagRequired("statCode")
+	GetStatCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetStatCmd.MarkFlagRequired("namespace")
+	GetStatCmd.Flags().StringP("statCode", "se", " ", "Stat code")
+	_ = GetStatCmd.MarkFlagRequired("statCode")
 }

@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/ugc"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/public_group"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getGroupsCmd represents the getGroups command
-var getGroupsCmd = &cobra.Command{
-	Use:   "getGroups",
+// GetGroupsCmd represents the GetGroups command
+var GetGroupsCmd = &cobra.Command{
+	Use:   "GetGroups",
 	Short: "Get groups",
 	Long:  `Get groups`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -46,11 +45,10 @@ var getGroupsCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getGroupsCmd)
-	getGroupsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getGroupsCmd.MarkFlagRequired("namespace")
-	getGroupsCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = getGroupsCmd.MarkFlagRequired("userId")
-	getGroupsCmd.Flags().StringP("limit", "lt", "20", "Limit")
-	getGroupsCmd.Flags().StringP("offset", "ot", "0", "Offset")
+	GetGroupsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetGroupsCmd.MarkFlagRequired("namespace")
+	GetGroupsCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = GetGroupsCmd.MarkFlagRequired("userId")
+	GetGroupsCmd.Flags().StringP("limit", "lt", "20", "Limit")
+	GetGroupsCmd.Flags().StringP("offset", "ot", "0", "Offset")
 }

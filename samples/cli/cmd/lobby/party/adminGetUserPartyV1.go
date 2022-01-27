@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/party"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/lobby"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminGetUserPartyV1Cmd represents the adminGetUserPartyV1 command
-var adminGetUserPartyV1Cmd = &cobra.Command{
-	Use:   "adminGetUserPartyV1",
+// AdminGetUserPartyV1Cmd represents the AdminGetUserPartyV1 command
+var AdminGetUserPartyV1Cmd = &cobra.Command{
+	Use:   "AdminGetUserPartyV1",
 	Short: "Admin get user party V1",
 	Long:  `Admin get user party V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,9 +41,8 @@ var adminGetUserPartyV1Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminGetUserPartyV1Cmd)
-	adminGetUserPartyV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = adminGetUserPartyV1Cmd.MarkFlagRequired("namespace")
-	adminGetUserPartyV1Cmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = adminGetUserPartyV1Cmd.MarkFlagRequired("userId")
+	AdminGetUserPartyV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AdminGetUserPartyV1Cmd.MarkFlagRequired("namespace")
+	AdminGetUserPartyV1Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = AdminGetUserPartyV1Cmd.MarkFlagRequired("userId")
 }

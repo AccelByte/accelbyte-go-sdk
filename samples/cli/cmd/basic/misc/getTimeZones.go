@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclient/misc"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/basic"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getTimeZonesCmd represents the getTimeZones command
-var getTimeZonesCmd = &cobra.Command{
-	Use:   "getTimeZones",
+// GetTimeZonesCmd represents the GetTimeZones command
+var GetTimeZonesCmd = &cobra.Command{
+	Use:   "GetTimeZones",
 	Short: "Get time zones",
 	Long:  `Get time zones`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,7 +39,6 @@ var getTimeZonesCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getTimeZonesCmd)
-	getTimeZonesCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getTimeZonesCmd.MarkFlagRequired("namespace")
+	GetTimeZonesCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetTimeZonesCmd.MarkFlagRequired("namespace")
 }

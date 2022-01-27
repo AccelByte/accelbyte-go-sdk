@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminGetMyUserV3Cmd represents the adminGetMyUserV3 command
-var adminGetMyUserV3Cmd = &cobra.Command{
-	Use:   "adminGetMyUserV3",
+// AdminGetMyUserV3Cmd represents the AdminGetMyUserV3 command
+var AdminGetMyUserV3Cmd = &cobra.Command{
+	Use:   "AdminGetMyUserV3",
 	Short: "Admin get my user V3",
 	Long:  `Admin get my user V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -34,8 +33,4 @@ var adminGetMyUserV3Cmd = &cobra.Command{
 		}
 		return nil
 	},
-}
-
-func init() {
-	cmd.RootCmd.AddCommand(adminGetMyUserV3Cmd)
 }

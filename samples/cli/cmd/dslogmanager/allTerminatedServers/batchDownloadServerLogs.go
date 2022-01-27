@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/dslogmanager-sdk/pkg/dslogmanagerclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/dslogmanager"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// batchDownloadServerLogsCmd represents the batchDownloadServerLogs command
-var batchDownloadServerLogsCmd = &cobra.Command{
-	Use:   "batchDownloadServerLogs",
+// BatchDownloadServerLogsCmd represents the BatchDownloadServerLogs command
+var BatchDownloadServerLogsCmd = &cobra.Command{
+	Use:   "BatchDownloadServerLogs",
 	Short: "Batch download server logs",
 	Long:  `Batch download server logs`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -46,7 +45,6 @@ var batchDownloadServerLogsCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(batchDownloadServerLogsCmd)
-	batchDownloadServerLogsCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = batchDownloadServerLogsCmd.MarkFlagRequired("body")
+	BatchDownloadServerLogsCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = BatchDownloadServerLogsCmd.MarkFlagRequired("body")
 }

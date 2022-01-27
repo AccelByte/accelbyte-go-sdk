@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/ugc"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/public_content"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// publicDownloadContentByContentIDCmd represents the publicDownloadContentByContentID command
-var publicDownloadContentByContentIDCmd = &cobra.Command{
-	Use:   "publicDownloadContentByContentID",
+// PublicDownloadContentByContentIDCmd represents the PublicDownloadContentByContentID command
+var PublicDownloadContentByContentIDCmd = &cobra.Command{
+	Use:   "PublicDownloadContentByContentID",
 	Short: "Public download content by content ID",
 	Long:  `Public download content by content ID`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,9 +41,8 @@ var publicDownloadContentByContentIDCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(publicDownloadContentByContentIDCmd)
-	publicDownloadContentByContentIDCmd.Flags().StringP("contentId", "cd", " ", "Content id")
-	_ = publicDownloadContentByContentIDCmd.MarkFlagRequired("contentId")
-	publicDownloadContentByContentIDCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = publicDownloadContentByContentIDCmd.MarkFlagRequired("namespace")
+	PublicDownloadContentByContentIDCmd.Flags().StringP("contentId", "cd", " ", "Content id")
+	_ = PublicDownloadContentByContentIDCmd.MarkFlagRequired("contentId")
+	PublicDownloadContentByContentIDCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PublicDownloadContentByContentIDCmd.MarkFlagRequired("namespace")
 }

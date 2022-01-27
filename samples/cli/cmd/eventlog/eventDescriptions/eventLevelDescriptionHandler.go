@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/eventlog-sdk/pkg/eventlogclient/event_descriptions"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/eventlog"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// eventLevelDescriptionHandlerCmd represents the eventLevelDescriptionHandler command
-var eventLevelDescriptionHandlerCmd = &cobra.Command{
-	Use:   "eventLevelDescriptionHandler",
+// EventLevelDescriptionHandlerCmd represents the EventLevelDescriptionHandler command
+var EventLevelDescriptionHandlerCmd = &cobra.Command{
+	Use:   "EventLevelDescriptionHandler",
 	Short: "Event level description handler",
 	Long:  `Event level description handler`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -34,8 +33,4 @@ var eventLevelDescriptionHandlerCmd = &cobra.Command{
 		}
 		return nil
 	},
-}
-
-func init() {
-	cmd.RootCmd.AddCommand(eventLevelDescriptionHandlerCmd)
 }

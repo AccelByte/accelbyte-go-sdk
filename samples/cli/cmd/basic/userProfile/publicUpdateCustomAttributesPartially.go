@@ -9,15 +9,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclient/user_profile"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/basic"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// publicUpdateCustomAttributesPartiallyCmd represents the publicUpdateCustomAttributesPartially command
-var publicUpdateCustomAttributesPartiallyCmd = &cobra.Command{
-	Use:   "publicUpdateCustomAttributesPartially",
+// PublicUpdateCustomAttributesPartiallyCmd represents the PublicUpdateCustomAttributesPartially command
+var PublicUpdateCustomAttributesPartiallyCmd = &cobra.Command{
+	Use:   "PublicUpdateCustomAttributesPartially",
 	Short: "Public update custom attributes partially",
 	Long:  `Public update custom attributes partially`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,10 +49,9 @@ var publicUpdateCustomAttributesPartiallyCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(publicUpdateCustomAttributesPartiallyCmd)
-	publicUpdateCustomAttributesPartiallyCmd.Flags().StringP("body", "by", " ", "Body")
-	publicUpdateCustomAttributesPartiallyCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = publicUpdateCustomAttributesPartiallyCmd.MarkFlagRequired("namespace")
-	publicUpdateCustomAttributesPartiallyCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = publicUpdateCustomAttributesPartiallyCmd.MarkFlagRequired("userId")
+	PublicUpdateCustomAttributesPartiallyCmd.Flags().StringP("body", "by", " ", "Body")
+	PublicUpdateCustomAttributesPartiallyCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PublicUpdateCustomAttributesPartiallyCmd.MarkFlagRequired("namespace")
+	PublicUpdateCustomAttributesPartiallyCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = PublicUpdateCustomAttributesPartiallyCmd.MarkFlagRequired("userId")
 }

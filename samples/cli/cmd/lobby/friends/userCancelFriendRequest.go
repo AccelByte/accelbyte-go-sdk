@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/lobby"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// userCancelFriendRequestCmd represents the userCancelFriendRequest command
-var userCancelFriendRequestCmd = &cobra.Command{
-	Use:   "userCancelFriendRequest",
+// UserCancelFriendRequestCmd represents the UserCancelFriendRequest command
+var UserCancelFriendRequestCmd = &cobra.Command{
+	Use:   "UserCancelFriendRequest",
 	Short: "User cancel friend request",
 	Long:  `User cancel friend request`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,9 +47,8 @@ var userCancelFriendRequestCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(userCancelFriendRequestCmd)
-	userCancelFriendRequestCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = userCancelFriendRequestCmd.MarkFlagRequired("body")
-	userCancelFriendRequestCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = userCancelFriendRequestCmd.MarkFlagRequired("namespace")
+	UserCancelFriendRequestCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = UserCancelFriendRequestCmd.MarkFlagRequired("body")
+	UserCancelFriendRequestCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = UserCancelFriendRequestCmd.MarkFlagRequired("namespace")
 }

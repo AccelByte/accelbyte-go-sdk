@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/ugc"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/public_channel"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getChannelsCmd represents the getChannels command
-var getChannelsCmd = &cobra.Command{
-	Use:   "getChannels",
+// GetChannelsCmd represents the GetChannels command
+var GetChannelsCmd = &cobra.Command{
+	Use:   "GetChannels",
 	Short: "Get channels",
 	Long:  `Get channels`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -46,11 +45,10 @@ var getChannelsCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getChannelsCmd)
-	getChannelsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getChannelsCmd.MarkFlagRequired("namespace")
-	getChannelsCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = getChannelsCmd.MarkFlagRequired("userId")
-	getChannelsCmd.Flags().StringP("limit", "lt", "20", "Limit")
-	getChannelsCmd.Flags().StringP("offset", "ot", "0", "Offset")
+	GetChannelsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetChannelsCmd.MarkFlagRequired("namespace")
+	GetChannelsCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = GetChannelsCmd.MarkFlagRequired("userId")
+	GetChannelsCmd.Flags().StringP("limit", "lt", "20", "Limit")
+	GetChannelsCmd.Flags().StringP("offset", "ot", "0", "Offset")
 }

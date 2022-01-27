@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// publicReconcilePlayStationStoreCmd represents the publicReconcilePlayStationStore command
-var publicReconcilePlayStationStoreCmd = &cobra.Command{
-	Use:   "publicReconcilePlayStationStore",
+// PublicReconcilePlayStationStoreCmd represents the PublicReconcilePlayStationStore command
+var PublicReconcilePlayStationStoreCmd = &cobra.Command{
+	Use:   "PublicReconcilePlayStationStore",
 	Short: "Public reconcile play station store",
 	Long:  `Public reconcile play station store`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -51,10 +50,9 @@ var publicReconcilePlayStationStoreCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(publicReconcilePlayStationStoreCmd)
-	publicReconcilePlayStationStoreCmd.Flags().StringP("body", "by", " ", "Body")
-	publicReconcilePlayStationStoreCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = publicReconcilePlayStationStoreCmd.MarkFlagRequired("namespace")
-	publicReconcilePlayStationStoreCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = publicReconcilePlayStationStoreCmd.MarkFlagRequired("userId")
+	PublicReconcilePlayStationStoreCmd.Flags().StringP("body", "by", " ", "Body")
+	PublicReconcilePlayStationStoreCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PublicReconcilePlayStationStoreCmd.MarkFlagRequired("namespace")
+	PublicReconcilePlayStationStoreCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = PublicReconcilePlayStationStoreCmd.MarkFlagRequired("userId")
 }

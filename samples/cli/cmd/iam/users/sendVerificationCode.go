@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// sendVerificationCodeCmd represents the sendVerificationCode command
-var sendVerificationCodeCmd = &cobra.Command{
-	Use:   "sendVerificationCode",
+// SendVerificationCodeCmd represents the SendVerificationCode command
+var SendVerificationCodeCmd = &cobra.Command{
+	Use:   "SendVerificationCode",
 	Short: "Send verification code",
 	Long:  `Send verification code`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,11 +49,10 @@ var sendVerificationCodeCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(sendVerificationCodeCmd)
-	sendVerificationCodeCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = sendVerificationCodeCmd.MarkFlagRequired("body")
-	sendVerificationCodeCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = sendVerificationCodeCmd.MarkFlagRequired("namespace")
-	sendVerificationCodeCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = sendVerificationCodeCmd.MarkFlagRequired("userId")
+	SendVerificationCodeCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = SendVerificationCodeCmd.MarkFlagRequired("body")
+	SendVerificationCodeCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = SendVerificationCodeCmd.MarkFlagRequired("namespace")
+	SendVerificationCodeCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = SendVerificationCodeCmd.MarkFlagRequired("userId")
 }

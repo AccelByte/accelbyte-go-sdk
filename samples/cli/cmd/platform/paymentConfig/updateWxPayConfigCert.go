@@ -8,16 +8,15 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/payment_config"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 	"os"
 )
 
-// updateWxPayConfigCertCmd represents the updateWxPayConfigCert command
-var updateWxPayConfigCertCmd = &cobra.Command{
-	Use:   "updateWxPayConfigCert",
+// UpdateWxPayConfigCertCmd represents the UpdateWxPayConfigCert command
+var UpdateWxPayConfigCertCmd = &cobra.Command{
+	Use:   "UpdateWxPayConfigCert",
 	Short: "Update wx pay config cert",
 	Long:  `Update wx pay config cert`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,8 +47,7 @@ var updateWxPayConfigCertCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(updateWxPayConfigCertCmd)
-	updateWxPayConfigCertCmd.Flags().StringP("file", "fe", " ", "File")
-	updateWxPayConfigCertCmd.Flags().StringP("id", "id", " ", "Id")
-	_ = updateWxPayConfigCertCmd.MarkFlagRequired("id")
+	UpdateWxPayConfigCertCmd.Flags().StringP("file", "fe", " ", "File")
+	UpdateWxPayConfigCertCmd.Flags().StringP("id", "id", " ", "Id")
+	_ = UpdateWxPayConfigCertCmd.MarkFlagRequired("id")
 }

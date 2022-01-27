@@ -9,15 +9,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/entitlement"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// queryUserEntitlementsCmd represents the queryUserEntitlements command
-var queryUserEntitlementsCmd = &cobra.Command{
-	Use:   "queryUserEntitlements",
+// QueryUserEntitlementsCmd represents the QueryUserEntitlements command
+var QueryUserEntitlementsCmd = &cobra.Command{
+	Use:   "QueryUserEntitlements",
 	Short: "Query user entitlements",
 	Long:  `Query user entitlements`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -62,16 +61,15 @@ var queryUserEntitlementsCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(queryUserEntitlementsCmd)
-	queryUserEntitlementsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = queryUserEntitlementsCmd.MarkFlagRequired("namespace")
-	queryUserEntitlementsCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = queryUserEntitlementsCmd.MarkFlagRequired("userId")
-	queryUserEntitlementsCmd.Flags().BoolP("activeOnly", "ay", false, "Active only")
-	queryUserEntitlementsCmd.Flags().StringP("appType", "ae", " ", "App type")
-	queryUserEntitlementsCmd.Flags().StringP("entitlementClazz", "ez", " ", "Entitlement clazz")
-	queryUserEntitlementsCmd.Flags().StringP("entitlementName", "ee", " ", "Entitlement name")
-	queryUserEntitlementsCmd.Flags().StringP("itemId", "id", " ", "Item id")
-	queryUserEntitlementsCmd.Flags().Int32P("limit", "lt", 20, "Limit")
-	queryUserEntitlementsCmd.Flags().Int32P("offset", "ot", 0, "Offset")
+	QueryUserEntitlementsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = QueryUserEntitlementsCmd.MarkFlagRequired("namespace")
+	QueryUserEntitlementsCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = QueryUserEntitlementsCmd.MarkFlagRequired("userId")
+	QueryUserEntitlementsCmd.Flags().BoolP("activeOnly", "ay", false, "Active only")
+	QueryUserEntitlementsCmd.Flags().StringP("appType", "ae", " ", "App type")
+	QueryUserEntitlementsCmd.Flags().StringP("entitlementClazz", "ez", " ", "Entitlement clazz")
+	QueryUserEntitlementsCmd.Flags().StringP("entitlementName", "ee", " ", "Entitlement name")
+	QueryUserEntitlementsCmd.Flags().StringP("itemId", "id", " ", "Item id")
+	QueryUserEntitlementsCmd.Flags().Int32P("limit", "lt", 20, "Limit")
+	QueryUserEntitlementsCmd.Flags().Int32P("offset", "ot", 0, "Offset")
 }

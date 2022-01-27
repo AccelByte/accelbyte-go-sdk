@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/ugc"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/public_content"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// publicSearchContentCmd represents the publicSearchContent command
-var publicSearchContentCmd = &cobra.Command{
-	Use:   "publicSearchContent",
+// PublicSearchContentCmd represents the PublicSearchContent command
+var PublicSearchContentCmd = &cobra.Command{
+	Use:   "PublicSearchContent",
 	Short: "Public search content",
 	Long:  `Public search content`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -62,18 +61,17 @@ var publicSearchContentCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(publicSearchContentCmd)
-	publicSearchContentCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = publicSearchContentCmd.MarkFlagRequired("namespace")
-	publicSearchContentCmd.Flags().StringP("creator", "cr", " ", "Creator")
-	publicSearchContentCmd.Flags().StringP("isofficial", "il", " ", "Isofficial")
-	publicSearchContentCmd.Flags().StringP("limit", "lt", "20", "Limit")
-	publicSearchContentCmd.Flags().StringP("name", "ne", " ", "Name")
-	publicSearchContentCmd.Flags().StringP("offset", "ot", "0", "Offset")
-	publicSearchContentCmd.Flags().StringP("orderby", "oy", " ", "Orderby")
-	publicSearchContentCmd.Flags().StringP("sortby", "sy", " ", "Sortby")
-	publicSearchContentCmd.Flags().StringP("subtype", "se", " ", "Subtype")
-	publicSearchContentCmd.Flags().StringP("tags", "ts", " ", "Tags")
-	publicSearchContentCmd.Flags().StringP("type", "te", " ", "Type")
-	publicSearchContentCmd.Flags().StringP("userId", "ud", " ", "User id")
+	PublicSearchContentCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PublicSearchContentCmd.MarkFlagRequired("namespace")
+	PublicSearchContentCmd.Flags().StringP("creator", "cr", " ", "Creator")
+	PublicSearchContentCmd.Flags().StringP("isofficial", "il", " ", "Isofficial")
+	PublicSearchContentCmd.Flags().StringP("limit", "lt", "20", "Limit")
+	PublicSearchContentCmd.Flags().StringP("name", "ne", " ", "Name")
+	PublicSearchContentCmd.Flags().StringP("offset", "ot", "0", "Offset")
+	PublicSearchContentCmd.Flags().StringP("orderby", "oy", " ", "Orderby")
+	PublicSearchContentCmd.Flags().StringP("sortby", "sy", " ", "Sortby")
+	PublicSearchContentCmd.Flags().StringP("subtype", "se", " ", "Subtype")
+	PublicSearchContentCmd.Flags().StringP("tags", "ts", " ", "Tags")
+	PublicSearchContentCmd.Flags().StringP("type", "te", " ", "Type")
+	PublicSearchContentCmd.Flags().StringP("userId", "ud", " ", "User id")
 }

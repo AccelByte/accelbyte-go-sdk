@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/lobby"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// sendSpecificUserTemplatedNotificationV1AdminCmd represents the sendSpecificUserTemplatedNotificationV1Admin command
-var sendSpecificUserTemplatedNotificationV1AdminCmd = &cobra.Command{
-	Use:   "sendSpecificUserTemplatedNotificationV1Admin",
+// SendSpecificUserTemplatedNotificationV1AdminCmd represents the SendSpecificUserTemplatedNotificationV1Admin command
+var SendSpecificUserTemplatedNotificationV1AdminCmd = &cobra.Command{
+	Use:   "SendSpecificUserTemplatedNotificationV1Admin",
 	Short: "Send specific user templated notification V1 admin",
 	Long:  `Send specific user templated notification V1 admin`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,11 +49,10 @@ var sendSpecificUserTemplatedNotificationV1AdminCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(sendSpecificUserTemplatedNotificationV1AdminCmd)
-	sendSpecificUserTemplatedNotificationV1AdminCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = sendSpecificUserTemplatedNotificationV1AdminCmd.MarkFlagRequired("body")
-	sendSpecificUserTemplatedNotificationV1AdminCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = sendSpecificUserTemplatedNotificationV1AdminCmd.MarkFlagRequired("namespace")
-	sendSpecificUserTemplatedNotificationV1AdminCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = sendSpecificUserTemplatedNotificationV1AdminCmd.MarkFlagRequired("userId")
+	SendSpecificUserTemplatedNotificationV1AdminCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = SendSpecificUserTemplatedNotificationV1AdminCmd.MarkFlagRequired("body")
+	SendSpecificUserTemplatedNotificationV1AdminCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = SendSpecificUserTemplatedNotificationV1AdminCmd.MarkFlagRequired("namespace")
+	SendSpecificUserTemplatedNotificationV1AdminCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = SendSpecificUserTemplatedNotificationV1AdminCmd.MarkFlagRequired("userId")
 }

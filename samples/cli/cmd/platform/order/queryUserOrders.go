@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/order"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// queryUserOrdersCmd represents the queryUserOrders command
-var queryUserOrdersCmd = &cobra.Command{
-	Use:   "queryUserOrders",
+// QueryUserOrdersCmd represents the QueryUserOrders command
+var QueryUserOrdersCmd = &cobra.Command{
+	Use:   "QueryUserOrders",
 	Short: "Query user orders",
 	Long:  `Query user orders`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,13 +49,12 @@ var queryUserOrdersCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(queryUserOrdersCmd)
-	queryUserOrdersCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = queryUserOrdersCmd.MarkFlagRequired("namespace")
-	queryUserOrdersCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = queryUserOrdersCmd.MarkFlagRequired("userId")
-	queryUserOrdersCmd.Flags().StringP("itemId", "id", " ", "Item id")
-	queryUserOrdersCmd.Flags().Int32P("limit", "lt", 20, "Limit")
-	queryUserOrdersCmd.Flags().Int32P("offset", "ot", 0, "Offset")
-	queryUserOrdersCmd.Flags().StringP("status", "ss", " ", "Status")
+	QueryUserOrdersCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = QueryUserOrdersCmd.MarkFlagRequired("namespace")
+	QueryUserOrdersCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = QueryUserOrdersCmd.MarkFlagRequired("userId")
+	QueryUserOrdersCmd.Flags().StringP("itemId", "id", " ", "Item id")
+	QueryUserOrdersCmd.Flags().Int32P("limit", "lt", 20, "Limit")
+	QueryUserOrdersCmd.Flags().Int32P("offset", "ot", 0, "Offset")
+	QueryUserOrdersCmd.Flags().StringP("status", "ss", " ", "Status")
 }

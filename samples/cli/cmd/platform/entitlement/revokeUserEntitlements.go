@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/entitlement"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// revokeUserEntitlementsCmd represents the revokeUserEntitlements command
-var revokeUserEntitlementsCmd = &cobra.Command{
-	Use:   "revokeUserEntitlements",
+// RevokeUserEntitlementsCmd represents the RevokeUserEntitlements command
+var RevokeUserEntitlementsCmd = &cobra.Command{
+	Use:   "RevokeUserEntitlements",
 	Short: "Revoke user entitlements",
 	Long:  `Revoke user entitlements`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -44,11 +43,10 @@ var revokeUserEntitlementsCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(revokeUserEntitlementsCmd)
-	revokeUserEntitlementsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = revokeUserEntitlementsCmd.MarkFlagRequired("namespace")
-	revokeUserEntitlementsCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = revokeUserEntitlementsCmd.MarkFlagRequired("userId")
-	revokeUserEntitlementsCmd.Flags().StringP("entitlementIds", "es", " ", "Entitlement ids")
-	_ = revokeUserEntitlementsCmd.MarkFlagRequired("entitlementIds")
+	RevokeUserEntitlementsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = RevokeUserEntitlementsCmd.MarkFlagRequired("namespace")
+	RevokeUserEntitlementsCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = RevokeUserEntitlementsCmd.MarkFlagRequired("userId")
+	RevokeUserEntitlementsCmd.Flags().StringP("entitlementIds", "es", " ", "Entitlement ids")
+	_ = RevokeUserEntitlementsCmd.MarkFlagRequired("entitlementIds")
 }

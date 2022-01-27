@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/dsmc"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// updateDeploymentOverrideCmd represents the updateDeploymentOverride command
-var updateDeploymentOverrideCmd = &cobra.Command{
-	Use:   "updateDeploymentOverride",
+// UpdateDeploymentOverrideCmd represents the UpdateDeploymentOverride command
+var UpdateDeploymentOverrideCmd = &cobra.Command{
+	Use:   "UpdateDeploymentOverride",
 	Short: "Update deployment override",
 	Long:  `Update deployment override`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -53,13 +52,12 @@ var updateDeploymentOverrideCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(updateDeploymentOverrideCmd)
-	updateDeploymentOverrideCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = updateDeploymentOverrideCmd.MarkFlagRequired("body")
-	updateDeploymentOverrideCmd.Flags().StringP("deployment", "dt", " ", "Deployment")
-	_ = updateDeploymentOverrideCmd.MarkFlagRequired("deployment")
-	updateDeploymentOverrideCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = updateDeploymentOverrideCmd.MarkFlagRequired("namespace")
-	updateDeploymentOverrideCmd.Flags().StringP("version", "vn", " ", "Version")
-	_ = updateDeploymentOverrideCmd.MarkFlagRequired("version")
+	UpdateDeploymentOverrideCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = UpdateDeploymentOverrideCmd.MarkFlagRequired("body")
+	UpdateDeploymentOverrideCmd.Flags().StringP("deployment", "dt", " ", "Deployment")
+	_ = UpdateDeploymentOverrideCmd.MarkFlagRequired("deployment")
+	UpdateDeploymentOverrideCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = UpdateDeploymentOverrideCmd.MarkFlagRequired("namespace")
+	UpdateDeploymentOverrideCmd.Flags().StringP("version", "vn", " ", "Version")
+	_ = UpdateDeploymentOverrideCmd.MarkFlagRequired("version")
 }

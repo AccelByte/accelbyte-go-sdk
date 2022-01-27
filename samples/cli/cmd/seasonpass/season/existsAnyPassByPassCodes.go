@@ -9,15 +9,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/seasonpass-sdk/pkg/seasonpassclient/season"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/seasonpass"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// existsAnyPassByPassCodesCmd represents the existsAnyPassByPassCodes command
-var existsAnyPassByPassCodesCmd = &cobra.Command{
-	Use:   "existsAnyPassByPassCodes",
+// ExistsAnyPassByPassCodesCmd represents the ExistsAnyPassByPassCodes command
+var ExistsAnyPassByPassCodesCmd = &cobra.Command{
+	Use:   "ExistsAnyPassByPassCodes",
 	Short: "Exists any pass by pass codes",
 	Long:  `Exists any pass by pass codes`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,10 +49,9 @@ var existsAnyPassByPassCodesCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(existsAnyPassByPassCodesCmd)
-	existsAnyPassByPassCodesCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = existsAnyPassByPassCodesCmd.MarkFlagRequired("namespace")
-	existsAnyPassByPassCodesCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = existsAnyPassByPassCodesCmd.MarkFlagRequired("userId")
-	existsAnyPassByPassCodesCmd.Flags().StringP("passCodes", "ps", " ", "Pass codes")
+	ExistsAnyPassByPassCodesCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = ExistsAnyPassByPassCodesCmd.MarkFlagRequired("namespace")
+	ExistsAnyPassByPassCodesCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = ExistsAnyPassByPassCodesCmd.MarkFlagRequired("userId")
+	ExistsAnyPassByPassCodesCmd.Flags().StringP("passCodes", "ps", " ", "Pass codes")
 }

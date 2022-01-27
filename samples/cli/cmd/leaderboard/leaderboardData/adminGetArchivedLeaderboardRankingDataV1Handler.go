@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/leaderboard-sdk/pkg/leaderboardclient/leaderboard_data"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/leaderboard"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminGetArchivedLeaderboardRankingDataV1HandlerCmd represents the adminGetArchivedLeaderboardRankingDataV1Handler command
-var adminGetArchivedLeaderboardRankingDataV1HandlerCmd = &cobra.Command{
-	Use:   "adminGetArchivedLeaderboardRankingDataV1Handler",
+// AdminGetArchivedLeaderboardRankingDataV1HandlerCmd represents the AdminGetArchivedLeaderboardRankingDataV1Handler command
+var AdminGetArchivedLeaderboardRankingDataV1HandlerCmd = &cobra.Command{
+	Use:   "AdminGetArchivedLeaderboardRankingDataV1Handler",
 	Short: "Admin get archived leaderboard ranking data V1 handler",
 	Long:  `Admin get archived leaderboard ranking data V1 handler`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -44,10 +43,9 @@ var adminGetArchivedLeaderboardRankingDataV1HandlerCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminGetArchivedLeaderboardRankingDataV1HandlerCmd)
-	adminGetArchivedLeaderboardRankingDataV1HandlerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = adminGetArchivedLeaderboardRankingDataV1HandlerCmd.MarkFlagRequired("namespace")
-	adminGetArchivedLeaderboardRankingDataV1HandlerCmd.Flags().StringP("slug", "sg", " ", "Slug")
-	adminGetArchivedLeaderboardRankingDataV1HandlerCmd.Flags().StringP("leaderboardCodes", "ls", " ", "Leaderboard codes")
-	_ = adminGetArchivedLeaderboardRankingDataV1HandlerCmd.MarkFlagRequired("leaderboardCodes")
+	AdminGetArchivedLeaderboardRankingDataV1HandlerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AdminGetArchivedLeaderboardRankingDataV1HandlerCmd.MarkFlagRequired("namespace")
+	AdminGetArchivedLeaderboardRankingDataV1HandlerCmd.Flags().StringP("slug", "sg", " ", "Slug")
+	AdminGetArchivedLeaderboardRankingDataV1HandlerCmd.Flags().StringP("leaderboardCodes", "ls", " ", "Leaderboard codes")
+	_ = AdminGetArchivedLeaderboardRankingDataV1HandlerCmd.MarkFlagRequired("leaderboardCodes")
 }

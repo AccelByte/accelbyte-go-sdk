@@ -8,15 +8,14 @@ import (
 	matchmaking_ "github.com/AccelByte/accelbyte-go-sdk/matchmaking-sdk/pkg/matchmakingclient/matchmaking"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/matchmaking"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getSessionHistoryDetailedCmd represents the getSessionHistoryDetailed command
-var getSessionHistoryDetailedCmd = &cobra.Command{
-	Use:   "getSessionHistoryDetailed",
+// GetSessionHistoryDetailedCmd represents the GetSessionHistoryDetailed command
+var GetSessionHistoryDetailedCmd = &cobra.Command{
+	Use:   "GetSessionHistoryDetailed",
 	Short: "Get session history detailed",
 	Long:  `Get session history detailed`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,9 +41,8 @@ var getSessionHistoryDetailedCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getSessionHistoryDetailedCmd)
-	getSessionHistoryDetailedCmd.Flags().StringP("matchID", "mD", " ", "Match ID")
-	_ = getSessionHistoryDetailedCmd.MarkFlagRequired("matchID")
-	getSessionHistoryDetailedCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getSessionHistoryDetailedCmd.MarkFlagRequired("namespace")
+	GetSessionHistoryDetailedCmd.Flags().StringP("matchID", "mD", " ", "Match ID")
+	_ = GetSessionHistoryDetailedCmd.MarkFlagRequired("matchID")
+	GetSessionHistoryDetailedCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetSessionHistoryDetailedCmd.MarkFlagRequired("namespace")
 }

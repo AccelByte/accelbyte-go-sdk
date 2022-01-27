@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// platformUnlinkCmd represents the platformUnlink command
-var platformUnlinkCmd = &cobra.Command{
-	Use:   "platformUnlink",
+// PlatformUnlinkCmd represents the PlatformUnlink command
+var PlatformUnlinkCmd = &cobra.Command{
+	Use:   "PlatformUnlink",
 	Short: "Platform unlink",
 	Long:  `Platform unlink`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -45,12 +44,11 @@ var platformUnlinkCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(platformUnlinkCmd)
-	platformUnlinkCmd.Flags().StringP("platform_namespace", "pe", " ", "Platform namespace")
-	platformUnlinkCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = platformUnlinkCmd.MarkFlagRequired("namespace")
-	platformUnlinkCmd.Flags().StringP("platformId", "pd", " ", "Platform id")
-	_ = platformUnlinkCmd.MarkFlagRequired("platformId")
-	platformUnlinkCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = platformUnlinkCmd.MarkFlagRequired("userId")
+	PlatformUnlinkCmd.Flags().StringP("platform_namespace", "pe", " ", "Platform namespace")
+	PlatformUnlinkCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PlatformUnlinkCmd.MarkFlagRequired("namespace")
+	PlatformUnlinkCmd.Flags().StringP("platformId", "pd", " ", "Platform id")
+	_ = PlatformUnlinkCmd.MarkFlagRequired("platformId")
+	PlatformUnlinkCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = PlatformUnlinkCmd.MarkFlagRequired("userId")
 }

@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/subscription"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// publicGetUserSubscriptionBillingHistoriesCmd represents the publicGetUserSubscriptionBillingHistories command
-var publicGetUserSubscriptionBillingHistoriesCmd = &cobra.Command{
-	Use:   "publicGetUserSubscriptionBillingHistories",
+// PublicGetUserSubscriptionBillingHistoriesCmd represents the PublicGetUserSubscriptionBillingHistories command
+var PublicGetUserSubscriptionBillingHistoriesCmd = &cobra.Command{
+	Use:   "PublicGetUserSubscriptionBillingHistories",
 	Short: "Public get user subscription billing histories",
 	Long:  `Public get user subscription billing histories`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,14 +49,13 @@ var publicGetUserSubscriptionBillingHistoriesCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(publicGetUserSubscriptionBillingHistoriesCmd)
-	publicGetUserSubscriptionBillingHistoriesCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = publicGetUserSubscriptionBillingHistoriesCmd.MarkFlagRequired("namespace")
-	publicGetUserSubscriptionBillingHistoriesCmd.Flags().StringP("subscriptionId", "sd", " ", "Subscription id")
-	_ = publicGetUserSubscriptionBillingHistoriesCmd.MarkFlagRequired("subscriptionId")
-	publicGetUserSubscriptionBillingHistoriesCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = publicGetUserSubscriptionBillingHistoriesCmd.MarkFlagRequired("userId")
-	publicGetUserSubscriptionBillingHistoriesCmd.Flags().BoolP("excludeFree", "ee", false, "Exclude free")
-	publicGetUserSubscriptionBillingHistoriesCmd.Flags().Int32P("limit", "lt", 20, "Limit")
-	publicGetUserSubscriptionBillingHistoriesCmd.Flags().Int32P("offset", "ot", 0, "Offset")
+	PublicGetUserSubscriptionBillingHistoriesCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PublicGetUserSubscriptionBillingHistoriesCmd.MarkFlagRequired("namespace")
+	PublicGetUserSubscriptionBillingHistoriesCmd.Flags().StringP("subscriptionId", "sd", " ", "Subscription id")
+	_ = PublicGetUserSubscriptionBillingHistoriesCmd.MarkFlagRequired("subscriptionId")
+	PublicGetUserSubscriptionBillingHistoriesCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = PublicGetUserSubscriptionBillingHistoriesCmd.MarkFlagRequired("userId")
+	PublicGetUserSubscriptionBillingHistoriesCmd.Flags().BoolP("excludeFree", "ee", false, "Exclude free")
+	PublicGetUserSubscriptionBillingHistoriesCmd.Flags().Int32P("limit", "lt", 20, "Limit")
+	PublicGetUserSubscriptionBillingHistoriesCmd.Flags().Int32P("offset", "ot", 0, "Offset")
 }

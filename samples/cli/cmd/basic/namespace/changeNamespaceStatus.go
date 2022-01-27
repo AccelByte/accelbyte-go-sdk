@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/basic"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// changeNamespaceStatusCmd represents the changeNamespaceStatus command
-var changeNamespaceStatusCmd = &cobra.Command{
-	Use:   "changeNamespaceStatus",
+// ChangeNamespaceStatusCmd represents the ChangeNamespaceStatus command
+var ChangeNamespaceStatusCmd = &cobra.Command{
+	Use:   "ChangeNamespaceStatus",
 	Short: "Change namespace status",
 	Long:  `Change namespace status`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,8 +48,7 @@ var changeNamespaceStatusCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(changeNamespaceStatusCmd)
-	changeNamespaceStatusCmd.Flags().StringP("body", "by", " ", "Body")
-	changeNamespaceStatusCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = changeNamespaceStatusCmd.MarkFlagRequired("namespace")
+	ChangeNamespaceStatusCmd.Flags().StringP("body", "by", " ", "Body")
+	ChangeNamespaceStatusCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = ChangeNamespaceStatusCmd.MarkFlagRequired("namespace")
 }

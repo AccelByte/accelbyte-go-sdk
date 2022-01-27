@@ -8,15 +8,14 @@ import (
 	namespace_ "github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclient/namespace"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/basic"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getNamespacesCmd represents the getNamespaces command
-var getNamespacesCmd = &cobra.Command{
-	Use:   "getNamespaces",
+// GetNamespacesCmd represents the GetNamespaces command
+var GetNamespacesCmd = &cobra.Command{
+	Use:   "GetNamespaces",
 	Short: "Get namespaces",
 	Long:  `Get namespaces`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,6 +39,5 @@ var getNamespacesCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getNamespacesCmd)
-	getNamespacesCmd.Flags().BoolP("activeOnly", "ay", false, "Active only")
+	GetNamespacesCmd.Flags().BoolP("activeOnly", "ay", false, "Active only")
 }

@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/entitlement"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// publicGetUserEntitlementByItemIdCmd represents the publicGetUserEntitlementByItemId command
-var publicGetUserEntitlementByItemIdCmd = &cobra.Command{
-	Use:   "publicGetUserEntitlementByItemId",
+// PublicGetUserEntitlementByItemIdCmd represents the PublicGetUserEntitlementByItemId command
+var PublicGetUserEntitlementByItemIdCmd = &cobra.Command{
+	Use:   "PublicGetUserEntitlementByItemId",
 	Short: "Public get user entitlement by item id",
 	Long:  `Public get user entitlement by item id`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -46,12 +45,11 @@ var publicGetUserEntitlementByItemIdCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(publicGetUserEntitlementByItemIdCmd)
-	publicGetUserEntitlementByItemIdCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = publicGetUserEntitlementByItemIdCmd.MarkFlagRequired("namespace")
-	publicGetUserEntitlementByItemIdCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = publicGetUserEntitlementByItemIdCmd.MarkFlagRequired("userId")
-	publicGetUserEntitlementByItemIdCmd.Flags().StringP("entitlementClazz", "ez", " ", "Entitlement clazz")
-	publicGetUserEntitlementByItemIdCmd.Flags().StringP("itemId", "id", " ", "Item id")
-	_ = publicGetUserEntitlementByItemIdCmd.MarkFlagRequired("itemId")
+	PublicGetUserEntitlementByItemIdCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PublicGetUserEntitlementByItemIdCmd.MarkFlagRequired("namespace")
+	PublicGetUserEntitlementByItemIdCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = PublicGetUserEntitlementByItemIdCmd.MarkFlagRequired("userId")
+	PublicGetUserEntitlementByItemIdCmd.Flags().StringP("entitlementClazz", "ez", " ", "Entitlement clazz")
+	PublicGetUserEntitlementByItemIdCmd.Flags().StringP("itemId", "id", " ", "Item id")
+	_ = PublicGetUserEntitlementByItemIdCmd.MarkFlagRequired("itemId")
 }

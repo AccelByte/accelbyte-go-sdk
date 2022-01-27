@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/admin"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/dsmc"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// listSessionCmd represents the listSession command
-var listSessionCmd = &cobra.Command{
-	Use:   "listSession",
+// ListSessionCmd represents the ListSession command
+var ListSessionCmd = &cobra.Command{
+	Use:   "ListSession",
 	Short: "List session",
 	Long:  `List session`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,11 +47,10 @@ var listSessionCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(listSessionCmd)
-	listSessionCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = listSessionCmd.MarkFlagRequired("namespace")
-	listSessionCmd.Flags().Int64P("count", "ct", 1, "Count")
-	listSessionCmd.Flags().Int64P("offset", "ot", 0, "Offset")
-	listSessionCmd.Flags().StringP("region", "rn", " ", "Region")
-	listSessionCmd.Flags().BoolP("withServer", "wr", false, "With server")
+	ListSessionCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = ListSessionCmd.MarkFlagRequired("namespace")
+	ListSessionCmd.Flags().Int64P("count", "ct", 1, "Count")
+	ListSessionCmd.Flags().Int64P("offset", "ot", 0, "Offset")
+	ListSessionCmd.Flags().StringP("region", "rn", " ", "Region")
+	ListSessionCmd.Flags().BoolP("withServer", "wr", false, "With server")
 }

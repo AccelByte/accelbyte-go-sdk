@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/ugc"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/admin_content"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminSearchContentCmd represents the adminSearchContent command
-var adminSearchContentCmd = &cobra.Command{
-	Use:   "adminSearchContent",
+// AdminSearchContentCmd represents the AdminSearchContent command
+var AdminSearchContentCmd = &cobra.Command{
+	Use:   "AdminSearchContent",
 	Short: "Admin search content",
 	Long:  `Admin search content`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -62,18 +61,17 @@ var adminSearchContentCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminSearchContentCmd)
-	adminSearchContentCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = adminSearchContentCmd.MarkFlagRequired("namespace")
-	adminSearchContentCmd.Flags().StringP("creator", "cr", " ", "Creator")
-	adminSearchContentCmd.Flags().StringP("isofficial", "il", " ", "Isofficial")
-	adminSearchContentCmd.Flags().StringP("limit", "lt", "20", "Limit")
-	adminSearchContentCmd.Flags().StringP("name", "ne", " ", "Name")
-	adminSearchContentCmd.Flags().StringP("offset", "ot", "0", "Offset")
-	adminSearchContentCmd.Flags().StringP("orderby", "oy", " ", "Orderby")
-	adminSearchContentCmd.Flags().StringP("sortby", "sy", " ", "Sortby")
-	adminSearchContentCmd.Flags().StringP("subtype", "se", " ", "Subtype")
-	adminSearchContentCmd.Flags().StringP("tags", "ts", " ", "Tags")
-	adminSearchContentCmd.Flags().StringP("type", "te", " ", "Type")
-	adminSearchContentCmd.Flags().StringP("userId", "ud", " ", "User id")
+	AdminSearchContentCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AdminSearchContentCmd.MarkFlagRequired("namespace")
+	AdminSearchContentCmd.Flags().StringP("creator", "cr", " ", "Creator")
+	AdminSearchContentCmd.Flags().StringP("isofficial", "il", " ", "Isofficial")
+	AdminSearchContentCmd.Flags().StringP("limit", "lt", "20", "Limit")
+	AdminSearchContentCmd.Flags().StringP("name", "ne", " ", "Name")
+	AdminSearchContentCmd.Flags().StringP("offset", "ot", "0", "Offset")
+	AdminSearchContentCmd.Flags().StringP("orderby", "oy", " ", "Orderby")
+	AdminSearchContentCmd.Flags().StringP("sortby", "sy", " ", "Sortby")
+	AdminSearchContentCmd.Flags().StringP("subtype", "se", " ", "Subtype")
+	AdminSearchContentCmd.Flags().StringP("tags", "ts", " ", "Tags")
+	AdminSearchContentCmd.Flags().StringP("type", "te", " ", "Type")
+	AdminSearchContentCmd.Flags().StringP("userId", "ud", " ", "User id")
 }

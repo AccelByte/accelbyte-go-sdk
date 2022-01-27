@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/lobby"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminUpdateConfigV1Cmd represents the adminUpdateConfigV1 command
-var adminUpdateConfigV1Cmd = &cobra.Command{
-	Use:   "adminUpdateConfigV1",
+// AdminUpdateConfigV1Cmd represents the AdminUpdateConfigV1 command
+var AdminUpdateConfigV1Cmd = &cobra.Command{
+	Use:   "AdminUpdateConfigV1",
 	Short: "Admin update config V1",
 	Long:  `Admin update config V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,9 +48,8 @@ var adminUpdateConfigV1Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminUpdateConfigV1Cmd)
-	adminUpdateConfigV1Cmd.Flags().StringP("body", "by", " ", "Body")
-	_ = adminUpdateConfigV1Cmd.MarkFlagRequired("body")
-	adminUpdateConfigV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = adminUpdateConfigV1Cmd.MarkFlagRequired("namespace")
+	AdminUpdateConfigV1Cmd.Flags().StringP("body", "by", " ", "Body")
+	_ = AdminUpdateConfigV1Cmd.MarkFlagRequired("body")
+	AdminUpdateConfigV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AdminUpdateConfigV1Cmd.MarkFlagRequired("namespace")
 }

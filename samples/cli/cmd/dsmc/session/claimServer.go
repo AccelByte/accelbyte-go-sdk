@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/dsmc"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// claimServerCmd represents the claimServer command
-var claimServerCmd = &cobra.Command{
-	Use:   "claimServer",
+// ClaimServerCmd represents the ClaimServer command
+var ClaimServerCmd = &cobra.Command{
+	Use:   "ClaimServer",
 	Short: "Claim server",
 	Long:  `Claim server`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,9 +47,8 @@ var claimServerCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(claimServerCmd)
-	claimServerCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = claimServerCmd.MarkFlagRequired("body")
-	claimServerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = claimServerCmd.MarkFlagRequired("namespace")
+	ClaimServerCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = ClaimServerCmd.MarkFlagRequired("body")
+	ClaimServerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = ClaimServerCmd.MarkFlagRequired("namespace")
 }

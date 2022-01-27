@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/group-sdk/pkg/groupclient/group_roles"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/group"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getSingleMemberRoleAdminV1Cmd represents the getSingleMemberRoleAdminV1 command
-var getSingleMemberRoleAdminV1Cmd = &cobra.Command{
-	Use:   "getSingleMemberRoleAdminV1",
+// GetSingleMemberRoleAdminV1Cmd represents the GetSingleMemberRoleAdminV1 command
+var GetSingleMemberRoleAdminV1Cmd = &cobra.Command{
+	Use:   "GetSingleMemberRoleAdminV1",
 	Short: "Get single member role admin V1",
 	Long:  `Get single member role admin V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,9 +41,8 @@ var getSingleMemberRoleAdminV1Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getSingleMemberRoleAdminV1Cmd)
-	getSingleMemberRoleAdminV1Cmd.Flags().StringP("memberRoleId", "md", " ", "Member role id")
-	_ = getSingleMemberRoleAdminV1Cmd.MarkFlagRequired("memberRoleId")
-	getSingleMemberRoleAdminV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getSingleMemberRoleAdminV1Cmd.MarkFlagRequired("namespace")
+	GetSingleMemberRoleAdminV1Cmd.Flags().StringP("memberRoleId", "md", " ", "Member role id")
+	_ = GetSingleMemberRoleAdminV1Cmd.MarkFlagRequired("memberRoleId")
+	GetSingleMemberRoleAdminV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetSingleMemberRoleAdminV1Cmd.MarkFlagRequired("namespace")
 }

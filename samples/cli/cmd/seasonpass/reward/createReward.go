@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/seasonpass-sdk/pkg/seasonpassclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/seasonpass"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// createRewardCmd represents the createReward command
-var createRewardCmd = &cobra.Command{
-	Use:   "createReward",
+// CreateRewardCmd represents the CreateReward command
+var CreateRewardCmd = &cobra.Command{
+	Use:   "CreateReward",
 	Short: "Create reward",
 	Long:  `Create reward`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -51,10 +50,9 @@ var createRewardCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(createRewardCmd)
-	createRewardCmd.Flags().StringP("body", "by", " ", "Body")
-	createRewardCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = createRewardCmd.MarkFlagRequired("namespace")
-	createRewardCmd.Flags().StringP("seasonId", "sd", " ", "Season id")
-	_ = createRewardCmd.MarkFlagRequired("seasonId")
+	CreateRewardCmd.Flags().StringP("body", "by", " ", "Body")
+	CreateRewardCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = CreateRewardCmd.MarkFlagRequired("namespace")
+	CreateRewardCmd.Flags().StringP("seasonId", "sd", " ", "Season id")
+	_ = CreateRewardCmd.MarkFlagRequired("seasonId")
 }

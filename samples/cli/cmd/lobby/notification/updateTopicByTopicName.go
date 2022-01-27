@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/lobby"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// updateTopicByTopicNameCmd represents the updateTopicByTopicName command
-var updateTopicByTopicNameCmd = &cobra.Command{
-	Use:   "updateTopicByTopicName",
+// UpdateTopicByTopicNameCmd represents the UpdateTopicByTopicName command
+var UpdateTopicByTopicNameCmd = &cobra.Command{
+	Use:   "UpdateTopicByTopicName",
 	Short: "Update topic by topic name",
 	Long:  `Update topic by topic name`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,11 +49,10 @@ var updateTopicByTopicNameCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(updateTopicByTopicNameCmd)
-	updateTopicByTopicNameCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = updateTopicByTopicNameCmd.MarkFlagRequired("body")
-	updateTopicByTopicNameCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = updateTopicByTopicNameCmd.MarkFlagRequired("namespace")
-	updateTopicByTopicNameCmd.Flags().StringP("topic", "tc", " ", "Topic")
-	_ = updateTopicByTopicNameCmd.MarkFlagRequired("topic")
+	UpdateTopicByTopicNameCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = UpdateTopicByTopicNameCmd.MarkFlagRequired("body")
+	UpdateTopicByTopicNameCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = UpdateTopicByTopicNameCmd.MarkFlagRequired("namespace")
+	UpdateTopicByTopicNameCmd.Flags().StringP("topic", "tc", " ", "Topic")
+	_ = UpdateTopicByTopicNameCmd.MarkFlagRequired("topic")
 }

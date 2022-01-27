@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/seasonpass-sdk/pkg/seasonpassclient/season"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/seasonpass"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// retireSeasonCmd represents the retireSeason command
-var retireSeasonCmd = &cobra.Command{
-	Use:   "retireSeason",
+// RetireSeasonCmd represents the RetireSeason command
+var RetireSeasonCmd = &cobra.Command{
+	Use:   "RetireSeason",
 	Short: "Retire season",
 	Long:  `Retire season`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -44,10 +43,9 @@ var retireSeasonCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(retireSeasonCmd)
-	retireSeasonCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = retireSeasonCmd.MarkFlagRequired("namespace")
-	retireSeasonCmd.Flags().StringP("seasonId", "sd", " ", "Season id")
-	_ = retireSeasonCmd.MarkFlagRequired("seasonId")
-	retireSeasonCmd.Flags().BoolP("force", "fe", false, "Force")
+	RetireSeasonCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = RetireSeasonCmd.MarkFlagRequired("namespace")
+	RetireSeasonCmd.Flags().StringP("seasonId", "sd", " ", "Season id")
+	_ = RetireSeasonCmd.MarkFlagRequired("seasonId")
+	RetireSeasonCmd.Flags().BoolP("force", "fe", false, "Force")
 }

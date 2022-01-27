@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/sessionbrowser"
 	"github.com/AccelByte/accelbyte-go-sdk/sessionbrowser-sdk/pkg/sessionbrowserclient/session"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getSessionByUserIDsCmd represents the getSessionByUserIDs command
-var getSessionByUserIDsCmd = &cobra.Command{
-	Use:   "getSessionByUserIDs",
+// GetSessionByUserIDsCmd represents the GetSessionByUserIDs command
+var GetSessionByUserIDsCmd = &cobra.Command{
+	Use:   "GetSessionByUserIDs",
 	Short: "Get session by user I ds",
 	Long:  `Get session by user I ds`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,9 +41,8 @@ var getSessionByUserIDsCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getSessionByUserIDsCmd)
-	getSessionByUserIDsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getSessionByUserIDsCmd.MarkFlagRequired("namespace")
-	getSessionByUserIDsCmd.Flags().StringP("user_ids", "us", " ", "User ids")
-	_ = getSessionByUserIDsCmd.MarkFlagRequired("user_ids")
+	GetSessionByUserIDsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetSessionByUserIDsCmd.MarkFlagRequired("namespace")
+	GetSessionByUserIDsCmd.Flags().StringP("user_ids", "us", " ", "User ids")
+	_ = GetSessionByUserIDsCmd.MarkFlagRequired("user_ids")
 }

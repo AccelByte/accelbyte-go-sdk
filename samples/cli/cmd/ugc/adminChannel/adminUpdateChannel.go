@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/ugc"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/admin_channel"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclientmodels"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminUpdateChannelCmd represents the adminUpdateChannel command
-var adminUpdateChannelCmd = &cobra.Command{
-	Use:   "adminUpdateChannel",
+// AdminUpdateChannelCmd represents the AdminUpdateChannel command
+var AdminUpdateChannelCmd = &cobra.Command{
+	Use:   "AdminUpdateChannel",
 	Short: "Admin update channel",
 	Long:  `Admin update channel`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -53,13 +52,12 @@ var adminUpdateChannelCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminUpdateChannelCmd)
-	adminUpdateChannelCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = adminUpdateChannelCmd.MarkFlagRequired("body")
-	adminUpdateChannelCmd.Flags().StringP("channelId", "cd", " ", "Channel id")
-	_ = adminUpdateChannelCmd.MarkFlagRequired("channelId")
-	adminUpdateChannelCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = adminUpdateChannelCmd.MarkFlagRequired("namespace")
-	adminUpdateChannelCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = adminUpdateChannelCmd.MarkFlagRequired("userId")
+	AdminUpdateChannelCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = AdminUpdateChannelCmd.MarkFlagRequired("body")
+	AdminUpdateChannelCmd.Flags().StringP("channelId", "cd", " ", "Channel id")
+	_ = AdminUpdateChannelCmd.MarkFlagRequired("channelId")
+	AdminUpdateChannelCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AdminUpdateChannelCmd.MarkFlagRequired("namespace")
+	AdminUpdateChannelCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = AdminUpdateChannelCmd.MarkFlagRequired("userId")
 }

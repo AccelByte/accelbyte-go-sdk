@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/ugc"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/admin_content"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclientmodels"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminUpdateContentDirectCmd represents the adminUpdateContentDirect command
-var adminUpdateContentDirectCmd = &cobra.Command{
-	Use:   "adminUpdateContentDirect",
+// AdminUpdateContentDirectCmd represents the AdminUpdateContentDirect command
+var AdminUpdateContentDirectCmd = &cobra.Command{
+	Use:   "AdminUpdateContentDirect",
 	Short: "Admin update content direct",
 	Long:  `Admin update content direct`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -55,15 +54,14 @@ var adminUpdateContentDirectCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminUpdateContentDirectCmd)
-	adminUpdateContentDirectCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = adminUpdateContentDirectCmd.MarkFlagRequired("body")
-	adminUpdateContentDirectCmd.Flags().StringP("channelId", "cd", " ", "Channel id")
-	_ = adminUpdateContentDirectCmd.MarkFlagRequired("channelId")
-	adminUpdateContentDirectCmd.Flags().StringP("contentId", "cd", " ", "Content id")
-	_ = adminUpdateContentDirectCmd.MarkFlagRequired("contentId")
-	adminUpdateContentDirectCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = adminUpdateContentDirectCmd.MarkFlagRequired("namespace")
-	adminUpdateContentDirectCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = adminUpdateContentDirectCmd.MarkFlagRequired("userId")
+	AdminUpdateContentDirectCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = AdminUpdateContentDirectCmd.MarkFlagRequired("body")
+	AdminUpdateContentDirectCmd.Flags().StringP("channelId", "cd", " ", "Channel id")
+	_ = AdminUpdateContentDirectCmd.MarkFlagRequired("channelId")
+	AdminUpdateContentDirectCmd.Flags().StringP("contentId", "cd", " ", "Content id")
+	_ = AdminUpdateContentDirectCmd.MarkFlagRequired("contentId")
+	AdminUpdateContentDirectCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AdminUpdateContentDirectCmd.MarkFlagRequired("namespace")
+	AdminUpdateContentDirectCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = AdminUpdateContentDirectCmd.MarkFlagRequired("userId")
 }

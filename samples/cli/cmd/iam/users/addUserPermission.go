@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// addUserPermissionCmd represents the addUserPermission command
-var addUserPermissionCmd = &cobra.Command{
-	Use:   "addUserPermission",
+// AddUserPermissionCmd represents the AddUserPermission command
+var AddUserPermissionCmd = &cobra.Command{
+	Use:   "AddUserPermission",
 	Short: "Add user permission",
 	Long:  `Add user permission`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -54,15 +53,14 @@ var addUserPermissionCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(addUserPermissionCmd)
-	addUserPermissionCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = addUserPermissionCmd.MarkFlagRequired("body")
-	addUserPermissionCmd.Flags().Int64P("action", "an", -1, "Action")
-	_ = addUserPermissionCmd.MarkFlagRequired("action")
-	addUserPermissionCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = addUserPermissionCmd.MarkFlagRequired("namespace")
-	addUserPermissionCmd.Flags().StringP("resource", "re", " ", "Resource")
-	_ = addUserPermissionCmd.MarkFlagRequired("resource")
-	addUserPermissionCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = addUserPermissionCmd.MarkFlagRequired("userId")
+	AddUserPermissionCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = AddUserPermissionCmd.MarkFlagRequired("body")
+	AddUserPermissionCmd.Flags().Int64P("action", "an", -1, "Action")
+	_ = AddUserPermissionCmd.MarkFlagRequired("action")
+	AddUserPermissionCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AddUserPermissionCmd.MarkFlagRequired("namespace")
+	AddUserPermissionCmd.Flags().StringP("resource", "re", " ", "Resource")
+	_ = AddUserPermissionCmd.MarkFlagRequired("resource")
+	AddUserPermissionCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = AddUserPermissionCmd.MarkFlagRequired("userId")
 }

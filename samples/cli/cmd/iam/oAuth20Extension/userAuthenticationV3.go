@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth2_0_extension"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// userAuthenticationV3Cmd represents the userAuthenticationV3 command
-var userAuthenticationV3Cmd = &cobra.Command{
-	Use:   "userAuthenticationV3",
+// UserAuthenticationV3Cmd represents the UserAuthenticationV3 command
+var UserAuthenticationV3Cmd = &cobra.Command{
+	Use:   "UserAuthenticationV3",
 	Short: "User authentication V3",
 	Long:  `User authentication V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,14 +48,13 @@ var userAuthenticationV3Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(userAuthenticationV3Cmd)
-	userAuthenticationV3Cmd.Flags().StringP("client_id", "cd", " ", "Client id")
-	userAuthenticationV3Cmd.Flags().BoolP("extend_exp", "ep", false, "Extend exp")
-	userAuthenticationV3Cmd.Flags().StringP("redirect_uri", "ri", " ", "Redirect uri")
-	userAuthenticationV3Cmd.Flags().StringP("password", "pd", " ", "Password")
-	_ = userAuthenticationV3Cmd.MarkFlagRequired("password")
-	userAuthenticationV3Cmd.Flags().StringP("request_id", "rd", " ", "Request id")
-	_ = userAuthenticationV3Cmd.MarkFlagRequired("request_id")
-	userAuthenticationV3Cmd.Flags().StringP("user_name", "ue", " ", "User name")
-	_ = userAuthenticationV3Cmd.MarkFlagRequired("user_name")
+	UserAuthenticationV3Cmd.Flags().StringP("client_id", "cd", " ", "Client id")
+	UserAuthenticationV3Cmd.Flags().BoolP("extend_exp", "ep", false, "Extend exp")
+	UserAuthenticationV3Cmd.Flags().StringP("redirect_uri", "ri", " ", "Redirect uri")
+	UserAuthenticationV3Cmd.Flags().StringP("password", "pd", " ", "Password")
+	_ = UserAuthenticationV3Cmd.MarkFlagRequired("password")
+	UserAuthenticationV3Cmd.Flags().StringP("request_id", "rd", " ", "Request id")
+	_ = UserAuthenticationV3Cmd.MarkFlagRequired("request_id")
+	UserAuthenticationV3Cmd.Flags().StringP("user_name", "ue", " ", "User name")
+	_ = UserAuthenticationV3Cmd.MarkFlagRequired("user_name")
 }

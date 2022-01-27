@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/matchmaking-sdk/pkg/matchmakingclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/matchmaking"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// storeMatchResultsCmd represents the storeMatchResults command
-var storeMatchResultsCmd = &cobra.Command{
-	Use:   "storeMatchResults",
+// StoreMatchResultsCmd represents the StoreMatchResults command
+var StoreMatchResultsCmd = &cobra.Command{
+	Use:   "StoreMatchResults",
 	Short: "Store match results",
 	Long:  `Store match results`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,9 +48,8 @@ var storeMatchResultsCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(storeMatchResultsCmd)
-	storeMatchResultsCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = storeMatchResultsCmd.MarkFlagRequired("body")
-	storeMatchResultsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = storeMatchResultsCmd.MarkFlagRequired("namespace")
+	StoreMatchResultsCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = StoreMatchResultsCmd.MarkFlagRequired("body")
+	StoreMatchResultsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = StoreMatchResultsCmd.MarkFlagRequired("namespace")
 }

@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/dsmc"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// deregisterLocalServerCmd represents the deregisterLocalServer command
-var deregisterLocalServerCmd = &cobra.Command{
-	Use:   "deregisterLocalServer",
+// DeregisterLocalServerCmd represents the DeregisterLocalServer command
+var DeregisterLocalServerCmd = &cobra.Command{
+	Use:   "DeregisterLocalServer",
 	Short: "Deregister local server",
 	Long:  `Deregister local server`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,9 +47,8 @@ var deregisterLocalServerCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(deregisterLocalServerCmd)
-	deregisterLocalServerCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = deregisterLocalServerCmd.MarkFlagRequired("body")
-	deregisterLocalServerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = deregisterLocalServerCmd.MarkFlagRequired("namespace")
+	DeregisterLocalServerCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = DeregisterLocalServerCmd.MarkFlagRequired("body")
+	DeregisterLocalServerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = DeregisterLocalServerCmd.MarkFlagRequired("namespace")
 }

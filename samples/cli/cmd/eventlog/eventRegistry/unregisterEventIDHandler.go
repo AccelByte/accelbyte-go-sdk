@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/eventlog-sdk/pkg/eventlogclient/event_registry"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/eventlog"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// unregisterEventIDHandlerCmd represents the unregisterEventIDHandler command
-var unregisterEventIDHandlerCmd = &cobra.Command{
-	Use:   "unregisterEventIDHandler",
+// UnregisterEventIDHandlerCmd represents the UnregisterEventIDHandler command
+var UnregisterEventIDHandlerCmd = &cobra.Command{
+	Use:   "UnregisterEventIDHandler",
 	Short: "Unregister event ID handler",
 	Long:  `Unregister event ID handler`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,7 +38,6 @@ var unregisterEventIDHandlerCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(unregisterEventIDHandlerCmd)
-	unregisterEventIDHandlerCmd.Flags().StringP("eventId", "ed", "0", "Event id")
-	_ = unregisterEventIDHandlerCmd.MarkFlagRequired("eventId")
+	UnregisterEventIDHandlerCmd.Flags().StringP("eventId", "ed", "0", "Event id")
+	_ = UnregisterEventIDHandlerCmd.MarkFlagRequired("eventId")
 }

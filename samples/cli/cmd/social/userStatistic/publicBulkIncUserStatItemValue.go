@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/social"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient/user_statistic"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclientmodels"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// publicBulkIncUserStatItemValueCmd represents the publicBulkIncUserStatItemValue command
-var publicBulkIncUserStatItemValueCmd = &cobra.Command{
-	Use:   "publicBulkIncUserStatItemValue",
+// PublicBulkIncUserStatItemValueCmd represents the PublicBulkIncUserStatItemValue command
+var PublicBulkIncUserStatItemValueCmd = &cobra.Command{
+	Use:   "PublicBulkIncUserStatItemValue",
 	Short: "Public bulk inc user stat item value",
 	Long:  `Public bulk inc user stat item value`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,8 +48,7 @@ var publicBulkIncUserStatItemValueCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(publicBulkIncUserStatItemValueCmd)
-	publicBulkIncUserStatItemValueCmd.Flags().StringP("body", "by", " ", "Body")
-	publicBulkIncUserStatItemValueCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = publicBulkIncUserStatItemValueCmd.MarkFlagRequired("namespace")
+	PublicBulkIncUserStatItemValueCmd.Flags().StringP("body", "by", " ", "Body")
+	PublicBulkIncUserStatItemValueCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PublicBulkIncUserStatItemValueCmd.MarkFlagRequired("namespace")
 }

@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/public"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/dsmc"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// listProvidersByRegionCmd represents the listProvidersByRegion command
-var listProvidersByRegionCmd = &cobra.Command{
-	Use:   "listProvidersByRegion",
+// ListProvidersByRegionCmd represents the ListProvidersByRegion command
+var ListProvidersByRegionCmd = &cobra.Command{
+	Use:   "ListProvidersByRegion",
 	Short: "List providers by region",
 	Long:  `List providers by region`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,7 +39,6 @@ var listProvidersByRegionCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(listProvidersByRegionCmd)
-	listProvidersByRegionCmd.Flags().StringP("region", "rn", " ", "Region")
-	_ = listProvidersByRegionCmd.MarkFlagRequired("region")
+	ListProvidersByRegionCmd.Flags().StringP("region", "rn", " ", "Region")
+	_ = ListProvidersByRegionCmd.MarkFlagRequired("region")
 }

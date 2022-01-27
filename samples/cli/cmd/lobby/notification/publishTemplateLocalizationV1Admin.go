@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/notification"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/lobby"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// publishTemplateLocalizationV1AdminCmd represents the publishTemplateLocalizationV1Admin command
-var publishTemplateLocalizationV1AdminCmd = &cobra.Command{
-	Use:   "publishTemplateLocalizationV1Admin",
+// PublishTemplateLocalizationV1AdminCmd represents the PublishTemplateLocalizationV1Admin command
+var PublishTemplateLocalizationV1AdminCmd = &cobra.Command{
+	Use:   "PublishTemplateLocalizationV1Admin",
 	Short: "Publish template localization V1 admin",
 	Long:  `Publish template localization V1 admin`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,11 +42,10 @@ var publishTemplateLocalizationV1AdminCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(publishTemplateLocalizationV1AdminCmd)
-	publishTemplateLocalizationV1AdminCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = publishTemplateLocalizationV1AdminCmd.MarkFlagRequired("namespace")
-	publishTemplateLocalizationV1AdminCmd.Flags().StringP("templateLanguage", "te", " ", "Template language")
-	_ = publishTemplateLocalizationV1AdminCmd.MarkFlagRequired("templateLanguage")
-	publishTemplateLocalizationV1AdminCmd.Flags().StringP("templateSlug", "tg", " ", "Template slug")
-	_ = publishTemplateLocalizationV1AdminCmd.MarkFlagRequired("templateSlug")
+	PublishTemplateLocalizationV1AdminCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PublishTemplateLocalizationV1AdminCmd.MarkFlagRequired("namespace")
+	PublishTemplateLocalizationV1AdminCmd.Flags().StringP("templateLanguage", "te", " ", "Template language")
+	_ = PublishTemplateLocalizationV1AdminCmd.MarkFlagRequired("templateLanguage")
+	PublishTemplateLocalizationV1AdminCmd.Flags().StringP("templateSlug", "tg", " ", "Template slug")
+	_ = PublishTemplateLocalizationV1AdminCmd.MarkFlagRequired("templateSlug")
 }

@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/gdpr-sdk/pkg/gdprclient/data_retrieval"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/gdpr"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// publicGetUserPersonalDataRequestsCmd represents the publicGetUserPersonalDataRequests command
-var publicGetUserPersonalDataRequestsCmd = &cobra.Command{
-	Use:   "publicGetUserPersonalDataRequests",
+// PublicGetUserPersonalDataRequestsCmd represents the PublicGetUserPersonalDataRequests command
+var PublicGetUserPersonalDataRequestsCmd = &cobra.Command{
+	Use:   "PublicGetUserPersonalDataRequests",
 	Short: "Public get user personal data requests",
 	Long:  `Public get user personal data requests`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -46,11 +45,10 @@ var publicGetUserPersonalDataRequestsCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(publicGetUserPersonalDataRequestsCmd)
-	publicGetUserPersonalDataRequestsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = publicGetUserPersonalDataRequestsCmd.MarkFlagRequired("namespace")
-	publicGetUserPersonalDataRequestsCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = publicGetUserPersonalDataRequestsCmd.MarkFlagRequired("userId")
-	publicGetUserPersonalDataRequestsCmd.Flags().Int64P("limit", "lt", 20, "Limit")
-	publicGetUserPersonalDataRequestsCmd.Flags().Int64P("offset", "ot", 0, "Offset")
+	PublicGetUserPersonalDataRequestsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PublicGetUserPersonalDataRequestsCmd.MarkFlagRequired("namespace")
+	PublicGetUserPersonalDataRequestsCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = PublicGetUserPersonalDataRequestsCmd.MarkFlagRequired("userId")
+	PublicGetUserPersonalDataRequestsCmd.Flags().Int64P("limit", "lt", 20, "Limit")
+	PublicGetUserPersonalDataRequestsCmd.Flags().Int64P("offset", "ot", 0, "Offset")
 }

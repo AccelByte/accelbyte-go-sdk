@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/roles"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminListAssignedUsersV4Cmd represents the adminListAssignedUsersV4 command
-var adminListAssignedUsersV4Cmd = &cobra.Command{
-	Use:   "adminListAssignedUsersV4",
+// AdminListAssignedUsersV4Cmd represents the AdminListAssignedUsersV4 command
+var AdminListAssignedUsersV4Cmd = &cobra.Command{
+	Use:   "AdminListAssignedUsersV4",
 	Short: "Admin list assigned users V4",
 	Long:  `Admin list assigned users V4`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -46,10 +45,9 @@ var adminListAssignedUsersV4Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminListAssignedUsersV4Cmd)
-	adminListAssignedUsersV4Cmd.Flags().StringP("roleId", "rd", " ", "Role id")
-	_ = adminListAssignedUsersV4Cmd.MarkFlagRequired("roleId")
-	adminListAssignedUsersV4Cmd.Flags().StringP("after", "ar", "0", "After")
-	adminListAssignedUsersV4Cmd.Flags().StringP("before", "be", "0", "Before")
-	adminListAssignedUsersV4Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
+	AdminListAssignedUsersV4Cmd.Flags().StringP("roleId", "rd", " ", "Role id")
+	_ = AdminListAssignedUsersV4Cmd.MarkFlagRequired("roleId")
+	AdminListAssignedUsersV4Cmd.Flags().StringP("after", "ar", "0", "After")
+	AdminListAssignedUsersV4Cmd.Flags().StringP("before", "be", "0", "Before")
+	AdminListAssignedUsersV4Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
 }

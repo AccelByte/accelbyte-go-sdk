@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/ugc"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/admin_tag"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminGetTagCmd represents the adminGetTag command
-var adminGetTagCmd = &cobra.Command{
-	Use:   "adminGetTag",
+// AdminGetTagCmd represents the AdminGetTag command
+var AdminGetTagCmd = &cobra.Command{
+	Use:   "AdminGetTag",
 	Short: "Admin get tag",
 	Long:  `Admin get tag`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -44,9 +43,8 @@ var adminGetTagCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminGetTagCmd)
-	adminGetTagCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = adminGetTagCmd.MarkFlagRequired("namespace")
-	adminGetTagCmd.Flags().StringP("limit", "lt", "20", "Limit")
-	adminGetTagCmd.Flags().StringP("offset", "ot", "0", "Offset")
+	AdminGetTagCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AdminGetTagCmd.MarkFlagRequired("namespace")
+	AdminGetTagCmd.Flags().StringP("limit", "lt", "20", "Limit")
+	AdminGetTagCmd.Flags().StringP("offset", "ot", "0", "Offset")
 }

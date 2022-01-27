@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/social"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient/user_statistic"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclientmodels"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// updateUserStatItemValueCmd represents the updateUserStatItemValue command
-var updateUserStatItemValueCmd = &cobra.Command{
-	Use:   "updateUserStatItemValue",
+// UpdateUserStatItemValueCmd represents the UpdateUserStatItemValue command
+var UpdateUserStatItemValueCmd = &cobra.Command{
+	Use:   "UpdateUserStatItemValue",
 	Short: "Update user stat item value",
 	Long:  `Update user stat item value`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -55,13 +54,12 @@ var updateUserStatItemValueCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(updateUserStatItemValueCmd)
-	updateUserStatItemValueCmd.Flags().StringP("body", "by", " ", "Body")
-	updateUserStatItemValueCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = updateUserStatItemValueCmd.MarkFlagRequired("namespace")
-	updateUserStatItemValueCmd.Flags().StringP("statCode", "se", " ", "Stat code")
-	_ = updateUserStatItemValueCmd.MarkFlagRequired("statCode")
-	updateUserStatItemValueCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = updateUserStatItemValueCmd.MarkFlagRequired("userId")
-	updateUserStatItemValueCmd.Flags().StringP("additionalKey", "ay", " ", "Additional key")
+	UpdateUserStatItemValueCmd.Flags().StringP("body", "by", " ", "Body")
+	UpdateUserStatItemValueCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = UpdateUserStatItemValueCmd.MarkFlagRequired("namespace")
+	UpdateUserStatItemValueCmd.Flags().StringP("statCode", "se", " ", "Stat code")
+	_ = UpdateUserStatItemValueCmd.MarkFlagRequired("statCode")
+	UpdateUserStatItemValueCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = UpdateUserStatItemValueCmd.MarkFlagRequired("userId")
+	UpdateUserStatItemValueCmd.Flags().StringP("additionalKey", "ay", " ", "Additional key")
 }

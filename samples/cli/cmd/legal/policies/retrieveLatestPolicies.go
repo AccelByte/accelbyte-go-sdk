@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclient/policies"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/legal"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// retrieveLatestPoliciesCmd represents the retrieveLatestPolicies command
-var retrieveLatestPoliciesCmd = &cobra.Command{
-	Use:   "retrieveLatestPolicies",
+// RetrieveLatestPoliciesCmd represents the RetrieveLatestPolicies command
+var RetrieveLatestPoliciesCmd = &cobra.Command{
+	Use:   "RetrieveLatestPolicies",
 	Short: "Retrieve latest policies",
 	Long:  `Retrieve latest policies`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -46,10 +45,9 @@ var retrieveLatestPoliciesCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(retrieveLatestPoliciesCmd)
-	retrieveLatestPoliciesCmd.Flags().StringP("countryCode", "ce", " ", "Country code")
-	_ = retrieveLatestPoliciesCmd.MarkFlagRequired("countryCode")
-	retrieveLatestPoliciesCmd.Flags().BoolP("defaultOnEmpty", "dy", false, "Default on empty")
-	retrieveLatestPoliciesCmd.Flags().StringP("policyType", "pe", " ", "Policy type")
-	retrieveLatestPoliciesCmd.Flags().StringP("tags", "ts", " ", "Tags")
+	RetrieveLatestPoliciesCmd.Flags().StringP("countryCode", "ce", " ", "Country code")
+	_ = RetrieveLatestPoliciesCmd.MarkFlagRequired("countryCode")
+	RetrieveLatestPoliciesCmd.Flags().BoolP("defaultOnEmpty", "dy", false, "Default on empty")
+	RetrieveLatestPoliciesCmd.Flags().StringP("policyType", "pe", " ", "Policy type")
+	RetrieveLatestPoliciesCmd.Flags().StringP("tags", "ts", " ", "Tags")
 }

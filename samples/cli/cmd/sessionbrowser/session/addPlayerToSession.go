@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/sessionbrowser"
 	"github.com/AccelByte/accelbyte-go-sdk/sessionbrowser-sdk/pkg/sessionbrowserclient/session"
 	"github.com/AccelByte/accelbyte-go-sdk/sessionbrowser-sdk/pkg/sessionbrowserclientmodels"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// addPlayerToSessionCmd represents the addPlayerToSession command
-var addPlayerToSessionCmd = &cobra.Command{
-	Use:   "addPlayerToSession",
+// AddPlayerToSessionCmd represents the AddPlayerToSession command
+var AddPlayerToSessionCmd = &cobra.Command{
+	Use:   "AddPlayerToSession",
 	Short: "Add player to session",
 	Long:  `Add player to session`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -51,11 +50,10 @@ var addPlayerToSessionCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(addPlayerToSessionCmd)
-	addPlayerToSessionCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = addPlayerToSessionCmd.MarkFlagRequired("body")
-	addPlayerToSessionCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = addPlayerToSessionCmd.MarkFlagRequired("namespace")
-	addPlayerToSessionCmd.Flags().StringP("sessionID", "sD", " ", "Session ID")
-	_ = addPlayerToSessionCmd.MarkFlagRequired("sessionID")
+	AddPlayerToSessionCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = AddPlayerToSessionCmd.MarkFlagRequired("body")
+	AddPlayerToSessionCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AddPlayerToSessionCmd.MarkFlagRequired("namespace")
+	AddPlayerToSessionCmd.Flags().StringP("sessionID", "sD", " ", "Session ID")
+	_ = AddPlayerToSessionCmd.MarkFlagRequired("sessionID")
 }

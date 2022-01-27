@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/dsmc"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// shutdownServerCmd represents the shutdownServer command
-var shutdownServerCmd = &cobra.Command{
-	Use:   "shutdownServer",
+// ShutdownServerCmd represents the ShutdownServer command
+var ShutdownServerCmd = &cobra.Command{
+	Use:   "ShutdownServer",
 	Short: "Shutdown server",
 	Long:  `Shutdown server`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,9 +47,8 @@ var shutdownServerCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(shutdownServerCmd)
-	shutdownServerCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = shutdownServerCmd.MarkFlagRequired("body")
-	shutdownServerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = shutdownServerCmd.MarkFlagRequired("namespace")
+	ShutdownServerCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = ShutdownServerCmd.MarkFlagRequired("body")
+	ShutdownServerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = ShutdownServerCmd.MarkFlagRequired("namespace")
 }

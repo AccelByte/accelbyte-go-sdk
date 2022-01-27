@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/social"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient/slot_config"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getNamespaceSlotConfigCmd represents the getNamespaceSlotConfig command
-var getNamespaceSlotConfigCmd = &cobra.Command{
-	Use:   "getNamespaceSlotConfig",
+// GetNamespaceSlotConfigCmd represents the GetNamespaceSlotConfig command
+var GetNamespaceSlotConfigCmd = &cobra.Command{
+	Use:   "GetNamespaceSlotConfig",
 	Short: "Get namespace slot config",
 	Long:  `Get namespace slot config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,7 +39,6 @@ var getNamespaceSlotConfigCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getNamespaceSlotConfigCmd)
-	getNamespaceSlotConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getNamespaceSlotConfigCmd.MarkFlagRequired("namespace")
+	GetNamespaceSlotConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetNamespaceSlotConfigCmd.MarkFlagRequired("namespace")
 }

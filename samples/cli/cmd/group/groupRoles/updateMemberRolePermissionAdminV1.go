@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/group-sdk/pkg/groupclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/group"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// updateMemberRolePermissionAdminV1Cmd represents the updateMemberRolePermissionAdminV1 command
-var updateMemberRolePermissionAdminV1Cmd = &cobra.Command{
-	Use:   "updateMemberRolePermissionAdminV1",
+// UpdateMemberRolePermissionAdminV1Cmd represents the UpdateMemberRolePermissionAdminV1 command
+var UpdateMemberRolePermissionAdminV1Cmd = &cobra.Command{
+	Use:   "UpdateMemberRolePermissionAdminV1",
 	Short: "Update member role permission admin V1",
 	Long:  `Update member role permission admin V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -51,11 +50,10 @@ var updateMemberRolePermissionAdminV1Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(updateMemberRolePermissionAdminV1Cmd)
-	updateMemberRolePermissionAdminV1Cmd.Flags().StringP("body", "by", " ", "Body")
-	_ = updateMemberRolePermissionAdminV1Cmd.MarkFlagRequired("body")
-	updateMemberRolePermissionAdminV1Cmd.Flags().StringP("memberRoleId", "md", " ", "Member role id")
-	_ = updateMemberRolePermissionAdminV1Cmd.MarkFlagRequired("memberRoleId")
-	updateMemberRolePermissionAdminV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = updateMemberRolePermissionAdminV1Cmd.MarkFlagRequired("namespace")
+	UpdateMemberRolePermissionAdminV1Cmd.Flags().StringP("body", "by", " ", "Body")
+	_ = UpdateMemberRolePermissionAdminV1Cmd.MarkFlagRequired("body")
+	UpdateMemberRolePermissionAdminV1Cmd.Flags().StringP("memberRoleId", "md", " ", "Member role id")
+	_ = UpdateMemberRolePermissionAdminV1Cmd.MarkFlagRequired("memberRoleId")
+	UpdateMemberRolePermissionAdminV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = UpdateMemberRolePermissionAdminV1Cmd.MarkFlagRequired("namespace")
 }

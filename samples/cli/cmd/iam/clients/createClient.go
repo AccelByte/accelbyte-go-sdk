@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// createClientCmd represents the createClient command
-var createClientCmd = &cobra.Command{
-	Use:   "createClient",
+// CreateClientCmd represents the CreateClient command
+var CreateClientCmd = &cobra.Command{
+	Use:   "CreateClient",
 	Short: "Create client",
 	Long:  `Create client`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -47,7 +46,6 @@ var createClientCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(createClientCmd)
-	createClientCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = createClientCmd.MarkFlagRequired("body")
+	CreateClientCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = CreateClientCmd.MarkFlagRequired("body")
 }

@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/notification"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/lobby"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getTopicByTopicNameCmd represents the getTopicByTopicName command
-var getTopicByTopicNameCmd = &cobra.Command{
-	Use:   "getTopicByTopicName",
+// GetTopicByTopicNameCmd represents the GetTopicByTopicName command
+var GetTopicByTopicNameCmd = &cobra.Command{
+	Use:   "GetTopicByTopicName",
 	Short: "Get topic by topic name",
 	Long:  `Get topic by topic name`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,9 +41,8 @@ var getTopicByTopicNameCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getTopicByTopicNameCmd)
-	getTopicByTopicNameCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getTopicByTopicNameCmd.MarkFlagRequired("namespace")
-	getTopicByTopicNameCmd.Flags().StringP("topic", "tc", " ", "Topic")
-	_ = getTopicByTopicNameCmd.MarkFlagRequired("topic")
+	GetTopicByTopicNameCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetTopicByTopicNameCmd.MarkFlagRequired("namespace")
+	GetTopicByTopicNameCmd.Flags().StringP("topic", "tc", " ", "Topic")
+	_ = GetTopicByTopicNameCmd.MarkFlagRequired("topic")
 }

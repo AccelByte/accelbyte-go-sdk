@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/payment_config"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// testStripeConfigByIdCmd represents the testStripeConfigById command
-var testStripeConfigByIdCmd = &cobra.Command{
-	Use:   "testStripeConfigById",
+// TestStripeConfigByIdCmd represents the TestStripeConfigById command
+var TestStripeConfigByIdCmd = &cobra.Command{
+	Use:   "TestStripeConfigById",
 	Short: "Test stripe config by id",
 	Long:  `Test stripe config by id`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,8 +41,7 @@ var testStripeConfigByIdCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(testStripeConfigByIdCmd)
-	testStripeConfigByIdCmd.Flags().StringP("id", "id", " ", "Id")
-	_ = testStripeConfigByIdCmd.MarkFlagRequired("id")
-	testStripeConfigByIdCmd.Flags().BoolP("sandbox", "sx", false, "Sandbox")
+	TestStripeConfigByIdCmd.Flags().StringP("id", "id", " ", "Id")
+	_ = TestStripeConfigByIdCmd.MarkFlagRequired("id")
+	TestStripeConfigByIdCmd.Flags().BoolP("sandbox", "sx", false, "Sandbox")
 }

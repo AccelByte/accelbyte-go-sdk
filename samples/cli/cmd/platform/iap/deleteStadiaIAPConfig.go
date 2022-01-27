@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/i_a_p"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// deleteStadiaIAPConfigCmd represents the deleteStadiaIAPConfig command
-var deleteStadiaIAPConfigCmd = &cobra.Command{
-	Use:   "deleteStadiaIAPConfig",
+// DeleteStadiaIAPConfigCmd represents the DeleteStadiaIAPConfig command
+var DeleteStadiaIAPConfigCmd = &cobra.Command{
+	Use:   "DeleteStadiaIAPConfig",
 	Short: "Delete stadia IAP config",
 	Long:  `Delete stadia IAP config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,7 +38,6 @@ var deleteStadiaIAPConfigCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(deleteStadiaIAPConfigCmd)
-	deleteStadiaIAPConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = deleteStadiaIAPConfigCmd.MarkFlagRequired("namespace")
+	DeleteStadiaIAPConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = DeleteStadiaIAPConfigCmd.MarkFlagRequired("namespace")
 }

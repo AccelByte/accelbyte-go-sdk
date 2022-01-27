@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/social"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient/game_profile"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getUserProfilesCmd represents the getUserProfiles command
-var getUserProfilesCmd = &cobra.Command{
-	Use:   "getUserProfiles",
+// GetUserProfilesCmd represents the GetUserProfiles command
+var GetUserProfilesCmd = &cobra.Command{
+	Use:   "GetUserProfiles",
 	Short: "Get user profiles",
 	Long:  `Get user profiles`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,9 +41,8 @@ var getUserProfilesCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getUserProfilesCmd)
-	getUserProfilesCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getUserProfilesCmd.MarkFlagRequired("namespace")
-	getUserProfilesCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = getUserProfilesCmd.MarkFlagRequired("userId")
+	GetUserProfilesCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetUserProfilesCmd.MarkFlagRequired("namespace")
+	GetUserProfilesCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = GetUserProfilesCmd.MarkFlagRequired("userId")
 }

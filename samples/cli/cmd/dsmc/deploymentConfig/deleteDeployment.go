@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/deployment_config"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/dsmc"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// deleteDeploymentCmd represents the deleteDeployment command
-var deleteDeploymentCmd = &cobra.Command{
-	Use:   "deleteDeployment",
+// DeleteDeploymentCmd represents the DeleteDeployment command
+var DeleteDeploymentCmd = &cobra.Command{
+	Use:   "DeleteDeployment",
 	Short: "Delete deployment",
 	Long:  `Delete deployment`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,9 +40,8 @@ var deleteDeploymentCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(deleteDeploymentCmd)
-	deleteDeploymentCmd.Flags().StringP("deployment", "dt", " ", "Deployment")
-	_ = deleteDeploymentCmd.MarkFlagRequired("deployment")
-	deleteDeploymentCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = deleteDeploymentCmd.MarkFlagRequired("namespace")
+	DeleteDeploymentCmd.Flags().StringP("deployment", "dt", " ", "Deployment")
+	_ = DeleteDeploymentCmd.MarkFlagRequired("deployment")
+	DeleteDeploymentCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = DeleteDeploymentCmd.MarkFlagRequired("namespace")
 }

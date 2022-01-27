@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/i_a_p"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// queryUserIAPOrdersCmd represents the queryUserIAPOrders command
-var queryUserIAPOrdersCmd = &cobra.Command{
-	Use:   "queryUserIAPOrders",
+// QueryUserIAPOrdersCmd represents the QueryUserIAPOrders command
+var QueryUserIAPOrdersCmd = &cobra.Command{
+	Use:   "QueryUserIAPOrders",
 	Short: "Query user IAP orders",
 	Long:  `Query user IAP orders`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -56,16 +55,15 @@ var queryUserIAPOrdersCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(queryUserIAPOrdersCmd)
-	queryUserIAPOrdersCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = queryUserIAPOrdersCmd.MarkFlagRequired("namespace")
-	queryUserIAPOrdersCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = queryUserIAPOrdersCmd.MarkFlagRequired("userId")
-	queryUserIAPOrdersCmd.Flags().StringP("endTime", "ee", " ", "End time")
-	queryUserIAPOrdersCmd.Flags().Int32P("limit", "lt", 20, "Limit")
-	queryUserIAPOrdersCmd.Flags().Int32P("offset", "ot", 0, "Offset")
-	queryUserIAPOrdersCmd.Flags().StringP("productId", "pd", " ", "Product id")
-	queryUserIAPOrdersCmd.Flags().StringP("startTime", "se", " ", "Start time")
-	queryUserIAPOrdersCmd.Flags().StringP("status", "ss", " ", "Status")
-	queryUserIAPOrdersCmd.Flags().StringP("type", "te", " ", "Type")
+	QueryUserIAPOrdersCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = QueryUserIAPOrdersCmd.MarkFlagRequired("namespace")
+	QueryUserIAPOrdersCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = QueryUserIAPOrdersCmd.MarkFlagRequired("userId")
+	QueryUserIAPOrdersCmd.Flags().StringP("endTime", "ee", " ", "End time")
+	QueryUserIAPOrdersCmd.Flags().Int32P("limit", "lt", 20, "Limit")
+	QueryUserIAPOrdersCmd.Flags().Int32P("offset", "ot", 0, "Offset")
+	QueryUserIAPOrdersCmd.Flags().StringP("productId", "pd", " ", "Product id")
+	QueryUserIAPOrdersCmd.Flags().StringP("startTime", "se", " ", "Start time")
+	QueryUserIAPOrdersCmd.Flags().StringP("status", "ss", " ", "Status")
+	QueryUserIAPOrdersCmd.Flags().StringP("type", "te", " ", "Type")
 }

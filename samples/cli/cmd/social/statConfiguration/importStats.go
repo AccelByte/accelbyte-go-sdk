@@ -8,16 +8,15 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/social"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient/stat_configuration"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 	"os"
 )
 
-// importStatsCmd represents the importStats command
-var importStatsCmd = &cobra.Command{
-	Use:   "importStats",
+// ImportStatsCmd represents the ImportStats command
+var ImportStatsCmd = &cobra.Command{
+	Use:   "ImportStats",
 	Short: "Import stats",
 	Long:  `Import stats`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,9 +49,8 @@ var importStatsCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(importStatsCmd)
-	importStatsCmd.Flags().StringP("file", "fe", " ", "File")
-	importStatsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = importStatsCmd.MarkFlagRequired("namespace")
-	importStatsCmd.Flags().BoolP("replaceExisting", "rg", false, "Replace existing")
+	ImportStatsCmd.Flags().StringP("file", "fe", " ", "File")
+	ImportStatsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = ImportStatsCmd.MarkFlagRequired("namespace")
+	ImportStatsCmd.Flags().BoolP("replaceExisting", "rg", false, "Replace existing")
 }

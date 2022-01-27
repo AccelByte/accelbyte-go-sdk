@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/leaderboard-sdk/pkg/leaderboardclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/leaderboard"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// deleteBulkLeaderboardConfigurationAdminV1Cmd represents the deleteBulkLeaderboardConfigurationAdminV1 command
-var deleteBulkLeaderboardConfigurationAdminV1Cmd = &cobra.Command{
-	Use:   "deleteBulkLeaderboardConfigurationAdminV1",
+// DeleteBulkLeaderboardConfigurationAdminV1Cmd represents the DeleteBulkLeaderboardConfigurationAdminV1 command
+var DeleteBulkLeaderboardConfigurationAdminV1Cmd = &cobra.Command{
+	Use:   "DeleteBulkLeaderboardConfigurationAdminV1",
 	Short: "Delete bulk leaderboard configuration admin V1",
 	Long:  `Delete bulk leaderboard configuration admin V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,9 +48,8 @@ var deleteBulkLeaderboardConfigurationAdminV1Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(deleteBulkLeaderboardConfigurationAdminV1Cmd)
-	deleteBulkLeaderboardConfigurationAdminV1Cmd.Flags().StringP("body", "by", " ", "Body")
-	_ = deleteBulkLeaderboardConfigurationAdminV1Cmd.MarkFlagRequired("body")
-	deleteBulkLeaderboardConfigurationAdminV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = deleteBulkLeaderboardConfigurationAdminV1Cmd.MarkFlagRequired("namespace")
+	DeleteBulkLeaderboardConfigurationAdminV1Cmd.Flags().StringP("body", "by", " ", "Body")
+	_ = DeleteBulkLeaderboardConfigurationAdminV1Cmd.MarkFlagRequired("body")
+	DeleteBulkLeaderboardConfigurationAdminV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = DeleteBulkLeaderboardConfigurationAdminV1Cmd.MarkFlagRequired("namespace")
 }

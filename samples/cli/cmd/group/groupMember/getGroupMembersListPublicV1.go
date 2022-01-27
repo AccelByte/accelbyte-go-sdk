@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/group-sdk/pkg/groupclient/group_member"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/group"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getGroupMembersListPublicV1Cmd represents the getGroupMembersListPublicV1 command
-var getGroupMembersListPublicV1Cmd = &cobra.Command{
-	Use:   "getGroupMembersListPublicV1",
+// GetGroupMembersListPublicV1Cmd represents the GetGroupMembersListPublicV1 command
+var GetGroupMembersListPublicV1Cmd = &cobra.Command{
+	Use:   "GetGroupMembersListPublicV1",
 	Short: "Get group members list public V1",
 	Long:  `Get group members list public V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,12 +47,11 @@ var getGroupMembersListPublicV1Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getGroupMembersListPublicV1Cmd)
-	getGroupMembersListPublicV1Cmd.Flags().StringP("groupId", "gd", " ", "Group id")
-	_ = getGroupMembersListPublicV1Cmd.MarkFlagRequired("groupId")
-	getGroupMembersListPublicV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getGroupMembersListPublicV1Cmd.MarkFlagRequired("namespace")
-	getGroupMembersListPublicV1Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
-	getGroupMembersListPublicV1Cmd.Flags().Int64P("offset", "ot", 0, "Offset")
-	getGroupMembersListPublicV1Cmd.Flags().StringP("order", "or", " ", "Order")
+	GetGroupMembersListPublicV1Cmd.Flags().StringP("groupId", "gd", " ", "Group id")
+	_ = GetGroupMembersListPublicV1Cmd.MarkFlagRequired("groupId")
+	GetGroupMembersListPublicV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetGroupMembersListPublicV1Cmd.MarkFlagRequired("namespace")
+	GetGroupMembersListPublicV1Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
+	GetGroupMembersListPublicV1Cmd.Flags().Int64P("offset", "ot", 0, "Offset")
+	GetGroupMembersListPublicV1Cmd.Flags().StringP("order", "or", " ", "Order")
 }

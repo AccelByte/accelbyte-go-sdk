@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclient/misc"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/basic"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// publicGetCountriesCmd represents the publicGetCountries command
-var publicGetCountriesCmd = &cobra.Command{
-	Use:   "publicGetCountries",
+// PublicGetCountriesCmd represents the PublicGetCountries command
+var PublicGetCountriesCmd = &cobra.Command{
+	Use:   "PublicGetCountries",
 	Short: "Public get countries",
 	Long:  `Public get countries`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,8 +41,7 @@ var publicGetCountriesCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(publicGetCountriesCmd)
-	publicGetCountriesCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = publicGetCountriesCmd.MarkFlagRequired("namespace")
-	publicGetCountriesCmd.Flags().StringP("lang", "lg", " ", "Lang")
+	PublicGetCountriesCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PublicGetCountriesCmd.MarkFlagRequired("namespace")
+	PublicGetCountriesCmd.Flags().StringP("lang", "lg", " ", "Lang")
 }

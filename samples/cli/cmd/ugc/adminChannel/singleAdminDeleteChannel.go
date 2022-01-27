@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/ugc"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/admin_channel"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// singleAdminDeleteChannelCmd represents the singleAdminDeleteChannel command
-var singleAdminDeleteChannelCmd = &cobra.Command{
-	Use:   "singleAdminDeleteChannel",
+// SingleAdminDeleteChannelCmd represents the SingleAdminDeleteChannel command
+var SingleAdminDeleteChannelCmd = &cobra.Command{
+	Use:   "SingleAdminDeleteChannel",
 	Short: "Single admin delete channel",
 	Long:  `Single admin delete channel`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,9 +40,8 @@ var singleAdminDeleteChannelCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(singleAdminDeleteChannelCmd)
-	singleAdminDeleteChannelCmd.Flags().StringP("channelId", "cd", " ", "Channel id")
-	_ = singleAdminDeleteChannelCmd.MarkFlagRequired("channelId")
-	singleAdminDeleteChannelCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = singleAdminDeleteChannelCmd.MarkFlagRequired("namespace")
+	SingleAdminDeleteChannelCmd.Flags().StringP("channelId", "cd", " ", "Channel id")
+	_ = SingleAdminDeleteChannelCmd.MarkFlagRequired("channelId")
+	SingleAdminDeleteChannelCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = SingleAdminDeleteChannelCmd.MarkFlagRequired("namespace")
 }

@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/reward"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// queryRewardsCmd represents the queryRewards command
-var queryRewardsCmd = &cobra.Command{
-	Use:   "queryRewards",
+// QueryRewardsCmd represents the QueryRewards command
+var QueryRewardsCmd = &cobra.Command{
+	Use:   "QueryRewards",
 	Short: "Query rewards",
 	Long:  `Query rewards`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,11 +47,10 @@ var queryRewardsCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(queryRewardsCmd)
-	queryRewardsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = queryRewardsCmd.MarkFlagRequired("namespace")
-	queryRewardsCmd.Flags().StringP("eventTopic", "ec", " ", "Event topic")
-	queryRewardsCmd.Flags().Int32P("limit", "lt", 20, "Limit")
-	queryRewardsCmd.Flags().Int32P("offset", "ot", 0, "Offset")
-	queryRewardsCmd.Flags().StringP("sortBy", "sy", " ", "Sort by")
+	QueryRewardsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = QueryRewardsCmd.MarkFlagRequired("namespace")
+	QueryRewardsCmd.Flags().StringP("eventTopic", "ec", " ", "Event topic")
+	QueryRewardsCmd.Flags().Int32P("limit", "lt", 20, "Limit")
+	QueryRewardsCmd.Flags().Int32P("offset", "ot", 0, "Offset")
+	QueryRewardsCmd.Flags().StringP("sortBy", "sy", " ", "Sort by")
 }

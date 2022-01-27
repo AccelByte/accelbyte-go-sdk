@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/campaign"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// downloadCmd represents the download command
-var downloadCmd = &cobra.Command{
-	Use:   "download",
+// DownloadCmd represents the Download command
+var DownloadCmd = &cobra.Command{
+	Use:   "Download",
 	Short: "Download",
 	Long:  `Download`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,10 +42,9 @@ var downloadCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(downloadCmd)
-	downloadCmd.Flags().StringP("campaignId", "cd", " ", "Campaign id")
-	_ = downloadCmd.MarkFlagRequired("campaignId")
-	downloadCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = downloadCmd.MarkFlagRequired("namespace")
-	downloadCmd.Flags().Int32P("batchNo", "bo", 0, "Batch no")
+	DownloadCmd.Flags().StringP("campaignId", "cd", " ", "Campaign id")
+	_ = DownloadCmd.MarkFlagRequired("campaignId")
+	DownloadCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = DownloadCmd.MarkFlagRequired("namespace")
+	DownloadCmd.Flags().Int32P("batchNo", "bo", 0, "Batch no")
 }

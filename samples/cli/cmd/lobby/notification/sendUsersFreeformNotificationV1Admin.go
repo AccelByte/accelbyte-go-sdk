@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/lobby"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// sendUsersFreeformNotificationV1AdminCmd represents the sendUsersFreeformNotificationV1Admin command
-var sendUsersFreeformNotificationV1AdminCmd = &cobra.Command{
-	Use:   "sendUsersFreeformNotificationV1Admin",
+// SendUsersFreeformNotificationV1AdminCmd represents the SendUsersFreeformNotificationV1Admin command
+var SendUsersFreeformNotificationV1AdminCmd = &cobra.Command{
+	Use:   "SendUsersFreeformNotificationV1Admin",
 	Short: "Send users freeform notification V1 admin",
 	Long:  `Send users freeform notification V1 admin`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,9 +47,8 @@ var sendUsersFreeformNotificationV1AdminCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(sendUsersFreeformNotificationV1AdminCmd)
-	sendUsersFreeformNotificationV1AdminCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = sendUsersFreeformNotificationV1AdminCmd.MarkFlagRequired("body")
-	sendUsersFreeformNotificationV1AdminCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = sendUsersFreeformNotificationV1AdminCmd.MarkFlagRequired("namespace")
+	SendUsersFreeformNotificationV1AdminCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = SendUsersFreeformNotificationV1AdminCmd.MarkFlagRequired("body")
+	SendUsersFreeformNotificationV1AdminCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = SendUsersFreeformNotificationV1AdminCmd.MarkFlagRequired("namespace")
 }

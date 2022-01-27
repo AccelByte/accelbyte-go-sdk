@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminAddRolePermissionsV3Cmd represents the adminAddRolePermissionsV3 command
-var adminAddRolePermissionsV3Cmd = &cobra.Command{
-	Use:   "adminAddRolePermissionsV3",
+// AdminAddRolePermissionsV3Cmd represents the AdminAddRolePermissionsV3 command
+var AdminAddRolePermissionsV3Cmd = &cobra.Command{
+	Use:   "AdminAddRolePermissionsV3",
 	Short: "Admin add role permissions V3",
 	Long:  `Admin add role permissions V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,9 +47,8 @@ var adminAddRolePermissionsV3Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminAddRolePermissionsV3Cmd)
-	adminAddRolePermissionsV3Cmd.Flags().StringP("body", "by", " ", "Body")
-	_ = adminAddRolePermissionsV3Cmd.MarkFlagRequired("body")
-	adminAddRolePermissionsV3Cmd.Flags().StringP("roleId", "rd", " ", "Role id")
-	_ = adminAddRolePermissionsV3Cmd.MarkFlagRequired("roleId")
+	AdminAddRolePermissionsV3Cmd.Flags().StringP("body", "by", " ", "Body")
+	_ = AdminAddRolePermissionsV3Cmd.MarkFlagRequired("body")
+	AdminAddRolePermissionsV3Cmd.Flags().StringP("roleId", "rd", " ", "Role id")
+	_ = AdminAddRolePermissionsV3Cmd.MarkFlagRequired("roleId")
 }

@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclient/file_upload"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/basic"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// publicGeneratedUploadUrlCmd represents the publicGeneratedUploadUrl command
-var publicGeneratedUploadUrlCmd = &cobra.Command{
-	Use:   "publicGeneratedUploadUrl",
+// PublicGeneratedUploadUrlCmd represents the PublicGeneratedUploadUrl command
+var PublicGeneratedUploadUrlCmd = &cobra.Command{
+	Use:   "PublicGeneratedUploadUrl",
 	Short: "Public generated upload url",
 	Long:  `Public generated upload url`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -44,11 +43,10 @@ var publicGeneratedUploadUrlCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(publicGeneratedUploadUrlCmd)
-	publicGeneratedUploadUrlCmd.Flags().StringP("folder", "fr", " ", "Folder")
-	_ = publicGeneratedUploadUrlCmd.MarkFlagRequired("folder")
-	publicGeneratedUploadUrlCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = publicGeneratedUploadUrlCmd.MarkFlagRequired("namespace")
-	publicGeneratedUploadUrlCmd.Flags().StringP("fileType", "fe", " ", "File type")
-	_ = publicGeneratedUploadUrlCmd.MarkFlagRequired("fileType")
+	PublicGeneratedUploadUrlCmd.Flags().StringP("folder", "fr", " ", "Folder")
+	_ = PublicGeneratedUploadUrlCmd.MarkFlagRequired("folder")
+	PublicGeneratedUploadUrlCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PublicGeneratedUploadUrlCmd.MarkFlagRequired("namespace")
+	PublicGeneratedUploadUrlCmd.Flags().StringP("fileType", "fe", " ", "File type")
+	_ = PublicGeneratedUploadUrlCmd.MarkFlagRequired("fileType")
 }

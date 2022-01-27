@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/payment_station"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// publicNormalizePaymentReturnUrlCmd represents the publicNormalizePaymentReturnUrl command
-var publicNormalizePaymentReturnUrlCmd = &cobra.Command{
-	Use:   "publicNormalizePaymentReturnUrl",
+// PublicNormalizePaymentReturnUrlCmd represents the PublicNormalizePaymentReturnUrl command
+var PublicNormalizePaymentReturnUrlCmd = &cobra.Command{
+	Use:   "PublicNormalizePaymentReturnUrl",
 	Short: "Public normalize payment return url",
 	Long:  `Public normalize payment return url`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -65,24 +64,23 @@ var publicNormalizePaymentReturnUrlCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(publicNormalizePaymentReturnUrlCmd)
-	publicNormalizePaymentReturnUrlCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = publicNormalizePaymentReturnUrlCmd.MarkFlagRequired("namespace")
-	publicNormalizePaymentReturnUrlCmd.Flags().StringP("PayerID", "PD", " ", "Payer ID")
-	publicNormalizePaymentReturnUrlCmd.Flags().StringP("foreinginvoice", "fe", " ", "Foreinginvoice")
-	publicNormalizePaymentReturnUrlCmd.Flags().StringP("invoice_id", "id", " ", "Invoice id")
-	publicNormalizePaymentReturnUrlCmd.Flags().StringP("payload", "pd", " ", "Payload")
-	publicNormalizePaymentReturnUrlCmd.Flags().StringP("resultCode", "re", " ", "Result code")
-	publicNormalizePaymentReturnUrlCmd.Flags().StringP("status", "ss", " ", "Status")
-	publicNormalizePaymentReturnUrlCmd.Flags().StringP("token", "tn", " ", "Token")
-	publicNormalizePaymentReturnUrlCmd.Flags().StringP("type", "te", " ", "Type")
-	publicNormalizePaymentReturnUrlCmd.Flags().StringP("user_id", "ud", " ", "User id")
-	publicNormalizePaymentReturnUrlCmd.Flags().StringP("orderNo", "oo", " ", "Order no")
-	_ = publicNormalizePaymentReturnUrlCmd.MarkFlagRequired("orderNo")
-	publicNormalizePaymentReturnUrlCmd.Flags().StringP("paymentOrderNo", "po", " ", "Payment order no")
-	_ = publicNormalizePaymentReturnUrlCmd.MarkFlagRequired("paymentOrderNo")
-	publicNormalizePaymentReturnUrlCmd.Flags().StringP("paymentProvider", "pr", " ", "Payment provider")
-	_ = publicNormalizePaymentReturnUrlCmd.MarkFlagRequired("paymentProvider")
-	publicNormalizePaymentReturnUrlCmd.Flags().StringP("returnUrl", "rl", " ", "Return url")
-	_ = publicNormalizePaymentReturnUrlCmd.MarkFlagRequired("returnUrl")
+	PublicNormalizePaymentReturnUrlCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PublicNormalizePaymentReturnUrlCmd.MarkFlagRequired("namespace")
+	PublicNormalizePaymentReturnUrlCmd.Flags().StringP("PayerID", "PD", " ", "Payer ID")
+	PublicNormalizePaymentReturnUrlCmd.Flags().StringP("foreinginvoice", "fe", " ", "Foreinginvoice")
+	PublicNormalizePaymentReturnUrlCmd.Flags().StringP("invoice_id", "id", " ", "Invoice id")
+	PublicNormalizePaymentReturnUrlCmd.Flags().StringP("payload", "pd", " ", "Payload")
+	PublicNormalizePaymentReturnUrlCmd.Flags().StringP("resultCode", "re", " ", "Result code")
+	PublicNormalizePaymentReturnUrlCmd.Flags().StringP("status", "ss", " ", "Status")
+	PublicNormalizePaymentReturnUrlCmd.Flags().StringP("token", "tn", " ", "Token")
+	PublicNormalizePaymentReturnUrlCmd.Flags().StringP("type", "te", " ", "Type")
+	PublicNormalizePaymentReturnUrlCmd.Flags().StringP("user_id", "ud", " ", "User id")
+	PublicNormalizePaymentReturnUrlCmd.Flags().StringP("orderNo", "oo", " ", "Order no")
+	_ = PublicNormalizePaymentReturnUrlCmd.MarkFlagRequired("orderNo")
+	PublicNormalizePaymentReturnUrlCmd.Flags().StringP("paymentOrderNo", "po", " ", "Payment order no")
+	_ = PublicNormalizePaymentReturnUrlCmd.MarkFlagRequired("paymentOrderNo")
+	PublicNormalizePaymentReturnUrlCmd.Flags().StringP("paymentProvider", "pr", " ", "Payment provider")
+	_ = PublicNormalizePaymentReturnUrlCmd.MarkFlagRequired("paymentProvider")
+	PublicNormalizePaymentReturnUrlCmd.Flags().StringP("returnUrl", "rl", " ", "Return url")
+	_ = PublicNormalizePaymentReturnUrlCmd.MarkFlagRequired("returnUrl")
 }

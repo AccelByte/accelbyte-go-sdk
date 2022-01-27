@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/ugc"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/public_content"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// publicGetUserContentCmd represents the publicGetUserContent command
-var publicGetUserContentCmd = &cobra.Command{
-	Use:   "publicGetUserContent",
+// PublicGetUserContentCmd represents the PublicGetUserContent command
+var PublicGetUserContentCmd = &cobra.Command{
+	Use:   "PublicGetUserContent",
 	Short: "Public get user content",
 	Long:  `Public get user content`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -46,11 +45,10 @@ var publicGetUserContentCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(publicGetUserContentCmd)
-	publicGetUserContentCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = publicGetUserContentCmd.MarkFlagRequired("namespace")
-	publicGetUserContentCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = publicGetUserContentCmd.MarkFlagRequired("userId")
-	publicGetUserContentCmd.Flags().StringP("limit", "lt", "20", "Limit")
-	publicGetUserContentCmd.Flags().StringP("offset", "ot", "0", "Offset")
+	PublicGetUserContentCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PublicGetUserContentCmd.MarkFlagRequired("namespace")
+	PublicGetUserContentCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = PublicGetUserContentCmd.MarkFlagRequired("userId")
+	PublicGetUserContentCmd.Flags().StringP("limit", "lt", "20", "Limit")
+	PublicGetUserContentCmd.Flags().StringP("offset", "ot", "0", "Offset")
 }

@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/item"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// disableItemCmd represents the disableItem command
-var disableItemCmd = &cobra.Command{
-	Use:   "disableItem",
+// DisableItemCmd represents the DisableItem command
+var DisableItemCmd = &cobra.Command{
+	Use:   "DisableItem",
 	Short: "Disable item",
 	Long:  `Disable item`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -44,11 +43,10 @@ var disableItemCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(disableItemCmd)
-	disableItemCmd.Flags().StringP("itemId", "id", " ", "Item id")
-	_ = disableItemCmd.MarkFlagRequired("itemId")
-	disableItemCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = disableItemCmd.MarkFlagRequired("namespace")
-	disableItemCmd.Flags().StringP("storeId", "sd", " ", "Store id")
-	_ = disableItemCmd.MarkFlagRequired("storeId")
+	DisableItemCmd.Flags().StringP("itemId", "id", " ", "Item id")
+	_ = DisableItemCmd.MarkFlagRequired("itemId")
+	DisableItemCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = DisableItemCmd.MarkFlagRequired("namespace")
+	DisableItemCmd.Flags().StringP("storeId", "sd", " ", "Store id")
+	_ = DisableItemCmd.MarkFlagRequired("storeId")
 }

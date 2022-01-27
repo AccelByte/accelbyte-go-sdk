@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/matchmaking-sdk/pkg/matchmakingclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/matchmaking"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// updatePlayTimeWeightCmd represents the updatePlayTimeWeight command
-var updatePlayTimeWeightCmd = &cobra.Command{
-	Use:   "updatePlayTimeWeight",
+// UpdatePlayTimeWeightCmd represents the UpdatePlayTimeWeight command
+var UpdatePlayTimeWeightCmd = &cobra.Command{
+	Use:   "UpdatePlayTimeWeight",
 	Short: "Update play time weight",
 	Long:  `Update play time weight`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,9 +48,8 @@ var updatePlayTimeWeightCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(updatePlayTimeWeightCmd)
-	updatePlayTimeWeightCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = updatePlayTimeWeightCmd.MarkFlagRequired("body")
-	updatePlayTimeWeightCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = updatePlayTimeWeightCmd.MarkFlagRequired("namespace")
+	UpdatePlayTimeWeightCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = UpdatePlayTimeWeightCmd.MarkFlagRequired("body")
+	UpdatePlayTimeWeightCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = UpdatePlayTimeWeightCmd.MarkFlagRequired("namespace")
 }

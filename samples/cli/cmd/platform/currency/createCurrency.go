@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// createCurrencyCmd represents the createCurrency command
-var createCurrencyCmd = &cobra.Command{
-	Use:   "createCurrency",
+// CreateCurrencyCmd represents the CreateCurrency command
+var CreateCurrencyCmd = &cobra.Command{
+	Use:   "CreateCurrency",
 	Short: "Create currency",
 	Long:  `Create currency`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,8 +48,7 @@ var createCurrencyCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(createCurrencyCmd)
-	createCurrencyCmd.Flags().StringP("body", "by", " ", "Body")
-	createCurrencyCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = createCurrencyCmd.MarkFlagRequired("namespace")
+	CreateCurrencyCmd.Flags().StringP("body", "by", " ", "Body")
+	CreateCurrencyCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = CreateCurrencyCmd.MarkFlagRequired("namespace")
 }

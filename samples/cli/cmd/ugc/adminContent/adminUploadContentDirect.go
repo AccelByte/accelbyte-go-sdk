@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/ugc"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/admin_content"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclientmodels"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminUploadContentDirectCmd represents the adminUploadContentDirect command
-var adminUploadContentDirectCmd = &cobra.Command{
-	Use:   "adminUploadContentDirect",
+// AdminUploadContentDirectCmd represents the AdminUploadContentDirect command
+var AdminUploadContentDirectCmd = &cobra.Command{
+	Use:   "AdminUploadContentDirect",
 	Short: "Admin upload content direct",
 	Long:  `Admin upload content direct`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -51,11 +50,10 @@ var adminUploadContentDirectCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminUploadContentDirectCmd)
-	adminUploadContentDirectCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = adminUploadContentDirectCmd.MarkFlagRequired("body")
-	adminUploadContentDirectCmd.Flags().StringP("channelId", "cd", " ", "Channel id")
-	_ = adminUploadContentDirectCmd.MarkFlagRequired("channelId")
-	adminUploadContentDirectCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = adminUploadContentDirectCmd.MarkFlagRequired("namespace")
+	AdminUploadContentDirectCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = AdminUploadContentDirectCmd.MarkFlagRequired("body")
+	AdminUploadContentDirectCmd.Flags().StringP("channelId", "cd", " ", "Channel id")
+	_ = AdminUploadContentDirectCmd.MarkFlagRequired("channelId")
+	AdminUploadContentDirectCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AdminUploadContentDirectCmd.MarkFlagRequired("namespace")
 }

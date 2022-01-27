@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/dsmc"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// saveConfigCmd represents the saveConfig command
-var saveConfigCmd = &cobra.Command{
-	Use:   "saveConfig",
+// SaveConfigCmd represents the SaveConfig command
+var SaveConfigCmd = &cobra.Command{
+	Use:   "SaveConfig",
 	Short: "Save config",
 	Long:  `Save config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -46,7 +45,6 @@ var saveConfigCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(saveConfigCmd)
-	saveConfigCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = saveConfigCmd.MarkFlagRequired("body")
+	SaveConfigCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = SaveConfigCmd.MarkFlagRequired("body")
 }

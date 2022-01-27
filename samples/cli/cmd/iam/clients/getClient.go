@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/clients"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getClientCmd represents the getClient command
-var getClientCmd = &cobra.Command{
-	Use:   "getClient",
+// GetClientCmd represents the GetClient command
+var GetClientCmd = &cobra.Command{
+	Use:   "GetClient",
 	Short: "Get client",
 	Long:  `Get client`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,7 +39,6 @@ var getClientCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getClientCmd)
-	getClientCmd.Flags().StringP("clientId", "cd", " ", "Client id")
-	_ = getClientCmd.MarkFlagRequired("clientId")
+	GetClientCmd.Flags().StringP("clientId", "cd", " ", "Client id")
+	_ = GetClientCmd.MarkFlagRequired("clientId")
 }

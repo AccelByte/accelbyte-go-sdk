@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/admin"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/dsmc"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// countSessionCmd represents the countSession command
-var countSessionCmd = &cobra.Command{
-	Use:   "countSession",
+// CountSessionCmd represents the CountSession command
+var CountSessionCmd = &cobra.Command{
+	Use:   "CountSession",
 	Short: "Count session",
 	Long:  `Count session`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,8 +41,7 @@ var countSessionCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(countSessionCmd)
-	countSessionCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = countSessionCmd.MarkFlagRequired("namespace")
-	countSessionCmd.Flags().StringP("region", "rn", " ", "Region")
+	CountSessionCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = CountSessionCmd.MarkFlagRequired("namespace")
+	CountSessionCmd.Flags().StringP("region", "rn", " ", "Region")
 }

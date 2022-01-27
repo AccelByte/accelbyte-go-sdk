@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/entitlement"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// publicGetUserEntitlementBySkuCmd represents the publicGetUserEntitlementBySku command
-var publicGetUserEntitlementBySkuCmd = &cobra.Command{
-	Use:   "publicGetUserEntitlementBySku",
+// PublicGetUserEntitlementBySkuCmd represents the PublicGetUserEntitlementBySku command
+var PublicGetUserEntitlementBySkuCmd = &cobra.Command{
+	Use:   "PublicGetUserEntitlementBySku",
 	Short: "Public get user entitlement by sku",
 	Long:  `Public get user entitlement by sku`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -46,12 +45,11 @@ var publicGetUserEntitlementBySkuCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(publicGetUserEntitlementBySkuCmd)
-	publicGetUserEntitlementBySkuCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = publicGetUserEntitlementBySkuCmd.MarkFlagRequired("namespace")
-	publicGetUserEntitlementBySkuCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = publicGetUserEntitlementBySkuCmd.MarkFlagRequired("userId")
-	publicGetUserEntitlementBySkuCmd.Flags().StringP("entitlementClazz", "ez", " ", "Entitlement clazz")
-	publicGetUserEntitlementBySkuCmd.Flags().StringP("sku", "su", " ", "Sku")
-	_ = publicGetUserEntitlementBySkuCmd.MarkFlagRequired("sku")
+	PublicGetUserEntitlementBySkuCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PublicGetUserEntitlementBySkuCmd.MarkFlagRequired("namespace")
+	PublicGetUserEntitlementBySkuCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = PublicGetUserEntitlementBySkuCmd.MarkFlagRequired("userId")
+	PublicGetUserEntitlementBySkuCmd.Flags().StringP("entitlementClazz", "ez", " ", "Entitlement clazz")
+	PublicGetUserEntitlementBySkuCmd.Flags().StringP("sku", "su", " ", "Sku")
+	_ = PublicGetUserEntitlementBySkuCmd.MarkFlagRequired("sku")
 }

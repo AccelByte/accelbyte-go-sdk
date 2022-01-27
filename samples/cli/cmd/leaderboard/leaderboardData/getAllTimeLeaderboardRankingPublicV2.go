@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/leaderboard-sdk/pkg/leaderboardclient/leaderboard_data"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/leaderboard"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getAllTimeLeaderboardRankingPublicV2Cmd represents the getAllTimeLeaderboardRankingPublicV2 command
-var getAllTimeLeaderboardRankingPublicV2Cmd = &cobra.Command{
-	Use:   "getAllTimeLeaderboardRankingPublicV2",
+// GetAllTimeLeaderboardRankingPublicV2Cmd represents the GetAllTimeLeaderboardRankingPublicV2 command
+var GetAllTimeLeaderboardRankingPublicV2Cmd = &cobra.Command{
+	Use:   "GetAllTimeLeaderboardRankingPublicV2",
 	Short: "Get all time leaderboard ranking public V2",
 	Long:  `Get all time leaderboard ranking public V2`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -46,11 +45,10 @@ var getAllTimeLeaderboardRankingPublicV2Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getAllTimeLeaderboardRankingPublicV2Cmd)
-	getAllTimeLeaderboardRankingPublicV2Cmd.Flags().StringP("leaderboardCode", "le", " ", "Leaderboard code")
-	_ = getAllTimeLeaderboardRankingPublicV2Cmd.MarkFlagRequired("leaderboardCode")
-	getAllTimeLeaderboardRankingPublicV2Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getAllTimeLeaderboardRankingPublicV2Cmd.MarkFlagRequired("namespace")
-	getAllTimeLeaderboardRankingPublicV2Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
-	getAllTimeLeaderboardRankingPublicV2Cmd.Flags().Int64P("offset", "ot", 0, "Offset")
+	GetAllTimeLeaderboardRankingPublicV2Cmd.Flags().StringP("leaderboardCode", "le", " ", "Leaderboard code")
+	_ = GetAllTimeLeaderboardRankingPublicV2Cmd.MarkFlagRequired("leaderboardCode")
+	GetAllTimeLeaderboardRankingPublicV2Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetAllTimeLeaderboardRankingPublicV2Cmd.MarkFlagRequired("namespace")
+	GetAllTimeLeaderboardRankingPublicV2Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
+	GetAllTimeLeaderboardRankingPublicV2Cmd.Flags().Int64P("offset", "ot", 0, "Offset")
 }

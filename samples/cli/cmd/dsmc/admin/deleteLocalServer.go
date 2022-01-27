@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/admin"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/dsmc"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// deleteLocalServerCmd represents the deleteLocalServer command
-var deleteLocalServerCmd = &cobra.Command{
-	Use:   "deleteLocalServer",
+// DeleteLocalServerCmd represents the DeleteLocalServer command
+var DeleteLocalServerCmd = &cobra.Command{
+	Use:   "DeleteLocalServer",
 	Short: "Delete local server",
 	Long:  `Delete local server`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,9 +40,8 @@ var deleteLocalServerCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(deleteLocalServerCmd)
-	deleteLocalServerCmd.Flags().StringP("name", "ne", " ", "Name")
-	_ = deleteLocalServerCmd.MarkFlagRequired("name")
-	deleteLocalServerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = deleteLocalServerCmd.MarkFlagRequired("namespace")
+	DeleteLocalServerCmd.Flags().StringP("name", "ne", " ", "Name")
+	_ = DeleteLocalServerCmd.MarkFlagRequired("name")
+	DeleteLocalServerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = DeleteLocalServerCmd.MarkFlagRequired("namespace")
 }

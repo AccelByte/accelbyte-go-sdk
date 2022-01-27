@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// disableUserBanCmd represents the disableUserBan command
-var disableUserBanCmd = &cobra.Command{
-	Use:   "disableUserBan",
+// DisableUserBanCmd represents the DisableUserBan command
+var DisableUserBanCmd = &cobra.Command{
+	Use:   "DisableUserBan",
 	Short: "Disable user ban",
 	Long:  `Disable user ban`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -44,11 +43,10 @@ var disableUserBanCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(disableUserBanCmd)
-	disableUserBanCmd.Flags().StringP("banId", "bd", " ", "Ban id")
-	_ = disableUserBanCmd.MarkFlagRequired("banId")
-	disableUserBanCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = disableUserBanCmd.MarkFlagRequired("namespace")
-	disableUserBanCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = disableUserBanCmd.MarkFlagRequired("userId")
+	DisableUserBanCmd.Flags().StringP("banId", "bd", " ", "Ban id")
+	_ = DisableUserBanCmd.MarkFlagRequired("banId")
+	DisableUserBanCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = DisableUserBanCmd.MarkFlagRequired("namespace")
+	DisableUserBanCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = DisableUserBanCmd.MarkFlagRequired("userId")
 }

@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/sessionbrowser"
 	"github.com/AccelByte/accelbyte-go-sdk/sessionbrowser-sdk/pkg/sessionbrowserclient/session"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getActiveMatchmakingGameSessionsCmd represents the getActiveMatchmakingGameSessions command
-var getActiveMatchmakingGameSessionsCmd = &cobra.Command{
-	Use:   "getActiveMatchmakingGameSessions",
+// GetActiveMatchmakingGameSessionsCmd represents the GetActiveMatchmakingGameSessions command
+var GetActiveMatchmakingGameSessionsCmd = &cobra.Command{
+	Use:   "GetActiveMatchmakingGameSessions",
 	Short: "Get active matchmaking game sessions",
 	Long:  `Get active matchmaking game sessions`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -46,10 +45,9 @@ var getActiveMatchmakingGameSessionsCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getActiveMatchmakingGameSessionsCmd)
-	getActiveMatchmakingGameSessionsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getActiveMatchmakingGameSessionsCmd.MarkFlagRequired("namespace")
-	getActiveMatchmakingGameSessionsCmd.Flags().StringP("match_id", "md", " ", "Match id")
-	getActiveMatchmakingGameSessionsCmd.Flags().StringP("server_region", "sn", " ", "Server region")
-	getActiveMatchmakingGameSessionsCmd.Flags().StringP("session_id", "sd", " ", "Session id")
+	GetActiveMatchmakingGameSessionsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetActiveMatchmakingGameSessionsCmd.MarkFlagRequired("namespace")
+	GetActiveMatchmakingGameSessionsCmd.Flags().StringP("match_id", "md", " ", "Match id")
+	GetActiveMatchmakingGameSessionsCmd.Flags().StringP("server_region", "sn", " ", "Server region")
+	GetActiveMatchmakingGameSessionsCmd.Flags().StringP("session_id", "sd", " ", "Session id")
 }

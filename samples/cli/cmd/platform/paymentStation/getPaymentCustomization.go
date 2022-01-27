@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/payment_station"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getPaymentCustomizationCmd represents the getPaymentCustomization command
-var getPaymentCustomizationCmd = &cobra.Command{
-	Use:   "getPaymentCustomization",
+// GetPaymentCustomizationCmd represents the GetPaymentCustomization command
+var GetPaymentCustomizationCmd = &cobra.Command{
+	Use:   "GetPaymentCustomization",
 	Short: "Get payment customization",
 	Long:  `Get payment customization`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -46,12 +45,11 @@ var getPaymentCustomizationCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getPaymentCustomizationCmd)
-	getPaymentCustomizationCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getPaymentCustomizationCmd.MarkFlagRequired("namespace")
-	getPaymentCustomizationCmd.Flags().BoolP("sandbox", "sx", false, "Sandbox")
-	getPaymentCustomizationCmd.Flags().StringP("paymentProvider", "pr", " ", "Payment provider")
-	_ = getPaymentCustomizationCmd.MarkFlagRequired("paymentProvider")
-	getPaymentCustomizationCmd.Flags().StringP("region", "rn", " ", "Region")
-	_ = getPaymentCustomizationCmd.MarkFlagRequired("region")
+	GetPaymentCustomizationCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetPaymentCustomizationCmd.MarkFlagRequired("namespace")
+	GetPaymentCustomizationCmd.Flags().BoolP("sandbox", "sx", false, "Sandbox")
+	GetPaymentCustomizationCmd.Flags().StringP("paymentProvider", "pr", " ", "Payment provider")
+	_ = GetPaymentCustomizationCmd.MarkFlagRequired("paymentProvider")
+	GetPaymentCustomizationCmd.Flags().StringP("region", "rn", " ", "Region")
+	_ = GetPaymentCustomizationCmd.MarkFlagRequired("region")
 }

@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getUserByLoginIDCmd represents the getUserByLoginID command
-var getUserByLoginIDCmd = &cobra.Command{
-	Use:   "getUserByLoginID",
+// GetUserByLoginIDCmd represents the GetUserByLoginID command
+var GetUserByLoginIDCmd = &cobra.Command{
+	Use:   "GetUserByLoginID",
 	Short: "Get user by login ID",
 	Long:  `Get user by login ID`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,8 +41,7 @@ var getUserByLoginIDCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getUserByLoginIDCmd)
-	getUserByLoginIDCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getUserByLoginIDCmd.MarkFlagRequired("namespace")
-	getUserByLoginIDCmd.Flags().StringP("loginId", "ld", " ", "Login id")
+	GetUserByLoginIDCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetUserByLoginIDCmd.MarkFlagRequired("namespace")
+	GetUserByLoginIDCmd.Flags().StringP("loginId", "ld", " ", "Login id")
 }

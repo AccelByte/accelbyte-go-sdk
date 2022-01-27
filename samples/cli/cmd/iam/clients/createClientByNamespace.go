@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// createClientByNamespaceCmd represents the createClientByNamespace command
-var createClientByNamespaceCmd = &cobra.Command{
-	Use:   "createClientByNamespace",
+// CreateClientByNamespaceCmd represents the CreateClientByNamespace command
+var CreateClientByNamespaceCmd = &cobra.Command{
+	Use:   "CreateClientByNamespace",
 	Short: "Create client by namespace",
 	Long:  `Create client by namespace`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,9 +48,8 @@ var createClientByNamespaceCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(createClientByNamespaceCmd)
-	createClientByNamespaceCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = createClientByNamespaceCmd.MarkFlagRequired("body")
-	createClientByNamespaceCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = createClientByNamespaceCmd.MarkFlagRequired("namespace")
+	CreateClientByNamespaceCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = CreateClientByNamespaceCmd.MarkFlagRequired("body")
+	CreateClientByNamespaceCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = CreateClientByNamespaceCmd.MarkFlagRequired("namespace")
 }

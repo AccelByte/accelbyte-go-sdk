@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// fulfillRewardsCmd represents the fulfillRewards command
-var fulfillRewardsCmd = &cobra.Command{
-	Use:   "fulfillRewards",
+// FulfillRewardsCmd represents the FulfillRewards command
+var FulfillRewardsCmd = &cobra.Command{
+	Use:   "FulfillRewards",
 	Short: "Fulfill rewards",
 	Long:  `Fulfill rewards`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,10 +49,9 @@ var fulfillRewardsCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(fulfillRewardsCmd)
-	fulfillRewardsCmd.Flags().StringP("body", "by", " ", "Body")
-	fulfillRewardsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = fulfillRewardsCmd.MarkFlagRequired("namespace")
-	fulfillRewardsCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = fulfillRewardsCmd.MarkFlagRequired("userId")
+	FulfillRewardsCmd.Flags().StringP("body", "by", " ", "Body")
+	FulfillRewardsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = FulfillRewardsCmd.MarkFlagRequired("namespace")
+	FulfillRewardsCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = FulfillRewardsCmd.MarkFlagRequired("userId")
 }

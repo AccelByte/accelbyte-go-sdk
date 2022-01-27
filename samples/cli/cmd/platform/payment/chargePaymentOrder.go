@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// chargePaymentOrderCmd represents the chargePaymentOrder command
-var chargePaymentOrderCmd = &cobra.Command{
-	Use:   "chargePaymentOrder",
+// ChargePaymentOrderCmd represents the ChargePaymentOrder command
+var ChargePaymentOrderCmd = &cobra.Command{
+	Use:   "ChargePaymentOrder",
 	Short: "Charge payment order",
 	Long:  `Charge payment order`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -51,10 +50,9 @@ var chargePaymentOrderCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(chargePaymentOrderCmd)
-	chargePaymentOrderCmd.Flags().StringP("body", "by", " ", "Body")
-	chargePaymentOrderCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = chargePaymentOrderCmd.MarkFlagRequired("namespace")
-	chargePaymentOrderCmd.Flags().StringP("paymentOrderNo", "po", " ", "Payment order no")
-	_ = chargePaymentOrderCmd.MarkFlagRequired("paymentOrderNo")
+	ChargePaymentOrderCmd.Flags().StringP("body", "by", " ", "Body")
+	ChargePaymentOrderCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = ChargePaymentOrderCmd.MarkFlagRequired("namespace")
+	ChargePaymentOrderCmd.Flags().StringP("paymentOrderNo", "po", " ", "Payment order no")
+	_ = ChargePaymentOrderCmd.MarkFlagRequired("paymentOrderNo")
 }

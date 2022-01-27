@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/payment"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// listExtOrderNoByExtTxIdCmd represents the listExtOrderNoByExtTxId command
-var listExtOrderNoByExtTxIdCmd = &cobra.Command{
-	Use:   "listExtOrderNoByExtTxId",
+// ListExtOrderNoByExtTxIdCmd represents the ListExtOrderNoByExtTxId command
+var ListExtOrderNoByExtTxIdCmd = &cobra.Command{
+	Use:   "ListExtOrderNoByExtTxId",
 	Short: "List ext order no by ext tx id",
 	Long:  `List ext order no by ext tx id`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,9 +41,8 @@ var listExtOrderNoByExtTxIdCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(listExtOrderNoByExtTxIdCmd)
-	listExtOrderNoByExtTxIdCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = listExtOrderNoByExtTxIdCmd.MarkFlagRequired("namespace")
-	listExtOrderNoByExtTxIdCmd.Flags().StringP("extTxId", "ed", " ", "Ext tx id")
-	_ = listExtOrderNoByExtTxIdCmd.MarkFlagRequired("extTxId")
+	ListExtOrderNoByExtTxIdCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = ListExtOrderNoByExtTxIdCmd.MarkFlagRequired("namespace")
+	ListExtOrderNoByExtTxIdCmd.Flags().StringP("extTxId", "ed", " ", "Ext tx id")
+	_ = ListExtOrderNoByExtTxIdCmd.MarkFlagRequired("extTxId")
 }

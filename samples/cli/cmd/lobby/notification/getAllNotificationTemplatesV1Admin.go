@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/notification"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/lobby"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getAllNotificationTemplatesV1AdminCmd represents the getAllNotificationTemplatesV1Admin command
-var getAllNotificationTemplatesV1AdminCmd = &cobra.Command{
-	Use:   "getAllNotificationTemplatesV1Admin",
+// GetAllNotificationTemplatesV1AdminCmd represents the GetAllNotificationTemplatesV1Admin command
+var GetAllNotificationTemplatesV1AdminCmd = &cobra.Command{
+	Use:   "GetAllNotificationTemplatesV1Admin",
 	Short: "Get all notification templates V1 admin",
 	Long:  `Get all notification templates V1 admin`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,7 +39,6 @@ var getAllNotificationTemplatesV1AdminCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getAllNotificationTemplatesV1AdminCmd)
-	getAllNotificationTemplatesV1AdminCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getAllNotificationTemplatesV1AdminCmd.MarkFlagRequired("namespace")
+	GetAllNotificationTemplatesV1AdminCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetAllNotificationTemplatesV1AdminCmd.MarkFlagRequired("namespace")
 }

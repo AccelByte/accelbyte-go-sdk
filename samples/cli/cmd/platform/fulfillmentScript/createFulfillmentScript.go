@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// createFulfillmentScriptCmd represents the createFulfillmentScript command
-var createFulfillmentScriptCmd = &cobra.Command{
-	Use:   "createFulfillmentScript",
+// CreateFulfillmentScriptCmd represents the CreateFulfillmentScript command
+var CreateFulfillmentScriptCmd = &cobra.Command{
+	Use:   "CreateFulfillmentScript",
 	Short: "Create fulfillment script",
 	Long:  `Create fulfillment script`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,8 +48,7 @@ var createFulfillmentScriptCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(createFulfillmentScriptCmd)
-	createFulfillmentScriptCmd.Flags().StringP("body", "by", " ", "Body")
-	createFulfillmentScriptCmd.Flags().StringP("id", "id", " ", "Id")
-	_ = createFulfillmentScriptCmd.MarkFlagRequired("id")
+	CreateFulfillmentScriptCmd.Flags().StringP("body", "by", " ", "Body")
+	CreateFulfillmentScriptCmd.Flags().StringP("id", "id", " ", "Id")
+	_ = CreateFulfillmentScriptCmd.MarkFlagRequired("id")
 }

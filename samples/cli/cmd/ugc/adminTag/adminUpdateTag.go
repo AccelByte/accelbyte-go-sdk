@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/ugc"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/admin_tag"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclientmodels"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminUpdateTagCmd represents the adminUpdateTag command
-var adminUpdateTagCmd = &cobra.Command{
-	Use:   "adminUpdateTag",
+// AdminUpdateTagCmd represents the AdminUpdateTag command
+var AdminUpdateTagCmd = &cobra.Command{
+	Use:   "AdminUpdateTag",
 	Short: "Admin update tag",
 	Long:  `Admin update tag`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -51,11 +50,10 @@ var adminUpdateTagCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminUpdateTagCmd)
-	adminUpdateTagCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = adminUpdateTagCmd.MarkFlagRequired("body")
-	adminUpdateTagCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = adminUpdateTagCmd.MarkFlagRequired("namespace")
-	adminUpdateTagCmd.Flags().StringP("tagId", "td", " ", "Tag id")
-	_ = adminUpdateTagCmd.MarkFlagRequired("tagId")
+	AdminUpdateTagCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = AdminUpdateTagCmd.MarkFlagRequired("body")
+	AdminUpdateTagCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AdminUpdateTagCmd.MarkFlagRequired("namespace")
+	AdminUpdateTagCmd.Flags().StringP("tagId", "td", " ", "Tag id")
+	_ = AdminUpdateTagCmd.MarkFlagRequired("tagId")
 }

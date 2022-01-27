@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/store"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// publicListStoresCmd represents the publicListStores command
-var publicListStoresCmd = &cobra.Command{
-	Use:   "publicListStores",
+// PublicListStoresCmd represents the PublicListStores command
+var PublicListStoresCmd = &cobra.Command{
+	Use:   "PublicListStores",
 	Short: "Public list stores",
 	Long:  `Public list stores`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,7 +39,6 @@ var publicListStoresCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(publicListStoresCmd)
-	publicListStoresCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = publicListStoresCmd.MarkFlagRequired("namespace")
+	PublicListStoresCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PublicListStoresCmd.MarkFlagRequired("namespace")
 }

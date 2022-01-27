@@ -8,15 +8,14 @@ import (
 	namespace_ "github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclient/namespace"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/basic"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// publicGetNamespacePublisherCmd represents the publicGetNamespacePublisher command
-var publicGetNamespacePublisherCmd = &cobra.Command{
-	Use:   "publicGetNamespacePublisher",
+// PublicGetNamespacePublisherCmd represents the PublicGetNamespacePublisher command
+var PublicGetNamespacePublisherCmd = &cobra.Command{
+	Use:   "PublicGetNamespacePublisher",
 	Short: "Public get namespace publisher",
 	Long:  `Public get namespace publisher`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,7 +39,6 @@ var publicGetNamespacePublisherCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(publicGetNamespacePublisherCmd)
-	publicGetNamespacePublisherCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = publicGetNamespacePublisherCmd.MarkFlagRequired("namespace")
+	PublicGetNamespacePublisherCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PublicGetNamespacePublisherCmd.MarkFlagRequired("namespace")
 }

@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/ugc"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/admin_channel"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclientmodels"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminCreateChannelCmd represents the adminCreateChannel command
-var adminCreateChannelCmd = &cobra.Command{
-	Use:   "adminCreateChannel",
+// AdminCreateChannelCmd represents the AdminCreateChannel command
+var AdminCreateChannelCmd = &cobra.Command{
+	Use:   "AdminCreateChannel",
 	Short: "Admin create channel",
 	Long:  `Admin create channel`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,9 +48,8 @@ var adminCreateChannelCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminCreateChannelCmd)
-	adminCreateChannelCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = adminCreateChannelCmd.MarkFlagRequired("body")
-	adminCreateChannelCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = adminCreateChannelCmd.MarkFlagRequired("namespace")
+	AdminCreateChannelCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = AdminCreateChannelCmd.MarkFlagRequired("body")
+	AdminCreateChannelCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AdminCreateChannelCmd.MarkFlagRequired("namespace")
 }

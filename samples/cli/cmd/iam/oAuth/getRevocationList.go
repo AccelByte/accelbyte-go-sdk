@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getRevocationListCmd represents the getRevocationList command
-var getRevocationListCmd = &cobra.Command{
-	Use:   "getRevocationList",
+// GetRevocationListCmd represents the GetRevocationList command
+var GetRevocationListCmd = &cobra.Command{
+	Use:   "GetRevocationList",
 	Short: "Get revocation list",
 	Long:  `Get revocation list`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -34,8 +33,4 @@ var getRevocationListCmd = &cobra.Command{
 		}
 		return nil
 	},
-}
-
-func init() {
-	cmd.RootCmd.AddCommand(getRevocationListCmd)
 }

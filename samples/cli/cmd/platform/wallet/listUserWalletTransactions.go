@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/wallet"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// listUserWalletTransactionsCmd represents the listUserWalletTransactions command
-var listUserWalletTransactionsCmd = &cobra.Command{
-	Use:   "listUserWalletTransactions",
+// ListUserWalletTransactionsCmd represents the ListUserWalletTransactions command
+var ListUserWalletTransactionsCmd = &cobra.Command{
+	Use:   "ListUserWalletTransactions",
 	Short: "List user wallet transactions",
 	Long:  `List user wallet transactions`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,13 +47,12 @@ var listUserWalletTransactionsCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(listUserWalletTransactionsCmd)
-	listUserWalletTransactionsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = listUserWalletTransactionsCmd.MarkFlagRequired("namespace")
-	listUserWalletTransactionsCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = listUserWalletTransactionsCmd.MarkFlagRequired("userId")
-	listUserWalletTransactionsCmd.Flags().StringP("walletId", "wd", " ", "Wallet id")
-	_ = listUserWalletTransactionsCmd.MarkFlagRequired("walletId")
-	listUserWalletTransactionsCmd.Flags().Int32P("limit", "lt", 20, "Limit")
-	listUserWalletTransactionsCmd.Flags().Int32P("offset", "ot", 0, "Offset")
+	ListUserWalletTransactionsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = ListUserWalletTransactionsCmd.MarkFlagRequired("namespace")
+	ListUserWalletTransactionsCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = ListUserWalletTransactionsCmd.MarkFlagRequired("userId")
+	ListUserWalletTransactionsCmd.Flags().StringP("walletId", "wd", " ", "Wallet id")
+	_ = ListUserWalletTransactionsCmd.MarkFlagRequired("walletId")
+	ListUserWalletTransactionsCmd.Flags().Int32P("limit", "lt", 20, "Limit")
+	ListUserWalletTransactionsCmd.Flags().Int32P("offset", "ot", 0, "Offset")
 }

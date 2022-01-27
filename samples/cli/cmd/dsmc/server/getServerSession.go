@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/server"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/dsmc"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getServerSessionCmd represents the getServerSession command
-var getServerSessionCmd = &cobra.Command{
-	Use:   "getServerSession",
+// GetServerSessionCmd represents the GetServerSession command
+var GetServerSessionCmd = &cobra.Command{
+	Use:   "GetServerSession",
 	Short: "Get server session",
 	Long:  `Get server session`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,9 +41,8 @@ var getServerSessionCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getServerSessionCmd)
-	getServerSessionCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getServerSessionCmd.MarkFlagRequired("namespace")
-	getServerSessionCmd.Flags().StringP("podName", "pe", " ", "Pod name")
-	_ = getServerSessionCmd.MarkFlagRequired("podName")
+	GetServerSessionCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetServerSessionCmd.MarkFlagRequired("namespace")
+	GetServerSessionCmd.Flags().StringP("podName", "pe", " ", "Pod name")
+	_ = GetServerSessionCmd.MarkFlagRequired("podName")
 }

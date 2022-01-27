@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/anonymization"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// anonymizeFulfillmentCmd represents the anonymizeFulfillment command
-var anonymizeFulfillmentCmd = &cobra.Command{
-	Use:   "anonymizeFulfillment",
+// AnonymizeFulfillmentCmd represents the AnonymizeFulfillment command
+var AnonymizeFulfillmentCmd = &cobra.Command{
+	Use:   "AnonymizeFulfillment",
 	Short: "Anonymize fulfillment",
 	Long:  `Anonymize fulfillment`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,9 +40,8 @@ var anonymizeFulfillmentCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(anonymizeFulfillmentCmd)
-	anonymizeFulfillmentCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = anonymizeFulfillmentCmd.MarkFlagRequired("namespace")
-	anonymizeFulfillmentCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = anonymizeFulfillmentCmd.MarkFlagRequired("userId")
+	AnonymizeFulfillmentCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AnonymizeFulfillmentCmd.MarkFlagRequired("namespace")
+	AnonymizeFulfillmentCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = AnonymizeFulfillmentCmd.MarkFlagRequired("userId")
 }

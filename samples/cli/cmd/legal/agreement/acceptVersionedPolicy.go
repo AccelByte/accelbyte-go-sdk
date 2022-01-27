@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclient/agreement"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/legal"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// acceptVersionedPolicyCmd represents the acceptVersionedPolicy command
-var acceptVersionedPolicyCmd = &cobra.Command{
-	Use:   "acceptVersionedPolicy",
+// AcceptVersionedPolicyCmd represents the AcceptVersionedPolicy command
+var AcceptVersionedPolicyCmd = &cobra.Command{
+	Use:   "AcceptVersionedPolicy",
 	Short: "Accept versioned policy",
 	Long:  `Accept versioned policy`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,7 +38,6 @@ var acceptVersionedPolicyCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(acceptVersionedPolicyCmd)
-	acceptVersionedPolicyCmd.Flags().StringP("localizedPolicyVersionId", "ld", " ", "Localized policy version id")
-	_ = acceptVersionedPolicyCmd.MarkFlagRequired("localizedPolicyVersionId")
+	AcceptVersionedPolicyCmd.Flags().StringP("localizedPolicyVersionId", "ld", " ", "Localized policy version id")
+	_ = AcceptVersionedPolicyCmd.MarkFlagRequired("localizedPolicyVersionId")
 }

@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/sessionbrowser"
 	"github.com/AccelByte/accelbyte-go-sdk/sessionbrowser-sdk/pkg/sessionbrowserclient/session"
 	"github.com/AccelByte/accelbyte-go-sdk/sessionbrowser-sdk/pkg/sessionbrowserclientmodels"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// updateSessionCmd represents the updateSession command
-var updateSessionCmd = &cobra.Command{
-	Use:   "updateSession",
+// UpdateSessionCmd represents the UpdateSession command
+var UpdateSessionCmd = &cobra.Command{
+	Use:   "UpdateSession",
 	Short: "Update session",
 	Long:  `Update session`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -51,11 +50,10 @@ var updateSessionCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(updateSessionCmd)
-	updateSessionCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = updateSessionCmd.MarkFlagRequired("body")
-	updateSessionCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = updateSessionCmd.MarkFlagRequired("namespace")
-	updateSessionCmd.Flags().StringP("sessionID", "sD", " ", "Session ID")
-	_ = updateSessionCmd.MarkFlagRequired("sessionID")
+	UpdateSessionCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = UpdateSessionCmd.MarkFlagRequired("body")
+	UpdateSessionCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = UpdateSessionCmd.MarkFlagRequired("namespace")
+	UpdateSessionCmd.Flags().StringP("sessionID", "sD", " ", "Session ID")
+	_ = UpdateSessionCmd.MarkFlagRequired("sessionID")
 }

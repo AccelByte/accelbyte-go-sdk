@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/group-sdk/pkg/groupclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/group"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// updateGroupCustomAttributesPublicV1Cmd represents the updateGroupCustomAttributesPublicV1 command
-var updateGroupCustomAttributesPublicV1Cmd = &cobra.Command{
-	Use:   "updateGroupCustomAttributesPublicV1",
+// UpdateGroupCustomAttributesPublicV1Cmd represents the UpdateGroupCustomAttributesPublicV1 command
+var UpdateGroupCustomAttributesPublicV1Cmd = &cobra.Command{
+	Use:   "UpdateGroupCustomAttributesPublicV1",
 	Short: "Update group custom attributes public V1",
 	Long:  `Update group custom attributes public V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -51,11 +50,10 @@ var updateGroupCustomAttributesPublicV1Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(updateGroupCustomAttributesPublicV1Cmd)
-	updateGroupCustomAttributesPublicV1Cmd.Flags().StringP("body", "by", " ", "Body")
-	_ = updateGroupCustomAttributesPublicV1Cmd.MarkFlagRequired("body")
-	updateGroupCustomAttributesPublicV1Cmd.Flags().StringP("groupId", "gd", " ", "Group id")
-	_ = updateGroupCustomAttributesPublicV1Cmd.MarkFlagRequired("groupId")
-	updateGroupCustomAttributesPublicV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = updateGroupCustomAttributesPublicV1Cmd.MarkFlagRequired("namespace")
+	UpdateGroupCustomAttributesPublicV1Cmd.Flags().StringP("body", "by", " ", "Body")
+	_ = UpdateGroupCustomAttributesPublicV1Cmd.MarkFlagRequired("body")
+	UpdateGroupCustomAttributesPublicV1Cmd.Flags().StringP("groupId", "gd", " ", "Group id")
+	_ = UpdateGroupCustomAttributesPublicV1Cmd.MarkFlagRequired("groupId")
+	UpdateGroupCustomAttributesPublicV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = UpdateGroupCustomAttributesPublicV1Cmd.MarkFlagRequired("namespace")
 }

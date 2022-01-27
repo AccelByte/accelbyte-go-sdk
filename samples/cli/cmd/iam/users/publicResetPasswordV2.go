@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// publicResetPasswordV2Cmd represents the publicResetPasswordV2 command
-var publicResetPasswordV2Cmd = &cobra.Command{
-	Use:   "publicResetPasswordV2",
+// PublicResetPasswordV2Cmd represents the PublicResetPasswordV2 command
+var PublicResetPasswordV2Cmd = &cobra.Command{
+	Use:   "PublicResetPasswordV2",
 	Short: "Public reset password V2",
 	Long:  `Public reset password V2`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,9 +47,8 @@ var publicResetPasswordV2Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(publicResetPasswordV2Cmd)
-	publicResetPasswordV2Cmd.Flags().StringP("body", "by", " ", "Body")
-	_ = publicResetPasswordV2Cmd.MarkFlagRequired("body")
-	publicResetPasswordV2Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = publicResetPasswordV2Cmd.MarkFlagRequired("namespace")
+	PublicResetPasswordV2Cmd.Flags().StringP("body", "by", " ", "Body")
+	_ = PublicResetPasswordV2Cmd.MarkFlagRequired("body")
+	PublicResetPasswordV2Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PublicResetPasswordV2Cmd.MarkFlagRequired("namespace")
 }

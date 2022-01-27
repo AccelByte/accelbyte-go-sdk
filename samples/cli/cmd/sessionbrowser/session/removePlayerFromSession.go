@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/sessionbrowser"
 	"github.com/AccelByte/accelbyte-go-sdk/sessionbrowser-sdk/pkg/sessionbrowserclient/session"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// removePlayerFromSessionCmd represents the removePlayerFromSession command
-var removePlayerFromSessionCmd = &cobra.Command{
-	Use:   "removePlayerFromSession",
+// RemovePlayerFromSessionCmd represents the RemovePlayerFromSession command
+var RemovePlayerFromSessionCmd = &cobra.Command{
+	Use:   "RemovePlayerFromSession",
 	Short: "Remove player from session",
 	Long:  `Remove player from session`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -44,11 +43,10 @@ var removePlayerFromSessionCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(removePlayerFromSessionCmd)
-	removePlayerFromSessionCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = removePlayerFromSessionCmd.MarkFlagRequired("namespace")
-	removePlayerFromSessionCmd.Flags().StringP("sessionID", "sD", " ", "Session ID")
-	_ = removePlayerFromSessionCmd.MarkFlagRequired("sessionID")
-	removePlayerFromSessionCmd.Flags().StringP("userID", "uD", " ", "User ID")
-	_ = removePlayerFromSessionCmd.MarkFlagRequired("userID")
+	RemovePlayerFromSessionCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = RemovePlayerFromSessionCmd.MarkFlagRequired("namespace")
+	RemovePlayerFromSessionCmd.Flags().StringP("sessionID", "sD", " ", "Session ID")
+	_ = RemovePlayerFromSessionCmd.MarkFlagRequired("sessionID")
+	RemovePlayerFromSessionCmd.Flags().StringP("userID", "uD", " ", "User ID")
+	_ = RemovePlayerFromSessionCmd.MarkFlagRequired("userID")
 }

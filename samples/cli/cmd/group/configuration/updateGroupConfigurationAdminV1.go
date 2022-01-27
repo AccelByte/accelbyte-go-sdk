@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/group-sdk/pkg/groupclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/group"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// updateGroupConfigurationAdminV1Cmd represents the updateGroupConfigurationAdminV1 command
-var updateGroupConfigurationAdminV1Cmd = &cobra.Command{
-	Use:   "updateGroupConfigurationAdminV1",
+// UpdateGroupConfigurationAdminV1Cmd represents the UpdateGroupConfigurationAdminV1 command
+var UpdateGroupConfigurationAdminV1Cmd = &cobra.Command{
+	Use:   "UpdateGroupConfigurationAdminV1",
 	Short: "Update group configuration admin V1",
 	Long:  `Update group configuration admin V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -51,11 +50,10 @@ var updateGroupConfigurationAdminV1Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(updateGroupConfigurationAdminV1Cmd)
-	updateGroupConfigurationAdminV1Cmd.Flags().StringP("body", "by", " ", "Body")
-	_ = updateGroupConfigurationAdminV1Cmd.MarkFlagRequired("body")
-	updateGroupConfigurationAdminV1Cmd.Flags().StringP("configurationCode", "ce", " ", "Configuration code")
-	_ = updateGroupConfigurationAdminV1Cmd.MarkFlagRequired("configurationCode")
-	updateGroupConfigurationAdminV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = updateGroupConfigurationAdminV1Cmd.MarkFlagRequired("namespace")
+	UpdateGroupConfigurationAdminV1Cmd.Flags().StringP("body", "by", " ", "Body")
+	_ = UpdateGroupConfigurationAdminV1Cmd.MarkFlagRequired("body")
+	UpdateGroupConfigurationAdminV1Cmd.Flags().StringP("configurationCode", "ce", " ", "Configuration code")
+	_ = UpdateGroupConfigurationAdminV1Cmd.MarkFlagRequired("configurationCode")
+	UpdateGroupConfigurationAdminV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = UpdateGroupConfigurationAdminV1Cmd.MarkFlagRequired("namespace")
 }

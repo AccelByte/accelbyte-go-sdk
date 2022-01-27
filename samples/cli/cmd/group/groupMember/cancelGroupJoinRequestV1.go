@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/group-sdk/pkg/groupclient/group_member"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/group"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// cancelGroupJoinRequestV1Cmd represents the cancelGroupJoinRequestV1 command
-var cancelGroupJoinRequestV1Cmd = &cobra.Command{
-	Use:   "cancelGroupJoinRequestV1",
+// CancelGroupJoinRequestV1Cmd represents the CancelGroupJoinRequestV1 command
+var CancelGroupJoinRequestV1Cmd = &cobra.Command{
+	Use:   "CancelGroupJoinRequestV1",
 	Short: "Cancel group join request V1",
 	Long:  `Cancel group join request V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,9 +41,8 @@ var cancelGroupJoinRequestV1Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(cancelGroupJoinRequestV1Cmd)
-	cancelGroupJoinRequestV1Cmd.Flags().StringP("groupId", "gd", " ", "Group id")
-	_ = cancelGroupJoinRequestV1Cmd.MarkFlagRequired("groupId")
-	cancelGroupJoinRequestV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = cancelGroupJoinRequestV1Cmd.MarkFlagRequired("namespace")
+	CancelGroupJoinRequestV1Cmd.Flags().StringP("groupId", "gd", " ", "Group id")
+	_ = CancelGroupJoinRequestV1Cmd.MarkFlagRequired("groupId")
+	CancelGroupJoinRequestV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = CancelGroupJoinRequestV1Cmd.MarkFlagRequired("namespace")
 }

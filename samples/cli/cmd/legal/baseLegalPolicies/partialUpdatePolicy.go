@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/legal"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// partialUpdatePolicyCmd represents the partialUpdatePolicy command
-var partialUpdatePolicyCmd = &cobra.Command{
-	Use:   "partialUpdatePolicy",
+// PartialUpdatePolicyCmd represents the PartialUpdatePolicy command
+var PartialUpdatePolicyCmd = &cobra.Command{
+	Use:   "PartialUpdatePolicy",
 	Short: "Partial update policy",
 	Long:  `Partial update policy`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,8 +48,7 @@ var partialUpdatePolicyCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(partialUpdatePolicyCmd)
-	partialUpdatePolicyCmd.Flags().StringP("body", "by", " ", "Body")
-	partialUpdatePolicyCmd.Flags().StringP("basePolicyId", "bd", " ", "Base policy id")
-	_ = partialUpdatePolicyCmd.MarkFlagRequired("basePolicyId")
+	PartialUpdatePolicyCmd.Flags().StringP("body", "by", " ", "Body")
+	PartialUpdatePolicyCmd.Flags().StringP("basePolicyId", "bd", " ", "Base policy id")
+	_ = PartialUpdatePolicyCmd.MarkFlagRequired("basePolicyId")
 }

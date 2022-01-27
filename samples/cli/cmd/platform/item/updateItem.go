@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// updateItemCmd represents the updateItem command
-var updateItemCmd = &cobra.Command{
-	Use:   "updateItem",
+// UpdateItemCmd represents the UpdateItem command
+var UpdateItemCmd = &cobra.Command{
+	Use:   "UpdateItem",
 	Short: "Update item",
 	Long:  `Update item`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -53,12 +52,11 @@ var updateItemCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(updateItemCmd)
-	updateItemCmd.Flags().StringP("body", "by", " ", "Body")
-	updateItemCmd.Flags().StringP("itemId", "id", " ", "Item id")
-	_ = updateItemCmd.MarkFlagRequired("itemId")
-	updateItemCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = updateItemCmd.MarkFlagRequired("namespace")
-	updateItemCmd.Flags().StringP("storeId", "sd", " ", "Store id")
-	_ = updateItemCmd.MarkFlagRequired("storeId")
+	UpdateItemCmd.Flags().StringP("body", "by", " ", "Body")
+	UpdateItemCmd.Flags().StringP("itemId", "id", " ", "Item id")
+	_ = UpdateItemCmd.MarkFlagRequired("itemId")
+	UpdateItemCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = UpdateItemCmd.MarkFlagRequired("namespace")
+	UpdateItemCmd.Flags().StringP("storeId", "sd", " ", "Store id")
+	_ = UpdateItemCmd.MarkFlagRequired("storeId")
 }

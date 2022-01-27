@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/ugc"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/public_content"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclientmodels"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// updateContentDirectCmd represents the updateContentDirect command
-var updateContentDirectCmd = &cobra.Command{
-	Use:   "updateContentDirect",
+// UpdateContentDirectCmd represents the UpdateContentDirect command
+var UpdateContentDirectCmd = &cobra.Command{
+	Use:   "UpdateContentDirect",
 	Short: "Update content direct",
 	Long:  `Update content direct`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -55,15 +54,14 @@ var updateContentDirectCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(updateContentDirectCmd)
-	updateContentDirectCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = updateContentDirectCmd.MarkFlagRequired("body")
-	updateContentDirectCmd.Flags().StringP("channelId", "cd", " ", "Channel id")
-	_ = updateContentDirectCmd.MarkFlagRequired("channelId")
-	updateContentDirectCmd.Flags().StringP("contentId", "cd", " ", "Content id")
-	_ = updateContentDirectCmd.MarkFlagRequired("contentId")
-	updateContentDirectCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = updateContentDirectCmd.MarkFlagRequired("namespace")
-	updateContentDirectCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = updateContentDirectCmd.MarkFlagRequired("userId")
+	UpdateContentDirectCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = UpdateContentDirectCmd.MarkFlagRequired("body")
+	UpdateContentDirectCmd.Flags().StringP("channelId", "cd", " ", "Channel id")
+	_ = UpdateContentDirectCmd.MarkFlagRequired("channelId")
+	UpdateContentDirectCmd.Flags().StringP("contentId", "cd", " ", "Content id")
+	_ = UpdateContentDirectCmd.MarkFlagRequired("contentId")
+	UpdateContentDirectCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = UpdateContentDirectCmd.MarkFlagRequired("namespace")
+	UpdateContentDirectCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = UpdateContentDirectCmd.MarkFlagRequired("userId")
 }

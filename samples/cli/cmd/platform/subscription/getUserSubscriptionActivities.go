@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/subscription"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getUserSubscriptionActivitiesCmd represents the getUserSubscriptionActivities command
-var getUserSubscriptionActivitiesCmd = &cobra.Command{
-	Use:   "getUserSubscriptionActivities",
+// GetUserSubscriptionActivitiesCmd represents the GetUserSubscriptionActivities command
+var GetUserSubscriptionActivitiesCmd = &cobra.Command{
+	Use:   "GetUserSubscriptionActivities",
 	Short: "Get user subscription activities",
 	Long:  `Get user subscription activities`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,13 +49,12 @@ var getUserSubscriptionActivitiesCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getUserSubscriptionActivitiesCmd)
-	getUserSubscriptionActivitiesCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getUserSubscriptionActivitiesCmd.MarkFlagRequired("namespace")
-	getUserSubscriptionActivitiesCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = getUserSubscriptionActivitiesCmd.MarkFlagRequired("userId")
-	getUserSubscriptionActivitiesCmd.Flags().BoolP("excludeSystem", "em", false, "Exclude system")
-	getUserSubscriptionActivitiesCmd.Flags().Int32P("limit", "lt", 20, "Limit")
-	getUserSubscriptionActivitiesCmd.Flags().Int32P("offset", "ot", 0, "Offset")
-	getUserSubscriptionActivitiesCmd.Flags().StringP("subscriptionId", "sd", " ", "Subscription id")
+	GetUserSubscriptionActivitiesCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetUserSubscriptionActivitiesCmd.MarkFlagRequired("namespace")
+	GetUserSubscriptionActivitiesCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = GetUserSubscriptionActivitiesCmd.MarkFlagRequired("userId")
+	GetUserSubscriptionActivitiesCmd.Flags().BoolP("excludeSystem", "em", false, "Exclude system")
+	GetUserSubscriptionActivitiesCmd.Flags().Int32P("limit", "lt", 20, "Limit")
+	GetUserSubscriptionActivitiesCmd.Flags().Int32P("offset", "ot", 0, "Offset")
+	GetUserSubscriptionActivitiesCmd.Flags().StringP("subscriptionId", "sd", " ", "Subscription id")
 }

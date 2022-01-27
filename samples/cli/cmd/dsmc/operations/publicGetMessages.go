@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/operations"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/dsmc"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// publicGetMessagesCmd represents the publicGetMessages command
-var publicGetMessagesCmd = &cobra.Command{
-	Use:   "publicGetMessages",
+// PublicGetMessagesCmd represents the PublicGetMessages command
+var PublicGetMessagesCmd = &cobra.Command{
+	Use:   "PublicGetMessages",
 	Short: "Public get messages",
 	Long:  `Public get messages`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -34,8 +33,4 @@ var publicGetMessagesCmd = &cobra.Command{
 		}
 		return nil
 	},
-}
-
-func init() {
-	cmd.RootCmd.AddCommand(publicGetMessagesCmd)
 }

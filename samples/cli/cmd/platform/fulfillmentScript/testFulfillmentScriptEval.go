@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// testFulfillmentScriptEvalCmd represents the testFulfillmentScriptEval command
-var testFulfillmentScriptEvalCmd = &cobra.Command{
-	Use:   "testFulfillmentScriptEval",
+// TestFulfillmentScriptEvalCmd represents the TestFulfillmentScriptEval command
+var TestFulfillmentScriptEvalCmd = &cobra.Command{
+	Use:   "TestFulfillmentScriptEval",
 	Short: "Test fulfillment script eval",
 	Long:  `Test fulfillment script eval`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -47,6 +46,5 @@ var testFulfillmentScriptEvalCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(testFulfillmentScriptEvalCmd)
-	testFulfillmentScriptEvalCmd.Flags().StringP("body", "by", " ", "Body")
+	TestFulfillmentScriptEvalCmd.Flags().StringP("body", "by", " ", "Body")
 }

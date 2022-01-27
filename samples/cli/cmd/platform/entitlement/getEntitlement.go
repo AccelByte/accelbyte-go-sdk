@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/entitlement"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getEntitlementCmd represents the getEntitlement command
-var getEntitlementCmd = &cobra.Command{
-	Use:   "getEntitlement",
+// GetEntitlementCmd represents the GetEntitlement command
+var GetEntitlementCmd = &cobra.Command{
+	Use:   "GetEntitlement",
 	Short: "Get entitlement",
 	Long:  `Get entitlement`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,9 +41,8 @@ var getEntitlementCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getEntitlementCmd)
-	getEntitlementCmd.Flags().StringP("entitlementId", "ed", " ", "Entitlement id")
-	_ = getEntitlementCmd.MarkFlagRequired("entitlementId")
-	getEntitlementCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getEntitlementCmd.MarkFlagRequired("namespace")
+	GetEntitlementCmd.Flags().StringP("entitlementId", "ed", " ", "Entitlement id")
+	_ = GetEntitlementCmd.MarkFlagRequired("entitlementId")
+	GetEntitlementCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetEntitlementCmd.MarkFlagRequired("namespace")
 }

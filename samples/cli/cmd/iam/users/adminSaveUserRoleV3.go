@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminSaveUserRoleV3Cmd represents the adminSaveUserRoleV3 command
-var adminSaveUserRoleV3Cmd = &cobra.Command{
-	Use:   "adminSaveUserRoleV3",
+// AdminSaveUserRoleV3Cmd represents the AdminSaveUserRoleV3 command
+var AdminSaveUserRoleV3Cmd = &cobra.Command{
+	Use:   "AdminSaveUserRoleV3",
 	Short: "Admin save user role V3",
 	Long:  `Admin save user role V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,11 +49,10 @@ var adminSaveUserRoleV3Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminSaveUserRoleV3Cmd)
-	adminSaveUserRoleV3Cmd.Flags().StringP("body", "by", " ", "Body")
-	_ = adminSaveUserRoleV3Cmd.MarkFlagRequired("body")
-	adminSaveUserRoleV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = adminSaveUserRoleV3Cmd.MarkFlagRequired("namespace")
-	adminSaveUserRoleV3Cmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = adminSaveUserRoleV3Cmd.MarkFlagRequired("userId")
+	AdminSaveUserRoleV3Cmd.Flags().StringP("body", "by", " ", "Body")
+	_ = AdminSaveUserRoleV3Cmd.MarkFlagRequired("body")
+	AdminSaveUserRoleV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AdminSaveUserRoleV3Cmd.MarkFlagRequired("namespace")
+	AdminSaveUserRoleV3Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = AdminSaveUserRoleV3Cmd.MarkFlagRequired("userId")
 }

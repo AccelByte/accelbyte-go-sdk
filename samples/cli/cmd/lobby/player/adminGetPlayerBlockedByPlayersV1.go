@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/player"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/lobby"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminGetPlayerBlockedByPlayersV1Cmd represents the adminGetPlayerBlockedByPlayersV1 command
-var adminGetPlayerBlockedByPlayersV1Cmd = &cobra.Command{
-	Use:   "adminGetPlayerBlockedByPlayersV1",
+// AdminGetPlayerBlockedByPlayersV1Cmd represents the AdminGetPlayerBlockedByPlayersV1 command
+var AdminGetPlayerBlockedByPlayersV1Cmd = &cobra.Command{
+	Use:   "AdminGetPlayerBlockedByPlayersV1",
 	Short: "Admin get player blocked by players V1",
 	Long:  `Admin get player blocked by players V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,9 +41,8 @@ var adminGetPlayerBlockedByPlayersV1Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminGetPlayerBlockedByPlayersV1Cmd)
-	adminGetPlayerBlockedByPlayersV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = adminGetPlayerBlockedByPlayersV1Cmd.MarkFlagRequired("namespace")
-	adminGetPlayerBlockedByPlayersV1Cmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = adminGetPlayerBlockedByPlayersV1Cmd.MarkFlagRequired("userId")
+	AdminGetPlayerBlockedByPlayersV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AdminGetPlayerBlockedByPlayersV1Cmd.MarkFlagRequired("namespace")
+	AdminGetPlayerBlockedByPlayersV1Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = AdminGetPlayerBlockedByPlayersV1Cmd.MarkFlagRequired("userId")
 }

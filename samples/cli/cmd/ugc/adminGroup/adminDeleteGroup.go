@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/ugc"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/admin_group"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminDeleteGroupCmd represents the adminDeleteGroup command
-var adminDeleteGroupCmd = &cobra.Command{
-	Use:   "adminDeleteGroup",
+// AdminDeleteGroupCmd represents the AdminDeleteGroup command
+var AdminDeleteGroupCmd = &cobra.Command{
+	Use:   "AdminDeleteGroup",
 	Short: "Admin delete group",
 	Long:  `Admin delete group`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,11 +42,10 @@ var adminDeleteGroupCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminDeleteGroupCmd)
-	adminDeleteGroupCmd.Flags().StringP("groupId", "gd", " ", "Group id")
-	_ = adminDeleteGroupCmd.MarkFlagRequired("groupId")
-	adminDeleteGroupCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = adminDeleteGroupCmd.MarkFlagRequired("namespace")
-	adminDeleteGroupCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = adminDeleteGroupCmd.MarkFlagRequired("userId")
+	AdminDeleteGroupCmd.Flags().StringP("groupId", "gd", " ", "Group id")
+	_ = AdminDeleteGroupCmd.MarkFlagRequired("groupId")
+	AdminDeleteGroupCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AdminDeleteGroupCmd.MarkFlagRequired("namespace")
+	AdminDeleteGroupCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = AdminDeleteGroupCmd.MarkFlagRequired("userId")
 }

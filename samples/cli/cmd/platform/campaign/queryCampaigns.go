@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/campaign"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// queryCampaignsCmd represents the queryCampaigns command
-var queryCampaignsCmd = &cobra.Command{
-	Use:   "queryCampaigns",
+// QueryCampaignsCmd represents the QueryCampaigns command
+var QueryCampaignsCmd = &cobra.Command{
+	Use:   "QueryCampaigns",
 	Short: "Query campaigns",
 	Long:  `Query campaigns`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,11 +47,10 @@ var queryCampaignsCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(queryCampaignsCmd)
-	queryCampaignsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = queryCampaignsCmd.MarkFlagRequired("namespace")
-	queryCampaignsCmd.Flags().Int32P("limit", "lt", 20, "Limit")
-	queryCampaignsCmd.Flags().StringP("name", "ne", " ", "Name")
-	queryCampaignsCmd.Flags().Int32P("offset", "ot", 0, "Offset")
-	queryCampaignsCmd.Flags().StringP("tag", "tg", " ", "Tag")
+	QueryCampaignsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = QueryCampaignsCmd.MarkFlagRequired("namespace")
+	QueryCampaignsCmd.Flags().Int32P("limit", "lt", 20, "Limit")
+	QueryCampaignsCmd.Flags().StringP("name", "ne", " ", "Name")
+	QueryCampaignsCmd.Flags().Int32P("offset", "ot", 0, "Offset")
+	QueryCampaignsCmd.Flags().StringP("tag", "tg", " ", "Tag")
 }

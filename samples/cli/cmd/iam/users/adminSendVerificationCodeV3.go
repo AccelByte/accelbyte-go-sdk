@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminSendVerificationCodeV3Cmd represents the adminSendVerificationCodeV3 command
-var adminSendVerificationCodeV3Cmd = &cobra.Command{
-	Use:   "adminSendVerificationCodeV3",
+// AdminSendVerificationCodeV3Cmd represents the AdminSendVerificationCodeV3 command
+var AdminSendVerificationCodeV3Cmd = &cobra.Command{
+	Use:   "AdminSendVerificationCodeV3",
 	Short: "Admin send verification code V3",
 	Long:  `Admin send verification code V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,11 +49,10 @@ var adminSendVerificationCodeV3Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminSendVerificationCodeV3Cmd)
-	adminSendVerificationCodeV3Cmd.Flags().StringP("body", "by", " ", "Body")
-	_ = adminSendVerificationCodeV3Cmd.MarkFlagRequired("body")
-	adminSendVerificationCodeV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = adminSendVerificationCodeV3Cmd.MarkFlagRequired("namespace")
-	adminSendVerificationCodeV3Cmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = adminSendVerificationCodeV3Cmd.MarkFlagRequired("userId")
+	AdminSendVerificationCodeV3Cmd.Flags().StringP("body", "by", " ", "Body")
+	_ = AdminSendVerificationCodeV3Cmd.MarkFlagRequired("body")
+	AdminSendVerificationCodeV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AdminSendVerificationCodeV3Cmd.MarkFlagRequired("namespace")
+	AdminSendVerificationCodeV3Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = AdminSendVerificationCodeV3Cmd.MarkFlagRequired("userId")
 }

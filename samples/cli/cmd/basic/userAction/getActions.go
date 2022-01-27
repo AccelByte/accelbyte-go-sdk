@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclient/user_action"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/basic"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getActionsCmd represents the getActions command
-var getActionsCmd = &cobra.Command{
-	Use:   "getActions",
+// GetActionsCmd represents the GetActions command
+var GetActionsCmd = &cobra.Command{
+	Use:   "GetActions",
 	Short: "Get actions",
 	Long:  `Get actions`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,7 +39,6 @@ var getActionsCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getActionsCmd)
-	getActionsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getActionsCmd.MarkFlagRequired("namespace")
+	GetActionsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetActionsCmd.MarkFlagRequired("namespace")
 }

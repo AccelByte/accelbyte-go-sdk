@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/wallet"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getUserWalletCmd represents the getUserWallet command
-var getUserWalletCmd = &cobra.Command{
-	Use:   "getUserWallet",
+// GetUserWalletCmd represents the GetUserWallet command
+var GetUserWalletCmd = &cobra.Command{
+	Use:   "GetUserWallet",
 	Short: "Get user wallet",
 	Long:  `Get user wallet`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -44,11 +43,10 @@ var getUserWalletCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getUserWalletCmd)
-	getUserWalletCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getUserWalletCmd.MarkFlagRequired("namespace")
-	getUserWalletCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = getUserWalletCmd.MarkFlagRequired("userId")
-	getUserWalletCmd.Flags().StringP("walletId", "wd", " ", "Wallet id")
-	_ = getUserWalletCmd.MarkFlagRequired("walletId")
+	GetUserWalletCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetUserWalletCmd.MarkFlagRequired("namespace")
+	GetUserWalletCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = GetUserWalletCmd.MarkFlagRequired("userId")
+	GetUserWalletCmd.Flags().StringP("walletId", "wd", " ", "Wallet id")
+	_ = GetUserWalletCmd.MarkFlagRequired("walletId")
 }

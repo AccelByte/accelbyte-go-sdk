@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminCreateRoleV3Cmd represents the adminCreateRoleV3 command
-var adminCreateRoleV3Cmd = &cobra.Command{
-	Use:   "adminCreateRoleV3",
+// AdminCreateRoleV3Cmd represents the AdminCreateRoleV3 command
+var AdminCreateRoleV3Cmd = &cobra.Command{
+	Use:   "AdminCreateRoleV3",
 	Short: "Admin create role V3",
 	Long:  `Admin create role V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -47,7 +46,6 @@ var adminCreateRoleV3Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminCreateRoleV3Cmd)
-	adminCreateRoleV3Cmd.Flags().StringP("body", "by", " ", "Body")
-	_ = adminCreateRoleV3Cmd.MarkFlagRequired("body")
+	AdminCreateRoleV3Cmd.Flags().StringP("body", "by", " ", "Body")
+	_ = AdminCreateRoleV3Cmd.MarkFlagRequired("body")
 }

@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclient/admin_player_record"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/cloudsave"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminDeletePlayerRecordHandlerV1Cmd represents the adminDeletePlayerRecordHandlerV1 command
-var adminDeletePlayerRecordHandlerV1Cmd = &cobra.Command{
-	Use:   "adminDeletePlayerRecordHandlerV1",
+// AdminDeletePlayerRecordHandlerV1Cmd represents the AdminDeletePlayerRecordHandlerV1 command
+var AdminDeletePlayerRecordHandlerV1Cmd = &cobra.Command{
+	Use:   "AdminDeletePlayerRecordHandlerV1",
 	Short: "Admin delete player record handler V1",
 	Long:  `Admin delete player record handler V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,11 +42,10 @@ var adminDeletePlayerRecordHandlerV1Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminDeletePlayerRecordHandlerV1Cmd)
-	adminDeletePlayerRecordHandlerV1Cmd.Flags().StringP("key", "ky", " ", "Key")
-	_ = adminDeletePlayerRecordHandlerV1Cmd.MarkFlagRequired("key")
-	adminDeletePlayerRecordHandlerV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = adminDeletePlayerRecordHandlerV1Cmd.MarkFlagRequired("namespace")
-	adminDeletePlayerRecordHandlerV1Cmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = adminDeletePlayerRecordHandlerV1Cmd.MarkFlagRequired("userId")
+	AdminDeletePlayerRecordHandlerV1Cmd.Flags().StringP("key", "ky", " ", "Key")
+	_ = AdminDeletePlayerRecordHandlerV1Cmd.MarkFlagRequired("key")
+	AdminDeletePlayerRecordHandlerV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AdminDeletePlayerRecordHandlerV1Cmd.MarkFlagRequired("namespace")
+	AdminDeletePlayerRecordHandlerV1Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = AdminDeletePlayerRecordHandlerV1Cmd.MarkFlagRequired("userId")
 }

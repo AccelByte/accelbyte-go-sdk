@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/subscription"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getUserSubscriptionCmd represents the getUserSubscription command
-var getUserSubscriptionCmd = &cobra.Command{
-	Use:   "getUserSubscription",
+// GetUserSubscriptionCmd represents the GetUserSubscription command
+var GetUserSubscriptionCmd = &cobra.Command{
+	Use:   "GetUserSubscription",
 	Short: "Get user subscription",
 	Long:  `Get user subscription`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -44,11 +43,10 @@ var getUserSubscriptionCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getUserSubscriptionCmd)
-	getUserSubscriptionCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getUserSubscriptionCmd.MarkFlagRequired("namespace")
-	getUserSubscriptionCmd.Flags().StringP("subscriptionId", "sd", " ", "Subscription id")
-	_ = getUserSubscriptionCmd.MarkFlagRequired("subscriptionId")
-	getUserSubscriptionCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = getUserSubscriptionCmd.MarkFlagRequired("userId")
+	GetUserSubscriptionCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetUserSubscriptionCmd.MarkFlagRequired("namespace")
+	GetUserSubscriptionCmd.Flags().StringP("subscriptionId", "sd", " ", "Subscription id")
+	_ = GetUserSubscriptionCmd.MarkFlagRequired("subscriptionId")
+	GetUserSubscriptionCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = GetUserSubscriptionCmd.MarkFlagRequired("userId")
 }

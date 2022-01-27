@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/lobby"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// updateLocalizationTemplateCmd represents the updateLocalizationTemplate command
-var updateLocalizationTemplateCmd = &cobra.Command{
-	Use:   "updateLocalizationTemplate",
+// UpdateLocalizationTemplateCmd represents the UpdateLocalizationTemplate command
+var UpdateLocalizationTemplateCmd = &cobra.Command{
+	Use:   "UpdateLocalizationTemplate",
 	Short: "Update localization template",
 	Long:  `Update localization template`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -52,13 +51,12 @@ var updateLocalizationTemplateCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(updateLocalizationTemplateCmd)
-	updateLocalizationTemplateCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = updateLocalizationTemplateCmd.MarkFlagRequired("body")
-	updateLocalizationTemplateCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = updateLocalizationTemplateCmd.MarkFlagRequired("namespace")
-	updateLocalizationTemplateCmd.Flags().StringP("templateLanguage", "te", " ", "Template language")
-	_ = updateLocalizationTemplateCmd.MarkFlagRequired("templateLanguage")
-	updateLocalizationTemplateCmd.Flags().StringP("templateSlug", "tg", " ", "Template slug")
-	_ = updateLocalizationTemplateCmd.MarkFlagRequired("templateSlug")
+	UpdateLocalizationTemplateCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = UpdateLocalizationTemplateCmd.MarkFlagRequired("body")
+	UpdateLocalizationTemplateCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = UpdateLocalizationTemplateCmd.MarkFlagRequired("namespace")
+	UpdateLocalizationTemplateCmd.Flags().StringP("templateLanguage", "te", " ", "Template language")
+	_ = UpdateLocalizationTemplateCmd.MarkFlagRequired("templateLanguage")
+	UpdateLocalizationTemplateCmd.Flags().StringP("templateSlug", "tg", " ", "Template slug")
+	_ = UpdateLocalizationTemplateCmd.MarkFlagRequired("templateSlug")
 }

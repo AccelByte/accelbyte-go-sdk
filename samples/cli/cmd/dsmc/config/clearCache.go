@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/config"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/dsmc"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// clearCacheCmd represents the clearCache command
-var clearCacheCmd = &cobra.Command{
-	Use:   "clearCache",
+// ClearCacheCmd represents the ClearCache command
+var ClearCacheCmd = &cobra.Command{
+	Use:   "ClearCache",
 	Short: "Clear cache",
 	Long:  `Clear cache`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,7 +38,6 @@ var clearCacheCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(clearCacheCmd)
-	clearCacheCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = clearCacheCmd.MarkFlagRequired("namespace")
+	ClearCacheCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = ClearCacheCmd.MarkFlagRequired("namespace")
 }

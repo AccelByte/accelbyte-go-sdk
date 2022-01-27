@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminRevokeUserFromRoleV4Cmd represents the adminRevokeUserFromRoleV4 command
-var adminRevokeUserFromRoleV4Cmd = &cobra.Command{
-	Use:   "adminRevokeUserFromRoleV4",
+// AdminRevokeUserFromRoleV4Cmd represents the AdminRevokeUserFromRoleV4 command
+var AdminRevokeUserFromRoleV4Cmd = &cobra.Command{
+	Use:   "AdminRevokeUserFromRoleV4",
 	Short: "Admin revoke user from role V4",
 	Long:  `Admin revoke user from role V4`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,9 +47,8 @@ var adminRevokeUserFromRoleV4Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminRevokeUserFromRoleV4Cmd)
-	adminRevokeUserFromRoleV4Cmd.Flags().StringP("body", "by", " ", "Body")
-	_ = adminRevokeUserFromRoleV4Cmd.MarkFlagRequired("body")
-	adminRevokeUserFromRoleV4Cmd.Flags().StringP("roleId", "rd", " ", "Role id")
-	_ = adminRevokeUserFromRoleV4Cmd.MarkFlagRequired("roleId")
+	AdminRevokeUserFromRoleV4Cmd.Flags().StringP("body", "by", " ", "Body")
+	_ = AdminRevokeUserFromRoleV4Cmd.MarkFlagRequired("body")
+	AdminRevokeUserFromRoleV4Cmd.Flags().StringP("roleId", "rd", " ", "Role id")
+	_ = AdminRevokeUserFromRoleV4Cmd.MarkFlagRequired("roleId")
 }

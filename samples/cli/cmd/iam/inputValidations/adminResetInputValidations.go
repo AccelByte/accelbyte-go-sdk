@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/input_validations"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminResetInputValidationsCmd represents the adminResetInputValidations command
-var adminResetInputValidationsCmd = &cobra.Command{
-	Use:   "adminResetInputValidations",
+// AdminResetInputValidationsCmd represents the AdminResetInputValidations command
+var AdminResetInputValidationsCmd = &cobra.Command{
+	Use:   "AdminResetInputValidations",
 	Short: "Admin reset input validations",
 	Long:  `Admin reset input validations`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,7 +38,6 @@ var adminResetInputValidationsCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminResetInputValidationsCmd)
-	adminResetInputValidationsCmd.Flags().StringP("field", "fd", " ", "Field")
-	_ = adminResetInputValidationsCmd.MarkFlagRequired("field")
+	AdminResetInputValidationsCmd.Flags().StringP("field", "fd", " ", "Field")
+	_ = AdminResetInputValidationsCmd.MarkFlagRequired("field")
 }

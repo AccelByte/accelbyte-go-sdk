@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/lobby"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// sendPartyTemplatedNotificationV1AdminCmd represents the sendPartyTemplatedNotificationV1Admin command
-var sendPartyTemplatedNotificationV1AdminCmd = &cobra.Command{
-	Use:   "sendPartyTemplatedNotificationV1Admin",
+// SendPartyTemplatedNotificationV1AdminCmd represents the SendPartyTemplatedNotificationV1Admin command
+var SendPartyTemplatedNotificationV1AdminCmd = &cobra.Command{
+	Use:   "SendPartyTemplatedNotificationV1Admin",
 	Short: "Send party templated notification V1 admin",
 	Long:  `Send party templated notification V1 admin`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,11 +49,10 @@ var sendPartyTemplatedNotificationV1AdminCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(sendPartyTemplatedNotificationV1AdminCmd)
-	sendPartyTemplatedNotificationV1AdminCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = sendPartyTemplatedNotificationV1AdminCmd.MarkFlagRequired("body")
-	sendPartyTemplatedNotificationV1AdminCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = sendPartyTemplatedNotificationV1AdminCmd.MarkFlagRequired("namespace")
-	sendPartyTemplatedNotificationV1AdminCmd.Flags().StringP("partyId", "pd", " ", "Party id")
-	_ = sendPartyTemplatedNotificationV1AdminCmd.MarkFlagRequired("partyId")
+	SendPartyTemplatedNotificationV1AdminCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = SendPartyTemplatedNotificationV1AdminCmd.MarkFlagRequired("body")
+	SendPartyTemplatedNotificationV1AdminCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = SendPartyTemplatedNotificationV1AdminCmd.MarkFlagRequired("namespace")
+	SendPartyTemplatedNotificationV1AdminCmd.Flags().StringP("partyId", "pd", " ", "Party id")
+	_ = SendPartyTemplatedNotificationV1AdminCmd.MarkFlagRequired("partyId")
 }

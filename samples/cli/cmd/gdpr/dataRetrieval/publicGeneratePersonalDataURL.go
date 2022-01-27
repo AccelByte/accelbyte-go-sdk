@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/gdpr-sdk/pkg/gdprclient/data_retrieval"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/gdpr"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// publicGeneratePersonalDataURLCmd represents the publicGeneratePersonalDataURL command
-var publicGeneratePersonalDataURLCmd = &cobra.Command{
-	Use:   "publicGeneratePersonalDataURL",
+// PublicGeneratePersonalDataURLCmd represents the PublicGeneratePersonalDataURL command
+var PublicGeneratePersonalDataURLCmd = &cobra.Command{
+	Use:   "PublicGeneratePersonalDataURL",
 	Short: "Public generate personal data URL",
 	Long:  `Public generate personal data URL`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -46,13 +45,12 @@ var publicGeneratePersonalDataURLCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(publicGeneratePersonalDataURLCmd)
-	publicGeneratePersonalDataURLCmd.Flags().StringP("password", "pd", " ", "Password")
-	_ = publicGeneratePersonalDataURLCmd.MarkFlagRequired("password")
-	publicGeneratePersonalDataURLCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = publicGeneratePersonalDataURLCmd.MarkFlagRequired("namespace")
-	publicGeneratePersonalDataURLCmd.Flags().StringP("requestDate", "re", " ", "Request date")
-	_ = publicGeneratePersonalDataURLCmd.MarkFlagRequired("requestDate")
-	publicGeneratePersonalDataURLCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = publicGeneratePersonalDataURLCmd.MarkFlagRequired("userId")
+	PublicGeneratePersonalDataURLCmd.Flags().StringP("password", "pd", " ", "Password")
+	_ = PublicGeneratePersonalDataURLCmd.MarkFlagRequired("password")
+	PublicGeneratePersonalDataURLCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PublicGeneratePersonalDataURLCmd.MarkFlagRequired("namespace")
+	PublicGeneratePersonalDataURLCmd.Flags().StringP("requestDate", "re", " ", "Request date")
+	_ = PublicGeneratePersonalDataURLCmd.MarkFlagRequired("requestDate")
+	PublicGeneratePersonalDataURLCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = PublicGeneratePersonalDataURLCmd.MarkFlagRequired("userId")
 }

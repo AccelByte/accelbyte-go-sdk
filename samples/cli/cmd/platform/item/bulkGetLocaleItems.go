@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/item"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// bulkGetLocaleItemsCmd represents the bulkGetLocaleItems command
-var bulkGetLocaleItemsCmd = &cobra.Command{
-	Use:   "bulkGetLocaleItems",
+// BulkGetLocaleItemsCmd represents the BulkGetLocaleItems command
+var BulkGetLocaleItemsCmd = &cobra.Command{
+	Use:   "BulkGetLocaleItems",
 	Short: "Bulk get locale items",
 	Long:  `Bulk get locale items`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,13 +49,12 @@ var bulkGetLocaleItemsCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(bulkGetLocaleItemsCmd)
-	bulkGetLocaleItemsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = bulkGetLocaleItemsCmd.MarkFlagRequired("namespace")
-	bulkGetLocaleItemsCmd.Flags().BoolP("activeOnly", "ay", false, "Active only")
-	bulkGetLocaleItemsCmd.Flags().StringP("language", "le", " ", "Language")
-	bulkGetLocaleItemsCmd.Flags().StringP("region", "rn", " ", "Region")
-	bulkGetLocaleItemsCmd.Flags().StringP("storeId", "sd", " ", "Store id")
-	bulkGetLocaleItemsCmd.Flags().StringP("itemIds", "is", " ", "Item ids")
-	_ = bulkGetLocaleItemsCmd.MarkFlagRequired("itemIds")
+	BulkGetLocaleItemsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = BulkGetLocaleItemsCmd.MarkFlagRequired("namespace")
+	BulkGetLocaleItemsCmd.Flags().BoolP("activeOnly", "ay", false, "Active only")
+	BulkGetLocaleItemsCmd.Flags().StringP("language", "le", " ", "Language")
+	BulkGetLocaleItemsCmd.Flags().StringP("region", "rn", " ", "Region")
+	BulkGetLocaleItemsCmd.Flags().StringP("storeId", "sd", " ", "Store id")
+	BulkGetLocaleItemsCmd.Flags().StringP("itemIds", "is", " ", "Item ids")
+	_ = BulkGetLocaleItemsCmd.MarkFlagRequired("itemIds")
 }

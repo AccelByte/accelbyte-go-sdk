@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/sessionbrowser"
 	"github.com/AccelByte/accelbyte-go-sdk/sessionbrowser-sdk/pkg/sessionbrowserclient/session"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getTotalActiveSessionCmd represents the getTotalActiveSession command
-var getTotalActiveSessionCmd = &cobra.Command{
-	Use:   "getTotalActiveSession",
+// GetTotalActiveSessionCmd represents the GetTotalActiveSession command
+var GetTotalActiveSessionCmd = &cobra.Command{
+	Use:   "GetTotalActiveSession",
 	Short: "Get total active session",
 	Long:  `Get total active session`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,8 +41,7 @@ var getTotalActiveSessionCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getTotalActiveSessionCmd)
-	getTotalActiveSessionCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getTotalActiveSessionCmd.MarkFlagRequired("namespace")
-	getTotalActiveSessionCmd.Flags().StringP("session_type", "se", " ", "Session type")
+	GetTotalActiveSessionCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetTotalActiveSessionCmd.MarkFlagRequired("namespace")
+	GetTotalActiveSessionCmd.Flags().StringP("session_type", "se", " ", "Session type")
 }

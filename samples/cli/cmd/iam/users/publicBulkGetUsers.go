@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// publicBulkGetUsersCmd represents the publicBulkGetUsers command
-var publicBulkGetUsersCmd = &cobra.Command{
-	Use:   "publicBulkGetUsers",
+// PublicBulkGetUsersCmd represents the PublicBulkGetUsers command
+var PublicBulkGetUsersCmd = &cobra.Command{
+	Use:   "PublicBulkGetUsers",
 	Short: "Public bulk get users",
 	Long:  `Public bulk get users`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,9 +48,8 @@ var publicBulkGetUsersCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(publicBulkGetUsersCmd)
-	publicBulkGetUsersCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = publicBulkGetUsersCmd.MarkFlagRequired("body")
-	publicBulkGetUsersCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = publicBulkGetUsersCmd.MarkFlagRequired("namespace")
+	PublicBulkGetUsersCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = PublicBulkGetUsersCmd.MarkFlagRequired("body")
+	PublicBulkGetUsersCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PublicBulkGetUsersCmd.MarkFlagRequired("namespace")
 }

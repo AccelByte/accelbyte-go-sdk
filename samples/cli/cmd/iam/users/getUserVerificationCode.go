@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getUserVerificationCodeCmd represents the getUserVerificationCode command
-var getUserVerificationCodeCmd = &cobra.Command{
-	Use:   "getUserVerificationCode",
+// GetUserVerificationCodeCmd represents the GetUserVerificationCode command
+var GetUserVerificationCodeCmd = &cobra.Command{
+	Use:   "GetUserVerificationCode",
 	Short: "Get user verification code",
 	Long:  `Get user verification code`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,9 +41,8 @@ var getUserVerificationCodeCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getUserVerificationCodeCmd)
-	getUserVerificationCodeCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getUserVerificationCodeCmd.MarkFlagRequired("namespace")
-	getUserVerificationCodeCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = getUserVerificationCodeCmd.MarkFlagRequired("userId")
+	GetUserVerificationCodeCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetUserVerificationCodeCmd.MarkFlagRequired("namespace")
+	GetUserVerificationCodeCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = GetUserVerificationCodeCmd.MarkFlagRequired("userId")
 }

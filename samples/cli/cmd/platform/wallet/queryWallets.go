@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/wallet"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// queryWalletsCmd represents the queryWallets command
-var queryWalletsCmd = &cobra.Command{
-	Use:   "queryWallets",
+// QueryWalletsCmd represents the QueryWallets command
+var QueryWalletsCmd = &cobra.Command{
+	Use:   "QueryWallets",
 	Short: "Query wallets",
 	Long:  `Query wallets`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,11 +47,10 @@ var queryWalletsCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(queryWalletsCmd)
-	queryWalletsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = queryWalletsCmd.MarkFlagRequired("namespace")
-	queryWalletsCmd.Flags().StringP("currencyCode", "ce", " ", "Currency code")
-	queryWalletsCmd.Flags().Int32P("limit", "lt", 20, "Limit")
-	queryWalletsCmd.Flags().Int32P("offset", "ot", 0, "Offset")
-	queryWalletsCmd.Flags().StringP("userId", "ud", " ", "User id")
+	QueryWalletsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = QueryWalletsCmd.MarkFlagRequired("namespace")
+	QueryWalletsCmd.Flags().StringP("currencyCode", "ce", " ", "Currency code")
+	QueryWalletsCmd.Flags().Int32P("limit", "lt", 20, "Limit")
+	QueryWalletsCmd.Flags().Int32P("offset", "ot", 0, "Offset")
+	QueryWalletsCmd.Flags().StringP("userId", "ud", " ", "User id")
 }

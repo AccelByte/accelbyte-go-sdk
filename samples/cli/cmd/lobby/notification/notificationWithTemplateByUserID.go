@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/lobby"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// notificationWithTemplateByUserIDCmd represents the notificationWithTemplateByUserID command
-var notificationWithTemplateByUserIDCmd = &cobra.Command{
-	Use:   "notificationWithTemplateByUserID",
+// NotificationWithTemplateByUserIDCmd represents the NotificationWithTemplateByUserID command
+var NotificationWithTemplateByUserIDCmd = &cobra.Command{
+	Use:   "NotificationWithTemplateByUserID",
 	Short: "Notification with template by user ID",
 	Long:  `Notification with template by user ID`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,11 +49,10 @@ var notificationWithTemplateByUserIDCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(notificationWithTemplateByUserIDCmd)
-	notificationWithTemplateByUserIDCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = notificationWithTemplateByUserIDCmd.MarkFlagRequired("body")
-	notificationWithTemplateByUserIDCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = notificationWithTemplateByUserIDCmd.MarkFlagRequired("namespace")
-	notificationWithTemplateByUserIDCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = notificationWithTemplateByUserIDCmd.MarkFlagRequired("userId")
+	NotificationWithTemplateByUserIDCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = NotificationWithTemplateByUserIDCmd.MarkFlagRequired("body")
+	NotificationWithTemplateByUserIDCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = NotificationWithTemplateByUserIDCmd.MarkFlagRequired("namespace")
+	NotificationWithTemplateByUserIDCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = NotificationWithTemplateByUserIDCmd.MarkFlagRequired("userId")
 }

@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// upgradeHeadlessAccountWithVerificationCodeCmd represents the upgradeHeadlessAccountWithVerificationCode command
-var upgradeHeadlessAccountWithVerificationCodeCmd = &cobra.Command{
-	Use:   "upgradeHeadlessAccountWithVerificationCode",
+// UpgradeHeadlessAccountWithVerificationCodeCmd represents the UpgradeHeadlessAccountWithVerificationCode command
+var UpgradeHeadlessAccountWithVerificationCodeCmd = &cobra.Command{
+	Use:   "UpgradeHeadlessAccountWithVerificationCode",
 	Short: "Upgrade headless account with verification code",
 	Long:  `Upgrade headless account with verification code`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -51,11 +50,10 @@ var upgradeHeadlessAccountWithVerificationCodeCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(upgradeHeadlessAccountWithVerificationCodeCmd)
-	upgradeHeadlessAccountWithVerificationCodeCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = upgradeHeadlessAccountWithVerificationCodeCmd.MarkFlagRequired("body")
-	upgradeHeadlessAccountWithVerificationCodeCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = upgradeHeadlessAccountWithVerificationCodeCmd.MarkFlagRequired("namespace")
-	upgradeHeadlessAccountWithVerificationCodeCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = upgradeHeadlessAccountWithVerificationCodeCmd.MarkFlagRequired("userId")
+	UpgradeHeadlessAccountWithVerificationCodeCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = UpgradeHeadlessAccountWithVerificationCodeCmd.MarkFlagRequired("body")
+	UpgradeHeadlessAccountWithVerificationCodeCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = UpgradeHeadlessAccountWithVerificationCodeCmd.MarkFlagRequired("namespace")
+	UpgradeHeadlessAccountWithVerificationCodeCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = UpgradeHeadlessAccountWithVerificationCodeCmd.MarkFlagRequired("userId")
 }

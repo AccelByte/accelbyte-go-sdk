@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/ugc"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/admin_type"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminDeleteTypeCmd represents the adminDeleteType command
-var adminDeleteTypeCmd = &cobra.Command{
-	Use:   "adminDeleteType",
+// AdminDeleteTypeCmd represents the AdminDeleteType command
+var AdminDeleteTypeCmd = &cobra.Command{
+	Use:   "AdminDeleteType",
 	Short: "Admin delete type",
 	Long:  `Admin delete type`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,9 +40,8 @@ var adminDeleteTypeCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminDeleteTypeCmd)
-	adminDeleteTypeCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = adminDeleteTypeCmd.MarkFlagRequired("namespace")
-	adminDeleteTypeCmd.Flags().StringP("typeId", "td", " ", "Type id")
-	_ = adminDeleteTypeCmd.MarkFlagRequired("typeId")
+	AdminDeleteTypeCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AdminDeleteTypeCmd.MarkFlagRequired("namespace")
+	AdminDeleteTypeCmd.Flags().StringP("typeId", "td", " ", "Type id")
+	_ = AdminDeleteTypeCmd.MarkFlagRequired("typeId")
 }

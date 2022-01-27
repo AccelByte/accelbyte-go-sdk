@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/payment_config"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// testPayPalConfigByIdCmd represents the testPayPalConfigById command
-var testPayPalConfigByIdCmd = &cobra.Command{
-	Use:   "testPayPalConfigById",
+// TestPayPalConfigByIdCmd represents the TestPayPalConfigById command
+var TestPayPalConfigByIdCmd = &cobra.Command{
+	Use:   "TestPayPalConfigById",
 	Short: "Test pay pal config by id",
 	Long:  `Test pay pal config by id`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,8 +41,7 @@ var testPayPalConfigByIdCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(testPayPalConfigByIdCmd)
-	testPayPalConfigByIdCmd.Flags().StringP("id", "id", " ", "Id")
-	_ = testPayPalConfigByIdCmd.MarkFlagRequired("id")
-	testPayPalConfigByIdCmd.Flags().BoolP("sandbox", "sx", false, "Sandbox")
+	TestPayPalConfigByIdCmd.Flags().StringP("id", "id", " ", "Id")
+	_ = TestPayPalConfigByIdCmd.MarkFlagRequired("id")
+	TestPayPalConfigByIdCmd.Flags().BoolP("sandbox", "sx", false, "Sandbox")
 }

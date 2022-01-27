@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getUserMappingCmd represents the getUserMapping command
-var getUserMappingCmd = &cobra.Command{
-	Use:   "getUserMapping",
+// GetUserMappingCmd represents the GetUserMapping command
+var GetUserMappingCmd = &cobra.Command{
+	Use:   "GetUserMapping",
 	Short: "Get user mapping",
 	Long:  `Get user mapping`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -44,11 +43,10 @@ var getUserMappingCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getUserMappingCmd)
-	getUserMappingCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getUserMappingCmd.MarkFlagRequired("namespace")
-	getUserMappingCmd.Flags().StringP("targetNamespace", "te", " ", "Target namespace")
-	_ = getUserMappingCmd.MarkFlagRequired("targetNamespace")
-	getUserMappingCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = getUserMappingCmd.MarkFlagRequired("userId")
+	GetUserMappingCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetUserMappingCmd.MarkFlagRequired("namespace")
+	GetUserMappingCmd.Flags().StringP("targetNamespace", "te", " ", "Target namespace")
+	_ = GetUserMappingCmd.MarkFlagRequired("targetNamespace")
+	GetUserMappingCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = GetUserMappingCmd.MarkFlagRequired("userId")
 }

@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/s_s_o_s_a_m_l_2_0"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// platformAuthenticateSAMLV3HandlerCmd represents the platformAuthenticateSAMLV3Handler command
-var platformAuthenticateSAMLV3HandlerCmd = &cobra.Command{
-	Use:   "platformAuthenticateSAMLV3Handler",
+// PlatformAuthenticateSAMLV3HandlerCmd represents the PlatformAuthenticateSAMLV3Handler command
+var PlatformAuthenticateSAMLV3HandlerCmd = &cobra.Command{
+	Use:   "PlatformAuthenticateSAMLV3Handler",
 	Short: "Platform authenticate SAMLV3 handler",
 	Long:  `Platform authenticate SAMLV3 handler`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -45,11 +44,10 @@ var platformAuthenticateSAMLV3HandlerCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(platformAuthenticateSAMLV3HandlerCmd)
-	platformAuthenticateSAMLV3HandlerCmd.Flags().StringP("platformId", "pd", " ", "Platform id")
-	_ = platformAuthenticateSAMLV3HandlerCmd.MarkFlagRequired("platformId")
-	platformAuthenticateSAMLV3HandlerCmd.Flags().StringP("code", "ce", " ", "Code")
-	platformAuthenticateSAMLV3HandlerCmd.Flags().StringP("error", "er", " ", "Error")
-	platformAuthenticateSAMLV3HandlerCmd.Flags().StringP("state", "se", " ", "State")
-	_ = platformAuthenticateSAMLV3HandlerCmd.MarkFlagRequired("state")
+	PlatformAuthenticateSAMLV3HandlerCmd.Flags().StringP("platformId", "pd", " ", "Platform id")
+	_ = PlatformAuthenticateSAMLV3HandlerCmd.MarkFlagRequired("platformId")
+	PlatformAuthenticateSAMLV3HandlerCmd.Flags().StringP("code", "ce", " ", "Code")
+	PlatformAuthenticateSAMLV3HandlerCmd.Flags().StringP("error", "er", " ", "Error")
+	PlatformAuthenticateSAMLV3HandlerCmd.Flags().StringP("state", "se", " ", "State")
+	_ = PlatformAuthenticateSAMLV3HandlerCmd.MarkFlagRequired("state")
 }

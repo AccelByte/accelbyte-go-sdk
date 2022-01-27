@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/notification"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/lobby"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// deleteTemplateSlugCmd represents the deleteTemplateSlug command
-var deleteTemplateSlugCmd = &cobra.Command{
-	Use:   "deleteTemplateSlug",
+// DeleteTemplateSlugCmd represents the DeleteTemplateSlug command
+var DeleteTemplateSlugCmd = &cobra.Command{
+	Use:   "DeleteTemplateSlug",
 	Short: "Delete template slug",
 	Long:  `Delete template slug`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,9 +40,8 @@ var deleteTemplateSlugCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(deleteTemplateSlugCmd)
-	deleteTemplateSlugCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = deleteTemplateSlugCmd.MarkFlagRequired("namespace")
-	deleteTemplateSlugCmd.Flags().StringP("templateSlug", "tg", " ", "Template slug")
-	_ = deleteTemplateSlugCmd.MarkFlagRequired("templateSlug")
+	DeleteTemplateSlugCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = DeleteTemplateSlugCmd.MarkFlagRequired("namespace")
+	DeleteTemplateSlugCmd.Flags().StringP("templateSlug", "tg", " ", "Template slug")
+	_ = DeleteTemplateSlugCmd.MarkFlagRequired("templateSlug")
 }

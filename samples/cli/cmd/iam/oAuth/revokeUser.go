@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// revokeUserCmd represents the revokeUser command
-var revokeUserCmd = &cobra.Command{
-	Use:   "revokeUser",
+// RevokeUserCmd represents the RevokeUser command
+var RevokeUserCmd = &cobra.Command{
+	Use:   "RevokeUser",
 	Short: "Revoke user",
 	Long:  `Revoke user`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,9 +40,8 @@ var revokeUserCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(revokeUserCmd)
-	revokeUserCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = revokeUserCmd.MarkFlagRequired("namespace")
-	revokeUserCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = revokeUserCmd.MarkFlagRequired("userId")
+	RevokeUserCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = RevokeUserCmd.MarkFlagRequired("namespace")
+	RevokeUserCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = RevokeUserCmd.MarkFlagRequired("userId")
 }

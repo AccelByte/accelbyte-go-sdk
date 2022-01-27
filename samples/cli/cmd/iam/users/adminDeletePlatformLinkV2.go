@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminDeletePlatformLinkV2Cmd represents the adminDeletePlatformLinkV2 command
-var adminDeletePlatformLinkV2Cmd = &cobra.Command{
-	Use:   "adminDeletePlatformLinkV2",
+// AdminDeletePlatformLinkV2Cmd represents the AdminDeletePlatformLinkV2 command
+var AdminDeletePlatformLinkV2Cmd = &cobra.Command{
+	Use:   "AdminDeletePlatformLinkV2",
 	Short: "Admin delete platform link V2",
 	Long:  `Admin delete platform link V2`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -45,12 +44,11 @@ var adminDeletePlatformLinkV2Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminDeletePlatformLinkV2Cmd)
-	adminDeletePlatformLinkV2Cmd.Flags().StringP("platform_namespace", "pe", " ", "Platform namespace")
-	adminDeletePlatformLinkV2Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = adminDeletePlatformLinkV2Cmd.MarkFlagRequired("namespace")
-	adminDeletePlatformLinkV2Cmd.Flags().StringP("platformId", "pd", " ", "Platform id")
-	_ = adminDeletePlatformLinkV2Cmd.MarkFlagRequired("platformId")
-	adminDeletePlatformLinkV2Cmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = adminDeletePlatformLinkV2Cmd.MarkFlagRequired("userId")
+	AdminDeletePlatformLinkV2Cmd.Flags().StringP("platform_namespace", "pe", " ", "Platform namespace")
+	AdminDeletePlatformLinkV2Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AdminDeletePlatformLinkV2Cmd.MarkFlagRequired("namespace")
+	AdminDeletePlatformLinkV2Cmd.Flags().StringP("platformId", "pd", " ", "Platform id")
+	_ = AdminDeletePlatformLinkV2Cmd.MarkFlagRequired("platformId")
+	AdminDeletePlatformLinkV2Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = AdminDeletePlatformLinkV2Cmd.MarkFlagRequired("userId")
 }

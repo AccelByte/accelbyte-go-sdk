@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// publicWebLinkPlatformEstablishCmd represents the publicWebLinkPlatformEstablish command
-var publicWebLinkPlatformEstablishCmd = &cobra.Command{
-	Use:   "publicWebLinkPlatformEstablish",
+// PublicWebLinkPlatformEstablishCmd represents the PublicWebLinkPlatformEstablish command
+var PublicWebLinkPlatformEstablishCmd = &cobra.Command{
+	Use:   "PublicWebLinkPlatformEstablish",
 	Short: "Public web link platform establish",
 	Long:  `Public web link platform establish`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,11 +42,10 @@ var publicWebLinkPlatformEstablishCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(publicWebLinkPlatformEstablishCmd)
-	publicWebLinkPlatformEstablishCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = publicWebLinkPlatformEstablishCmd.MarkFlagRequired("namespace")
-	publicWebLinkPlatformEstablishCmd.Flags().StringP("platformId", "pd", " ", "Platform id")
-	_ = publicWebLinkPlatformEstablishCmd.MarkFlagRequired("platformId")
-	publicWebLinkPlatformEstablishCmd.Flags().StringP("state", "se", " ", "State")
-	_ = publicWebLinkPlatformEstablishCmd.MarkFlagRequired("state")
+	PublicWebLinkPlatformEstablishCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PublicWebLinkPlatformEstablishCmd.MarkFlagRequired("namespace")
+	PublicWebLinkPlatformEstablishCmd.Flags().StringP("platformId", "pd", " ", "Platform id")
+	_ = PublicWebLinkPlatformEstablishCmd.MarkFlagRequired("platformId")
+	PublicWebLinkPlatformEstablishCmd.Flags().StringP("state", "se", " ", "State")
+	_ = PublicWebLinkPlatformEstablishCmd.MarkFlagRequired("state")
 }

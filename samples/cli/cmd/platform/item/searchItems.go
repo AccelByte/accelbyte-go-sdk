@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/item"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// searchItemsCmd represents the searchItems command
-var searchItemsCmd = &cobra.Command{
-	Use:   "searchItems",
+// SearchItemsCmd represents the SearchItems command
+var SearchItemsCmd = &cobra.Command{
+	Use:   "SearchItems",
 	Short: "Search items",
 	Long:  `Search items`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -52,15 +51,14 @@ var searchItemsCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(searchItemsCmd)
-	searchItemsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = searchItemsCmd.MarkFlagRequired("namespace")
-	searchItemsCmd.Flags().BoolP("activeOnly", "ay", false, "Active only")
-	searchItemsCmd.Flags().Int32P("limit", "lt", 20, "Limit")
-	searchItemsCmd.Flags().Int32P("offset", "ot", 0, "Offset")
-	searchItemsCmd.Flags().StringP("storeId", "sd", " ", "Store id")
-	searchItemsCmd.Flags().StringP("keyword", "kd", " ", "Keyword")
-	_ = searchItemsCmd.MarkFlagRequired("keyword")
-	searchItemsCmd.Flags().StringP("language", "le", " ", "Language")
-	_ = searchItemsCmd.MarkFlagRequired("language")
+	SearchItemsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = SearchItemsCmd.MarkFlagRequired("namespace")
+	SearchItemsCmd.Flags().BoolP("activeOnly", "ay", false, "Active only")
+	SearchItemsCmd.Flags().Int32P("limit", "lt", 20, "Limit")
+	SearchItemsCmd.Flags().Int32P("offset", "ot", 0, "Offset")
+	SearchItemsCmd.Flags().StringP("storeId", "sd", " ", "Store id")
+	SearchItemsCmd.Flags().StringP("keyword", "kd", " ", "Keyword")
+	_ = SearchItemsCmd.MarkFlagRequired("keyword")
+	SearchItemsCmd.Flags().StringP("language", "le", " ", "Language")
+	_ = SearchItemsCmd.MarkFlagRequired("language")
 }

@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/subscription"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// publicChangeSubscriptionBillingAccountCmd represents the publicChangeSubscriptionBillingAccount command
-var publicChangeSubscriptionBillingAccountCmd = &cobra.Command{
-	Use:   "publicChangeSubscriptionBillingAccount",
+// PublicChangeSubscriptionBillingAccountCmd represents the PublicChangeSubscriptionBillingAccount command
+var PublicChangeSubscriptionBillingAccountCmd = &cobra.Command{
+	Use:   "PublicChangeSubscriptionBillingAccount",
 	Short: "Public change subscription billing account",
 	Long:  `Public change subscription billing account`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -44,11 +43,10 @@ var publicChangeSubscriptionBillingAccountCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(publicChangeSubscriptionBillingAccountCmd)
-	publicChangeSubscriptionBillingAccountCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = publicChangeSubscriptionBillingAccountCmd.MarkFlagRequired("namespace")
-	publicChangeSubscriptionBillingAccountCmd.Flags().StringP("subscriptionId", "sd", " ", "Subscription id")
-	_ = publicChangeSubscriptionBillingAccountCmd.MarkFlagRequired("subscriptionId")
-	publicChangeSubscriptionBillingAccountCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = publicChangeSubscriptionBillingAccountCmd.MarkFlagRequired("userId")
+	PublicChangeSubscriptionBillingAccountCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PublicChangeSubscriptionBillingAccountCmd.MarkFlagRequired("namespace")
+	PublicChangeSubscriptionBillingAccountCmd.Flags().StringP("subscriptionId", "sd", " ", "Subscription id")
+	_ = PublicChangeSubscriptionBillingAccountCmd.MarkFlagRequired("subscriptionId")
+	PublicChangeSubscriptionBillingAccountCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = PublicChangeSubscriptionBillingAccountCmd.MarkFlagRequired("userId")
 }

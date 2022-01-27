@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/leaderboard-sdk/pkg/leaderboardclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/leaderboard"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// setUserVisibilityStatusV2Cmd represents the setUserVisibilityStatusV2 command
-var setUserVisibilityStatusV2Cmd = &cobra.Command{
-	Use:   "setUserVisibilityStatusV2",
+// SetUserVisibilityStatusV2Cmd represents the SetUserVisibilityStatusV2 command
+var SetUserVisibilityStatusV2Cmd = &cobra.Command{
+	Use:   "SetUserVisibilityStatusV2",
 	Short: "Set user visibility status V2",
 	Long:  `Set user visibility status V2`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -51,11 +50,10 @@ var setUserVisibilityStatusV2Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(setUserVisibilityStatusV2Cmd)
-	setUserVisibilityStatusV2Cmd.Flags().StringP("body", "by", " ", "Body")
-	_ = setUserVisibilityStatusV2Cmd.MarkFlagRequired("body")
-	setUserVisibilityStatusV2Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = setUserVisibilityStatusV2Cmd.MarkFlagRequired("namespace")
-	setUserVisibilityStatusV2Cmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = setUserVisibilityStatusV2Cmd.MarkFlagRequired("userId")
+	SetUserVisibilityStatusV2Cmd.Flags().StringP("body", "by", " ", "Body")
+	_ = SetUserVisibilityStatusV2Cmd.MarkFlagRequired("body")
+	SetUserVisibilityStatusV2Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = SetUserVisibilityStatusV2Cmd.MarkFlagRequired("namespace")
+	SetUserVisibilityStatusV2Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = SetUserVisibilityStatusV2Cmd.MarkFlagRequired("userId")
 }

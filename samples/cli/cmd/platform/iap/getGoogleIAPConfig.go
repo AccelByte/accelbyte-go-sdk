@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/i_a_p"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getGoogleIAPConfigCmd represents the getGoogleIAPConfig command
-var getGoogleIAPConfigCmd = &cobra.Command{
-	Use:   "getGoogleIAPConfig",
+// GetGoogleIAPConfigCmd represents the GetGoogleIAPConfig command
+var GetGoogleIAPConfigCmd = &cobra.Command{
+	Use:   "GetGoogleIAPConfig",
 	Short: "Get google IAP config",
 	Long:  `Get google IAP config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,7 +39,6 @@ var getGoogleIAPConfigCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getGoogleIAPConfigCmd)
-	getGoogleIAPConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getGoogleIAPConfigCmd.MarkFlagRequired("namespace")
+	GetGoogleIAPConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetGoogleIAPConfigCmd.MarkFlagRequired("namespace")
 }

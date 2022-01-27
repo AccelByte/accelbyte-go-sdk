@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getUserBanHistoryCmd represents the getUserBanHistory command
-var getUserBanHistoryCmd = &cobra.Command{
-	Use:   "getUserBanHistory",
+// GetUserBanHistoryCmd represents the GetUserBanHistory command
+var GetUserBanHistoryCmd = &cobra.Command{
+	Use:   "GetUserBanHistory",
 	Short: "Get user ban history",
 	Long:  `Get user ban history`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,9 +41,8 @@ var getUserBanHistoryCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getUserBanHistoryCmd)
-	getUserBanHistoryCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getUserBanHistoryCmd.MarkFlagRequired("namespace")
-	getUserBanHistoryCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = getUserBanHistoryCmd.MarkFlagRequired("userId")
+	GetUserBanHistoryCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetUserBanHistoryCmd.MarkFlagRequired("namespace")
+	GetUserBanHistoryCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = GetUserBanHistoryCmd.MarkFlagRequired("userId")
 }

@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/dsmc"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// addPortCmd represents the addPort command
-var addPortCmd = &cobra.Command{
-	Use:   "addPort",
+// AddPortCmd represents the AddPort command
+var AddPortCmd = &cobra.Command{
+	Use:   "AddPort",
 	Short: "Add port",
 	Long:  `Add port`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -51,11 +50,10 @@ var addPortCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(addPortCmd)
-	addPortCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = addPortCmd.MarkFlagRequired("body")
-	addPortCmd.Flags().StringP("name", "ne", " ", "Name")
-	_ = addPortCmd.MarkFlagRequired("name")
-	addPortCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = addPortCmd.MarkFlagRequired("namespace")
+	AddPortCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = AddPortCmd.MarkFlagRequired("body")
+	AddPortCmd.Flags().StringP("name", "ne", " ", "Name")
+	_ = AddPortCmd.MarkFlagRequired("name")
+	AddPortCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AddPortCmd.MarkFlagRequired("namespace")
 }

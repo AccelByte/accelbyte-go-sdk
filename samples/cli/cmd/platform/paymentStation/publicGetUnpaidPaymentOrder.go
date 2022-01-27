@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/payment_station"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// publicGetUnpaidPaymentOrderCmd represents the publicGetUnpaidPaymentOrder command
-var publicGetUnpaidPaymentOrderCmd = &cobra.Command{
-	Use:   "publicGetUnpaidPaymentOrder",
+// PublicGetUnpaidPaymentOrderCmd represents the PublicGetUnpaidPaymentOrder command
+var PublicGetUnpaidPaymentOrderCmd = &cobra.Command{
+	Use:   "PublicGetUnpaidPaymentOrder",
 	Short: "Public get unpaid payment order",
 	Long:  `Public get unpaid payment order`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,9 +41,8 @@ var publicGetUnpaidPaymentOrderCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(publicGetUnpaidPaymentOrderCmd)
-	publicGetUnpaidPaymentOrderCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = publicGetUnpaidPaymentOrderCmd.MarkFlagRequired("namespace")
-	publicGetUnpaidPaymentOrderCmd.Flags().StringP("paymentOrderNo", "po", " ", "Payment order no")
-	_ = publicGetUnpaidPaymentOrderCmd.MarkFlagRequired("paymentOrderNo")
+	PublicGetUnpaidPaymentOrderCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PublicGetUnpaidPaymentOrderCmd.MarkFlagRequired("namespace")
+	PublicGetUnpaidPaymentOrderCmd.Flags().StringP("paymentOrderNo", "po", " ", "Payment order no")
+	_ = PublicGetUnpaidPaymentOrderCmd.MarkFlagRequired("paymentOrderNo")
 }

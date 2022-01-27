@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/ugc"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/public_group"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclientmodels"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// createGroupCmd represents the createGroup command
-var createGroupCmd = &cobra.Command{
-	Use:   "createGroup",
+// CreateGroupCmd represents the CreateGroup command
+var CreateGroupCmd = &cobra.Command{
+	Use:   "CreateGroup",
 	Short: "Create group",
 	Long:  `Create group`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -51,11 +50,10 @@ var createGroupCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(createGroupCmd)
-	createGroupCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = createGroupCmd.MarkFlagRequired("body")
-	createGroupCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = createGroupCmd.MarkFlagRequired("namespace")
-	createGroupCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = createGroupCmd.MarkFlagRequired("userId")
+	CreateGroupCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = CreateGroupCmd.MarkFlagRequired("body")
+	CreateGroupCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = CreateGroupCmd.MarkFlagRequired("namespace")
+	CreateGroupCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = CreateGroupCmd.MarkFlagRequired("userId")
 }

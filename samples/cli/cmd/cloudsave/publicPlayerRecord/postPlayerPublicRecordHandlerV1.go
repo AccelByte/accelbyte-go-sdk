@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/cloudsave"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// postPlayerPublicRecordHandlerV1Cmd represents the postPlayerPublicRecordHandlerV1 command
-var postPlayerPublicRecordHandlerV1Cmd = &cobra.Command{
-	Use:   "postPlayerPublicRecordHandlerV1",
+// PostPlayerPublicRecordHandlerV1Cmd represents the PostPlayerPublicRecordHandlerV1 command
+var PostPlayerPublicRecordHandlerV1Cmd = &cobra.Command{
+	Use:   "PostPlayerPublicRecordHandlerV1",
 	Short: "Post player public record handler V1",
 	Long:  `Post player public record handler V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -52,13 +51,12 @@ var postPlayerPublicRecordHandlerV1Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(postPlayerPublicRecordHandlerV1Cmd)
-	postPlayerPublicRecordHandlerV1Cmd.Flags().StringP("body", "by", " ", "Body")
-	_ = postPlayerPublicRecordHandlerV1Cmd.MarkFlagRequired("body")
-	postPlayerPublicRecordHandlerV1Cmd.Flags().StringP("key", "ky", " ", "Key")
-	_ = postPlayerPublicRecordHandlerV1Cmd.MarkFlagRequired("key")
-	postPlayerPublicRecordHandlerV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = postPlayerPublicRecordHandlerV1Cmd.MarkFlagRequired("namespace")
-	postPlayerPublicRecordHandlerV1Cmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = postPlayerPublicRecordHandlerV1Cmd.MarkFlagRequired("userId")
+	PostPlayerPublicRecordHandlerV1Cmd.Flags().StringP("body", "by", " ", "Body")
+	_ = PostPlayerPublicRecordHandlerV1Cmd.MarkFlagRequired("body")
+	PostPlayerPublicRecordHandlerV1Cmd.Flags().StringP("key", "ky", " ", "Key")
+	_ = PostPlayerPublicRecordHandlerV1Cmd.MarkFlagRequired("key")
+	PostPlayerPublicRecordHandlerV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PostPlayerPublicRecordHandlerV1Cmd.MarkFlagRequired("namespace")
+	PostPlayerPublicRecordHandlerV1Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = PostPlayerPublicRecordHandlerV1Cmd.MarkFlagRequired("userId")
 }

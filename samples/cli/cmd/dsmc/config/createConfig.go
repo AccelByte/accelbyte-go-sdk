@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/dsmc"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// createConfigCmd represents the createConfig command
-var createConfigCmd = &cobra.Command{
-	Use:   "createConfig",
+// CreateConfigCmd represents the CreateConfig command
+var CreateConfigCmd = &cobra.Command{
+	Use:   "CreateConfig",
 	Short: "Create config",
 	Long:  `Create config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,9 +48,8 @@ var createConfigCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(createConfigCmd)
-	createConfigCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = createConfigCmd.MarkFlagRequired("body")
-	createConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = createConfigCmd.MarkFlagRequired("namespace")
+	CreateConfigCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = CreateConfigCmd.MarkFlagRequired("body")
+	CreateConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = CreateConfigCmd.MarkFlagRequired("namespace")
 }

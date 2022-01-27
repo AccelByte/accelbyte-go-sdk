@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/seasonpass-sdk/pkg/seasonpassclient/season"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/seasonpass"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// publishSeasonCmd represents the publishSeason command
-var publishSeasonCmd = &cobra.Command{
-	Use:   "publishSeason",
+// PublishSeasonCmd represents the PublishSeason command
+var PublishSeasonCmd = &cobra.Command{
+	Use:   "PublishSeason",
 	Short: "Publish season",
 	Long:  `Publish season`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,9 +41,8 @@ var publishSeasonCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(publishSeasonCmd)
-	publishSeasonCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = publishSeasonCmd.MarkFlagRequired("namespace")
-	publishSeasonCmd.Flags().StringP("seasonId", "sd", " ", "Season id")
-	_ = publishSeasonCmd.MarkFlagRequired("seasonId")
+	PublishSeasonCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PublishSeasonCmd.MarkFlagRequired("namespace")
+	PublishSeasonCmd.Flags().StringP("seasonId", "sd", " ", "Season id")
+	_ = PublishSeasonCmd.MarkFlagRequired("seasonId")
 }

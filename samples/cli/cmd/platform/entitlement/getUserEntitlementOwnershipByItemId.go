@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/entitlement"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getUserEntitlementOwnershipByItemIdCmd represents the getUserEntitlementOwnershipByItemId command
-var getUserEntitlementOwnershipByItemIdCmd = &cobra.Command{
-	Use:   "getUserEntitlementOwnershipByItemId",
+// GetUserEntitlementOwnershipByItemIdCmd represents the GetUserEntitlementOwnershipByItemId command
+var GetUserEntitlementOwnershipByItemIdCmd = &cobra.Command{
+	Use:   "GetUserEntitlementOwnershipByItemId",
 	Short: "Get user entitlement ownership by item id",
 	Long:  `Get user entitlement ownership by item id`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -46,12 +45,11 @@ var getUserEntitlementOwnershipByItemIdCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getUserEntitlementOwnershipByItemIdCmd)
-	getUserEntitlementOwnershipByItemIdCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getUserEntitlementOwnershipByItemIdCmd.MarkFlagRequired("namespace")
-	getUserEntitlementOwnershipByItemIdCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = getUserEntitlementOwnershipByItemIdCmd.MarkFlagRequired("userId")
-	getUserEntitlementOwnershipByItemIdCmd.Flags().StringP("entitlementClazz", "ez", " ", "Entitlement clazz")
-	getUserEntitlementOwnershipByItemIdCmd.Flags().StringP("itemId", "id", " ", "Item id")
-	_ = getUserEntitlementOwnershipByItemIdCmd.MarkFlagRequired("itemId")
+	GetUserEntitlementOwnershipByItemIdCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetUserEntitlementOwnershipByItemIdCmd.MarkFlagRequired("namespace")
+	GetUserEntitlementOwnershipByItemIdCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = GetUserEntitlementOwnershipByItemIdCmd.MarkFlagRequired("userId")
+	GetUserEntitlementOwnershipByItemIdCmd.Flags().StringP("entitlementClazz", "ez", " ", "Entitlement clazz")
+	GetUserEntitlementOwnershipByItemIdCmd.Flags().StringP("itemId", "id", " ", "Item id")
+	_ = GetUserEntitlementOwnershipByItemIdCmd.MarkFlagRequired("itemId")
 }

@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/leaderboard-sdk/pkg/leaderboardclient/leaderboard_data"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/leaderboard"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getUserRankingPublicV1Cmd represents the getUserRankingPublicV1 command
-var getUserRankingPublicV1Cmd = &cobra.Command{
-	Use:   "getUserRankingPublicV1",
+// GetUserRankingPublicV1Cmd represents the GetUserRankingPublicV1 command
+var GetUserRankingPublicV1Cmd = &cobra.Command{
+	Use:   "GetUserRankingPublicV1",
 	Short: "Get user ranking public V1",
 	Long:  `Get user ranking public V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -44,11 +43,10 @@ var getUserRankingPublicV1Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getUserRankingPublicV1Cmd)
-	getUserRankingPublicV1Cmd.Flags().StringP("leaderboardCode", "le", " ", "Leaderboard code")
-	_ = getUserRankingPublicV1Cmd.MarkFlagRequired("leaderboardCode")
-	getUserRankingPublicV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getUserRankingPublicV1Cmd.MarkFlagRequired("namespace")
-	getUserRankingPublicV1Cmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = getUserRankingPublicV1Cmd.MarkFlagRequired("userId")
+	GetUserRankingPublicV1Cmd.Flags().StringP("leaderboardCode", "le", " ", "Leaderboard code")
+	_ = GetUserRankingPublicV1Cmd.MarkFlagRequired("leaderboardCode")
+	GetUserRankingPublicV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetUserRankingPublicV1Cmd.MarkFlagRequired("namespace")
+	GetUserRankingPublicV1Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = GetUserRankingPublicV1Cmd.MarkFlagRequired("userId")
 }

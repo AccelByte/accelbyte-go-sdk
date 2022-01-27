@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/legal"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// indirectBulkAcceptVersionedPolicyCmd represents the indirectBulkAcceptVersionedPolicy command
-var indirectBulkAcceptVersionedPolicyCmd = &cobra.Command{
-	Use:   "indirectBulkAcceptVersionedPolicy",
+// IndirectBulkAcceptVersionedPolicyCmd represents the IndirectBulkAcceptVersionedPolicy command
+var IndirectBulkAcceptVersionedPolicyCmd = &cobra.Command{
+	Use:   "IndirectBulkAcceptVersionedPolicy",
 	Short: "Indirect bulk accept versioned policy",
 	Long:  `Indirect bulk accept versioned policy`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -57,15 +56,14 @@ var indirectBulkAcceptVersionedPolicyCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(indirectBulkAcceptVersionedPolicyCmd)
-	indirectBulkAcceptVersionedPolicyCmd.Flags().StringP("body", "by", " ", "Body")
-	indirectBulkAcceptVersionedPolicyCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = indirectBulkAcceptVersionedPolicyCmd.MarkFlagRequired("namespace")
-	indirectBulkAcceptVersionedPolicyCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = indirectBulkAcceptVersionedPolicyCmd.MarkFlagRequired("userId")
-	indirectBulkAcceptVersionedPolicyCmd.Flags().StringP("publisherUserId", "pd", " ", "Publisher user id")
-	indirectBulkAcceptVersionedPolicyCmd.Flags().StringP("clientId", "cd", " ", "Client id")
-	_ = indirectBulkAcceptVersionedPolicyCmd.MarkFlagRequired("clientId")
-	indirectBulkAcceptVersionedPolicyCmd.Flags().StringP("countryCode", "ce", " ", "Country code")
-	_ = indirectBulkAcceptVersionedPolicyCmd.MarkFlagRequired("countryCode")
+	IndirectBulkAcceptVersionedPolicyCmd.Flags().StringP("body", "by", " ", "Body")
+	IndirectBulkAcceptVersionedPolicyCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = IndirectBulkAcceptVersionedPolicyCmd.MarkFlagRequired("namespace")
+	IndirectBulkAcceptVersionedPolicyCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = IndirectBulkAcceptVersionedPolicyCmd.MarkFlagRequired("userId")
+	IndirectBulkAcceptVersionedPolicyCmd.Flags().StringP("publisherUserId", "pd", " ", "Publisher user id")
+	IndirectBulkAcceptVersionedPolicyCmd.Flags().StringP("clientId", "cd", " ", "Client id")
+	_ = IndirectBulkAcceptVersionedPolicyCmd.MarkFlagRequired("clientId")
+	IndirectBulkAcceptVersionedPolicyCmd.Flags().StringP("countryCode", "ce", " ", "Country code")
+	_ = IndirectBulkAcceptVersionedPolicyCmd.MarkFlagRequired("countryCode")
 }

@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/ugc"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/admin_content"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclientmodels"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminUploadContentS3Cmd represents the adminUploadContentS3 command
-var adminUploadContentS3Cmd = &cobra.Command{
-	Use:   "adminUploadContentS3",
+// AdminUploadContentS3Cmd represents the AdminUploadContentS3 command
+var AdminUploadContentS3Cmd = &cobra.Command{
+	Use:   "AdminUploadContentS3",
 	Short: "Admin upload content S3",
 	Long:  `Admin upload content S3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -51,11 +50,10 @@ var adminUploadContentS3Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminUploadContentS3Cmd)
-	adminUploadContentS3Cmd.Flags().StringP("body", "by", " ", "Body")
-	_ = adminUploadContentS3Cmd.MarkFlagRequired("body")
-	adminUploadContentS3Cmd.Flags().StringP("channelId", "cd", " ", "Channel id")
-	_ = adminUploadContentS3Cmd.MarkFlagRequired("channelId")
-	adminUploadContentS3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = adminUploadContentS3Cmd.MarkFlagRequired("namespace")
+	AdminUploadContentS3Cmd.Flags().StringP("body", "by", " ", "Body")
+	_ = AdminUploadContentS3Cmd.MarkFlagRequired("body")
+	AdminUploadContentS3Cmd.Flags().StringP("channelId", "cd", " ", "Channel id")
+	_ = AdminUploadContentS3Cmd.MarkFlagRequired("channelId")
+	AdminUploadContentS3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AdminUploadContentS3Cmd.MarkFlagRequired("namespace")
 }

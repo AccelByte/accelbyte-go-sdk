@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/i_a_p"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// deleteSteamIAPConfigCmd represents the deleteSteamIAPConfig command
-var deleteSteamIAPConfigCmd = &cobra.Command{
-	Use:   "deleteSteamIAPConfig",
+// DeleteSteamIAPConfigCmd represents the DeleteSteamIAPConfig command
+var DeleteSteamIAPConfigCmd = &cobra.Command{
+	Use:   "DeleteSteamIAPConfig",
 	Short: "Delete steam IAP config",
 	Long:  `Delete steam IAP config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,7 +38,6 @@ var deleteSteamIAPConfigCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(deleteSteamIAPConfigCmd)
-	deleteSteamIAPConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = deleteSteamIAPConfigCmd.MarkFlagRequired("namespace")
+	DeleteSteamIAPConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = DeleteSteamIAPConfigCmd.MarkFlagRequired("namespace")
 }

@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/payment_config"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// debugMatchedPaymentProviderConfigCmd represents the debugMatchedPaymentProviderConfig command
-var debugMatchedPaymentProviderConfigCmd = &cobra.Command{
-	Use:   "debugMatchedPaymentProviderConfig",
+// DebugMatchedPaymentProviderConfigCmd represents the DebugMatchedPaymentProviderConfig command
+var DebugMatchedPaymentProviderConfigCmd = &cobra.Command{
+	Use:   "DebugMatchedPaymentProviderConfig",
 	Short: "Debug matched payment provider config",
 	Long:  `Debug matched payment provider config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,7 +41,6 @@ var debugMatchedPaymentProviderConfigCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(debugMatchedPaymentProviderConfigCmd)
-	debugMatchedPaymentProviderConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	debugMatchedPaymentProviderConfigCmd.Flags().StringP("region", "rn", " ", "Region")
+	DebugMatchedPaymentProviderConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	DebugMatchedPaymentProviderConfigCmd.Flags().StringP("region", "rn", " ", "Region")
 }

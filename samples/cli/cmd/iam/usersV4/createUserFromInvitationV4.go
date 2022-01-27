@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// createUserFromInvitationV4Cmd represents the createUserFromInvitationV4 command
-var createUserFromInvitationV4Cmd = &cobra.Command{
-	Use:   "createUserFromInvitationV4",
+// CreateUserFromInvitationV4Cmd represents the CreateUserFromInvitationV4 command
+var CreateUserFromInvitationV4Cmd = &cobra.Command{
+	Use:   "CreateUserFromInvitationV4",
 	Short: "Create user from invitation V4",
 	Long:  `Create user from invitation V4`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -51,11 +50,10 @@ var createUserFromInvitationV4Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(createUserFromInvitationV4Cmd)
-	createUserFromInvitationV4Cmd.Flags().StringP("body", "by", " ", "Body")
-	_ = createUserFromInvitationV4Cmd.MarkFlagRequired("body")
-	createUserFromInvitationV4Cmd.Flags().StringP("invitationId", "id", " ", "Invitation id")
-	_ = createUserFromInvitationV4Cmd.MarkFlagRequired("invitationId")
-	createUserFromInvitationV4Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = createUserFromInvitationV4Cmd.MarkFlagRequired("namespace")
+	CreateUserFromInvitationV4Cmd.Flags().StringP("body", "by", " ", "Body")
+	_ = CreateUserFromInvitationV4Cmd.MarkFlagRequired("body")
+	CreateUserFromInvitationV4Cmd.Flags().StringP("invitationId", "id", " ", "Invitation id")
+	_ = CreateUserFromInvitationV4Cmd.MarkFlagRequired("invitationId")
+	CreateUserFromInvitationV4Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = CreateUserFromInvitationV4Cmd.MarkFlagRequired("namespace")
 }

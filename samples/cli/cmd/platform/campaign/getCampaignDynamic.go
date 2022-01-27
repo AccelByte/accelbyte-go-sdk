@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/campaign"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getCampaignDynamicCmd represents the getCampaignDynamic command
-var getCampaignDynamicCmd = &cobra.Command{
-	Use:   "getCampaignDynamic",
+// GetCampaignDynamicCmd represents the GetCampaignDynamic command
+var GetCampaignDynamicCmd = &cobra.Command{
+	Use:   "GetCampaignDynamic",
 	Short: "Get campaign dynamic",
 	Long:  `Get campaign dynamic`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,9 +41,8 @@ var getCampaignDynamicCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getCampaignDynamicCmd)
-	getCampaignDynamicCmd.Flags().StringP("campaignId", "cd", " ", "Campaign id")
-	_ = getCampaignDynamicCmd.MarkFlagRequired("campaignId")
-	getCampaignDynamicCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getCampaignDynamicCmd.MarkFlagRequired("namespace")
+	GetCampaignDynamicCmd.Flags().StringP("campaignId", "cd", " ", "Campaign id")
+	_ = GetCampaignDynamicCmd.MarkFlagRequired("campaignId")
+	GetCampaignDynamicCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetCampaignDynamicCmd.MarkFlagRequired("namespace")
 }

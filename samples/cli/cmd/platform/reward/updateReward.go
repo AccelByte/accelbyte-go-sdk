@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// updateRewardCmd represents the updateReward command
-var updateRewardCmd = &cobra.Command{
-	Use:   "updateReward",
+// UpdateRewardCmd represents the UpdateReward command
+var UpdateRewardCmd = &cobra.Command{
+	Use:   "UpdateReward",
 	Short: "Update reward",
 	Long:  `Update reward`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -51,10 +50,9 @@ var updateRewardCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(updateRewardCmd)
-	updateRewardCmd.Flags().StringP("body", "by", " ", "Body")
-	updateRewardCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = updateRewardCmd.MarkFlagRequired("namespace")
-	updateRewardCmd.Flags().StringP("rewardId", "rd", " ", "Reward id")
-	_ = updateRewardCmd.MarkFlagRequired("rewardId")
+	UpdateRewardCmd.Flags().StringP("body", "by", " ", "Body")
+	UpdateRewardCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = UpdateRewardCmd.MarkFlagRequired("namespace")
+	UpdateRewardCmd.Flags().StringP("rewardId", "rd", " ", "Reward id")
+	_ = UpdateRewardCmd.MarkFlagRequired("rewardId")
 }

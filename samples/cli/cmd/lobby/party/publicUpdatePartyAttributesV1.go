@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/lobby"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// publicUpdatePartyAttributesV1Cmd represents the publicUpdatePartyAttributesV1 command
-var publicUpdatePartyAttributesV1Cmd = &cobra.Command{
-	Use:   "publicUpdatePartyAttributesV1",
+// PublicUpdatePartyAttributesV1Cmd represents the PublicUpdatePartyAttributesV1 command
+var PublicUpdatePartyAttributesV1Cmd = &cobra.Command{
+	Use:   "PublicUpdatePartyAttributesV1",
 	Short: "Public update party attributes V1",
 	Long:  `Public update party attributes V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -51,11 +50,10 @@ var publicUpdatePartyAttributesV1Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(publicUpdatePartyAttributesV1Cmd)
-	publicUpdatePartyAttributesV1Cmd.Flags().StringP("body", "by", " ", "Body")
-	_ = publicUpdatePartyAttributesV1Cmd.MarkFlagRequired("body")
-	publicUpdatePartyAttributesV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = publicUpdatePartyAttributesV1Cmd.MarkFlagRequired("namespace")
-	publicUpdatePartyAttributesV1Cmd.Flags().StringP("partyId", "pd", " ", "Party id")
-	_ = publicUpdatePartyAttributesV1Cmd.MarkFlagRequired("partyId")
+	PublicUpdatePartyAttributesV1Cmd.Flags().StringP("body", "by", " ", "Body")
+	_ = PublicUpdatePartyAttributesV1Cmd.MarkFlagRequired("body")
+	PublicUpdatePartyAttributesV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PublicUpdatePartyAttributesV1Cmd.MarkFlagRequired("namespace")
+	PublicUpdatePartyAttributesV1Cmd.Flags().StringP("partyId", "pd", " ", "Party id")
+	_ = PublicUpdatePartyAttributesV1Cmd.MarkFlagRequired("partyId")
 }

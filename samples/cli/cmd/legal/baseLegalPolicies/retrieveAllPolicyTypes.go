@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclient/base_legal_policies"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/legal"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// retrieveAllPolicyTypesCmd represents the retrieveAllPolicyTypes command
-var retrieveAllPolicyTypesCmd = &cobra.Command{
-	Use:   "retrieveAllPolicyTypes",
+// RetrieveAllPolicyTypesCmd represents the RetrieveAllPolicyTypes command
+var RetrieveAllPolicyTypesCmd = &cobra.Command{
+	Use:   "RetrieveAllPolicyTypes",
 	Short: "Retrieve all policy types",
 	Long:  `Retrieve all policy types`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,8 +41,7 @@ var retrieveAllPolicyTypesCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(retrieveAllPolicyTypesCmd)
-	retrieveAllPolicyTypesCmd.Flags().Int32P("offset", "ot", 0, "Offset")
-	retrieveAllPolicyTypesCmd.Flags().Int32P("limit", "lt", 20, "Limit")
-	_ = retrieveAllPolicyTypesCmd.MarkFlagRequired("limit")
+	RetrieveAllPolicyTypesCmd.Flags().Int32P("offset", "ot", 0, "Offset")
+	RetrieveAllPolicyTypesCmd.Flags().Int32P("limit", "lt", 20, "Limit")
+	_ = RetrieveAllPolicyTypesCmd.MarkFlagRequired("limit")
 }

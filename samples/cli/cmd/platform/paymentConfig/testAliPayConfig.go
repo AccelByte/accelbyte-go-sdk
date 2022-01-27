@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// testAliPayConfigCmd represents the testAliPayConfig command
-var testAliPayConfigCmd = &cobra.Command{
-	Use:   "testAliPayConfig",
+// TestAliPayConfigCmd represents the TestAliPayConfig command
+var TestAliPayConfigCmd = &cobra.Command{
+	Use:   "TestAliPayConfig",
 	Short: "Test ali pay config",
 	Long:  `Test ali pay config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,7 +48,6 @@ var testAliPayConfigCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(testAliPayConfigCmd)
-	testAliPayConfigCmd.Flags().StringP("body", "by", " ", "Body")
-	testAliPayConfigCmd.Flags().BoolP("sandbox", "sx", false, "Sandbox")
+	TestAliPayConfigCmd.Flags().StringP("body", "by", " ", "Body")
+	TestAliPayConfigCmd.Flags().BoolP("sandbox", "sx", false, "Sandbox")
 }

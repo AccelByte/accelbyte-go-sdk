@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/basic"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// addCountryGroupCmd represents the addCountryGroup command
-var addCountryGroupCmd = &cobra.Command{
-	Use:   "addCountryGroup",
+// AddCountryGroupCmd represents the AddCountryGroup command
+var AddCountryGroupCmd = &cobra.Command{
+	Use:   "AddCountryGroup",
 	Short: "Add country group",
 	Long:  `Add country group`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,8 +48,7 @@ var addCountryGroupCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(addCountryGroupCmd)
-	addCountryGroupCmd.Flags().StringP("body", "by", " ", "Body")
-	addCountryGroupCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = addCountryGroupCmd.MarkFlagRequired("namespace")
+	AddCountryGroupCmd.Flags().StringP("body", "by", " ", "Body")
+	AddCountryGroupCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AddCountryGroupCmd.MarkFlagRequired("namespace")
 }

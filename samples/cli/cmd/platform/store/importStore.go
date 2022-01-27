@@ -8,16 +8,15 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/store"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 	"os"
 )
 
-// importStoreCmd represents the importStore command
-var importStoreCmd = &cobra.Command{
-	Use:   "importStore",
+// ImportStoreCmd represents the ImportStore command
+var ImportStoreCmd = &cobra.Command{
+	Use:   "ImportStore",
 	Short: "Import store",
 	Long:  `Import store`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,9 +49,8 @@ var importStoreCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(importStoreCmd)
-	importStoreCmd.Flags().StringP("file", "fe", " ", "File")
-	importStoreCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = importStoreCmd.MarkFlagRequired("namespace")
-	importStoreCmd.Flags().StringP("storeId", "sd", " ", "Store id")
+	ImportStoreCmd.Flags().StringP("file", "fe", " ", "File")
+	ImportStoreCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = ImportStoreCmd.MarkFlagRequired("namespace")
+	ImportStoreCmd.Flags().StringP("storeId", "sd", " ", "Store id")
 }

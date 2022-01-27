@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/cloudsave"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// putPlayerPublicRecordConcurrentHandlerV1Cmd represents the putPlayerPublicRecordConcurrentHandlerV1 command
-var putPlayerPublicRecordConcurrentHandlerV1Cmd = &cobra.Command{
-	Use:   "putPlayerPublicRecordConcurrentHandlerV1",
+// PutPlayerPublicRecordConcurrentHandlerV1Cmd represents the PutPlayerPublicRecordConcurrentHandlerV1 command
+var PutPlayerPublicRecordConcurrentHandlerV1Cmd = &cobra.Command{
+	Use:   "PutPlayerPublicRecordConcurrentHandlerV1",
 	Short: "Put player public record concurrent handler V1",
 	Long:  `Put player public record concurrent handler V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -52,13 +51,12 @@ var putPlayerPublicRecordConcurrentHandlerV1Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(putPlayerPublicRecordConcurrentHandlerV1Cmd)
-	putPlayerPublicRecordConcurrentHandlerV1Cmd.Flags().StringP("body", "by", " ", "Body")
-	_ = putPlayerPublicRecordConcurrentHandlerV1Cmd.MarkFlagRequired("body")
-	putPlayerPublicRecordConcurrentHandlerV1Cmd.Flags().StringP("key", "ky", " ", "Key")
-	_ = putPlayerPublicRecordConcurrentHandlerV1Cmd.MarkFlagRequired("key")
-	putPlayerPublicRecordConcurrentHandlerV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = putPlayerPublicRecordConcurrentHandlerV1Cmd.MarkFlagRequired("namespace")
-	putPlayerPublicRecordConcurrentHandlerV1Cmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = putPlayerPublicRecordConcurrentHandlerV1Cmd.MarkFlagRequired("userId")
+	PutPlayerPublicRecordConcurrentHandlerV1Cmd.Flags().StringP("body", "by", " ", "Body")
+	_ = PutPlayerPublicRecordConcurrentHandlerV1Cmd.MarkFlagRequired("body")
+	PutPlayerPublicRecordConcurrentHandlerV1Cmd.Flags().StringP("key", "ky", " ", "Key")
+	_ = PutPlayerPublicRecordConcurrentHandlerV1Cmd.MarkFlagRequired("key")
+	PutPlayerPublicRecordConcurrentHandlerV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PutPlayerPublicRecordConcurrentHandlerV1Cmd.MarkFlagRequired("namespace")
+	PutPlayerPublicRecordConcurrentHandlerV1Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = PutPlayerPublicRecordConcurrentHandlerV1Cmd.MarkFlagRequired("userId")
 }

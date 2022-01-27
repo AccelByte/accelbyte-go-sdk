@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/payment_account"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// publicDeletePaymentAccountCmd represents the publicDeletePaymentAccount command
-var publicDeletePaymentAccountCmd = &cobra.Command{
-	Use:   "publicDeletePaymentAccount",
+// PublicDeletePaymentAccountCmd represents the PublicDeletePaymentAccount command
+var PublicDeletePaymentAccountCmd = &cobra.Command{
+	Use:   "PublicDeletePaymentAccount",
 	Short: "Public delete payment account",
 	Long:  `Public delete payment account`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -45,13 +44,12 @@ var publicDeletePaymentAccountCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(publicDeletePaymentAccountCmd)
-	publicDeletePaymentAccountCmd.Flags().StringP("id", "id", " ", "Id")
-	_ = publicDeletePaymentAccountCmd.MarkFlagRequired("id")
-	publicDeletePaymentAccountCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = publicDeletePaymentAccountCmd.MarkFlagRequired("namespace")
-	publicDeletePaymentAccountCmd.Flags().StringP("type", "te", " ", "Type")
-	_ = publicDeletePaymentAccountCmd.MarkFlagRequired("type")
-	publicDeletePaymentAccountCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = publicDeletePaymentAccountCmd.MarkFlagRequired("userId")
+	PublicDeletePaymentAccountCmd.Flags().StringP("id", "id", " ", "Id")
+	_ = PublicDeletePaymentAccountCmd.MarkFlagRequired("id")
+	PublicDeletePaymentAccountCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PublicDeletePaymentAccountCmd.MarkFlagRequired("namespace")
+	PublicDeletePaymentAccountCmd.Flags().StringP("type", "te", " ", "Type")
+	_ = PublicDeletePaymentAccountCmd.MarkFlagRequired("type")
+	PublicDeletePaymentAccountCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = PublicDeletePaymentAccountCmd.MarkFlagRequired("userId")
 }

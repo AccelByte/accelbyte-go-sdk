@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// publicGetUserBanCmd represents the publicGetUserBan command
-var publicGetUserBanCmd = &cobra.Command{
-	Use:   "publicGetUserBan",
+// PublicGetUserBanCmd represents the PublicGetUserBan command
+var PublicGetUserBanCmd = &cobra.Command{
+	Use:   "PublicGetUserBan",
 	Short: "Public get user ban",
 	Long:  `Public get user ban`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -44,10 +43,9 @@ var publicGetUserBanCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(publicGetUserBanCmd)
-	publicGetUserBanCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = publicGetUserBanCmd.MarkFlagRequired("namespace")
-	publicGetUserBanCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = publicGetUserBanCmd.MarkFlagRequired("userId")
-	publicGetUserBanCmd.Flags().BoolP("activeOnly", "ay", false, "Active only")
+	PublicGetUserBanCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PublicGetUserBanCmd.MarkFlagRequired("namespace")
+	PublicGetUserBanCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = PublicGetUserBanCmd.MarkFlagRequired("userId")
+	PublicGetUserBanCmd.Flags().BoolP("activeOnly", "ay", false, "Active only")
 }

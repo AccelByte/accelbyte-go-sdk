@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/social"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient/user_statistic"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclientmodels"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// bulkUpdateUserStatItemCmd represents the bulkUpdateUserStatItem command
-var bulkUpdateUserStatItemCmd = &cobra.Command{
-	Use:   "bulkUpdateUserStatItem",
+// BulkUpdateUserStatItemCmd represents the BulkUpdateUserStatItem command
+var BulkUpdateUserStatItemCmd = &cobra.Command{
+	Use:   "BulkUpdateUserStatItem",
 	Short: "Bulk update user stat item",
 	Long:  `Bulk update user stat item`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -53,11 +52,10 @@ var bulkUpdateUserStatItemCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(bulkUpdateUserStatItemCmd)
-	bulkUpdateUserStatItemCmd.Flags().StringP("body", "by", " ", "Body")
-	bulkUpdateUserStatItemCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = bulkUpdateUserStatItemCmd.MarkFlagRequired("namespace")
-	bulkUpdateUserStatItemCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = bulkUpdateUserStatItemCmd.MarkFlagRequired("userId")
-	bulkUpdateUserStatItemCmd.Flags().StringP("additionalKey", "ay", " ", "Additional key")
+	BulkUpdateUserStatItemCmd.Flags().StringP("body", "by", " ", "Body")
+	BulkUpdateUserStatItemCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = BulkUpdateUserStatItemCmd.MarkFlagRequired("namespace")
+	BulkUpdateUserStatItemCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = BulkUpdateUserStatItemCmd.MarkFlagRequired("userId")
+	BulkUpdateUserStatItemCmd.Flags().StringP("additionalKey", "ay", " ", "Additional key")
 }

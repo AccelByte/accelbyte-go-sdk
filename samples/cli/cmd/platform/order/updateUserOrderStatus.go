@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// updateUserOrderStatusCmd represents the updateUserOrderStatus command
-var updateUserOrderStatusCmd = &cobra.Command{
-	Use:   "updateUserOrderStatus",
+// UpdateUserOrderStatusCmd represents the UpdateUserOrderStatus command
+var UpdateUserOrderStatusCmd = &cobra.Command{
+	Use:   "UpdateUserOrderStatus",
 	Short: "Update user order status",
 	Long:  `Update user order status`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -53,12 +52,11 @@ var updateUserOrderStatusCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(updateUserOrderStatusCmd)
-	updateUserOrderStatusCmd.Flags().StringP("body", "by", " ", "Body")
-	updateUserOrderStatusCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = updateUserOrderStatusCmd.MarkFlagRequired("namespace")
-	updateUserOrderStatusCmd.Flags().StringP("orderNo", "oo", " ", "Order no")
-	_ = updateUserOrderStatusCmd.MarkFlagRequired("orderNo")
-	updateUserOrderStatusCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = updateUserOrderStatusCmd.MarkFlagRequired("userId")
+	UpdateUserOrderStatusCmd.Flags().StringP("body", "by", " ", "Body")
+	UpdateUserOrderStatusCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = UpdateUserOrderStatusCmd.MarkFlagRequired("namespace")
+	UpdateUserOrderStatusCmd.Flags().StringP("orderNo", "oo", " ", "Order no")
+	_ = UpdateUserOrderStatusCmd.MarkFlagRequired("orderNo")
+	UpdateUserOrderStatusCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = UpdateUserOrderStatusCmd.MarkFlagRequired("userId")
 }

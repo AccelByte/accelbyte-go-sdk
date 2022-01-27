@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/seasonpass-sdk/pkg/seasonpassclient/season"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/seasonpass"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getCurrentUserSeasonProgressionCmd represents the getCurrentUserSeasonProgression command
-var getCurrentUserSeasonProgressionCmd = &cobra.Command{
-	Use:   "getCurrentUserSeasonProgression",
+// GetCurrentUserSeasonProgressionCmd represents the GetCurrentUserSeasonProgression command
+var GetCurrentUserSeasonProgressionCmd = &cobra.Command{
+	Use:   "GetCurrentUserSeasonProgression",
 	Short: "Get current user season progression",
 	Long:  `Get current user season progression`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,9 +41,8 @@ var getCurrentUserSeasonProgressionCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getCurrentUserSeasonProgressionCmd)
-	getCurrentUserSeasonProgressionCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getCurrentUserSeasonProgressionCmd.MarkFlagRequired("namespace")
-	getCurrentUserSeasonProgressionCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = getCurrentUserSeasonProgressionCmd.MarkFlagRequired("userId")
+	GetCurrentUserSeasonProgressionCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetCurrentUserSeasonProgressionCmd.MarkFlagRequired("namespace")
+	GetCurrentUserSeasonProgressionCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = GetCurrentUserSeasonProgressionCmd.MarkFlagRequired("userId")
 }

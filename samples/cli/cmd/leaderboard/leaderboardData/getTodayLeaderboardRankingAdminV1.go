@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/leaderboard-sdk/pkg/leaderboardclient/leaderboard_data"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/leaderboard"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getTodayLeaderboardRankingAdminV1Cmd represents the getTodayLeaderboardRankingAdminV1 command
-var getTodayLeaderboardRankingAdminV1Cmd = &cobra.Command{
-	Use:   "getTodayLeaderboardRankingAdminV1",
+// GetTodayLeaderboardRankingAdminV1Cmd represents the GetTodayLeaderboardRankingAdminV1 command
+var GetTodayLeaderboardRankingAdminV1Cmd = &cobra.Command{
+	Use:   "GetTodayLeaderboardRankingAdminV1",
 	Short: "Get today leaderboard ranking admin V1",
 	Long:  `Get today leaderboard ranking admin V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -46,11 +45,10 @@ var getTodayLeaderboardRankingAdminV1Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getTodayLeaderboardRankingAdminV1Cmd)
-	getTodayLeaderboardRankingAdminV1Cmd.Flags().StringP("leaderboardCode", "le", " ", "Leaderboard code")
-	_ = getTodayLeaderboardRankingAdminV1Cmd.MarkFlagRequired("leaderboardCode")
-	getTodayLeaderboardRankingAdminV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getTodayLeaderboardRankingAdminV1Cmd.MarkFlagRequired("namespace")
-	getTodayLeaderboardRankingAdminV1Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
-	getTodayLeaderboardRankingAdminV1Cmd.Flags().Int64P("offset", "ot", 0, "Offset")
+	GetTodayLeaderboardRankingAdminV1Cmd.Flags().StringP("leaderboardCode", "le", " ", "Leaderboard code")
+	_ = GetTodayLeaderboardRankingAdminV1Cmd.MarkFlagRequired("leaderboardCode")
+	GetTodayLeaderboardRankingAdminV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetTodayLeaderboardRankingAdminV1Cmd.MarkFlagRequired("namespace")
+	GetTodayLeaderboardRankingAdminV1Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
+	GetTodayLeaderboardRankingAdminV1Cmd.Flags().Int64P("offset", "ot", 0, "Offset")
 }

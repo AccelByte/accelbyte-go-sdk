@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/eventlog-sdk/pkg/eventlogclient/event"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/eventlog"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getEventByUserEventIDAndEventTypeHandlerCmd represents the getEventByUserEventIDAndEventTypeHandler command
-var getEventByUserEventIDAndEventTypeHandlerCmd = &cobra.Command{
-	Use:   "getEventByUserEventIDAndEventTypeHandler",
+// GetEventByUserEventIDAndEventTypeHandlerCmd represents the GetEventByUserEventIDAndEventTypeHandler command
+var GetEventByUserEventIDAndEventTypeHandlerCmd = &cobra.Command{
+	Use:   "GetEventByUserEventIDAndEventTypeHandler",
 	Short: "Get event by user event ID and event type handler",
 	Long:  `Get event by user event ID and event type handler`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -54,20 +53,19 @@ var getEventByUserEventIDAndEventTypeHandlerCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getEventByUserEventIDAndEventTypeHandlerCmd)
-	getEventByUserEventIDAndEventTypeHandlerCmd.Flags().Float64P("eventId", "ed", 0, "Event id")
-	_ = getEventByUserEventIDAndEventTypeHandlerCmd.MarkFlagRequired("eventId")
-	getEventByUserEventIDAndEventTypeHandlerCmd.Flags().Float64P("eventType", "ee", 0, "Event type")
-	_ = getEventByUserEventIDAndEventTypeHandlerCmd.MarkFlagRequired("eventType")
-	getEventByUserEventIDAndEventTypeHandlerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getEventByUserEventIDAndEventTypeHandlerCmd.MarkFlagRequired("namespace")
-	getEventByUserEventIDAndEventTypeHandlerCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = getEventByUserEventIDAndEventTypeHandlerCmd.MarkFlagRequired("userId")
-	getEventByUserEventIDAndEventTypeHandlerCmd.Flags().Float64P("offset", "ot", 0, "Offset")
-	getEventByUserEventIDAndEventTypeHandlerCmd.Flags().StringP("endDate", "ee", " ", "End date")
-	_ = getEventByUserEventIDAndEventTypeHandlerCmd.MarkFlagRequired("endDate")
-	getEventByUserEventIDAndEventTypeHandlerCmd.Flags().Float64P("pageSize", "pe", 1, "Page size")
-	_ = getEventByUserEventIDAndEventTypeHandlerCmd.MarkFlagRequired("pageSize")
-	getEventByUserEventIDAndEventTypeHandlerCmd.Flags().StringP("startDate", "se", " ", "Start date")
-	_ = getEventByUserEventIDAndEventTypeHandlerCmd.MarkFlagRequired("startDate")
+	GetEventByUserEventIDAndEventTypeHandlerCmd.Flags().Float64P("eventId", "ed", 0, "Event id")
+	_ = GetEventByUserEventIDAndEventTypeHandlerCmd.MarkFlagRequired("eventId")
+	GetEventByUserEventIDAndEventTypeHandlerCmd.Flags().Float64P("eventType", "ee", 0, "Event type")
+	_ = GetEventByUserEventIDAndEventTypeHandlerCmd.MarkFlagRequired("eventType")
+	GetEventByUserEventIDAndEventTypeHandlerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetEventByUserEventIDAndEventTypeHandlerCmd.MarkFlagRequired("namespace")
+	GetEventByUserEventIDAndEventTypeHandlerCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = GetEventByUserEventIDAndEventTypeHandlerCmd.MarkFlagRequired("userId")
+	GetEventByUserEventIDAndEventTypeHandlerCmd.Flags().Float64P("offset", "ot", 0, "Offset")
+	GetEventByUserEventIDAndEventTypeHandlerCmd.Flags().StringP("endDate", "ee", " ", "End date")
+	_ = GetEventByUserEventIDAndEventTypeHandlerCmd.MarkFlagRequired("endDate")
+	GetEventByUserEventIDAndEventTypeHandlerCmd.Flags().Float64P("pageSize", "pe", 1, "Page size")
+	_ = GetEventByUserEventIDAndEventTypeHandlerCmd.MarkFlagRequired("pageSize")
+	GetEventByUserEventIDAndEventTypeHandlerCmd.Flags().StringP("startDate", "se", " ", "Start date")
+	_ = GetEventByUserEventIDAndEventTypeHandlerCmd.MarkFlagRequired("startDate")
 }

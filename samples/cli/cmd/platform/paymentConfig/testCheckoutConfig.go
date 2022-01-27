@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// testCheckoutConfigCmd represents the testCheckoutConfig command
-var testCheckoutConfigCmd = &cobra.Command{
-	Use:   "testCheckoutConfig",
+// TestCheckoutConfigCmd represents the TestCheckoutConfig command
+var TestCheckoutConfigCmd = &cobra.Command{
+	Use:   "TestCheckoutConfig",
 	Short: "Test checkout config",
 	Long:  `Test checkout config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,7 +48,6 @@ var testCheckoutConfigCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(testCheckoutConfigCmd)
-	testCheckoutConfigCmd.Flags().StringP("body", "by", " ", "Body")
-	testCheckoutConfigCmd.Flags().BoolP("sandbox", "sx", false, "Sandbox")
+	TestCheckoutConfigCmd.Flags().StringP("body", "by", " ", "Body")
+	TestCheckoutConfigCmd.Flags().BoolP("sandbox", "sx", false, "Sandbox")
 }

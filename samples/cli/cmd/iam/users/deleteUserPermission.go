@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// deleteUserPermissionCmd represents the deleteUserPermission command
-var deleteUserPermissionCmd = &cobra.Command{
-	Use:   "deleteUserPermission",
+// DeleteUserPermissionCmd represents the DeleteUserPermission command
+var DeleteUserPermissionCmd = &cobra.Command{
+	Use:   "DeleteUserPermission",
 	Short: "Delete user permission",
 	Long:  `Delete user permission`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -45,13 +44,12 @@ var deleteUserPermissionCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(deleteUserPermissionCmd)
-	deleteUserPermissionCmd.Flags().Int64P("action", "an", -1, "Action")
-	_ = deleteUserPermissionCmd.MarkFlagRequired("action")
-	deleteUserPermissionCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = deleteUserPermissionCmd.MarkFlagRequired("namespace")
-	deleteUserPermissionCmd.Flags().StringP("resource", "re", " ", "Resource")
-	_ = deleteUserPermissionCmd.MarkFlagRequired("resource")
-	deleteUserPermissionCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = deleteUserPermissionCmd.MarkFlagRequired("userId")
+	DeleteUserPermissionCmd.Flags().Int64P("action", "an", -1, "Action")
+	_ = DeleteUserPermissionCmd.MarkFlagRequired("action")
+	DeleteUserPermissionCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = DeleteUserPermissionCmd.MarkFlagRequired("namespace")
+	DeleteUserPermissionCmd.Flags().StringP("resource", "re", " ", "Resource")
+	_ = DeleteUserPermissionCmd.MarkFlagRequired("resource")
+	DeleteUserPermissionCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = DeleteUserPermissionCmd.MarkFlagRequired("userId")
 }

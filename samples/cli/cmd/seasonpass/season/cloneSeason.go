@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/seasonpass-sdk/pkg/seasonpassclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/seasonpass"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// cloneSeasonCmd represents the cloneSeason command
-var cloneSeasonCmd = &cobra.Command{
-	Use:   "cloneSeason",
+// CloneSeasonCmd represents the CloneSeason command
+var CloneSeasonCmd = &cobra.Command{
+	Use:   "CloneSeason",
 	Short: "Clone season",
 	Long:  `Clone season`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -51,10 +50,9 @@ var cloneSeasonCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(cloneSeasonCmd)
-	cloneSeasonCmd.Flags().StringP("body", "by", " ", "Body")
-	cloneSeasonCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = cloneSeasonCmd.MarkFlagRequired("namespace")
-	cloneSeasonCmd.Flags().StringP("seasonId", "sd", " ", "Season id")
-	_ = cloneSeasonCmd.MarkFlagRequired("seasonId")
+	CloneSeasonCmd.Flags().StringP("body", "by", " ", "Body")
+	CloneSeasonCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = CloneSeasonCmd.MarkFlagRequired("namespace")
+	CloneSeasonCmd.Flags().StringP("seasonId", "sd", " ", "Season id")
+	_ = CloneSeasonCmd.MarkFlagRequired("seasonId")
 }

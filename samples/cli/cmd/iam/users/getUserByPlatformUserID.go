@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getUserByPlatformUserIDCmd represents the getUserByPlatformUserID command
-var getUserByPlatformUserIDCmd = &cobra.Command{
-	Use:   "getUserByPlatformUserID",
+// GetUserByPlatformUserIDCmd represents the GetUserByPlatformUserID command
+var GetUserByPlatformUserIDCmd = &cobra.Command{
+	Use:   "GetUserByPlatformUserID",
 	Short: "Get user by platform user ID",
 	Long:  `Get user by platform user ID`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -44,11 +43,10 @@ var getUserByPlatformUserIDCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getUserByPlatformUserIDCmd)
-	getUserByPlatformUserIDCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getUserByPlatformUserIDCmd.MarkFlagRequired("namespace")
-	getUserByPlatformUserIDCmd.Flags().StringP("platformID", "pD", " ", "Platform ID")
-	_ = getUserByPlatformUserIDCmd.MarkFlagRequired("platformID")
-	getUserByPlatformUserIDCmd.Flags().StringP("platformUserID", "pD", " ", "Platform user ID")
-	_ = getUserByPlatformUserIDCmd.MarkFlagRequired("platformUserID")
+	GetUserByPlatformUserIDCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetUserByPlatformUserIDCmd.MarkFlagRequired("namespace")
+	GetUserByPlatformUserIDCmd.Flags().StringP("platformID", "pD", " ", "Platform ID")
+	_ = GetUserByPlatformUserIDCmd.MarkFlagRequired("platformID")
+	GetUserByPlatformUserIDCmd.Flags().StringP("platformUserID", "pD", " ", "Platform user ID")
+	_ = GetUserByPlatformUserIDCmd.MarkFlagRequired("platformUserID")
 }

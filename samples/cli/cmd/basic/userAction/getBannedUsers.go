@@ -9,15 +9,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclient/user_action"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/basic"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getBannedUsersCmd represents the getBannedUsers command
-var getBannedUsersCmd = &cobra.Command{
-	Use:   "getBannedUsers",
+// GetBannedUsersCmd represents the GetBannedUsers command
+var GetBannedUsersCmd = &cobra.Command{
+	Use:   "GetBannedUsers",
 	Short: "Get banned users",
 	Long:  `Get banned users`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,9 +47,8 @@ var getBannedUsersCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getBannedUsersCmd)
-	getBannedUsersCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getBannedUsersCmd.MarkFlagRequired("namespace")
-	getBannedUsersCmd.Flags().StringP("userIds", "us", " ", "User ids")
-	_ = getBannedUsersCmd.MarkFlagRequired("userIds")
+	GetBannedUsersCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetBannedUsersCmd.MarkFlagRequired("namespace")
+	GetBannedUsersCmd.Flags().StringP("userIds", "us", " ", "User ids")
+	_ = GetBannedUsersCmd.MarkFlagRequired("userIds")
 }

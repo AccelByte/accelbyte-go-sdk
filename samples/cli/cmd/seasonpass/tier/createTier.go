@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/seasonpass-sdk/pkg/seasonpassclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/seasonpass"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// createTierCmd represents the createTier command
-var createTierCmd = &cobra.Command{
-	Use:   "createTier",
+// CreateTierCmd represents the CreateTier command
+var CreateTierCmd = &cobra.Command{
+	Use:   "CreateTier",
 	Short: "Create tier",
 	Long:  `Create tier`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -51,10 +50,9 @@ var createTierCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(createTierCmd)
-	createTierCmd.Flags().StringP("body", "by", " ", "Body")
-	createTierCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = createTierCmd.MarkFlagRequired("namespace")
-	createTierCmd.Flags().StringP("seasonId", "sd", " ", "Season id")
-	_ = createTierCmd.MarkFlagRequired("seasonId")
+	CreateTierCmd.Flags().StringP("body", "by", " ", "Body")
+	CreateTierCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = CreateTierCmd.MarkFlagRequired("namespace")
+	CreateTierCmd.Flags().StringP("seasonId", "sd", " ", "Season id")
+	_ = CreateTierCmd.MarkFlagRequired("seasonId")
 }

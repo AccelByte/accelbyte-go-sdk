@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/cloudsave"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// postPlayerRecordHandlerV1Cmd represents the postPlayerRecordHandlerV1 command
-var postPlayerRecordHandlerV1Cmd = &cobra.Command{
-	Use:   "postPlayerRecordHandlerV1",
+// PostPlayerRecordHandlerV1Cmd represents the PostPlayerRecordHandlerV1 command
+var PostPlayerRecordHandlerV1Cmd = &cobra.Command{
+	Use:   "PostPlayerRecordHandlerV1",
 	Short: "Post player record handler V1",
 	Long:  `Post player record handler V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -52,13 +51,12 @@ var postPlayerRecordHandlerV1Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(postPlayerRecordHandlerV1Cmd)
-	postPlayerRecordHandlerV1Cmd.Flags().StringP("body", "by", " ", "Body")
-	_ = postPlayerRecordHandlerV1Cmd.MarkFlagRequired("body")
-	postPlayerRecordHandlerV1Cmd.Flags().StringP("key", "ky", " ", "Key")
-	_ = postPlayerRecordHandlerV1Cmd.MarkFlagRequired("key")
-	postPlayerRecordHandlerV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = postPlayerRecordHandlerV1Cmd.MarkFlagRequired("namespace")
-	postPlayerRecordHandlerV1Cmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = postPlayerRecordHandlerV1Cmd.MarkFlagRequired("userId")
+	PostPlayerRecordHandlerV1Cmd.Flags().StringP("body", "by", " ", "Body")
+	_ = PostPlayerRecordHandlerV1Cmd.MarkFlagRequired("body")
+	PostPlayerRecordHandlerV1Cmd.Flags().StringP("key", "ky", " ", "Key")
+	_ = PostPlayerRecordHandlerV1Cmd.MarkFlagRequired("key")
+	PostPlayerRecordHandlerV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PostPlayerRecordHandlerV1Cmd.MarkFlagRequired("namespace")
+	PostPlayerRecordHandlerV1Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = PostPlayerRecordHandlerV1Cmd.MarkFlagRequired("userId")
 }

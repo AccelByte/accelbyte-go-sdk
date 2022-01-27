@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// publicForgotPasswordV3Cmd represents the publicForgotPasswordV3 command
-var publicForgotPasswordV3Cmd = &cobra.Command{
-	Use:   "publicForgotPasswordV3",
+// PublicForgotPasswordV3Cmd represents the PublicForgotPasswordV3 command
+var PublicForgotPasswordV3Cmd = &cobra.Command{
+	Use:   "PublicForgotPasswordV3",
 	Short: "Public forgot password V3",
 	Long:  `Public forgot password V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,9 +47,8 @@ var publicForgotPasswordV3Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(publicForgotPasswordV3Cmd)
-	publicForgotPasswordV3Cmd.Flags().StringP("body", "by", " ", "Body")
-	_ = publicForgotPasswordV3Cmd.MarkFlagRequired("body")
-	publicForgotPasswordV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = publicForgotPasswordV3Cmd.MarkFlagRequired("namespace")
+	PublicForgotPasswordV3Cmd.Flags().StringP("body", "by", " ", "Body")
+	_ = PublicForgotPasswordV3Cmd.MarkFlagRequired("body")
+	PublicForgotPasswordV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PublicForgotPasswordV3Cmd.MarkFlagRequired("namespace")
 }

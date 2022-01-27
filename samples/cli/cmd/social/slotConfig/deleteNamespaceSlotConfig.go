@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/social"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient/slot_config"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// deleteNamespaceSlotConfigCmd represents the deleteNamespaceSlotConfig command
-var deleteNamespaceSlotConfigCmd = &cobra.Command{
-	Use:   "deleteNamespaceSlotConfig",
+// DeleteNamespaceSlotConfigCmd represents the DeleteNamespaceSlotConfig command
+var DeleteNamespaceSlotConfigCmd = &cobra.Command{
+	Use:   "DeleteNamespaceSlotConfig",
 	Short: "Delete namespace slot config",
 	Long:  `Delete namespace slot config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,7 +38,6 @@ var deleteNamespaceSlotConfigCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(deleteNamespaceSlotConfigCmd)
-	deleteNamespaceSlotConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = deleteNamespaceSlotConfigCmd.MarkFlagRequired("namespace")
+	DeleteNamespaceSlotConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = DeleteNamespaceSlotConfigCmd.MarkFlagRequired("namespace")
 }

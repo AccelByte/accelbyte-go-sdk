@@ -9,15 +9,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/gdpr-sdk/pkg/gdprclient/data_retrieval"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/gdpr"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// deleteAdminEmailConfigurationCmd represents the deleteAdminEmailConfiguration command
-var deleteAdminEmailConfigurationCmd = &cobra.Command{
-	Use:   "deleteAdminEmailConfiguration",
+// DeleteAdminEmailConfigurationCmd represents the DeleteAdminEmailConfiguration command
+var DeleteAdminEmailConfigurationCmd = &cobra.Command{
+	Use:   "DeleteAdminEmailConfiguration",
 	Short: "Delete admin email configuration",
 	Long:  `Delete admin email configuration`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -47,9 +46,8 @@ var deleteAdminEmailConfigurationCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(deleteAdminEmailConfigurationCmd)
-	deleteAdminEmailConfigurationCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = deleteAdminEmailConfigurationCmd.MarkFlagRequired("namespace")
-	deleteAdminEmailConfigurationCmd.Flags().StringP("emails", "es", " ", "Emails")
-	_ = deleteAdminEmailConfigurationCmd.MarkFlagRequired("emails")
+	DeleteAdminEmailConfigurationCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = DeleteAdminEmailConfigurationCmd.MarkFlagRequired("namespace")
+	DeleteAdminEmailConfigurationCmd.Flags().StringP("emails", "es", " ", "Emails")
+	_ = DeleteAdminEmailConfigurationCmd.MarkFlagRequired("emails")
 }

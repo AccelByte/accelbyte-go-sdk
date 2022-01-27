@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/dsmc"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// createDeploymentCmd represents the createDeployment command
-var createDeploymentCmd = &cobra.Command{
-	Use:   "createDeployment",
+// CreateDeploymentCmd represents the CreateDeployment command
+var CreateDeploymentCmd = &cobra.Command{
+	Use:   "CreateDeployment",
 	Short: "Create deployment",
 	Long:  `Create deployment`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -51,11 +50,10 @@ var createDeploymentCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(createDeploymentCmd)
-	createDeploymentCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = createDeploymentCmd.MarkFlagRequired("body")
-	createDeploymentCmd.Flags().StringP("deployment", "dt", " ", "Deployment")
-	_ = createDeploymentCmd.MarkFlagRequired("deployment")
-	createDeploymentCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = createDeploymentCmd.MarkFlagRequired("namespace")
+	CreateDeploymentCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = CreateDeploymentCmd.MarkFlagRequired("body")
+	CreateDeploymentCmd.Flags().StringP("deployment", "dt", " ", "Deployment")
+	_ = CreateDeploymentCmd.MarkFlagRequired("deployment")
+	CreateDeploymentCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = CreateDeploymentCmd.MarkFlagRequired("namespace")
 }

@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// publicConsumeUserEntitlementCmd represents the publicConsumeUserEntitlement command
-var publicConsumeUserEntitlementCmd = &cobra.Command{
-	Use:   "publicConsumeUserEntitlement",
+// PublicConsumeUserEntitlementCmd represents the PublicConsumeUserEntitlement command
+var PublicConsumeUserEntitlementCmd = &cobra.Command{
+	Use:   "PublicConsumeUserEntitlement",
 	Short: "Public consume user entitlement",
 	Long:  `Public consume user entitlement`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -53,12 +52,11 @@ var publicConsumeUserEntitlementCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(publicConsumeUserEntitlementCmd)
-	publicConsumeUserEntitlementCmd.Flags().StringP("body", "by", " ", "Body")
-	publicConsumeUserEntitlementCmd.Flags().StringP("entitlementId", "ed", " ", "Entitlement id")
-	_ = publicConsumeUserEntitlementCmd.MarkFlagRequired("entitlementId")
-	publicConsumeUserEntitlementCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = publicConsumeUserEntitlementCmd.MarkFlagRequired("namespace")
-	publicConsumeUserEntitlementCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = publicConsumeUserEntitlementCmd.MarkFlagRequired("userId")
+	PublicConsumeUserEntitlementCmd.Flags().StringP("body", "by", " ", "Body")
+	PublicConsumeUserEntitlementCmd.Flags().StringP("entitlementId", "ed", " ", "Entitlement id")
+	_ = PublicConsumeUserEntitlementCmd.MarkFlagRequired("entitlementId")
+	PublicConsumeUserEntitlementCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PublicConsumeUserEntitlementCmd.MarkFlagRequired("namespace")
+	PublicConsumeUserEntitlementCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = PublicConsumeUserEntitlementCmd.MarkFlagRequired("userId")
 }

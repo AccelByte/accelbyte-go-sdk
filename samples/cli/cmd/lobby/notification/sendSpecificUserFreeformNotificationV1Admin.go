@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/lobby"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// sendSpecificUserFreeformNotificationV1AdminCmd represents the sendSpecificUserFreeformNotificationV1Admin command
-var sendSpecificUserFreeformNotificationV1AdminCmd = &cobra.Command{
-	Use:   "sendSpecificUserFreeformNotificationV1Admin",
+// SendSpecificUserFreeformNotificationV1AdminCmd represents the SendSpecificUserFreeformNotificationV1Admin command
+var SendSpecificUserFreeformNotificationV1AdminCmd = &cobra.Command{
+	Use:   "SendSpecificUserFreeformNotificationV1Admin",
 	Short: "Send specific user freeform notification V1 admin",
 	Long:  `Send specific user freeform notification V1 admin`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,11 +49,10 @@ var sendSpecificUserFreeformNotificationV1AdminCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(sendSpecificUserFreeformNotificationV1AdminCmd)
-	sendSpecificUserFreeformNotificationV1AdminCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = sendSpecificUserFreeformNotificationV1AdminCmd.MarkFlagRequired("body")
-	sendSpecificUserFreeformNotificationV1AdminCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = sendSpecificUserFreeformNotificationV1AdminCmd.MarkFlagRequired("namespace")
-	sendSpecificUserFreeformNotificationV1AdminCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = sendSpecificUserFreeformNotificationV1AdminCmd.MarkFlagRequired("userId")
+	SendSpecificUserFreeformNotificationV1AdminCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = SendSpecificUserFreeformNotificationV1AdminCmd.MarkFlagRequired("body")
+	SendSpecificUserFreeformNotificationV1AdminCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = SendSpecificUserFreeformNotificationV1AdminCmd.MarkFlagRequired("namespace")
+	SendSpecificUserFreeformNotificationV1AdminCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = SendSpecificUserFreeformNotificationV1AdminCmd.MarkFlagRequired("userId")
 }

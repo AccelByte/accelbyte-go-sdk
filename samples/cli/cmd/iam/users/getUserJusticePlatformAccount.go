@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getUserJusticePlatformAccountCmd represents the getUserJusticePlatformAccount command
-var getUserJusticePlatformAccountCmd = &cobra.Command{
-	Use:   "getUserJusticePlatformAccount",
+// GetUserJusticePlatformAccountCmd represents the GetUserJusticePlatformAccount command
+var GetUserJusticePlatformAccountCmd = &cobra.Command{
+	Use:   "GetUserJusticePlatformAccount",
 	Short: "Get user justice platform account",
 	Long:  `Get user justice platform account`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -44,11 +43,10 @@ var getUserJusticePlatformAccountCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getUserJusticePlatformAccountCmd)
-	getUserJusticePlatformAccountCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getUserJusticePlatformAccountCmd.MarkFlagRequired("namespace")
-	getUserJusticePlatformAccountCmd.Flags().StringP("targetNamespace", "te", " ", "Target namespace")
-	_ = getUserJusticePlatformAccountCmd.MarkFlagRequired("targetNamespace")
-	getUserJusticePlatformAccountCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = getUserJusticePlatformAccountCmd.MarkFlagRequired("userId")
+	GetUserJusticePlatformAccountCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetUserJusticePlatformAccountCmd.MarkFlagRequired("namespace")
+	GetUserJusticePlatformAccountCmd.Flags().StringP("targetNamespace", "te", " ", "Target namespace")
+	_ = GetUserJusticePlatformAccountCmd.MarkFlagRequired("targetNamespace")
+	GetUserJusticePlatformAccountCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = GetUserJusticePlatformAccountCmd.MarkFlagRequired("userId")
 }

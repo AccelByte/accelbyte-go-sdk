@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminGetUserDeletionStatusV3Cmd represents the adminGetUserDeletionStatusV3 command
-var adminGetUserDeletionStatusV3Cmd = &cobra.Command{
-	Use:   "adminGetUserDeletionStatusV3",
+// AdminGetUserDeletionStatusV3Cmd represents the AdminGetUserDeletionStatusV3 command
+var AdminGetUserDeletionStatusV3Cmd = &cobra.Command{
+	Use:   "AdminGetUserDeletionStatusV3",
 	Short: "Admin get user deletion status V3",
 	Long:  `Admin get user deletion status V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,9 +41,8 @@ var adminGetUserDeletionStatusV3Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminGetUserDeletionStatusV3Cmd)
-	adminGetUserDeletionStatusV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = adminGetUserDeletionStatusV3Cmd.MarkFlagRequired("namespace")
-	adminGetUserDeletionStatusV3Cmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = adminGetUserDeletionStatusV3Cmd.MarkFlagRequired("userId")
+	AdminGetUserDeletionStatusV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AdminGetUserDeletionStatusV3Cmd.MarkFlagRequired("namespace")
+	AdminGetUserDeletionStatusV3Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = AdminGetUserDeletionStatusV3Cmd.MarkFlagRequired("userId")
 }

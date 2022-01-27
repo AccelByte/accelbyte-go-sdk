@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// enableUserCmd represents the enableUser command
-var enableUserCmd = &cobra.Command{
-	Use:   "enableUser",
+// EnableUserCmd represents the EnableUser command
+var EnableUserCmd = &cobra.Command{
+	Use:   "EnableUser",
 	Short: "Enable user",
 	Long:  `Enable user`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,9 +40,8 @@ var enableUserCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(enableUserCmd)
-	enableUserCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = enableUserCmd.MarkFlagRequired("namespace")
-	enableUserCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = enableUserCmd.MarkFlagRequired("userId")
+	EnableUserCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = EnableUserCmd.MarkFlagRequired("namespace")
+	EnableUserCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = EnableUserCmd.MarkFlagRequired("userId")
 }

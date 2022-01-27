@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/qosm-sdk/pkg/qosmclient/admin"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/qosm"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// deleteServerCmd represents the deleteServer command
-var deleteServerCmd = &cobra.Command{
-	Use:   "deleteServer",
+// DeleteServerCmd represents the DeleteServer command
+var DeleteServerCmd = &cobra.Command{
+	Use:   "DeleteServer",
 	Short: "Delete server",
 	Long:  `Delete server`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,7 +38,6 @@ var deleteServerCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(deleteServerCmd)
-	deleteServerCmd.Flags().StringP("region", "rn", " ", "Region")
-	_ = deleteServerCmd.MarkFlagRequired("region")
+	DeleteServerCmd.Flags().StringP("region", "rn", " ", "Region")
+	_ = DeleteServerCmd.MarkFlagRequired("region")
 }

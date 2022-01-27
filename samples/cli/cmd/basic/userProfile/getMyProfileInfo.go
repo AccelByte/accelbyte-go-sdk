@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclient/user_profile"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/basic"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getMyProfileInfoCmd represents the getMyProfileInfo command
-var getMyProfileInfoCmd = &cobra.Command{
-	Use:   "getMyProfileInfo",
+// GetMyProfileInfoCmd represents the GetMyProfileInfo command
+var GetMyProfileInfoCmd = &cobra.Command{
+	Use:   "GetMyProfileInfo",
 	Short: "Get my profile info",
 	Long:  `Get my profile info`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,7 +39,6 @@ var getMyProfileInfoCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getMyProfileInfoCmd)
-	getMyProfileInfoCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getMyProfileInfoCmd.MarkFlagRequired("namespace")
+	GetMyProfileInfoCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetMyProfileInfoCmd.MarkFlagRequired("namespace")
 }

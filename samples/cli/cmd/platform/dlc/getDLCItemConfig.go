@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/d_l_c"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getDLCItemConfigCmd represents the getDLCItemConfig command
-var getDLCItemConfigCmd = &cobra.Command{
-	Use:   "getDLCItemConfig",
+// GetDLCItemConfigCmd represents the GetDLCItemConfig command
+var GetDLCItemConfigCmd = &cobra.Command{
+	Use:   "GetDLCItemConfig",
 	Short: "Get DLC item config",
 	Long:  `Get DLC item config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,7 +39,6 @@ var getDLCItemConfigCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getDLCItemConfigCmd)
-	getDLCItemConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getDLCItemConfigCmd.MarkFlagRequired("namespace")
+	GetDLCItemConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetDLCItemConfigCmd.MarkFlagRequired("namespace")
 }

@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/social"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient/slot_config"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclientmodels"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// updateNamespaceSlotConfigCmd represents the updateNamespaceSlotConfig command
-var updateNamespaceSlotConfigCmd = &cobra.Command{
-	Use:   "updateNamespaceSlotConfig",
+// UpdateNamespaceSlotConfigCmd represents the UpdateNamespaceSlotConfig command
+var UpdateNamespaceSlotConfigCmd = &cobra.Command{
+	Use:   "UpdateNamespaceSlotConfig",
 	Short: "Update namespace slot config",
 	Long:  `Update namespace slot config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,8 +48,7 @@ var updateNamespaceSlotConfigCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(updateNamespaceSlotConfigCmd)
-	updateNamespaceSlotConfigCmd.Flags().StringP("body", "by", " ", "Body")
-	updateNamespaceSlotConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = updateNamespaceSlotConfigCmd.MarkFlagRequired("namespace")
+	UpdateNamespaceSlotConfigCmd.Flags().StringP("body", "by", " ", "Body")
+	UpdateNamespaceSlotConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = UpdateNamespaceSlotConfigCmd.MarkFlagRequired("namespace")
 }

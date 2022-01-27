@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/store"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// cloneStoreCmd represents the cloneStore command
-var cloneStoreCmd = &cobra.Command{
-	Use:   "cloneStore",
+// CloneStoreCmd represents the CloneStore command
+var CloneStoreCmd = &cobra.Command{
+	Use:   "CloneStore",
 	Short: "Clone store",
 	Long:  `Clone store`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -44,10 +43,9 @@ var cloneStoreCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(cloneStoreCmd)
-	cloneStoreCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = cloneStoreCmd.MarkFlagRequired("namespace")
-	cloneStoreCmd.Flags().StringP("storeId", "sd", " ", "Store id")
-	_ = cloneStoreCmd.MarkFlagRequired("storeId")
-	cloneStoreCmd.Flags().StringP("targetStoreId", "td", " ", "Target store id")
+	CloneStoreCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = CloneStoreCmd.MarkFlagRequired("namespace")
+	CloneStoreCmd.Flags().StringP("storeId", "sd", " ", "Store id")
+	_ = CloneStoreCmd.MarkFlagRequired("storeId")
+	CloneStoreCmd.Flags().StringP("targetStoreId", "td", " ", "Target store id")
 }

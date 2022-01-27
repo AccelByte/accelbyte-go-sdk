@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// testStripeConfigCmd represents the testStripeConfig command
-var testStripeConfigCmd = &cobra.Command{
-	Use:   "testStripeConfig",
+// TestStripeConfigCmd represents the TestStripeConfig command
+var TestStripeConfigCmd = &cobra.Command{
+	Use:   "TestStripeConfig",
 	Short: "Test stripe config",
 	Long:  `Test stripe config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,7 +48,6 @@ var testStripeConfigCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(testStripeConfigCmd)
-	testStripeConfigCmd.Flags().StringP("body", "by", " ", "Body")
-	testStripeConfigCmd.Flags().BoolP("sandbox", "sx", false, "Sandbox")
+	TestStripeConfigCmd.Flags().StringP("body", "by", " ", "Body")
+	TestStripeConfigCmd.Flags().BoolP("sandbox", "sx", false, "Sandbox")
 }

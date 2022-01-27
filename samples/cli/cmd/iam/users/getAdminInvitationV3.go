@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getAdminInvitationV3Cmd represents the getAdminInvitationV3 command
-var getAdminInvitationV3Cmd = &cobra.Command{
-	Use:   "getAdminInvitationV3",
+// GetAdminInvitationV3Cmd represents the GetAdminInvitationV3 command
+var GetAdminInvitationV3Cmd = &cobra.Command{
+	Use:   "GetAdminInvitationV3",
 	Short: "Get admin invitation V3",
 	Long:  `Get admin invitation V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,9 +41,8 @@ var getAdminInvitationV3Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getAdminInvitationV3Cmd)
-	getAdminInvitationV3Cmd.Flags().StringP("invitationId", "id", " ", "Invitation id")
-	_ = getAdminInvitationV3Cmd.MarkFlagRequired("invitationId")
-	getAdminInvitationV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getAdminInvitationV3Cmd.MarkFlagRequired("namespace")
+	GetAdminInvitationV3Cmd.Flags().StringP("invitationId", "id", " ", "Invitation id")
+	_ = GetAdminInvitationV3Cmd.MarkFlagRequired("invitationId")
+	GetAdminInvitationV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetAdminInvitationV3Cmd.MarkFlagRequired("namespace")
 }

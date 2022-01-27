@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/image_config"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/dsmc"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// listImagesCmd represents the listImages command
-var listImagesCmd = &cobra.Command{
-	Use:   "listImages",
+// ListImagesCmd represents the ListImages command
+var ListImagesCmd = &cobra.Command{
+	Use:   "ListImages",
 	Short: "List images",
 	Long:  `List images`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,12 +49,11 @@ var listImagesCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(listImagesCmd)
-	listImagesCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = listImagesCmd.MarkFlagRequired("namespace")
-	listImagesCmd.Flags().Int64P("count", "ct", 1, "Count")
-	listImagesCmd.Flags().Int64P("offset", "ot", 0, "Offset")
-	listImagesCmd.Flags().StringP("q", "qq", " ", "Q")
-	listImagesCmd.Flags().StringP("sortBy", "sy", " ", "Sort by")
-	listImagesCmd.Flags().StringP("sortDirection", "sn", " ", "Sort direction")
+	ListImagesCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = ListImagesCmd.MarkFlagRequired("namespace")
+	ListImagesCmd.Flags().Int64P("count", "ct", 1, "Count")
+	ListImagesCmd.Flags().Int64P("offset", "ot", 0, "Offset")
+	ListImagesCmd.Flags().StringP("q", "qq", " ", "Q")
+	ListImagesCmd.Flags().StringP("sortBy", "sy", " ", "Sort by")
+	ListImagesCmd.Flags().StringP("sortDirection", "sn", " ", "Sort direction")
 }

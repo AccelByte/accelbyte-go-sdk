@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/basic"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// createMyProfileCmd represents the createMyProfile command
-var createMyProfileCmd = &cobra.Command{
-	Use:   "createMyProfile",
+// CreateMyProfileCmd represents the CreateMyProfile command
+var CreateMyProfileCmd = &cobra.Command{
+	Use:   "CreateMyProfile",
 	Short: "Create my profile",
 	Long:  `Create my profile`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,8 +48,7 @@ var createMyProfileCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(createMyProfileCmd)
-	createMyProfileCmd.Flags().StringP("body", "by", " ", "Body")
-	createMyProfileCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = createMyProfileCmd.MarkFlagRequired("namespace")
+	CreateMyProfileCmd.Flags().StringP("body", "by", " ", "Body")
+	CreateMyProfileCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = CreateMyProfileCmd.MarkFlagRequired("namespace")
 }

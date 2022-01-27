@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// listAdminsV3Cmd represents the listAdminsV3 command
-var listAdminsV3Cmd = &cobra.Command{
-	Use:   "listAdminsV3",
+// ListAdminsV3Cmd represents the ListAdminsV3 command
+var ListAdminsV3Cmd = &cobra.Command{
+	Use:   "ListAdminsV3",
 	Short: "List admins V3",
 	Long:  `List admins V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -46,10 +45,9 @@ var listAdminsV3Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(listAdminsV3Cmd)
-	listAdminsV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = listAdminsV3Cmd.MarkFlagRequired("namespace")
-	listAdminsV3Cmd.Flags().StringP("after", "ar", "0", "After")
-	listAdminsV3Cmd.Flags().StringP("before", "be", "0", "Before")
-	listAdminsV3Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
+	ListAdminsV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = ListAdminsV3Cmd.MarkFlagRequired("namespace")
+	ListAdminsV3Cmd.Flags().StringP("after", "ar", "0", "After")
+	ListAdminsV3Cmd.Flags().StringP("before", "be", "0", "Before")
+	ListAdminsV3Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
 }

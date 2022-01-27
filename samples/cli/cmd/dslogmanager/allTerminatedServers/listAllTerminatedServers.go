@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/dslogmanager-sdk/pkg/dslogmanagerclient/all_terminated_servers"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/dslogmanager"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// listAllTerminatedServersCmd represents the listAllTerminatedServers command
-var listAllTerminatedServersCmd = &cobra.Command{
-	Use:   "listAllTerminatedServers",
+// ListAllTerminatedServersCmd represents the ListAllTerminatedServers command
+var ListAllTerminatedServersCmd = &cobra.Command{
+	Use:   "ListAllTerminatedServers",
 	Short: "List all terminated servers",
 	Long:  `List all terminated servers`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -66,19 +65,18 @@ var listAllTerminatedServersCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(listAllTerminatedServersCmd)
-	listAllTerminatedServersCmd.Flags().StringP("deployment", "dt", " ", "Deployment")
-	listAllTerminatedServersCmd.Flags().StringP("end_date", "ee", " ", "End date")
-	listAllTerminatedServersCmd.Flags().StringP("game_mode", "ge", " ", "Game mode")
-	listAllTerminatedServersCmd.Flags().Int64P("limit", "lt", 20, "Limit")
-	listAllTerminatedServersCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	listAllTerminatedServersCmd.Flags().StringP("next", "nt", " ", "Next")
-	listAllTerminatedServersCmd.Flags().StringP("party_id", "pd", " ", "Party id")
-	listAllTerminatedServersCmd.Flags().StringP("pod_name", "pe", " ", "Pod name")
-	listAllTerminatedServersCmd.Flags().StringP("previous", "ps", " ", "Previous")
-	listAllTerminatedServersCmd.Flags().StringP("provider", "pr", " ", "Provider")
-	listAllTerminatedServersCmd.Flags().StringP("region", "rn", " ", "Region")
-	listAllTerminatedServersCmd.Flags().StringP("session_id", "sd", " ", "Session id")
-	listAllTerminatedServersCmd.Flags().StringP("start_date", "se", " ", "Start date")
-	listAllTerminatedServersCmd.Flags().StringP("user_id", "ud", " ", "User id")
+	ListAllTerminatedServersCmd.Flags().StringP("deployment", "dt", " ", "Deployment")
+	ListAllTerminatedServersCmd.Flags().StringP("end_date", "ee", " ", "End date")
+	ListAllTerminatedServersCmd.Flags().StringP("game_mode", "ge", " ", "Game mode")
+	ListAllTerminatedServersCmd.Flags().Int64P("limit", "lt", 20, "Limit")
+	ListAllTerminatedServersCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	ListAllTerminatedServersCmd.Flags().StringP("next", "nt", " ", "Next")
+	ListAllTerminatedServersCmd.Flags().StringP("party_id", "pd", " ", "Party id")
+	ListAllTerminatedServersCmd.Flags().StringP("pod_name", "pe", " ", "Pod name")
+	ListAllTerminatedServersCmd.Flags().StringP("previous", "ps", " ", "Previous")
+	ListAllTerminatedServersCmd.Flags().StringP("provider", "pr", " ", "Provider")
+	ListAllTerminatedServersCmd.Flags().StringP("region", "rn", " ", "Region")
+	ListAllTerminatedServersCmd.Flags().StringP("session_id", "sd", " ", "Session id")
+	ListAllTerminatedServersCmd.Flags().StringP("start_date", "se", " ", "Start date")
+	ListAllTerminatedServersCmd.Flags().StringP("user_id", "ud", " ", "User id")
 }

@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/basic"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// updateCountryGroupCmd represents the updateCountryGroup command
-var updateCountryGroupCmd = &cobra.Command{
-	Use:   "updateCountryGroup",
+// UpdateCountryGroupCmd represents the UpdateCountryGroup command
+var UpdateCountryGroupCmd = &cobra.Command{
+	Use:   "UpdateCountryGroup",
 	Short: "Update country group",
 	Long:  `Update country group`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -51,10 +50,9 @@ var updateCountryGroupCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(updateCountryGroupCmd)
-	updateCountryGroupCmd.Flags().StringP("body", "by", " ", "Body")
-	updateCountryGroupCmd.Flags().StringP("countryGroupCode", "ce", " ", "Country group code")
-	_ = updateCountryGroupCmd.MarkFlagRequired("countryGroupCode")
-	updateCountryGroupCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = updateCountryGroupCmd.MarkFlagRequired("namespace")
+	UpdateCountryGroupCmd.Flags().StringP("body", "by", " ", "Body")
+	UpdateCountryGroupCmd.Flags().StringP("countryGroupCode", "ce", " ", "Country group code")
+	_ = UpdateCountryGroupCmd.MarkFlagRequired("countryGroupCode")
+	UpdateCountryGroupCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = UpdateCountryGroupCmd.MarkFlagRequired("namespace")
 }

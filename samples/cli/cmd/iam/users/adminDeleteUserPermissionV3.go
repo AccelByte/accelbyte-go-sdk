@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminDeleteUserPermissionV3Cmd represents the adminDeleteUserPermissionV3 command
-var adminDeleteUserPermissionV3Cmd = &cobra.Command{
-	Use:   "adminDeleteUserPermissionV3",
+// AdminDeleteUserPermissionV3Cmd represents the AdminDeleteUserPermissionV3 command
+var AdminDeleteUserPermissionV3Cmd = &cobra.Command{
+	Use:   "AdminDeleteUserPermissionV3",
 	Short: "Admin delete user permission V3",
 	Long:  `Admin delete user permission V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -45,13 +44,12 @@ var adminDeleteUserPermissionV3Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminDeleteUserPermissionV3Cmd)
-	adminDeleteUserPermissionV3Cmd.Flags().Int64P("action", "an", -1, "Action")
-	_ = adminDeleteUserPermissionV3Cmd.MarkFlagRequired("action")
-	adminDeleteUserPermissionV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = adminDeleteUserPermissionV3Cmd.MarkFlagRequired("namespace")
-	adminDeleteUserPermissionV3Cmd.Flags().StringP("resource", "re", " ", "Resource")
-	_ = adminDeleteUserPermissionV3Cmd.MarkFlagRequired("resource")
-	adminDeleteUserPermissionV3Cmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = adminDeleteUserPermissionV3Cmd.MarkFlagRequired("userId")
+	AdminDeleteUserPermissionV3Cmd.Flags().Int64P("action", "an", -1, "Action")
+	_ = AdminDeleteUserPermissionV3Cmd.MarkFlagRequired("action")
+	AdminDeleteUserPermissionV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AdminDeleteUserPermissionV3Cmd.MarkFlagRequired("namespace")
+	AdminDeleteUserPermissionV3Cmd.Flags().StringP("resource", "re", " ", "Resource")
+	_ = AdminDeleteUserPermissionV3Cmd.MarkFlagRequired("resource")
+	AdminDeleteUserPermissionV3Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = AdminDeleteUserPermissionV3Cmd.MarkFlagRequired("userId")
 }

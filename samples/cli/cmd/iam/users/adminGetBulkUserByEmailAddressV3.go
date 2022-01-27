@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminGetBulkUserByEmailAddressV3Cmd represents the adminGetBulkUserByEmailAddressV3 command
-var adminGetBulkUserByEmailAddressV3Cmd = &cobra.Command{
-	Use:   "adminGetBulkUserByEmailAddressV3",
+// AdminGetBulkUserByEmailAddressV3Cmd represents the AdminGetBulkUserByEmailAddressV3 command
+var AdminGetBulkUserByEmailAddressV3Cmd = &cobra.Command{
+	Use:   "AdminGetBulkUserByEmailAddressV3",
 	Short: "Admin get bulk user by email address V3",
 	Long:  `Admin get bulk user by email address V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,9 +48,8 @@ var adminGetBulkUserByEmailAddressV3Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminGetBulkUserByEmailAddressV3Cmd)
-	adminGetBulkUserByEmailAddressV3Cmd.Flags().StringP("body", "by", " ", "Body")
-	_ = adminGetBulkUserByEmailAddressV3Cmd.MarkFlagRequired("body")
-	adminGetBulkUserByEmailAddressV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = adminGetBulkUserByEmailAddressV3Cmd.MarkFlagRequired("namespace")
+	AdminGetBulkUserByEmailAddressV3Cmd.Flags().StringP("body", "by", " ", "Body")
+	_ = AdminGetBulkUserByEmailAddressV3Cmd.MarkFlagRequired("body")
+	AdminGetBulkUserByEmailAddressV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AdminGetBulkUserByEmailAddressV3Cmd.MarkFlagRequired("namespace")
 }

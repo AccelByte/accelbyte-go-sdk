@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/eventlog-sdk/pkg/eventlogclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/eventlog"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// postEventHandlerCmd represents the postEventHandler command
-var postEventHandlerCmd = &cobra.Command{
-	Use:   "postEventHandler",
+// PostEventHandlerCmd represents the PostEventHandler command
+var PostEventHandlerCmd = &cobra.Command{
+	Use:   "PostEventHandler",
 	Short: "Post event handler",
 	Long:  `Post event handler`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,9 +47,8 @@ var postEventHandlerCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(postEventHandlerCmd)
-	postEventHandlerCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = postEventHandlerCmd.MarkFlagRequired("body")
-	postEventHandlerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = postEventHandlerCmd.MarkFlagRequired("namespace")
+	PostEventHandlerCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = PostEventHandlerCmd.MarkFlagRequired("body")
+	PostEventHandlerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PostEventHandlerCmd.MarkFlagRequired("namespace")
 }

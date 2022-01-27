@@ -8,15 +8,14 @@ import (
 	matchmaking_ "github.com/AccelByte/accelbyte-go-sdk/matchmaking-sdk/pkg/matchmakingclient/matchmaking"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/matchmaking"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// deleteUserFromSessionInChannelCmd represents the deleteUserFromSessionInChannel command
-var deleteUserFromSessionInChannelCmd = &cobra.Command{
-	Use:   "deleteUserFromSessionInChannel",
+// DeleteUserFromSessionInChannelCmd represents the DeleteUserFromSessionInChannel command
+var DeleteUserFromSessionInChannelCmd = &cobra.Command{
+	Use:   "DeleteUserFromSessionInChannel",
 	Short: "Delete user from session in channel",
 	Long:  `Delete user from session in channel`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -45,13 +44,12 @@ var deleteUserFromSessionInChannelCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(deleteUserFromSessionInChannelCmd)
-	deleteUserFromSessionInChannelCmd.Flags().StringP("channelName", "ce", " ", "Channel name")
-	_ = deleteUserFromSessionInChannelCmd.MarkFlagRequired("channelName")
-	deleteUserFromSessionInChannelCmd.Flags().StringP("matchID", "mD", " ", "Match ID")
-	_ = deleteUserFromSessionInChannelCmd.MarkFlagRequired("matchID")
-	deleteUserFromSessionInChannelCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = deleteUserFromSessionInChannelCmd.MarkFlagRequired("namespace")
-	deleteUserFromSessionInChannelCmd.Flags().StringP("userID", "uD", " ", "User ID")
-	_ = deleteUserFromSessionInChannelCmd.MarkFlagRequired("userID")
+	DeleteUserFromSessionInChannelCmd.Flags().StringP("channelName", "ce", " ", "Channel name")
+	_ = DeleteUserFromSessionInChannelCmd.MarkFlagRequired("channelName")
+	DeleteUserFromSessionInChannelCmd.Flags().StringP("matchID", "mD", " ", "Match ID")
+	_ = DeleteUserFromSessionInChannelCmd.MarkFlagRequired("matchID")
+	DeleteUserFromSessionInChannelCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = DeleteUserFromSessionInChannelCmd.MarkFlagRequired("namespace")
+	DeleteUserFromSessionInChannelCmd.Flags().StringP("userID", "uD", " ", "User ID")
+	_ = DeleteUserFromSessionInChannelCmd.MarkFlagRequired("userID")
 }

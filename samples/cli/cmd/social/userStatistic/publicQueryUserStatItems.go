@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/social"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient/user_statistic"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// publicQueryUserStatItemsCmd represents the publicQueryUserStatItems command
-var publicQueryUserStatItemsCmd = &cobra.Command{
-	Use:   "publicQueryUserStatItems",
+// PublicQueryUserStatItemsCmd represents the PublicQueryUserStatItems command
+var PublicQueryUserStatItemsCmd = &cobra.Command{
+	Use:   "PublicQueryUserStatItems",
 	Short: "Public query user stat items",
 	Long:  `Public query user stat items`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,13 +49,12 @@ var publicQueryUserStatItemsCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(publicQueryUserStatItemsCmd)
-	publicQueryUserStatItemsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = publicQueryUserStatItemsCmd.MarkFlagRequired("namespace")
-	publicQueryUserStatItemsCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = publicQueryUserStatItemsCmd.MarkFlagRequired("userId")
-	publicQueryUserStatItemsCmd.Flags().Int32P("limit", "lt", 20, "Limit")
-	publicQueryUserStatItemsCmd.Flags().Int32P("offset", "ot", 0, "Offset")
-	publicQueryUserStatItemsCmd.Flags().StringP("statCodes", "ss", " ", "Stat codes")
-	publicQueryUserStatItemsCmd.Flags().StringP("tags", "ts", " ", "Tags")
+	PublicQueryUserStatItemsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PublicQueryUserStatItemsCmd.MarkFlagRequired("namespace")
+	PublicQueryUserStatItemsCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = PublicQueryUserStatItemsCmd.MarkFlagRequired("userId")
+	PublicQueryUserStatItemsCmd.Flags().Int32P("limit", "lt", 20, "Limit")
+	PublicQueryUserStatItemsCmd.Flags().Int32P("offset", "ot", 0, "Offset")
+	PublicQueryUserStatItemsCmd.Flags().StringP("statCodes", "ss", " ", "Stat codes")
+	PublicQueryUserStatItemsCmd.Flags().StringP("tags", "ts", " ", "Tags")
 }

@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/ugc"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/public_like"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getLikedContentCmd represents the getLikedContent command
-var getLikedContentCmd = &cobra.Command{
-	Use:   "getLikedContent",
+// GetLikedContentCmd represents the GetLikedContent command
+var GetLikedContentCmd = &cobra.Command{
+	Use:   "GetLikedContent",
 	Short: "Get liked content",
 	Long:  `Get liked content`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -44,9 +43,8 @@ var getLikedContentCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getLikedContentCmd)
-	getLikedContentCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getLikedContentCmd.MarkFlagRequired("namespace")
-	getLikedContentCmd.Flags().StringP("limit", "lt", "20", "Limit")
-	getLikedContentCmd.Flags().StringP("offset", "ot", "0", "Offset")
+	GetLikedContentCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetLikedContentCmd.MarkFlagRequired("namespace")
+	GetLikedContentCmd.Flags().StringP("limit", "lt", "20", "Limit")
+	GetLikedContentCmd.Flags().StringP("offset", "ot", "0", "Offset")
 }

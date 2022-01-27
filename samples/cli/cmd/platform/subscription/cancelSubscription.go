@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// cancelSubscriptionCmd represents the cancelSubscription command
-var cancelSubscriptionCmd = &cobra.Command{
-	Use:   "cancelSubscription",
+// CancelSubscriptionCmd represents the CancelSubscription command
+var CancelSubscriptionCmd = &cobra.Command{
+	Use:   "CancelSubscription",
 	Short: "Cancel subscription",
 	Long:  `Cancel subscription`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -55,13 +54,12 @@ var cancelSubscriptionCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(cancelSubscriptionCmd)
-	cancelSubscriptionCmd.Flags().StringP("body", "by", " ", "Body")
-	cancelSubscriptionCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = cancelSubscriptionCmd.MarkFlagRequired("namespace")
-	cancelSubscriptionCmd.Flags().StringP("subscriptionId", "sd", " ", "Subscription id")
-	_ = cancelSubscriptionCmd.MarkFlagRequired("subscriptionId")
-	cancelSubscriptionCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = cancelSubscriptionCmd.MarkFlagRequired("userId")
-	cancelSubscriptionCmd.Flags().BoolP("force", "fe", false, "Force")
+	CancelSubscriptionCmd.Flags().StringP("body", "by", " ", "Body")
+	CancelSubscriptionCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = CancelSubscriptionCmd.MarkFlagRequired("namespace")
+	CancelSubscriptionCmd.Flags().StringP("subscriptionId", "sd", " ", "Subscription id")
+	_ = CancelSubscriptionCmd.MarkFlagRequired("subscriptionId")
+	CancelSubscriptionCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = CancelSubscriptionCmd.MarkFlagRequired("userId")
+	CancelSubscriptionCmd.Flags().BoolP("force", "fe", false, "Force")
 }

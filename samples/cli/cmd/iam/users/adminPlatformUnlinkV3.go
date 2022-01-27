@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminPlatformUnlinkV3Cmd represents the adminPlatformUnlinkV3 command
-var adminPlatformUnlinkV3Cmd = &cobra.Command{
-	Use:   "adminPlatformUnlinkV3",
+// AdminPlatformUnlinkV3Cmd represents the AdminPlatformUnlinkV3 command
+var AdminPlatformUnlinkV3Cmd = &cobra.Command{
+	Use:   "AdminPlatformUnlinkV3",
 	Short: "Admin platform unlink V3",
 	Long:  `Admin platform unlink V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -52,13 +51,12 @@ var adminPlatformUnlinkV3Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminPlatformUnlinkV3Cmd)
-	adminPlatformUnlinkV3Cmd.Flags().StringP("body", "by", " ", "Body")
-	_ = adminPlatformUnlinkV3Cmd.MarkFlagRequired("body")
-	adminPlatformUnlinkV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = adminPlatformUnlinkV3Cmd.MarkFlagRequired("namespace")
-	adminPlatformUnlinkV3Cmd.Flags().StringP("platformId", "pd", " ", "Platform id")
-	_ = adminPlatformUnlinkV3Cmd.MarkFlagRequired("platformId")
-	adminPlatformUnlinkV3Cmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = adminPlatformUnlinkV3Cmd.MarkFlagRequired("userId")
+	AdminPlatformUnlinkV3Cmd.Flags().StringP("body", "by", " ", "Body")
+	_ = AdminPlatformUnlinkV3Cmd.MarkFlagRequired("body")
+	AdminPlatformUnlinkV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AdminPlatformUnlinkV3Cmd.MarkFlagRequired("namespace")
+	AdminPlatformUnlinkV3Cmd.Flags().StringP("platformId", "pd", " ", "Platform id")
+	_ = AdminPlatformUnlinkV3Cmd.MarkFlagRequired("platformId")
+	AdminPlatformUnlinkV3Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = AdminPlatformUnlinkV3Cmd.MarkFlagRequired("userId")
 }

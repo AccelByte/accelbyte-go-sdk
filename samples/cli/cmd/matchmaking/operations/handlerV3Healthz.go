@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/matchmaking-sdk/pkg/matchmakingclient/operations"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/matchmaking"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// handlerV3HealthzCmd represents the handlerV3Healthz command
-var handlerV3HealthzCmd = &cobra.Command{
-	Use:   "handlerV3Healthz",
+// HandlerV3HealthzCmd represents the HandlerV3Healthz command
+var HandlerV3HealthzCmd = &cobra.Command{
+	Use:   "HandlerV3Healthz",
 	Short: "Handler V3 healthz",
 	Long:  `Handler V3 healthz`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -33,8 +32,4 @@ var handlerV3HealthzCmd = &cobra.Command{
 		}
 		return nil
 	},
-}
-
-func init() {
-	cmd.RootCmd.AddCommand(handlerV3HealthzCmd)
 }

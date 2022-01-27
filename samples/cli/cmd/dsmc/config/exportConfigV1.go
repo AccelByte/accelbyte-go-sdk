@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/config"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/dsmc"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// exportConfigV1Cmd represents the exportConfigV1 command
-var exportConfigV1Cmd = &cobra.Command{
-	Use:   "exportConfigV1",
+// ExportConfigV1Cmd represents the ExportConfigV1 command
+var ExportConfigV1Cmd = &cobra.Command{
+	Use:   "ExportConfigV1",
 	Short: "Export config V1",
 	Long:  `Export config V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,7 +39,6 @@ var exportConfigV1Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(exportConfigV1Cmd)
-	exportConfigV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = exportConfigV1Cmd.MarkFlagRequired("namespace")
+	ExportConfigV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = ExportConfigV1Cmd.MarkFlagRequired("namespace")
 }

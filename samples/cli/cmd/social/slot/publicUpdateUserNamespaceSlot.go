@@ -9,16 +9,15 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/social"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient/slot"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 	"os"
 )
 
-// publicUpdateUserNamespaceSlotCmd represents the publicUpdateUserNamespaceSlot command
-var publicUpdateUserNamespaceSlotCmd = &cobra.Command{
-	Use:   "publicUpdateUserNamespaceSlot",
+// PublicUpdateUserNamespaceSlotCmd represents the PublicUpdateUserNamespaceSlot command
+var PublicUpdateUserNamespaceSlotCmd = &cobra.Command{
+	Use:   "PublicUpdateUserNamespaceSlot",
 	Short: "Public update user namespace slot",
 	Long:  `Public update user namespace slot`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -66,16 +65,15 @@ var publicUpdateUserNamespaceSlotCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(publicUpdateUserNamespaceSlotCmd)
-	publicUpdateUserNamespaceSlotCmd.Flags().StringP("checksum", "cm", " ", "Checksum")
-	publicUpdateUserNamespaceSlotCmd.Flags().StringP("customAttribute", "ce", " ", "Custom attribute")
-	publicUpdateUserNamespaceSlotCmd.Flags().StringP("file", "fe", " ", "File")
-	publicUpdateUserNamespaceSlotCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = publicUpdateUserNamespaceSlotCmd.MarkFlagRequired("namespace")
-	publicUpdateUserNamespaceSlotCmd.Flags().StringP("slotId", "sd", " ", "Slot id")
-	_ = publicUpdateUserNamespaceSlotCmd.MarkFlagRequired("slotId")
-	publicUpdateUserNamespaceSlotCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = publicUpdateUserNamespaceSlotCmd.MarkFlagRequired("userId")
-	publicUpdateUserNamespaceSlotCmd.Flags().StringP("label", "ll", " ", "Label")
-	publicUpdateUserNamespaceSlotCmd.Flags().StringP("tags", "ts", " ", "Tags")
+	PublicUpdateUserNamespaceSlotCmd.Flags().StringP("checksum", "cm", " ", "Checksum")
+	PublicUpdateUserNamespaceSlotCmd.Flags().StringP("customAttribute", "ce", " ", "Custom attribute")
+	PublicUpdateUserNamespaceSlotCmd.Flags().StringP("file", "fe", " ", "File")
+	PublicUpdateUserNamespaceSlotCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PublicUpdateUserNamespaceSlotCmd.MarkFlagRequired("namespace")
+	PublicUpdateUserNamespaceSlotCmd.Flags().StringP("slotId", "sd", " ", "Slot id")
+	_ = PublicUpdateUserNamespaceSlotCmd.MarkFlagRequired("slotId")
+	PublicUpdateUserNamespaceSlotCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = PublicUpdateUserNamespaceSlotCmd.MarkFlagRequired("userId")
+	PublicUpdateUserNamespaceSlotCmd.Flags().StringP("label", "ll", " ", "Label")
+	PublicUpdateUserNamespaceSlotCmd.Flags().StringP("tags", "ts", " ", "Tags")
 }

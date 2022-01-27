@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/eventlog-sdk/pkg/eventlogclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/eventlog"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// queryEventStreamHandlerCmd represents the queryEventStreamHandler command
-var queryEventStreamHandlerCmd = &cobra.Command{
-	Use:   "queryEventStreamHandler",
+// QueryEventStreamHandlerCmd represents the QueryEventStreamHandler command
+var QueryEventStreamHandlerCmd = &cobra.Command{
+	Use:   "QueryEventStreamHandler",
 	Short: "Query event stream handler",
 	Long:  `Query event stream handler`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -57,13 +56,12 @@ var queryEventStreamHandlerCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(queryEventStreamHandlerCmd)
-	queryEventStreamHandlerCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = queryEventStreamHandlerCmd.MarkFlagRequired("body")
-	queryEventStreamHandlerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = queryEventStreamHandlerCmd.MarkFlagRequired("namespace")
-	queryEventStreamHandlerCmd.Flags().StringP("endDate", "ee", " ", "End date")
-	queryEventStreamHandlerCmd.Flags().Float64P("offset", "ot", 0, "Offset")
-	queryEventStreamHandlerCmd.Flags().Float64P("pageSize", "pe", 1, "Page size")
-	queryEventStreamHandlerCmd.Flags().StringP("startDate", "se", " ", "Start date")
+	QueryEventStreamHandlerCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = QueryEventStreamHandlerCmd.MarkFlagRequired("body")
+	QueryEventStreamHandlerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = QueryEventStreamHandlerCmd.MarkFlagRequired("namespace")
+	QueryEventStreamHandlerCmd.Flags().StringP("endDate", "ee", " ", "End date")
+	QueryEventStreamHandlerCmd.Flags().Float64P("offset", "ot", 0, "Offset")
+	QueryEventStreamHandlerCmd.Flags().Float64P("pageSize", "pe", 1, "Page size")
+	QueryEventStreamHandlerCmd.Flags().StringP("startDate", "se", " ", "Start date")
 }

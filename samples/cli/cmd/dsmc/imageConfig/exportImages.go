@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/image_config"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/dsmc"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// exportImagesCmd represents the exportImages command
-var exportImagesCmd = &cobra.Command{
-	Use:   "exportImages",
+// ExportImagesCmd represents the ExportImages command
+var ExportImagesCmd = &cobra.Command{
+	Use:   "ExportImages",
 	Short: "Export images",
 	Long:  `Export images`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,7 +39,6 @@ var exportImagesCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(exportImagesCmd)
-	exportImagesCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = exportImagesCmd.MarkFlagRequired("namespace")
+	ExportImagesCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = ExportImagesCmd.MarkFlagRequired("namespace")
 }

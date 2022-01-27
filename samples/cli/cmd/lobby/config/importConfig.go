@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/config"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/lobby"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// importConfigCmd represents the importConfig command
-var importConfigCmd = &cobra.Command{
-	Use:   "importConfig",
+// ImportConfigCmd represents the ImportConfig command
+var ImportConfigCmd = &cobra.Command{
+	Use:   "ImportConfig",
 	Short: "Import config",
 	Long:  `Import config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,7 +39,6 @@ var importConfigCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(importConfigCmd)
-	importConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = importConfigCmd.MarkFlagRequired("namespace")
+	ImportConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = ImportConfigCmd.MarkFlagRequired("namespace")
 }

@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/image_config"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/dsmc"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// imageDetailClientCmd represents the imageDetailClient command
-var imageDetailClientCmd = &cobra.Command{
-	Use:   "imageDetailClient",
+// ImageDetailClientCmd represents the ImageDetailClient command
+var ImageDetailClientCmd = &cobra.Command{
+	Use:   "ImageDetailClient",
 	Short: "Image detail client",
 	Long:  `Image detail client`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,9 +41,8 @@ var imageDetailClientCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(imageDetailClientCmd)
-	imageDetailClientCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = imageDetailClientCmd.MarkFlagRequired("namespace")
-	imageDetailClientCmd.Flags().StringP("version", "vn", " ", "Version")
-	_ = imageDetailClientCmd.MarkFlagRequired("version")
+	ImageDetailClientCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = ImageDetailClientCmd.MarkFlagRequired("namespace")
+	ImageDetailClientCmd.Flags().StringP("version", "vn", " ", "Version")
+	_ = ImageDetailClientCmd.MarkFlagRequired("version")
 }

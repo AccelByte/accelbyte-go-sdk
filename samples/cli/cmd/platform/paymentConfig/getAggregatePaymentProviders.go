@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/payment_config"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getAggregatePaymentProvidersCmd represents the getAggregatePaymentProviders command
-var getAggregatePaymentProvidersCmd = &cobra.Command{
-	Use:   "getAggregatePaymentProviders",
+// GetAggregatePaymentProvidersCmd represents the GetAggregatePaymentProviders command
+var GetAggregatePaymentProvidersCmd = &cobra.Command{
+	Use:   "GetAggregatePaymentProviders",
 	Short: "Get aggregate payment providers",
 	Long:  `Get aggregate payment providers`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -34,8 +33,4 @@ var getAggregatePaymentProvidersCmd = &cobra.Command{
 		}
 		return nil
 	},
-}
-
-func init() {
-	cmd.RootCmd.AddCommand(getAggregatePaymentProvidersCmd)
 }

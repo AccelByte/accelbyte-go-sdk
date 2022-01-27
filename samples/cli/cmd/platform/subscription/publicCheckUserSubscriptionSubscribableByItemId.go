@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/subscription"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// publicCheckUserSubscriptionSubscribableByItemIdCmd represents the publicCheckUserSubscriptionSubscribableByItemId command
-var publicCheckUserSubscriptionSubscribableByItemIdCmd = &cobra.Command{
-	Use:   "publicCheckUserSubscriptionSubscribableByItemId",
+// PublicCheckUserSubscriptionSubscribableByItemIdCmd represents the PublicCheckUserSubscriptionSubscribableByItemId command
+var PublicCheckUserSubscriptionSubscribableByItemIdCmd = &cobra.Command{
+	Use:   "PublicCheckUserSubscriptionSubscribableByItemId",
 	Short: "Public check user subscription subscribable by item id",
 	Long:  `Public check user subscription subscribable by item id`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -44,11 +43,10 @@ var publicCheckUserSubscriptionSubscribableByItemIdCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(publicCheckUserSubscriptionSubscribableByItemIdCmd)
-	publicCheckUserSubscriptionSubscribableByItemIdCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = publicCheckUserSubscriptionSubscribableByItemIdCmd.MarkFlagRequired("namespace")
-	publicCheckUserSubscriptionSubscribableByItemIdCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = publicCheckUserSubscriptionSubscribableByItemIdCmd.MarkFlagRequired("userId")
-	publicCheckUserSubscriptionSubscribableByItemIdCmd.Flags().StringP("itemId", "id", " ", "Item id")
-	_ = publicCheckUserSubscriptionSubscribableByItemIdCmd.MarkFlagRequired("itemId")
+	PublicCheckUserSubscriptionSubscribableByItemIdCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PublicCheckUserSubscriptionSubscribableByItemIdCmd.MarkFlagRequired("namespace")
+	PublicCheckUserSubscriptionSubscribableByItemIdCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = PublicCheckUserSubscriptionSubscribableByItemIdCmd.MarkFlagRequired("userId")
+	PublicCheckUserSubscriptionSubscribableByItemIdCmd.Flags().StringP("itemId", "id", " ", "Item id")
+	_ = PublicCheckUserSubscriptionSubscribableByItemIdCmd.MarkFlagRequired("itemId")
 }

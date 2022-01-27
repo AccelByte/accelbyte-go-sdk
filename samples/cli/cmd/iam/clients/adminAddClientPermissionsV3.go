@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminAddClientPermissionsV3Cmd represents the adminAddClientPermissionsV3 command
-var adminAddClientPermissionsV3Cmd = &cobra.Command{
-	Use:   "adminAddClientPermissionsV3",
+// AdminAddClientPermissionsV3Cmd represents the AdminAddClientPermissionsV3 command
+var AdminAddClientPermissionsV3Cmd = &cobra.Command{
+	Use:   "AdminAddClientPermissionsV3",
 	Short: "Admin add client permissions V3",
 	Long:  `Admin add client permissions V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,11 +49,10 @@ var adminAddClientPermissionsV3Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminAddClientPermissionsV3Cmd)
-	adminAddClientPermissionsV3Cmd.Flags().StringP("body", "by", " ", "Body")
-	_ = adminAddClientPermissionsV3Cmd.MarkFlagRequired("body")
-	adminAddClientPermissionsV3Cmd.Flags().StringP("clientId", "cd", " ", "Client id")
-	_ = adminAddClientPermissionsV3Cmd.MarkFlagRequired("clientId")
-	adminAddClientPermissionsV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = adminAddClientPermissionsV3Cmd.MarkFlagRequired("namespace")
+	AdminAddClientPermissionsV3Cmd.Flags().StringP("body", "by", " ", "Body")
+	_ = AdminAddClientPermissionsV3Cmd.MarkFlagRequired("body")
+	AdminAddClientPermissionsV3Cmd.Flags().StringP("clientId", "cd", " ", "Client id")
+	_ = AdminAddClientPermissionsV3Cmd.MarkFlagRequired("clientId")
+	AdminAddClientPermissionsV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AdminAddClientPermissionsV3Cmd.MarkFlagRequired("namespace")
 }

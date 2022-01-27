@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/seasonpass-sdk/pkg/seasonpassclient/pass"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/seasonpass"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// deletePassCmd represents the deletePass command
-var deletePassCmd = &cobra.Command{
-	Use:   "deletePass",
+// DeletePassCmd represents the DeletePass command
+var DeletePassCmd = &cobra.Command{
+	Use:   "DeletePass",
 	Short: "Delete pass",
 	Long:  `Delete pass`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,11 +42,10 @@ var deletePassCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(deletePassCmd)
-	deletePassCmd.Flags().StringP("code", "ce", " ", "Code")
-	_ = deletePassCmd.MarkFlagRequired("code")
-	deletePassCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = deletePassCmd.MarkFlagRequired("namespace")
-	deletePassCmd.Flags().StringP("seasonId", "sd", " ", "Season id")
-	_ = deletePassCmd.MarkFlagRequired("seasonId")
+	DeletePassCmd.Flags().StringP("code", "ce", " ", "Code")
+	_ = DeletePassCmd.MarkFlagRequired("code")
+	DeletePassCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = DeletePassCmd.MarkFlagRequired("namespace")
+	DeletePassCmd.Flags().StringP("seasonId", "sd", " ", "Season id")
+	_ = DeletePassCmd.MarkFlagRequired("seasonId")
 }

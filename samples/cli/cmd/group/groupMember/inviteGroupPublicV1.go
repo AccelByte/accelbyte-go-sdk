@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/group-sdk/pkg/groupclient/group_member"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/group"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// inviteGroupPublicV1Cmd represents the inviteGroupPublicV1 command
-var inviteGroupPublicV1Cmd = &cobra.Command{
-	Use:   "inviteGroupPublicV1",
+// InviteGroupPublicV1Cmd represents the InviteGroupPublicV1 command
+var InviteGroupPublicV1Cmd = &cobra.Command{
+	Use:   "InviteGroupPublicV1",
 	Short: "Invite group public V1",
 	Long:  `Invite group public V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,9 +41,8 @@ var inviteGroupPublicV1Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(inviteGroupPublicV1Cmd)
-	inviteGroupPublicV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = inviteGroupPublicV1Cmd.MarkFlagRequired("namespace")
-	inviteGroupPublicV1Cmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = inviteGroupPublicV1Cmd.MarkFlagRequired("userId")
+	InviteGroupPublicV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = InviteGroupPublicV1Cmd.MarkFlagRequired("namespace")
+	InviteGroupPublicV1Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = InviteGroupPublicV1Cmd.MarkFlagRequired("userId")
 }

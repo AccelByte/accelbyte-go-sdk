@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/ugc"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/public_download_count"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// addDownloadCountCmd represents the addDownloadCount command
-var addDownloadCountCmd = &cobra.Command{
-	Use:   "addDownloadCount",
+// AddDownloadCountCmd represents the AddDownloadCount command
+var AddDownloadCountCmd = &cobra.Command{
+	Use:   "AddDownloadCount",
 	Short: "Add download count",
 	Long:  `Add download count`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,9 +41,8 @@ var addDownloadCountCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(addDownloadCountCmd)
-	addDownloadCountCmd.Flags().StringP("contentId", "cd", " ", "Content id")
-	_ = addDownloadCountCmd.MarkFlagRequired("contentId")
-	addDownloadCountCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = addDownloadCountCmd.MarkFlagRequired("namespace")
+	AddDownloadCountCmd.Flags().StringP("contentId", "cd", " ", "Content id")
+	_ = AddDownloadCountCmd.MarkFlagRequired("contentId")
+	AddDownloadCountCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AddDownloadCountCmd.MarkFlagRequired("namespace")
 }

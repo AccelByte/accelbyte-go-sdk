@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// processUserSubscriptionNotificationCmd represents the processUserSubscriptionNotification command
-var processUserSubscriptionNotificationCmd = &cobra.Command{
-	Use:   "processUserSubscriptionNotification",
+// ProcessUserSubscriptionNotificationCmd represents the ProcessUserSubscriptionNotification command
+var ProcessUserSubscriptionNotificationCmd = &cobra.Command{
+	Use:   "ProcessUserSubscriptionNotification",
 	Short: "Process user subscription notification",
 	Long:  `Process user subscription notification`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -52,12 +51,11 @@ var processUserSubscriptionNotificationCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(processUserSubscriptionNotificationCmd)
-	processUserSubscriptionNotificationCmd.Flags().StringP("body", "by", " ", "Body")
-	processUserSubscriptionNotificationCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = processUserSubscriptionNotificationCmd.MarkFlagRequired("namespace")
-	processUserSubscriptionNotificationCmd.Flags().StringP("subscriptionId", "sd", " ", "Subscription id")
-	_ = processUserSubscriptionNotificationCmd.MarkFlagRequired("subscriptionId")
-	processUserSubscriptionNotificationCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = processUserSubscriptionNotificationCmd.MarkFlagRequired("userId")
+	ProcessUserSubscriptionNotificationCmd.Flags().StringP("body", "by", " ", "Body")
+	ProcessUserSubscriptionNotificationCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = ProcessUserSubscriptionNotificationCmd.MarkFlagRequired("namespace")
+	ProcessUserSubscriptionNotificationCmd.Flags().StringP("subscriptionId", "sd", " ", "Subscription id")
+	_ = ProcessUserSubscriptionNotificationCmd.MarkFlagRequired("subscriptionId")
+	ProcessUserSubscriptionNotificationCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = ProcessUserSubscriptionNotificationCmd.MarkFlagRequired("userId")
 }

@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/achievement-sdk/pkg/achievementclient/achievements"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/achievement"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminListUserAchievementsCmd represents the adminListUserAchievements command
-var adminListUserAchievementsCmd = &cobra.Command{
-	Use:   "adminListUserAchievements",
+// AdminListUserAchievementsCmd represents the AdminListUserAchievements command
+var AdminListUserAchievementsCmd = &cobra.Command{
+	Use:   "AdminListUserAchievements",
 	Short: "Admin list user achievements",
 	Long:  `Admin list user achievements`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,12 +47,11 @@ var adminListUserAchievementsCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminListUserAchievementsCmd)
-	adminListUserAchievementsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = adminListUserAchievementsCmd.MarkFlagRequired("namespace")
-	adminListUserAchievementsCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = adminListUserAchievementsCmd.MarkFlagRequired("userId")
-	adminListUserAchievementsCmd.Flags().Int64P("limit", "lt", 20, "Limit")
-	adminListUserAchievementsCmd.Flags().Int64P("offset", "ot", 0, "Offset")
-	adminListUserAchievementsCmd.Flags().BoolP("preferUnlocked", "pd", false, "Prefer unlocked")
+	AdminListUserAchievementsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AdminListUserAchievementsCmd.MarkFlagRequired("namespace")
+	AdminListUserAchievementsCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = AdminListUserAchievementsCmd.MarkFlagRequired("userId")
+	AdminListUserAchievementsCmd.Flags().Int64P("limit", "lt", 20, "Limit")
+	AdminListUserAchievementsCmd.Flags().Int64P("offset", "ot", 0, "Offset")
+	AdminListUserAchievementsCmd.Flags().BoolP("preferUnlocked", "pd", false, "Prefer unlocked")
 }

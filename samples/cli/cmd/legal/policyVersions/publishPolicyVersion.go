@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclient/policy_versions"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/legal"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// publishPolicyVersionCmd represents the publishPolicyVersion command
-var publishPolicyVersionCmd = &cobra.Command{
-	Use:   "publishPolicyVersion",
+// PublishPolicyVersionCmd represents the PublishPolicyVersion command
+var PublishPolicyVersionCmd = &cobra.Command{
+	Use:   "PublishPolicyVersion",
 	Short: "Publish policy version",
 	Long:  `Publish policy version`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,8 +40,7 @@ var publishPolicyVersionCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(publishPolicyVersionCmd)
-	publishPolicyVersionCmd.Flags().StringP("policyVersionId", "pd", " ", "Policy version id")
-	_ = publishPolicyVersionCmd.MarkFlagRequired("policyVersionId")
-	publishPolicyVersionCmd.Flags().BoolP("shouldNotify", "sy", false, "Should notify")
+	PublishPolicyVersionCmd.Flags().StringP("policyVersionId", "pd", " ", "Policy version id")
+	_ = PublishPolicyVersionCmd.MarkFlagRequired("policyVersionId")
+	PublishPolicyVersionCmd.Flags().BoolP("shouldNotify", "sy", false, "Should notify")
 }

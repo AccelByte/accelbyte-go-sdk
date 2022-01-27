@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth2_0"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// tokenRevocationV3Cmd represents the tokenRevocationV3 command
-var tokenRevocationV3Cmd = &cobra.Command{
-	Use:   "tokenRevocationV3",
+// TokenRevocationV3Cmd represents the TokenRevocationV3 command
+var TokenRevocationV3Cmd = &cobra.Command{
+	Use:   "TokenRevocationV3",
 	Short: "Token revocation V3",
 	Long:  `Token revocation V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,7 +38,6 @@ var tokenRevocationV3Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(tokenRevocationV3Cmd)
-	tokenRevocationV3Cmd.Flags().StringP("token", "tn", " ", "Token")
-	_ = tokenRevocationV3Cmd.MarkFlagRequired("token")
+	TokenRevocationV3Cmd.Flags().StringP("token", "tn", " ", "Token")
+	_ = TokenRevocationV3Cmd.MarkFlagRequired("token")
 }

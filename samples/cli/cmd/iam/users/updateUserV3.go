@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// updateUserV3Cmd represents the updateUserV3 command
-var updateUserV3Cmd = &cobra.Command{
-	Use:   "updateUserV3",
+// UpdateUserV3Cmd represents the UpdateUserV3 command
+var UpdateUserV3Cmd = &cobra.Command{
+	Use:   "UpdateUserV3",
 	Short: "Update user V3",
 	Long:  `Update user V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,9 +48,8 @@ var updateUserV3Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(updateUserV3Cmd)
-	updateUserV3Cmd.Flags().StringP("body", "by", " ", "Body")
-	_ = updateUserV3Cmd.MarkFlagRequired("body")
-	updateUserV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = updateUserV3Cmd.MarkFlagRequired("namespace")
+	UpdateUserV3Cmd.Flags().StringP("body", "by", " ", "Body")
+	_ = UpdateUserV3Cmd.MarkFlagRequired("body")
+	UpdateUserV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = UpdateUserV3Cmd.MarkFlagRequired("namespace")
 }

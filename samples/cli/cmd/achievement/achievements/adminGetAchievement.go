@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/achievement-sdk/pkg/achievementclient/achievements"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/achievement"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminGetAchievementCmd represents the adminGetAchievement command
-var adminGetAchievementCmd = &cobra.Command{
-	Use:   "adminGetAchievement",
+// AdminGetAchievementCmd represents the AdminGetAchievement command
+var AdminGetAchievementCmd = &cobra.Command{
+	Use:   "AdminGetAchievement",
 	Short: "Admin get achievement",
 	Long:  `Admin get achievement`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,9 +41,8 @@ var adminGetAchievementCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminGetAchievementCmd)
-	adminGetAchievementCmd.Flags().StringP("achievementCode", "ae", " ", "Achievement code")
-	_ = adminGetAchievementCmd.MarkFlagRequired("achievementCode")
-	adminGetAchievementCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = adminGetAchievementCmd.MarkFlagRequired("namespace")
+	AdminGetAchievementCmd.Flags().StringP("achievementCode", "ae", " ", "Achievement code")
+	_ = AdminGetAchievementCmd.MarkFlagRequired("achievementCode")
+	AdminGetAchievementCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AdminGetAchievementCmd.MarkFlagRequired("namespace")
 }

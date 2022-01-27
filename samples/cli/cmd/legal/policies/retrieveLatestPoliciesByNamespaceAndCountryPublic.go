@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclient/policies"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/legal"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// retrieveLatestPoliciesByNamespaceAndCountryPublicCmd represents the retrieveLatestPoliciesByNamespaceAndCountryPublic command
-var retrieveLatestPoliciesByNamespaceAndCountryPublicCmd = &cobra.Command{
-	Use:   "retrieveLatestPoliciesByNamespaceAndCountryPublic",
+// RetrieveLatestPoliciesByNamespaceAndCountryPublicCmd represents the RetrieveLatestPoliciesByNamespaceAndCountryPublic command
+var RetrieveLatestPoliciesByNamespaceAndCountryPublicCmd = &cobra.Command{
+	Use:   "RetrieveLatestPoliciesByNamespaceAndCountryPublic",
 	Short: "Retrieve latest policies by namespace and country public",
 	Long:  `Retrieve latest policies by namespace and country public`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,13 +49,12 @@ var retrieveLatestPoliciesByNamespaceAndCountryPublicCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(retrieveLatestPoliciesByNamespaceAndCountryPublicCmd)
-	retrieveLatestPoliciesByNamespaceAndCountryPublicCmd.Flags().StringP("countryCode", "ce", " ", "Country code")
-	_ = retrieveLatestPoliciesByNamespaceAndCountryPublicCmd.MarkFlagRequired("countryCode")
-	retrieveLatestPoliciesByNamespaceAndCountryPublicCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = retrieveLatestPoliciesByNamespaceAndCountryPublicCmd.MarkFlagRequired("namespace")
-	retrieveLatestPoliciesByNamespaceAndCountryPublicCmd.Flags().BoolP("alwaysIncludeDefault", "at", false, "Always include default")
-	retrieveLatestPoliciesByNamespaceAndCountryPublicCmd.Flags().BoolP("defaultOnEmpty", "dy", false, "Default on empty")
-	retrieveLatestPoliciesByNamespaceAndCountryPublicCmd.Flags().StringP("policyType", "pe", " ", "Policy type")
-	retrieveLatestPoliciesByNamespaceAndCountryPublicCmd.Flags().StringP("tags", "ts", " ", "Tags")
+	RetrieveLatestPoliciesByNamespaceAndCountryPublicCmd.Flags().StringP("countryCode", "ce", " ", "Country code")
+	_ = RetrieveLatestPoliciesByNamespaceAndCountryPublicCmd.MarkFlagRequired("countryCode")
+	RetrieveLatestPoliciesByNamespaceAndCountryPublicCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = RetrieveLatestPoliciesByNamespaceAndCountryPublicCmd.MarkFlagRequired("namespace")
+	RetrieveLatestPoliciesByNamespaceAndCountryPublicCmd.Flags().BoolP("alwaysIncludeDefault", "at", false, "Always include default")
+	RetrieveLatestPoliciesByNamespaceAndCountryPublicCmd.Flags().BoolP("defaultOnEmpty", "dy", false, "Default on empty")
+	RetrieveLatestPoliciesByNamespaceAndCountryPublicCmd.Flags().StringP("policyType", "pe", " ", "Policy type")
+	RetrieveLatestPoliciesByNamespaceAndCountryPublicCmd.Flags().StringP("tags", "ts", " ", "Tags")
 }

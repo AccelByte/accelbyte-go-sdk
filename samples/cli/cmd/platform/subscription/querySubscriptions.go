@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/subscription"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// querySubscriptionsCmd represents the querySubscriptions command
-var querySubscriptionsCmd = &cobra.Command{
-	Use:   "querySubscriptions",
+// QuerySubscriptionsCmd represents the QuerySubscriptions command
+var QuerySubscriptionsCmd = &cobra.Command{
+	Use:   "QuerySubscriptions",
 	Short: "Query subscriptions",
 	Long:  `Query subscriptions`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -56,15 +55,14 @@ var querySubscriptionsCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(querySubscriptionsCmd)
-	querySubscriptionsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = querySubscriptionsCmd.MarkFlagRequired("namespace")
-	querySubscriptionsCmd.Flags().StringP("chargeStatus", "cs", " ", "Charge status")
-	querySubscriptionsCmd.Flags().StringP("itemId", "id", " ", "Item id")
-	querySubscriptionsCmd.Flags().Int32P("limit", "lt", 20, "Limit")
-	querySubscriptionsCmd.Flags().Int32P("offset", "ot", 0, "Offset")
-	querySubscriptionsCmd.Flags().StringP("sku", "su", " ", "Sku")
-	querySubscriptionsCmd.Flags().StringP("status", "ss", " ", "Status")
-	querySubscriptionsCmd.Flags().StringP("subscribedBy", "sy", " ", "Subscribed by")
-	querySubscriptionsCmd.Flags().StringP("userId", "ud", " ", "User id")
+	QuerySubscriptionsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = QuerySubscriptionsCmd.MarkFlagRequired("namespace")
+	QuerySubscriptionsCmd.Flags().StringP("chargeStatus", "cs", " ", "Charge status")
+	QuerySubscriptionsCmd.Flags().StringP("itemId", "id", " ", "Item id")
+	QuerySubscriptionsCmd.Flags().Int32P("limit", "lt", 20, "Limit")
+	QuerySubscriptionsCmd.Flags().Int32P("offset", "ot", 0, "Offset")
+	QuerySubscriptionsCmd.Flags().StringP("sku", "su", " ", "Sku")
+	QuerySubscriptionsCmd.Flags().StringP("status", "ss", " ", "Status")
+	QuerySubscriptionsCmd.Flags().StringP("subscribedBy", "sy", " ", "Subscribed by")
+	QuerySubscriptionsCmd.Flags().StringP("userId", "ud", " ", "User id")
 }

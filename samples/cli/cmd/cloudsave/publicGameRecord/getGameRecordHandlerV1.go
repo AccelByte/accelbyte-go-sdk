@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclient/public_game_record"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/cloudsave"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getGameRecordHandlerV1Cmd represents the getGameRecordHandlerV1 command
-var getGameRecordHandlerV1Cmd = &cobra.Command{
-	Use:   "getGameRecordHandlerV1",
+// GetGameRecordHandlerV1Cmd represents the GetGameRecordHandlerV1 command
+var GetGameRecordHandlerV1Cmd = &cobra.Command{
+	Use:   "GetGameRecordHandlerV1",
 	Short: "Get game record handler V1",
 	Long:  `Get game record handler V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,9 +41,8 @@ var getGameRecordHandlerV1Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getGameRecordHandlerV1Cmd)
-	getGameRecordHandlerV1Cmd.Flags().StringP("key", "ky", " ", "Key")
-	_ = getGameRecordHandlerV1Cmd.MarkFlagRequired("key")
-	getGameRecordHandlerV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getGameRecordHandlerV1Cmd.MarkFlagRequired("namespace")
+	GetGameRecordHandlerV1Cmd.Flags().StringP("key", "ky", " ", "Key")
+	_ = GetGameRecordHandlerV1Cmd.MarkFlagRequired("key")
+	GetGameRecordHandlerV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetGameRecordHandlerV1Cmd.MarkFlagRequired("namespace")
 }

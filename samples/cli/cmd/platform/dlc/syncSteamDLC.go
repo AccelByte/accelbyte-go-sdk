@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// syncSteamDLCCmd represents the syncSteamDLC command
-var syncSteamDLCCmd = &cobra.Command{
-	Use:   "syncSteamDLC",
+// SyncSteamDLCCmd represents the SyncSteamDLC command
+var SyncSteamDLCCmd = &cobra.Command{
+	Use:   "SyncSteamDLC",
 	Short: "Sync steam DLC",
 	Long:  `Sync steam DLC`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,10 +49,9 @@ var syncSteamDLCCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(syncSteamDLCCmd)
-	syncSteamDLCCmd.Flags().StringP("body", "by", " ", "Body")
-	syncSteamDLCCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = syncSteamDLCCmd.MarkFlagRequired("namespace")
-	syncSteamDLCCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = syncSteamDLCCmd.MarkFlagRequired("userId")
+	SyncSteamDLCCmd.Flags().StringP("body", "by", " ", "Body")
+	SyncSteamDLCCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = SyncSteamDLCCmd.MarkFlagRequired("namespace")
+	SyncSteamDLCCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = SyncSteamDLCCmd.MarkFlagRequired("userId")
 }

@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// returnItemCmd represents the returnItem command
-var returnItemCmd = &cobra.Command{
-	Use:   "returnItem",
+// ReturnItemCmd represents the ReturnItem command
+var ReturnItemCmd = &cobra.Command{
+	Use:   "ReturnItem",
 	Short: "Return item",
 	Long:  `Return item`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,10 +49,9 @@ var returnItemCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(returnItemCmd)
-	returnItemCmd.Flags().StringP("body", "by", " ", "Body")
-	returnItemCmd.Flags().StringP("itemId", "id", " ", "Item id")
-	_ = returnItemCmd.MarkFlagRequired("itemId")
-	returnItemCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = returnItemCmd.MarkFlagRequired("namespace")
+	ReturnItemCmd.Flags().StringP("body", "by", " ", "Body")
+	ReturnItemCmd.Flags().StringP("itemId", "id", " ", "Item id")
+	_ = ReturnItemCmd.MarkFlagRequired("itemId")
+	ReturnItemCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = ReturnItemCmd.MarkFlagRequired("namespace")
 }

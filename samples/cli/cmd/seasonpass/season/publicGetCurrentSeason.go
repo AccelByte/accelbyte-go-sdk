@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/seasonpass-sdk/pkg/seasonpassclient/season"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/seasonpass"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// publicGetCurrentSeasonCmd represents the publicGetCurrentSeason command
-var publicGetCurrentSeasonCmd = &cobra.Command{
-	Use:   "publicGetCurrentSeason",
+// PublicGetCurrentSeasonCmd represents the PublicGetCurrentSeason command
+var PublicGetCurrentSeasonCmd = &cobra.Command{
+	Use:   "PublicGetCurrentSeason",
 	Short: "Public get current season",
 	Long:  `Public get current season`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,8 +41,7 @@ var publicGetCurrentSeasonCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(publicGetCurrentSeasonCmd)
-	publicGetCurrentSeasonCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = publicGetCurrentSeasonCmd.MarkFlagRequired("namespace")
-	publicGetCurrentSeasonCmd.Flags().StringP("language", "le", " ", "Language")
+	PublicGetCurrentSeasonCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PublicGetCurrentSeasonCmd.MarkFlagRequired("namespace")
+	PublicGetCurrentSeasonCmd.Flags().StringP("language", "le", " ", "Language")
 }

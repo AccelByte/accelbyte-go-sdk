@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// publicUpgradeHeadlessAccountV3Cmd represents the publicUpgradeHeadlessAccountV3 command
-var publicUpgradeHeadlessAccountV3Cmd = &cobra.Command{
-	Use:   "publicUpgradeHeadlessAccountV3",
+// PublicUpgradeHeadlessAccountV3Cmd represents the PublicUpgradeHeadlessAccountV3 command
+var PublicUpgradeHeadlessAccountV3Cmd = &cobra.Command{
+	Use:   "PublicUpgradeHeadlessAccountV3",
 	Short: "Public upgrade headless account V3",
 	Long:  `Public upgrade headless account V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,9 +48,8 @@ var publicUpgradeHeadlessAccountV3Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(publicUpgradeHeadlessAccountV3Cmd)
-	publicUpgradeHeadlessAccountV3Cmd.Flags().StringP("body", "by", " ", "Body")
-	_ = publicUpgradeHeadlessAccountV3Cmd.MarkFlagRequired("body")
-	publicUpgradeHeadlessAccountV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = publicUpgradeHeadlessAccountV3Cmd.MarkFlagRequired("namespace")
+	PublicUpgradeHeadlessAccountV3Cmd.Flags().StringP("body", "by", " ", "Body")
+	_ = PublicUpgradeHeadlessAccountV3Cmd.MarkFlagRequired("body")
+	PublicUpgradeHeadlessAccountV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PublicUpgradeHeadlessAccountV3Cmd.MarkFlagRequired("namespace")
 }

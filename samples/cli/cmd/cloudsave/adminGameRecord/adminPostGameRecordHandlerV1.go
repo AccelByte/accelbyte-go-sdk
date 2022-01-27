@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/cloudsave"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminPostGameRecordHandlerV1Cmd represents the adminPostGameRecordHandlerV1 command
-var adminPostGameRecordHandlerV1Cmd = &cobra.Command{
-	Use:   "adminPostGameRecordHandlerV1",
+// AdminPostGameRecordHandlerV1Cmd represents the AdminPostGameRecordHandlerV1 command
+var AdminPostGameRecordHandlerV1Cmd = &cobra.Command{
+	Use:   "AdminPostGameRecordHandlerV1",
 	Short: "Admin post game record handler V1",
 	Long:  `Admin post game record handler V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,11 +49,10 @@ var adminPostGameRecordHandlerV1Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminPostGameRecordHandlerV1Cmd)
-	adminPostGameRecordHandlerV1Cmd.Flags().StringP("body", "by", " ", "Body")
-	_ = adminPostGameRecordHandlerV1Cmd.MarkFlagRequired("body")
-	adminPostGameRecordHandlerV1Cmd.Flags().StringP("key", "ky", " ", "Key")
-	_ = adminPostGameRecordHandlerV1Cmd.MarkFlagRequired("key")
-	adminPostGameRecordHandlerV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = adminPostGameRecordHandlerV1Cmd.MarkFlagRequired("namespace")
+	AdminPostGameRecordHandlerV1Cmd.Flags().StringP("body", "by", " ", "Body")
+	_ = AdminPostGameRecordHandlerV1Cmd.MarkFlagRequired("body")
+	AdminPostGameRecordHandlerV1Cmd.Flags().StringP("key", "ky", " ", "Key")
+	_ = AdminPostGameRecordHandlerV1Cmd.MarkFlagRequired("key")
+	AdminPostGameRecordHandlerV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AdminPostGameRecordHandlerV1Cmd.MarkFlagRequired("namespace")
 }

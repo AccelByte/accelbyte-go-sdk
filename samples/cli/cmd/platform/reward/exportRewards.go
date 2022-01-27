@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/reward"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// exportRewardsCmd represents the exportRewards command
-var exportRewardsCmd = &cobra.Command{
-	Use:   "exportRewards",
+// ExportRewardsCmd represents the ExportRewards command
+var ExportRewardsCmd = &cobra.Command{
+	Use:   "ExportRewards",
 	Short: "Export rewards",
 	Long:  `Export rewards`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,7 +38,6 @@ var exportRewardsCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(exportRewardsCmd)
-	exportRewardsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = exportRewardsCmd.MarkFlagRequired("namespace")
+	ExportRewardsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = ExportRewardsCmd.MarkFlagRequired("namespace")
 }

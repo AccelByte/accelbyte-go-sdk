@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/social"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient/game_profile"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// publicGetProfileAttributeCmd represents the publicGetProfileAttribute command
-var publicGetProfileAttributeCmd = &cobra.Command{
-	Use:   "publicGetProfileAttribute",
+// PublicGetProfileAttributeCmd represents the PublicGetProfileAttribute command
+var PublicGetProfileAttributeCmd = &cobra.Command{
+	Use:   "PublicGetProfileAttribute",
 	Short: "Public get profile attribute",
 	Long:  `Public get profile attribute`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -46,13 +45,12 @@ var publicGetProfileAttributeCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(publicGetProfileAttributeCmd)
-	publicGetProfileAttributeCmd.Flags().StringP("attributeName", "ae", " ", "Attribute name")
-	_ = publicGetProfileAttributeCmd.MarkFlagRequired("attributeName")
-	publicGetProfileAttributeCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = publicGetProfileAttributeCmd.MarkFlagRequired("namespace")
-	publicGetProfileAttributeCmd.Flags().StringP("profileId", "pd", " ", "Profile id")
-	_ = publicGetProfileAttributeCmd.MarkFlagRequired("profileId")
-	publicGetProfileAttributeCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = publicGetProfileAttributeCmd.MarkFlagRequired("userId")
+	PublicGetProfileAttributeCmd.Flags().StringP("attributeName", "ae", " ", "Attribute name")
+	_ = PublicGetProfileAttributeCmd.MarkFlagRequired("attributeName")
+	PublicGetProfileAttributeCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PublicGetProfileAttributeCmd.MarkFlagRequired("namespace")
+	PublicGetProfileAttributeCmd.Flags().StringP("profileId", "pd", " ", "Profile id")
+	_ = PublicGetProfileAttributeCmd.MarkFlagRequired("profileId")
+	PublicGetProfileAttributeCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = PublicGetProfileAttributeCmd.MarkFlagRequired("userId")
 }

@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/social"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient/user_statistic"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// bulkFetchStatItems1Cmd represents the bulkFetchStatItems1 command
-var bulkFetchStatItems1Cmd = &cobra.Command{
-	Use:   "bulkFetchStatItems1",
+// BulkFetchStatItems1Cmd represents the BulkFetchStatItems1 command
+var BulkFetchStatItems1Cmd = &cobra.Command{
+	Use:   "BulkFetchStatItems1",
 	Short: "Bulk fetch stat items 1",
 	Long:  `Bulk fetch stat items 1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -44,11 +43,10 @@ var bulkFetchStatItems1Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(bulkFetchStatItems1Cmd)
-	bulkFetchStatItems1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = bulkFetchStatItems1Cmd.MarkFlagRequired("namespace")
-	bulkFetchStatItems1Cmd.Flags().StringP("statCode", "se", " ", "Stat code")
-	_ = bulkFetchStatItems1Cmd.MarkFlagRequired("statCode")
-	bulkFetchStatItems1Cmd.Flags().StringP("userIds", "us", " ", "User ids")
-	_ = bulkFetchStatItems1Cmd.MarkFlagRequired("userIds")
+	BulkFetchStatItems1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = BulkFetchStatItems1Cmd.MarkFlagRequired("namespace")
+	BulkFetchStatItems1Cmd.Flags().StringP("statCode", "se", " ", "Stat code")
+	_ = BulkFetchStatItems1Cmd.MarkFlagRequired("statCode")
+	BulkFetchStatItems1Cmd.Flags().StringP("userIds", "us", " ", "User ids")
+	_ = BulkFetchStatItems1Cmd.MarkFlagRequired("userIds")
 }

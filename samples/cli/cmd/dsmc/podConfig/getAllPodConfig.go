@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/pod_config"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/dsmc"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getAllPodConfigCmd represents the getAllPodConfig command
-var getAllPodConfigCmd = &cobra.Command{
-	Use:   "getAllPodConfig",
+// GetAllPodConfigCmd represents the GetAllPodConfig command
+var GetAllPodConfigCmd = &cobra.Command{
+	Use:   "GetAllPodConfig",
 	Short: "Get all pod config",
 	Long:  `Get all pod config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -44,9 +43,8 @@ var getAllPodConfigCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getAllPodConfigCmd)
-	getAllPodConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getAllPodConfigCmd.MarkFlagRequired("namespace")
-	getAllPodConfigCmd.Flags().Int64P("count", "ct", 1, "Count")
-	getAllPodConfigCmd.Flags().Int64P("offset", "ot", 0, "Offset")
+	GetAllPodConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetAllPodConfigCmd.MarkFlagRequired("namespace")
+	GetAllPodConfigCmd.Flags().Int64P("count", "ct", 1, "Count")
+	GetAllPodConfigCmd.Flags().Int64P("offset", "ot", 0, "Offset")
 }

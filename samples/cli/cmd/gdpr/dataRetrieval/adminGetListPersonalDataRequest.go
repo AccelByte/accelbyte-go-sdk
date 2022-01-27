@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/gdpr-sdk/pkg/gdprclient/data_retrieval"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/gdpr"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminGetListPersonalDataRequestCmd represents the adminGetListPersonalDataRequest command
-var adminGetListPersonalDataRequestCmd = &cobra.Command{
-	Use:   "adminGetListPersonalDataRequest",
+// AdminGetListPersonalDataRequestCmd represents the AdminGetListPersonalDataRequest command
+var AdminGetListPersonalDataRequestCmd = &cobra.Command{
+	Use:   "AdminGetListPersonalDataRequest",
 	Short: "Admin get list personal data request",
 	Long:  `Admin get list personal data request`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -46,10 +45,9 @@ var adminGetListPersonalDataRequestCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminGetListPersonalDataRequestCmd)
-	adminGetListPersonalDataRequestCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = adminGetListPersonalDataRequestCmd.MarkFlagRequired("namespace")
-	adminGetListPersonalDataRequestCmd.Flags().Int64P("limit", "lt", 20, "Limit")
-	adminGetListPersonalDataRequestCmd.Flags().Int64P("offset", "ot", 0, "Offset")
-	adminGetListPersonalDataRequestCmd.Flags().StringP("requestDate", "re", " ", "Request date")
+	AdminGetListPersonalDataRequestCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AdminGetListPersonalDataRequestCmd.MarkFlagRequired("namespace")
+	AdminGetListPersonalDataRequestCmd.Flags().Int64P("limit", "lt", 20, "Limit")
+	AdminGetListPersonalDataRequestCmd.Flags().Int64P("offset", "ot", 0, "Offset")
+	AdminGetListPersonalDataRequestCmd.Flags().StringP("requestDate", "re", " ", "Request date")
 }

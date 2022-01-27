@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminAddUserPermissionsV3Cmd represents the adminAddUserPermissionsV3 command
-var adminAddUserPermissionsV3Cmd = &cobra.Command{
-	Use:   "adminAddUserPermissionsV3",
+// AdminAddUserPermissionsV3Cmd represents the AdminAddUserPermissionsV3 command
+var AdminAddUserPermissionsV3Cmd = &cobra.Command{
+	Use:   "AdminAddUserPermissionsV3",
 	Short: "Admin add user permissions V3",
 	Long:  `Admin add user permissions V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,11 +49,10 @@ var adminAddUserPermissionsV3Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminAddUserPermissionsV3Cmd)
-	adminAddUserPermissionsV3Cmd.Flags().StringP("body", "by", " ", "Body")
-	_ = adminAddUserPermissionsV3Cmd.MarkFlagRequired("body")
-	adminAddUserPermissionsV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = adminAddUserPermissionsV3Cmd.MarkFlagRequired("namespace")
-	adminAddUserPermissionsV3Cmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = adminAddUserPermissionsV3Cmd.MarkFlagRequired("userId")
+	AdminAddUserPermissionsV3Cmd.Flags().StringP("body", "by", " ", "Body")
+	_ = AdminAddUserPermissionsV3Cmd.MarkFlagRequired("body")
+	AdminAddUserPermissionsV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AdminAddUserPermissionsV3Cmd.MarkFlagRequired("namespace")
+	AdminAddUserPermissionsV3Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = AdminAddUserPermissionsV3Cmd.MarkFlagRequired("userId")
 }

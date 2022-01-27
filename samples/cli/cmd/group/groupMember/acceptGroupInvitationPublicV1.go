@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/group-sdk/pkg/groupclient/group_member"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/group"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// acceptGroupInvitationPublicV1Cmd represents the acceptGroupInvitationPublicV1 command
-var acceptGroupInvitationPublicV1Cmd = &cobra.Command{
-	Use:   "acceptGroupInvitationPublicV1",
+// AcceptGroupInvitationPublicV1Cmd represents the AcceptGroupInvitationPublicV1 command
+var AcceptGroupInvitationPublicV1Cmd = &cobra.Command{
+	Use:   "AcceptGroupInvitationPublicV1",
 	Short: "Accept group invitation public V1",
 	Long:  `Accept group invitation public V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,9 +41,8 @@ var acceptGroupInvitationPublicV1Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(acceptGroupInvitationPublicV1Cmd)
-	acceptGroupInvitationPublicV1Cmd.Flags().StringP("groupId", "gd", " ", "Group id")
-	_ = acceptGroupInvitationPublicV1Cmd.MarkFlagRequired("groupId")
-	acceptGroupInvitationPublicV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = acceptGroupInvitationPublicV1Cmd.MarkFlagRequired("namespace")
+	AcceptGroupInvitationPublicV1Cmd.Flags().StringP("groupId", "gd", " ", "Group id")
+	_ = AcceptGroupInvitationPublicV1Cmd.MarkFlagRequired("groupId")
+	AcceptGroupInvitationPublicV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AcceptGroupInvitationPublicV1Cmd.MarkFlagRequired("namespace")
 }

@@ -8,15 +8,14 @@ import (
 	matchmaking_ "github.com/AccelByte/accelbyte-go-sdk/matchmaking-sdk/pkg/matchmakingclient/matchmaking"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/matchmaking"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// searchSessionsCmd represents the searchSessions command
-var searchSessionsCmd = &cobra.Command{
-	Use:   "searchSessions",
+// SearchSessionsCmd represents the SearchSessions command
+var SearchSessionsCmd = &cobra.Command{
+	Use:   "SearchSessions",
 	Short: "Search sessions",
 	Long:  `Search sessions`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -54,16 +53,15 @@ var searchSessionsCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(searchSessionsCmd)
-	searchSessionsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = searchSessionsCmd.MarkFlagRequired("namespace")
-	searchSessionsCmd.Flags().StringP("channel", "cl", " ", "Channel")
-	searchSessionsCmd.Flags().BoolP("deleted", "dd", false, "Deleted")
-	searchSessionsCmd.Flags().StringP("matchID", "mD", " ", "Match ID")
-	searchSessionsCmd.Flags().StringP("partyID", "pD", " ", "Party ID")
-	searchSessionsCmd.Flags().StringP("userID", "uD", " ", "User ID")
-	searchSessionsCmd.Flags().Float64P("limit", "lt", 20, "Limit")
-	_ = searchSessionsCmd.MarkFlagRequired("limit")
-	searchSessionsCmd.Flags().Float64P("offset", "ot", 0, "Offset")
-	_ = searchSessionsCmd.MarkFlagRequired("offset")
+	SearchSessionsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = SearchSessionsCmd.MarkFlagRequired("namespace")
+	SearchSessionsCmd.Flags().StringP("channel", "cl", " ", "Channel")
+	SearchSessionsCmd.Flags().BoolP("deleted", "dd", false, "Deleted")
+	SearchSessionsCmd.Flags().StringP("matchID", "mD", " ", "Match ID")
+	SearchSessionsCmd.Flags().StringP("partyID", "pD", " ", "Party ID")
+	SearchSessionsCmd.Flags().StringP("userID", "uD", " ", "User ID")
+	SearchSessionsCmd.Flags().Float64P("limit", "lt", 20, "Limit")
+	_ = SearchSessionsCmd.MarkFlagRequired("limit")
+	SearchSessionsCmd.Flags().Float64P("offset", "ot", 0, "Offset")
+	_ = SearchSessionsCmd.MarkFlagRequired("offset")
 }

@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclient/admin_player_record"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/cloudsave"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminGetPlayerRecordHandlerV1Cmd represents the adminGetPlayerRecordHandlerV1 command
-var adminGetPlayerRecordHandlerV1Cmd = &cobra.Command{
-	Use:   "adminGetPlayerRecordHandlerV1",
+// AdminGetPlayerRecordHandlerV1Cmd represents the AdminGetPlayerRecordHandlerV1 command
+var AdminGetPlayerRecordHandlerV1Cmd = &cobra.Command{
+	Use:   "AdminGetPlayerRecordHandlerV1",
 	Short: "Admin get player record handler V1",
 	Long:  `Admin get player record handler V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -44,11 +43,10 @@ var adminGetPlayerRecordHandlerV1Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminGetPlayerRecordHandlerV1Cmd)
-	adminGetPlayerRecordHandlerV1Cmd.Flags().StringP("key", "ky", " ", "Key")
-	_ = adminGetPlayerRecordHandlerV1Cmd.MarkFlagRequired("key")
-	adminGetPlayerRecordHandlerV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = adminGetPlayerRecordHandlerV1Cmd.MarkFlagRequired("namespace")
-	adminGetPlayerRecordHandlerV1Cmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = adminGetPlayerRecordHandlerV1Cmd.MarkFlagRequired("userId")
+	AdminGetPlayerRecordHandlerV1Cmd.Flags().StringP("key", "ky", " ", "Key")
+	_ = AdminGetPlayerRecordHandlerV1Cmd.MarkFlagRequired("key")
+	AdminGetPlayerRecordHandlerV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AdminGetPlayerRecordHandlerV1Cmd.MarkFlagRequired("namespace")
+	AdminGetPlayerRecordHandlerV1Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = AdminGetPlayerRecordHandlerV1Cmd.MarkFlagRequired("userId")
 }

@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/campaign"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// queryRedeemHistoryCmd represents the queryRedeemHistory command
-var queryRedeemHistoryCmd = &cobra.Command{
-	Use:   "queryRedeemHistory",
+// QueryRedeemHistoryCmd represents the QueryRedeemHistory command
+var QueryRedeemHistoryCmd = &cobra.Command{
+	Use:   "QueryRedeemHistory",
 	Short: "Query redeem history",
 	Long:  `Query redeem history`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,13 +49,12 @@ var queryRedeemHistoryCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(queryRedeemHistoryCmd)
-	queryRedeemHistoryCmd.Flags().StringP("campaignId", "cd", " ", "Campaign id")
-	_ = queryRedeemHistoryCmd.MarkFlagRequired("campaignId")
-	queryRedeemHistoryCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = queryRedeemHistoryCmd.MarkFlagRequired("namespace")
-	queryRedeemHistoryCmd.Flags().StringP("code", "ce", " ", "Code")
-	queryRedeemHistoryCmd.Flags().Int32P("limit", "lt", 20, "Limit")
-	queryRedeemHistoryCmd.Flags().Int32P("offset", "ot", 0, "Offset")
-	queryRedeemHistoryCmd.Flags().StringP("userId", "ud", " ", "User id")
+	QueryRedeemHistoryCmd.Flags().StringP("campaignId", "cd", " ", "Campaign id")
+	_ = QueryRedeemHistoryCmd.MarkFlagRequired("campaignId")
+	QueryRedeemHistoryCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = QueryRedeemHistoryCmd.MarkFlagRequired("namespace")
+	QueryRedeemHistoryCmd.Flags().StringP("code", "ce", " ", "Code")
+	QueryRedeemHistoryCmd.Flags().Int32P("limit", "lt", 20, "Limit")
+	QueryRedeemHistoryCmd.Flags().Int32P("offset", "ot", 0, "Offset")
+	QueryRedeemHistoryCmd.Flags().StringP("userId", "ud", " ", "User id")
 }

@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/gdpr-sdk/pkg/gdprclient/data_deletion"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/gdpr"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// publicSubmitUserAccountDeletionRequestCmd represents the publicSubmitUserAccountDeletionRequest command
-var publicSubmitUserAccountDeletionRequestCmd = &cobra.Command{
-	Use:   "publicSubmitUserAccountDeletionRequest",
+// PublicSubmitUserAccountDeletionRequestCmd represents the PublicSubmitUserAccountDeletionRequest command
+var PublicSubmitUserAccountDeletionRequestCmd = &cobra.Command{
+	Use:   "PublicSubmitUserAccountDeletionRequest",
 	Short: "Public submit user account deletion request",
 	Long:  `Public submit user account deletion request`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -44,11 +43,10 @@ var publicSubmitUserAccountDeletionRequestCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(publicSubmitUserAccountDeletionRequestCmd)
-	publicSubmitUserAccountDeletionRequestCmd.Flags().StringP("password", "pd", " ", "Password")
-	_ = publicSubmitUserAccountDeletionRequestCmd.MarkFlagRequired("password")
-	publicSubmitUserAccountDeletionRequestCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = publicSubmitUserAccountDeletionRequestCmd.MarkFlagRequired("namespace")
-	publicSubmitUserAccountDeletionRequestCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = publicSubmitUserAccountDeletionRequestCmd.MarkFlagRequired("userId")
+	PublicSubmitUserAccountDeletionRequestCmd.Flags().StringP("password", "pd", " ", "Password")
+	_ = PublicSubmitUserAccountDeletionRequestCmd.MarkFlagRequired("password")
+	PublicSubmitUserAccountDeletionRequestCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PublicSubmitUserAccountDeletionRequestCmd.MarkFlagRequired("namespace")
+	PublicSubmitUserAccountDeletionRequestCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = PublicSubmitUserAccountDeletionRequestCmd.MarkFlagRequired("userId")
 }

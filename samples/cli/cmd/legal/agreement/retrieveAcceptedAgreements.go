@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclient/agreement"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/legal"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// retrieveAcceptedAgreementsCmd represents the retrieveAcceptedAgreements command
-var retrieveAcceptedAgreementsCmd = &cobra.Command{
-	Use:   "retrieveAcceptedAgreements",
+// RetrieveAcceptedAgreementsCmd represents the RetrieveAcceptedAgreements command
+var RetrieveAcceptedAgreementsCmd = &cobra.Command{
+	Use:   "RetrieveAcceptedAgreements",
 	Short: "Retrieve accepted agreements",
 	Long:  `Retrieve accepted agreements`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,7 +39,6 @@ var retrieveAcceptedAgreementsCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(retrieveAcceptedAgreementsCmd)
-	retrieveAcceptedAgreementsCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = retrieveAcceptedAgreementsCmd.MarkFlagRequired("userId")
+	RetrieveAcceptedAgreementsCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = RetrieveAcceptedAgreementsCmd.MarkFlagRequired("userId")
 }

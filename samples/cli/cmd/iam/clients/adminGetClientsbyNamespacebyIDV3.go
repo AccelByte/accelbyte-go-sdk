@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/clients"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminGetClientsbyNamespacebyIDV3Cmd represents the adminGetClientsbyNamespacebyIDV3 command
-var adminGetClientsbyNamespacebyIDV3Cmd = &cobra.Command{
-	Use:   "adminGetClientsbyNamespacebyIDV3",
+// AdminGetClientsbyNamespacebyIDV3Cmd represents the AdminGetClientsbyNamespacebyIDV3 command
+var AdminGetClientsbyNamespacebyIDV3Cmd = &cobra.Command{
+	Use:   "AdminGetClientsbyNamespacebyIDV3",
 	Short: "Admin get clientsby namespaceby IDV3",
 	Long:  `Admin get clientsby namespaceby IDV3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,9 +41,8 @@ var adminGetClientsbyNamespacebyIDV3Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminGetClientsbyNamespacebyIDV3Cmd)
-	adminGetClientsbyNamespacebyIDV3Cmd.Flags().StringP("clientId", "cd", " ", "Client id")
-	_ = adminGetClientsbyNamespacebyIDV3Cmd.MarkFlagRequired("clientId")
-	adminGetClientsbyNamespacebyIDV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = adminGetClientsbyNamespacebyIDV3Cmd.MarkFlagRequired("namespace")
+	AdminGetClientsbyNamespacebyIDV3Cmd.Flags().StringP("clientId", "cd", " ", "Client id")
+	_ = AdminGetClientsbyNamespacebyIDV3Cmd.MarkFlagRequired("clientId")
+	AdminGetClientsbyNamespacebyIDV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AdminGetClientsbyNamespacebyIDV3Cmd.MarkFlagRequired("namespace")
 }

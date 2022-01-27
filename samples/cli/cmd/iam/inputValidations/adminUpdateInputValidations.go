@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminUpdateInputValidationsCmd represents the adminUpdateInputValidations command
-var adminUpdateInputValidationsCmd = &cobra.Command{
-	Use:   "adminUpdateInputValidations",
+// AdminUpdateInputValidationsCmd represents the AdminUpdateInputValidations command
+var AdminUpdateInputValidationsCmd = &cobra.Command{
+	Use:   "AdminUpdateInputValidations",
 	Short: "Admin update input validations",
 	Long:  `Admin update input validations`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -46,7 +45,6 @@ var adminUpdateInputValidationsCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminUpdateInputValidationsCmd)
-	adminUpdateInputValidationsCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = adminUpdateInputValidationsCmd.MarkFlagRequired("body")
+	AdminUpdateInputValidationsCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = AdminUpdateInputValidationsCmd.MarkFlagRequired("body")
 }

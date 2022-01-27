@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/matchmaking-sdk/pkg/matchmakingclient/operations"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/matchmaking"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// versionCheckHandlerCmd represents the versionCheckHandler command
-var versionCheckHandlerCmd = &cobra.Command{
-	Use:   "versionCheckHandler",
+// VersionCheckHandlerCmd represents the VersionCheckHandler command
+var VersionCheckHandlerCmd = &cobra.Command{
+	Use:   "VersionCheckHandler",
 	Short: "Version check handler",
 	Long:  `Version check handler`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -33,8 +32,4 @@ var versionCheckHandlerCmd = &cobra.Command{
 		}
 		return nil
 	},
-}
-
-func init() {
-	cmd.RootCmd.AddCommand(versionCheckHandlerCmd)
 }

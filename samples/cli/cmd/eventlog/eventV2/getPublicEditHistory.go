@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/eventlog-sdk/pkg/eventlogclient/event_v2"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/eventlog"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getPublicEditHistoryCmd represents the getPublicEditHistory command
-var getPublicEditHistoryCmd = &cobra.Command{
-	Use:   "getPublicEditHistory",
+// GetPublicEditHistoryCmd represents the GetPublicEditHistory command
+var GetPublicEditHistoryCmd = &cobra.Command{
+	Use:   "GetPublicEditHistory",
 	Short: "Get public edit history",
 	Long:  `Get public edit history`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -52,14 +51,13 @@ var getPublicEditHistoryCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getPublicEditHistoryCmd)
-	getPublicEditHistoryCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getPublicEditHistoryCmd.MarkFlagRequired("namespace")
-	getPublicEditHistoryCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = getPublicEditHistoryCmd.MarkFlagRequired("userId")
-	getPublicEditHistoryCmd.Flags().StringP("endDate", "ee", " ", "End date")
-	getPublicEditHistoryCmd.Flags().Float64P("offset", "ot", 0, "Offset")
-	getPublicEditHistoryCmd.Flags().Float64P("pageSize", "pe", 1, "Page size")
-	getPublicEditHistoryCmd.Flags().StringP("startDate", "se", " ", "Start date")
-	getPublicEditHistoryCmd.Flags().StringP("type", "te", " ", "Type")
+	GetPublicEditHistoryCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetPublicEditHistoryCmd.MarkFlagRequired("namespace")
+	GetPublicEditHistoryCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = GetPublicEditHistoryCmd.MarkFlagRequired("userId")
+	GetPublicEditHistoryCmd.Flags().StringP("endDate", "ee", " ", "End date")
+	GetPublicEditHistoryCmd.Flags().Float64P("offset", "ot", 0, "Offset")
+	GetPublicEditHistoryCmd.Flags().Float64P("pageSize", "pe", 1, "Page size")
+	GetPublicEditHistoryCmd.Flags().StringP("startDate", "se", " ", "Start date")
+	GetPublicEditHistoryCmd.Flags().StringP("type", "te", " ", "Type")
 }

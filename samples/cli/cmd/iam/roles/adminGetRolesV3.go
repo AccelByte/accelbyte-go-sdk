@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/roles"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminGetRolesV3Cmd represents the adminGetRolesV3 command
-var adminGetRolesV3Cmd = &cobra.Command{
-	Use:   "adminGetRolesV3",
+// AdminGetRolesV3Cmd represents the AdminGetRolesV3 command
+var AdminGetRolesV3Cmd = &cobra.Command{
+	Use:   "AdminGetRolesV3",
 	Short: "Admin get roles V3",
 	Long:  `Admin get roles V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -46,9 +45,8 @@ var adminGetRolesV3Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminGetRolesV3Cmd)
-	adminGetRolesV3Cmd.Flags().StringP("after", "ar", "0", "After")
-	adminGetRolesV3Cmd.Flags().StringP("before", "be", "0", "Before")
-	adminGetRolesV3Cmd.Flags().BoolP("isWildcard", "id", false, "Is wildcard")
-	adminGetRolesV3Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
+	AdminGetRolesV3Cmd.Flags().StringP("after", "ar", "0", "After")
+	AdminGetRolesV3Cmd.Flags().StringP("before", "be", "0", "Before")
+	AdminGetRolesV3Cmd.Flags().BoolP("isWildcard", "id", false, "Is wildcard")
+	AdminGetRolesV3Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
 }

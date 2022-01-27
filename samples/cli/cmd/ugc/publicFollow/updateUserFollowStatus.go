@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/ugc"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/public_follow"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclientmodels"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// updateUserFollowStatusCmd represents the updateUserFollowStatus command
-var updateUserFollowStatusCmd = &cobra.Command{
-	Use:   "updateUserFollowStatus",
+// UpdateUserFollowStatusCmd represents the UpdateUserFollowStatus command
+var UpdateUserFollowStatusCmd = &cobra.Command{
+	Use:   "UpdateUserFollowStatus",
 	Short: "Update user follow status",
 	Long:  `Update user follow status`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -51,11 +50,10 @@ var updateUserFollowStatusCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(updateUserFollowStatusCmd)
-	updateUserFollowStatusCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = updateUserFollowStatusCmd.MarkFlagRequired("body")
-	updateUserFollowStatusCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = updateUserFollowStatusCmd.MarkFlagRequired("namespace")
-	updateUserFollowStatusCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = updateUserFollowStatusCmd.MarkFlagRequired("userId")
+	UpdateUserFollowStatusCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = UpdateUserFollowStatusCmd.MarkFlagRequired("body")
+	UpdateUserFollowStatusCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = UpdateUserFollowStatusCmd.MarkFlagRequired("namespace")
+	UpdateUserFollowStatusCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = UpdateUserFollowStatusCmd.MarkFlagRequired("userId")
 }

@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/clients"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getClientsbyNamespaceCmd represents the getClientsbyNamespace command
-var getClientsbyNamespaceCmd = &cobra.Command{
-	Use:   "getClientsbyNamespace",
+// GetClientsbyNamespaceCmd represents the GetClientsbyNamespace command
+var GetClientsbyNamespaceCmd = &cobra.Command{
+	Use:   "GetClientsbyNamespace",
 	Short: "Get clientsby namespace",
 	Long:  `Get clientsby namespace`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,7 +39,6 @@ var getClientsbyNamespaceCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getClientsbyNamespaceCmd)
-	getClientsbyNamespaceCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getClientsbyNamespaceCmd.MarkFlagRequired("namespace")
+	GetClientsbyNamespaceCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetClientsbyNamespaceCmd.MarkFlagRequired("namespace")
 }

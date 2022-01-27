@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// testPayPalConfigCmd represents the testPayPalConfig command
-var testPayPalConfigCmd = &cobra.Command{
-	Use:   "testPayPalConfig",
+// TestPayPalConfigCmd represents the TestPayPalConfig command
+var TestPayPalConfigCmd = &cobra.Command{
+	Use:   "TestPayPalConfig",
 	Short: "Test pay pal config",
 	Long:  `Test pay pal config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,7 +48,6 @@ var testPayPalConfigCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(testPayPalConfigCmd)
-	testPayPalConfigCmd.Flags().StringP("body", "by", " ", "Body")
-	testPayPalConfigCmd.Flags().BoolP("sandbox", "sx", false, "Sandbox")
+	TestPayPalConfigCmd.Flags().StringP("body", "by", " ", "Body")
+	TestPayPalConfigCmd.Flags().BoolP("sandbox", "sx", false, "Sandbox")
 }

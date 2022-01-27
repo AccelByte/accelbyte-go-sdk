@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/i_a_p"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// queryAllUserIAPOrdersCmd represents the queryAllUserIAPOrders command
-var queryAllUserIAPOrdersCmd = &cobra.Command{
-	Use:   "queryAllUserIAPOrders",
+// QueryAllUserIAPOrdersCmd represents the QueryAllUserIAPOrders command
+var QueryAllUserIAPOrdersCmd = &cobra.Command{
+	Use:   "QueryAllUserIAPOrders",
 	Short: "Query all user IAP orders",
 	Long:  `Query all user IAP orders`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,9 +41,8 @@ var queryAllUserIAPOrdersCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(queryAllUserIAPOrdersCmd)
-	queryAllUserIAPOrdersCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = queryAllUserIAPOrdersCmd.MarkFlagRequired("namespace")
-	queryAllUserIAPOrdersCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = queryAllUserIAPOrdersCmd.MarkFlagRequired("userId")
+	QueryAllUserIAPOrdersCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = QueryAllUserIAPOrdersCmd.MarkFlagRequired("namespace")
+	QueryAllUserIAPOrdersCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = QueryAllUserIAPOrdersCmd.MarkFlagRequired("userId")
 }

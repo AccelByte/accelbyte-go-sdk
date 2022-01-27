@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/item"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getLocaleItemCmd represents the getLocaleItem command
-var getLocaleItemCmd = &cobra.Command{
-	Use:   "getLocaleItem",
+// GetLocaleItemCmd represents the GetLocaleItem command
+var GetLocaleItemCmd = &cobra.Command{
+	Use:   "GetLocaleItem",
 	Short: "Get locale item",
 	Long:  `Get locale item`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -52,14 +51,13 @@ var getLocaleItemCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getLocaleItemCmd)
-	getLocaleItemCmd.Flags().StringP("itemId", "id", " ", "Item id")
-	_ = getLocaleItemCmd.MarkFlagRequired("itemId")
-	getLocaleItemCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getLocaleItemCmd.MarkFlagRequired("namespace")
-	getLocaleItemCmd.Flags().BoolP("activeOnly", "ay", false, "Active only")
-	getLocaleItemCmd.Flags().StringP("language", "le", " ", "Language")
-	getLocaleItemCmd.Flags().BoolP("populateBundle", "pe", false, "Populate bundle")
-	getLocaleItemCmd.Flags().StringP("region", "rn", " ", "Region")
-	getLocaleItemCmd.Flags().StringP("storeId", "sd", " ", "Store id")
+	GetLocaleItemCmd.Flags().StringP("itemId", "id", " ", "Item id")
+	_ = GetLocaleItemCmd.MarkFlagRequired("itemId")
+	GetLocaleItemCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetLocaleItemCmd.MarkFlagRequired("namespace")
+	GetLocaleItemCmd.Flags().BoolP("activeOnly", "ay", false, "Active only")
+	GetLocaleItemCmd.Flags().StringP("language", "le", " ", "Language")
+	GetLocaleItemCmd.Flags().BoolP("populateBundle", "pe", false, "Populate bundle")
+	GetLocaleItemCmd.Flags().StringP("region", "rn", " ", "Region")
+	GetLocaleItemCmd.Flags().StringP("storeId", "sd", " ", "Store id")
 }

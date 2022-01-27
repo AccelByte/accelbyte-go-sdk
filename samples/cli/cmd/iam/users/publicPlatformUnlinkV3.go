@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// publicPlatformUnlinkV3Cmd represents the publicPlatformUnlinkV3 command
-var publicPlatformUnlinkV3Cmd = &cobra.Command{
-	Use:   "publicPlatformUnlinkV3",
+// PublicPlatformUnlinkV3Cmd represents the PublicPlatformUnlinkV3 command
+var PublicPlatformUnlinkV3Cmd = &cobra.Command{
+	Use:   "PublicPlatformUnlinkV3",
 	Short: "Public platform unlink V3",
 	Long:  `Public platform unlink V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,11 +49,10 @@ var publicPlatformUnlinkV3Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(publicPlatformUnlinkV3Cmd)
-	publicPlatformUnlinkV3Cmd.Flags().StringP("body", "by", " ", "Body")
-	_ = publicPlatformUnlinkV3Cmd.MarkFlagRequired("body")
-	publicPlatformUnlinkV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = publicPlatformUnlinkV3Cmd.MarkFlagRequired("namespace")
-	publicPlatformUnlinkV3Cmd.Flags().StringP("platformId", "pd", " ", "Platform id")
-	_ = publicPlatformUnlinkV3Cmd.MarkFlagRequired("platformId")
+	PublicPlatformUnlinkV3Cmd.Flags().StringP("body", "by", " ", "Body")
+	_ = PublicPlatformUnlinkV3Cmd.MarkFlagRequired("body")
+	PublicPlatformUnlinkV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PublicPlatformUnlinkV3Cmd.MarkFlagRequired("namespace")
+	PublicPlatformUnlinkV3Cmd.Flags().StringP("platformId", "pd", " ", "Platform id")
+	_ = PublicPlatformUnlinkV3Cmd.MarkFlagRequired("platformId")
 }

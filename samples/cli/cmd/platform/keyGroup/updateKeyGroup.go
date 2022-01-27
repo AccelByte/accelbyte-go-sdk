@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// updateKeyGroupCmd represents the updateKeyGroup command
-var updateKeyGroupCmd = &cobra.Command{
-	Use:   "updateKeyGroup",
+// UpdateKeyGroupCmd represents the UpdateKeyGroup command
+var UpdateKeyGroupCmd = &cobra.Command{
+	Use:   "UpdateKeyGroup",
 	Short: "Update key group",
 	Long:  `Update key group`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -51,10 +50,9 @@ var updateKeyGroupCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(updateKeyGroupCmd)
-	updateKeyGroupCmd.Flags().StringP("body", "by", " ", "Body")
-	updateKeyGroupCmd.Flags().StringP("keyGroupId", "kd", " ", "Key group id")
-	_ = updateKeyGroupCmd.MarkFlagRequired("keyGroupId")
-	updateKeyGroupCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = updateKeyGroupCmd.MarkFlagRequired("namespace")
+	UpdateKeyGroupCmd.Flags().StringP("body", "by", " ", "Body")
+	UpdateKeyGroupCmd.Flags().StringP("keyGroupId", "kd", " ", "Key group id")
+	_ = UpdateKeyGroupCmd.MarkFlagRequired("keyGroupId")
+	UpdateKeyGroupCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = UpdateKeyGroupCmd.MarkFlagRequired("namespace")
 }

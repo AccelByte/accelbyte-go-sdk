@@ -8,16 +8,15 @@ import (
 	matchmaking_ "github.com/AccelByte/accelbyte-go-sdk/matchmaking-sdk/pkg/matchmakingclient/matchmaking"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/matchmaking"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 	"os"
 )
 
-// importChannelsCmd represents the importChannels command
-var importChannelsCmd = &cobra.Command{
-	Use:   "importChannels",
+// ImportChannelsCmd represents the ImportChannels command
+var ImportChannelsCmd = &cobra.Command{
+	Use:   "ImportChannels",
 	Short: "Import channels",
 	Long:  `Import channels`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,9 +49,8 @@ var importChannelsCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(importChannelsCmd)
-	importChannelsCmd.Flags().StringP("file", "fe", " ", "File")
-	importChannelsCmd.Flags().StringP("strategy", "sy", " ", "Strategy")
-	importChannelsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = importChannelsCmd.MarkFlagRequired("namespace")
+	ImportChannelsCmd.Flags().StringP("file", "fe", " ", "File")
+	ImportChannelsCmd.Flags().StringP("strategy", "sy", " ", "Strategy")
+	ImportChannelsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = ImportChannelsCmd.MarkFlagRequired("namespace")
 }

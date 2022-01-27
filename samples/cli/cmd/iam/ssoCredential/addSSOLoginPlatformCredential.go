@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// addSSOLoginPlatformCredentialCmd represents the addSSOLoginPlatformCredential command
-var addSSOLoginPlatformCredentialCmd = &cobra.Command{
-	Use:   "addSSOLoginPlatformCredential",
+// AddSSOLoginPlatformCredentialCmd represents the AddSSOLoginPlatformCredential command
+var AddSSOLoginPlatformCredentialCmd = &cobra.Command{
+	Use:   "AddSSOLoginPlatformCredential",
 	Short: "Add SSO login platform credential",
 	Long:  `Add SSO login platform credential`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -51,11 +50,10 @@ var addSSOLoginPlatformCredentialCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(addSSOLoginPlatformCredentialCmd)
-	addSSOLoginPlatformCredentialCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = addSSOLoginPlatformCredentialCmd.MarkFlagRequired("body")
-	addSSOLoginPlatformCredentialCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = addSSOLoginPlatformCredentialCmd.MarkFlagRequired("namespace")
-	addSSOLoginPlatformCredentialCmd.Flags().StringP("platformId", "pd", " ", "Platform id")
-	_ = addSSOLoginPlatformCredentialCmd.MarkFlagRequired("platformId")
+	AddSSOLoginPlatformCredentialCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = AddSSOLoginPlatformCredentialCmd.MarkFlagRequired("body")
+	AddSSOLoginPlatformCredentialCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AddSSOLoginPlatformCredentialCmd.MarkFlagRequired("namespace")
+	AddSSOLoginPlatformCredentialCmd.Flags().StringP("platformId", "pd", " ", "Platform id")
+	_ = AddSSOLoginPlatformCredentialCmd.MarkFlagRequired("platformId")
 }

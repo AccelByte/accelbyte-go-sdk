@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclient/eligibilities"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/legal"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// retrieveEligibilitiesPublicCmd represents the retrieveEligibilitiesPublic command
-var retrieveEligibilitiesPublicCmd = &cobra.Command{
-	Use:   "retrieveEligibilitiesPublic",
+// RetrieveEligibilitiesPublicCmd represents the RetrieveEligibilitiesPublic command
+var RetrieveEligibilitiesPublicCmd = &cobra.Command{
+	Use:   "RetrieveEligibilitiesPublic",
 	Short: "Retrieve eligibilities public",
 	Long:  `Retrieve eligibilities public`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,7 +39,6 @@ var retrieveEligibilitiesPublicCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(retrieveEligibilitiesPublicCmd)
-	retrieveEligibilitiesPublicCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = retrieveEligibilitiesPublicCmd.MarkFlagRequired("namespace")
+	RetrieveEligibilitiesPublicCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = RetrieveEligibilitiesPublicCmd.MarkFlagRequired("namespace")
 }

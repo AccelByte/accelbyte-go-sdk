@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// updateCountryAgeRestrictionCmd represents the updateCountryAgeRestriction command
-var updateCountryAgeRestrictionCmd = &cobra.Command{
-	Use:   "updateCountryAgeRestriction",
+// UpdateCountryAgeRestrictionCmd represents the UpdateCountryAgeRestriction command
+var UpdateCountryAgeRestrictionCmd = &cobra.Command{
+	Use:   "UpdateCountryAgeRestriction",
 	Short: "Update country age restriction",
 	Long:  `Update country age restriction`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -51,11 +50,10 @@ var updateCountryAgeRestrictionCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(updateCountryAgeRestrictionCmd)
-	updateCountryAgeRestrictionCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = updateCountryAgeRestrictionCmd.MarkFlagRequired("body")
-	updateCountryAgeRestrictionCmd.Flags().StringP("countryCode", "ce", " ", "Country code")
-	_ = updateCountryAgeRestrictionCmd.MarkFlagRequired("countryCode")
-	updateCountryAgeRestrictionCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = updateCountryAgeRestrictionCmd.MarkFlagRequired("namespace")
+	UpdateCountryAgeRestrictionCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = UpdateCountryAgeRestrictionCmd.MarkFlagRequired("body")
+	UpdateCountryAgeRestrictionCmd.Flags().StringP("countryCode", "ce", " ", "Country code")
+	_ = UpdateCountryAgeRestrictionCmd.MarkFlagRequired("countryCode")
+	UpdateCountryAgeRestrictionCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = UpdateCountryAgeRestrictionCmd.MarkFlagRequired("namespace")
 }

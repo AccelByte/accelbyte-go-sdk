@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// mockFulfillIAPItemCmd represents the mockFulfillIAPItem command
-var mockFulfillIAPItemCmd = &cobra.Command{
-	Use:   "mockFulfillIAPItem",
+// MockFulfillIAPItemCmd represents the MockFulfillIAPItem command
+var MockFulfillIAPItemCmd = &cobra.Command{
+	Use:   "MockFulfillIAPItem",
 	Short: "Mock fulfill IAP item",
 	Long:  `Mock fulfill IAP item`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,10 +49,9 @@ var mockFulfillIAPItemCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(mockFulfillIAPItemCmd)
-	mockFulfillIAPItemCmd.Flags().StringP("body", "by", " ", "Body")
-	mockFulfillIAPItemCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = mockFulfillIAPItemCmd.MarkFlagRequired("namespace")
-	mockFulfillIAPItemCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = mockFulfillIAPItemCmd.MarkFlagRequired("userId")
+	MockFulfillIAPItemCmd.Flags().StringP("body", "by", " ", "Body")
+	MockFulfillIAPItemCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = MockFulfillIAPItemCmd.MarkFlagRequired("namespace")
+	MockFulfillIAPItemCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = MockFulfillIAPItemCmd.MarkFlagRequired("userId")
 }

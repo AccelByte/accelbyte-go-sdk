@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclient/user_action"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/basic"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getUserStatusCmd represents the getUserStatus command
-var getUserStatusCmd = &cobra.Command{
-	Use:   "getUserStatus",
+// GetUserStatusCmd represents the GetUserStatus command
+var GetUserStatusCmd = &cobra.Command{
+	Use:   "GetUserStatus",
 	Short: "Get user status",
 	Long:  `Get user status`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,9 +41,8 @@ var getUserStatusCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getUserStatusCmd)
-	getUserStatusCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getUserStatusCmd.MarkFlagRequired("namespace")
-	getUserStatusCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = getUserStatusCmd.MarkFlagRequired("userId")
+	GetUserStatusCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetUserStatusCmd.MarkFlagRequired("namespace")
+	GetUserStatusCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = GetUserStatusCmd.MarkFlagRequired("userId")
 }

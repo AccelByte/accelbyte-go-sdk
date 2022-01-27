@@ -8,15 +8,14 @@ import (
 	namespace_ "github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclient/namespace"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/basic"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// deleteNamespaceCmd represents the deleteNamespace command
-var deleteNamespaceCmd = &cobra.Command{
-	Use:   "deleteNamespace",
+// DeleteNamespaceCmd represents the DeleteNamespace command
+var DeleteNamespaceCmd = &cobra.Command{
+	Use:   "DeleteNamespace",
 	Short: "Delete namespace",
 	Long:  `Delete namespace`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,7 +39,6 @@ var deleteNamespaceCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(deleteNamespaceCmd)
-	deleteNamespaceCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = deleteNamespaceCmd.MarkFlagRequired("namespace")
+	DeleteNamespaceCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = DeleteNamespaceCmd.MarkFlagRequired("namespace")
 }

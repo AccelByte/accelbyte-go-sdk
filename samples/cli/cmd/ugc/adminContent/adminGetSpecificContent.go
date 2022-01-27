@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/ugc"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/admin_content"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminGetSpecificContentCmd represents the adminGetSpecificContent command
-var adminGetSpecificContentCmd = &cobra.Command{
-	Use:   "adminGetSpecificContent",
+// AdminGetSpecificContentCmd represents the AdminGetSpecificContent command
+var AdminGetSpecificContentCmd = &cobra.Command{
+	Use:   "AdminGetSpecificContent",
 	Short: "Admin get specific content",
 	Long:  `Admin get specific content`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,9 +41,8 @@ var adminGetSpecificContentCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminGetSpecificContentCmd)
-	adminGetSpecificContentCmd.Flags().StringP("contentId", "cd", " ", "Content id")
-	_ = adminGetSpecificContentCmd.MarkFlagRequired("contentId")
-	adminGetSpecificContentCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = adminGetSpecificContentCmd.MarkFlagRequired("namespace")
+	AdminGetSpecificContentCmd.Flags().StringP("contentId", "cd", " ", "Content id")
+	_ = AdminGetSpecificContentCmd.MarkFlagRequired("contentId")
+	AdminGetSpecificContentCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AdminGetSpecificContentCmd.MarkFlagRequired("namespace")
 }

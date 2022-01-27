@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// publicGetMyUserV3Cmd represents the publicGetMyUserV3 command
-var publicGetMyUserV3Cmd = &cobra.Command{
-	Use:   "publicGetMyUserV3",
+// PublicGetMyUserV3Cmd represents the PublicGetMyUserV3 command
+var PublicGetMyUserV3Cmd = &cobra.Command{
+	Use:   "PublicGetMyUserV3",
 	Short: "Public get my user V3",
 	Long:  `Public get my user V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -34,8 +33,4 @@ var publicGetMyUserV3Cmd = &cobra.Command{
 		}
 		return nil
 	},
-}
-
-func init() {
-	cmd.RootCmd.AddCommand(publicGetMyUserV3Cmd)
 }

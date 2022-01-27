@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/seasonpass-sdk/pkg/seasonpassclient/tier"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/seasonpass"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// queryTiersCmd represents the queryTiers command
-var queryTiersCmd = &cobra.Command{
-	Use:   "queryTiers",
+// QueryTiersCmd represents the QueryTiers command
+var QueryTiersCmd = &cobra.Command{
+	Use:   "QueryTiers",
 	Short: "Query tiers",
 	Long:  `Query tiers`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -46,11 +45,10 @@ var queryTiersCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(queryTiersCmd)
-	queryTiersCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = queryTiersCmd.MarkFlagRequired("namespace")
-	queryTiersCmd.Flags().StringP("seasonId", "sd", " ", "Season id")
-	_ = queryTiersCmd.MarkFlagRequired("seasonId")
-	queryTiersCmd.Flags().Int32P("limit", "lt", 20, "Limit")
-	queryTiersCmd.Flags().Int32P("offset", "ot", 0, "Offset")
+	QueryTiersCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = QueryTiersCmd.MarkFlagRequired("namespace")
+	QueryTiersCmd.Flags().StringP("seasonId", "sd", " ", "Season id")
+	_ = QueryTiersCmd.MarkFlagRequired("seasonId")
+	QueryTiersCmd.Flags().Int32P("limit", "lt", 20, "Limit")
+	QueryTiersCmd.Flags().Int32P("offset", "ot", 0, "Offset")
 }

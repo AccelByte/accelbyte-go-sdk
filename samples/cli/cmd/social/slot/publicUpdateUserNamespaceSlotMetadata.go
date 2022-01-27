@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/social"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient/slot"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclientmodels"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// publicUpdateUserNamespaceSlotMetadataCmd represents the publicUpdateUserNamespaceSlotMetadata command
-var publicUpdateUserNamespaceSlotMetadataCmd = &cobra.Command{
-	Use:   "publicUpdateUserNamespaceSlotMetadata",
+// PublicUpdateUserNamespaceSlotMetadataCmd represents the PublicUpdateUserNamespaceSlotMetadata command
+var PublicUpdateUserNamespaceSlotMetadataCmd = &cobra.Command{
+	Use:   "PublicUpdateUserNamespaceSlotMetadata",
 	Short: "Public update user namespace slot metadata",
 	Long:  `Public update user namespace slot metadata`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -53,12 +52,11 @@ var publicUpdateUserNamespaceSlotMetadataCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(publicUpdateUserNamespaceSlotMetadataCmd)
-	publicUpdateUserNamespaceSlotMetadataCmd.Flags().StringP("body", "by", " ", "Body")
-	publicUpdateUserNamespaceSlotMetadataCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = publicUpdateUserNamespaceSlotMetadataCmd.MarkFlagRequired("namespace")
-	publicUpdateUserNamespaceSlotMetadataCmd.Flags().StringP("slotId", "sd", " ", "Slot id")
-	_ = publicUpdateUserNamespaceSlotMetadataCmd.MarkFlagRequired("slotId")
-	publicUpdateUserNamespaceSlotMetadataCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = publicUpdateUserNamespaceSlotMetadataCmd.MarkFlagRequired("userId")
+	PublicUpdateUserNamespaceSlotMetadataCmd.Flags().StringP("body", "by", " ", "Body")
+	PublicUpdateUserNamespaceSlotMetadataCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PublicUpdateUserNamespaceSlotMetadataCmd.MarkFlagRequired("namespace")
+	PublicUpdateUserNamespaceSlotMetadataCmd.Flags().StringP("slotId", "sd", " ", "Slot id")
+	_ = PublicUpdateUserNamespaceSlotMetadataCmd.MarkFlagRequired("slotId")
+	PublicUpdateUserNamespaceSlotMetadataCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = PublicUpdateUserNamespaceSlotMetadataCmd.MarkFlagRequired("userId")
 }

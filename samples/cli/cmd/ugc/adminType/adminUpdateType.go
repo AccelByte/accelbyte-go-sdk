@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/ugc"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/admin_type"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclientmodels"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminUpdateTypeCmd represents the adminUpdateType command
-var adminUpdateTypeCmd = &cobra.Command{
-	Use:   "adminUpdateType",
+// AdminUpdateTypeCmd represents the AdminUpdateType command
+var AdminUpdateTypeCmd = &cobra.Command{
+	Use:   "AdminUpdateType",
 	Short: "Admin update type",
 	Long:  `Admin update type`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -51,11 +50,10 @@ var adminUpdateTypeCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminUpdateTypeCmd)
-	adminUpdateTypeCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = adminUpdateTypeCmd.MarkFlagRequired("body")
-	adminUpdateTypeCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = adminUpdateTypeCmd.MarkFlagRequired("namespace")
-	adminUpdateTypeCmd.Flags().StringP("typeId", "td", " ", "Type id")
-	_ = adminUpdateTypeCmd.MarkFlagRequired("typeId")
+	AdminUpdateTypeCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = AdminUpdateTypeCmd.MarkFlagRequired("body")
+	AdminUpdateTypeCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AdminUpdateTypeCmd.MarkFlagRequired("namespace")
+	AdminUpdateTypeCmd.Flags().StringP("typeId", "td", " ", "Type id")
+	_ = AdminUpdateTypeCmd.MarkFlagRequired("typeId")
 }

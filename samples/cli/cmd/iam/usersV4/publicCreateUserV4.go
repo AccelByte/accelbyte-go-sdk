@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// publicCreateUserV4Cmd represents the publicCreateUserV4 command
-var publicCreateUserV4Cmd = &cobra.Command{
-	Use:   "publicCreateUserV4",
+// PublicCreateUserV4Cmd represents the PublicCreateUserV4 command
+var PublicCreateUserV4Cmd = &cobra.Command{
+	Use:   "PublicCreateUserV4",
 	Short: "Public create user V4",
 	Long:  `Public create user V4`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,9 +48,8 @@ var publicCreateUserV4Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(publicCreateUserV4Cmd)
-	publicCreateUserV4Cmd.Flags().StringP("body", "by", " ", "Body")
-	_ = publicCreateUserV4Cmd.MarkFlagRequired("body")
-	publicCreateUserV4Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = publicCreateUserV4Cmd.MarkFlagRequired("namespace")
+	PublicCreateUserV4Cmd.Flags().StringP("body", "by", " ", "Body")
+	_ = PublicCreateUserV4Cmd.MarkFlagRequired("body")
+	PublicCreateUserV4Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PublicCreateUserV4Cmd.MarkFlagRequired("namespace")
 }

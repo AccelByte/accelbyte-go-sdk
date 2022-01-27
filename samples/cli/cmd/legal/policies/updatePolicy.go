@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/legal"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// updatePolicyCmd represents the updatePolicy command
-var updatePolicyCmd = &cobra.Command{
-	Use:   "updatePolicy",
+// UpdatePolicyCmd represents the UpdatePolicy command
+var UpdatePolicyCmd = &cobra.Command{
+	Use:   "UpdatePolicy",
 	Short: "Update policy",
 	Long:  `Update policy`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,8 +47,7 @@ var updatePolicyCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(updatePolicyCmd)
-	updatePolicyCmd.Flags().StringP("body", "by", " ", "Body")
-	updatePolicyCmd.Flags().StringP("policyId", "pd", " ", "Policy id")
-	_ = updatePolicyCmd.MarkFlagRequired("policyId")
+	UpdatePolicyCmd.Flags().StringP("body", "by", " ", "Body")
+	UpdatePolicyCmd.Flags().StringP("policyId", "pd", " ", "Policy id")
+	_ = UpdatePolicyCmd.MarkFlagRequired("policyId")
 }

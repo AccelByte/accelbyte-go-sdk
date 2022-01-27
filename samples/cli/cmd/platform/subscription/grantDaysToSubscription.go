@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// grantDaysToSubscriptionCmd represents the grantDaysToSubscription command
-var grantDaysToSubscriptionCmd = &cobra.Command{
-	Use:   "grantDaysToSubscription",
+// GrantDaysToSubscriptionCmd represents the GrantDaysToSubscription command
+var GrantDaysToSubscriptionCmd = &cobra.Command{
+	Use:   "GrantDaysToSubscription",
 	Short: "Grant days to subscription",
 	Long:  `Grant days to subscription`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -53,12 +52,11 @@ var grantDaysToSubscriptionCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(grantDaysToSubscriptionCmd)
-	grantDaysToSubscriptionCmd.Flags().StringP("body", "by", " ", "Body")
-	grantDaysToSubscriptionCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = grantDaysToSubscriptionCmd.MarkFlagRequired("namespace")
-	grantDaysToSubscriptionCmd.Flags().StringP("subscriptionId", "sd", " ", "Subscription id")
-	_ = grantDaysToSubscriptionCmd.MarkFlagRequired("subscriptionId")
-	grantDaysToSubscriptionCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = grantDaysToSubscriptionCmd.MarkFlagRequired("userId")
+	GrantDaysToSubscriptionCmd.Flags().StringP("body", "by", " ", "Body")
+	GrantDaysToSubscriptionCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GrantDaysToSubscriptionCmd.MarkFlagRequired("namespace")
+	GrantDaysToSubscriptionCmd.Flags().StringP("subscriptionId", "sd", " ", "Subscription id")
+	_ = GrantDaysToSubscriptionCmd.MarkFlagRequired("subscriptionId")
+	GrantDaysToSubscriptionCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = GrantDaysToSubscriptionCmd.MarkFlagRequired("userId")
 }

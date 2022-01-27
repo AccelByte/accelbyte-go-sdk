@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// updateXsollaUIConfigCmd represents the updateXsollaUIConfig command
-var updateXsollaUIConfigCmd = &cobra.Command{
-	Use:   "updateXsollaUIConfig",
+// UpdateXsollaUIConfigCmd represents the UpdateXsollaUIConfig command
+var UpdateXsollaUIConfigCmd = &cobra.Command{
+	Use:   "UpdateXsollaUIConfig",
 	Short: "Update xsolla UI config",
 	Long:  `Update xsolla UI config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,8 +48,7 @@ var updateXsollaUIConfigCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(updateXsollaUIConfigCmd)
-	updateXsollaUIConfigCmd.Flags().StringP("body", "by", " ", "Body")
-	updateXsollaUIConfigCmd.Flags().StringP("id", "id", " ", "Id")
-	_ = updateXsollaUIConfigCmd.MarkFlagRequired("id")
+	UpdateXsollaUIConfigCmd.Flags().StringP("body", "by", " ", "Body")
+	UpdateXsollaUIConfigCmd.Flags().StringP("id", "id", " ", "Id")
+	_ = UpdateXsollaUIConfigCmd.MarkFlagRequired("id")
 }

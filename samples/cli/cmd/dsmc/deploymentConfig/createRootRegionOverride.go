@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/dsmc"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// createRootRegionOverrideCmd represents the createRootRegionOverride command
-var createRootRegionOverrideCmd = &cobra.Command{
-	Use:   "createRootRegionOverride",
+// CreateRootRegionOverrideCmd represents the CreateRootRegionOverride command
+var CreateRootRegionOverrideCmd = &cobra.Command{
+	Use:   "CreateRootRegionOverride",
 	Short: "Create root region override",
 	Long:  `Create root region override`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -53,13 +52,12 @@ var createRootRegionOverrideCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(createRootRegionOverrideCmd)
-	createRootRegionOverrideCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = createRootRegionOverrideCmd.MarkFlagRequired("body")
-	createRootRegionOverrideCmd.Flags().StringP("deployment", "dt", " ", "Deployment")
-	_ = createRootRegionOverrideCmd.MarkFlagRequired("deployment")
-	createRootRegionOverrideCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = createRootRegionOverrideCmd.MarkFlagRequired("namespace")
-	createRootRegionOverrideCmd.Flags().StringP("region", "rn", " ", "Region")
-	_ = createRootRegionOverrideCmd.MarkFlagRequired("region")
+	CreateRootRegionOverrideCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = CreateRootRegionOverrideCmd.MarkFlagRequired("body")
+	CreateRootRegionOverrideCmd.Flags().StringP("deployment", "dt", " ", "Deployment")
+	_ = CreateRootRegionOverrideCmd.MarkFlagRequired("deployment")
+	CreateRootRegionOverrideCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = CreateRootRegionOverrideCmd.MarkFlagRequired("namespace")
+	CreateRootRegionOverrideCmd.Flags().StringP("region", "rn", " ", "Region")
+	_ = CreateRootRegionOverrideCmd.MarkFlagRequired("region")
 }

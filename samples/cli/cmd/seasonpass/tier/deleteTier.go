@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/seasonpass-sdk/pkg/seasonpassclient/tier"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/seasonpass"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// deleteTierCmd represents the deleteTier command
-var deleteTierCmd = &cobra.Command{
-	Use:   "deleteTier",
+// DeleteTierCmd represents the DeleteTier command
+var DeleteTierCmd = &cobra.Command{
+	Use:   "DeleteTier",
 	Short: "Delete tier",
 	Long:  `Delete tier`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,11 +42,10 @@ var deleteTierCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(deleteTierCmd)
-	deleteTierCmd.Flags().StringP("id", "id", " ", "Id")
-	_ = deleteTierCmd.MarkFlagRequired("id")
-	deleteTierCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = deleteTierCmd.MarkFlagRequired("namespace")
-	deleteTierCmd.Flags().StringP("seasonId", "sd", " ", "Season id")
-	_ = deleteTierCmd.MarkFlagRequired("seasonId")
+	DeleteTierCmd.Flags().StringP("id", "id", " ", "Id")
+	_ = DeleteTierCmd.MarkFlagRequired("id")
+	DeleteTierCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = DeleteTierCmd.MarkFlagRequired("namespace")
+	DeleteTierCmd.Flags().StringP("seasonId", "sd", " ", "Season id")
+	_ = DeleteTierCmd.MarkFlagRequired("seasonId")
 }

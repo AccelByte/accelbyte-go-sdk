@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/sessionbrowser"
 	"github.com/AccelByte/accelbyte-go-sdk/sessionbrowser-sdk/pkg/sessionbrowserclient/session"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// querySessionCmd represents the querySession command
-var querySessionCmd = &cobra.Command{
-	Use:   "querySession",
+// QuerySessionCmd represents the QuerySession command
+var QuerySessionCmd = &cobra.Command{
+	Use:   "QuerySession",
 	Short: "Query session",
 	Long:  `Query session`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -60,18 +59,17 @@ var querySessionCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(querySessionCmd)
-	querySessionCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = querySessionCmd.MarkFlagRequired("namespace")
-	querySessionCmd.Flags().StringP("game_mode", "ge", " ", "Game mode")
-	querySessionCmd.Flags().StringP("game_version", "gn", " ", "Game version")
-	querySessionCmd.Flags().StringP("joinable", "je", " ", "Joinable")
-	querySessionCmd.Flags().StringP("limit", "lt", "20", "Limit")
-	querySessionCmd.Flags().StringP("match_exist", "mt", " ", "Match exist")
-	querySessionCmd.Flags().StringP("match_id", "md", " ", "Match id")
-	querySessionCmd.Flags().StringP("offset", "ot", "0", "Offset")
-	querySessionCmd.Flags().StringP("server_status", "ss", " ", "Server status")
-	querySessionCmd.Flags().StringP("user_id", "ud", " ", "User id")
-	querySessionCmd.Flags().StringP("session_type", "se", " ", "Session type")
-	_ = querySessionCmd.MarkFlagRequired("session_type")
+	QuerySessionCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = QuerySessionCmd.MarkFlagRequired("namespace")
+	QuerySessionCmd.Flags().StringP("game_mode", "ge", " ", "Game mode")
+	QuerySessionCmd.Flags().StringP("game_version", "gn", " ", "Game version")
+	QuerySessionCmd.Flags().StringP("joinable", "je", " ", "Joinable")
+	QuerySessionCmd.Flags().StringP("limit", "lt", "20", "Limit")
+	QuerySessionCmd.Flags().StringP("match_exist", "mt", " ", "Match exist")
+	QuerySessionCmd.Flags().StringP("match_id", "md", " ", "Match id")
+	QuerySessionCmd.Flags().StringP("offset", "ot", "0", "Offset")
+	QuerySessionCmd.Flags().StringP("server_status", "ss", " ", "Server status")
+	QuerySessionCmd.Flags().StringP("user_id", "ud", " ", "User id")
+	QuerySessionCmd.Flags().StringP("session_type", "se", " ", "Session type")
+	_ = QuerySessionCmd.MarkFlagRequired("session_type")
 }

@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/seasonpass-sdk/pkg/seasonpassclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/seasonpass"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// publicClaimUserRewardCmd represents the publicClaimUserReward command
-var publicClaimUserRewardCmd = &cobra.Command{
-	Use:   "publicClaimUserReward",
+// PublicClaimUserRewardCmd represents the PublicClaimUserReward command
+var PublicClaimUserRewardCmd = &cobra.Command{
+	Use:   "PublicClaimUserReward",
 	Short: "Public claim user reward",
 	Long:  `Public claim user reward`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -51,10 +50,9 @@ var publicClaimUserRewardCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(publicClaimUserRewardCmd)
-	publicClaimUserRewardCmd.Flags().StringP("body", "by", " ", "Body")
-	publicClaimUserRewardCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = publicClaimUserRewardCmd.MarkFlagRequired("namespace")
-	publicClaimUserRewardCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = publicClaimUserRewardCmd.MarkFlagRequired("userId")
+	PublicClaimUserRewardCmd.Flags().StringP("body", "by", " ", "Body")
+	PublicClaimUserRewardCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PublicClaimUserRewardCmd.MarkFlagRequired("namespace")
+	PublicClaimUserRewardCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = PublicClaimUserRewardCmd.MarkFlagRequired("userId")
 }

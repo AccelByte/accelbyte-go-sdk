@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/social"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient/user_statistic"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// resetUserStatItemValue1Cmd represents the resetUserStatItemValue1 command
-var resetUserStatItemValue1Cmd = &cobra.Command{
-	Use:   "resetUserStatItemValue1",
+// ResetUserStatItemValue1Cmd represents the ResetUserStatItemValue1 command
+var ResetUserStatItemValue1Cmd = &cobra.Command{
+	Use:   "ResetUserStatItemValue1",
 	Short: "Reset user stat item value 1",
 	Long:  `Reset user stat item value 1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -44,11 +43,10 @@ var resetUserStatItemValue1Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(resetUserStatItemValue1Cmd)
-	resetUserStatItemValue1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = resetUserStatItemValue1Cmd.MarkFlagRequired("namespace")
-	resetUserStatItemValue1Cmd.Flags().StringP("statCode", "se", " ", "Stat code")
-	_ = resetUserStatItemValue1Cmd.MarkFlagRequired("statCode")
-	resetUserStatItemValue1Cmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = resetUserStatItemValue1Cmd.MarkFlagRequired("userId")
+	ResetUserStatItemValue1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = ResetUserStatItemValue1Cmd.MarkFlagRequired("namespace")
+	ResetUserStatItemValue1Cmd.Flags().StringP("statCode", "se", " ", "Stat code")
+	_ = ResetUserStatItemValue1Cmd.MarkFlagRequired("statCode")
+	ResetUserStatItemValue1Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = ResetUserStatItemValue1Cmd.MarkFlagRequired("userId")
 }

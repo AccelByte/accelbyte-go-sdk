@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/ugc"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/public_content"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// downloadContentByShareCodeCmd represents the downloadContentByShareCode command
-var downloadContentByShareCodeCmd = &cobra.Command{
-	Use:   "downloadContentByShareCode",
+// DownloadContentByShareCodeCmd represents the DownloadContentByShareCode command
+var DownloadContentByShareCodeCmd = &cobra.Command{
+	Use:   "DownloadContentByShareCode",
 	Short: "Download content by share code",
 	Long:  `Download content by share code`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,9 +41,8 @@ var downloadContentByShareCodeCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(downloadContentByShareCodeCmd)
-	downloadContentByShareCodeCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = downloadContentByShareCodeCmd.MarkFlagRequired("namespace")
-	downloadContentByShareCodeCmd.Flags().StringP("shareCode", "se", " ", "Share code")
-	_ = downloadContentByShareCodeCmd.MarkFlagRequired("shareCode")
+	DownloadContentByShareCodeCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = DownloadContentByShareCodeCmd.MarkFlagRequired("namespace")
+	DownloadContentByShareCodeCmd.Flags().StringP("shareCode", "se", " ", "Share code")
+	_ = DownloadContentByShareCodeCmd.MarkFlagRequired("shareCode")
 }

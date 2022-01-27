@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// fulfillItemCmd represents the fulfillItem command
-var fulfillItemCmd = &cobra.Command{
-	Use:   "fulfillItem",
+// FulfillItemCmd represents the FulfillItem command
+var FulfillItemCmd = &cobra.Command{
+	Use:   "FulfillItem",
 	Short: "Fulfill item",
 	Long:  `Fulfill item`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -51,10 +50,9 @@ var fulfillItemCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(fulfillItemCmd)
-	fulfillItemCmd.Flags().StringP("body", "by", " ", "Body")
-	fulfillItemCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = fulfillItemCmd.MarkFlagRequired("namespace")
-	fulfillItemCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = fulfillItemCmd.MarkFlagRequired("userId")
+	FulfillItemCmd.Flags().StringP("body", "by", " ", "Body")
+	FulfillItemCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = FulfillItemCmd.MarkFlagRequired("namespace")
+	FulfillItemCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = FulfillItemCmd.MarkFlagRequired("userId")
 }

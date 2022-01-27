@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/lobby"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminCreateProfanityListCmd represents the adminCreateProfanityList command
-var adminCreateProfanityListCmd = &cobra.Command{
-	Use:   "adminCreateProfanityList",
+// AdminCreateProfanityListCmd represents the AdminCreateProfanityList command
+var AdminCreateProfanityListCmd = &cobra.Command{
+	Use:   "AdminCreateProfanityList",
 	Short: "Admin create profanity list",
 	Long:  `Admin create profanity list`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,9 +47,8 @@ var adminCreateProfanityListCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminCreateProfanityListCmd)
-	adminCreateProfanityListCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = adminCreateProfanityListCmd.MarkFlagRequired("body")
-	adminCreateProfanityListCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = adminCreateProfanityListCmd.MarkFlagRequired("namespace")
+	AdminCreateProfanityListCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = AdminCreateProfanityListCmd.MarkFlagRequired("body")
+	AdminCreateProfanityListCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AdminCreateProfanityListCmd.MarkFlagRequired("namespace")
 }

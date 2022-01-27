@@ -9,15 +9,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/entitlement"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// publicExistsAnyUserActiveEntitlementCmd represents the publicExistsAnyUserActiveEntitlement command
-var publicExistsAnyUserActiveEntitlementCmd = &cobra.Command{
-	Use:   "publicExistsAnyUserActiveEntitlement",
+// PublicExistsAnyUserActiveEntitlementCmd represents the PublicExistsAnyUserActiveEntitlement command
+var PublicExistsAnyUserActiveEntitlementCmd = &cobra.Command{
+	Use:   "PublicExistsAnyUserActiveEntitlement",
 	Short: "Public exists any user active entitlement",
 	Long:  `Public exists any user active entitlement`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -64,12 +63,11 @@ var publicExistsAnyUserActiveEntitlementCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(publicExistsAnyUserActiveEntitlementCmd)
-	publicExistsAnyUserActiveEntitlementCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = publicExistsAnyUserActiveEntitlementCmd.MarkFlagRequired("namespace")
-	publicExistsAnyUserActiveEntitlementCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = publicExistsAnyUserActiveEntitlementCmd.MarkFlagRequired("userId")
-	publicExistsAnyUserActiveEntitlementCmd.Flags().StringP("appIds", "as", " ", "App ids")
-	publicExistsAnyUserActiveEntitlementCmd.Flags().StringP("itemIds", "is", " ", "Item ids")
-	publicExistsAnyUserActiveEntitlementCmd.Flags().StringP("skus", "ss", " ", "Skus")
+	PublicExistsAnyUserActiveEntitlementCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PublicExistsAnyUserActiveEntitlementCmd.MarkFlagRequired("namespace")
+	PublicExistsAnyUserActiveEntitlementCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = PublicExistsAnyUserActiveEntitlementCmd.MarkFlagRequired("userId")
+	PublicExistsAnyUserActiveEntitlementCmd.Flags().StringP("appIds", "as", " ", "App ids")
+	PublicExistsAnyUserActiveEntitlementCmd.Flags().StringP("itemIds", "is", " ", "Item ids")
+	PublicExistsAnyUserActiveEntitlementCmd.Flags().StringP("skus", "ss", " ", "Skus")
 }

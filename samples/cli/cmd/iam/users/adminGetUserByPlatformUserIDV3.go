@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminGetUserByPlatformUserIDV3Cmd represents the adminGetUserByPlatformUserIDV3 command
-var adminGetUserByPlatformUserIDV3Cmd = &cobra.Command{
-	Use:   "adminGetUserByPlatformUserIDV3",
+// AdminGetUserByPlatformUserIDV3Cmd represents the AdminGetUserByPlatformUserIDV3 command
+var AdminGetUserByPlatformUserIDV3Cmd = &cobra.Command{
+	Use:   "AdminGetUserByPlatformUserIDV3",
 	Short: "Admin get user by platform user IDV3",
 	Long:  `Admin get user by platform user IDV3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -44,11 +43,10 @@ var adminGetUserByPlatformUserIDV3Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminGetUserByPlatformUserIDV3Cmd)
-	adminGetUserByPlatformUserIDV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = adminGetUserByPlatformUserIDV3Cmd.MarkFlagRequired("namespace")
-	adminGetUserByPlatformUserIDV3Cmd.Flags().StringP("platformId", "pd", " ", "Platform id")
-	_ = adminGetUserByPlatformUserIDV3Cmd.MarkFlagRequired("platformId")
-	adminGetUserByPlatformUserIDV3Cmd.Flags().StringP("platformUserId", "pd", " ", "Platform user id")
-	_ = adminGetUserByPlatformUserIDV3Cmd.MarkFlagRequired("platformUserId")
+	AdminGetUserByPlatformUserIDV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AdminGetUserByPlatformUserIDV3Cmd.MarkFlagRequired("namespace")
+	AdminGetUserByPlatformUserIDV3Cmd.Flags().StringP("platformId", "pd", " ", "Platform id")
+	_ = AdminGetUserByPlatformUserIDV3Cmd.MarkFlagRequired("platformId")
+	AdminGetUserByPlatformUserIDV3Cmd.Flags().StringP("platformUserId", "pd", " ", "Platform user id")
+	_ = AdminGetUserByPlatformUserIDV3Cmd.MarkFlagRequired("platformUserId")
 }

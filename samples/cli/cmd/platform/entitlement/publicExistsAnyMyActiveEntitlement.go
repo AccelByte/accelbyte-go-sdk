@@ -9,15 +9,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/entitlement"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// publicExistsAnyMyActiveEntitlementCmd represents the publicExistsAnyMyActiveEntitlement command
-var publicExistsAnyMyActiveEntitlementCmd = &cobra.Command{
-	Use:   "publicExistsAnyMyActiveEntitlement",
+// PublicExistsAnyMyActiveEntitlementCmd represents the PublicExistsAnyMyActiveEntitlement command
+var PublicExistsAnyMyActiveEntitlementCmd = &cobra.Command{
+	Use:   "PublicExistsAnyMyActiveEntitlement",
 	Short: "Public exists any my active entitlement",
 	Long:  `Public exists any my active entitlement`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -62,10 +61,9 @@ var publicExistsAnyMyActiveEntitlementCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(publicExistsAnyMyActiveEntitlementCmd)
-	publicExistsAnyMyActiveEntitlementCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = publicExistsAnyMyActiveEntitlementCmd.MarkFlagRequired("namespace")
-	publicExistsAnyMyActiveEntitlementCmd.Flags().StringP("appIds", "as", " ", "App ids")
-	publicExistsAnyMyActiveEntitlementCmd.Flags().StringP("itemIds", "is", " ", "Item ids")
-	publicExistsAnyMyActiveEntitlementCmd.Flags().StringP("skus", "ss", " ", "Skus")
+	PublicExistsAnyMyActiveEntitlementCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PublicExistsAnyMyActiveEntitlementCmd.MarkFlagRequired("namespace")
+	PublicExistsAnyMyActiveEntitlementCmd.Flags().StringP("appIds", "as", " ", "App ids")
+	PublicExistsAnyMyActiveEntitlementCmd.Flags().StringP("itemIds", "is", " ", "Item ids")
+	PublicExistsAnyMyActiveEntitlementCmd.Flags().StringP("skus", "ss", " ", "Skus")
 }

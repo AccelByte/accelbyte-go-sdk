@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/notification"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/lobby"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getGameTemplateCmd represents the getGameTemplate command
-var getGameTemplateCmd = &cobra.Command{
-	Use:   "getGameTemplate",
+// GetGameTemplateCmd represents the GetGameTemplate command
+var GetGameTemplateCmd = &cobra.Command{
+	Use:   "GetGameTemplate",
 	Short: "Get game template",
 	Long:  `Get game template`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,7 +39,6 @@ var getGameTemplateCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getGameTemplateCmd)
-	getGameTemplateCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getGameTemplateCmd.MarkFlagRequired("namespace")
+	GetGameTemplateCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetGameTemplateCmd.MarkFlagRequired("namespace")
 }

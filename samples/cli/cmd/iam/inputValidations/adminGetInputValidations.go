@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/input_validations"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminGetInputValidationsCmd represents the adminGetInputValidations command
-var adminGetInputValidationsCmd = &cobra.Command{
-	Use:   "adminGetInputValidations",
+// AdminGetInputValidationsCmd represents the AdminGetInputValidations command
+var AdminGetInputValidationsCmd = &cobra.Command{
+	Use:   "AdminGetInputValidations",
 	Short: "Admin get input validations",
 	Long:  `Admin get input validations`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -34,8 +33,4 @@ var adminGetInputValidationsCmd = &cobra.Command{
 		}
 		return nil
 	},
-}
-
-func init() {
-	cmd.RootCmd.AddCommand(adminGetInputValidationsCmd)
 }

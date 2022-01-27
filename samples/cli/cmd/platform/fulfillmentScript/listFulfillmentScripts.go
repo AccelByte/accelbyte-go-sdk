@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/fulfillment_script"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// listFulfillmentScriptsCmd represents the listFulfillmentScripts command
-var listFulfillmentScriptsCmd = &cobra.Command{
-	Use:   "listFulfillmentScripts",
+// ListFulfillmentScriptsCmd represents the ListFulfillmentScripts command
+var ListFulfillmentScriptsCmd = &cobra.Command{
+	Use:   "ListFulfillmentScripts",
 	Short: "List fulfillment scripts",
 	Long:  `List fulfillment scripts`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -34,8 +33,4 @@ var listFulfillmentScriptsCmd = &cobra.Command{
 		}
 		return nil
 	},
-}
-
-func init() {
-	cmd.RootCmd.AddCommand(listFulfillmentScriptsCmd)
 }

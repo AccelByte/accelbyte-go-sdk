@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/seasonpass-sdk/pkg/seasonpassclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/seasonpass"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// updatePassCmd represents the updatePass command
-var updatePassCmd = &cobra.Command{
-	Use:   "updatePass",
+// UpdatePassCmd represents the UpdatePass command
+var UpdatePassCmd = &cobra.Command{
+	Use:   "UpdatePass",
 	Short: "Update pass",
 	Long:  `Update pass`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -53,12 +52,11 @@ var updatePassCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(updatePassCmd)
-	updatePassCmd.Flags().StringP("body", "by", " ", "Body")
-	updatePassCmd.Flags().StringP("code", "ce", " ", "Code")
-	_ = updatePassCmd.MarkFlagRequired("code")
-	updatePassCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = updatePassCmd.MarkFlagRequired("namespace")
-	updatePassCmd.Flags().StringP("seasonId", "sd", " ", "Season id")
-	_ = updatePassCmd.MarkFlagRequired("seasonId")
+	UpdatePassCmd.Flags().StringP("body", "by", " ", "Body")
+	UpdatePassCmd.Flags().StringP("code", "ce", " ", "Code")
+	_ = UpdatePassCmd.MarkFlagRequired("code")
+	UpdatePassCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = UpdatePassCmd.MarkFlagRequired("namespace")
+	UpdatePassCmd.Flags().StringP("seasonId", "sd", " ", "Season id")
+	_ = UpdatePassCmd.MarkFlagRequired("seasonId")
 }

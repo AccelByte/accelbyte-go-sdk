@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/ugc"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/public_group"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getGroupContentCmd represents the getGroupContent command
-var getGroupContentCmd = &cobra.Command{
-	Use:   "getGroupContent",
+// GetGroupContentCmd represents the GetGroupContent command
+var GetGroupContentCmd = &cobra.Command{
+	Use:   "GetGroupContent",
 	Short: "Get group content",
 	Long:  `Get group content`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,13 +47,12 @@ var getGroupContentCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getGroupContentCmd)
-	getGroupContentCmd.Flags().StringP("groupId", "gd", " ", "Group id")
-	_ = getGroupContentCmd.MarkFlagRequired("groupId")
-	getGroupContentCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getGroupContentCmd.MarkFlagRequired("namespace")
-	getGroupContentCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = getGroupContentCmd.MarkFlagRequired("userId")
-	getGroupContentCmd.Flags().StringP("limit", "lt", "20", "Limit")
-	getGroupContentCmd.Flags().StringP("offset", "ot", "0", "Offset")
+	GetGroupContentCmd.Flags().StringP("groupId", "gd", " ", "Group id")
+	_ = GetGroupContentCmd.MarkFlagRequired("groupId")
+	GetGroupContentCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetGroupContentCmd.MarkFlagRequired("namespace")
+	GetGroupContentCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = GetGroupContentCmd.MarkFlagRequired("userId")
+	GetGroupContentCmd.Flags().StringP("limit", "lt", "20", "Limit")
+	GetGroupContentCmd.Flags().StringP("offset", "ot", "0", "Offset")
 }

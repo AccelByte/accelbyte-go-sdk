@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/group-sdk/pkg/groupclient/group_member"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/group"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getUserGroupInformationPublicV1Cmd represents the getUserGroupInformationPublicV1 command
-var getUserGroupInformationPublicV1Cmd = &cobra.Command{
-	Use:   "getUserGroupInformationPublicV1",
+// GetUserGroupInformationPublicV1Cmd represents the GetUserGroupInformationPublicV1 command
+var GetUserGroupInformationPublicV1Cmd = &cobra.Command{
+	Use:   "GetUserGroupInformationPublicV1",
 	Short: "Get user group information public V1",
 	Long:  `Get user group information public V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,9 +41,8 @@ var getUserGroupInformationPublicV1Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getUserGroupInformationPublicV1Cmd)
-	getUserGroupInformationPublicV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getUserGroupInformationPublicV1Cmd.MarkFlagRequired("namespace")
-	getUserGroupInformationPublicV1Cmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = getUserGroupInformationPublicV1Cmd.MarkFlagRequired("userId")
+	GetUserGroupInformationPublicV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetUserGroupInformationPublicV1Cmd.MarkFlagRequired("namespace")
+	GetUserGroupInformationPublicV1Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = GetUserGroupInformationPublicV1Cmd.MarkFlagRequired("userId")
 }

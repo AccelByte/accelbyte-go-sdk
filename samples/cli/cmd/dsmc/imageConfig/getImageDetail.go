@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/image_config"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/dsmc"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getImageDetailCmd represents the getImageDetail command
-var getImageDetailCmd = &cobra.Command{
-	Use:   "getImageDetail",
+// GetImageDetailCmd represents the GetImageDetail command
+var GetImageDetailCmd = &cobra.Command{
+	Use:   "GetImageDetail",
 	Short: "Get image detail",
 	Long:  `Get image detail`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,9 +41,8 @@ var getImageDetailCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getImageDetailCmd)
-	getImageDetailCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getImageDetailCmd.MarkFlagRequired("namespace")
-	getImageDetailCmd.Flags().StringP("version", "vn", " ", "Version")
-	_ = getImageDetailCmd.MarkFlagRequired("version")
+	GetImageDetailCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetImageDetailCmd.MarkFlagRequired("namespace")
+	GetImageDetailCmd.Flags().StringP("version", "vn", " ", "Version")
+	_ = GetImageDetailCmd.MarkFlagRequired("version")
 }

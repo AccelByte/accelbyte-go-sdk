@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// publicLinkPlatformAccountCmd represents the publicLinkPlatformAccount command
-var publicLinkPlatformAccountCmd = &cobra.Command{
-	Use:   "publicLinkPlatformAccount",
+// PublicLinkPlatformAccountCmd represents the PublicLinkPlatformAccount command
+var PublicLinkPlatformAccountCmd = &cobra.Command{
+	Use:   "PublicLinkPlatformAccount",
 	Short: "Public link platform account",
 	Long:  `Public link platform account`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,11 +49,10 @@ var publicLinkPlatformAccountCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(publicLinkPlatformAccountCmd)
-	publicLinkPlatformAccountCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = publicLinkPlatformAccountCmd.MarkFlagRequired("body")
-	publicLinkPlatformAccountCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = publicLinkPlatformAccountCmd.MarkFlagRequired("namespace")
-	publicLinkPlatformAccountCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = publicLinkPlatformAccountCmd.MarkFlagRequired("userId")
+	PublicLinkPlatformAccountCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = PublicLinkPlatformAccountCmd.MarkFlagRequired("body")
+	PublicLinkPlatformAccountCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PublicLinkPlatformAccountCmd.MarkFlagRequired("namespace")
+	PublicLinkPlatformAccountCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = PublicLinkPlatformAccountCmd.MarkFlagRequired("userId")
 }

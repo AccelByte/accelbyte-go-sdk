@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/lobby"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// addFriendsWithoutConfirmationCmd represents the addFriendsWithoutConfirmation command
-var addFriendsWithoutConfirmationCmd = &cobra.Command{
-	Use:   "addFriendsWithoutConfirmation",
+// AddFriendsWithoutConfirmationCmd represents the AddFriendsWithoutConfirmation command
+var AddFriendsWithoutConfirmationCmd = &cobra.Command{
+	Use:   "AddFriendsWithoutConfirmation",
 	Short: "Add friends without confirmation",
 	Long:  `Add friends without confirmation`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,11 +49,10 @@ var addFriendsWithoutConfirmationCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(addFriendsWithoutConfirmationCmd)
-	addFriendsWithoutConfirmationCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = addFriendsWithoutConfirmationCmd.MarkFlagRequired("body")
-	addFriendsWithoutConfirmationCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = addFriendsWithoutConfirmationCmd.MarkFlagRequired("namespace")
-	addFriendsWithoutConfirmationCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = addFriendsWithoutConfirmationCmd.MarkFlagRequired("userId")
+	AddFriendsWithoutConfirmationCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = AddFriendsWithoutConfirmationCmd.MarkFlagRequired("body")
+	AddFriendsWithoutConfirmationCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AddFriendsWithoutConfirmationCmd.MarkFlagRequired("namespace")
+	AddFriendsWithoutConfirmationCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = AddFriendsWithoutConfirmationCmd.MarkFlagRequired("userId")
 }

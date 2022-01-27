@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclient/policy_versions"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/legal"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// retrievePolicyVersionsCmd represents the retrievePolicyVersions command
-var retrievePolicyVersionsCmd = &cobra.Command{
-	Use:   "retrievePolicyVersions",
+// RetrievePolicyVersionsCmd represents the RetrievePolicyVersions command
+var RetrievePolicyVersionsCmd = &cobra.Command{
+	Use:   "RetrievePolicyVersions",
 	Short: "Retrieve policy versions",
 	Long:  `Retrieve policy versions`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -44,8 +43,7 @@ var retrievePolicyVersionsCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(retrievePolicyVersionsCmd)
-	retrievePolicyVersionsCmd.Flags().StringP("basePolicyId", "bd", " ", "Base policy id")
-	retrievePolicyVersionsCmd.Flags().StringP("localeId", "ld", " ", "Locale id")
-	retrievePolicyVersionsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	RetrievePolicyVersionsCmd.Flags().StringP("basePolicyId", "bd", " ", "Base policy id")
+	RetrievePolicyVersionsCmd.Flags().StringP("localeId", "ld", " ", "Locale id")
+	RetrievePolicyVersionsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 }

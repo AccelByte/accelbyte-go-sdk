@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// updateUserEntitlementCmd represents the updateUserEntitlement command
-var updateUserEntitlementCmd = &cobra.Command{
-	Use:   "updateUserEntitlement",
+// UpdateUserEntitlementCmd represents the UpdateUserEntitlement command
+var UpdateUserEntitlementCmd = &cobra.Command{
+	Use:   "UpdateUserEntitlement",
 	Short: "Update user entitlement",
 	Long:  `Update user entitlement`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -53,12 +52,11 @@ var updateUserEntitlementCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(updateUserEntitlementCmd)
-	updateUserEntitlementCmd.Flags().StringP("body", "by", " ", "Body")
-	updateUserEntitlementCmd.Flags().StringP("entitlementId", "ed", " ", "Entitlement id")
-	_ = updateUserEntitlementCmd.MarkFlagRequired("entitlementId")
-	updateUserEntitlementCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = updateUserEntitlementCmd.MarkFlagRequired("namespace")
-	updateUserEntitlementCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = updateUserEntitlementCmd.MarkFlagRequired("userId")
+	UpdateUserEntitlementCmd.Flags().StringP("body", "by", " ", "Body")
+	UpdateUserEntitlementCmd.Flags().StringP("entitlementId", "ed", " ", "Entitlement id")
+	_ = UpdateUserEntitlementCmd.MarkFlagRequired("entitlementId")
+	UpdateUserEntitlementCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = UpdateUserEntitlementCmd.MarkFlagRequired("namespace")
+	UpdateUserEntitlementCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = UpdateUserEntitlementCmd.MarkFlagRequired("userId")
 }

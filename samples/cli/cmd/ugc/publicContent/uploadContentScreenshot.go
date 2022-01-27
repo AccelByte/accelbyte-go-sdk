@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/ugc"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/public_content"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclientmodels"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// uploadContentScreenshotCmd represents the uploadContentScreenshot command
-var uploadContentScreenshotCmd = &cobra.Command{
-	Use:   "uploadContentScreenshot",
+// UploadContentScreenshotCmd represents the UploadContentScreenshot command
+var UploadContentScreenshotCmd = &cobra.Command{
+	Use:   "UploadContentScreenshot",
 	Short: "Upload content screenshot",
 	Long:  `Upload content screenshot`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -53,13 +52,12 @@ var uploadContentScreenshotCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(uploadContentScreenshotCmd)
-	uploadContentScreenshotCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = uploadContentScreenshotCmd.MarkFlagRequired("body")
-	uploadContentScreenshotCmd.Flags().StringP("contentId", "cd", " ", "Content id")
-	_ = uploadContentScreenshotCmd.MarkFlagRequired("contentId")
-	uploadContentScreenshotCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = uploadContentScreenshotCmd.MarkFlagRequired("namespace")
-	uploadContentScreenshotCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = uploadContentScreenshotCmd.MarkFlagRequired("userId")
+	UploadContentScreenshotCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = UploadContentScreenshotCmd.MarkFlagRequired("body")
+	UploadContentScreenshotCmd.Flags().StringP("contentId", "cd", " ", "Content id")
+	_ = UploadContentScreenshotCmd.MarkFlagRequired("contentId")
+	UploadContentScreenshotCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = UploadContentScreenshotCmd.MarkFlagRequired("namespace")
+	UploadContentScreenshotCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = UploadContentScreenshotCmd.MarkFlagRequired("userId")
 }

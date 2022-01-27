@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/subscription"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// deleteUserSubscriptionCmd represents the deleteUserSubscription command
-var deleteUserSubscriptionCmd = &cobra.Command{
-	Use:   "deleteUserSubscription",
+// DeleteUserSubscriptionCmd represents the DeleteUserSubscription command
+var DeleteUserSubscriptionCmd = &cobra.Command{
+	Use:   "DeleteUserSubscription",
 	Short: "Delete user subscription",
 	Long:  `Delete user subscription`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,11 +42,10 @@ var deleteUserSubscriptionCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(deleteUserSubscriptionCmd)
-	deleteUserSubscriptionCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = deleteUserSubscriptionCmd.MarkFlagRequired("namespace")
-	deleteUserSubscriptionCmd.Flags().StringP("subscriptionId", "sd", " ", "Subscription id")
-	_ = deleteUserSubscriptionCmd.MarkFlagRequired("subscriptionId")
-	deleteUserSubscriptionCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = deleteUserSubscriptionCmd.MarkFlagRequired("userId")
+	DeleteUserSubscriptionCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = DeleteUserSubscriptionCmd.MarkFlagRequired("namespace")
+	DeleteUserSubscriptionCmd.Flags().StringP("subscriptionId", "sd", " ", "Subscription id")
+	_ = DeleteUserSubscriptionCmd.MarkFlagRequired("subscriptionId")
+	DeleteUserSubscriptionCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = DeleteUserSubscriptionCmd.MarkFlagRequired("userId")
 }

@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/roles"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminGetRoleMembersV3Cmd represents the adminGetRoleMembersV3 command
-var adminGetRoleMembersV3Cmd = &cobra.Command{
-	Use:   "adminGetRoleMembersV3",
+// AdminGetRoleMembersV3Cmd represents the AdminGetRoleMembersV3 command
+var AdminGetRoleMembersV3Cmd = &cobra.Command{
+	Use:   "AdminGetRoleMembersV3",
 	Short: "Admin get role members V3",
 	Long:  `Admin get role members V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -46,10 +45,9 @@ var adminGetRoleMembersV3Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminGetRoleMembersV3Cmd)
-	adminGetRoleMembersV3Cmd.Flags().StringP("roleId", "rd", " ", "Role id")
-	_ = adminGetRoleMembersV3Cmd.MarkFlagRequired("roleId")
-	adminGetRoleMembersV3Cmd.Flags().StringP("after", "ar", "0", "After")
-	adminGetRoleMembersV3Cmd.Flags().StringP("before", "be", "0", "Before")
-	adminGetRoleMembersV3Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
+	AdminGetRoleMembersV3Cmd.Flags().StringP("roleId", "rd", " ", "Role id")
+	_ = AdminGetRoleMembersV3Cmd.MarkFlagRequired("roleId")
+	AdminGetRoleMembersV3Cmd.Flags().StringP("after", "ar", "0", "After")
+	AdminGetRoleMembersV3Cmd.Flags().StringP("before", "be", "0", "Before")
+	AdminGetRoleMembersV3Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
 }

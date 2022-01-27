@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/order"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getUserOrderGrantCmd represents the getUserOrderGrant command
-var getUserOrderGrantCmd = &cobra.Command{
-	Use:   "getUserOrderGrant",
+// GetUserOrderGrantCmd represents the GetUserOrderGrant command
+var GetUserOrderGrantCmd = &cobra.Command{
+	Use:   "GetUserOrderGrant",
 	Short: "Get user order grant",
 	Long:  `Get user order grant`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -44,11 +43,10 @@ var getUserOrderGrantCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getUserOrderGrantCmd)
-	getUserOrderGrantCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getUserOrderGrantCmd.MarkFlagRequired("namespace")
-	getUserOrderGrantCmd.Flags().StringP("orderNo", "oo", " ", "Order no")
-	_ = getUserOrderGrantCmd.MarkFlagRequired("orderNo")
-	getUserOrderGrantCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = getUserOrderGrantCmd.MarkFlagRequired("userId")
+	GetUserOrderGrantCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetUserOrderGrantCmd.MarkFlagRequired("namespace")
+	GetUserOrderGrantCmd.Flags().StringP("orderNo", "oo", " ", "Order no")
+	_ = GetUserOrderGrantCmd.MarkFlagRequired("orderNo")
+	GetUserOrderGrantCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = GetUserOrderGrantCmd.MarkFlagRequired("userId")
 }

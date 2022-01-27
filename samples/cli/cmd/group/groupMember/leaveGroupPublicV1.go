@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/group-sdk/pkg/groupclient/group_member"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/group"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// leaveGroupPublicV1Cmd represents the leaveGroupPublicV1 command
-var leaveGroupPublicV1Cmd = &cobra.Command{
-	Use:   "leaveGroupPublicV1",
+// LeaveGroupPublicV1Cmd represents the LeaveGroupPublicV1 command
+var LeaveGroupPublicV1Cmd = &cobra.Command{
+	Use:   "LeaveGroupPublicV1",
 	Short: "Leave group public V1",
 	Long:  `Leave group public V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,7 +39,6 @@ var leaveGroupPublicV1Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(leaveGroupPublicV1Cmd)
-	leaveGroupPublicV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = leaveGroupPublicV1Cmd.MarkFlagRequired("namespace")
+	LeaveGroupPublicV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = LeaveGroupPublicV1Cmd.MarkFlagRequired("namespace")
 }

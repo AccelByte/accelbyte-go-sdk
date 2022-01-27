@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/item"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// publicQueryItemsCmd represents the publicQueryItems command
-var publicQueryItemsCmd = &cobra.Command{
-	Use:   "publicQueryItems",
+// PublicQueryItemsCmd represents the PublicQueryItems command
+var PublicQueryItemsCmd = &cobra.Command{
+	Use:   "PublicQueryItems",
 	Short: "Public query items",
 	Long:  `Public query items`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -64,19 +63,18 @@ var publicQueryItemsCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(publicQueryItemsCmd)
-	publicQueryItemsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = publicQueryItemsCmd.MarkFlagRequired("namespace")
-	publicQueryItemsCmd.Flags().StringP("appType", "ae", " ", "App type")
-	publicQueryItemsCmd.Flags().StringP("baseAppId", "bd", " ", "Base app id")
-	publicQueryItemsCmd.Flags().StringP("categoryPath", "ch", " ", "Category path")
-	publicQueryItemsCmd.Flags().StringP("features", "fs", " ", "Features")
-	publicQueryItemsCmd.Flags().StringP("itemType", "ie", " ", "Item type")
-	publicQueryItemsCmd.Flags().StringP("language", "le", " ", "Language")
-	publicQueryItemsCmd.Flags().Int32P("limit", "lt", 20, "Limit")
-	publicQueryItemsCmd.Flags().Int32P("offset", "ot", 0, "Offset")
-	publicQueryItemsCmd.Flags().StringP("region", "rn", " ", "Region")
-	publicQueryItemsCmd.Flags().StringP("sortBy", "sy", " ", "Sort by")
-	publicQueryItemsCmd.Flags().StringP("storeId", "sd", " ", "Store id")
-	publicQueryItemsCmd.Flags().StringP("tags", "ts", " ", "Tags")
+	PublicQueryItemsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PublicQueryItemsCmd.MarkFlagRequired("namespace")
+	PublicQueryItemsCmd.Flags().StringP("appType", "ae", " ", "App type")
+	PublicQueryItemsCmd.Flags().StringP("baseAppId", "bd", " ", "Base app id")
+	PublicQueryItemsCmd.Flags().StringP("categoryPath", "ch", " ", "Category path")
+	PublicQueryItemsCmd.Flags().StringP("features", "fs", " ", "Features")
+	PublicQueryItemsCmd.Flags().StringP("itemType", "ie", " ", "Item type")
+	PublicQueryItemsCmd.Flags().StringP("language", "le", " ", "Language")
+	PublicQueryItemsCmd.Flags().Int32P("limit", "lt", 20, "Limit")
+	PublicQueryItemsCmd.Flags().Int32P("offset", "ot", 0, "Offset")
+	PublicQueryItemsCmd.Flags().StringP("region", "rn", " ", "Region")
+	PublicQueryItemsCmd.Flags().StringP("sortBy", "sy", " ", "Sort by")
+	PublicQueryItemsCmd.Flags().StringP("storeId", "sd", " ", "Store id")
+	PublicQueryItemsCmd.Flags().StringP("tags", "ts", " ", "Tags")
 }

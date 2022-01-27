@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/lobby"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminCreateThirdPartyConfigCmd represents the adminCreateThirdPartyConfig command
-var adminCreateThirdPartyConfigCmd = &cobra.Command{
-	Use:   "adminCreateThirdPartyConfig",
+// AdminCreateThirdPartyConfigCmd represents the AdminCreateThirdPartyConfig command
+var AdminCreateThirdPartyConfigCmd = &cobra.Command{
+	Use:   "AdminCreateThirdPartyConfig",
 	Short: "Admin create third party config",
 	Long:  `Admin create third party config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,9 +48,8 @@ var adminCreateThirdPartyConfigCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminCreateThirdPartyConfigCmd)
-	adminCreateThirdPartyConfigCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = adminCreateThirdPartyConfigCmd.MarkFlagRequired("body")
-	adminCreateThirdPartyConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = adminCreateThirdPartyConfigCmd.MarkFlagRequired("namespace")
+	AdminCreateThirdPartyConfigCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = AdminCreateThirdPartyConfigCmd.MarkFlagRequired("body")
+	AdminCreateThirdPartyConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AdminCreateThirdPartyConfigCmd.MarkFlagRequired("namespace")
 }

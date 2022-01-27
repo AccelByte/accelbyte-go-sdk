@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/player"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/lobby"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// publicGetPlayerBlockedPlayersV1Cmd represents the publicGetPlayerBlockedPlayersV1 command
-var publicGetPlayerBlockedPlayersV1Cmd = &cobra.Command{
-	Use:   "publicGetPlayerBlockedPlayersV1",
+// PublicGetPlayerBlockedPlayersV1Cmd represents the PublicGetPlayerBlockedPlayersV1 command
+var PublicGetPlayerBlockedPlayersV1Cmd = &cobra.Command{
+	Use:   "PublicGetPlayerBlockedPlayersV1",
 	Short: "Public get player blocked players V1",
 	Long:  `Public get player blocked players V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,7 +39,6 @@ var publicGetPlayerBlockedPlayersV1Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(publicGetPlayerBlockedPlayersV1Cmd)
-	publicGetPlayerBlockedPlayersV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = publicGetPlayerBlockedPlayersV1Cmd.MarkFlagRequired("namespace")
+	PublicGetPlayerBlockedPlayersV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PublicGetPlayerBlockedPlayersV1Cmd.MarkFlagRequired("namespace")
 }

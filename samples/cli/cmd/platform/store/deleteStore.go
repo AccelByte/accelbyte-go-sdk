@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/store"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// deleteStoreCmd represents the deleteStore command
-var deleteStoreCmd = &cobra.Command{
-	Use:   "deleteStore",
+// DeleteStoreCmd represents the DeleteStore command
+var DeleteStoreCmd = &cobra.Command{
+	Use:   "DeleteStore",
 	Short: "Delete store",
 	Long:  `Delete store`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,9 +41,8 @@ var deleteStoreCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(deleteStoreCmd)
-	deleteStoreCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = deleteStoreCmd.MarkFlagRequired("namespace")
-	deleteStoreCmd.Flags().StringP("storeId", "sd", " ", "Store id")
-	_ = deleteStoreCmd.MarkFlagRequired("storeId")
+	DeleteStoreCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = DeleteStoreCmd.MarkFlagRequired("namespace")
+	DeleteStoreCmd.Flags().StringP("storeId", "sd", " ", "Store id")
+	_ = DeleteStoreCmd.MarkFlagRequired("storeId")
 }

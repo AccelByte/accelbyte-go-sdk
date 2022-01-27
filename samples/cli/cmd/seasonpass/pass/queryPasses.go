@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/seasonpass-sdk/pkg/seasonpassclient/pass"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/seasonpass"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// queryPassesCmd represents the queryPasses command
-var queryPassesCmd = &cobra.Command{
-	Use:   "queryPasses",
+// QueryPassesCmd represents the QueryPasses command
+var QueryPassesCmd = &cobra.Command{
+	Use:   "QueryPasses",
 	Short: "Query passes",
 	Long:  `Query passes`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,9 +41,8 @@ var queryPassesCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(queryPassesCmd)
-	queryPassesCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = queryPassesCmd.MarkFlagRequired("namespace")
-	queryPassesCmd.Flags().StringP("seasonId", "sd", " ", "Season id")
-	_ = queryPassesCmd.MarkFlagRequired("seasonId")
+	QueryPassesCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = QueryPassesCmd.MarkFlagRequired("namespace")
+	QueryPassesCmd.Flags().StringP("seasonId", "sd", " ", "Season id")
+	_ = QueryPassesCmd.MarkFlagRequired("seasonId")
 }

@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// updatePaymentTaxConfigCmd represents the updatePaymentTaxConfig command
-var updatePaymentTaxConfigCmd = &cobra.Command{
-	Use:   "updatePaymentTaxConfig",
+// UpdatePaymentTaxConfigCmd represents the UpdatePaymentTaxConfig command
+var UpdatePaymentTaxConfigCmd = &cobra.Command{
+	Use:   "UpdatePaymentTaxConfig",
 	Short: "Update payment tax config",
 	Long:  `Update payment tax config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -47,6 +46,5 @@ var updatePaymentTaxConfigCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(updatePaymentTaxConfigCmd)
-	updatePaymentTaxConfigCmd.Flags().StringP("body", "by", " ", "Body")
+	UpdatePaymentTaxConfigCmd.Flags().StringP("body", "by", " ", "Body")
 }

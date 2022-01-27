@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/social"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient/user_statistic"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclientmodels"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// bulkResetUserStatItem2Cmd represents the bulkResetUserStatItem2 command
-var bulkResetUserStatItem2Cmd = &cobra.Command{
-	Use:   "bulkResetUserStatItem2",
+// BulkResetUserStatItem2Cmd represents the BulkResetUserStatItem2 command
+var BulkResetUserStatItem2Cmd = &cobra.Command{
+	Use:   "BulkResetUserStatItem2",
 	Short: "Bulk reset user stat item 2",
 	Long:  `Bulk reset user stat item 2`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,8 +48,7 @@ var bulkResetUserStatItem2Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(bulkResetUserStatItem2Cmd)
-	bulkResetUserStatItem2Cmd.Flags().StringP("body", "by", " ", "Body")
-	bulkResetUserStatItem2Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = bulkResetUserStatItem2Cmd.MarkFlagRequired("namespace")
+	BulkResetUserStatItem2Cmd.Flags().StringP("body", "by", " ", "Body")
+	BulkResetUserStatItem2Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = BulkResetUserStatItem2Cmd.MarkFlagRequired("namespace")
 }

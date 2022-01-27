@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/gdpr-sdk/pkg/gdprclient/data_retrieval"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/gdpr"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminGetUserPersonalDataRequestsCmd represents the adminGetUserPersonalDataRequests command
-var adminGetUserPersonalDataRequestsCmd = &cobra.Command{
-	Use:   "adminGetUserPersonalDataRequests",
+// AdminGetUserPersonalDataRequestsCmd represents the AdminGetUserPersonalDataRequests command
+var AdminGetUserPersonalDataRequestsCmd = &cobra.Command{
+	Use:   "AdminGetUserPersonalDataRequests",
 	Short: "Admin get user personal data requests",
 	Long:  `Admin get user personal data requests`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -46,11 +45,10 @@ var adminGetUserPersonalDataRequestsCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminGetUserPersonalDataRequestsCmd)
-	adminGetUserPersonalDataRequestsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = adminGetUserPersonalDataRequestsCmd.MarkFlagRequired("namespace")
-	adminGetUserPersonalDataRequestsCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = adminGetUserPersonalDataRequestsCmd.MarkFlagRequired("userId")
-	adminGetUserPersonalDataRequestsCmd.Flags().Int64P("limit", "lt", 20, "Limit")
-	adminGetUserPersonalDataRequestsCmd.Flags().Int64P("offset", "ot", 0, "Offset")
+	AdminGetUserPersonalDataRequestsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AdminGetUserPersonalDataRequestsCmd.MarkFlagRequired("namespace")
+	AdminGetUserPersonalDataRequestsCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = AdminGetUserPersonalDataRequestsCmd.MarkFlagRequired("userId")
+	AdminGetUserPersonalDataRequestsCmd.Flags().Int64P("limit", "lt", 20, "Limit")
+	AdminGetUserPersonalDataRequestsCmd.Flags().Int64P("offset", "ot", 0, "Offset")
 }

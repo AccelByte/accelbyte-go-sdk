@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// applyUserRedemptionCmd represents the applyUserRedemption command
-var applyUserRedemptionCmd = &cobra.Command{
-	Use:   "applyUserRedemption",
+// ApplyUserRedemptionCmd represents the ApplyUserRedemption command
+var ApplyUserRedemptionCmd = &cobra.Command{
+	Use:   "ApplyUserRedemption",
 	Short: "Apply user redemption",
 	Long:  `Apply user redemption`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -51,10 +50,9 @@ var applyUserRedemptionCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(applyUserRedemptionCmd)
-	applyUserRedemptionCmd.Flags().StringP("body", "by", " ", "Body")
-	applyUserRedemptionCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = applyUserRedemptionCmd.MarkFlagRequired("namespace")
-	applyUserRedemptionCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = applyUserRedemptionCmd.MarkFlagRequired("userId")
+	ApplyUserRedemptionCmd.Flags().StringP("body", "by", " ", "Body")
+	ApplyUserRedemptionCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = ApplyUserRedemptionCmd.MarkFlagRequired("namespace")
+	ApplyUserRedemptionCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = ApplyUserRedemptionCmd.MarkFlagRequired("userId")
 }

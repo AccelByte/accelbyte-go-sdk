@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/group-sdk/pkg/groupclient/configuration"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/group"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// deleteGroupConfigurationGlobalRuleAdminV1Cmd represents the deleteGroupConfigurationGlobalRuleAdminV1 command
-var deleteGroupConfigurationGlobalRuleAdminV1Cmd = &cobra.Command{
-	Use:   "deleteGroupConfigurationGlobalRuleAdminV1",
+// DeleteGroupConfigurationGlobalRuleAdminV1Cmd represents the DeleteGroupConfigurationGlobalRuleAdminV1 command
+var DeleteGroupConfigurationGlobalRuleAdminV1Cmd = &cobra.Command{
+	Use:   "DeleteGroupConfigurationGlobalRuleAdminV1",
 	Short: "Delete group configuration global rule admin V1",
 	Long:  `Delete group configuration global rule admin V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -44,11 +43,10 @@ var deleteGroupConfigurationGlobalRuleAdminV1Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(deleteGroupConfigurationGlobalRuleAdminV1Cmd)
-	deleteGroupConfigurationGlobalRuleAdminV1Cmd.Flags().StringP("allowedAction", "an", " ", "Allowed action")
-	_ = deleteGroupConfigurationGlobalRuleAdminV1Cmd.MarkFlagRequired("allowedAction")
-	deleteGroupConfigurationGlobalRuleAdminV1Cmd.Flags().StringP("configurationCode", "ce", " ", "Configuration code")
-	_ = deleteGroupConfigurationGlobalRuleAdminV1Cmd.MarkFlagRequired("configurationCode")
-	deleteGroupConfigurationGlobalRuleAdminV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = deleteGroupConfigurationGlobalRuleAdminV1Cmd.MarkFlagRequired("namespace")
+	DeleteGroupConfigurationGlobalRuleAdminV1Cmd.Flags().StringP("allowedAction", "an", " ", "Allowed action")
+	_ = DeleteGroupConfigurationGlobalRuleAdminV1Cmd.MarkFlagRequired("allowedAction")
+	DeleteGroupConfigurationGlobalRuleAdminV1Cmd.Flags().StringP("configurationCode", "ce", " ", "Configuration code")
+	_ = DeleteGroupConfigurationGlobalRuleAdminV1Cmd.MarkFlagRequired("configurationCode")
+	DeleteGroupConfigurationGlobalRuleAdminV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = DeleteGroupConfigurationGlobalRuleAdminV1Cmd.MarkFlagRequired("namespace")
 }

@@ -8,15 +8,14 @@ import (
 	group_ "github.com/AccelByte/accelbyte-go-sdk/group-sdk/pkg/groupclient/group"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/group"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getGroupListPublicV1Cmd represents the getGroupListPublicV1 command
-var getGroupListPublicV1Cmd = &cobra.Command{
-	Use:   "getGroupListPublicV1",
+// GetGroupListPublicV1Cmd represents the GetGroupListPublicV1 command
+var GetGroupListPublicV1Cmd = &cobra.Command{
+	Use:   "GetGroupListPublicV1",
 	Short: "Get group list public V1",
 	Long:  `Get group list public V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,11 +47,10 @@ var getGroupListPublicV1Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getGroupListPublicV1Cmd)
-	getGroupListPublicV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getGroupListPublicV1Cmd.MarkFlagRequired("namespace")
-	getGroupListPublicV1Cmd.Flags().StringP("groupName", "ge", " ", "Group name")
-	getGroupListPublicV1Cmd.Flags().StringP("groupRegion", "gn", " ", "Group region")
-	getGroupListPublicV1Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
-	getGroupListPublicV1Cmd.Flags().Int64P("offset", "ot", 0, "Offset")
+	GetGroupListPublicV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetGroupListPublicV1Cmd.MarkFlagRequired("namespace")
+	GetGroupListPublicV1Cmd.Flags().StringP("groupName", "ge", " ", "Group name")
+	GetGroupListPublicV1Cmd.Flags().StringP("groupRegion", "gn", " ", "Group region")
+	GetGroupListPublicV1Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
+	GetGroupListPublicV1Cmd.Flags().Int64P("offset", "ot", 0, "Offset")
 }

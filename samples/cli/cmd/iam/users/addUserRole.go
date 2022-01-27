@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// addUserRoleCmd represents the addUserRole command
-var addUserRoleCmd = &cobra.Command{
-	Use:   "addUserRole",
+// AddUserRoleCmd represents the AddUserRole command
+var AddUserRoleCmd = &cobra.Command{
+	Use:   "AddUserRole",
 	Short: "Add user role",
 	Long:  `Add user role`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,11 +42,10 @@ var addUserRoleCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(addUserRoleCmd)
-	addUserRoleCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = addUserRoleCmd.MarkFlagRequired("namespace")
-	addUserRoleCmd.Flags().StringP("roleId", "rd", " ", "Role id")
-	_ = addUserRoleCmd.MarkFlagRequired("roleId")
-	addUserRoleCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = addUserRoleCmd.MarkFlagRequired("userId")
+	AddUserRoleCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AddUserRoleCmd.MarkFlagRequired("namespace")
+	AddUserRoleCmd.Flags().StringP("roleId", "rd", " ", "Role id")
+	_ = AddUserRoleCmd.MarkFlagRequired("roleId")
+	AddUserRoleCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = AddUserRoleCmd.MarkFlagRequired("userId")
 }

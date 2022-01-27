@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclient/base_legal_policies"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/legal"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// retrieveAllLegalPoliciesCmd represents the retrieveAllLegalPolicies command
-var retrieveAllLegalPoliciesCmd = &cobra.Command{
-	Use:   "retrieveAllLegalPolicies",
+// RetrieveAllLegalPoliciesCmd represents the RetrieveAllLegalPolicies command
+var RetrieveAllLegalPoliciesCmd = &cobra.Command{
+	Use:   "RetrieveAllLegalPolicies",
 	Short: "Retrieve all legal policies",
 	Long:  `Retrieve all legal policies`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -34,8 +33,4 @@ var retrieveAllLegalPoliciesCmd = &cobra.Command{
 		}
 		return nil
 	},
-}
-
-func init() {
-	cmd.RootCmd.AddCommand(retrieveAllLegalPoliciesCmd)
 }

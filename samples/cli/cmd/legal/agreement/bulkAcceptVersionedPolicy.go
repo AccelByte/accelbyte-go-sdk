@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/legal"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// bulkAcceptVersionedPolicyCmd represents the bulkAcceptVersionedPolicy command
-var bulkAcceptVersionedPolicyCmd = &cobra.Command{
-	Use:   "bulkAcceptVersionedPolicy",
+// BulkAcceptVersionedPolicyCmd represents the BulkAcceptVersionedPolicy command
+var BulkAcceptVersionedPolicyCmd = &cobra.Command{
+	Use:   "BulkAcceptVersionedPolicy",
 	Short: "Bulk accept versioned policy",
 	Long:  `Bulk accept versioned policy`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -47,6 +46,5 @@ var bulkAcceptVersionedPolicyCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(bulkAcceptVersionedPolicyCmd)
-	bulkAcceptVersionedPolicyCmd.Flags().StringP("body", "by", " ", "Body")
+	BulkAcceptVersionedPolicyCmd.Flags().StringP("body", "by", " ", "Body")
 }

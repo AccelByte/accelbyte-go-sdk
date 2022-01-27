@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/config"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/lobby"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminGetConfigV1Cmd represents the adminGetConfigV1 command
-var adminGetConfigV1Cmd = &cobra.Command{
-	Use:   "adminGetConfigV1",
+// AdminGetConfigV1Cmd represents the AdminGetConfigV1 command
+var AdminGetConfigV1Cmd = &cobra.Command{
+	Use:   "AdminGetConfigV1",
 	Short: "Admin get config V1",
 	Long:  `Admin get config V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,7 +39,6 @@ var adminGetConfigV1Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminGetConfigV1Cmd)
-	adminGetConfigV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = adminGetConfigV1Cmd.MarkFlagRequired("namespace")
+	AdminGetConfigV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AdminGetConfigV1Cmd.MarkFlagRequired("namespace")
 }

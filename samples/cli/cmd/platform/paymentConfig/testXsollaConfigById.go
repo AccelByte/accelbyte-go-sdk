@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/payment_config"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// testXsollaConfigByIdCmd represents the testXsollaConfigById command
-var testXsollaConfigByIdCmd = &cobra.Command{
-	Use:   "testXsollaConfigById",
+// TestXsollaConfigByIdCmd represents the TestXsollaConfigById command
+var TestXsollaConfigByIdCmd = &cobra.Command{
+	Use:   "TestXsollaConfigById",
 	Short: "Test xsolla config by id",
 	Long:  `Test xsolla config by id`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,7 +39,6 @@ var testXsollaConfigByIdCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(testXsollaConfigByIdCmd)
-	testXsollaConfigByIdCmd.Flags().StringP("id", "id", " ", "Id")
-	_ = testXsollaConfigByIdCmd.MarkFlagRequired("id")
+	TestXsollaConfigByIdCmd.Flags().StringP("id", "id", " ", "Id")
+	_ = TestXsollaConfigByIdCmd.MarkFlagRequired("id")
 }

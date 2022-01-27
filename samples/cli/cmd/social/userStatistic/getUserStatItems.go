@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/social"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient/user_statistic"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getUserStatItemsCmd represents the getUserStatItems command
-var getUserStatItemsCmd = &cobra.Command{
-	Use:   "getUserStatItems",
+// GetUserStatItemsCmd represents the GetUserStatItems command
+var GetUserStatItemsCmd = &cobra.Command{
+	Use:   "GetUserStatItems",
 	Short: "Get user stat items",
 	Long:  `Get user stat items`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,13 +49,12 @@ var getUserStatItemsCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getUserStatItemsCmd)
-	getUserStatItemsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getUserStatItemsCmd.MarkFlagRequired("namespace")
-	getUserStatItemsCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = getUserStatItemsCmd.MarkFlagRequired("userId")
-	getUserStatItemsCmd.Flags().Int32P("limit", "lt", 20, "Limit")
-	getUserStatItemsCmd.Flags().Int32P("offset", "ot", 0, "Offset")
-	getUserStatItemsCmd.Flags().StringP("statCodes", "ss", " ", "Stat codes")
-	getUserStatItemsCmd.Flags().StringP("tags", "ts", " ", "Tags")
+	GetUserStatItemsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetUserStatItemsCmd.MarkFlagRequired("namespace")
+	GetUserStatItemsCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = GetUserStatItemsCmd.MarkFlagRequired("userId")
+	GetUserStatItemsCmd.Flags().Int32P("limit", "lt", 20, "Limit")
+	GetUserStatItemsCmd.Flags().Int32P("offset", "ot", 0, "Offset")
+	GetUserStatItemsCmd.Flags().StringP("statCodes", "ss", " ", "Stat codes")
+	GetUserStatItemsCmd.Flags().StringP("tags", "ts", " ", "Tags")
 }

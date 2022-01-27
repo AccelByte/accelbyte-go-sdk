@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/group-sdk/pkg/groupclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/group"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// createNewGroupPublicV1Cmd represents the createNewGroupPublicV1 command
-var createNewGroupPublicV1Cmd = &cobra.Command{
-	Use:   "createNewGroupPublicV1",
+// CreateNewGroupPublicV1Cmd represents the CreateNewGroupPublicV1 command
+var CreateNewGroupPublicV1Cmd = &cobra.Command{
+	Use:   "CreateNewGroupPublicV1",
 	Short: "Create new group public V1",
 	Long:  `Create new group public V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,9 +48,8 @@ var createNewGroupPublicV1Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(createNewGroupPublicV1Cmd)
-	createNewGroupPublicV1Cmd.Flags().StringP("body", "by", " ", "Body")
-	_ = createNewGroupPublicV1Cmd.MarkFlagRequired("body")
-	createNewGroupPublicV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = createNewGroupPublicV1Cmd.MarkFlagRequired("namespace")
+	CreateNewGroupPublicV1Cmd.Flags().StringP("body", "by", " ", "Body")
+	_ = CreateNewGroupPublicV1Cmd.MarkFlagRequired("body")
+	CreateNewGroupPublicV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = CreateNewGroupPublicV1Cmd.MarkFlagRequired("namespace")
 }

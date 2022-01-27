@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// addRolePermissionCmd represents the addRolePermission command
-var addRolePermissionCmd = &cobra.Command{
-	Use:   "addRolePermission",
+// AddRolePermissionCmd represents the AddRolePermission command
+var AddRolePermissionCmd = &cobra.Command{
+	Use:   "AddRolePermission",
 	Short: "Add role permission",
 	Long:  `Add role permission`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -52,13 +51,12 @@ var addRolePermissionCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(addRolePermissionCmd)
-	addRolePermissionCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = addRolePermissionCmd.MarkFlagRequired("body")
-	addRolePermissionCmd.Flags().Int64P("action", "an", -1, "Action")
-	_ = addRolePermissionCmd.MarkFlagRequired("action")
-	addRolePermissionCmd.Flags().StringP("resource", "re", " ", "Resource")
-	_ = addRolePermissionCmd.MarkFlagRequired("resource")
-	addRolePermissionCmd.Flags().StringP("roleId", "rd", " ", "Role id")
-	_ = addRolePermissionCmd.MarkFlagRequired("roleId")
+	AddRolePermissionCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = AddRolePermissionCmd.MarkFlagRequired("body")
+	AddRolePermissionCmd.Flags().Int64P("action", "an", -1, "Action")
+	_ = AddRolePermissionCmd.MarkFlagRequired("action")
+	AddRolePermissionCmd.Flags().StringP("resource", "re", " ", "Resource")
+	_ = AddRolePermissionCmd.MarkFlagRequired("resource")
+	AddRolePermissionCmd.Flags().StringP("roleId", "rd", " ", "Role id")
+	_ = AddRolePermissionCmd.MarkFlagRequired("roleId")
 }

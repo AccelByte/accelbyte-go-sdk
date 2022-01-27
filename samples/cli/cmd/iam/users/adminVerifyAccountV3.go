@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminVerifyAccountV3Cmd represents the adminVerifyAccountV3 command
-var adminVerifyAccountV3Cmd = &cobra.Command{
-	Use:   "adminVerifyAccountV3",
+// AdminVerifyAccountV3Cmd represents the AdminVerifyAccountV3 command
+var AdminVerifyAccountV3Cmd = &cobra.Command{
+	Use:   "AdminVerifyAccountV3",
 	Short: "Admin verify account V3",
 	Long:  `Admin verify account V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,11 +49,10 @@ var adminVerifyAccountV3Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminVerifyAccountV3Cmd)
-	adminVerifyAccountV3Cmd.Flags().StringP("body", "by", " ", "Body")
-	_ = adminVerifyAccountV3Cmd.MarkFlagRequired("body")
-	adminVerifyAccountV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = adminVerifyAccountV3Cmd.MarkFlagRequired("namespace")
-	adminVerifyAccountV3Cmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = adminVerifyAccountV3Cmd.MarkFlagRequired("userId")
+	AdminVerifyAccountV3Cmd.Flags().StringP("body", "by", " ", "Body")
+	_ = AdminVerifyAccountV3Cmd.MarkFlagRequired("body")
+	AdminVerifyAccountV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AdminVerifyAccountV3Cmd.MarkFlagRequired("namespace")
+	AdminVerifyAccountV3Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = AdminVerifyAccountV3Cmd.MarkFlagRequired("userId")
 }

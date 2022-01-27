@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/deployment_config"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/dsmc"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// deleteRootRegionOverrideCmd represents the deleteRootRegionOverride command
-var deleteRootRegionOverrideCmd = &cobra.Command{
-	Use:   "deleteRootRegionOverride",
+// DeleteRootRegionOverrideCmd represents the DeleteRootRegionOverride command
+var DeleteRootRegionOverrideCmd = &cobra.Command{
+	Use:   "DeleteRootRegionOverride",
 	Short: "Delete root region override",
 	Long:  `Delete root region override`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -44,11 +43,10 @@ var deleteRootRegionOverrideCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(deleteRootRegionOverrideCmd)
-	deleteRootRegionOverrideCmd.Flags().StringP("deployment", "dt", " ", "Deployment")
-	_ = deleteRootRegionOverrideCmd.MarkFlagRequired("deployment")
-	deleteRootRegionOverrideCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = deleteRootRegionOverrideCmd.MarkFlagRequired("namespace")
-	deleteRootRegionOverrideCmd.Flags().StringP("region", "rn", " ", "Region")
-	_ = deleteRootRegionOverrideCmd.MarkFlagRequired("region")
+	DeleteRootRegionOverrideCmd.Flags().StringP("deployment", "dt", " ", "Deployment")
+	_ = DeleteRootRegionOverrideCmd.MarkFlagRequired("deployment")
+	DeleteRootRegionOverrideCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = DeleteRootRegionOverrideCmd.MarkFlagRequired("namespace")
+	DeleteRootRegionOverrideCmd.Flags().StringP("region", "rn", " ", "Region")
+	_ = DeleteRootRegionOverrideCmd.MarkFlagRequired("region")
 }

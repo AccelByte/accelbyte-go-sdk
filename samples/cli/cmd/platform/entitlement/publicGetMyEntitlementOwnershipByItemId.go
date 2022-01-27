@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/entitlement"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// publicGetMyEntitlementOwnershipByItemIdCmd represents the publicGetMyEntitlementOwnershipByItemId command
-var publicGetMyEntitlementOwnershipByItemIdCmd = &cobra.Command{
-	Use:   "publicGetMyEntitlementOwnershipByItemId",
+// PublicGetMyEntitlementOwnershipByItemIdCmd represents the PublicGetMyEntitlementOwnershipByItemId command
+var PublicGetMyEntitlementOwnershipByItemIdCmd = &cobra.Command{
+	Use:   "PublicGetMyEntitlementOwnershipByItemId",
 	Short: "Public get my entitlement ownership by item id",
 	Long:  `Public get my entitlement ownership by item id`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -44,10 +43,9 @@ var publicGetMyEntitlementOwnershipByItemIdCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(publicGetMyEntitlementOwnershipByItemIdCmd)
-	publicGetMyEntitlementOwnershipByItemIdCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = publicGetMyEntitlementOwnershipByItemIdCmd.MarkFlagRequired("namespace")
-	publicGetMyEntitlementOwnershipByItemIdCmd.Flags().StringP("entitlementClazz", "ez", " ", "Entitlement clazz")
-	publicGetMyEntitlementOwnershipByItemIdCmd.Flags().StringP("itemId", "id", " ", "Item id")
-	_ = publicGetMyEntitlementOwnershipByItemIdCmd.MarkFlagRequired("itemId")
+	PublicGetMyEntitlementOwnershipByItemIdCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PublicGetMyEntitlementOwnershipByItemIdCmd.MarkFlagRequired("namespace")
+	PublicGetMyEntitlementOwnershipByItemIdCmd.Flags().StringP("entitlementClazz", "ez", " ", "Entitlement clazz")
+	PublicGetMyEntitlementOwnershipByItemIdCmd.Flags().StringP("itemId", "id", " ", "Item id")
+	_ = PublicGetMyEntitlementOwnershipByItemIdCmd.MarkFlagRequired("itemId")
 }

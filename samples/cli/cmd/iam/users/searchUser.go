@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// searchUserCmd represents the searchUser command
-var searchUserCmd = &cobra.Command{
-	Use:   "searchUser",
+// SearchUserCmd represents the SearchUser command
+var SearchUserCmd = &cobra.Command{
+	Use:   "SearchUser",
 	Short: "Search user",
 	Long:  `Search user`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,8 +41,7 @@ var searchUserCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(searchUserCmd)
-	searchUserCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = searchUserCmd.MarkFlagRequired("namespace")
-	searchUserCmd.Flags().StringP("query", "qy", " ", "Query")
+	SearchUserCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = SearchUserCmd.MarkFlagRequired("namespace")
+	SearchUserCmd.Flags().StringP("query", "qy", " ", "Query")
 }

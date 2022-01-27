@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/seasonpass-sdk/pkg/seasonpassclient/season"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/seasonpass"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// deleteSeasonCmd represents the deleteSeason command
-var deleteSeasonCmd = &cobra.Command{
-	Use:   "deleteSeason",
+// DeleteSeasonCmd represents the DeleteSeason command
+var DeleteSeasonCmd = &cobra.Command{
+	Use:   "DeleteSeason",
 	Short: "Delete season",
 	Long:  `Delete season`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,9 +40,8 @@ var deleteSeasonCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(deleteSeasonCmd)
-	deleteSeasonCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = deleteSeasonCmd.MarkFlagRequired("namespace")
-	deleteSeasonCmd.Flags().StringP("seasonId", "sd", " ", "Season id")
-	_ = deleteSeasonCmd.MarkFlagRequired("seasonId")
+	DeleteSeasonCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = DeleteSeasonCmd.MarkFlagRequired("namespace")
+	DeleteSeasonCmd.Flags().StringP("seasonId", "sd", " ", "Season id")
+	_ = DeleteSeasonCmd.MarkFlagRequired("seasonId")
 }

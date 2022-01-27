@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/eventlog-sdk/pkg/eventlogclient/event_registry"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/eventlog"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getRegisteredEventIDHandlerCmd represents the getRegisteredEventIDHandler command
-var getRegisteredEventIDHandlerCmd = &cobra.Command{
-	Use:   "getRegisteredEventIDHandler",
+// GetRegisteredEventIDHandlerCmd represents the GetRegisteredEventIDHandler command
+var GetRegisteredEventIDHandlerCmd = &cobra.Command{
+	Use:   "GetRegisteredEventIDHandler",
 	Short: "Get registered event ID handler",
 	Long:  `Get registered event ID handler`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,7 +39,6 @@ var getRegisteredEventIDHandlerCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getRegisteredEventIDHandlerCmd)
-	getRegisteredEventIDHandlerCmd.Flags().StringP("eventId", "ed", "0", "Event id")
-	_ = getRegisteredEventIDHandlerCmd.MarkFlagRequired("eventId")
+	GetRegisteredEventIDHandlerCmd.Flags().StringP("eventId", "ed", "0", "Event id")
+	_ = GetRegisteredEventIDHandlerCmd.MarkFlagRequired("eventId")
 }

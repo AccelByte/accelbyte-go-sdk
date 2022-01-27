@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/sessionbrowser"
 	"github.com/AccelByte/accelbyte-go-sdk/sessionbrowser-sdk/pkg/sessionbrowserclient/session"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getRecentPlayerCmd represents the getRecentPlayer command
-var getRecentPlayerCmd = &cobra.Command{
-	Use:   "getRecentPlayer",
+// GetRecentPlayerCmd represents the GetRecentPlayer command
+var GetRecentPlayerCmd = &cobra.Command{
+	Use:   "GetRecentPlayer",
 	Short: "Get recent player",
 	Long:  `Get recent player`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,9 +41,8 @@ var getRecentPlayerCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getRecentPlayerCmd)
-	getRecentPlayerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getRecentPlayerCmd.MarkFlagRequired("namespace")
-	getRecentPlayerCmd.Flags().StringP("userID", "uD", " ", "User ID")
-	_ = getRecentPlayerCmd.MarkFlagRequired("userID")
+	GetRecentPlayerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetRecentPlayerCmd.MarkFlagRequired("namespace")
+	GetRecentPlayerCmd.Flags().StringP("userID", "uD", " ", "User ID")
+	_ = GetRecentPlayerCmd.MarkFlagRequired("userID")
 }

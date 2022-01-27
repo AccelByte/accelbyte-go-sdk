@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/admin"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/dsmc"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// deleteSessionCmd represents the deleteSession command
-var deleteSessionCmd = &cobra.Command{
-	Use:   "deleteSession",
+// DeleteSessionCmd represents the DeleteSession command
+var DeleteSessionCmd = &cobra.Command{
+	Use:   "DeleteSession",
 	Short: "Delete session",
 	Long:  `Delete session`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,9 +40,8 @@ var deleteSessionCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(deleteSessionCmd)
-	deleteSessionCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = deleteSessionCmd.MarkFlagRequired("namespace")
-	deleteSessionCmd.Flags().StringP("sessionID", "sD", " ", "Session ID")
-	_ = deleteSessionCmd.MarkFlagRequired("sessionID")
+	DeleteSessionCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = DeleteSessionCmd.MarkFlagRequired("namespace")
+	DeleteSessionCmd.Flags().StringP("sessionID", "sD", " ", "Session ID")
+	_ = DeleteSessionCmd.MarkFlagRequired("sessionID")
 }

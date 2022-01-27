@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/dslogmanager-sdk/pkg/dslogmanagerclient/terminated_servers"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/dslogmanager"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// downloadServerLogsCmd represents the downloadServerLogs command
-var downloadServerLogsCmd = &cobra.Command{
-	Use:   "downloadServerLogs",
+// DownloadServerLogsCmd represents the DownloadServerLogs command
+var DownloadServerLogsCmd = &cobra.Command{
+	Use:   "DownloadServerLogs",
 	Short: "Download server logs",
 	Long:  `Download server logs`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,9 +40,8 @@ var downloadServerLogsCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(downloadServerLogsCmd)
-	downloadServerLogsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = downloadServerLogsCmd.MarkFlagRequired("namespace")
-	downloadServerLogsCmd.Flags().StringP("podName", "pe", " ", "Pod name")
-	_ = downloadServerLogsCmd.MarkFlagRequired("podName")
+	DownloadServerLogsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = DownloadServerLogsCmd.MarkFlagRequired("namespace")
+	DownloadServerLogsCmd.Flags().StringP("podName", "pe", " ", "Pod name")
+	_ = DownloadServerLogsCmd.MarkFlagRequired("podName")
 }

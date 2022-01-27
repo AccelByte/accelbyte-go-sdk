@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/item"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// publicGetAppCmd represents the publicGetApp command
-var publicGetAppCmd = &cobra.Command{
-	Use:   "publicGetApp",
+// PublicGetAppCmd represents the PublicGetApp command
+var PublicGetAppCmd = &cobra.Command{
+	Use:   "PublicGetApp",
 	Short: "Public get app",
 	Long:  `Public get app`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,12 +47,11 @@ var publicGetAppCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(publicGetAppCmd)
-	publicGetAppCmd.Flags().StringP("itemId", "id", " ", "Item id")
-	_ = publicGetAppCmd.MarkFlagRequired("itemId")
-	publicGetAppCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = publicGetAppCmd.MarkFlagRequired("namespace")
-	publicGetAppCmd.Flags().StringP("language", "le", " ", "Language")
-	publicGetAppCmd.Flags().StringP("region", "rn", " ", "Region")
-	publicGetAppCmd.Flags().StringP("storeId", "sd", " ", "Store id")
+	PublicGetAppCmd.Flags().StringP("itemId", "id", " ", "Item id")
+	_ = PublicGetAppCmd.MarkFlagRequired("itemId")
+	PublicGetAppCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PublicGetAppCmd.MarkFlagRequired("namespace")
+	PublicGetAppCmd.Flags().StringP("language", "le", " ", "Language")
+	PublicGetAppCmd.Flags().StringP("region", "rn", " ", "Region")
+	PublicGetAppCmd.Flags().StringP("storeId", "sd", " ", "Store id")
 }

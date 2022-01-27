@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/basic"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// publicUpdateUserProfileCmd represents the publicUpdateUserProfile command
-var publicUpdateUserProfileCmd = &cobra.Command{
-	Use:   "publicUpdateUserProfile",
+// PublicUpdateUserProfileCmd represents the PublicUpdateUserProfile command
+var PublicUpdateUserProfileCmd = &cobra.Command{
+	Use:   "PublicUpdateUserProfile",
 	Short: "Public update user profile",
 	Long:  `Public update user profile`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -51,10 +50,9 @@ var publicUpdateUserProfileCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(publicUpdateUserProfileCmd)
-	publicUpdateUserProfileCmd.Flags().StringP("body", "by", " ", "Body")
-	publicUpdateUserProfileCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = publicUpdateUserProfileCmd.MarkFlagRequired("namespace")
-	publicUpdateUserProfileCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = publicUpdateUserProfileCmd.MarkFlagRequired("userId")
+	PublicUpdateUserProfileCmd.Flags().StringP("body", "by", " ", "Body")
+	PublicUpdateUserProfileCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PublicUpdateUserProfileCmd.MarkFlagRequired("namespace")
+	PublicUpdateUserProfileCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = PublicUpdateUserProfileCmd.MarkFlagRequired("userId")
 }

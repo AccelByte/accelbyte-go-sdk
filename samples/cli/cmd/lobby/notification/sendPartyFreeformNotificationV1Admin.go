@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/lobby"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// sendPartyFreeformNotificationV1AdminCmd represents the sendPartyFreeformNotificationV1Admin command
-var sendPartyFreeformNotificationV1AdminCmd = &cobra.Command{
-	Use:   "sendPartyFreeformNotificationV1Admin",
+// SendPartyFreeformNotificationV1AdminCmd represents the SendPartyFreeformNotificationV1Admin command
+var SendPartyFreeformNotificationV1AdminCmd = &cobra.Command{
+	Use:   "SendPartyFreeformNotificationV1Admin",
 	Short: "Send party freeform notification V1 admin",
 	Long:  `Send party freeform notification V1 admin`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,11 +49,10 @@ var sendPartyFreeformNotificationV1AdminCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(sendPartyFreeformNotificationV1AdminCmd)
-	sendPartyFreeformNotificationV1AdminCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = sendPartyFreeformNotificationV1AdminCmd.MarkFlagRequired("body")
-	sendPartyFreeformNotificationV1AdminCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = sendPartyFreeformNotificationV1AdminCmd.MarkFlagRequired("namespace")
-	sendPartyFreeformNotificationV1AdminCmd.Flags().StringP("partyId", "pd", " ", "Party id")
-	_ = sendPartyFreeformNotificationV1AdminCmd.MarkFlagRequired("partyId")
+	SendPartyFreeformNotificationV1AdminCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = SendPartyFreeformNotificationV1AdminCmd.MarkFlagRequired("body")
+	SendPartyFreeformNotificationV1AdminCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = SendPartyFreeformNotificationV1AdminCmd.MarkFlagRequired("namespace")
+	SendPartyFreeformNotificationV1AdminCmd.Flags().StringP("partyId", "pd", " ", "Party id")
+	_ = SendPartyFreeformNotificationV1AdminCmd.MarkFlagRequired("partyId")
 }

@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/config"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/dsmc"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getConfigCmd represents the getConfig command
-var getConfigCmd = &cobra.Command{
-	Use:   "getConfig",
+// GetConfigCmd represents the GetConfig command
+var GetConfigCmd = &cobra.Command{
+	Use:   "GetConfig",
 	Short: "Get config",
 	Long:  `Get config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,7 +39,6 @@ var getConfigCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getConfigCmd)
-	getConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getConfigCmd.MarkFlagRequired("namespace")
+	GetConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetConfigCmd.MarkFlagRequired("namespace")
 }

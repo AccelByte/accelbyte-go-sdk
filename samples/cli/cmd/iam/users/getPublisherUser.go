@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getPublisherUserCmd represents the getPublisherUser command
-var getPublisherUserCmd = &cobra.Command{
-	Use:   "getPublisherUser",
+// GetPublisherUserCmd represents the GetPublisherUser command
+var GetPublisherUserCmd = &cobra.Command{
+	Use:   "GetPublisherUser",
 	Short: "Get publisher user",
 	Long:  `Get publisher user`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,9 +41,8 @@ var getPublisherUserCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getPublisherUserCmd)
-	getPublisherUserCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getPublisherUserCmd.MarkFlagRequired("namespace")
-	getPublisherUserCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = getPublisherUserCmd.MarkFlagRequired("userId")
+	GetPublisherUserCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetPublisherUserCmd.MarkFlagRequired("namespace")
+	GetPublisherUserCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = GetPublisherUserCmd.MarkFlagRequired("userId")
 }

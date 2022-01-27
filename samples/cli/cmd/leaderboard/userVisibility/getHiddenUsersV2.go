@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/leaderboard-sdk/pkg/leaderboardclient/user_visibility"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/leaderboard"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getHiddenUsersV2Cmd represents the getHiddenUsersV2 command
-var getHiddenUsersV2Cmd = &cobra.Command{
-	Use:   "getHiddenUsersV2",
+// GetHiddenUsersV2Cmd represents the GetHiddenUsersV2 command
+var GetHiddenUsersV2Cmd = &cobra.Command{
+	Use:   "GetHiddenUsersV2",
 	Short: "Get hidden users V2",
 	Long:  `Get hidden users V2`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -46,11 +45,10 @@ var getHiddenUsersV2Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getHiddenUsersV2Cmd)
-	getHiddenUsersV2Cmd.Flags().StringP("leaderboardCode", "le", " ", "Leaderboard code")
-	_ = getHiddenUsersV2Cmd.MarkFlagRequired("leaderboardCode")
-	getHiddenUsersV2Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getHiddenUsersV2Cmd.MarkFlagRequired("namespace")
-	getHiddenUsersV2Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
-	getHiddenUsersV2Cmd.Flags().Int64P("offset", "ot", 0, "Offset")
+	GetHiddenUsersV2Cmd.Flags().StringP("leaderboardCode", "le", " ", "Leaderboard code")
+	_ = GetHiddenUsersV2Cmd.MarkFlagRequired("leaderboardCode")
+	GetHiddenUsersV2Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetHiddenUsersV2Cmd.MarkFlagRequired("namespace")
+	GetHiddenUsersV2Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
+	GetHiddenUsersV2Cmd.Flags().Int64P("offset", "ot", 0, "Offset")
 }

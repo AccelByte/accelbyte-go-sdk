@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/leaderboard-sdk/pkg/leaderboardclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/leaderboard"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// updateLeaderboardConfigurationAdminV1Cmd represents the updateLeaderboardConfigurationAdminV1 command
-var updateLeaderboardConfigurationAdminV1Cmd = &cobra.Command{
-	Use:   "updateLeaderboardConfigurationAdminV1",
+// UpdateLeaderboardConfigurationAdminV1Cmd represents the UpdateLeaderboardConfigurationAdminV1 command
+var UpdateLeaderboardConfigurationAdminV1Cmd = &cobra.Command{
+	Use:   "UpdateLeaderboardConfigurationAdminV1",
 	Short: "Update leaderboard configuration admin V1",
 	Long:  `Update leaderboard configuration admin V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -51,11 +50,10 @@ var updateLeaderboardConfigurationAdminV1Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(updateLeaderboardConfigurationAdminV1Cmd)
-	updateLeaderboardConfigurationAdminV1Cmd.Flags().StringP("body", "by", " ", "Body")
-	_ = updateLeaderboardConfigurationAdminV1Cmd.MarkFlagRequired("body")
-	updateLeaderboardConfigurationAdminV1Cmd.Flags().StringP("leaderboardCode", "le", " ", "Leaderboard code")
-	_ = updateLeaderboardConfigurationAdminV1Cmd.MarkFlagRequired("leaderboardCode")
-	updateLeaderboardConfigurationAdminV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = updateLeaderboardConfigurationAdminV1Cmd.MarkFlagRequired("namespace")
+	UpdateLeaderboardConfigurationAdminV1Cmd.Flags().StringP("body", "by", " ", "Body")
+	_ = UpdateLeaderboardConfigurationAdminV1Cmd.MarkFlagRequired("body")
+	UpdateLeaderboardConfigurationAdminV1Cmd.Flags().StringP("leaderboardCode", "le", " ", "Leaderboard code")
+	_ = UpdateLeaderboardConfigurationAdminV1Cmd.MarkFlagRequired("leaderboardCode")
+	UpdateLeaderboardConfigurationAdminV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = UpdateLeaderboardConfigurationAdminV1Cmd.MarkFlagRequired("namespace")
 }

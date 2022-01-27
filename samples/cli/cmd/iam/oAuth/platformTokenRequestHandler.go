@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// platformTokenRequestHandlerCmd represents the platformTokenRequestHandler command
-var platformTokenRequestHandlerCmd = &cobra.Command{
-	Use:   "platformTokenRequestHandler",
+// PlatformTokenRequestHandlerCmd represents the PlatformTokenRequestHandler command
+var PlatformTokenRequestHandlerCmd = &cobra.Command{
+	Use:   "PlatformTokenRequestHandler",
 	Short: "Platform token request handler",
 	Long:  `Platform token request handler`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -46,11 +45,10 @@ var platformTokenRequestHandlerCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(platformTokenRequestHandlerCmd)
-	platformTokenRequestHandlerCmd.Flags().StringP("device_id", "dd", " ", "Device id")
-	platformTokenRequestHandlerCmd.Flags().StringP("platform_token", "pn", " ", "Platform token")
-	platformTokenRequestHandlerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = platformTokenRequestHandlerCmd.MarkFlagRequired("namespace")
-	platformTokenRequestHandlerCmd.Flags().StringP("platformId", "pd", " ", "Platform id")
-	_ = platformTokenRequestHandlerCmd.MarkFlagRequired("platformId")
+	PlatformTokenRequestHandlerCmd.Flags().StringP("device_id", "dd", " ", "Device id")
+	PlatformTokenRequestHandlerCmd.Flags().StringP("platform_token", "pn", " ", "Platform token")
+	PlatformTokenRequestHandlerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PlatformTokenRequestHandlerCmd.MarkFlagRequired("namespace")
+	PlatformTokenRequestHandlerCmd.Flags().StringP("platformId", "pd", " ", "Platform id")
+	_ = PlatformTokenRequestHandlerCmd.MarkFlagRequired("platformId")
 }

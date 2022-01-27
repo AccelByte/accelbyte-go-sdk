@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/payment_station"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getPaymentPublicConfigCmd represents the getPaymentPublicConfig command
-var getPaymentPublicConfigCmd = &cobra.Command{
-	Use:   "getPaymentPublicConfig",
+// GetPaymentPublicConfigCmd represents the GetPaymentPublicConfig command
+var GetPaymentPublicConfigCmd = &cobra.Command{
+	Use:   "GetPaymentPublicConfig",
 	Short: "Get payment public config",
 	Long:  `Get payment public config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -46,12 +45,11 @@ var getPaymentPublicConfigCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getPaymentPublicConfigCmd)
-	getPaymentPublicConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getPaymentPublicConfigCmd.MarkFlagRequired("namespace")
-	getPaymentPublicConfigCmd.Flags().BoolP("sandbox", "sx", false, "Sandbox")
-	getPaymentPublicConfigCmd.Flags().StringP("paymentProvider", "pr", " ", "Payment provider")
-	_ = getPaymentPublicConfigCmd.MarkFlagRequired("paymentProvider")
-	getPaymentPublicConfigCmd.Flags().StringP("region", "rn", " ", "Region")
-	_ = getPaymentPublicConfigCmd.MarkFlagRequired("region")
+	GetPaymentPublicConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetPaymentPublicConfigCmd.MarkFlagRequired("namespace")
+	GetPaymentPublicConfigCmd.Flags().BoolP("sandbox", "sx", false, "Sandbox")
+	GetPaymentPublicConfigCmd.Flags().StringP("paymentProvider", "pr", " ", "Payment provider")
+	_ = GetPaymentPublicConfigCmd.MarkFlagRequired("paymentProvider")
+	GetPaymentPublicConfigCmd.Flags().StringP("region", "rn", " ", "Region")
+	_ = GetPaymentPublicConfigCmd.MarkFlagRequired("region")
 }

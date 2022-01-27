@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/presence"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/lobby"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// usersPresenceHandlerV1Cmd represents the usersPresenceHandlerV1 command
-var usersPresenceHandlerV1Cmd = &cobra.Command{
-	Use:   "usersPresenceHandlerV1",
+// UsersPresenceHandlerV1Cmd represents the UsersPresenceHandlerV1 command
+var UsersPresenceHandlerV1Cmd = &cobra.Command{
+	Use:   "UsersPresenceHandlerV1",
 	Short: "Users presence handler V1",
 	Long:  `Users presence handler V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -44,10 +43,9 @@ var usersPresenceHandlerV1Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(usersPresenceHandlerV1Cmd)
-	usersPresenceHandlerV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = usersPresenceHandlerV1Cmd.MarkFlagRequired("namespace")
-	usersPresenceHandlerV1Cmd.Flags().BoolP("countOnly", "cy", false, "Count only")
-	usersPresenceHandlerV1Cmd.Flags().StringP("userIds", "us", " ", "User ids")
-	_ = usersPresenceHandlerV1Cmd.MarkFlagRequired("userIds")
+	UsersPresenceHandlerV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = UsersPresenceHandlerV1Cmd.MarkFlagRequired("namespace")
+	UsersPresenceHandlerV1Cmd.Flags().BoolP("countOnly", "cy", false, "Count only")
+	UsersPresenceHandlerV1Cmd.Flags().StringP("userIds", "us", " ", "User ids")
+	_ = UsersPresenceHandlerV1Cmd.MarkFlagRequired("userIds")
 }

@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/leaderboard-sdk/pkg/leaderboardclient/leaderboard_data"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/leaderboard"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getAllTimeLeaderboardRankingAdminV1Cmd represents the getAllTimeLeaderboardRankingAdminV1 command
-var getAllTimeLeaderboardRankingAdminV1Cmd = &cobra.Command{
-	Use:   "getAllTimeLeaderboardRankingAdminV1",
+// GetAllTimeLeaderboardRankingAdminV1Cmd represents the GetAllTimeLeaderboardRankingAdminV1 command
+var GetAllTimeLeaderboardRankingAdminV1Cmd = &cobra.Command{
+	Use:   "GetAllTimeLeaderboardRankingAdminV1",
 	Short: "Get all time leaderboard ranking admin V1",
 	Long:  `Get all time leaderboard ranking admin V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -46,11 +45,10 @@ var getAllTimeLeaderboardRankingAdminV1Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getAllTimeLeaderboardRankingAdminV1Cmd)
-	getAllTimeLeaderboardRankingAdminV1Cmd.Flags().StringP("leaderboardCode", "le", " ", "Leaderboard code")
-	_ = getAllTimeLeaderboardRankingAdminV1Cmd.MarkFlagRequired("leaderboardCode")
-	getAllTimeLeaderboardRankingAdminV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getAllTimeLeaderboardRankingAdminV1Cmd.MarkFlagRequired("namespace")
-	getAllTimeLeaderboardRankingAdminV1Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
-	getAllTimeLeaderboardRankingAdminV1Cmd.Flags().Int64P("offset", "ot", 0, "Offset")
+	GetAllTimeLeaderboardRankingAdminV1Cmd.Flags().StringP("leaderboardCode", "le", " ", "Leaderboard code")
+	_ = GetAllTimeLeaderboardRankingAdminV1Cmd.MarkFlagRequired("leaderboardCode")
+	GetAllTimeLeaderboardRankingAdminV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetAllTimeLeaderboardRankingAdminV1Cmd.MarkFlagRequired("namespace")
+	GetAllTimeLeaderboardRankingAdminV1Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
+	GetAllTimeLeaderboardRankingAdminV1Cmd.Flags().Int64P("offset", "ot", 0, "Offset")
 }

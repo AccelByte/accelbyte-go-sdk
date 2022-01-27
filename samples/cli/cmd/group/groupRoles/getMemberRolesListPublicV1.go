@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/group-sdk/pkg/groupclient/group_roles"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/group"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getMemberRolesListPublicV1Cmd represents the getMemberRolesListPublicV1 command
-var getMemberRolesListPublicV1Cmd = &cobra.Command{
-	Use:   "getMemberRolesListPublicV1",
+// GetMemberRolesListPublicV1Cmd represents the GetMemberRolesListPublicV1 command
+var GetMemberRolesListPublicV1Cmd = &cobra.Command{
+	Use:   "GetMemberRolesListPublicV1",
 	Short: "Get member roles list public V1",
 	Long:  `Get member roles list public V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -44,9 +43,8 @@ var getMemberRolesListPublicV1Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getMemberRolesListPublicV1Cmd)
-	getMemberRolesListPublicV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getMemberRolesListPublicV1Cmd.MarkFlagRequired("namespace")
-	getMemberRolesListPublicV1Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
-	getMemberRolesListPublicV1Cmd.Flags().Int64P("offset", "ot", 0, "Offset")
+	GetMemberRolesListPublicV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetMemberRolesListPublicV1Cmd.MarkFlagRequired("namespace")
+	GetMemberRolesListPublicV1Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
+	GetMemberRolesListPublicV1Cmd.Flags().Int64P("offset", "ot", 0, "Offset")
 }

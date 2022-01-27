@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// updatePasswordCmd represents the updatePassword command
-var updatePasswordCmd = &cobra.Command{
-	Use:   "updatePassword",
+// UpdatePasswordCmd represents the UpdatePassword command
+var UpdatePasswordCmd = &cobra.Command{
+	Use:   "UpdatePassword",
 	Short: "Update password",
 	Long:  `Update password`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,11 +49,10 @@ var updatePasswordCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(updatePasswordCmd)
-	updatePasswordCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = updatePasswordCmd.MarkFlagRequired("body")
-	updatePasswordCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = updatePasswordCmd.MarkFlagRequired("namespace")
-	updatePasswordCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = updatePasswordCmd.MarkFlagRequired("userId")
+	UpdatePasswordCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = UpdatePasswordCmd.MarkFlagRequired("body")
+	UpdatePasswordCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = UpdatePasswordCmd.MarkFlagRequired("namespace")
+	UpdatePasswordCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = UpdatePasswordCmd.MarkFlagRequired("userId")
 }

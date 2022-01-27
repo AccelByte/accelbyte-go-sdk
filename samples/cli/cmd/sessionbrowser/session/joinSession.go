@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/sessionbrowser"
 	"github.com/AccelByte/accelbyte-go-sdk/sessionbrowser-sdk/pkg/sessionbrowserclient/session"
 	"github.com/AccelByte/accelbyte-go-sdk/sessionbrowser-sdk/pkg/sessionbrowserclientmodels"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// joinSessionCmd represents the joinSession command
-var joinSessionCmd = &cobra.Command{
-	Use:   "joinSession",
+// JoinSessionCmd represents the JoinSession command
+var JoinSessionCmd = &cobra.Command{
+	Use:   "JoinSession",
 	Short: "Join session",
 	Long:  `Join session`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -51,11 +50,10 @@ var joinSessionCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(joinSessionCmd)
-	joinSessionCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = joinSessionCmd.MarkFlagRequired("body")
-	joinSessionCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = joinSessionCmd.MarkFlagRequired("namespace")
-	joinSessionCmd.Flags().StringP("sessionID", "sD", " ", "Session ID")
-	_ = joinSessionCmd.MarkFlagRequired("sessionID")
+	JoinSessionCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = JoinSessionCmd.MarkFlagRequired("body")
+	JoinSessionCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = JoinSessionCmd.MarkFlagRequired("namespace")
+	JoinSessionCmd.Flags().StringP("sessionID", "sD", " ", "Session ID")
+	_ = JoinSessionCmd.MarkFlagRequired("sessionID")
 }

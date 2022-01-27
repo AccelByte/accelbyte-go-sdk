@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/ugc"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/admin_group"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminGetGroupCmd represents the adminGetGroup command
-var adminGetGroupCmd = &cobra.Command{
-	Use:   "adminGetGroup",
+// AdminGetGroupCmd represents the AdminGetGroup command
+var AdminGetGroupCmd = &cobra.Command{
+	Use:   "AdminGetGroup",
 	Short: "Admin get group",
 	Long:  `Admin get group`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -44,11 +43,10 @@ var adminGetGroupCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminGetGroupCmd)
-	adminGetGroupCmd.Flags().StringP("groupId", "gd", " ", "Group id")
-	_ = adminGetGroupCmd.MarkFlagRequired("groupId")
-	adminGetGroupCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = adminGetGroupCmd.MarkFlagRequired("namespace")
-	adminGetGroupCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = adminGetGroupCmd.MarkFlagRequired("userId")
+	AdminGetGroupCmd.Flags().StringP("groupId", "gd", " ", "Group id")
+	_ = AdminGetGroupCmd.MarkFlagRequired("groupId")
+	AdminGetGroupCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AdminGetGroupCmd.MarkFlagRequired("namespace")
+	AdminGetGroupCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = AdminGetGroupCmd.MarkFlagRequired("userId")
 }

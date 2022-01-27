@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/eventlog-sdk/pkg/eventlogclient/event_descriptions"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/eventlog"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// specificUXDescriptionHandlerCmd represents the specificUXDescriptionHandler command
-var specificUXDescriptionHandlerCmd = &cobra.Command{
-	Use:   "specificUXDescriptionHandler",
+// SpecificUXDescriptionHandlerCmd represents the SpecificUXDescriptionHandler command
+var SpecificUXDescriptionHandlerCmd = &cobra.Command{
+	Use:   "SpecificUXDescriptionHandler",
 	Short: "Specific UX description handler",
 	Long:  `Specific UX description handler`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,6 +39,5 @@ var specificUXDescriptionHandlerCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(specificUXDescriptionHandlerCmd)
-	specificUXDescriptionHandlerCmd.Flags().StringP("ux", "ux", " ", "Ux")
+	SpecificUXDescriptionHandlerCmd.Flags().StringP("ux", "ux", " ", "Ux")
 }

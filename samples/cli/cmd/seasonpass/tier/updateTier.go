@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/seasonpass-sdk/pkg/seasonpassclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/seasonpass"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// updateTierCmd represents the updateTier command
-var updateTierCmd = &cobra.Command{
-	Use:   "updateTier",
+// UpdateTierCmd represents the UpdateTier command
+var UpdateTierCmd = &cobra.Command{
+	Use:   "UpdateTier",
 	Short: "Update tier",
 	Long:  `Update tier`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -53,12 +52,11 @@ var updateTierCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(updateTierCmd)
-	updateTierCmd.Flags().StringP("body", "by", " ", "Body")
-	updateTierCmd.Flags().StringP("id", "id", " ", "Id")
-	_ = updateTierCmd.MarkFlagRequired("id")
-	updateTierCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = updateTierCmd.MarkFlagRequired("namespace")
-	updateTierCmd.Flags().StringP("seasonId", "sd", " ", "Season id")
-	_ = updateTierCmd.MarkFlagRequired("seasonId")
+	UpdateTierCmd.Flags().StringP("body", "by", " ", "Body")
+	UpdateTierCmd.Flags().StringP("id", "id", " ", "Id")
+	_ = UpdateTierCmd.MarkFlagRequired("id")
+	UpdateTierCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = UpdateTierCmd.MarkFlagRequired("namespace")
+	UpdateTierCmd.Flags().StringP("seasonId", "sd", " ", "Season id")
+	_ = UpdateTierCmd.MarkFlagRequired("seasonId")
 }

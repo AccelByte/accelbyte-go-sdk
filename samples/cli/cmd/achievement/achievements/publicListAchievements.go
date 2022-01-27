@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/achievement-sdk/pkg/achievementclient/achievements"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/achievement"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// publicListAchievementsCmd represents the publicListAchievements command
-var publicListAchievementsCmd = &cobra.Command{
-	Use:   "publicListAchievements",
+// PublicListAchievementsCmd represents the PublicListAchievements command
+var PublicListAchievementsCmd = &cobra.Command{
+	Use:   "PublicListAchievements",
 	Short: "Public list achievements",
 	Long:  `Public list achievements`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,12 +47,11 @@ var publicListAchievementsCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(publicListAchievementsCmd)
-	publicListAchievementsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = publicListAchievementsCmd.MarkFlagRequired("namespace")
-	publicListAchievementsCmd.Flags().Int64P("limit", "lt", 20, "Limit")
-	publicListAchievementsCmd.Flags().Int64P("offset", "ot", 0, "Offset")
-	publicListAchievementsCmd.Flags().StringP("sortBy", "sy", " ", "Sort by")
-	publicListAchievementsCmd.Flags().StringP("language", "le", " ", "Language")
-	_ = publicListAchievementsCmd.MarkFlagRequired("language")
+	PublicListAchievementsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PublicListAchievementsCmd.MarkFlagRequired("namespace")
+	PublicListAchievementsCmd.Flags().Int64P("limit", "lt", 20, "Limit")
+	PublicListAchievementsCmd.Flags().Int64P("offset", "ot", 0, "Offset")
+	PublicListAchievementsCmd.Flags().StringP("sortBy", "sy", " ", "Sort by")
+	PublicListAchievementsCmd.Flags().StringP("language", "le", " ", "Language")
+	_ = PublicListAchievementsCmd.MarkFlagRequired("language")
 }

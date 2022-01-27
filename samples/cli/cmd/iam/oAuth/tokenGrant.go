@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// tokenGrantCmd represents the tokenGrant command
-var tokenGrantCmd = &cobra.Command{
-	Use:   "tokenGrant",
+// TokenGrantCmd represents the TokenGrant command
+var TokenGrantCmd = &cobra.Command{
+	Use:   "TokenGrant",
 	Short: "Token grant",
 	Long:  `Token grant`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -56,15 +55,14 @@ var tokenGrantCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(tokenGrantCmd)
-	tokenGrantCmd.Flags().StringP("Device-Id", "Dd", " ", "Device id")
-	tokenGrantCmd.Flags().StringP("code", "ce", " ", "Code")
-	tokenGrantCmd.Flags().BoolP("extend_exp", "ep", false, "Extend exp")
-	tokenGrantCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	tokenGrantCmd.Flags().StringP("password", "pd", " ", "Password")
-	tokenGrantCmd.Flags().StringP("redirect_uri", "ri", " ", "Redirect uri")
-	tokenGrantCmd.Flags().StringP("refresh_token", "rn", " ", "Refresh token")
-	tokenGrantCmd.Flags().StringP("username", "ue", " ", "Username")
-	tokenGrantCmd.Flags().StringP("grant_type", "ge", " ", "Grant type")
-	_ = tokenGrantCmd.MarkFlagRequired("grant_type")
+	TokenGrantCmd.Flags().StringP("Device-Id", "Dd", " ", "Device id")
+	TokenGrantCmd.Flags().StringP("code", "ce", " ", "Code")
+	TokenGrantCmd.Flags().BoolP("extend_exp", "ep", false, "Extend exp")
+	TokenGrantCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	TokenGrantCmd.Flags().StringP("password", "pd", " ", "Password")
+	TokenGrantCmd.Flags().StringP("redirect_uri", "ri", " ", "Redirect uri")
+	TokenGrantCmd.Flags().StringP("refresh_token", "rn", " ", "Refresh token")
+	TokenGrantCmd.Flags().StringP("username", "ue", " ", "Username")
+	TokenGrantCmd.Flags().StringP("grant_type", "ge", " ", "Grant type")
+	_ = TokenGrantCmd.MarkFlagRequired("grant_type")
 }

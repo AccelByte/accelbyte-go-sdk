@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/item"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// queryUncategorizedItemsCmd represents the queryUncategorizedItems command
-var queryUncategorizedItemsCmd = &cobra.Command{
-	Use:   "queryUncategorizedItems",
+// QueryUncategorizedItemsCmd represents the QueryUncategorizedItems command
+var QueryUncategorizedItemsCmd = &cobra.Command{
+	Use:   "QueryUncategorizedItems",
 	Short: "Query uncategorized items",
 	Long:  `Query uncategorized items`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,12 +49,11 @@ var queryUncategorizedItemsCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(queryUncategorizedItemsCmd)
-	queryUncategorizedItemsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = queryUncategorizedItemsCmd.MarkFlagRequired("namespace")
-	queryUncategorizedItemsCmd.Flags().BoolP("activeOnly", "ay", false, "Active only")
-	queryUncategorizedItemsCmd.Flags().Int32P("limit", "lt", 20, "Limit")
-	queryUncategorizedItemsCmd.Flags().Int32P("offset", "ot", 0, "Offset")
-	queryUncategorizedItemsCmd.Flags().StringP("sortBy", "sy", " ", "Sort by")
-	queryUncategorizedItemsCmd.Flags().StringP("storeId", "sd", " ", "Store id")
+	QueryUncategorizedItemsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = QueryUncategorizedItemsCmd.MarkFlagRequired("namespace")
+	QueryUncategorizedItemsCmd.Flags().BoolP("activeOnly", "ay", false, "Active only")
+	QueryUncategorizedItemsCmd.Flags().Int32P("limit", "lt", 20, "Limit")
+	QueryUncategorizedItemsCmd.Flags().Int32P("offset", "ot", 0, "Offset")
+	QueryUncategorizedItemsCmd.Flags().StringP("sortBy", "sy", " ", "Sort by")
+	QueryUncategorizedItemsCmd.Flags().StringP("storeId", "sd", " ", "Store id")
 }

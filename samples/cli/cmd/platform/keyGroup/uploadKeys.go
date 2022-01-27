@@ -8,16 +8,15 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/key_group"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 	"os"
 )
 
-// uploadKeysCmd represents the uploadKeys command
-var uploadKeysCmd = &cobra.Command{
-	Use:   "uploadKeys",
+// UploadKeysCmd represents the UploadKeys command
+var UploadKeysCmd = &cobra.Command{
+	Use:   "UploadKeys",
 	Short: "Upload keys",
 	Long:  `Upload keys`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,10 +49,9 @@ var uploadKeysCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(uploadKeysCmd)
-	uploadKeysCmd.Flags().StringP("file", "fe", " ", "File")
-	uploadKeysCmd.Flags().StringP("keyGroupId", "kd", " ", "Key group id")
-	_ = uploadKeysCmd.MarkFlagRequired("keyGroupId")
-	uploadKeysCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = uploadKeysCmd.MarkFlagRequired("namespace")
+	UploadKeysCmd.Flags().StringP("file", "fe", " ", "File")
+	UploadKeysCmd.Flags().StringP("keyGroupId", "kd", " ", "Key group id")
+	_ = UploadKeysCmd.MarkFlagRequired("keyGroupId")
+	UploadKeysCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = UploadKeysCmd.MarkFlagRequired("namespace")
 }

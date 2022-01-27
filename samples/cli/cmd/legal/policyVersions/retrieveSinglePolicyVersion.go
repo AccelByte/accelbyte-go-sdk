@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclient/policy_versions"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/legal"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// retrieveSinglePolicyVersionCmd represents the retrieveSinglePolicyVersion command
-var retrieveSinglePolicyVersionCmd = &cobra.Command{
-	Use:   "retrieveSinglePolicyVersion",
+// RetrieveSinglePolicyVersionCmd represents the RetrieveSinglePolicyVersion command
+var RetrieveSinglePolicyVersionCmd = &cobra.Command{
+	Use:   "RetrieveSinglePolicyVersion",
 	Short: "Retrieve single policy version",
 	Long:  `Retrieve single policy version`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,8 +41,7 @@ var retrieveSinglePolicyVersionCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(retrieveSinglePolicyVersionCmd)
-	retrieveSinglePolicyVersionCmd.Flags().StringP("policyId", "pd", " ", "Policy id")
-	_ = retrieveSinglePolicyVersionCmd.MarkFlagRequired("policyId")
-	retrieveSinglePolicyVersionCmd.Flags().StringP("versionId", "vd", " ", "Version id")
+	RetrieveSinglePolicyVersionCmd.Flags().StringP("policyId", "pd", " ", "Policy id")
+	_ = RetrieveSinglePolicyVersionCmd.MarkFlagRequired("policyId")
+	RetrieveSinglePolicyVersionCmd.Flags().StringP("versionId", "vd", " ", "Version id")
 }

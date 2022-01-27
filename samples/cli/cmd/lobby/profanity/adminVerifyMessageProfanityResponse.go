@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/lobby"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminVerifyMessageProfanityResponseCmd represents the adminVerifyMessageProfanityResponse command
-var adminVerifyMessageProfanityResponseCmd = &cobra.Command{
-	Use:   "adminVerifyMessageProfanityResponse",
+// AdminVerifyMessageProfanityResponseCmd represents the AdminVerifyMessageProfanityResponse command
+var AdminVerifyMessageProfanityResponseCmd = &cobra.Command{
+	Use:   "AdminVerifyMessageProfanityResponse",
 	Short: "Admin verify message profanity response",
 	Long:  `Admin verify message profanity response`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,9 +48,8 @@ var adminVerifyMessageProfanityResponseCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminVerifyMessageProfanityResponseCmd)
-	adminVerifyMessageProfanityResponseCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = adminVerifyMessageProfanityResponseCmd.MarkFlagRequired("body")
-	adminVerifyMessageProfanityResponseCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = adminVerifyMessageProfanityResponseCmd.MarkFlagRequired("namespace")
+	AdminVerifyMessageProfanityResponseCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = AdminVerifyMessageProfanityResponseCmd.MarkFlagRequired("body")
+	AdminVerifyMessageProfanityResponseCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AdminVerifyMessageProfanityResponseCmd.MarkFlagRequired("namespace")
 }

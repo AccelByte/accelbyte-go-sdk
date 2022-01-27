@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/order"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// publicQueryUserOrdersCmd represents the publicQueryUserOrders command
-var publicQueryUserOrdersCmd = &cobra.Command{
-	Use:   "publicQueryUserOrders",
+// PublicQueryUserOrdersCmd represents the PublicQueryUserOrders command
+var PublicQueryUserOrdersCmd = &cobra.Command{
+	Use:   "PublicQueryUserOrders",
 	Short: "Public query user orders",
 	Long:  `Public query user orders`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,13 +49,12 @@ var publicQueryUserOrdersCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(publicQueryUserOrdersCmd)
-	publicQueryUserOrdersCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = publicQueryUserOrdersCmd.MarkFlagRequired("namespace")
-	publicQueryUserOrdersCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = publicQueryUserOrdersCmd.MarkFlagRequired("userId")
-	publicQueryUserOrdersCmd.Flags().StringP("itemId", "id", " ", "Item id")
-	publicQueryUserOrdersCmd.Flags().Int32P("limit", "lt", 20, "Limit")
-	publicQueryUserOrdersCmd.Flags().Int32P("offset", "ot", 0, "Offset")
-	publicQueryUserOrdersCmd.Flags().StringP("status", "ss", " ", "Status")
+	PublicQueryUserOrdersCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PublicQueryUserOrdersCmd.MarkFlagRequired("namespace")
+	PublicQueryUserOrdersCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = PublicQueryUserOrdersCmd.MarkFlagRequired("userId")
+	PublicQueryUserOrdersCmd.Flags().StringP("itemId", "id", " ", "Item id")
+	PublicQueryUserOrdersCmd.Flags().Int32P("limit", "lt", 20, "Limit")
+	PublicQueryUserOrdersCmd.Flags().Int32P("offset", "ot", 0, "Offset")
+	PublicQueryUserOrdersCmd.Flags().StringP("status", "ss", " ", "Status")
 }

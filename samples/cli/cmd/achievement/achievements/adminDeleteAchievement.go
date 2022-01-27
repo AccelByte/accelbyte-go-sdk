@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/achievement-sdk/pkg/achievementclient/achievements"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/achievement"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminDeleteAchievementCmd represents the adminDeleteAchievement command
-var adminDeleteAchievementCmd = &cobra.Command{
-	Use:   "adminDeleteAchievement",
+// AdminDeleteAchievementCmd represents the AdminDeleteAchievement command
+var AdminDeleteAchievementCmd = &cobra.Command{
+	Use:   "AdminDeleteAchievement",
 	Short: "Admin delete achievement",
 	Long:  `Admin delete achievement`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,9 +40,8 @@ var adminDeleteAchievementCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminDeleteAchievementCmd)
-	adminDeleteAchievementCmd.Flags().StringP("achievementCode", "ae", " ", "Achievement code")
-	_ = adminDeleteAchievementCmd.MarkFlagRequired("achievementCode")
-	adminDeleteAchievementCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = adminDeleteAchievementCmd.MarkFlagRequired("namespace")
+	AdminDeleteAchievementCmd.Flags().StringP("achievementCode", "ae", " ", "Achievement code")
+	_ = AdminDeleteAchievementCmd.MarkFlagRequired("achievementCode")
+	AdminDeleteAchievementCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AdminDeleteAchievementCmd.MarkFlagRequired("namespace")
 }

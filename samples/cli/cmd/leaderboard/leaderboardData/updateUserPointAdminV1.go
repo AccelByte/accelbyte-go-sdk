@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/leaderboard-sdk/pkg/leaderboardclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/leaderboard"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// updateUserPointAdminV1Cmd represents the updateUserPointAdminV1 command
-var updateUserPointAdminV1Cmd = &cobra.Command{
-	Use:   "updateUserPointAdminV1",
+// UpdateUserPointAdminV1Cmd represents the UpdateUserPointAdminV1 command
+var UpdateUserPointAdminV1Cmd = &cobra.Command{
+	Use:   "UpdateUserPointAdminV1",
 	Short: "Update user point admin V1",
 	Long:  `Update user point admin V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -53,13 +52,12 @@ var updateUserPointAdminV1Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(updateUserPointAdminV1Cmd)
-	updateUserPointAdminV1Cmd.Flags().StringP("body", "by", " ", "Body")
-	_ = updateUserPointAdminV1Cmd.MarkFlagRequired("body")
-	updateUserPointAdminV1Cmd.Flags().StringP("leaderboardCode", "le", " ", "Leaderboard code")
-	_ = updateUserPointAdminV1Cmd.MarkFlagRequired("leaderboardCode")
-	updateUserPointAdminV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = updateUserPointAdminV1Cmd.MarkFlagRequired("namespace")
-	updateUserPointAdminV1Cmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = updateUserPointAdminV1Cmd.MarkFlagRequired("userId")
+	UpdateUserPointAdminV1Cmd.Flags().StringP("body", "by", " ", "Body")
+	_ = UpdateUserPointAdminV1Cmd.MarkFlagRequired("body")
+	UpdateUserPointAdminV1Cmd.Flags().StringP("leaderboardCode", "le", " ", "Leaderboard code")
+	_ = UpdateUserPointAdminV1Cmd.MarkFlagRequired("leaderboardCode")
+	UpdateUserPointAdminV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = UpdateUserPointAdminV1Cmd.MarkFlagRequired("namespace")
+	UpdateUserPointAdminV1Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = UpdateUserPointAdminV1Cmd.MarkFlagRequired("userId")
 }

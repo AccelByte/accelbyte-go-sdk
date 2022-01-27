@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// publicGetUserBanHistoryV3Cmd represents the publicGetUserBanHistoryV3 command
-var publicGetUserBanHistoryV3Cmd = &cobra.Command{
-	Use:   "publicGetUserBanHistoryV3",
+// PublicGetUserBanHistoryV3Cmd represents the PublicGetUserBanHistoryV3 command
+var PublicGetUserBanHistoryV3Cmd = &cobra.Command{
+	Use:   "PublicGetUserBanHistoryV3",
 	Short: "Public get user ban history V3",
 	Long:  `Public get user ban history V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,13 +49,12 @@ var publicGetUserBanHistoryV3Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(publicGetUserBanHistoryV3Cmd)
-	publicGetUserBanHistoryV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = publicGetUserBanHistoryV3Cmd.MarkFlagRequired("namespace")
-	publicGetUserBanHistoryV3Cmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = publicGetUserBanHistoryV3Cmd.MarkFlagRequired("userId")
-	publicGetUserBanHistoryV3Cmd.Flags().BoolP("activeOnly", "ay", false, "Active only")
-	publicGetUserBanHistoryV3Cmd.Flags().StringP("after", "ar", "0", "After")
-	publicGetUserBanHistoryV3Cmd.Flags().StringP("before", "be", "0", "Before")
-	publicGetUserBanHistoryV3Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
+	PublicGetUserBanHistoryV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PublicGetUserBanHistoryV3Cmd.MarkFlagRequired("namespace")
+	PublicGetUserBanHistoryV3Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = PublicGetUserBanHistoryV3Cmd.MarkFlagRequired("userId")
+	PublicGetUserBanHistoryV3Cmd.Flags().BoolP("activeOnly", "ay", false, "Active only")
+	PublicGetUserBanHistoryV3Cmd.Flags().StringP("after", "ar", "0", "After")
+	PublicGetUserBanHistoryV3Cmd.Flags().StringP("before", "be", "0", "Before")
+	PublicGetUserBanHistoryV3Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
 }

@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclient/utility"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/legal"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// checkReadinessCmd represents the checkReadiness command
-var checkReadinessCmd = &cobra.Command{
-	Use:   "checkReadiness",
+// CheckReadinessCmd represents the CheckReadiness command
+var CheckReadinessCmd = &cobra.Command{
+	Use:   "CheckReadiness",
 	Short: "Check readiness",
 	Long:  `Check readiness`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -34,8 +33,4 @@ var checkReadinessCmd = &cobra.Command{
 		}
 		return nil
 	},
-}
-
-func init() {
-	cmd.RootCmd.AddCommand(checkReadinessCmd)
 }

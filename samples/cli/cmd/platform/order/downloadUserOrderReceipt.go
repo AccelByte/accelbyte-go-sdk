@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/order"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// downloadUserOrderReceiptCmd represents the downloadUserOrderReceipt command
-var downloadUserOrderReceiptCmd = &cobra.Command{
-	Use:   "downloadUserOrderReceipt",
+// DownloadUserOrderReceiptCmd represents the DownloadUserOrderReceipt command
+var DownloadUserOrderReceiptCmd = &cobra.Command{
+	Use:   "DownloadUserOrderReceipt",
 	Short: "Download user order receipt",
 	Long:  `Download user order receipt`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,11 +42,10 @@ var downloadUserOrderReceiptCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(downloadUserOrderReceiptCmd)
-	downloadUserOrderReceiptCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = downloadUserOrderReceiptCmd.MarkFlagRequired("namespace")
-	downloadUserOrderReceiptCmd.Flags().StringP("orderNo", "oo", " ", "Order no")
-	_ = downloadUserOrderReceiptCmd.MarkFlagRequired("orderNo")
-	downloadUserOrderReceiptCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = downloadUserOrderReceiptCmd.MarkFlagRequired("userId")
+	DownloadUserOrderReceiptCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = DownloadUserOrderReceiptCmd.MarkFlagRequired("namespace")
+	DownloadUserOrderReceiptCmd.Flags().StringP("orderNo", "oo", " ", "Order no")
+	_ = DownloadUserOrderReceiptCmd.MarkFlagRequired("orderNo")
+	DownloadUserOrderReceiptCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = DownloadUserOrderReceiptCmd.MarkFlagRequired("userId")
 }

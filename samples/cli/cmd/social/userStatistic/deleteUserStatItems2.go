@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/social"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient/user_statistic"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// deleteUserStatItems2Cmd represents the deleteUserStatItems2 command
-var deleteUserStatItems2Cmd = &cobra.Command{
-	Use:   "deleteUserStatItems2",
+// DeleteUserStatItems2Cmd represents the DeleteUserStatItems2 command
+var DeleteUserStatItems2Cmd = &cobra.Command{
+	Use:   "DeleteUserStatItems2",
 	Short: "Delete user stat items 2",
 	Long:  `Delete user stat items 2`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -45,12 +44,11 @@ var deleteUserStatItems2Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(deleteUserStatItems2Cmd)
-	deleteUserStatItems2Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = deleteUserStatItems2Cmd.MarkFlagRequired("namespace")
-	deleteUserStatItems2Cmd.Flags().StringP("statCode", "se", " ", "Stat code")
-	_ = deleteUserStatItems2Cmd.MarkFlagRequired("statCode")
-	deleteUserStatItems2Cmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = deleteUserStatItems2Cmd.MarkFlagRequired("userId")
-	deleteUserStatItems2Cmd.Flags().StringP("additionalKey", "ay", " ", "Additional key")
+	DeleteUserStatItems2Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = DeleteUserStatItems2Cmd.MarkFlagRequired("namespace")
+	DeleteUserStatItems2Cmd.Flags().StringP("statCode", "se", " ", "Stat code")
+	_ = DeleteUserStatItems2Cmd.MarkFlagRequired("statCode")
+	DeleteUserStatItems2Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = DeleteUserStatItems2Cmd.MarkFlagRequired("userId")
+	DeleteUserStatItems2Cmd.Flags().StringP("additionalKey", "ay", " ", "Additional key")
 }

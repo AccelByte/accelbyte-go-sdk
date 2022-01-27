@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/image_config"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/dsmc"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getImageLimitCmd represents the getImageLimit command
-var getImageLimitCmd = &cobra.Command{
-	Use:   "getImageLimit",
+// GetImageLimitCmd represents the GetImageLimit command
+var GetImageLimitCmd = &cobra.Command{
+	Use:   "GetImageLimit",
 	Short: "Get image limit",
 	Long:  `Get image limit`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,7 +39,6 @@ var getImageLimitCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getImageLimitCmd)
-	getImageLimitCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getImageLimitCmd.MarkFlagRequired("namespace")
+	GetImageLimitCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetImageLimitCmd.MarkFlagRequired("namespace")
 }

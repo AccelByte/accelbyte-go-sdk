@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclient/user_info"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/legal"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getUserInfoStatusCmd represents the getUserInfoStatus command
-var getUserInfoStatusCmd = &cobra.Command{
-	Use:   "getUserInfoStatus",
+// GetUserInfoStatusCmd represents the GetUserInfoStatus command
+var GetUserInfoStatusCmd = &cobra.Command{
+	Use:   "GetUserInfoStatus",
 	Short: "Get user info status",
 	Long:  `Get user info status`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,6 +39,5 @@ var getUserInfoStatusCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getUserInfoStatusCmd)
-	getUserInfoStatusCmd.Flags().StringP("namespaces", "ns", " ", "Namespaces")
+	GetUserInfoStatusCmd.Flags().StringP("namespaces", "ns", " ", "Namespaces")
 }

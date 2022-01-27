@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// updateWxPayConfigCmd represents the updateWxPayConfig command
-var updateWxPayConfigCmd = &cobra.Command{
-	Use:   "updateWxPayConfig",
+// UpdateWxPayConfigCmd represents the UpdateWxPayConfig command
+var UpdateWxPayConfigCmd = &cobra.Command{
+	Use:   "UpdateWxPayConfig",
 	Short: "Update wx pay config",
 	Long:  `Update wx pay config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -51,9 +50,8 @@ var updateWxPayConfigCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(updateWxPayConfigCmd)
-	updateWxPayConfigCmd.Flags().StringP("body", "by", " ", "Body")
-	updateWxPayConfigCmd.Flags().StringP("id", "id", " ", "Id")
-	_ = updateWxPayConfigCmd.MarkFlagRequired("id")
-	updateWxPayConfigCmd.Flags().BoolP("validate", "ve", false, "Validate")
+	UpdateWxPayConfigCmd.Flags().StringP("body", "by", " ", "Body")
+	UpdateWxPayConfigCmd.Flags().StringP("id", "id", " ", "Id")
+	_ = UpdateWxPayConfigCmd.MarkFlagRequired("id")
+	UpdateWxPayConfigCmd.Flags().BoolP("validate", "ve", false, "Validate")
 }

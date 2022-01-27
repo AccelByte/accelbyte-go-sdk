@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/dsmc"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// createImageCmd represents the createImage command
-var createImageCmd = &cobra.Command{
-	Use:   "createImage",
+// CreateImageCmd represents the CreateImage command
+var CreateImageCmd = &cobra.Command{
+	Use:   "CreateImage",
 	Short: "Create image",
 	Long:  `Create image`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -46,7 +45,6 @@ var createImageCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(createImageCmd)
-	createImageCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = createImageCmd.MarkFlagRequired("body")
+	CreateImageCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = CreateImageCmd.MarkFlagRequired("body")
 }

@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/achievement-sdk/pkg/achievementclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/achievement"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminUpdateAchievementCmd represents the adminUpdateAchievement command
-var adminUpdateAchievementCmd = &cobra.Command{
-	Use:   "adminUpdateAchievement",
+// AdminUpdateAchievementCmd represents the AdminUpdateAchievement command
+var AdminUpdateAchievementCmd = &cobra.Command{
+	Use:   "AdminUpdateAchievement",
 	Short: "Admin update achievement",
 	Long:  `Admin update achievement`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -51,11 +50,10 @@ var adminUpdateAchievementCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminUpdateAchievementCmd)
-	adminUpdateAchievementCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = adminUpdateAchievementCmd.MarkFlagRequired("body")
-	adminUpdateAchievementCmd.Flags().StringP("achievementCode", "ae", " ", "Achievement code")
-	_ = adminUpdateAchievementCmd.MarkFlagRequired("achievementCode")
-	adminUpdateAchievementCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = adminUpdateAchievementCmd.MarkFlagRequired("namespace")
+	AdminUpdateAchievementCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = AdminUpdateAchievementCmd.MarkFlagRequired("body")
+	AdminUpdateAchievementCmd.Flags().StringP("achievementCode", "ae", " ", "Achievement code")
+	_ = AdminUpdateAchievementCmd.MarkFlagRequired("achievementCode")
+	AdminUpdateAchievementCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AdminUpdateAchievementCmd.MarkFlagRequired("namespace")
 }

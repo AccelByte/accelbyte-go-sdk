@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/notification"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/lobby"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// deleteTemplateLocalizationCmd represents the deleteTemplateLocalization command
-var deleteTemplateLocalizationCmd = &cobra.Command{
-	Use:   "deleteTemplateLocalization",
+// DeleteTemplateLocalizationCmd represents the DeleteTemplateLocalization command
+var DeleteTemplateLocalizationCmd = &cobra.Command{
+	Use:   "DeleteTemplateLocalization",
 	Short: "Delete template localization",
 	Long:  `Delete template localization`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,11 +42,10 @@ var deleteTemplateLocalizationCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(deleteTemplateLocalizationCmd)
-	deleteTemplateLocalizationCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = deleteTemplateLocalizationCmd.MarkFlagRequired("namespace")
-	deleteTemplateLocalizationCmd.Flags().StringP("templateLanguage", "te", " ", "Template language")
-	_ = deleteTemplateLocalizationCmd.MarkFlagRequired("templateLanguage")
-	deleteTemplateLocalizationCmd.Flags().StringP("templateSlug", "tg", " ", "Template slug")
-	_ = deleteTemplateLocalizationCmd.MarkFlagRequired("templateSlug")
+	DeleteTemplateLocalizationCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = DeleteTemplateLocalizationCmd.MarkFlagRequired("namespace")
+	DeleteTemplateLocalizationCmd.Flags().StringP("templateLanguage", "te", " ", "Template language")
+	_ = DeleteTemplateLocalizationCmd.MarkFlagRequired("templateLanguage")
+	DeleteTemplateLocalizationCmd.Flags().StringP("templateSlug", "tg", " ", "Template slug")
+	_ = DeleteTemplateLocalizationCmd.MarkFlagRequired("templateSlug")
 }

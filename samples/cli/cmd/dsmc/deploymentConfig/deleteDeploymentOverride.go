@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/deployment_config"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/dsmc"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// deleteDeploymentOverrideCmd represents the deleteDeploymentOverride command
-var deleteDeploymentOverrideCmd = &cobra.Command{
-	Use:   "deleteDeploymentOverride",
+// DeleteDeploymentOverrideCmd represents the DeleteDeploymentOverride command
+var DeleteDeploymentOverrideCmd = &cobra.Command{
+	Use:   "DeleteDeploymentOverride",
 	Short: "Delete deployment override",
 	Long:  `Delete deployment override`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -44,11 +43,10 @@ var deleteDeploymentOverrideCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(deleteDeploymentOverrideCmd)
-	deleteDeploymentOverrideCmd.Flags().StringP("deployment", "dt", " ", "Deployment")
-	_ = deleteDeploymentOverrideCmd.MarkFlagRequired("deployment")
-	deleteDeploymentOverrideCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = deleteDeploymentOverrideCmd.MarkFlagRequired("namespace")
-	deleteDeploymentOverrideCmd.Flags().StringP("version", "vn", " ", "Version")
-	_ = deleteDeploymentOverrideCmd.MarkFlagRequired("version")
+	DeleteDeploymentOverrideCmd.Flags().StringP("deployment", "dt", " ", "Deployment")
+	_ = DeleteDeploymentOverrideCmd.MarkFlagRequired("deployment")
+	DeleteDeploymentOverrideCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = DeleteDeploymentOverrideCmd.MarkFlagRequired("namespace")
+	DeleteDeploymentOverrideCmd.Flags().StringP("version", "vn", " ", "Version")
+	_ = DeleteDeploymentOverrideCmd.MarkFlagRequired("version")
 }

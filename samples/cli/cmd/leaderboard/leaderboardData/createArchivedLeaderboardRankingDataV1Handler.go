@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/leaderboard-sdk/pkg/leaderboardclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/leaderboard"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// createArchivedLeaderboardRankingDataV1HandlerCmd represents the createArchivedLeaderboardRankingDataV1Handler command
-var createArchivedLeaderboardRankingDataV1HandlerCmd = &cobra.Command{
-	Use:   "createArchivedLeaderboardRankingDataV1Handler",
+// CreateArchivedLeaderboardRankingDataV1HandlerCmd represents the CreateArchivedLeaderboardRankingDataV1Handler command
+var CreateArchivedLeaderboardRankingDataV1HandlerCmd = &cobra.Command{
+	Use:   "CreateArchivedLeaderboardRankingDataV1Handler",
 	Short: "Create archived leaderboard ranking data V1 handler",
 	Long:  `Create archived leaderboard ranking data V1 handler`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,9 +47,8 @@ var createArchivedLeaderboardRankingDataV1HandlerCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(createArchivedLeaderboardRankingDataV1HandlerCmd)
-	createArchivedLeaderboardRankingDataV1HandlerCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = createArchivedLeaderboardRankingDataV1HandlerCmd.MarkFlagRequired("body")
-	createArchivedLeaderboardRankingDataV1HandlerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = createArchivedLeaderboardRankingDataV1HandlerCmd.MarkFlagRequired("namespace")
+	CreateArchivedLeaderboardRankingDataV1HandlerCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = CreateArchivedLeaderboardRankingDataV1HandlerCmd.MarkFlagRequired("body")
+	CreateArchivedLeaderboardRankingDataV1HandlerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = CreateArchivedLeaderboardRankingDataV1HandlerCmd.MarkFlagRequired("namespace")
 }

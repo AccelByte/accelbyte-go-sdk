@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/reward"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// deleteRewardCmd represents the deleteReward command
-var deleteRewardCmd = &cobra.Command{
-	Use:   "deleteReward",
+// DeleteRewardCmd represents the DeleteReward command
+var DeleteRewardCmd = &cobra.Command{
+	Use:   "DeleteReward",
 	Short: "Delete reward",
 	Long:  `Delete reward`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,9 +41,8 @@ var deleteRewardCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(deleteRewardCmd)
-	deleteRewardCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = deleteRewardCmd.MarkFlagRequired("namespace")
-	deleteRewardCmd.Flags().StringP("rewardId", "rd", " ", "Reward id")
-	_ = deleteRewardCmd.MarkFlagRequired("rewardId")
+	DeleteRewardCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = DeleteRewardCmd.MarkFlagRequired("namespace")
+	DeleteRewardCmd.Flags().StringP("rewardId", "rd", " ", "Reward id")
+	_ = DeleteRewardCmd.MarkFlagRequired("rewardId")
 }

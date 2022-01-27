@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/matchmaking-sdk/pkg/matchmakingclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/matchmaking"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// addUserIntoSessionInChannelCmd represents the addUserIntoSessionInChannel command
-var addUserIntoSessionInChannelCmd = &cobra.Command{
-	Use:   "addUserIntoSessionInChannel",
+// AddUserIntoSessionInChannelCmd represents the AddUserIntoSessionInChannel command
+var AddUserIntoSessionInChannelCmd = &cobra.Command{
+	Use:   "AddUserIntoSessionInChannel",
 	Short: "Add user into session in channel",
 	Long:  `Add user into session in channel`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -52,13 +51,12 @@ var addUserIntoSessionInChannelCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(addUserIntoSessionInChannelCmd)
-	addUserIntoSessionInChannelCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = addUserIntoSessionInChannelCmd.MarkFlagRequired("body")
-	addUserIntoSessionInChannelCmd.Flags().StringP("channelName", "ce", " ", "Channel name")
-	_ = addUserIntoSessionInChannelCmd.MarkFlagRequired("channelName")
-	addUserIntoSessionInChannelCmd.Flags().StringP("matchID", "mD", " ", "Match ID")
-	_ = addUserIntoSessionInChannelCmd.MarkFlagRequired("matchID")
-	addUserIntoSessionInChannelCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = addUserIntoSessionInChannelCmd.MarkFlagRequired("namespace")
+	AddUserIntoSessionInChannelCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = AddUserIntoSessionInChannelCmd.MarkFlagRequired("body")
+	AddUserIntoSessionInChannelCmd.Flags().StringP("channelName", "ce", " ", "Channel name")
+	_ = AddUserIntoSessionInChannelCmd.MarkFlagRequired("channelName")
+	AddUserIntoSessionInChannelCmd.Flags().StringP("matchID", "mD", " ", "Match ID")
+	_ = AddUserIntoSessionInChannelCmd.MarkFlagRequired("matchID")
+	AddUserIntoSessionInChannelCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AddUserIntoSessionInChannelCmd.MarkFlagRequired("namespace")
 }

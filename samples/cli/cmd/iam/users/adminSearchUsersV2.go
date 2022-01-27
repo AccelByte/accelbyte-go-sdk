@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminSearchUsersV2Cmd represents the adminSearchUsersV2 command
-var adminSearchUsersV2Cmd = &cobra.Command{
-	Use:   "adminSearchUsersV2",
+// AdminSearchUsersV2Cmd represents the AdminSearchUsersV2 command
+var AdminSearchUsersV2Cmd = &cobra.Command{
+	Use:   "AdminSearchUsersV2",
 	Short: "Admin search users V2",
 	Long:  `Admin search users V2`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -58,17 +57,16 @@ var adminSearchUsersV2Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminSearchUsersV2Cmd)
-	adminSearchUsersV2Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = adminSearchUsersV2Cmd.MarkFlagRequired("namespace")
-	adminSearchUsersV2Cmd.Flags().StringP("after", "ar", "0", "After")
-	adminSearchUsersV2Cmd.Flags().StringP("before", "be", "0", "Before")
-	adminSearchUsersV2Cmd.Flags().StringP("displayName", "de", " ", "Display name")
-	adminSearchUsersV2Cmd.Flags().StringP("limit", "lt", "20", "Limit")
-	adminSearchUsersV2Cmd.Flags().StringP("loginId", "ld", " ", "Login id")
-	adminSearchUsersV2Cmd.Flags().StringP("platformUserId", "pd", " ", "Platform user id")
-	adminSearchUsersV2Cmd.Flags().StringP("roleId", "rd", " ", "Role id")
-	adminSearchUsersV2Cmd.Flags().StringP("userId", "ud", " ", "User id")
-	adminSearchUsersV2Cmd.Flags().StringP("platformId", "pd", " ", "Platform id")
-	_ = adminSearchUsersV2Cmd.MarkFlagRequired("platformId")
+	AdminSearchUsersV2Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AdminSearchUsersV2Cmd.MarkFlagRequired("namespace")
+	AdminSearchUsersV2Cmd.Flags().StringP("after", "ar", "0", "After")
+	AdminSearchUsersV2Cmd.Flags().StringP("before", "be", "0", "Before")
+	AdminSearchUsersV2Cmd.Flags().StringP("displayName", "de", " ", "Display name")
+	AdminSearchUsersV2Cmd.Flags().StringP("limit", "lt", "20", "Limit")
+	AdminSearchUsersV2Cmd.Flags().StringP("loginId", "ld", " ", "Login id")
+	AdminSearchUsersV2Cmd.Flags().StringP("platformUserId", "pd", " ", "Platform user id")
+	AdminSearchUsersV2Cmd.Flags().StringP("roleId", "rd", " ", "Role id")
+	AdminSearchUsersV2Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	AdminSearchUsersV2Cmd.Flags().StringP("platformId", "pd", " ", "Platform id")
+	_ = AdminSearchUsersV2Cmd.MarkFlagRequired("platformId")
 }

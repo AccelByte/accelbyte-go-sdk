@@ -8,15 +8,14 @@ import (
 	namespace_ "github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclient/namespace"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/basic"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getNamespaceCmd represents the getNamespace command
-var getNamespaceCmd = &cobra.Command{
-	Use:   "getNamespace",
+// GetNamespaceCmd represents the GetNamespace command
+var GetNamespaceCmd = &cobra.Command{
+	Use:   "GetNamespace",
 	Short: "Get namespace",
 	Long:  `Get namespace`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,8 +41,7 @@ var getNamespaceCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getNamespaceCmd)
-	getNamespaceCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getNamespaceCmd.MarkFlagRequired("namespace")
-	getNamespaceCmd.Flags().BoolP("activeOnly", "ay", false, "Active only")
+	GetNamespaceCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetNamespaceCmd.MarkFlagRequired("namespace")
+	GetNamespaceCmd.Flags().BoolP("activeOnly", "ay", false, "Active only")
 }

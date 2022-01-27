@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// resetPasswordV3Cmd represents the resetPasswordV3 command
-var resetPasswordV3Cmd = &cobra.Command{
-	Use:   "resetPasswordV3",
+// ResetPasswordV3Cmd represents the ResetPasswordV3 command
+var ResetPasswordV3Cmd = &cobra.Command{
+	Use:   "ResetPasswordV3",
 	Short: "Reset password V3",
 	Long:  `Reset password V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,9 +47,8 @@ var resetPasswordV3Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(resetPasswordV3Cmd)
-	resetPasswordV3Cmd.Flags().StringP("body", "by", " ", "Body")
-	_ = resetPasswordV3Cmd.MarkFlagRequired("body")
-	resetPasswordV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = resetPasswordV3Cmd.MarkFlagRequired("namespace")
+	ResetPasswordV3Cmd.Flags().StringP("body", "by", " ", "Body")
+	_ = ResetPasswordV3Cmd.MarkFlagRequired("body")
+	ResetPasswordV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = ResetPasswordV3Cmd.MarkFlagRequired("namespace")
 }

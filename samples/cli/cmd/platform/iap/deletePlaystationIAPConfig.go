@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/i_a_p"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// deletePlaystationIAPConfigCmd represents the deletePlaystationIAPConfig command
-var deletePlaystationIAPConfigCmd = &cobra.Command{
-	Use:   "deletePlaystationIAPConfig",
+// DeletePlaystationIAPConfigCmd represents the DeletePlaystationIAPConfig command
+var DeletePlaystationIAPConfigCmd = &cobra.Command{
+	Use:   "DeletePlaystationIAPConfig",
 	Short: "Delete playstation IAP config",
 	Long:  `Delete playstation IAP config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,7 +38,6 @@ var deletePlaystationIAPConfigCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(deletePlaystationIAPConfigCmd)
-	deletePlaystationIAPConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = deletePlaystationIAPConfigCmd.MarkFlagRequired("namespace")
+	DeletePlaystationIAPConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = DeletePlaystationIAPConfigCmd.MarkFlagRequired("namespace")
 }

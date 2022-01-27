@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/social"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient/slot"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// publicGetUserNamespaceSlotsCmd represents the publicGetUserNamespaceSlots command
-var publicGetUserNamespaceSlotsCmd = &cobra.Command{
-	Use:   "publicGetUserNamespaceSlots",
+// PublicGetUserNamespaceSlotsCmd represents the PublicGetUserNamespaceSlots command
+var PublicGetUserNamespaceSlotsCmd = &cobra.Command{
+	Use:   "PublicGetUserNamespaceSlots",
 	Short: "Public get user namespace slots",
 	Long:  `Public get user namespace slots`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,9 +41,8 @@ var publicGetUserNamespaceSlotsCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(publicGetUserNamespaceSlotsCmd)
-	publicGetUserNamespaceSlotsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = publicGetUserNamespaceSlotsCmd.MarkFlagRequired("namespace")
-	publicGetUserNamespaceSlotsCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = publicGetUserNamespaceSlotsCmd.MarkFlagRequired("userId")
+	PublicGetUserNamespaceSlotsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PublicGetUserNamespaceSlotsCmd.MarkFlagRequired("namespace")
+	PublicGetUserNamespaceSlotsCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = PublicGetUserNamespaceSlotsCmd.MarkFlagRequired("userId")
 }

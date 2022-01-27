@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/order"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// fulfillUserOrderCmd represents the fulfillUserOrder command
-var fulfillUserOrderCmd = &cobra.Command{
-	Use:   "fulfillUserOrder",
+// FulfillUserOrderCmd represents the FulfillUserOrder command
+var FulfillUserOrderCmd = &cobra.Command{
+	Use:   "FulfillUserOrder",
 	Short: "Fulfill user order",
 	Long:  `Fulfill user order`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -44,11 +43,10 @@ var fulfillUserOrderCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(fulfillUserOrderCmd)
-	fulfillUserOrderCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = fulfillUserOrderCmd.MarkFlagRequired("namespace")
-	fulfillUserOrderCmd.Flags().StringP("orderNo", "oo", " ", "Order no")
-	_ = fulfillUserOrderCmd.MarkFlagRequired("orderNo")
-	fulfillUserOrderCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = fulfillUserOrderCmd.MarkFlagRequired("userId")
+	FulfillUserOrderCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = FulfillUserOrderCmd.MarkFlagRequired("namespace")
+	FulfillUserOrderCmd.Flags().StringP("orderNo", "oo", " ", "Order no")
+	_ = FulfillUserOrderCmd.MarkFlagRequired("orderNo")
+	FulfillUserOrderCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = FulfillUserOrderCmd.MarkFlagRequired("userId")
 }

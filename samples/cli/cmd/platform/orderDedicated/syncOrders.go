@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/order_dedicated"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// syncOrdersCmd represents the syncOrders command
-var syncOrdersCmd = &cobra.Command{
-	Use:   "syncOrders",
+// SyncOrdersCmd represents the SyncOrders command
+var SyncOrdersCmd = &cobra.Command{
+	Use:   "SyncOrders",
 	Short: "Sync orders",
 	Long:  `Sync orders`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -44,10 +43,9 @@ var syncOrdersCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(syncOrdersCmd)
-	syncOrdersCmd.Flags().StringP("nextEvaluatedKey", "ny", " ", "Next evaluated key")
-	syncOrdersCmd.Flags().StringP("end", "ed", " ", "End")
-	_ = syncOrdersCmd.MarkFlagRequired("end")
-	syncOrdersCmd.Flags().StringP("start", "st", " ", "Start")
-	_ = syncOrdersCmd.MarkFlagRequired("start")
+	SyncOrdersCmd.Flags().StringP("nextEvaluatedKey", "ny", " ", "Next evaluated key")
+	SyncOrdersCmd.Flags().StringP("end", "ed", " ", "End")
+	_ = SyncOrdersCmd.MarkFlagRequired("end")
+	SyncOrdersCmd.Flags().StringP("start", "st", " ", "Start")
+	_ = SyncOrdersCmd.MarkFlagRequired("start")
 }

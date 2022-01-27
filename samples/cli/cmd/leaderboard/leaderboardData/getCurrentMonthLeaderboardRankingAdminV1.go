@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/leaderboard-sdk/pkg/leaderboardclient/leaderboard_data"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/leaderboard"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getCurrentMonthLeaderboardRankingAdminV1Cmd represents the getCurrentMonthLeaderboardRankingAdminV1 command
-var getCurrentMonthLeaderboardRankingAdminV1Cmd = &cobra.Command{
-	Use:   "getCurrentMonthLeaderboardRankingAdminV1",
+// GetCurrentMonthLeaderboardRankingAdminV1Cmd represents the GetCurrentMonthLeaderboardRankingAdminV1 command
+var GetCurrentMonthLeaderboardRankingAdminV1Cmd = &cobra.Command{
+	Use:   "GetCurrentMonthLeaderboardRankingAdminV1",
 	Short: "Get current month leaderboard ranking admin V1",
 	Long:  `Get current month leaderboard ranking admin V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -46,11 +45,10 @@ var getCurrentMonthLeaderboardRankingAdminV1Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getCurrentMonthLeaderboardRankingAdminV1Cmd)
-	getCurrentMonthLeaderboardRankingAdminV1Cmd.Flags().StringP("leaderboardCode", "le", " ", "Leaderboard code")
-	_ = getCurrentMonthLeaderboardRankingAdminV1Cmd.MarkFlagRequired("leaderboardCode")
-	getCurrentMonthLeaderboardRankingAdminV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getCurrentMonthLeaderboardRankingAdminV1Cmd.MarkFlagRequired("namespace")
-	getCurrentMonthLeaderboardRankingAdminV1Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
-	getCurrentMonthLeaderboardRankingAdminV1Cmd.Flags().Int64P("offset", "ot", 0, "Offset")
+	GetCurrentMonthLeaderboardRankingAdminV1Cmd.Flags().StringP("leaderboardCode", "le", " ", "Leaderboard code")
+	_ = GetCurrentMonthLeaderboardRankingAdminV1Cmd.MarkFlagRequired("leaderboardCode")
+	GetCurrentMonthLeaderboardRankingAdminV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetCurrentMonthLeaderboardRankingAdminV1Cmd.MarkFlagRequired("namespace")
+	GetCurrentMonthLeaderboardRankingAdminV1Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
+	GetCurrentMonthLeaderboardRankingAdminV1Cmd.Flags().Int64P("offset", "ot", 0, "Offset")
 }

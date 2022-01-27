@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/leaderboard-sdk/pkg/leaderboardclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/leaderboard"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// createLeaderboardConfigurationPublicV1Cmd represents the createLeaderboardConfigurationPublicV1 command
-var createLeaderboardConfigurationPublicV1Cmd = &cobra.Command{
-	Use:   "createLeaderboardConfigurationPublicV1",
+// CreateLeaderboardConfigurationPublicV1Cmd represents the CreateLeaderboardConfigurationPublicV1 command
+var CreateLeaderboardConfigurationPublicV1Cmd = &cobra.Command{
+	Use:   "CreateLeaderboardConfigurationPublicV1",
 	Short: "Create leaderboard configuration public V1",
 	Long:  `Create leaderboard configuration public V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,9 +48,8 @@ var createLeaderboardConfigurationPublicV1Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(createLeaderboardConfigurationPublicV1Cmd)
-	createLeaderboardConfigurationPublicV1Cmd.Flags().StringP("body", "by", " ", "Body")
-	_ = createLeaderboardConfigurationPublicV1Cmd.MarkFlagRequired("body")
-	createLeaderboardConfigurationPublicV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = createLeaderboardConfigurationPublicV1Cmd.MarkFlagRequired("namespace")
+	CreateLeaderboardConfigurationPublicV1Cmd.Flags().StringP("body", "by", " ", "Body")
+	_ = CreateLeaderboardConfigurationPublicV1Cmd.MarkFlagRequired("body")
+	CreateLeaderboardConfigurationPublicV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = CreateLeaderboardConfigurationPublicV1Cmd.MarkFlagRequired("namespace")
 }

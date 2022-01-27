@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/legal"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// indirectBulkAcceptVersionedPolicy1Cmd represents the indirectBulkAcceptVersionedPolicy1 command
-var indirectBulkAcceptVersionedPolicy1Cmd = &cobra.Command{
-	Use:   "indirectBulkAcceptVersionedPolicy1",
+// IndirectBulkAcceptVersionedPolicy1Cmd represents the IndirectBulkAcceptVersionedPolicy1 command
+var IndirectBulkAcceptVersionedPolicy1Cmd = &cobra.Command{
+	Use:   "IndirectBulkAcceptVersionedPolicy1",
 	Short: "Indirect bulk accept versioned policy 1",
 	Long:  `Indirect bulk accept versioned policy 1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,8 +48,7 @@ var indirectBulkAcceptVersionedPolicy1Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(indirectBulkAcceptVersionedPolicy1Cmd)
-	indirectBulkAcceptVersionedPolicy1Cmd.Flags().StringP("body", "by", " ", "Body")
-	indirectBulkAcceptVersionedPolicy1Cmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = indirectBulkAcceptVersionedPolicy1Cmd.MarkFlagRequired("userId")
+	IndirectBulkAcceptVersionedPolicy1Cmd.Flags().StringP("body", "by", " ", "Body")
+	IndirectBulkAcceptVersionedPolicy1Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = IndirectBulkAcceptVersionedPolicy1Cmd.MarkFlagRequired("userId")
 }

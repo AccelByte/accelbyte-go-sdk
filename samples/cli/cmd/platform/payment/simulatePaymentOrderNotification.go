@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// simulatePaymentOrderNotificationCmd represents the simulatePaymentOrderNotification command
-var simulatePaymentOrderNotificationCmd = &cobra.Command{
-	Use:   "simulatePaymentOrderNotification",
+// SimulatePaymentOrderNotificationCmd represents the SimulatePaymentOrderNotification command
+var SimulatePaymentOrderNotificationCmd = &cobra.Command{
+	Use:   "SimulatePaymentOrderNotification",
 	Short: "Simulate payment order notification",
 	Long:  `Simulate payment order notification`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -51,10 +50,9 @@ var simulatePaymentOrderNotificationCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(simulatePaymentOrderNotificationCmd)
-	simulatePaymentOrderNotificationCmd.Flags().StringP("body", "by", " ", "Body")
-	simulatePaymentOrderNotificationCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = simulatePaymentOrderNotificationCmd.MarkFlagRequired("namespace")
-	simulatePaymentOrderNotificationCmd.Flags().StringP("paymentOrderNo", "po", " ", "Payment order no")
-	_ = simulatePaymentOrderNotificationCmd.MarkFlagRequired("paymentOrderNo")
+	SimulatePaymentOrderNotificationCmd.Flags().StringP("body", "by", " ", "Body")
+	SimulatePaymentOrderNotificationCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = SimulatePaymentOrderNotificationCmd.MarkFlagRequired("namespace")
+	SimulatePaymentOrderNotificationCmd.Flags().StringP("paymentOrderNo", "po", " ", "Payment order no")
+	_ = SimulatePaymentOrderNotificationCmd.MarkFlagRequired("paymentOrderNo")
 }

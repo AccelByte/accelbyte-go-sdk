@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// syncXboxInventoryCmd represents the syncXboxInventory command
-var syncXboxInventoryCmd = &cobra.Command{
-	Use:   "syncXboxInventory",
+// SyncXboxInventoryCmd represents the SyncXboxInventory command
+var SyncXboxInventoryCmd = &cobra.Command{
+	Use:   "SyncXboxInventory",
 	Short: "Sync xbox inventory",
 	Long:  `Sync xbox inventory`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -51,10 +50,9 @@ var syncXboxInventoryCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(syncXboxInventoryCmd)
-	syncXboxInventoryCmd.Flags().StringP("body", "by", " ", "Body")
-	syncXboxInventoryCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = syncXboxInventoryCmd.MarkFlagRequired("namespace")
-	syncXboxInventoryCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = syncXboxInventoryCmd.MarkFlagRequired("userId")
+	SyncXboxInventoryCmd.Flags().StringP("body", "by", " ", "Body")
+	SyncXboxInventoryCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = SyncXboxInventoryCmd.MarkFlagRequired("namespace")
+	SyncXboxInventoryCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = SyncXboxInventoryCmd.MarkFlagRequired("userId")
 }

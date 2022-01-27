@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/ugc"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/public_content"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclientmodels"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// createContentDirectCmd represents the createContentDirect command
-var createContentDirectCmd = &cobra.Command{
-	Use:   "createContentDirect",
+// CreateContentDirectCmd represents the CreateContentDirect command
+var CreateContentDirectCmd = &cobra.Command{
+	Use:   "CreateContentDirect",
 	Short: "Create content direct",
 	Long:  `Create content direct`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -53,13 +52,12 @@ var createContentDirectCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(createContentDirectCmd)
-	createContentDirectCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = createContentDirectCmd.MarkFlagRequired("body")
-	createContentDirectCmd.Flags().StringP("channelId", "cd", " ", "Channel id")
-	_ = createContentDirectCmd.MarkFlagRequired("channelId")
-	createContentDirectCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = createContentDirectCmd.MarkFlagRequired("namespace")
-	createContentDirectCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = createContentDirectCmd.MarkFlagRequired("userId")
+	CreateContentDirectCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = CreateContentDirectCmd.MarkFlagRequired("body")
+	CreateContentDirectCmd.Flags().StringP("channelId", "cd", " ", "Channel id")
+	_ = CreateContentDirectCmd.MarkFlagRequired("channelId")
+	CreateContentDirectCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = CreateContentDirectCmd.MarkFlagRequired("namespace")
+	CreateContentDirectCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = CreateContentDirectCmd.MarkFlagRequired("userId")
 }

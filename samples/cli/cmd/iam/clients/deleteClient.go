@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/clients"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// deleteClientCmd represents the deleteClient command
-var deleteClientCmd = &cobra.Command{
-	Use:   "deleteClient",
+// DeleteClientCmd represents the DeleteClient command
+var DeleteClientCmd = &cobra.Command{
+	Use:   "DeleteClient",
 	Short: "Delete client",
 	Long:  `Delete client`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,7 +38,6 @@ var deleteClientCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(deleteClientCmd)
-	deleteClientCmd.Flags().StringP("clientId", "cd", " ", "Client id")
-	_ = deleteClientCmd.MarkFlagRequired("clientId")
+	DeleteClientCmd.Flags().StringP("clientId", "cd", " ", "Client id")
+	_ = DeleteClientCmd.MarkFlagRequired("clientId")
 }

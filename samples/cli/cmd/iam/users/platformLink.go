@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// platformLinkCmd represents the platformLink command
-var platformLinkCmd = &cobra.Command{
-	Use:   "platformLink",
+// PlatformLinkCmd represents the PlatformLink command
+var PlatformLinkCmd = &cobra.Command{
+	Use:   "PlatformLink",
 	Short: "Platform link",
 	Long:  `Platform link`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -45,13 +44,12 @@ var platformLinkCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(platformLinkCmd)
-	platformLinkCmd.Flags().StringP("ticket", "tt", " ", "Ticket")
-	_ = platformLinkCmd.MarkFlagRequired("ticket")
-	platformLinkCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = platformLinkCmd.MarkFlagRequired("namespace")
-	platformLinkCmd.Flags().StringP("platformId", "pd", " ", "Platform id")
-	_ = platformLinkCmd.MarkFlagRequired("platformId")
-	platformLinkCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = platformLinkCmd.MarkFlagRequired("userId")
+	PlatformLinkCmd.Flags().StringP("ticket", "tt", " ", "Ticket")
+	_ = PlatformLinkCmd.MarkFlagRequired("ticket")
+	PlatformLinkCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PlatformLinkCmd.MarkFlagRequired("namespace")
+	PlatformLinkCmd.Flags().StringP("platformId", "pd", " ", "Platform id")
+	_ = PlatformLinkCmd.MarkFlagRequired("platformId")
+	PlatformLinkCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = PlatformLinkCmd.MarkFlagRequired("userId")
 }

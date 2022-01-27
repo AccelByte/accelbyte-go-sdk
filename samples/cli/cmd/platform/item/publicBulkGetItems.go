@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/item"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// publicBulkGetItemsCmd represents the publicBulkGetItems command
-var publicBulkGetItemsCmd = &cobra.Command{
-	Use:   "publicBulkGetItems",
+// PublicBulkGetItemsCmd represents the PublicBulkGetItems command
+var PublicBulkGetItemsCmd = &cobra.Command{
+	Use:   "PublicBulkGetItems",
 	Short: "Public bulk get items",
 	Long:  `Public bulk get items`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,12 +47,11 @@ var publicBulkGetItemsCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(publicBulkGetItemsCmd)
-	publicBulkGetItemsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = publicBulkGetItemsCmd.MarkFlagRequired("namespace")
-	publicBulkGetItemsCmd.Flags().StringP("language", "le", " ", "Language")
-	publicBulkGetItemsCmd.Flags().StringP("region", "rn", " ", "Region")
-	publicBulkGetItemsCmd.Flags().StringP("storeId", "sd", " ", "Store id")
-	publicBulkGetItemsCmd.Flags().StringP("itemIds", "is", " ", "Item ids")
-	_ = publicBulkGetItemsCmd.MarkFlagRequired("itemIds")
+	PublicBulkGetItemsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PublicBulkGetItemsCmd.MarkFlagRequired("namespace")
+	PublicBulkGetItemsCmd.Flags().StringP("language", "le", " ", "Language")
+	PublicBulkGetItemsCmd.Flags().StringP("region", "rn", " ", "Region")
+	PublicBulkGetItemsCmd.Flags().StringP("storeId", "sd", " ", "Store id")
+	PublicBulkGetItemsCmd.Flags().StringP("itemIds", "is", " ", "Item ids")
+	_ = PublicBulkGetItemsCmd.MarkFlagRequired("itemIds")
 }

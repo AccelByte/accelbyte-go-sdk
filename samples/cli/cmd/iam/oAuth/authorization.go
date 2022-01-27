@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// authorizationCmd represents the authorization command
-var authorizationCmd = &cobra.Command{
-	Use:   "authorization",
+// AuthorizationCmd represents the Authorization command
+var AuthorizationCmd = &cobra.Command{
+	Use:   "Authorization",
 	Short: "Authorization",
 	Long:  `Authorization`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -51,15 +50,14 @@ var authorizationCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(authorizationCmd)
-	authorizationCmd.Flags().StringP("login", "ln", " ", "Login")
-	authorizationCmd.Flags().StringP("password", "pd", " ", "Password")
-	authorizationCmd.Flags().StringP("scope", "se", " ", "Scope")
-	authorizationCmd.Flags().StringP("state", "se", " ", "State")
-	authorizationCmd.Flags().StringP("client_id", "cd", " ", "Client id")
-	_ = authorizationCmd.MarkFlagRequired("client_id")
-	authorizationCmd.Flags().StringP("redirect_uri", "ri", " ", "Redirect uri")
-	_ = authorizationCmd.MarkFlagRequired("redirect_uri")
-	authorizationCmd.Flags().StringP("response_type", "re", " ", "Response type")
-	_ = authorizationCmd.MarkFlagRequired("response_type")
+	AuthorizationCmd.Flags().StringP("login", "ln", " ", "Login")
+	AuthorizationCmd.Flags().StringP("password", "pd", " ", "Password")
+	AuthorizationCmd.Flags().StringP("scope", "se", " ", "Scope")
+	AuthorizationCmd.Flags().StringP("state", "se", " ", "State")
+	AuthorizationCmd.Flags().StringP("client_id", "cd", " ", "Client id")
+	_ = AuthorizationCmd.MarkFlagRequired("client_id")
+	AuthorizationCmd.Flags().StringP("redirect_uri", "ri", " ", "Redirect uri")
+	_ = AuthorizationCmd.MarkFlagRequired("redirect_uri")
+	AuthorizationCmd.Flags().StringP("response_type", "re", " ", "Response type")
+	_ = AuthorizationCmd.MarkFlagRequired("response_type")
 }

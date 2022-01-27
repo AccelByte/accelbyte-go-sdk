@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclient/file_upload"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/basic"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// generatedUserUploadContentUrlCmd represents the generatedUserUploadContentUrl command
-var generatedUserUploadContentUrlCmd = &cobra.Command{
-	Use:   "generatedUserUploadContentUrl",
+// GeneratedUserUploadContentUrlCmd represents the GeneratedUserUploadContentUrl command
+var GeneratedUserUploadContentUrlCmd = &cobra.Command{
+	Use:   "GeneratedUserUploadContentUrl",
 	Short: "Generated user upload content url",
 	Long:  `Generated user upload content url`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -44,11 +43,10 @@ var generatedUserUploadContentUrlCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(generatedUserUploadContentUrlCmd)
-	generatedUserUploadContentUrlCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = generatedUserUploadContentUrlCmd.MarkFlagRequired("namespace")
-	generatedUserUploadContentUrlCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = generatedUserUploadContentUrlCmd.MarkFlagRequired("userId")
-	generatedUserUploadContentUrlCmd.Flags().StringP("fileType", "fe", " ", "File type")
-	_ = generatedUserUploadContentUrlCmd.MarkFlagRequired("fileType")
+	GeneratedUserUploadContentUrlCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GeneratedUserUploadContentUrlCmd.MarkFlagRequired("namespace")
+	GeneratedUserUploadContentUrlCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = GeneratedUserUploadContentUrlCmd.MarkFlagRequired("userId")
+	GeneratedUserUploadContentUrlCmd.Flags().StringP("fileType", "fe", " ", "File type")
+	_ = GeneratedUserUploadContentUrlCmd.MarkFlagRequired("fileType")
 }

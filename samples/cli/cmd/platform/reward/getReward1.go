@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/reward"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getReward1Cmd represents the getReward1 command
-var getReward1Cmd = &cobra.Command{
-	Use:   "getReward1",
+// GetReward1Cmd represents the GetReward1 command
+var GetReward1Cmd = &cobra.Command{
+	Use:   "GetReward1",
 	Short: "Get reward 1",
 	Long:  `Get reward 1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,9 +41,8 @@ var getReward1Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getReward1Cmd)
-	getReward1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getReward1Cmd.MarkFlagRequired("namespace")
-	getReward1Cmd.Flags().StringP("rewardId", "rd", " ", "Reward id")
-	_ = getReward1Cmd.MarkFlagRequired("rewardId")
+	GetReward1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetReward1Cmd.MarkFlagRequired("namespace")
+	GetReward1Cmd.Flags().StringP("rewardId", "rd", " ", "Reward id")
+	_ = GetReward1Cmd.MarkFlagRequired("rewardId")
 }

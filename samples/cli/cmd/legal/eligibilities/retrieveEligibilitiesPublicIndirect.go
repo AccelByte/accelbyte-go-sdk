@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclient/eligibilities"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/legal"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// retrieveEligibilitiesPublicIndirectCmd represents the retrieveEligibilitiesPublicIndirect command
-var retrieveEligibilitiesPublicIndirectCmd = &cobra.Command{
-	Use:   "retrieveEligibilitiesPublicIndirect",
+// RetrieveEligibilitiesPublicIndirectCmd represents the RetrieveEligibilitiesPublicIndirect command
+var RetrieveEligibilitiesPublicIndirectCmd = &cobra.Command{
+	Use:   "RetrieveEligibilitiesPublicIndirect",
 	Short: "Retrieve eligibilities public indirect",
 	Long:  `Retrieve eligibilities public indirect`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -46,13 +45,12 @@ var retrieveEligibilitiesPublicIndirectCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(retrieveEligibilitiesPublicIndirectCmd)
-	retrieveEligibilitiesPublicIndirectCmd.Flags().StringP("clientId", "cd", " ", "Client id")
-	_ = retrieveEligibilitiesPublicIndirectCmd.MarkFlagRequired("clientId")
-	retrieveEligibilitiesPublicIndirectCmd.Flags().StringP("countryCode", "ce", " ", "Country code")
-	_ = retrieveEligibilitiesPublicIndirectCmd.MarkFlagRequired("countryCode")
-	retrieveEligibilitiesPublicIndirectCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = retrieveEligibilitiesPublicIndirectCmd.MarkFlagRequired("namespace")
-	retrieveEligibilitiesPublicIndirectCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = retrieveEligibilitiesPublicIndirectCmd.MarkFlagRequired("userId")
+	RetrieveEligibilitiesPublicIndirectCmd.Flags().StringP("clientId", "cd", " ", "Client id")
+	_ = RetrieveEligibilitiesPublicIndirectCmd.MarkFlagRequired("clientId")
+	RetrieveEligibilitiesPublicIndirectCmd.Flags().StringP("countryCode", "ce", " ", "Country code")
+	_ = RetrieveEligibilitiesPublicIndirectCmd.MarkFlagRequired("countryCode")
+	RetrieveEligibilitiesPublicIndirectCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = RetrieveEligibilitiesPublicIndirectCmd.MarkFlagRequired("namespace")
+	RetrieveEligibilitiesPublicIndirectCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = RetrieveEligibilitiesPublicIndirectCmd.MarkFlagRequired("userId")
 }

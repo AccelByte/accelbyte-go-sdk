@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// updateStripeConfigCmd represents the updateStripeConfig command
-var updateStripeConfigCmd = &cobra.Command{
-	Use:   "updateStripeConfig",
+// UpdateStripeConfigCmd represents the UpdateStripeConfig command
+var UpdateStripeConfigCmd = &cobra.Command{
+	Use:   "UpdateStripeConfig",
 	Short: "Update stripe config",
 	Long:  `Update stripe config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -53,10 +52,9 @@ var updateStripeConfigCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(updateStripeConfigCmd)
-	updateStripeConfigCmd.Flags().StringP("body", "by", " ", "Body")
-	updateStripeConfigCmd.Flags().StringP("id", "id", " ", "Id")
-	_ = updateStripeConfigCmd.MarkFlagRequired("id")
-	updateStripeConfigCmd.Flags().BoolP("sandbox", "sx", false, "Sandbox")
-	updateStripeConfigCmd.Flags().BoolP("validate", "ve", false, "Validate")
+	UpdateStripeConfigCmd.Flags().StringP("body", "by", " ", "Body")
+	UpdateStripeConfigCmd.Flags().StringP("id", "id", " ", "Id")
+	_ = UpdateStripeConfigCmd.MarkFlagRequired("id")
+	UpdateStripeConfigCmd.Flags().BoolP("sandbox", "sx", false, "Sandbox")
+	UpdateStripeConfigCmd.Flags().BoolP("validate", "ve", false, "Validate")
 }

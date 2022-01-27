@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/eventlog-sdk/pkg/eventlogclient/event_v2"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/eventlog"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getEventSpecificUserV2HandlerCmd represents the getEventSpecificUserV2Handler command
-var getEventSpecificUserV2HandlerCmd = &cobra.Command{
-	Use:   "getEventSpecificUserV2Handler",
+// GetEventSpecificUserV2HandlerCmd represents the GetEventSpecificUserV2Handler command
+var GetEventSpecificUserV2HandlerCmd = &cobra.Command{
+	Use:   "GetEventSpecificUserV2Handler",
 	Short: "Get event specific user V2 handler",
 	Long:  `Get event specific user V2 handler`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -52,14 +51,13 @@ var getEventSpecificUserV2HandlerCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getEventSpecificUserV2HandlerCmd)
-	getEventSpecificUserV2HandlerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getEventSpecificUserV2HandlerCmd.MarkFlagRequired("namespace")
-	getEventSpecificUserV2HandlerCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = getEventSpecificUserV2HandlerCmd.MarkFlagRequired("userId")
-	getEventSpecificUserV2HandlerCmd.Flags().StringP("endDate", "ee", " ", "End date")
-	getEventSpecificUserV2HandlerCmd.Flags().StringP("eventName", "ee", " ", "Event name")
-	getEventSpecificUserV2HandlerCmd.Flags().Float64P("offset", "ot", 0, "Offset")
-	getEventSpecificUserV2HandlerCmd.Flags().Float64P("pageSize", "pe", 1, "Page size")
-	getEventSpecificUserV2HandlerCmd.Flags().StringP("startDate", "se", " ", "Start date")
+	GetEventSpecificUserV2HandlerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetEventSpecificUserV2HandlerCmd.MarkFlagRequired("namespace")
+	GetEventSpecificUserV2HandlerCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = GetEventSpecificUserV2HandlerCmd.MarkFlagRequired("userId")
+	GetEventSpecificUserV2HandlerCmd.Flags().StringP("endDate", "ee", " ", "End date")
+	GetEventSpecificUserV2HandlerCmd.Flags().StringP("eventName", "ee", " ", "Event name")
+	GetEventSpecificUserV2HandlerCmd.Flags().Float64P("offset", "ot", 0, "Offset")
+	GetEventSpecificUserV2HandlerCmd.Flags().Float64P("pageSize", "pe", 1, "Page size")
+	GetEventSpecificUserV2HandlerCmd.Flags().StringP("startDate", "se", " ", "Start date")
 }

@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/s_s_o"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// loginSSOClientCmd represents the loginSSOClient command
-var loginSSOClientCmd = &cobra.Command{
-	Use:   "loginSSOClient",
+// LoginSSOClientCmd represents the LoginSSOClient command
+var LoginSSOClientCmd = &cobra.Command{
+	Use:   "LoginSSOClient",
 	Short: "Login SSO client",
 	Long:  `Login SSO client`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,8 +40,7 @@ var loginSSOClientCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(loginSSOClientCmd)
-	loginSSOClientCmd.Flags().StringP("platformId", "pd", " ", "Platform id")
-	_ = loginSSOClientCmd.MarkFlagRequired("platformId")
-	loginSSOClientCmd.Flags().StringP("payload", "pd", " ", "Payload")
+	LoginSSOClientCmd.Flags().StringP("platformId", "pd", " ", "Platform id")
+	_ = LoginSSOClientCmd.MarkFlagRequired("platformId")
+	LoginSSOClientCmd.Flags().StringP("payload", "pd", " ", "Payload")
 }

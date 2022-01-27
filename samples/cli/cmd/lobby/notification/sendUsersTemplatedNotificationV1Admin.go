@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/lobby"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// sendUsersTemplatedNotificationV1AdminCmd represents the sendUsersTemplatedNotificationV1Admin command
-var sendUsersTemplatedNotificationV1AdminCmd = &cobra.Command{
-	Use:   "sendUsersTemplatedNotificationV1Admin",
+// SendUsersTemplatedNotificationV1AdminCmd represents the SendUsersTemplatedNotificationV1Admin command
+var SendUsersTemplatedNotificationV1AdminCmd = &cobra.Command{
+	Use:   "SendUsersTemplatedNotificationV1Admin",
 	Short: "Send users templated notification V1 admin",
 	Long:  `Send users templated notification V1 admin`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,9 +47,8 @@ var sendUsersTemplatedNotificationV1AdminCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(sendUsersTemplatedNotificationV1AdminCmd)
-	sendUsersTemplatedNotificationV1AdminCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = sendUsersTemplatedNotificationV1AdminCmd.MarkFlagRequired("body")
-	sendUsersTemplatedNotificationV1AdminCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = sendUsersTemplatedNotificationV1AdminCmd.MarkFlagRequired("namespace")
+	SendUsersTemplatedNotificationV1AdminCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = SendUsersTemplatedNotificationV1AdminCmd.MarkFlagRequired("body")
+	SendUsersTemplatedNotificationV1AdminCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = SendUsersTemplatedNotificationV1AdminCmd.MarkFlagRequired("namespace")
 }

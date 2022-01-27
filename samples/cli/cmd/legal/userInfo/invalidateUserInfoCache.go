@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclient/user_info"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/legal"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// invalidateUserInfoCacheCmd represents the invalidateUserInfoCache command
-var invalidateUserInfoCacheCmd = &cobra.Command{
-	Use:   "invalidateUserInfoCache",
+// InvalidateUserInfoCacheCmd represents the InvalidateUserInfoCache command
+var InvalidateUserInfoCacheCmd = &cobra.Command{
+	Use:   "InvalidateUserInfoCache",
 	Short: "Invalidate user info cache",
 	Long:  `Invalidate user info cache`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,6 +38,5 @@ var invalidateUserInfoCacheCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(invalidateUserInfoCacheCmd)
-	invalidateUserInfoCacheCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	InvalidateUserInfoCacheCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 }

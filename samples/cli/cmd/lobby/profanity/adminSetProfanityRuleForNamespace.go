@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/lobby"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminSetProfanityRuleForNamespaceCmd represents the adminSetProfanityRuleForNamespace command
-var adminSetProfanityRuleForNamespaceCmd = &cobra.Command{
-	Use:   "adminSetProfanityRuleForNamespace",
+// AdminSetProfanityRuleForNamespaceCmd represents the AdminSetProfanityRuleForNamespace command
+var AdminSetProfanityRuleForNamespaceCmd = &cobra.Command{
+	Use:   "AdminSetProfanityRuleForNamespace",
 	Short: "Admin set profanity rule for namespace",
 	Long:  `Admin set profanity rule for namespace`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,9 +47,8 @@ var adminSetProfanityRuleForNamespaceCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminSetProfanityRuleForNamespaceCmd)
-	adminSetProfanityRuleForNamespaceCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = adminSetProfanityRuleForNamespaceCmd.MarkFlagRequired("body")
-	adminSetProfanityRuleForNamespaceCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = adminSetProfanityRuleForNamespaceCmd.MarkFlagRequired("namespace")
+	AdminSetProfanityRuleForNamespaceCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = AdminSetProfanityRuleForNamespaceCmd.MarkFlagRequired("body")
+	AdminSetProfanityRuleForNamespaceCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AdminSetProfanityRuleForNamespaceCmd.MarkFlagRequired("namespace")
 }

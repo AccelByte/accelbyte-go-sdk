@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// updateEpicGamesIAPConfigCmd represents the updateEpicGamesIAPConfig command
-var updateEpicGamesIAPConfigCmd = &cobra.Command{
-	Use:   "updateEpicGamesIAPConfig",
+// UpdateEpicGamesIAPConfigCmd represents the UpdateEpicGamesIAPConfig command
+var UpdateEpicGamesIAPConfigCmd = &cobra.Command{
+	Use:   "UpdateEpicGamesIAPConfig",
 	Short: "Update epic games IAP config",
 	Long:  `Update epic games IAP config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,8 +48,7 @@ var updateEpicGamesIAPConfigCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(updateEpicGamesIAPConfigCmd)
-	updateEpicGamesIAPConfigCmd.Flags().StringP("body", "by", " ", "Body")
-	updateEpicGamesIAPConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = updateEpicGamesIAPConfigCmd.MarkFlagRequired("namespace")
+	UpdateEpicGamesIAPConfigCmd.Flags().StringP("body", "by", " ", "Body")
+	UpdateEpicGamesIAPConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = UpdateEpicGamesIAPConfigCmd.MarkFlagRequired("namespace")
 }

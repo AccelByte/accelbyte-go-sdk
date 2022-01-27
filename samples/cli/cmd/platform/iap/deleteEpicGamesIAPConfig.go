@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/i_a_p"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// deleteEpicGamesIAPConfigCmd represents the deleteEpicGamesIAPConfig command
-var deleteEpicGamesIAPConfigCmd = &cobra.Command{
-	Use:   "deleteEpicGamesIAPConfig",
+// DeleteEpicGamesIAPConfigCmd represents the DeleteEpicGamesIAPConfig command
+var DeleteEpicGamesIAPConfigCmd = &cobra.Command{
+	Use:   "DeleteEpicGamesIAPConfig",
 	Short: "Delete epic games IAP config",
 	Long:  `Delete epic games IAP config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,7 +38,6 @@ var deleteEpicGamesIAPConfigCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(deleteEpicGamesIAPConfigCmd)
-	deleteEpicGamesIAPConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = deleteEpicGamesIAPConfigCmd.MarkFlagRequired("namespace")
+	DeleteEpicGamesIAPConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = DeleteEpicGamesIAPConfigCmd.MarkFlagRequired("namespace")
 }

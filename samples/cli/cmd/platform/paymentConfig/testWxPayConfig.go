@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// testWxPayConfigCmd represents the testWxPayConfig command
-var testWxPayConfigCmd = &cobra.Command{
-	Use:   "testWxPayConfig",
+// TestWxPayConfigCmd represents the TestWxPayConfig command
+var TestWxPayConfigCmd = &cobra.Command{
+	Use:   "TestWxPayConfig",
 	Short: "Test wx pay config",
 	Long:  `Test wx pay config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -47,6 +46,5 @@ var testWxPayConfigCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(testWxPayConfigCmd)
-	testWxPayConfigCmd.Flags().StringP("body", "by", " ", "Body")
+	TestWxPayConfigCmd.Flags().StringP("body", "by", " ", "Body")
 }

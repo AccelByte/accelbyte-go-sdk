@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/order"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// publicCancelUserOrderCmd represents the publicCancelUserOrder command
-var publicCancelUserOrderCmd = &cobra.Command{
-	Use:   "publicCancelUserOrder",
+// PublicCancelUserOrderCmd represents the PublicCancelUserOrder command
+var PublicCancelUserOrderCmd = &cobra.Command{
+	Use:   "PublicCancelUserOrder",
 	Short: "Public cancel user order",
 	Long:  `Public cancel user order`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -44,11 +43,10 @@ var publicCancelUserOrderCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(publicCancelUserOrderCmd)
-	publicCancelUserOrderCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = publicCancelUserOrderCmd.MarkFlagRequired("namespace")
-	publicCancelUserOrderCmd.Flags().StringP("orderNo", "oo", " ", "Order no")
-	_ = publicCancelUserOrderCmd.MarkFlagRequired("orderNo")
-	publicCancelUserOrderCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = publicCancelUserOrderCmd.MarkFlagRequired("userId")
+	PublicCancelUserOrderCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PublicCancelUserOrderCmd.MarkFlagRequired("namespace")
+	PublicCancelUserOrderCmd.Flags().StringP("orderNo", "oo", " ", "Order no")
+	_ = PublicCancelUserOrderCmd.MarkFlagRequired("orderNo")
+	PublicCancelUserOrderCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = PublicCancelUserOrderCmd.MarkFlagRequired("userId")
 }

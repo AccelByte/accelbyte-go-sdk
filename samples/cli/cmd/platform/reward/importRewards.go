@@ -8,16 +8,15 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/reward"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 	"os"
 )
 
-// importRewardsCmd represents the importRewards command
-var importRewardsCmd = &cobra.Command{
-	Use:   "importRewards",
+// ImportRewardsCmd represents the ImportRewards command
+var ImportRewardsCmd = &cobra.Command{
+	Use:   "ImportRewards",
 	Short: "Import rewards",
 	Long:  `Import rewards`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,10 +48,9 @@ var importRewardsCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(importRewardsCmd)
-	importRewardsCmd.Flags().StringP("file", "fe", " ", "File")
-	importRewardsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = importRewardsCmd.MarkFlagRequired("namespace")
-	importRewardsCmd.Flags().BoolP("replaceExisting", "rg", false, "Replace existing")
-	_ = importRewardsCmd.MarkFlagRequired("replaceExisting")
+	ImportRewardsCmd.Flags().StringP("file", "fe", " ", "File")
+	ImportRewardsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = ImportRewardsCmd.MarkFlagRequired("namespace")
+	ImportRewardsCmd.Flags().BoolP("replaceExisting", "rg", false, "Replace existing")
+	_ = ImportRewardsCmd.MarkFlagRequired("replaceExisting")
 }

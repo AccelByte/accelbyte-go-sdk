@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// publicGetUserPlatformAccountsV3Cmd represents the publicGetUserPlatformAccountsV3 command
-var publicGetUserPlatformAccountsV3Cmd = &cobra.Command{
-	Use:   "publicGetUserPlatformAccountsV3",
+// PublicGetUserPlatformAccountsV3Cmd represents the PublicGetUserPlatformAccountsV3 command
+var PublicGetUserPlatformAccountsV3Cmd = &cobra.Command{
+	Use:   "PublicGetUserPlatformAccountsV3",
 	Short: "Public get user platform accounts V3",
 	Long:  `Public get user platform accounts V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,12 +47,11 @@ var publicGetUserPlatformAccountsV3Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(publicGetUserPlatformAccountsV3Cmd)
-	publicGetUserPlatformAccountsV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = publicGetUserPlatformAccountsV3Cmd.MarkFlagRequired("namespace")
-	publicGetUserPlatformAccountsV3Cmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = publicGetUserPlatformAccountsV3Cmd.MarkFlagRequired("userId")
-	publicGetUserPlatformAccountsV3Cmd.Flags().StringP("after", "ar", "0", "After")
-	publicGetUserPlatformAccountsV3Cmd.Flags().StringP("before", "be", "0", "Before")
-	publicGetUserPlatformAccountsV3Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
+	PublicGetUserPlatformAccountsV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PublicGetUserPlatformAccountsV3Cmd.MarkFlagRequired("namespace")
+	PublicGetUserPlatformAccountsV3Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = PublicGetUserPlatformAccountsV3Cmd.MarkFlagRequired("userId")
+	PublicGetUserPlatformAccountsV3Cmd.Flags().StringP("after", "ar", "0", "After")
+	PublicGetUserPlatformAccountsV3Cmd.Flags().StringP("before", "be", "0", "Before")
+	PublicGetUserPlatformAccountsV3Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
 }

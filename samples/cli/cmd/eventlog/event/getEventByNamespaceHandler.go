@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/eventlog-sdk/pkg/eventlogclient/event"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/eventlog"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getEventByNamespaceHandlerCmd represents the getEventByNamespaceHandler command
-var getEventByNamespaceHandlerCmd = &cobra.Command{
-	Use:   "getEventByNamespaceHandler",
+// GetEventByNamespaceHandlerCmd represents the GetEventByNamespaceHandler command
+var GetEventByNamespaceHandlerCmd = &cobra.Command{
+	Use:   "GetEventByNamespaceHandler",
 	Short: "Get event by namespace handler",
 	Long:  `Get event by namespace handler`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,14 +47,13 @@ var getEventByNamespaceHandlerCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getEventByNamespaceHandlerCmd)
-	getEventByNamespaceHandlerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getEventByNamespaceHandlerCmd.MarkFlagRequired("namespace")
-	getEventByNamespaceHandlerCmd.Flags().Float64P("offset", "ot", 0, "Offset")
-	getEventByNamespaceHandlerCmd.Flags().StringP("endDate", "ee", " ", "End date")
-	_ = getEventByNamespaceHandlerCmd.MarkFlagRequired("endDate")
-	getEventByNamespaceHandlerCmd.Flags().Float64P("pageSize", "pe", 1, "Page size")
-	_ = getEventByNamespaceHandlerCmd.MarkFlagRequired("pageSize")
-	getEventByNamespaceHandlerCmd.Flags().StringP("startDate", "se", " ", "Start date")
-	_ = getEventByNamespaceHandlerCmd.MarkFlagRequired("startDate")
+	GetEventByNamespaceHandlerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetEventByNamespaceHandlerCmd.MarkFlagRequired("namespace")
+	GetEventByNamespaceHandlerCmd.Flags().Float64P("offset", "ot", 0, "Offset")
+	GetEventByNamespaceHandlerCmd.Flags().StringP("endDate", "ee", " ", "End date")
+	_ = GetEventByNamespaceHandlerCmd.MarkFlagRequired("endDate")
+	GetEventByNamespaceHandlerCmd.Flags().Float64P("pageSize", "pe", 1, "Page size")
+	_ = GetEventByNamespaceHandlerCmd.MarkFlagRequired("pageSize")
+	GetEventByNamespaceHandlerCmd.Flags().StringP("startDate", "se", " ", "Start date")
+	_ = GetEventByNamespaceHandlerCmd.MarkFlagRequired("startDate")
 }

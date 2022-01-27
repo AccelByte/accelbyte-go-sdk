@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/roles"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminGetRolesV4Cmd represents the adminGetRolesV4 command
-var adminGetRolesV4Cmd = &cobra.Command{
-	Use:   "adminGetRolesV4",
+// AdminGetRolesV4Cmd represents the AdminGetRolesV4 command
+var AdminGetRolesV4Cmd = &cobra.Command{
+	Use:   "AdminGetRolesV4",
 	Short: "Admin get roles V4",
 	Long:  `Admin get roles V4`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -46,9 +45,8 @@ var adminGetRolesV4Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminGetRolesV4Cmd)
-	adminGetRolesV4Cmd.Flags().BoolP("adminRole", "ae", false, "Admin role")
-	adminGetRolesV4Cmd.Flags().BoolP("isWildcard", "id", false, "Is wildcard")
-	adminGetRolesV4Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
-	adminGetRolesV4Cmd.Flags().Int64P("offset", "ot", 0, "Offset")
+	AdminGetRolesV4Cmd.Flags().BoolP("adminRole", "ae", false, "Admin role")
+	AdminGetRolesV4Cmd.Flags().BoolP("isWildcard", "id", false, "Is wildcard")
+	AdminGetRolesV4Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
+	AdminGetRolesV4Cmd.Flags().Int64P("offset", "ot", 0, "Offset")
 }

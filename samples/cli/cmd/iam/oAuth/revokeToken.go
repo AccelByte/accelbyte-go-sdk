@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// revokeTokenCmd represents the revokeToken command
-var revokeTokenCmd = &cobra.Command{
-	Use:   "revokeToken",
+// RevokeTokenCmd represents the RevokeToken command
+var RevokeTokenCmd = &cobra.Command{
+	Use:   "RevokeToken",
 	Short: "Revoke token",
 	Long:  `Revoke token`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,7 +38,6 @@ var revokeTokenCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(revokeTokenCmd)
-	revokeTokenCmd.Flags().StringP("token", "tn", " ", "Token")
-	_ = revokeTokenCmd.MarkFlagRequired("token")
+	RevokeTokenCmd.Flags().StringP("token", "tn", " ", "Token")
+	_ = RevokeTokenCmd.MarkFlagRequired("token")
 }

@@ -8,15 +8,14 @@ import (
 	group_ "github.com/AccelByte/accelbyte-go-sdk/group-sdk/pkg/groupclient/group"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/group"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// deleteGroupPredefinedRulePublicV1Cmd represents the deleteGroupPredefinedRulePublicV1 command
-var deleteGroupPredefinedRulePublicV1Cmd = &cobra.Command{
-	Use:   "deleteGroupPredefinedRulePublicV1",
+// DeleteGroupPredefinedRulePublicV1Cmd represents the DeleteGroupPredefinedRulePublicV1 command
+var DeleteGroupPredefinedRulePublicV1Cmd = &cobra.Command{
+	Use:   "DeleteGroupPredefinedRulePublicV1",
 	Short: "Delete group predefined rule public V1",
 	Long:  `Delete group predefined rule public V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,11 +42,10 @@ var deleteGroupPredefinedRulePublicV1Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(deleteGroupPredefinedRulePublicV1Cmd)
-	deleteGroupPredefinedRulePublicV1Cmd.Flags().StringP("allowedAction", "an", " ", "Allowed action")
-	_ = deleteGroupPredefinedRulePublicV1Cmd.MarkFlagRequired("allowedAction")
-	deleteGroupPredefinedRulePublicV1Cmd.Flags().StringP("groupId", "gd", " ", "Group id")
-	_ = deleteGroupPredefinedRulePublicV1Cmd.MarkFlagRequired("groupId")
-	deleteGroupPredefinedRulePublicV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = deleteGroupPredefinedRulePublicV1Cmd.MarkFlagRequired("namespace")
+	DeleteGroupPredefinedRulePublicV1Cmd.Flags().StringP("allowedAction", "an", " ", "Allowed action")
+	_ = DeleteGroupPredefinedRulePublicV1Cmd.MarkFlagRequired("allowedAction")
+	DeleteGroupPredefinedRulePublicV1Cmd.Flags().StringP("groupId", "gd", " ", "Group id")
+	_ = DeleteGroupPredefinedRulePublicV1Cmd.MarkFlagRequired("groupId")
+	DeleteGroupPredefinedRulePublicV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = DeleteGroupPredefinedRulePublicV1Cmd.MarkFlagRequired("namespace")
 }

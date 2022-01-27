@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/ugc"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/admin_content"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminDeleteContentScreenshotCmd represents the adminDeleteContentScreenshot command
-var adminDeleteContentScreenshotCmd = &cobra.Command{
-	Use:   "adminDeleteContentScreenshot",
+// AdminDeleteContentScreenshotCmd represents the AdminDeleteContentScreenshot command
+var AdminDeleteContentScreenshotCmd = &cobra.Command{
+	Use:   "AdminDeleteContentScreenshot",
 	Short: "Admin delete content screenshot",
 	Long:  `Admin delete content screenshot`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,11 +42,10 @@ var adminDeleteContentScreenshotCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminDeleteContentScreenshotCmd)
-	adminDeleteContentScreenshotCmd.Flags().StringP("contentId", "cd", " ", "Content id")
-	_ = adminDeleteContentScreenshotCmd.MarkFlagRequired("contentId")
-	adminDeleteContentScreenshotCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = adminDeleteContentScreenshotCmd.MarkFlagRequired("namespace")
-	adminDeleteContentScreenshotCmd.Flags().StringP("screenshotId", "sd", " ", "Screenshot id")
-	_ = adminDeleteContentScreenshotCmd.MarkFlagRequired("screenshotId")
+	AdminDeleteContentScreenshotCmd.Flags().StringP("contentId", "cd", " ", "Content id")
+	_ = AdminDeleteContentScreenshotCmd.MarkFlagRequired("contentId")
+	AdminDeleteContentScreenshotCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AdminDeleteContentScreenshotCmd.MarkFlagRequired("namespace")
+	AdminDeleteContentScreenshotCmd.Flags().StringP("screenshotId", "sd", " ", "Screenshot id")
+	_ = AdminDeleteContentScreenshotCmd.MarkFlagRequired("screenshotId")
 }

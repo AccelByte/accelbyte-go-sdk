@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// updateSSOPlatformCredentialCmd represents the updateSSOPlatformCredential command
-var updateSSOPlatformCredentialCmd = &cobra.Command{
-	Use:   "updateSSOPlatformCredential",
+// UpdateSSOPlatformCredentialCmd represents the UpdateSSOPlatformCredential command
+var UpdateSSOPlatformCredentialCmd = &cobra.Command{
+	Use:   "UpdateSSOPlatformCredential",
 	Short: "Update SSO platform credential",
 	Long:  `Update SSO platform credential`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -51,11 +50,10 @@ var updateSSOPlatformCredentialCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(updateSSOPlatformCredentialCmd)
-	updateSSOPlatformCredentialCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = updateSSOPlatformCredentialCmd.MarkFlagRequired("body")
-	updateSSOPlatformCredentialCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = updateSSOPlatformCredentialCmd.MarkFlagRequired("namespace")
-	updateSSOPlatformCredentialCmd.Flags().StringP("platformId", "pd", " ", "Platform id")
-	_ = updateSSOPlatformCredentialCmd.MarkFlagRequired("platformId")
+	UpdateSSOPlatformCredentialCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = UpdateSSOPlatformCredentialCmd.MarkFlagRequired("body")
+	UpdateSSOPlatformCredentialCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = UpdateSSOPlatformCredentialCmd.MarkFlagRequired("namespace")
+	UpdateSSOPlatformCredentialCmd.Flags().StringP("platformId", "pd", " ", "Platform id")
+	_ = UpdateSSOPlatformCredentialCmd.MarkFlagRequired("platformId")
 }

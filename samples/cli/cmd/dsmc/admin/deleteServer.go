@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/admin"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/dsmc"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// deleteServerCmd represents the deleteServer command
-var deleteServerCmd = &cobra.Command{
-	Use:   "deleteServer",
+// DeleteServerCmd represents the DeleteServer command
+var DeleteServerCmd = &cobra.Command{
+	Use:   "DeleteServer",
 	Short: "Delete server",
 	Long:  `Delete server`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,9 +40,8 @@ var deleteServerCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(deleteServerCmd)
-	deleteServerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = deleteServerCmd.MarkFlagRequired("namespace")
-	deleteServerCmd.Flags().StringP("podName", "pe", " ", "Pod name")
-	_ = deleteServerCmd.MarkFlagRequired("podName")
+	DeleteServerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = DeleteServerCmd.MarkFlagRequired("namespace")
+	DeleteServerCmd.Flags().StringP("podName", "pe", " ", "Pod name")
+	_ = DeleteServerCmd.MarkFlagRequired("podName")
 }

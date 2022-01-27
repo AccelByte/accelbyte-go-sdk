@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/entitlement"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// publicQueryUserEntitlementsByAppTypeCmd represents the publicQueryUserEntitlementsByAppType command
-var publicQueryUserEntitlementsByAppTypeCmd = &cobra.Command{
-	Use:   "publicQueryUserEntitlementsByAppType",
+// PublicQueryUserEntitlementsByAppTypeCmd represents the PublicQueryUserEntitlementsByAppType command
+var PublicQueryUserEntitlementsByAppTypeCmd = &cobra.Command{
+	Use:   "PublicQueryUserEntitlementsByAppType",
 	Short: "Public query user entitlements by app type",
 	Long:  `Public query user entitlements by app type`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,13 +47,12 @@ var publicQueryUserEntitlementsByAppTypeCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(publicQueryUserEntitlementsByAppTypeCmd)
-	publicQueryUserEntitlementsByAppTypeCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = publicQueryUserEntitlementsByAppTypeCmd.MarkFlagRequired("namespace")
-	publicQueryUserEntitlementsByAppTypeCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = publicQueryUserEntitlementsByAppTypeCmd.MarkFlagRequired("userId")
-	publicQueryUserEntitlementsByAppTypeCmd.Flags().Int32P("limit", "lt", 20, "Limit")
-	publicQueryUserEntitlementsByAppTypeCmd.Flags().Int32P("offset", "ot", 0, "Offset")
-	publicQueryUserEntitlementsByAppTypeCmd.Flags().StringP("appType", "ae", " ", "App type")
-	_ = publicQueryUserEntitlementsByAppTypeCmd.MarkFlagRequired("appType")
+	PublicQueryUserEntitlementsByAppTypeCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PublicQueryUserEntitlementsByAppTypeCmd.MarkFlagRequired("namespace")
+	PublicQueryUserEntitlementsByAppTypeCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = PublicQueryUserEntitlementsByAppTypeCmd.MarkFlagRequired("userId")
+	PublicQueryUserEntitlementsByAppTypeCmd.Flags().Int32P("limit", "lt", 20, "Limit")
+	PublicQueryUserEntitlementsByAppTypeCmd.Flags().Int32P("offset", "ot", 0, "Offset")
+	PublicQueryUserEntitlementsByAppTypeCmd.Flags().StringP("appType", "ae", " ", "App type")
+	_ = PublicQueryUserEntitlementsByAppTypeCmd.MarkFlagRequired("appType")
 }

@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/clients"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminGetClientsByNamespaceV3Cmd represents the adminGetClientsByNamespaceV3 command
-var adminGetClientsByNamespaceV3Cmd = &cobra.Command{
-	Use:   "adminGetClientsByNamespaceV3",
+// AdminGetClientsByNamespaceV3Cmd represents the AdminGetClientsByNamespaceV3 command
+var AdminGetClientsByNamespaceV3Cmd = &cobra.Command{
+	Use:   "AdminGetClientsByNamespaceV3",
 	Short: "Admin get clients by namespace V3",
 	Long:  `Admin get clients by namespace V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -44,9 +43,8 @@ var adminGetClientsByNamespaceV3Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminGetClientsByNamespaceV3Cmd)
-	adminGetClientsByNamespaceV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = adminGetClientsByNamespaceV3Cmd.MarkFlagRequired("namespace")
-	adminGetClientsByNamespaceV3Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
-	adminGetClientsByNamespaceV3Cmd.Flags().StringP("offset", "ot", "0", "Offset")
+	AdminGetClientsByNamespaceV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AdminGetClientsByNamespaceV3Cmd.MarkFlagRequired("namespace")
+	AdminGetClientsByNamespaceV3Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
+	AdminGetClientsByNamespaceV3Cmd.Flags().StringP("offset", "ot", "0", "Offset")
 }

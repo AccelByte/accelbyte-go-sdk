@@ -8,15 +8,14 @@ import (
 	matchmaking_ "github.com/AccelByte/accelbyte-go-sdk/matchmaking-sdk/pkg/matchmakingclient/matchmaking"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/matchmaking"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getAllChannelsHandlerCmd represents the getAllChannelsHandler command
-var getAllChannelsHandlerCmd = &cobra.Command{
-	Use:   "getAllChannelsHandler",
+// GetAllChannelsHandlerCmd represents the GetAllChannelsHandler command
+var GetAllChannelsHandlerCmd = &cobra.Command{
+	Use:   "GetAllChannelsHandler",
 	Short: "Get all channels handler",
 	Long:  `Get all channels handler`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -44,9 +43,8 @@ var getAllChannelsHandlerCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getAllChannelsHandlerCmd)
-	getAllChannelsHandlerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getAllChannelsHandlerCmd.MarkFlagRequired("namespace")
-	getAllChannelsHandlerCmd.Flags().Int64P("limit", "lt", 20, "Limit")
-	getAllChannelsHandlerCmd.Flags().Int64P("offset", "ot", 0, "Offset")
+	GetAllChannelsHandlerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetAllChannelsHandlerCmd.MarkFlagRequired("namespace")
+	GetAllChannelsHandlerCmd.Flags().Int64P("limit", "lt", 20, "Limit")
+	GetAllChannelsHandlerCmd.Flags().Int64P("offset", "ot", 0, "Offset")
 }

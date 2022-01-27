@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/seasonpass-sdk/pkg/seasonpassclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/seasonpass"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// grantUserPassCmd represents the grantUserPass command
-var grantUserPassCmd = &cobra.Command{
-	Use:   "grantUserPass",
+// GrantUserPassCmd represents the GrantUserPass command
+var GrantUserPassCmd = &cobra.Command{
+	Use:   "GrantUserPass",
 	Short: "Grant user pass",
 	Long:  `Grant user pass`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -51,10 +50,9 @@ var grantUserPassCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(grantUserPassCmd)
-	grantUserPassCmd.Flags().StringP("body", "by", " ", "Body")
-	grantUserPassCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = grantUserPassCmd.MarkFlagRequired("namespace")
-	grantUserPassCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = grantUserPassCmd.MarkFlagRequired("userId")
+	GrantUserPassCmd.Flags().StringP("body", "by", " ", "Body")
+	GrantUserPassCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GrantUserPassCmd.MarkFlagRequired("namespace")
+	GrantUserPassCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = GrantUserPassCmd.MarkFlagRequired("userId")
 }

@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// createCampaignCmd represents the createCampaign command
-var createCampaignCmd = &cobra.Command{
-	Use:   "createCampaign",
+// CreateCampaignCmd represents the CreateCampaign command
+var CreateCampaignCmd = &cobra.Command{
+	Use:   "CreateCampaign",
 	Short: "Create campaign",
 	Long:  `Create campaign`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,8 +48,7 @@ var createCampaignCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(createCampaignCmd)
-	createCampaignCmd.Flags().StringP("body", "by", " ", "Body")
-	createCampaignCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = createCampaignCmd.MarkFlagRequired("namespace")
+	CreateCampaignCmd.Flags().StringP("body", "by", " ", "Body")
+	CreateCampaignCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = CreateCampaignCmd.MarkFlagRequired("namespace")
 }

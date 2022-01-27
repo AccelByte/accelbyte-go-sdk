@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/eventlog-sdk/pkg/eventlogclient/user_information"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/eventlog"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// lastUserActivityTimeHandlerCmd represents the lastUserActivityTimeHandler command
-var lastUserActivityTimeHandlerCmd = &cobra.Command{
-	Use:   "lastUserActivityTimeHandler",
+// LastUserActivityTimeHandlerCmd represents the LastUserActivityTimeHandler command
+var LastUserActivityTimeHandlerCmd = &cobra.Command{
+	Use:   "LastUserActivityTimeHandler",
 	Short: "Last user activity time handler",
 	Long:  `Last user activity time handler`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,9 +41,8 @@ var lastUserActivityTimeHandlerCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(lastUserActivityTimeHandlerCmd)
-	lastUserActivityTimeHandlerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = lastUserActivityTimeHandlerCmd.MarkFlagRequired("namespace")
-	lastUserActivityTimeHandlerCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = lastUserActivityTimeHandlerCmd.MarkFlagRequired("userId")
+	LastUserActivityTimeHandlerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = LastUserActivityTimeHandlerCmd.MarkFlagRequired("namespace")
+	LastUserActivityTimeHandlerCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = LastUserActivityTimeHandlerCmd.MarkFlagRequired("userId")
 }

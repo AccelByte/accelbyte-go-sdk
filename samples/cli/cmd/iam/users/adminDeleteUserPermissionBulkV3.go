@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminDeleteUserPermissionBulkV3Cmd represents the adminDeleteUserPermissionBulkV3 command
-var adminDeleteUserPermissionBulkV3Cmd = &cobra.Command{
-	Use:   "adminDeleteUserPermissionBulkV3",
+// AdminDeleteUserPermissionBulkV3Cmd represents the AdminDeleteUserPermissionBulkV3 command
+var AdminDeleteUserPermissionBulkV3Cmd = &cobra.Command{
+	Use:   "AdminDeleteUserPermissionBulkV3",
 	Short: "Admin delete user permission bulk V3",
 	Long:  `Admin delete user permission bulk V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,11 +49,10 @@ var adminDeleteUserPermissionBulkV3Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminDeleteUserPermissionBulkV3Cmd)
-	adminDeleteUserPermissionBulkV3Cmd.Flags().StringP("body", "by", " ", "Body")
-	_ = adminDeleteUserPermissionBulkV3Cmd.MarkFlagRequired("body")
-	adminDeleteUserPermissionBulkV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = adminDeleteUserPermissionBulkV3Cmd.MarkFlagRequired("namespace")
-	adminDeleteUserPermissionBulkV3Cmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = adminDeleteUserPermissionBulkV3Cmd.MarkFlagRequired("userId")
+	AdminDeleteUserPermissionBulkV3Cmd.Flags().StringP("body", "by", " ", "Body")
+	_ = AdminDeleteUserPermissionBulkV3Cmd.MarkFlagRequired("body")
+	AdminDeleteUserPermissionBulkV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AdminDeleteUserPermissionBulkV3Cmd.MarkFlagRequired("namespace")
+	AdminDeleteUserPermissionBulkV3Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = AdminDeleteUserPermissionBulkV3Cmd.MarkFlagRequired("userId")
 }

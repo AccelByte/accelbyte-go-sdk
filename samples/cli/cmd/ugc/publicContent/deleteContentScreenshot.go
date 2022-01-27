@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/ugc"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/public_content"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// deleteContentScreenshotCmd represents the deleteContentScreenshot command
-var deleteContentScreenshotCmd = &cobra.Command{
-	Use:   "deleteContentScreenshot",
+// DeleteContentScreenshotCmd represents the DeleteContentScreenshot command
+var DeleteContentScreenshotCmd = &cobra.Command{
+	Use:   "DeleteContentScreenshot",
 	Short: "Delete content screenshot",
 	Long:  `Delete content screenshot`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -45,13 +44,12 @@ var deleteContentScreenshotCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(deleteContentScreenshotCmd)
-	deleteContentScreenshotCmd.Flags().StringP("contentId", "cd", " ", "Content id")
-	_ = deleteContentScreenshotCmd.MarkFlagRequired("contentId")
-	deleteContentScreenshotCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = deleteContentScreenshotCmd.MarkFlagRequired("namespace")
-	deleteContentScreenshotCmd.Flags().StringP("screenshotId", "sd", " ", "Screenshot id")
-	_ = deleteContentScreenshotCmd.MarkFlagRequired("screenshotId")
-	deleteContentScreenshotCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = deleteContentScreenshotCmd.MarkFlagRequired("userId")
+	DeleteContentScreenshotCmd.Flags().StringP("contentId", "cd", " ", "Content id")
+	_ = DeleteContentScreenshotCmd.MarkFlagRequired("contentId")
+	DeleteContentScreenshotCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = DeleteContentScreenshotCmd.MarkFlagRequired("namespace")
+	DeleteContentScreenshotCmd.Flags().StringP("screenshotId", "sd", " ", "Screenshot id")
+	_ = DeleteContentScreenshotCmd.MarkFlagRequired("screenshotId")
+	DeleteContentScreenshotCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = DeleteContentScreenshotCmd.MarkFlagRequired("userId")
 }

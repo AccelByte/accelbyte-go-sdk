@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// syncSteamInventoryCmd represents the syncSteamInventory command
-var syncSteamInventoryCmd = &cobra.Command{
-	Use:   "syncSteamInventory",
+// SyncSteamInventoryCmd represents the SyncSteamInventory command
+var SyncSteamInventoryCmd = &cobra.Command{
+	Use:   "SyncSteamInventory",
 	Short: "Sync steam inventory",
 	Long:  `Sync steam inventory`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,10 +49,9 @@ var syncSteamInventoryCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(syncSteamInventoryCmd)
-	syncSteamInventoryCmd.Flags().StringP("body", "by", " ", "Body")
-	syncSteamInventoryCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = syncSteamInventoryCmd.MarkFlagRequired("namespace")
-	syncSteamInventoryCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = syncSteamInventoryCmd.MarkFlagRequired("userId")
+	SyncSteamInventoryCmd.Flags().StringP("body", "by", " ", "Body")
+	SyncSteamInventoryCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = SyncSteamInventoryCmd.MarkFlagRequired("namespace")
+	SyncSteamInventoryCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = SyncSteamInventoryCmd.MarkFlagRequired("userId")
 }

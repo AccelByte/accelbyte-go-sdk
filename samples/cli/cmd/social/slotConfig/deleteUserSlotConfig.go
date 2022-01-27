@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/social"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient/slot_config"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// deleteUserSlotConfigCmd represents the deleteUserSlotConfig command
-var deleteUserSlotConfigCmd = &cobra.Command{
-	Use:   "deleteUserSlotConfig",
+// DeleteUserSlotConfigCmd represents the DeleteUserSlotConfig command
+var DeleteUserSlotConfigCmd = &cobra.Command{
+	Use:   "DeleteUserSlotConfig",
 	Short: "Delete user slot config",
 	Long:  `Delete user slot config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,9 +40,8 @@ var deleteUserSlotConfigCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(deleteUserSlotConfigCmd)
-	deleteUserSlotConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = deleteUserSlotConfigCmd.MarkFlagRequired("namespace")
-	deleteUserSlotConfigCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = deleteUserSlotConfigCmd.MarkFlagRequired("userId")
+	DeleteUserSlotConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = DeleteUserSlotConfigCmd.MarkFlagRequired("namespace")
+	DeleteUserSlotConfigCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = DeleteUserSlotConfigCmd.MarkFlagRequired("userId")
 }

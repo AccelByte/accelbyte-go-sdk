@@ -9,15 +9,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/gdpr-sdk/pkg/gdprclient/data_retrieval"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/gdpr"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// saveAdminEmailConfigurationCmd represents the saveAdminEmailConfiguration command
-var saveAdminEmailConfigurationCmd = &cobra.Command{
-	Use:   "saveAdminEmailConfiguration",
+// SaveAdminEmailConfigurationCmd represents the SaveAdminEmailConfiguration command
+var SaveAdminEmailConfigurationCmd = &cobra.Command{
+	Use:   "SaveAdminEmailConfiguration",
 	Short: "Save admin email configuration",
 	Long:  `Save admin email configuration`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -47,9 +46,8 @@ var saveAdminEmailConfigurationCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(saveAdminEmailConfigurationCmd)
-	saveAdminEmailConfigurationCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = saveAdminEmailConfigurationCmd.MarkFlagRequired("body")
-	saveAdminEmailConfigurationCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = saveAdminEmailConfigurationCmd.MarkFlagRequired("namespace")
+	SaveAdminEmailConfigurationCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = SaveAdminEmailConfigurationCmd.MarkFlagRequired("body")
+	SaveAdminEmailConfigurationCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = SaveAdminEmailConfigurationCmd.MarkFlagRequired("namespace")
 }

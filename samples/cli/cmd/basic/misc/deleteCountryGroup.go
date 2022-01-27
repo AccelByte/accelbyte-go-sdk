@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclient/misc"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/basic"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// deleteCountryGroupCmd represents the deleteCountryGroup command
-var deleteCountryGroupCmd = &cobra.Command{
-	Use:   "deleteCountryGroup",
+// DeleteCountryGroupCmd represents the DeleteCountryGroup command
+var DeleteCountryGroupCmd = &cobra.Command{
+	Use:   "DeleteCountryGroup",
 	Short: "Delete country group",
 	Long:  `Delete country group`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,9 +40,8 @@ var deleteCountryGroupCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(deleteCountryGroupCmd)
-	deleteCountryGroupCmd.Flags().StringP("countryGroupCode", "ce", " ", "Country group code")
-	_ = deleteCountryGroupCmd.MarkFlagRequired("countryGroupCode")
-	deleteCountryGroupCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = deleteCountryGroupCmd.MarkFlagRequired("namespace")
+	DeleteCountryGroupCmd.Flags().StringP("countryGroupCode", "ce", " ", "Country group code")
+	_ = DeleteCountryGroupCmd.MarkFlagRequired("countryGroupCode")
+	DeleteCountryGroupCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = DeleteCountryGroupCmd.MarkFlagRequired("namespace")
 }

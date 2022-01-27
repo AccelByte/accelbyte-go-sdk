@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminListUserIDByUserIDsV3Cmd represents the adminListUserIDByUserIDsV3 command
-var adminListUserIDByUserIDsV3Cmd = &cobra.Command{
-	Use:   "adminListUserIDByUserIDsV3",
+// AdminListUserIDByUserIDsV3Cmd represents the AdminListUserIDByUserIDsV3 command
+var AdminListUserIDByUserIDsV3Cmd = &cobra.Command{
+	Use:   "AdminListUserIDByUserIDsV3",
 	Short: "Admin list user ID by user I ds V3",
 	Long:  `Admin list user ID by user I ds V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,9 +48,8 @@ var adminListUserIDByUserIDsV3Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminListUserIDByUserIDsV3Cmd)
-	adminListUserIDByUserIDsV3Cmd.Flags().StringP("body", "by", " ", "Body")
-	_ = adminListUserIDByUserIDsV3Cmd.MarkFlagRequired("body")
-	adminListUserIDByUserIDsV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = adminListUserIDByUserIDsV3Cmd.MarkFlagRequired("namespace")
+	AdminListUserIDByUserIDsV3Cmd.Flags().StringP("body", "by", " ", "Body")
+	_ = AdminListUserIDByUserIDsV3Cmd.MarkFlagRequired("body")
+	AdminListUserIDByUserIDsV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AdminListUserIDByUserIDsV3Cmd.MarkFlagRequired("namespace")
 }

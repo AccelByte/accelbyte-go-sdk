@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/social"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient/user_statistic"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclientmodels"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// resetUserStatItemValueCmd represents the resetUserStatItemValue command
-var resetUserStatItemValueCmd = &cobra.Command{
-	Use:   "resetUserStatItemValue",
+// ResetUserStatItemValueCmd represents the ResetUserStatItemValue command
+var ResetUserStatItemValueCmd = &cobra.Command{
+	Use:   "ResetUserStatItemValue",
 	Short: "Reset user stat item value",
 	Long:  `Reset user stat item value`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -55,13 +54,12 @@ var resetUserStatItemValueCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(resetUserStatItemValueCmd)
-	resetUserStatItemValueCmd.Flags().StringP("body", "by", " ", "Body")
-	resetUserStatItemValueCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = resetUserStatItemValueCmd.MarkFlagRequired("namespace")
-	resetUserStatItemValueCmd.Flags().StringP("statCode", "se", " ", "Stat code")
-	_ = resetUserStatItemValueCmd.MarkFlagRequired("statCode")
-	resetUserStatItemValueCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = resetUserStatItemValueCmd.MarkFlagRequired("userId")
-	resetUserStatItemValueCmd.Flags().StringP("additionalKey", "ay", " ", "Additional key")
+	ResetUserStatItemValueCmd.Flags().StringP("body", "by", " ", "Body")
+	ResetUserStatItemValueCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = ResetUserStatItemValueCmd.MarkFlagRequired("namespace")
+	ResetUserStatItemValueCmd.Flags().StringP("statCode", "se", " ", "Stat code")
+	_ = ResetUserStatItemValueCmd.MarkFlagRequired("statCode")
+	ResetUserStatItemValueCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = ResetUserStatItemValueCmd.MarkFlagRequired("userId")
+	ResetUserStatItemValueCmd.Flags().StringP("additionalKey", "ay", " ", "Additional key")
 }

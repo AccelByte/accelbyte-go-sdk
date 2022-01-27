@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// publicGetUserLoginHistoriesV3Cmd represents the publicGetUserLoginHistoriesV3 command
-var publicGetUserLoginHistoriesV3Cmd = &cobra.Command{
-	Use:   "publicGetUserLoginHistoriesV3",
+// PublicGetUserLoginHistoriesV3Cmd represents the PublicGetUserLoginHistoriesV3 command
+var PublicGetUserLoginHistoriesV3Cmd = &cobra.Command{
+	Use:   "PublicGetUserLoginHistoriesV3",
 	Short: "Public get user login histories V3",
 	Long:  `Public get user login histories V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,12 +47,11 @@ var publicGetUserLoginHistoriesV3Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(publicGetUserLoginHistoriesV3Cmd)
-	publicGetUserLoginHistoriesV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = publicGetUserLoginHistoriesV3Cmd.MarkFlagRequired("namespace")
-	publicGetUserLoginHistoriesV3Cmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = publicGetUserLoginHistoriesV3Cmd.MarkFlagRequired("userId")
-	publicGetUserLoginHistoriesV3Cmd.Flags().Float64P("after", "ar", 0, "After")
-	publicGetUserLoginHistoriesV3Cmd.Flags().Float64P("before", "be", 0, "Before")
-	publicGetUserLoginHistoriesV3Cmd.Flags().Float64P("limit", "lt", 20, "Limit")
+	PublicGetUserLoginHistoriesV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PublicGetUserLoginHistoriesV3Cmd.MarkFlagRequired("namespace")
+	PublicGetUserLoginHistoriesV3Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = PublicGetUserLoginHistoriesV3Cmd.MarkFlagRequired("userId")
+	PublicGetUserLoginHistoriesV3Cmd.Flags().Float64P("after", "ar", 0, "After")
+	PublicGetUserLoginHistoriesV3Cmd.Flags().Float64P("before", "be", 0, "Before")
+	PublicGetUserLoginHistoriesV3Cmd.Flags().Float64P("limit", "lt", 20, "Limit")
 }

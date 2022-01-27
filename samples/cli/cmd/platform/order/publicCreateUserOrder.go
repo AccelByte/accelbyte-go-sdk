@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// publicCreateUserOrderCmd represents the publicCreateUserOrder command
-var publicCreateUserOrderCmd = &cobra.Command{
-	Use:   "publicCreateUserOrder",
+// PublicCreateUserOrderCmd represents the PublicCreateUserOrder command
+var PublicCreateUserOrderCmd = &cobra.Command{
+	Use:   "PublicCreateUserOrder",
 	Short: "Public create user order",
 	Long:  `Public create user order`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -51,10 +50,9 @@ var publicCreateUserOrderCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(publicCreateUserOrderCmd)
-	publicCreateUserOrderCmd.Flags().StringP("body", "by", " ", "Body")
-	publicCreateUserOrderCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = publicCreateUserOrderCmd.MarkFlagRequired("namespace")
-	publicCreateUserOrderCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = publicCreateUserOrderCmd.MarkFlagRequired("userId")
+	PublicCreateUserOrderCmd.Flags().StringP("body", "by", " ", "Body")
+	PublicCreateUserOrderCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PublicCreateUserOrderCmd.MarkFlagRequired("namespace")
+	PublicCreateUserOrderCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = PublicCreateUserOrderCmd.MarkFlagRequired("userId")
 }

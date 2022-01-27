@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclient/user_info"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/legal"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// syncUserInfoCmd represents the syncUserInfo command
-var syncUserInfoCmd = &cobra.Command{
-	Use:   "syncUserInfo",
+// SyncUserInfoCmd represents the SyncUserInfo command
+var SyncUserInfoCmd = &cobra.Command{
+	Use:   "SyncUserInfo",
 	Short: "Sync user info",
 	Long:  `Sync user info`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,7 +38,6 @@ var syncUserInfoCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(syncUserInfoCmd)
-	syncUserInfoCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = syncUserInfoCmd.MarkFlagRequired("namespace")
+	SyncUserInfoCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = SyncUserInfoCmd.MarkFlagRequired("namespace")
 }

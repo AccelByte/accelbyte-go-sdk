@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth2_0"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getJWKSV3Cmd represents the getJWKSV3 command
-var getJWKSV3Cmd = &cobra.Command{
-	Use:   "getJWKSV3",
+// GetJWKSV3Cmd represents the GetJWKSV3 command
+var GetJWKSV3Cmd = &cobra.Command{
+	Use:   "GetJWKSV3",
 	Short: "Get JWKSV3",
 	Long:  `Get JWKSV3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -34,8 +33,4 @@ var getJWKSV3Cmd = &cobra.Command{
 		}
 		return nil
 	},
-}
-
-func init() {
-	cmd.RootCmd.AddCommand(getJWKSV3Cmd)
 }

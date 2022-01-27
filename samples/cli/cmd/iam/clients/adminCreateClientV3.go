@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminCreateClientV3Cmd represents the adminCreateClientV3 command
-var adminCreateClientV3Cmd = &cobra.Command{
-	Use:   "adminCreateClientV3",
+// AdminCreateClientV3Cmd represents the AdminCreateClientV3 command
+var AdminCreateClientV3Cmd = &cobra.Command{
+	Use:   "AdminCreateClientV3",
 	Short: "Admin create client V3",
 	Long:  `Admin create client V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,9 +48,8 @@ var adminCreateClientV3Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminCreateClientV3Cmd)
-	adminCreateClientV3Cmd.Flags().StringP("body", "by", " ", "Body")
-	_ = adminCreateClientV3Cmd.MarkFlagRequired("body")
-	adminCreateClientV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = adminCreateClientV3Cmd.MarkFlagRequired("namespace")
+	AdminCreateClientV3Cmd.Flags().StringP("body", "by", " ", "Body")
+	_ = AdminCreateClientV3Cmd.MarkFlagRequired("body")
+	AdminCreateClientV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AdminCreateClientV3Cmd.MarkFlagRequired("namespace")
 }

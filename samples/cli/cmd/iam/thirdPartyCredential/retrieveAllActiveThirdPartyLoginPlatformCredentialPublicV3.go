@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/third_party_credential"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// retrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Cmd represents the retrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3 command
-var retrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Cmd = &cobra.Command{
-	Use:   "retrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3",
+// RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Cmd represents the RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3 command
+var RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Cmd = &cobra.Command{
+	Use:   "RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3",
 	Short: "Retrieve all active third party login platform credential public V3",
 	Long:  `Retrieve all active third party login platform credential public V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,7 +39,6 @@ var retrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Cmd = &cobra.Comma
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(retrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Cmd)
-	retrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = retrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Cmd.MarkFlagRequired("namespace")
+	RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Cmd.MarkFlagRequired("namespace")
 }

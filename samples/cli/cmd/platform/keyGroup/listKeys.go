@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/key_group"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// listKeysCmd represents the listKeys command
-var listKeysCmd = &cobra.Command{
-	Use:   "listKeys",
+// ListKeysCmd represents the ListKeys command
+var ListKeysCmd = &cobra.Command{
+	Use:   "ListKeys",
 	Short: "List keys",
 	Long:  `List keys`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,12 +47,11 @@ var listKeysCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(listKeysCmd)
-	listKeysCmd.Flags().StringP("keyGroupId", "kd", " ", "Key group id")
-	_ = listKeysCmd.MarkFlagRequired("keyGroupId")
-	listKeysCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = listKeysCmd.MarkFlagRequired("namespace")
-	listKeysCmd.Flags().Int32P("limit", "lt", 20, "Limit")
-	listKeysCmd.Flags().Int32P("offset", "ot", 0, "Offset")
-	listKeysCmd.Flags().StringP("status", "ss", " ", "Status")
+	ListKeysCmd.Flags().StringP("keyGroupId", "kd", " ", "Key group id")
+	_ = ListKeysCmd.MarkFlagRequired("keyGroupId")
+	ListKeysCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = ListKeysCmd.MarkFlagRequired("namespace")
+	ListKeysCmd.Flags().Int32P("limit", "lt", 20, "Limit")
+	ListKeysCmd.Flags().Int32P("offset", "ot", 0, "Offset")
+	ListKeysCmd.Flags().StringP("status", "ss", " ", "Status")
 }

@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// publicFulfillGoogleIAPItemCmd represents the publicFulfillGoogleIAPItem command
-var publicFulfillGoogleIAPItemCmd = &cobra.Command{
-	Use:   "publicFulfillGoogleIAPItem",
+// PublicFulfillGoogleIAPItemCmd represents the PublicFulfillGoogleIAPItem command
+var PublicFulfillGoogleIAPItemCmd = &cobra.Command{
+	Use:   "PublicFulfillGoogleIAPItem",
 	Short: "Public fulfill google IAP item",
 	Long:  `Public fulfill google IAP item`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,10 +49,9 @@ var publicFulfillGoogleIAPItemCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(publicFulfillGoogleIAPItemCmd)
-	publicFulfillGoogleIAPItemCmd.Flags().StringP("body", "by", " ", "Body")
-	publicFulfillGoogleIAPItemCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = publicFulfillGoogleIAPItemCmd.MarkFlagRequired("namespace")
-	publicFulfillGoogleIAPItemCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = publicFulfillGoogleIAPItemCmd.MarkFlagRequired("userId")
+	PublicFulfillGoogleIAPItemCmd.Flags().StringP("body", "by", " ", "Body")
+	PublicFulfillGoogleIAPItemCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PublicFulfillGoogleIAPItemCmd.MarkFlagRequired("namespace")
+	PublicFulfillGoogleIAPItemCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = PublicFulfillGoogleIAPItemCmd.MarkFlagRequired("userId")
 }

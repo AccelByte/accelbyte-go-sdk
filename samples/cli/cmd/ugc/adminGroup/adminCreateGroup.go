@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/ugc"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/admin_group"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclientmodels"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminCreateGroupCmd represents the adminCreateGroup command
-var adminCreateGroupCmd = &cobra.Command{
-	Use:   "adminCreateGroup",
+// AdminCreateGroupCmd represents the AdminCreateGroup command
+var AdminCreateGroupCmd = &cobra.Command{
+	Use:   "AdminCreateGroup",
 	Short: "Admin create group",
 	Long:  `Admin create group`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,9 +48,8 @@ var adminCreateGroupCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminCreateGroupCmd)
-	adminCreateGroupCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = adminCreateGroupCmd.MarkFlagRequired("body")
-	adminCreateGroupCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = adminCreateGroupCmd.MarkFlagRequired("namespace")
+	AdminCreateGroupCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = AdminCreateGroupCmd.MarkFlagRequired("body")
+	AdminCreateGroupCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AdminCreateGroupCmd.MarkFlagRequired("namespace")
 }

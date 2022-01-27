@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/order"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// countOfPurchasedItemCmd represents the countOfPurchasedItem command
-var countOfPurchasedItemCmd = &cobra.Command{
-	Use:   "countOfPurchasedItem",
+// CountOfPurchasedItemCmd represents the CountOfPurchasedItem command
+var CountOfPurchasedItemCmd = &cobra.Command{
+	Use:   "CountOfPurchasedItem",
 	Short: "Count of purchased item",
 	Long:  `Count of purchased item`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -44,11 +43,10 @@ var countOfPurchasedItemCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(countOfPurchasedItemCmd)
-	countOfPurchasedItemCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = countOfPurchasedItemCmd.MarkFlagRequired("namespace")
-	countOfPurchasedItemCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = countOfPurchasedItemCmd.MarkFlagRequired("userId")
-	countOfPurchasedItemCmd.Flags().StringP("itemId", "id", " ", "Item id")
-	_ = countOfPurchasedItemCmd.MarkFlagRequired("itemId")
+	CountOfPurchasedItemCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = CountOfPurchasedItemCmd.MarkFlagRequired("namespace")
+	CountOfPurchasedItemCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = CountOfPurchasedItemCmd.MarkFlagRequired("userId")
+	CountOfPurchasedItemCmd.Flags().StringP("itemId", "id", " ", "Item id")
+	_ = CountOfPurchasedItemCmd.MarkFlagRequired("itemId")
 }

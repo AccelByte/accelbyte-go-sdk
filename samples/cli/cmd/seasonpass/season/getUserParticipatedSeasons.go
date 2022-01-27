@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/seasonpass-sdk/pkg/seasonpassclient/season"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/seasonpass"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getUserParticipatedSeasonsCmd represents the getUserParticipatedSeasons command
-var getUserParticipatedSeasonsCmd = &cobra.Command{
-	Use:   "getUserParticipatedSeasons",
+// GetUserParticipatedSeasonsCmd represents the GetUserParticipatedSeasons command
+var GetUserParticipatedSeasonsCmd = &cobra.Command{
+	Use:   "GetUserParticipatedSeasons",
 	Short: "Get user participated seasons",
 	Long:  `Get user participated seasons`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -46,11 +45,10 @@ var getUserParticipatedSeasonsCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getUserParticipatedSeasonsCmd)
-	getUserParticipatedSeasonsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getUserParticipatedSeasonsCmd.MarkFlagRequired("namespace")
-	getUserParticipatedSeasonsCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = getUserParticipatedSeasonsCmd.MarkFlagRequired("userId")
-	getUserParticipatedSeasonsCmd.Flags().Int32P("limit", "lt", 20, "Limit")
-	getUserParticipatedSeasonsCmd.Flags().Int32P("offset", "ot", 0, "Offset")
+	GetUserParticipatedSeasonsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetUserParticipatedSeasonsCmd.MarkFlagRequired("namespace")
+	GetUserParticipatedSeasonsCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = GetUserParticipatedSeasonsCmd.MarkFlagRequired("userId")
+	GetUserParticipatedSeasonsCmd.Flags().Int32P("limit", "lt", 20, "Limit")
+	GetUserParticipatedSeasonsCmd.Flags().Int32P("offset", "ot", 0, "Offset")
 }

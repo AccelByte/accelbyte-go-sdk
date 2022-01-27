@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// updateIAPItemConfigCmd represents the updateIAPItemConfig command
-var updateIAPItemConfigCmd = &cobra.Command{
-	Use:   "updateIAPItemConfig",
+// UpdateIAPItemConfigCmd represents the UpdateIAPItemConfig command
+var UpdateIAPItemConfigCmd = &cobra.Command{
+	Use:   "UpdateIAPItemConfig",
 	Short: "Update IAP item config",
 	Long:  `Update IAP item config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,8 +48,7 @@ var updateIAPItemConfigCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(updateIAPItemConfigCmd)
-	updateIAPItemConfigCmd.Flags().StringP("body", "by", " ", "Body")
-	updateIAPItemConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = updateIAPItemConfigCmd.MarkFlagRequired("namespace")
+	UpdateIAPItemConfigCmd.Flags().StringP("body", "by", " ", "Body")
+	UpdateIAPItemConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = UpdateIAPItemConfigCmd.MarkFlagRequired("namespace")
 }

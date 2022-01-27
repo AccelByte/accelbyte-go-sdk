@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/gdpr-sdk/pkg/gdprclient/data_retrieval"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/gdpr"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// publicRequestDataRetrievalCmd represents the publicRequestDataRetrieval command
-var publicRequestDataRetrievalCmd = &cobra.Command{
-	Use:   "publicRequestDataRetrieval",
+// PublicRequestDataRetrievalCmd represents the PublicRequestDataRetrieval command
+var PublicRequestDataRetrievalCmd = &cobra.Command{
+	Use:   "PublicRequestDataRetrieval",
 	Short: "Public request data retrieval",
 	Long:  `Public request data retrieval`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -44,11 +43,10 @@ var publicRequestDataRetrievalCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(publicRequestDataRetrievalCmd)
-	publicRequestDataRetrievalCmd.Flags().StringP("password", "pd", " ", "Password")
-	_ = publicRequestDataRetrievalCmd.MarkFlagRequired("password")
-	publicRequestDataRetrievalCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = publicRequestDataRetrievalCmd.MarkFlagRequired("namespace")
-	publicRequestDataRetrievalCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = publicRequestDataRetrievalCmd.MarkFlagRequired("userId")
+	PublicRequestDataRetrievalCmd.Flags().StringP("password", "pd", " ", "Password")
+	_ = PublicRequestDataRetrievalCmd.MarkFlagRequired("password")
+	PublicRequestDataRetrievalCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PublicRequestDataRetrievalCmd.MarkFlagRequired("namespace")
+	PublicRequestDataRetrievalCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = PublicRequestDataRetrievalCmd.MarkFlagRequired("userId")
 }

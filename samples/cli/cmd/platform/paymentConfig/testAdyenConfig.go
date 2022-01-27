@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// testAdyenConfigCmd represents the testAdyenConfig command
-var testAdyenConfigCmd = &cobra.Command{
-	Use:   "testAdyenConfig",
+// TestAdyenConfigCmd represents the TestAdyenConfig command
+var TestAdyenConfigCmd = &cobra.Command{
+	Use:   "TestAdyenConfig",
 	Short: "Test adyen config",
 	Long:  `Test adyen config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,7 +48,6 @@ var testAdyenConfigCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(testAdyenConfigCmd)
-	testAdyenConfigCmd.Flags().StringP("body", "by", " ", "Body")
-	testAdyenConfigCmd.Flags().BoolP("sandbox", "sx", false, "Sandbox")
+	TestAdyenConfigCmd.Flags().StringP("body", "by", " ", "Body")
+	TestAdyenConfigCmd.Flags().BoolP("sandbox", "sx", false, "Sandbox")
 }

@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/anonymization"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// anonymizeSubscriptionCmd represents the anonymizeSubscription command
-var anonymizeSubscriptionCmd = &cobra.Command{
-	Use:   "anonymizeSubscription",
+// AnonymizeSubscriptionCmd represents the AnonymizeSubscription command
+var AnonymizeSubscriptionCmd = &cobra.Command{
+	Use:   "AnonymizeSubscription",
 	Short: "Anonymize subscription",
 	Long:  `Anonymize subscription`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,9 +40,8 @@ var anonymizeSubscriptionCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(anonymizeSubscriptionCmd)
-	anonymizeSubscriptionCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = anonymizeSubscriptionCmd.MarkFlagRequired("namespace")
-	anonymizeSubscriptionCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = anonymizeSubscriptionCmd.MarkFlagRequired("userId")
+	AnonymizeSubscriptionCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AnonymizeSubscriptionCmd.MarkFlagRequired("namespace")
+	AnonymizeSubscriptionCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = AnonymizeSubscriptionCmd.MarkFlagRequired("userId")
 }

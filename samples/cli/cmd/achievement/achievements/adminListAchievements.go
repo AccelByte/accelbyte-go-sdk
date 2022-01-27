@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/achievement-sdk/pkg/achievementclient/achievements"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/achievement"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminListAchievementsCmd represents the adminListAchievements command
-var adminListAchievementsCmd = &cobra.Command{
-	Use:   "adminListAchievements",
+// AdminListAchievementsCmd represents the AdminListAchievements command
+var AdminListAchievementsCmd = &cobra.Command{
+	Use:   "AdminListAchievements",
 	Short: "Admin list achievements",
 	Long:  `Admin list achievements`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -46,10 +45,9 @@ var adminListAchievementsCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminListAchievementsCmd)
-	adminListAchievementsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = adminListAchievementsCmd.MarkFlagRequired("namespace")
-	adminListAchievementsCmd.Flags().Int64P("limit", "lt", 20, "Limit")
-	adminListAchievementsCmd.Flags().Int64P("offset", "ot", 0, "Offset")
-	adminListAchievementsCmd.Flags().StringP("sortBy", "sy", " ", "Sort by")
+	AdminListAchievementsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AdminListAchievementsCmd.MarkFlagRequired("namespace")
+	AdminListAchievementsCmd.Flags().Int64P("limit", "lt", 20, "Limit")
+	AdminListAchievementsCmd.Flags().Int64P("offset", "ot", 0, "Offset")
+	AdminListAchievementsCmd.Flags().StringP("sortBy", "sy", " ", "Sort by")
 }

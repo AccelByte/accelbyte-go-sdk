@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminUpdateAgeRestrictionConfigV3Cmd represents the adminUpdateAgeRestrictionConfigV3 command
-var adminUpdateAgeRestrictionConfigV3Cmd = &cobra.Command{
-	Use:   "adminUpdateAgeRestrictionConfigV3",
+// AdminUpdateAgeRestrictionConfigV3Cmd represents the AdminUpdateAgeRestrictionConfigV3 command
+var AdminUpdateAgeRestrictionConfigV3Cmd = &cobra.Command{
+	Use:   "AdminUpdateAgeRestrictionConfigV3",
 	Short: "Admin update age restriction config V3",
 	Long:  `Admin update age restriction config V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,9 +48,8 @@ var adminUpdateAgeRestrictionConfigV3Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminUpdateAgeRestrictionConfigV3Cmd)
-	adminUpdateAgeRestrictionConfigV3Cmd.Flags().StringP("body", "by", " ", "Body")
-	_ = adminUpdateAgeRestrictionConfigV3Cmd.MarkFlagRequired("body")
-	adminUpdateAgeRestrictionConfigV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = adminUpdateAgeRestrictionConfigV3Cmd.MarkFlagRequired("namespace")
+	AdminUpdateAgeRestrictionConfigV3Cmd.Flags().StringP("body", "by", " ", "Body")
+	_ = AdminUpdateAgeRestrictionConfigV3Cmd.MarkFlagRequired("body")
+	AdminUpdateAgeRestrictionConfigV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AdminUpdateAgeRestrictionConfigV3Cmd.MarkFlagRequired("namespace")
 }

@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminGetUserBanV3Cmd represents the adminGetUserBanV3 command
-var adminGetUserBanV3Cmd = &cobra.Command{
-	Use:   "adminGetUserBanV3",
+// AdminGetUserBanV3Cmd represents the AdminGetUserBanV3 command
+var AdminGetUserBanV3Cmd = &cobra.Command{
+	Use:   "AdminGetUserBanV3",
 	Short: "Admin get user ban V3",
 	Long:  `Admin get user ban V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,13 +49,12 @@ var adminGetUserBanV3Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminGetUserBanV3Cmd)
-	adminGetUserBanV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = adminGetUserBanV3Cmd.MarkFlagRequired("namespace")
-	adminGetUserBanV3Cmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = adminGetUserBanV3Cmd.MarkFlagRequired("userId")
-	adminGetUserBanV3Cmd.Flags().BoolP("activeOnly", "ay", false, "Active only")
-	adminGetUserBanV3Cmd.Flags().StringP("after", "ar", "0", "After")
-	adminGetUserBanV3Cmd.Flags().StringP("before", "be", "0", "Before")
-	adminGetUserBanV3Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
+	AdminGetUserBanV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AdminGetUserBanV3Cmd.MarkFlagRequired("namespace")
+	AdminGetUserBanV3Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = AdminGetUserBanV3Cmd.MarkFlagRequired("userId")
+	AdminGetUserBanV3Cmd.Flags().BoolP("activeOnly", "ay", false, "Active only")
+	AdminGetUserBanV3Cmd.Flags().StringP("after", "ar", "0", "After")
+	AdminGetUserBanV3Cmd.Flags().StringP("before", "be", "0", "Before")
+	AdminGetUserBanV3Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
 }

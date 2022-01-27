@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/social"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient/user_statistic"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclientmodels"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// bulkCreateUserStatItemsCmd represents the bulkCreateUserStatItems command
-var bulkCreateUserStatItemsCmd = &cobra.Command{
-	Use:   "bulkCreateUserStatItems",
+// BulkCreateUserStatItemsCmd represents the BulkCreateUserStatItems command
+var BulkCreateUserStatItemsCmd = &cobra.Command{
+	Use:   "BulkCreateUserStatItems",
 	Short: "Bulk create user stat items",
 	Long:  `Bulk create user stat items`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -51,10 +50,9 @@ var bulkCreateUserStatItemsCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(bulkCreateUserStatItemsCmd)
-	bulkCreateUserStatItemsCmd.Flags().StringP("body", "by", " ", "Body")
-	bulkCreateUserStatItemsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = bulkCreateUserStatItemsCmd.MarkFlagRequired("namespace")
-	bulkCreateUserStatItemsCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = bulkCreateUserStatItemsCmd.MarkFlagRequired("userId")
+	BulkCreateUserStatItemsCmd.Flags().StringP("body", "by", " ", "Body")
+	BulkCreateUserStatItemsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = BulkCreateUserStatItemsCmd.MarkFlagRequired("namespace")
+	BulkCreateUserStatItemsCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = BulkCreateUserStatItemsCmd.MarkFlagRequired("userId")
 }

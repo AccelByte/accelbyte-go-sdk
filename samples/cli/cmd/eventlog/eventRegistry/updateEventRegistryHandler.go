@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/eventlog-sdk/pkg/eventlogclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/eventlog"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// updateEventRegistryHandlerCmd represents the updateEventRegistryHandler command
-var updateEventRegistryHandlerCmd = &cobra.Command{
-	Use:   "updateEventRegistryHandler",
+// UpdateEventRegistryHandlerCmd represents the UpdateEventRegistryHandler command
+var UpdateEventRegistryHandlerCmd = &cobra.Command{
+	Use:   "UpdateEventRegistryHandler",
 	Short: "Update event registry handler",
 	Long:  `Update event registry handler`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,9 +47,8 @@ var updateEventRegistryHandlerCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(updateEventRegistryHandlerCmd)
-	updateEventRegistryHandlerCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = updateEventRegistryHandlerCmd.MarkFlagRequired("body")
-	updateEventRegistryHandlerCmd.Flags().StringP("eventId", "ed", "0", "Event id")
-	_ = updateEventRegistryHandlerCmd.MarkFlagRequired("eventId")
+	UpdateEventRegistryHandlerCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = UpdateEventRegistryHandlerCmd.MarkFlagRequired("body")
+	UpdateEventRegistryHandlerCmd.Flags().StringP("eventId", "ed", "0", "Event id")
+	_ = UpdateEventRegistryHandlerCmd.MarkFlagRequired("eventId")
 }

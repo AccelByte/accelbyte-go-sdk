@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/social"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient/stat_configuration"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclientmodels"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// createStatCmd represents the createStat command
-var createStatCmd = &cobra.Command{
-	Use:   "createStat",
+// CreateStatCmd represents the CreateStat command
+var CreateStatCmd = &cobra.Command{
+	Use:   "CreateStat",
 	Short: "Create stat",
 	Long:  `Create stat`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,8 +48,7 @@ var createStatCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(createStatCmd)
-	createStatCmd.Flags().StringP("body", "by", " ", "Body")
-	createStatCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = createStatCmd.MarkFlagRequired("namespace")
+	CreateStatCmd.Flags().StringP("body", "by", " ", "Body")
+	CreateStatCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = CreateStatCmd.MarkFlagRequired("namespace")
 }

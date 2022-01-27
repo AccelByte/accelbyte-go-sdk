@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/payment"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// queryPaymentOrdersCmd represents the queryPaymentOrders command
-var queryPaymentOrdersCmd = &cobra.Command{
-	Use:   "queryPaymentOrders",
+// QueryPaymentOrdersCmd represents the QueryPaymentOrders command
+var QueryPaymentOrdersCmd = &cobra.Command{
+	Use:   "QueryPaymentOrders",
 	Short: "Query payment orders",
 	Long:  `Query payment orders`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,12 +49,11 @@ var queryPaymentOrdersCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(queryPaymentOrdersCmd)
-	queryPaymentOrdersCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = queryPaymentOrdersCmd.MarkFlagRequired("namespace")
-	queryPaymentOrdersCmd.Flags().StringP("channel", "cl", " ", "Channel")
-	queryPaymentOrdersCmd.Flags().StringP("extTxId", "ed", " ", "Ext tx id")
-	queryPaymentOrdersCmd.Flags().Int32P("limit", "lt", 20, "Limit")
-	queryPaymentOrdersCmd.Flags().Int32P("offset", "ot", 0, "Offset")
-	queryPaymentOrdersCmd.Flags().StringP("status", "ss", " ", "Status")
+	QueryPaymentOrdersCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = QueryPaymentOrdersCmd.MarkFlagRequired("namespace")
+	QueryPaymentOrdersCmd.Flags().StringP("channel", "cl", " ", "Channel")
+	QueryPaymentOrdersCmd.Flags().StringP("extTxId", "ed", " ", "Ext tx id")
+	QueryPaymentOrdersCmd.Flags().Int32P("limit", "lt", 20, "Limit")
+	QueryPaymentOrdersCmd.Flags().Int32P("offset", "ot", 0, "Offset")
+	QueryPaymentOrdersCmd.Flags().StringP("status", "ss", " ", "Status")
 }

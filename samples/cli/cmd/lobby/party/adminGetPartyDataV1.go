@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/party"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/lobby"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminGetPartyDataV1Cmd represents the adminGetPartyDataV1 command
-var adminGetPartyDataV1Cmd = &cobra.Command{
-	Use:   "adminGetPartyDataV1",
+// AdminGetPartyDataV1Cmd represents the AdminGetPartyDataV1 command
+var AdminGetPartyDataV1Cmd = &cobra.Command{
+	Use:   "AdminGetPartyDataV1",
 	Short: "Admin get party data V1",
 	Long:  `Admin get party data V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,9 +41,8 @@ var adminGetPartyDataV1Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminGetPartyDataV1Cmd)
-	adminGetPartyDataV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = adminGetPartyDataV1Cmd.MarkFlagRequired("namespace")
-	adminGetPartyDataV1Cmd.Flags().StringP("partyId", "pd", " ", "Party id")
-	_ = adminGetPartyDataV1Cmd.MarkFlagRequired("partyId")
+	AdminGetPartyDataV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AdminGetPartyDataV1Cmd.MarkFlagRequired("namespace")
+	AdminGetPartyDataV1Cmd.Flags().StringP("partyId", "pd", " ", "Party id")
+	_ = AdminGetPartyDataV1Cmd.MarkFlagRequired("partyId")
 }

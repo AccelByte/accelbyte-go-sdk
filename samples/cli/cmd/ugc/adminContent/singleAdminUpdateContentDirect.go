@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/ugc"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/admin_content"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclientmodels"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// singleAdminUpdateContentDirectCmd represents the singleAdminUpdateContentDirect command
-var singleAdminUpdateContentDirectCmd = &cobra.Command{
-	Use:   "singleAdminUpdateContentDirect",
+// SingleAdminUpdateContentDirectCmd represents the SingleAdminUpdateContentDirect command
+var SingleAdminUpdateContentDirectCmd = &cobra.Command{
+	Use:   "SingleAdminUpdateContentDirect",
 	Short: "Single admin update content direct",
 	Long:  `Single admin update content direct`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -53,13 +52,12 @@ var singleAdminUpdateContentDirectCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(singleAdminUpdateContentDirectCmd)
-	singleAdminUpdateContentDirectCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = singleAdminUpdateContentDirectCmd.MarkFlagRequired("body")
-	singleAdminUpdateContentDirectCmd.Flags().StringP("channelId", "cd", " ", "Channel id")
-	_ = singleAdminUpdateContentDirectCmd.MarkFlagRequired("channelId")
-	singleAdminUpdateContentDirectCmd.Flags().StringP("contentId", "cd", " ", "Content id")
-	_ = singleAdminUpdateContentDirectCmd.MarkFlagRequired("contentId")
-	singleAdminUpdateContentDirectCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = singleAdminUpdateContentDirectCmd.MarkFlagRequired("namespace")
+	SingleAdminUpdateContentDirectCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = SingleAdminUpdateContentDirectCmd.MarkFlagRequired("body")
+	SingleAdminUpdateContentDirectCmd.Flags().StringP("channelId", "cd", " ", "Channel id")
+	_ = SingleAdminUpdateContentDirectCmd.MarkFlagRequired("channelId")
+	SingleAdminUpdateContentDirectCmd.Flags().StringP("contentId", "cd", " ", "Content id")
+	_ = SingleAdminUpdateContentDirectCmd.MarkFlagRequired("contentId")
+	SingleAdminUpdateContentDirectCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = SingleAdminUpdateContentDirectCmd.MarkFlagRequired("namespace")
 }

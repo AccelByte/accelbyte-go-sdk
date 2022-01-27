@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/campaign"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// queryCodesCmd represents the queryCodes command
-var queryCodesCmd = &cobra.Command{
-	Use:   "queryCodes",
+// QueryCodesCmd represents the QueryCodes command
+var QueryCodesCmd = &cobra.Command{
+	Use:   "QueryCodes",
 	Short: "Query codes",
 	Long:  `Query codes`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -52,14 +51,13 @@ var queryCodesCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(queryCodesCmd)
-	queryCodesCmd.Flags().StringP("campaignId", "cd", " ", "Campaign id")
-	_ = queryCodesCmd.MarkFlagRequired("campaignId")
-	queryCodesCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = queryCodesCmd.MarkFlagRequired("namespace")
-	queryCodesCmd.Flags().BoolP("activeOnly", "ay", false, "Active only")
-	queryCodesCmd.Flags().Int32P("batchNo", "bo", 0, "Batch no")
-	queryCodesCmd.Flags().StringP("code", "ce", " ", "Code")
-	queryCodesCmd.Flags().Int32P("limit", "lt", 20, "Limit")
-	queryCodesCmd.Flags().Int32P("offset", "ot", 0, "Offset")
+	QueryCodesCmd.Flags().StringP("campaignId", "cd", " ", "Campaign id")
+	_ = QueryCodesCmd.MarkFlagRequired("campaignId")
+	QueryCodesCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = QueryCodesCmd.MarkFlagRequired("namespace")
+	QueryCodesCmd.Flags().BoolP("activeOnly", "ay", false, "Active only")
+	QueryCodesCmd.Flags().Int32P("batchNo", "bo", 0, "Batch no")
+	QueryCodesCmd.Flags().StringP("code", "ce", " ", "Code")
+	QueryCodesCmd.Flags().Int32P("limit", "lt", 20, "Limit")
+	QueryCodesCmd.Flags().Int32P("offset", "ot", 0, "Offset")
 }

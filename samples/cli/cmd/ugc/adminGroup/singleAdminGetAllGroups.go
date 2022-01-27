@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/ugc"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/admin_group"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// singleAdminGetAllGroupsCmd represents the singleAdminGetAllGroups command
-var singleAdminGetAllGroupsCmd = &cobra.Command{
-	Use:   "singleAdminGetAllGroups",
+// SingleAdminGetAllGroupsCmd represents the SingleAdminGetAllGroups command
+var SingleAdminGetAllGroupsCmd = &cobra.Command{
+	Use:   "SingleAdminGetAllGroups",
 	Short: "Single admin get all groups",
 	Long:  `Single admin get all groups`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -44,9 +43,8 @@ var singleAdminGetAllGroupsCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(singleAdminGetAllGroupsCmd)
-	singleAdminGetAllGroupsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = singleAdminGetAllGroupsCmd.MarkFlagRequired("namespace")
-	singleAdminGetAllGroupsCmd.Flags().StringP("limit", "lt", "20", "Limit")
-	singleAdminGetAllGroupsCmd.Flags().StringP("offset", "ot", "0", "Offset")
+	SingleAdminGetAllGroupsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = SingleAdminGetAllGroupsCmd.MarkFlagRequired("namespace")
+	SingleAdminGetAllGroupsCmd.Flags().StringP("limit", "lt", "20", "Limit")
+	SingleAdminGetAllGroupsCmd.Flags().StringP("offset", "ot", "0", "Offset")
 }

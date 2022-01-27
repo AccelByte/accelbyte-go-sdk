@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/ugc"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/public_content"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclientmodels"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// updateContentS3Cmd represents the updateContentS3 command
-var updateContentS3Cmd = &cobra.Command{
-	Use:   "updateContentS3",
+// UpdateContentS3Cmd represents the UpdateContentS3 command
+var UpdateContentS3Cmd = &cobra.Command{
+	Use:   "UpdateContentS3",
 	Short: "Update content S3",
 	Long:  `Update content S3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -55,15 +54,14 @@ var updateContentS3Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(updateContentS3Cmd)
-	updateContentS3Cmd.Flags().StringP("body", "by", " ", "Body")
-	_ = updateContentS3Cmd.MarkFlagRequired("body")
-	updateContentS3Cmd.Flags().StringP("channelId", "cd", " ", "Channel id")
-	_ = updateContentS3Cmd.MarkFlagRequired("channelId")
-	updateContentS3Cmd.Flags().StringP("contentId", "cd", " ", "Content id")
-	_ = updateContentS3Cmd.MarkFlagRequired("contentId")
-	updateContentS3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = updateContentS3Cmd.MarkFlagRequired("namespace")
-	updateContentS3Cmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = updateContentS3Cmd.MarkFlagRequired("userId")
+	UpdateContentS3Cmd.Flags().StringP("body", "by", " ", "Body")
+	_ = UpdateContentS3Cmd.MarkFlagRequired("body")
+	UpdateContentS3Cmd.Flags().StringP("channelId", "cd", " ", "Channel id")
+	_ = UpdateContentS3Cmd.MarkFlagRequired("channelId")
+	UpdateContentS3Cmd.Flags().StringP("contentId", "cd", " ", "Content id")
+	_ = UpdateContentS3Cmd.MarkFlagRequired("contentId")
+	UpdateContentS3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = UpdateContentS3Cmd.MarkFlagRequired("namespace")
+	UpdateContentS3Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = UpdateContentS3Cmd.MarkFlagRequired("userId")
 }

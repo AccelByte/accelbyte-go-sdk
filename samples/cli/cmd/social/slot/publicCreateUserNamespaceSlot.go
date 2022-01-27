@@ -9,16 +9,15 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/social"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient/slot"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 	"os"
 )
 
-// publicCreateUserNamespaceSlotCmd represents the publicCreateUserNamespaceSlot command
-var publicCreateUserNamespaceSlotCmd = &cobra.Command{
-	Use:   "publicCreateUserNamespaceSlot",
+// PublicCreateUserNamespaceSlotCmd represents the PublicCreateUserNamespaceSlot command
+var PublicCreateUserNamespaceSlotCmd = &cobra.Command{
+	Use:   "PublicCreateUserNamespaceSlot",
 	Short: "Public create user namespace slot",
 	Long:  `Public create user namespace slot`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -63,14 +62,13 @@ var publicCreateUserNamespaceSlotCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(publicCreateUserNamespaceSlotCmd)
-	publicCreateUserNamespaceSlotCmd.Flags().StringP("checksum", "cm", " ", "Checksum")
-	publicCreateUserNamespaceSlotCmd.Flags().StringP("customAttribute", "ce", " ", "Custom attribute")
-	publicCreateUserNamespaceSlotCmd.Flags().StringP("file", "fe", " ", "File")
-	publicCreateUserNamespaceSlotCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = publicCreateUserNamespaceSlotCmd.MarkFlagRequired("namespace")
-	publicCreateUserNamespaceSlotCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = publicCreateUserNamespaceSlotCmd.MarkFlagRequired("userId")
-	publicCreateUserNamespaceSlotCmd.Flags().StringP("label", "ll", " ", "Label")
-	publicCreateUserNamespaceSlotCmd.Flags().StringP("tags", "ts", " ", "Tags")
+	PublicCreateUserNamespaceSlotCmd.Flags().StringP("checksum", "cm", " ", "Checksum")
+	PublicCreateUserNamespaceSlotCmd.Flags().StringP("customAttribute", "ce", " ", "Custom attribute")
+	PublicCreateUserNamespaceSlotCmd.Flags().StringP("file", "fe", " ", "File")
+	PublicCreateUserNamespaceSlotCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PublicCreateUserNamespaceSlotCmd.MarkFlagRequired("namespace")
+	PublicCreateUserNamespaceSlotCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = PublicCreateUserNamespaceSlotCmd.MarkFlagRequired("userId")
+	PublicCreateUserNamespaceSlotCmd.Flags().StringP("label", "ll", " ", "Label")
+	PublicCreateUserNamespaceSlotCmd.Flags().StringP("tags", "ts", " ", "Tags")
 }

@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/friends"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/lobby"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getUserIncomingFriendsCmd represents the getUserIncomingFriends command
-var getUserIncomingFriendsCmd = &cobra.Command{
-	Use:   "getUserIncomingFriends",
+// GetUserIncomingFriendsCmd represents the GetUserIncomingFriends command
+var GetUserIncomingFriendsCmd = &cobra.Command{
+	Use:   "GetUserIncomingFriends",
 	Short: "Get user incoming friends",
 	Long:  `Get user incoming friends`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,7 +39,6 @@ var getUserIncomingFriendsCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getUserIncomingFriendsCmd)
-	getUserIncomingFriendsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getUserIncomingFriendsCmd.MarkFlagRequired("namespace")
+	GetUserIncomingFriendsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetUserIncomingFriendsCmd.MarkFlagRequired("namespace")
 }

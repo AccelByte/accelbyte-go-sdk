@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/group-sdk/pkg/groupclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/group"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// updateMemberRolePublicV1Cmd represents the updateMemberRolePublicV1 command
-var updateMemberRolePublicV1Cmd = &cobra.Command{
-	Use:   "updateMemberRolePublicV1",
+// UpdateMemberRolePublicV1Cmd represents the UpdateMemberRolePublicV1 command
+var UpdateMemberRolePublicV1Cmd = &cobra.Command{
+	Use:   "UpdateMemberRolePublicV1",
 	Short: "Update member role public V1",
 	Long:  `Update member role public V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -51,11 +50,10 @@ var updateMemberRolePublicV1Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(updateMemberRolePublicV1Cmd)
-	updateMemberRolePublicV1Cmd.Flags().StringP("body", "by", " ", "Body")
-	_ = updateMemberRolePublicV1Cmd.MarkFlagRequired("body")
-	updateMemberRolePublicV1Cmd.Flags().StringP("memberRoleId", "md", " ", "Member role id")
-	_ = updateMemberRolePublicV1Cmd.MarkFlagRequired("memberRoleId")
-	updateMemberRolePublicV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = updateMemberRolePublicV1Cmd.MarkFlagRequired("namespace")
+	UpdateMemberRolePublicV1Cmd.Flags().StringP("body", "by", " ", "Body")
+	_ = UpdateMemberRolePublicV1Cmd.MarkFlagRequired("body")
+	UpdateMemberRolePublicV1Cmd.Flags().StringP("memberRoleId", "md", " ", "Member role id")
+	_ = UpdateMemberRolePublicV1Cmd.MarkFlagRequired("memberRoleId")
+	UpdateMemberRolePublicV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = UpdateMemberRolePublicV1Cmd.MarkFlagRequired("namespace")
 }

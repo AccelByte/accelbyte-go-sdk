@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/payment_config"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// deletePaymentProviderConfigCmd represents the deletePaymentProviderConfig command
-var deletePaymentProviderConfigCmd = &cobra.Command{
-	Use:   "deletePaymentProviderConfig",
+// DeletePaymentProviderConfigCmd represents the DeletePaymentProviderConfig command
+var DeletePaymentProviderConfigCmd = &cobra.Command{
+	Use:   "DeletePaymentProviderConfig",
 	Short: "Delete payment provider config",
 	Long:  `Delete payment provider config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,7 +38,6 @@ var deletePaymentProviderConfigCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(deletePaymentProviderConfigCmd)
-	deletePaymentProviderConfigCmd.Flags().StringP("id", "id", " ", "Id")
-	_ = deletePaymentProviderConfigCmd.MarkFlagRequired("id")
+	DeletePaymentProviderConfigCmd.Flags().StringP("id", "id", " ", "Id")
+	_ = DeletePaymentProviderConfigCmd.MarkFlagRequired("id")
 }

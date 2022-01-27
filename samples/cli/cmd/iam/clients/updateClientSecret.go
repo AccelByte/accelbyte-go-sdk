@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// updateClientSecretCmd represents the updateClientSecret command
-var updateClientSecretCmd = &cobra.Command{
-	Use:   "updateClientSecret",
+// UpdateClientSecretCmd represents the UpdateClientSecret command
+var UpdateClientSecretCmd = &cobra.Command{
+	Use:   "UpdateClientSecret",
 	Short: "Update client secret",
 	Long:  `Update client secret`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,9 +47,8 @@ var updateClientSecretCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(updateClientSecretCmd)
-	updateClientSecretCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = updateClientSecretCmd.MarkFlagRequired("body")
-	updateClientSecretCmd.Flags().StringP("clientId", "cd", " ", "Client id")
-	_ = updateClientSecretCmd.MarkFlagRequired("clientId")
+	UpdateClientSecretCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = UpdateClientSecretCmd.MarkFlagRequired("body")
+	UpdateClientSecretCmd.Flags().StringP("clientId", "cd", " ", "Client id")
+	_ = UpdateClientSecretCmd.MarkFlagRequired("clientId")
 }

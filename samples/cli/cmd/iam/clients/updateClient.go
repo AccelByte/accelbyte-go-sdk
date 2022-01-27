@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// updateClientCmd represents the updateClient command
-var updateClientCmd = &cobra.Command{
-	Use:   "updateClient",
+// UpdateClientCmd represents the UpdateClient command
+var UpdateClientCmd = &cobra.Command{
+	Use:   "UpdateClient",
 	Short: "Update client",
 	Long:  `Update client`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,9 +48,8 @@ var updateClientCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(updateClientCmd)
-	updateClientCmd.Flags().StringP("body", "by", " ", "Body")
-	_ = updateClientCmd.MarkFlagRequired("body")
-	updateClientCmd.Flags().StringP("clientId", "cd", " ", "Client id")
-	_ = updateClientCmd.MarkFlagRequired("clientId")
+	UpdateClientCmd.Flags().StringP("body", "by", " ", "Body")
+	_ = UpdateClientCmd.MarkFlagRequired("body")
+	UpdateClientCmd.Flags().StringP("clientId", "cd", " ", "Client id")
+	_ = UpdateClientCmd.MarkFlagRequired("clientId")
 }

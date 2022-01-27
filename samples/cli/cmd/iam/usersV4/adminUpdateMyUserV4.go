@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// adminUpdateMyUserV4Cmd represents the adminUpdateMyUserV4 command
-var adminUpdateMyUserV4Cmd = &cobra.Command{
-	Use:   "adminUpdateMyUserV4",
+// AdminUpdateMyUserV4Cmd represents the AdminUpdateMyUserV4 command
+var AdminUpdateMyUserV4Cmd = &cobra.Command{
+	Use:   "AdminUpdateMyUserV4",
 	Short: "Admin update my user V4",
 	Long:  `Admin update my user V4`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -47,7 +46,6 @@ var adminUpdateMyUserV4Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(adminUpdateMyUserV4Cmd)
-	adminUpdateMyUserV4Cmd.Flags().StringP("body", "by", " ", "Body")
-	_ = adminUpdateMyUserV4Cmd.MarkFlagRequired("body")
+	AdminUpdateMyUserV4Cmd.Flags().StringP("body", "by", " ", "Body")
+	_ = AdminUpdateMyUserV4Cmd.MarkFlagRequired("body")
 }

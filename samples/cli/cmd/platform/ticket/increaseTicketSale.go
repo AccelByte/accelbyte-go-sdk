@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// increaseTicketSaleCmd represents the increaseTicketSale command
-var increaseTicketSaleCmd = &cobra.Command{
-	Use:   "increaseTicketSale",
+// IncreaseTicketSaleCmd represents the IncreaseTicketSale command
+var IncreaseTicketSaleCmd = &cobra.Command{
+	Use:   "IncreaseTicketSale",
 	Short: "Increase ticket sale",
 	Long:  `Increase ticket sale`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -51,10 +50,9 @@ var increaseTicketSaleCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(increaseTicketSaleCmd)
-	increaseTicketSaleCmd.Flags().StringP("body", "by", " ", "Body")
-	increaseTicketSaleCmd.Flags().StringP("boothName", "be", " ", "Booth name")
-	_ = increaseTicketSaleCmd.MarkFlagRequired("boothName")
-	increaseTicketSaleCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = increaseTicketSaleCmd.MarkFlagRequired("namespace")
+	IncreaseTicketSaleCmd.Flags().StringP("body", "by", " ", "Body")
+	IncreaseTicketSaleCmd.Flags().StringP("boothName", "be", " ", "Booth name")
+	_ = IncreaseTicketSaleCmd.MarkFlagRequired("boothName")
+	IncreaseTicketSaleCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = IncreaseTicketSaleCmd.MarkFlagRequired("namespace")
 }

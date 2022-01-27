@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/subscription"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// checkUserSubscriptionSubscribableByItemIdCmd represents the checkUserSubscriptionSubscribableByItemId command
-var checkUserSubscriptionSubscribableByItemIdCmd = &cobra.Command{
-	Use:   "checkUserSubscriptionSubscribableByItemId",
+// CheckUserSubscriptionSubscribableByItemIdCmd represents the CheckUserSubscriptionSubscribableByItemId command
+var CheckUserSubscriptionSubscribableByItemIdCmd = &cobra.Command{
+	Use:   "CheckUserSubscriptionSubscribableByItemId",
 	Short: "Check user subscription subscribable by item id",
 	Long:  `Check user subscription subscribable by item id`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -44,11 +43,10 @@ var checkUserSubscriptionSubscribableByItemIdCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(checkUserSubscriptionSubscribableByItemIdCmd)
-	checkUserSubscriptionSubscribableByItemIdCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = checkUserSubscriptionSubscribableByItemIdCmd.MarkFlagRequired("namespace")
-	checkUserSubscriptionSubscribableByItemIdCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = checkUserSubscriptionSubscribableByItemIdCmd.MarkFlagRequired("userId")
-	checkUserSubscriptionSubscribableByItemIdCmd.Flags().StringP("itemId", "id", " ", "Item id")
-	_ = checkUserSubscriptionSubscribableByItemIdCmd.MarkFlagRequired("itemId")
+	CheckUserSubscriptionSubscribableByItemIdCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = CheckUserSubscriptionSubscribableByItemIdCmd.MarkFlagRequired("namespace")
+	CheckUserSubscriptionSubscribableByItemIdCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = CheckUserSubscriptionSubscribableByItemIdCmd.MarkFlagRequired("userId")
+	CheckUserSubscriptionSubscribableByItemIdCmd.Flags().StringP("itemId", "id", " ", "Item id")
+	_ = CheckUserSubscriptionSubscribableByItemIdCmd.MarkFlagRequired("itemId")
 }

@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/image_config"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/dsmc"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// deleteImageCmd represents the deleteImage command
-var deleteImageCmd = &cobra.Command{
-	Use:   "deleteImage",
+// DeleteImageCmd represents the DeleteImage command
+var DeleteImageCmd = &cobra.Command{
+	Use:   "DeleteImage",
 	Short: "Delete image",
 	Long:  `Delete image`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,11 +42,10 @@ var deleteImageCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(deleteImageCmd)
-	deleteImageCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = deleteImageCmd.MarkFlagRequired("namespace")
-	deleteImageCmd.Flags().StringP("imageURI", "iI", " ", "Image URI")
-	_ = deleteImageCmd.MarkFlagRequired("imageURI")
-	deleteImageCmd.Flags().StringP("version", "vn", " ", "Version")
-	_ = deleteImageCmd.MarkFlagRequired("version")
+	DeleteImageCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = DeleteImageCmd.MarkFlagRequired("namespace")
+	DeleteImageCmd.Flags().StringP("imageURI", "iI", " ", "Image URI")
+	_ = DeleteImageCmd.MarkFlagRequired("imageURI")
+	DeleteImageCmd.Flags().StringP("version", "vn", " ", "Version")
+	_ = DeleteImageCmd.MarkFlagRequired("version")
 }

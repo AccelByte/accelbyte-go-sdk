@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/input_validations"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// publicGetInputValidationsCmd represents the publicGetInputValidations command
-var publicGetInputValidationsCmd = &cobra.Command{
-	Use:   "publicGetInputValidations",
+// PublicGetInputValidationsCmd represents the PublicGetInputValidations command
+var PublicGetInputValidationsCmd = &cobra.Command{
+	Use:   "PublicGetInputValidations",
 	Short: "Public get input validations",
 	Long:  `Public get input validations`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,7 +41,6 @@ var publicGetInputValidationsCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(publicGetInputValidationsCmd)
-	publicGetInputValidationsCmd.Flags().BoolP("defaultOnEmpty", "dy", false, "Default on empty")
-	publicGetInputValidationsCmd.Flags().StringP("languageCode", "le", " ", "Language code")
+	PublicGetInputValidationsCmd.Flags().BoolP("defaultOnEmpty", "dy", false, "Default on empty")
+	PublicGetInputValidationsCmd.Flags().StringP("languageCode", "le", " ", "Language code")
 }

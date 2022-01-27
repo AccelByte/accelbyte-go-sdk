@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclient/file_upload"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/basic"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// publicGeneratedUserUploadContentUrlCmd represents the publicGeneratedUserUploadContentUrl command
-var publicGeneratedUserUploadContentUrlCmd = &cobra.Command{
-	Use:   "publicGeneratedUserUploadContentUrl",
+// PublicGeneratedUserUploadContentUrlCmd represents the PublicGeneratedUserUploadContentUrl command
+var PublicGeneratedUserUploadContentUrlCmd = &cobra.Command{
+	Use:   "PublicGeneratedUserUploadContentUrl",
 	Short: "Public generated user upload content url",
 	Long:  `Public generated user upload content url`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -44,11 +43,10 @@ var publicGeneratedUserUploadContentUrlCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(publicGeneratedUserUploadContentUrlCmd)
-	publicGeneratedUserUploadContentUrlCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = publicGeneratedUserUploadContentUrlCmd.MarkFlagRequired("namespace")
-	publicGeneratedUserUploadContentUrlCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = publicGeneratedUserUploadContentUrlCmd.MarkFlagRequired("userId")
-	publicGeneratedUserUploadContentUrlCmd.Flags().StringP("fileType", "fe", " ", "File type")
-	_ = publicGeneratedUserUploadContentUrlCmd.MarkFlagRequired("fileType")
+	PublicGeneratedUserUploadContentUrlCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PublicGeneratedUserUploadContentUrlCmd.MarkFlagRequired("namespace")
+	PublicGeneratedUserUploadContentUrlCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = PublicGeneratedUserUploadContentUrlCmd.MarkFlagRequired("userId")
+	PublicGeneratedUserUploadContentUrlCmd.Flags().StringP("fileType", "fe", " ", "File type")
+	_ = PublicGeneratedUserUploadContentUrlCmd.MarkFlagRequired("fileType")
 }

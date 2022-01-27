@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/d_l_c"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// deleteDLCItemConfigCmd represents the deleteDLCItemConfig command
-var deleteDLCItemConfigCmd = &cobra.Command{
-	Use:   "deleteDLCItemConfig",
+// DeleteDLCItemConfigCmd represents the DeleteDLCItemConfig command
+var DeleteDLCItemConfigCmd = &cobra.Command{
+	Use:   "DeleteDLCItemConfig",
 	Short: "Delete DLC item config",
 	Long:  `Delete DLC item config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,7 +38,6 @@ var deleteDLCItemConfigCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(deleteDLCItemConfigCmd)
-	deleteDLCItemConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = deleteDLCItemConfigCmd.MarkFlagRequired("namespace")
+	DeleteDLCItemConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = DeleteDLCItemConfigCmd.MarkFlagRequired("namespace")
 }

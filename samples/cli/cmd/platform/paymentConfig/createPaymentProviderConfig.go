@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// createPaymentProviderConfigCmd represents the createPaymentProviderConfig command
-var createPaymentProviderConfigCmd = &cobra.Command{
-	Use:   "createPaymentProviderConfig",
+// CreatePaymentProviderConfigCmd represents the CreatePaymentProviderConfig command
+var CreatePaymentProviderConfigCmd = &cobra.Command{
+	Use:   "CreatePaymentProviderConfig",
 	Short: "Create payment provider config",
 	Long:  `Create payment provider config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -47,6 +46,5 @@ var createPaymentProviderConfigCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(createPaymentProviderConfigCmd)
-	createPaymentProviderConfigCmd.Flags().StringP("body", "by", " ", "Body")
+	CreatePaymentProviderConfigCmd.Flags().StringP("body", "by", " ", "Body")
 }

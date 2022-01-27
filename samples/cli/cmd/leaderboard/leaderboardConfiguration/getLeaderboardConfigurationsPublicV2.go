@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/leaderboard-sdk/pkg/leaderboardclient/leaderboard_configuration"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/leaderboard"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getLeaderboardConfigurationsPublicV2Cmd represents the getLeaderboardConfigurationsPublicV2 command
-var getLeaderboardConfigurationsPublicV2Cmd = &cobra.Command{
-	Use:   "getLeaderboardConfigurationsPublicV2",
+// GetLeaderboardConfigurationsPublicV2Cmd represents the GetLeaderboardConfigurationsPublicV2 command
+var GetLeaderboardConfigurationsPublicV2Cmd = &cobra.Command{
+	Use:   "GetLeaderboardConfigurationsPublicV2",
 	Short: "Get leaderboard configurations public V2",
 	Long:  `Get leaderboard configurations public V2`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -44,9 +43,8 @@ var getLeaderboardConfigurationsPublicV2Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getLeaderboardConfigurationsPublicV2Cmd)
-	getLeaderboardConfigurationsPublicV2Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getLeaderboardConfigurationsPublicV2Cmd.MarkFlagRequired("namespace")
-	getLeaderboardConfigurationsPublicV2Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
-	getLeaderboardConfigurationsPublicV2Cmd.Flags().Int64P("offset", "ot", 0, "Offset")
+	GetLeaderboardConfigurationsPublicV2Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetLeaderboardConfigurationsPublicV2Cmd.MarkFlagRequired("namespace")
+	GetLeaderboardConfigurationsPublicV2Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
+	GetLeaderboardConfigurationsPublicV2Cmd.Flags().Int64P("offset", "ot", 0, "Offset")
 }

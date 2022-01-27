@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/group-sdk/pkg/groupclient/configuration"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/group"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// initiateGroupConfigurationAdminV1Cmd represents the initiateGroupConfigurationAdminV1 command
-var initiateGroupConfigurationAdminV1Cmd = &cobra.Command{
-	Use:   "initiateGroupConfigurationAdminV1",
+// InitiateGroupConfigurationAdminV1Cmd represents the InitiateGroupConfigurationAdminV1 command
+var InitiateGroupConfigurationAdminV1Cmd = &cobra.Command{
+	Use:   "InitiateGroupConfigurationAdminV1",
 	Short: "Initiate group configuration admin V1",
 	Long:  `Initiate group configuration admin V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,7 +39,6 @@ var initiateGroupConfigurationAdminV1Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(initiateGroupConfigurationAdminV1Cmd)
-	initiateGroupConfigurationAdminV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = initiateGroupConfigurationAdminV1Cmd.MarkFlagRequired("namespace")
+	InitiateGroupConfigurationAdminV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = InitiateGroupConfigurationAdminV1Cmd.MarkFlagRequired("namespace")
 }

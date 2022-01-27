@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/seasonpass-sdk/pkg/seasonpassclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/seasonpass"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// createPassCmd represents the createPass command
-var createPassCmd = &cobra.Command{
-	Use:   "createPass",
+// CreatePassCmd represents the CreatePass command
+var CreatePassCmd = &cobra.Command{
+	Use:   "CreatePass",
 	Short: "Create pass",
 	Long:  `Create pass`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -51,10 +50,9 @@ var createPassCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(createPassCmd)
-	createPassCmd.Flags().StringP("body", "by", " ", "Body")
-	createPassCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = createPassCmd.MarkFlagRequired("namespace")
-	createPassCmd.Flags().StringP("seasonId", "sd", " ", "Season id")
-	_ = createPassCmd.MarkFlagRequired("seasonId")
+	CreatePassCmd.Flags().StringP("body", "by", " ", "Body")
+	CreatePassCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = CreatePassCmd.MarkFlagRequired("namespace")
+	CreatePassCmd.Flags().StringP("seasonId", "sd", " ", "Season id")
+	_ = CreatePassCmd.MarkFlagRequired("seasonId")
 }

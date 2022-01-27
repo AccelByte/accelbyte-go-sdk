@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/friends"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/lobby"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getListOfFriendsCmd represents the getListOfFriends command
-var getListOfFriendsCmd = &cobra.Command{
-	Use:   "getListOfFriends",
+// GetListOfFriendsCmd represents the GetListOfFriends command
+var GetListOfFriendsCmd = &cobra.Command{
+	Use:   "GetListOfFriends",
 	Short: "Get list of friends",
 	Long:  `Get list of friends`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -46,11 +45,10 @@ var getListOfFriendsCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getListOfFriendsCmd)
-	getListOfFriendsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getListOfFriendsCmd.MarkFlagRequired("namespace")
-	getListOfFriendsCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = getListOfFriendsCmd.MarkFlagRequired("userId")
-	getListOfFriendsCmd.Flags().StringP("limit", "lt", "20", "Limit")
-	getListOfFriendsCmd.Flags().StringP("offset", "ot", "0", "Offset")
+	GetListOfFriendsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetListOfFriendsCmd.MarkFlagRequired("namespace")
+	GetListOfFriendsCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = GetListOfFriendsCmd.MarkFlagRequired("userId")
+	GetListOfFriendsCmd.Flags().StringP("limit", "lt", "20", "Limit")
+	GetListOfFriendsCmd.Flags().StringP("offset", "ot", "0", "Offset")
 }

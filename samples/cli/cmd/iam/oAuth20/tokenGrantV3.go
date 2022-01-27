@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth2_0"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// tokenGrantV3Cmd represents the tokenGrantV3 command
-var tokenGrantV3Cmd = &cobra.Command{
-	Use:   "tokenGrantV3",
+// TokenGrantV3Cmd represents the TokenGrantV3 command
+var TokenGrantV3Cmd = &cobra.Command{
+	Use:   "TokenGrantV3",
 	Short: "Token grant V3",
 	Long:  `Token grant V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -52,13 +51,12 @@ var tokenGrantV3Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(tokenGrantV3Cmd)
-	tokenGrantV3Cmd.Flags().StringP("device_id", "dd", " ", "Device id")
-	tokenGrantV3Cmd.Flags().StringP("client_id", "cd", " ", "Client id")
-	tokenGrantV3Cmd.Flags().StringP("code", "ce", " ", "Code")
-	tokenGrantV3Cmd.Flags().StringP("code_verifier", "cr", " ", "Code verifier")
-	tokenGrantV3Cmd.Flags().StringP("redirect_uri", "ri", " ", "Redirect uri")
-	tokenGrantV3Cmd.Flags().StringP("refresh_token", "rn", " ", "Refresh token")
-	tokenGrantV3Cmd.Flags().StringP("grant_type", "ge", " ", "Grant type")
-	_ = tokenGrantV3Cmd.MarkFlagRequired("grant_type")
+	TokenGrantV3Cmd.Flags().StringP("device_id", "dd", " ", "Device id")
+	TokenGrantV3Cmd.Flags().StringP("client_id", "cd", " ", "Client id")
+	TokenGrantV3Cmd.Flags().StringP("code", "ce", " ", "Code")
+	TokenGrantV3Cmd.Flags().StringP("code_verifier", "cr", " ", "Code verifier")
+	TokenGrantV3Cmd.Flags().StringP("redirect_uri", "ri", " ", "Redirect uri")
+	TokenGrantV3Cmd.Flags().StringP("refresh_token", "rn", " ", "Refresh token")
+	TokenGrantV3Cmd.Flags().StringP("grant_type", "ge", " ", "Grant type")
+	_ = TokenGrantV3Cmd.MarkFlagRequired("grant_type")
 }

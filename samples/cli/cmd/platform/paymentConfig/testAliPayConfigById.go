@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/payment_config"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// testAliPayConfigByIdCmd represents the testAliPayConfigById command
-var testAliPayConfigByIdCmd = &cobra.Command{
-	Use:   "testAliPayConfigById",
+// TestAliPayConfigByIdCmd represents the TestAliPayConfigById command
+var TestAliPayConfigByIdCmd = &cobra.Command{
+	Use:   "TestAliPayConfigById",
 	Short: "Test ali pay config by id",
 	Long:  `Test ali pay config by id`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,8 +41,7 @@ var testAliPayConfigByIdCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(testAliPayConfigByIdCmd)
-	testAliPayConfigByIdCmd.Flags().StringP("id", "id", " ", "Id")
-	_ = testAliPayConfigByIdCmd.MarkFlagRequired("id")
-	testAliPayConfigByIdCmd.Flags().BoolP("sandbox", "sx", false, "Sandbox")
+	TestAliPayConfigByIdCmd.Flags().StringP("id", "id", " ", "Id")
+	_ = TestAliPayConfigByIdCmd.MarkFlagRequired("id")
+	TestAliPayConfigByIdCmd.Flags().BoolP("sandbox", "sx", false, "Sandbox")
 }

@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/eventlog-sdk/pkg/eventlogclient/event_descriptions"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/eventlog"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// agentTypeDescriptionHandlerCmd represents the agentTypeDescriptionHandler command
-var agentTypeDescriptionHandlerCmd = &cobra.Command{
-	Use:   "agentTypeDescriptionHandler",
+// AgentTypeDescriptionHandlerCmd represents the AgentTypeDescriptionHandler command
+var AgentTypeDescriptionHandlerCmd = &cobra.Command{
+	Use:   "AgentTypeDescriptionHandler",
 	Short: "Agent type description handler",
 	Long:  `Agent type description handler`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -34,8 +33,4 @@ var agentTypeDescriptionHandlerCmd = &cobra.Command{
 		}
 		return nil
 	},
-}
-
-func init() {
-	cmd.RootCmd.AddCommand(agentTypeDescriptionHandlerCmd)
 }

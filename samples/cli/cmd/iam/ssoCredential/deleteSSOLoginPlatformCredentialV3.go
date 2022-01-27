@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/s_s_o_credential"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// deleteSSOLoginPlatformCredentialV3Cmd represents the deleteSSOLoginPlatformCredentialV3 command
-var deleteSSOLoginPlatformCredentialV3Cmd = &cobra.Command{
-	Use:   "deleteSSOLoginPlatformCredentialV3",
+// DeleteSSOLoginPlatformCredentialV3Cmd represents the DeleteSSOLoginPlatformCredentialV3 command
+var DeleteSSOLoginPlatformCredentialV3Cmd = &cobra.Command{
+	Use:   "DeleteSSOLoginPlatformCredentialV3",
 	Short: "Delete SSO login platform credential V3",
 	Long:  `Delete SSO login platform credential V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,9 +40,8 @@ var deleteSSOLoginPlatformCredentialV3Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(deleteSSOLoginPlatformCredentialV3Cmd)
-	deleteSSOLoginPlatformCredentialV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = deleteSSOLoginPlatformCredentialV3Cmd.MarkFlagRequired("namespace")
-	deleteSSOLoginPlatformCredentialV3Cmd.Flags().StringP("platformId", "pd", " ", "Platform id")
-	_ = deleteSSOLoginPlatformCredentialV3Cmd.MarkFlagRequired("platformId")
+	DeleteSSOLoginPlatformCredentialV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = DeleteSSOLoginPlatformCredentialV3Cmd.MarkFlagRequired("namespace")
+	DeleteSSOLoginPlatformCredentialV3Cmd.Flags().StringP("platformId", "pd", " ", "Platform id")
+	_ = DeleteSSOLoginPlatformCredentialV3Cmd.MarkFlagRequired("platformId")
 }

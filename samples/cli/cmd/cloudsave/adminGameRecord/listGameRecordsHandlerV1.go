@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclient/admin_game_record"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/cloudsave"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// listGameRecordsHandlerV1Cmd represents the listGameRecordsHandlerV1 command
-var listGameRecordsHandlerV1Cmd = &cobra.Command{
-	Use:   "listGameRecordsHandlerV1",
+// ListGameRecordsHandlerV1Cmd represents the ListGameRecordsHandlerV1 command
+var ListGameRecordsHandlerV1Cmd = &cobra.Command{
+	Use:   "ListGameRecordsHandlerV1",
 	Short: "List game records handler V1",
 	Long:  `List game records handler V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -46,12 +45,11 @@ var listGameRecordsHandlerV1Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(listGameRecordsHandlerV1Cmd)
-	listGameRecordsHandlerV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = listGameRecordsHandlerV1Cmd.MarkFlagRequired("namespace")
-	listGameRecordsHandlerV1Cmd.Flags().StringP("query", "qy", " ", "Query")
-	listGameRecordsHandlerV1Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
-	_ = listGameRecordsHandlerV1Cmd.MarkFlagRequired("limit")
-	listGameRecordsHandlerV1Cmd.Flags().Int64P("offset", "ot", 0, "Offset")
-	_ = listGameRecordsHandlerV1Cmd.MarkFlagRequired("offset")
+	ListGameRecordsHandlerV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = ListGameRecordsHandlerV1Cmd.MarkFlagRequired("namespace")
+	ListGameRecordsHandlerV1Cmd.Flags().StringP("query", "qy", " ", "Query")
+	ListGameRecordsHandlerV1Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
+	_ = ListGameRecordsHandlerV1Cmd.MarkFlagRequired("limit")
+	ListGameRecordsHandlerV1Cmd.Flags().Int64P("offset", "ot", 0, "Offset")
+	_ = ListGameRecordsHandlerV1Cmd.MarkFlagRequired("offset")
 }

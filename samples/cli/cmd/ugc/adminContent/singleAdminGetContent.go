@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/ugc"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/admin_content"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// singleAdminGetContentCmd represents the singleAdminGetContent command
-var singleAdminGetContentCmd = &cobra.Command{
-	Use:   "singleAdminGetContent",
+// SingleAdminGetContentCmd represents the SingleAdminGetContent command
+var SingleAdminGetContentCmd = &cobra.Command{
+	Use:   "SingleAdminGetContent",
 	Short: "Single admin get content",
 	Long:  `Single admin get content`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -44,9 +43,8 @@ var singleAdminGetContentCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(singleAdminGetContentCmd)
-	singleAdminGetContentCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = singleAdminGetContentCmd.MarkFlagRequired("namespace")
-	singleAdminGetContentCmd.Flags().StringP("limit", "lt", "20", "Limit")
-	singleAdminGetContentCmd.Flags().StringP("offset", "ot", "0", "Offset")
+	SingleAdminGetContentCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = SingleAdminGetContentCmd.MarkFlagRequired("namespace")
+	SingleAdminGetContentCmd.Flags().StringP("limit", "lt", "20", "Limit")
+	SingleAdminGetContentCmd.Flags().StringP("offset", "ot", "0", "Offset")
 }

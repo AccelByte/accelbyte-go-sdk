@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclient/public_game_record"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/cloudsave"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// deleteGameRecordHandlerV1Cmd represents the deleteGameRecordHandlerV1 command
-var deleteGameRecordHandlerV1Cmd = &cobra.Command{
-	Use:   "deleteGameRecordHandlerV1",
+// DeleteGameRecordHandlerV1Cmd represents the DeleteGameRecordHandlerV1 command
+var DeleteGameRecordHandlerV1Cmd = &cobra.Command{
+	Use:   "DeleteGameRecordHandlerV1",
 	Short: "Delete game record handler V1",
 	Long:  `Delete game record handler V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,9 +40,8 @@ var deleteGameRecordHandlerV1Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(deleteGameRecordHandlerV1Cmd)
-	deleteGameRecordHandlerV1Cmd.Flags().StringP("key", "ky", " ", "Key")
-	_ = deleteGameRecordHandlerV1Cmd.MarkFlagRequired("key")
-	deleteGameRecordHandlerV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = deleteGameRecordHandlerV1Cmd.MarkFlagRequired("namespace")
+	DeleteGameRecordHandlerV1Cmd.Flags().StringP("key", "ky", " ", "Key")
+	_ = DeleteGameRecordHandlerV1Cmd.MarkFlagRequired("key")
+	DeleteGameRecordHandlerV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = DeleteGameRecordHandlerV1Cmd.MarkFlagRequired("namespace")
 }

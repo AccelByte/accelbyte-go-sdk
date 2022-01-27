@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/i_a_p"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getIAPItemConfigCmd represents the getIAPItemConfig command
-var getIAPItemConfigCmd = &cobra.Command{
-	Use:   "getIAPItemConfig",
+// GetIAPItemConfigCmd represents the GetIAPItemConfig command
+var GetIAPItemConfigCmd = &cobra.Command{
+	Use:   "GetIAPItemConfig",
 	Short: "Get IAP item config",
 	Long:  `Get IAP item config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,7 +39,6 @@ var getIAPItemConfigCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getIAPItemConfigCmd)
-	getIAPItemConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getIAPItemConfigCmd.MarkFlagRequired("namespace")
+	GetIAPItemConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetIAPItemConfigCmd.MarkFlagRequired("namespace")
 }

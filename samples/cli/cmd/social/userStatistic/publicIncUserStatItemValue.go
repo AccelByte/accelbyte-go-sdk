@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/social"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient/user_statistic"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclientmodels"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// publicIncUserStatItemValueCmd represents the publicIncUserStatItemValue command
-var publicIncUserStatItemValueCmd = &cobra.Command{
-	Use:   "publicIncUserStatItemValue",
+// PublicIncUserStatItemValueCmd represents the PublicIncUserStatItemValue command
+var PublicIncUserStatItemValueCmd = &cobra.Command{
+	Use:   "PublicIncUserStatItemValue",
 	Short: "Public inc user stat item value",
 	Long:  `Public inc user stat item value`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -53,12 +52,11 @@ var publicIncUserStatItemValueCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(publicIncUserStatItemValueCmd)
-	publicIncUserStatItemValueCmd.Flags().StringP("body", "by", " ", "Body")
-	publicIncUserStatItemValueCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = publicIncUserStatItemValueCmd.MarkFlagRequired("namespace")
-	publicIncUserStatItemValueCmd.Flags().StringP("statCode", "se", " ", "Stat code")
-	_ = publicIncUserStatItemValueCmd.MarkFlagRequired("statCode")
-	publicIncUserStatItemValueCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = publicIncUserStatItemValueCmd.MarkFlagRequired("userId")
+	PublicIncUserStatItemValueCmd.Flags().StringP("body", "by", " ", "Body")
+	PublicIncUserStatItemValueCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PublicIncUserStatItemValueCmd.MarkFlagRequired("namespace")
+	PublicIncUserStatItemValueCmd.Flags().StringP("statCode", "se", " ", "Stat code")
+	_ = PublicIncUserStatItemValueCmd.MarkFlagRequired("statCode")
+	PublicIncUserStatItemValueCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = PublicIncUserStatItemValueCmd.MarkFlagRequired("userId")
 }

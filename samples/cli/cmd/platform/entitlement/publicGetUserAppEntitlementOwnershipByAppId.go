@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/entitlement"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// publicGetUserAppEntitlementOwnershipByAppIdCmd represents the publicGetUserAppEntitlementOwnershipByAppId command
-var publicGetUserAppEntitlementOwnershipByAppIdCmd = &cobra.Command{
-	Use:   "publicGetUserAppEntitlementOwnershipByAppId",
+// PublicGetUserAppEntitlementOwnershipByAppIdCmd represents the PublicGetUserAppEntitlementOwnershipByAppId command
+var PublicGetUserAppEntitlementOwnershipByAppIdCmd = &cobra.Command{
+	Use:   "PublicGetUserAppEntitlementOwnershipByAppId",
 	Short: "Public get user app entitlement ownership by app id",
 	Long:  `Public get user app entitlement ownership by app id`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -44,11 +43,10 @@ var publicGetUserAppEntitlementOwnershipByAppIdCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(publicGetUserAppEntitlementOwnershipByAppIdCmd)
-	publicGetUserAppEntitlementOwnershipByAppIdCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = publicGetUserAppEntitlementOwnershipByAppIdCmd.MarkFlagRequired("namespace")
-	publicGetUserAppEntitlementOwnershipByAppIdCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = publicGetUserAppEntitlementOwnershipByAppIdCmd.MarkFlagRequired("userId")
-	publicGetUserAppEntitlementOwnershipByAppIdCmd.Flags().StringP("appId", "ad", " ", "App id")
-	_ = publicGetUserAppEntitlementOwnershipByAppIdCmd.MarkFlagRequired("appId")
+	PublicGetUserAppEntitlementOwnershipByAppIdCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PublicGetUserAppEntitlementOwnershipByAppIdCmd.MarkFlagRequired("namespace")
+	PublicGetUserAppEntitlementOwnershipByAppIdCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = PublicGetUserAppEntitlementOwnershipByAppIdCmd.MarkFlagRequired("userId")
+	PublicGetUserAppEntitlementOwnershipByAppIdCmd.Flags().StringP("appId", "ad", " ", "App id")
+	_ = PublicGetUserAppEntitlementOwnershipByAppIdCmd.MarkFlagRequired("appId")
 }

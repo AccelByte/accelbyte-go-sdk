@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth2_0_extension"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getCountryLocationV3Cmd represents the getCountryLocationV3 command
-var getCountryLocationV3Cmd = &cobra.Command{
-	Use:   "getCountryLocationV3",
+// GetCountryLocationV3Cmd represents the GetCountryLocationV3 command
+var GetCountryLocationV3Cmd = &cobra.Command{
+	Use:   "GetCountryLocationV3",
 	Short: "Get country location V3",
 	Long:  `Get country location V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -34,8 +33,4 @@ var getCountryLocationV3Cmd = &cobra.Command{
 		}
 		return nil
 	},
-}
-
-func init() {
-	cmd.RootCmd.AddCommand(getCountryLocationV3Cmd)
 }

@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// refundUserPaymentOrderCmd represents the refundUserPaymentOrder command
-var refundUserPaymentOrderCmd = &cobra.Command{
-	Use:   "refundUserPaymentOrder",
+// RefundUserPaymentOrderCmd represents the RefundUserPaymentOrder command
+var RefundUserPaymentOrderCmd = &cobra.Command{
+	Use:   "RefundUserPaymentOrder",
 	Short: "Refund user payment order",
 	Long:  `Refund user payment order`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -53,12 +52,11 @@ var refundUserPaymentOrderCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(refundUserPaymentOrderCmd)
-	refundUserPaymentOrderCmd.Flags().StringP("body", "by", " ", "Body")
-	refundUserPaymentOrderCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = refundUserPaymentOrderCmd.MarkFlagRequired("namespace")
-	refundUserPaymentOrderCmd.Flags().StringP("paymentOrderNo", "po", " ", "Payment order no")
-	_ = refundUserPaymentOrderCmd.MarkFlagRequired("paymentOrderNo")
-	refundUserPaymentOrderCmd.Flags().StringP("userId", "ud", " ", "User id")
-	_ = refundUserPaymentOrderCmd.MarkFlagRequired("userId")
+	RefundUserPaymentOrderCmd.Flags().StringP("body", "by", " ", "Body")
+	RefundUserPaymentOrderCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = RefundUserPaymentOrderCmd.MarkFlagRequired("namespace")
+	RefundUserPaymentOrderCmd.Flags().StringP("paymentOrderNo", "po", " ", "Payment order no")
+	_ = RefundUserPaymentOrderCmd.MarkFlagRequired("paymentOrderNo")
+	RefundUserPaymentOrderCmd.Flags().StringP("userId", "ud", " ", "User id")
+	_ = RefundUserPaymentOrderCmd.MarkFlagRequired("userId")
 }

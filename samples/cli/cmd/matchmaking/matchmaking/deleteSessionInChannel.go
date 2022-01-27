@@ -8,15 +8,14 @@ import (
 	matchmaking_ "github.com/AccelByte/accelbyte-go-sdk/matchmaking-sdk/pkg/matchmakingclient/matchmaking"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/matchmaking"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// deleteSessionInChannelCmd represents the deleteSessionInChannel command
-var deleteSessionInChannelCmd = &cobra.Command{
-	Use:   "deleteSessionInChannel",
+// DeleteSessionInChannelCmd represents the DeleteSessionInChannel command
+var DeleteSessionInChannelCmd = &cobra.Command{
+	Use:   "DeleteSessionInChannel",
 	Short: "Delete session in channel",
 	Long:  `Delete session in channel`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,11 +42,10 @@ var deleteSessionInChannelCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(deleteSessionInChannelCmd)
-	deleteSessionInChannelCmd.Flags().StringP("channelName", "ce", " ", "Channel name")
-	_ = deleteSessionInChannelCmd.MarkFlagRequired("channelName")
-	deleteSessionInChannelCmd.Flags().StringP("matchID", "mD", " ", "Match ID")
-	_ = deleteSessionInChannelCmd.MarkFlagRequired("matchID")
-	deleteSessionInChannelCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = deleteSessionInChannelCmd.MarkFlagRequired("namespace")
+	DeleteSessionInChannelCmd.Flags().StringP("channelName", "ce", " ", "Channel name")
+	_ = DeleteSessionInChannelCmd.MarkFlagRequired("channelName")
+	DeleteSessionInChannelCmd.Flags().StringP("matchID", "mD", " ", "Match ID")
+	_ = DeleteSessionInChannelCmd.MarkFlagRequired("matchID")
+	DeleteSessionInChannelCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = DeleteSessionInChannelCmd.MarkFlagRequired("namespace")
 }

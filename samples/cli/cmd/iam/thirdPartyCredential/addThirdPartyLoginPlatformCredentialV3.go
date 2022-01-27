@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// addThirdPartyLoginPlatformCredentialV3Cmd represents the addThirdPartyLoginPlatformCredentialV3 command
-var addThirdPartyLoginPlatformCredentialV3Cmd = &cobra.Command{
-	Use:   "addThirdPartyLoginPlatformCredentialV3",
+// AddThirdPartyLoginPlatformCredentialV3Cmd represents the AddThirdPartyLoginPlatformCredentialV3 command
+var AddThirdPartyLoginPlatformCredentialV3Cmd = &cobra.Command{
+	Use:   "AddThirdPartyLoginPlatformCredentialV3",
 	Short: "Add third party login platform credential V3",
 	Long:  `Add third party login platform credential V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -51,11 +50,10 @@ var addThirdPartyLoginPlatformCredentialV3Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(addThirdPartyLoginPlatformCredentialV3Cmd)
-	addThirdPartyLoginPlatformCredentialV3Cmd.Flags().StringP("body", "by", " ", "Body")
-	_ = addThirdPartyLoginPlatformCredentialV3Cmd.MarkFlagRequired("body")
-	addThirdPartyLoginPlatformCredentialV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = addThirdPartyLoginPlatformCredentialV3Cmd.MarkFlagRequired("namespace")
-	addThirdPartyLoginPlatformCredentialV3Cmd.Flags().StringP("platformId", "pd", " ", "Platform id")
-	_ = addThirdPartyLoginPlatformCredentialV3Cmd.MarkFlagRequired("platformId")
+	AddThirdPartyLoginPlatformCredentialV3Cmd.Flags().StringP("body", "by", " ", "Body")
+	_ = AddThirdPartyLoginPlatformCredentialV3Cmd.MarkFlagRequired("body")
+	AddThirdPartyLoginPlatformCredentialV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = AddThirdPartyLoginPlatformCredentialV3Cmd.MarkFlagRequired("namespace")
+	AddThirdPartyLoginPlatformCredentialV3Cmd.Flags().StringP("platformId", "pd", " ", "Platform id")
+	_ = AddThirdPartyLoginPlatformCredentialV3Cmd.MarkFlagRequired("platformId")
 }

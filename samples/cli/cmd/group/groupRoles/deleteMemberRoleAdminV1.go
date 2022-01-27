@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/group-sdk/pkg/groupclient/group_roles"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/group"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// deleteMemberRoleAdminV1Cmd represents the deleteMemberRoleAdminV1 command
-var deleteMemberRoleAdminV1Cmd = &cobra.Command{
-	Use:   "deleteMemberRoleAdminV1",
+// DeleteMemberRoleAdminV1Cmd represents the DeleteMemberRoleAdminV1 command
+var DeleteMemberRoleAdminV1Cmd = &cobra.Command{
+	Use:   "DeleteMemberRoleAdminV1",
 	Short: "Delete member role admin V1",
 	Long:  `Delete member role admin V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,9 +40,8 @@ var deleteMemberRoleAdminV1Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(deleteMemberRoleAdminV1Cmd)
-	deleteMemberRoleAdminV1Cmd.Flags().StringP("memberRoleId", "md", " ", "Member role id")
-	_ = deleteMemberRoleAdminV1Cmd.MarkFlagRequired("memberRoleId")
-	deleteMemberRoleAdminV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = deleteMemberRoleAdminV1Cmd.MarkFlagRequired("namespace")
+	DeleteMemberRoleAdminV1Cmd.Flags().StringP("memberRoleId", "md", " ", "Member role id")
+	_ = DeleteMemberRoleAdminV1Cmd.MarkFlagRequired("memberRoleId")
+	DeleteMemberRoleAdminV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = DeleteMemberRoleAdminV1Cmd.MarkFlagRequired("namespace")
 }

@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/currency"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// deleteCurrencyCmd represents the deleteCurrency command
-var deleteCurrencyCmd = &cobra.Command{
-	Use:   "deleteCurrency",
+// DeleteCurrencyCmd represents the DeleteCurrency command
+var DeleteCurrencyCmd = &cobra.Command{
+	Use:   "DeleteCurrency",
 	Short: "Delete currency",
 	Long:  `Delete currency`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,9 +41,8 @@ var deleteCurrencyCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(deleteCurrencyCmd)
-	deleteCurrencyCmd.Flags().StringP("currencyCode", "ce", " ", "Currency code")
-	_ = deleteCurrencyCmd.MarkFlagRequired("currencyCode")
-	deleteCurrencyCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = deleteCurrencyCmd.MarkFlagRequired("namespace")
+	DeleteCurrencyCmd.Flags().StringP("currencyCode", "ce", " ", "Currency code")
+	_ = DeleteCurrencyCmd.MarkFlagRequired("currencyCode")
+	DeleteCurrencyCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = DeleteCurrencyCmd.MarkFlagRequired("namespace")
 }

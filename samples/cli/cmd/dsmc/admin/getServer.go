@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/admin"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/dsmc"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// getServerCmd represents the getServer command
-var getServerCmd = &cobra.Command{
-	Use:   "getServer",
+// GetServerCmd represents the GetServer command
+var GetServerCmd = &cobra.Command{
+	Use:   "GetServer",
 	Short: "Get server",
 	Long:  `Get server`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,9 +41,8 @@ var getServerCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(getServerCmd)
-	getServerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = getServerCmd.MarkFlagRequired("namespace")
-	getServerCmd.Flags().StringP("podName", "pe", " ", "Pod name")
-	_ = getServerCmd.MarkFlagRequired("podName")
+	GetServerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = GetServerCmd.MarkFlagRequired("namespace")
+	GetServerCmd.Flags().StringP("podName", "pe", " ", "Pod name")
+	_ = GetServerCmd.MarkFlagRequired("podName")
 }

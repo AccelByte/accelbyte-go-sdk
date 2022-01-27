@@ -10,15 +10,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// publicUpgradeHeadlessAccountWithVerificationCodeV4Cmd represents the publicUpgradeHeadlessAccountWithVerificationCodeV4 command
-var publicUpgradeHeadlessAccountWithVerificationCodeV4Cmd = &cobra.Command{
-	Use:   "publicUpgradeHeadlessAccountWithVerificationCodeV4",
+// PublicUpgradeHeadlessAccountWithVerificationCodeV4Cmd represents the PublicUpgradeHeadlessAccountWithVerificationCodeV4 command
+var PublicUpgradeHeadlessAccountWithVerificationCodeV4Cmd = &cobra.Command{
+	Use:   "PublicUpgradeHeadlessAccountWithVerificationCodeV4",
 	Short: "Public upgrade headless account with verification code V4",
 	Long:  `Public upgrade headless account with verification code V4`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,9 +48,8 @@ var publicUpgradeHeadlessAccountWithVerificationCodeV4Cmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(publicUpgradeHeadlessAccountWithVerificationCodeV4Cmd)
-	publicUpgradeHeadlessAccountWithVerificationCodeV4Cmd.Flags().StringP("body", "by", " ", "Body")
-	_ = publicUpgradeHeadlessAccountWithVerificationCodeV4Cmd.MarkFlagRequired("body")
-	publicUpgradeHeadlessAccountWithVerificationCodeV4Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	_ = publicUpgradeHeadlessAccountWithVerificationCodeV4Cmd.MarkFlagRequired("namespace")
+	PublicUpgradeHeadlessAccountWithVerificationCodeV4Cmd.Flags().StringP("body", "by", " ", "Body")
+	_ = PublicUpgradeHeadlessAccountWithVerificationCodeV4Cmd.MarkFlagRequired("body")
+	PublicUpgradeHeadlessAccountWithVerificationCodeV4Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	_ = PublicUpgradeHeadlessAccountWithVerificationCodeV4Cmd.MarkFlagRequired("namespace")
 }

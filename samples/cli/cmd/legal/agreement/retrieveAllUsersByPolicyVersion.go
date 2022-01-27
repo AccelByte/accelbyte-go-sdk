@@ -8,15 +8,14 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclient/agreement"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/legal"
-	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
-// retrieveAllUsersByPolicyVersionCmd represents the retrieveAllUsersByPolicyVersion command
-var retrieveAllUsersByPolicyVersionCmd = &cobra.Command{
-	Use:   "retrieveAllUsersByPolicyVersion",
+// RetrieveAllUsersByPolicyVersionCmd represents the RetrieveAllUsersByPolicyVersion command
+var RetrieveAllUsersByPolicyVersionCmd = &cobra.Command{
+	Use:   "RetrieveAllUsersByPolicyVersion",
 	Short: "Retrieve all users by policy version",
 	Long:  `Retrieve all users by policy version`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -46,10 +45,9 @@ var retrieveAllUsersByPolicyVersionCmd = &cobra.Command{
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(retrieveAllUsersByPolicyVersionCmd)
-	retrieveAllUsersByPolicyVersionCmd.Flags().StringP("keyword", "kd", " ", "Keyword")
-	retrieveAllUsersByPolicyVersionCmd.Flags().Int32P("limit", "lt", 20, "Limit")
-	retrieveAllUsersByPolicyVersionCmd.Flags().Int32P("offset", "ot", 0, "Offset")
-	retrieveAllUsersByPolicyVersionCmd.Flags().StringP("policyVersionId", "pd", " ", "Policy version id")
-	_ = retrieveAllUsersByPolicyVersionCmd.MarkFlagRequired("policyVersionId")
+	RetrieveAllUsersByPolicyVersionCmd.Flags().StringP("keyword", "kd", " ", "Keyword")
+	RetrieveAllUsersByPolicyVersionCmd.Flags().Int32P("limit", "lt", 20, "Limit")
+	RetrieveAllUsersByPolicyVersionCmd.Flags().Int32P("offset", "ot", 0, "Offset")
+	RetrieveAllUsersByPolicyVersionCmd.Flags().StringP("policyVersionId", "pd", " ", "Policy version id")
+	_ = RetrieveAllUsersByPolicyVersionCmd.MarkFlagRequired("policyVersionId")
 }

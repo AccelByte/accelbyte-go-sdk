@@ -5,6 +5,25 @@ package cmd
 
 import (
 	"fmt"
+	"github.com/AccelByte/sample-apps/cmd/achievement"
+	"github.com/AccelByte/sample-apps/cmd/basic"
+	"github.com/AccelByte/sample-apps/cmd/cloudsave"
+	"github.com/AccelByte/sample-apps/cmd/dsmc"
+	"github.com/AccelByte/sample-apps/cmd/eventlog"
+	"github.com/AccelByte/sample-apps/cmd/gametelemetry"
+	"github.com/AccelByte/sample-apps/cmd/gdpr"
+	"github.com/AccelByte/sample-apps/cmd/group"
+	"github.com/AccelByte/sample-apps/cmd/iam"
+	"github.com/AccelByte/sample-apps/cmd/leaderboard"
+	"github.com/AccelByte/sample-apps/cmd/legal"
+	"github.com/AccelByte/sample-apps/cmd/lobby"
+	"github.com/AccelByte/sample-apps/cmd/matchmaking"
+	"github.com/AccelByte/sample-apps/cmd/platform"
+	"github.com/AccelByte/sample-apps/cmd/qosm"
+	"github.com/AccelByte/sample-apps/cmd/seasonpass"
+	"github.com/AccelByte/sample-apps/cmd/sessionbrowser"
+	"github.com/AccelByte/sample-apps/cmd/social"
+	"github.com/AccelByte/sample-apps/cmd/ugc"
 	"github.com/spf13/cobra"
 	"os"
 
@@ -49,6 +68,27 @@ func init() {
 	// Cobra also supports local flags, which will only run
 	// when this action is called directly.
 	RootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+
+	// Parent Commands
+	RootCmd.AddCommand(achievement.AchievementCmd)
+	RootCmd.AddCommand(basic.BasicCmd)
+	RootCmd.AddCommand(cloudsave.CloudsaveCmd)
+	RootCmd.AddCommand(dsmc.DsmcCmd)
+	RootCmd.AddCommand(eventlog.EventlogCmd)
+	RootCmd.AddCommand(gametelemetry.GametelemetryCmd)
+	RootCmd.AddCommand(gdpr.GdprCmd)
+	RootCmd.AddCommand(group.GroupCmd)
+	RootCmd.AddCommand(iam.IamCmd)
+	RootCmd.AddCommand(leaderboard.LeaderboardCmd)
+	RootCmd.AddCommand(legal.LegalCmd)
+	RootCmd.AddCommand(lobby.LobbyCmd)
+	RootCmd.AddCommand(matchmaking.MatchmakingCmd)
+	RootCmd.AddCommand(platform.PlatformCmd)
+	RootCmd.AddCommand(qosm.QosmCmd)
+	RootCmd.AddCommand(seasonpass.SeasonpassCmd)
+	RootCmd.AddCommand(sessionbrowser.SessionbrowserCmd)
+	RootCmd.AddCommand(social.SocialCmd)
+	RootCmd.AddCommand(ugc.UgcCmd)
 }
 
 // initConfig reads in config file and ENV variables if set.

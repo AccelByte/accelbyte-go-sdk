@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package adminGroup
 
 import (
 	"encoding/json"
@@ -52,10 +52,10 @@ var singleAdminUpdateGroupCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(singleAdminUpdateGroupCmd)
-	singleAdminUpdateGroupCmd.Flags().StringP("body", "b", " ", "Body")
+	singleAdminUpdateGroupCmd.Flags().StringP("body", "by", " ", "Body")
 	_ = singleAdminUpdateGroupCmd.MarkFlagRequired("body")
-	singleAdminUpdateGroupCmd.Flags().StringP("groupId", "g", " ", "Group id")
+	singleAdminUpdateGroupCmd.Flags().StringP("groupId", "gd", " ", "Group id")
 	_ = singleAdminUpdateGroupCmd.MarkFlagRequired("groupId")
-	singleAdminUpdateGroupCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	singleAdminUpdateGroupCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = singleAdminUpdateGroupCmd.MarkFlagRequired("namespace")
 }

@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package session
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
@@ -61,17 +61,17 @@ var querySessionCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(querySessionCmd)
-	querySessionCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	querySessionCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = querySessionCmd.MarkFlagRequired("namespace")
-	querySessionCmd.Flags().StringP("game_mode", "g", " ", "Game mode")
-	querySessionCmd.Flags().StringP("game_version", "g", " ", "Game version")
-	querySessionCmd.Flags().StringP("joinable", "j", " ", "Joinable")
-	querySessionCmd.Flags().StringP("limit", "l", "20", "Limit")
-	querySessionCmd.Flags().StringP("match_exist", "m", " ", "Match exist")
-	querySessionCmd.Flags().StringP("match_id", "m", " ", "Match id")
-	querySessionCmd.Flags().StringP("offset", "o", "0", "Offset")
-	querySessionCmd.Flags().StringP("server_status", "s", " ", "Server status")
-	querySessionCmd.Flags().StringP("user_id", "u", " ", "User id")
-	querySessionCmd.Flags().StringP("session_type", "s", " ", "Session type")
+	querySessionCmd.Flags().StringP("game_mode", "ge", " ", "Game mode")
+	querySessionCmd.Flags().StringP("game_version", "gn", " ", "Game version")
+	querySessionCmd.Flags().StringP("joinable", "je", " ", "Joinable")
+	querySessionCmd.Flags().StringP("limit", "lt", "20", "Limit")
+	querySessionCmd.Flags().StringP("match_exist", "mt", " ", "Match exist")
+	querySessionCmd.Flags().StringP("match_id", "md", " ", "Match id")
+	querySessionCmd.Flags().StringP("offset", "ot", "0", "Offset")
+	querySessionCmd.Flags().StringP("server_status", "ss", " ", "Server status")
+	querySessionCmd.Flags().StringP("user_id", "ud", " ", "User id")
+	querySessionCmd.Flags().StringP("session_type", "se", " ", "Session type")
 	_ = querySessionCmd.MarkFlagRequired("session_type")
 }

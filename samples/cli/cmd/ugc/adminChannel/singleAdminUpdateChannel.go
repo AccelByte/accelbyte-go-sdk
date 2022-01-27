@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package adminChannel
 
 import (
 	"encoding/json"
@@ -52,10 +52,10 @@ var singleAdminUpdateChannelCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(singleAdminUpdateChannelCmd)
-	singleAdminUpdateChannelCmd.Flags().StringP("body", "b", " ", "Body")
+	singleAdminUpdateChannelCmd.Flags().StringP("body", "by", " ", "Body")
 	_ = singleAdminUpdateChannelCmd.MarkFlagRequired("body")
-	singleAdminUpdateChannelCmd.Flags().StringP("channelId", "c", " ", "Channel id")
+	singleAdminUpdateChannelCmd.Flags().StringP("channelId", "cd", " ", "Channel id")
 	_ = singleAdminUpdateChannelCmd.MarkFlagRequired("channelId")
-	singleAdminUpdateChannelCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	singleAdminUpdateChannelCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = singleAdminUpdateChannelCmd.MarkFlagRequired("namespace")
 }

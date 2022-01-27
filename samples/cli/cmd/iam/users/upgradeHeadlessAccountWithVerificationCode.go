@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package users
 
 import (
 	"encoding/json"
@@ -52,10 +52,10 @@ var upgradeHeadlessAccountWithVerificationCodeCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(upgradeHeadlessAccountWithVerificationCodeCmd)
-	upgradeHeadlessAccountWithVerificationCodeCmd.Flags().StringP("body", "b", " ", "Body")
+	upgradeHeadlessAccountWithVerificationCodeCmd.Flags().StringP("body", "by", " ", "Body")
 	_ = upgradeHeadlessAccountWithVerificationCodeCmd.MarkFlagRequired("body")
-	upgradeHeadlessAccountWithVerificationCodeCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	upgradeHeadlessAccountWithVerificationCodeCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = upgradeHeadlessAccountWithVerificationCodeCmd.MarkFlagRequired("namespace")
-	upgradeHeadlessAccountWithVerificationCodeCmd.Flags().StringP("userId", "u", " ", "User id")
+	upgradeHeadlessAccountWithVerificationCodeCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = upgradeHeadlessAccountWithVerificationCodeCmd.MarkFlagRequired("userId")
 }

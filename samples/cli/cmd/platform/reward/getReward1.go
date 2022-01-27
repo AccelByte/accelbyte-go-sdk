@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package reward
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/reward"
@@ -43,8 +43,8 @@ var getReward1Cmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(getReward1Cmd)
-	getReward1Cmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	getReward1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = getReward1Cmd.MarkFlagRequired("namespace")
-	getReward1Cmd.Flags().StringP("rewardId", "r", " ", "Reward id")
+	getReward1Cmd.Flags().StringP("rewardId", "rd", " ", "Reward id")
 	_ = getReward1Cmd.MarkFlagRequired("rewardId")
 }

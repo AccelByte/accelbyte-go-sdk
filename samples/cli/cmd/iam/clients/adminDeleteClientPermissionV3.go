@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package clients
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/clients"
@@ -46,12 +46,12 @@ var adminDeleteClientPermissionV3Cmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(adminDeleteClientPermissionV3Cmd)
-	adminDeleteClientPermissionV3Cmd.Flags().Int64P("action", "a", -1, "Action")
+	adminDeleteClientPermissionV3Cmd.Flags().Int64P("action", "an", -1, "Action")
 	_ = adminDeleteClientPermissionV3Cmd.MarkFlagRequired("action")
-	adminDeleteClientPermissionV3Cmd.Flags().StringP("clientId", "c", " ", "Client id")
+	adminDeleteClientPermissionV3Cmd.Flags().StringP("clientId", "cd", " ", "Client id")
 	_ = adminDeleteClientPermissionV3Cmd.MarkFlagRequired("clientId")
-	adminDeleteClientPermissionV3Cmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	adminDeleteClientPermissionV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = adminDeleteClientPermissionV3Cmd.MarkFlagRequired("namespace")
-	adminDeleteClientPermissionV3Cmd.Flags().StringP("resource", "r", " ", "Resource")
+	adminDeleteClientPermissionV3Cmd.Flags().StringP("resource", "re", " ", "Resource")
 	_ = adminDeleteClientPermissionV3Cmd.MarkFlagRequired("resource")
 }

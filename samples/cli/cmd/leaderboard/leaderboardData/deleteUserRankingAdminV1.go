@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package leaderboardData
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/leaderboard-sdk/pkg/leaderboardclient/leaderboard_data"
@@ -44,10 +44,10 @@ var deleteUserRankingAdminV1Cmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(deleteUserRankingAdminV1Cmd)
-	deleteUserRankingAdminV1Cmd.Flags().StringP("leaderboardCode", "l", " ", "Leaderboard code")
+	deleteUserRankingAdminV1Cmd.Flags().StringP("leaderboardCode", "le", " ", "Leaderboard code")
 	_ = deleteUserRankingAdminV1Cmd.MarkFlagRequired("leaderboardCode")
-	deleteUserRankingAdminV1Cmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	deleteUserRankingAdminV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = deleteUserRankingAdminV1Cmd.MarkFlagRequired("namespace")
-	deleteUserRankingAdminV1Cmd.Flags().StringP("userId", "u", " ", "User id")
+	deleteUserRankingAdminV1Cmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = deleteUserRankingAdminV1Cmd.MarkFlagRequired("userId")
 }

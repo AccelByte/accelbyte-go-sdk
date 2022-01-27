@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package item
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/item"
@@ -69,20 +69,20 @@ var queryItemsCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(queryItemsCmd)
-	queryItemsCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	queryItemsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = queryItemsCmd.MarkFlagRequired("namespace")
-	queryItemsCmd.Flags().BoolP("activeOnly", "a", false, "Active only")
-	queryItemsCmd.Flags().StringP("appType", "a", " ", "App type")
-	queryItemsCmd.Flags().StringP("availableDate", "a", " ", "Available date")
-	queryItemsCmd.Flags().StringP("baseAppId", "b", " ", "Base app id")
-	queryItemsCmd.Flags().StringP("categoryPath", "c", " ", "Category path")
-	queryItemsCmd.Flags().StringP("features", "f", " ", "Features")
-	queryItemsCmd.Flags().StringP("itemType", "i", " ", "Item type")
-	queryItemsCmd.Flags().Int32P("limit", "l", 20, "Limit")
-	queryItemsCmd.Flags().Int32P("offset", "o", 0, "Offset")
-	queryItemsCmd.Flags().StringP("region", "r", " ", "Region")
-	queryItemsCmd.Flags().StringP("sortBy", "s", " ", "Sort by")
-	queryItemsCmd.Flags().StringP("storeId", "s", " ", "Store id")
-	queryItemsCmd.Flags().StringP("tags", "t", " ", "Tags")
-	queryItemsCmd.Flags().StringP("targetNamespace", "t", " ", "Target namespace")
+	queryItemsCmd.Flags().BoolP("activeOnly", "ay", false, "Active only")
+	queryItemsCmd.Flags().StringP("appType", "ae", " ", "App type")
+	queryItemsCmd.Flags().StringP("availableDate", "ae", " ", "Available date")
+	queryItemsCmd.Flags().StringP("baseAppId", "bd", " ", "Base app id")
+	queryItemsCmd.Flags().StringP("categoryPath", "ch", " ", "Category path")
+	queryItemsCmd.Flags().StringP("features", "fs", " ", "Features")
+	queryItemsCmd.Flags().StringP("itemType", "ie", " ", "Item type")
+	queryItemsCmd.Flags().Int32P("limit", "lt", 20, "Limit")
+	queryItemsCmd.Flags().Int32P("offset", "ot", 0, "Offset")
+	queryItemsCmd.Flags().StringP("region", "rn", " ", "Region")
+	queryItemsCmd.Flags().StringP("sortBy", "sy", " ", "Sort by")
+	queryItemsCmd.Flags().StringP("storeId", "sd", " ", "Store id")
+	queryItemsCmd.Flags().StringP("tags", "ts", " ", "Tags")
+	queryItemsCmd.Flags().StringP("targetNamespace", "te", " ", "Target namespace")
 }

@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package matchmaking
 
 import (
 	"encoding/json"
@@ -51,10 +51,10 @@ var updateMatchmakingChannelCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(updateMatchmakingChannelCmd)
-	updateMatchmakingChannelCmd.Flags().StringP("body", "b", " ", "Body")
+	updateMatchmakingChannelCmd.Flags().StringP("body", "by", " ", "Body")
 	_ = updateMatchmakingChannelCmd.MarkFlagRequired("body")
-	updateMatchmakingChannelCmd.Flags().StringP("channelName", "c", " ", "Channel name")
+	updateMatchmakingChannelCmd.Flags().StringP("channelName", "ce", " ", "Channel name")
 	_ = updateMatchmakingChannelCmd.MarkFlagRequired("channelName")
-	updateMatchmakingChannelCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	updateMatchmakingChannelCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = updateMatchmakingChannelCmd.MarkFlagRequired("namespace")
 }

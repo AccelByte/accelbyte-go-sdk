@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package admin
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/qosm-sdk/pkg/qosmclient/admin"
@@ -40,6 +40,6 @@ var deleteServerCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(deleteServerCmd)
-	deleteServerCmd.Flags().StringP("region", "r", " ", "Region")
+	deleteServerCmd.Flags().StringP("region", "rn", " ", "Region")
 	_ = deleteServerCmd.MarkFlagRequired("region")
 }

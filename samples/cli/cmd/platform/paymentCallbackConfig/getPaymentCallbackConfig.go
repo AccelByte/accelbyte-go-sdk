@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package paymentCallbackConfig
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/payment_callback_config"
@@ -41,6 +41,6 @@ var getPaymentCallbackConfigCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(getPaymentCallbackConfigCmd)
-	getPaymentCallbackConfigCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	getPaymentCallbackConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = getPaymentCallbackConfigCmd.MarkFlagRequired("namespace")
 }

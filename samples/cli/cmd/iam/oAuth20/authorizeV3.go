@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package oAuth20
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth2_0"
@@ -54,14 +54,14 @@ var authorizeV3Cmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(authorizeV3Cmd)
-	authorizeV3Cmd.Flags().StringP("code_challenge", "c", " ", "Code challenge")
-	authorizeV3Cmd.Flags().StringP("code_challenge_method", "c", " ", "Code challenge method")
-	authorizeV3Cmd.Flags().StringP("redirect_uri", "r", " ", "Redirect uri")
-	authorizeV3Cmd.Flags().StringP("scope", "s", " ", "Scope")
-	authorizeV3Cmd.Flags().StringP("state", "s", " ", "State")
-	authorizeV3Cmd.Flags().StringP("target_auth_page", "t", " ", "Target auth page")
-	authorizeV3Cmd.Flags().StringP("client_id", "c", " ", "Client id")
+	authorizeV3Cmd.Flags().StringP("code_challenge", "ce", " ", "Code challenge")
+	authorizeV3Cmd.Flags().StringP("code_challenge_method", "cd", " ", "Code challenge method")
+	authorizeV3Cmd.Flags().StringP("redirect_uri", "ri", " ", "Redirect uri")
+	authorizeV3Cmd.Flags().StringP("scope", "se", " ", "Scope")
+	authorizeV3Cmd.Flags().StringP("state", "se", " ", "State")
+	authorizeV3Cmd.Flags().StringP("target_auth_page", "te", " ", "Target auth page")
+	authorizeV3Cmd.Flags().StringP("client_id", "cd", " ", "Client id")
 	_ = authorizeV3Cmd.MarkFlagRequired("client_id")
-	authorizeV3Cmd.Flags().StringP("response_type", "r", " ", "Response type")
+	authorizeV3Cmd.Flags().StringP("response_type", "re", " ", "Response type")
 	_ = authorizeV3Cmd.MarkFlagRequired("response_type")
 }

@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package slot
 
 import (
 	"bytes"
@@ -59,10 +59,10 @@ var getSlotDataCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(getSlotDataCmd)
-	getSlotDataCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	getSlotDataCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = getSlotDataCmd.MarkFlagRequired("namespace")
-	getSlotDataCmd.Flags().StringP("slotId", "s", " ", "Slot id")
+	getSlotDataCmd.Flags().StringP("slotId", "sd", " ", "Slot id")
 	_ = getSlotDataCmd.MarkFlagRequired("slotId")
-	getSlotDataCmd.Flags().StringP("userId", "u", " ", "User id")
+	getSlotDataCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = getSlotDataCmd.MarkFlagRequired("userId")
 }

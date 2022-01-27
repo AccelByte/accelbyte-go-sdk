@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package localizedPolicyVersions
 
 import (
 	"encoding/json"
@@ -50,7 +50,7 @@ var createLocalizedPolicyVersionCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(createLocalizedPolicyVersionCmd)
-	createLocalizedPolicyVersionCmd.Flags().StringP("body", "b", " ", "Body")
-	createLocalizedPolicyVersionCmd.Flags().StringP("policyVersionId", "p", " ", "Policy version id")
+	createLocalizedPolicyVersionCmd.Flags().StringP("body", "by", " ", "Body")
+	createLocalizedPolicyVersionCmd.Flags().StringP("policyVersionId", "pd", " ", "Policy version id")
 	_ = createLocalizedPolicyVersionCmd.MarkFlagRequired("policyVersionId")
 }

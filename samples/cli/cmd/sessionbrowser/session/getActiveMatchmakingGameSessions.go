@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package session
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
@@ -47,9 +47,9 @@ var getActiveMatchmakingGameSessionsCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(getActiveMatchmakingGameSessionsCmd)
-	getActiveMatchmakingGameSessionsCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	getActiveMatchmakingGameSessionsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = getActiveMatchmakingGameSessionsCmd.MarkFlagRequired("namespace")
-	getActiveMatchmakingGameSessionsCmd.Flags().StringP("match_id", "m", " ", "Match id")
-	getActiveMatchmakingGameSessionsCmd.Flags().StringP("server_region", "s", " ", "Server region")
-	getActiveMatchmakingGameSessionsCmd.Flags().StringP("session_id", "s", " ", "Session id")
+	getActiveMatchmakingGameSessionsCmd.Flags().StringP("match_id", "md", " ", "Match id")
+	getActiveMatchmakingGameSessionsCmd.Flags().StringP("server_region", "sn", " ", "Server region")
+	getActiveMatchmakingGameSessionsCmd.Flags().StringP("session_id", "sd", " ", "Session id")
 }

@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package order
 
 import (
 	"encoding/json"
@@ -52,9 +52,9 @@ var refundOrderCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(refundOrderCmd)
-	refundOrderCmd.Flags().StringP("body", "b", " ", "Body")
-	refundOrderCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	refundOrderCmd.Flags().StringP("body", "by", " ", "Body")
+	refundOrderCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = refundOrderCmd.MarkFlagRequired("namespace")
-	refundOrderCmd.Flags().StringP("orderNo", "o", " ", "Order no")
+	refundOrderCmd.Flags().StringP("orderNo", "oo", " ", "Order no")
 	_ = refundOrderCmd.MarkFlagRequired("orderNo")
 }

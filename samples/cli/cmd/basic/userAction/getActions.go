@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package userAction
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclient/user_action"
@@ -41,6 +41,6 @@ var getActionsCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(getActionsCmd)
-	getActionsCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	getActionsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = getActionsCmd.MarkFlagRequired("namespace")
 }

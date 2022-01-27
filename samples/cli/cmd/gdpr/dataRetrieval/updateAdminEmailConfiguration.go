@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package dataRetrieval
 
 import (
 	"encoding/json"
@@ -48,8 +48,8 @@ var updateAdminEmailConfigurationCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(updateAdminEmailConfigurationCmd)
-	updateAdminEmailConfigurationCmd.Flags().StringP("body", "b", " ", "Body")
+	updateAdminEmailConfigurationCmd.Flags().StringP("body", "by", " ", "Body")
 	_ = updateAdminEmailConfigurationCmd.MarkFlagRequired("body")
-	updateAdminEmailConfigurationCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	updateAdminEmailConfigurationCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = updateAdminEmailConfigurationCmd.MarkFlagRequired("namespace")
 }

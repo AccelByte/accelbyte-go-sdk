@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package player
 
 import (
 	"encoding/json"
@@ -51,10 +51,10 @@ var adminBulkBlockPlayersV1Cmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(adminBulkBlockPlayersV1Cmd)
-	adminBulkBlockPlayersV1Cmd.Flags().StringP("body", "b", " ", "Body")
+	adminBulkBlockPlayersV1Cmd.Flags().StringP("body", "by", " ", "Body")
 	_ = adminBulkBlockPlayersV1Cmd.MarkFlagRequired("body")
-	adminBulkBlockPlayersV1Cmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	adminBulkBlockPlayersV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = adminBulkBlockPlayersV1Cmd.MarkFlagRequired("namespace")
-	adminBulkBlockPlayersV1Cmd.Flags().StringP("userId", "u", " ", "User id")
+	adminBulkBlockPlayersV1Cmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = adminBulkBlockPlayersV1Cmd.MarkFlagRequired("userId")
 }

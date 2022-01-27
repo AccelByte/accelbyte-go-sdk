@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package admin
 
 import (
 	"encoding/json"
@@ -49,8 +49,8 @@ var setServerAliasCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(setServerAliasCmd)
-	setServerAliasCmd.Flags().StringP("body", "b", " ", "Body")
+	setServerAliasCmd.Flags().StringP("body", "by", " ", "Body")
 	_ = setServerAliasCmd.MarkFlagRequired("body")
-	setServerAliasCmd.Flags().StringP("region", "r", " ", "Region")
+	setServerAliasCmd.Flags().StringP("region", "rn", " ", "Region")
 	_ = setServerAliasCmd.MarkFlagRequired("region")
 }

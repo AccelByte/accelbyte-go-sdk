@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package groupRoles
 
 import (
 	"encoding/json"
@@ -50,8 +50,8 @@ var createMemberRoleAdminV1Cmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(createMemberRoleAdminV1Cmd)
-	createMemberRoleAdminV1Cmd.Flags().StringP("body", "b", " ", "Body")
+	createMemberRoleAdminV1Cmd.Flags().StringP("body", "by", " ", "Body")
 	_ = createMemberRoleAdminV1Cmd.MarkFlagRequired("body")
-	createMemberRoleAdminV1Cmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	createMemberRoleAdminV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = createMemberRoleAdminV1Cmd.MarkFlagRequired("namespace")
 }

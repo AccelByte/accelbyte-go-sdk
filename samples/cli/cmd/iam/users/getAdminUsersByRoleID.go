@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package users
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users"
@@ -49,10 +49,10 @@ var getAdminUsersByRoleIDCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(getAdminUsersByRoleIDCmd)
-	getAdminUsersByRoleIDCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	getAdminUsersByRoleIDCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = getAdminUsersByRoleIDCmd.MarkFlagRequired("namespace")
-	getAdminUsersByRoleIDCmd.Flags().Int64P("after", "a", 0, "After")
-	getAdminUsersByRoleIDCmd.Flags().Int64P("before", "b", 0, "Before")
-	getAdminUsersByRoleIDCmd.Flags().Int64P("limit", "l", 20, "Limit")
-	getAdminUsersByRoleIDCmd.Flags().StringP("roleId", "r", " ", "Role id")
+	getAdminUsersByRoleIDCmd.Flags().Int64P("after", "ar", 0, "After")
+	getAdminUsersByRoleIDCmd.Flags().Int64P("before", "be", 0, "Before")
+	getAdminUsersByRoleIDCmd.Flags().Int64P("limit", "lt", 20, "Limit")
+	getAdminUsersByRoleIDCmd.Flags().StringP("roleId", "rd", " ", "Role id")
 }

@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package usersV4
 
 import (
 	"encoding/json"
@@ -52,10 +52,10 @@ var adminUpdateUserRoleV4Cmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(adminUpdateUserRoleV4Cmd)
-	adminUpdateUserRoleV4Cmd.Flags().StringP("body", "b", " ", "Body")
+	adminUpdateUserRoleV4Cmd.Flags().StringP("body", "by", " ", "Body")
 	_ = adminUpdateUserRoleV4Cmd.MarkFlagRequired("body")
-	adminUpdateUserRoleV4Cmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	adminUpdateUserRoleV4Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = adminUpdateUserRoleV4Cmd.MarkFlagRequired("namespace")
-	adminUpdateUserRoleV4Cmd.Flags().StringP("userId", "u", " ", "User id")
+	adminUpdateUserRoleV4Cmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = adminUpdateUserRoleV4Cmd.MarkFlagRequired("userId")
 }

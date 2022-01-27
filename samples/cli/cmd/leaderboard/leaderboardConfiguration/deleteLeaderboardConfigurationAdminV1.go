@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package leaderboardConfiguration
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/leaderboard-sdk/pkg/leaderboardclient/leaderboard_configuration"
@@ -42,8 +42,8 @@ var deleteLeaderboardConfigurationAdminV1Cmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(deleteLeaderboardConfigurationAdminV1Cmd)
-	deleteLeaderboardConfigurationAdminV1Cmd.Flags().StringP("leaderboardCode", "l", " ", "Leaderboard code")
+	deleteLeaderboardConfigurationAdminV1Cmd.Flags().StringP("leaderboardCode", "le", " ", "Leaderboard code")
 	_ = deleteLeaderboardConfigurationAdminV1Cmd.MarkFlagRequired("leaderboardCode")
-	deleteLeaderboardConfigurationAdminV1Cmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	deleteLeaderboardConfigurationAdminV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = deleteLeaderboardConfigurationAdminV1Cmd.MarkFlagRequired("namespace")
 }

@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package iap
 
 import (
 	"encoding/json"
@@ -50,7 +50,7 @@ var updateSteamIAPConfigCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(updateSteamIAPConfigCmd)
-	updateSteamIAPConfigCmd.Flags().StringP("body", "b", " ", "Body")
-	updateSteamIAPConfigCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	updateSteamIAPConfigCmd.Flags().StringP("body", "by", " ", "Body")
+	updateSteamIAPConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = updateSteamIAPConfigCmd.MarkFlagRequired("namespace")
 }

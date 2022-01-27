@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package orderDedicated
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/order_dedicated"
@@ -45,9 +45,9 @@ var syncOrdersCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(syncOrdersCmd)
-	syncOrdersCmd.Flags().StringP("nextEvaluatedKey", "n", " ", "Next evaluated key")
-	syncOrdersCmd.Flags().StringP("end", "e", " ", "End")
+	syncOrdersCmd.Flags().StringP("nextEvaluatedKey", "ny", " ", "Next evaluated key")
+	syncOrdersCmd.Flags().StringP("end", "ed", " ", "End")
 	_ = syncOrdersCmd.MarkFlagRequired("end")
-	syncOrdersCmd.Flags().StringP("start", "s", " ", "Start")
+	syncOrdersCmd.Flags().StringP("start", "st", " ", "Start")
 	_ = syncOrdersCmd.MarkFlagRequired("start")
 }

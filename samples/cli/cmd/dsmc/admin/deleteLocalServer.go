@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package admin
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/admin"
@@ -42,8 +42,8 @@ var deleteLocalServerCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(deleteLocalServerCmd)
-	deleteLocalServerCmd.Flags().StringP("name", "n", " ", "Name")
+	deleteLocalServerCmd.Flags().StringP("name", "ne", " ", "Name")
 	_ = deleteLocalServerCmd.MarkFlagRequired("name")
-	deleteLocalServerCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	deleteLocalServerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = deleteLocalServerCmd.MarkFlagRequired("namespace")
 }

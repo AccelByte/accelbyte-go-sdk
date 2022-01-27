@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package slotConfig
 
 import (
 	"encoding/json"
@@ -52,9 +52,9 @@ var updateUserSlotConfigCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(updateUserSlotConfigCmd)
-	updateUserSlotConfigCmd.Flags().StringP("body", "b", " ", "Body")
-	updateUserSlotConfigCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	updateUserSlotConfigCmd.Flags().StringP("body", "by", " ", "Body")
+	updateUserSlotConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = updateUserSlotConfigCmd.MarkFlagRequired("namespace")
-	updateUserSlotConfigCmd.Flags().StringP("userId", "u", " ", "User id")
+	updateUserSlotConfigCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = updateUserSlotConfigCmd.MarkFlagRequired("userId")
 }

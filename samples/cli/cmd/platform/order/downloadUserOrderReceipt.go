@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package order
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/order"
@@ -44,10 +44,10 @@ var downloadUserOrderReceiptCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(downloadUserOrderReceiptCmd)
-	downloadUserOrderReceiptCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	downloadUserOrderReceiptCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = downloadUserOrderReceiptCmd.MarkFlagRequired("namespace")
-	downloadUserOrderReceiptCmd.Flags().StringP("orderNo", "o", " ", "Order no")
+	downloadUserOrderReceiptCmd.Flags().StringP("orderNo", "oo", " ", "Order no")
 	_ = downloadUserOrderReceiptCmd.MarkFlagRequired("orderNo")
-	downloadUserOrderReceiptCmd.Flags().StringP("userId", "u", " ", "User id")
+	downloadUserOrderReceiptCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = downloadUserOrderReceiptCmd.MarkFlagRequired("userId")
 }

@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package usersV4
 
 import (
 	"encoding/json"
@@ -50,8 +50,8 @@ var publicUpgradeHeadlessAccountV4Cmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(publicUpgradeHeadlessAccountV4Cmd)
-	publicUpgradeHeadlessAccountV4Cmd.Flags().StringP("body", "b", " ", "Body")
+	publicUpgradeHeadlessAccountV4Cmd.Flags().StringP("body", "by", " ", "Body")
 	_ = publicUpgradeHeadlessAccountV4Cmd.MarkFlagRequired("body")
-	publicUpgradeHeadlessAccountV4Cmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	publicUpgradeHeadlessAccountV4Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = publicUpgradeHeadlessAccountV4Cmd.MarkFlagRequired("namespace")
 }

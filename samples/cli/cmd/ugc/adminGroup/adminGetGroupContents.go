@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package adminGroup
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
@@ -49,12 +49,12 @@ var adminGetGroupContentsCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(adminGetGroupContentsCmd)
-	adminGetGroupContentsCmd.Flags().StringP("groupId", "g", " ", "Group id")
+	adminGetGroupContentsCmd.Flags().StringP("groupId", "gd", " ", "Group id")
 	_ = adminGetGroupContentsCmd.MarkFlagRequired("groupId")
-	adminGetGroupContentsCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	adminGetGroupContentsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = adminGetGroupContentsCmd.MarkFlagRequired("namespace")
-	adminGetGroupContentsCmd.Flags().StringP("userId", "u", " ", "User id")
+	adminGetGroupContentsCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = adminGetGroupContentsCmd.MarkFlagRequired("userId")
-	adminGetGroupContentsCmd.Flags().StringP("limit", "l", "20", "Limit")
-	adminGetGroupContentsCmd.Flags().StringP("offset", "o", "0", "Offset")
+	adminGetGroupContentsCmd.Flags().StringP("limit", "lt", "20", "Limit")
+	adminGetGroupContentsCmd.Flags().StringP("offset", "ot", "0", "Offset")
 }

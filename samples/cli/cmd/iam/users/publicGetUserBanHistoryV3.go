@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package users
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users"
@@ -51,12 +51,12 @@ var publicGetUserBanHistoryV3Cmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(publicGetUserBanHistoryV3Cmd)
-	publicGetUserBanHistoryV3Cmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	publicGetUserBanHistoryV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = publicGetUserBanHistoryV3Cmd.MarkFlagRequired("namespace")
-	publicGetUserBanHistoryV3Cmd.Flags().StringP("userId", "u", " ", "User id")
+	publicGetUserBanHistoryV3Cmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = publicGetUserBanHistoryV3Cmd.MarkFlagRequired("userId")
-	publicGetUserBanHistoryV3Cmd.Flags().BoolP("activeOnly", "a", false, "Active only")
-	publicGetUserBanHistoryV3Cmd.Flags().StringP("after", "a", "0", "After")
-	publicGetUserBanHistoryV3Cmd.Flags().StringP("before", "b", "0", "Before")
-	publicGetUserBanHistoryV3Cmd.Flags().Int64P("limit", "l", 20, "Limit")
+	publicGetUserBanHistoryV3Cmd.Flags().BoolP("activeOnly", "ay", false, "Active only")
+	publicGetUserBanHistoryV3Cmd.Flags().StringP("after", "ar", "0", "After")
+	publicGetUserBanHistoryV3Cmd.Flags().StringP("before", "be", "0", "Before")
+	publicGetUserBanHistoryV3Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
 }

@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package matchmaking
 
 import (
 	"encoding/json"
@@ -50,8 +50,8 @@ var storeMatchResultsCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(storeMatchResultsCmd)
-	storeMatchResultsCmd.Flags().StringP("body", "b", " ", "Body")
+	storeMatchResultsCmd.Flags().StringP("body", "by", " ", "Body")
 	_ = storeMatchResultsCmd.MarkFlagRequired("body")
-	storeMatchResultsCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	storeMatchResultsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = storeMatchResultsCmd.MarkFlagRequired("namespace")
 }

@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package thirdPartyCredential
 
 import (
 	"encoding/json"
@@ -52,10 +52,10 @@ var addThirdPartyLoginPlatformCredentialV3Cmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(addThirdPartyLoginPlatformCredentialV3Cmd)
-	addThirdPartyLoginPlatformCredentialV3Cmd.Flags().StringP("body", "b", " ", "Body")
+	addThirdPartyLoginPlatformCredentialV3Cmd.Flags().StringP("body", "by", " ", "Body")
 	_ = addThirdPartyLoginPlatformCredentialV3Cmd.MarkFlagRequired("body")
-	addThirdPartyLoginPlatformCredentialV3Cmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	addThirdPartyLoginPlatformCredentialV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = addThirdPartyLoginPlatformCredentialV3Cmd.MarkFlagRequired("namespace")
-	addThirdPartyLoginPlatformCredentialV3Cmd.Flags().StringP("platformId", "p", " ", "Platform id")
+	addThirdPartyLoginPlatformCredentialV3Cmd.Flags().StringP("platformId", "pd", " ", "Platform id")
 	_ = addThirdPartyLoginPlatformCredentialV3Cmd.MarkFlagRequired("platformId")
 }

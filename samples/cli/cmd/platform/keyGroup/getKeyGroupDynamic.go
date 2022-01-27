@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package keyGroup
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/key_group"
@@ -43,8 +43,8 @@ var getKeyGroupDynamicCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(getKeyGroupDynamicCmd)
-	getKeyGroupDynamicCmd.Flags().StringP("keyGroupId", "k", " ", "Key group id")
+	getKeyGroupDynamicCmd.Flags().StringP("keyGroupId", "kd", " ", "Key group id")
 	_ = getKeyGroupDynamicCmd.MarkFlagRequired("keyGroupId")
-	getKeyGroupDynamicCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	getKeyGroupDynamicCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = getKeyGroupDynamicCmd.MarkFlagRequired("namespace")
 }

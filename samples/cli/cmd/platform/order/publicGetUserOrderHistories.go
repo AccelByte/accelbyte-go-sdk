@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package order
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/order"
@@ -45,10 +45,10 @@ var publicGetUserOrderHistoriesCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(publicGetUserOrderHistoriesCmd)
-	publicGetUserOrderHistoriesCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	publicGetUserOrderHistoriesCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = publicGetUserOrderHistoriesCmd.MarkFlagRequired("namespace")
-	publicGetUserOrderHistoriesCmd.Flags().StringP("orderNo", "o", " ", "Order no")
+	publicGetUserOrderHistoriesCmd.Flags().StringP("orderNo", "oo", " ", "Order no")
 	_ = publicGetUserOrderHistoriesCmd.MarkFlagRequired("orderNo")
-	publicGetUserOrderHistoriesCmd.Flags().StringP("userId", "u", " ", "User id")
+	publicGetUserOrderHistoriesCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = publicGetUserOrderHistoriesCmd.MarkFlagRequired("userId")
 }

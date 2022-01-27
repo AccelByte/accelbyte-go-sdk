@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package matchmaking
 
 import (
 	"encoding/json"
@@ -53,12 +53,12 @@ var addUserIntoSessionInChannelCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(addUserIntoSessionInChannelCmd)
-	addUserIntoSessionInChannelCmd.Flags().StringP("body", "b", " ", "Body")
+	addUserIntoSessionInChannelCmd.Flags().StringP("body", "by", " ", "Body")
 	_ = addUserIntoSessionInChannelCmd.MarkFlagRequired("body")
-	addUserIntoSessionInChannelCmd.Flags().StringP("channelName", "c", " ", "Channel name")
+	addUserIntoSessionInChannelCmd.Flags().StringP("channelName", "ce", " ", "Channel name")
 	_ = addUserIntoSessionInChannelCmd.MarkFlagRequired("channelName")
-	addUserIntoSessionInChannelCmd.Flags().StringP("matchID", "m", " ", "Match ID")
+	addUserIntoSessionInChannelCmd.Flags().StringP("matchID", "mD", " ", "Match ID")
 	_ = addUserIntoSessionInChannelCmd.MarkFlagRequired("matchID")
-	addUserIntoSessionInChannelCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	addUserIntoSessionInChannelCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = addUserIntoSessionInChannelCmd.MarkFlagRequired("namespace")
 }

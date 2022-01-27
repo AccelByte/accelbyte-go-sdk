@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package statConfiguration
 
 import (
 	"encoding/json"
@@ -50,7 +50,7 @@ var createStat1Cmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(createStat1Cmd)
-	createStat1Cmd.Flags().StringP("body", "b", " ", "Body")
-	createStat1Cmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	createStat1Cmd.Flags().StringP("body", "by", " ", "Body")
+	createStat1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = createStat1Cmd.MarkFlagRequired("namespace")
 }

@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package adminTag
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
@@ -42,8 +42,8 @@ var adminDeleteTagCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(adminDeleteTagCmd)
-	adminDeleteTagCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	adminDeleteTagCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = adminDeleteTagCmd.MarkFlagRequired("namespace")
-	adminDeleteTagCmd.Flags().StringP("tagId", "t", " ", "Tag id")
+	adminDeleteTagCmd.Flags().StringP("tagId", "td", " ", "Tag id")
 	_ = adminDeleteTagCmd.MarkFlagRequired("tagId")
 }

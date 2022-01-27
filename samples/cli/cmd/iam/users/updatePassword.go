@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package users
 
 import (
 	"encoding/json"
@@ -51,10 +51,10 @@ var updatePasswordCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(updatePasswordCmd)
-	updatePasswordCmd.Flags().StringP("body", "b", " ", "Body")
+	updatePasswordCmd.Flags().StringP("body", "by", " ", "Body")
 	_ = updatePasswordCmd.MarkFlagRequired("body")
-	updatePasswordCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	updatePasswordCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = updatePasswordCmd.MarkFlagRequired("namespace")
-	updatePasswordCmd.Flags().StringP("userId", "u", " ", "User id")
+	updatePasswordCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = updatePasswordCmd.MarkFlagRequired("userId")
 }

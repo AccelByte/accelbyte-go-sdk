@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package publicContent
 
 import (
 	"encoding/json"
@@ -56,14 +56,14 @@ var updateContentS3Cmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(updateContentS3Cmd)
-	updateContentS3Cmd.Flags().StringP("body", "b", " ", "Body")
+	updateContentS3Cmd.Flags().StringP("body", "by", " ", "Body")
 	_ = updateContentS3Cmd.MarkFlagRequired("body")
-	updateContentS3Cmd.Flags().StringP("channelId", "c", " ", "Channel id")
+	updateContentS3Cmd.Flags().StringP("channelId", "cd", " ", "Channel id")
 	_ = updateContentS3Cmd.MarkFlagRequired("channelId")
-	updateContentS3Cmd.Flags().StringP("contentId", "c", " ", "Content id")
+	updateContentS3Cmd.Flags().StringP("contentId", "cd", " ", "Content id")
 	_ = updateContentS3Cmd.MarkFlagRequired("contentId")
-	updateContentS3Cmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	updateContentS3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = updateContentS3Cmd.MarkFlagRequired("namespace")
-	updateContentS3Cmd.Flags().StringP("userId", "u", " ", "User id")
+	updateContentS3Cmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = updateContentS3Cmd.MarkFlagRequired("userId")
 }

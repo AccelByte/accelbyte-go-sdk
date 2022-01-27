@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package users
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users"
@@ -47,10 +47,10 @@ var publicWebLinkPlatformCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(publicWebLinkPlatformCmd)
-	publicWebLinkPlatformCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	publicWebLinkPlatformCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = publicWebLinkPlatformCmd.MarkFlagRequired("namespace")
-	publicWebLinkPlatformCmd.Flags().StringP("platformId", "p", " ", "Platform id")
+	publicWebLinkPlatformCmd.Flags().StringP("platformId", "pd", " ", "Platform id")
 	_ = publicWebLinkPlatformCmd.MarkFlagRequired("platformId")
-	publicWebLinkPlatformCmd.Flags().StringP("clientId", "c", " ", "Client id")
-	publicWebLinkPlatformCmd.Flags().StringP("redirectUri", "r", " ", "Redirect uri")
+	publicWebLinkPlatformCmd.Flags().StringP("clientId", "cd", " ", "Client id")
+	publicWebLinkPlatformCmd.Flags().StringP("redirectUri", "ri", " ", "Redirect uri")
 }

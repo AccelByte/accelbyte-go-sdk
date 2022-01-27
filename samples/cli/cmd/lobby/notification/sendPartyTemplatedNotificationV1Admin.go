@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package notification
 
 import (
 	"encoding/json"
@@ -51,10 +51,10 @@ var sendPartyTemplatedNotificationV1AdminCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(sendPartyTemplatedNotificationV1AdminCmd)
-	sendPartyTemplatedNotificationV1AdminCmd.Flags().StringP("body", "b", " ", "Body")
+	sendPartyTemplatedNotificationV1AdminCmd.Flags().StringP("body", "by", " ", "Body")
 	_ = sendPartyTemplatedNotificationV1AdminCmd.MarkFlagRequired("body")
-	sendPartyTemplatedNotificationV1AdminCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	sendPartyTemplatedNotificationV1AdminCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = sendPartyTemplatedNotificationV1AdminCmd.MarkFlagRequired("namespace")
-	sendPartyTemplatedNotificationV1AdminCmd.Flags().StringP("partyId", "p", " ", "Party id")
+	sendPartyTemplatedNotificationV1AdminCmd.Flags().StringP("partyId", "pd", " ", "Party id")
 	_ = sendPartyTemplatedNotificationV1AdminCmd.MarkFlagRequired("partyId")
 }

@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package paymentConfig
 
 import (
 	"encoding/json"
@@ -48,5 +48,5 @@ var updatePaymentTaxConfigCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(updatePaymentTaxConfigCmd)
-	updatePaymentTaxConfigCmd.Flags().StringP("body", "b", " ", "Body")
+	updatePaymentTaxConfigCmd.Flags().StringP("body", "by", " ", "Body")
 }

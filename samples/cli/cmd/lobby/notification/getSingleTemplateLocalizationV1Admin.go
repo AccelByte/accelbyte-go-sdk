@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package notification
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/notification"
@@ -45,10 +45,10 @@ var getSingleTemplateLocalizationV1AdminCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(getSingleTemplateLocalizationV1AdminCmd)
-	getSingleTemplateLocalizationV1AdminCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	getSingleTemplateLocalizationV1AdminCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = getSingleTemplateLocalizationV1AdminCmd.MarkFlagRequired("namespace")
-	getSingleTemplateLocalizationV1AdminCmd.Flags().StringP("templateLanguage", "t", " ", "Template language")
+	getSingleTemplateLocalizationV1AdminCmd.Flags().StringP("templateLanguage", "te", " ", "Template language")
 	_ = getSingleTemplateLocalizationV1AdminCmd.MarkFlagRequired("templateLanguage")
-	getSingleTemplateLocalizationV1AdminCmd.Flags().StringP("templateSlug", "t", " ", "Template slug")
+	getSingleTemplateLocalizationV1AdminCmd.Flags().StringP("templateSlug", "tg", " ", "Template slug")
 	_ = getSingleTemplateLocalizationV1AdminCmd.MarkFlagRequired("templateSlug")
 }

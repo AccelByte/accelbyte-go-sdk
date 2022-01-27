@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package users
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users"
@@ -42,8 +42,8 @@ var enableUserCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(enableUserCmd)
-	enableUserCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	enableUserCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = enableUserCmd.MarkFlagRequired("namespace")
-	enableUserCmd.Flags().StringP("userId", "u", " ", "User id")
+	enableUserCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = enableUserCmd.MarkFlagRequired("userId")
 }

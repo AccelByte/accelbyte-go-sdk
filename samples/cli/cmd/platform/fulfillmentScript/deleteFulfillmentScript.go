@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package fulfillmentScript
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/fulfillment_script"
@@ -40,6 +40,6 @@ var deleteFulfillmentScriptCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(deleteFulfillmentScriptCmd)
-	deleteFulfillmentScriptCmd.Flags().StringP("id", "i", " ", "Id")
+	deleteFulfillmentScriptCmd.Flags().StringP("id", "id", " ", "Id")
 	_ = deleteFulfillmentScriptCmd.MarkFlagRequired("id")
 }

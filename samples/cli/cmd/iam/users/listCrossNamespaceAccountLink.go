@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package users
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users"
@@ -46,11 +46,11 @@ var listCrossNamespaceAccountLinkCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(listCrossNamespaceAccountLinkCmd)
-	listCrossNamespaceAccountLinkCmd.Flags().StringP("platformId", "p", " ", "Platform id")
-	listCrossNamespaceAccountLinkCmd.Flags().StringP("linkingToken", "l", " ", "Linking token")
+	listCrossNamespaceAccountLinkCmd.Flags().StringP("platformId", "pd", " ", "Platform id")
+	listCrossNamespaceAccountLinkCmd.Flags().StringP("linkingToken", "ln", " ", "Linking token")
 	_ = listCrossNamespaceAccountLinkCmd.MarkFlagRequired("linkingToken")
-	listCrossNamespaceAccountLinkCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	listCrossNamespaceAccountLinkCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = listCrossNamespaceAccountLinkCmd.MarkFlagRequired("namespace")
-	listCrossNamespaceAccountLinkCmd.Flags().StringP("userId", "u", " ", "User id")
+	listCrossNamespaceAccountLinkCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = listCrossNamespaceAccountLinkCmd.MarkFlagRequired("userId")
 }

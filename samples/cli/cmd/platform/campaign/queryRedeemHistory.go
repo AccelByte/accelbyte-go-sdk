@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package campaign
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/campaign"
@@ -51,12 +51,12 @@ var queryRedeemHistoryCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(queryRedeemHistoryCmd)
-	queryRedeemHistoryCmd.Flags().StringP("campaignId", "c", " ", "Campaign id")
+	queryRedeemHistoryCmd.Flags().StringP("campaignId", "cd", " ", "Campaign id")
 	_ = queryRedeemHistoryCmd.MarkFlagRequired("campaignId")
-	queryRedeemHistoryCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	queryRedeemHistoryCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = queryRedeemHistoryCmd.MarkFlagRequired("namespace")
-	queryRedeemHistoryCmd.Flags().StringP("code", "c", " ", "Code")
-	queryRedeemHistoryCmd.Flags().Int32P("limit", "l", 20, "Limit")
-	queryRedeemHistoryCmd.Flags().Int32P("offset", "o", 0, "Offset")
-	queryRedeemHistoryCmd.Flags().StringP("userId", "u", " ", "User id")
+	queryRedeemHistoryCmd.Flags().StringP("code", "ce", " ", "Code")
+	queryRedeemHistoryCmd.Flags().Int32P("limit", "lt", 20, "Limit")
+	queryRedeemHistoryCmd.Flags().Int32P("offset", "ot", 0, "Offset")
+	queryRedeemHistoryCmd.Flags().StringP("userId", "ud", " ", "User id")
 }

@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package entitlement
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/entitlement"
@@ -47,11 +47,11 @@ var publicGetUserEntitlementOwnershipByItemIdCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(publicGetUserEntitlementOwnershipByItemIdCmd)
-	publicGetUserEntitlementOwnershipByItemIdCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	publicGetUserEntitlementOwnershipByItemIdCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = publicGetUserEntitlementOwnershipByItemIdCmd.MarkFlagRequired("namespace")
-	publicGetUserEntitlementOwnershipByItemIdCmd.Flags().StringP("userId", "u", " ", "User id")
+	publicGetUserEntitlementOwnershipByItemIdCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = publicGetUserEntitlementOwnershipByItemIdCmd.MarkFlagRequired("userId")
-	publicGetUserEntitlementOwnershipByItemIdCmd.Flags().StringP("entitlementClazz", "e", " ", "Entitlement clazz")
-	publicGetUserEntitlementOwnershipByItemIdCmd.Flags().StringP("itemId", "i", " ", "Item id")
+	publicGetUserEntitlementOwnershipByItemIdCmd.Flags().StringP("entitlementClazz", "ez", " ", "Entitlement clazz")
+	publicGetUserEntitlementOwnershipByItemIdCmd.Flags().StringP("itemId", "id", " ", "Item id")
 	_ = publicGetUserEntitlementOwnershipByItemIdCmd.MarkFlagRequired("itemId")
 }

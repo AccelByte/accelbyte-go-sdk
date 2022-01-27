@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package clients
 
 import (
 	"encoding/json"
@@ -50,8 +50,8 @@ var updateClientCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(updateClientCmd)
-	updateClientCmd.Flags().StringP("body", "b", " ", "Body")
+	updateClientCmd.Flags().StringP("body", "by", " ", "Body")
 	_ = updateClientCmd.MarkFlagRequired("body")
-	updateClientCmd.Flags().StringP("clientId", "c", " ", "Client id")
+	updateClientCmd.Flags().StringP("clientId", "cd", " ", "Client id")
 	_ = updateClientCmd.MarkFlagRequired("clientId")
 }

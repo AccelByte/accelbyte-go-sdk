@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package publicContent
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
@@ -65,19 +65,19 @@ var searchChannelSpecificContentCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(searchChannelSpecificContentCmd)
-	searchChannelSpecificContentCmd.Flags().StringP("channelId", "c", " ", "Channel id")
+	searchChannelSpecificContentCmd.Flags().StringP("channelId", "cd", " ", "Channel id")
 	_ = searchChannelSpecificContentCmd.MarkFlagRequired("channelId")
-	searchChannelSpecificContentCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	searchChannelSpecificContentCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = searchChannelSpecificContentCmd.MarkFlagRequired("namespace")
-	searchChannelSpecificContentCmd.Flags().StringP("creator", "c", " ", "Creator")
-	searchChannelSpecificContentCmd.Flags().StringP("isofficial", "i", " ", "Isofficial")
-	searchChannelSpecificContentCmd.Flags().StringP("limit", "l", "20", "Limit")
-	searchChannelSpecificContentCmd.Flags().StringP("name", "n", " ", "Name")
-	searchChannelSpecificContentCmd.Flags().StringP("offset", "o", "0", "Offset")
-	searchChannelSpecificContentCmd.Flags().StringP("orderby", "o", " ", "Orderby")
-	searchChannelSpecificContentCmd.Flags().StringP("sortby", "s", " ", "Sortby")
-	searchChannelSpecificContentCmd.Flags().StringP("subtype", "s", " ", "Subtype")
-	searchChannelSpecificContentCmd.Flags().StringP("tags", "t", " ", "Tags")
-	searchChannelSpecificContentCmd.Flags().StringP("type", "t", " ", "Type")
-	searchChannelSpecificContentCmd.Flags().StringP("userId", "u", " ", "User id")
+	searchChannelSpecificContentCmd.Flags().StringP("creator", "cr", " ", "Creator")
+	searchChannelSpecificContentCmd.Flags().StringP("isofficial", "il", " ", "Isofficial")
+	searchChannelSpecificContentCmd.Flags().StringP("limit", "lt", "20", "Limit")
+	searchChannelSpecificContentCmd.Flags().StringP("name", "ne", " ", "Name")
+	searchChannelSpecificContentCmd.Flags().StringP("offset", "ot", "0", "Offset")
+	searchChannelSpecificContentCmd.Flags().StringP("orderby", "oy", " ", "Orderby")
+	searchChannelSpecificContentCmd.Flags().StringP("sortby", "sy", " ", "Sortby")
+	searchChannelSpecificContentCmd.Flags().StringP("subtype", "se", " ", "Subtype")
+	searchChannelSpecificContentCmd.Flags().StringP("tags", "ts", " ", "Tags")
+	searchChannelSpecificContentCmd.Flags().StringP("type", "te", " ", "Type")
+	searchChannelSpecificContentCmd.Flags().StringP("userId", "ud", " ", "User id")
 }

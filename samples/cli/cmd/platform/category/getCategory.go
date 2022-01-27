@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package category
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/category"
@@ -45,9 +45,9 @@ var getCategoryCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(getCategoryCmd)
-	getCategoryCmd.Flags().StringP("categoryPath", "c", " ", "Category path")
+	getCategoryCmd.Flags().StringP("categoryPath", "ch", " ", "Category path")
 	_ = getCategoryCmd.MarkFlagRequired("categoryPath")
-	getCategoryCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	getCategoryCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = getCategoryCmd.MarkFlagRequired("namespace")
-	getCategoryCmd.Flags().StringP("storeId", "s", " ", "Store id")
+	getCategoryCmd.Flags().StringP("storeId", "sd", " ", "Store id")
 }

@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package oAuth20Extension
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth2_0_extension"
@@ -50,13 +50,13 @@ var userAuthenticationV3Cmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(userAuthenticationV3Cmd)
-	userAuthenticationV3Cmd.Flags().StringP("client_id", "c", " ", "Client id")
-	userAuthenticationV3Cmd.Flags().BoolP("extend_exp", "e", false, "Extend exp")
-	userAuthenticationV3Cmd.Flags().StringP("redirect_uri", "r", " ", "Redirect uri")
-	userAuthenticationV3Cmd.Flags().StringP("password", "p", " ", "Password")
+	userAuthenticationV3Cmd.Flags().StringP("client_id", "cd", " ", "Client id")
+	userAuthenticationV3Cmd.Flags().BoolP("extend_exp", "ep", false, "Extend exp")
+	userAuthenticationV3Cmd.Flags().StringP("redirect_uri", "ri", " ", "Redirect uri")
+	userAuthenticationV3Cmd.Flags().StringP("password", "pd", " ", "Password")
 	_ = userAuthenticationV3Cmd.MarkFlagRequired("password")
-	userAuthenticationV3Cmd.Flags().StringP("request_id", "r", " ", "Request id")
+	userAuthenticationV3Cmd.Flags().StringP("request_id", "rd", " ", "Request id")
 	_ = userAuthenticationV3Cmd.MarkFlagRequired("request_id")
-	userAuthenticationV3Cmd.Flags().StringP("user_name", "u", " ", "User name")
+	userAuthenticationV3Cmd.Flags().StringP("user_name", "ue", " ", "User name")
 	_ = userAuthenticationV3Cmd.MarkFlagRequired("user_name")
 }

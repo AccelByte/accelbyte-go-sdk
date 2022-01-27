@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package adminContent
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
@@ -43,8 +43,8 @@ var adminDownloadContentPreviewCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(adminDownloadContentPreviewCmd)
-	adminDownloadContentPreviewCmd.Flags().StringP("contentId", "c", " ", "Content id")
+	adminDownloadContentPreviewCmd.Flags().StringP("contentId", "cd", " ", "Content id")
 	_ = adminDownloadContentPreviewCmd.MarkFlagRequired("contentId")
-	adminDownloadContentPreviewCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	adminDownloadContentPreviewCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = adminDownloadContentPreviewCmd.MarkFlagRequired("namespace")
 }

@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package misc
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclient/misc"
@@ -42,8 +42,8 @@ var deleteCountryGroupCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(deleteCountryGroupCmd)
-	deleteCountryGroupCmd.Flags().StringP("countryGroupCode", "c", " ", "Country group code")
+	deleteCountryGroupCmd.Flags().StringP("countryGroupCode", "ce", " ", "Country group code")
 	_ = deleteCountryGroupCmd.MarkFlagRequired("countryGroupCode")
-	deleteCountryGroupCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	deleteCountryGroupCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = deleteCountryGroupCmd.MarkFlagRequired("namespace")
 }

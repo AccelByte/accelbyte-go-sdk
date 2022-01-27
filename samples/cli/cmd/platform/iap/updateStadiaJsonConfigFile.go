@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package iap
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/i_a_p"
@@ -49,7 +49,7 @@ var updateStadiaJsonConfigFileCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(updateStadiaJsonConfigFileCmd)
-	updateStadiaJsonConfigFileCmd.Flags().StringP("file", "f", " ", "File")
-	updateStadiaJsonConfigFileCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	updateStadiaJsonConfigFileCmd.Flags().StringP("file", "fe", " ", "File")
+	updateStadiaJsonConfigFileCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = updateStadiaJsonConfigFileCmd.MarkFlagRequired("namespace")
 }

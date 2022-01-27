@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package clients
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/clients"
@@ -44,10 +44,10 @@ var addClientPermissionCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(addClientPermissionCmd)
-	addClientPermissionCmd.Flags().Int64P("action", "a", -1, "Action")
+	addClientPermissionCmd.Flags().Int64P("action", "an", -1, "Action")
 	_ = addClientPermissionCmd.MarkFlagRequired("action")
-	addClientPermissionCmd.Flags().StringP("clientId", "c", " ", "Client id")
+	addClientPermissionCmd.Flags().StringP("clientId", "cd", " ", "Client id")
 	_ = addClientPermissionCmd.MarkFlagRequired("clientId")
-	addClientPermissionCmd.Flags().StringP("resource", "r", " ", "Resource")
+	addClientPermissionCmd.Flags().StringP("resource", "re", " ", "Resource")
 	_ = addClientPermissionCmd.MarkFlagRequired("resource")
 }

@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package profanity
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/profanity"
@@ -41,6 +41,6 @@ var adminGetProfanityListsCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(adminGetProfanityListsCmd)
-	adminGetProfanityListsCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	adminGetProfanityListsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = adminGetProfanityListsCmd.MarkFlagRequired("namespace")
 }

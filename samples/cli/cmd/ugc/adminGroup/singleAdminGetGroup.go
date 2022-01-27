@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package adminGroup
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
@@ -43,8 +43,8 @@ var singleAdminGetGroupCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(singleAdminGetGroupCmd)
-	singleAdminGetGroupCmd.Flags().StringP("groupId", "g", " ", "Group id")
+	singleAdminGetGroupCmd.Flags().StringP("groupId", "gd", " ", "Group id")
 	_ = singleAdminGetGroupCmd.MarkFlagRequired("groupId")
-	singleAdminGetGroupCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	singleAdminGetGroupCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = singleAdminGetGroupCmd.MarkFlagRequired("namespace")
 }

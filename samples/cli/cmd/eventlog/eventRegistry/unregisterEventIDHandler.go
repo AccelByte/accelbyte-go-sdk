@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package eventRegistry
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/eventlog-sdk/pkg/eventlogclient/event_registry"
@@ -40,6 +40,6 @@ var unregisterEventIDHandlerCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(unregisterEventIDHandlerCmd)
-	unregisterEventIDHandlerCmd.Flags().StringP("eventId", "e", "0", "Event id")
+	unregisterEventIDHandlerCmd.Flags().StringP("eventId", "ed", "0", "Event id")
 	_ = unregisterEventIDHandlerCmd.MarkFlagRequired("eventId")
 }

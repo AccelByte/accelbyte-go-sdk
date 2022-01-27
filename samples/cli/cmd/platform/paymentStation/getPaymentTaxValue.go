@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package paymentStation
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/payment_station"
@@ -47,11 +47,11 @@ var getPaymentTaxValueCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(getPaymentTaxValueCmd)
-	getPaymentTaxValueCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	getPaymentTaxValueCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = getPaymentTaxValueCmd.MarkFlagRequired("namespace")
-	getPaymentTaxValueCmd.Flags().StringP("zipCode", "z", " ", "Zip code")
-	getPaymentTaxValueCmd.Flags().StringP("paymentOrderNo", "p", " ", "Payment order no")
+	getPaymentTaxValueCmd.Flags().StringP("zipCode", "ze", " ", "Zip code")
+	getPaymentTaxValueCmd.Flags().StringP("paymentOrderNo", "po", " ", "Payment order no")
 	_ = getPaymentTaxValueCmd.MarkFlagRequired("paymentOrderNo")
-	getPaymentTaxValueCmd.Flags().StringP("paymentProvider", "p", " ", "Payment provider")
+	getPaymentTaxValueCmd.Flags().StringP("paymentProvider", "pr", " ", "Payment provider")
 	_ = getPaymentTaxValueCmd.MarkFlagRequired("paymentProvider")
 }

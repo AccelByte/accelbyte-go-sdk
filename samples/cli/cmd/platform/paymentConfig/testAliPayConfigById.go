@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package paymentConfig
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/payment_config"
@@ -43,7 +43,7 @@ var testAliPayConfigByIdCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(testAliPayConfigByIdCmd)
-	testAliPayConfigByIdCmd.Flags().StringP("id", "i", " ", "Id")
+	testAliPayConfigByIdCmd.Flags().StringP("id", "id", " ", "Id")
 	_ = testAliPayConfigByIdCmd.MarkFlagRequired("id")
-	testAliPayConfigByIdCmd.Flags().BoolP("sandbox", "s", false, "Sandbox")
+	testAliPayConfigByIdCmd.Flags().BoolP("sandbox", "sx", false, "Sandbox")
 }

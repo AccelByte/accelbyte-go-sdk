@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package notification
 
 import (
 	"encoding/json"
@@ -49,8 +49,8 @@ var createTopicCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(createTopicCmd)
-	createTopicCmd.Flags().StringP("body", "b", " ", "Body")
+	createTopicCmd.Flags().StringP("body", "by", " ", "Body")
 	_ = createTopicCmd.MarkFlagRequired("body")
-	createTopicCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	createTopicCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = createTopicCmd.MarkFlagRequired("namespace")
 }

@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package leaderboardData
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/leaderboard-sdk/pkg/leaderboardclient/leaderboard_data"
@@ -47,10 +47,10 @@ var getCurrentMonthLeaderboardRankingAdminV1Cmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(getCurrentMonthLeaderboardRankingAdminV1Cmd)
-	getCurrentMonthLeaderboardRankingAdminV1Cmd.Flags().StringP("leaderboardCode", "l", " ", "Leaderboard code")
+	getCurrentMonthLeaderboardRankingAdminV1Cmd.Flags().StringP("leaderboardCode", "le", " ", "Leaderboard code")
 	_ = getCurrentMonthLeaderboardRankingAdminV1Cmd.MarkFlagRequired("leaderboardCode")
-	getCurrentMonthLeaderboardRankingAdminV1Cmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	getCurrentMonthLeaderboardRankingAdminV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = getCurrentMonthLeaderboardRankingAdminV1Cmd.MarkFlagRequired("namespace")
-	getCurrentMonthLeaderboardRankingAdminV1Cmd.Flags().Int64P("limit", "l", 20, "Limit")
-	getCurrentMonthLeaderboardRankingAdminV1Cmd.Flags().Int64P("offset", "o", 0, "Offset")
+	getCurrentMonthLeaderboardRankingAdminV1Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
+	getCurrentMonthLeaderboardRankingAdminV1Cmd.Flags().Int64P("offset", "ot", 0, "Offset")
 }

@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package order
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/order"
@@ -51,12 +51,12 @@ var publicQueryUserOrdersCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(publicQueryUserOrdersCmd)
-	publicQueryUserOrdersCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	publicQueryUserOrdersCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = publicQueryUserOrdersCmd.MarkFlagRequired("namespace")
-	publicQueryUserOrdersCmd.Flags().StringP("userId", "u", " ", "User id")
+	publicQueryUserOrdersCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = publicQueryUserOrdersCmd.MarkFlagRequired("userId")
-	publicQueryUserOrdersCmd.Flags().StringP("itemId", "i", " ", "Item id")
-	publicQueryUserOrdersCmd.Flags().Int32P("limit", "l", 20, "Limit")
-	publicQueryUserOrdersCmd.Flags().Int32P("offset", "o", 0, "Offset")
-	publicQueryUserOrdersCmd.Flags().StringP("status", "s", " ", "Status")
+	publicQueryUserOrdersCmd.Flags().StringP("itemId", "id", " ", "Item id")
+	publicQueryUserOrdersCmd.Flags().Int32P("limit", "lt", 20, "Limit")
+	publicQueryUserOrdersCmd.Flags().Int32P("offset", "ot", 0, "Offset")
+	publicQueryUserOrdersCmd.Flags().StringP("status", "ss", " ", "Status")
 }

@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package item
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/item"
@@ -47,10 +47,10 @@ var getItemIdBySkuCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(getItemIdBySkuCmd)
-	getItemIdBySkuCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	getItemIdBySkuCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = getItemIdBySkuCmd.MarkFlagRequired("namespace")
-	getItemIdBySkuCmd.Flags().BoolP("activeOnly", "a", false, "Active only")
-	getItemIdBySkuCmd.Flags().StringP("storeId", "s", " ", "Store id")
-	getItemIdBySkuCmd.Flags().StringP("sku", "s", " ", "Sku")
+	getItemIdBySkuCmd.Flags().BoolP("activeOnly", "ay", false, "Active only")
+	getItemIdBySkuCmd.Flags().StringP("storeId", "sd", " ", "Store id")
+	getItemIdBySkuCmd.Flags().StringP("sku", "su", " ", "Sku")
 	_ = getItemIdBySkuCmd.MarkFlagRequired("sku")
 }

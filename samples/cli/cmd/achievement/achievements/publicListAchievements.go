@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package achievements
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/achievement-sdk/pkg/achievementclient/achievements"
@@ -49,11 +49,11 @@ var publicListAchievementsCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(publicListAchievementsCmd)
-	publicListAchievementsCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	publicListAchievementsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = publicListAchievementsCmd.MarkFlagRequired("namespace")
-	publicListAchievementsCmd.Flags().Int64P("limit", "l", 20, "Limit")
-	publicListAchievementsCmd.Flags().Int64P("offset", "o", 0, "Offset")
-	publicListAchievementsCmd.Flags().StringP("sortBy", "s", " ", "Sort by")
-	publicListAchievementsCmd.Flags().StringP("language", "l", " ", "Language")
+	publicListAchievementsCmd.Flags().Int64P("limit", "lt", 20, "Limit")
+	publicListAchievementsCmd.Flags().Int64P("offset", "ot", 0, "Offset")
+	publicListAchievementsCmd.Flags().StringP("sortBy", "sy", " ", "Sort by")
+	publicListAchievementsCmd.Flags().StringP("language", "le", " ", "Language")
 	_ = publicListAchievementsCmd.MarkFlagRequired("language")
 }

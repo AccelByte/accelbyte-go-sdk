@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package userStatistic
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
@@ -44,10 +44,10 @@ var publicCreateUserStatItemCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(publicCreateUserStatItemCmd)
-	publicCreateUserStatItemCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	publicCreateUserStatItemCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = publicCreateUserStatItemCmd.MarkFlagRequired("namespace")
-	publicCreateUserStatItemCmd.Flags().StringP("statCode", "s", " ", "Stat code")
+	publicCreateUserStatItemCmd.Flags().StringP("statCode", "se", " ", "Stat code")
 	_ = publicCreateUserStatItemCmd.MarkFlagRequired("statCode")
-	publicCreateUserStatItemCmd.Flags().StringP("userId", "u", " ", "User id")
+	publicCreateUserStatItemCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = publicCreateUserStatItemCmd.MarkFlagRequired("userId")
 }

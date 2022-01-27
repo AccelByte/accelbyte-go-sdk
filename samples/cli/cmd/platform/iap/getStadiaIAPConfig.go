@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package iap
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/i_a_p"
@@ -41,6 +41,6 @@ var getStadiaIAPConfigCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(getStadiaIAPConfigCmd)
-	getStadiaIAPConfigCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	getStadiaIAPConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = getStadiaIAPConfigCmd.MarkFlagRequired("namespace")
 }

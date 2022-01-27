@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package dlc
 
 import (
 	"encoding/json"
@@ -51,9 +51,9 @@ var syncXboxDLCCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(syncXboxDLCCmd)
-	syncXboxDLCCmd.Flags().StringP("body", "b", " ", "Body")
-	syncXboxDLCCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	syncXboxDLCCmd.Flags().StringP("body", "by", " ", "Body")
+	syncXboxDLCCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = syncXboxDLCCmd.MarkFlagRequired("namespace")
-	syncXboxDLCCmd.Flags().StringP("userId", "u", " ", "User id")
+	syncXboxDLCCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = syncXboxDLCCmd.MarkFlagRequired("userId")
 }

@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package wallet
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/wallet"
@@ -44,10 +44,10 @@ var disableUserWalletCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(disableUserWalletCmd)
-	disableUserWalletCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	disableUserWalletCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = disableUserWalletCmd.MarkFlagRequired("namespace")
-	disableUserWalletCmd.Flags().StringP("userId", "u", " ", "User id")
+	disableUserWalletCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = disableUserWalletCmd.MarkFlagRequired("userId")
-	disableUserWalletCmd.Flags().StringP("walletId", "w", " ", "Wallet id")
+	disableUserWalletCmd.Flags().StringP("walletId", "wd", " ", "Wallet id")
 	_ = disableUserWalletCmd.MarkFlagRequired("walletId")
 }

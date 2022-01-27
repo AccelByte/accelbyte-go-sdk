@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package adminContent
 
 import (
 	"encoding/json"
@@ -52,10 +52,10 @@ var adminUpdateScreenshotsCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(adminUpdateScreenshotsCmd)
-	adminUpdateScreenshotsCmd.Flags().StringP("body", "b", " ", "Body")
+	adminUpdateScreenshotsCmd.Flags().StringP("body", "by", " ", "Body")
 	_ = adminUpdateScreenshotsCmd.MarkFlagRequired("body")
-	adminUpdateScreenshotsCmd.Flags().StringP("contentId", "c", " ", "Content id")
+	adminUpdateScreenshotsCmd.Flags().StringP("contentId", "cd", " ", "Content id")
 	_ = adminUpdateScreenshotsCmd.MarkFlagRequired("contentId")
-	adminUpdateScreenshotsCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	adminUpdateScreenshotsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = adminUpdateScreenshotsCmd.MarkFlagRequired("namespace")
 }

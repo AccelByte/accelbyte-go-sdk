@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package users
 
 import (
 	"encoding/json"
@@ -52,10 +52,10 @@ var createUserFromInvitationV3Cmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(createUserFromInvitationV3Cmd)
-	createUserFromInvitationV3Cmd.Flags().StringP("body", "b", " ", "Body")
+	createUserFromInvitationV3Cmd.Flags().StringP("body", "by", " ", "Body")
 	_ = createUserFromInvitationV3Cmd.MarkFlagRequired("body")
-	createUserFromInvitationV3Cmd.Flags().StringP("invitationId", "i", " ", "Invitation id")
+	createUserFromInvitationV3Cmd.Flags().StringP("invitationId", "id", " ", "Invitation id")
 	_ = createUserFromInvitationV3Cmd.MarkFlagRequired("invitationId")
-	createUserFromInvitationV3Cmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	createUserFromInvitationV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = createUserFromInvitationV3Cmd.MarkFlagRequired("namespace")
 }

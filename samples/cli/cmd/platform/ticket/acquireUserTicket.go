@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package ticket
 
 import (
 	"encoding/json"
@@ -54,11 +54,11 @@ var acquireUserTicketCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(acquireUserTicketCmd)
-	acquireUserTicketCmd.Flags().StringP("body", "b", " ", "Body")
-	acquireUserTicketCmd.Flags().StringP("boothName", "b", " ", "Booth name")
+	acquireUserTicketCmd.Flags().StringP("body", "by", " ", "Body")
+	acquireUserTicketCmd.Flags().StringP("boothName", "be", " ", "Booth name")
 	_ = acquireUserTicketCmd.MarkFlagRequired("boothName")
-	acquireUserTicketCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	acquireUserTicketCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = acquireUserTicketCmd.MarkFlagRequired("namespace")
-	acquireUserTicketCmd.Flags().StringP("userId", "u", " ", "User id")
+	acquireUserTicketCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = acquireUserTicketCmd.MarkFlagRequired("userId")
 }

@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package entitlement
 
 import (
 	"encoding/json"
@@ -61,14 +61,14 @@ var publicQueryUserEntitlementsCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(publicQueryUserEntitlementsCmd)
-	publicQueryUserEntitlementsCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	publicQueryUserEntitlementsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = publicQueryUserEntitlementsCmd.MarkFlagRequired("namespace")
-	publicQueryUserEntitlementsCmd.Flags().StringP("userId", "u", " ", "User id")
+	publicQueryUserEntitlementsCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = publicQueryUserEntitlementsCmd.MarkFlagRequired("userId")
-	publicQueryUserEntitlementsCmd.Flags().StringP("appType", "a", " ", "App type")
-	publicQueryUserEntitlementsCmd.Flags().StringP("entitlementClazz", "e", " ", "Entitlement clazz")
-	publicQueryUserEntitlementsCmd.Flags().StringP("entitlementName", "e", " ", "Entitlement name")
-	publicQueryUserEntitlementsCmd.Flags().StringP("itemId", "i", " ", "Item id")
-	publicQueryUserEntitlementsCmd.Flags().Int32P("limit", "l", 20, "Limit")
-	publicQueryUserEntitlementsCmd.Flags().Int32P("offset", "o", 0, "Offset")
+	publicQueryUserEntitlementsCmd.Flags().StringP("appType", "ae", " ", "App type")
+	publicQueryUserEntitlementsCmd.Flags().StringP("entitlementClazz", "ez", " ", "Entitlement clazz")
+	publicQueryUserEntitlementsCmd.Flags().StringP("entitlementName", "ee", " ", "Entitlement name")
+	publicQueryUserEntitlementsCmd.Flags().StringP("itemId", "id", " ", "Item id")
+	publicQueryUserEntitlementsCmd.Flags().Int32P("limit", "lt", 20, "Limit")
+	publicQueryUserEntitlementsCmd.Flags().Int32P("offset", "ot", 0, "Offset")
 }

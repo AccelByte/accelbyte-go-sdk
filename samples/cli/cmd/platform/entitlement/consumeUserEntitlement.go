@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package entitlement
 
 import (
 	"encoding/json"
@@ -54,11 +54,11 @@ var consumeUserEntitlementCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(consumeUserEntitlementCmd)
-	consumeUserEntitlementCmd.Flags().StringP("body", "b", " ", "Body")
-	consumeUserEntitlementCmd.Flags().StringP("entitlementId", "e", " ", "Entitlement id")
+	consumeUserEntitlementCmd.Flags().StringP("body", "by", " ", "Body")
+	consumeUserEntitlementCmd.Flags().StringP("entitlementId", "ed", " ", "Entitlement id")
 	_ = consumeUserEntitlementCmd.MarkFlagRequired("entitlementId")
-	consumeUserEntitlementCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	consumeUserEntitlementCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = consumeUserEntitlementCmd.MarkFlagRequired("namespace")
-	consumeUserEntitlementCmd.Flags().StringP("userId", "u", " ", "User id")
+	consumeUserEntitlementCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = consumeUserEntitlementCmd.MarkFlagRequired("userId")
 }

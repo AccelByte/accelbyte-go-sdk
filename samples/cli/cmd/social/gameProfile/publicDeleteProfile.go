@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package gameProfile
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
@@ -44,10 +44,10 @@ var publicDeleteProfileCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(publicDeleteProfileCmd)
-	publicDeleteProfileCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	publicDeleteProfileCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = publicDeleteProfileCmd.MarkFlagRequired("namespace")
-	publicDeleteProfileCmd.Flags().StringP("profileId", "p", " ", "Profile id")
+	publicDeleteProfileCmd.Flags().StringP("profileId", "pd", " ", "Profile id")
 	_ = publicDeleteProfileCmd.MarkFlagRequired("profileId")
-	publicDeleteProfileCmd.Flags().StringP("userId", "u", " ", "User id")
+	publicDeleteProfileCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = publicDeleteProfileCmd.MarkFlagRequired("userId")
 }

@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package matchmaking
 
 import (
 	matchmaking_ "github.com/AccelByte/accelbyte-go-sdk/matchmaking-sdk/pkg/matchmakingclient/matchmaking"
@@ -43,8 +43,8 @@ var querySessionHandlerCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(querySessionHandlerCmd)
-	querySessionHandlerCmd.Flags().StringP("matchID", "m", " ", "Match ID")
+	querySessionHandlerCmd.Flags().StringP("matchID", "mD", " ", "Match ID")
 	_ = querySessionHandlerCmd.MarkFlagRequired("matchID")
-	querySessionHandlerCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	querySessionHandlerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = querySessionHandlerCmd.MarkFlagRequired("namespace")
 }

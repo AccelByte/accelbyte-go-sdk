@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package adminGameRecord
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclient/admin_game_record"
@@ -43,8 +43,8 @@ var adminGetGameRecordHandlerV1Cmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(adminGetGameRecordHandlerV1Cmd)
-	adminGetGameRecordHandlerV1Cmd.Flags().StringP("key", "k", " ", "Key")
+	adminGetGameRecordHandlerV1Cmd.Flags().StringP("key", "ky", " ", "Key")
 	_ = adminGetGameRecordHandlerV1Cmd.MarkFlagRequired("key")
-	adminGetGameRecordHandlerV1Cmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	adminGetGameRecordHandlerV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = adminGetGameRecordHandlerV1Cmd.MarkFlagRequired("namespace")
 }

@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package policies
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclient/policies"
@@ -51,12 +51,12 @@ var retrieveLatestPoliciesByNamespaceAndCountryPublicCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(retrieveLatestPoliciesByNamespaceAndCountryPublicCmd)
-	retrieveLatestPoliciesByNamespaceAndCountryPublicCmd.Flags().StringP("countryCode", "c", " ", "Country code")
+	retrieveLatestPoliciesByNamespaceAndCountryPublicCmd.Flags().StringP("countryCode", "ce", " ", "Country code")
 	_ = retrieveLatestPoliciesByNamespaceAndCountryPublicCmd.MarkFlagRequired("countryCode")
-	retrieveLatestPoliciesByNamespaceAndCountryPublicCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	retrieveLatestPoliciesByNamespaceAndCountryPublicCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = retrieveLatestPoliciesByNamespaceAndCountryPublicCmd.MarkFlagRequired("namespace")
-	retrieveLatestPoliciesByNamespaceAndCountryPublicCmd.Flags().BoolP("alwaysIncludeDefault", "a", false, "Always include default")
-	retrieveLatestPoliciesByNamespaceAndCountryPublicCmd.Flags().BoolP("defaultOnEmpty", "d", false, "Default on empty")
-	retrieveLatestPoliciesByNamespaceAndCountryPublicCmd.Flags().StringP("policyType", "p", " ", "Policy type")
-	retrieveLatestPoliciesByNamespaceAndCountryPublicCmd.Flags().StringP("tags", "t", " ", "Tags")
+	retrieveLatestPoliciesByNamespaceAndCountryPublicCmd.Flags().BoolP("alwaysIncludeDefault", "at", false, "Always include default")
+	retrieveLatestPoliciesByNamespaceAndCountryPublicCmd.Flags().BoolP("defaultOnEmpty", "dy", false, "Default on empty")
+	retrieveLatestPoliciesByNamespaceAndCountryPublicCmd.Flags().StringP("policyType", "pe", " ", "Policy type")
+	retrieveLatestPoliciesByNamespaceAndCountryPublicCmd.Flags().StringP("tags", "ts", " ", "Tags")
 }

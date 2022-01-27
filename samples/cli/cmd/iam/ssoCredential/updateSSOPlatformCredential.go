@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package ssoCredential
 
 import (
 	"encoding/json"
@@ -52,10 +52,10 @@ var updateSSOPlatformCredentialCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(updateSSOPlatformCredentialCmd)
-	updateSSOPlatformCredentialCmd.Flags().StringP("body", "b", " ", "Body")
+	updateSSOPlatformCredentialCmd.Flags().StringP("body", "by", " ", "Body")
 	_ = updateSSOPlatformCredentialCmd.MarkFlagRequired("body")
-	updateSSOPlatformCredentialCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	updateSSOPlatformCredentialCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = updateSSOPlatformCredentialCmd.MarkFlagRequired("namespace")
-	updateSSOPlatformCredentialCmd.Flags().StringP("platformId", "p", " ", "Platform id")
+	updateSSOPlatformCredentialCmd.Flags().StringP("platformId", "pd", " ", "Platform id")
 	_ = updateSSOPlatformCredentialCmd.MarkFlagRequired("platformId")
 }

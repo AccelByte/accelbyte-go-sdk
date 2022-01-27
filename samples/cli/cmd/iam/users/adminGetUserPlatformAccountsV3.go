@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package users
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users"
@@ -49,11 +49,11 @@ var adminGetUserPlatformAccountsV3Cmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(adminGetUserPlatformAccountsV3Cmd)
-	adminGetUserPlatformAccountsV3Cmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	adminGetUserPlatformAccountsV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = adminGetUserPlatformAccountsV3Cmd.MarkFlagRequired("namespace")
-	adminGetUserPlatformAccountsV3Cmd.Flags().StringP("userId", "u", " ", "User id")
+	adminGetUserPlatformAccountsV3Cmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = adminGetUserPlatformAccountsV3Cmd.MarkFlagRequired("userId")
-	adminGetUserPlatformAccountsV3Cmd.Flags().StringP("after", "a", "0", "After")
-	adminGetUserPlatformAccountsV3Cmd.Flags().StringP("before", "b", "0", "Before")
-	adminGetUserPlatformAccountsV3Cmd.Flags().Int64P("limit", "l", 20, "Limit")
+	adminGetUserPlatformAccountsV3Cmd.Flags().StringP("after", "ar", "0", "After")
+	adminGetUserPlatformAccountsV3Cmd.Flags().StringP("before", "be", "0", "Before")
+	adminGetUserPlatformAccountsV3Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
 }

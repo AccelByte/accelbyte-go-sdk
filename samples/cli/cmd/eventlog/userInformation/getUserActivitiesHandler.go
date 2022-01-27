@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package userInformation
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/eventlog-sdk/pkg/eventlogclient/user_information"
@@ -47,11 +47,11 @@ var getUserActivitiesHandlerCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(getUserActivitiesHandlerCmd)
-	getUserActivitiesHandlerCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	getUserActivitiesHandlerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = getUserActivitiesHandlerCmd.MarkFlagRequired("namespace")
-	getUserActivitiesHandlerCmd.Flags().StringP("userId", "u", " ", "User id")
+	getUserActivitiesHandlerCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = getUserActivitiesHandlerCmd.MarkFlagRequired("userId")
-	getUserActivitiesHandlerCmd.Flags().Float64P("offset", "o", 0, "Offset")
-	getUserActivitiesHandlerCmd.Flags().Float64P("pageSize", "p", 1, "Page size")
+	getUserActivitiesHandlerCmd.Flags().Float64P("offset", "ot", 0, "Offset")
+	getUserActivitiesHandlerCmd.Flags().Float64P("pageSize", "pe", 1, "Page size")
 	_ = getUserActivitiesHandlerCmd.MarkFlagRequired("pageSize")
 }

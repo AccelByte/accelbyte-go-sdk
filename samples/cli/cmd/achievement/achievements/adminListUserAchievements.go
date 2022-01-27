@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package achievements
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/achievement-sdk/pkg/achievementclient/achievements"
@@ -49,11 +49,11 @@ var adminListUserAchievementsCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(adminListUserAchievementsCmd)
-	adminListUserAchievementsCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	adminListUserAchievementsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = adminListUserAchievementsCmd.MarkFlagRequired("namespace")
-	adminListUserAchievementsCmd.Flags().StringP("userId", "u", " ", "User id")
+	adminListUserAchievementsCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = adminListUserAchievementsCmd.MarkFlagRequired("userId")
-	adminListUserAchievementsCmd.Flags().Int64P("limit", "l", 20, "Limit")
-	adminListUserAchievementsCmd.Flags().Int64P("offset", "o", 0, "Offset")
-	adminListUserAchievementsCmd.Flags().BoolP("preferUnlocked", "p", false, "Prefer unlocked")
+	adminListUserAchievementsCmd.Flags().Int64P("limit", "lt", 20, "Limit")
+	adminListUserAchievementsCmd.Flags().Int64P("offset", "ot", 0, "Offset")
+	adminListUserAchievementsCmd.Flags().BoolP("preferUnlocked", "pd", false, "Prefer unlocked")
 }

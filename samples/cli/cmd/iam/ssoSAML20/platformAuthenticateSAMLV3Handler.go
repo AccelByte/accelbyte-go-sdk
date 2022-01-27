@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package ssoSAML20
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/s_s_o_s_a_m_l_2_0"
@@ -46,10 +46,10 @@ var platformAuthenticateSAMLV3HandlerCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(platformAuthenticateSAMLV3HandlerCmd)
-	platformAuthenticateSAMLV3HandlerCmd.Flags().StringP("platformId", "p", " ", "Platform id")
+	platformAuthenticateSAMLV3HandlerCmd.Flags().StringP("platformId", "pd", " ", "Platform id")
 	_ = platformAuthenticateSAMLV3HandlerCmd.MarkFlagRequired("platformId")
-	platformAuthenticateSAMLV3HandlerCmd.Flags().StringP("code", "c", " ", "Code")
-	platformAuthenticateSAMLV3HandlerCmd.Flags().StringP("error", "e", " ", "Error")
-	platformAuthenticateSAMLV3HandlerCmd.Flags().StringP("state", "s", " ", "State")
+	platformAuthenticateSAMLV3HandlerCmd.Flags().StringP("code", "ce", " ", "Code")
+	platformAuthenticateSAMLV3HandlerCmd.Flags().StringP("error", "er", " ", "Error")
+	platformAuthenticateSAMLV3HandlerCmd.Flags().StringP("state", "se", " ", "State")
 	_ = platformAuthenticateSAMLV3HandlerCmd.MarkFlagRequired("state")
 }

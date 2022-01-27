@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package order
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/order"
@@ -45,10 +45,10 @@ var countOfPurchasedItemCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(countOfPurchasedItemCmd)
-	countOfPurchasedItemCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	countOfPurchasedItemCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = countOfPurchasedItemCmd.MarkFlagRequired("namespace")
-	countOfPurchasedItemCmd.Flags().StringP("userId", "u", " ", "User id")
+	countOfPurchasedItemCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = countOfPurchasedItemCmd.MarkFlagRequired("userId")
-	countOfPurchasedItemCmd.Flags().StringP("itemId", "i", " ", "Item id")
+	countOfPurchasedItemCmd.Flags().StringP("itemId", "id", " ", "Item id")
 	_ = countOfPurchasedItemCmd.MarkFlagRequired("itemId")
 }

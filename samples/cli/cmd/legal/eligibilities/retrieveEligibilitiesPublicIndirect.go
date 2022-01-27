@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package eligibilities
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclient/eligibilities"
@@ -47,12 +47,12 @@ var retrieveEligibilitiesPublicIndirectCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(retrieveEligibilitiesPublicIndirectCmd)
-	retrieveEligibilitiesPublicIndirectCmd.Flags().StringP("clientId", "c", " ", "Client id")
+	retrieveEligibilitiesPublicIndirectCmd.Flags().StringP("clientId", "cd", " ", "Client id")
 	_ = retrieveEligibilitiesPublicIndirectCmd.MarkFlagRequired("clientId")
-	retrieveEligibilitiesPublicIndirectCmd.Flags().StringP("countryCode", "c", " ", "Country code")
+	retrieveEligibilitiesPublicIndirectCmd.Flags().StringP("countryCode", "ce", " ", "Country code")
 	_ = retrieveEligibilitiesPublicIndirectCmd.MarkFlagRequired("countryCode")
-	retrieveEligibilitiesPublicIndirectCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	retrieveEligibilitiesPublicIndirectCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = retrieveEligibilitiesPublicIndirectCmd.MarkFlagRequired("namespace")
-	retrieveEligibilitiesPublicIndirectCmd.Flags().StringP("userId", "u", " ", "User id")
+	retrieveEligibilitiesPublicIndirectCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = retrieveEligibilitiesPublicIndirectCmd.MarkFlagRequired("userId")
 }

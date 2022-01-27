@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package season
 
 import (
 	"encoding/json"
@@ -51,9 +51,9 @@ var checkSeasonPurchasableCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(checkSeasonPurchasableCmd)
-	checkSeasonPurchasableCmd.Flags().StringP("body", "b", " ", "Body")
-	checkSeasonPurchasableCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	checkSeasonPurchasableCmd.Flags().StringP("body", "by", " ", "Body")
+	checkSeasonPurchasableCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = checkSeasonPurchasableCmd.MarkFlagRequired("namespace")
-	checkSeasonPurchasableCmd.Flags().StringP("userId", "u", " ", "User id")
+	checkSeasonPurchasableCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = checkSeasonPurchasableCmd.MarkFlagRequired("userId")
 }

@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package entitlement
 
 import (
 	"encoding/json"
@@ -65,11 +65,11 @@ var publicExistsAnyUserActiveEntitlementCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(publicExistsAnyUserActiveEntitlementCmd)
-	publicExistsAnyUserActiveEntitlementCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	publicExistsAnyUserActiveEntitlementCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = publicExistsAnyUserActiveEntitlementCmd.MarkFlagRequired("namespace")
-	publicExistsAnyUserActiveEntitlementCmd.Flags().StringP("userId", "u", " ", "User id")
+	publicExistsAnyUserActiveEntitlementCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = publicExistsAnyUserActiveEntitlementCmd.MarkFlagRequired("userId")
-	publicExistsAnyUserActiveEntitlementCmd.Flags().StringP("appIds", "a", " ", "App ids")
-	publicExistsAnyUserActiveEntitlementCmd.Flags().StringP("itemIds", "i", " ", "Item ids")
-	publicExistsAnyUserActiveEntitlementCmd.Flags().StringP("skus", "s", " ", "Skus")
+	publicExistsAnyUserActiveEntitlementCmd.Flags().StringP("appIds", "as", " ", "App ids")
+	publicExistsAnyUserActiveEntitlementCmd.Flags().StringP("itemIds", "is", " ", "Item ids")
+	publicExistsAnyUserActiveEntitlementCmd.Flags().StringP("skus", "ss", " ", "Skus")
 }

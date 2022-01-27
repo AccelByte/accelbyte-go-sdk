@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package userVisibility
 
 import (
 	"encoding/json"
@@ -54,12 +54,12 @@ var setUserLeaderboardVisibilityStatusV2Cmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(setUserLeaderboardVisibilityStatusV2Cmd)
-	setUserLeaderboardVisibilityStatusV2Cmd.Flags().StringP("body", "b", " ", "Body")
+	setUserLeaderboardVisibilityStatusV2Cmd.Flags().StringP("body", "by", " ", "Body")
 	_ = setUserLeaderboardVisibilityStatusV2Cmd.MarkFlagRequired("body")
-	setUserLeaderboardVisibilityStatusV2Cmd.Flags().StringP("leaderboardCode", "l", " ", "Leaderboard code")
+	setUserLeaderboardVisibilityStatusV2Cmd.Flags().StringP("leaderboardCode", "le", " ", "Leaderboard code")
 	_ = setUserLeaderboardVisibilityStatusV2Cmd.MarkFlagRequired("leaderboardCode")
-	setUserLeaderboardVisibilityStatusV2Cmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	setUserLeaderboardVisibilityStatusV2Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = setUserLeaderboardVisibilityStatusV2Cmd.MarkFlagRequired("namespace")
-	setUserLeaderboardVisibilityStatusV2Cmd.Flags().StringP("userId", "u", " ", "User id")
+	setUserLeaderboardVisibilityStatusV2Cmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = setUserLeaderboardVisibilityStatusV2Cmd.MarkFlagRequired("userId")
 }

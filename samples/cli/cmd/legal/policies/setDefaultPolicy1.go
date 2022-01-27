@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package policies
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclient/policies"
@@ -40,6 +40,6 @@ var setDefaultPolicy1Cmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(setDefaultPolicy1Cmd)
-	setDefaultPolicy1Cmd.Flags().StringP("policyId", "p", " ", "Policy id")
+	setDefaultPolicy1Cmd.Flags().StringP("policyId", "pd", " ", "Policy id")
 	_ = setDefaultPolicy1Cmd.MarkFlagRequired("policyId")
 }

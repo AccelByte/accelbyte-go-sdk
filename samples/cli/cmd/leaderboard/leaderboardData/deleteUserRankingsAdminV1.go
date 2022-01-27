@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package leaderboardData
 
 import (
 	"encoding/json"
@@ -50,10 +50,10 @@ var deleteUserRankingsAdminV1Cmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(deleteUserRankingsAdminV1Cmd)
-	deleteUserRankingsAdminV1Cmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	deleteUserRankingsAdminV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = deleteUserRankingsAdminV1Cmd.MarkFlagRequired("namespace")
-	deleteUserRankingsAdminV1Cmd.Flags().StringP("userId", "u", " ", "User id")
+	deleteUserRankingsAdminV1Cmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = deleteUserRankingsAdminV1Cmd.MarkFlagRequired("userId")
-	deleteUserRankingsAdminV1Cmd.Flags().StringP("leaderboardCode", "l", " ", "Leaderboard code")
+	deleteUserRankingsAdminV1Cmd.Flags().StringP("leaderboardCode", "le", " ", "Leaderboard code")
 	_ = deleteUserRankingsAdminV1Cmd.MarkFlagRequired("leaderboardCode")
 }

@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package iap
 
 import (
 	"encoding/json"
@@ -51,9 +51,9 @@ var publicFulfillAppleIAPItemCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(publicFulfillAppleIAPItemCmd)
-	publicFulfillAppleIAPItemCmd.Flags().StringP("body", "b", " ", "Body")
-	publicFulfillAppleIAPItemCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	publicFulfillAppleIAPItemCmd.Flags().StringP("body", "by", " ", "Body")
+	publicFulfillAppleIAPItemCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = publicFulfillAppleIAPItemCmd.MarkFlagRequired("namespace")
-	publicFulfillAppleIAPItemCmd.Flags().StringP("userId", "u", " ", "User id")
+	publicFulfillAppleIAPItemCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = publicFulfillAppleIAPItemCmd.MarkFlagRequired("userId")
 }

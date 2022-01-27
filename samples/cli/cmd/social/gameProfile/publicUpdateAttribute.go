@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package gameProfile
 
 import (
 	"encoding/json"
@@ -56,13 +56,13 @@ var publicUpdateAttributeCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(publicUpdateAttributeCmd)
-	publicUpdateAttributeCmd.Flags().StringP("body", "b", " ", "Body")
-	publicUpdateAttributeCmd.Flags().StringP("attributeName", "a", " ", "Attribute name")
+	publicUpdateAttributeCmd.Flags().StringP("body", "by", " ", "Body")
+	publicUpdateAttributeCmd.Flags().StringP("attributeName", "ae", " ", "Attribute name")
 	_ = publicUpdateAttributeCmd.MarkFlagRequired("attributeName")
-	publicUpdateAttributeCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	publicUpdateAttributeCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = publicUpdateAttributeCmd.MarkFlagRequired("namespace")
-	publicUpdateAttributeCmd.Flags().StringP("profileId", "p", " ", "Profile id")
+	publicUpdateAttributeCmd.Flags().StringP("profileId", "pd", " ", "Profile id")
 	_ = publicUpdateAttributeCmd.MarkFlagRequired("profileId")
-	publicUpdateAttributeCmd.Flags().StringP("userId", "u", " ", "User id")
+	publicUpdateAttributeCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = publicUpdateAttributeCmd.MarkFlagRequired("userId")
 }

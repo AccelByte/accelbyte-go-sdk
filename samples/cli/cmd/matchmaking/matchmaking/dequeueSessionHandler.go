@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package matchmaking
 
 import (
 	"encoding/json"
@@ -49,8 +49,8 @@ var dequeueSessionHandlerCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(dequeueSessionHandlerCmd)
-	dequeueSessionHandlerCmd.Flags().StringP("body", "b", " ", "Body")
+	dequeueSessionHandlerCmd.Flags().StringP("body", "by", " ", "Body")
 	_ = dequeueSessionHandlerCmd.MarkFlagRequired("body")
-	dequeueSessionHandlerCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	dequeueSessionHandlerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = dequeueSessionHandlerCmd.MarkFlagRequired("namespace")
 }

@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package reward
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/reward"
@@ -49,10 +49,10 @@ var queryRewardsCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(queryRewardsCmd)
-	queryRewardsCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	queryRewardsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = queryRewardsCmd.MarkFlagRequired("namespace")
-	queryRewardsCmd.Flags().StringP("eventTopic", "e", " ", "Event topic")
-	queryRewardsCmd.Flags().Int32P("limit", "l", 20, "Limit")
-	queryRewardsCmd.Flags().Int32P("offset", "o", 0, "Offset")
-	queryRewardsCmd.Flags().StringP("sortBy", "s", " ", "Sort by")
+	queryRewardsCmd.Flags().StringP("eventTopic", "ec", " ", "Event topic")
+	queryRewardsCmd.Flags().Int32P("limit", "lt", 20, "Limit")
+	queryRewardsCmd.Flags().Int32P("offset", "ot", 0, "Offset")
+	queryRewardsCmd.Flags().StringP("sortBy", "sy", " ", "Sort by")
 }

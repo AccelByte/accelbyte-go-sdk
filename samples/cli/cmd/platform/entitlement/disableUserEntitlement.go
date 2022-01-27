@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package entitlement
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/entitlement"
@@ -45,10 +45,10 @@ var disableUserEntitlementCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(disableUserEntitlementCmd)
-	disableUserEntitlementCmd.Flags().StringP("entitlementId", "e", " ", "Entitlement id")
+	disableUserEntitlementCmd.Flags().StringP("entitlementId", "ed", " ", "Entitlement id")
 	_ = disableUserEntitlementCmd.MarkFlagRequired("entitlementId")
-	disableUserEntitlementCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	disableUserEntitlementCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = disableUserEntitlementCmd.MarkFlagRequired("namespace")
-	disableUserEntitlementCmd.Flags().StringP("userId", "u", " ", "User id")
+	disableUserEntitlementCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = disableUserEntitlementCmd.MarkFlagRequired("userId")
 }

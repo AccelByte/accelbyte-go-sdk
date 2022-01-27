@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package thirdParty
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/third_party"
@@ -41,6 +41,6 @@ var adminGetThirdPartyConfigCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(adminGetThirdPartyConfigCmd)
-	adminGetThirdPartyConfigCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	adminGetThirdPartyConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = adminGetThirdPartyConfigCmd.MarkFlagRequired("namespace")
 }

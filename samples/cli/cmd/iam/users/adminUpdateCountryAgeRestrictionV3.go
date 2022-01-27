@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package users
 
 import (
 	"encoding/json"
@@ -52,10 +52,10 @@ var adminUpdateCountryAgeRestrictionV3Cmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(adminUpdateCountryAgeRestrictionV3Cmd)
-	adminUpdateCountryAgeRestrictionV3Cmd.Flags().StringP("body", "b", " ", "Body")
+	adminUpdateCountryAgeRestrictionV3Cmd.Flags().StringP("body", "by", " ", "Body")
 	_ = adminUpdateCountryAgeRestrictionV3Cmd.MarkFlagRequired("body")
-	adminUpdateCountryAgeRestrictionV3Cmd.Flags().StringP("countryCode", "c", " ", "Country code")
+	adminUpdateCountryAgeRestrictionV3Cmd.Flags().StringP("countryCode", "ce", " ", "Country code")
 	_ = adminUpdateCountryAgeRestrictionV3Cmd.MarkFlagRequired("countryCode")
-	adminUpdateCountryAgeRestrictionV3Cmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	adminUpdateCountryAgeRestrictionV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = adminUpdateCountryAgeRestrictionV3Cmd.MarkFlagRequired("namespace")
 }

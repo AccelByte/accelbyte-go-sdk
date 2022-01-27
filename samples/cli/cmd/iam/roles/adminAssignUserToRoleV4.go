@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package roles
 
 import (
 	"encoding/json"
@@ -50,8 +50,8 @@ var adminAssignUserToRoleV4Cmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(adminAssignUserToRoleV4Cmd)
-	adminAssignUserToRoleV4Cmd.Flags().StringP("body", "b", " ", "Body")
+	adminAssignUserToRoleV4Cmd.Flags().StringP("body", "by", " ", "Body")
 	_ = adminAssignUserToRoleV4Cmd.MarkFlagRequired("body")
-	adminAssignUserToRoleV4Cmd.Flags().StringP("roleId", "r", " ", "Role id")
+	adminAssignUserToRoleV4Cmd.Flags().StringP("roleId", "rd", " ", "Role id")
 	_ = adminAssignUserToRoleV4Cmd.MarkFlagRequired("roleId")
 }

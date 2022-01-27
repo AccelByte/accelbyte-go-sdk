@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package socialMatchmaking
 
 import (
 	"encoding/json"
@@ -50,8 +50,8 @@ var updatePlayTimeWeightCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(updatePlayTimeWeightCmd)
-	updatePlayTimeWeightCmd.Flags().StringP("body", "b", " ", "Body")
+	updatePlayTimeWeightCmd.Flags().StringP("body", "by", " ", "Body")
 	_ = updatePlayTimeWeightCmd.MarkFlagRequired("body")
-	updatePlayTimeWeightCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	updatePlayTimeWeightCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = updatePlayTimeWeightCmd.MarkFlagRequired("namespace")
 }

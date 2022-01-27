@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package userVisibility
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/leaderboard-sdk/pkg/leaderboardclient/user_visibility"
@@ -45,10 +45,10 @@ var getUserVisibilityStatusV2Cmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(getUserVisibilityStatusV2Cmd)
-	getUserVisibilityStatusV2Cmd.Flags().StringP("leaderboardCode", "l", " ", "Leaderboard code")
+	getUserVisibilityStatusV2Cmd.Flags().StringP("leaderboardCode", "le", " ", "Leaderboard code")
 	_ = getUserVisibilityStatusV2Cmd.MarkFlagRequired("leaderboardCode")
-	getUserVisibilityStatusV2Cmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	getUserVisibilityStatusV2Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = getUserVisibilityStatusV2Cmd.MarkFlagRequired("namespace")
-	getUserVisibilityStatusV2Cmd.Flags().StringP("userId", "u", " ", "User id")
+	getUserVisibilityStatusV2Cmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = getUserVisibilityStatusV2Cmd.MarkFlagRequired("userId")
 }

@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package campaign
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/campaign"
@@ -45,9 +45,9 @@ var bulkEnableCodesCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(bulkEnableCodesCmd)
-	bulkEnableCodesCmd.Flags().StringP("campaignId", "c", " ", "Campaign id")
+	bulkEnableCodesCmd.Flags().StringP("campaignId", "cd", " ", "Campaign id")
 	_ = bulkEnableCodesCmd.MarkFlagRequired("campaignId")
-	bulkEnableCodesCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	bulkEnableCodesCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = bulkEnableCodesCmd.MarkFlagRequired("namespace")
-	bulkEnableCodesCmd.Flags().Int32P("batchNo", "b", 0, "Batch no")
+	bulkEnableCodesCmd.Flags().Int32P("batchNo", "bo", 0, "Batch no")
 }

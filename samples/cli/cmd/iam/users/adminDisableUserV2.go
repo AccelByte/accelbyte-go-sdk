@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package users
 
 import (
 	"encoding/json"
@@ -51,10 +51,10 @@ var adminDisableUserV2Cmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(adminDisableUserV2Cmd)
-	adminDisableUserV2Cmd.Flags().StringP("body", "b", " ", "Body")
+	adminDisableUserV2Cmd.Flags().StringP("body", "by", " ", "Body")
 	_ = adminDisableUserV2Cmd.MarkFlagRequired("body")
-	adminDisableUserV2Cmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	adminDisableUserV2Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = adminDisableUserV2Cmd.MarkFlagRequired("namespace")
-	adminDisableUserV2Cmd.Flags().StringP("userId", "u", " ", "User id")
+	adminDisableUserV2Cmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = adminDisableUserV2Cmd.MarkFlagRequired("userId")
 }

@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package leaderboardConfiguration
 
 import (
 	"encoding/json"
@@ -52,10 +52,10 @@ var updateLeaderboardConfigurationAdminV1Cmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(updateLeaderboardConfigurationAdminV1Cmd)
-	updateLeaderboardConfigurationAdminV1Cmd.Flags().StringP("body", "b", " ", "Body")
+	updateLeaderboardConfigurationAdminV1Cmd.Flags().StringP("body", "by", " ", "Body")
 	_ = updateLeaderboardConfigurationAdminV1Cmd.MarkFlagRequired("body")
-	updateLeaderboardConfigurationAdminV1Cmd.Flags().StringP("leaderboardCode", "l", " ", "Leaderboard code")
+	updateLeaderboardConfigurationAdminV1Cmd.Flags().StringP("leaderboardCode", "le", " ", "Leaderboard code")
 	_ = updateLeaderboardConfigurationAdminV1Cmd.MarkFlagRequired("leaderboardCode")
-	updateLeaderboardConfigurationAdminV1Cmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	updateLeaderboardConfigurationAdminV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = updateLeaderboardConfigurationAdminV1Cmd.MarkFlagRequired("namespace")
 }

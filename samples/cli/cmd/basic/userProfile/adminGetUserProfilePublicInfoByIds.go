@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package userProfile
 
 import (
 	"encoding/json"
@@ -50,7 +50,7 @@ var adminGetUserProfilePublicInfoByIdsCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(adminGetUserProfilePublicInfoByIdsCmd)
-	adminGetUserProfilePublicInfoByIdsCmd.Flags().StringP("body", "b", " ", "Body")
-	adminGetUserProfilePublicInfoByIdsCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	adminGetUserProfilePublicInfoByIdsCmd.Flags().StringP("body", "by", " ", "Body")
+	adminGetUserProfilePublicInfoByIdsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = adminGetUserProfilePublicInfoByIdsCmd.MarkFlagRequired("namespace")
 }

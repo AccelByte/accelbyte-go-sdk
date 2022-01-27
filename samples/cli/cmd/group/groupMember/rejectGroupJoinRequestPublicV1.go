@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package groupMember
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/group-sdk/pkg/groupclient/group_member"
@@ -43,8 +43,8 @@ var rejectGroupJoinRequestPublicV1Cmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(rejectGroupJoinRequestPublicV1Cmd)
-	rejectGroupJoinRequestPublicV1Cmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	rejectGroupJoinRequestPublicV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = rejectGroupJoinRequestPublicV1Cmd.MarkFlagRequired("namespace")
-	rejectGroupJoinRequestPublicV1Cmd.Flags().StringP("userId", "u", " ", "User id")
+	rejectGroupJoinRequestPublicV1Cmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = rejectGroupJoinRequestPublicV1Cmd.MarkFlagRequired("userId")
 }

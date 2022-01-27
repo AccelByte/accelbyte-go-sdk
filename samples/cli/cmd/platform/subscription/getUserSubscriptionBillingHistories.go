@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package subscription
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/subscription"
@@ -51,13 +51,13 @@ var getUserSubscriptionBillingHistoriesCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(getUserSubscriptionBillingHistoriesCmd)
-	getUserSubscriptionBillingHistoriesCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	getUserSubscriptionBillingHistoriesCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = getUserSubscriptionBillingHistoriesCmd.MarkFlagRequired("namespace")
-	getUserSubscriptionBillingHistoriesCmd.Flags().StringP("subscriptionId", "s", " ", "Subscription id")
+	getUserSubscriptionBillingHistoriesCmd.Flags().StringP("subscriptionId", "sd", " ", "Subscription id")
 	_ = getUserSubscriptionBillingHistoriesCmd.MarkFlagRequired("subscriptionId")
-	getUserSubscriptionBillingHistoriesCmd.Flags().StringP("userId", "u", " ", "User id")
+	getUserSubscriptionBillingHistoriesCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = getUserSubscriptionBillingHistoriesCmd.MarkFlagRequired("userId")
-	getUserSubscriptionBillingHistoriesCmd.Flags().BoolP("excludeFree", "e", false, "Exclude free")
-	getUserSubscriptionBillingHistoriesCmd.Flags().Int32P("limit", "l", 20, "Limit")
-	getUserSubscriptionBillingHistoriesCmd.Flags().Int32P("offset", "o", 0, "Offset")
+	getUserSubscriptionBillingHistoriesCmd.Flags().BoolP("excludeFree", "ee", false, "Exclude free")
+	getUserSubscriptionBillingHistoriesCmd.Flags().Int32P("limit", "lt", 20, "Limit")
+	getUserSubscriptionBillingHistoriesCmd.Flags().Int32P("offset", "ot", 0, "Offset")
 }

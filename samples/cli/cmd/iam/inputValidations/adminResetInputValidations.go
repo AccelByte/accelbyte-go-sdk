@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package inputValidations
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/input_validations"
@@ -40,6 +40,6 @@ var adminResetInputValidationsCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(adminResetInputValidationsCmd)
-	adminResetInputValidationsCmd.Flags().StringP("field", "f", " ", "Field")
+	adminResetInputValidationsCmd.Flags().StringP("field", "fd", " ", "Field")
 	_ = adminResetInputValidationsCmd.MarkFlagRequired("field")
 }

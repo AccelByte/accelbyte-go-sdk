@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package groupMember
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/group-sdk/pkg/groupclient/group_member"
@@ -49,11 +49,11 @@ var getGroupMembersListPublicV1Cmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(getGroupMembersListPublicV1Cmd)
-	getGroupMembersListPublicV1Cmd.Flags().StringP("groupId", "g", " ", "Group id")
+	getGroupMembersListPublicV1Cmd.Flags().StringP("groupId", "gd", " ", "Group id")
 	_ = getGroupMembersListPublicV1Cmd.MarkFlagRequired("groupId")
-	getGroupMembersListPublicV1Cmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	getGroupMembersListPublicV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = getGroupMembersListPublicV1Cmd.MarkFlagRequired("namespace")
-	getGroupMembersListPublicV1Cmd.Flags().Int64P("limit", "l", 20, "Limit")
-	getGroupMembersListPublicV1Cmd.Flags().Int64P("offset", "o", 0, "Offset")
-	getGroupMembersListPublicV1Cmd.Flags().StringP("order", "o", " ", "Order")
+	getGroupMembersListPublicV1Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
+	getGroupMembersListPublicV1Cmd.Flags().Int64P("offset", "ot", 0, "Offset")
+	getGroupMembersListPublicV1Cmd.Flags().StringP("order", "or", " ", "Order")
 }

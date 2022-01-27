@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package userProfile
 
 import (
 	"encoding/json"
@@ -51,9 +51,9 @@ var updatePrivateCustomAttributesPartiallyCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(updatePrivateCustomAttributesPartiallyCmd)
-	updatePrivateCustomAttributesPartiallyCmd.Flags().StringP("body", "b", " ", "Body")
-	updatePrivateCustomAttributesPartiallyCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	updatePrivateCustomAttributesPartiallyCmd.Flags().StringP("body", "by", " ", "Body")
+	updatePrivateCustomAttributesPartiallyCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = updatePrivateCustomAttributesPartiallyCmd.MarkFlagRequired("namespace")
-	updatePrivateCustomAttributesPartiallyCmd.Flags().StringP("userId", "u", " ", "User id")
+	updatePrivateCustomAttributesPartiallyCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = updatePrivateCustomAttributesPartiallyCmd.MarkFlagRequired("userId")
 }

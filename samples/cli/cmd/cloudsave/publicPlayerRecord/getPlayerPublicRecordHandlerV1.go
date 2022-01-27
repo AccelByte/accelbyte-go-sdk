@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package publicPlayerRecord
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclient/public_player_record"
@@ -45,10 +45,10 @@ var getPlayerPublicRecordHandlerV1Cmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(getPlayerPublicRecordHandlerV1Cmd)
-	getPlayerPublicRecordHandlerV1Cmd.Flags().StringP("key", "k", " ", "Key")
+	getPlayerPublicRecordHandlerV1Cmd.Flags().StringP("key", "ky", " ", "Key")
 	_ = getPlayerPublicRecordHandlerV1Cmd.MarkFlagRequired("key")
-	getPlayerPublicRecordHandlerV1Cmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	getPlayerPublicRecordHandlerV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = getPlayerPublicRecordHandlerV1Cmd.MarkFlagRequired("namespace")
-	getPlayerPublicRecordHandlerV1Cmd.Flags().StringP("userId", "u", " ", "User id")
+	getPlayerPublicRecordHandlerV1Cmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = getPlayerPublicRecordHandlerV1Cmd.MarkFlagRequired("userId")
 }

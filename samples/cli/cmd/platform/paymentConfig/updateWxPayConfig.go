@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package paymentConfig
 
 import (
 	"encoding/json"
@@ -52,8 +52,8 @@ var updateWxPayConfigCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(updateWxPayConfigCmd)
-	updateWxPayConfigCmd.Flags().StringP("body", "b", " ", "Body")
-	updateWxPayConfigCmd.Flags().StringP("id", "i", " ", "Id")
+	updateWxPayConfigCmd.Flags().StringP("body", "by", " ", "Body")
+	updateWxPayConfigCmd.Flags().StringP("id", "id", " ", "Id")
 	_ = updateWxPayConfigCmd.MarkFlagRequired("id")
-	updateWxPayConfigCmd.Flags().BoolP("validate", "v", false, "Validate")
+	updateWxPayConfigCmd.Flags().BoolP("validate", "ve", false, "Validate")
 }

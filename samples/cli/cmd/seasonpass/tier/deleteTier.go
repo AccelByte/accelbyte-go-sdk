@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package tier
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/seasonpass-sdk/pkg/seasonpassclient/tier"
@@ -44,10 +44,10 @@ var deleteTierCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(deleteTierCmd)
-	deleteTierCmd.Flags().StringP("id", "i", " ", "Id")
+	deleteTierCmd.Flags().StringP("id", "id", " ", "Id")
 	_ = deleteTierCmd.MarkFlagRequired("id")
-	deleteTierCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	deleteTierCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = deleteTierCmd.MarkFlagRequired("namespace")
-	deleteTierCmd.Flags().StringP("seasonId", "s", " ", "Season id")
+	deleteTierCmd.Flags().StringP("seasonId", "sd", " ", "Season id")
 	_ = deleteTierCmd.MarkFlagRequired("seasonId")
 }

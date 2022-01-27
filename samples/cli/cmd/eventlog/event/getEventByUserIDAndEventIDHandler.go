@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package event
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/eventlog-sdk/pkg/eventlogclient/event"
@@ -53,17 +53,17 @@ var getEventByUserIDAndEventIDHandlerCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(getEventByUserIDAndEventIDHandlerCmd)
-	getEventByUserIDAndEventIDHandlerCmd.Flags().Float64P("eventId", "e", 0, "Event id")
+	getEventByUserIDAndEventIDHandlerCmd.Flags().Float64P("eventId", "ed", 0, "Event id")
 	_ = getEventByUserIDAndEventIDHandlerCmd.MarkFlagRequired("eventId")
-	getEventByUserIDAndEventIDHandlerCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	getEventByUserIDAndEventIDHandlerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = getEventByUserIDAndEventIDHandlerCmd.MarkFlagRequired("namespace")
-	getEventByUserIDAndEventIDHandlerCmd.Flags().StringP("userId", "u", " ", "User id")
+	getEventByUserIDAndEventIDHandlerCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = getEventByUserIDAndEventIDHandlerCmd.MarkFlagRequired("userId")
-	getEventByUserIDAndEventIDHandlerCmd.Flags().Float64P("offset", "o", 0, "Offset")
-	getEventByUserIDAndEventIDHandlerCmd.Flags().StringP("endDate", "e", " ", "End date")
+	getEventByUserIDAndEventIDHandlerCmd.Flags().Float64P("offset", "ot", 0, "Offset")
+	getEventByUserIDAndEventIDHandlerCmd.Flags().StringP("endDate", "ee", " ", "End date")
 	_ = getEventByUserIDAndEventIDHandlerCmd.MarkFlagRequired("endDate")
-	getEventByUserIDAndEventIDHandlerCmd.Flags().Float64P("pageSize", "p", 1, "Page size")
+	getEventByUserIDAndEventIDHandlerCmd.Flags().Float64P("pageSize", "pe", 1, "Page size")
 	_ = getEventByUserIDAndEventIDHandlerCmd.MarkFlagRequired("pageSize")
-	getEventByUserIDAndEventIDHandlerCmd.Flags().StringP("startDate", "s", " ", "Start date")
+	getEventByUserIDAndEventIDHandlerCmd.Flags().StringP("startDate", "se", " ", "Start date")
 	_ = getEventByUserIDAndEventIDHandlerCmd.MarkFlagRequired("startDate")
 }

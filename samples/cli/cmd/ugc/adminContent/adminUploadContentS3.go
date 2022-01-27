@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package adminContent
 
 import (
 	"encoding/json"
@@ -52,10 +52,10 @@ var adminUploadContentS3Cmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(adminUploadContentS3Cmd)
-	adminUploadContentS3Cmd.Flags().StringP("body", "b", " ", "Body")
+	adminUploadContentS3Cmd.Flags().StringP("body", "by", " ", "Body")
 	_ = adminUploadContentS3Cmd.MarkFlagRequired("body")
-	adminUploadContentS3Cmd.Flags().StringP("channelId", "c", " ", "Channel id")
+	adminUploadContentS3Cmd.Flags().StringP("channelId", "cd", " ", "Channel id")
 	_ = adminUploadContentS3Cmd.MarkFlagRequired("channelId")
-	adminUploadContentS3Cmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	adminUploadContentS3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = adminUploadContentS3Cmd.MarkFlagRequired("namespace")
 }

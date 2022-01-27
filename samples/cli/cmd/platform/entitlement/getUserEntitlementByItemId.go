@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package entitlement
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/entitlement"
@@ -49,12 +49,12 @@ var getUserEntitlementByItemIdCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(getUserEntitlementByItemIdCmd)
-	getUserEntitlementByItemIdCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	getUserEntitlementByItemIdCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = getUserEntitlementByItemIdCmd.MarkFlagRequired("namespace")
-	getUserEntitlementByItemIdCmd.Flags().StringP("userId", "u", " ", "User id")
+	getUserEntitlementByItemIdCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = getUserEntitlementByItemIdCmd.MarkFlagRequired("userId")
-	getUserEntitlementByItemIdCmd.Flags().BoolP("activeOnly", "a", false, "Active only")
-	getUserEntitlementByItemIdCmd.Flags().StringP("entitlementClazz", "e", " ", "Entitlement clazz")
-	getUserEntitlementByItemIdCmd.Flags().StringP("itemId", "i", " ", "Item id")
+	getUserEntitlementByItemIdCmd.Flags().BoolP("activeOnly", "ay", false, "Active only")
+	getUserEntitlementByItemIdCmd.Flags().StringP("entitlementClazz", "ez", " ", "Entitlement clazz")
+	getUserEntitlementByItemIdCmd.Flags().StringP("itemId", "id", " ", "Item id")
 	_ = getUserEntitlementByItemIdCmd.MarkFlagRequired("itemId")
 }

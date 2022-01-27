@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package publicContent
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
@@ -46,12 +46,12 @@ var deleteContentScreenshotCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(deleteContentScreenshotCmd)
-	deleteContentScreenshotCmd.Flags().StringP("contentId", "c", " ", "Content id")
+	deleteContentScreenshotCmd.Flags().StringP("contentId", "cd", " ", "Content id")
 	_ = deleteContentScreenshotCmd.MarkFlagRequired("contentId")
-	deleteContentScreenshotCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	deleteContentScreenshotCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = deleteContentScreenshotCmd.MarkFlagRequired("namespace")
-	deleteContentScreenshotCmd.Flags().StringP("screenshotId", "s", " ", "Screenshot id")
+	deleteContentScreenshotCmd.Flags().StringP("screenshotId", "sd", " ", "Screenshot id")
 	_ = deleteContentScreenshotCmd.MarkFlagRequired("screenshotId")
-	deleteContentScreenshotCmd.Flags().StringP("userId", "u", " ", "User id")
+	deleteContentScreenshotCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = deleteContentScreenshotCmd.MarkFlagRequired("userId")
 }

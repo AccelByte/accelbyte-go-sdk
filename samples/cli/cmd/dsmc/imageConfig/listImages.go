@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package imageConfig
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/image_config"
@@ -51,11 +51,11 @@ var listImagesCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(listImagesCmd)
-	listImagesCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	listImagesCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = listImagesCmd.MarkFlagRequired("namespace")
-	listImagesCmd.Flags().Int64P("count", "c", 1, "Count")
-	listImagesCmd.Flags().Int64P("offset", "o", 0, "Offset")
-	listImagesCmd.Flags().StringP("q", "q", " ", "Q")
-	listImagesCmd.Flags().StringP("sortBy", "s", " ", "Sort by")
-	listImagesCmd.Flags().StringP("sortDirection", "s", " ", "Sort direction")
+	listImagesCmd.Flags().Int64P("count", "ct", 1, "Count")
+	listImagesCmd.Flags().Int64P("offset", "ot", 0, "Offset")
+	listImagesCmd.Flags().StringP("q", "qq", " ", "Q")
+	listImagesCmd.Flags().StringP("sortBy", "sy", " ", "Sort by")
+	listImagesCmd.Flags().StringP("sortDirection", "sn", " ", "Sort direction")
 }

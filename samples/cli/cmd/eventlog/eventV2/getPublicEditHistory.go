@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package eventV2
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/eventlog-sdk/pkg/eventlogclient/event_v2"
@@ -53,13 +53,13 @@ var getPublicEditHistoryCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(getPublicEditHistoryCmd)
-	getPublicEditHistoryCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	getPublicEditHistoryCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = getPublicEditHistoryCmd.MarkFlagRequired("namespace")
-	getPublicEditHistoryCmd.Flags().StringP("userId", "u", " ", "User id")
+	getPublicEditHistoryCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = getPublicEditHistoryCmd.MarkFlagRequired("userId")
-	getPublicEditHistoryCmd.Flags().StringP("endDate", "e", " ", "End date")
-	getPublicEditHistoryCmd.Flags().Float64P("offset", "o", 0, "Offset")
-	getPublicEditHistoryCmd.Flags().Float64P("pageSize", "p", 1, "Page size")
-	getPublicEditHistoryCmd.Flags().StringP("startDate", "s", " ", "Start date")
-	getPublicEditHistoryCmd.Flags().StringP("type", "t", " ", "Type")
+	getPublicEditHistoryCmd.Flags().StringP("endDate", "ee", " ", "End date")
+	getPublicEditHistoryCmd.Flags().Float64P("offset", "ot", 0, "Offset")
+	getPublicEditHistoryCmd.Flags().Float64P("pageSize", "pe", 1, "Page size")
+	getPublicEditHistoryCmd.Flags().StringP("startDate", "se", " ", "Start date")
+	getPublicEditHistoryCmd.Flags().StringP("type", "te", " ", "Type")
 }

@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package oAuth
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth"
@@ -57,14 +57,14 @@ var tokenGrantCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(tokenGrantCmd)
-	tokenGrantCmd.Flags().StringP("Device-Id", "d", " ", "Device id")
-	tokenGrantCmd.Flags().StringP("code", "c", " ", "Code")
-	tokenGrantCmd.Flags().BoolP("extend_exp", "e", false, "Extend exp")
-	tokenGrantCmd.Flags().StringP("namespace", "n", " ", "Namespace")
-	tokenGrantCmd.Flags().StringP("password", "p", " ", "Password")
-	tokenGrantCmd.Flags().StringP("redirect_uri", "r", " ", "Redirect uri")
-	tokenGrantCmd.Flags().StringP("refresh_token", "r", " ", "Refresh token")
-	tokenGrantCmd.Flags().StringP("username", "u", " ", "Username")
-	tokenGrantCmd.Flags().StringP("grant_type", "g", " ", "Grant type")
+	tokenGrantCmd.Flags().StringP("Device-Id", "Dd", " ", "Device id")
+	tokenGrantCmd.Flags().StringP("code", "ce", " ", "Code")
+	tokenGrantCmd.Flags().BoolP("extend_exp", "ep", false, "Extend exp")
+	tokenGrantCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	tokenGrantCmd.Flags().StringP("password", "pd", " ", "Password")
+	tokenGrantCmd.Flags().StringP("redirect_uri", "ri", " ", "Redirect uri")
+	tokenGrantCmd.Flags().StringP("refresh_token", "rn", " ", "Refresh token")
+	tokenGrantCmd.Flags().StringP("username", "ue", " ", "Username")
+	tokenGrantCmd.Flags().StringP("grant_type", "ge", " ", "Grant type")
 	_ = tokenGrantCmd.MarkFlagRequired("grant_type")
 }

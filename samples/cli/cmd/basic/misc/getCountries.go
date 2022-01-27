@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package misc
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclient/misc"
@@ -43,7 +43,7 @@ var getCountriesCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(getCountriesCmd)
-	getCountriesCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	getCountriesCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = getCountriesCmd.MarkFlagRequired("namespace")
-	getCountriesCmd.Flags().StringP("lang", "l", " ", "Lang")
+	getCountriesCmd.Flags().StringP("lang", "lg", " ", "Lang")
 }

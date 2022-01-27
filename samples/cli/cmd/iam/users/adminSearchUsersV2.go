@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package users
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users"
@@ -59,16 +59,16 @@ var adminSearchUsersV2Cmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(adminSearchUsersV2Cmd)
-	adminSearchUsersV2Cmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	adminSearchUsersV2Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = adminSearchUsersV2Cmd.MarkFlagRequired("namespace")
-	adminSearchUsersV2Cmd.Flags().StringP("after", "a", "0", "After")
-	adminSearchUsersV2Cmd.Flags().StringP("before", "b", "0", "Before")
-	adminSearchUsersV2Cmd.Flags().StringP("displayName", "d", " ", "Display name")
-	adminSearchUsersV2Cmd.Flags().StringP("limit", "l", "20", "Limit")
-	adminSearchUsersV2Cmd.Flags().StringP("loginId", "l", " ", "Login id")
-	adminSearchUsersV2Cmd.Flags().StringP("platformUserId", "p", " ", "Platform user id")
-	adminSearchUsersV2Cmd.Flags().StringP("roleId", "r", " ", "Role id")
-	adminSearchUsersV2Cmd.Flags().StringP("userId", "u", " ", "User id")
-	adminSearchUsersV2Cmd.Flags().StringP("platformId", "p", " ", "Platform id")
+	adminSearchUsersV2Cmd.Flags().StringP("after", "ar", "0", "After")
+	adminSearchUsersV2Cmd.Flags().StringP("before", "be", "0", "Before")
+	adminSearchUsersV2Cmd.Flags().StringP("displayName", "de", " ", "Display name")
+	adminSearchUsersV2Cmd.Flags().StringP("limit", "lt", "20", "Limit")
+	adminSearchUsersV2Cmd.Flags().StringP("loginId", "ld", " ", "Login id")
+	adminSearchUsersV2Cmd.Flags().StringP("platformUserId", "pd", " ", "Platform user id")
+	adminSearchUsersV2Cmd.Flags().StringP("roleId", "rd", " ", "Role id")
+	adminSearchUsersV2Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	adminSearchUsersV2Cmd.Flags().StringP("platformId", "pd", " ", "Platform id")
 	_ = adminSearchUsersV2Cmd.MarkFlagRequired("platformId")
 }

@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package payment
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/payment"
@@ -43,8 +43,8 @@ var getPaymentOrderCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(getPaymentOrderCmd)
-	getPaymentOrderCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	getPaymentOrderCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = getPaymentOrderCmd.MarkFlagRequired("namespace")
-	getPaymentOrderCmd.Flags().StringP("paymentOrderNo", "p", " ", "Payment order no")
+	getPaymentOrderCmd.Flags().StringP("paymentOrderNo", "po", " ", "Payment order no")
 	_ = getPaymentOrderCmd.MarkFlagRequired("paymentOrderNo")
 }

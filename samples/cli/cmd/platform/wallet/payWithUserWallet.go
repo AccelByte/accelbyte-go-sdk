@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package wallet
 
 import (
 	"encoding/json"
@@ -54,11 +54,11 @@ var payWithUserWalletCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(payWithUserWalletCmd)
-	payWithUserWalletCmd.Flags().StringP("body", "b", " ", "Body")
-	payWithUserWalletCmd.Flags().StringP("currencyCode", "c", " ", "Currency code")
+	payWithUserWalletCmd.Flags().StringP("body", "by", " ", "Body")
+	payWithUserWalletCmd.Flags().StringP("currencyCode", "ce", " ", "Currency code")
 	_ = payWithUserWalletCmd.MarkFlagRequired("currencyCode")
-	payWithUserWalletCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	payWithUserWalletCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = payWithUserWalletCmd.MarkFlagRequired("namespace")
-	payWithUserWalletCmd.Flags().StringP("userId", "u", " ", "User id")
+	payWithUserWalletCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = payWithUserWalletCmd.MarkFlagRequired("userId")
 }

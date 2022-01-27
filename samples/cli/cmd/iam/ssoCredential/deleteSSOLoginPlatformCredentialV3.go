@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package ssoCredential
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/s_s_o_credential"
@@ -42,8 +42,8 @@ var deleteSSOLoginPlatformCredentialV3Cmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(deleteSSOLoginPlatformCredentialV3Cmd)
-	deleteSSOLoginPlatformCredentialV3Cmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	deleteSSOLoginPlatformCredentialV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = deleteSSOLoginPlatformCredentialV3Cmd.MarkFlagRequired("namespace")
-	deleteSSOLoginPlatformCredentialV3Cmd.Flags().StringP("platformId", "p", " ", "Platform id")
+	deleteSSOLoginPlatformCredentialV3Cmd.Flags().StringP("platformId", "pd", " ", "Platform id")
 	_ = deleteSSOLoginPlatformCredentialV3Cmd.MarkFlagRequired("platformId")
 }

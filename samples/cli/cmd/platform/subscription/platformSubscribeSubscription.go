@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package subscription
 
 import (
 	"encoding/json"
@@ -52,9 +52,9 @@ var platformSubscribeSubscriptionCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(platformSubscribeSubscriptionCmd)
-	platformSubscribeSubscriptionCmd.Flags().StringP("body", "b", " ", "Body")
-	platformSubscribeSubscriptionCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	platformSubscribeSubscriptionCmd.Flags().StringP("body", "by", " ", "Body")
+	platformSubscribeSubscriptionCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = platformSubscribeSubscriptionCmd.MarkFlagRequired("namespace")
-	platformSubscribeSubscriptionCmd.Flags().StringP("userId", "u", " ", "User id")
+	platformSubscribeSubscriptionCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = platformSubscribeSubscriptionCmd.MarkFlagRequired("userId")
 }

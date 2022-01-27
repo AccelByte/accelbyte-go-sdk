@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package userInformation
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/eventlog-sdk/pkg/eventlogclient/user_information"
@@ -43,8 +43,8 @@ var lastUserActivityTimeHandlerCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(lastUserActivityTimeHandlerCmd)
-	lastUserActivityTimeHandlerCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	lastUserActivityTimeHandlerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = lastUserActivityTimeHandlerCmd.MarkFlagRequired("namespace")
-	lastUserActivityTimeHandlerCmd.Flags().StringP("userId", "u", " ", "User id")
+	lastUserActivityTimeHandlerCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = lastUserActivityTimeHandlerCmd.MarkFlagRequired("userId")
 }

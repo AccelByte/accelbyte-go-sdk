@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package matchmaking
 
 import (
 	matchmaking_ "github.com/AccelByte/accelbyte-go-sdk/matchmaking-sdk/pkg/matchmakingclient/matchmaking"
@@ -43,8 +43,8 @@ var getSessionHistoryDetailedCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(getSessionHistoryDetailedCmd)
-	getSessionHistoryDetailedCmd.Flags().StringP("matchID", "m", " ", "Match ID")
+	getSessionHistoryDetailedCmd.Flags().StringP("matchID", "mD", " ", "Match ID")
 	_ = getSessionHistoryDetailedCmd.MarkFlagRequired("matchID")
-	getSessionHistoryDetailedCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	getSessionHistoryDetailedCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = getSessionHistoryDetailedCmd.MarkFlagRequired("namespace")
 }

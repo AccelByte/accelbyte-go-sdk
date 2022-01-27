@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package group
 
 import (
 	"encoding/json"
@@ -54,12 +54,12 @@ var updateGroupPredefinedRulePublicV1Cmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(updateGroupPredefinedRulePublicV1Cmd)
-	updateGroupPredefinedRulePublicV1Cmd.Flags().StringP("body", "b", " ", "Body")
+	updateGroupPredefinedRulePublicV1Cmd.Flags().StringP("body", "by", " ", "Body")
 	_ = updateGroupPredefinedRulePublicV1Cmd.MarkFlagRequired("body")
-	updateGroupPredefinedRulePublicV1Cmd.Flags().StringP("allowedAction", "a", " ", "Allowed action")
+	updateGroupPredefinedRulePublicV1Cmd.Flags().StringP("allowedAction", "an", " ", "Allowed action")
 	_ = updateGroupPredefinedRulePublicV1Cmd.MarkFlagRequired("allowedAction")
-	updateGroupPredefinedRulePublicV1Cmd.Flags().StringP("groupId", "g", " ", "Group id")
+	updateGroupPredefinedRulePublicV1Cmd.Flags().StringP("groupId", "gd", " ", "Group id")
 	_ = updateGroupPredefinedRulePublicV1Cmd.MarkFlagRequired("groupId")
-	updateGroupPredefinedRulePublicV1Cmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	updateGroupPredefinedRulePublicV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = updateGroupPredefinedRulePublicV1Cmd.MarkFlagRequired("namespace")
 }

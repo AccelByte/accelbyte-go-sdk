@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package statConfiguration
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
@@ -42,8 +42,8 @@ var deleteStatCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(deleteStatCmd)
-	deleteStatCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	deleteStatCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = deleteStatCmd.MarkFlagRequired("namespace")
-	deleteStatCmd.Flags().StringP("statCode", "s", " ", "Stat code")
+	deleteStatCmd.Flags().StringP("statCode", "se", " ", "Stat code")
 	_ = deleteStatCmd.MarkFlagRequired("statCode")
 }

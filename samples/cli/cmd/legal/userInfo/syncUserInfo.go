@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package userInfo
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclient/user_info"
@@ -40,6 +40,6 @@ var syncUserInfoCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(syncUserInfoCmd)
-	syncUserInfoCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	syncUserInfoCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = syncUserInfoCmd.MarkFlagRequired("namespace")
 }

@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package tier
 
 import (
 	"encoding/json"
@@ -52,9 +52,9 @@ var createTierCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(createTierCmd)
-	createTierCmd.Flags().StringP("body", "b", " ", "Body")
-	createTierCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	createTierCmd.Flags().StringP("body", "by", " ", "Body")
+	createTierCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = createTierCmd.MarkFlagRequired("namespace")
-	createTierCmd.Flags().StringP("seasonId", "s", " ", "Season id")
+	createTierCmd.Flags().StringP("seasonId", "sd", " ", "Season id")
 	_ = createTierCmd.MarkFlagRequired("seasonId")
 }

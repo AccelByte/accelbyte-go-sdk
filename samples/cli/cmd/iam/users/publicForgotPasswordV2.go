@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package users
 
 import (
 	"encoding/json"
@@ -49,8 +49,8 @@ var publicForgotPasswordV2Cmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(publicForgotPasswordV2Cmd)
-	publicForgotPasswordV2Cmd.Flags().StringP("body", "b", " ", "Body")
+	publicForgotPasswordV2Cmd.Flags().StringP("body", "by", " ", "Body")
 	_ = publicForgotPasswordV2Cmd.MarkFlagRequired("body")
-	publicForgotPasswordV2Cmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	publicForgotPasswordV2Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = publicForgotPasswordV2Cmd.MarkFlagRequired("namespace")
 }

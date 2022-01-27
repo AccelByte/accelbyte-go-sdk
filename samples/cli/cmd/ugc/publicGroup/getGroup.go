@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package publicGroup
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
@@ -45,10 +45,10 @@ var getGroupCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(getGroupCmd)
-	getGroupCmd.Flags().StringP("groupId", "g", " ", "Group id")
+	getGroupCmd.Flags().StringP("groupId", "gd", " ", "Group id")
 	_ = getGroupCmd.MarkFlagRequired("groupId")
-	getGroupCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	getGroupCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = getGroupCmd.MarkFlagRequired("namespace")
-	getGroupCmd.Flags().StringP("userId", "u", " ", "User id")
+	getGroupCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = getGroupCmd.MarkFlagRequired("userId")
 }

@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package iap
 
 import (
 	"encoding/json"
@@ -50,7 +50,7 @@ var updatePlaystationIAPConfigCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(updatePlaystationIAPConfigCmd)
-	updatePlaystationIAPConfigCmd.Flags().StringP("body", "b", " ", "Body")
-	updatePlaystationIAPConfigCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	updatePlaystationIAPConfigCmd.Flags().StringP("body", "by", " ", "Body")
+	updatePlaystationIAPConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = updatePlaystationIAPConfigCmd.MarkFlagRequired("namespace")
 }

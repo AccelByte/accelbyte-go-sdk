@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package paymentConfig
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/payment_config"
@@ -49,7 +49,7 @@ var updateWxPayConfigCertCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(updateWxPayConfigCertCmd)
-	updateWxPayConfigCertCmd.Flags().StringP("file", "f", " ", "File")
-	updateWxPayConfigCertCmd.Flags().StringP("id", "i", " ", "Id")
+	updateWxPayConfigCertCmd.Flags().StringP("file", "fe", " ", "File")
+	updateWxPayConfigCertCmd.Flags().StringP("id", "id", " ", "Id")
 	_ = updateWxPayConfigCertCmd.MarkFlagRequired("id")
 }

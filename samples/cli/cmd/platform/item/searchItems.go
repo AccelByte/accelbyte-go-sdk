@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package item
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/item"
@@ -53,14 +53,14 @@ var searchItemsCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(searchItemsCmd)
-	searchItemsCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	searchItemsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = searchItemsCmd.MarkFlagRequired("namespace")
-	searchItemsCmd.Flags().BoolP("activeOnly", "a", false, "Active only")
-	searchItemsCmd.Flags().Int32P("limit", "l", 20, "Limit")
-	searchItemsCmd.Flags().Int32P("offset", "o", 0, "Offset")
-	searchItemsCmd.Flags().StringP("storeId", "s", " ", "Store id")
-	searchItemsCmd.Flags().StringP("keyword", "k", " ", "Keyword")
+	searchItemsCmd.Flags().BoolP("activeOnly", "ay", false, "Active only")
+	searchItemsCmd.Flags().Int32P("limit", "lt", 20, "Limit")
+	searchItemsCmd.Flags().Int32P("offset", "ot", 0, "Offset")
+	searchItemsCmd.Flags().StringP("storeId", "sd", " ", "Store id")
+	searchItemsCmd.Flags().StringP("keyword", "kd", " ", "Keyword")
 	_ = searchItemsCmd.MarkFlagRequired("keyword")
-	searchItemsCmd.Flags().StringP("language", "l", " ", "Language")
+	searchItemsCmd.Flags().StringP("language", "le", " ", "Language")
 	_ = searchItemsCmd.MarkFlagRequired("language")
 }

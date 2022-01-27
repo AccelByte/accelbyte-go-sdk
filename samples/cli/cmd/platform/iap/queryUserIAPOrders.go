@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package iap
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/i_a_p"
@@ -57,15 +57,15 @@ var queryUserIAPOrdersCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(queryUserIAPOrdersCmd)
-	queryUserIAPOrdersCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	queryUserIAPOrdersCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = queryUserIAPOrdersCmd.MarkFlagRequired("namespace")
-	queryUserIAPOrdersCmd.Flags().StringP("userId", "u", " ", "User id")
+	queryUserIAPOrdersCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = queryUserIAPOrdersCmd.MarkFlagRequired("userId")
-	queryUserIAPOrdersCmd.Flags().StringP("endTime", "e", " ", "End time")
-	queryUserIAPOrdersCmd.Flags().Int32P("limit", "l", 20, "Limit")
-	queryUserIAPOrdersCmd.Flags().Int32P("offset", "o", 0, "Offset")
-	queryUserIAPOrdersCmd.Flags().StringP("productId", "p", " ", "Product id")
-	queryUserIAPOrdersCmd.Flags().StringP("startTime", "s", " ", "Start time")
-	queryUserIAPOrdersCmd.Flags().StringP("status", "s", " ", "Status")
-	queryUserIAPOrdersCmd.Flags().StringP("type", "t", " ", "Type")
+	queryUserIAPOrdersCmd.Flags().StringP("endTime", "ee", " ", "End time")
+	queryUserIAPOrdersCmd.Flags().Int32P("limit", "lt", 20, "Limit")
+	queryUserIAPOrdersCmd.Flags().Int32P("offset", "ot", 0, "Offset")
+	queryUserIAPOrdersCmd.Flags().StringP("productId", "pd", " ", "Product id")
+	queryUserIAPOrdersCmd.Flags().StringP("startTime", "se", " ", "Start time")
+	queryUserIAPOrdersCmd.Flags().StringP("status", "ss", " ", "Status")
+	queryUserIAPOrdersCmd.Flags().StringP("type", "te", " ", "Type")
 }

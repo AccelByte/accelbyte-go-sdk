@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package notification
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/notification"
@@ -49,11 +49,11 @@ var getSlugTemplateCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(getSlugTemplateCmd)
-	getSlugTemplateCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	getSlugTemplateCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = getSlugTemplateCmd.MarkFlagRequired("namespace")
-	getSlugTemplateCmd.Flags().StringP("templateSlug", "t", " ", "Template slug")
+	getSlugTemplateCmd.Flags().StringP("templateSlug", "tg", " ", "Template slug")
 	_ = getSlugTemplateCmd.MarkFlagRequired("templateSlug")
-	getSlugTemplateCmd.Flags().StringP("after", "a", "0", "After")
-	getSlugTemplateCmd.Flags().StringP("before", "b", "0", "Before")
-	getSlugTemplateCmd.Flags().Int64P("limit", "l", 20, "Limit")
+	getSlugTemplateCmd.Flags().StringP("after", "ar", "0", "After")
+	getSlugTemplateCmd.Flags().StringP("before", "be", "0", "Before")
+	getSlugTemplateCmd.Flags().Int64P("limit", "lt", 20, "Limit")
 }

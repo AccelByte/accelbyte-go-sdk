@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package adminContent
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
@@ -44,10 +44,10 @@ var singleAdminDeleteContentCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(singleAdminDeleteContentCmd)
-	singleAdminDeleteContentCmd.Flags().StringP("channelId", "c", " ", "Channel id")
+	singleAdminDeleteContentCmd.Flags().StringP("channelId", "cd", " ", "Channel id")
 	_ = singleAdminDeleteContentCmd.MarkFlagRequired("channelId")
-	singleAdminDeleteContentCmd.Flags().StringP("contentId", "c", " ", "Content id")
+	singleAdminDeleteContentCmd.Flags().StringP("contentId", "cd", " ", "Content id")
 	_ = singleAdminDeleteContentCmd.MarkFlagRequired("contentId")
-	singleAdminDeleteContentCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	singleAdminDeleteContentCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = singleAdminDeleteContentCmd.MarkFlagRequired("namespace")
 }

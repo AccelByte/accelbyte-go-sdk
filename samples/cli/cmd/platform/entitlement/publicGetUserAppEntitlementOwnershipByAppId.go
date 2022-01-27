@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package entitlement
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/entitlement"
@@ -45,10 +45,10 @@ var publicGetUserAppEntitlementOwnershipByAppIdCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(publicGetUserAppEntitlementOwnershipByAppIdCmd)
-	publicGetUserAppEntitlementOwnershipByAppIdCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	publicGetUserAppEntitlementOwnershipByAppIdCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = publicGetUserAppEntitlementOwnershipByAppIdCmd.MarkFlagRequired("namespace")
-	publicGetUserAppEntitlementOwnershipByAppIdCmd.Flags().StringP("userId", "u", " ", "User id")
+	publicGetUserAppEntitlementOwnershipByAppIdCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = publicGetUserAppEntitlementOwnershipByAppIdCmd.MarkFlagRequired("userId")
-	publicGetUserAppEntitlementOwnershipByAppIdCmd.Flags().StringP("appId", "a", " ", "App id")
+	publicGetUserAppEntitlementOwnershipByAppIdCmd.Flags().StringP("appId", "ad", " ", "App id")
 	_ = publicGetUserAppEntitlementOwnershipByAppIdCmd.MarkFlagRequired("appId")
 }

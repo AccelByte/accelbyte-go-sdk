@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package notification
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/notification"
@@ -41,6 +41,6 @@ var getAllNotificationTemplatesV1AdminCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(getAllNotificationTemplatesV1AdminCmd)
-	getAllNotificationTemplatesV1AdminCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	getAllNotificationTemplatesV1AdminCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = getAllNotificationTemplatesV1AdminCmd.MarkFlagRequired("namespace")
 }

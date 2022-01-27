@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package group
 
 import (
 	group_ "github.com/AccelByte/accelbyte-go-sdk/group-sdk/pkg/groupclient/group"
@@ -44,10 +44,10 @@ var deleteGroupPredefinedRulePublicV1Cmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(deleteGroupPredefinedRulePublicV1Cmd)
-	deleteGroupPredefinedRulePublicV1Cmd.Flags().StringP("allowedAction", "a", " ", "Allowed action")
+	deleteGroupPredefinedRulePublicV1Cmd.Flags().StringP("allowedAction", "an", " ", "Allowed action")
 	_ = deleteGroupPredefinedRulePublicV1Cmd.MarkFlagRequired("allowedAction")
-	deleteGroupPredefinedRulePublicV1Cmd.Flags().StringP("groupId", "g", " ", "Group id")
+	deleteGroupPredefinedRulePublicV1Cmd.Flags().StringP("groupId", "gd", " ", "Group id")
 	_ = deleteGroupPredefinedRulePublicV1Cmd.MarkFlagRequired("groupId")
-	deleteGroupPredefinedRulePublicV1Cmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	deleteGroupPredefinedRulePublicV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = deleteGroupPredefinedRulePublicV1Cmd.MarkFlagRequired("namespace")
 }

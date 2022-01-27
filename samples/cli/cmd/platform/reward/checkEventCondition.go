@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package reward
 
 import (
 	"encoding/json"
@@ -52,9 +52,9 @@ var checkEventConditionCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(checkEventConditionCmd)
-	checkEventConditionCmd.Flags().StringP("body", "b", " ", "Body")
-	checkEventConditionCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	checkEventConditionCmd.Flags().StringP("body", "by", " ", "Body")
+	checkEventConditionCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = checkEventConditionCmd.MarkFlagRequired("namespace")
-	checkEventConditionCmd.Flags().StringP("rewardId", "r", " ", "Reward id")
+	checkEventConditionCmd.Flags().StringP("rewardId", "rd", " ", "Reward id")
 	_ = checkEventConditionCmd.MarkFlagRequired("rewardId")
 }

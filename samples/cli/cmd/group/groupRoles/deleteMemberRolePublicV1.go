@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package groupRoles
 
 import (
 	"encoding/json"
@@ -52,10 +52,10 @@ var deleteMemberRolePublicV1Cmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(deleteMemberRolePublicV1Cmd)
-	deleteMemberRolePublicV1Cmd.Flags().StringP("body", "b", " ", "Body")
+	deleteMemberRolePublicV1Cmd.Flags().StringP("body", "by", " ", "Body")
 	_ = deleteMemberRolePublicV1Cmd.MarkFlagRequired("body")
-	deleteMemberRolePublicV1Cmd.Flags().StringP("memberRoleId", "m", " ", "Member role id")
+	deleteMemberRolePublicV1Cmd.Flags().StringP("memberRoleId", "md", " ", "Member role id")
 	_ = deleteMemberRolePublicV1Cmd.MarkFlagRequired("memberRoleId")
-	deleteMemberRolePublicV1Cmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	deleteMemberRolePublicV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = deleteMemberRolePublicV1Cmd.MarkFlagRequired("namespace")
 }

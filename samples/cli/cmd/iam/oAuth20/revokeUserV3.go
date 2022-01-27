@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package oAuth20
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth2_0"
@@ -42,8 +42,8 @@ var revokeUserV3Cmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(revokeUserV3Cmd)
-	revokeUserV3Cmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	revokeUserV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = revokeUserV3Cmd.MarkFlagRequired("namespace")
-	revokeUserV3Cmd.Flags().StringP("userId", "u", " ", "User id")
+	revokeUserV3Cmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = revokeUserV3Cmd.MarkFlagRequired("userId")
 }

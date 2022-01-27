@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package roles
 
 import (
 	"encoding/json"
@@ -49,8 +49,8 @@ var adminUpdateRolePermissionsV3Cmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(adminUpdateRolePermissionsV3Cmd)
-	adminUpdateRolePermissionsV3Cmd.Flags().StringP("body", "b", " ", "Body")
+	adminUpdateRolePermissionsV3Cmd.Flags().StringP("body", "by", " ", "Body")
 	_ = adminUpdateRolePermissionsV3Cmd.MarkFlagRequired("body")
-	adminUpdateRolePermissionsV3Cmd.Flags().StringP("roleId", "r", " ", "Role id")
+	adminUpdateRolePermissionsV3Cmd.Flags().StringP("roleId", "rd", " ", "Role id")
 	_ = adminUpdateRolePermissionsV3Cmd.MarkFlagRequired("roleId")
 }

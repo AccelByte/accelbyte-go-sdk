@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package iap
 
 import (
 	"encoding/json"
@@ -52,9 +52,9 @@ var publicReconcilePlayStationStoreCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(publicReconcilePlayStationStoreCmd)
-	publicReconcilePlayStationStoreCmd.Flags().StringP("body", "b", " ", "Body")
-	publicReconcilePlayStationStoreCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	publicReconcilePlayStationStoreCmd.Flags().StringP("body", "by", " ", "Body")
+	publicReconcilePlayStationStoreCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = publicReconcilePlayStationStoreCmd.MarkFlagRequired("namespace")
-	publicReconcilePlayStationStoreCmd.Flags().StringP("userId", "u", " ", "User id")
+	publicReconcilePlayStationStoreCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = publicReconcilePlayStationStoreCmd.MarkFlagRequired("userId")
 }

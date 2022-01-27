@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package users
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users"
@@ -44,10 +44,10 @@ var checkUserAvailabilityCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(checkUserAvailabilityCmd)
-	checkUserAvailabilityCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	checkUserAvailabilityCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = checkUserAvailabilityCmd.MarkFlagRequired("namespace")
-	checkUserAvailabilityCmd.Flags().StringP("field", "f", " ", "Field")
+	checkUserAvailabilityCmd.Flags().StringP("field", "fd", " ", "Field")
 	_ = checkUserAvailabilityCmd.MarkFlagRequired("field")
-	checkUserAvailabilityCmd.Flags().StringP("query", "q", " ", "Query")
+	checkUserAvailabilityCmd.Flags().StringP("query", "qy", " ", "Query")
 	_ = checkUserAvailabilityCmd.MarkFlagRequired("query")
 }

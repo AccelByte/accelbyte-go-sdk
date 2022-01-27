@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package payment
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/payment"
@@ -51,11 +51,11 @@ var queryPaymentOrdersCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(queryPaymentOrdersCmd)
-	queryPaymentOrdersCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	queryPaymentOrdersCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = queryPaymentOrdersCmd.MarkFlagRequired("namespace")
-	queryPaymentOrdersCmd.Flags().StringP("channel", "c", " ", "Channel")
-	queryPaymentOrdersCmd.Flags().StringP("extTxId", "e", " ", "Ext tx id")
-	queryPaymentOrdersCmd.Flags().Int32P("limit", "l", 20, "Limit")
-	queryPaymentOrdersCmd.Flags().Int32P("offset", "o", 0, "Offset")
-	queryPaymentOrdersCmd.Flags().StringP("status", "s", " ", "Status")
+	queryPaymentOrdersCmd.Flags().StringP("channel", "cl", " ", "Channel")
+	queryPaymentOrdersCmd.Flags().StringP("extTxId", "ed", " ", "Ext tx id")
+	queryPaymentOrdersCmd.Flags().Int32P("limit", "lt", 20, "Limit")
+	queryPaymentOrdersCmd.Flags().Int32P("offset", "ot", 0, "Offset")
+	queryPaymentOrdersCmd.Flags().StringP("status", "ss", " ", "Status")
 }

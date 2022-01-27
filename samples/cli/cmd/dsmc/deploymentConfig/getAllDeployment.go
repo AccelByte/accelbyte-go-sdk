@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package deploymentConfig
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/deployment_config"
@@ -45,8 +45,8 @@ var getAllDeploymentCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(getAllDeploymentCmd)
-	getAllDeploymentCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	getAllDeploymentCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = getAllDeploymentCmd.MarkFlagRequired("namespace")
-	getAllDeploymentCmd.Flags().Int64P("count", "c", 1, "Count")
-	getAllDeploymentCmd.Flags().Int64P("offset", "o", 0, "Offset")
+	getAllDeploymentCmd.Flags().Int64P("count", "ct", 1, "Count")
+	getAllDeploymentCmd.Flags().Int64P("offset", "ot", 0, "Offset")
 }

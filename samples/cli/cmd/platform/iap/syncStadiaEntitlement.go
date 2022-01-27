@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package iap
 
 import (
 	"encoding/json"
@@ -51,9 +51,9 @@ var syncStadiaEntitlementCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(syncStadiaEntitlementCmd)
-	syncStadiaEntitlementCmd.Flags().StringP("body", "b", " ", "Body")
-	syncStadiaEntitlementCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	syncStadiaEntitlementCmd.Flags().StringP("body", "by", " ", "Body")
+	syncStadiaEntitlementCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = syncStadiaEntitlementCmd.MarkFlagRequired("namespace")
-	syncStadiaEntitlementCmd.Flags().StringP("userId", "u", " ", "User id")
+	syncStadiaEntitlementCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = syncStadiaEntitlementCmd.MarkFlagRequired("userId")
 }

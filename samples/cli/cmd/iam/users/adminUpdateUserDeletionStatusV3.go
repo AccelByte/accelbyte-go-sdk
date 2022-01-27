@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package users
 
 import (
 	"encoding/json"
@@ -51,10 +51,10 @@ var adminUpdateUserDeletionStatusV3Cmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(adminUpdateUserDeletionStatusV3Cmd)
-	adminUpdateUserDeletionStatusV3Cmd.Flags().StringP("body", "b", " ", "Body")
+	adminUpdateUserDeletionStatusV3Cmd.Flags().StringP("body", "by", " ", "Body")
 	_ = adminUpdateUserDeletionStatusV3Cmd.MarkFlagRequired("body")
-	adminUpdateUserDeletionStatusV3Cmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	adminUpdateUserDeletionStatusV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = adminUpdateUserDeletionStatusV3Cmd.MarkFlagRequired("namespace")
-	adminUpdateUserDeletionStatusV3Cmd.Flags().StringP("userId", "u", " ", "User id")
+	adminUpdateUserDeletionStatusV3Cmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = adminUpdateUserDeletionStatusV3Cmd.MarkFlagRequired("userId")
 }

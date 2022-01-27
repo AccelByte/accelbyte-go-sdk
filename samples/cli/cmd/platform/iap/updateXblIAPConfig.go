@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package iap
 
 import (
 	"encoding/json"
@@ -50,7 +50,7 @@ var updateXblIAPConfigCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(updateXblIAPConfigCmd)
-	updateXblIAPConfigCmd.Flags().StringP("body", "b", " ", "Body")
-	updateXblIAPConfigCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	updateXblIAPConfigCmd.Flags().StringP("body", "by", " ", "Body")
+	updateXblIAPConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = updateXblIAPConfigCmd.MarkFlagRequired("namespace")
 }

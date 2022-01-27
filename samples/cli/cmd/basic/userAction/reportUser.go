@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package userAction
 
 import (
 	"encoding/json"
@@ -50,7 +50,7 @@ var reportUserCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(reportUserCmd)
-	reportUserCmd.Flags().StringP("body", "b", " ", "Body")
-	reportUserCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	reportUserCmd.Flags().StringP("body", "by", " ", "Body")
+	reportUserCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = reportUserCmd.MarkFlagRequired("namespace")
 }

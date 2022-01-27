@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package pass
 
 import (
 	"encoding/json"
@@ -54,11 +54,11 @@ var updatePassCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(updatePassCmd)
-	updatePassCmd.Flags().StringP("body", "b", " ", "Body")
-	updatePassCmd.Flags().StringP("code", "c", " ", "Code")
+	updatePassCmd.Flags().StringP("body", "by", " ", "Body")
+	updatePassCmd.Flags().StringP("code", "ce", " ", "Code")
 	_ = updatePassCmd.MarkFlagRequired("code")
-	updatePassCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	updatePassCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = updatePassCmd.MarkFlagRequired("namespace")
-	updatePassCmd.Flags().StringP("seasonId", "s", " ", "Season id")
+	updatePassCmd.Flags().StringP("seasonId", "sd", " ", "Season id")
 	_ = updatePassCmd.MarkFlagRequired("seasonId")
 }

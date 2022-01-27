@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package iap
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/i_a_p"
@@ -43,8 +43,8 @@ var queryAllUserIAPOrdersCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(queryAllUserIAPOrdersCmd)
-	queryAllUserIAPOrdersCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	queryAllUserIAPOrdersCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = queryAllUserIAPOrdersCmd.MarkFlagRequired("namespace")
-	queryAllUserIAPOrdersCmd.Flags().StringP("userId", "u", " ", "User id")
+	queryAllUserIAPOrdersCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = queryAllUserIAPOrdersCmd.MarkFlagRequired("userId")
 }

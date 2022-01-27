@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package leaderboardConfiguration
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/leaderboard-sdk/pkg/leaderboardclient/leaderboard_configuration"
@@ -49,10 +49,10 @@ var getLeaderboardConfigurationsPublicV1Cmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(getLeaderboardConfigurationsPublicV1Cmd)
-	getLeaderboardConfigurationsPublicV1Cmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	getLeaderboardConfigurationsPublicV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = getLeaderboardConfigurationsPublicV1Cmd.MarkFlagRequired("namespace")
-	getLeaderboardConfigurationsPublicV1Cmd.Flags().BoolP("isArchived", "i", false, "Is archived")
-	getLeaderboardConfigurationsPublicV1Cmd.Flags().BoolP("isDeleted", "i", false, "Is deleted")
-	getLeaderboardConfigurationsPublicV1Cmd.Flags().Int64P("limit", "l", 20, "Limit")
-	getLeaderboardConfigurationsPublicV1Cmd.Flags().Int64P("offset", "o", 0, "Offset")
+	getLeaderboardConfigurationsPublicV1Cmd.Flags().BoolP("isArchived", "id", false, "Is archived")
+	getLeaderboardConfigurationsPublicV1Cmd.Flags().BoolP("isDeleted", "id", false, "Is deleted")
+	getLeaderboardConfigurationsPublicV1Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
+	getLeaderboardConfigurationsPublicV1Cmd.Flags().Int64P("offset", "ot", 0, "Offset")
 }

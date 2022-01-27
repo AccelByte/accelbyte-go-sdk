@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package item
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/item"
@@ -53,13 +53,13 @@ var getLocaleItemBySkuCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(getLocaleItemBySkuCmd)
-	getLocaleItemBySkuCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	getLocaleItemBySkuCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = getLocaleItemBySkuCmd.MarkFlagRequired("namespace")
-	getLocaleItemBySkuCmd.Flags().BoolP("activeOnly", "a", false, "Active only")
-	getLocaleItemBySkuCmd.Flags().StringP("language", "l", " ", "Language")
-	getLocaleItemBySkuCmd.Flags().BoolP("populateBundle", "p", false, "Populate bundle")
-	getLocaleItemBySkuCmd.Flags().StringP("region", "r", " ", "Region")
-	getLocaleItemBySkuCmd.Flags().StringP("storeId", "s", " ", "Store id")
-	getLocaleItemBySkuCmd.Flags().StringP("sku", "s", " ", "Sku")
+	getLocaleItemBySkuCmd.Flags().BoolP("activeOnly", "ay", false, "Active only")
+	getLocaleItemBySkuCmd.Flags().StringP("language", "le", " ", "Language")
+	getLocaleItemBySkuCmd.Flags().BoolP("populateBundle", "pe", false, "Populate bundle")
+	getLocaleItemBySkuCmd.Flags().StringP("region", "rn", " ", "Region")
+	getLocaleItemBySkuCmd.Flags().StringP("storeId", "sd", " ", "Store id")
+	getLocaleItemBySkuCmd.Flags().StringP("sku", "su", " ", "Sku")
 	_ = getLocaleItemBySkuCmd.MarkFlagRequired("sku")
 }

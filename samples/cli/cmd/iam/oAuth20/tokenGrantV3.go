@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package oAuth20
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth2_0"
@@ -53,12 +53,12 @@ var tokenGrantV3Cmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(tokenGrantV3Cmd)
-	tokenGrantV3Cmd.Flags().StringP("device_id", "d", " ", "Device id")
-	tokenGrantV3Cmd.Flags().StringP("client_id", "c", " ", "Client id")
-	tokenGrantV3Cmd.Flags().StringP("code", "c", " ", "Code")
-	tokenGrantV3Cmd.Flags().StringP("code_verifier", "c", " ", "Code verifier")
-	tokenGrantV3Cmd.Flags().StringP("redirect_uri", "r", " ", "Redirect uri")
-	tokenGrantV3Cmd.Flags().StringP("refresh_token", "r", " ", "Refresh token")
-	tokenGrantV3Cmd.Flags().StringP("grant_type", "g", " ", "Grant type")
+	tokenGrantV3Cmd.Flags().StringP("device_id", "dd", " ", "Device id")
+	tokenGrantV3Cmd.Flags().StringP("client_id", "cd", " ", "Client id")
+	tokenGrantV3Cmd.Flags().StringP("code", "ce", " ", "Code")
+	tokenGrantV3Cmd.Flags().StringP("code_verifier", "cr", " ", "Code verifier")
+	tokenGrantV3Cmd.Flags().StringP("redirect_uri", "ri", " ", "Redirect uri")
+	tokenGrantV3Cmd.Flags().StringP("refresh_token", "rn", " ", "Refresh token")
+	tokenGrantV3Cmd.Flags().StringP("grant_type", "ge", " ", "Grant type")
 	_ = tokenGrantV3Cmd.MarkFlagRequired("grant_type")
 }

@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package dataDeletion
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/gdpr-sdk/pkg/gdprclient/data_deletion"
@@ -42,8 +42,8 @@ var adminCancelUserAccountDeletionRequestCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(adminCancelUserAccountDeletionRequestCmd)
-	adminCancelUserAccountDeletionRequestCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	adminCancelUserAccountDeletionRequestCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = adminCancelUserAccountDeletionRequestCmd.MarkFlagRequired("namespace")
-	adminCancelUserAccountDeletionRequestCmd.Flags().StringP("userId", "u", " ", "User id")
+	adminCancelUserAccountDeletionRequestCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = adminCancelUserAccountDeletionRequestCmd.MarkFlagRequired("userId")
 }

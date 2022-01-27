@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package dlc
 
 import (
 	"encoding/json"
@@ -51,9 +51,9 @@ var publicSyncPsnDlcInventoryCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(publicSyncPsnDlcInventoryCmd)
-	publicSyncPsnDlcInventoryCmd.Flags().StringP("body", "b", " ", "Body")
-	publicSyncPsnDlcInventoryCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	publicSyncPsnDlcInventoryCmd.Flags().StringP("body", "by", " ", "Body")
+	publicSyncPsnDlcInventoryCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = publicSyncPsnDlcInventoryCmd.MarkFlagRequired("namespace")
-	publicSyncPsnDlcInventoryCmd.Flags().StringP("userId", "u", " ", "User id")
+	publicSyncPsnDlcInventoryCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = publicSyncPsnDlcInventoryCmd.MarkFlagRequired("userId")
 }

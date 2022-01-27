@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package users
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users"
@@ -43,8 +43,8 @@ var getAdminInvitationV3Cmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(getAdminInvitationV3Cmd)
-	getAdminInvitationV3Cmd.Flags().StringP("invitationId", "i", " ", "Invitation id")
+	getAdminInvitationV3Cmd.Flags().StringP("invitationId", "id", " ", "Invitation id")
 	_ = getAdminInvitationV3Cmd.MarkFlagRequired("invitationId")
-	getAdminInvitationV3Cmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	getAdminInvitationV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = getAdminInvitationV3Cmd.MarkFlagRequired("namespace")
 }

@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package memberRequest
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/group-sdk/pkg/groupclient/member_request"
@@ -45,8 +45,8 @@ var getGroupInvitationRequestPublicV1Cmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(getGroupInvitationRequestPublicV1Cmd)
-	getGroupInvitationRequestPublicV1Cmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	getGroupInvitationRequestPublicV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = getGroupInvitationRequestPublicV1Cmd.MarkFlagRequired("namespace")
-	getGroupInvitationRequestPublicV1Cmd.Flags().Int64P("limit", "l", 20, "Limit")
-	getGroupInvitationRequestPublicV1Cmd.Flags().Int64P("offset", "o", 0, "Offset")
+	getGroupInvitationRequestPublicV1Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
+	getGroupInvitationRequestPublicV1Cmd.Flags().Int64P("offset", "ot", 0, "Offset")
 }

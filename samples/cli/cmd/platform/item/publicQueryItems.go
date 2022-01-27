@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package item
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/item"
@@ -65,18 +65,18 @@ var publicQueryItemsCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(publicQueryItemsCmd)
-	publicQueryItemsCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	publicQueryItemsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = publicQueryItemsCmd.MarkFlagRequired("namespace")
-	publicQueryItemsCmd.Flags().StringP("appType", "a", " ", "App type")
-	publicQueryItemsCmd.Flags().StringP("baseAppId", "b", " ", "Base app id")
-	publicQueryItemsCmd.Flags().StringP("categoryPath", "c", " ", "Category path")
-	publicQueryItemsCmd.Flags().StringP("features", "f", " ", "Features")
-	publicQueryItemsCmd.Flags().StringP("itemType", "i", " ", "Item type")
-	publicQueryItemsCmd.Flags().StringP("language", "l", " ", "Language")
-	publicQueryItemsCmd.Flags().Int32P("limit", "l", 20, "Limit")
-	publicQueryItemsCmd.Flags().Int32P("offset", "o", 0, "Offset")
-	publicQueryItemsCmd.Flags().StringP("region", "r", " ", "Region")
-	publicQueryItemsCmd.Flags().StringP("sortBy", "s", " ", "Sort by")
-	publicQueryItemsCmd.Flags().StringP("storeId", "s", " ", "Store id")
-	publicQueryItemsCmd.Flags().StringP("tags", "t", " ", "Tags")
+	publicQueryItemsCmd.Flags().StringP("appType", "ae", " ", "App type")
+	publicQueryItemsCmd.Flags().StringP("baseAppId", "bd", " ", "Base app id")
+	publicQueryItemsCmd.Flags().StringP("categoryPath", "ch", " ", "Category path")
+	publicQueryItemsCmd.Flags().StringP("features", "fs", " ", "Features")
+	publicQueryItemsCmd.Flags().StringP("itemType", "ie", " ", "Item type")
+	publicQueryItemsCmd.Flags().StringP("language", "le", " ", "Language")
+	publicQueryItemsCmd.Flags().Int32P("limit", "lt", 20, "Limit")
+	publicQueryItemsCmd.Flags().Int32P("offset", "ot", 0, "Offset")
+	publicQueryItemsCmd.Flags().StringP("region", "rn", " ", "Region")
+	publicQueryItemsCmd.Flags().StringP("sortBy", "sy", " ", "Sort by")
+	publicQueryItemsCmd.Flags().StringP("storeId", "sd", " ", "Store id")
+	publicQueryItemsCmd.Flags().StringP("tags", "ts", " ", "Tags")
 }

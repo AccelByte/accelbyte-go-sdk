@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package payment
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/payment"
@@ -59,15 +59,15 @@ var queryPaymentNotificationsCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(queryPaymentNotificationsCmd)
-	queryPaymentNotificationsCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	queryPaymentNotificationsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = queryPaymentNotificationsCmd.MarkFlagRequired("namespace")
-	queryPaymentNotificationsCmd.Flags().StringP("endDate", "e", " ", "End date")
-	queryPaymentNotificationsCmd.Flags().StringP("externalId", "e", " ", "External id")
-	queryPaymentNotificationsCmd.Flags().Int32P("limit", "l", 20, "Limit")
-	queryPaymentNotificationsCmd.Flags().StringP("notificationSource", "n", " ", "Notification source")
-	queryPaymentNotificationsCmd.Flags().StringP("notificationType", "n", " ", "Notification type")
-	queryPaymentNotificationsCmd.Flags().Int32P("offset", "o", 0, "Offset")
-	queryPaymentNotificationsCmd.Flags().StringP("paymentOrderNo", "p", " ", "Payment order no")
-	queryPaymentNotificationsCmd.Flags().StringP("startDate", "s", " ", "Start date")
-	queryPaymentNotificationsCmd.Flags().StringP("status", "s", " ", "Status")
+	queryPaymentNotificationsCmd.Flags().StringP("endDate", "ee", " ", "End date")
+	queryPaymentNotificationsCmd.Flags().StringP("externalId", "ed", " ", "External id")
+	queryPaymentNotificationsCmd.Flags().Int32P("limit", "lt", 20, "Limit")
+	queryPaymentNotificationsCmd.Flags().StringP("notificationSource", "ne", " ", "Notification source")
+	queryPaymentNotificationsCmd.Flags().StringP("notificationType", "ne", " ", "Notification type")
+	queryPaymentNotificationsCmd.Flags().Int32P("offset", "ot", 0, "Offset")
+	queryPaymentNotificationsCmd.Flags().StringP("paymentOrderNo", "po", " ", "Payment order no")
+	queryPaymentNotificationsCmd.Flags().StringP("startDate", "se", " ", "Start date")
+	queryPaymentNotificationsCmd.Flags().StringP("status", "ss", " ", "Status")
 }

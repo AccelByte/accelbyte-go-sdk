@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package subscription
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/subscription"
@@ -51,12 +51,12 @@ var getUserSubscriptionActivitiesCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(getUserSubscriptionActivitiesCmd)
-	getUserSubscriptionActivitiesCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	getUserSubscriptionActivitiesCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = getUserSubscriptionActivitiesCmd.MarkFlagRequired("namespace")
-	getUserSubscriptionActivitiesCmd.Flags().StringP("userId", "u", " ", "User id")
+	getUserSubscriptionActivitiesCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = getUserSubscriptionActivitiesCmd.MarkFlagRequired("userId")
-	getUserSubscriptionActivitiesCmd.Flags().BoolP("excludeSystem", "e", false, "Exclude system")
-	getUserSubscriptionActivitiesCmd.Flags().Int32P("limit", "l", 20, "Limit")
-	getUserSubscriptionActivitiesCmd.Flags().Int32P("offset", "o", 0, "Offset")
-	getUserSubscriptionActivitiesCmd.Flags().StringP("subscriptionId", "s", " ", "Subscription id")
+	getUserSubscriptionActivitiesCmd.Flags().BoolP("excludeSystem", "em", false, "Exclude system")
+	getUserSubscriptionActivitiesCmd.Flags().Int32P("limit", "lt", 20, "Limit")
+	getUserSubscriptionActivitiesCmd.Flags().Int32P("offset", "ot", 0, "Offset")
+	getUserSubscriptionActivitiesCmd.Flags().StringP("subscriptionId", "sd", " ", "Subscription id")
 }

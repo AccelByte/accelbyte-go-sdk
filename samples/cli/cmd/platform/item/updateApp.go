@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package item
 
 import (
 	"encoding/json"
@@ -54,11 +54,11 @@ var updateAppCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(updateAppCmd)
-	updateAppCmd.Flags().StringP("body", "b", " ", "Body")
-	updateAppCmd.Flags().StringP("itemId", "i", " ", "Item id")
+	updateAppCmd.Flags().StringP("body", "by", " ", "Body")
+	updateAppCmd.Flags().StringP("itemId", "id", " ", "Item id")
 	_ = updateAppCmd.MarkFlagRequired("itemId")
-	updateAppCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	updateAppCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = updateAppCmd.MarkFlagRequired("namespace")
-	updateAppCmd.Flags().StringP("storeId", "s", " ", "Store id")
+	updateAppCmd.Flags().StringP("storeId", "sd", " ", "Store id")
 	_ = updateAppCmd.MarkFlagRequired("storeId")
 }

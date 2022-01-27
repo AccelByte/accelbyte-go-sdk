@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package eventV2
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/eventlog-sdk/pkg/eventlogclient/event_v2"
@@ -53,13 +53,13 @@ var getUserEventsV2PublicCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(getUserEventsV2PublicCmd)
-	getUserEventsV2PublicCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	getUserEventsV2PublicCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = getUserEventsV2PublicCmd.MarkFlagRequired("namespace")
-	getUserEventsV2PublicCmd.Flags().StringP("userId", "u", " ", "User id")
+	getUserEventsV2PublicCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = getUserEventsV2PublicCmd.MarkFlagRequired("userId")
-	getUserEventsV2PublicCmd.Flags().StringP("endDate", "e", " ", "End date")
-	getUserEventsV2PublicCmd.Flags().StringP("eventName", "e", " ", "Event name")
-	getUserEventsV2PublicCmd.Flags().Float64P("offset", "o", 0, "Offset")
-	getUserEventsV2PublicCmd.Flags().Float64P("pageSize", "p", 1, "Page size")
-	getUserEventsV2PublicCmd.Flags().StringP("startDate", "s", " ", "Start date")
+	getUserEventsV2PublicCmd.Flags().StringP("endDate", "ee", " ", "End date")
+	getUserEventsV2PublicCmd.Flags().StringP("eventName", "ee", " ", "Event name")
+	getUserEventsV2PublicCmd.Flags().Float64P("offset", "ot", 0, "Offset")
+	getUserEventsV2PublicCmd.Flags().Float64P("pageSize", "pe", 1, "Page size")
+	getUserEventsV2PublicCmd.Flags().StringP("startDate", "se", " ", "Start date")
 }

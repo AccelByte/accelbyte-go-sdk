@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package users
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users"
@@ -49,11 +49,11 @@ var adminGetUserLoginHistoriesV3Cmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(adminGetUserLoginHistoriesV3Cmd)
-	adminGetUserLoginHistoriesV3Cmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	adminGetUserLoginHistoriesV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = adminGetUserLoginHistoriesV3Cmd.MarkFlagRequired("namespace")
-	adminGetUserLoginHistoriesV3Cmd.Flags().StringP("userId", "u", " ", "User id")
+	adminGetUserLoginHistoriesV3Cmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = adminGetUserLoginHistoriesV3Cmd.MarkFlagRequired("userId")
-	adminGetUserLoginHistoriesV3Cmd.Flags().Float64P("after", "a", 0, "After")
-	adminGetUserLoginHistoriesV3Cmd.Flags().Float64P("before", "b", 0, "Before")
-	adminGetUserLoginHistoriesV3Cmd.Flags().Float64P("limit", "l", 20, "Limit")
+	adminGetUserLoginHistoriesV3Cmd.Flags().Float64P("after", "ar", 0, "After")
+	adminGetUserLoginHistoriesV3Cmd.Flags().Float64P("before", "be", 0, "Before")
+	adminGetUserLoginHistoriesV3Cmd.Flags().Float64P("limit", "lt", 20, "Limit")
 }

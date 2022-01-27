@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package paymentAccount
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/payment_account"
@@ -46,12 +46,12 @@ var publicDeletePaymentAccountCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(publicDeletePaymentAccountCmd)
-	publicDeletePaymentAccountCmd.Flags().StringP("id", "i", " ", "Id")
+	publicDeletePaymentAccountCmd.Flags().StringP("id", "id", " ", "Id")
 	_ = publicDeletePaymentAccountCmd.MarkFlagRequired("id")
-	publicDeletePaymentAccountCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	publicDeletePaymentAccountCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = publicDeletePaymentAccountCmd.MarkFlagRequired("namespace")
-	publicDeletePaymentAccountCmd.Flags().StringP("type", "t", " ", "Type")
+	publicDeletePaymentAccountCmd.Flags().StringP("type", "te", " ", "Type")
 	_ = publicDeletePaymentAccountCmd.MarkFlagRequired("type")
-	publicDeletePaymentAccountCmd.Flags().StringP("userId", "u", " ", "User id")
+	publicDeletePaymentAccountCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = publicDeletePaymentAccountCmd.MarkFlagRequired("userId")
 }

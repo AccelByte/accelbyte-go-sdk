@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package adminGameRecord
 
 import (
 	"encoding/json"
@@ -51,10 +51,10 @@ var adminPostGameRecordHandlerV1Cmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(adminPostGameRecordHandlerV1Cmd)
-	adminPostGameRecordHandlerV1Cmd.Flags().StringP("body", "b", " ", "Body")
+	adminPostGameRecordHandlerV1Cmd.Flags().StringP("body", "by", " ", "Body")
 	_ = adminPostGameRecordHandlerV1Cmd.MarkFlagRequired("body")
-	adminPostGameRecordHandlerV1Cmd.Flags().StringP("key", "k", " ", "Key")
+	adminPostGameRecordHandlerV1Cmd.Flags().StringP("key", "ky", " ", "Key")
 	_ = adminPostGameRecordHandlerV1Cmd.MarkFlagRequired("key")
-	adminPostGameRecordHandlerV1Cmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	adminPostGameRecordHandlerV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = adminPostGameRecordHandlerV1Cmd.MarkFlagRequired("namespace")
 }

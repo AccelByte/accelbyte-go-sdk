@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package order
 
 import (
 	"encoding/json"
@@ -53,11 +53,11 @@ var processUserOrderNotificationCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(processUserOrderNotificationCmd)
-	processUserOrderNotificationCmd.Flags().StringP("body", "b", " ", "Body")
-	processUserOrderNotificationCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	processUserOrderNotificationCmd.Flags().StringP("body", "by", " ", "Body")
+	processUserOrderNotificationCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = processUserOrderNotificationCmd.MarkFlagRequired("namespace")
-	processUserOrderNotificationCmd.Flags().StringP("orderNo", "o", " ", "Order no")
+	processUserOrderNotificationCmd.Flags().StringP("orderNo", "oo", " ", "Order no")
 	_ = processUserOrderNotificationCmd.MarkFlagRequired("orderNo")
-	processUserOrderNotificationCmd.Flags().StringP("userId", "u", " ", "User id")
+	processUserOrderNotificationCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = processUserOrderNotificationCmd.MarkFlagRequired("userId")
 }

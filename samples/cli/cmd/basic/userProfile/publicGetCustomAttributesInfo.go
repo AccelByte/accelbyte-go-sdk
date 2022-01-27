@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package userProfile
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclient/user_profile"
@@ -43,8 +43,8 @@ var publicGetCustomAttributesInfoCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(publicGetCustomAttributesInfoCmd)
-	publicGetCustomAttributesInfoCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	publicGetCustomAttributesInfoCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = publicGetCustomAttributesInfoCmd.MarkFlagRequired("namespace")
-	publicGetCustomAttributesInfoCmd.Flags().StringP("userId", "u", " ", "User id")
+	publicGetCustomAttributesInfoCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = publicGetCustomAttributesInfoCmd.MarkFlagRequired("userId")
 }

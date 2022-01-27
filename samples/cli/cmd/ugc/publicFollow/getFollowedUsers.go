@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package publicFollow
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
@@ -45,8 +45,8 @@ var getFollowedUsersCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(getFollowedUsersCmd)
-	getFollowedUsersCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	getFollowedUsersCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = getFollowedUsersCmd.MarkFlagRequired("namespace")
-	getFollowedUsersCmd.Flags().StringP("limit", "l", "20", "Limit")
-	getFollowedUsersCmd.Flags().StringP("offset", "o", "0", "Offset")
+	getFollowedUsersCmd.Flags().StringP("limit", "lt", "20", "Limit")
+	getFollowedUsersCmd.Flags().StringP("offset", "ot", "0", "Offset")
 }

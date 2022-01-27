@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package config
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/config"
@@ -43,8 +43,8 @@ var deletePortCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(deletePortCmd)
-	deletePortCmd.Flags().StringP("name", "n", " ", "Name")
+	deletePortCmd.Flags().StringP("name", "ne", " ", "Name")
 	_ = deletePortCmd.MarkFlagRequired("name")
-	deletePortCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	deletePortCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = deletePortCmd.MarkFlagRequired("namespace")
 }

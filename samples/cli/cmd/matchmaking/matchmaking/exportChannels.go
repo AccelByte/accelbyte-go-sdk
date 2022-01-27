@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package matchmaking
 
 import (
 	matchmaking_ "github.com/AccelByte/accelbyte-go-sdk/matchmaking-sdk/pkg/matchmakingclient/matchmaking"
@@ -41,6 +41,6 @@ var exportChannelsCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(exportChannelsCmd)
-	exportChannelsCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	exportChannelsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = exportChannelsCmd.MarkFlagRequired("namespace")
 }

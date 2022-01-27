@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package session
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
@@ -45,8 +45,8 @@ var getActiveCustomGameSessionsCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(getActiveCustomGameSessionsCmd)
-	getActiveCustomGameSessionsCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	getActiveCustomGameSessionsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = getActiveCustomGameSessionsCmd.MarkFlagRequired("namespace")
-	getActiveCustomGameSessionsCmd.Flags().StringP("server_region", "s", " ", "Server region")
-	getActiveCustomGameSessionsCmd.Flags().StringP("session_id", "s", " ", "Session id")
+	getActiveCustomGameSessionsCmd.Flags().StringP("server_region", "sn", " ", "Server region")
+	getActiveCustomGameSessionsCmd.Flags().StringP("session_id", "sd", " ", "Session id")
 }

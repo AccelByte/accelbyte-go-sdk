@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package category
 
 import (
 	"encoding/json"
@@ -54,11 +54,11 @@ var updateCategoryCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(updateCategoryCmd)
-	updateCategoryCmd.Flags().StringP("body", "b", " ", "Body")
-	updateCategoryCmd.Flags().StringP("categoryPath", "c", " ", "Category path")
+	updateCategoryCmd.Flags().StringP("body", "by", " ", "Body")
+	updateCategoryCmd.Flags().StringP("categoryPath", "ch", " ", "Category path")
 	_ = updateCategoryCmd.MarkFlagRequired("categoryPath")
-	updateCategoryCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	updateCategoryCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = updateCategoryCmd.MarkFlagRequired("namespace")
-	updateCategoryCmd.Flags().StringP("storeId", "s", " ", "Store id")
+	updateCategoryCmd.Flags().StringP("storeId", "sd", " ", "Store id")
 	_ = updateCategoryCmd.MarkFlagRequired("storeId")
 }

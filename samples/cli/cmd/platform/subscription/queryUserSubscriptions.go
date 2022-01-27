@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package subscription
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/subscription"
@@ -57,15 +57,15 @@ var queryUserSubscriptionsCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(queryUserSubscriptionsCmd)
-	queryUserSubscriptionsCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	queryUserSubscriptionsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = queryUserSubscriptionsCmd.MarkFlagRequired("namespace")
-	queryUserSubscriptionsCmd.Flags().StringP("userId", "u", " ", "User id")
+	queryUserSubscriptionsCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = queryUserSubscriptionsCmd.MarkFlagRequired("userId")
-	queryUserSubscriptionsCmd.Flags().StringP("chargeStatus", "c", " ", "Charge status")
-	queryUserSubscriptionsCmd.Flags().StringP("itemId", "i", " ", "Item id")
-	queryUserSubscriptionsCmd.Flags().Int32P("limit", "l", 20, "Limit")
-	queryUserSubscriptionsCmd.Flags().Int32P("offset", "o", 0, "Offset")
-	queryUserSubscriptionsCmd.Flags().StringP("sku", "s", " ", "Sku")
-	queryUserSubscriptionsCmd.Flags().StringP("status", "s", " ", "Status")
-	queryUserSubscriptionsCmd.Flags().StringP("subscribedBy", "s", " ", "Subscribed by")
+	queryUserSubscriptionsCmd.Flags().StringP("chargeStatus", "cs", " ", "Charge status")
+	queryUserSubscriptionsCmd.Flags().StringP("itemId", "id", " ", "Item id")
+	queryUserSubscriptionsCmd.Flags().Int32P("limit", "lt", 20, "Limit")
+	queryUserSubscriptionsCmd.Flags().Int32P("offset", "ot", 0, "Offset")
+	queryUserSubscriptionsCmd.Flags().StringP("sku", "su", " ", "Sku")
+	queryUserSubscriptionsCmd.Flags().StringP("status", "ss", " ", "Status")
+	queryUserSubscriptionsCmd.Flags().StringP("subscribedBy", "sy", " ", "Subscribed by")
 }

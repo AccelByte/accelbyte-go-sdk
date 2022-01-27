@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package matchmaking
 
 import (
 	matchmaking_ "github.com/AccelByte/accelbyte-go-sdk/matchmaking-sdk/pkg/matchmakingclient/matchmaking"
@@ -43,7 +43,7 @@ var bulkGetSessionsCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(bulkGetSessionsCmd)
-	bulkGetSessionsCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	bulkGetSessionsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = bulkGetSessionsCmd.MarkFlagRequired("namespace")
-	bulkGetSessionsCmd.Flags().StringP("matchIDs", "m", " ", "Match I ds")
+	bulkGetSessionsCmd.Flags().StringP("matchIDs", "ms", " ", "Match I ds")
 }

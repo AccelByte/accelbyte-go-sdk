@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package store
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/store"
@@ -42,8 +42,8 @@ var exportStoreCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(exportStoreCmd)
-	exportStoreCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	exportStoreCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = exportStoreCmd.MarkFlagRequired("namespace")
-	exportStoreCmd.Flags().StringP("storeId", "s", " ", "Store id")
+	exportStoreCmd.Flags().StringP("storeId", "sd", " ", "Store id")
 	_ = exportStoreCmd.MarkFlagRequired("storeId")
 }

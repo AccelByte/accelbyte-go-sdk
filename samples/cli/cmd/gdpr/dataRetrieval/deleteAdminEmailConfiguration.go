@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package dataRetrieval
 
 import (
 	"encoding/json"
@@ -48,8 +48,8 @@ var deleteAdminEmailConfigurationCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(deleteAdminEmailConfigurationCmd)
-	deleteAdminEmailConfigurationCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	deleteAdminEmailConfigurationCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = deleteAdminEmailConfigurationCmd.MarkFlagRequired("namespace")
-	deleteAdminEmailConfigurationCmd.Flags().StringP("emails", "e", " ", "Emails")
+	deleteAdminEmailConfigurationCmd.Flags().StringP("emails", "es", " ", "Emails")
 	_ = deleteAdminEmailConfigurationCmd.MarkFlagRequired("emails")
 }

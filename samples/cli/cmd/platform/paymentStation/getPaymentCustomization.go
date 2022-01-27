@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package paymentStation
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/payment_station"
@@ -47,11 +47,11 @@ var getPaymentCustomizationCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(getPaymentCustomizationCmd)
-	getPaymentCustomizationCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	getPaymentCustomizationCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = getPaymentCustomizationCmd.MarkFlagRequired("namespace")
-	getPaymentCustomizationCmd.Flags().BoolP("sandbox", "s", false, "Sandbox")
-	getPaymentCustomizationCmd.Flags().StringP("paymentProvider", "p", " ", "Payment provider")
+	getPaymentCustomizationCmd.Flags().BoolP("sandbox", "sx", false, "Sandbox")
+	getPaymentCustomizationCmd.Flags().StringP("paymentProvider", "pr", " ", "Payment provider")
 	_ = getPaymentCustomizationCmd.MarkFlagRequired("paymentProvider")
-	getPaymentCustomizationCmd.Flags().StringP("region", "r", " ", "Region")
+	getPaymentCustomizationCmd.Flags().StringP("region", "rn", " ", "Region")
 	_ = getPaymentCustomizationCmd.MarkFlagRequired("region")
 }

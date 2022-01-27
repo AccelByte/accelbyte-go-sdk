@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package chat
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/chat"
@@ -45,10 +45,10 @@ var personalChatHistoryCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(personalChatHistoryCmd)
-	personalChatHistoryCmd.Flags().StringP("friendId", "f", " ", "Friend id")
+	personalChatHistoryCmd.Flags().StringP("friendId", "fd", " ", "Friend id")
 	_ = personalChatHistoryCmd.MarkFlagRequired("friendId")
-	personalChatHistoryCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	personalChatHistoryCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = personalChatHistoryCmd.MarkFlagRequired("namespace")
-	personalChatHistoryCmd.Flags().StringP("userId", "u", " ", "User id")
+	personalChatHistoryCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = personalChatHistoryCmd.MarkFlagRequired("userId")
 }

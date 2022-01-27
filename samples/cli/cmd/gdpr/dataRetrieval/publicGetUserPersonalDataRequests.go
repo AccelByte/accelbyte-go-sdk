@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package dataRetrieval
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/gdpr-sdk/pkg/gdprclient/data_retrieval"
@@ -47,10 +47,10 @@ var publicGetUserPersonalDataRequestsCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(publicGetUserPersonalDataRequestsCmd)
-	publicGetUserPersonalDataRequestsCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	publicGetUserPersonalDataRequestsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = publicGetUserPersonalDataRequestsCmd.MarkFlagRequired("namespace")
-	publicGetUserPersonalDataRequestsCmd.Flags().StringP("userId", "u", " ", "User id")
+	publicGetUserPersonalDataRequestsCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = publicGetUserPersonalDataRequestsCmd.MarkFlagRequired("userId")
-	publicGetUserPersonalDataRequestsCmd.Flags().Int64P("limit", "l", 20, "Limit")
-	publicGetUserPersonalDataRequestsCmd.Flags().Int64P("offset", "o", 0, "Offset")
+	publicGetUserPersonalDataRequestsCmd.Flags().Int64P("limit", "lt", 20, "Limit")
+	publicGetUserPersonalDataRequestsCmd.Flags().Int64P("offset", "ot", 0, "Offset")
 }

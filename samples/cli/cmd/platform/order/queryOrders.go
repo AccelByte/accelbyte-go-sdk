@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package order
 
 import (
 	"encoding/json"
@@ -63,14 +63,14 @@ var queryOrdersCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(queryOrdersCmd)
-	queryOrdersCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	queryOrdersCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = queryOrdersCmd.MarkFlagRequired("namespace")
-	queryOrdersCmd.Flags().StringP("endTime", "e", " ", "End time")
-	queryOrdersCmd.Flags().Int32P("limit", "l", 20, "Limit")
-	queryOrdersCmd.Flags().Int32P("offset", "o", 0, "Offset")
-	queryOrdersCmd.Flags().StringP("orderNos", "o", " ", "Order nos")
-	queryOrdersCmd.Flags().StringP("sortBy", "s", " ", "Sort by")
-	queryOrdersCmd.Flags().StringP("startTime", "s", " ", "Start time")
-	queryOrdersCmd.Flags().StringP("status", "s", " ", "Status")
-	queryOrdersCmd.Flags().BoolP("withTotal", "w", false, "With total")
+	queryOrdersCmd.Flags().StringP("endTime", "ee", " ", "End time")
+	queryOrdersCmd.Flags().Int32P("limit", "lt", 20, "Limit")
+	queryOrdersCmd.Flags().Int32P("offset", "ot", 0, "Offset")
+	queryOrdersCmd.Flags().StringP("orderNos", "os", " ", "Order nos")
+	queryOrdersCmd.Flags().StringP("sortBy", "sy", " ", "Sort by")
+	queryOrdersCmd.Flags().StringP("startTime", "se", " ", "Start time")
+	queryOrdersCmd.Flags().StringP("status", "ss", " ", "Status")
+	queryOrdersCmd.Flags().BoolP("withTotal", "wl", false, "With total")
 }

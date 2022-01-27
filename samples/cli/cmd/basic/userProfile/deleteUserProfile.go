@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package userProfile
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclient/user_profile"
@@ -43,8 +43,8 @@ var deleteUserProfileCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(deleteUserProfileCmd)
-	deleteUserProfileCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	deleteUserProfileCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = deleteUserProfileCmd.MarkFlagRequired("namespace")
-	deleteUserProfileCmd.Flags().StringP("userId", "u", " ", "User id")
+	deleteUserProfileCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = deleteUserProfileCmd.MarkFlagRequired("userId")
 }

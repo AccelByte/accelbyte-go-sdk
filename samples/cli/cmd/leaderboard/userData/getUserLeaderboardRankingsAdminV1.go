@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package userData
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/leaderboard-sdk/pkg/leaderboardclient/user_data"
@@ -47,10 +47,10 @@ var getUserLeaderboardRankingsAdminV1Cmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(getUserLeaderboardRankingsAdminV1Cmd)
-	getUserLeaderboardRankingsAdminV1Cmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	getUserLeaderboardRankingsAdminV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = getUserLeaderboardRankingsAdminV1Cmd.MarkFlagRequired("namespace")
-	getUserLeaderboardRankingsAdminV1Cmd.Flags().StringP("userId", "u", " ", "User id")
+	getUserLeaderboardRankingsAdminV1Cmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = getUserLeaderboardRankingsAdminV1Cmd.MarkFlagRequired("userId")
-	getUserLeaderboardRankingsAdminV1Cmd.Flags().Int64P("limit", "l", 20, "Limit")
-	getUserLeaderboardRankingsAdminV1Cmd.Flags().Int64P("offset", "o", 0, "Offset")
+	getUserLeaderboardRankingsAdminV1Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
+	getUserLeaderboardRankingsAdminV1Cmd.Flags().Int64P("offset", "ot", 0, "Offset")
 }

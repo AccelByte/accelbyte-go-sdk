@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package admin
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/admin"
@@ -43,8 +43,8 @@ var getServerCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(getServerCmd)
-	getServerCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	getServerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = getServerCmd.MarkFlagRequired("namespace")
-	getServerCmd.Flags().StringP("podName", "p", " ", "Pod name")
+	getServerCmd.Flags().StringP("podName", "pe", " ", "Pod name")
 	_ = getServerCmd.MarkFlagRequired("podName")
 }

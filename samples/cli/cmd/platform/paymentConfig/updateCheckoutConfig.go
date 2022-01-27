@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package paymentConfig
 
 import (
 	"encoding/json"
@@ -54,9 +54,9 @@ var updateCheckoutConfigCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(updateCheckoutConfigCmd)
-	updateCheckoutConfigCmd.Flags().StringP("body", "b", " ", "Body")
-	updateCheckoutConfigCmd.Flags().StringP("id", "i", " ", "Id")
+	updateCheckoutConfigCmd.Flags().StringP("body", "by", " ", "Body")
+	updateCheckoutConfigCmd.Flags().StringP("id", "id", " ", "Id")
 	_ = updateCheckoutConfigCmd.MarkFlagRequired("id")
-	updateCheckoutConfigCmd.Flags().BoolP("sandbox", "s", false, "Sandbox")
-	updateCheckoutConfigCmd.Flags().BoolP("validate", "v", false, "Validate")
+	updateCheckoutConfigCmd.Flags().BoolP("sandbox", "sx", false, "Sandbox")
+	updateCheckoutConfigCmd.Flags().BoolP("validate", "ve", false, "Validate")
 }

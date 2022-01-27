@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package currency
 
 import (
 	"encoding/json"
@@ -52,9 +52,9 @@ var updateCurrencyCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(updateCurrencyCmd)
-	updateCurrencyCmd.Flags().StringP("body", "b", " ", "Body")
-	updateCurrencyCmd.Flags().StringP("currencyCode", "c", " ", "Currency code")
+	updateCurrencyCmd.Flags().StringP("body", "by", " ", "Body")
+	updateCurrencyCmd.Flags().StringP("currencyCode", "ce", " ", "Currency code")
 	_ = updateCurrencyCmd.MarkFlagRequired("currencyCode")
-	updateCurrencyCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	updateCurrencyCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = updateCurrencyCmd.MarkFlagRequired("namespace")
 }

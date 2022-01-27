@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package roles
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/roles"
@@ -47,8 +47,8 @@ var adminGetRolesV3Cmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(adminGetRolesV3Cmd)
-	adminGetRolesV3Cmd.Flags().StringP("after", "a", "0", "After")
-	adminGetRolesV3Cmd.Flags().StringP("before", "b", "0", "Before")
-	adminGetRolesV3Cmd.Flags().BoolP("isWildcard", "i", false, "Is wildcard")
-	adminGetRolesV3Cmd.Flags().Int64P("limit", "l", 20, "Limit")
+	adminGetRolesV3Cmd.Flags().StringP("after", "ar", "0", "After")
+	adminGetRolesV3Cmd.Flags().StringP("before", "be", "0", "Before")
+	adminGetRolesV3Cmd.Flags().BoolP("isWildcard", "id", false, "Is wildcard")
+	adminGetRolesV3Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
 }

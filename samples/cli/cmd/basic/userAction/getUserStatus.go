@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package userAction
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclient/user_action"
@@ -43,8 +43,8 @@ var getUserStatusCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(getUserStatusCmd)
-	getUserStatusCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	getUserStatusCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = getUserStatusCmd.MarkFlagRequired("namespace")
-	getUserStatusCmd.Flags().StringP("userId", "u", " ", "User id")
+	getUserStatusCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = getUserStatusCmd.MarkFlagRequired("userId")
 }

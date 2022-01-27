@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package eligibilities
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclient/eligibilities"
@@ -41,6 +41,6 @@ var retrieveEligibilitiesPublicCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(retrieveEligibilitiesPublicCmd)
-	retrieveEligibilitiesPublicCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	retrieveEligibilitiesPublicCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = retrieveEligibilitiesPublicCmd.MarkFlagRequired("namespace")
 }

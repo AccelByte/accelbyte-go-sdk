@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package profanity
 
 import (
 	"encoding/json"
@@ -50,10 +50,10 @@ var adminImportProfanityFiltersFromFileCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(adminImportProfanityFiltersFromFileCmd)
-	adminImportProfanityFiltersFromFileCmd.Flags().StringP("body", "b", " ", "Body")
+	adminImportProfanityFiltersFromFileCmd.Flags().StringP("body", "by", " ", "Body")
 	_ = adminImportProfanityFiltersFromFileCmd.MarkFlagRequired("body")
-	adminImportProfanityFiltersFromFileCmd.Flags().StringP("list", "l", " ", "List")
+	adminImportProfanityFiltersFromFileCmd.Flags().StringP("list", "lt", " ", "List")
 	_ = adminImportProfanityFiltersFromFileCmd.MarkFlagRequired("list")
-	adminImportProfanityFiltersFromFileCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	adminImportProfanityFiltersFromFileCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = adminImportProfanityFiltersFromFileCmd.MarkFlagRequired("namespace")
 }

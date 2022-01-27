@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package paymentStation
 
 import (
 	"encoding/json"
@@ -50,7 +50,7 @@ var publicGetPaymentUrlCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(publicGetPaymentUrlCmd)
-	publicGetPaymentUrlCmd.Flags().StringP("body", "b", " ", "Body")
-	publicGetPaymentUrlCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	publicGetPaymentUrlCmd.Flags().StringP("body", "by", " ", "Body")
+	publicGetPaymentUrlCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = publicGetPaymentUrlCmd.MarkFlagRequired("namespace")
 }

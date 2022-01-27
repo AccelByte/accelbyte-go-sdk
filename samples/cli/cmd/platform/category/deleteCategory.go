@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package category
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/category"
@@ -45,10 +45,10 @@ var deleteCategoryCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(deleteCategoryCmd)
-	deleteCategoryCmd.Flags().StringP("categoryPath", "c", " ", "Category path")
+	deleteCategoryCmd.Flags().StringP("categoryPath", "ch", " ", "Category path")
 	_ = deleteCategoryCmd.MarkFlagRequired("categoryPath")
-	deleteCategoryCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	deleteCategoryCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = deleteCategoryCmd.MarkFlagRequired("namespace")
-	deleteCategoryCmd.Flags().StringP("storeId", "s", " ", "Store id")
+	deleteCategoryCmd.Flags().StringP("storeId", "sd", " ", "Store id")
 	_ = deleteCategoryCmd.MarkFlagRequired("storeId")
 }

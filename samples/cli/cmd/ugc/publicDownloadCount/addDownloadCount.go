@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package publicDownloadCount
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
@@ -43,8 +43,8 @@ var addDownloadCountCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(addDownloadCountCmd)
-	addDownloadCountCmd.Flags().StringP("contentId", "c", " ", "Content id")
+	addDownloadCountCmd.Flags().StringP("contentId", "cd", " ", "Content id")
 	_ = addDownloadCountCmd.MarkFlagRequired("contentId")
-	addDownloadCountCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	addDownloadCountCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = addDownloadCountCmd.MarkFlagRequired("namespace")
 }

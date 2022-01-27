@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package clients
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/clients"
@@ -41,6 +41,6 @@ var getClientsbyNamespaceCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(getClientsbyNamespaceCmd)
-	getClientsbyNamespaceCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	getClientsbyNamespaceCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = getClientsbyNamespaceCmd.MarkFlagRequired("namespace")
 }

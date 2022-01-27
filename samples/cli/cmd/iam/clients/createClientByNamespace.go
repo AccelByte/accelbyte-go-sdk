@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package clients
 
 import (
 	"encoding/json"
@@ -50,8 +50,8 @@ var createClientByNamespaceCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(createClientByNamespaceCmd)
-	createClientByNamespaceCmd.Flags().StringP("body", "b", " ", "Body")
+	createClientByNamespaceCmd.Flags().StringP("body", "by", " ", "Body")
 	_ = createClientByNamespaceCmd.MarkFlagRequired("body")
-	createClientByNamespaceCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	createClientByNamespaceCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = createClientByNamespaceCmd.MarkFlagRequired("namespace")
 }

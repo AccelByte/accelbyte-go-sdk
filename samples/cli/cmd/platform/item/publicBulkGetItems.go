@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package item
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/item"
@@ -49,11 +49,11 @@ var publicBulkGetItemsCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(publicBulkGetItemsCmd)
-	publicBulkGetItemsCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	publicBulkGetItemsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = publicBulkGetItemsCmd.MarkFlagRequired("namespace")
-	publicBulkGetItemsCmd.Flags().StringP("language", "l", " ", "Language")
-	publicBulkGetItemsCmd.Flags().StringP("region", "r", " ", "Region")
-	publicBulkGetItemsCmd.Flags().StringP("storeId", "s", " ", "Store id")
-	publicBulkGetItemsCmd.Flags().StringP("itemIds", "i", " ", "Item ids")
+	publicBulkGetItemsCmd.Flags().StringP("language", "le", " ", "Language")
+	publicBulkGetItemsCmd.Flags().StringP("region", "rn", " ", "Region")
+	publicBulkGetItemsCmd.Flags().StringP("storeId", "sd", " ", "Store id")
+	publicBulkGetItemsCmd.Flags().StringP("itemIds", "is", " ", "Item ids")
 	_ = publicBulkGetItemsCmd.MarkFlagRequired("itemIds")
 }

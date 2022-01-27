@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package iap
 
 import (
 	"encoding/json"
@@ -52,9 +52,9 @@ var syncXboxInventoryCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(syncXboxInventoryCmd)
-	syncXboxInventoryCmd.Flags().StringP("body", "b", " ", "Body")
-	syncXboxInventoryCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	syncXboxInventoryCmd.Flags().StringP("body", "by", " ", "Body")
+	syncXboxInventoryCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = syncXboxInventoryCmd.MarkFlagRequired("namespace")
-	syncXboxInventoryCmd.Flags().StringP("userId", "u", " ", "User id")
+	syncXboxInventoryCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = syncXboxInventoryCmd.MarkFlagRequired("userId")
 }

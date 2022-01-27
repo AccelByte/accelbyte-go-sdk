@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package deploymentConfig
 
 import (
 	"encoding/json"
@@ -56,14 +56,14 @@ var createOverrideRegionOverrideCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(createOverrideRegionOverrideCmd)
-	createOverrideRegionOverrideCmd.Flags().StringP("body", "b", " ", "Body")
+	createOverrideRegionOverrideCmd.Flags().StringP("body", "by", " ", "Body")
 	_ = createOverrideRegionOverrideCmd.MarkFlagRequired("body")
-	createOverrideRegionOverrideCmd.Flags().StringP("deployment", "d", " ", "Deployment")
+	createOverrideRegionOverrideCmd.Flags().StringP("deployment", "dt", " ", "Deployment")
 	_ = createOverrideRegionOverrideCmd.MarkFlagRequired("deployment")
-	createOverrideRegionOverrideCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	createOverrideRegionOverrideCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = createOverrideRegionOverrideCmd.MarkFlagRequired("namespace")
-	createOverrideRegionOverrideCmd.Flags().StringP("region", "r", " ", "Region")
+	createOverrideRegionOverrideCmd.Flags().StringP("region", "rn", " ", "Region")
 	_ = createOverrideRegionOverrideCmd.MarkFlagRequired("region")
-	createOverrideRegionOverrideCmd.Flags().StringP("version", "v", " ", "Version")
+	createOverrideRegionOverrideCmd.Flags().StringP("version", "vn", " ", "Version")
 	_ = createOverrideRegionOverrideCmd.MarkFlagRequired("version")
 }

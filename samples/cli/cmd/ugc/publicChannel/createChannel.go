@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package publicChannel
 
 import (
 	"encoding/json"
@@ -52,10 +52,10 @@ var createChannelCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(createChannelCmd)
-	createChannelCmd.Flags().StringP("body", "b", " ", "Body")
+	createChannelCmd.Flags().StringP("body", "by", " ", "Body")
 	_ = createChannelCmd.MarkFlagRequired("body")
-	createChannelCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	createChannelCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = createChannelCmd.MarkFlagRequired("namespace")
-	createChannelCmd.Flags().StringP("userId", "u", " ", "User id")
+	createChannelCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = createChannelCmd.MarkFlagRequired("userId")
 }

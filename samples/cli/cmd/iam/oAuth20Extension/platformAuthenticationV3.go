@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package oAuth20Extension
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth2_0_extension"
@@ -66,20 +66,20 @@ var platformAuthenticationV3Cmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(platformAuthenticationV3Cmd)
-	platformAuthenticationV3Cmd.Flags().StringP("platformId", "p", " ", "Platform id")
+	platformAuthenticationV3Cmd.Flags().StringP("platformId", "pd", " ", "Platform id")
 	_ = platformAuthenticationV3Cmd.MarkFlagRequired("platformId")
-	platformAuthenticationV3Cmd.Flags().StringP("code", "c", " ", "Code")
-	platformAuthenticationV3Cmd.Flags().StringP("error", "e", " ", "Error")
-	platformAuthenticationV3Cmd.Flags().StringP("openid.assoc_handle", "o", " ", "Openid assoc handle")
-	platformAuthenticationV3Cmd.Flags().StringP("openid.claimed_id", "o", " ", "Openid claimed id")
-	platformAuthenticationV3Cmd.Flags().StringP("openid.identity", "o", " ", "Openid identity")
-	platformAuthenticationV3Cmd.Flags().StringP("openid.mode", "o", " ", "Openid mode")
-	platformAuthenticationV3Cmd.Flags().StringP("openid.ns", "o", " ", "Openid ns")
-	platformAuthenticationV3Cmd.Flags().StringP("openid.op_endpoint", "o", " ", "Openid op endpoint")
-	platformAuthenticationV3Cmd.Flags().StringP("openid.response_nonce", "o", " ", "Openid response nonce")
-	platformAuthenticationV3Cmd.Flags().StringP("openid.return_to", "o", " ", "Openid return to")
-	platformAuthenticationV3Cmd.Flags().StringP("openid.sig", "o", " ", "Openid sig")
-	platformAuthenticationV3Cmd.Flags().StringP("openid.signed", "o", " ", "Openid signed")
-	platformAuthenticationV3Cmd.Flags().StringP("state", "s", " ", "State")
+	platformAuthenticationV3Cmd.Flags().StringP("code", "ce", " ", "Code")
+	platformAuthenticationV3Cmd.Flags().StringP("error", "er", " ", "Error")
+	platformAuthenticationV3Cmd.Flags().StringP("openid.assoc_handle", "oe", " ", "Openid assoc handle")
+	platformAuthenticationV3Cmd.Flags().StringP("openid.claimed_id", "od", " ", "Openid claimed id")
+	platformAuthenticationV3Cmd.Flags().StringP("openid.identity", "oy", " ", "Openid identity")
+	platformAuthenticationV3Cmd.Flags().StringP("openid.mode", "oe", " ", "Openid mode")
+	platformAuthenticationV3Cmd.Flags().StringP("openid.ns", "os", " ", "Openid ns")
+	platformAuthenticationV3Cmd.Flags().StringP("openid.op_endpoint", "ot", " ", "Openid op endpoint")
+	platformAuthenticationV3Cmd.Flags().StringP("openid.response_nonce", "oe", " ", "Openid response nonce")
+	platformAuthenticationV3Cmd.Flags().StringP("openid.return_to", "oo", " ", "Openid return to")
+	platformAuthenticationV3Cmd.Flags().StringP("openid.sig", "og", " ", "Openid sig")
+	platformAuthenticationV3Cmd.Flags().StringP("openid.signed", "od", " ", "Openid signed")
+	platformAuthenticationV3Cmd.Flags().StringP("state", "se", " ", "State")
 	_ = platformAuthenticationV3Cmd.MarkFlagRequired("state")
 }

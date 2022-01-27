@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package users
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users"
@@ -46,11 +46,11 @@ var publicDeletePlatformLinkV2Cmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(publicDeletePlatformLinkV2Cmd)
-	publicDeletePlatformLinkV2Cmd.Flags().StringP("platform_namespace", "p", " ", "Platform namespace")
-	publicDeletePlatformLinkV2Cmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	publicDeletePlatformLinkV2Cmd.Flags().StringP("platform_namespace", "pe", " ", "Platform namespace")
+	publicDeletePlatformLinkV2Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = publicDeletePlatformLinkV2Cmd.MarkFlagRequired("namespace")
-	publicDeletePlatformLinkV2Cmd.Flags().StringP("platformId", "p", " ", "Platform id")
+	publicDeletePlatformLinkV2Cmd.Flags().StringP("platformId", "pd", " ", "Platform id")
 	_ = publicDeletePlatformLinkV2Cmd.MarkFlagRequired("platformId")
-	publicDeletePlatformLinkV2Cmd.Flags().StringP("userId", "u", " ", "User id")
+	publicDeletePlatformLinkV2Cmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = publicDeletePlatformLinkV2Cmd.MarkFlagRequired("userId")
 }

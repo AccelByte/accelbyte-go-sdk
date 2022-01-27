@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package thirdParty
 
 import (
 	"encoding/json"
@@ -50,8 +50,8 @@ var adminCreateThirdPartyConfigCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(adminCreateThirdPartyConfigCmd)
-	adminCreateThirdPartyConfigCmd.Flags().StringP("body", "b", " ", "Body")
+	adminCreateThirdPartyConfigCmd.Flags().StringP("body", "by", " ", "Body")
 	_ = adminCreateThirdPartyConfigCmd.MarkFlagRequired("body")
-	adminCreateThirdPartyConfigCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	adminCreateThirdPartyConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = adminCreateThirdPartyConfigCmd.MarkFlagRequired("namespace")
 }

@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package users
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users"
@@ -47,9 +47,9 @@ var listAdminsV3Cmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(listAdminsV3Cmd)
-	listAdminsV3Cmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	listAdminsV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = listAdminsV3Cmd.MarkFlagRequired("namespace")
-	listAdminsV3Cmd.Flags().StringP("after", "a", "0", "After")
-	listAdminsV3Cmd.Flags().StringP("before", "b", "0", "Before")
-	listAdminsV3Cmd.Flags().Int64P("limit", "l", 20, "Limit")
+	listAdminsV3Cmd.Flags().StringP("after", "ar", "0", "After")
+	listAdminsV3Cmd.Flags().StringP("before", "be", "0", "Before")
+	listAdminsV3Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
 }

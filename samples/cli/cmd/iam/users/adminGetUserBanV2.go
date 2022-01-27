@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package users
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users"
@@ -45,9 +45,9 @@ var adminGetUserBanV2Cmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(adminGetUserBanV2Cmd)
-	adminGetUserBanV2Cmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	adminGetUserBanV2Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = adminGetUserBanV2Cmd.MarkFlagRequired("namespace")
-	adminGetUserBanV2Cmd.Flags().StringP("userId", "u", " ", "User id")
+	adminGetUserBanV2Cmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = adminGetUserBanV2Cmd.MarkFlagRequired("userId")
-	adminGetUserBanV2Cmd.Flags().BoolP("activeOnly", "a", false, "Active only")
+	adminGetUserBanV2Cmd.Flags().BoolP("activeOnly", "ay", false, "Active only")
 }

@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package subscription
 
 import (
 	"encoding/json"
@@ -53,11 +53,11 @@ var processUserSubscriptionNotificationCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(processUserSubscriptionNotificationCmd)
-	processUserSubscriptionNotificationCmd.Flags().StringP("body", "b", " ", "Body")
-	processUserSubscriptionNotificationCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	processUserSubscriptionNotificationCmd.Flags().StringP("body", "by", " ", "Body")
+	processUserSubscriptionNotificationCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = processUserSubscriptionNotificationCmd.MarkFlagRequired("namespace")
-	processUserSubscriptionNotificationCmd.Flags().StringP("subscriptionId", "s", " ", "Subscription id")
+	processUserSubscriptionNotificationCmd.Flags().StringP("subscriptionId", "sd", " ", "Subscription id")
 	_ = processUserSubscriptionNotificationCmd.MarkFlagRequired("subscriptionId")
-	processUserSubscriptionNotificationCmd.Flags().StringP("userId", "u", " ", "User id")
+	processUserSubscriptionNotificationCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = processUserSubscriptionNotificationCmd.MarkFlagRequired("userId")
 }

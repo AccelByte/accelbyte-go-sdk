@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package iap
 
 import (
 	"encoding/json"
@@ -50,7 +50,7 @@ var updateEpicGamesIAPConfigCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(updateEpicGamesIAPConfigCmd)
-	updateEpicGamesIAPConfigCmd.Flags().StringP("body", "b", " ", "Body")
-	updateEpicGamesIAPConfigCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	updateEpicGamesIAPConfigCmd.Flags().StringP("body", "by", " ", "Body")
+	updateEpicGamesIAPConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = updateEpicGamesIAPConfigCmd.MarkFlagRequired("namespace")
 }

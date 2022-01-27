@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package reward
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/seasonpass-sdk/pkg/seasonpassclient/reward"
@@ -44,10 +44,10 @@ var deleteRewardCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(deleteRewardCmd)
-	deleteRewardCmd.Flags().StringP("code", "c", " ", "Code")
+	deleteRewardCmd.Flags().StringP("code", "ce", " ", "Code")
 	_ = deleteRewardCmd.MarkFlagRequired("code")
-	deleteRewardCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	deleteRewardCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = deleteRewardCmd.MarkFlagRequired("namespace")
-	deleteRewardCmd.Flags().StringP("seasonId", "s", " ", "Season id")
+	deleteRewardCmd.Flags().StringP("seasonId", "sd", " ", "Season id")
 	_ = deleteRewardCmd.MarkFlagRequired("seasonId")
 }

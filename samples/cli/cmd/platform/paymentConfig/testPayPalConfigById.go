@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package paymentConfig
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/payment_config"
@@ -43,7 +43,7 @@ var testPayPalConfigByIdCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(testPayPalConfigByIdCmd)
-	testPayPalConfigByIdCmd.Flags().StringP("id", "i", " ", "Id")
+	testPayPalConfigByIdCmd.Flags().StringP("id", "id", " ", "Id")
 	_ = testPayPalConfigByIdCmd.MarkFlagRequired("id")
-	testPayPalConfigByIdCmd.Flags().BoolP("sandbox", "s", false, "Sandbox")
+	testPayPalConfigByIdCmd.Flags().BoolP("sandbox", "sx", false, "Sandbox")
 }

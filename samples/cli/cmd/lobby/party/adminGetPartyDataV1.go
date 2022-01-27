@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package party
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/party"
@@ -43,8 +43,8 @@ var adminGetPartyDataV1Cmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(adminGetPartyDataV1Cmd)
-	adminGetPartyDataV1Cmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	adminGetPartyDataV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = adminGetPartyDataV1Cmd.MarkFlagRequired("namespace")
-	adminGetPartyDataV1Cmd.Flags().StringP("partyId", "p", " ", "Party id")
+	adminGetPartyDataV1Cmd.Flags().StringP("partyId", "pd", " ", "Party id")
 	_ = adminGetPartyDataV1Cmd.MarkFlagRequired("partyId")
 }

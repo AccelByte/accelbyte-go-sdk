@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package userVisibility
 
 import (
 	"encoding/json"
@@ -52,10 +52,10 @@ var setUserVisibilityStatusV2Cmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(setUserVisibilityStatusV2Cmd)
-	setUserVisibilityStatusV2Cmd.Flags().StringP("body", "b", " ", "Body")
+	setUserVisibilityStatusV2Cmd.Flags().StringP("body", "by", " ", "Body")
 	_ = setUserVisibilityStatusV2Cmd.MarkFlagRequired("body")
-	setUserVisibilityStatusV2Cmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	setUserVisibilityStatusV2Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = setUserVisibilityStatusV2Cmd.MarkFlagRequired("namespace")
-	setUserVisibilityStatusV2Cmd.Flags().StringP("userId", "u", " ", "User id")
+	setUserVisibilityStatusV2Cmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = setUserVisibilityStatusV2Cmd.MarkFlagRequired("userId")
 }

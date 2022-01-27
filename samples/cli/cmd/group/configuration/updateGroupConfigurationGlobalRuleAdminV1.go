@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package configuration
 
 import (
 	"encoding/json"
@@ -54,12 +54,12 @@ var updateGroupConfigurationGlobalRuleAdminV1Cmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(updateGroupConfigurationGlobalRuleAdminV1Cmd)
-	updateGroupConfigurationGlobalRuleAdminV1Cmd.Flags().StringP("body", "b", " ", "Body")
+	updateGroupConfigurationGlobalRuleAdminV1Cmd.Flags().StringP("body", "by", " ", "Body")
 	_ = updateGroupConfigurationGlobalRuleAdminV1Cmd.MarkFlagRequired("body")
-	updateGroupConfigurationGlobalRuleAdminV1Cmd.Flags().StringP("allowedAction", "a", " ", "Allowed action")
+	updateGroupConfigurationGlobalRuleAdminV1Cmd.Flags().StringP("allowedAction", "an", " ", "Allowed action")
 	_ = updateGroupConfigurationGlobalRuleAdminV1Cmd.MarkFlagRequired("allowedAction")
-	updateGroupConfigurationGlobalRuleAdminV1Cmd.Flags().StringP("configurationCode", "c", " ", "Configuration code")
+	updateGroupConfigurationGlobalRuleAdminV1Cmd.Flags().StringP("configurationCode", "ce", " ", "Configuration code")
 	_ = updateGroupConfigurationGlobalRuleAdminV1Cmd.MarkFlagRequired("configurationCode")
-	updateGroupConfigurationGlobalRuleAdminV1Cmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	updateGroupConfigurationGlobalRuleAdminV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = updateGroupConfigurationGlobalRuleAdminV1Cmd.MarkFlagRequired("namespace")
 }

@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package publicLike
 
 import (
 	"encoding/json"
@@ -52,10 +52,10 @@ var updateContentLikeStatusCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(updateContentLikeStatusCmd)
-	updateContentLikeStatusCmd.Flags().StringP("body", "b", " ", "Body")
+	updateContentLikeStatusCmd.Flags().StringP("body", "by", " ", "Body")
 	_ = updateContentLikeStatusCmd.MarkFlagRequired("body")
-	updateContentLikeStatusCmd.Flags().StringP("contentId", "c", " ", "Content id")
+	updateContentLikeStatusCmd.Flags().StringP("contentId", "cd", " ", "Content id")
 	_ = updateContentLikeStatusCmd.MarkFlagRequired("contentId")
-	updateContentLikeStatusCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	updateContentLikeStatusCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = updateContentLikeStatusCmd.MarkFlagRequired("namespace")
 }

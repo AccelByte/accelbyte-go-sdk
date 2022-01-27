@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package bans
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/bans"
@@ -49,10 +49,10 @@ var adminGetBannedUsersV3Cmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(adminGetBannedUsersV3Cmd)
-	adminGetBannedUsersV3Cmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	adminGetBannedUsersV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = adminGetBannedUsersV3Cmd.MarkFlagRequired("namespace")
-	adminGetBannedUsersV3Cmd.Flags().BoolP("activeOnly", "a", false, "Active only")
-	adminGetBannedUsersV3Cmd.Flags().StringP("banType", "b", " ", "Ban type")
-	adminGetBannedUsersV3Cmd.Flags().Int64P("limit", "l", 20, "Limit")
-	adminGetBannedUsersV3Cmd.Flags().Int64P("offset", "o", 0, "Offset")
+	adminGetBannedUsersV3Cmd.Flags().BoolP("activeOnly", "ay", false, "Active only")
+	adminGetBannedUsersV3Cmd.Flags().StringP("banType", "be", " ", "Ban type")
+	adminGetBannedUsersV3Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
+	adminGetBannedUsersV3Cmd.Flags().Int64P("offset", "ot", 0, "Offset")
 }

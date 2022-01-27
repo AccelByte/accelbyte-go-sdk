@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package usersV4
 
 import (
 	"encoding/json"
@@ -48,6 +48,6 @@ var adminInviteUserV4Cmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(adminInviteUserV4Cmd)
-	adminInviteUserV4Cmd.Flags().StringP("body", "b", " ", "Body")
+	adminInviteUserV4Cmd.Flags().StringP("body", "by", " ", "Body")
 	_ = adminInviteUserV4Cmd.MarkFlagRequired("body")
 }

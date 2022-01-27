@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package users
 
 import (
 	"encoding/json"
@@ -50,10 +50,10 @@ var adminDeleteUserRolesV3Cmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(adminDeleteUserRolesV3Cmd)
-	adminDeleteUserRolesV3Cmd.Flags().StringP("body", "b", " ", "Body")
+	adminDeleteUserRolesV3Cmd.Flags().StringP("body", "by", " ", "Body")
 	_ = adminDeleteUserRolesV3Cmd.MarkFlagRequired("body")
-	adminDeleteUserRolesV3Cmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	adminDeleteUserRolesV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = adminDeleteUserRolesV3Cmd.MarkFlagRequired("namespace")
-	adminDeleteUserRolesV3Cmd.Flags().StringP("userId", "u", " ", "User id")
+	adminDeleteUserRolesV3Cmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = adminDeleteUserRolesV3Cmd.MarkFlagRequired("userId")
 }

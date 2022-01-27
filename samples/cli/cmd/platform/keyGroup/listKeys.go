@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package keyGroup
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/key_group"
@@ -49,11 +49,11 @@ var listKeysCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(listKeysCmd)
-	listKeysCmd.Flags().StringP("keyGroupId", "k", " ", "Key group id")
+	listKeysCmd.Flags().StringP("keyGroupId", "kd", " ", "Key group id")
 	_ = listKeysCmd.MarkFlagRequired("keyGroupId")
-	listKeysCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	listKeysCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = listKeysCmd.MarkFlagRequired("namespace")
-	listKeysCmd.Flags().Int32P("limit", "l", 20, "Limit")
-	listKeysCmd.Flags().Int32P("offset", "o", 0, "Offset")
-	listKeysCmd.Flags().StringP("status", "s", " ", "Status")
+	listKeysCmd.Flags().Int32P("limit", "lt", 20, "Limit")
+	listKeysCmd.Flags().Int32P("offset", "ot", 0, "Offset")
+	listKeysCmd.Flags().StringP("status", "ss", " ", "Status")
 }

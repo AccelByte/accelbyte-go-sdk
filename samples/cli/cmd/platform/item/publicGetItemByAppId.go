@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package item
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/item"
@@ -49,11 +49,11 @@ var publicGetItemByAppIdCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(publicGetItemByAppIdCmd)
-	publicGetItemByAppIdCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	publicGetItemByAppIdCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = publicGetItemByAppIdCmd.MarkFlagRequired("namespace")
-	publicGetItemByAppIdCmd.Flags().StringP("language", "l", " ", "Language")
-	publicGetItemByAppIdCmd.Flags().StringP("region", "r", " ", "Region")
-	publicGetItemByAppIdCmd.Flags().StringP("storeId", "s", " ", "Store id")
-	publicGetItemByAppIdCmd.Flags().StringP("appId", "a", " ", "App id")
+	publicGetItemByAppIdCmd.Flags().StringP("language", "le", " ", "Language")
+	publicGetItemByAppIdCmd.Flags().StringP("region", "rn", " ", "Region")
+	publicGetItemByAppIdCmd.Flags().StringP("storeId", "sd", " ", "Store id")
+	publicGetItemByAppIdCmd.Flags().StringP("appId", "ad", " ", "App id")
 	_ = publicGetItemByAppIdCmd.MarkFlagRequired("appId")
 }

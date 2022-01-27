@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package userVisibility
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/leaderboard-sdk/pkg/leaderboardclient/user_visibility"
@@ -47,10 +47,10 @@ var getHiddenUsersV2Cmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(getHiddenUsersV2Cmd)
-	getHiddenUsersV2Cmd.Flags().StringP("leaderboardCode", "l", " ", "Leaderboard code")
+	getHiddenUsersV2Cmd.Flags().StringP("leaderboardCode", "le", " ", "Leaderboard code")
 	_ = getHiddenUsersV2Cmd.MarkFlagRequired("leaderboardCode")
-	getHiddenUsersV2Cmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	getHiddenUsersV2Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = getHiddenUsersV2Cmd.MarkFlagRequired("namespace")
-	getHiddenUsersV2Cmd.Flags().Int64P("limit", "l", 20, "Limit")
-	getHiddenUsersV2Cmd.Flags().Int64P("offset", "o", 0, "Offset")
+	getHiddenUsersV2Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
+	getHiddenUsersV2Cmd.Flags().Int64P("offset", "ot", 0, "Offset")
 }

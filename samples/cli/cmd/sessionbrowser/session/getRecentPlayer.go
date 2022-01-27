@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package session
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
@@ -43,8 +43,8 @@ var getRecentPlayerCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(getRecentPlayerCmd)
-	getRecentPlayerCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	getRecentPlayerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = getRecentPlayerCmd.MarkFlagRequired("namespace")
-	getRecentPlayerCmd.Flags().StringP("userID", "u", " ", "User ID")
+	getRecentPlayerCmd.Flags().StringP("userID", "uD", " ", "User ID")
 	_ = getRecentPlayerCmd.MarkFlagRequired("userID")
 }

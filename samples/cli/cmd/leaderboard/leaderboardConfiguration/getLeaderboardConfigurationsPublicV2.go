@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package leaderboardConfiguration
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/leaderboard-sdk/pkg/leaderboardclient/leaderboard_configuration"
@@ -45,8 +45,8 @@ var getLeaderboardConfigurationsPublicV2Cmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(getLeaderboardConfigurationsPublicV2Cmd)
-	getLeaderboardConfigurationsPublicV2Cmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	getLeaderboardConfigurationsPublicV2Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = getLeaderboardConfigurationsPublicV2Cmd.MarkFlagRequired("namespace")
-	getLeaderboardConfigurationsPublicV2Cmd.Flags().Int64P("limit", "l", 20, "Limit")
-	getLeaderboardConfigurationsPublicV2Cmd.Flags().Int64P("offset", "o", 0, "Offset")
+	getLeaderboardConfigurationsPublicV2Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
+	getLeaderboardConfigurationsPublicV2Cmd.Flags().Int64P("offset", "ot", 0, "Offset")
 }

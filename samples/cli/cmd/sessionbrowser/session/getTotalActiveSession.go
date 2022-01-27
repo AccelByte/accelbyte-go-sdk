@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package session
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
@@ -43,7 +43,7 @@ var getTotalActiveSessionCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(getTotalActiveSessionCmd)
-	getTotalActiveSessionCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	getTotalActiveSessionCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = getTotalActiveSessionCmd.MarkFlagRequired("namespace")
-	getTotalActiveSessionCmd.Flags().StringP("session_type", "s", " ", "Session type")
+	getTotalActiveSessionCmd.Flags().StringP("session_type", "se", " ", "Session type")
 }

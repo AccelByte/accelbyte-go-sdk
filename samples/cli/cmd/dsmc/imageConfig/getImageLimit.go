@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package imageConfig
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/image_config"
@@ -41,6 +41,6 @@ var getImageLimitCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(getImageLimitCmd)
-	getImageLimitCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	getImageLimitCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = getImageLimitCmd.MarkFlagRequired("namespace")
 }

@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package operations
 
 import (
 	"encoding/json"
@@ -47,6 +47,6 @@ var protectedSaveEventsGameTelemetryV1ProtectedEventsPostCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(protectedSaveEventsGameTelemetryV1ProtectedEventsPostCmd)
-	protectedSaveEventsGameTelemetryV1ProtectedEventsPostCmd.Flags().StringP("body", "b", " ", "Body")
+	protectedSaveEventsGameTelemetryV1ProtectedEventsPostCmd.Flags().StringP("body", "by", " ", "Body")
 	_ = protectedSaveEventsGameTelemetryV1ProtectedEventsPostCmd.MarkFlagRequired("body")
 }

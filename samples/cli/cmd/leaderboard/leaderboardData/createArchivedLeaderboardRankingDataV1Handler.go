@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package leaderboardData
 
 import (
 	"encoding/json"
@@ -49,8 +49,8 @@ var createArchivedLeaderboardRankingDataV1HandlerCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(createArchivedLeaderboardRankingDataV1HandlerCmd)
-	createArchivedLeaderboardRankingDataV1HandlerCmd.Flags().StringP("body", "b", " ", "Body")
+	createArchivedLeaderboardRankingDataV1HandlerCmd.Flags().StringP("body", "by", " ", "Body")
 	_ = createArchivedLeaderboardRankingDataV1HandlerCmd.MarkFlagRequired("body")
-	createArchivedLeaderboardRankingDataV1HandlerCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	createArchivedLeaderboardRankingDataV1HandlerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = createArchivedLeaderboardRankingDataV1HandlerCmd.MarkFlagRequired("namespace")
 }

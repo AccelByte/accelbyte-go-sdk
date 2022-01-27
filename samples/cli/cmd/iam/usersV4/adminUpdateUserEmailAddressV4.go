@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package usersV4
 
 import (
 	"encoding/json"
@@ -51,10 +51,10 @@ var adminUpdateUserEmailAddressV4Cmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(adminUpdateUserEmailAddressV4Cmd)
-	adminUpdateUserEmailAddressV4Cmd.Flags().StringP("body", "b", " ", "Body")
+	adminUpdateUserEmailAddressV4Cmd.Flags().StringP("body", "by", " ", "Body")
 	_ = adminUpdateUserEmailAddressV4Cmd.MarkFlagRequired("body")
-	adminUpdateUserEmailAddressV4Cmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	adminUpdateUserEmailAddressV4Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = adminUpdateUserEmailAddressV4Cmd.MarkFlagRequired("namespace")
-	adminUpdateUserEmailAddressV4Cmd.Flags().StringP("userId", "u", " ", "User id")
+	adminUpdateUserEmailAddressV4Cmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = adminUpdateUserEmailAddressV4Cmd.MarkFlagRequired("userId")
 }

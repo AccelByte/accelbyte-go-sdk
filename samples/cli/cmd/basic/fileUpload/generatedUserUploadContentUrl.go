@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package fileUpload
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclient/file_upload"
@@ -45,10 +45,10 @@ var generatedUserUploadContentUrlCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(generatedUserUploadContentUrlCmd)
-	generatedUserUploadContentUrlCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	generatedUserUploadContentUrlCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = generatedUserUploadContentUrlCmd.MarkFlagRequired("namespace")
-	generatedUserUploadContentUrlCmd.Flags().StringP("userId", "u", " ", "User id")
+	generatedUserUploadContentUrlCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = generatedUserUploadContentUrlCmd.MarkFlagRequired("userId")
-	generatedUserUploadContentUrlCmd.Flags().StringP("fileType", "f", " ", "File type")
+	generatedUserUploadContentUrlCmd.Flags().StringP("fileType", "fe", " ", "File type")
 	_ = generatedUserUploadContentUrlCmd.MarkFlagRequired("fileType")
 }

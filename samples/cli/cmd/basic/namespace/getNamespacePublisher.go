@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package namespace
 
 import (
 	namespace_ "github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclient/namespace"
@@ -41,6 +41,6 @@ var getNamespacePublisherCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(getNamespacePublisherCmd)
-	getNamespacePublisherCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	getNamespacePublisherCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = getNamespacePublisherCmd.MarkFlagRequired("namespace")
 }

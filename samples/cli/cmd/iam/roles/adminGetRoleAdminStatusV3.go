@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package roles
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/roles"
@@ -41,6 +41,6 @@ var adminGetRoleAdminStatusV3Cmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(adminGetRoleAdminStatusV3Cmd)
-	adminGetRoleAdminStatusV3Cmd.Flags().StringP("roleId", "r", " ", "Role id")
+	adminGetRoleAdminStatusV3Cmd.Flags().StringP("roleId", "rd", " ", "Role id")
 	_ = adminGetRoleAdminStatusV3Cmd.MarkFlagRequired("roleId")
 }

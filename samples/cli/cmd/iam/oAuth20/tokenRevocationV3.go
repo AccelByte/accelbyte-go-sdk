@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package oAuth20
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth2_0"
@@ -40,6 +40,6 @@ var tokenRevocationV3Cmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(tokenRevocationV3Cmd)
-	tokenRevocationV3Cmd.Flags().StringP("token", "t", " ", "Token")
+	tokenRevocationV3Cmd.Flags().StringP("token", "tn", " ", "Token")
 	_ = tokenRevocationV3Cmd.MarkFlagRequired("token")
 }

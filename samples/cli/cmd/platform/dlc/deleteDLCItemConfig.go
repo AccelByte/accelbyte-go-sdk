@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package dlc
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/d_l_c"
@@ -40,6 +40,6 @@ var deleteDLCItemConfigCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(deleteDLCItemConfigCmd)
-	deleteDLCItemConfigCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	deleteDLCItemConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = deleteDLCItemConfigCmd.MarkFlagRequired("namespace")
 }

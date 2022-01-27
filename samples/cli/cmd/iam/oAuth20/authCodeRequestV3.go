@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package oAuth20
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth2_0"
@@ -46,10 +46,10 @@ var authCodeRequestV3Cmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(authCodeRequestV3Cmd)
-	authCodeRequestV3Cmd.Flags().StringP("platformId", "p", " ", "Platform id")
+	authCodeRequestV3Cmd.Flags().StringP("platformId", "pd", " ", "Platform id")
 	_ = authCodeRequestV3Cmd.MarkFlagRequired("platformId")
-	authCodeRequestV3Cmd.Flags().StringP("client_id", "c", " ", "Client id")
-	authCodeRequestV3Cmd.Flags().StringP("redirect_uri", "r", " ", "Redirect uri")
-	authCodeRequestV3Cmd.Flags().StringP("request_id", "r", " ", "Request id")
+	authCodeRequestV3Cmd.Flags().StringP("client_id", "cd", " ", "Client id")
+	authCodeRequestV3Cmd.Flags().StringP("redirect_uri", "ri", " ", "Redirect uri")
+	authCodeRequestV3Cmd.Flags().StringP("request_id", "rd", " ", "Request id")
 	_ = authCodeRequestV3Cmd.MarkFlagRequired("request_id")
 }

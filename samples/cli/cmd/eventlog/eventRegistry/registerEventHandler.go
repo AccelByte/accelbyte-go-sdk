@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package eventRegistry
 
 import (
 	"encoding/json"
@@ -47,6 +47,6 @@ var registerEventHandlerCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(registerEventHandlerCmd)
-	registerEventHandlerCmd.Flags().StringP("body", "b", " ", "Body")
+	registerEventHandlerCmd.Flags().StringP("body", "by", " ", "Body")
 	_ = registerEventHandlerCmd.MarkFlagRequired("body")
 }

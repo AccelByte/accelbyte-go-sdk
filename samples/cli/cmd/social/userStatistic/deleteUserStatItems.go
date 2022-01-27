@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package userStatistic
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
@@ -44,10 +44,10 @@ var deleteUserStatItemsCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(deleteUserStatItemsCmd)
-	deleteUserStatItemsCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	deleteUserStatItemsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = deleteUserStatItemsCmd.MarkFlagRequired("namespace")
-	deleteUserStatItemsCmd.Flags().StringP("statCode", "s", " ", "Stat code")
+	deleteUserStatItemsCmd.Flags().StringP("statCode", "se", " ", "Stat code")
 	_ = deleteUserStatItemsCmd.MarkFlagRequired("statCode")
-	deleteUserStatItemsCmd.Flags().StringP("userId", "u", " ", "User id")
+	deleteUserStatItemsCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = deleteUserStatItemsCmd.MarkFlagRequired("userId")
 }

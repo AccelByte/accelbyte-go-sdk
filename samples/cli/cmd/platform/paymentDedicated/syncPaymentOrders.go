@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package paymentDedicated
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/payment_dedicated"
@@ -45,9 +45,9 @@ var syncPaymentOrdersCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(syncPaymentOrdersCmd)
-	syncPaymentOrdersCmd.Flags().StringP("nextEvaluatedKey", "n", " ", "Next evaluated key")
-	syncPaymentOrdersCmd.Flags().StringP("end", "e", " ", "End")
+	syncPaymentOrdersCmd.Flags().StringP("nextEvaluatedKey", "ny", " ", "Next evaluated key")
+	syncPaymentOrdersCmd.Flags().StringP("end", "ed", " ", "End")
 	_ = syncPaymentOrdersCmd.MarkFlagRequired("end")
-	syncPaymentOrdersCmd.Flags().StringP("start", "s", " ", "Start")
+	syncPaymentOrdersCmd.Flags().StringP("start", "st", " ", "Start")
 	_ = syncPaymentOrdersCmd.MarkFlagRequired("start")
 }

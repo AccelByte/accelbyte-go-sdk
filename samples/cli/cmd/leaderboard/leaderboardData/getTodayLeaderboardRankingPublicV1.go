@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package leaderboardData
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/leaderboard-sdk/pkg/leaderboardclient/leaderboard_data"
@@ -47,10 +47,10 @@ var getTodayLeaderboardRankingPublicV1Cmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(getTodayLeaderboardRankingPublicV1Cmd)
-	getTodayLeaderboardRankingPublicV1Cmd.Flags().StringP("leaderboardCode", "l", " ", "Leaderboard code")
+	getTodayLeaderboardRankingPublicV1Cmd.Flags().StringP("leaderboardCode", "le", " ", "Leaderboard code")
 	_ = getTodayLeaderboardRankingPublicV1Cmd.MarkFlagRequired("leaderboardCode")
-	getTodayLeaderboardRankingPublicV1Cmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	getTodayLeaderboardRankingPublicV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = getTodayLeaderboardRankingPublicV1Cmd.MarkFlagRequired("namespace")
-	getTodayLeaderboardRankingPublicV1Cmd.Flags().Int64P("limit", "l", 20, "Limit")
-	getTodayLeaderboardRankingPublicV1Cmd.Flags().Int64P("offset", "o", 0, "Offset")
+	getTodayLeaderboardRankingPublicV1Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
+	getTodayLeaderboardRankingPublicV1Cmd.Flags().Int64P("offset", "ot", 0, "Offset")
 }

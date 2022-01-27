@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package users
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users"
@@ -44,10 +44,10 @@ var publicValidateUserByUserIDAndPasswordV3Cmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(publicValidateUserByUserIDAndPasswordV3Cmd)
-	publicValidateUserByUserIDAndPasswordV3Cmd.Flags().StringP("password", "p", " ", "Password")
+	publicValidateUserByUserIDAndPasswordV3Cmd.Flags().StringP("password", "pd", " ", "Password")
 	_ = publicValidateUserByUserIDAndPasswordV3Cmd.MarkFlagRequired("password")
-	publicValidateUserByUserIDAndPasswordV3Cmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	publicValidateUserByUserIDAndPasswordV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = publicValidateUserByUserIDAndPasswordV3Cmd.MarkFlagRequired("namespace")
-	publicValidateUserByUserIDAndPasswordV3Cmd.Flags().StringP("userId", "u", " ", "User id")
+	publicValidateUserByUserIDAndPasswordV3Cmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = publicValidateUserByUserIDAndPasswordV3Cmd.MarkFlagRequired("userId")
 }

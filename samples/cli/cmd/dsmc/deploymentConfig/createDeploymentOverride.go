@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package deploymentConfig
 
 import (
 	"encoding/json"
@@ -54,12 +54,12 @@ var createDeploymentOverrideCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(createDeploymentOverrideCmd)
-	createDeploymentOverrideCmd.Flags().StringP("body", "b", " ", "Body")
+	createDeploymentOverrideCmd.Flags().StringP("body", "by", " ", "Body")
 	_ = createDeploymentOverrideCmd.MarkFlagRequired("body")
-	createDeploymentOverrideCmd.Flags().StringP("deployment", "d", " ", "Deployment")
+	createDeploymentOverrideCmd.Flags().StringP("deployment", "dt", " ", "Deployment")
 	_ = createDeploymentOverrideCmd.MarkFlagRequired("deployment")
-	createDeploymentOverrideCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	createDeploymentOverrideCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = createDeploymentOverrideCmd.MarkFlagRequired("namespace")
-	createDeploymentOverrideCmd.Flags().StringP("version", "v", " ", "Version")
+	createDeploymentOverrideCmd.Flags().StringP("version", "vn", " ", "Version")
 	_ = createDeploymentOverrideCmd.MarkFlagRequired("version")
 }

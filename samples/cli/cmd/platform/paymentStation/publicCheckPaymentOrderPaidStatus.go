@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package paymentStation
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/payment_station"
@@ -43,8 +43,8 @@ var publicCheckPaymentOrderPaidStatusCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(publicCheckPaymentOrderPaidStatusCmd)
-	publicCheckPaymentOrderPaidStatusCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	publicCheckPaymentOrderPaidStatusCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = publicCheckPaymentOrderPaidStatusCmd.MarkFlagRequired("namespace")
-	publicCheckPaymentOrderPaidStatusCmd.Flags().StringP("paymentOrderNo", "p", " ", "Payment order no")
+	publicCheckPaymentOrderPaidStatusCmd.Flags().StringP("paymentOrderNo", "po", " ", "Payment order no")
 	_ = publicCheckPaymentOrderPaidStatusCmd.MarkFlagRequired("paymentOrderNo")
 }

@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package dlc
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/d_l_c"
@@ -41,6 +41,6 @@ var getPlatformDLCConfigCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(getPlatformDLCConfigCmd)
-	getPlatformDLCConfigCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	getPlatformDLCConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = getPlatformDLCConfigCmd.MarkFlagRequired("namespace")
 }

@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package item
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/item"
@@ -45,10 +45,10 @@ var disableItemCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(disableItemCmd)
-	disableItemCmd.Flags().StringP("itemId", "i", " ", "Item id")
+	disableItemCmd.Flags().StringP("itemId", "id", " ", "Item id")
 	_ = disableItemCmd.MarkFlagRequired("itemId")
-	disableItemCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	disableItemCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = disableItemCmd.MarkFlagRequired("namespace")
-	disableItemCmd.Flags().StringP("storeId", "s", " ", "Store id")
+	disableItemCmd.Flags().StringP("storeId", "sd", " ", "Store id")
 	_ = disableItemCmd.MarkFlagRequired("storeId")
 }

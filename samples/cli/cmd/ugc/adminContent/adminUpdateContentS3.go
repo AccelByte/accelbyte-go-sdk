@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package adminContent
 
 import (
 	"encoding/json"
@@ -56,14 +56,14 @@ var adminUpdateContentS3Cmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(adminUpdateContentS3Cmd)
-	adminUpdateContentS3Cmd.Flags().StringP("body", "b", " ", "Body")
+	adminUpdateContentS3Cmd.Flags().StringP("body", "by", " ", "Body")
 	_ = adminUpdateContentS3Cmd.MarkFlagRequired("body")
-	adminUpdateContentS3Cmd.Flags().StringP("channelId", "c", " ", "Channel id")
+	adminUpdateContentS3Cmd.Flags().StringP("channelId", "cd", " ", "Channel id")
 	_ = adminUpdateContentS3Cmd.MarkFlagRequired("channelId")
-	adminUpdateContentS3Cmd.Flags().StringP("contentId", "c", " ", "Content id")
+	adminUpdateContentS3Cmd.Flags().StringP("contentId", "cd", " ", "Content id")
 	_ = adminUpdateContentS3Cmd.MarkFlagRequired("contentId")
-	adminUpdateContentS3Cmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	adminUpdateContentS3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = adminUpdateContentS3Cmd.MarkFlagRequired("namespace")
-	adminUpdateContentS3Cmd.Flags().StringP("userId", "u", " ", "User id")
+	adminUpdateContentS3Cmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = adminUpdateContentS3Cmd.MarkFlagRequired("userId")
 }

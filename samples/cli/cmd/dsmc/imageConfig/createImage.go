@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package imageConfig
 
 import (
 	"encoding/json"
@@ -47,6 +47,6 @@ var createImageCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(createImageCmd)
-	createImageCmd.Flags().StringP("body", "b", " ", "Body")
+	createImageCmd.Flags().StringP("body", "by", " ", "Body")
 	_ = createImageCmd.MarkFlagRequired("body")
 }

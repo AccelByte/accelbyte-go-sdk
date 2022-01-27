@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package groupRoles
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/group-sdk/pkg/groupclient/group_roles"
@@ -42,8 +42,8 @@ var deleteMemberRoleAdminV1Cmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(deleteMemberRoleAdminV1Cmd)
-	deleteMemberRoleAdminV1Cmd.Flags().StringP("memberRoleId", "m", " ", "Member role id")
+	deleteMemberRoleAdminV1Cmd.Flags().StringP("memberRoleId", "md", " ", "Member role id")
 	_ = deleteMemberRoleAdminV1Cmd.MarkFlagRequired("memberRoleId")
-	deleteMemberRoleAdminV1Cmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	deleteMemberRoleAdminV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = deleteMemberRoleAdminV1Cmd.MarkFlagRequired("namespace")
 }

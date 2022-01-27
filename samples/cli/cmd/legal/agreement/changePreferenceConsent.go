@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package agreement
 
 import (
 	"encoding/json"
@@ -47,5 +47,5 @@ var changePreferenceConsentCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(changePreferenceConsentCmd)
-	changePreferenceConsentCmd.Flags().StringP("body", "b", " ", "Body")
+	changePreferenceConsentCmd.Flags().StringP("body", "by", " ", "Body")
 }

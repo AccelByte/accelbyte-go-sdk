@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package publicFollow
 
 import (
 	"encoding/json"
@@ -52,10 +52,10 @@ var updateUserFollowStatusCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(updateUserFollowStatusCmd)
-	updateUserFollowStatusCmd.Flags().StringP("body", "b", " ", "Body")
+	updateUserFollowStatusCmd.Flags().StringP("body", "by", " ", "Body")
 	_ = updateUserFollowStatusCmd.MarkFlagRequired("body")
-	updateUserFollowStatusCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	updateUserFollowStatusCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = updateUserFollowStatusCmd.MarkFlagRequired("namespace")
-	updateUserFollowStatusCmd.Flags().StringP("userId", "u", " ", "User id")
+	updateUserFollowStatusCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = updateUserFollowStatusCmd.MarkFlagRequired("userId")
 }

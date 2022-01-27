@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package keyGroup
 
 import (
 	"encoding/json"
@@ -52,9 +52,9 @@ var updateKeyGroupCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(updateKeyGroupCmd)
-	updateKeyGroupCmd.Flags().StringP("body", "b", " ", "Body")
-	updateKeyGroupCmd.Flags().StringP("keyGroupId", "k", " ", "Key group id")
+	updateKeyGroupCmd.Flags().StringP("body", "by", " ", "Body")
+	updateKeyGroupCmd.Flags().StringP("keyGroupId", "kd", " ", "Key group id")
 	_ = updateKeyGroupCmd.MarkFlagRequired("keyGroupId")
-	updateKeyGroupCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	updateKeyGroupCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = updateKeyGroupCmd.MarkFlagRequired("namespace")
 }

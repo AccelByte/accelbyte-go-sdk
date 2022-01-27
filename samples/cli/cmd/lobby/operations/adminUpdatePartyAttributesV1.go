@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package operations
 
 import (
 	"encoding/json"
@@ -52,10 +52,10 @@ var adminUpdatePartyAttributesV1Cmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(adminUpdatePartyAttributesV1Cmd)
-	adminUpdatePartyAttributesV1Cmd.Flags().StringP("body", "b", " ", "Body")
+	adminUpdatePartyAttributesV1Cmd.Flags().StringP("body", "by", " ", "Body")
 	_ = adminUpdatePartyAttributesV1Cmd.MarkFlagRequired("body")
-	adminUpdatePartyAttributesV1Cmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	adminUpdatePartyAttributesV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = adminUpdatePartyAttributesV1Cmd.MarkFlagRequired("namespace")
-	adminUpdatePartyAttributesV1Cmd.Flags().StringP("partyId", "p", " ", "Party id")
+	adminUpdatePartyAttributesV1Cmd.Flags().StringP("partyId", "pd", " ", "Party id")
 	_ = adminUpdatePartyAttributesV1Cmd.MarkFlagRequired("partyId")
 }

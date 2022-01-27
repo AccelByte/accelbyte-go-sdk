@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package paymentDedicated
 
 import (
 	"encoding/json"
@@ -52,9 +52,9 @@ var refundPaymentOrderByDedicatedCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(refundPaymentOrderByDedicatedCmd)
-	refundPaymentOrderByDedicatedCmd.Flags().StringP("body", "b", " ", "Body")
-	refundPaymentOrderByDedicatedCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	refundPaymentOrderByDedicatedCmd.Flags().StringP("body", "by", " ", "Body")
+	refundPaymentOrderByDedicatedCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = refundPaymentOrderByDedicatedCmd.MarkFlagRequired("namespace")
-	refundPaymentOrderByDedicatedCmd.Flags().StringP("paymentOrderNo", "p", " ", "Payment order no")
+	refundPaymentOrderByDedicatedCmd.Flags().StringP("paymentOrderNo", "po", " ", "Payment order no")
 	_ = refundPaymentOrderByDedicatedCmd.MarkFlagRequired("paymentOrderNo")
 }

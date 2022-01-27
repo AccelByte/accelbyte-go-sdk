@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package server
 
 import (
 	"encoding/json"
@@ -50,8 +50,8 @@ var registerServerCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(registerServerCmd)
-	registerServerCmd.Flags().StringP("body", "b", " ", "Body")
+	registerServerCmd.Flags().StringP("body", "by", " ", "Body")
 	_ = registerServerCmd.MarkFlagRequired("body")
-	registerServerCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	registerServerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = registerServerCmd.MarkFlagRequired("namespace")
 }

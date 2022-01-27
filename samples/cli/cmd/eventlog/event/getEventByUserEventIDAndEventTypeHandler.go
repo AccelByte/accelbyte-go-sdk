@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package event
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/eventlog-sdk/pkg/eventlogclient/event"
@@ -55,19 +55,19 @@ var getEventByUserEventIDAndEventTypeHandlerCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(getEventByUserEventIDAndEventTypeHandlerCmd)
-	getEventByUserEventIDAndEventTypeHandlerCmd.Flags().Float64P("eventId", "e", 0, "Event id")
+	getEventByUserEventIDAndEventTypeHandlerCmd.Flags().Float64P("eventId", "ed", 0, "Event id")
 	_ = getEventByUserEventIDAndEventTypeHandlerCmd.MarkFlagRequired("eventId")
-	getEventByUserEventIDAndEventTypeHandlerCmd.Flags().Float64P("eventType", "e", 0, "Event type")
+	getEventByUserEventIDAndEventTypeHandlerCmd.Flags().Float64P("eventType", "ee", 0, "Event type")
 	_ = getEventByUserEventIDAndEventTypeHandlerCmd.MarkFlagRequired("eventType")
-	getEventByUserEventIDAndEventTypeHandlerCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	getEventByUserEventIDAndEventTypeHandlerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = getEventByUserEventIDAndEventTypeHandlerCmd.MarkFlagRequired("namespace")
-	getEventByUserEventIDAndEventTypeHandlerCmd.Flags().StringP("userId", "u", " ", "User id")
+	getEventByUserEventIDAndEventTypeHandlerCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = getEventByUserEventIDAndEventTypeHandlerCmd.MarkFlagRequired("userId")
-	getEventByUserEventIDAndEventTypeHandlerCmd.Flags().Float64P("offset", "o", 0, "Offset")
-	getEventByUserEventIDAndEventTypeHandlerCmd.Flags().StringP("endDate", "e", " ", "End date")
+	getEventByUserEventIDAndEventTypeHandlerCmd.Flags().Float64P("offset", "ot", 0, "Offset")
+	getEventByUserEventIDAndEventTypeHandlerCmd.Flags().StringP("endDate", "ee", " ", "End date")
 	_ = getEventByUserEventIDAndEventTypeHandlerCmd.MarkFlagRequired("endDate")
-	getEventByUserEventIDAndEventTypeHandlerCmd.Flags().Float64P("pageSize", "p", 1, "Page size")
+	getEventByUserEventIDAndEventTypeHandlerCmd.Flags().Float64P("pageSize", "pe", 1, "Page size")
 	_ = getEventByUserEventIDAndEventTypeHandlerCmd.MarkFlagRequired("pageSize")
-	getEventByUserEventIDAndEventTypeHandlerCmd.Flags().StringP("startDate", "s", " ", "Start date")
+	getEventByUserEventIDAndEventTypeHandlerCmd.Flags().StringP("startDate", "se", " ", "Start date")
 	_ = getEventByUserEventIDAndEventTypeHandlerCmd.MarkFlagRequired("startDate")
 }

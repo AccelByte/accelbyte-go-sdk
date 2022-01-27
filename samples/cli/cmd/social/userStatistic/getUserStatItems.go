@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package userStatistic
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
@@ -51,12 +51,12 @@ var getUserStatItemsCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(getUserStatItemsCmd)
-	getUserStatItemsCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	getUserStatItemsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = getUserStatItemsCmd.MarkFlagRequired("namespace")
-	getUserStatItemsCmd.Flags().StringP("userId", "u", " ", "User id")
+	getUserStatItemsCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = getUserStatItemsCmd.MarkFlagRequired("userId")
-	getUserStatItemsCmd.Flags().Int32P("limit", "l", 20, "Limit")
-	getUserStatItemsCmd.Flags().Int32P("offset", "o", 0, "Offset")
-	getUserStatItemsCmd.Flags().StringP("statCodes", "s", " ", "Stat codes")
-	getUserStatItemsCmd.Flags().StringP("tags", "t", " ", "Tags")
+	getUserStatItemsCmd.Flags().Int32P("limit", "lt", 20, "Limit")
+	getUserStatItemsCmd.Flags().Int32P("offset", "ot", 0, "Offset")
+	getUserStatItemsCmd.Flags().StringP("statCodes", "ss", " ", "Stat codes")
+	getUserStatItemsCmd.Flags().StringP("tags", "ts", " ", "Tags")
 }

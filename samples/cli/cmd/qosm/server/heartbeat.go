@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package server
 
 import (
 	"encoding/json"
@@ -47,6 +47,6 @@ var heartbeatCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(heartbeatCmd)
-	heartbeatCmd.Flags().StringP("body", "b", " ", "Body")
+	heartbeatCmd.Flags().StringP("body", "by", " ", "Body")
 	_ = heartbeatCmd.MarkFlagRequired("body")
 }

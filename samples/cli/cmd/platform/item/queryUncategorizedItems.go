@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package item
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/item"
@@ -51,11 +51,11 @@ var queryUncategorizedItemsCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(queryUncategorizedItemsCmd)
-	queryUncategorizedItemsCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	queryUncategorizedItemsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = queryUncategorizedItemsCmd.MarkFlagRequired("namespace")
-	queryUncategorizedItemsCmd.Flags().BoolP("activeOnly", "a", false, "Active only")
-	queryUncategorizedItemsCmd.Flags().Int32P("limit", "l", 20, "Limit")
-	queryUncategorizedItemsCmd.Flags().Int32P("offset", "o", 0, "Offset")
-	queryUncategorizedItemsCmd.Flags().StringP("sortBy", "s", " ", "Sort by")
-	queryUncategorizedItemsCmd.Flags().StringP("storeId", "s", " ", "Store id")
+	queryUncategorizedItemsCmd.Flags().BoolP("activeOnly", "ay", false, "Active only")
+	queryUncategorizedItemsCmd.Flags().Int32P("limit", "lt", 20, "Limit")
+	queryUncategorizedItemsCmd.Flags().Int32P("offset", "ot", 0, "Offset")
+	queryUncategorizedItemsCmd.Flags().StringP("sortBy", "sy", " ", "Sort by")
+	queryUncategorizedItemsCmd.Flags().StringP("storeId", "sd", " ", "Store id")
 }

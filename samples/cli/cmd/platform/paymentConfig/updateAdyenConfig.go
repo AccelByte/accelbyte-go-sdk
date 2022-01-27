@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package paymentConfig
 
 import (
 	"encoding/json"
@@ -54,9 +54,9 @@ var updateAdyenConfigCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(updateAdyenConfigCmd)
-	updateAdyenConfigCmd.Flags().StringP("body", "b", " ", "Body")
-	updateAdyenConfigCmd.Flags().StringP("id", "i", " ", "Id")
+	updateAdyenConfigCmd.Flags().StringP("body", "by", " ", "Body")
+	updateAdyenConfigCmd.Flags().StringP("id", "id", " ", "Id")
 	_ = updateAdyenConfigCmd.MarkFlagRequired("id")
-	updateAdyenConfigCmd.Flags().BoolP("sandbox", "s", false, "Sandbox")
-	updateAdyenConfigCmd.Flags().BoolP("validate", "v", false, "Validate")
+	updateAdyenConfigCmd.Flags().BoolP("sandbox", "sx", false, "Sandbox")
+	updateAdyenConfigCmd.Flags().BoolP("validate", "ve", false, "Validate")
 }

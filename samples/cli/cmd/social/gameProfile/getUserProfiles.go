@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package gameProfile
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
@@ -43,8 +43,8 @@ var getUserProfilesCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(getUserProfilesCmd)
-	getUserProfilesCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	getUserProfilesCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = getUserProfilesCmd.MarkFlagRequired("namespace")
-	getUserProfilesCmd.Flags().StringP("userId", "u", " ", "User id")
+	getUserProfilesCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = getUserProfilesCmd.MarkFlagRequired("userId")
 }

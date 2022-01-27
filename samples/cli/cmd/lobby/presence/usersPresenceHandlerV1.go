@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package presence
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/presence"
@@ -45,9 +45,9 @@ var usersPresenceHandlerV1Cmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(usersPresenceHandlerV1Cmd)
-	usersPresenceHandlerV1Cmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	usersPresenceHandlerV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = usersPresenceHandlerV1Cmd.MarkFlagRequired("namespace")
-	usersPresenceHandlerV1Cmd.Flags().BoolP("countOnly", "c", false, "Count only")
-	usersPresenceHandlerV1Cmd.Flags().StringP("userIds", "u", " ", "User ids")
+	usersPresenceHandlerV1Cmd.Flags().BoolP("countOnly", "cy", false, "Count only")
+	usersPresenceHandlerV1Cmd.Flags().StringP("userIds", "us", " ", "User ids")
 	_ = usersPresenceHandlerV1Cmd.MarkFlagRequired("userIds")
 }

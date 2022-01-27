@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package config
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/config"
@@ -41,6 +41,6 @@ var exportConfigCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(exportConfigCmd)
-	exportConfigCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	exportConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = exportConfigCmd.MarkFlagRequired("namespace")
 }

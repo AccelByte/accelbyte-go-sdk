@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package leaderboardData
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/leaderboard-sdk/pkg/leaderboardclient/leaderboard_data"
@@ -45,9 +45,9 @@ var adminGetArchivedLeaderboardRankingDataV1HandlerCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(adminGetArchivedLeaderboardRankingDataV1HandlerCmd)
-	adminGetArchivedLeaderboardRankingDataV1HandlerCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	adminGetArchivedLeaderboardRankingDataV1HandlerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = adminGetArchivedLeaderboardRankingDataV1HandlerCmd.MarkFlagRequired("namespace")
-	adminGetArchivedLeaderboardRankingDataV1HandlerCmd.Flags().StringP("slug", "s", " ", "Slug")
-	adminGetArchivedLeaderboardRankingDataV1HandlerCmd.Flags().StringP("leaderboardCodes", "l", " ", "Leaderboard codes")
+	adminGetArchivedLeaderboardRankingDataV1HandlerCmd.Flags().StringP("slug", "sg", " ", "Slug")
+	adminGetArchivedLeaderboardRankingDataV1HandlerCmd.Flags().StringP("leaderboardCodes", "ls", " ", "Leaderboard codes")
 	_ = adminGetArchivedLeaderboardRankingDataV1HandlerCmd.MarkFlagRequired("leaderboardCodes")
 }

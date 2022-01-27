@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package adminGroup
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
@@ -44,10 +44,10 @@ var adminDeleteGroupCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(adminDeleteGroupCmd)
-	adminDeleteGroupCmd.Flags().StringP("groupId", "g", " ", "Group id")
+	adminDeleteGroupCmd.Flags().StringP("groupId", "gd", " ", "Group id")
 	_ = adminDeleteGroupCmd.MarkFlagRequired("groupId")
-	adminDeleteGroupCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	adminDeleteGroupCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = adminDeleteGroupCmd.MarkFlagRequired("namespace")
-	adminDeleteGroupCmd.Flags().StringP("userId", "u", " ", "User id")
+	adminDeleteGroupCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = adminDeleteGroupCmd.MarkFlagRequired("userId")
 }

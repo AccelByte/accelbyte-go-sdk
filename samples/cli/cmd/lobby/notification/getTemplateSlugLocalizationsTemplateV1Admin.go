@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package notification
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/notification"
@@ -49,11 +49,11 @@ var getTemplateSlugLocalizationsTemplateV1AdminCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(getTemplateSlugLocalizationsTemplateV1AdminCmd)
-	getTemplateSlugLocalizationsTemplateV1AdminCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	getTemplateSlugLocalizationsTemplateV1AdminCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = getTemplateSlugLocalizationsTemplateV1AdminCmd.MarkFlagRequired("namespace")
-	getTemplateSlugLocalizationsTemplateV1AdminCmd.Flags().StringP("templateSlug", "t", " ", "Template slug")
+	getTemplateSlugLocalizationsTemplateV1AdminCmd.Flags().StringP("templateSlug", "tg", " ", "Template slug")
 	_ = getTemplateSlugLocalizationsTemplateV1AdminCmd.MarkFlagRequired("templateSlug")
-	getTemplateSlugLocalizationsTemplateV1AdminCmd.Flags().StringP("after", "a", "0", "After")
-	getTemplateSlugLocalizationsTemplateV1AdminCmd.Flags().StringP("before", "b", "0", "Before")
-	getTemplateSlugLocalizationsTemplateV1AdminCmd.Flags().Int64P("limit", "l", 20, "Limit")
+	getTemplateSlugLocalizationsTemplateV1AdminCmd.Flags().StringP("after", "ar", "0", "After")
+	getTemplateSlugLocalizationsTemplateV1AdminCmd.Flags().StringP("before", "be", "0", "Before")
+	getTemplateSlugLocalizationsTemplateV1AdminCmd.Flags().Int64P("limit", "lt", 20, "Limit")
 }

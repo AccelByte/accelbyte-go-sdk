@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package gameProfile
 
 import (
 	"encoding/json"
@@ -49,8 +49,8 @@ var publicGetUserGameProfilesCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(publicGetUserGameProfilesCmd)
-	publicGetUserGameProfilesCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	publicGetUserGameProfilesCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = publicGetUserGameProfilesCmd.MarkFlagRequired("namespace")
-	publicGetUserGameProfilesCmd.Flags().StringP("userIds", "u", " ", "User ids")
+	publicGetUserGameProfilesCmd.Flags().StringP("userIds", "us", " ", "User ids")
 	_ = publicGetUserGameProfilesCmd.MarkFlagRequired("userIds")
 }

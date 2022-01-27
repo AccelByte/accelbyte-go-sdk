@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package slot
 
 import (
 	"encoding/json"
@@ -64,13 +64,13 @@ var publicCreateUserNamespaceSlotCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(publicCreateUserNamespaceSlotCmd)
-	publicCreateUserNamespaceSlotCmd.Flags().StringP("checksum", "c", " ", "Checksum")
-	publicCreateUserNamespaceSlotCmd.Flags().StringP("customAttribute", "c", " ", "Custom attribute")
-	publicCreateUserNamespaceSlotCmd.Flags().StringP("file", "f", " ", "File")
-	publicCreateUserNamespaceSlotCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	publicCreateUserNamespaceSlotCmd.Flags().StringP("checksum", "cm", " ", "Checksum")
+	publicCreateUserNamespaceSlotCmd.Flags().StringP("customAttribute", "ce", " ", "Custom attribute")
+	publicCreateUserNamespaceSlotCmd.Flags().StringP("file", "fe", " ", "File")
+	publicCreateUserNamespaceSlotCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = publicCreateUserNamespaceSlotCmd.MarkFlagRequired("namespace")
-	publicCreateUserNamespaceSlotCmd.Flags().StringP("userId", "u", " ", "User id")
+	publicCreateUserNamespaceSlotCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = publicCreateUserNamespaceSlotCmd.MarkFlagRequired("userId")
-	publicCreateUserNamespaceSlotCmd.Flags().StringP("label", "l", " ", "Label")
-	publicCreateUserNamespaceSlotCmd.Flags().StringP("tags", "t", " ", "Tags")
+	publicCreateUserNamespaceSlotCmd.Flags().StringP("label", "ll", " ", "Label")
+	publicCreateUserNamespaceSlotCmd.Flags().StringP("tags", "ts", " ", "Tags")
 }

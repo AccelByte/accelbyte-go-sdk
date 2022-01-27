@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package users
 
 import (
 	"encoding/json"
@@ -55,14 +55,14 @@ var addUserPermissionCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(addUserPermissionCmd)
-	addUserPermissionCmd.Flags().StringP("body", "b", " ", "Body")
+	addUserPermissionCmd.Flags().StringP("body", "by", " ", "Body")
 	_ = addUserPermissionCmd.MarkFlagRequired("body")
-	addUserPermissionCmd.Flags().Int64P("action", "a", -1, "Action")
+	addUserPermissionCmd.Flags().Int64P("action", "an", -1, "Action")
 	_ = addUserPermissionCmd.MarkFlagRequired("action")
-	addUserPermissionCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	addUserPermissionCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = addUserPermissionCmd.MarkFlagRequired("namespace")
-	addUserPermissionCmd.Flags().StringP("resource", "r", " ", "Resource")
+	addUserPermissionCmd.Flags().StringP("resource", "re", " ", "Resource")
 	_ = addUserPermissionCmd.MarkFlagRequired("resource")
-	addUserPermissionCmd.Flags().StringP("userId", "u", " ", "User id")
+	addUserPermissionCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = addUserPermissionCmd.MarkFlagRequired("userId")
 }

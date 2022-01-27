@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package player
 
 import (
 	"encoding/json"
@@ -51,10 +51,10 @@ var adminSetPlayerSessionAttributeCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(adminSetPlayerSessionAttributeCmd)
-	adminSetPlayerSessionAttributeCmd.Flags().StringP("body", "b", " ", "Body")
+	adminSetPlayerSessionAttributeCmd.Flags().StringP("body", "by", " ", "Body")
 	_ = adminSetPlayerSessionAttributeCmd.MarkFlagRequired("body")
-	adminSetPlayerSessionAttributeCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	adminSetPlayerSessionAttributeCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = adminSetPlayerSessionAttributeCmd.MarkFlagRequired("namespace")
-	adminSetPlayerSessionAttributeCmd.Flags().StringP("userId", "u", " ", "User id")
+	adminSetPlayerSessionAttributeCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = adminSetPlayerSessionAttributeCmd.MarkFlagRequired("userId")
 }

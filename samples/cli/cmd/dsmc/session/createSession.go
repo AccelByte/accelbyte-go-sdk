@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package session
 
 import (
 	"encoding/json"
@@ -50,8 +50,8 @@ var createSessionCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(createSessionCmd)
-	createSessionCmd.Flags().StringP("body", "b", " ", "Body")
+	createSessionCmd.Flags().StringP("body", "by", " ", "Body")
 	_ = createSessionCmd.MarkFlagRequired("body")
-	createSessionCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	createSessionCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = createSessionCmd.MarkFlagRequired("namespace")
 }

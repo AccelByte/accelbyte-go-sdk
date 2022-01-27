@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package iap
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/i_a_p"
@@ -51,8 +51,8 @@ var updateXblBPCertFileCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(updateXblBPCertFileCmd)
-	updateXblBPCertFileCmd.Flags().StringP("file", "f", " ", "File")
-	updateXblBPCertFileCmd.Flags().StringP("password", "p", " ", "Password")
-	updateXblBPCertFileCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	updateXblBPCertFileCmd.Flags().StringP("file", "fe", " ", "File")
+	updateXblBPCertFileCmd.Flags().StringP("password", "pd", " ", "Password")
+	updateXblBPCertFileCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = updateXblBPCertFileCmd.MarkFlagRequired("namespace")
 }

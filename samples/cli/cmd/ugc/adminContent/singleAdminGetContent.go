@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package adminContent
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
@@ -45,8 +45,8 @@ var singleAdminGetContentCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(singleAdminGetContentCmd)
-	singleAdminGetContentCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	singleAdminGetContentCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = singleAdminGetContentCmd.MarkFlagRequired("namespace")
-	singleAdminGetContentCmd.Flags().StringP("limit", "l", "20", "Limit")
-	singleAdminGetContentCmd.Flags().StringP("offset", "o", "0", "Offset")
+	singleAdminGetContentCmd.Flags().StringP("limit", "lt", "20", "Limit")
+	singleAdminGetContentCmd.Flags().StringP("offset", "ot", "0", "Offset")
 }

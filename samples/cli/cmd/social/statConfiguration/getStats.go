@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package statConfiguration
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
@@ -45,8 +45,8 @@ var getStatsCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(getStatsCmd)
-	getStatsCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	getStatsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = getStatsCmd.MarkFlagRequired("namespace")
-	getStatsCmd.Flags().Int32P("limit", "l", 20, "Limit")
-	getStatsCmd.Flags().Int32P("offset", "o", 0, "Offset")
+	getStatsCmd.Flags().Int32P("limit", "lt", 20, "Limit")
+	getStatsCmd.Flags().Int32P("offset", "ot", 0, "Offset")
 }

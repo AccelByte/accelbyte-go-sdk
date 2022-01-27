@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package podConfig
 
 import (
 	"encoding/json"
@@ -52,10 +52,10 @@ var updatePodConfigCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(updatePodConfigCmd)
-	updatePodConfigCmd.Flags().StringP("body", "b", " ", "Body")
+	updatePodConfigCmd.Flags().StringP("body", "by", " ", "Body")
 	_ = updatePodConfigCmd.MarkFlagRequired("body")
-	updatePodConfigCmd.Flags().StringP("name", "n", " ", "Name")
+	updatePodConfigCmd.Flags().StringP("name", "ne", " ", "Name")
 	_ = updatePodConfigCmd.MarkFlagRequired("name")
-	updatePodConfigCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	updatePodConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = updatePodConfigCmd.MarkFlagRequired("namespace")
 }

@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package achievements
 
 import (
 	"encoding/json"
@@ -52,10 +52,10 @@ var adminUpdateAchievementCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(adminUpdateAchievementCmd)
-	adminUpdateAchievementCmd.Flags().StringP("body", "b", " ", "Body")
+	adminUpdateAchievementCmd.Flags().StringP("body", "by", " ", "Body")
 	_ = adminUpdateAchievementCmd.MarkFlagRequired("body")
-	adminUpdateAchievementCmd.Flags().StringP("achievementCode", "a", " ", "Achievement code")
+	adminUpdateAchievementCmd.Flags().StringP("achievementCode", "ae", " ", "Achievement code")
 	_ = adminUpdateAchievementCmd.MarkFlagRequired("achievementCode")
-	adminUpdateAchievementCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	adminUpdateAchievementCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = adminUpdateAchievementCmd.MarkFlagRequired("namespace")
 }

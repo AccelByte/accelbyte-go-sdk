@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package player
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/player"
@@ -41,6 +41,6 @@ var publicGetPlayerBlockedByPlayersV1Cmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(publicGetPlayerBlockedByPlayersV1Cmd)
-	publicGetPlayerBlockedByPlayersV1Cmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	publicGetPlayerBlockedByPlayersV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = publicGetPlayerBlockedByPlayersV1Cmd.MarkFlagRequired("namespace")
 }

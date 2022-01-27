@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package subscription
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/subscription"
@@ -57,15 +57,15 @@ var publicQueryUserSubscriptionsCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(publicQueryUserSubscriptionsCmd)
-	publicQueryUserSubscriptionsCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	publicQueryUserSubscriptionsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = publicQueryUserSubscriptionsCmd.MarkFlagRequired("namespace")
-	publicQueryUserSubscriptionsCmd.Flags().StringP("userId", "u", " ", "User id")
+	publicQueryUserSubscriptionsCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = publicQueryUserSubscriptionsCmd.MarkFlagRequired("userId")
-	publicQueryUserSubscriptionsCmd.Flags().StringP("chargeStatus", "c", " ", "Charge status")
-	publicQueryUserSubscriptionsCmd.Flags().StringP("itemId", "i", " ", "Item id")
-	publicQueryUserSubscriptionsCmd.Flags().Int32P("limit", "l", 20, "Limit")
-	publicQueryUserSubscriptionsCmd.Flags().Int32P("offset", "o", 0, "Offset")
-	publicQueryUserSubscriptionsCmd.Flags().StringP("sku", "s", " ", "Sku")
-	publicQueryUserSubscriptionsCmd.Flags().StringP("status", "s", " ", "Status")
-	publicQueryUserSubscriptionsCmd.Flags().StringP("subscribedBy", "s", " ", "Subscribed by")
+	publicQueryUserSubscriptionsCmd.Flags().StringP("chargeStatus", "cs", " ", "Charge status")
+	publicQueryUserSubscriptionsCmd.Flags().StringP("itemId", "id", " ", "Item id")
+	publicQueryUserSubscriptionsCmd.Flags().Int32P("limit", "lt", 20, "Limit")
+	publicQueryUserSubscriptionsCmd.Flags().Int32P("offset", "ot", 0, "Offset")
+	publicQueryUserSubscriptionsCmd.Flags().StringP("sku", "su", " ", "Sku")
+	publicQueryUserSubscriptionsCmd.Flags().StringP("status", "ss", " ", "Status")
+	publicQueryUserSubscriptionsCmd.Flags().StringP("subscribedBy", "sy", " ", "Subscribed by")
 }

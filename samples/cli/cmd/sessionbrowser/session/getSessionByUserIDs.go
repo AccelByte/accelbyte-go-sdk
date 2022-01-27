@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package session
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
@@ -43,8 +43,8 @@ var getSessionByUserIDsCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(getSessionByUserIDsCmd)
-	getSessionByUserIDsCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	getSessionByUserIDsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = getSessionByUserIDsCmd.MarkFlagRequired("namespace")
-	getSessionByUserIDsCmd.Flags().StringP("user_ids", "u", " ", "User ids")
+	getSessionByUserIDsCmd.Flags().StringP("user_ids", "us", " ", "User ids")
 	_ = getSessionByUserIDsCmd.MarkFlagRequired("user_ids")
 }

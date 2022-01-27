@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package season
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/seasonpass-sdk/pkg/seasonpassclient/season"
@@ -45,10 +45,10 @@ var getUserSeasonCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(getUserSeasonCmd)
-	getUserSeasonCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	getUserSeasonCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = getUserSeasonCmd.MarkFlagRequired("namespace")
-	getUserSeasonCmd.Flags().StringP("seasonId", "s", " ", "Season id")
+	getUserSeasonCmd.Flags().StringP("seasonId", "sd", " ", "Season id")
 	_ = getUserSeasonCmd.MarkFlagRequired("seasonId")
-	getUserSeasonCmd.Flags().StringP("userId", "u", " ", "User id")
+	getUserSeasonCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = getUserSeasonCmd.MarkFlagRequired("userId")
 }

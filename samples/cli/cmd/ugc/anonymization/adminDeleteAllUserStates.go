@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package anonymization
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
@@ -42,8 +42,8 @@ var adminDeleteAllUserStatesCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(adminDeleteAllUserStatesCmd)
-	adminDeleteAllUserStatesCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	adminDeleteAllUserStatesCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = adminDeleteAllUserStatesCmd.MarkFlagRequired("namespace")
-	adminDeleteAllUserStatesCmd.Flags().StringP("userId", "u", " ", "User id")
+	adminDeleteAllUserStatesCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = adminDeleteAllUserStatesCmd.MarkFlagRequired("userId")
 }

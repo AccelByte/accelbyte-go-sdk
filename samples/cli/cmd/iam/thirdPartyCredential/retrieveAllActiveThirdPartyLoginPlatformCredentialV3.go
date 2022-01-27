@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package thirdPartyCredential
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/third_party_credential"
@@ -41,6 +41,6 @@ var retrieveAllActiveThirdPartyLoginPlatformCredentialV3Cmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(retrieveAllActiveThirdPartyLoginPlatformCredentialV3Cmd)
-	retrieveAllActiveThirdPartyLoginPlatformCredentialV3Cmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	retrieveAllActiveThirdPartyLoginPlatformCredentialV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = retrieveAllActiveThirdPartyLoginPlatformCredentialV3Cmd.MarkFlagRequired("namespace")
 }

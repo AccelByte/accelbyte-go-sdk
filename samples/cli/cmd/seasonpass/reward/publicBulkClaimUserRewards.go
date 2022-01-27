@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package reward
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/seasonpass-sdk/pkg/seasonpassclient/reward"
@@ -43,8 +43,8 @@ var publicBulkClaimUserRewardsCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(publicBulkClaimUserRewardsCmd)
-	publicBulkClaimUserRewardsCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	publicBulkClaimUserRewardsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = publicBulkClaimUserRewardsCmd.MarkFlagRequired("namespace")
-	publicBulkClaimUserRewardsCmd.Flags().StringP("userId", "u", " ", "User id")
+	publicBulkClaimUserRewardsCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = publicBulkClaimUserRewardsCmd.MarkFlagRequired("userId")
 }

@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package publicLike
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
@@ -45,8 +45,8 @@ var getLikedContentCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(getLikedContentCmd)
-	getLikedContentCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	getLikedContentCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = getLikedContentCmd.MarkFlagRequired("namespace")
-	getLikedContentCmd.Flags().StringP("limit", "l", "20", "Limit")
-	getLikedContentCmd.Flags().StringP("offset", "o", "0", "Offset")
+	getLikedContentCmd.Flags().StringP("limit", "lt", "20", "Limit")
+	getLikedContentCmd.Flags().StringP("offset", "ot", "0", "Offset")
 }

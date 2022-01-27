@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package agreement
 
 import (
 	"encoding/json"
@@ -56,13 +56,13 @@ var indirectBulkAcceptVersionedPolicyV2Cmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(indirectBulkAcceptVersionedPolicyV2Cmd)
-	indirectBulkAcceptVersionedPolicyV2Cmd.Flags().StringP("body", "b", " ", "Body")
-	indirectBulkAcceptVersionedPolicyV2Cmd.Flags().StringP("clientId", "c", " ", "Client id")
+	indirectBulkAcceptVersionedPolicyV2Cmd.Flags().StringP("body", "by", " ", "Body")
+	indirectBulkAcceptVersionedPolicyV2Cmd.Flags().StringP("clientId", "cd", " ", "Client id")
 	_ = indirectBulkAcceptVersionedPolicyV2Cmd.MarkFlagRequired("clientId")
-	indirectBulkAcceptVersionedPolicyV2Cmd.Flags().StringP("countryCode", "c", " ", "Country code")
+	indirectBulkAcceptVersionedPolicyV2Cmd.Flags().StringP("countryCode", "ce", " ", "Country code")
 	_ = indirectBulkAcceptVersionedPolicyV2Cmd.MarkFlagRequired("countryCode")
-	indirectBulkAcceptVersionedPolicyV2Cmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	indirectBulkAcceptVersionedPolicyV2Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = indirectBulkAcceptVersionedPolicyV2Cmd.MarkFlagRequired("namespace")
-	indirectBulkAcceptVersionedPolicyV2Cmd.Flags().StringP("userId", "u", " ", "User id")
+	indirectBulkAcceptVersionedPolicyV2Cmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = indirectBulkAcceptVersionedPolicyV2Cmd.MarkFlagRequired("userId")
 }

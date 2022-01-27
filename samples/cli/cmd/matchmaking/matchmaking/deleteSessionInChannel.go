@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package matchmaking
 
 import (
 	matchmaking_ "github.com/AccelByte/accelbyte-go-sdk/matchmaking-sdk/pkg/matchmakingclient/matchmaking"
@@ -44,10 +44,10 @@ var deleteSessionInChannelCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(deleteSessionInChannelCmd)
-	deleteSessionInChannelCmd.Flags().StringP("channelName", "c", " ", "Channel name")
+	deleteSessionInChannelCmd.Flags().StringP("channelName", "ce", " ", "Channel name")
 	_ = deleteSessionInChannelCmd.MarkFlagRequired("channelName")
-	deleteSessionInChannelCmd.Flags().StringP("matchID", "m", " ", "Match ID")
+	deleteSessionInChannelCmd.Flags().StringP("matchID", "mD", " ", "Match ID")
 	_ = deleteSessionInChannelCmd.MarkFlagRequired("matchID")
-	deleteSessionInChannelCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	deleteSessionInChannelCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = deleteSessionInChannelCmd.MarkFlagRequired("namespace")
 }

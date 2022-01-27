@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package adminContent
 
 import (
 	"encoding/json"
@@ -54,12 +54,12 @@ var adminHideUserContentCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(adminHideUserContentCmd)
-	adminHideUserContentCmd.Flags().StringP("body", "b", " ", "Body")
+	adminHideUserContentCmd.Flags().StringP("body", "by", " ", "Body")
 	_ = adminHideUserContentCmd.MarkFlagRequired("body")
-	adminHideUserContentCmd.Flags().StringP("contentId", "c", " ", "Content id")
+	adminHideUserContentCmd.Flags().StringP("contentId", "cd", " ", "Content id")
 	_ = adminHideUserContentCmd.MarkFlagRequired("contentId")
-	adminHideUserContentCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	adminHideUserContentCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = adminHideUserContentCmd.MarkFlagRequired("namespace")
-	adminHideUserContentCmd.Flags().StringP("userId", "u", " ", "User id")
+	adminHideUserContentCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = adminHideUserContentCmd.MarkFlagRequired("userId")
 }

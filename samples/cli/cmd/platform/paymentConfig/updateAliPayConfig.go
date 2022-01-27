@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package paymentConfig
 
 import (
 	"encoding/json"
@@ -54,9 +54,9 @@ var updateAliPayConfigCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(updateAliPayConfigCmd)
-	updateAliPayConfigCmd.Flags().StringP("body", "b", " ", "Body")
-	updateAliPayConfigCmd.Flags().StringP("id", "i", " ", "Id")
+	updateAliPayConfigCmd.Flags().StringP("body", "by", " ", "Body")
+	updateAliPayConfigCmd.Flags().StringP("id", "id", " ", "Id")
 	_ = updateAliPayConfigCmd.MarkFlagRequired("id")
-	updateAliPayConfigCmd.Flags().BoolP("sandbox", "s", false, "Sandbox")
-	updateAliPayConfigCmd.Flags().BoolP("validate", "v", false, "Validate")
+	updateAliPayConfigCmd.Flags().BoolP("sandbox", "sx", false, "Sandbox")
+	updateAliPayConfigCmd.Flags().BoolP("validate", "ve", false, "Validate")
 }

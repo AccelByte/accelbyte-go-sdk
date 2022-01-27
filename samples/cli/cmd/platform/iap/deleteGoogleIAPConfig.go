@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package iap
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/i_a_p"
@@ -40,6 +40,6 @@ var deleteGoogleIAPConfigCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(deleteGoogleIAPConfigCmd)
-	deleteGoogleIAPConfigCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	deleteGoogleIAPConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = deleteGoogleIAPConfigCmd.MarkFlagRequired("namespace")
 }

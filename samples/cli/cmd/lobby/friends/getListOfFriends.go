@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package friends
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/friends"
@@ -47,10 +47,10 @@ var getListOfFriendsCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(getListOfFriendsCmd)
-	getListOfFriendsCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	getListOfFriendsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = getListOfFriendsCmd.MarkFlagRequired("namespace")
-	getListOfFriendsCmd.Flags().StringP("userId", "u", " ", "User id")
+	getListOfFriendsCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = getListOfFriendsCmd.MarkFlagRequired("userId")
-	getListOfFriendsCmd.Flags().StringP("limit", "l", "20", "Limit")
-	getListOfFriendsCmd.Flags().StringP("offset", "o", "0", "Offset")
+	getListOfFriendsCmd.Flags().StringP("limit", "lt", "20", "Limit")
+	getListOfFriendsCmd.Flags().StringP("offset", "ot", "0", "Offset")
 }

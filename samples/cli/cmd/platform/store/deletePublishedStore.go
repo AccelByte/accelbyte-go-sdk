@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package store
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/store"
@@ -41,6 +41,6 @@ var deletePublishedStoreCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(deletePublishedStoreCmd)
-	deletePublishedStoreCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	deletePublishedStoreCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = deletePublishedStoreCmd.MarkFlagRequired("namespace")
 }

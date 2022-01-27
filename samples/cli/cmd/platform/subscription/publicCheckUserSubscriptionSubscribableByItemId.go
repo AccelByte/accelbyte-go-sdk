@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package subscription
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/subscription"
@@ -45,10 +45,10 @@ var publicCheckUserSubscriptionSubscribableByItemIdCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(publicCheckUserSubscriptionSubscribableByItemIdCmd)
-	publicCheckUserSubscriptionSubscribableByItemIdCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	publicCheckUserSubscriptionSubscribableByItemIdCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = publicCheckUserSubscriptionSubscribableByItemIdCmd.MarkFlagRequired("namespace")
-	publicCheckUserSubscriptionSubscribableByItemIdCmd.Flags().StringP("userId", "u", " ", "User id")
+	publicCheckUserSubscriptionSubscribableByItemIdCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = publicCheckUserSubscriptionSubscribableByItemIdCmd.MarkFlagRequired("userId")
-	publicCheckUserSubscriptionSubscribableByItemIdCmd.Flags().StringP("itemId", "i", " ", "Item id")
+	publicCheckUserSubscriptionSubscribableByItemIdCmd.Flags().StringP("itemId", "id", " ", "Item id")
 	_ = publicCheckUserSubscriptionSubscribableByItemIdCmd.MarkFlagRequired("itemId")
 }

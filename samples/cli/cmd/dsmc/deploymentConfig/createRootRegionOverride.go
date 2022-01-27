@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package deploymentConfig
 
 import (
 	"encoding/json"
@@ -54,12 +54,12 @@ var createRootRegionOverrideCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(createRootRegionOverrideCmd)
-	createRootRegionOverrideCmd.Flags().StringP("body", "b", " ", "Body")
+	createRootRegionOverrideCmd.Flags().StringP("body", "by", " ", "Body")
 	_ = createRootRegionOverrideCmd.MarkFlagRequired("body")
-	createRootRegionOverrideCmd.Flags().StringP("deployment", "d", " ", "Deployment")
+	createRootRegionOverrideCmd.Flags().StringP("deployment", "dt", " ", "Deployment")
 	_ = createRootRegionOverrideCmd.MarkFlagRequired("deployment")
-	createRootRegionOverrideCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	createRootRegionOverrideCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = createRootRegionOverrideCmd.MarkFlagRequired("namespace")
-	createRootRegionOverrideCmd.Flags().StringP("region", "r", " ", "Region")
+	createRootRegionOverrideCmd.Flags().StringP("region", "rn", " ", "Region")
 	_ = createRootRegionOverrideCmd.MarkFlagRequired("region")
 }

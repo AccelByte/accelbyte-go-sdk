@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package adminPlayerRecord
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclient/admin_player_record"
@@ -47,10 +47,10 @@ var adminRetrievePlayerRecordsCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(adminRetrievePlayerRecordsCmd)
-	adminRetrievePlayerRecordsCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	adminRetrievePlayerRecordsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = adminRetrievePlayerRecordsCmd.MarkFlagRequired("namespace")
-	adminRetrievePlayerRecordsCmd.Flags().StringP("userId", "u", " ", "User id")
+	adminRetrievePlayerRecordsCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = adminRetrievePlayerRecordsCmd.MarkFlagRequired("userId")
-	adminRetrievePlayerRecordsCmd.Flags().Int64P("limit", "l", 20, "Limit")
-	adminRetrievePlayerRecordsCmd.Flags().Int64P("offset", "o", 0, "Offset")
+	adminRetrievePlayerRecordsCmd.Flags().Int64P("limit", "lt", 20, "Limit")
+	adminRetrievePlayerRecordsCmd.Flags().Int64P("offset", "ot", 0, "Offset")
 }

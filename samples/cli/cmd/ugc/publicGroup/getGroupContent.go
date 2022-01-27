@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package publicGroup
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
@@ -49,12 +49,12 @@ var getGroupContentCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(getGroupContentCmd)
-	getGroupContentCmd.Flags().StringP("groupId", "g", " ", "Group id")
+	getGroupContentCmd.Flags().StringP("groupId", "gd", " ", "Group id")
 	_ = getGroupContentCmd.MarkFlagRequired("groupId")
-	getGroupContentCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	getGroupContentCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = getGroupContentCmd.MarkFlagRequired("namespace")
-	getGroupContentCmd.Flags().StringP("userId", "u", " ", "User id")
+	getGroupContentCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = getGroupContentCmd.MarkFlagRequired("userId")
-	getGroupContentCmd.Flags().StringP("limit", "l", "20", "Limit")
-	getGroupContentCmd.Flags().StringP("offset", "o", "0", "Offset")
+	getGroupContentCmd.Flags().StringP("limit", "lt", "20", "Limit")
+	getGroupContentCmd.Flags().StringP("offset", "ot", "0", "Offset")
 }

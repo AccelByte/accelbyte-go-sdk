@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package paymentConfig
 
 import (
 	"encoding/json"
@@ -48,5 +48,5 @@ var testXsollaConfigCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(testXsollaConfigCmd)
-	testXsollaConfigCmd.Flags().StringP("body", "b", " ", "Body")
+	testXsollaConfigCmd.Flags().StringP("body", "by", " ", "Body")
 }

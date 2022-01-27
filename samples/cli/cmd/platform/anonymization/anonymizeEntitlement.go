@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package anonymization
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/anonymization"
@@ -42,8 +42,8 @@ var anonymizeEntitlementCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(anonymizeEntitlementCmd)
-	anonymizeEntitlementCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	anonymizeEntitlementCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = anonymizeEntitlementCmd.MarkFlagRequired("namespace")
-	anonymizeEntitlementCmd.Flags().StringP("userId", "u", " ", "User id")
+	anonymizeEntitlementCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = anonymizeEntitlementCmd.MarkFlagRequired("userId")
 }

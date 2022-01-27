@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package notification
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/notification"
@@ -43,8 +43,8 @@ var getTopicByTopicNameCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(getTopicByTopicNameCmd)
-	getTopicByTopicNameCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	getTopicByTopicNameCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = getTopicByTopicNameCmd.MarkFlagRequired("namespace")
-	getTopicByTopicNameCmd.Flags().StringP("topic", "t", " ", "Topic")
+	getTopicByTopicNameCmd.Flags().StringP("topic", "tc", " ", "Topic")
 	_ = getTopicByTopicNameCmd.MarkFlagRequired("topic")
 }

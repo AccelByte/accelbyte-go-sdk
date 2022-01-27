@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package userInfo
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclient/user_info"
@@ -40,5 +40,5 @@ var invalidateUserInfoCacheCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(invalidateUserInfoCacheCmd)
-	invalidateUserInfoCacheCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	invalidateUserInfoCacheCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 }

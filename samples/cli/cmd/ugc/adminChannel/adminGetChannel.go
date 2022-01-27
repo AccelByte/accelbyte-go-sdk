@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package adminChannel
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
@@ -47,10 +47,10 @@ var adminGetChannelCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(adminGetChannelCmd)
-	adminGetChannelCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	adminGetChannelCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = adminGetChannelCmd.MarkFlagRequired("namespace")
-	adminGetChannelCmd.Flags().StringP("userId", "u", " ", "User id")
+	adminGetChannelCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = adminGetChannelCmd.MarkFlagRequired("userId")
-	adminGetChannelCmd.Flags().StringP("limit", "l", "20", "Limit")
-	adminGetChannelCmd.Flags().StringP("offset", "o", "0", "Offset")
+	adminGetChannelCmd.Flags().StringP("limit", "lt", "20", "Limit")
+	adminGetChannelCmd.Flags().StringP("offset", "ot", "0", "Offset")
 }

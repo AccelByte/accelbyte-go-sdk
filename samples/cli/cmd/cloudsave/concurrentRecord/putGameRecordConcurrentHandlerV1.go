@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package concurrentRecord
 
 import (
 	"encoding/json"
@@ -51,10 +51,10 @@ var putGameRecordConcurrentHandlerV1Cmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(putGameRecordConcurrentHandlerV1Cmd)
-	putGameRecordConcurrentHandlerV1Cmd.Flags().StringP("body", "b", " ", "Body")
+	putGameRecordConcurrentHandlerV1Cmd.Flags().StringP("body", "by", " ", "Body")
 	_ = putGameRecordConcurrentHandlerV1Cmd.MarkFlagRequired("body")
-	putGameRecordConcurrentHandlerV1Cmd.Flags().StringP("key", "k", " ", "Key")
+	putGameRecordConcurrentHandlerV1Cmd.Flags().StringP("key", "ky", " ", "Key")
 	_ = putGameRecordConcurrentHandlerV1Cmd.MarkFlagRequired("key")
-	putGameRecordConcurrentHandlerV1Cmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	putGameRecordConcurrentHandlerV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = putGameRecordConcurrentHandlerV1Cmd.MarkFlagRequired("namespace")
 }

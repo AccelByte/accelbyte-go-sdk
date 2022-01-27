@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package dlc
 
 import (
 	"encoding/json"
@@ -50,7 +50,7 @@ var updateDLCItemConfigCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(updateDLCItemConfigCmd)
-	updateDLCItemConfigCmd.Flags().StringP("body", "b", " ", "Body")
-	updateDLCItemConfigCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	updateDLCItemConfigCmd.Flags().StringP("body", "by", " ", "Body")
+	updateDLCItemConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = updateDLCItemConfigCmd.MarkFlagRequired("namespace")
 }

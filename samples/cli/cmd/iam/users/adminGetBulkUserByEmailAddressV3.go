@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package users
 
 import (
 	"encoding/json"
@@ -50,8 +50,8 @@ var adminGetBulkUserByEmailAddressV3Cmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(adminGetBulkUserByEmailAddressV3Cmd)
-	adminGetBulkUserByEmailAddressV3Cmd.Flags().StringP("body", "b", " ", "Body")
+	adminGetBulkUserByEmailAddressV3Cmd.Flags().StringP("body", "by", " ", "Body")
 	_ = adminGetBulkUserByEmailAddressV3Cmd.MarkFlagRequired("body")
-	adminGetBulkUserByEmailAddressV3Cmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	adminGetBulkUserByEmailAddressV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = adminGetBulkUserByEmailAddressV3Cmd.MarkFlagRequired("namespace")
 }

@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package users
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users"
@@ -45,10 +45,10 @@ var getUserByPlatformUserIDCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(getUserByPlatformUserIDCmd)
-	getUserByPlatformUserIDCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	getUserByPlatformUserIDCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = getUserByPlatformUserIDCmd.MarkFlagRequired("namespace")
-	getUserByPlatformUserIDCmd.Flags().StringP("platformID", "p", " ", "Platform ID")
+	getUserByPlatformUserIDCmd.Flags().StringP("platformID", "pD", " ", "Platform ID")
 	_ = getUserByPlatformUserIDCmd.MarkFlagRequired("platformID")
-	getUserByPlatformUserIDCmd.Flags().StringP("platformUserID", "p", " ", "Platform user ID")
+	getUserByPlatformUserIDCmd.Flags().StringP("platformUserID", "pD", " ", "Platform user ID")
 	_ = getUserByPlatformUserIDCmd.MarkFlagRequired("platformUserID")
 }

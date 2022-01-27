@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package notification
 
 import (
 	"encoding/json"
@@ -51,10 +51,10 @@ var updateTopicByTopicNameCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(updateTopicByTopicNameCmd)
-	updateTopicByTopicNameCmd.Flags().StringP("body", "b", " ", "Body")
+	updateTopicByTopicNameCmd.Flags().StringP("body", "by", " ", "Body")
 	_ = updateTopicByTopicNameCmd.MarkFlagRequired("body")
-	updateTopicByTopicNameCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	updateTopicByTopicNameCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = updateTopicByTopicNameCmd.MarkFlagRequired("namespace")
-	updateTopicByTopicNameCmd.Flags().StringP("topic", "t", " ", "Topic")
+	updateTopicByTopicNameCmd.Flags().StringP("topic", "tc", " ", "Topic")
 	_ = updateTopicByTopicNameCmd.MarkFlagRequired("topic")
 }

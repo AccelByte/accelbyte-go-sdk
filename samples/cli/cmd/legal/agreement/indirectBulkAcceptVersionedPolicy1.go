@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package agreement
 
 import (
 	"encoding/json"
@@ -50,7 +50,7 @@ var indirectBulkAcceptVersionedPolicy1Cmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(indirectBulkAcceptVersionedPolicy1Cmd)
-	indirectBulkAcceptVersionedPolicy1Cmd.Flags().StringP("body", "b", " ", "Body")
-	indirectBulkAcceptVersionedPolicy1Cmd.Flags().StringP("userId", "u", " ", "User id")
+	indirectBulkAcceptVersionedPolicy1Cmd.Flags().StringP("body", "by", " ", "Body")
+	indirectBulkAcceptVersionedPolicy1Cmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = indirectBulkAcceptVersionedPolicy1Cmd.MarkFlagRequired("userId")
 }

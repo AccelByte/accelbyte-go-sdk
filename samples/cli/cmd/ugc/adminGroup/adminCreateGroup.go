@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package adminGroup
 
 import (
 	"encoding/json"
@@ -50,8 +50,8 @@ var adminCreateGroupCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(adminCreateGroupCmd)
-	adminCreateGroupCmd.Flags().StringP("body", "b", " ", "Body")
+	adminCreateGroupCmd.Flags().StringP("body", "by", " ", "Body")
 	_ = adminCreateGroupCmd.MarkFlagRequired("body")
-	adminCreateGroupCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	adminCreateGroupCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = adminCreateGroupCmd.MarkFlagRequired("namespace")
 }

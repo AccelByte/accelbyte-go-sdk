@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package order
 
 import (
 	"encoding/json"
@@ -54,11 +54,11 @@ var updateUserOrderStatusCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(updateUserOrderStatusCmd)
-	updateUserOrderStatusCmd.Flags().StringP("body", "b", " ", "Body")
-	updateUserOrderStatusCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	updateUserOrderStatusCmd.Flags().StringP("body", "by", " ", "Body")
+	updateUserOrderStatusCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = updateUserOrderStatusCmd.MarkFlagRequired("namespace")
-	updateUserOrderStatusCmd.Flags().StringP("orderNo", "o", " ", "Order no")
+	updateUserOrderStatusCmd.Flags().StringP("orderNo", "oo", " ", "Order no")
 	_ = updateUserOrderStatusCmd.MarkFlagRequired("orderNo")
-	updateUserOrderStatusCmd.Flags().StringP("userId", "u", " ", "User id")
+	updateUserOrderStatusCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = updateUserOrderStatusCmd.MarkFlagRequired("userId")
 }

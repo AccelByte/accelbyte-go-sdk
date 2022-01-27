@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package users
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users"
@@ -41,6 +41,6 @@ var adminGetAgeRestrictionStatusV2Cmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(adminGetAgeRestrictionStatusV2Cmd)
-	adminGetAgeRestrictionStatusV2Cmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	adminGetAgeRestrictionStatusV2Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = adminGetAgeRestrictionStatusV2Cmd.MarkFlagRequired("namespace")
 }

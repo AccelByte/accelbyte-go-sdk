@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package config
 
 import (
 	"encoding/json"
@@ -52,10 +52,10 @@ var addPortCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(addPortCmd)
-	addPortCmd.Flags().StringP("body", "b", " ", "Body")
+	addPortCmd.Flags().StringP("body", "by", " ", "Body")
 	_ = addPortCmd.MarkFlagRequired("body")
-	addPortCmd.Flags().StringP("name", "n", " ", "Name")
+	addPortCmd.Flags().StringP("name", "ne", " ", "Name")
 	_ = addPortCmd.MarkFlagRequired("name")
-	addPortCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	addPortCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = addPortCmd.MarkFlagRequired("namespace")
 }

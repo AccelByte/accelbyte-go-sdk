@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package publicChannel
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
@@ -47,10 +47,10 @@ var getChannelsCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(getChannelsCmd)
-	getChannelsCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	getChannelsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = getChannelsCmd.MarkFlagRequired("namespace")
-	getChannelsCmd.Flags().StringP("userId", "u", " ", "User id")
+	getChannelsCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = getChannelsCmd.MarkFlagRequired("userId")
-	getChannelsCmd.Flags().StringP("limit", "l", "20", "Limit")
-	getChannelsCmd.Flags().StringP("offset", "o", "0", "Offset")
+	getChannelsCmd.Flags().StringP("limit", "lt", "20", "Limit")
+	getChannelsCmd.Flags().StringP("offset", "ot", "0", "Offset")
 }

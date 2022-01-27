@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package item
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/item"
@@ -51,12 +51,12 @@ var bulkGetLocaleItemsCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(bulkGetLocaleItemsCmd)
-	bulkGetLocaleItemsCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	bulkGetLocaleItemsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = bulkGetLocaleItemsCmd.MarkFlagRequired("namespace")
-	bulkGetLocaleItemsCmd.Flags().BoolP("activeOnly", "a", false, "Active only")
-	bulkGetLocaleItemsCmd.Flags().StringP("language", "l", " ", "Language")
-	bulkGetLocaleItemsCmd.Flags().StringP("region", "r", " ", "Region")
-	bulkGetLocaleItemsCmd.Flags().StringP("storeId", "s", " ", "Store id")
-	bulkGetLocaleItemsCmd.Flags().StringP("itemIds", "i", " ", "Item ids")
+	bulkGetLocaleItemsCmd.Flags().BoolP("activeOnly", "ay", false, "Active only")
+	bulkGetLocaleItemsCmd.Flags().StringP("language", "le", " ", "Language")
+	bulkGetLocaleItemsCmd.Flags().StringP("region", "rn", " ", "Region")
+	bulkGetLocaleItemsCmd.Flags().StringP("storeId", "sd", " ", "Store id")
+	bulkGetLocaleItemsCmd.Flags().StringP("itemIds", "is", " ", "Item ids")
 	_ = bulkGetLocaleItemsCmd.MarkFlagRequired("itemIds")
 }

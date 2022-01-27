@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package publicContent
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
@@ -46,12 +46,12 @@ var deleteContentCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(deleteContentCmd)
-	deleteContentCmd.Flags().StringP("channelId", "c", " ", "Channel id")
+	deleteContentCmd.Flags().StringP("channelId", "cd", " ", "Channel id")
 	_ = deleteContentCmd.MarkFlagRequired("channelId")
-	deleteContentCmd.Flags().StringP("contentId", "c", " ", "Content id")
+	deleteContentCmd.Flags().StringP("contentId", "cd", " ", "Content id")
 	_ = deleteContentCmd.MarkFlagRequired("contentId")
-	deleteContentCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	deleteContentCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = deleteContentCmd.MarkFlagRequired("namespace")
-	deleteContentCmd.Flags().StringP("userId", "u", " ", "User id")
+	deleteContentCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = deleteContentCmd.MarkFlagRequired("userId")
 }

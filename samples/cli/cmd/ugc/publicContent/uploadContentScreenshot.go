@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package publicContent
 
 import (
 	"encoding/json"
@@ -54,12 +54,12 @@ var uploadContentScreenshotCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(uploadContentScreenshotCmd)
-	uploadContentScreenshotCmd.Flags().StringP("body", "b", " ", "Body")
+	uploadContentScreenshotCmd.Flags().StringP("body", "by", " ", "Body")
 	_ = uploadContentScreenshotCmd.MarkFlagRequired("body")
-	uploadContentScreenshotCmd.Flags().StringP("contentId", "c", " ", "Content id")
+	uploadContentScreenshotCmd.Flags().StringP("contentId", "cd", " ", "Content id")
 	_ = uploadContentScreenshotCmd.MarkFlagRequired("contentId")
-	uploadContentScreenshotCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	uploadContentScreenshotCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = uploadContentScreenshotCmd.MarkFlagRequired("namespace")
-	uploadContentScreenshotCmd.Flags().StringP("userId", "u", " ", "User id")
+	uploadContentScreenshotCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = uploadContentScreenshotCmd.MarkFlagRequired("userId")
 }

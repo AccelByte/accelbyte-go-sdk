@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package wallet
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/wallet"
@@ -49,12 +49,12 @@ var listUserWalletTransactionsCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(listUserWalletTransactionsCmd)
-	listUserWalletTransactionsCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	listUserWalletTransactionsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = listUserWalletTransactionsCmd.MarkFlagRequired("namespace")
-	listUserWalletTransactionsCmd.Flags().StringP("userId", "u", " ", "User id")
+	listUserWalletTransactionsCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = listUserWalletTransactionsCmd.MarkFlagRequired("userId")
-	listUserWalletTransactionsCmd.Flags().StringP("walletId", "w", " ", "Wallet id")
+	listUserWalletTransactionsCmd.Flags().StringP("walletId", "wd", " ", "Wallet id")
 	_ = listUserWalletTransactionsCmd.MarkFlagRequired("walletId")
-	listUserWalletTransactionsCmd.Flags().Int32P("limit", "l", 20, "Limit")
-	listUserWalletTransactionsCmd.Flags().Int32P("offset", "o", 0, "Offset")
+	listUserWalletTransactionsCmd.Flags().Int32P("limit", "lt", 20, "Limit")
+	listUserWalletTransactionsCmd.Flags().Int32P("offset", "ot", 0, "Offset")
 }

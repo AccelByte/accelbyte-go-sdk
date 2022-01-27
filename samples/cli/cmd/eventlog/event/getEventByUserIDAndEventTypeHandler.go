@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package event
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/eventlog-sdk/pkg/eventlogclient/event"
@@ -53,17 +53,17 @@ var getEventByUserIDAndEventTypeHandlerCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(getEventByUserIDAndEventTypeHandlerCmd)
-	getEventByUserIDAndEventTypeHandlerCmd.Flags().Float64P("eventType", "e", 0, "Event type")
+	getEventByUserIDAndEventTypeHandlerCmd.Flags().Float64P("eventType", "ee", 0, "Event type")
 	_ = getEventByUserIDAndEventTypeHandlerCmd.MarkFlagRequired("eventType")
-	getEventByUserIDAndEventTypeHandlerCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	getEventByUserIDAndEventTypeHandlerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = getEventByUserIDAndEventTypeHandlerCmd.MarkFlagRequired("namespace")
-	getEventByUserIDAndEventTypeHandlerCmd.Flags().StringP("userId", "u", " ", "User id")
+	getEventByUserIDAndEventTypeHandlerCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = getEventByUserIDAndEventTypeHandlerCmd.MarkFlagRequired("userId")
-	getEventByUserIDAndEventTypeHandlerCmd.Flags().Float64P("offset", "o", 0, "Offset")
-	getEventByUserIDAndEventTypeHandlerCmd.Flags().StringP("endDate", "e", " ", "End date")
+	getEventByUserIDAndEventTypeHandlerCmd.Flags().Float64P("offset", "ot", 0, "Offset")
+	getEventByUserIDAndEventTypeHandlerCmd.Flags().StringP("endDate", "ee", " ", "End date")
 	_ = getEventByUserIDAndEventTypeHandlerCmd.MarkFlagRequired("endDate")
-	getEventByUserIDAndEventTypeHandlerCmd.Flags().Float64P("pageSize", "p", 1, "Page size")
+	getEventByUserIDAndEventTypeHandlerCmd.Flags().Float64P("pageSize", "pe", 1, "Page size")
 	_ = getEventByUserIDAndEventTypeHandlerCmd.MarkFlagRequired("pageSize")
-	getEventByUserIDAndEventTypeHandlerCmd.Flags().StringP("startDate", "s", " ", "Start date")
+	getEventByUserIDAndEventTypeHandlerCmd.Flags().StringP("startDate", "se", " ", "Start date")
 	_ = getEventByUserIDAndEventTypeHandlerCmd.MarkFlagRequired("startDate")
 }

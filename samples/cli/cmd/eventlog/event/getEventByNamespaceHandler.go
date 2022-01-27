@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package event
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/eventlog-sdk/pkg/eventlogclient/event"
@@ -49,13 +49,13 @@ var getEventByNamespaceHandlerCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(getEventByNamespaceHandlerCmd)
-	getEventByNamespaceHandlerCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	getEventByNamespaceHandlerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = getEventByNamespaceHandlerCmd.MarkFlagRequired("namespace")
-	getEventByNamespaceHandlerCmd.Flags().Float64P("offset", "o", 0, "Offset")
-	getEventByNamespaceHandlerCmd.Flags().StringP("endDate", "e", " ", "End date")
+	getEventByNamespaceHandlerCmd.Flags().Float64P("offset", "ot", 0, "Offset")
+	getEventByNamespaceHandlerCmd.Flags().StringP("endDate", "ee", " ", "End date")
 	_ = getEventByNamespaceHandlerCmd.MarkFlagRequired("endDate")
-	getEventByNamespaceHandlerCmd.Flags().Float64P("pageSize", "p", 1, "Page size")
+	getEventByNamespaceHandlerCmd.Flags().Float64P("pageSize", "pe", 1, "Page size")
 	_ = getEventByNamespaceHandlerCmd.MarkFlagRequired("pageSize")
-	getEventByNamespaceHandlerCmd.Flags().StringP("startDate", "s", " ", "Start date")
+	getEventByNamespaceHandlerCmd.Flags().StringP("startDate", "se", " ", "Start date")
 	_ = getEventByNamespaceHandlerCmd.MarkFlagRequired("startDate")
 }

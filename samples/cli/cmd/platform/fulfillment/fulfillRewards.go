@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package fulfillment
 
 import (
 	"encoding/json"
@@ -51,9 +51,9 @@ var fulfillRewardsCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(fulfillRewardsCmd)
-	fulfillRewardsCmd.Flags().StringP("body", "b", " ", "Body")
-	fulfillRewardsCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	fulfillRewardsCmd.Flags().StringP("body", "by", " ", "Body")
+	fulfillRewardsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = fulfillRewardsCmd.MarkFlagRequired("namespace")
-	fulfillRewardsCmd.Flags().StringP("userId", "u", " ", "User id")
+	fulfillRewardsCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = fulfillRewardsCmd.MarkFlagRequired("userId")
 }

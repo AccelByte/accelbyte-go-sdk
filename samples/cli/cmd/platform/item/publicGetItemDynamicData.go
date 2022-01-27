@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package item
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/item"
@@ -43,8 +43,8 @@ var publicGetItemDynamicDataCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(publicGetItemDynamicDataCmd)
-	publicGetItemDynamicDataCmd.Flags().StringP("itemId", "i", " ", "Item id")
+	publicGetItemDynamicDataCmd.Flags().StringP("itemId", "id", " ", "Item id")
 	_ = publicGetItemDynamicDataCmd.MarkFlagRequired("itemId")
-	publicGetItemDynamicDataCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	publicGetItemDynamicDataCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = publicGetItemDynamicDataCmd.MarkFlagRequired("namespace")
 }

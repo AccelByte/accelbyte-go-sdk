@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package sso
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/s_s_o"
@@ -42,7 +42,7 @@ var loginSSOClientCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(loginSSOClientCmd)
-	loginSSOClientCmd.Flags().StringP("platformId", "p", " ", "Platform id")
+	loginSSOClientCmd.Flags().StringP("platformId", "pd", " ", "Platform id")
 	_ = loginSSOClientCmd.MarkFlagRequired("platformId")
-	loginSSOClientCmd.Flags().StringP("payload", "p", " ", "Payload")
+	loginSSOClientCmd.Flags().StringP("payload", "pd", " ", "Payload")
 }

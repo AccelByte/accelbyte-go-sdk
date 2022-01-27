@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package paymentConfig
 
 import (
 	"encoding/json"
@@ -50,6 +50,6 @@ var testPayPalConfigCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(testPayPalConfigCmd)
-	testPayPalConfigCmd.Flags().StringP("body", "b", " ", "Body")
-	testPayPalConfigCmd.Flags().BoolP("sandbox", "s", false, "Sandbox")
+	testPayPalConfigCmd.Flags().StringP("body", "by", " ", "Body")
+	testPayPalConfigCmd.Flags().BoolP("sandbox", "sx", false, "Sandbox")
 }

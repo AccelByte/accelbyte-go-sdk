@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package podConfig
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/pod_config"
@@ -42,8 +42,8 @@ var deletePodConfigCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(deletePodConfigCmd)
-	deletePodConfigCmd.Flags().StringP("name", "n", " ", "Name")
+	deletePodConfigCmd.Flags().StringP("name", "ne", " ", "Name")
 	_ = deletePodConfigCmd.MarkFlagRequired("name")
-	deletePodConfigCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	deletePodConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = deletePodConfigCmd.MarkFlagRequired("namespace")
 }

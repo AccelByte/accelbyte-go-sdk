@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package paymentConfig
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/payment_config"
@@ -43,6 +43,6 @@ var debugMatchedPaymentProviderConfigCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(debugMatchedPaymentProviderConfigCmd)
-	debugMatchedPaymentProviderConfigCmd.Flags().StringP("namespace", "n", " ", "Namespace")
-	debugMatchedPaymentProviderConfigCmd.Flags().StringP("region", "r", " ", "Region")
+	debugMatchedPaymentProviderConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	debugMatchedPaymentProviderConfigCmd.Flags().StringP("region", "rn", " ", "Region")
 }

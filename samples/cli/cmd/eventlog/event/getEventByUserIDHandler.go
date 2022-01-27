@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package event
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/eventlog-sdk/pkg/eventlogclient/event"
@@ -51,15 +51,15 @@ var getEventByUserIDHandlerCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(getEventByUserIDHandlerCmd)
-	getEventByUserIDHandlerCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	getEventByUserIDHandlerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = getEventByUserIDHandlerCmd.MarkFlagRequired("namespace")
-	getEventByUserIDHandlerCmd.Flags().StringP("userId", "u", " ", "User id")
+	getEventByUserIDHandlerCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = getEventByUserIDHandlerCmd.MarkFlagRequired("userId")
-	getEventByUserIDHandlerCmd.Flags().Float64P("offset", "o", 0, "Offset")
-	getEventByUserIDHandlerCmd.Flags().StringP("endDate", "e", " ", "End date")
+	getEventByUserIDHandlerCmd.Flags().Float64P("offset", "ot", 0, "Offset")
+	getEventByUserIDHandlerCmd.Flags().StringP("endDate", "ee", " ", "End date")
 	_ = getEventByUserIDHandlerCmd.MarkFlagRequired("endDate")
-	getEventByUserIDHandlerCmd.Flags().Float64P("pageSize", "p", 1, "Page size")
+	getEventByUserIDHandlerCmd.Flags().Float64P("pageSize", "pe", 1, "Page size")
 	_ = getEventByUserIDHandlerCmd.MarkFlagRequired("pageSize")
-	getEventByUserIDHandlerCmd.Flags().StringP("startDate", "s", " ", "Start date")
+	getEventByUserIDHandlerCmd.Flags().StringP("startDate", "se", " ", "Start date")
 	_ = getEventByUserIDHandlerCmd.MarkFlagRequired("startDate")
 }

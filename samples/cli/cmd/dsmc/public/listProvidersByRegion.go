@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package public
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/public"
@@ -41,6 +41,6 @@ var listProvidersByRegionCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(listProvidersByRegionCmd)
-	listProvidersByRegionCmd.Flags().StringP("region", "r", " ", "Region")
+	listProvidersByRegionCmd.Flags().StringP("region", "rn", " ", "Region")
 	_ = listProvidersByRegionCmd.MarkFlagRequired("region")
 }

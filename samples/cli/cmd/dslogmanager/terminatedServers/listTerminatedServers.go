@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package terminatedServers
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/dslogmanager-sdk/pkg/dslogmanagerclient/terminated_servers"
@@ -67,19 +67,19 @@ var listTerminatedServersCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(listTerminatedServersCmd)
-	listTerminatedServersCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	listTerminatedServersCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = listTerminatedServersCmd.MarkFlagRequired("namespace")
-	listTerminatedServersCmd.Flags().StringP("deployment", "d", " ", "Deployment")
-	listTerminatedServersCmd.Flags().StringP("end_date", "e", " ", "End date")
-	listTerminatedServersCmd.Flags().StringP("game_mode", "g", " ", "Game mode")
-	listTerminatedServersCmd.Flags().Int64P("limit", "l", 20, "Limit")
-	listTerminatedServersCmd.Flags().StringP("next", "n", " ", "Next")
-	listTerminatedServersCmd.Flags().StringP("party_id", "p", " ", "Party id")
-	listTerminatedServersCmd.Flags().StringP("pod_name", "p", " ", "Pod name")
-	listTerminatedServersCmd.Flags().StringP("previous", "p", " ", "Previous")
-	listTerminatedServersCmd.Flags().StringP("provider", "p", " ", "Provider")
-	listTerminatedServersCmd.Flags().StringP("region", "r", " ", "Region")
-	listTerminatedServersCmd.Flags().StringP("session_id", "s", " ", "Session id")
-	listTerminatedServersCmd.Flags().StringP("start_date", "s", " ", "Start date")
-	listTerminatedServersCmd.Flags().StringP("user_id", "u", " ", "User id")
+	listTerminatedServersCmd.Flags().StringP("deployment", "dt", " ", "Deployment")
+	listTerminatedServersCmd.Flags().StringP("end_date", "ee", " ", "End date")
+	listTerminatedServersCmd.Flags().StringP("game_mode", "ge", " ", "Game mode")
+	listTerminatedServersCmd.Flags().Int64P("limit", "lt", 20, "Limit")
+	listTerminatedServersCmd.Flags().StringP("next", "nt", " ", "Next")
+	listTerminatedServersCmd.Flags().StringP("party_id", "pd", " ", "Party id")
+	listTerminatedServersCmd.Flags().StringP("pod_name", "pe", " ", "Pod name")
+	listTerminatedServersCmd.Flags().StringP("previous", "ps", " ", "Previous")
+	listTerminatedServersCmd.Flags().StringP("provider", "pr", " ", "Provider")
+	listTerminatedServersCmd.Flags().StringP("region", "rn", " ", "Region")
+	listTerminatedServersCmd.Flags().StringP("session_id", "sd", " ", "Session id")
+	listTerminatedServersCmd.Flags().StringP("start_date", "se", " ", "Start date")
+	listTerminatedServersCmd.Flags().StringP("user_id", "ud", " ", "User id")
 }

@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package policies
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclient/policies"
@@ -49,10 +49,10 @@ var retrieveLatestPoliciesPublicCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(retrieveLatestPoliciesPublicCmd)
-	retrieveLatestPoliciesPublicCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	retrieveLatestPoliciesPublicCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = retrieveLatestPoliciesPublicCmd.MarkFlagRequired("namespace")
-	retrieveLatestPoliciesPublicCmd.Flags().BoolP("alwaysIncludeDefault", "a", false, "Always include default")
-	retrieveLatestPoliciesPublicCmd.Flags().BoolP("defaultOnEmpty", "d", false, "Default on empty")
-	retrieveLatestPoliciesPublicCmd.Flags().StringP("policyType", "p", " ", "Policy type")
-	retrieveLatestPoliciesPublicCmd.Flags().StringP("tags", "t", " ", "Tags")
+	retrieveLatestPoliciesPublicCmd.Flags().BoolP("alwaysIncludeDefault", "at", false, "Always include default")
+	retrieveLatestPoliciesPublicCmd.Flags().BoolP("defaultOnEmpty", "dy", false, "Default on empty")
+	retrieveLatestPoliciesPublicCmd.Flags().StringP("policyType", "pe", " ", "Policy type")
+	retrieveLatestPoliciesPublicCmd.Flags().StringP("tags", "ts", " ", "Tags")
 }

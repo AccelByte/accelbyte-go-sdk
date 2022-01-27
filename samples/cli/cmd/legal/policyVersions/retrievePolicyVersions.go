@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package policyVersions
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclient/policy_versions"
@@ -45,7 +45,7 @@ var retrievePolicyVersionsCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(retrievePolicyVersionsCmd)
-	retrievePolicyVersionsCmd.Flags().StringP("basePolicyId", "b", " ", "Base policy id")
-	retrievePolicyVersionsCmd.Flags().StringP("localeId", "l", " ", "Locale id")
-	retrievePolicyVersionsCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	retrievePolicyVersionsCmd.Flags().StringP("basePolicyId", "bd", " ", "Base policy id")
+	retrievePolicyVersionsCmd.Flags().StringP("localeId", "ld", " ", "Locale id")
+	retrievePolicyVersionsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 }

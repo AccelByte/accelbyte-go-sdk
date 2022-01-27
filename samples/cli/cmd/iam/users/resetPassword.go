@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package users
 
 import (
 	"encoding/json"
@@ -49,8 +49,8 @@ var resetPasswordCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(resetPasswordCmd)
-	resetPasswordCmd.Flags().StringP("body", "b", " ", "Body")
+	resetPasswordCmd.Flags().StringP("body", "by", " ", "Body")
 	_ = resetPasswordCmd.MarkFlagRequired("body")
-	resetPasswordCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	resetPasswordCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = resetPasswordCmd.MarkFlagRequired("namespace")
 }

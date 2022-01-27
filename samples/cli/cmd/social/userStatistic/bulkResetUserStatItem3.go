@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package userStatistic
 
 import (
 	"encoding/json"
@@ -52,9 +52,9 @@ var bulkResetUserStatItem3Cmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(bulkResetUserStatItem3Cmd)
-	bulkResetUserStatItem3Cmd.Flags().StringP("body", "b", " ", "Body")
-	bulkResetUserStatItem3Cmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	bulkResetUserStatItem3Cmd.Flags().StringP("body", "by", " ", "Body")
+	bulkResetUserStatItem3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = bulkResetUserStatItem3Cmd.MarkFlagRequired("namespace")
-	bulkResetUserStatItem3Cmd.Flags().StringP("userId", "u", " ", "User id")
+	bulkResetUserStatItem3Cmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = bulkResetUserStatItem3Cmd.MarkFlagRequired("userId")
 }

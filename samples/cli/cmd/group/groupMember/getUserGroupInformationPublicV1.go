@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package groupMember
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/group-sdk/pkg/groupclient/group_member"
@@ -43,8 +43,8 @@ var getUserGroupInformationPublicV1Cmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(getUserGroupInformationPublicV1Cmd)
-	getUserGroupInformationPublicV1Cmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	getUserGroupInformationPublicV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = getUserGroupInformationPublicV1Cmd.MarkFlagRequired("namespace")
-	getUserGroupInformationPublicV1Cmd.Flags().StringP("userId", "u", " ", "User id")
+	getUserGroupInformationPublicV1Cmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = getUserGroupInformationPublicV1Cmd.MarkFlagRequired("userId")
 }

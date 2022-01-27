@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package achievements
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/achievement-sdk/pkg/achievementclient/achievements"
@@ -44,10 +44,10 @@ var adminUnlockAchievementCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(adminUnlockAchievementCmd)
-	adminUnlockAchievementCmd.Flags().StringP("achievementCode", "a", " ", "Achievement code")
+	adminUnlockAchievementCmd.Flags().StringP("achievementCode", "ae", " ", "Achievement code")
 	_ = adminUnlockAchievementCmd.MarkFlagRequired("achievementCode")
-	adminUnlockAchievementCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	adminUnlockAchievementCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = adminUnlockAchievementCmd.MarkFlagRequired("namespace")
-	adminUnlockAchievementCmd.Flags().StringP("userId", "u", " ", "User id")
+	adminUnlockAchievementCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = adminUnlockAchievementCmd.MarkFlagRequired("userId")
 }

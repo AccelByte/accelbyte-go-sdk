@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package globalStatistic
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
@@ -45,8 +45,8 @@ var getGlobalStatItemsCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(getGlobalStatItemsCmd)
-	getGlobalStatItemsCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	getGlobalStatItemsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = getGlobalStatItemsCmd.MarkFlagRequired("namespace")
-	getGlobalStatItemsCmd.Flags().Int32P("limit", "l", 20, "Limit")
-	getGlobalStatItemsCmd.Flags().Int32P("offset", "o", 0, "Offset")
+	getGlobalStatItemsCmd.Flags().Int32P("limit", "lt", 20, "Limit")
+	getGlobalStatItemsCmd.Flags().Int32P("offset", "ot", 0, "Offset")
 }

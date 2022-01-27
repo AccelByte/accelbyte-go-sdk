@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package terminatedServers
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/dslogmanager-sdk/pkg/dslogmanagerclient/terminated_servers"
@@ -42,8 +42,8 @@ var downloadServerLogsCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(downloadServerLogsCmd)
-	downloadServerLogsCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	downloadServerLogsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = downloadServerLogsCmd.MarkFlagRequired("namespace")
-	downloadServerLogsCmd.Flags().StringP("podName", "p", " ", "Pod name")
+	downloadServerLogsCmd.Flags().StringP("podName", "pe", " ", "Pod name")
 	_ = downloadServerLogsCmd.MarkFlagRequired("podName")
 }

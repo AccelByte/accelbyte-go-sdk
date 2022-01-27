@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package achievements
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/achievement-sdk/pkg/achievementclient/achievements"
@@ -51,8 +51,8 @@ var importAchievementsCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(importAchievementsCmd)
-	importAchievementsCmd.Flags().StringP("file", "f", " ", "File")
-	importAchievementsCmd.Flags().StringP("strategy", "s", " ", "Strategy")
-	importAchievementsCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	importAchievementsCmd.Flags().StringP("file", "fe", " ", "File")
+	importAchievementsCmd.Flags().StringP("strategy", "sy", " ", "Strategy")
+	importAchievementsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = importAchievementsCmd.MarkFlagRequired("namespace")
 }

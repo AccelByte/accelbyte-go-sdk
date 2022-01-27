@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package configuration
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/group-sdk/pkg/groupclient/configuration"
@@ -43,8 +43,8 @@ var getGroupConfigurationAdminV1Cmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(getGroupConfigurationAdminV1Cmd)
-	getGroupConfigurationAdminV1Cmd.Flags().StringP("configurationCode", "c", " ", "Configuration code")
+	getGroupConfigurationAdminV1Cmd.Flags().StringP("configurationCode", "ce", " ", "Configuration code")
 	_ = getGroupConfigurationAdminV1Cmd.MarkFlagRequired("configurationCode")
-	getGroupConfigurationAdminV1Cmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	getGroupConfigurationAdminV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = getGroupConfigurationAdminV1Cmd.MarkFlagRequired("namespace")
 }

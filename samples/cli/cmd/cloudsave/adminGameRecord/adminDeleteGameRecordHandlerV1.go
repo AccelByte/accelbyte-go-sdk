@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package adminGameRecord
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclient/admin_game_record"
@@ -42,8 +42,8 @@ var adminDeleteGameRecordHandlerV1Cmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(adminDeleteGameRecordHandlerV1Cmd)
-	adminDeleteGameRecordHandlerV1Cmd.Flags().StringP("key", "k", " ", "Key")
+	adminDeleteGameRecordHandlerV1Cmd.Flags().StringP("key", "ky", " ", "Key")
 	_ = adminDeleteGameRecordHandlerV1Cmd.MarkFlagRequired("key")
-	adminDeleteGameRecordHandlerV1Cmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	adminDeleteGameRecordHandlerV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = adminDeleteGameRecordHandlerV1Cmd.MarkFlagRequired("namespace")
 }

@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package notification
 
 import (
 	"encoding/json"
@@ -53,12 +53,12 @@ var updateTemplateLocalizationV1AdminCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(updateTemplateLocalizationV1AdminCmd)
-	updateTemplateLocalizationV1AdminCmd.Flags().StringP("body", "b", " ", "Body")
+	updateTemplateLocalizationV1AdminCmd.Flags().StringP("body", "by", " ", "Body")
 	_ = updateTemplateLocalizationV1AdminCmd.MarkFlagRequired("body")
-	updateTemplateLocalizationV1AdminCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	updateTemplateLocalizationV1AdminCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = updateTemplateLocalizationV1AdminCmd.MarkFlagRequired("namespace")
-	updateTemplateLocalizationV1AdminCmd.Flags().StringP("templateLanguage", "t", " ", "Template language")
+	updateTemplateLocalizationV1AdminCmd.Flags().StringP("templateLanguage", "te", " ", "Template language")
 	_ = updateTemplateLocalizationV1AdminCmd.MarkFlagRequired("templateLanguage")
-	updateTemplateLocalizationV1AdminCmd.Flags().StringP("templateSlug", "t", " ", "Template slug")
+	updateTemplateLocalizationV1AdminCmd.Flags().StringP("templateSlug", "tg", " ", "Template slug")
 	_ = updateTemplateLocalizationV1AdminCmd.MarkFlagRequired("templateSlug")
 }

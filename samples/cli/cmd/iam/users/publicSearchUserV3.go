@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package users
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users"
@@ -45,8 +45,8 @@ var publicSearchUserV3Cmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(publicSearchUserV3Cmd)
-	publicSearchUserV3Cmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	publicSearchUserV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = publicSearchUserV3Cmd.MarkFlagRequired("namespace")
-	publicSearchUserV3Cmd.Flags().StringP("by", "b", " ", "By")
-	publicSearchUserV3Cmd.Flags().StringP("query", "q", " ", "Query")
+	publicSearchUserV3Cmd.Flags().StringP("by", "by", " ", "By")
+	publicSearchUserV3Cmd.Flags().StringP("query", "qy", " ", "Query")
 }

@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package friends
 
 import (
 	"encoding/json"
@@ -51,10 +51,10 @@ var addFriendsWithoutConfirmationCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(addFriendsWithoutConfirmationCmd)
-	addFriendsWithoutConfirmationCmd.Flags().StringP("body", "b", " ", "Body")
+	addFriendsWithoutConfirmationCmd.Flags().StringP("body", "by", " ", "Body")
 	_ = addFriendsWithoutConfirmationCmd.MarkFlagRequired("body")
-	addFriendsWithoutConfirmationCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	addFriendsWithoutConfirmationCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = addFriendsWithoutConfirmationCmd.MarkFlagRequired("namespace")
-	addFriendsWithoutConfirmationCmd.Flags().StringP("userId", "u", " ", "User id")
+	addFriendsWithoutConfirmationCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = addFriendsWithoutConfirmationCmd.MarkFlagRequired("userId")
 }

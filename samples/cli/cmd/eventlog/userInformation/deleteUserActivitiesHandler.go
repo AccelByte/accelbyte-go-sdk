@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package userInformation
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/eventlog-sdk/pkg/eventlogclient/user_information"
@@ -42,8 +42,8 @@ var deleteUserActivitiesHandlerCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(deleteUserActivitiesHandlerCmd)
-	deleteUserActivitiesHandlerCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	deleteUserActivitiesHandlerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = deleteUserActivitiesHandlerCmd.MarkFlagRequired("namespace")
-	deleteUserActivitiesHandlerCmd.Flags().StringP("userId", "u", " ", "User id")
+	deleteUserActivitiesHandlerCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = deleteUserActivitiesHandlerCmd.MarkFlagRequired("userId")
 }

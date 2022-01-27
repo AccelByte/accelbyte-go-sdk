@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package policies
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclient/policies"
@@ -47,9 +47,9 @@ var retrieveLatestPoliciesCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(retrieveLatestPoliciesCmd)
-	retrieveLatestPoliciesCmd.Flags().StringP("countryCode", "c", " ", "Country code")
+	retrieveLatestPoliciesCmd.Flags().StringP("countryCode", "ce", " ", "Country code")
 	_ = retrieveLatestPoliciesCmd.MarkFlagRequired("countryCode")
-	retrieveLatestPoliciesCmd.Flags().BoolP("defaultOnEmpty", "d", false, "Default on empty")
-	retrieveLatestPoliciesCmd.Flags().StringP("policyType", "p", " ", "Policy type")
-	retrieveLatestPoliciesCmd.Flags().StringP("tags", "t", " ", "Tags")
+	retrieveLatestPoliciesCmd.Flags().BoolP("defaultOnEmpty", "dy", false, "Default on empty")
+	retrieveLatestPoliciesCmd.Flags().StringP("policyType", "pe", " ", "Policy type")
+	retrieveLatestPoliciesCmd.Flags().StringP("tags", "ts", " ", "Tags")
 }

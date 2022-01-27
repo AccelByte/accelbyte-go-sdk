@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package groupRoles
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/group-sdk/pkg/groupclient/group_roles"
@@ -45,8 +45,8 @@ var getMemberRolesListPublicV1Cmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(getMemberRolesListPublicV1Cmd)
-	getMemberRolesListPublicV1Cmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	getMemberRolesListPublicV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = getMemberRolesListPublicV1Cmd.MarkFlagRequired("namespace")
-	getMemberRolesListPublicV1Cmd.Flags().Int64P("limit", "l", 20, "Limit")
-	getMemberRolesListPublicV1Cmd.Flags().Int64P("offset", "o", 0, "Offset")
+	getMemberRolesListPublicV1Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
+	getMemberRolesListPublicV1Cmd.Flags().Int64P("offset", "ot", 0, "Offset")
 }

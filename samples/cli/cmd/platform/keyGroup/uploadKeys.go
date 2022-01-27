@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package keyGroup
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/key_group"
@@ -51,9 +51,9 @@ var uploadKeysCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(uploadKeysCmd)
-	uploadKeysCmd.Flags().StringP("file", "f", " ", "File")
-	uploadKeysCmd.Flags().StringP("keyGroupId", "k", " ", "Key group id")
+	uploadKeysCmd.Flags().StringP("file", "fe", " ", "File")
+	uploadKeysCmd.Flags().StringP("keyGroupId", "kd", " ", "Key group id")
 	_ = uploadKeysCmd.MarkFlagRequired("keyGroupId")
-	uploadKeysCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	uploadKeysCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = uploadKeysCmd.MarkFlagRequired("namespace")
 }

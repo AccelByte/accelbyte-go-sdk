@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package entitlement
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/entitlement"
@@ -45,9 +45,9 @@ var publicGetMyEntitlementOwnershipBySkuCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(publicGetMyEntitlementOwnershipBySkuCmd)
-	publicGetMyEntitlementOwnershipBySkuCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	publicGetMyEntitlementOwnershipBySkuCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = publicGetMyEntitlementOwnershipBySkuCmd.MarkFlagRequired("namespace")
-	publicGetMyEntitlementOwnershipBySkuCmd.Flags().StringP("entitlementClazz", "e", " ", "Entitlement clazz")
-	publicGetMyEntitlementOwnershipBySkuCmd.Flags().StringP("sku", "s", " ", "Sku")
+	publicGetMyEntitlementOwnershipBySkuCmd.Flags().StringP("entitlementClazz", "ez", " ", "Entitlement clazz")
+	publicGetMyEntitlementOwnershipBySkuCmd.Flags().StringP("sku", "su", " ", "Sku")
 	_ = publicGetMyEntitlementOwnershipBySkuCmd.MarkFlagRequired("sku")
 }

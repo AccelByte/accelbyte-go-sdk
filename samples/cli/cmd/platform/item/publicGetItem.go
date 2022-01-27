@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package item
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/item"
@@ -51,12 +51,12 @@ var publicGetItemCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(publicGetItemCmd)
-	publicGetItemCmd.Flags().StringP("itemId", "i", " ", "Item id")
+	publicGetItemCmd.Flags().StringP("itemId", "id", " ", "Item id")
 	_ = publicGetItemCmd.MarkFlagRequired("itemId")
-	publicGetItemCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	publicGetItemCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = publicGetItemCmd.MarkFlagRequired("namespace")
-	publicGetItemCmd.Flags().StringP("language", "l", " ", "Language")
-	publicGetItemCmd.Flags().BoolP("populateBundle", "p", false, "Populate bundle")
-	publicGetItemCmd.Flags().StringP("region", "r", " ", "Region")
-	publicGetItemCmd.Flags().StringP("storeId", "s", " ", "Store id")
+	publicGetItemCmd.Flags().StringP("language", "le", " ", "Language")
+	publicGetItemCmd.Flags().BoolP("populateBundle", "pe", false, "Populate bundle")
+	publicGetItemCmd.Flags().StringP("region", "rn", " ", "Region")
+	publicGetItemCmd.Flags().StringP("storeId", "sd", " ", "Store id")
 }

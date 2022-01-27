@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package deploymentConfig
 
 import (
 	"encoding/json"
@@ -52,10 +52,10 @@ var updateDeploymentCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(updateDeploymentCmd)
-	updateDeploymentCmd.Flags().StringP("body", "b", " ", "Body")
+	updateDeploymentCmd.Flags().StringP("body", "by", " ", "Body")
 	_ = updateDeploymentCmd.MarkFlagRequired("body")
-	updateDeploymentCmd.Flags().StringP("deployment", "d", " ", "Deployment")
+	updateDeploymentCmd.Flags().StringP("deployment", "dt", " ", "Deployment")
 	_ = updateDeploymentCmd.MarkFlagRequired("deployment")
-	updateDeploymentCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	updateDeploymentCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = updateDeploymentCmd.MarkFlagRequired("namespace")
 }

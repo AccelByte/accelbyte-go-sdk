@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package currency
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/currency"
@@ -43,8 +43,8 @@ var deleteCurrencyCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(deleteCurrencyCmd)
-	deleteCurrencyCmd.Flags().StringP("currencyCode", "c", " ", "Currency code")
+	deleteCurrencyCmd.Flags().StringP("currencyCode", "ce", " ", "Currency code")
 	_ = deleteCurrencyCmd.MarkFlagRequired("currencyCode")
-	deleteCurrencyCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	deleteCurrencyCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = deleteCurrencyCmd.MarkFlagRequired("namespace")
 }

@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package dataRetrieval
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/gdpr-sdk/pkg/gdprclient/data_retrieval"
@@ -41,6 +41,6 @@ var getAdminEmailConfigurationCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(getAdminEmailConfigurationCmd)
-	getAdminEmailConfigurationCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	getAdminEmailConfigurationCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = getAdminEmailConfigurationCmd.MarkFlagRequired("namespace")
 }

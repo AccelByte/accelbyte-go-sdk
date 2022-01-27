@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package paymentConfig
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/payment_config"
@@ -43,7 +43,7 @@ var testAdyenConfigByIdCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(testAdyenConfigByIdCmd)
-	testAdyenConfigByIdCmd.Flags().StringP("id", "i", " ", "Id")
+	testAdyenConfigByIdCmd.Flags().StringP("id", "id", " ", "Id")
 	_ = testAdyenConfigByIdCmd.MarkFlagRequired("id")
-	testAdyenConfigByIdCmd.Flags().BoolP("sandbox", "s", false, "Sandbox")
+	testAdyenConfigByIdCmd.Flags().BoolP("sandbox", "sx", false, "Sandbox")
 }

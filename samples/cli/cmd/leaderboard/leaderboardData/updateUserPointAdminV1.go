@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package leaderboardData
 
 import (
 	"encoding/json"
@@ -54,12 +54,12 @@ var updateUserPointAdminV1Cmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(updateUserPointAdminV1Cmd)
-	updateUserPointAdminV1Cmd.Flags().StringP("body", "b", " ", "Body")
+	updateUserPointAdminV1Cmd.Flags().StringP("body", "by", " ", "Body")
 	_ = updateUserPointAdminV1Cmd.MarkFlagRequired("body")
-	updateUserPointAdminV1Cmd.Flags().StringP("leaderboardCode", "l", " ", "Leaderboard code")
+	updateUserPointAdminV1Cmd.Flags().StringP("leaderboardCode", "le", " ", "Leaderboard code")
 	_ = updateUserPointAdminV1Cmd.MarkFlagRequired("leaderboardCode")
-	updateUserPointAdminV1Cmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	updateUserPointAdminV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = updateUserPointAdminV1Cmd.MarkFlagRequired("namespace")
-	updateUserPointAdminV1Cmd.Flags().StringP("userId", "u", " ", "User id")
+	updateUserPointAdminV1Cmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = updateUserPointAdminV1Cmd.MarkFlagRequired("userId")
 }

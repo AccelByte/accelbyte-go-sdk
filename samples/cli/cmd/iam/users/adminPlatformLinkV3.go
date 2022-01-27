@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package users
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users"
@@ -46,12 +46,12 @@ var adminPlatformLinkV3Cmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(adminPlatformLinkV3Cmd)
-	adminPlatformLinkV3Cmd.Flags().StringP("ticket", "t", " ", "Ticket")
+	adminPlatformLinkV3Cmd.Flags().StringP("ticket", "tt", " ", "Ticket")
 	_ = adminPlatformLinkV3Cmd.MarkFlagRequired("ticket")
-	adminPlatformLinkV3Cmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	adminPlatformLinkV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = adminPlatformLinkV3Cmd.MarkFlagRequired("namespace")
-	adminPlatformLinkV3Cmd.Flags().StringP("platformId", "p", " ", "Platform id")
+	adminPlatformLinkV3Cmd.Flags().StringP("platformId", "pd", " ", "Platform id")
 	_ = adminPlatformLinkV3Cmd.MarkFlagRequired("platformId")
-	adminPlatformLinkV3Cmd.Flags().StringP("userId", "u", " ", "User id")
+	adminPlatformLinkV3Cmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = adminPlatformLinkV3Cmd.MarkFlagRequired("userId")
 }

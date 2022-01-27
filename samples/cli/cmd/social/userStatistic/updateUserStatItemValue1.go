@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package userStatistic
 
 import (
 	"encoding/json"
@@ -56,12 +56,12 @@ var updateUserStatItemValue1Cmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(updateUserStatItemValue1Cmd)
-	updateUserStatItemValue1Cmd.Flags().StringP("body", "b", " ", "Body")
-	updateUserStatItemValue1Cmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	updateUserStatItemValue1Cmd.Flags().StringP("body", "by", " ", "Body")
+	updateUserStatItemValue1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = updateUserStatItemValue1Cmd.MarkFlagRequired("namespace")
-	updateUserStatItemValue1Cmd.Flags().StringP("statCode", "s", " ", "Stat code")
+	updateUserStatItemValue1Cmd.Flags().StringP("statCode", "se", " ", "Stat code")
 	_ = updateUserStatItemValue1Cmd.MarkFlagRequired("statCode")
-	updateUserStatItemValue1Cmd.Flags().StringP("userId", "u", " ", "User id")
+	updateUserStatItemValue1Cmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = updateUserStatItemValue1Cmd.MarkFlagRequired("userId")
-	updateUserStatItemValue1Cmd.Flags().StringP("additionalKey", "a", " ", "Additional key")
+	updateUserStatItemValue1Cmd.Flags().StringP("additionalKey", "ay", " ", "Additional key")
 }

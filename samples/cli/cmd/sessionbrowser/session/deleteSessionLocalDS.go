@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package session
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
@@ -43,8 +43,8 @@ var deleteSessionLocalDSCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(deleteSessionLocalDSCmd)
-	deleteSessionLocalDSCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	deleteSessionLocalDSCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = deleteSessionLocalDSCmd.MarkFlagRequired("namespace")
-	deleteSessionLocalDSCmd.Flags().StringP("sessionID", "s", " ", "Session ID")
+	deleteSessionLocalDSCmd.Flags().StringP("sessionID", "sD", " ", "Session ID")
 	_ = deleteSessionLocalDSCmd.MarkFlagRequired("sessionID")
 }

@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package dataRetrieval
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/gdpr-sdk/pkg/gdprclient/data_retrieval"
@@ -47,12 +47,12 @@ var adminGeneratePersonalDataURLCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(adminGeneratePersonalDataURLCmd)
-	adminGeneratePersonalDataURLCmd.Flags().StringP("password", "p", " ", "Password")
+	adminGeneratePersonalDataURLCmd.Flags().StringP("password", "pd", " ", "Password")
 	_ = adminGeneratePersonalDataURLCmd.MarkFlagRequired("password")
-	adminGeneratePersonalDataURLCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	adminGeneratePersonalDataURLCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = adminGeneratePersonalDataURLCmd.MarkFlagRequired("namespace")
-	adminGeneratePersonalDataURLCmd.Flags().StringP("requestDate", "r", " ", "Request date")
+	adminGeneratePersonalDataURLCmd.Flags().StringP("requestDate", "re", " ", "Request date")
 	_ = adminGeneratePersonalDataURLCmd.MarkFlagRequired("requestDate")
-	adminGeneratePersonalDataURLCmd.Flags().StringP("userId", "u", " ", "User id")
+	adminGeneratePersonalDataURLCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = adminGeneratePersonalDataURLCmd.MarkFlagRequired("userId")
 }

@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package eventDescriptions
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/eventlog-sdk/pkg/eventlogclient/event_descriptions"
@@ -41,5 +41,5 @@ var specificAgentTypeDescriptionHandlerCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(specificAgentTypeDescriptionHandlerCmd)
-	specificAgentTypeDescriptionHandlerCmd.Flags().StringP("agentTypes", "a", " ", "Agent types")
+	specificAgentTypeDescriptionHandlerCmd.Flags().StringP("agentTypes", "as", " ", "Agent types")
 }

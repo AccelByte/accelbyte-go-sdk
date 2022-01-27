@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package configuration
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/group-sdk/pkg/groupclient/configuration"
@@ -45,10 +45,10 @@ var deleteGroupConfigurationGlobalRuleAdminV1Cmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(deleteGroupConfigurationGlobalRuleAdminV1Cmd)
-	deleteGroupConfigurationGlobalRuleAdminV1Cmd.Flags().StringP("allowedAction", "a", " ", "Allowed action")
+	deleteGroupConfigurationGlobalRuleAdminV1Cmd.Flags().StringP("allowedAction", "an", " ", "Allowed action")
 	_ = deleteGroupConfigurationGlobalRuleAdminV1Cmd.MarkFlagRequired("allowedAction")
-	deleteGroupConfigurationGlobalRuleAdminV1Cmd.Flags().StringP("configurationCode", "c", " ", "Configuration code")
+	deleteGroupConfigurationGlobalRuleAdminV1Cmd.Flags().StringP("configurationCode", "ce", " ", "Configuration code")
 	_ = deleteGroupConfigurationGlobalRuleAdminV1Cmd.MarkFlagRequired("configurationCode")
-	deleteGroupConfigurationGlobalRuleAdminV1Cmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	deleteGroupConfigurationGlobalRuleAdminV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = deleteGroupConfigurationGlobalRuleAdminV1Cmd.MarkFlagRequired("namespace")
 }

@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package notification
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/notification"
@@ -47,9 +47,9 @@ var getTopicByNamespaceCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(getTopicByNamespaceCmd)
-	getTopicByNamespaceCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	getTopicByNamespaceCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = getTopicByNamespaceCmd.MarkFlagRequired("namespace")
-	getTopicByNamespaceCmd.Flags().StringP("after", "a", "0", "After")
-	getTopicByNamespaceCmd.Flags().StringP("before", "b", "0", "Before")
-	getTopicByNamespaceCmd.Flags().Int64P("limit", "l", 20, "Limit")
+	getTopicByNamespaceCmd.Flags().StringP("after", "ar", "0", "After")
+	getTopicByNamespaceCmd.Flags().StringP("before", "be", "0", "Before")
+	getTopicByNamespaceCmd.Flags().Int64P("limit", "lt", 20, "Limit")
 }

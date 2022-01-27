@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package userProfile
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclient/user_profile"
@@ -41,6 +41,6 @@ var getMyZipCodeCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(getMyZipCodeCmd)
-	getMyZipCodeCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	getMyZipCodeCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = getMyZipCodeCmd.MarkFlagRequired("namespace")
 }

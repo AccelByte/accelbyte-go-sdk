@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package matchmaking
 
 import (
 	matchmaking_ "github.com/AccelByte/accelbyte-go-sdk/matchmaking-sdk/pkg/matchmakingclient/matchmaking"
@@ -46,12 +46,12 @@ var deleteUserFromSessionInChannelCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(deleteUserFromSessionInChannelCmd)
-	deleteUserFromSessionInChannelCmd.Flags().StringP("channelName", "c", " ", "Channel name")
+	deleteUserFromSessionInChannelCmd.Flags().StringP("channelName", "ce", " ", "Channel name")
 	_ = deleteUserFromSessionInChannelCmd.MarkFlagRequired("channelName")
-	deleteUserFromSessionInChannelCmd.Flags().StringP("matchID", "m", " ", "Match ID")
+	deleteUserFromSessionInChannelCmd.Flags().StringP("matchID", "mD", " ", "Match ID")
 	_ = deleteUserFromSessionInChannelCmd.MarkFlagRequired("matchID")
-	deleteUserFromSessionInChannelCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	deleteUserFromSessionInChannelCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = deleteUserFromSessionInChannelCmd.MarkFlagRequired("namespace")
-	deleteUserFromSessionInChannelCmd.Flags().StringP("userID", "u", " ", "User ID")
+	deleteUserFromSessionInChannelCmd.Flags().StringP("userID", "uD", " ", "User ID")
 	_ = deleteUserFromSessionInChannelCmd.MarkFlagRequired("userID")
 }

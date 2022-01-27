@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package fulfillmentScript
 
 import (
 	"encoding/json"
@@ -50,7 +50,7 @@ var updateFulfillmentScriptCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(updateFulfillmentScriptCmd)
-	updateFulfillmentScriptCmd.Flags().StringP("body", "b", " ", "Body")
-	updateFulfillmentScriptCmd.Flags().StringP("id", "i", " ", "Id")
+	updateFulfillmentScriptCmd.Flags().StringP("body", "by", " ", "Body")
+	updateFulfillmentScriptCmd.Flags().StringP("id", "id", " ", "Id")
 	_ = updateFulfillmentScriptCmd.MarkFlagRequired("id")
 }

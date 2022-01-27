@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package equ8Config
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclient/e_q_u8_config"
@@ -41,6 +41,6 @@ var getConfigCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(getConfigCmd)
-	getConfigCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	getConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = getConfigCmd.MarkFlagRequired("namespace")
 }

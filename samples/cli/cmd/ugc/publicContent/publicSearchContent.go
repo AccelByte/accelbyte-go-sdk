@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package publicContent
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
@@ -63,17 +63,17 @@ var publicSearchContentCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(publicSearchContentCmd)
-	publicSearchContentCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	publicSearchContentCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = publicSearchContentCmd.MarkFlagRequired("namespace")
-	publicSearchContentCmd.Flags().StringP("creator", "c", " ", "Creator")
-	publicSearchContentCmd.Flags().StringP("isofficial", "i", " ", "Isofficial")
-	publicSearchContentCmd.Flags().StringP("limit", "l", "20", "Limit")
-	publicSearchContentCmd.Flags().StringP("name", "n", " ", "Name")
-	publicSearchContentCmd.Flags().StringP("offset", "o", "0", "Offset")
-	publicSearchContentCmd.Flags().StringP("orderby", "o", " ", "Orderby")
-	publicSearchContentCmd.Flags().StringP("sortby", "s", " ", "Sortby")
-	publicSearchContentCmd.Flags().StringP("subtype", "s", " ", "Subtype")
-	publicSearchContentCmd.Flags().StringP("tags", "t", " ", "Tags")
-	publicSearchContentCmd.Flags().StringP("type", "t", " ", "Type")
-	publicSearchContentCmd.Flags().StringP("userId", "u", " ", "User id")
+	publicSearchContentCmd.Flags().StringP("creator", "cr", " ", "Creator")
+	publicSearchContentCmd.Flags().StringP("isofficial", "il", " ", "Isofficial")
+	publicSearchContentCmd.Flags().StringP("limit", "lt", "20", "Limit")
+	publicSearchContentCmd.Flags().StringP("name", "ne", " ", "Name")
+	publicSearchContentCmd.Flags().StringP("offset", "ot", "0", "Offset")
+	publicSearchContentCmd.Flags().StringP("orderby", "oy", " ", "Orderby")
+	publicSearchContentCmd.Flags().StringP("sortby", "sy", " ", "Sortby")
+	publicSearchContentCmd.Flags().StringP("subtype", "se", " ", "Subtype")
+	publicSearchContentCmd.Flags().StringP("tags", "ts", " ", "Tags")
+	publicSearchContentCmd.Flags().StringP("type", "te", " ", "Type")
+	publicSearchContentCmd.Flags().StringP("userId", "ud", " ", "User id")
 }

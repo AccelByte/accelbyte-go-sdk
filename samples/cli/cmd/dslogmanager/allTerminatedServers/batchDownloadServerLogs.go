@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package allTerminatedServers
 
 import (
 	"encoding/json"
@@ -47,6 +47,6 @@ var batchDownloadServerLogsCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(batchDownloadServerLogsCmd)
-	batchDownloadServerLogsCmd.Flags().StringP("body", "b", " ", "Body")
+	batchDownloadServerLogsCmd.Flags().StringP("body", "by", " ", "Body")
 	_ = batchDownloadServerLogsCmd.MarkFlagRequired("body")
 }

@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package item
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/item"
@@ -53,13 +53,13 @@ var getLocaleItemCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(getLocaleItemCmd)
-	getLocaleItemCmd.Flags().StringP("itemId", "i", " ", "Item id")
+	getLocaleItemCmd.Flags().StringP("itemId", "id", " ", "Item id")
 	_ = getLocaleItemCmd.MarkFlagRequired("itemId")
-	getLocaleItemCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	getLocaleItemCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = getLocaleItemCmd.MarkFlagRequired("namespace")
-	getLocaleItemCmd.Flags().BoolP("activeOnly", "a", false, "Active only")
-	getLocaleItemCmd.Flags().StringP("language", "l", " ", "Language")
-	getLocaleItemCmd.Flags().BoolP("populateBundle", "p", false, "Populate bundle")
-	getLocaleItemCmd.Flags().StringP("region", "r", " ", "Region")
-	getLocaleItemCmd.Flags().StringP("storeId", "s", " ", "Store id")
+	getLocaleItemCmd.Flags().BoolP("activeOnly", "ay", false, "Active only")
+	getLocaleItemCmd.Flags().StringP("language", "le", " ", "Language")
+	getLocaleItemCmd.Flags().BoolP("populateBundle", "pe", false, "Populate bundle")
+	getLocaleItemCmd.Flags().StringP("region", "rn", " ", "Region")
+	getLocaleItemCmd.Flags().StringP("storeId", "sd", " ", "Store id")
 }

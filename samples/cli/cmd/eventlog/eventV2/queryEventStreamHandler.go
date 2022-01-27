@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package eventV2
 
 import (
 	"encoding/json"
@@ -58,12 +58,12 @@ var queryEventStreamHandlerCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(queryEventStreamHandlerCmd)
-	queryEventStreamHandlerCmd.Flags().StringP("body", "b", " ", "Body")
+	queryEventStreamHandlerCmd.Flags().StringP("body", "by", " ", "Body")
 	_ = queryEventStreamHandlerCmd.MarkFlagRequired("body")
-	queryEventStreamHandlerCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	queryEventStreamHandlerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = queryEventStreamHandlerCmd.MarkFlagRequired("namespace")
-	queryEventStreamHandlerCmd.Flags().StringP("endDate", "e", " ", "End date")
-	queryEventStreamHandlerCmd.Flags().Float64P("offset", "o", 0, "Offset")
-	queryEventStreamHandlerCmd.Flags().Float64P("pageSize", "p", 1, "Page size")
-	queryEventStreamHandlerCmd.Flags().StringP("startDate", "s", " ", "Start date")
+	queryEventStreamHandlerCmd.Flags().StringP("endDate", "ee", " ", "End date")
+	queryEventStreamHandlerCmd.Flags().Float64P("offset", "ot", 0, "Offset")
+	queryEventStreamHandlerCmd.Flags().Float64P("pageSize", "pe", 1, "Page size")
+	queryEventStreamHandlerCmd.Flags().StringP("startDate", "se", " ", "Start date")
 }

@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package subscription
 
 import (
 	"encoding/json"
@@ -56,12 +56,12 @@ var cancelSubscriptionCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(cancelSubscriptionCmd)
-	cancelSubscriptionCmd.Flags().StringP("body", "b", " ", "Body")
-	cancelSubscriptionCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	cancelSubscriptionCmd.Flags().StringP("body", "by", " ", "Body")
+	cancelSubscriptionCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = cancelSubscriptionCmd.MarkFlagRequired("namespace")
-	cancelSubscriptionCmd.Flags().StringP("subscriptionId", "s", " ", "Subscription id")
+	cancelSubscriptionCmd.Flags().StringP("subscriptionId", "sd", " ", "Subscription id")
 	_ = cancelSubscriptionCmd.MarkFlagRequired("subscriptionId")
-	cancelSubscriptionCmd.Flags().StringP("userId", "u", " ", "User id")
+	cancelSubscriptionCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = cancelSubscriptionCmd.MarkFlagRequired("userId")
-	cancelSubscriptionCmd.Flags().BoolP("force", "f", false, "Force")
+	cancelSubscriptionCmd.Flags().BoolP("force", "fe", false, "Force")
 }

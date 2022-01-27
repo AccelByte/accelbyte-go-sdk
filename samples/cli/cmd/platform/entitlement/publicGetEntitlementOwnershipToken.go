@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package entitlement
 
 import (
 	"encoding/json"
@@ -63,9 +63,9 @@ var publicGetEntitlementOwnershipTokenCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(publicGetEntitlementOwnershipTokenCmd)
-	publicGetEntitlementOwnershipTokenCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	publicGetEntitlementOwnershipTokenCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = publicGetEntitlementOwnershipTokenCmd.MarkFlagRequired("namespace")
-	publicGetEntitlementOwnershipTokenCmd.Flags().StringP("appIds", "a", " ", "App ids")
-	publicGetEntitlementOwnershipTokenCmd.Flags().StringP("itemIds", "i", " ", "Item ids")
-	publicGetEntitlementOwnershipTokenCmd.Flags().StringP("skus", "s", " ", "Skus")
+	publicGetEntitlementOwnershipTokenCmd.Flags().StringP("appIds", "as", " ", "App ids")
+	publicGetEntitlementOwnershipTokenCmd.Flags().StringP("itemIds", "is", " ", "Item ids")
+	publicGetEntitlementOwnershipTokenCmd.Flags().StringP("skus", "ss", " ", "Skus")
 }

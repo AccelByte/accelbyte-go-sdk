@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package slot
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
@@ -44,10 +44,10 @@ var publicDeleteUserNamespaceSlotCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(publicDeleteUserNamespaceSlotCmd)
-	publicDeleteUserNamespaceSlotCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	publicDeleteUserNamespaceSlotCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = publicDeleteUserNamespaceSlotCmd.MarkFlagRequired("namespace")
-	publicDeleteUserNamespaceSlotCmd.Flags().StringP("slotId", "s", " ", "Slot id")
+	publicDeleteUserNamespaceSlotCmd.Flags().StringP("slotId", "sd", " ", "Slot id")
 	_ = publicDeleteUserNamespaceSlotCmd.MarkFlagRequired("slotId")
-	publicDeleteUserNamespaceSlotCmd.Flags().StringP("userId", "u", " ", "User id")
+	publicDeleteUserNamespaceSlotCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = publicDeleteUserNamespaceSlotCmd.MarkFlagRequired("userId")
 }

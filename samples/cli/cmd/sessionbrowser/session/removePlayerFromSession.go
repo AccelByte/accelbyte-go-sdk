@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package session
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
@@ -45,10 +45,10 @@ var removePlayerFromSessionCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(removePlayerFromSessionCmd)
-	removePlayerFromSessionCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	removePlayerFromSessionCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = removePlayerFromSessionCmd.MarkFlagRequired("namespace")
-	removePlayerFromSessionCmd.Flags().StringP("sessionID", "s", " ", "Session ID")
+	removePlayerFromSessionCmd.Flags().StringP("sessionID", "sD", " ", "Session ID")
 	_ = removePlayerFromSessionCmd.MarkFlagRequired("sessionID")
-	removePlayerFromSessionCmd.Flags().StringP("userID", "u", " ", "User ID")
+	removePlayerFromSessionCmd.Flags().StringP("userID", "uD", " ", "User ID")
 	_ = removePlayerFromSessionCmd.MarkFlagRequired("userID")
 }

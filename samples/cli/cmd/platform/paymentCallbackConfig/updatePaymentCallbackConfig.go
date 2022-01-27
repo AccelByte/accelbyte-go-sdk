@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package paymentCallbackConfig
 
 import (
 	"encoding/json"
@@ -50,7 +50,7 @@ var updatePaymentCallbackConfigCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(updatePaymentCallbackConfigCmd)
-	updatePaymentCallbackConfigCmd.Flags().StringP("body", "b", " ", "Body")
-	updatePaymentCallbackConfigCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	updatePaymentCallbackConfigCmd.Flags().StringP("body", "by", " ", "Body")
+	updatePaymentCallbackConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = updatePaymentCallbackConfigCmd.MarkFlagRequired("namespace")
 }

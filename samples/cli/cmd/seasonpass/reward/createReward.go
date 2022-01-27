@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package reward
 
 import (
 	"encoding/json"
@@ -52,9 +52,9 @@ var createRewardCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(createRewardCmd)
-	createRewardCmd.Flags().StringP("body", "b", " ", "Body")
-	createRewardCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	createRewardCmd.Flags().StringP("body", "by", " ", "Body")
+	createRewardCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = createRewardCmd.MarkFlagRequired("namespace")
-	createRewardCmd.Flags().StringP("seasonId", "s", " ", "Season id")
+	createRewardCmd.Flags().StringP("seasonId", "sd", " ", "Season id")
 	_ = createRewardCmd.MarkFlagRequired("seasonId")
 }

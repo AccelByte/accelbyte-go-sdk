@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package userAction
 
 import (
 	"encoding/json"
@@ -50,7 +50,7 @@ var unBanUsersCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(unBanUsersCmd)
-	unBanUsersCmd.Flags().StringP("body", "b", " ", "Body")
-	unBanUsersCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	unBanUsersCmd.Flags().StringP("body", "by", " ", "Body")
+	unBanUsersCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = unBanUsersCmd.MarkFlagRequired("namespace")
 }

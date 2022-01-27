@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package player
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/player"
@@ -45,10 +45,10 @@ var adminGetPlayerSessionAttributeCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(adminGetPlayerSessionAttributeCmd)
-	adminGetPlayerSessionAttributeCmd.Flags().StringP("attribute", "a", " ", "Attribute")
+	adminGetPlayerSessionAttributeCmd.Flags().StringP("attribute", "ae", " ", "Attribute")
 	_ = adminGetPlayerSessionAttributeCmd.MarkFlagRequired("attribute")
-	adminGetPlayerSessionAttributeCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	adminGetPlayerSessionAttributeCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = adminGetPlayerSessionAttributeCmd.MarkFlagRequired("namespace")
-	adminGetPlayerSessionAttributeCmd.Flags().StringP("userId", "u", " ", "User id")
+	adminGetPlayerSessionAttributeCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = adminGetPlayerSessionAttributeCmd.MarkFlagRequired("userId")
 }

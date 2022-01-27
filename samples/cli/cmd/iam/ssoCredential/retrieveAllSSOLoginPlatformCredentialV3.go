@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package ssoCredential
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/s_s_o_credential"
@@ -45,8 +45,8 @@ var retrieveAllSSOLoginPlatformCredentialV3Cmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(retrieveAllSSOLoginPlatformCredentialV3Cmd)
-	retrieveAllSSOLoginPlatformCredentialV3Cmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	retrieveAllSSOLoginPlatformCredentialV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = retrieveAllSSOLoginPlatformCredentialV3Cmd.MarkFlagRequired("namespace")
-	retrieveAllSSOLoginPlatformCredentialV3Cmd.Flags().Int64P("limit", "l", 20, "Limit")
-	retrieveAllSSOLoginPlatformCredentialV3Cmd.Flags().StringP("offset", "o", "0", "Offset")
+	retrieveAllSSOLoginPlatformCredentialV3Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
+	retrieveAllSSOLoginPlatformCredentialV3Cmd.Flags().StringP("offset", "ot", "0", "Offset")
 }

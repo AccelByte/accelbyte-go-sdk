@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package agreement
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclient/agreement"
@@ -47,9 +47,9 @@ var retrieveAllUsersByPolicyVersionCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(retrieveAllUsersByPolicyVersionCmd)
-	retrieveAllUsersByPolicyVersionCmd.Flags().StringP("keyword", "k", " ", "Keyword")
-	retrieveAllUsersByPolicyVersionCmd.Flags().Int32P("limit", "l", 20, "Limit")
-	retrieveAllUsersByPolicyVersionCmd.Flags().Int32P("offset", "o", 0, "Offset")
-	retrieveAllUsersByPolicyVersionCmd.Flags().StringP("policyVersionId", "p", " ", "Policy version id")
+	retrieveAllUsersByPolicyVersionCmd.Flags().StringP("keyword", "kd", " ", "Keyword")
+	retrieveAllUsersByPolicyVersionCmd.Flags().Int32P("limit", "lt", 20, "Limit")
+	retrieveAllUsersByPolicyVersionCmd.Flags().Int32P("offset", "ot", 0, "Offset")
+	retrieveAllUsersByPolicyVersionCmd.Flags().StringP("policyVersionId", "pd", " ", "Policy version id")
 	_ = retrieveAllUsersByPolicyVersionCmd.MarkFlagRequired("policyVersionId")
 }

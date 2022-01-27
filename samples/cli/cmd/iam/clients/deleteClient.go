@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package clients
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/clients"
@@ -40,6 +40,6 @@ var deleteClientCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(deleteClientCmd)
-	deleteClientCmd.Flags().StringP("clientId", "c", " ", "Client id")
+	deleteClientCmd.Flags().StringP("clientId", "cd", " ", "Client id")
 	_ = deleteClientCmd.MarkFlagRequired("clientId")
 }

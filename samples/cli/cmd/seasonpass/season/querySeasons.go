@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package season
 
 import (
 	"encoding/json"
@@ -53,9 +53,9 @@ var querySeasonsCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(querySeasonsCmd)
-	querySeasonsCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	querySeasonsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = querySeasonsCmd.MarkFlagRequired("namespace")
-	querySeasonsCmd.Flags().Int32P("limit", "l", 20, "Limit")
-	querySeasonsCmd.Flags().Int32P("offset", "o", 0, "Offset")
-	querySeasonsCmd.Flags().StringP("status", "s", " ", "Status")
+	querySeasonsCmd.Flags().Int32P("limit", "lt", 20, "Limit")
+	querySeasonsCmd.Flags().Int32P("offset", "ot", 0, "Offset")
+	querySeasonsCmd.Flags().StringP("status", "ss", " ", "Status")
 }

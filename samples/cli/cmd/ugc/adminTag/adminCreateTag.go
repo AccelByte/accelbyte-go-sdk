@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package adminTag
 
 import (
 	"encoding/json"
@@ -50,8 +50,8 @@ var adminCreateTagCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(adminCreateTagCmd)
-	adminCreateTagCmd.Flags().StringP("body", "b", " ", "Body")
+	adminCreateTagCmd.Flags().StringP("body", "by", " ", "Body")
 	_ = adminCreateTagCmd.MarkFlagRequired("body")
-	adminCreateTagCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	adminCreateTagCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = adminCreateTagCmd.MarkFlagRequired("namespace")
 }

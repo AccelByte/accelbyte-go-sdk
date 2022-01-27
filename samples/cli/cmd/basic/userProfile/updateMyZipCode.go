@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package userProfile
 
 import (
 	"encoding/json"
@@ -50,8 +50,8 @@ var updateMyZipCodeCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(updateMyZipCodeCmd)
-	updateMyZipCodeCmd.Flags().StringP("userZipCodeUpdate", "u", " ", "User zip code update")
+	updateMyZipCodeCmd.Flags().StringP("userZipCodeUpdate", "ue", " ", "User zip code update")
 	_ = updateMyZipCodeCmd.MarkFlagRequired("userZipCodeUpdate")
-	updateMyZipCodeCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	updateMyZipCodeCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = updateMyZipCodeCmd.MarkFlagRequired("namespace")
 }

@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package deploymentConfig
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/deployment_config"
@@ -45,10 +45,10 @@ var deleteRootRegionOverrideCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(deleteRootRegionOverrideCmd)
-	deleteRootRegionOverrideCmd.Flags().StringP("deployment", "d", " ", "Deployment")
+	deleteRootRegionOverrideCmd.Flags().StringP("deployment", "dt", " ", "Deployment")
 	_ = deleteRootRegionOverrideCmd.MarkFlagRequired("deployment")
-	deleteRootRegionOverrideCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	deleteRootRegionOverrideCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = deleteRootRegionOverrideCmd.MarkFlagRequired("namespace")
-	deleteRootRegionOverrideCmd.Flags().StringP("region", "r", " ", "Region")
+	deleteRootRegionOverrideCmd.Flags().StringP("region", "rn", " ", "Region")
 	_ = deleteRootRegionOverrideCmd.MarkFlagRequired("region")
 }

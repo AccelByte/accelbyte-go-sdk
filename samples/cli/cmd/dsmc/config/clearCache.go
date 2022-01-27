@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package config
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/config"
@@ -40,6 +40,6 @@ var clearCacheCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(clearCacheCmd)
-	clearCacheCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	clearCacheCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = clearCacheCmd.MarkFlagRequired("namespace")
 }

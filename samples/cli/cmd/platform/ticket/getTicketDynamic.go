@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package ticket
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/ticket"
@@ -43,8 +43,8 @@ var getTicketDynamicCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(getTicketDynamicCmd)
-	getTicketDynamicCmd.Flags().StringP("boothName", "b", " ", "Booth name")
+	getTicketDynamicCmd.Flags().StringP("boothName", "be", " ", "Booth name")
 	_ = getTicketDynamicCmd.MarkFlagRequired("boothName")
-	getTicketDynamicCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	getTicketDynamicCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = getTicketDynamicCmd.MarkFlagRequired("namespace")
 }

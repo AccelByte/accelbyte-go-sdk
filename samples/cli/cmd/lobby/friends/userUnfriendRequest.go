@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package friends
 
 import (
 	"encoding/json"
@@ -49,8 +49,8 @@ var userUnfriendRequestCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(userUnfriendRequestCmd)
-	userUnfriendRequestCmd.Flags().StringP("body", "b", " ", "Body")
+	userUnfriendRequestCmd.Flags().StringP("body", "by", " ", "Body")
 	_ = userUnfriendRequestCmd.MarkFlagRequired("body")
-	userUnfriendRequestCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	userUnfriendRequestCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = userUnfriendRequestCmd.MarkFlagRequired("namespace")
 }

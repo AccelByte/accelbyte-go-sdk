@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package notification
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/notification"
@@ -42,8 +42,8 @@ var deleteNotificationTemplateSlugV1AdminCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(deleteNotificationTemplateSlugV1AdminCmd)
-	deleteNotificationTemplateSlugV1AdminCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	deleteNotificationTemplateSlugV1AdminCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = deleteNotificationTemplateSlugV1AdminCmd.MarkFlagRequired("namespace")
-	deleteNotificationTemplateSlugV1AdminCmd.Flags().StringP("templateSlug", "t", " ", "Template slug")
+	deleteNotificationTemplateSlugV1AdminCmd.Flags().StringP("templateSlug", "tg", " ", "Template slug")
 	_ = deleteNotificationTemplateSlugV1AdminCmd.MarkFlagRequired("templateSlug")
 }

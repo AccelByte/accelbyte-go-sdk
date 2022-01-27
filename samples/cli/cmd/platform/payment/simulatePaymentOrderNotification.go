@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package payment
 
 import (
 	"encoding/json"
@@ -52,9 +52,9 @@ var simulatePaymentOrderNotificationCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(simulatePaymentOrderNotificationCmd)
-	simulatePaymentOrderNotificationCmd.Flags().StringP("body", "b", " ", "Body")
-	simulatePaymentOrderNotificationCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	simulatePaymentOrderNotificationCmd.Flags().StringP("body", "by", " ", "Body")
+	simulatePaymentOrderNotificationCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = simulatePaymentOrderNotificationCmd.MarkFlagRequired("namespace")
-	simulatePaymentOrderNotificationCmd.Flags().StringP("paymentOrderNo", "p", " ", "Payment order no")
+	simulatePaymentOrderNotificationCmd.Flags().StringP("paymentOrderNo", "po", " ", "Payment order no")
 	_ = simulatePaymentOrderNotificationCmd.MarkFlagRequired("paymentOrderNo")
 }

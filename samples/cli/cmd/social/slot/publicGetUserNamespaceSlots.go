@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package slot
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
@@ -43,8 +43,8 @@ var publicGetUserNamespaceSlotsCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(publicGetUserNamespaceSlotsCmd)
-	publicGetUserNamespaceSlotsCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	publicGetUserNamespaceSlotsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = publicGetUserNamespaceSlotsCmd.MarkFlagRequired("namespace")
-	publicGetUserNamespaceSlotsCmd.Flags().StringP("userId", "u", " ", "User id")
+	publicGetUserNamespaceSlotsCmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = publicGetUserNamespaceSlotsCmd.MarkFlagRequired("userId")
 }

@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package roles
 
 import (
 	"encoding/json"
@@ -49,8 +49,8 @@ var removeRoleManagersCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(removeRoleManagersCmd)
-	removeRoleManagersCmd.Flags().StringP("body", "b", " ", "Body")
+	removeRoleManagersCmd.Flags().StringP("body", "by", " ", "Body")
 	_ = removeRoleManagersCmd.MarkFlagRequired("body")
-	removeRoleManagersCmd.Flags().StringP("roleId", "r", " ", "Role id")
+	removeRoleManagersCmd.Flags().StringP("roleId", "rd", " ", "Role id")
 	_ = removeRoleManagersCmd.MarkFlagRequired("roleId")
 }

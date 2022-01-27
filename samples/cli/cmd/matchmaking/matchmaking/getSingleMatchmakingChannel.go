@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package matchmaking
 
 import (
 	matchmaking_ "github.com/AccelByte/accelbyte-go-sdk/matchmaking-sdk/pkg/matchmakingclient/matchmaking"
@@ -43,8 +43,8 @@ var getSingleMatchmakingChannelCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(getSingleMatchmakingChannelCmd)
-	getSingleMatchmakingChannelCmd.Flags().StringP("channelName", "c", " ", "Channel name")
+	getSingleMatchmakingChannelCmd.Flags().StringP("channelName", "ce", " ", "Channel name")
 	_ = getSingleMatchmakingChannelCmd.MarkFlagRequired("channelName")
-	getSingleMatchmakingChannelCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	getSingleMatchmakingChannelCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = getSingleMatchmakingChannelCmd.MarkFlagRequired("namespace")
 }

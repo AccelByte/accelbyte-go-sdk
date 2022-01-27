@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package roles
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/roles"
@@ -44,10 +44,10 @@ var deleteRolePermissionCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(deleteRolePermissionCmd)
-	deleteRolePermissionCmd.Flags().Int64P("action", "a", -1, "Action")
+	deleteRolePermissionCmd.Flags().Int64P("action", "an", -1, "Action")
 	_ = deleteRolePermissionCmd.MarkFlagRequired("action")
-	deleteRolePermissionCmd.Flags().StringP("resource", "r", " ", "Resource")
+	deleteRolePermissionCmd.Flags().StringP("resource", "re", " ", "Resource")
 	_ = deleteRolePermissionCmd.MarkFlagRequired("resource")
-	deleteRolePermissionCmd.Flags().StringP("roleId", "r", " ", "Role id")
+	deleteRolePermissionCmd.Flags().StringP("roleId", "rd", " ", "Role id")
 	_ = deleteRolePermissionCmd.MarkFlagRequired("roleId")
 }

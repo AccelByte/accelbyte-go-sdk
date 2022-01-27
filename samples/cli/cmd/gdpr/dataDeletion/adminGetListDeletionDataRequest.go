@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package dataDeletion
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/gdpr-sdk/pkg/gdprclient/data_deletion"
@@ -51,11 +51,11 @@ var adminGetListDeletionDataRequestCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(adminGetListDeletionDataRequestCmd)
-	adminGetListDeletionDataRequestCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	adminGetListDeletionDataRequestCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = adminGetListDeletionDataRequestCmd.MarkFlagRequired("namespace")
-	adminGetListDeletionDataRequestCmd.Flags().StringP("after", "a", "0", "After")
-	adminGetListDeletionDataRequestCmd.Flags().StringP("before", "b", "0", "Before")
-	adminGetListDeletionDataRequestCmd.Flags().Int64P("limit", "l", 20, "Limit")
-	adminGetListDeletionDataRequestCmd.Flags().Int64P("offset", "o", 0, "Offset")
-	adminGetListDeletionDataRequestCmd.Flags().StringP("requestDate", "r", " ", "Request date")
+	adminGetListDeletionDataRequestCmd.Flags().StringP("after", "ar", "0", "After")
+	adminGetListDeletionDataRequestCmd.Flags().StringP("before", "be", "0", "Before")
+	adminGetListDeletionDataRequestCmd.Flags().Int64P("limit", "lt", 20, "Limit")
+	adminGetListDeletionDataRequestCmd.Flags().Int64P("offset", "ot", 0, "Offset")
+	adminGetListDeletionDataRequestCmd.Flags().StringP("requestDate", "re", " ", "Request date")
 }

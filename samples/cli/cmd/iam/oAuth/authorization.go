@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package oAuth
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth"
@@ -52,14 +52,14 @@ var authorizationCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(authorizationCmd)
-	authorizationCmd.Flags().StringP("login", "l", " ", "Login")
-	authorizationCmd.Flags().StringP("password", "p", " ", "Password")
-	authorizationCmd.Flags().StringP("scope", "s", " ", "Scope")
-	authorizationCmd.Flags().StringP("state", "s", " ", "State")
-	authorizationCmd.Flags().StringP("client_id", "c", " ", "Client id")
+	authorizationCmd.Flags().StringP("login", "ln", " ", "Login")
+	authorizationCmd.Flags().StringP("password", "pd", " ", "Password")
+	authorizationCmd.Flags().StringP("scope", "se", " ", "Scope")
+	authorizationCmd.Flags().StringP("state", "se", " ", "State")
+	authorizationCmd.Flags().StringP("client_id", "cd", " ", "Client id")
 	_ = authorizationCmd.MarkFlagRequired("client_id")
-	authorizationCmd.Flags().StringP("redirect_uri", "r", " ", "Redirect uri")
+	authorizationCmd.Flags().StringP("redirect_uri", "ri", " ", "Redirect uri")
 	_ = authorizationCmd.MarkFlagRequired("redirect_uri")
-	authorizationCmd.Flags().StringP("response_type", "r", " ", "Response type")
+	authorizationCmd.Flags().StringP("response_type", "re", " ", "Response type")
 	_ = authorizationCmd.MarkFlagRequired("response_type")
 }

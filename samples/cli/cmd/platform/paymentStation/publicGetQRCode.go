@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package paymentStation
 
 import (
 	"bytes"
@@ -57,8 +57,8 @@ var publicGetQRCodeCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(publicGetQRCodeCmd)
-	publicGetQRCodeCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	publicGetQRCodeCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = publicGetQRCodeCmd.MarkFlagRequired("namespace")
-	publicGetQRCodeCmd.Flags().StringP("code", "c", " ", "Code")
+	publicGetQRCodeCmd.Flags().StringP("code", "ce", " ", "Code")
 	_ = publicGetQRCodeCmd.MarkFlagRequired("code")
 }

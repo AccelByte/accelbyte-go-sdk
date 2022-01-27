@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package matchmaking
 
 import (
 	matchmaking_ "github.com/AccelByte/accelbyte-go-sdk/matchmaking-sdk/pkg/matchmakingclient/matchmaking"
@@ -55,15 +55,15 @@ var searchSessionsCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(searchSessionsCmd)
-	searchSessionsCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	searchSessionsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = searchSessionsCmd.MarkFlagRequired("namespace")
-	searchSessionsCmd.Flags().StringP("channel", "c", " ", "Channel")
-	searchSessionsCmd.Flags().BoolP("deleted", "d", false, "Deleted")
-	searchSessionsCmd.Flags().StringP("matchID", "m", " ", "Match ID")
-	searchSessionsCmd.Flags().StringP("partyID", "p", " ", "Party ID")
-	searchSessionsCmd.Flags().StringP("userID", "u", " ", "User ID")
-	searchSessionsCmd.Flags().Float64P("limit", "l", 20, "Limit")
+	searchSessionsCmd.Flags().StringP("channel", "cl", " ", "Channel")
+	searchSessionsCmd.Flags().BoolP("deleted", "dd", false, "Deleted")
+	searchSessionsCmd.Flags().StringP("matchID", "mD", " ", "Match ID")
+	searchSessionsCmd.Flags().StringP("partyID", "pD", " ", "Party ID")
+	searchSessionsCmd.Flags().StringP("userID", "uD", " ", "User ID")
+	searchSessionsCmd.Flags().Float64P("limit", "lt", 20, "Limit")
 	_ = searchSessionsCmd.MarkFlagRequired("limit")
-	searchSessionsCmd.Flags().Float64P("offset", "o", 0, "Offset")
+	searchSessionsCmd.Flags().Float64P("offset", "ot", 0, "Offset")
 	_ = searchSessionsCmd.MarkFlagRequired("offset")
 }

@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package users
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users"
@@ -43,8 +43,8 @@ var publicGetAsyncStatusCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(publicGetAsyncStatusCmd)
-	publicGetAsyncStatusCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	publicGetAsyncStatusCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = publicGetAsyncStatusCmd.MarkFlagRequired("namespace")
-	publicGetAsyncStatusCmd.Flags().StringP("requestId", "r", " ", "Request id")
+	publicGetAsyncStatusCmd.Flags().StringP("requestId", "rd", " ", "Request id")
 	_ = publicGetAsyncStatusCmd.MarkFlagRequired("requestId")
 }

@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package publicPlayerRecord
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclient/public_player_record"
@@ -42,8 +42,8 @@ var publicDeletePlayerPublicRecordHandlerV1Cmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(publicDeletePlayerPublicRecordHandlerV1Cmd)
-	publicDeletePlayerPublicRecordHandlerV1Cmd.Flags().StringP("key", "k", " ", "Key")
+	publicDeletePlayerPublicRecordHandlerV1Cmd.Flags().StringP("key", "ky", " ", "Key")
 	_ = publicDeletePlayerPublicRecordHandlerV1Cmd.MarkFlagRequired("key")
-	publicDeletePlayerPublicRecordHandlerV1Cmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	publicDeletePlayerPublicRecordHandlerV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = publicDeletePlayerPublicRecordHandlerV1Cmd.MarkFlagRequired("namespace")
 }

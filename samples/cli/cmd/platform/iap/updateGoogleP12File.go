@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package iap
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/i_a_p"
@@ -49,7 +49,7 @@ var updateGoogleP12FileCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(updateGoogleP12FileCmd)
-	updateGoogleP12FileCmd.Flags().StringP("file", "f", " ", "File")
-	updateGoogleP12FileCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	updateGoogleP12FileCmd.Flags().StringP("file", "fe", " ", "File")
+	updateGoogleP12FileCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = updateGoogleP12FileCmd.MarkFlagRequired("namespace")
 }

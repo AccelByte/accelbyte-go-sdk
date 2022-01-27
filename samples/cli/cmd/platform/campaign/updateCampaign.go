@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package campaign
 
 import (
 	"encoding/json"
@@ -52,9 +52,9 @@ var updateCampaignCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(updateCampaignCmd)
-	updateCampaignCmd.Flags().StringP("body", "b", " ", "Body")
-	updateCampaignCmd.Flags().StringP("campaignId", "c", " ", "Campaign id")
+	updateCampaignCmd.Flags().StringP("body", "by", " ", "Body")
+	updateCampaignCmd.Flags().StringP("campaignId", "cd", " ", "Campaign id")
 	_ = updateCampaignCmd.MarkFlagRequired("campaignId")
-	updateCampaignCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	updateCampaignCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = updateCampaignCmd.MarkFlagRequired("namespace")
 }

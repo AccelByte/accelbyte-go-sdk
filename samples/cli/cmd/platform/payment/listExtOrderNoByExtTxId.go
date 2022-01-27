@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package payment
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/payment"
@@ -43,8 +43,8 @@ var listExtOrderNoByExtTxIdCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(listExtOrderNoByExtTxIdCmd)
-	listExtOrderNoByExtTxIdCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	listExtOrderNoByExtTxIdCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = listExtOrderNoByExtTxIdCmd.MarkFlagRequired("namespace")
-	listExtOrderNoByExtTxIdCmd.Flags().StringP("extTxId", "e", " ", "Ext tx id")
+	listExtOrderNoByExtTxIdCmd.Flags().StringP("extTxId", "ed", " ", "Ext tx id")
 	_ = listExtOrderNoByExtTxIdCmd.MarkFlagRequired("extTxId")
 }

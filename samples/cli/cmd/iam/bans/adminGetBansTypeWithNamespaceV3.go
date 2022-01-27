@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package bans
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/bans"
@@ -41,6 +41,6 @@ var adminGetBansTypeWithNamespaceV3Cmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(adminGetBansTypeWithNamespaceV3Cmd)
-	adminGetBansTypeWithNamespaceV3Cmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	adminGetBansTypeWithNamespaceV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = adminGetBansTypeWithNamespaceV3Cmd.MarkFlagRequired("namespace")
 }

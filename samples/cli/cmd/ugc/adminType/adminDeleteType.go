@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package adminType
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
@@ -42,8 +42,8 @@ var adminDeleteTypeCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(adminDeleteTypeCmd)
-	adminDeleteTypeCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	adminDeleteTypeCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = adminDeleteTypeCmd.MarkFlagRequired("namespace")
-	adminDeleteTypeCmd.Flags().StringP("typeId", "t", " ", "Type id")
+	adminDeleteTypeCmd.Flags().StringP("typeId", "td", " ", "Type id")
 	_ = adminDeleteTypeCmd.MarkFlagRequired("typeId")
 }

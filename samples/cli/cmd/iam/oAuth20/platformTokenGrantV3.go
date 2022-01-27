@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package oAuth20
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth2_0"
@@ -47,9 +47,9 @@ var platformTokenGrantV3Cmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(platformTokenGrantV3Cmd)
-	platformTokenGrantV3Cmd.Flags().StringP("client_id", "c", " ", "Client id")
-	platformTokenGrantV3Cmd.Flags().StringP("device_id", "d", " ", "Device id")
-	platformTokenGrantV3Cmd.Flags().StringP("platform_token", "p", " ", "Platform token")
-	platformTokenGrantV3Cmd.Flags().StringP("platformId", "p", " ", "Platform id")
+	platformTokenGrantV3Cmd.Flags().StringP("client_id", "cd", " ", "Client id")
+	platformTokenGrantV3Cmd.Flags().StringP("device_id", "dd", " ", "Device id")
+	platformTokenGrantV3Cmd.Flags().StringP("platform_token", "pn", " ", "Platform token")
+	platformTokenGrantV3Cmd.Flags().StringP("platformId", "pd", " ", "Platform id")
 	_ = platformTokenGrantV3Cmd.MarkFlagRequired("platformId")
 }

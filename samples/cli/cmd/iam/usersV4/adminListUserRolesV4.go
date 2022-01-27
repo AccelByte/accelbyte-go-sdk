@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package usersV4
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users_v4"
@@ -43,8 +43,8 @@ var adminListUserRolesV4Cmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(adminListUserRolesV4Cmd)
-	adminListUserRolesV4Cmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	adminListUserRolesV4Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = adminListUserRolesV4Cmd.MarkFlagRequired("namespace")
-	adminListUserRolesV4Cmd.Flags().StringP("userId", "u", " ", "User id")
+	adminListUserRolesV4Cmd.Flags().StringP("userId", "ud", " ", "User id")
 	_ = adminListUserRolesV4Cmd.MarkFlagRequired("userId")
 }

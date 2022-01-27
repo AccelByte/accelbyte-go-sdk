@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package cmd
+package slotConfig
 
 import (
 	"encoding/json"
@@ -50,7 +50,7 @@ var updateNamespaceSlotConfigCmd = &cobra.Command{
 
 func init() {
 	cmd.RootCmd.AddCommand(updateNamespaceSlotConfigCmd)
-	updateNamespaceSlotConfigCmd.Flags().StringP("body", "b", " ", "Body")
-	updateNamespaceSlotConfigCmd.Flags().StringP("namespace", "n", " ", "Namespace")
+	updateNamespaceSlotConfigCmd.Flags().StringP("body", "by", " ", "Body")
+	updateNamespaceSlotConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
 	_ = updateNamespaceSlotConfigCmd.MarkFlagRequired("namespace")
 }

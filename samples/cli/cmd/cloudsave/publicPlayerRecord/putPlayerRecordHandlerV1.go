@@ -51,7 +51,7 @@ var PutPlayerRecordHandlerV1Cmd = &cobra.Command{
 }
 
 func init() {
-	PutPlayerRecordHandlerV1Cmd.Flags().StringP("body", "", " ", "Body")
+	PutPlayerRecordHandlerV1Cmd.Flags().StringP("body", "", "", "Body")
 	_ = PutPlayerRecordHandlerV1Cmd.MarkFlagRequired("body")
 	PutPlayerRecordHandlerV1Cmd.Flags().StringP("key", "", " ", "Key")
 	_ = PutPlayerRecordHandlerV1Cmd.MarkFlagRequired("key")

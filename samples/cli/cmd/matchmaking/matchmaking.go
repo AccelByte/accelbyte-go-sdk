@@ -40,4 +40,5 @@ func init() {
 	MatchmakingCmd.AddCommand(matchmaking.GetSessionHistoryDetailedCmd)
 	MatchmakingCmd.AddCommand(matchmaking.PublicGetAllMatchmakingChannelCmd)
 	MatchmakingCmd.AddCommand(matchmaking.PublicGetSingleMatchmakingChannelCmd)
+	MatchmakingCmd.AddCommand(matchmaking.SearchSessionsV2Cmd)
 }

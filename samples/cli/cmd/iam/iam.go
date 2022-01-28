@@ -158,6 +158,8 @@ func init() {
 	IamCmd.AddCommand(thirdPartyCredential.AddThirdPartyLoginPlatformCredentialV3Cmd)
 	IamCmd.AddCommand(thirdPartyCredential.DeleteThirdPartyLoginPlatformCredentialV3Cmd)
 	IamCmd.AddCommand(thirdPartyCredential.UpdateThirdPartyLoginPlatformCredentialV3Cmd)
+	IamCmd.AddCommand(thirdPartyCredential.UpdateThirdPartyLoginPlatformDomainV3Cmd)
+	IamCmd.AddCommand(thirdPartyCredential.DeleteThirdPartyLoginPlatformDomainV3Cmd)
 	IamCmd.AddCommand(ssoCredential.RetrieveSSOLoginPlatformCredentialCmd)
 	IamCmd.AddCommand(ssoCredential.AddSSOLoginPlatformCredentialCmd)
 	IamCmd.AddCommand(ssoCredential.DeleteSSOLoginPlatformCredentialV3Cmd)
